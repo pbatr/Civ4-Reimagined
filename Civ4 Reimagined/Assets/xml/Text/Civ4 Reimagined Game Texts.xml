@@ -1065,4 +1065,8 @@
 		<Tag>TXT_KEY_TECH_LEATHER_WORKING</Tag>
 		<English>Leather Working</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_LEATHER_WORKING_QUOTE</Tag>
+		<English>"Tis the same to him who wears a shoe, as if the whole earth were covered in leather." - Persian proverb</English>
+	</TEXT>
 </Civ4GameText>

@@ -4288,10 +4288,10 @@
 				<PrereqTech>TECH_HUNTING</PrereqTech>
 			</OrPreReqs>
 			<AndPreReqs/>
-			<Quote>TXT_KEY_TECH_ARCHERY_QUOTE</Quote>
+			<Quote>TXT_KEY_TECH_LEATHER_WORKING_QUOTE</Quote>
 			<Sound>NONE</Sound>
 			<SoundMP>NONE</SoundMP>
-			<Button>,Art/Interface/Buttons/TechTree/Archery.dds,Art/Interface/Buttons/TechTree_Atlas.dds,4,1</Button>
+			<Button>,Art/Interface/Buttons/TechTree/Leather_Working.dds</Button>
 		</TechInfo>
 		<TechInfo>
 			<Type>TECH_MASONRY</Type>
