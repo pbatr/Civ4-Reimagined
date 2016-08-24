@@ -1,0 +1,33 @@
+*******************************************
+Civ4 Reimagined 1.2
+*******************************************
+-Tech Archery replaced with Leather Working. Archers are available with Hunting. Horseback Riding requires Leather Working instead of Iron Working but has increased cost.
+-New building: Tannery. Moved happiness bonus for fur from market to tannery. Deer provides happiness with tannery instead of health with supermarket.
+-All leaders have the same base attitude. There is a relationship bonus in place instead when a civilization doesn't have enough open borders.
+-Adjusted tech costs to incorporate Leather Working change
+-Slightly increased technology progression for medieval+.
+-Production penalties for insufficient (strategic) resources are halved. Example: With a ratio of 0.8 and 1 Iron, your production speed for swordsman will be 90% (-20% for a 0.8 ratio, halved to -10%).
+-Wine health bonus from grocer replaced with happiness bonus from market. Whale provides health instead of happiness (you still get happiness with market though).
+-Deer and fur appearance increased on most map types
+-Uranium yield with mine changed from 3 additional commerce to 1 additional production
+-Railroad building time reduced from 400 to 200
+-Commerce yield from gold/silver/gems reduced by 1
+-Movement speed for Corporation ships increased from 4 to 6
+-Great Generals are always born in capital
+-Tyranny upkeep cost increased from low to medium
+-Tank production cost increased from 180 to 200
+-Modern Armor production cost increased from 240 to 260
+-Some AI adjustments when deciding which technology to research next.
+-AI doesn't cancel deals as often as before
+-Improved city resource display, which can now show up to 99 of each resource without overlapping.
+-Fixed display for gold per happiness resource from Mercantilism.
+-Fixed unit buttons for celtic and zulu tanks.
+-Fixed a bug where old BtS Texts were showing up instead of our new ones.
+-Fixed overwhelm event help text
+-Pushed back the looter and marauder event into the renaissance. For an event that could destroy multiple buildings and improvements it could trigger awfully early.
+
+*******************************************
+Civ4 Reimagined 1.1
+*******************************************
+-Fixed major bug that allowed resources to stack their health/happiness beyond 1
+-Fixed bug displaying health/happiness benefits from resources incorrectly for resource ratios below 0.1

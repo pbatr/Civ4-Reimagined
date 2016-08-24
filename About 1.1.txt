@@ -1,0 +1,134 @@
+
+Civ4 Reimagined 1.1
+
+*******************************************
+Introduction:
+*******************************************
+Civ4 Reimagined is a gameplay overhaul mod for Beyond the Sword with the goal of creating a rich and satisfying experience for a game with a high number of players. Despite touching almost every aspect of the game, Civ4 Reimagined strives to feel like a as-it-should-be version of Civilization IV, not a kitchen sink mod. As such, don't expect tons of new units, technologies and whatnot. There *is* new content, but everything new has been carefully added to fix problems and improve the gameplay where we could see opportunities to do so. Civ4 Reimagined started as a K-Modmod (which means you get all the benefits from K-Mod such as a much stronger AI, speed improvements, less OOS errors in multiplayer etc.) and includes the graphic modifications Varietas Delectat and Cultural Citystyles.
+
+*******************************************
+Main Features:
+*******************************************
+
+Resources
+
+A single resource can only support a finite population. If your population grows too large and a single resource can't satisfy the demand all health, happiness and production benefits are reduced accordingly. Additional resources of the same kind are then required to mitigate the resource shortage: If one pig would grant you +0.7 health only because of high population, two pigs will give you the full +1.0 health bonus. When a swordsman is build with a 0.8 ratio in iron the production speed is reduced to 80%. Researching technologies improves your resource ratio, reflecting your increased ability to foster and distribute your resources. This change is a boon for small realms who can keep up their 1.0 ratios easily. However playing a large realm is more fun than ever as your constant struggle to connect new and old resources keeps you on the lookout for good settling positions and trade deals.
+
+Combat
+
+BTS combat resolves largly around stacking enough collateral damage until you can wipe out the enemy tanks with your swordsmen. Even worse, the artillery units in BTW charge head first into the enemy and die in the process, even though they should logically be attacking safely from afar. As the most drastic redesign in Civ4 Imagined, the combat system has been partially remade to fix both issues. Some units possess a range stat, denoted by the bow symbol next to the movement points: Collateral damage is greatly reduced, but is still very important to tip the scales in an otherwise balanced fight or to even the odds in an unbalanced one. Collateral damage units such as archers and artillery receive an attack bonus against units who cannot match their range. This allows archers to harass melee units with little fear of retribution - at least, until it is their turn to attack!. However, a defending archer might return fire and kill the attacker.
+Walls and Castles are useful again. While their defensive stats are greatly reduced they can no longer be blasted into oblivion by ancient siege weapons. Now you truely have a defensive advantage with walls instead of buying yourself one turn of time only (when you are lucky). This changes again when cannons and modern ships enter the battlefield with their ability to bombard cities and destroy both defensive structures and buildings alike.
+
+AI
+
+Civ4 Reimagined features a strong AI and as countless AI improvements on top of K-Mod. All new features and changes of this mod are AI supported.
+Just a few examples:
+-AI evaluates it's own happiness and health surplus or shortage when trading resources.
+-AI demands all ressources from its vassals that could be useful.
+-AI evaluates all civic effects plus any correlations that might exist and generally is much more accurate with its evaluations.
+-AI will delay revolution when it currently researches a technology that will grant it a better civic.
+-Better evaluations when deciding which technologies to research next.
+-Smarter city placing and improvement building which results in a stronger economy of your AI opponents.
+-AI doesn't use slavery as extensively as before which results in bigger cities and stronger AI overall.
+-When deciding which player to attack, AI focuses on its neighbors instead of far away civs.
+-AI no longer uses nuclear weapons without thinking. They evaluate the consequences of a nuclear counterattack and may decide to not attack you at all if your nuclear arsenal is big enough.
+
+Minor Features:
+
+-New names, new symbols, and effects for corporations and a few more corporations for the early stages of the game. Corporations automatically spread to cities which have their needed resources nearby. But while you can no longer keep your corporations for yourself, feel solace in the fact that cities with your corporation in it will be weakened to your spionage effords.
+-Almost all technologies, units, buildings and improvements were modified in some way. Unique units have a larger impact, and late-game unique units/buildings are even more powerful.
+-Archers and crossbows are the new collateral units in the classical/medieval era. Because of this catapults and trebuchets have been removed.
+-Some new units were added: Wargalley (medieval ship), cruiser (industrial ship) and motorized infantry.
+-More compact tech tree and technologies are sorted in a historically more accurate order. How quick everything progresses still depends on your difficulty though. For monarch it usually works quite well, neither being too far ahead nor too far behind of the real timeline.
+-Traits have been redesigned.
+-Cottage growth is a lot slower than before. Mindlessly spamming cottages everywhere is not the best strategy.
+-Civ4 Reimagined comes with new civics (greatly inspired by Rhye's and Fall: Dawn of Civilization). Some of them have very special features.
+-Small realms generally received a leg up from the original. Carelessly managed large empires will have trouble modernizing with the numbers of workers being limited to eight. Additionally, the resource system described above punishes player for over-expanding and neglecting research. 
+-Naval invasions are less annoying than before: Sea units can see further away, depending on their movement speed. This allows you to spot naval invasions without moving your sentry water units back-and-forth every turn. More importantly, naval unit movement in enemy territory is limited to 2 tiles/turn. Cities with a high cultural influence – which now also expands over the ocean – buy themselves a turn of preparation before the fleet reaches the shore.
+-Various adjustments for a smooth game with a 18-20 players: New wonders, domination victory requires  a lower % of land and population, AI makes less diplomacy spam and needs more convincing for open border agreements
+-Modern units like artillery, bombers, battleships can destroy buildings.
+-More goody hut events.
+-A couple new pieces of music and a few old ones removed - if you always hated the medieval chorals, this is for you!
+-New cities start with additional population and buildings depending on era. We recommend playing on maps with “New World” settings because colonizing is more fun than ever.
+-Better starting position balance. Also if your unique unit requires horses or ivory, a resource of that kind will be present at your starting location. Never will you play the Khmer empire without elephants or ancient Egypt without chariots again! Of cause, guaranteed horses/ivory or not, your overall starting position will not be better than those of your enemies.
+-Stronger Espionage: More buildings have espionage modifiers, stealing techs depend on the same modifiers as if you would research them yourself, and spies respawn in your closest city instead of the capital.
+-Three new leaders to have one for every combination of traits.
+
+Small tweaks:
+
+-Nuke overhaul: Nukes have a higher power value, the AI nukes more responsibly (evaluating whether they are in the offense or defense and if they are facing a nuclear power who could strike back), AI frowns upon the usage of nukes on their friends, and the power value of nukes is greatly increased.
+-The outcomes of all events are less drastic and offer more interesting choices. Multiple players are competing for the same quest with a higher probability. Events occur slightly more often and new events have been added.
+-Vassals grant their master a small portion of their gold, research, and espionage. Let them prosper and you will be rewarded.
+-Most combat promotions nerfed. The effects of Medic I and Medic II are now splitted evenly to make both of them useful.
+-Almost all AI-Human relationship modifiers are shown.
+-Relationship bonus with AI when sharing same civics.
+-Research costs for technologies that found religions are reduced for all civilizations after they have been discovered by someone.
+-More detailed trade route system. The strength of your trade routes depend on both cities and on factors like culture and population size.
+-Religion can be switched without anarchy but doing so has a long timer independent of civic change anarchy.
+-All deals and most notable peace treaties last double as long. Make sure you make the right decision, as it will be some time!
+-Chopping produces less production at the beginning of the game and more towards the end of the game to provide a more interesting trade-off.
+-Resources are less likely to appear on only one continent and almost all resources can now be placed on small islands.
+-Gold gain from shrines and headquarters are now subject to diminished returns.
+-All-new loading screen tips
+-Instead of AI players constantly rejecting your deal proposals for resources they are not interested in, you can now only offer resources the AI is interested in to begin with.
+-Colonies will become unhappy if not released in modern times.
+-Connecting resources adjacent to rivers (without roads) now requires sailing.
+-Increased tech diffusion if technology trading is disabled (as per recommended settings, see below).
+-Missionaries can no longer be build when monasteries become obsolete (except with organized religion).
+-Driving out a religion leaves their temples and monasteries in ruins
+-Cities cannot be razed anymore as soon as they reach culture level 3.
+-Slightly increased reach for blockade missions.
+-Your vassalls are more easily intimidated by your army and less often declare war on you for imposing tribute.
+-No civilization starts with mysticism.
+-Three civics can be switched at once for one turn of anarchy.
+-Reduced failgold for wonders by 50%.
+-Scouts, explorers, missionaries, corporation executives and most classical/medieval ships can enter foreign borders.
+-Spreading corporations with executives doesn't cost anything.
+-Fighter and jet fighter can destroy ships. Carriers now have the important role they deserve!
+
+Future Plans: Unique Powers
+
+With the goal of making every civ feel truely different, we plan to introduce unique powers to each civilization at some point. By accumulating culture your civilization unlocks multiple levels of unique powers over time. The culture thresholds will be chosen in a way that civs reach the pinnacle of their power at roughly the time they did historically. Civilizations who receive their powers later in the game will have stronger powers to compensate. So far we are toying with different kinds of powers and observe what is fun to play and what isn't.
+
+Future Plans: Modern Era Overhaul
+
+The industrial and modern eras don't feel right yet. We have lots of ideas to improve things here. Ideologies shall fill the gap that religion leaves after the discovery of secularism. An improved, more realistic UN and the concept of proxy wars should also help to create a better cold war feeling in the modern era. We might also decide to replace Alpha Centauri with a more realistic space race.
+
+Notes:
+
+-This list is by all means not exhaustive! We changed so many things before eventually deciding to publish this mod that it is hard to remember everything. If you are playing our mod and notice something weird or staggering that should be in this introduction, by all means please tell us.
+-The mod is not translated yet. English is the only supported language.
+
+*******************************************
+Recommended settings:
+*******************************************
+
+These are the setting we usually use when playing and testing. Of course you can still use whatever you prefer ;-)
+-18-20 players totestra map: Although waiting for the start of the game when playing a Totestra map can be quite time consuming, it is well worth it! You will never want to play on one of the “normal” maps again. We did some adjustments to the mapscript to suit our mod.
+-Empty, colonizeable continent ("new world"): Thanks to K-Mod, AI opponents are smart enough to colonize quickly themselves. Colonies provide a faster benefit in our mod and you need the additional ressources to maintain your large empire anyway. On the contrary expect additional unhappiness in your colonies when entering the modern era.
+-No technology trading: We recommend playing without tech trading. If you do, an improved tech diffusion mechanic will be in place which makes for a more realistic tech spread.
+
+*******************************************
+Credits:
+*******************************************
+
+"If I have seen further, it is by standing on the shoulders of giants." - Isaac Newton 
+
+Thanks to the Civ4 modding community for providing invalueable help and resources we were able to build upon.
+
+Sid Meier's Civilization IV: Beyond the Sword by Firaxis
+K-Mod by karadoc
+Dawn of Civilization by Leoreth
+Varietas Delectat by avain
+Cultural Citystyles by GeoModder
+Totestra map by Cephalo
+A few buttons and icons from ambrox62, Edgecrusher, AchillesZero and Caveman2Cosmos
+Events from Cybrxkhan's WOL
+...and all respective mods and helpers those build upon.
+...and everyone we forgot. If we are missing someone, drop us a note!
+
+Music:
+"Chee Zee Jungle", “Drums of the Deep”, “Firesong”, “Rite of Passage”, “Tikopia”, “Celtic Impulse”, “Eastern Thought”, “Myst”, “Angevin”, “Lord of the Land”, “Pippin the Hunchback”, “Suonatore di Liuto”, “Tabuk”, “Teller of the Tales”, “Virtutes Vocis”, “Disquiet”
+Kevin MacLeod (incompetech.com)
+Licensed under Creative Commons: By Attribution 3.0
+http://creativecommons.org/licenses/by/3.0/
