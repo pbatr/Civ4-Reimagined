@@ -25,6 +25,7 @@ Civ4 Reimagined 1.2
 -Fixed a bug where old BtS Texts were showing up instead of our new ones.
 -Fixed overwhelm event help text
 -Pushed back the looter and marauder event into the renaissance. For an event that could destroy multiple buildings and improvements it could trigger awfully early.
+-Totestra map script: "Reduce peaks" is disabled per default
 
 *******************************************
 Civ4 Reimagined 1.1
