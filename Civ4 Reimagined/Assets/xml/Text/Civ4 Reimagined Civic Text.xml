@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- K-Mod hints -->
+	<!-- Style guidelines (from CIV4GameText_Strategy.xml): -->
+	<!-- Technologies should be colored COLOR_TECH_TEXT (example: [COLOR_TECH_TEXT]Bronze Working[COLOR_REVERT]) -->
+	<!-- Unit should be colored COLOR_UNIT_TEXT (example: [COLOR_UNIT_TEXT]Archers[COLOR_REVERT]) -->
+	<!-- Buildings should be colored COLOR_BUILDING_TEXT (example: [COLOR_BUILDING_TEXT]Theatre[COLOR_REVERT]) -->
+	<!-- Projects should be colored COLOR_PROJECT_TEXT (example: [COLOR_PROJECT_TEXT]SS Engine[COLOR_REVERT]) -->
+	<!-- Anything else official (that should be capitalized) should be colored COLOR_HIGHLIGHT_TEXT (example: [COLOR_HIGHLIGHT_TEXT]Trade Mission[COLOR_HIGHLIGHT_TEXT] or [COLOR_HIGHLIGHT_TEXT]Islam[COLOR_HIGHLIGHT_TEXT]) -->
+<Civ4GameText xmlns="http://www.firaxis.com">	
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_CORVEE_SYSTEM</Tag>
+		<English>Corvée System</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_WE_LOVE_CONSUL</Tag>
+		<English>"We Love the Consul Day"</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_TYRANNY</Tag>
+		<English>Tyranny</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_DYNASTICISM</Tag>
+		<English>Dynasticism</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_CITY_STATES</Tag>
+		<English>City States</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_AUTOCRACY</Tag>
+		<English>Autocracy</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_DIRECT_RULE</Tag>
+		<English>Direct Rule</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_ABSOLUTISM</Tag>
+		<English>Absolutism</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_TOTALITARIANISM</Tag>
+		<English>Totalitarianism</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_EGALITARIANISM</Tag>
+		<English>Egalitarianism</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_TRIBALISM</Tag>
+		<English>Tribalism</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_AGRARIANISM</Tag>
+		<English>Agrarianism</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_CAPITALISM</Tag>
+		<English>Capitalism</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_INDUSTRIALISM</Tag>
+		<English>Industrialism</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_PUBLIC_WELFARE</Tag>
+		<English>Public Welfare</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_SELF_SUFFICIENCY</Tag>
+		<English>Self Sufficiency</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_GUILDS</Tag>
+		<English>Guilds</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_CENTRAL_PLANNING</Tag>
+		<English>Central Planning</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_ANIMISM</Tag>
+		<English>Animism</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_PANTHEON</Tag>
+		<English>Pantheon</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_SCHOLASTICISM</Tag>
+		<English>Scholasticism</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_FANATICISM</Tag>
+		<English>Fanaticism</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_SECULARISM</Tag>
+		<English>Secularism</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_MILITIA</Tag>
+		<English>Militia</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_WARRIOR_CODE</Tag>
+		<English>Warrior Code</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_MERCENARIES</Tag>
+		<English>Mercenaries</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_LEVY_ARMIES</Tag>
+		<English>Levy Armies</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_STANDING_ARMY</Tag>
+		<English>Professional Army</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_CONSCRIPTION</Tag>
+		<English>Conscription</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_REPUBLIC</Tag>
+		<English>Republic</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_LIMITED_UNIT_HAPPINESS</Tag>
+		<English>[ICON_BULLET]%D1_PerUnit%F2_HappyOrSad per Military Unit Stationed in a City up to a Maximum of %D3</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_PER_SPECIALIST_THRESHOLD</Tag>
+		<English>[SPACE]per Specialist in %d1_NumCities Largest Cities if They Work at Most %d2 Tiles</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_UNLIMTED</Tag>
+		<English>[ICON_BULLET]Doubled slots for[SPACE]</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_HURRY_GOLD_BUILDINGS</Tag>
+		<English>Can Spend Gold to Finish Building Production in a City</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_HURRY_GOLD_UNITS</Tag>
+		<English>Can Spend Gold to Finish Military Unit Production and Ignore Bonus Requirements in a City</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_BUILDING_DOUBLE_PRODUCTION</Tag>
+		<English>[ICON_BULLET]Double Production Speed for [LINK=literal]%s1_unit_or_building[\LINK]</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_BUILDING_PRODUCTION_MODIFIER</Tag>
+		<English>[ICON_BULLET]Builds [LINK=literal]%s2_unit_or_building[\LINK] %d1_Mod%% Faster</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_BUILDING_PRODUCTION_MODIFIER_APPEND</Tag>
+		<English>, [LINK=literal]%s1_unit_or_building[\LINK]</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_POLLUTION_MODIFIER</Tag>
+		<English>[ICON_BULLET]%D1_Mod%% [ICON_UNHEALTHY]</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_DOMAIN_PRODUCTION</Tag>
+		<English>[ICON_BULLET]%D1_Mod%% Production for All %s2</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_DOMAIN_XP</Tag>
+		<English>[ICON_BULLET]+%d1 Experience for All %s2</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_MERCENARIES_HELP</Tag>
+		<English>[ICON_BULLET]Hurried Units Start with the [LINK=literal]Mercenary[\LINK], [LINK=literal]Combat I[\LINK] and [LINK=literal]Combat II[\LINK] promotions, but receive no experience from buildings.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_SELF_SUFFICIENCY_HELP</Tag>
+		<English>[ICON_BULLET]Can spread the [LINK=literal]Silk Road[\LINK]</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_SLAVERY_HELP</Tag>
+		<English>[ICON_BULLET]Can spread the [LINK=literal]Royal African Company[\LINK] and [LINK=literal]East India Company[\LINK]</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_WONDER_PRODUCTION_BONUS</Tag>
+		<English>[ICON_BULLET]+%d1% World Wonder Construction</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_FROM_DOMESTIC_TRADE_ROUTES</Tag>
+		<English>[SPACE]from Domestic Trade Routes ([ICON_TRADE])</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_FROM_COLONY_TRADE_ROUTES</Tag>
+		<English>[SPACE]from Domestic Sea Trade Routes ([ICON_TRADE])</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TRADE_ROUTE_MOD_CIVIC</Tag>
+		<English>%D1%%: for Civic or Trait</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_UNIT_UPGRADE_COST</Tag>
+		<English>[SPACE]Unit Upgrade Cost</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVICOPTION_GOVERNMENT</Tag>
+		<English>Government</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVICOPTION_ORGANIZATION</Tag>
+		<English>Organization</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVICOPTION_RELIGION</Tag>
+		<English>Religion</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVICOPTION_MILITARY</Tag>
+		<English>Military</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_DRAFTING</Tag>
+		<English>[ICON_BULLET]Can [LINK=CONCEPT_DRAFT]Draft[\LINK] %d1_Num [NUM1:Unit:Units] per Turn</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_NO_MILITARY_PRODUCTION_MALI</Tag>
+		<English>[ICON_BULLET]No Production Mali</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_UNLIMITED_ANIMAL_XP</Tag>
+		<English>[ICON_BULLET]Unlimited Experience from Animals</English>
+		<German>[ICON_BULLET]Unbegrenzte Erfahrung von tierischen Einheiten</German>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_FOREIGN_UNIT_SUPPLY</Tag>
+		<English>[SPACE]Foreign Unit Supply Cost</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_PILLAGE_GAIN_MODIFIER</Tag>
+		<English>[SPACE]looted [ICON_GOLD] from Pillaged Tiles</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_POPULATION_UNHAPPINESS_MODIFIER</Tag>
+		<English>[SPACE][ICON_UNHAPPY] from Population</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_ORGANIZED_RELIGION_HELP</Tag>
+		<English>[ICON_BULLET]+5[ICON_COMMERCE] from State [ICON_RELIGION] Cathedrals.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_THEOCRACY_HELP</Tag>
+		<English>[ICON_BULLET]+1[ICON_COMMERCE] from State [ICON_RELIGION] Temples, Monasteries and Cathedrals.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_COMMERCE_HAPPINESS</Tag>
+		<English>[ICON_BULLET]%D1%F2_HappyOrSad per 10%% %F3_commerce</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_BUILDING_MERGED_HAPPINESS_OR_HEALTH</Tag>
+		<English>, [COLOR_BUILDING_TEXT][LINK=literal]%s1_building[\LINK][COLOR_REVERT]</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_NO_GREAT_PEOPLE</Tag>
+		<English>[ICON_BULLET]No [ICON_GREATPEOPLE] Birth</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_CAPITAL_EXTRA_YIELD_FROM_CITIES</Tag>
+		<English>in Capital per Additional City</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_NO_CAPITAL</Tag>
+		<English>[ICON_BULLET]No Effects from Capital</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_BONUS_RATIO_MODIFIER</Tag>
+		<English>[SPACE]Resource Ratios</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_NO_FOREIGN_CULTURE_UNHAPPINESS</Tag>
+		<English>[ICON_BULLET]No [ICON_UNHAPPY] from Foreign Culture</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_PRODUCTION_PER_SURPLUS_HAPPINESS</Tag>
+		<English>[ICON_BULLET]+%s1[ICON_PRODUCTION] for Each Surplus [ICON_HAPPY] in All Cities ([ICON_PRODUCTION] capped at City Population)</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_WORKER_SPEED</Tag>
+		<English>[ICON_BULLET]%d1_Mod%% Faster Improvement Build</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_NO_MAINT_COLONY</Tag>
+		<English>[ICON_BULLET]No Colonial Expenses</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_NO_MAINT_COLONY_MOD</Tag>
+		<English>[ICON_BULLET]%D1_Mod%% Colonial Expenses</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_NO_FOREIGN_CORPORATIONS</Tag>
+		<English>[ICON_BULLET]No Foreign Corporations</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_NO_FOREIGN_TRADE</Tag>
+		<English>[ICON_BULLET]No Foreign [ICON_TRADE]</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_FROM_CAPITAL_TRADE_ROUTES</Tag>
+		<English>[SPACE]from [ICON_TRADE] through Capital</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_ENABLES_SLAVES</Tag>
+		<English>[ICON_BULLET]Receive a [LINK=literal]Slave[\LINK] in Every Newly Founded Colony</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_GOLD_PER_HAPPINESS_BONUS</Tag>
+		<English>[ICON_BULLET]+%s1[ICON_GOLD] in Capital for Each Happiness Resource</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_NO_CAPITAL_UNHAPPINESS</Tag>
+		<English>[ICON_BULLET]No [ICON_UNHAPPY] in Capital</English>
+	</TEXT>	
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_MAINT_MOD</Tag>
+		<English>[ICON_BULLET]%D1_Mod%% City Maintenance Costs</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_NO_FOREIGN_UNIT_SUPPLY</Tag>
+		<English>[ICON_BULLET] No Foreign Unit Supply Cost</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_IN_CAPITAL_PER_SURPLUS_HAPPY</Tag>
+		<English>[SPACE]in Capital for Each Surplus [ICON_HAPPY] (Capped at City Population)</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_NO_CULTURE_FLIP</Tag>
+		<English>[ICON_BULLET]No Culture Flips</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_EXTRA_SPECIALISTS</Tag>
+		<English>[ICON_BULLET]%d1_Num Free [COLOR_BUILDING_TEXT][LINK=literal]%s2_SpecialistType[\LINK][COLOR_REVERT] in All Cities</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_NO_CITY_RESISTANCE</Tag>
+		<English>[ICON_BULLET]No City Resistance on Conquest</English>
+	</TEXT>
+</Civ4GameText>

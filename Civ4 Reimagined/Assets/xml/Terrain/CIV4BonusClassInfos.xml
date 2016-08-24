@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Progtern (Firaxis Games) -->
+<!-- Sid Meier's Civilization 4 -->
+<!-- Copyright Firaxis Games 2005 -->
+<!-- -->
+<!-- Bonus Class -->
+<Civ4BonusClassInfos xmlns="x-schema:CIV4TerrainSchema.xml">
+	<BonusClassInfos>
+		<BonusClassInfo>
+			<Type>BONUSCLASS_GENERAL</Type>
+			<iUnique>0</iUnique>
+		</BonusClassInfo>
+		<BonusClassInfo>
+			<Type>BONUSCLASS_GRAIN</Type>
+			<iUnique>5</iUnique>
+		</BonusClassInfo>
+		<BonusClassInfo>
+			<Type>BONUSCLASS_LIVESTOCK</Type>
+			<iUnique>5</iUnique>
+		</BonusClassInfo>
+		<BonusClassInfo>
+			<Type>BONUSCLASS_RUSH</Type>
+			<iUnique>4</iUnique>
+		</BonusClassInfo>
+		<BonusClassInfo>
+			<Type>BONUSCLASS_MODERN</Type>
+			<iUnique>4</iUnique>
+		</BonusClassInfo>
+		<BonusClassInfo>
+			<Type>BONUSCLASS_WONDER</Type>
+			<iUnique>4</iUnique> <!-- Civ4 Reimagined, was 8 -->
+		</BonusClassInfo>
+	</BonusClassInfos>
+</Civ4BonusClassInfos>

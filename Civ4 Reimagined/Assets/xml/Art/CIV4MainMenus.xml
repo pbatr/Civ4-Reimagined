@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Alex Mantzaris (Firaxis Games) -->
+<!-- Sid Meier's Civilization 4 -->
+<!-- Copyright Firaxis Games 2005 -->
+<!-- -->
+<!-- Main Menu Infos -->
+<Civ4MainMenus xmlns="x-schema:CIV4ArtDefinesSchema.xml">
+	<MainMenus>
+		<MainMenu>
+			<Type>MAIN_MENU_VANILLA</Type>
+			<Description>Civ4: Baba Yetu</Description>
+			<Scene>MAINMENU_SCENE_VANILLA</Scene>
+			<SceneNoShader>MAINMENU_SCENE_VANILLA</SceneNoShader>
+			<Soundtrack>AS2D_OPENING_MENU_VANILLA</Soundtrack>
+			<Loading>MAINMENU_LOAD_CLASSICAL</Loading>
+			<LoadingSlideshow>MAINMENU_SLIDESHOW_LOAD_CLASSICAL</LoadingSlideshow>
+		</MainMenu>
+		<MainMenu>
+			<Type>MAIN_MENU_CLASSICAL</Type>
+			<Description>BTS Classical Music</Description>
+			<Scene>MAINMENU_SCENE_VANILLA</Scene>
+			<SceneNoShader>MAINMENU_SCENE_VANILLA</SceneNoShader>
+			<Soundtrack>AS2D_OPENING_MENU</Soundtrack>
+			<Loading>MAINMENU_LOAD_CLASSICAL</Loading>
+			<LoadingSlideshow>MAINMENU_SLIDESHOW_LOAD_CLASSICAL</LoadingSlideshow>
+		</MainMenu>
+	</MainMenus>
+</Civ4MainMenus>

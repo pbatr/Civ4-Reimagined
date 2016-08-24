@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- K-Mod hints -->
+	<!-- Style guidelines (from CIV4GameText_Strategy.xml): -->
+	<!-- Technologies should be colored COLOR_TECH_TEXT (example: [COLOR_TECH_TEXT]Bronze Working[COLOR_REVERT]) -->
+	<!-- Unit should be colored COLOR_UNIT_TEXT (example: [COLOR_UNIT_TEXT]Archers[COLOR_REVERT]) -->
+	<!-- Buildings should be colored COLOR_BUILDING_TEXT (example: [COLOR_BUILDING_TEXT]Theatre[COLOR_REVERT]) -->
+	<!-- Projects should be colored COLOR_PROJECT_TEXT (example: [COLOR_PROJECT_TEXT]SS Engine[COLOR_REVERT]) -->
+	<!-- Anything else official (that should be capitalized) should be colored COLOR_HIGHLIGHT_TEXT (example: [COLOR_HIGHLIGHT_TEXT]Trade Mission[COLOR_HIGHLIGHT_TEXT] or [COLOR_HIGHLIGHT_TEXT]Islam[COLOR_HIGHLIGHT_TEXT]) -->
+<Civ4GameText xmlns="http://www.firaxis.com">	
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_1</Tag>
+		<English>A single resource will provide less happiness, health, or production speed as your population grows. Large empires may require two or even three of the same kind to satisfy their populace.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_2</Tag>
+		<English>Technology advancement will improve the efficiency ratios for all your resources. Don't neglect cheaper, older technologies.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_3</Tag>
+		<English>The production penalty for resource shortage is halved compared to health and happiness penalties.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_4</Tag>
+		<English>The bow symbol next to the movement points denotes a unit's range. All units capable of dealing collateral damage use their superior range to attack the enemy safely from afar.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_5</Tag>
+		<English>To have a chance at killing an attacking collateral damage unit, keep a unit with equal or higher range in your stack.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_6</Tag>
+		<English>Walls and castles are powerful defensive tools until cannons are invented.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_7</Tag>
+		<English>Artillery, bombers and modern ships can destroy buildings.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_8</Tag>
+		<English>The AI carefully evaluates if there is a need to use nukes... or whether it could result in a nuclear counter-attack!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_9</Tag>
+		<English>When at war, sea units can only move two tiles into enemy territory per turn.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_10</Tag>
+		<English>Only when your rivals are pleased with you will they sign an open border agreement.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_11</Tag>
+		<English>When a religion is driven out of your city, all temples and monasteries of that religion are destroyed in the process.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_12</Tag>
+		<English>If your unique unit requires horses or ivory you can be sure to have one near your starting position.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_13</Tag>
+		<English>The global community frowns upon the usage of nuclear weapons... unless it is on their enemies.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_14</Tag>
+		<English>Civ4 Reimagined is tested for a game with 18 players, "new world" continent, and no technology trading.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_15</Tag>
+		<English>Technologies that found religions are cheaper after they have been discovered by someone.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_16</Tag>
+		<English>State religion can be switched without anarchy but you have to wait 20 turns before you can switch again!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_17</Tag>
+		<English>You need sailing to connect river resources without roads.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_18</Tag>
+		<English>Cities who have built enough culture cannot be razed.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_19</Tag>
+		<English>The number of civics has been increased. As a consequence you can now switch three civics for one turn of anarchy.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_20</Tag>
+		<English>Slaves will work for your empire if you settle on other continents after discovering Astronomy for as long as you maintain slavery.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_21</Tag>
+		<English>Corporations spread automatically to cities with suitable ressources nearby.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_22</Tag>
+		<English>The effect of the Apostolic Palace towards other players has been reduced. All religious buildings of the AP religion gain a bonus of 1 commerce each instead of 2 production. </English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_23</Tag>
+		<English>Slaves don't count towards the worker limit. Use them to modernize a large empire.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_24</Tag>
+		<English>All deals and treaties last double as long as before. Make sure you make the right decision, as it will be some time!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_25</Tag>
+		<English>Bears are dangerous enemies for warriors, but scouts can handle them rather well.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_26</Tag>
+		<English>Recommended settings for Civ4 Reimagined: 18-20 players totestra map. Empty, colonizeable continent ("new world"). No technology trading.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_27</Tag>
+		<English>As time goes by expect more Unhappiness in your Colonies. There are several ways to deal with it. One of them is to release them and keep them as a vassal instead.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_28</Tag>
+		<English>The production output of chopping forest has been reduced by a lot before the discovery of Replacable Parts. Consider keeping some of your forests until then.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_29</Tag>
+		<English>Scouts and early ships can move into rival territory without open border agreements. Be sure to make use of them to establish trade routes and to keep an eye on your opponents.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_30</Tag>
+		<English>The effect of collateral damage has been reduced by a lot. At the same time you will lose your collateral units much less often when attacking.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_31</Tag>
+		<English>Fighters and Jet Fighters can destroy units! They are especially useful against ships.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_32</Tag>
+		<English>Workers and settlers ignore terrain movement cost. The number of workers is limited though and big empires may struggle to modernize all their tiles.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_33</Tag>
+		<English>Forget your old Beyond the Sword opening strategies. Expect a faster early game because your capital is more productive right from the beginning.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_34</Tag>
+		<English>There are more wonders in the game but some have very strict requirements.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_35</Tag>
+		<English>The impact of tech diffusion will be very low unless you play with technology trading turned off.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_36</Tag>
+		<English>The profit you gain from spreading the East India and Royal African Companies to your cities will increase with every slave in your empire.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_37</Tag>
+		<English>The East India and Royal African Companies can only spread when you maintain slavery.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_38</Tag>
+		<English>You gain a small fraction of your vassals' research, gold, and espionage.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_39</Tag>
+		<English>Your vassals give you a small portion of their gold, research, and espionage. Let them prosper and you will be rewarded.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_40</Tag>
+		<English>Unhappy cities are more likely to start a revolt.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_41</Tag>
+		<English>When you are short on strategic ressources, the Mercenary Civic can help you out. It enables you to buy any unit for a little money.</English>
+	</TEXT>
+</Civ4GameText>

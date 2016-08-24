@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Sid Meier's Civilization 4 -->
+<!-- Copyright Firaxis Games 2005 -->
+<Civ4GameText xmlns="http://www.firaxis.com">
+	<TEXT>
+		<Tag>TXT_KEY_LEADER_MEIJI</Tag>
+		<English>Meiji</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_FIRST_CONTACT_LEADER_MEIJI_1</Tag>
+		<English>[CT_NAME]-san! It is an honor to meet another distinguished leader. I am the great [OUR_NAME] of the [OUR_EMPIRE], and we come in peace as long as you do.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_REFUSE_TO_TALK_LEADER_MEIJI_1</Tag>
+		<English>[CT_NAME]-san, we are aware of your treacherous and wicked nature. We are not ignorant like our isolationalist ancestors as you would think. Begone!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_NO_PEACE_LEADER_MEIJI_1</Tag>
+		<English>[CT_NAME]-san, the [OUR_CIV_ADJ] people fight to the death! Onward with this war!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_GREETINGS_ATT_FR_LEADER_MEIJI_1</Tag>
+		<English>Ah, [CT_NAME]-san, it is an honor to meet such an enlightened leader once more. Let us discuss our worldly issues in the calmness of a zen garden, no?</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_GREETINGS_ATT_FUR_LEADER_MEIJI_1</Tag>
+		<English>Oh... its you, [CT_NAME]-san. What troubles do you bring to the [OUR_EMPIRE] this time?</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_DEMAND_TRIBUTE_POWER_WEAKER_LEADER_MEIJI_1</Tag>
+		<English>[CT_NAME]-san, your wisdom and power spreads across a million realms. The poor [OUR_CIV_ADJ] only ask for a little sharing of it, in the hopes that one day we shall return it.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_DEMAND_TRIBUTE_POWER_EQUAL_LEADER_MEIJI_1</Tag>
+		<English>Good day, [CT_NAME]-san. As equals on the world stage, as well as allies, is it not necessary for us to once in a while exchange our good fortunes?</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_DEMAND_TRIBUTE_POWER_STRONGER_LEADER_MEIJI_1</Tag>
+		<English>[CT_NAME]-san, your existence is a marvel. Why don't you keep the lifeline of [CT_NAME_SHORT] just a little longer, by giving the great imperial [OUR_EMPIRE] a little something?</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_LEADER_HARUN</Tag>
+		<English>Harun al-Rashid</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_LEADER_HARUN_PEDIA</Tag>
+		<English>[H1]Harun al-Rashid[\H1][NEWLINE][BOLD]5th Abbasid Caliph[\BOLD][NEWLINE][BOLD]Lived: [\BOLD]763 - 809[NEWLINE][PARAGRAPH:2]Harun al-Rashid was the fifth and most famous of the Abbasid Caliphs, he was born near present day Tehran to al-Mahdi the Caliph of the Abbasid Empire and a slave girl from Yemen.  While his mother came from quite humble beginnings she was very influential during the reign of her husband and for much of Harun's reign.  Born into his position, Harun had developed quite an egotistical and arrogant attitude, however he was an apt and capable ruler.  he began his reign by appointing very able ministers who were able to greatly improve the condition of his people.  It was under Harun that Baghdad flourished into the most splendid city of its period, Harun's focus was on architecture, the arts adn a luxurious life at court.  Harun gave great encouragement to learning, poetry and music.  He was a scholar and poet himself and whenever he heard of learned men in his Empire, or in neighboring countries, he invited them to his court and treated them with great respect, regardless of their nationality or religious beliefs.  He was known worldwide, he had diplomatic relations from Charlemagne's court in Europe to the farthest reaches of China.  Harun is widely considered the greatest of the Abbasid caliphs, presiding over the Arab Empire at its political and cultural zenith.  Consequently, Islamic literature has raised him to the level of an ideal figure, a great military and intellectual leader, even a paragon for future rulers to emulate.  His best-known portrayal in the West, in the stories of the Thousand and One Nights, has little basis in historical fact, but does show the mythic stature he has attained over time.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_FIRST_CONTACT_LEADER_HARUN_1</Tag>
+		<English>I've told my men what is coming... [CT_NAME], lord of [CT_CIV_SHORT], has come upon the [OUR_EMPIRE] to visit its ruler - I, [OUR_NAME]!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_REFUSE_TO_TALK_LEADER_HARUN_1</Tag>
+		<English>Kiss the sole of my foot, she-pig!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_NO_PEACE_LEADER_HARUN_1</Tag>
+		<English>Peace? Are you kidding around with me, [CT_NAME]?</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_GREETINGS_ATT_FR_LEADER_HARUN_1</Tag>
+		<English>It's marvelous to see you again, [CT_NAME]. Take these white elephants home with you. They're all yours!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_GREETINGS_ATT_FUR_LEADER_HARUN_1</Tag>
+		<English>Oh, hello, [CT_NAME]. I wouldn't be surprised if it was you who stole my lute.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_DEMAND_TRIBUTE_POWER_WEAKER_LEADER_HARUN_1</Tag>
+		<English>After all the lavish gifts I've given you, it wouldn't be much to return the favor with this tiny, insignificant gift, now would it?</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_DEMAND_TRIBUTE_POWER_EQUAL_LEADER_HARUN_1</Tag>
+		<English>Of course you can refuse me this favor if you want, but it you do, I wouldn't hang out at the markets tonight...</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_DEMAND_TRIBUTE_POWER_STRONGER_LEADER_HARUN_1</Tag>
+		<English>If you give this to me, I will not have to split your body in two. What do you say?</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_LEADER_SEJONG</Tag>
+		<English>Sejong</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_LEADER_SEJONG_PEDIA</Tag>
+		<English>[H1]Sejong the Great[\H1][NEWLINE][BOLD]Fourth ruler of the Joseon Dynasty[\BOLD][NEWLINE][BOLD]Lived: [\BOLD]1397 - 1450[NEWLINE][PARAGRAPH:2]Sejong the Great, born Yi Do, was the fourth ruler of the Joseon Dynasty of Korea from 1418 to 1450. He was also a skilled linguist who apparently personally created the native Korean alphabet Hangul. Although there are circumstantial clues he may have been assisted by family members, most believe that he was the one who actually invented the alphabet, mainly due to the resistance he faced from the intellectuals of the day.[PARAGRAPH:2]Sejong is also credited with the invention of a rain gauge, striking water clocks, and a sundial. Following the principles of Neo-Confucianism, Sejong was also a humanitarian who proclaimed that there must be three trials before a final judgment is reached, and he prohibited brutality in the punishment of criminals, such as flogging.[PARAGRAPH:2]He was an effective military planner. During his era, his army invaded Tsushima to reduce and eliminate heavy Japanese pirate activities along the southern coast line. On the northern border, he established 4 forts and 6 posts to safeguard his people from the hostile nomads living in Manchuria. He also created various military regulations and units to strengthen the safety of his kingdom.[PARAGRAPH:2]Sejong was the third son of King Taejong. When he was ten, he became Grand Prince Chungnyeong and married a daughter of Sim On of Cheongsong, commonly known as Sim-ssi, who later was given the title Princess-Consort Soheon.[PARAGRAPH:2]Sejong established the Hall of Worthies (Jiphyeonjeon) in 1420 in the royal palace, Sejong gathered intellectuals from around Korea. The scholars of the Hall of Worthies documented history, drafted documents and compiled books on various topics. Sejong's writings are also a highly regarded. He composed the famous Yongbi Eocheon Ga ("Songs of Flying Dragons", 1445), Seokbo Sangjeol ("Episodes from the Life of Buddha", July 1447), Worin Cheon-gang Jigok ("Songs of the Moon Shining on a Thousand Rivers", July 1447), and the reference Dongguk Jeong-un ("Dictionary of Proper Sino-Korean Pronunciation", September 1447). Sejong died at the age of 52 and was buried at the Yeong Mausoleum. His successor was his first son, Munjong.[PARAGRAPH:2]Sejongno (a street) and the Sejong Center for the Performing Arts both located in central Seoul are named after King Sejong, and he is depicted on the South Korean 10,000 Won note.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_FIRST_CONTACT_LEADER_SEJONG_1</Tag>
+		<English>Welcome, [CT_NAME], to the grand kingdom of [OUR_CIV_SHORT]! I am [OUR_NAME]! I hope our nations can live together in friendship, even though the way I see it, you'll probably prove to be an annoyment to the ambitions of [OUR_CIV_SHORT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_REFUSE_TO_TALK_LEADER_SEJONG_1</Tag>
+		<English>Sorry, [CT_NAME], but my sundial says it's time for you to GET OUT!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_NO_PEACE_LEADER_SEJONG_1</Tag>
+		<English>Sorry, [CT_NAME], but you can't always get what you want!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_GREETINGS_ATT_FR_LEADER_SEJONG_1</Tag>
+		<English>I'm so happy so you're back at my palace, [CT_NAME]. Want some kimchi?</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_GREETINGS_ATT_FUR_LEADER_SEJONG_1</Tag>
+		<English>Hello, [CT_NAME]! How would you like to be launched out of a [OUR_CIV_ADJ] cannon?</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_DEMAND_TRIBUTE_POWER_WEAKER_LEADER_SEJONG_1</Tag>
+		<English>How do you do, [CT_NAME]. It wouldn't be too much of a nuisance for us to take this of your hands, wouldn't it?</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_DEMAND_TRIBUTE_POWER_EQUAL_LEADER_SEJONG_1</Tag>
+		<English>Let's make a deal, [CT_NAME]. How about you give me this, and I won't go on an expedition against you?</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_DEMAND_TRIBUTE_POWER_STRONGER_LEADER_SEJONG_1</Tag>
+		<English>Our cannons are loud, our arrows are sharp, and our soldiers are strong. You would be a fool were you deny this to the [OUR_EMPIRE].</English>
+	</TEXT>
+</Civ4GameText>

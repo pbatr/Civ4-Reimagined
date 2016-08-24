@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!-- Global Defines for Lead From Behind mod by Uncut Dragon, rebalanced by Karadoc -->
+<Civ4Defines xmlns="x-schema:CIV4GlobalDefinesSchema.xml">
+	<Define>
+		<DefineName>LFB_ENABLE</DefineName>
+		<iDefineIntVal>1</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>LFB_BASEDONGENERAL</DefineName>
+		<iDefineIntVal>3</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>LFB_BASEDONEXPERIENCE</DefineName> <!-- note: in K-Mod this is given for each level worth of xp -->
+		<iDefineIntVal>1</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>LFB_BASEDONLIMITED</DefineName>
+		<iDefineIntVal>3</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>LFB_BASEDONHEALER</DefineName>
+		<iDefineIntVal>1</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>LFB_DEFENSIVEADJUSTMENT</DefineName>
+		<iDefineIntVal>1</iDefineIntVal> <!-- negative 'value' for defensive promotions when defending, to encourage defenders to actually fight -->
+	</Define>
+	<Define>
+		<DefineName>LFB_USESLIDINGSCALE</DefineName>
+		<iDefineIntVal>1</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>LFB_ADJUSTNUMERATOR</DefineName>
+		<iDefineIntVal>1</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>LFB_ADJUSTDENOMINATOR</DefineName>
+		<iDefineIntVal>6</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>LFB_USECOMBATODDS</DefineName>
+		<iDefineIntVal>1</iDefineIntVal>
+	</Define>
+</Civ4Defines>

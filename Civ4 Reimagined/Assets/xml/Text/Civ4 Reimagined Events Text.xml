@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Sid Meier's Civilization 4 -->
+<!-- Copyright Firaxis Games 2005 -->
+<Civ4GameText xmlns="http://www.firaxis.com">
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TSUNAMI_2_HELP</Tag>
+		<English>[ICON_BULLET]Nearly all buildings destroyed in %s1_city</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_GREAT_DEPRESSION_HELP</Tag>
+		<English>[ICON_BULLET]All nations in the world suffer from the great depression. You suffer a loss of %d1%% of your national treasury. </English>
+	</TEXT>
+		<TEXT>
+		<Tag>TXT_KEY_EVENT_THE_HUNS_HELP_1</Tag>
+		<English>[ICON_BULLET]A dangerous number of barbarian [COLOR_UNIT_TEXT]Horseman[COLOR_REVERT] units have spawned near our border.</English>
+	</TEXT>
+		<TEXT>
+		<Tag>TXT_KEY_EVENT_THE_VANDALS_HELP_1</Tag>
+		<English>[ICON_BULLET]A dangerous number of barbarian [COLOR_UNIT_TEXT]Swordsman[COLOR_REVERT] units have spawned near our border.</English>
+	</TEXT>
+		<TEXT>
+		<Tag>TXT_KEY_EVENT_THE_GOTHS_HELP_1</Tag>
+		<English>[ICON_BULLET]A dangerous number of barbarian [COLOR_UNIT_TEXT]Axeman[COLOR_REVERT] units have spawned near our border.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENTTRIGGER_THE_VEDIC_ARYANS</Tag>
+		<English>A massive barbarian uprising is occurring. The Hittites seek to plunder the riches of civilization.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_THE_VEDIC_ARYANS_HELP_1</Tag>
+		<English>[ICON_BULLET]A dangerous number of barbarian [COLOR_UNIT_TEXT]Chariot[COLOR_REVERT] units have spawned near our border.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_HORSE_WHISPERING_HELP</Tag>
+		<English>[PARAGRAPH:1]To complete this quest, you must build [COLOR_BUILDING_TEXT]Stables[COLOR_REVERT] in all your cities.[PARAGRAPH:1]You will fail this quest if a rival civilization completes it first, or if you reach the Renaissance Era without having met the conditions.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_HORSE_WHISPERING_DONE_1</Tag>
+		<English>Use our advantage to immediately train [COLOR_UNIT_TEXT]Horsemen[COLOR_REVERT].</English>
+	</TEXT>
+		<TEXT>
+		<Tag>TXT_KEY_EVENT_HORSE_WHISPERING_DONE_HELP_1</Tag>
+		<English>[ICON_BULLET]Receive %d1 [COLOR_UNIT_TEXT]Horsemen[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_CLASSIC_LITERATURE_HELP_1</Tag>
+		<English>[PARAGRAPH:1]To complete this quest, you must build [COLOR_BUILDING_TEXT]Libraries[COLOR_REVERT] in all your cities.[PARAGRAPH:1]An additional reward option will be available if you control the [COLOR_BUILDING_TEXT]Great Library[COLOR_REVERT] if and when this quest is successfully completed.[PARAGRAPH:1]You will fail this quest if a rival civilization completes it first, or if you reach the Renaissance Era without having met the conditions.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_MASTER_BLACKSMITH_HELP_1</Tag>
+		<English>[PARAGRAPH:1]To complete this quest, you must build [COLOR_BUILDING_TEXT]Forges[COLOR_REVERT] in all your various cities. [PARAGRAPH:1]The master smith is a religious man. An additional reward option will be available if your civilization has a state religion if and when the quest is completed successfully.[PARAGRAPH:1]You will fail this quest if a rival civilization completes it first, if you lose control over %s2_city and the master smith, or if you reach the Renaissance Era without having met the conditions.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_BEST_DEFENSE_HELP_1</Tag>
+		<English>[PARAGRAPH:1]To complete this quest, you must build [COLOR_BUILDING_TEXT]Castles[COLOR_REVERT] in all your cities.[PARAGRAPH:1]An additional reward option will be available if your civilization controls the Great Wall.[PARAGRAPH:1]You will fail this quest if a rival civilization completes it first, or if you discover [COLOR_TECH_TEXT]Rifling[COLOR_REVERT], [COLOR_TECH_TEXT]Railroad[COLOR_REVERT], or [COLOR_TECH_TEXT]Economics[COLOR_REVERT] without having met the conditions.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_SPORTS_LEAGUE_1</Tag>
+		<English>National Sports League[PARAGRAPH:1]You are tasked by your cultural advisors to build enough [COLOR_BUILDING_TEXT]Stadiums[COLOR_REVERT] to support viable sports leagues.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_SPORTS_LEAGUE_HELP_1</Tag>
+		<English>[PARAGRAPH:1]To complete this quest, you must build [COLOR_BUILDING_TEXT]Stadiums[COLOR_REVERT] in all your cities.[PARAGRAPH:1]An additional reward option will be available if you control [COLOR_BUILDING_TEXT]%s2_building[COLOR_REVERT] if and when this quest is successfully completed.[PARAGRAPH:1]You will fail this quest if a rival civilization completes it first, or if you reach the Rennaisance Era without having met the conditions.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_ELITE_SWORDS_HELP_1</Tag>
+		<English>[PARAGRAPH:1]To complete this quest, you must train %d1 [COLOR_UNIT_TEXT]Swordsman[COLOR_REVERT] [NUM1:unit:units]. A source of Iron will be required.[PARAGRAPH:1]An additional reward option will be available if your civilization is operating the [COLOR_HIGHLIGHT_TEXT]Dynasticism[COLOR_REVERT] civic.[PARAGRAPH:1]You will fail this quest if a rival civilization completes it first, or if you arrive at the Middle Ages without having met the conditions.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_OVERWHELM_HELP_1</Tag>
+		<English>[PARAGRAPH:1]To complete this quest, you must build %d1 [COLOR_UNIT_TEXT]%s2_unit[COLOR_REVERT], %d3 [COLOR_UNIT_TEXT]%s4_unit[COLOR_REVERT], %d5 [COLOR_UNIT_TEXT]%s6_unit[COLOR_REVERT], and %d7 [COLOR_UNIT_TEXT]%s8_unit[COLOR_REVERT] units. A source of [COLOR_HIGHLIGHT_TEXT]Oil[COLOR_REVERT] will be required to fuel the planes.[PARAGRAPH:1]An additional reward option will be available if your civilization has build a [COLOR_BUILDING_TEXT]%s9_building[COLOR_REVERT].[PARAGRAPH:1]You will fail this quest if a rival civilization completes it first.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_CORPORATE_EXPANSION_HELP_1</Tag>
+		<English>[PARAGRAPH:1]To complete this quest, you must spread [COLOR_HIGHLIGHT_TEXT]%s1_corporation[COLOR_REVERT] to %d2 new cities. [PARAGRAPH:1]You will fail this quest if %d3 turns pass without achieving the objective.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_NEWS_DESPOTISM</Tag>
+   		<English>The %s1_civ_adjective population is revolting against their tyrannic leader. </English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_DESPOTISM</Tag>
+   		<English>The population of %s2_city is revolting against their tyrannic leader!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_DESPOTISM_1</Tag>
+   		<English>They just need some time to calm down.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_DESPOTISM_2</Tag>
+   		<English>Send the military to kill the rebels.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_DESPOTISM_2_RESULT</Tag>
+   		<English>Your soldiers inflicted heavy casualties among the rebels and the population.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_BARBARISM</Tag>
+   		<English>The strong take from the weak. Thats how you rule, and thats how your warriors think. One of your soldiers claims the farm by the rule of force.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_BARBARISM_1</Tag>
+   		<English>Let them plunder, what can we do?</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_BARBARISM_1_RESULT_1</Tag>
+   		<English>The fighting led to heavy casualties.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_BARBARISM_2</Tag>
+   		<English>Grant your soldier their own land.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_BARBARISM_3</Tag>
+   		<English>Leave it to the courts.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_BARBARISM_4</Tag>
+   		<English>Enough with this insolence! Execute him!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_NEWS_TRIBALISM</Tag>
+   		<English>The %s1_civ_adjective tribe is suffering from an identity crisis.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_TRIBALISM</Tag>
+   		<English>The people of %s2_city don't really feel like they belong to your tribe anymore.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIBALISM_1</Tag>
+   		<English>They are losing their cultural identity...</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_NEWS_TRIBALISM_SMALL</Tag>
+   		<English>The %s1_civ_adjective are being led by a new, more competent leader.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_TRIBALISM_SMALL</Tag>
+   		<English>It is time for your tribe to choose a new leader.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIBALISM_1_SMALL</Tag>
+   		<English>Our best hunter shall lead us!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIBALISM_2_SMALL</Tag>
+   		<English>We trust our most experienced soldier!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIBALISM_3_SMALL</Tag>
+   		<English>The wisest man is the best choice.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_NEWS_PANTHEON</Tag>
+   		<English>The %s1_civ_adjective priests demand new sources of marble.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_PANTHEON</Tag>
+   		<English>Our priests demand more marble for their temples and shrines.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_PANTHEON_1</Tag>
+   		<English>Forget it, we can't afford this nonsense.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_PANTHEON_2</Tag>
+   		<English>Send a few explorers to make them happy.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_PANTHEON_3</Tag>
+   		<English>Fund a large-scale expedition to search for marble. Look under every rock!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_PANTHEON_SUCCESS</Tag>
+   		<English>We have found a new source of marble!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_NEWS_MISSIONARY</Tag>
+   		<English></English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_MISSIONARY</Tag>
+   		<English>Our missionary sparked faith while preaching at the local community.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_MISSIONARY_1</Tag>
+   		<English>They are working hard for their church - and our treasury.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_WARSHIPS_HELP_1</Tag>
+		<English>[PARAGRAPH:1]To complete this quest, you must train %d1 [COLOR_UNIT_TEXT]Trireme[COLOR_REVERT] [NUM1:unit:units].[PARAGRAPH:1]An additional reward option will be available if your civilization has built [COLOR_BUILDING_TEXT]%s2_building[COLOR_REVERT].[PARAGRAPH:1]You will fail this quest if a rival civilization completes it first, or if research Guilds without having met the conditions.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_OVERWHELM_HELP_1</Tag>
+		<English>[PARAGRAPH:1]To complete this quest, you must build %d1 [COLOR_UNIT_TEXT]%s2_unit[COLOR_REVERT], %d3 [COLOR_UNIT_TEXT]%s4_unit[COLOR_REVERT], %d5 [COLOR_UNIT_TEXT]%s6_unit[COLOR_REVERT], and %d7 [COLOR_UNIT_TEXT]%s8_unit[COLOR_REVERT] units. A source of [COLOR_HIGHLIGHT_TEXT]Oil[COLOR_REVERT] will be required to fuel the planes.[PARAGRAPH:1]You will fail this quest if a rival civilization completes it first.</English>
+	</TEXT>
+</Civ4GameText>

@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Civ4GameText xmlns="http://www.firaxis.com">
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_AXEMAN_STRATEGY</Tag>
+		<English>Build this early melee combat unit to counter archery units as it gets a boost against them. This makes it especially useful to attack cities.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_CHARIOT_STRATEGY</Tag>
+		<English>Build this early but very powerful mounted combat unit when speed is important. Make sure to use this unit in open fields only as it loses its power when fighting in cities and cannot enter jungle or forests.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_HORSE_ARCHER_STRATEGY</Tag>
+		<English>This mounted unit is very powerful for early in the game. As with most mounted units it is not very useful when fighting in cities.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_ARCHER_STRATEGY</Tag>
+		<English>This primitive ranged unit is a great early choice for defending your cities from attacks. It gets a first strike and gets defensive bonuses in cities and on hills. It is also the first unit capable of dealing collateral damage.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_SWORDSMAN_STRATEGY</Tag>
+		<English>This is the most powerful early melee combat unit.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_WAR_ELEPHANT_STRATEGY</Tag>
+		<English>This powerful early mounted combat unit is a slow, but strong counter to units like the Horseman. It also deals a little bit of collateral damage.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_CROSSBOWMAN_STRATEGY</Tag>
+		<English>This ranged unit is capable of dealing collateral damage and gets a first strike and bonus defense on hills.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_HEAVY_FOOTMAN_STRATEGY</Tag>
+		<English>This is the most powerful melee combat unit in the middle ages.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_KNIGHT_STRATEGY</Tag>
+		<English>This is the strongest pre-gunpowder unit in the game. As with most mounted units it is less useful when fighting in cities.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_EXPLORER_STRATEGY</Tag>
+		<English>Build [COLOR_UNIT_TEXT]Explorers[COLOR_REVERT] to explore uncharted territory more quickly than [COLOR_UNIT_TEXT]Scouts[COLOR_REVERT] can. They get better results from [COLOR_HIGHLIGHT_TEXT]Tribal Villages[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_CUIRASSIER_STRATEGY</Tag>
+		<English>This unit marks the transition from melee to gunpowder-based cavalry. As with most mounted units it is not very useful when fighting in cities.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_CANNON_STRATEGY</Tag>
+		<English>[COLOR_UNIT_TEXT]Cannons[COLOR_REVERT] can bombard enemy cities fortifications and destroy buildings. When attacking another unit, they cause collateral damage to other enemy units sharing the target's space. Don't use them in rough terrain as they cannot enter jungle or forest without a road.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_CAVALRY_STRATEGY</Tag>
+		<English>This most powerful mounted unit is particularly effective in open terrain and can withdraw from combat. It receives a bonus when attacking [COLOR_UNIT_TEXT]Artillery[COLOR_REVERT] but receives no terrain bonuses when defending.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_MACHINE_GUN_STRATEGY</Tag>
+		<English>[COLOR_UNIT_TEXT]Machine Guns[COLOR_REVERT] are powerful defensive weapons, especially against enemy gunpowder and mounted units. These units cannot initiate attacks, making them most useful when defending cities.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_ARTILLERY_STRATEGY</Tag>
+		<English>[COLOR_UNIT_TEXT]Artillery[COLOR_REVERT] units can bombard enemy city fortifications and destroy buildings. They also cause collateral damage to other enemy units sharing the target's space.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_INFANTRY_STRATEGY</Tag>
+		<English>This unit is the first modern era soldier. It should be the standard unit of every modern army.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_MARINE_STRATEGY</Tag>
+		<English>This special force modern infantry unit is especially useful to take out the enemy air defense. At the same time it is the only unit which can protect your own air defense outside of cities. It also starts with the [COLOR_HIGHLIGHT_TEXT]Amphibious[COLOR_REVERT] promotion so use it from ships and across rivers.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_MOTORIZED_INFANTRY_STRATEGY</Tag>
+		<English>This unit moves faster than other infantry units and starts with the [COLOR_HIGHLIGHT_TEXT]March[COLOR_REVERT] promotion</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_TANK_STRATEGY</Tag>
+		<English>The [COLOR_UNIT_TEXT]Tank[COLOR_REVERT] is a magnificent offensive weapon. It has a movement of 2 and can attack twice a turn. Tanks can hunt down and destroy pre-modern-era units at will. They are most useful in open terrain as they receive no terrain bonuses when defending and cannot enter jungle or forests without a road.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_MODERN_ARMOR_STRATEGY</Tag>
+		<English>[COLOR_UNIT_TEXT]Modern Armor[COLOR_REVERT] units are the most powerful ground units in the game. They are most useful in open terrain as they receive no terrain bonuses when defending and cannot enter jungle or forests without a road.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_MECHANIZED_INFANTRY_STRATEGY</Tag>
+		<English>This is the strongest gunpowder unit. It moves faster than the other infantry units and it has a chance of intercepting enemy aircraft. It starts with the [COLOR_HIGHLIGHT_TEXT]March[COLOR_REVERT] promotion</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_BOMBER_STRATEGY</Tag>
+		<English>[COLOR_UNIT_TEXT]Bombers[COLOR_REVERT] are land-based aircraft. They can attack enemy land units (and sea units, but not very effectively). They can also bombard enemy cities and improvements. Bombers cause collateral damage when attacking.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_STEALTH_BOMBER_STRATEGY</Tag>
+		<English>[COLOR_UNIT_TEXT]Stealth Bombers[COLOR_REVERT] can attack enemy land units (and sea units, but less effectively). They can also bombard enemy cities and improvements. When attacking they cause collateral damage. Stealth bombers are very difficult for enemy aircraft to intercept and shoot down.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_ICBM_STRATEGY</Tag>
+		<English>[COLOR_UNIT_TEXT]ICBMs[COLOR_REVERT] can nuke enemy cities, causing a great deal of damage to buildings, units, and nearby terrain. A missile silo must be present in the city to actually send an [COLOR_UNIT_TEXT]ICBMs[COLOR_REVERT] to its journey.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_TRIREME_STRATEGY</Tag>
+		<English>[COLOR_UNIT_TEXT]Triremes[COLOR_REVERT] are the strongest ancient warships, but they have no transport capacity. They cannot enter ocean spaces.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_WARGALLEY_STRATEGY</Tag>
+		<English>[COLOR_UNIT_TEXT]War Galleys[COLOR_REVERT] are the strongest medieval warships, but they have no transport capacity. They cannot enter ocean spaces.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_VIKING_LONGSHIP_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]War Galley[COLOR_REVERT] this unit has more movement speed and +1 combat strength. This unit also bears no marking of nationality, allowing you to harass your foes without the need to declare war.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_GALLEON_STRATEGY</Tag>
+		<English>The [COLOR_UNIT_TEXT]Galleon[COLOR_REVERT] is the best transport of the age of sail. It can carry 4 units, and it can safely enter ocean spaces. </English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_TRANSPORT_STRATEGY</Tag>
+		<English>The [COLOR_UNIT_TEXT]Transport[COLOR_REVERT] is a cargo ship. It can carry up to 5 units and can enter ocean spaces but is extremely vulnerable to planes and modern warships.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_SUBMARINE_STRATEGY</Tag>
+		<English>[COLOR_UNIT_TEXT]Submarines[COLOR_REVERT] are invisible to most units. They can explore rival territory and can carry special units, but are vulnerable to enemy [COLOR_UNIT_TEXT]Destroyers[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_MISSILE_SUBMARINE_STRATEGY</Tag>
+		<English>[COLOR_UNIT_TEXT]Missile Submarines[COLOR_REVERT] are invisible to all units and cannot be detectet by [COLOR_UNIT_TEXT]Destroyers[COLOR_REVERT] or [COLOR_UNIT_TEXT]Stealth Destroyers[COLOR_REVERT]. They can carry up to 3 missiles but are unable to attack other units.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_MISSILE_CRUISER_STRATEGY</Tag>
+		<English>This late-game naval unit is the most deadly ship in the sea, with a high strength and the ability to carry four missiles.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_DESTROYER_STRATEGY</Tag>
+		<English>[COLOR_UNIT_TEXT]Destroyers[COLOR_REVERT] are very good at spotting enemy stealth ships. They are especially useful to detect and destroy enemy [COLOR_UNIT_TEXT]Submarines[COLOR_REVERT] (which are invisible to most other units). Use them to protect your [COLOR_UNIT_TEXT]Carriers[COLOR_REVERT] and [COLOR_UNIT_TEXT]Transport[COLOR_REVERT] units.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_STEALTH_DESTROYER_STRATEGY</Tag>
+		<English>Disappear from enemy radar with the [COLOR_UNIT_TEXT]Stealth Destroyer[COLOR_REVERT], a powerful late-game naval unit that is invisible to all units except other [COLOR_UNIT_TEXT]Destroyers[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_CRUISER_STRATEGY</Tag>
+		<English>[COLOR_UNIT_TEXT]Cruisers[COLOR_REVERT] are the bread and butter unit of your Navy. They also have a small chance of intercepting enemy aircraft.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_EGYPT_WARCHARIOT_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Chariot[COLOR_REVERT], this unit has 25% withdrawal probability and can attack multiple times per turn.</English>
+	</TEXT>
+	<TEXT>	
+		<Tag>TXT_KEY_UNIT_INDIAN_FAST_WORKER_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Worker[COLOR_REVERT], this unit has +1 movement speed and can build improvements 25% faster.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_PERIA_IMMORTAL_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Chariot[COLOR_REVERT], this unit causes collateral damage (3 units, max. 15%) and has a bonus vs melee units.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_GREEK_PHALANX_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Spearman[COLOR_REVERT], this unit starts has a bonus vs melee and archer units.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_ZULU_IMPI_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Spearman[COLOR_REVERT], this unit has +1 movement speed.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_HOLKAN_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Spearman[COLOR_REVERT], this unit doesn't need copper or iron and targets mounted units first in combat outside of cities.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_MALI_SKIRMISHER_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Archer[COLOR_REVERT], this unit has +1 movement speed, can withdraw more often and is cheaper.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_BABYLON_BOWMAN_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Archer[COLOR_REVERT], this unit has +1 ST and is cheaper.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_INCAN_QUECHUA_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Axeman[COLOR_REVERT], this unit gains has a bonus against melee units and ignores the enemies defensive advantage of a forest or jungle.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_SUMERIAN_VULTURE_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Axeman[COLOR_REVERT], this unit is available with mining, does not require copper, and gains a bonus vs archery units.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_CARTHAGE_NUMIDIAN_CAVALRY_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Horseman[COLOR_REVERT], this unit has +20% withdrawal probability and 2 potential first strikes.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_NATIVE_AMERICA_DOG_SOLDIER_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Swordsman[COLOR_REVERT], this unit gains +10% vs Melee and doesn't require Iron.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_AZTEC_JAGUAR_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Swordsman[COLOR_REVERT], this unit doesn't require Iron and starts with Woodsman I.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_CELTIC_GALLIC_WARRIOR_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Swordsman[COLOR_REVERT], this unit can be build with either Copper or Iron and has a 25% hill combat bonus. Is is slightly cheaper than the Swordsman.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_ROME_PRAETORIAN_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Swordsman[COLOR_REVERT], this unit can build roads, is immune to collateral damage and receives no penalty for defending a city.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_KHMER_BALLISTA_ELEPHANT_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]War Elephant[COLOR_REVERT], this unit has 2 potential first strikes, deals collateral damage to 4 instead of 2 units, and starts with city raider and march.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_KOREAN_HWACHA_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Cannon[COLOR_REVERT], this unit can be build without iron or copper, deals collateral damage to five units instead of three and is available with gunpowder.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_CHINA_CHOKONU_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Crossbowman[COLOR_REVERT], this unit has six potential first strikes more.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_JAPAN_SAMURAI_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Heavy Swordsman[COLOR_REVERT], this unit has +10% vs Melee and receives +100% experience from combat.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_VIKING_BESERKER_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Heavy Swordsman[COLOR_REVERT], this unit starts with Amphibious and Shock. It also costs less to be build.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_MONGOL_KESHIK_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Knight[COLOR_REVERT], this unit has +1 Movement, 1 First Strike and 25% Withdrawal.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_ARABIA_CAMELARCHER_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Knight[COLOR_REVERT], this unit doesn't require Iron or Horses, has 1 First Strike and +10% vs Mounted.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_BYZANTINE_CATAPHRACT_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Knight[COLOR_REVERT], this unit is available earlier.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_HOLY_ROMAN_LANDSKNECHT_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Pikeman[COLOR_REVERT], this unit gains +25% vs Melee and Mounted.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_PORTUGAL_CARRACK_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Caravel[COLOR_REVERT], this unit has no upkeep and can conduct a trade mission in rival cities. It also starts with Sentry.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_FRENCH_MUSKETEER_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Musketman[COLOR_REVERT], this unit has one potential first strike and one movement point more and a 25% withdrawal chance.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_OTTOMAN_JANISSARY_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Musketman[COLOR_REVERT], this unit has +1 ST.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_ETHIOPIAN_OROMO_WARRIOR_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Musketman[COLOR_REVERT], this unit is a lot cheaper.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_SPANISH_CONQUISTADOR_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Cuirassier[COLOR_REVERT], this unit is available earlier, can make use of defensive bonusses, ignores terrain movement cost, and gains two potential first strikes.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_ENGLISH_REDCOAT_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Rifleman[COLOR_REVERT], this unit has +15% vs Gunpowder, +15% vs Mounted and costs less.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_RUSSIA_COSSACK_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Cavalry[COLOR_REVERT], this unit has +1 ST, +25% vs Mounted and costs less.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_NETHERLANDS_OOSTINDIEVAARDER_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Galleon[COLOR_REVERT], this unit has +3 ST, +1 cargo space and can explore rival territory. Being also great traders, they fully sustain themselves.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_GERMAN_PANZER_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Tank[COLOR_REVERT], this unit has +50% vs Tanks, four potential first strikes and gains a 20% withdrawal bonus.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_AMERICAN_NAVY_SEAL_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Marine[COLOR_REVERT], this unit has +1 Movement, +3 ST, +3 potential First Strikes and starts with March, Guerilla I, Guerilla II, Woodsman I, Woodsman II, Sentry</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_LIGHTHOUSE_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Lighthouse[COLOR_REVERT] improves the food output of water plots.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_TANNERY_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Tannery[COLOR_REVERT] gives an early gold income, but at a cost to health. It also increases the city's happiness with access to [COLOR_HIGHLIGHT_TEXT]Deer[COLOR_REVERT] or [COLOR_HIGHLIGHT_TEXT]Fur[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_MASON_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Mason[COLOR_REVERT] allows a city to produce buildings faster, especially when [COLOR_HIGHLIGHT_TEXT]Stone[COLOR_REVERT] is available. It also increases the city's happiness with access to [COLOR_HIGHLIGHT_TEXT]Marble[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_FORGE_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Forge[COLOR_REVERT] allows a city to produce units faster, especially when [COLOR_HIGHLIGHT_TEXT]Copper[COLOR_REVERT] and [COLOR_HIGHLIGHT_TEXT]Iron[COLOR_REVERT] are available. It also increases the city's happiness with access to [COLOR_HIGHLIGHT_TEXT]Gems[COLOR_REVERT], [COLOR_HIGHLIGHT_TEXT]Gold[COLOR_REVERT] and [COLOR_HIGHLIGHT_TEXT]Silver[COLOR_REVERT].</English>
+	</TEXT>	
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_CLASSICAL_TEMPLE_STRATEGY</Tag>
+		<English>[COLOR_BUILDING_TEXT]Temples[COLOR_REVERT] increase a city's happiness and culture. They are especially useful for expanding your civilization's borders during the early game.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_NUCLEAR_RESEARCH_CENTER_STRATEGY</Tag>
+		<English>Enables [COLOR_BUILDING_TEXT]Missile Silos[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_MISSILE_SILO_STRATEGY</Tag>
+		<English>Enables [COLOR_UNIT_TEXT]ICBMs[COLOR_REVERT] and [COLOR_UNIT_TEXT]Tactical Nukes[COLOR_REVERT]. ICBMs can only be launched from cities with Missile Silos.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_PYRAMID_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Pyramides[COLOR_REVERT] provide a free [COLOR_BUILDING_TEXT]Monument[COLOR_REVERT] in all your cities. It increases its city's odds of generating a [COLOR_UNIT_TEXT]Great Engineer[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_SENATE_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Senate[COLOR_REVERT] grants its builder access to all [COLOR_HIGHLIGHT_TEXT]Government[COLOR_REVERT] civics and allows him to switch [COLOR_HIGHLIGHT_TEXT]Government[COLOR_REVERT] civics without anarchy. It also increases the chances of a [COLOR_UNIT_TEXT]Great People[COLOR_REVERT] appearing.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_STATUE_OF_ZEUS_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Statue of Zeus[COLOR_REVERT] allows you to conquer cities without dealing with civil resistance afterwards. Additionaly it boosts the training of military units in the city that builds the wonder. It also increases the chances of a [COLOR_UNIT_TEXT]Great Artist[COLOR_REVERT] appearing.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_KGB_STRATEGY</Tag>
+		<English>[COLOR_BUILDING_TEXT]Lubyanka[COLOR_REVERT] gives extra espionage from specialists.</English>
+		<German>[COLOR_BUILDING_TEXT]Lubyanka[COLOR_REVERT] erzeugt zusätzliche Spionage durch Spezialisten.</German>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_GRAND_CANAL_STRATEGY</Tag>
+		<English>Build the [COLOR_BUILDING_TEXT]Grand Canal[COLOR_REVERT] to receive bonus commerce from river tiles. It also increases the chances of a [COLOR_UNIT_TEXT]Great Engineer[COLOR_REVERT] appearing.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_TEMPLE_OF_ARTEMIS_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Temple of Artemis[COLOR_REVERT] increases its city's trade route income, and places two [COLOR_HIGHLIGHT_TEXT]Priest[COLOR_REVERT] specialists in that city.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_FLOATING_GARDENS_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Floating Gardens[COLOR_REVERT] improves the health of your cities and adds an additional population point in them. It increases the odds of its city generating a [COLOR_UNIT_TEXT]Great Merchant[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_BRANDENBURG_GATE_STRATEGY</Tag>
+		<English>[COLOR_BUILDING_TEXT]Brandenburg Gate[COLOR_REVERT] increases the chance of a Great General emerging.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_SAN_MARCO_STRATEGY</Tag>
+		<English>[COLOR_BUILDING_TEXT]San Marco[COLOR_REVERT] gives two additional trade routes and +50% trade route yield.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_ISHTAR_GATE_STRATEGY</Tag>
+		<English>The Ishtar Gate makes your enemies tremble in fear as they suffer massively increased war weariness! However, the Ishtar Gate loses it's intimidating properties relatively quickly with the research of Gunpowder.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_CENTRAL_INTELLIGENCE_AGENCY_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Central Intelligence Agency[COLOR_REVERT] provides a +100% bonus to Espionage output.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_EGYPTIAN_OBELISK_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Obelisk[COLOR_REVERT] gives one additional happiness.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_ETHIOPIAN_STELE_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Stele[COLOR_REVERT] adds a greater amount of culture.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_VIKING_TRADING_POST_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Trading Post[COLOR_REVERT] increases trade route yield and gives water units the [LINK=literal]Navigation I[\LINK] promotion.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_CELTIC_DUN_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Dun[COLOR_REVERT] provides your melee units with additional experience.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_ARABIAN_MADRASSA_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Madrassa[COLOR_REVERT] produces additional research and slots for priests. It is available with Exclusivism.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_NATIVE_AMERICA_TOTEM_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Totem Pole[COLOR_REVERT], the Native American replacement for the [COLOR_BUILDING_TEXT]Monument[COLOR_REVERT], grants archery units additional experience points and an increased culture bonus.</English>
+	</TEXT>	
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_MONGOL_GER_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Ger[COLOR_REVERT] provides your mounted units with additional experiences.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_INCAN_TERRACE_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Terrace[COLOR_REVERT] stores more food.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_MALI_MINT_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Mint[COLOR_REVERT] grants additional gold.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_AQUEDUCT_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Aqueduct[COLOR_REVERT] grants additional happiness.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_GARDEN_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Garden[COLOR_REVERT] provides health in your city.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_KHMER_BARAY_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Baray[COLOR_REVERT] gives the city food.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_OTTOMAN_HAMMAM_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Hammam[COLOR_REVERT] grants additional health for the city. It also is easier to build.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_GREEK_ODEON_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Odeon[COLOR_REVERT] grants more happiness, increased great person rate and culture.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_CARTHAGE_COTHON_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Cothon[COLOR_REVERT] grants one additional trade route, but takes more time to build.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_MAYA_BALL_COURT_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Ball Court[COLOR_REVERT] gives a lot of happiness. It also is cheaper to build.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_BYZANTINE_HIPPODROME_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Hippodrome[COLOR_REVERT] gives more happiness, especially when the culture slider is used. It also boost gold income. Happiness is provided with Horse instead of Dye, and no artist slots are added.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_CHINESE_PAVILLION_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Pavilon[COLOR_REVERT] increases your great person rate.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_SUMERIAN_ZIGGURAT_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Ziggurat[COLOR_REVERT] grants one additional happiness.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_HOLY_ROMAN_RATHAUS_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Rathaus[COLOR_REVERT] reduces maintenance by a great amount.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_AZTEC_SACRIFICIAL_ALTAR_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Sacrificial Altar[COLOR_REVERT] reduces anger duration by 50% and costs less.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_BABYLON_GARDEN_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Bit Dinu[COLOR_REVERT] increases happiness.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_SPANISH_CITADEL_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Citadel[COLOR_REVERT] improves defenses further, adds military unit production and gives all land and water units experience.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_PERSIAN_APOTHECARY_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Apothecary[COLOR_REVERT] increases health and healing rate.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_KOREAN_SEOWON_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Seowon[COLOR_REVERT] increases research even more.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_ENGLISH_STOCK_EXCHANGE_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Stock Exchange[COLOR_REVERT] boosts gold gain even more.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_PORTUGAL_FEITORIA_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Feitoria[COLOR_REVERT] grants gold per water tile worked on.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_FRENCH_SALON_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Salon[COLOR_REVERT] improves research further and adds a free artist.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_NETHERLANDS_DIKE_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Dike[COLOR_REVERT] can be build in coastal cities and gives +1 production for each water field.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_INDIAN_MAUSOLEUM_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Mausoleum[COLOR_REVERT] grants alot of happiness.	However, it also takes longer to build and using the culture slider doesn't increase happiness further.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_GERMAN_ASSEMBLY_PLANT_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Assembly Plant[COLOR_REVERT] increases production further and grants additional engineer slots. Can be build faster with access to coal.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_JAPANESE_SHALE_PLANT_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Shale Plant[COLOR_REVERT] increases production, is faster to build and doesn't require coal.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_AMERICAN_MALL_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Mall[COLOR_REVERT] grants additional gold income and more happiness from hit singles, hit movies and hit musicals. It is also of use in case of a zombie invasion.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_RUSSIAN_RESEARCH_INSTITUTE_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Research Institute[COLOR_REVERT] is basically two laboratories for the price for one, further improving research and spaceship production.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_HIMEJI_CASTLE_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Himeji Castle[COLOR_REVERT] increases the amount of gold you get when pillaging tiles or stealing treasury with spies. It also grants additional defense for the city which builds the [COLOR_BUILDING_TEXT]Himeji Castle[COLOR_REVERT] and gives units trained in this city more experience.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_ST_BASIL_CATHEDRAL_STRATEGY</Tag>
+		<English>If you have a state religion, the [COLOR_BUILDING_TEXT]St. Basil's Cathedral[COLOR_REVERT] causes all of that religion's buildings to generate espionage for your civilization. It increases its city's chances of creating a [COLOR_UNIT_TEXT]Great Spy[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_HARMANDIR_SAHIB_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Harmandir Sahib[COLOR_REVERT] grants all units produces in cities with your state religion +2 experience. It also increases the chances of a [COLOR_UNIT_TEXT]Great Prophet[COLOR_REVERT] appearing.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_WESTMINSTER_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Westminster Strategy[COLOR_REVERT] reduces the hurry production cost. Use it in conjunction with [COLOR_UNIT_TEXT]Capitalism[COLOR_REVERT] or [COLOR_UNIT_TEXT]Slavery[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_CERN_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]CERN Research Complex[COLOR_REVERT] gives you a technological advantage by granting you a free modern technology when build. It also increases research for the city.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_TERRACOTTA_ARMY_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Terracotta Army[COLOR_REVERT] improves your city's military unit production by half and allows all units to gain unlimited experience from barbarian encounters.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_RED_FORT_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Red Fort[COLOR_REVERT] gives the city it is build in three free specialists.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_TRAFALGAR_SQUARE_STRATEGY</Tag>
+		<English>Allows [COLOR_BUILDING_TEXT]Trafalgar Square[COLOR_REVERT] allows for faster construction of ships and extra naval experience in this city.</English>
+		<German>Erlaubt schnelleren Schiffsbau, extra Erfahrung für Schiffe in dieser Stadt.</German>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_GUTENBERG_PRESS_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Gutenberg Press[COLOR_REVERT] greatly spreads your state religion around the world and prevents other religions from entering your borders. It also negates the extra unhappiness for waging war against members of your own religion.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_CORVEE_SYSTEM_STRATEGY</Tag>
+		<English>Granaries produce food.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_CONSCRIPTION_STRATEGY</Tag>
+		<English>Can draft Units.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_STANDING_ARMY_STRATEGY</Tag>
+		<English>Increased experience for land and air units; Reduced upgrade cost.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_LEVY_ARMIES_STRATEGY</Tag>
+		<English>Free units; Military units produced with food.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_WARRIOR_CODE_STRATEGY</Tag>
+		<English>Reduced war weariness; Increased great general emergence; Increased barracks and stable production.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_FANATICISM_STRATEGY</Tag>
+		<English>Increased unit production with state religion. No non-state religion spread; Unhappiness for non-state religions.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_SCHOLASTICISM_STRATEGY</Tag>
+		<English>Higher great person rate with state religion; Unhappiness for non-state religions.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_ORGANIZED_RELIGION_STRATEGY</Tag>
+		<English>Quicker building production with state religion; Missionary training without monastery; Unhappiness for non-state religions.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_ENVIRONMENTALISM_STRATEGY</Tag>
+		<English>Reduced pollution; Commerce for windmill, forest preserve; Happiness for public transportation.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_CENTRAL_PLANNING_STRATEGY</Tag>
+		<English>Massive gold bonus for workshops; Can hurry building production; Watermills grant more food; Free units.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_FREE_MARKET_STRATEGY</Tag>
+		<English>+1 trade route; Reduced maintenance from corporations.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_MERCANTILISM_STRATEGY</Tag>
+		<English>Bonus gold for capital; Improved domestic trade routes; No foreign trade routes or corporations.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_GUILDS_STRATEGY</Tag>
+		<English>Specialists grant gold; Improved production from workshops.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_PUBLIC_WELFARE_STRATEGY</Tag>
+		<English>Increased culture; Culture bolsters research; Unlimited slots for artists, scientists, merchants.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_INDUSTRIALISM_STRATEGY</Tag>
+		<English>Increased worker speed; Bonus production in all cities; Quicker factory and coal plant production.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_CAPITALISM_STRATEGY</Tag>
+		<English>Improved commerce in all cities; More commerce from towns.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_EGALITARIANISM_STRATEGY</Tag>
+		<English>Towns improve production; Unhappiness for civs without egalitarianism.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_TOTALITARIANISM_STRATEGY</Tag>
+		<English>First few military units in a city grant happiness; No war weariness.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_REPRESENTATION_STRATEGY</Tag>
+		<English>Specialists improve research.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_ABSOLUTISM_STRATEGY</Tag>
+		<English>Increased production and commerce in capital.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_VASSALAGE_STRATEGY</Tag>
+		<English>Production from castles; Experience bonus for units.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_REPUBLIC_STRATEGY</Tag>
+		<English>Free specialist in every city; Faster growth for cottage/hamlet/village.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_AUTOCRACY_STRATEGY</Tag>
+		<English>Military Production Bonus; Happiness from monuments.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_THEOCRACY_STRATEGY</Tag>
+		<English>Happiness from state religion; Unhappiness from non-state religions; Double priest slots; Priests grant additional production.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_CITY_STATES_STRATEGY</Tag>
+		<English>Happiness for largest towns; Commerce per specialist in each city which works a limited number of tiles; Increased maintenance from number of cities.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_DYNASTICISM_STRATEGY</Tag>
+		<English>First few military units in a city grant happiness.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_AGRARIANISM_STRATEGY</Tag>
+		<English>Farms produce additional commerce; Pastures grant additional production.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_PANTHEON_STRATEGY</Tag>
+		<English>No state religion; Faster world wonder production; Unhappiness for each religion; Bonus happiness from monuments.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_MERCENARIES_STRATEGY</Tag>
+		<English>Can spend gold to finish military unit production in a city; Hurried units start with the mercenary promotion.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_CASTLE_STRATEGY</Tag>
+		<English>[COLOR_BUILDING_TEXT]Castles[COLOR_REVERT] increase your city's defenses and generate a small amount of culture. They can be destroyed by enemy cannons and later artillery units. Build them in cities near enemy civilizations.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_INDUSTRIAL_PARK_STRATEGY</Tag>
+		<English>An [COLOR_BUILDING_TEXT]Industrial Park[COLOR_REVERT] allows the addition of two Engineer specialists to your city, with an extra free two Engineer thrown in for good measure. This comes at a significant cost to your city's health.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_JAIL_STRATEGY</Tag>
+		<English>[COLOR_BUILDING_TEXT]Jails[COLOR_REVERT] increase espionage and your city's happiness, especially when facing [COLOR_HIGHLIGHT_TEXT]War Weariness[COLOR_REVERT]. Build them if you are involved in a long war and your citizens are starting to complain.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_LEVEE_STRATEGY</Tag>
+		<English>Build the [COLOR_BUILDING_TEXT]Levee[COLOR_REVERT] to improve your trade route yield. They can be build faster with access to stone and are required to build [COLOR_BUILDING_TEXT]Hydroplants[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_PUBLIC_TRANSPORTATION_STRATEGY</Tag>
+		<English>[COLOR_BUILDING_TEXT]Public Transportation[COLOR_REVERT] reduces the pollution caused by your population. It can be build with Oil or with access to Power.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_SUPERMARKET_STRATEGY</Tag>
+		<English>[COLOR_BUILDING_TEXT]Supermarkets[COLOR_REVERT] increase the health of cities, if the cities have access to [COLOR_HIGHLIGHT_TEXT]Cows[COLOR_REVERT], [COLOR_HIGHLIGHT_TEXT]Pigs[COLOR_REVERT], or [COLOR_HIGHLIGHT_TEXT]Sheep[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_WALLS_STRATEGY</Tag>
+		<English>[COLOR_BUILDING_TEXT]Walls[COLOR_REVERT] increase a city's defenses. They can be destroyed by enemy cannons and later artillery units. Build them in cities under threat from enemy or barbarian assault.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_CRISTO_REDENTOR_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Cristo Redentor[COLOR_REVERT] allows its builder to switch [COLOR_HIGHLIGHT_TEXT]Civics[COLOR_REVERT] instantly, with no anarchy. It also increases the chances of a [COLOR_UNIT_TEXT]Great Engineer[COLOR_REVERT] appearing.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_GREAT_UNIVERSITY_STRATEGY</Tag>
+		<English>[COLOR_BUILDING_TEXT]Great University[COLOR_REVERT] greatly increases the scientific output of its city. It also allows you to change three citizens into scientists and increases its city's chance of generating a [COLOR_UNIT_TEXT]Great Scientist[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_SHWEDAGON_PAYA_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Shwedagon Paya[COLOR_REVERT] grants its builder access to all [COLOR_HIGHLIGHT_TEXT]Religious[COLOR_REVERT] Civics and the ability to switch religion civics freely. It also grants two happiness in the city it is build in if the state religion is present. It increases the chances of a [COLOR_UNIT_TEXT]Great Prophet[COLOR_REVERT] appearing.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_GREAT_LIGHTHOUSE_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Great Lighthouse[COLOR_REVERT] adds one additional trade routes to all coastal cities and improves the trade routes in the city it is build in by 50%. The [COLOR_BUILDING_TEXT]Great Lighthouse[COLOR_REVERT] also increases its city's odds of generating a [COLOR_UNIT_TEXT]Great Merchant[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_GREAT_WALL_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Great Wall[COLOR_REVERT] affects the area inside its owner's cultural borders on that continent, even if it is physically outside of the Great Wall. The effects are that [COLOR_HIGHLIGHT_TEXT]Barbarians[COLOR_REVERT] cannot enter that area, and the owner receives more [COLOR_HIGHLIGHT_TEXT]Great General[COLOR_REVERT] points from combat within that area. It also adds 15% defense in all cities.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_HANGING_GARDEN_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Hanging Gardens[COLOR_REVERT] adds food and culture in your city. It increases the odds of its city generating a [COLOR_UNIT_TEXT]Great Artist[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_GREAT_DAM_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Hoover Dam[COLOR_REVERT] provides clean power to all cities on the same continent, which is needed to increase the production of the [COLOR_BUILDING_TEXT]Factory[COLOR_REVERT]. It increases the odds that its city will generate a [COLOR_UNIT_TEXT]Great Engineer[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_PENTAGON_STRATEGY</Tag>
+		<English>Once the [COLOR_BUILDING_TEXT]Pentagon[COLOR_REVERT] is built, all new units built in your civilization receive two experience points. It also allows you to switch military civics without anarchy. Its city is more likely to generate a [COLOR_UNIT_TEXT]Great Engineer[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_VERSAILLES_STRATEGY</Tag>
+		<English>[COLOR_BUILDING_TEXT]Versailles[COLOR_REVERT] places two artists in your capital and makes all artists more productive. It greatly increases the chances of creating a [COLOR_UNIT_TEXT]Great Artist[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_STOCK_EXCHANGE_STRATEGY</Tag>
+		<English>[COLOR_BUILDING_TEXT]Stock Exchange[COLOR_REVERT] doubles its city's production of wealth and increases its chances of generating a [COLOR_UNIT_TEXT]Great Merchant[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_GREAT_UNIVERSITY_STRATEGY</Tag>
+		<English>A [COLOR_BUILDING_TEXT]Great University[COLOR_REVERT] doubles its city's production of research and increases its chances of generating a [COLOR_UNIT_TEXT]Great Scientist[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_CHARTERED_COMPANY_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Chartered Company[COLOR_REVERT] adds production speed for naval units and increases trade route gain.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_NATIONAL_MILITARY_ACADEMY_STRATEGY</Tag>
+		<English>All military units built in [COLOR_BUILDING_TEXT]National Military Academy[COLOR_REVERT] city begin with four additional experience points. Further, its city is more likely to generate a [COLOR_UNIT_TEXT]Great Engineer[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_AIRSHIP_STRATEGY</Tag>
+		<English>This early flight unit can perform air strikes and inflict significant damage to Naval Units.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_CUSTOM_HOUSE_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Customs House[COLOR_REVERT] increases the commerce generated by a city's Oversea Trade Routes. Consider colonizing new continents to maximize profit.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_GALLEASS_STRATEGY</Tag>
+		<English>A powerful medieval war galley, [COLOR_UNIT_TEXT]Galleass[COLOR_REVERT] are the most powerful warships of their time. They cannot enter ocean spaces. </English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_MARKET_STRATEGY</Tag>
+		<English>[COLOR_BUILDING_TEXT]Markets[COLOR_REVERT] increase a city's wealth. They also increase the city's happiness with access to [COLOR_HIGHLIGHT_TEXT]Ivory[COLOR_REVERT], [COLOR_HIGHLIGHT_TEXT]Silk[COLOR_REVERT], [COLOR_HIGHLIGHT_TEXT]Whales[COLOR_REVERT], or [COLOR_HIGHLIGHT_TEXT]Whine[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_GROCER_STRATEGY</Tag>
+		<English>A [COLOR_BUILDING_TEXT]Grocer[COLOR_REVERT] increases a city's wealth. It also increases the city's health with access to [COLOR_HIGHLIGHT_TEXT]Spices[COLOR_REVERT], [COLOR_HIGHLIGHT_TEXT]Sugar[COLOR_REVERT], or [COLOR_HIGHLIGHT_TEXT]Bananas[COLOR_REVERT].</English>
+	</TEXT>
+</Civ4GameText>

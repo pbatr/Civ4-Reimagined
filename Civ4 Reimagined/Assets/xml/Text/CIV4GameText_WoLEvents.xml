@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Soren Johnson (Firaxis Games) -->
+<!-- Sid Meier's Civilization 4 -->
+<!-- Copyright Firaxis Games 2005 -->
+<!-- -->
+<!--
+-->	
+<!-- Game Text Objects -->
+<Civ4GameText xmlns="http://www.firaxis.com">
+	<TEXT>
+		<Tag>TXT_KEY_EVENTTRIGGER_EDUCATION_COSTS</Tag>
+		<English>The costs of post-secondary education is rising throughout the %s1_civ_adjective Empire.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_EDUCATION_COSTS</Tag>
+		<English>Students around the nation are complaining about the rising costs of secondary education. Should our government intervene?</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_EDUCATION_COSTS_1</Tag>
+		<English>It is important that we help the leaders of tomorrow. Develop financial aid programs to assist students.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_EDUCATION_COSTS_2</Tag>
+		<English>Although we sympathize with the students, it is not the government's responsibility to help them.</English>
+	</TEXT>	
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_EDUCATION_COSTS_3</Tag>
+		<English>Those money-grubbing universities! We should make all universities public universities, so that students will be able to learn in peace!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENTTRIGGER_MEDIEVAL_FORENSICS</Tag>
+		<English>A %s1_civ_adjective official has developed the new science of forensics!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_MEDIEVAL_FORENSICS</Tag>
+		<English>A security official with medical expertise has published a groundbreaking book dealing with what he calls forensics using logic and science to help solve crimes.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_MEDIEVAL_FORENSICS_1</Tag>
+		<English>This should help us when ruling our nation.</English>
+	</TEXT>	
+	<TEXT>
+		<Tag>TXT_KEY_EVENTTRIGGER_TOILET_PAPER</Tag>
+		<English>A %s1_civ_adjective inventor has invented toilet paper!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_TOILET_PAPER</Tag>
+		<English>An inventor in our Empire has invented toilet paper!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TOILET_PAPER_1</Tag>
+		<English>Gross! But useful.</English>
+	</TEXT>	
+	<TEXT>
+		<Tag>TXT_KEY_EVENTTRIGGER_ELEPHANT_PROTECTION</Tag>
+		<English>Poachers are hunting elephants to near extinction in the %s1_civ_adjective Empire!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_ELEPHANT_PROTECTION</Tag>
+		<English>Poachers are hunting elephants to near extinction near our city of %s2_city!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_ELEPHANT_PROTECTION_1</Tag>
+		<English>We cannot do anything to alleviate the situation.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_ELEPHANT_PROTECTION_2</Tag>
+		<English>Send in rangers to patrol the area and arrest any poachers.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENTTRIGGER_STADIUM_RIOT</Tag>
+		<English>Sports spectators have begun rioting in the %s1_civ_adjective city of %s2_city after their team lost.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_STADIUM_RIOT</Tag>
+		<English>Sports spectators have begun rioting in %s2_city after their team lost. They are attacking civilians and burning down buildings, causing mayhem everywhere in the city!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_STADIUM_RIOT_1</Tag>
+		<English>Send in riot police! Make sure the rioters are stopped!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_STADIUM_RIOT_2</Tag>
+		<English>Let's hope the local police can handle this.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENTTRIGGER_NEW_OASIS</Tag>
+		<English>Merchants have discovered a previously unknown oasis!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_NEW_OASIS</Tag>
+		<English>Merchants have discovered a previously unknown oasis!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_NEW_OASIS_1</Tag>
+		<English>Sounds nice. </English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENTTRIGGER_DEAD_ARTIST</Tag>
+		<English>A %s1_civ_adjective artist has just died, leaving behind a whole treasury of brilliant art.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_DEAD_ARTIST</Tag>
+		<English>A local artist from %s2_city has just died, and, after searching through his possessions, his relatives have found a whole store of remarkable, extraordinary art!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_DEAD_ARTIST_1</Tag>
+		<English>I wonder why he never showed it to the world before he died.</English>
+	</TEXT>	
+	<TEXT>
+		<Tag>TXT_KEY_EVENTTRIGGER_HOMELESS_CHILDREN</Tag>
+		<English>The number of homeless children in the %s4_civ_adjective empire is growing at an alarming rate. </English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_HOMELESS_CHILDREN</Tag>
+		<English>Your foreign advisors report on the alarming and growing number of homeless children in the %s4_civ_adjective empire. Perhaps we should send some aid as a sign of goodwill?</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_HOMELESS_CHILDREN_1</Tag>
+		<English>Bah! Can't they solve their own problems?</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_HOMELESS_CHILDREN_2</Tag>
+		<English>How heartbreaking! Donate some money to the cause.</English>
+	</TEXT>	
+	<TEXT>
+		<Tag>TXT_KEY_EVENTTRIGGER_LOCAL_HERO</Tag>
+		<English>A local hero from the %s1_civ_adjective has just passed away.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_LOCAL_HERO</Tag>
+		<English>A well-respected and hard-working man from %s2_city has just died. People throughout the city mourn the loss.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_LOCAL_HERO_1</Tag>
+		<English>How sad. Send our condolences.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_LOCAL_HERO_2</Tag>
+		<English>Erect a monumental statue of the man. He shall be remembered for generations!</English>
+	</TEXT>	
+	<TEXT>
+		<Tag>TXT_KEY_EVENTTRIGGER_ANNOYING_BANDITS</Tag>
+		<English>Bandits are plauging the %s1_adjective Empire.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_ANNOYING_BANDITS</Tag>
+		<English>Bandits have been disrupting the daily lives of citizens in %s2_city.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_ANNOYING_BANDITS_1</Tag>
+		<English>There is nothing we can do to help.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_ANNOYING_BANDITS_2</Tag>
+		<English>Levy a local militia to protect the city.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENTTRIGGER_CHILD_PRODIGY</Tag>
+		<English>A child prodigy, gifted in music, is the latest sensation in the %s1_adjective Empire!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_CHILD_PRODIGY_EARLY</Tag>
+		<English>A young child prodigy living in %s2_city has gained national renown as a great singer and musician, gifted in song and epic poetry.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_CHILD_PRODIGY_MIDDLE</Tag>
+		<English>A child prodigy from %s2_city is gaining attention throughout the Empire! He is an accomplished pianist, and has already composed several operas and concertos!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_CHILD_PRODIGY_LATE</Tag>
+		<English>A wacky piano-playing child prodigy from %s2_city is gaining attention throughout the Empire! His ability to compose jazz and ragtime is unrivaled!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_CHILD_PRODIGY_1</Tag>
+		<English>Who needs music? We have no time to waste on beggars.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_CHILD_PRODIGY_2</Tag>
+		<English>Let us give him our support. He looks like a cute, mischievous kind of kid.</English>
+	</TEXT>	
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_CHILD_PRODIGY_3</Tag>
+		<English>Give him a free scholarship to the most prestigious music institutions! He shall become the greatest musician who ever lived!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENTTRIGGER_TASTY_MUSHROOMS</Tag>
+		<English>%s1_civ_adjective citizens have discovered a delicious new species of mushrooms!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_TASTY_MUSHROOMS</Tag>
+		<English>Citizens have discovered a delicious new species of delicious, nutritious, and non-poisonous mushrooms near %s2_city!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TASTY_MUSHROOMS_1</Tag>
+		<English>Cool. Make me a new sandwich with those mushrooms.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENTTRIGGER_MEDIEVAL_CASTLE</Tag>
+		<English>A %s1_civ_adjective castle has turned into a world-class museum.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_MEDIEVAL_CASTLE</Tag>
+		<English>The local castle at %s2_city has been a monument for years, impressing visitors and locals alike. Recently, the last heir to the castle has died. In his will, he wished for the castle to become a national monument.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_MEDIEVAL_CASTLE_1</Tag>
+		<English>Excellent! Bring in the tourists and profit!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENTTRIGGER_MOO_MOO</Tag>
+		<English>A %s1_civ_adjective field has become new grazing ground for cattle.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_MOO_MOO</Tag>
+		<English>A wealthy rancher has decided to move to a plot of land near %s2_city, bringing along with him his vast cow herds. They will graze there from now on.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_MOO_MOO_1</Tag>
+		<English>Moo.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENTTRIGGER_SAT_TEST</Tag>
+		<English>%s1_adjective educators are debating whether standardized testing is in the best interests of the nation's education system.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_SAT_TEST_1</Tag>
+		<English>Our advisors suggest that in order to improve public education around the country, we should create a national test, called the SAT, which will show how much our students have really learned!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_SAT_TEST_2</Tag>
+		<English>Some education experts say that it is difficult to determine students' worth. Although flawed, they say the best way to assess students' performance is through an unbiased, standardized testing system. Should we try it?</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_SAT_TEST_1</Tag>
+		<English>Sure! Sounds like a great idea!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_SAT_TEST_2</Tag>
+		<English>Are you kidding me? Why the heck would we torture kids and their parents with that? That would create too much stress.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENTTRIGGER_POTENTIAL_MARKET</Tag>
+		<English>Analysts say that a town in the %s1_adjective Empire could become the next big market for trade!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_POTENTIAL_MARKET</Tag>
+		<English>Though small, the town of %s2_city is attracting merchants from afar as a new, potential market. Analysts suspect the town could develop into a major trading center!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_POTENTIAL_MARKET_1</Tag>
+		<English>Trade away.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENTTRIGGER_LITTLE_PRINCESS</Tag>
+		<English>A little princess has moved into the %s1_adjective royal palace.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_LITTLE_PRINCESS</Tag>
+		<English>The little Crown Prince has been married off to a little girl. They're very cute kids, and cheer up everybody around the palace.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_LITTLE_PRINCESS_1</Tag>
+		<English>Awww... They're so cute. But... why should I care? I'd like some candy too.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENTTRIGGER_SATIRE</Tag>
+		<English>A %s1_adjective writer has published a harsh satire about his nation. Some of his fellow citizens take this as a sign to revolt.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_SATIRE_1</Tag>
+		<English>A popular and well-renowned scholar from %s2_city has published a scathing satire about our government! It seems that the city is now experiencing an unprecedented amount of civil disorder!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_SATIRE_2</Tag>
+		<English>A writer from %s2_city has published a scathing satire, mocking our benevolent and austere government! The citizens in that city are protesting against our so-called tyrannical rule, just because of this!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_SATIRE_1</Tag>
+		<English>Imprison the gentleman! We will deal with him in a... civilized manner. No one dares to bring disorder to our Empire.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_SATIRE_2</Tag>
+		<English>Assinate the firebrand. We do not want people like him to be alive.</English>
+	</TEXT>	
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_SATIRE_3</Tag>
+		<English>Well... we have to admit, he is a pretty good writer.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_SATIRE_4</Tag>
+		<English>Maybe his satires do make a good point. Let's have an audience with him, so we can discuss about what we can do to improve the lives of people.</English>
+	</TEXT>	
+	<TEXT>
+		<Tag>TXT_KEY_EVENTTRIGGER_ANIMAL_RIGHTS</Tag>
+		<English>%s1_adjective animal rights activists have gotten more and more bold in their attempts to win supporters, going as so far to pose nude to attract attention.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_ANIMAL_RIGHTS</Tag>
+		<English>Crazy animal rights activists have been protesting again in our capital. This time, however, they are attempting to attract attention by protesting in the nude. Although a few citizens (coincidentally male) appreciate the gesture, many citizens think they have gone way too far.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_ANIMAL_RIGHTS_1</Tag>
+		<English>Well... They're not actually hurting anyone, are they?</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_ANIMAL_RIGHTS_2</Tag>
+		<English>If they want to protest, they shouldn't do it in the nude.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENTTRIGGER_PACIFIST_SAINT</Tag>
+		<English>A %s1_adjective holy man of the %s3_religion faith is inspiring masses with his teachings about pacifism and love for all beings.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_PACIFIST_SAINT</Tag>
+		<English>Lately, word has been spreading around the Empire of a Saint who teaches pacifism as well as love for humans and animals. Due to his peaceful and benevolent personality, he is an inspiring figure to the %s3_religion community worldwide.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_PACIFIST_SAINT_1</Tag>
+		<English>People are listening to his words.</English>
+	</TEXT>																					
+</Civ4GameText>
