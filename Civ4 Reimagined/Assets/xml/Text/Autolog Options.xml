@@ -561,7 +561,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_AUTOLOG__LOGTRADEALL_TEXT</Tag>
 		<English>Trade/Demands</English>
-		<French>Trade/Demands</French>
+		<French>Commerce / Exigences</French>
 		<German>Handel / Forderungen</German>
 		<Italian>Commercio</Italian>
 		<Spanish>Intercambios/Exigencias</Spanish>
@@ -569,7 +569,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_AUTOLOG__LOGTRADEALL_HOVER</Tag>
 		<English>When checked, will log all AI-initiated trade offers and demands along with your responses.</English>
-		<French>When checked, will log all AI-initiated trade offers and demands along with your responses.</French>
+		<French>En activant, toutes les offres commerciales et les exigences faites par l'IA seront notées dans le log, ainsi que vos réponses.</French>
 		<German>Protokolliert alle von anderen Zivilisationen angeregte Handelsangebote und Forderungen zusammen mit den Reaktionen der eigenen Zivilisation</German>
 		<Italian>Quando è selezionato, il Registro Automatico registra tutte le offerte e le richieste commerciali delle altre Civiltà e le vostre risposte.</Italian>
 		<Spanish>Permite registrar los intercambios y exigencias iniciados por IAs así como tus respuestas.</Spanish>
@@ -577,7 +577,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_AUTOLOG__LOGTRADEOFFER_TEXT</Tag>
 		<English>Trade Offers</English>
-		<French>Trade Offers</French>
+		<French>Offres commerciales</French>
 		<German>Handelsangebote</German>
 		<Italian>Offerte commericali</Italian>
 		<Spanish>Intercambios</Spanish>
@@ -585,7 +585,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_AUTOLOG__LOGTRADEOFFER_HOVER</Tag>
 		<English>When checked, will log AI-initiated trades and gift offers and your responses.</English>
-		<French>When checked, will log AI-initiated trades and gift offers and your responses.</French>
+		<French>En activant, toutes les offres commerciales et les cadeaux faits par l'IA seront notés dans le log, ainsi que vos réponses.</French>
 		<German>Protokolliert alle von anderen Zivilisationen angeregte Handelsangebote und Geschenke zusammen mit den Reaktionen der eigenen Zivilisation</German>
 		<Italian>Quando è selezionato, il Registro Automatico registra le offerte commerciali ed i doni delle altre Civiltà e le vostre risposte.</Italian>
 		<Spanish>Permite registrar los intercambios y regalos iniciados por IAs así como tus respuestas.</Spanish>
@@ -593,7 +593,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_AUTOLOG__LOGTRIBUTEDEMAND_TEXT</Tag>
 		<English>Tribute/Help</English>
-		<French>Tribute/Help</French>
+		<French>Tribut/Aide</French>
 		<German>Tribut / Hilfe</German>
 		<Italian>Richieste di tributi</Italian>
 		<Spanish>Demandas/Ayuda</Spanish>
@@ -601,7 +601,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_AUTOLOG__LOGTRIBUTEDEMAND_HOVER</Tag>
 		<English>When checked, will log AI demands for tribute or help and your responses.</English>
-		<French>When checked, will log AI demands for tribute or help and your responses.</French>
+		<French>En activant, toutes les demandes de tribut ou d'aide faites par l'IA seront notées dans le log, ainsi que vos réponses.</French>
 		<German>Protokolliert alle von anderen Zivilisationen verlangte Tribute oder Hilfsleistungen zusammen mit den Reaktionen der eigenen Zivilisation</German>
 		<Italian>Quando è selezionato, il Registro Automatico registra le richieste di tributi o d'aiuto delle altre Civiltà e le vostre risposte.</Italian>
 		<Spanish>Permite registrar las exigencias de tributo o ayuda iniciadas por IAs así como tus respuestas.</Spanish>
@@ -609,7 +609,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_AUTOLOG__LOGRELIGIONDEMAND_TEXT</Tag>
 		<English>Change Religion</English>
-		<French>Change Religion</French>
+		<French>Changement de religion</French>
 		<German>Religionswechsel</German>
 		<Italian>Conversioni religiose</Italian>
 		<Spanish>Conversiones Religiosas</Spanish>
@@ -617,7 +617,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_AUTOLOG__LOGRELIGIONDEMAND_HOVER</Tag>
 		<English>When checked, will log AI demands that you change religion and your responses.</English>
-		<French>When checked, will log AI demands that you change religion and your responses.</French>
+		<French>En activant, toutes les demandes de changement de religion faites par l'IA seront notées dans le log, ainsi que vos réponses.</French>
 		<German>Protokolliert alle von anderen Zivilisationen verlangte Religionswechsel zusammen mit den Reaktionen der eigenen Zivilisation</German>
 		<Italian>Quando è selezionato, il Registro Automatico registra le richieste di conversione religiosa delle altre Civiltà e le vostre risposte.</Italian>
 		<Spanish>Permite registrar las exigencias de cambio de religión de la IA, así como tus respuestas.</Spanish>
@@ -625,7 +625,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_AUTOLOG__LOGCIVICDEMAND_TEXT</Tag>
 		<English>Change Civics</English>
-		<French>Change Civics</French>
+		<French>Changement de doctrine</French>
 		<German>Staatsformwechsel</German>
 		<Italian>Cambi di governo</Italian>
 		<Spanish>Cambio de Principios</Spanish>
@@ -633,7 +633,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_AUTOLOG__LOGCIVICDEMAND_HOVER</Tag>
 		<English>When checked, will log AI demands that you change civics and your responses.</English>
-		<French>When checked, will log AI demands that you change civics and your responses.</French>
+		<French>En activant, toutes les demandes de changement de doctrine faites par l'IA seront notées dans le log, ainsi que vos réponses.</French>
 		<German>Protokolliert alle von anderen Zivilisationen verlangte Staatsformwechsel zusammen mit den Reaktionen der eigenen Zivilisation</German>
 		<Italian>Quando è selezionato, il Registro Automatico registra le richieste di cambio di forme di governo delle altre Civiltà e le vostre risposte.</Italian>
 		<Spanish>Permite registrar las exigencias de cambio de Principios de la IA, así como tus respuestas.</Spanish>
@@ -641,7 +641,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_AUTOLOG__LOGWARDEMAND_TEXT</Tag>
 		<English>Declare War</English>
-		<French>Declare War</French>
+		<French>Déclaration de guerre</French>
 		<German>Kriegserklärung</German>
 		<Italian>Dichiarazioni di guerra</Italian>
 		<Spanish>Declaraciones de Guerra</Spanish>
@@ -649,7 +649,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_AUTOLOG__LOGWARDEMAND_HOVER</Tag>
 		<English>When checked, will log AI requests to declare war on a third party and your responses.</English>
-		<French>When checked, will log AI requests to declare war on a third party and your responses.</French>
+		<French>En activant, toutes les déclarations de guerres faites par l'IA seront notées dans le log, ainsi que vos réponses.</French>
 		<German>Protokolliert alle von anderen Zivilisationen verlangte Kriegserklärungen gegenüber einer dritten Partei zusammen mit den Reaktionen der eigenen Zivilisation</German>
 		<Italian>Quando è selezionato, il Registro Automatico registra le richieste di dichiarazione di guerra delle altre Civiltà e le vostre risposte.</Italian>
 		<Spanish>Permite registrar las peticiones de comienzo de guerra de la IA, así como tus respuestas.</Spanish>
@@ -657,7 +657,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_AUTOLOG__LOGEMBARGODEMAND_TEXT</Tag>
 		<English>Stop Trading</English>
-		<French>Stop Trading</French>
+		<French>Arrêt des échanges</French>
 		<German>Handelsstopp</German>
 		<Italian>Embargo commerciale</Italian>
 		<Spanish>Detener Intercambios</Spanish>
@@ -665,7 +665,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_AUTOLOG__LOGEMBARGODEMAND_HOVER</Tag>
 		<English>When checked, will log AI requests to stop trading with a third party and your responses.</English>
-		<French>When checked, will log AI requests to stop trading with a third party and your responses.</French>
+		<French>En activant, toutes les demandes d'arrêt du commerce faites par l'IA seront notées dans le log, ainsi que vos réponses.</French>
 		<German>Protokolliert alle von anderen Zivilisationen verlangte Handelsstopps gegenüber einer dritten Partei zusammen mit den Reaktionen der eigenen Zivilisation</German>
 		<Italian>Quando è selezionato, il Registro Automatico registra le richieste di embargo commerciale delle altre Civiltà e le vostre risposte.</Italian>
 		<Spanish>Permite registrar las exigencias de detener intercambios de la IA, así como tus respuestas.</Spanish>

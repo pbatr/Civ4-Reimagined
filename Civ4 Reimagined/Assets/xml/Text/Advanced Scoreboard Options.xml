@@ -17,7 +17,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__SHOWMINOR_HOVER</Tag>
 		<English>When checked, minor civilizations are shown (some scenarios consider certain civs to be minor).</English>
-		<French>Quand coché, les civilisations mineures sont affichées (des civs sont considérées mineures dans certains scénarios).</French>
+		<French>Si coché, les civilisations mineures sont affichées (des civs sont considérées mineures dans certains scénarios).</French>
 		<German>Zeigt unbedeutende Zivilisationen in der Punkteanzeige an (diese werden in einigen Szenarios verwendet)</German>
 		<Italian>Quando è selezionato, vengono visualizzate anche le Civiltà Minori (certi Scenari considerano alcune Civiltà come minori).</Italian>
 		<Spanish>Cuando está activada, las civilizaciones menores son mostradas (algunos escenarios consideran a ciertas civilizaciones como menores).</Spanish>
@@ -33,7 +33,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__SHOWDEAD_HOVER</Tag>
 		<English>When checked, dead civilizations will remain on the scoreboard.</English>
-		<French>En activant, les civilisations mortes resteront sur le panneau des scores.</French>
+		<French>Si coché, les civilisations mortes resteront sur le panneau des scores.</French>
 		<German>Lässt ausgelöschte Zivilisationen weiter in der Punkteanzeige erscheinen</German>
 		<Italian>Quando è selezionato, le Civiltà scomparse rimarranno nel Pannello del Punteggio.</Italian>
 		<Spanish>Cuando está activada, las civilizaciones eliminadas permanecerán en la tabla de puntaciones.</Spanish>
@@ -49,7 +49,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__TAGDEAD_HOVER</Tag>
 		<English>When checked, dead civilizations will be tagged as "DEAD" when shown.</English>
-		<French>En activant, les civilisations mortes seront marquées "MORT".</French>
+		<French>Si coché, les civilisations mortes seront marquées "MORT".</French>
 		<German>Markiert ausgelöschte Zivilisationen mit dem Attribut "TOT" in der Punkteanzeige, wenn diese angezeigt werden sollen</German>
 		<Italian>Quando è selezionato, ogni Civiltà scomparsa verrà marcata come scomparsa ("X") nel Pannello del Punteggio.</Italian>
 		<Spanish>Cuando esté activa, civilizacione seliminadas serán marcadas con "ELIMINADA" al ser mostradas.</Spanish>
@@ -65,7 +65,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__GREYDEAD_HOVER</Tag>
 		<English>When checked, dead civilizations will be greyed out when not shown.</English>
-		<French>En activant, les civilisations mortes seront marquées en gris.</French>
+		<French>Si coché, les civilisations mortes seront marquées en gris.</French>
 		<German>Graut ausgelöschte Zivilisationen aus, wenn diese nicht angezeigt werden sollen</German>
 		<Italian>Quando è selezionato, le Civiltà scomparse verranno colorate in grigio nel Pannello del Punteggio.</Italian>
 		<Spanish>Cuando está activa, las civilizaciones eliminadas usarán el gris cuando sean mostradas.</Spanish>
@@ -81,7 +81,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__DELTA_HOVER</Tag>
 		<English>When checked, shows the change in score since the previous turn</English>
-		<French>Quand coché, affiche l'évolution du score depuis le tour précédent</French>
+		<French>Si coché, affiche l'évolution du score depuis le tour précédent</French>
 		<German>Zeigt die Veränderung der Wertung einer Zivilisation seit der letzten Runde an</German>
 		<Italian>Quando è selezionato, mostra la variazione del punteggio della Civiltà rispetto al turno precedente.</Italian>
 		<Spanish>Cuando está activa, permite mostrar el cambio en puntuaciones con respecto al anterior turno.</Spanish>
@@ -97,7 +97,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__DELTAINCLUDECURRENT_HOVER</Tag>
 		<English>When checked, includes the current turn's change in the score change.</English>
-		<French>Quand coché, inclut les variations du tour en cours dans l'évolution du score.</French>
+		<French>Si coché, inclut les variations du tour en cours dans l'évolution du score.</French>
 		<German>Bezieht in die Veränderung der Wertung einer Zivilisation sowohl die letzte als auch die aktuelle Runde ein</German>
 		<Italian>Quando è selezionato, include anche la variazione di punteggio relativa al turno corrente.</Italian>
 		<Spanish>Cuando está activa, incluye los cambios del turno actual al mostrar cambios de puntuaciones.</Spanish>
@@ -105,7 +105,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__DISPLAYNAME_TEXT</Tag>
 		<English>Display Name</English>
-		<French>Nom Affiché</French>
+		<French>Nom affiché</French>
 		<German>Anzeigename</German>
 		<Italian>Identifica con nome</Italian>
 		<Spanish>Nombre a Mostrar</Spanish>
@@ -113,7 +113,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__DISPLAYNAME_HOVER</Tag>
 		<English>Determines how civilizations are labeled on the scoreboard.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Leader[COLOR_REVERT] - Name of the leader or player (Victoria or EmperorFool).[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Civilization[COLOR_REVERT] - Name of the civilization (England).[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Description[COLOR_REVERT] - Descriptive name of the civilization (English Empire).</English>
-		<French>Determine comment les civilisations sont affichées sur le panneau des scores.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Leader[COLOR_REVERT] - Name of the leader or player (Victoria or EmperorFool).[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Civilization[COLOR_REVERT] - Name of the civilization (England).[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Description[COLOR_REVERT] - Descriptive name of the civilization (English Empire).</French>
+		<French>Determine comment les civilisations sont affichées sur le panneau des scores.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Héros[COLOR_REVERT] - Nom du héros ou du joueur (Victoria ou EmperorFool).[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Civilisation[COLOR_REVERT] - Nom de la civilisation (France).[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Description[COLOR_REVERT] - Nom descriptif de la civilisation (Empire français).</French>
 		<German>Bestimmt den Namen, mit dem Zivilisationen in der Punkteanzeige angezeigt werden:[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Oberhaupt[COLOR_REVERT] - Name des Oberhaupts oder Spielers (Victoria oder EmperorFool)[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Zivilisation (Ziv)[COLOR_REVERT] - Name der Zivilisation (England)[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Ziv-Beschreibung[COLOR_REVERT] - Beschreibender Name der Zivilisation (Reich der Engländer)</German>
 		<Italian>Determina come le Civiltà vengono identificate nel Pannello del Punteggio.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Leader[COLOR_REVERT] - Nome del Leader o giocatore (Victoria o EmperorFool).[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Civilization[COLOR_REVERT] - Nome della civilità (Inghilterra).[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Descrizione[COLOR_REVERT] - Nome descrittivo della civiltà (Impero Britannico).</Italian>
 		<Spanish>Determina cómo se etiqueta a las civilizaciones en la tabla de puntuaciones.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Líder[COLOR_REVERT] - Nombre del líder o del jugador (Victoria o EmperorFool).[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Civilización[COLOR_REVERT] - Nombre de la civilización (Inglaterra).[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Descripción[COLOR_REVERT] - Nombre descriptivo de la civilización (Imperio Inglés).</Spanish>
@@ -121,7 +121,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__DISPLAYNAME_LIST</Tag>
 		<English>Leader|Civilization|Civ Description|Leader / Civ|Leader / Civ Desc</English>
-		<French>Leader|Civilisation|Description Civ|Leader / Civ|Leader / Description Civ</French>
+		<French>Héros|Civilisation|Description|Héros / Civ|Héros / Description</French>
 		<German>Oberhaupt|Zivilisation|Ziv-Beschreibung|Oberhaupt / Zivilisation|Oberhaupt / Ziv-Beschreibung</German>
 		<Italian>Leader|Civiltà|Civ Corta|Leader + Civ|Leader + Civ Corta</Italian>
 		<Spanish>Líder|Civilización|Descripción|Líder / Civ|Líder / Desc</Spanish>
@@ -137,7 +137,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__USEPLAYERNAME_HOVER</Tag>
 		<English>When checked, the human players' names are used in place of those of the leaders they are playing as.</English>
-		<French>Quand coché, les noms des joueurs humains sont affichés à la place de ceux des leaders qu'ils contrôlent.</French>
+		<French>Si coché, les noms des joueurs humains sont affichés à la place de ceux des leaders qu'ils contrôlent.</French>
 		<German>Zeigt die Namen der menschlichen Spieler anstatt des jeweils ausgewählten Oberhauptes an</German>
 		<Italian>Quando è selezionato, nel Pannello del Punteggio viene utilizzato il nome del giocatore invece di quello del Leader della Civiltà da lui utilizzata.</Italian>
 		<Spanish>Cuando está activa, se usa el nombre de los jugadores humanos en lugar del de los líderes que están usando.</Spanish>
@@ -145,7 +145,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__ATTITUDE_TEXT</Tag>
 		<English>Attitude Icons</English>
-		<French>Icônes d'Attitude</French>
+		<French>Icônes d'attitude</French>
 		<German>Einstellung</German>
 		<Italian>Icone di Atteggiamento</Italian>
 		<Spanish>Iconos de Actitud</Spanish>
@@ -153,7 +153,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__ATTITUDE_HOVER</Tag>
 		<English>When checked, shows faces depicting each AI's attitude toward you.</English>
-		<French>En activant, utilise des smileys pour indiquer l'attitude des IA envers vous.</French>
+		<French>Si coché, utilise des émoticônes pour indiquer l'attitude des IA envers vous.</French>
 		<German>Zeigt die Einstellung jeder Zivilisation gegenüber der eigenen mit Smilies an</German>
 		<Italian>Quando è selezionato, nel Pannello del Punteggio vengono mostrate delle emoticons che rappresentano l'atteggiamento delle altre Civiltà verso di te.</Italian>
 		<Spanish>Si se activa, se muestran caras que indican la actitud de cada IA hacia tí.</Spanish>
@@ -161,7 +161,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__WORSTENEMY_TEXT</Tag>
 		<English>Worst Enemy Icons</English>
-		<French>Icône Plus Grand Ennemi</French>
+		<French>Icône pire ennemi</French>
 		<German>Erzfeind</German>
 		<Italian>Icone del Peggior Nemico</Italian>
 		<Spanish>Iconos de Peor Enemigo</Spanish>
@@ -169,7 +169,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__WORSTENEMY_HOVER</Tag>
 		<English>When checked, shows an angry person icon when you are an AI's worst enemy.</English>
-		<French>En activant, une icône de citoyen faché démontrera quand vous êtes le plus grand ennemi d'une IA.</French>
+		<French>Si coché, une icône de citoyen mécontent apparaît quand vous êtes le pire ennemi d'une IA.</French>
 		<German>Zeigt das Symbol eines wütenden Bürgers an, wenn eine Zivilisation der Erzfeind der eigenen Zivilisation ist</German>
 		<Italian>Quando è selezionato, mostra un'apposita icona quando sei il Peggior Nemico di quella Civiltà.</Italian>
 		<Spanish>Si está activo, muestra un icono de persona enfadada cuando eres el peor enemigo de una IA.</Spanish>
@@ -177,7 +177,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__WHEOOH_TEXT</Tag>
 		<English>War Mobilization Icons</English>
-		<French>Icônes de mobilisation de guerre</French>
+		<French>Icônes de mobilisation</French>
 		<German>Kriegsvorbereitungen</German>
 		<Italian>Icone di Mobilitazione</Italian>
 		<Spanish>Icono de Mobilización</Spanish>
@@ -185,7 +185,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__WHEOOH_HOVER</Tag>
 		<English>When checked, shows an orange fist icon when the AI is mobilizing for war (We Have Enough on Our Hands).</English>
-		<French>Quand coché, affiche une icône de poing orange lorsque l'IA se mobilise pour la guerre.</French>
+		<French>Si coché, affiche une icône de poing orange lorsque l'IA se mobilise pour la guerre.</French>
 		<German>Zeigt ein orangenes Faust-Symbol an, wenn sich eine Zivilisation auf einen Krieg vorbereitet (engl. "We Have Enough on Our Hands")</German>
 		<Italian>Quando è selezionato, mostra un'apposita icona quando la Civiltà si sta mobilitando per la guerra ('We Have Enough on Our Hands', WHEOH).</Italian>
 		<Spanish>Cuando se activa, muestra un puño naranja cuando la IA se está preparando para la guerra.</Spanish>
@@ -201,7 +201,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__CITIES_HOVER</Tag>
 		<English>When checked, shows a count of the number of cities for each leader.</English>
-		<French>Quand coché, affiche le nombre de villes de chaque leader.</French>
+		<French>Si coché, affiche le nombre de villes de chaque leader.</French>
 		<German>Zeigt für jede Zivilisation die Anzahl ihrer Städte an</German>
 		<Italian>Quando è selezionato, mostra il numero di Città per ogni Civiltà.</Italian>
 		<Spanish>Cuando está activo, muestra el número de ciudades de cada líder.</Spanish>
@@ -217,7 +217,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__ALIGNICONS_HOVER</Tag>
 		<English>When checked, the scoreboard is drawn as a grid, and the other options in this column affect it.</English>
-		<French>En activant, le panneau des scores devient un tableau, et les options dans cette colonne l'affectent.</French>
+		<French>Si coché, le panneau des scores devient un tableau, et les autres options de cette colonne l'affectent.</French>
 		<German>Stellt die Punkteanzeige als Raster dar, um die folgenden Optionen nutzen zu können</German>
 		<Italian>Quando è selezionato, il Pannello del Punteggio viene strutturato come griglia (vedi l'opzione seguente).</Italian>
 		<Spanish>Si se activa, se muestra la tabla de puntuaciones como una rejilla, y el resto de opciones en esta sección afectan a la tabla.</Spanish>
@@ -225,7 +225,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__MAXPLAYERS_TEXT</Tag>
 		<English>Maximum Civilizations</English>
-		<French>Nombre de civilisations maximal</French>
+		<French>Nombre maximal de civilisations</French>
 		<German>Anzahl Zivilisationen</German>
 		<Italian>Massimo di Civiltà</Italian>
 		<Spanish>Máximo de Civilizaciones</Spanish>
@@ -281,7 +281,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__DISPLAYORDER_HOVER</Tag>
 		<English>This determines the order in which the score columns appear.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]W[COLOR_REVERT] - You are at war or have a peace treaty with the civ.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]S[COLOR_REVERT] - The civ's score.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Z[COLOR_REVERT] - The change in the civ's score since previous turn.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]K[COLOR_REVERT] - The civ's rank based on their score.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Q[COLOR_REVERT] - The number of cities the civ owns.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]V[COLOR_REVERT] - The civ has at least one vassal.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]I[COLOR_REVERT] - The civ's player ID number.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]C[COLOR_REVERT] - The civ's/leader's/player's name.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]?[COLOR_REVERT] - You have not yet met the civ.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]![COLOR_REVERT] - The civ refuses to talk to you.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]E[COLOR_REVERT] - You have a positive espionage point ratio against the civ.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]P[COLOR_REVERT] - The civ's power ratio compared to you.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]T[COLOR_REVERT] - The tech the civ is researching (vassals, teammates and espionage).[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]U[COLOR_REVERT] - The number of research turns left.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]N[COLOR_REVERT] - The civ is connected to your trade network.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]B[COLOR_REVERT] - You have an open borders agreement with the civ.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]D[COLOR_REVERT] - You have a defensive pact with the civ.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]R[COLOR_REVERT] - The civ's state religion.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]A[COLOR_REVERT] - The civ's attitude toward you.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]H[COLOR_REVERT] - You are the civ's worst enemy.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]*[COLOR_REVERT] - This civ is waiting for you to finish your turn in multiplayer.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]L[COLOR_REVERT] - Civ's network stats (ping).[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]O[COLOR_REVERT] - The network player is out-of-sync.[NEWLINE][NEWLINE]You can place a number (positive or negative) between column codes to override the default spacing.</English>
-		<French>Ceci détermine l'ordre dans lequel les colonnes apparaissent.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]W[COLOR_REVERT] - Vous êtes en guerre contre cette civilisation.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]S[COLOR_REVERT] - Score de la civilisation.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Z[COLOR_REVERT] - The change in the civ's score since previous turn.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]K[COLOR_REVERT] - The civ's rank based on their score.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Q[COLOR_REVERT] - The number of cities the civ owns.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]V[COLOR_REVERT] - The civ has at least one vassal.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]I[COLOR_REVERT] - The civ's player ID number.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]C[COLOR_REVERT] - Nom de la civilisation et/ou du dirigeant.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]?[COLOR_REVERT] - Vous n'avez pas encore rencontré cette civilisation.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]![COLOR_REVERT] - The civ refuses to talk to you.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]E[COLOR_REVERT] - Votre pro rata d'espionnage avec cette civilisation est bon.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]P[COLOR_REVERT] - Pro rata du pouvoir de cette civilisation comparé à vous.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]T[COLOR_REVERT] - La technologie que la civilisation recherche (vassaux, équipe et espionnage).[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]U[COLOR_REVERT] - Le nombre de tours qui restent à la recherche.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]N[COLOR_REVERT] - Cette civilisation est connectée à votre réseau de commerce.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]B[COLOR_REVERT] - Vous avez une accord de frontières ouvertes avec cette civilisation.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]D[COLOR_REVERT] - Vous avez un pacte défensif avec cette civilisation.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]R[COLOR_REVERT] - La religion nationale de cette civilisation.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]A[COLOR_REVERT] - L'attitude de cette civilisation envers vous.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]H[COLOR_REVERT] - You are the civ's worst enemy.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]*[COLOR_REVERT] - Vous attendez que cette civilisation finisse son tour.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]L[COLOR_REVERT] - Statistique de Réseau (ping).[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]O[COLOR_REVERT] - Le joueur est out-of-sync.[NEWLINE][NEWLINE]You can place a number (positive or negative) between column codes to override the default spacing.</French>
+		<French>Ceci détermine l'ordre dans lequel les colonnes apparaissent.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]W[COLOR_REVERT] - Vous êtes en guerre contre cette civ.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]S[COLOR_REVERT] - Score de la civ.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Z[COLOR_REVERT] - Evolution du score de la civ depuis le tour prédécent.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]K[COLOR_REVERT] - Classement de la civ dans le tableau des scores.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Q[COLOR_REVERT] - Nombre de villes de la civ.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]V[COLOR_REVERT] - La civ a au moins un vassal.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]I[COLOR_REVERT] - ID du joueur de la civ.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]C[COLOR_REVERT] - Nom de la civ ou du héros/joueur.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]?[COLOR_REVERT] - Vous n'avez pas encore rencontré cette civ.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]![COLOR_REVERT] - Cette civ refuse de vous parler.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]E[COLOR_REVERT] - Votre pro rata d'espionnage avec cette civ est positif.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]P[COLOR_REVERT] - Pro rata entre la puissance de cette civ et la vôtre.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]T[COLOR_REVERT] - Technologie que la civ recherche (vassaux, équipe et espionnage).[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]U[COLOR_REVERT] - Nombre de tours restant à la recherche.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]N[COLOR_REVERT] - Cette civ est connectée à votre réseau commercial.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]B[COLOR_REVERT] - Vous avez un accord de libre passage avec cette civ.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]D[COLOR_REVERT] - Vous avez un pacte défensif avec cette civ.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]R[COLOR_REVERT] - Religion d'Etat de cette civ.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]A[COLOR_REVERT] - Attitude de cette civ envers vous.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]H[COLOR_REVERT] - Vous êtes le pire ennemi de cette civ.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]*[COLOR_REVERT] - Vous attendez que cette civ finisse son tour.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]L[COLOR_REVERT] - Statistiques réseau de la civ(ping).[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]O[COLOR_REVERT] - Le joueur en réseau est désynchronisé (OOS).[NEWLINE][NEWLINE]Vous pouvez indiquer un nombre (positif ou négatif) entre deux codes de colonnes pour remplacer l'espacement par défaut.</French>
 		<German>Bestimmt die Reihenfolge, in der die Spalten der Punkteanzeige angeordnet werden:[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]W[COLOR_REVERT] - Kriegszustand oder Friedensvertrag mit einer Zivilisation[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]S[COLOR_REVERT] - Wertung einer Zivilisation[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Z[COLOR_REVERT] - Veränderung der Wertung einer Zivilisation seit der letzten Runde[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]K[COLOR_REVERT] - Rang einer Zivilisation basierend auf ihrer Wertung[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Q[COLOR_REVERT] - Anzahl der Städte, über die eine Zivilisation verfügt[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]V[COLOR_REVERT] - Eine Zivilisation hat mindestens einen Vasallen[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]I[COLOR_REVERT] - Spieler-ID-Nummer einer Zivilisation[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]C[COLOR_REVERT] - Name einer Zivilisation/eines Oberhaupts/eines Spielers[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]?[COLOR_REVERT] - Zivilisation noch nicht kontaktiert[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]![COLOR_REVERT] - Gesprächsverweigerung einer Zivilisation[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]E[COLOR_REVERT] - Gutes Spionagepunktverhältnis gegenüber einer Zivilisation[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]P[COLOR_REVERT] - Machtverhältnis zwischen der eigenen und einer gegnerischen Zivilisation[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]T[COLOR_REVERT] - Derzeitiges Forschungsprojekt einer Zivilisation (bei Vasallen, Verbündeten und durch Spionage erlangt)[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]U[COLOR_REVERT] - Anzahl verbleibender Runden bis zur Erforschung[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]N[COLOR_REVERT] - Handelsverbindungen mit einer Zivilisation[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]B[COLOR_REVERT] - "Offene Grenzen" mit einer Zivilisation[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]D[COLOR_REVERT] - "Verteidigungsbündis" mit einer Zivilisation[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]R[COLOR_REVERT] - Staatsreligion einer Zivilisation[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]A[COLOR_REVERT] - Einstellung einer Zivilisation gegenüber der eigenen[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]H[COLOR_REVERT] - Erzfeind der eigenen Zivilisation[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]*[COLOR_REVERT] - Warten auf den Zug einer Zivilisation (im Multiplayer)[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]L[COLOR_REVERT] - Netzwerkstatistik einer Zivilisation (Ping)[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]O[COLOR_REVERT] - Verbundener Spieler ist "out-of-sync"[NEWLINE][NEWLINE]Zwischen den Codes für die Spalten können (positive oder negative) Zahlen gesetzt werden, die den eingestellten Standardabstand außer Kraft setzen</German>
 		<Italian>Determina l'ordine in base al quale vengono visualizzate le colonne del Pannello del Punteggio:[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]W[COLOR_REVERT] - sei in guerra o hai un trattato di pace con la Civiltà;[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]S[COLOR_REVERT] - il Punteggio della Civiltà;[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Z[COLOR_REVERT] - la variazione nel punteggio rispetto al turno precedente;[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]K[COLOR_REVERT] - La posizione della Civiltà in base al punteggio.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Q[COLOR_REVERT] - Il munero delle città della Civiltà.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]V[COLOR_REVERT] - mostra l'icona di una stella argentata se la Civiltà ha dei Vassalli;[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]I[COLOR_REVERT] - il numero di identificazione della Civiltà;[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]C[COLOR_REVERT] - il Nome della Civiltà/del Leader della Civiltà;[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]?[COLOR_REVERT] - non hai ancora incontrato questa Civiltà;[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]![COLOR_REVERT] - Il Leader della Civiltà rifiuta di parlarti.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]E[COLOR_REVERT] - hai un Rapporto di Spionaggio positivo verso la Civiltà;[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]P[COLOR_REVERT] - la Potenza della Civiltà rispetto alla tua (o viceversa);[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]T[COLOR_REVERT] - la Tecnologia che la Civiltà sta ricercando (nota per Vassalli e Alleati o mediante Spionaggio);[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]U[COLOR_REVERT] - il numero di Turni di Ricerca rimasti alla Civiltà;[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]N[COLOR_REVERT] - la Civiltà è connessa alla tua rete commerciale;[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]B[COLOR_REVERT] - hai un accordo di Libero Scambio con la Civiltà;[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]D[COLOR_REVERT] - hai un Patto Difensivo con la Civiltà;[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]R[COLOR_REVERT] - la Religione di Stato della Civiltà;[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]A[COLOR_REVERT] - l'atteggiamento della Civiltà verso di te;[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]H[COLOR_REVERT] - siete il Peggior Nemico della Civiltà;[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]*[COLOR_REVERT] - sei in attesa che questa Civiltà finisca il suo turno;[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]L[COLOR_REVERT] - le statistiche di connessione del giocatore della Civiltà (ping);[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]O[COLOR_REVERT] - il giocatore di questa Civiltà è "out-of-sync".[NEWLINE][NEWLINE]Un numero definisce la spaziatura (in pixel) che deve seguire la colonna precedente (se visualizzata), prevalendo sulla spaziatura di default; un numero negativo comporta il ravvicinamento (ed al limite anche la sovrapposizione) fra le due colonne.[NEWLINE]Gli spazi vengono ignorati, per cui possono essere utilizzati per semplificare la lettura della stringa di codici.</Italian>
 		<Spanish>Determina el orden en el que las distintas columnas aparecen.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]W[COLOR_REVERT] - Estás en guerra o tienes un tratado de paz con esta civ.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]S[COLOR_REVERT] - Puntuación de la civ.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Z[COLOR_REVERT] - Cambios en puntuación desde el último turno.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]K[COLOR_REVERT] - Rango de la civ basado en su puntuación.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Q[COLOR_REVERT] - Número de ciudades de la civ.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]V[COLOR_REVERT] - La civ tiene al menos un vasallo.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]I[COLOR_REVERT] - ID de jugador de la civ.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]C[COLOR_REVERT] - Nombre de civ / líder / jugador.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]?[COLOR_REVERT] - Aún no te has encontrado con la civ.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]![COLOR_REVERT] - La civ se niega a hablar.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]E[COLOR_REVERT] - Tienes una proporción positiva de puntos de espionaje contra esta civ.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]P[COLOR_REVERT] - Proporción de fuerza de la civ comparada contigo.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]T[COLOR_REVERT] - Tecnología que está siendo investigada (vasallos, equipo y espionajes).[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]U[COLOR_REVERT] - Número de turnos de investigación restantes.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]N[COLOR_REVERT] - La civ está conectada a tu red de comercio.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]B[COLOR_REVERT] - Tienes apertura de fronteras con la civ.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]D[COLOR_REVERT] - Tienes un acuerdo de protección con la civ.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]R[COLOR_REVERT] - Religión oficial de la civ.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]A[COLOR_REVERT] - Actitud de la civ hacia ti.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]H[COLOR_REVERT] - Eres el peor enemigo de esta civ.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]*[COLOR_REVERT] - Esta civ espera a que termines tu turno.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]L[COLOR_REVERT] - Estado de la conexión de esta civ (ping)..[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]O[COLOR_REVERT] - Este jugador está fuera de línea.[NEWLINE][NEWLINE]Puedes colocar un número (positivo o negativo) entre códigos de columna para reemplazar el espaciado por defecto.</Spanish>
@@ -297,7 +297,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__GROUPVASSALS_HOVER</Tag>
 		<English>When checked, vassals are group together under their master(s).</English>
-		<French>Quand coché, les vassaux sont regroupés en-dessous de leur maître.</French>
+		<French>Si coché, les vassaux sont regroupés en-dessous de leur maître.</French>
 		<German>Gruppiert Vasallenstaaten zusammen mit ihren jeweiligen Hegemoniestaaten</German>
 		<Italian>Quando è selezionato, le Civiltà Vassalle sono elencate (rientranti) sotto alla Civiltà di cui sono Vassalli.</Italian>
 		<Spanish>Si se activa, los vasallos aparecen en un grupo debajo de su señor.</Spanish>
@@ -305,7 +305,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__LEFTALIGNNAME_TEXT</Tag>
 		<English>Left-Align Name</English>
-		<French>Nom Aligné à Gauche</French>
+		<French>Nom aligné à Gauche</French>
 		<German>Linksbündige Namen</German>
 		<Italian>Nome a sinistra</Italian>
 		<Spanish>Alinear nombre a la izquierda</Spanish>
@@ -313,7 +313,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__LEFTALIGNNAME_HOVER</Tag>
 		<English>When checked, the civ/leader name is left-aligned instead of right-aligned.</English>
-		<French>En activant, le nom du dirigeant et/ou de la cvilisation est aligné à gauche au lieu d'à droite.</French>
+		<French>Si coché, le nom de la civilisation/du héros est aligné à gauche au lieu de droite.</French>
 		<German>Zeigt den Namen von Zivilisationen/Oberhäuptern linksbündig statt rechtsbündig an</German>
 		<Italian>Quando è selezionato, il nome della Civiltà/del Leader nel Pannello del Punteggio viene allineato a sinistra invece che a destra.</Italian>
 		<Spanish>Cuando está activada, el nombre de civilización/líder se alinea a la izquierda en vez de a la derecha.</Spanish>
@@ -329,7 +329,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__RESEARCHICONS_HOVER</Tag>
 		<English>When checked, shows icons instead of names for civs whose research you can see.</English>
-		<French>En activant, montre des icônes au lieu des noms des technologies recherchées.</French>
+		<French>Si coché, affiche les icônes au lieu des noms des technologies recherchées.</French>
 		<German>Zeigt die Symbole statt der Namen der Technologien an, die andere Zivilisationen momentan erforschen, falls diese bekannt sind</German>
 		<Italian>Quando è selezionato, nel Pannello del Punteggio vengono visualizzate le icone invece dei nomi delle Tecnologie ricercate dalle Civiltà (per cui ti è lecito conoscerle).</Italian>
 		<Spanish>Si se activa, muestra iconos de investigación en lugar de nombres de investigaciones.</Spanish>
@@ -353,7 +353,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__POWER_TEXT</Tag>
 		<English>Power Ratio</English>
-		<French>Pro Rata de Pouvoir</French>
+		<French>Prorata de puissance</French>
 		<German>Machtverhältnis</German>
 		<Italian>Rap. Forza</Italian>
 		<Spanish>Proporción de Fuerza</Spanish>
@@ -361,7 +361,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__POWER_HOVER</Tag>
 		<English>When checked, shows the ratio of your power rating to those of civilizations against whom you have accumulated enough espionage points.</English>
-		<French>En activant, montre le pro rata de votre pouvoir comparé à ceux des civilisation pour lesquelles vous avez accumulé assez de points d'espionnage.</French>
+		<French>En activant, montre le prorata de votre puissance comparée à celles des civilisations pour lesquelles vous avez accumulé assez de points d'espionnage.</French>
 		<German>Zeigt die Machtverteilung zwischen der eigenen und den anderen Zivilisationen als Verhältniswert an, falls genug Spionagepunkte investiert wurden</German>
 		<Italian>Quando è selezionato, mostra il rapporto fra la tua Potenza e quella della Civiltà verso cui hai accumulato abbastanza Punti Spionaggio.</Italian>
 		<Spanish>Cuando está activada, muestra la proporción de tu fuerza con respecto a la fuerza de aquellas civilizaciones contra las que tengas suficiente espionaje.</Spanish>
@@ -377,7 +377,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__POWERFORMULA_HOVER</Tag>
 		<English>Select the formula to use for calculating the power ratio:[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Rival vs. You[COLOR_REVERT] - Lower numbers are better.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]You vs. Rival[COLOR_REVERT] - Higher numbers are better.</English>
-		<French>Choisissez la formule à appliquer pour calculer le rapport de puissance:[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Adversaire / Vous[COLOR_REVERT] - Les nombres plus faibles sont meilleurs.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Vous / Adversaire[COLOR_REVERT] - Les nombres plus élevés sont meilleurs.</French>
+		<French>Choisissez la formule à appliquer pour calculer le pro rata de puissance:[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Adversaire / Vous[COLOR_REVERT] - Les nombres les plus faibles sont les meilleurs.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Vous / Adversaire[COLOR_REVERT] - Les nombres les plus élevés sont les meilleurs.</French>
 		<German>Bestimmt, wie das Machtverhältnis berechnet wird:[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Standard[COLOR_REVERT] - Macht der eigenen Zivilisation geteilt durch die der gegnerischen (höhere Werte sind besser)[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Kehrwert[COLOR_REVERT] - Macht der gegnerischen Zivilisation geteilt durch die der eigenen (niedrigere Werte sind besser)</German>
 		<Italian>Seleziona la formula da utilizzare per calcolare il Rapporto di Forza nel Pannello del Punteggio:[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Avversari/Giocatore[COLOR_REVERT] - minore è il rapporto, maggiore è la forza del giocatore rispetto a quella degli avversari;[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Giocatore/Avversari[COLOR_REVERT] - maggiore è il rapporto, maggiore è la forza del giocatore rispetto a quella degli avversari.</Italian>
 		<Spanish>Permite seleccionar la fórmula a emplear para calcular la proporción de fuerza:[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Rival contra tí[COLOR_REVERT] - Números pequeños son mejores.[NEWLINE][ICON_BULLET][COLOR_HIGHLIGHT_TEXT]Tu contra Rival[COLOR_REVERT] - Números grandes son mejores.</Spanish>
@@ -393,7 +393,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__POWERDECIMALS_TEXT</Tag>
 		<English>Ratio Decimal Places</English>
-		<French>Nombre de décimales du rapport</French>
+		<French>Nombre de décimales</French>
 		<German>Nachkommastellen</German>
 		<Italian>Cifre decimali</Italian>
 		<Spanish>Número de Decimales</Spanish>
@@ -401,7 +401,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__POWERDECIMALS_HOVER</Tag>
 		<English>Number of decimal places to show for power ratio display.</English>
-		<French>Nombre de décimales à afficher dans le rapport de puissance.</French>
+		<French>Nombre de décimales à afficher dans le prorata de puissance.</French>
 		<German>Bestimmt die Anzahl der Nachkommastellen des Machtverhältnisses</German>
 		<Italian>Indica il numero di cifre decimali con cui il Rapporto di Forza viene visualizzato nel Pannello del Punteggio.</Italian>
 		<Spanish>Número de decimales a mostrar en la proporción de fuerza.</Spanish>
@@ -409,7 +409,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__POWERCOLOR_TEXT</Tag>
 		<English>Default Color</English>
-		<French>Couleur par Défaut</French>
+		<French>Couleur par défaut</French>
 		<German>Standardfarbe</German>
 		<Italian>Colore standard</Italian>
 		<Spanish>Color por Defecto</Spanish>
@@ -417,7 +417,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__POWERCOLOR_HOVER</Tag>
 		<English>Color used by default for power ratios.</English>
-		<French>Couleur utilisaée par défaut pour les pro rata de pouvoir.</French>
+		<French>Couleur utilisaée par défaut pour les prorata de puissance.</French>
 		<German>Bestimmt die Standardfarbe, in der das Machtverhältnis erscheint</German>
 		<Italian>Colore predefinito per i Rapporti di Forza.</Italian>
 		<Spanish>Color a emplear en la proporción de fuerza.</Spanish>
@@ -425,7 +425,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__POWERHIGHRATIO_TEXT</Tag>
 		<English>High Ratio Cutoff</English>
-		<French>Limite de rapport élevé</French>
+		<French>Limite de prorata fort</French>
 		<German>Hohes Verhältnis</German>
 		<Italian>Livello rapporto alto</Italian>
 		<Spanish>Límite Superior</Spanish>
@@ -433,7 +433,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__POWERHIGHRATIO_HOVER</Tag>
 		<English>Power ratings greater than or equal to this value are shown in the High Color.</English>
-		<French>Les rapports de puissance supérieurs ou égaux à cette valeur sont affichés dans la couleur haute</French>
+		<French>Les prorata de puissance supérieurs ou égaux à cette valeur sont affichés dans la couleur forte</French>
 		<German>Hohe Machtverhältnisse größer oder gleich diesem Wert erscheinen in der definierten Farbe</German>
 		<Italian>Consente di selezionare il valore limite perchè un Rapporto di Forza venga considerato "alto" (e quindi visualizzato col relativo colore).</Italian>
 		<Spanish>Proporciones de fuerza mayores o iguales a este número se muestran con un color específico.</Spanish>
@@ -441,7 +441,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__POWERHIGHCOLOR_TEXT</Tag>
 		<English>High Color</English>
-		<French>Couleur haute</French>
+		<French>Couleur forte</French>
 		<German>Farbe (hoch)</German>
 		<Italian>Colore rapporto alto</Italian>
 		<Spanish>Color Superior</Spanish>
@@ -449,7 +449,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__POWERHIGHCOLOR_HOVER</Tag>
 		<English>Color used for high power ratios.</English>
-		<French>Couleur utilisée pour les rapports de puissance élevés.</French>
+		<French>Couleur utilisée pour les prorata de puissance forts.</French>
 		<German>Bestimmt die Farbe, in der hohe Machtverhältnisse erscheinen</German>
 		<Italian>Consente di selezionare il colore con cui visualizzare il Rapporto di Forza nel Pannello del Punteggio quando è "alto".</Italian>
 		<Spanish>Color usado para proporciones de fuerza altas.</Spanish>
@@ -457,7 +457,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__POWERLOWRATIO_TEXT</Tag>
 		<English>Low Ratio Cutoff</English>
-		<French>Limite de rapport faible</French>
+		<French>Limite de prorata faible</French>
 		<German>Niedriges Verhältnis</German>
 		<Italian>Livello rapporto basso</Italian>
 		<Spanish>Límite Inferior</Spanish>
@@ -465,7 +465,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__POWERLOWRATIO_HOVER</Tag>
 		<English>Power ratings less than or equal to this value are shown in in the Low Color.</English>
-		<French>Les rapports de puissance inférieurs ou égaux à cette valeur sont affichés dans la couleur basse</French>
+		<French>Les prorata de puissance inférieurs ou égaux à cette valeur sont affichés dans la couleur faible</French>
 		<German>Niedrige Machtverhältnisse kleiner oder gleich diesem Wert erscheinen in der definierten Farbe</German>
 		<Italian>Consente di selezionare il valore limite perchè un Rapporto di Forza venga considerato "basso" (e quindi visualizzato col relativo colore).</Italian>
 		<Spanish>Proporciones de fuerza menores o iguales a este número se muestran con un color específico.</Spanish>
@@ -473,7 +473,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__POWERLOWCOLOR_TEXT</Tag>
 		<English>Low Color</English>
-		<French>Couleur basse</French>
+		<French>Couleur faible</French>
 		<German>Farbe (niedrig)</German>
 		<Italian>Colore rapporto basso</Italian>
 		<Spanish>Color Inferior</Spanish>
@@ -481,7 +481,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_OPT_SCORES__POWERLOWCOLOR_HOVER</Tag>
 		<English>Color used for low power ratios.</English>
-		<French>Couleur utilisée pour les rapports de puissance faibles.</French>
+		<French>Couleur utilisée pour les prorata de puissance faibles.</French>
 		<German>Bestimmt die Farbe, in der niedrige Machtverhältnisse erscheinen</German>
 		<Italian>Consente di selezionare il colore con cui visualizzare il Rapporto di Forza nel Pannello del Punteggio quando è "basso".</Italian>
 		<Spanish>Color usado para proporciones de fuerza bajas.</Spanish>
