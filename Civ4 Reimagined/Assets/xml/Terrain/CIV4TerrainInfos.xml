@@ -478,7 +478,7 @@
 			<iMovement>1</iMovement>
 			<iSeeFrom>1</iSeeFrom>
 			<iSeeThrough>1</iSeeThrough>
-			<iBuildModifier>25</iBuildModifier>
+			<iBuildModifier>0</iBuildModifier>
 			<iDefense>0</iDefense>
 			<Button>Art/Interface\Buttons\WorldBuilder\Terrain_Tundra.dds</Button>
 			<FootstepSounds>

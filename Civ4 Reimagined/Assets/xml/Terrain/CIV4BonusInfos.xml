@@ -1014,9 +1014,9 @@
 				<iRandApp4>0</iRandApp4>
 			</Rands>
 			<iPlayer>0</iPlayer>
-			<iTilesPer>32</iTilesPer>
+			<iTilesPer>64</iTilesPer>
 			<iMinLandPercent>0</iMinLandPercent>
-			<iUnique>2</iUnique>
+			<iUnique>3</iUnique>
 			<iGroupRange>0</iGroupRange>
 			<iGroupRand>0</iGroupRand>
 			<bArea>0</bArea>
@@ -1385,7 +1385,7 @@
 				<iRandApp3>0</iRandApp3>
 				<iRandApp4>0</iRandApp4>
 			</Rands>
-			<iPlayer>75</iPlayer>
+			<iPlayer>100</iPlayer>
 			<iTilesPer>0</iTilesPer>
 			<iMinLandPercent>0</iMinLandPercent>
 			<iUnique>0</iUnique>

@@ -13,6 +13,7 @@ Civ4 Reimagined 1.2
 -Railroad building time reduced from 400 to 200
 -Commerce yield from gold/silver/gems reduced by 1
 -Movement speed for Corporation ships increased from 4 to 6
+-No improvement building speed penalty for tundra terrain
 -Great Generals are always born in capital
 -Tyranny upkeep cost increased from low to medium
 -Tank production cost increased from 180 to 200
@@ -25,6 +26,7 @@ Civ4 Reimagined 1.2
 -Fixed a bug where old BtS Texts were showing up instead of our new ones.
 -Fixed overwhelm event help text
 -Pushed back the looter and marauder event into the renaissance. For an event that could destroy multiple buildings and improvements it could trigger awfully early.
+-Totestra map script: "Reduce peaks" is disabled per default
 
 *******************************************
 Civ4 Reimagined 1.1

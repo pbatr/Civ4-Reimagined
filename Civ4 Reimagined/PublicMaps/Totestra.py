@@ -5651,7 +5651,7 @@ def getCustomMapOptionDefault(argsList):
         elif argsList[0] == OPTION_MapRatio:
             return 2 # 3:2 Earthlike map
         elif argsList[0] == OPTION_SmoothPeaks:
-            return 1 # By default, smooth coastal and other peaks
+            return 0 #Civ4 Reimagined - Don't smooth peaks
         elif argsList[0] == OPTION_NewWorld:
             return 0 #Civ4 Reimagined - Keep new world empty
         elif argsList[0] == OPTION_MapResources:
