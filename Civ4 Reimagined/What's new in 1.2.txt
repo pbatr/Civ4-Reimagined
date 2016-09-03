@@ -1,6 +1,10 @@
 *******************************************
 Civ4 Reimagined 1.2
 *******************************************
+
+Good news for french players: juni_be_good is working on a french translation for Civ4 Reimagined and has already translated a whole chunk. Thanks!
+If you are interested in improving Civ4 Reimagined by translating or otherwise, just drop us a message.
+
 -Tech Archery replaced with Leather Working. Archers are available with Hunting. Horseback Riding requires Leather Working instead of Iron Working but has increased cost.
 -New building: Tannery. Moved happiness bonus for fur from market to tannery. Deer provides happiness with tannery instead of health with supermarket.
 -All leaders have the same base attitude. There is a relationship bonus in place instead when a civilization doesn't have enough open borders.
@@ -8,25 +12,29 @@ Civ4 Reimagined 1.2
 -Slightly increased technology progression for medieval+.
 -Production penalties for insufficient (strategic) resources are halved. Example: With a ratio of 0.8 and 1 Iron, your production speed for swordsman will be 90% (-20% for a 0.8 ratio, halved to -10%).
 -Wine health bonus from grocer replaced with happiness bonus from market. Whale provides health instead of happiness (you still get happiness with market though).
--Deer and fur appearance increased on most map types
 -Uranium yield with mine changed from 3 additional commerce to 1 additional production
 -Railroad building time reduced from 400 to 200
--Commerce yield from gold/silver/gems reduced by 1
--Movement speed for Corporation ships increased from 4 to 6
--No improvement building speed penalty for tundra terrain
--Great Generals are always born in capital
 -Tyranny upkeep cost increased from low to medium
 -Tank production cost increased from 180 to 200
 -Modern Armor production cost increased from 240 to 260
+-Movement speed for Corporation ships increased from 4 to 6
+-Commerce yield from gold/silver/gems reduced by 1
+-Academy grants +1 scientist slot.
+-No improvement building speed penalty for tundra terrain
+-Great Generals are always born in capital
+-All diplomacy modifiers expire eventually (Really, "Your spy was caught stirring up trouble" was such a big deal that the -1 modifier persisted for thousands of years?). Harsher modifiers such as "nuked us" take more time to be forgotten than smaller ones such as "made demand".
 -Some AI adjustments when deciding which technology to research next.
 -AI doesn't cancel deals as often as before
 -Improved city resource display, which can now show up to 99 of each resource without overlapping.
+-Deer and fur appearance increased on most map types
+-Switched rarity for gold and silver.
 -Fixed display for gold per happiness resource from Mercantilism.
 -Fixed unit buttons for celtic and zulu tanks.
 -Fixed a bug where old BtS Texts were showing up instead of our new ones.
 -Fixed overwhelm event help text
 -Pushed back the looter and marauder event into the renaissance. For an event that could destroy multiple buildings and improvements it could trigger awfully early.
 -Totestra map script: "Reduce peaks" is disabled per default
+-Totestra map script no longer places starting position close to map boundaries.
 
 *******************************************
 Civ4 Reimagined 1.1
