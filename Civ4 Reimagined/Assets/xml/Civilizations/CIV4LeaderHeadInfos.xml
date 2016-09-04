@@ -517,6 +517,50 @@
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
 				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
 				<MemoryAttitudePercent>
@@ -1074,6 +1118,50 @@
 				<MemoryDecay>
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
 				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
@@ -1643,6 +1731,50 @@
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
 				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
 				<MemoryAttitudePercent>
@@ -2203,6 +2335,50 @@
 				<MemoryDecay>
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
 				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
@@ -2770,6 +2946,50 @@
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
 				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
 				<MemoryAttitudePercent>
@@ -3335,6 +3555,50 @@
 				<MemoryDecay>
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
 				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
@@ -3906,6 +4170,50 @@
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
 				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
 				<MemoryAttitudePercent>
@@ -4462,6 +4770,50 @@
 				<MemoryDecay>
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
 				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
@@ -5023,6 +5375,50 @@
 				<MemoryDecay>
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
 				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
@@ -5593,6 +5989,50 @@
 				<MemoryDecay>
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
 				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
@@ -6167,6 +6607,50 @@
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
 				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
 				<MemoryAttitudePercent>
@@ -6736,6 +7220,50 @@
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
 				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
 				<MemoryAttitudePercent>
@@ -7301,6 +7829,50 @@
 				<MemoryDecay>
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
 				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
@@ -7872,6 +8444,50 @@
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
 				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
 				<MemoryAttitudePercent>
@@ -8436,6 +9052,50 @@
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
 				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
 				<MemoryAttitudePercent>
@@ -8971,6 +9631,50 @@
 				<MemoryDecay>
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
 				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
@@ -9538,6 +10242,50 @@
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
 				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
 				<MemoryAttitudePercent>
@@ -10098,6 +10846,50 @@
 				<MemoryDecay>
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
 				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
@@ -10668,6 +11460,50 @@
 				<MemoryDecay>
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
 				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
@@ -11801,6 +12637,50 @@
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
 				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
 				<MemoryAttitudePercent>
@@ -12363,6 +13243,50 @@
 				<MemoryDecay>
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
 				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
@@ -12931,6 +13855,50 @@
 				<MemoryDecay>
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
 				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
@@ -13509,6 +14477,50 @@
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
 				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
 				<MemoryAttitudePercent>
@@ -14079,6 +15091,50 @@
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
 				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
 				<MemoryAttitudePercent>
@@ -14640,6 +15696,50 @@
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
 				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
 				<MemoryAttitudePercent>
@@ -15200,6 +16300,50 @@
 				<MemoryDecay>
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
 				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
@@ -15766,6 +16910,50 @@
 				<MemoryDecay>
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
 				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
@@ -16337,6 +17525,50 @@
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
 				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
 				<MemoryAttitudePercent>
@@ -16893,6 +18125,50 @@
 				<MemoryDecay>
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
 				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
@@ -17464,6 +18740,50 @@
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
 				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
 				<MemoryAttitudePercent>
@@ -18029,6 +19349,50 @@
 				<MemoryDecay>
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
 				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
@@ -19153,6 +20517,50 @@
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
 				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
 				<MemoryAttitudePercent>
@@ -19716,6 +21124,50 @@
 				<MemoryDecay>
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
 				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
@@ -20287,6 +21739,50 @@
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
 				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
 				<MemoryAttitudePercent>
@@ -20857,6 +22353,50 @@
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
 				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
 				<MemoryAttitudePercent>
@@ -21426,6 +22966,50 @@
 				<MemoryDecay>
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
 				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
@@ -22004,6 +23588,50 @@
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
 				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
 				<MemoryAttitudePercent>
@@ -22560,6 +24188,50 @@
 				<MemoryDecay>
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
 				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
@@ -23129,6 +24801,50 @@
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
 				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
 				<MemoryAttitudePercent>
@@ -23693,6 +25409,50 @@
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
 				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
 				<MemoryAttitudePercent>
@@ -24253,6 +26013,50 @@
 				<MemoryDecay>
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
 				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
@@ -25393,6 +27197,50 @@
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
 				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
 				<MemoryAttitudePercent>
@@ -25957,6 +27805,50 @@
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
 				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
 				<MemoryAttitudePercent>
@@ -26517,6 +28409,50 @@
 				<MemoryDecay>
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
 				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
@@ -27094,6 +29030,50 @@
 				<MemoryDecay>
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
 				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
@@ -27683,6 +29663,50 @@
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
 				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
 				<MemoryAttitudePercent>
@@ -28259,6 +30283,50 @@
 				<MemoryDecay>
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
 				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
@@ -28839,6 +30907,50 @@
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
 				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
 				<MemoryAttitudePercent>
@@ -29416,6 +31528,50 @@
 				<MemoryDecay>
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
 				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
@@ -30000,6 +32156,50 @@
 				<MemoryDecay>
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
 				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
@@ -30594,6 +32794,50 @@
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
 				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>
 				<MemoryAttitudePercent>
@@ -31179,6 +33423,50 @@
 				<MemoryDecay>
 					<MemoryType>MEMORY_BACKSTABBED_ALLY</MemoryType>
 					<iMemoryRand>15</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_SPY_CAUGHT</MemoryType>
+					<iMemoryRand>100</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_TRADE_EMBARGO</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_MADE_DEMAND</MemoryType>
+					<iMemoryRand>150</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_HIRED_WAR_ALLY</MemoryType>
+					<iMemoryRand>200</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_LIBERATED_CITIES</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR_ON_FRIEND</MemoryType>
+					<iMemoryRand>250</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_DECLARED_WAR</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_FRIEND</MemoryType>
+					<iMemoryRand>300</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_CITY</MemoryType>
+					<iMemoryRand>350</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_RAZED_HOLY_CITY</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
+				</MemoryDecay>
+				<MemoryDecay>
+					<MemoryType>MEMORY_NUKED_US</MemoryType>
+					<iMemoryRand>400</iMemoryRand>
 				</MemoryDecay>
 			</MemoryDecays>
 			<MemoryAttitudePercents>

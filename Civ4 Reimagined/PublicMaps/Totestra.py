@@ -5146,7 +5146,9 @@ class StartingArea :
         gc = CyGlobalContext()
         gameMap = CyMap()
         
-        for y in range(mc.height):
+        hrangelimit = mc.height - 4
+        h = range(hrangelimit)
+        for y in [i+2 for i in h]:
             for x in range(mc.width):
                 plot = gameMap.plot(x,y)
                 if plot.getArea() == self.areaID:
