@@ -28,6 +28,7 @@ If you are interested in improving Civ4 Reimagined by translating or otherwise, 
 -Improved city resource display, which can now show up to 99 of each resource without overlapping.
 -Deer and fur appearance increased on most map types
 -Switched rarity for gold and silver.
+-Building preview shows estimated commerce gain for bonus trade routes
 -Fixed display for gold per happiness resource from Mercantilism.
 -Fixed unit buttons for celtic and zulu tanks.
 -Fixed a bug where old BtS Texts were showing up instead of our new ones.
