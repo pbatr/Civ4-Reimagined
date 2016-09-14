@@ -9340,7 +9340,7 @@ int CvCity::getAdditionalBaseYieldRateByBuilding(YieldTypes eIndex, BuildingType
 
 		// Trade
 		// Civ4 Reimagined: iPlayerTradeYieldModifier always evaluates to 0, even for commerce. The writer of this code apparently assumed it to evaluate to 100 for commerce, and 0 for food/production. I'm replacing it by a yield type check.
-		if (eIndex == YIELD_COMMERCE && (kBuilding.getTradeRouteModifier() != 0 || kBuilding.getForeignTradeRouteModifier() != 0 || kBuilding.getOverseaTradeRouteModifier() != 0))
+		if (eIndex == YIELD_COMMERCE && (kBuilding.getTradeRouteModifier() != 0 || kBuilding.getForeignTradeRouteModifier() != 0 || kBuilding.getOverseaTradeRouteModifier() != 0 || kBuilding.getTradeRoutes() != 0))
 		{
 			int iTotalTradeYield = 0;
 			int iNewTotalTradeYield = 0;
@@ -9352,9 +9352,13 @@ int CvCity::getAdditionalBaseYieldRateByBuilding(YieldTypes eIndex, BuildingType
 #endif
 // BUG - Fractional Trade Routes - end
 
+			int iWorstTradeRouteYield = 0; 
+
 			for (int iI = 0; iI < getTradeRoutes(); ++iI)
 			{
 				CvCity* pCity = getTradeCity(iI);
+				
+				
 				if (pCity)
 				{
 					int iTradeProfit = getBaseTradeProfit(pCity);
@@ -9376,8 +9380,15 @@ int CvCity::getAdditionalBaseYieldRateByBuilding(YieldTypes eIndex, BuildingType
 					
 					int iNewTradeYield = iTradeProfit * iTradeModifier / iTradeProfitDivisor; // Civ4 Reimagined: Bug fix: Removed iPlayerTradeYieldModifier, already included in totalTradeModifier.
 					iNewTotalTradeYield += iNewTradeYield;
+					
+					iWorstTradeRouteYield = iNewTradeYield; // Civ 4 Reimagined: Since trade routes are already sorted from best to worst, we can simply assume the new value is smaller without checking.					
 				}
 			}
+			
+			// Civ4 Reimagined: Estimating value of addition trade routes
+			int iBuildingTradeRoutes = kBuilding.getTradeRoutes();
+			iNewTotalTradeYield += iBuildingTradeRoutes * iWorstTradeRouteYield;
+			
 
 // BUG - Fractional Trade Routes - start
 #ifdef _MOD_FRACTRADE
