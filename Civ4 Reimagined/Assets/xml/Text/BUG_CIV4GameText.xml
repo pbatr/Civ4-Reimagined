@@ -751,7 +751,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_MILITARY_UNIT_LOCATION</Tag>
 		<English>Deployment</English>
-		<French>Deploiement</French>
+		<French>Déploiement</French>
 		<German>Aufstellung</German>
 		<Italian>Dispiegamento</Italian>
 		<Spanish>Despliegue</Spanish>
@@ -767,7 +767,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_MILITARY_STRATEGIC_ADVANTAGES</Tag>
 		<English>Strategic Advantages</English>
-		<French>Strategic Advantages</French>
+		<French>Avantages strétagiques</French>
 		<German>Strategische Vorteile</German>
 		<Italian>Vantaggi Strategici</Italian>
 		<Spanish>Ventajas Estratégicas</Spanish>
@@ -777,7 +777,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_MILITARY_SITREP_WORST</Tag>
 		<English>Worst</English>
-		<French>Worst</French>
+		<French>Pire</French>
 		<German>Worst</German>
 		<Italian>Peggior</Italian>
 		<Spanish>Peor</Spanish>
@@ -785,7 +785,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_MILITARY_SITREP_ENEMY</Tag>
 		<English>Enemy</English>
-		<French>Enemy</French>
+		<French>Ennemi</French>
 		<German>Erzfeind</German>
 		<Italian>Nemico</Italian>
 		<Spanish>Enemigo</Spanish>
@@ -793,7 +793,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_MILITARY_SITREP_THREAT_INDEX</Tag>
 		<English>Threat Index</English>
-		<French>Index de Menace</French>
+		<French>Indice de Menace</French>
 		<German>Bedrohungslage</German>
 		<Italian>Rischio</Italian>
 		<Spanish>Threat Index</Spanish>
@@ -825,7 +825,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_MILITARY_SITREP_POSSIBLE_EMBARGOS_1</Tag>
 		<English>Possible</English>
-		<French>Possible</French>
+		<French>Possibles</French>
 		<German>Mögliche</German>
 		<Italian>Potenziali</Italian>
 		<Spanish>Posibles</Spanish>
@@ -857,7 +857,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_MILITARY_SITREP_DEFPACTS</Tag>
 		<English>Def Pacts</English>
-		<French>Pactes Défensifs</French>
+		<French>Pactes défensifs</French>
 		<German>Vert.bünd.</German>
 		<Italian>Patti Difensivi</Italian>
 		<Spanish>Pactos Defensivos</Spanish>
@@ -873,7 +873,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_MILITARY_THREAT_INDEX_MINOR</Tag>
 		<English>Minor</English>
-		<French>Mineure</French>
+		<French>Mineur</French>
 		<German>Moll</German>
 		<Italian>Minore</Italian>
 		<Spanish>Menor</Spanish>
@@ -915,7 +915,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_MILITARY_STRATADV_OURS</Tag>
 		<English>Ours</English>
-		<French>Nous</French>
+		<French>A nous</French>
 		<German>Eigene</German>
 		<Italian>Propri</Italian>
 		<Spanish>Propios</Spanish>
@@ -923,7 +923,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_MILITARY_STRATADV_THEIRS</Tag>
 		<English>Theirs</English>
-		<French>Eux</French>
+		<French>A eux</French>
 		<German>Gegnerische</German>
 		<Italian>Altrui</Italian>
 		<Spanish>Ajenos</Spanish>
@@ -931,7 +931,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_MILITARY_STRATADV_OUR_UNITS</Tag>
 		<English>Our Units</English>
-		<French>Our Units</French>
+		<French>Nos unités</French>
 		<German>Eigene Einheiten</German>
 		<Italian>Nostre Unità</Italian>
 		<Spanish>Nuestras Unidades</Spanish>
@@ -939,7 +939,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_MILITARY_STRATADV_THEIR_UNITS</Tag>
 		<English>Their Units</English>
-		<French>Their Units</French>
+		<French>Leurs unités</French>
 		<German>Gegnerische Einheiten</German>
 		<Italian>Unità Altrui</Italian>
 		<Spanish>Unidades Ajenas</Spanish>
@@ -947,7 +947,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_MILITARY_STRATADV_KNOWN</Tag>
 		<English>Known</English>
-		<French>Known</French>
+		<French>Connu</French>
 		<German>Bekannt</German>
 		<Italian>Noti</Italian>
 		<Spanish>Conocidas</Spanish>
@@ -966,7 +966,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_REMINDER_HEADER</Tag>
 		<English>Create Reminder</English>
-		<French>Créez un Rappel</French>
+		<French>Créer un Rappel</French>
 		<German>Erinnerung schreiben</German>
 		<Italian>Crea un Promemoria</Italian>
 		<Spanish>Crear Recordatorio</Spanish>
@@ -974,7 +974,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_REMINDER_PROMPT</Tag>
 		<English>Enter the number of turns until the reminder goes off and the message to display.</English>
-		<French>Entrez le nombre de tours jusqu'à l'apparition du rappel et le message à montrer.</French>
+		<French>Entrez le nombre de tours jusqu'à l'apparition du rappel et le message à afficher.</French>
 		<German>Geben Sie die Anzahl der Runden an, bis die Erinnerung angezeigt werden soll.</German>
 		<Italian>Inserisci il numero di turni che devono passare prima che il promemoria scada ed il messaggio venga visualizzato.</Italian>
 		<Spanish>Número de turnos hasta que el recordatorio se activa y muestra el mensaje.</Spanish>
@@ -982,7 +982,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_REMIND_END_TURN_PROMPT</Tag>
 		<English>Show reminder again at the end of this turn?</English>
-		<French>Remontrer le rappel à la fin de ce tour?</French>
+		<French>Montrer de nouveau le rappel à la fin de ce tour ?</French>
 		<German>Erinnerung am Ende dieser Runde erneut anzeigen?</German>
 		<Italian>Mostrare nuovamente il promemoria alla fine del turno?</Italian>
 		<Spanish>¿Desea mostrar el recordatorio nuevamente al final del turno?</Spanish>
@@ -990,7 +990,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_REMIND_NEXT_TURN_PROMPT</Tag>
 		<English>Show reminder again next turn?</English>
-		<French>Remontrer le rappel au prochain tour?</French>
+		<French>Montrer de nouveau le rappel au prochain tour ?</French>
 		<German>Erinnerung n&#228;chste Runde erneut anzeigen?</German>
 		<Italian>Mostrare nuovamente il promemoria il prossimo turno?</Italian>
 		<Spanish>¿Desea mostrar el recordatorio nuevamente el próximo turno?</Spanish>
@@ -1001,7 +1001,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_TECH_PREFS_ALL</Tag>
 		<English>Research Preference Order</English>
-		<French>Research Preference Order</French>
+		<French>Ordre de recherche préféré</French>
 		<German>Forschungsprioritäten</German>
 		<Italian>Research Preference Order</Italian>
 		<Spanish>Orden de Investigación Preferido</Spanish>
@@ -1009,7 +1009,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_TECH_PREFS_CURRENT</Tag>
 		<English>Current Technologies</English>
-		<French>Current Technologies</French>
+		<French>Technologies actuelles</French>
 		<German>Derzeitige Technologien</German>
 		<Italian>Current Technologies</Italian>
 		<Spanish>Tecnologías Actuales</Spanish>
@@ -1017,7 +1017,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_TECH_PREFS_FUTURE</Tag>
 		<English>Future Technologies</English>
-		<French>Future Technologies</French>
+		<French>Technologies futures</French>
 		<German>Zukünftige Technologien</German>
 		<Italian>Future Technologies</Italian>
 		<Spanish>Tecnologías Futuras</Spanish>
@@ -1050,7 +1050,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_SHOW_ALL</Tag>
 		<English>Show All</English>
-		<French>Show All</French>
+		<French>Afficher tous</French>
 		<German>Alle anzeigen</German>
 		<Italian>Mostra tutti</Italian>
 		<Spanish>Mostrar Todos</Spanish>
@@ -1058,7 +1058,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_SHOW_NONE</Tag>
 		<English>Show None</English>
-		<French>Show None</French>
+		<French>N'afficher aucun</French>
 		<German>Keine anzeigen</German>
 		<Italian>Cancella tutti</Italian>
 		<Spanish>No Mostrar</Spanish>
@@ -1066,7 +1066,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_LOGSCALE</Tag>
 		<English>Log Scale</English>
-		<French>Log Scale</French>
+		<French>Echelle logarithmique</French>
 		<German>Log-Skala</German>
 		<Italian>Scala logaritmica</Italian>
 		<Spanish>Escala Logarítmica</Spanish>
@@ -1074,7 +1074,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_CHART_HELP</Tag>
 		<English>Zoom in and out by clicking on the body of the chart</English>
-		<French>Zoom in and out by clicking on the body of the chart</French>
+		<French>Zoomer et dézommer en cliquant dans le corps du graphique</French>
 		<German>Mit einem Mausklick auf ein Diagramm kann zwischen der verkleinerten Ansicht und der Großansicht umgeschalten werden</German>
 		<Italian>Alterna i livelli di zoom cliccando sul grafico</Italian>
 		<Spanish>Activa/desactiva zoom haciendo click en la gráfica.</Spanish>
@@ -1085,7 +1085,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_WONDER_NAME</Tag>
 		<English>Name</English>
-		<French>Name</French>
+		<French>Nom</French>
 		<German>Name</German>
 		<Italian>Nome</Italian>
 		<Spanish>Nombre</Spanish>
@@ -1101,7 +1101,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_WONDER_OWNER</Tag>
 		<English>Owner</English>
-		<French>Owner</French>
+		<French>Propriétaire</French>
 		<German>Besitzer</German>
 		<Italian>Proprietario</Italian>
 		<Spanish>Propietario</Spanish>
@@ -1109,7 +1109,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_WONDER_CITY</Tag>
 		<English>City</English>
-		<French>City</French>
+		<French>Ville</French>
 		<German>Stadt</German>
 		<Italian>Città</Italian>
 		<Spanish>Ciudad</Spanish>
@@ -1140,7 +1140,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_VICTORY_TURNS_NEXT_VOTE</Tag>
 		<English>Turns until next Vote: %d1</English>
-		<French>Turns until next Vote: %d1</French>
+		<French>Tours avant le prochain vote : %d1</French>
 		<German>Nächste Abstimmung in %d1 [NUM1:Runde:Runden]</German>
 		<Italian>Turni alla prossima Votazione: %d1</Italian>
 		<Spanish>Turnos hasta próxima votación: %d1</Spanish>
@@ -1148,7 +1148,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_VICTORY_VOTES_NEXT_ELECTION</Tag>
 		<English>Votes until next Election: %d1</English>
-		<French>Votes until next Election: %d1</French>
+		<French>Tours avant la prochaine élection : %d1</French>
 		<German>Nächsten Wahl in %d1 [NUM1:Runde:Runden]</German>
 		<Italian>Voti alla prossima Elezione: %d1</Italian>
 		<Spanish>Turnos hasta próxima elección: %d1</Spanish>
@@ -1156,7 +1156,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_VOTESOURCE_NON_VOTING_MEMBER</Tag>
 		<English>Non Member</English>
-		<French>Non Membres</French>
+		<French>Non-membre</French>
 		<German>Nichtmitglied</German>
 		<Italian>Non Membri</Italian>
 		<Spanish>No Miembro</Spanish>
@@ -1164,7 +1164,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_VICTORY_TOGGLE_VOTES</Tag>
 		<English>Toggle Votes</English>
-		<French>Alterner Voix</French>
+		<French>Déclencher votes</French>
 		<German>Wahlen umschalten</German>
 		<Italian>Alterna Voti</Italian>
 		<Spanish>Alternar Votos</Spanish>
@@ -1172,7 +1172,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_VICTORY_VASSALED</Tag>
 		<English>%d1 vassaled</English>
-		<French>%d1 vassaled</French>
+		<French>%d1 vassalisé</French>
 		<German>Vasallen: %d1</German>
 		<Italian>%d1 vassallo</Italian>
 		<Spanish>%d1 [NUM1:vasallo:vasallos]</Spanish>
@@ -1180,7 +1180,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_VICTORY_UNKNOWN</Tag>
 		<English>%d1 unknown</English>
-		<French>%d1 unknown</French>
+		<French>%d1 inconnu</French>
 		<German>unbekannt: %d1</German>
 		<Italian>%d1 sconosciuto</Italian>
 		<Spanish>%d1 [NUM1:desconocido:desconocidos]</Spanish>
@@ -1204,7 +1204,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_VICTORY_VOTES_REQUIRED</Tag>
 		<English>[SPACE](%s1 votes required)</English>
-		<French>[SPACE](%s1 votes required)</French>
+		<French>[SPACE](%s1 votes requis)</French>
 		<German>[SPACE](%s1 Stimmen benötigt)</German>
 		<Italian>[SPACE](%s1 voti richiesti)</Italian>
 		<Spanish>[SPACE](%s1 votos requeridos)</Spanish>
@@ -1212,7 +1212,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_VICTORY_BUG_POLL_RESULT</Tag>
 		<English>%s1 (%s2) leads by %s3.</English>
-		<French>%s1 (%s2) conduit par %s3.</French>
+		<French>%s1 (%s2) vainqueur par %s3.</French>
 		<German>%s1 (%s2) führt mit %s3 Vorsprung.</German>
 		<Italian>%s1 (%s2) in testa di %s3.</Italian>
 		<Spanish>%s1 (%s2) lidera con %s3.</Spanish>
@@ -1220,7 +1220,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUG_VICTORY_BUG_POLL_ERROR</Tag>
 		<English>Source: Recent BUG Poll, statistical margin of error %s1.</English>
-		<French>Source: Sondage BUG récents, marge d'erreur %s1.</French>
+		<French>Source: Sondage BUG récent, marge d'erreur statistique %s1.</French>
 		<German>Quelle: Neueste BUG-Umfrage (statistische Fehlerquote: %s1)</German>
 		<Italian>Fonte: recente sondaggio BUG, margine di errore statistico %s1.</Italian>
 		<Spanish>Fuente: Encuesta BUG reciente, margen estadístico de error %s1.</Spanish>
@@ -1229,7 +1229,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_GRAPH_SMOOTHING</Tag>
 		<English>Smooth Factor %d1_Num</English>
-		<French>Smooth Factor %d1_Num</French>
+		<French>Facteur de lissage %d1_Num</French>
 		<German>Glättungsstufe %d1_Num</German>
 		<Italian>Fattore di smoothing %d1_Num</Italian>
 		<Spanish>Factor de Suavizado %d1_Num</Spanish>
@@ -1240,7 +1240,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_MAP_SCRIPT_MAZE_LAND_PLUS1</Tag>
 		<English>Extra Land Strip</English>
-		<French>Extra Land Strip</French>
+		<French>Bandes de terre supplémentaires</French>
 		<German>Zusätzlicher Landstrich</German>
 		<Italian>Terreno aggiuntivo</Italian>
 		<Spanish>Franja de Terreno Extra</Spanish>
@@ -1248,7 +1248,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_TRUE</Tag>
 		<English>True</English>
-		<French>True</French>
+		<French>Vrai</French>
 		<German>Ja</German>
 		<Italian>Vero</Italian>
 		<Spanish>Verdadero</Spanish>
@@ -1256,7 +1256,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_FALSE</Tag>
 		<English>False</English>
-		<French>False</French>
+		<French>Faux</French>
 		<German>Nein</German>
 		<Italian>Falso</Italian>
 		<Spanish>Falso</Spanish>
@@ -1294,7 +1294,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_ESPIONAGE_SPYVSPY_TAB</Tag>
 		<English>Spy v Spy</English>
-		<French>Spy v Spy</French>
+		<French>Espion / Espion</French>
 		<German>Gegenspionage</German>
 		<Italian>Spy v Spy</Italian>
 		<Spanish>Espía contra Espía</Spanish>
@@ -1302,7 +1302,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_ESPIONAGE_AI_SPENDING_TOGGLE</Tag>
 		<English>Show AI Espionage</English>
-		<French>Show AI Espionage</French>
+		<French>Afficher Espionnage IA</French>
 		<German>KI-Spionage</German>
 		<Italian>Show AI Espionage</Italian>
 		<Spanish>Mostrar Espionaje de la IA</Spanish>
@@ -1313,7 +1313,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_CONCEPT_DOMESTIC_TRADE</Tag>
 		<English>Domestic Trade</English>
-		<French>Commerce Domestique</French>
+		<French>Commerce intérieur</French>
 		<German>Binnenhandel</German>
 		<Italian>Commercio Interno</Italian>
 		<Spanish>Comercio Doméstico</Spanish>
@@ -1321,7 +1321,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_CONCEPT_FOREIGN_TRADE</Tag>
 		<English>Foreign Trade</English>
-		<French>Commerce Extérieur</French>
+		<French>Commerce extérieur</French>
 		<German>Außenhandel</German>
 		<Italian>Commercio Estero</Italian>
 		<Spanish>Comercio Exterior</Spanish>
@@ -1337,7 +1337,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_CONCEPT_RELIGIOUS_SHRINES</Tag>
 		<English>Religious Shrines</English>
-		<French>Lieux Saints</French>
+		<French>Lieux saints</French>
 		<German>Schreine</German>
 		<Italian>Santuari</Italian>
 		<Spanish>Santuarios</Spanish>
@@ -1373,7 +1373,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_FOREIGN_ADVISOR_ABBR_LEADER</Tag>
 		<English>Leader</English>
-		<French>Chef</French>
+		<French>Héros</French>
 		<German>Oberhaupt</German>
 		<Italian>Leader</Italian>
 		<Spanish>L&#237;der</Spanish>
@@ -1389,7 +1389,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_FOREIGN_ADVISOR_POSSIBLE_FAV_CIVICS</Tag>
 		<English>Possible Favorite Civics</English>
-		<French>Possible Favorite Civics</French>
+		<French>Doctrines préférées possibles</French>
 		<German>Mögliche Vorlieben</German>
 		<Italian>Possibili Forme di Governo Favorite</Italian>
 		<Spanish>Posibles Principios Favoritos</Spanish>
@@ -1397,7 +1397,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVICOPTION_ABBR_GOVERNMENT</Tag>
 		<English>Govt</English>
-		<French>Govt</French>
+		<French>Gouv</French>
 		<German>Regierung</German>
 		<Italian>Governo</Italian>
 		<Spanish>Gobierno</Spanish>
@@ -1405,7 +1405,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVICOPTION_ABBR_LEGAL</Tag>
 		<English>Legal</English>
-		<French>Justice</French>
+		<French>Jurid</French>
 		<German>Recht</German>
 		<Italian>S. Legale</Italian>
 		<Spanish>Legal</Spanish>
@@ -1467,7 +1467,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BULL_REQUIRED</Tag>
 		<English>[COLOR_WARNING_TEXT]This feature requires the BUG DLL (BULL).[COLOR_REVERT]</English>
-		<French>[COLOR_WARNING_TEXT]This feature requires the BUG DLL (BULL).[COLOR_REVERT]</French>
+		<French>[COLOR_WARNING_TEXT]Cette fonctionnalité nécessite la DLL BUG (BULL).[COLOR_REVERT]</French>
 		<German>[COLOR_WARNING_TEXT]Für dieses Feature wird die BUG-DLL (BULL) benötigt.[COLOR_REVERT]</German>
 		<Italian>[COLOR_WARNING_TEXT]Questa caratteristica richiede la libreria DLL del BUG Mod ('BULL').[COLOR_REVERT]</Italian>
 		<Spanish>[COLOR_WARNING_TEXT]Esta característica requiere el DLL de BUG (BULL).[COLOR_REVERT]</Spanish>
@@ -1475,7 +1475,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_BULL_REQUIRED_NEWER</Tag>
 		<English>[COLOR_WARNING_TEXT]This feature requires a newer version of the BUG DLL (BULL).[COLOR_REVERT]</English>
-		<French>[COLOR_WARNING_TEXT]This feature requires a newer version of the BUG DLL (BULL).[COLOR_REVERT]</French>
+		<French>[COLOR_WARNING_TEXT]Cette fonctionnalité nécessite une version plus récente de la DLL BUG (BULL).[COLOR_REVERT]</French>
 		<German>[COLOR_WARNING_TEXT]Für dieses Feature wird eine neuere Version der BUG-DLL (BULL) benötigt.[COLOR_REVERT]</German>
 		<Italian>[COLOR_WARNING_TEXT]Questa caratteristica richiede una nuova versione della libreria DLL del BUG Mod ('BULL').[COLOR_REVERT]</Italian>
 		<Spanish>[COLOR_WARNING_TEXT]Esta característica requiere una versión más nueva del DLL de BUG (BULL).[COLOR_REVERT]</Spanish>
