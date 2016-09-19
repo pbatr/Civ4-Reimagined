@@ -30,6 +30,7 @@ If you are interested in improving Civ4 Reimagined by translating or otherwise, 
 -Switched rarity for gold and silver.
 -Building preview shows estimated commerce gain for bonus trade routes
 -Fixed display for gold per happiness resource from Mercantilism.
+-Maximum number of specialists (i.e. "Max: 6") shows up again even when the number of specialists allowed was doubled
 -Fixed unit buttons for celtic and zulu tanks.
 -Fixed a bug where old BtS Texts were showing up instead of our new ones.
 -Fixed overwhelm event help text
