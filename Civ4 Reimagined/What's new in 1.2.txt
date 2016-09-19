@@ -23,6 +23,7 @@ If you are interested in improving Civ4 Reimagined by translating or otherwise, 
 -No improvement building speed penalty for tundra terrain
 -Great Generals are always born in capital
 -All diplomacy modifiers expire eventually (Really, "Your spy was caught stirring up trouble" was such a big deal that the -1 modifier persisted for thousands of years?). Harsher modifiers such as "nuked us" take more time to be forgotten than smaller ones such as "made demand".
+-"You agreed to come to our aid in war-time." already existed, but was never used. Entering war on behalf of an AI player now finally grants a small diplomacy bonus.
 -Some AI adjustments when deciding which technology to research next.
 -AI doesn't cancel deals as often as before
 -Improved city resource display, which can now show up to 99 of each resource without overlapping.
