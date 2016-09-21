@@ -33751,10 +33751,6 @@
 					<iMemoryAttitudePercent>100</iMemoryAttitudePercent>
 				</MemoryAttitudePercent>
 				<MemoryAttitudePercent>
-					<MemoryType>MEMORY_ACCEPTED_JOIN_WAR</MemoryType>
-					<iMemoryAttitudePercent>100</iMemoryAttitudePercent>
-				</MemoryAttitudePercent>
-				<MemoryAttitudePercent>
 					<MemoryType>MEMORY_DENIED_JOIN_WAR</MemoryType>
 					<iMemoryAttitudePercent>-100</iMemoryAttitudePercent>
 				</MemoryAttitudePercent>
