@@ -1069,4 +1069,12 @@
 		<Tag>TXT_KEY_TECH_LEATHER_WORKING_QUOTE</Tag>
 		<English>"Tis the same to him who wears a shoe, as if the whole earth were covered in leather." - Persian proverb</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAMEOPTION_NO_COLONY_ANGER</Tag>
+		<English>No Modern Unhappiness in Colonies</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAMEOPTION_NO_COLONY_ANGER_HELP</Tag>
+		<English>Without this game options, colonies (oversea cities of your empire) wish for independance in modern times and eventually you may want to grant them vassal status. This game option is for players who don't like this new dynamic.</English>
+	</TEXT>
 </Civ4GameText>
