@@ -7721,7 +7721,7 @@
 		</ArtRef>
 		<ArtRef Name="building:LSYSTEM_TANNERY">
 			<Attribute Class="Scalar">szNIF:Art/Structures/Buildings/Tannery/Meso Tannery.nif</Attribute>
-			<Attribute Class="ArtStyle">ARTSTYLE_PACIFIC,ARTSTYLE_NATIVE_AMERICA,ARTSTYLE_MESO_AMERICA,ARTSTYLE_SOUTH_AMERICA,ARTSTYLE_BARBARIAN</Attribute>
+			<Attribute Class="ArtStyle">ARTSTYLE_SOUTH_PACIFIC,ARTSTYLE_NATIVE_AMERICA,ARTSTYLE_MESO_AMERICA,ARTSTYLE_SOUTH_AMERICA,ARTSTYLE_BARBARIAN</Attribute>
 			<Attribute Class="Era">ERA_ALL</Attribute>
 			<Scale>1.2</Scale>
 		</ArtRef>
