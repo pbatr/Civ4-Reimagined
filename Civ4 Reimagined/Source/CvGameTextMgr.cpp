@@ -18631,6 +18631,7 @@ void CvGameTextMgr::setTradeRouteHelp(CvWStringBuffer &szBuffer, int iRoute, CvC
 				if (pCity->area() != pOtherCity->area() && pOtherCity->area()->getNumTiles() >= GC.getDefineINT("MINIMUM_NUM_TILES_FOR_CONTINENT"))
 				{
 					iNewMod = GC.getDefineINT("OVERSEAS_TRADE_MODIFIER");
+					iNewMod += pCity->getOverseaTradeRouteModifier(); // Civ4 Reimagined
 					if (pCity->getTeam() == pOtherCity->getTeam())
 					{
 						iNewMod += (GET_PLAYER(pCity->getOwnerINLINE())).getColonyTradeModifier();
@@ -18641,6 +18642,7 @@ void CvGameTextMgr::setTradeRouteHelp(CvWStringBuffer &szBuffer, int iRoute, CvC
 						szBuffer.append(gDLL->getText("TXT_KEY_TRADE_ROUTE_MOD_OVERSEAS", iNewMod));
 						iModifier += iNewMod;
 					}
+
 				}
 				
 				if (pCity->getTeam() != pOtherCity->getTeam())
