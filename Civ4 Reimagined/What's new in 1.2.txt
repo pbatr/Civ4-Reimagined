@@ -34,6 +34,7 @@ If you are interested in improving Civ4 Reimagined by translating or otherwise, 
 -Maximum number of specialists (i.e. "Max: 6") shows up again even when the number of specialists allowed was doubled
 -Fixed unit buttons for celtic and zulu tanks.
 -Fixed a bug where old BtS Texts were showing up instead of our new ones.
+-Fixed city trade route display now showing custom house oversea trade modifier
 -Fixed overwhelm event help text
 -Pushed back the looter and marauder event into the renaissance. For an event that could destroy multiple buildings and improvements it could trigger awfully early.
 -Totestra map script: "Reduce peaks" is disabled per default
