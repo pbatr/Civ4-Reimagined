@@ -4833,7 +4833,7 @@ int CvCity::getColonyPercentAnger() const
 	int iAnger;
 	int iTargetTechValue;
 	
-	if (!isColony() || GC.getGameINLINE().isOption(GAMEOPTION_NO_VASSAL_STATES) || GC.getGameINLINE().getStartEra() > 3)
+	if (!isColony() || GC.getGameINLINE().isOption(GAMEOPTION_NO_VASSAL_STATES) || GC.getGameINLINE().getStartEra() > 3 || GC.getGameINLINE().isOption(GAMEOPTION_NO_COLONY_ANGER))
 	{
 		return 0;
 	}

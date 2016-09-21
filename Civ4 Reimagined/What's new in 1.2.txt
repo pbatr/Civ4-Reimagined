@@ -26,6 +26,7 @@ If you are interested in improving Civ4 Reimagined by translating or otherwise, 
 -"You agreed to come to our aid in war-time." already existed, but was never used. Entering war on behalf of an AI player now finally grants a small diplomacy bonus.
 -Some AI adjustments when deciding which technology to research next.
 -AI doesn't cancel deals as often as before
+-New game option to disable modern unhappiness in colonies.
 -Improved city resource display, which can now show up to 99 of each resource without overlapping.
 -Deer and fur appearance increased on most map types
 -Switched rarity for gold and silver.
