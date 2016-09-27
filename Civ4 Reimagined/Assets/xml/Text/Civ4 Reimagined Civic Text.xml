@@ -10,150 +10,187 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_CORVEE_SYSTEM</Tag>
 		<English>Corvée System</English>
+		<French>Corvées</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_WE_LOVE_CONSUL</Tag>
 		<English>"We Love the Consul Day"</English>
+		<French>"Journée à la gloire du Consul"</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_TYRANNY</Tag>
 		<English>Tyranny</English>
+		<French>Tyrannie</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_DYNASTICISM</Tag>
 		<English>Dynasticism</English>
+		<French>Dynastie</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_CITY_STATES</Tag>
 		<English>City States</English>
+		<French>Cités-Etats</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_AUTOCRACY</Tag>
 		<English>Autocracy</English>
+		<French>Autocratie</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_DIRECT_RULE</Tag>
 		<English>Direct Rule</English>
+		<French>Centralisation</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_ABSOLUTISM</Tag>
 		<English>Absolutism</English>
+		<French>Absolutisme</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_TOTALITARIANISM</Tag>
 		<English>Totalitarianism</English>
+		<French>Totalitarisme</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_EGALITARIANISM</Tag>
 		<English>Egalitarianism</English>
+		<French>Egalitarisme</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_TRIBALISM</Tag>
 		<English>Tribalism</English>
+		<French>Tribalisme</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_AGRARIANISM</Tag>
 		<English>Agrarianism</English>
+		<French>Agrarisme</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_CAPITALISM</Tag>
 		<English>Capitalism</English>
+		<French>Capitalisme</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_INDUSTRIALISM</Tag>
 		<English>Industrialism</English>
+		<French>Industrialisme</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_PUBLIC_WELFARE</Tag>
 		<English>Public Welfare</English>
+		<French>Aide sociale</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_SELF_SUFFICIENCY</Tag>
 		<English>Self Sufficiency</English>
+		<French>Autosuffisance</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_GUILDS</Tag>
 		<English>Guilds</English>
+		<French>Guildes</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_CENTRAL_PLANNING</Tag>
 		<English>Central Planning</English>
+		<French>Economie planifiée</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_ANIMISM</Tag>
 		<English>Animism</English>
+		<French>Animisme</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_PANTHEON</Tag>
 		<English>Pantheon</English>
+		<French>Panthéon</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_SCHOLASTICISM</Tag>
 		<English>Scholasticism</English>
+		<French>Scolastique</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_FANATICISM</Tag>
 		<English>Fanaticism</English>
+		<French>Fanatisme</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_SECULARISM</Tag>
 		<English>Secularism</English>
+		<French>Laïcité</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_MILITIA</Tag>
 		<English>Militia</English>
+		<French>Milice</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_WARRIOR_CODE</Tag>
 		<English>Warrior Code</English>
+		<French>Code du guerrier</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_MERCENARIES</Tag>
 		<English>Mercenaries</English>
+		<French>Mercenaires</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_LEVY_ARMIES</Tag>
 		<English>Levy Armies</English>
+		<French>Levées</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_STANDING_ARMY</Tag>
 		<English>Professional Army</English>
+		<French>Armée de métier</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_CONSCRIPTION</Tag>
 		<English>Conscription</English>
+		<French>Service militaire</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_REPUBLIC</Tag>
 		<English>Republic</English>
+		<French>République</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_LIMITED_UNIT_HAPPINESS</Tag>
 		<English>[ICON_BULLET]%D1_PerUnit%F2_HappyOrSad per Military Unit Stationed in a City up to a Maximum of %D3</English>
+		<French>[ICON_BULLET]%D1_PerUnit%F2_HappyOrSad par unité militaire en garnison dans une ville, avec un maximum de %D3</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_PER_SPECIALIST_THRESHOLD</Tag>
 		<English>[SPACE]per Specialist in %d1_NumCities Largest Cities if They Work at Most %d2 Tiles</English>
+		<French>[SPACE]par spécialiste dans les %d1_NumCities plus grandes villes, si elles exploitent %d2 cases maximum</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_UNLIMTED</Tag>
 		<English>[ICON_BULLET]Doubled slots for[SPACE]</English>
+		<French>[ICON_BULLET]Doubles emplacements pour[SPACE]</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_HURRY_GOLD_BUILDINGS</Tag>
 		<English>Can Spend Gold to Finish Building Production in a City</English>
+		<French>Peut dépenser de l'or pour achever la production d'un bâtiment dans une ville</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_HURRY_GOLD_UNITS</Tag>
 		<English>Can Spend Gold to Finish Military Unit Production and Ignore Bonus Requirements in a City</English>
+		<French>Peut dépenser de l'or pour achever la production d'une unité et ignorer les prérequis bonus dans une ville</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_BUILDING_DOUBLE_PRODUCTION</Tag>
 		<English>[ICON_BULLET]Double Production Speed for [LINK=literal]%s1_unit_or_building[\LINK]</English>
+		<French>[ICON_BULLET]Vitesse de production doublée pour [LINK=literal]%s1_unit_or_building[\LINK]</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_BUILDING_PRODUCTION_MODIFIER</Tag>
 		<English>[ICON_BULLET]Builds [LINK=literal]%s2_unit_or_building[\LINK] %d1_Mod%% Faster</English>
+		<French>[ICON_BULLET]Construit [LINK=literal]%s2_unit_or_building[\LINK] %d1_Mod%% plus vite</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_BUILDING_PRODUCTION_MODIFIER_APPEND</Tag>
@@ -166,6 +203,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_DOMAIN_PRODUCTION</Tag>
 		<English>[ICON_BULLET]%D1_Mod%% Production for All %s2</English>
+		<French>[ICON_BULLET]%D1_Mod%% production pour tous %s2</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_DOMAIN_XP</Tag>
