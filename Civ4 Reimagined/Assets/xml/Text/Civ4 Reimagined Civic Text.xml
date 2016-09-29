@@ -170,7 +170,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_UNLIMTED</Tag>
 		<English>[ICON_BULLET]Doubled slots for[SPACE]</English>
-		<French>[ICON_BULLET]Doubles emplacements pour[SPACE]</French>
+		<French>[ICON_BULLET]Emplacements doublés pour[SPACE]</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_HURRY_GOLD_BUILDINGS</Tag>
@@ -180,7 +180,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_HURRY_GOLD_UNITS</Tag>
 		<English>Can Spend Gold to Finish Military Unit Production and Ignore Resource Requirements in a City</English>
-		<French>Peut dépenser de l'or pour achever la production d'une unité et ignorer les prérequis bonus dans une ville</French>
+		<French>Peut dépenser de l'or pour achever la production d'une unité et ignorer les prérequis de ressources dans une ville</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_BUILDING_DOUBLE_PRODUCTION</Tag>
@@ -203,96 +203,118 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_DOMAIN_PRODUCTION</Tag>
 		<English>[ICON_BULLET]%D1_Mod%% Production for All %s2</English>
-		<French>[ICON_BULLET]%D1_Mod%% production pour tous %s2</French>
+		<French>[ICON_BULLET]%D1_Mod%% production pour tous les %s2</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_DOMAIN_XP</Tag>
 		<English>[ICON_BULLET]+%d1 Experience for All %s2</English>
+		<French>[ICON_BULLET]+%d1 expérience pour tous les %s2</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_MERCENARIES_HELP</Tag>
 		<English>[ICON_BULLET]Hurried Units Start with the [LINK=literal]Mercenary[\LINK], [LINK=literal]Combat I[\LINK] and [LINK=literal]Combat II[\LINK] promotions, but receive no experience from buildings.</English>
+		<French>[ICON_BULLET]Les unités achetées démarrent avec les promotions [LINK=literal]Mercenary[\LINK], [LINK=literal]Combat I[\LINK] et [LINK=literal]Combat II[\LINK], mais ne reçoivent aucune expérience des bâtiments.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_SELF_SUFFICIENCY_HELP</Tag>
 		<English>[ICON_BULLET]Can spread the [LINK=literal]Silk Road[\LINK]</English>
+		<French>[ICON_BULLET]Peut propager la [LINK=literal]Silk Road[\LINK]</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_SLAVERY_HELP</Tag>
 		<English>[ICON_BULLET]Can spread the [LINK=literal]Royal African Company[\LINK] and [LINK=literal]East India Company[\LINK]</English>
+		<French>[ICON_BULLET]Peut propager la [LINK=literal]Royal African Company[\LINK] et la [LINK=literal]East India Company[\LINK]</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_WONDER_PRODUCTION_BONUS</Tag>
 		<English>[ICON_BULLET]+%d1% World Wonder Construction</English>
+		<French>[ICON_BULLET]+%d1% construction de merveilles mondiales</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_FROM_DOMESTIC_TRADE_ROUTES</Tag>
 		<English>[SPACE]from Domestic Trade Routes ([ICON_TRADE])</English>
+		<French>[SPACE]de routes commerciales intérieures ([ICON_TRADE])</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_FROM_COLONY_TRADE_ROUTES</Tag>
 		<English>[SPACE]from Domestic Sea Trade Routes ([ICON_TRADE])</English>
+		<French>[SPACE]de routes commerciales intérieures maritimes ([ICON_TRADE])</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TRADE_ROUTE_MOD_CIVIC</Tag>
 		<English>%D1%%: for Civic or Trait</English>
+		<French>%D1%%: pour la doctrine ou le trait</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_UNIT_UPGRADE_COST</Tag>
 		<English>[SPACE]Unit Upgrade Cost</English>
+		<French>[SPACE]coût d'amélioration des unités</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVICOPTION_GOVERNMENT</Tag>
 		<English>Government</English>
+		<French>Gouvernement</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVICOPTION_ORGANIZATION</Tag>
 		<English>Organization</English>
+		<French>Organisation</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVICOPTION_RELIGION</Tag>
 		<English>Religion</English>
+		<French>Religion</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVICOPTION_MILITARY</Tag>
 		<English>Military</English>
+		<French>Militaire</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_DRAFTING</Tag>
 		<English>[ICON_BULLET]Can [LINK=CONCEPT_DRAFT]Draft[\LINK] %d1_Num [NUM1:Unit:Units] per Turn</English>
+		<French>[ICON_BULLET]Peut [LINK=CONCEPT_DRAFT]Draft[\LINK] %d1_Num [NUM1:Unité:Unités] par tour</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_NO_MILITARY_PRODUCTION_MALI</Tag>
 		<English>[ICON_BULLET]No Production Mali</English>
+		<French>[ICON_BULLET]Aucun malus de production</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_UNLIMITED_ANIMAL_XP</Tag>
 		<English>[ICON_BULLET]Unlimited Experience from Animals</English>
 		<German>[ICON_BULLET]Unbegrenzte Erfahrung von tierischen Einheiten</German>
+		<French>[ICON_BULLET]Expérience illimitée contre les animaux</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_FOREIGN_UNIT_SUPPLY</Tag>
 		<English>[SPACE]Foreign Unit Supply Cost</English>
+		<French>[SPACE]Coût d'entretien des unités hors des frontières</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_PILLAGE_GAIN_MODIFIER</Tag>
 		<English>[SPACE]looted [ICON_GOLD] from Pillaged Tiles</English>
+		<French>[SPACE]reçu [ICON_GOLD] des cases pillées</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_POPULATION_UNHAPPINESS_MODIFIER</Tag>
 		<English>[SPACE][ICON_UNHAPPY] from Population</English>
+		<French>[SPACE][ICON_UNHAPPY] pour la population</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_ORGANIZED_RELIGION_HELP</Tag>
 		<English>[ICON_BULLET]+5[ICON_COMMERCE] from State [ICON_RELIGION] Cathedrals.</English>
+		<French>[ICON_BULLET]+5[ICON_COMMERCE] par cathédrale de la [ICON_RELIGION] d'Etat.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_THEOCRACY_HELP</Tag>
 		<English>[ICON_BULLET]+1[ICON_COMMERCE] from State [ICON_RELIGION] Temples, Monasteries and Cathedrals.</English>
+		<French>[ICON_BULLET]+1[ICON_COMMERCE] par temple, monastère et cathédrale de la [ICON_RELIGION] d'Etat.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_COMMERCE_HAPPINESS</Tag>
 		<English>[ICON_BULLET]%D1%F2_HappyOrSad per 10%% %F3_commerce</English>
+		<French>[ICON_BULLET]%D1%F2_HappyOrSad par 10%% %F3_commerce</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_BUILDING_MERGED_HAPPINESS_OR_HEALTH</Tag>
@@ -301,85 +323,106 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_NO_GREAT_PEOPLE</Tag>
 		<English>[ICON_BULLET]No [ICON_GREATPEOPLE] Birth</English>
+		<French>[ICON_BULLET]Aucune naissance de [ICON_GREATPEOPLE]</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_CAPITAL_EXTRA_YIELD_FROM_CITIES</Tag>
 		<English>in Capital per Additional City</English>
+		<French>dans la capitale par ville supplémentaire</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_NO_CAPITAL</Tag>
 		<English>[ICON_BULLET]No Effects from Capital</English>
+		<French>[ICON_BULLET]Aucun effet de la capitale</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_BONUS_RATIO_MODIFIER</Tag>
 		<English>[SPACE]Resource Ratios</English>
+		<French>[SPACE]taux de ressources</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_NO_FOREIGN_CULTURE_UNHAPPINESS</Tag>
 		<English>[ICON_BULLET]No [ICON_UNHAPPY] from Foreign Culture</English>
+		<French>[ICON_BULLET]Aucun [ICON_UNHAPPY] à cause de cultures étrangères</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_PRODUCTION_PER_SURPLUS_HAPPINESS</Tag>
 		<English>[ICON_BULLET]+%s1[ICON_PRODUCTION] for Each Surplus [ICON_HAPPY] in All Cities ([ICON_PRODUCTION] capped at City Population)</English>
+		<French>[ICON_BULLET]+%s1[ICON_PRODUCTION] par [ICON_HAPPY] en surplus dans toutes les villes ([ICON_PRODUCTION] maximum : taille de la ville)</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_WORKER_SPEED</Tag>
 		<English>[ICON_BULLET]%d1_Mod%% Faster Improvement Build</English>
+		<French>[ICON_BULLET]Construction d'aménagements %d1_Mod%% plus rapide</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_NO_MAINT_COLONY</Tag>
 		<English>[ICON_BULLET]No Colonial Expenses</English>
+		<French>[ICON_BULLET]Aucun entretien colonial</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_NO_MAINT_COLONY_MOD</Tag>
 		<English>[ICON_BULLET]%D1_Mod%% Colonial Expenses</English>
+		<French>[ICON_BULLET]%D1_Mod%% entretien colonial</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_NO_FOREIGN_CORPORATIONS</Tag>
 		<English>[ICON_BULLET]No Foreign Corporations</English>
+		<French>[ICON_BULLET]Aucune société commerciale étrangère</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_NO_FOREIGN_TRADE</Tag>
 		<English>[ICON_BULLET]No Foreign [ICON_TRADE]</English>
+		<French>[ICON_BULLET]Aucune [ICON_TRADE] extérieure</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_FROM_CAPITAL_TRADE_ROUTES</Tag>
 		<English>[SPACE]from [ICON_TRADE] through Capital</English>
+		<French>[SPACE]par [ICON_TRADE] passant par la capitale</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_ENABLES_SLAVES</Tag>
 		<English>[ICON_BULLET]Receive a [LINK=literal]Slave[\LINK] in Every Newly Founded Colony</English>
+		<French>[ICON_BULLET]Recevez un [LINK=literal]Slave[\LINK] pour chaque nouvelle colonie fondée</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_GOLD_PER_HAPPINESS_BONUS</Tag>
 		<English>[ICON_BULLET]+%s1[ICON_GOLD] in Capital for Each Happiness Resource</English>
+		<French>[ICON_BULLET]+%s1[ICON_GOLD] dans la capitale par ressource de bonheur</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_NO_CAPITAL_UNHAPPINESS</Tag>
 		<English>[ICON_BULLET]No [ICON_UNHAPPY] in Capital</English>
+		<French>[ICON_BULLET]Aucun [ICON_UNHAPPY] dans la capitale</French>
 	</TEXT>	
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_MAINT_MOD</Tag>
 		<English>[ICON_BULLET]%D1_Mod%% City Maintenance Costs</English>
+		<French>[ICON_BULLET]%D1_Mod%% coûts d'entretien des villes</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_NO_FOREIGN_UNIT_SUPPLY</Tag>
-		<English>[ICON_BULLET] No Foreign Unit Supply Cost</English>
+		<English>[ICON_BULLET]No Foreign Unit Supply Cost</English>
+		<French>[ICON_BULLET]Pas de coût d'entretien des unités hors des frontières</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_IN_CAPITAL_PER_SURPLUS_HAPPY</Tag>
 		<English>[SPACE]in Capital for Each Surplus [ICON_HAPPY] (Capped at City Population)</English>
+		<French>[SPACE]dans la capitale par [ICON_HAPPY] en surplus (maximum : population de la ville)</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_NO_CULTURE_FLIP</Tag>
 		<English>[ICON_BULLET]No Culture Flips</English>
+		<French>[ICON_BULLET]Aucune conversion culturelle</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_EXTRA_SPECIALISTS</Tag>
 		<English>[ICON_BULLET]%d1_Num Free [COLOR_BUILDING_TEXT][LINK=literal]%s2_SpecialistType[\LINK][COLOR_REVERT] in All Cities</English>
+		<French>[ICON_BULLET]%d1_Num Free [COLOR_BUILDING_TEXT][LINK=literal]%s2_SpecialistType[\LINK][COLOR_REVERT] dans toutes les villes</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_NO_CITY_RESISTANCE</Tag>
 		<English>[ICON_BULLET]No City Resistance on Conquest</English>
+		<French>[ICON_BULLET]Aucune résistance dans les villes conquises</French>
 	</TEXT>
 </Civ4GameText>
