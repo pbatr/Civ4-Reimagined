@@ -5,174 +5,217 @@
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_TSUNAMI_2_HELP</Tag>
 		<English>[ICON_BULLET]Nearly all buildings destroyed in %s1_city</English>
+		<French>[ICON_BULLET]Presque tous les bâtiments détruits à %s1_city</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_GREAT_DEPRESSION_HELP</Tag>
 		<English>[ICON_BULLET]All nations in the world suffer from the great depression. You suffer a loss of %d1%% of your national treasury. </English>
+		<French>[ICON_BULLET]Toutes les nations du monde souffrent de la grande crise économique. Vous perdez %d1%% de votre trésorerie nationale. </French>
 	</TEXT>
 		<TEXT>
 		<Tag>TXT_KEY_EVENT_THE_HUNS_HELP_1</Tag>
 		<English>[ICON_BULLET]A dangerous number of barbarian [COLOR_UNIT_TEXT]Horseman[COLOR_REVERT] units have spawned near our border.</English>
+		<French>[ICON_BULLET]Un nombre dangereux de [COLOR_UNIT_TEXT]Horseman[COLOR_REVERT] barbares sont apparus près de notre frontière.</French>
 	</TEXT>
 		<TEXT>
 		<Tag>TXT_KEY_EVENT_THE_VANDALS_HELP_1</Tag>
 		<English>[ICON_BULLET]A dangerous number of barbarian [COLOR_UNIT_TEXT]Swordsman[COLOR_REVERT] units have spawned near our border.</English>
+		<French>[ICON_BULLET]Un nombre dangereux de [COLOR_UNIT_TEXT]Swordsman[COLOR_REVERT] barbares sont apparus près de notre frontière.</French>
 	</TEXT>
 		<TEXT>
 		<Tag>TXT_KEY_EVENT_THE_GOTHS_HELP_1</Tag>
 		<English>[ICON_BULLET]A dangerous number of barbarian [COLOR_UNIT_TEXT]Axeman[COLOR_REVERT] units have spawned near our border.</English>
+		<French>[ICON_BULLET]Un nombre dangereux de [COLOR_UNIT_TEXT]Axeman[COLOR_REVERT] barbares sont apparus près de notre frontière.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENTTRIGGER_THE_VEDIC_ARYANS</Tag>
 		<English>A massive barbarian uprising is occurring. The Hittites seek to plunder the riches of civilization.</English>
+		<French>Un soulèvement barbare massif est en cours. Les Hittites cherchent à piller les richesses de la civilisation.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_THE_VEDIC_ARYANS_HELP_1</Tag>
 		<English>[ICON_BULLET]A dangerous number of barbarian [COLOR_UNIT_TEXT]Chariot[COLOR_REVERT] units have spawned near our border.</English>
+		<French>[ICON_BULLET]Un nombre dangereux de [COLOR_UNIT_TEXT]Chariot[COLOR_REVERT] barbares sont apparus près de notre frontière.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_HORSE_WHISPERING_HELP</Tag>
 		<English>[PARAGRAPH:1]To complete this quest, you must build [COLOR_BUILDING_TEXT]Stables[COLOR_REVERT] in all your cities.[PARAGRAPH:1]You will fail this quest if a rival civilization completes it first, or if you reach the Renaissance Era without having met the conditions.</English>
+		<French>[PARAGRAPH:1]Pour réussir cette quête, vous devez construire des [COLOR_BUILDING_TEXT]Stables[COLOR_REVERT] dans toutes vos villes.[PARAGRAPH:1]Vous échouerez à cette quête si une autre civilisation la réussit d'abord ou si vous atteignez la Renaissance avant de remplir les conditions.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_HORSE_WHISPERING_DONE_1</Tag>
 		<English>Use our advantage to immediately train [COLOR_UNIT_TEXT]Horsemen[COLOR_REVERT].</English>
+		<French>Exploiter notre avantage pour entraîner des [COLOR_UNIT_TEXT]Horsemen[COLOR_REVERT] immédiatement.</French>
 	</TEXT>
 		<TEXT>
 		<Tag>TXT_KEY_EVENT_HORSE_WHISPERING_DONE_HELP_1</Tag>
 		<English>[ICON_BULLET]Receive %d1 [COLOR_UNIT_TEXT]Horsemen[COLOR_REVERT].</English>
+		<French>[ICON_BULLET]Recevez %d1 [COLOR_UNIT_TEXT]Horsemen[COLOR_REVERT].</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_CLASSIC_LITERATURE_HELP_1</Tag>
 		<English>[PARAGRAPH:1]To complete this quest, you must build [COLOR_BUILDING_TEXT]Libraries[COLOR_REVERT] in all your cities.[PARAGRAPH:1]An additional reward option will be available if you control the [COLOR_BUILDING_TEXT]Great Library[COLOR_REVERT] if and when this quest is successfully completed.[PARAGRAPH:1]You will fail this quest if a rival civilization completes it first, or if you reach the Renaissance Era without having met the conditions.</English>
+		<French>[PARAGRAPH:1]Pour réussir cette quête, vous devez construire des [COLOR_BUILDING_TEXT]Libraries[COLOR_REVERT] dans toutes vos villes.[PARAGRAPH:1]Une récompense supplémentaire sera disponible si vous contrôlez la [COLOR_BUILDING_TEXT]Great Library[COLOR_REVERT] au moment où vous terminez la quête.[PARAGRAPH:1]Vous échouerez à cette quête si une autre civilisation la réussit d'abord ou si vous atteignez la Renaissance avant de remplir les conditions.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_MASTER_BLACKSMITH_HELP_1</Tag>
 		<English>[PARAGRAPH:1]To complete this quest, you must build [COLOR_BUILDING_TEXT]Forges[COLOR_REVERT] in all your various cities. [PARAGRAPH:1]The master smith is a religious man. An additional reward option will be available if your civilization has a state religion if and when the quest is completed successfully.[PARAGRAPH:1]You will fail this quest if a rival civilization completes it first, if you lose control over %s2_city and the master smith, or if you reach the Renaissance Era without having met the conditions.</English>
+		<French>[PARAGRAPH:1]Pour réussir cette quête, vous devez construire des [COLOR_BUILDING_TEXT]Forges[COLOR_REVERT] dans toutes vos villes.[PARAGRAPH:1]Le maître forgeron est une homme pieux. Une récompense supplémentaire sera disponible si votre civilisation a une religion d'état au moment où vous terminez la quête.[PARAGRAPH:1]Vous échouerez à cette quête si une autre civilisation la réussit d'abord, si vous perdez le contrôle de %s2_city et du maître forgeron, ou si vous atteignez la Renaissance avant de remplir les conditions.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_BEST_DEFENSE_HELP_1</Tag>
 		<English>[PARAGRAPH:1]To complete this quest, you must build [COLOR_BUILDING_TEXT]Castles[COLOR_REVERT] in all your cities.[PARAGRAPH:1]An additional reward option will be available if your civilization controls the Great Wall.[PARAGRAPH:1]You will fail this quest if a rival civilization completes it first, or if you discover [COLOR_TECH_TEXT]Rifling[COLOR_REVERT], [COLOR_TECH_TEXT]Railroad[COLOR_REVERT], or [COLOR_TECH_TEXT]Economics[COLOR_REVERT] without having met the conditions.</English>
+		<French>[PARAGRAPH:1]Pour réussir cette quête, vous devez construire des [COLOR_BUILDING_TEXT]Castles[COLOR_REVERT] dans toutes vos villes.[PARAGRAPH:1]Une récompense supplémentaire sera disponible si votre civilisation contrôle la Grande Muraille.[PARAGRAPH:1]Vous échouerez à cette quête si une autre civilisation la réussit d'abord ou si vous découvrez [COLOR_TECH_TEXT]Rifling[COLOR_REVERT], [COLOR_TECH_TEXT]Railroad[COLOR_REVERT] ou [COLOR_TECH_TEXT]Economics[COLOR_REVERT] avant de remplir les conditions.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_SPORTS_LEAGUE_1</Tag>
 		<English>National Sports League[PARAGRAPH:1]You are tasked by your cultural advisors to build enough [COLOR_BUILDING_TEXT]Stadiums[COLOR_REVERT] to support viable sports leagues.</English>
+		<French>Ligue de sports nationale[PARAGRAPH:1]Vos conseillers culturels vous chargent de construire suffisamment de [COLOR_BUILDING_TEXT]Stadiums[COLOR_REVERT] pour supporter des ligues de sports viables.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_SPORTS_LEAGUE_HELP_1</Tag>
-		<English>[PARAGRAPH:1]To complete this quest, you must build [COLOR_BUILDING_TEXT]Stadiums[COLOR_REVERT] in all your cities.[PARAGRAPH:1]An additional reward option will be available if you control [COLOR_BUILDING_TEXT]%s2_building[COLOR_REVERT] if and when this quest is successfully completed.[PARAGRAPH:1]You will fail this quest if a rival civilization completes it first, or if you reach the Rennaisance Era without having met the conditions.</English>
+		<English>[PARAGRAPH:1]To complete this quest, you must build [COLOR_BUILDING_TEXT]Stadiums[COLOR_REVERT] in all your cities.[PARAGRAPH:1]An additional reward option will be available if you control [COLOR_BUILDING_TEXT]%s2_building[COLOR_REVERT] au moment où vous terminez la quête.[PARAGRAPH:1]You will fail this quest if a rival civilization completes it first, or if you reach the Rennaisance Era without having met the conditions.</English>
+		<French>[PARAGRAPH:1]Pour réussir cette quête, vous devez construire des [COLOR_BUILDING_TEXT]Stadiums[COLOR_REVERT] dans toutes vos villes.[PARAGRAPH:1]Une récompense supplémentaire sera disponible si vous contrôlez [COLOR_BUILDING_TEXT]%s2_building[COLOR_REVERT] au moment où vous terminez la quête.[PARAGRAPH:1]Vous échouerez à cette quête si une autre civilisation la réussit d'abord ou si vous atteignez la Renaissance avant de remplir les conditions.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_ELITE_SWORDS_HELP_1</Tag>
 		<English>[PARAGRAPH:1]To complete this quest, you must train %d1 [COLOR_UNIT_TEXT]Swordsman[COLOR_REVERT] [NUM1:unit:units]. A source of Iron will be required.[PARAGRAPH:1]An additional reward option will be available if your civilization is operating the [COLOR_HIGHLIGHT_TEXT]Dynasticism[COLOR_REVERT] civic.[PARAGRAPH:1]You will fail this quest if a rival civilization completes it first, or if you arrive at the Middle Ages without having met the conditions.</English>
+		<French>[PARAGRAPH:1]Pour réussir cette quête, vous devez entraîner %d1 [NUM1:unité:unités] de [COLOR_UNIT_TEXT]Swordsman[COLOR_REVERT].[PARAGRAPH:1]Une source de fer sera nécessaire.[PARAGRAPH:1]Une récompense supplémentaire sera disponible si votre civilisation emploie la doctrine [COLOR_HIGHLIGHT_TEXT]Dynasticism[COLOR_REVERT].[PARAGRAPH:1]Vous échouerez à cette quête si une autre civilisation la réussit d'abord ou si vous atteignez le Moyen-Age avant de remplir les conditions.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_OVERWHELM_HELP_1</Tag>
 		<English>[PARAGRAPH:1]To complete this quest, you must build %d1 [COLOR_UNIT_TEXT]%s2_unit[COLOR_REVERT], %d3 [COLOR_UNIT_TEXT]%s4_unit[COLOR_REVERT], %d5 [COLOR_UNIT_TEXT]%s6_unit[COLOR_REVERT], and %d7 [COLOR_UNIT_TEXT]%s8_unit[COLOR_REVERT] units. A source of [COLOR_HIGHLIGHT_TEXT]Oil[COLOR_REVERT] will be required to fuel the planes.[PARAGRAPH:1]An additional reward option will be available if your civilization has build a [COLOR_BUILDING_TEXT]%s9_building[COLOR_REVERT].[PARAGRAPH:1]You will fail this quest if a rival civilization completes it first.</English>
+		<French>[PARAGRAPH:1]Pour réussir cette quête, vous devez entraîner %d1 [COLOR_UNIT_TEXT]%s2_unit[COLOR_REVERT], %d3 [COLOR_UNIT_TEXT]%s4_unit[COLOR_REVERT], %d5 [COLOR_UNIT_TEXT]%s6_unit[COLOR_REVERT] et %d7 [COLOR_UNIT_TEXT]%s8_unit[COLOR_REVERT]. Une source de [COLOR_HIGHLIGHT_TEXT]Oil[COLOR_REVERT] sera nécessaire pour faire le plein des avions.[PARAGRAPH:1]Une récompense supplémentaire sera disponible si votre civilisation a construit un [COLOR_BUILDING_TEXT]%s9_building[COLOR_REVERT].[PARAGRAPH:1]Vous échouerez à cette quête si une autre civilisation la réussit d'abord.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_CORPORATE_EXPANSION_HELP_1</Tag>
 		<English>[PARAGRAPH:1]To complete this quest, you must spread [COLOR_HIGHLIGHT_TEXT]%s1_corporation[COLOR_REVERT] to %d2 new cities. [PARAGRAPH:1]You will fail this quest if %d3 turns pass without achieving the objective.</English>
+		<French>[PARAGRAPH:1]Pour réussir cette quête, vous devez propager [COLOR_HIGHLIGHT_TEXT]%s1_corporation[COLOR_REVERT] dans %d2 nouvelles villes. [PARAGRAPH:1]Vous échouerez à cette quête si vous n'avez pas atteint l'objectif dans %d3 tours.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_NEWS_DESPOTISM</Tag>
    		<English>The %s1_civ_adjective population is revolting against their tyrannic leader. </English>
+		<French>Le peuple %s1_civ_adjective se révolte contre son dirigeant tyrannique. </French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_TRIGGER_DESPOTISM</Tag>
    		<English>The population of %s2_city is revolting against their tyrannic leader!</English>
+		<French>La population de %s2_city se révolte contre son dirigeant tyrannique. </French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_DESPOTISM_1</Tag>
    		<English>They just need some time to calm down.</English>
+		<French>Ils se calmeront avec le temps.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_DESPOTISM_2</Tag>
    		<English>Send the military to kill the rebels.</English>
+		<French>Envoyez l'armée tuer les rebelles.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_DESPOTISM_2_RESULT</Tag>
    		<English>Your soldiers inflicted heavy casualties among the rebels and the population.</English>
+		<French>Vos soldats ont infligé des pertes lourdes aux rebelles et à la population.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_TRIGGER_BARBARISM</Tag>
    		<English>The strong take from the weak. Thats how you rule, and thats how your warriors think. One of your soldiers claims the farm by the rule of force.</English>
+		<French>Les forts prennent aux faibles. C'est ainsi que vous gouvernez et c'est ainsi que vos guerriers pensent. Un de vos soldats s'approprie la ferme par la force.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_BARBARISM_1</Tag>
    		<English>Let them plunder, what can we do?</English>
+		<French>Laissez les piller, que pouvons-nous y faire ?</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_BARBARISM_1_RESULT_1</Tag>
    		<English>The fighting led to heavy casualties.</English>
+		<French>Le combat a causé de lourdes pertes.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_BARBARISM_2</Tag>
    		<English>Grant your soldier their own land.</English>
+		<French>Accordez à vos soldats leur propre terre.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_BARBARISM_3</Tag>
    		<English>Leave it to the courts.</English>
+		<French>Confiez cela aux tribunaux.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_BARBARISM_4</Tag>
    		<English>Enough with this insolence! Execute him!</English>
+		<French>Assez de cette insolence ! Exécutez-le !.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_NEWS_TRIBALISM</Tag>
    		<English>The %s1_civ_adjective tribe is suffering from an identity crisis.</English>
+		<French>Le clan %s1_civ_adjective souffre d'une crise identitaire.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_TRIGGER_TRIBALISM</Tag>
    		<English>The people of %s2_city don't really feel like they belong to your tribe anymore.</English>
+		<French>La population de %s2_city n'a plus le sentiment d'appartenir à votre clan.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_TRIBALISM_1</Tag>
    		<English>They are losing their cultural identity...</English>
+		<French>Ils perdent leur identité culturelle...</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_NEWS_TRIBALISM_SMALL</Tag>
    		<English>The %s1_civ_adjective are being led by a new, more competent leader.</English>
+		<French>Le clan %s1_civ_adjective a un nouveau chef, plus compétent.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_TRIGGER_TRIBALISM_SMALL</Tag>
    		<English>It is time for your tribe to choose a new leader.</English>
+		<French>C'est l'heure pour votre clan de choisir un nouveau chef.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_TRIBALISM_1_SMALL</Tag>
    		<English>Our best hunter shall lead us!</English>
+		<French>Notre meilleur chasseur devrait nous diriger !</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_TRIBALISM_2_SMALL</Tag>
    		<English>We trust our most experienced soldier!</English>
+		<French>Nous faisons confiance à notre soldat le plus expérimenté !</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_TRIBALISM_3_SMALL</Tag>
    		<English>The wisest man is the best choice.</English>
+		<French>L'homme le plus sage est le meilleur choix.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_NEWS_PANTHEON</Tag>
    		<English>The %s1_civ_adjective priests demand new sources of marble.</English>
+		<French>Le clergé %s1_civ_adjective demande de nouvelles sources de marbre.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_TRIGGER_PANTHEON</Tag>
    		<English>Our priests demand more marble for their temples and shrines.</English>
+		<French>Nos prêtres demandent davantage de marbre pour leurs temples et sanctuaires.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_PANTHEON_1</Tag>
    		<English>Forget it, we can't afford this nonsense.</English>
+		<French>Oubliez cela, nous ne pouvons nous permettre ces inepties.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_PANTHEON_2</Tag>
    		<English>Send a few explorers to make them happy.</English>
+		<French>Envoyez quelques explorateurs pour leur faire plaisir.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_PANTHEON_3</Tag>
    		<English>Fund a large-scale expedition to search for marble. Look under every rock!</English>
+		<French>Financez une expédition à grande échelle pour rechercher du marbre. Retournez chaque pierre !</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_PANTHEON_SUCCESS</Tag>
    		<English>We have found a new source of marble!</English>
+		<French>Nous avons trouvé une nouvelle source de marbre !</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_NEWS_MISSIONARY</Tag>
@@ -181,17 +224,21 @@
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_TRIGGER_MISSIONARY</Tag>
    		<English>Our missionary sparked faith while preaching at the local community.</English>
+		<French>Notre missionaire a suscité la foi en prêchant la communauté locale.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_MISSIONARY_1</Tag>
    		<English>They are working hard for their church - and our treasury.</English>
+		<French>Ils travaillent dur pour leur église - et notre trésorerie.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_WARSHIPS_HELP_1</Tag>
-		<English>[PARAGRAPH:1]To complete this quest, you must train %d1 [COLOR_UNIT_TEXT]Trireme[COLOR_REVERT] [NUM1:unit:units].[PARAGRAPH:1]An additional reward option will be available if your civilization has built [COLOR_BUILDING_TEXT]%s2_building[COLOR_REVERT].[PARAGRAPH:1]You will fail this quest if a rival civilization completes it first, or if research Guilds without having met the conditions.</English>
+		<English>[PARAGRAPH:1]To complete this quest, you must train %d1 [COLOR_UNIT_TEXT]Trireme[COLOR_REVERT] [NUM1:unit:units].[PARAGRAPH:1]An additional reward option will be available if your civilization has built [COLOR_BUILDING_TEXT]%s2_building[COLOR_REVERT].[PARAGRAPH:1]You will fail this quest if a rival civilization completes it first, or if you research Guilds without having met the conditions.</English>
+		<French>[PARAGRAPH:1]Pour réussir cette quête, vous devez entraîner %d1 [NUM1:unité:unités] de [COLOR_UNIT_TEXT]Trireme[COLOR_REVERT].[PARAGRAPH:1]Une récompense supplémentaire sera disponible si votre civilisation a construit [COLOR_BUILDING_TEXT]%s2_building[COLOR_REVERT].[PARAGRAPH:1]Vous échouerez à cette quette si une autre civilisation la réussit d'abord ou si vous découvrez les Guildes avant de remplir les conditions.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_OVERWHELM_HELP_1</Tag>
 		<English>[PARAGRAPH:1]To complete this quest, you must build %d1 [COLOR_UNIT_TEXT]%s2_unit[COLOR_REVERT], %d3 [COLOR_UNIT_TEXT]%s4_unit[COLOR_REVERT], %d5 [COLOR_UNIT_TEXT]%s6_unit[COLOR_REVERT], and %d7 [COLOR_UNIT_TEXT]%s8_unit[COLOR_REVERT] units. A source of [COLOR_HIGHLIGHT_TEXT]Oil[COLOR_REVERT] will be required to fuel the planes.[PARAGRAPH:1]You will fail this quest if a rival civilization completes it first.</English>
+		<French>[PARAGRAPH:1]Pour réussir cette quête, vous devez entraîner %d1 [COLOR_UNIT_TEXT]%s2_unit[COLOR_REVERT], %d3 [COLOR_UNIT_TEXT]%s4_unit[COLOR_REVERT], %d5 [COLOR_UNIT_TEXT]%s6_unit[COLOR_REVERT] et %d7 [COLOR_UNIT_TEXT]%s8_unit[COLOR_REVERT]. Une source de [COLOR_HIGHLIGHT_TEXT]Oil[COLOR_REVERT] sera nécessaire pour faire le plein des avions.[PARAGRAPH:1]Vous échouerez à cette quette si une autre civilisation la réussit d'abord.</French>
 	</TEXT>
 </Civ4GameText>
