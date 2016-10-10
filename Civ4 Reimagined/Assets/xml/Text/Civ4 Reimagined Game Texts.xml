@@ -9,66 +9,81 @@
 	<TEXT>
 		<Tag>TXT_KEY_MISC_YOU_AIRBOMBSUCCESS</Tag>
 		<English>You have destroyed a [COLOR_BUILDING_TEXT]%s1_BldgName[COLOR_GREEN] in %s2_CityName.</English>
+		<French>Vous avez détruit [NUM1:un:une] [COLOR_BUILDING_TEXT]%s1_BldgName[COLOR_GREEN] à %s2_CityName.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_ENEMY_AIRBOMBSUCCESS</Tag>
 		<English>The enemy has destroyed a [COLOR_BUILDING_TEXT]%s1_BldgName[COLOR_RED] in %s2_CityName.</English>
+		<French>L'ennemi a détruit [NUM1:un:une] [COLOR_BUILDING_TEXT]%s1_BldgName[COLOR_GREEN] à %s2_CityName.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_YOU_AIRBOMBFAIL</Tag>
 		<English>You have failed to destroy a production building in %s1_CityName.</English>
+		<French>Vous n'avez pas réussi à détruire un bâtiment à %s1_CityName.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_ENEMY_AIRBOMBFAIL</Tag>
 		<English>The enemy has failed to destroy a building in %s1_CityName.</English>
+		<French>L'ennemi n'a pas réussi à détruire un bâtiment à %s1_CityName.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_NEW_NUCLEAR_POWER</Tag>
 		<English>%s1_PlyrName has conducted a succesful Nuclear weapons test!</English>
+		<French>%s1_PlyrName a réussi un essai d'arme nucléaire !</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_NUCLEAR_RESEARCH_CENTER</Tag>
 		<English>Nuclear Research Center</English>
+		<French>Centre de recherche nucléaire</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_MISSILE_SILO</Tag>
 		<English>Missile Silo</English>
+		<French>Silo de missiles</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_PROMOTION_NO_UPGRADE</Tag>
 		<English>[ICON_BULLET]Cannot Be Upgraded</English>
 		<German>[ICON_BULLET]Kann nicht aufgerüstet werden</German>
+		<French>[ICON_BULLET]Ne peut pas être amélioré</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_PROMOTION_EXTRA_UPKEEP_TEXT</Tag>
 		<English>[ICON_BULLET]Costs %d1 [ICON_GOLD] Additional Upkeep</English>
 		<German>[ICON_BULLET]Kostet %d1 [ICON_GOLD] zusätzlichen Unterhalt</German>
+		<French>[ICON_BULLET]Coûte %d1 [ICON_GOLD] d'entretien supplémentaire</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_PROMOTION_MERCENARY</Tag>
 		<English>Mercenary</English>
+		<French>Mercenaire</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_ALCHEMY</Tag>
 		<English>Alchemy</English>
+		<French>Alchimie</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_RANGED_ATTACK</Tag>
 		<English>[ICON_BULLET]Attack Bonus vs Units with smaller Range</English>
 		<German>[ICON_BULLET]Attack Bonus vs Units with smaller Range</German>
+		<French>[ICON_BULLET]Bonus d'attaque contre unités avec une portée inférieure</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_BOMB_RATE</Tag>
 		<English>[ICON_BULLET]Can Destroy Tile Improvements and Bombard Cities (Bombard Strength: %d1_Mod)</English>
 		<German>[ICON_BULLET]Kann Gel&#228;ndefeld-Modernisierungen zerst&#246;ren und St&#228;dte bombardieren (St&#228;rke: %d1_Mod)</German>
+		<French>[ICON_BULLET]Peut détruire des aménagements et bombarder des villes (puissance de bombardement : %d1_Mod)</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TRADE_ROUTE_MOD_DOMESTIC</Tag>
 		<English>%D1%%: for domestic Trade</English>
+		<French>%D1%%: pour le commerce intérieur</French>
 	</TEXT>
 	<TEXT>
 		<Tag>CHANGED_TXT_KEY_CORPORATION_2</Tag>
 		<English>East India Company</English>
+		<French>Compagnie des Indes Orientales</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_CENTRAL_INTELLIGENCE_AGENCY</Tag>
@@ -77,142 +92,175 @@
 	<TEXT>
 		<Tag>TXT_KEY_MISC_HELP_EXTRA_YIELD</Tag>
 		<English>[ICON_BULLET]%D1%F2 from Civics</English>
+		<French>[ICON_BULLET]%D1%F2 grâce aux doctrines</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_SPECIALIST_YIELD_CHANGE</Tag>
 		<English>[ICON_BULLET]%D1_Change%F2_Icon from[SPACE]</English>
+		<French>[ICON_BULLET]%D1_Change%F2_Icon grâce à[SPACE]</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_VOTE_NO_NUKES</Tag>
 		<English>U.N. Resolution #1284 (Nuclear Non-Proliferation Treaty - Cannot Build Nuclear Research Centers)</English>
+		<French>Résolution #1284 des Nations Unies (Traité de non-prolifération nucléaire - Construction de centres de recherche nucléaire impossible)</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_COLLATERAL_DAMAGE</Tag>
 		<English>[ICON_BULLET]Causes Collateral Damage (%d1 units)</English>
+		<French>[ICON_BULLET]Provoque des dommages collatéraux (%d1 unités)</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GOODY_UPGRADE</Tag>
 		<English>The villagers equip your warrior with advanced weaponry!</English>
+		<French>Les villageois équipent votre guerrier avec un armement avancé !</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GOODY_PRODUCTION</Tag>
 		<English>The villagers give you some of their resources.</English>
+		<French>Les villageois vous donnent une partie de leurs ressources.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_RECEIVED_PRODUCTION</Tag>
 		<English>[SPACE]You receive %d1 production in %s2.</English>
+		<French>[SPACE]Vous recevez %d1 production à %s2.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GOODY_FOOD</Tag>
 		<English>The villagers hold a feast for the visitors!</English>
+		<French>Les villageois organisent un festin en l'honneur des visiteurs !</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_RECEIVED_FOOD</Tag>
 		<English>[SPACE]You receive %d1 food in %s2.</English>
+		<French>[SPACE]Vous recevez %d1 nourriture à %s2.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GOODY_CULTURE</Tag>
 		<English>The villagers tell you about their legends and myths.</English>
+		<French>Les villageois vous racontent leurs légendes et mythes.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_RECEIVED_CULTURE</Tag>
 		<English>[SPACE]You receive %d1 culture in %s2.</English>
+		<French>[SPACE]Vous recevez %d1 culture à %s2.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GOODY_GREAT_PERSON_POINTS</Tag>
 		<English>An extraordinary thinker from this village agrees to settle in your lands and teach your citizen.</English>
+		<French>Un extraordinaire penseur de ce village accepte de s'installer sur vos terres et d'enseigner à vos citoyens.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_RECEIVED_GREAT_PERSON_POINTS</Tag>
 		<English>[SPACE]Your great person points in %s2 increases by %d1.</English>
+		<French>[SPACE]Vous recevez %d1 points de personnages illustres à %s2.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GOODY_GREAT_GENERAL_POINTS</Tag>
 		<English>The war songs and rituals of the villagers impress many of your men.</English>
+		<French>Les chants et rituels guerriers des villageois impressionnent nombre de vos hommes.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_RECEIVED_GREAT_GENERAL_POINTS</Tag>
 		<English>[SPACE]You receive %d1 points towards a great general.</English>
+		<French>[SPACE]Vous recevez %d1 points de général illustre.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_GOODY_SPECIAL_PROMOTION</Tag>
 		<English>The villagers teach your unit special techniques</English>
+		<French>Les villageois enseignent à votre unité des techniques spéciales</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_RECEIVED_PROMOTION_TACTICS</Tag>
 		<English>, effective for ambushing enemies.</English>
+		<French>, efficaces pour tendre des ambuscades aux ennemis.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_RECEIVED_PROMOTION_COMMANDO</Tag>
 		<English>[SPACE]and the power of using enemy infrastructure.</English>
+		<French>[SPACE]et la capacité d'utiliser les infrastructures ennemies.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_RECEIVED_PROMOTION_LEADERSHIP</Tag>
 		<English>, making it proficient in the art of leadership.</English>
+		<French>, faisant d'elle un chef compétent.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_RECEIVED_PROMOTION_MORALE</Tag>
 		<English>[SPACE]and how to muster all its strength to march a longer distance.</English>
+		<French>[SPACE]et l'art de rassembler ses forces pour marcher de plus longues distances.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_RECEIVED_PROMOTION_NONE</Tag>
 		<English>. Your unit already knows all of their special techniques, but it gains some useful experience nontheless.</English>
+		<French>. Votre unité connaît déjà toutes ces techniques, mais gagne néanmoins un peu d'expérience utile.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_HELP_PROD_MOD_NUM_BONUS_UNIT</Tag>
 		<English>[ICON_BULLET]Only uses %d1%%[ICON_PRODUCTION] because of insufficient resources for this unit (halved resource ratio penalty for strategic resources)</English>
+		<French>[ICON_BULLET]Utilise uniquement %d1%%[ICON_PRODUCTION] en raison de ressources insuffisantes pour cette unité (pénalité de taux de ressource divisé par deux pour les ressources stratégiques)</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_HELP_PROD_MOD_NUM_BONUS_BUILDING</Tag>
 		<English>[ICON_BULLET]Only uses %d1%%[ICON_PRODUCTION] because of insufficient resources for this building (halved resource ratio penalty for strategic resources)</English>
+		<French>[ICON_BULLET]Utilise uniquement %d1%%[ICON_PRODUCTION] en raison de ressources insuffisantes pour ce bâtiment (pénalité de taux de ressource divisé par deux pour les ressources stratégiques)</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_HELP_PROD_MOD_NO_BONUS_UNIT</Tag>
 		<English>[ICON_BULLET]Only uses minimal [ICON_PRODUCTION] because of insufficient resources for this unit</English>
+		<French>[ICON_BULLET]Utilise uniquement une quantité minimale de [ICON_PRODUCTION] en raison de ressources insuffisantes pour cette unité</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_HELP_PROD_MOD_NO_BONUS_BUILDING</Tag>
 		<English>[ICON_BULLET]Only uses minimal [ICON_PRODUCTION] because of insufficient resources for this building</English>
+		<French>[ICON_BULLET]Utilise uniquement une quantité minimale de [ICON_PRODUCTION] en raison de ressources insuffisantes pour ce bâtiment</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_CLASSICAL_TEMPLE</Tag>
 		<English>Classical Temple</English>
+		<French>Temple classique</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_PROMOTION_CITY_ATTACK_TEXT</Tag>
 		<English>[ICON_BULLET]Ignores %d1%% City Defense</English>
+		<French>[ICON_BULLET]Ignore %d1%% de défense de la ville</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_PROMOTION_CITY_ATTACK_MALUS_TEXT</Tag>
 		<English>[ICON_BULLET]%d1%% City Attack</English>
+		<French>[ICON_BULLET]%d1%% d'attaque de ville</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_SAN_MARCO</Tag>
 		<English>San Marco Basilica</English>
+		<French>Basilique Saint-Marc</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_BRANDENBURG_GATE</Tag>
 		<English>Brandenburg Gate</English>
+		<French>Porte de Brandebourg</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_KGB</Tag>
 		<English>Lubyanka</English>
 		<German>Lubyanka</German>
+		<French>Loubianka</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_REQUIRES_PERCENT_SPECIAL_BUILDINGS_NO_CITY</Tag>
 		<English>[COLOR_WARNING_TEXT]Requires %s1_Name in %d2%% of all cities[COLOR_REVERT]</English>
+		<French>[COLOR_WARNING_TEXT]Nécessite %s1_Name dans %d2%% de vos villes[COLOR_REVERT]</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_HEAVY_FOOTMAN</Tag>
 		<English>Heavy Footman</English>
+		<French>Fantassin lourd</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_ISHTAR_GATE</Tag> <!-- translation needed! -->
 		<English>Ishtar Gate</English>
 		<French>
-			<Text>Ishtar Gate</Text>
-			<Gender>Male</Gender>
+			<Text>Porte d'Ishtar</Text>
+			<Gender>Female</Gender>
 			<Plural>0</Plural>
 		</French>
 		<German>
@@ -235,23 +283,26 @@
 		<Tag>TXT_KEY_BUILDING_GRAND_CANAL</Tag>
 		<English>The Grand Canal</English>
 		<German>Kaiserkanal</German>
+		<French>Grand Canal</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_FLOATING_GARDENS</Tag>
 		<English>Floating Gardens</English>
 		<German>Schwimmende Gärten</German>
+		<French>Jardins Suspendus</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_RED_FORT</Tag>
 		<English>The Red Fort</English>
 		<German>Das Rote Fort</German>
+		<French>Fort Rouge</French>	
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_ST_BASIL_CATHEDRAL</Tag> <!-- translation needed! -->
 		<English>St. Basil's Cathedral</English>
 		<French>
-			<Text>St. Basil's Cathedral</Text>
-			<Gender>Male</Gender>
+			<Text>Cathédrale Saint-Basile</Text>
+			<Gender>Female</Gender>
 			<Plural>0</Plural>
 		</French>
 		<German>
@@ -274,21 +325,24 @@
 		<Tag>TXT_KEY_BUILDING_HARMANDIR_SAHIB</Tag>
 		<English>Harmandir Sahib</English>
 		<German>Harmandir Sahib</German>
+		<French>Harmandir Sahib</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_STATE_RELIGION_FREE_XP</Tag>
 		<English>[ICON_BULLET]All units built in cities with state religion receive +2 experience</English>
 		<German>[ICON_BULLET]Alle Einheiten, die in Städten mit Staatsreligion ausgebildet werden, erhalten +2 Erfahrung</German>
+		<French>[ICON_BULLET]Toutes les unités entraînées dans des villes avec la religion d'Etat reçoivent +2 expérience</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_DEFENSE_WAR_WEAR</Tag>
 		<English>[ICON_BULLET]Additional %D1_percent%% Defense War Weariness</English>
+		<French>[ICON_BULLET]%D1_percent%% supplémentaires de mécontentement de guerre défensive</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_WESTMINSTER</Tag> <!-- translation needed! -->
 		<English>Westminster Palace</English>
 		<French>
-			<Text>Westminster Palace</Text>
+			<Text>Palais de Westminster</Text>
 			<Gender>Male</Gender>
 			<Plural>0</Plural>
 		</French>
@@ -335,74 +389,92 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_NO_CONQUEST_RESISTANCE</Tag>
 		<English>[ICON_BULLET]No City Resistance on Conquest</English>
+		<French>[ICON_BULLET]Aucune résistance des villes conquises</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_FIRST_FREE_TECH</Tag>
 		<English>[ICON_BULLET]First to Discover Receives a [COLOR_TECH_TEXT]Free Technology[COLOR_REVERT] of current era</English>
+		<French>[ICON_BULLET]Le premier à la découvrir reçoit une [COLOR_TECH_TEXT]technologie gratuite[COLOR_REVERT] de l'ère en cours</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_FIRST_FREE_TECHS</Tag>
 		<English>[ICON_BULLET]First to Discover Receives [COLOR_TECH_TEXT]%d1_Num Free Technologies[COLOR_REVERT] of current era</English>
+		<French>[ICON_BULLET]Le premier à la découvrir reçoit [COLOR_TECH_TEXT]%d1_Num technologies gratuites[COLOR_REVERT] de l'ère en cours</French>
 	</TEXT>
 	<TEXT>
 		<Tag>USER_DIPLO_REVOLUTION_1</Tag>
 		<English>But of course... we now see the error of our ways. (Change Civic without anarchy)</English>
+		<French>Mais bien sûr... nous comprenons maintenant notre erreur. (changer de doctrine sans anarchie)</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_REQUIRES_HILL</Tag>
 		<English>[COLOR_WARNING_TEXT]Can only be Constructed on Hills[COLOR_REVERT]</English>
+		<French>[COLOR_WARNING_TEXT]Ne peut être construit que sur une colline[COLOR_REVERT]</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_REQUIRES_FLATLANDS</Tag>
 		<English>[COLOR_WARNING_TEXT]Cannot be Constructed on Hills[COLOR_REVERT]</English>
+		<French>[COLOR_WARNING_TEXT]Ne peut pas être construit sur une colline[COLOR_REVERT]</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_REQUIRES_IN_FATCROSS</Tag>
 		<English>[COLOR_WARNING_TEXT]Requires %s1_Text in City Proximity (Fat Cross)[COLOR_REVERT]</English>
+		<French>[COLOR_WARNING_TEXT]Nécessite %s1_Text à proximité de la ville (grande croix)[COLOR_REVERT]</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_REQUIRES_PEAK_IN_FATCROSS</Tag>
 		<English>[COLOR_WARNING_TEXT]Requires Peak in City Proximity (Fat Cross)[COLOR_REVERT]</English>
+		<French>[COLOR_WARNING_TEXT]Nécessite une montagne à proximité de la ville (grande croix)[COLOR_REVERT]</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_ATTITUDE_CIVICS_GOOD</Tag>
 		<English>%D1: "You have wisely chosen your Civics."</English>
+		<French>%D1: "Vous avez choisi vos doctrines avec sagesse."</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_ATTITUDE_CIVICS_BAD</Tag>
 		<English>%D1: "You should really consider changing your Civics."</English>
+		<French>%D1: "Vous devriez vraiment envisager de changer vos doctrines."</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_ATTITUDE_FAVORITE_CIVIC</Tag>
 		<English>%D1: "We are glad that you have chosen our favorite Civic."</English>
+		<French>%D1: "Nous sommes heureux que vous ayez choisi notre doctrine favorite."</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_WORLD_TOTESTRA</Tag>
 		<English>Totestra (Recommended)</English>
+		<French>Totestra (recommandé)</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_STADIUM</Tag>
 		<English>Stadium</English>
+		<French>Stade</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_TERRACOTTA_ARMY</Tag>
 		<English>Terracotta Army</English>
+		<French>Armée de Terre Cuite</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_HIMEJI_CASTLE</Tag>
 		<English>Himeji Castle</English>
+		<French>Château de Himeji</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_LOOTING_MOD</Tag>
 		<English>[ICON_BULLET]%D1_Mod%% looted [ICON_GOLD] from Espionage Missions and Pillaged Tiles</English>
+		<French>[ICON_BULLET]%D1_Mod%% [ICON_GOLD] reçu lors de missions d'espionnage ou de pillages</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_TRAFALGAR_SQUARE</Tag>
 		<English>Trafalgar Square</English>
+		<French>Trafalgar Square</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_GUTENBERG_PRESS</Tag>
 		<English>Gutenberg Press</English>
+		<French>Imprimerie de Gutenberg</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_NO_NON_STATE_RELIGION_SPREAD</Tag>
