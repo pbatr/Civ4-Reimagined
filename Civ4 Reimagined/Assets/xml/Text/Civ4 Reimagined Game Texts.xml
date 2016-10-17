@@ -479,29 +479,35 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_NO_NON_STATE_RELIGION_SPREAD</Tag>
 		<English>[ICON_BULLET]No non-state religion spread</English>
+		<French>[ICON_BULLET]Aucune propagation de religion non officielle</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_UNLIMITED_BARB_XP</Tag>
 		<English>[ICON_BULLET]Unlimited Experience from Barbarian Units</English>
 		<German>[ICON_BULLET]Unbegrenzte Erfahrung von barbarischen Einheiten</German>
+		<French>[ICON_BULLET]Expérience illimitée sur les unités barbares</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_BARB_GREAT_GENERAL</Tag>
 		<English>[ICON_BULLET]Victories Against Barbarians Contribute to Great General Birth</English>
 		<German>[ICON_BULLET]Siege gegen Barbaren tragen zur Geburt großer Generäle bei</German>
+		<French>[ICON_BULLET]Les victoires contre les barbares contribuent à la naissance de généraux illustres</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_REQUIRES_NAVAL_UNIT_LEVEL</Tag>
 		<English>[COLOR_WARNING_TEXT]Requires a Naval Unit of Level %d1_Num Experience[COLOR_REVERT]</English>
 		<German>[COLOR_WARNING_TEXT]Erfordert eine Seeeinheit mit Erfahrungsstufe %d1_Num[COLOR_REVERT]</German>
+		<French>[COLOR_WARNING_TEXT]Nécessite une unité navale de niveau %d1_Num Experience[COLOR_REVERT]</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_FREE_TECH</Tag>
 		<English>[ICON_BULLET]1 Free Technology of Current Era</English>
+		<French>[ICON_BULLET]1 Technologie de l'ère actuelle gratuite</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TRADE_ROUTE_MOD_COLONY</Tag>
 		<English>%D1%%: for Colony Trade</English>
+		<French>%D1%%: pour le commerce vers les colonies</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BONUS_BISON</Tag>
@@ -526,15 +532,18 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_GREAT_TERRACE</Tag>
 		<English>Great Terrace</English>
+		<French>Grande terrasse</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_IGNORE_BUILDING_DEFENSE</Tag>
 		<English>[ICON_BULLET]Ignores Building Defense</English>
+		<French>[ICON_BULLET]Ignore la défense du bâtiment</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_REQUIRES_UNIT_LEVEL</Tag>
 		<English>[COLOR_WARNING_TEXT]Requires a Military Unit of Level %d1_Num Experience[COLOR_REVERT]</English>
 		<German>[COLOR_WARNING_TEXT]Erfordert eine Militäreinheit mit Erfahrungsstufe %d1_Num[COLOR_REVERT]</German>
+		<French>[COLOR_WARNING_TEXT]Nécessite une unité militaire de niveau %d1_Num Experience[COLOR_REVERT]</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_NUKE_LAUNCHED</Tag>
@@ -547,6 +556,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_TRAIT_PROGRESSIVE</Tag>
 		<English>Progressive</English>
+		<French>Progressiste</French>
 		<German>
 			<Text>Fortschrittlich:fortschrittliches</Text>
 			<Gender>Male:Neuter</Gender>
@@ -556,36 +566,44 @@
 	<TEXT>
 		<Tag>TXT_KEY_TRAIT_PROGRESSIVE_SHORT</Tag>
 		<English>Prg</English>
+		<French>Prg</French>
 		<German>For</German>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TRAIT_FREE_COMMERCE</Tag>
 		<English>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%F2_commerce in Each Newly Founded City</English>
+		<French>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%F2_commerce dans chaque nouvelle ville fondée</French>
 		<German>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%F2_commerce in jeder neu gegr&#252;ndeten Stadt</German>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_HELP_PRODUCTION_CIVICS</Tag>
 		<English>[ICON_BULLET]%D1%[ICON_PRODUCTION] from Civics</English>
+		<French>[ICON_BULLET]%D1%[ICON_PRODUCTION] grâce aux doctrines</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_HELP_PROD_RIVER</Tag>
 		<English>(incl. %D1[ICON_PRODUCTION] from River)</English>
+		<French>(incl. %D1[ICON_PRODUCTION] grâce aux rivières)</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TRAIT_PREREQ_TECH</Tag>
 		<English>[SPACE]after Research of [LINK=literal]%s1_TechName[\LINK]</English>
+		<French>[SPACE]après la découverte de [LINK=literal]%s1_TechName[\LINK]</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_MUSIC</Tag>
 		<English>Music</English>
+		<French>Musique</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TRAIT_DISTANCE_MAINTENANCE_MODIFIER</Tag>
 		<English>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% Maintenance Costs from Distance to Palace</English>
+		<French>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% aux coûts de maintenance liés à la distance du palais</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TRAIT_BONUS_VALUE_MODIFIER</Tag>
 		<English>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%% Increased Ratios for Resources (reduces Health, Happiness and Production Penalties from Insufficient Resources)</English>
+		<French>[NEWLINE][SPACE][SPACE][ICON_BULLET]Taux de ressouces augmentés de %D1%% (réduit les pénalités de santé, bonheur et production pour ressources insuffisantes)</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TRADE_ROUTE_TOTAL</Tag>
@@ -598,82 +616,102 @@
 	<TEXT>
 		<Tag>TXT_KEY_TRADE_ROUTE_MOD_COASTAL</Tag>
 		<English>%D1%%: for Sea Trade</English>
+		<French>%D1%%: pour le commerce maritime</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_EGYPTIAN_OBELISK</Tag>
 		<English>Obelisk</English>
+		<French>Obélisque</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_SEA_PLOT_YIELD</Tag>
 		<English>[ICON_BULLET]%D1%F2 for Water Tiles</English>
+		<French>[ICON_BULLET]%D1%F2 sur les cases d'eau</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_INCAN_QUECHUA</Tag>
 		<English>Awqaq Runa</English>
+		<French>Awqaq Runa</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_HELP_RESEARCH_PER_CULTURE_COMMERCE</Tag>
 		<English>[ICON_BULLET]+%s1[ICON_RESEARCH] from Culture</English>
+		<French>[ICON_BULLET]+%s1[ICON_RESEARCH] grâce à la culture</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_NO_SAME_FAITH_UNHAPPINESS</Tag>
 		<English>[ICON_BULLET]No Additional War Weariness Against Civilizations of the Same Faith</English>
+		<French>[ICON_BULLET]Aucun mécontentement de guerre supplémentaire contre les civilisations de la même foi</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_RELIGION_BOOST</Tag>
 		<English>[ICON_BULLET]One-time Religion Spread Boost</English>
+		<French>[ICON_BULLET]Accélérateur de propagation religieuse à usage unique</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_HAPPY_TERRAIN</Tag>
 		<English>+%d1_Change[ICON_HAPPY]: "The landscape makes us happy!"</English>
+		<French>+%d1_Change[ICON_HAPPY]: "Le paysage nous rend heureux !"</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_ANY_STATE_RELIGION_HAPPINESS</Tag>
 		<English>[ICON_BULLET]%D1_Change%F2_HappyOrUn with any State [ICON_RELIGION]</English>
+		<French>[ICON_BULLET]%D1_Change%F2_HappyOrUn avec n'importe quelle [ICON_RELIGION] d'Etat</French>
 	</TEXT>	
 	<TEXT>
 		<Tag>TXT_KEY_MISC_ATTITUDE_WAR_SUCCESS</Tag>
 		<English>%D1: "We are upset that you are slaughtering our men."</English>
+		<French>%D1: "Nous sommes contrariés que vous massacriez nos hommes."</French>
 	</TEXT>	
 	<TEXT>
 		<Tag>TXT_KEY_MISC_ATTITUDE_CATCHING_UP_TOGETHER</Tag>
 		<English>%D1: "We must stick together if we want to prevail."</English>
+		<French>%D1: "Nous devons nous serrer les coudes pour triompher."</French>
 	</TEXT>	
 	<TEXT>
 		<Tag>TXT_KEY_MISC_ATTITUDE_LIKE_BIGGER</Tag>
 		<English>%D1: "We strive to be like your great civilization."</English>
+		<French>%D1: "Nous nous efforçons de ressembler à votre grande civilisation."</French>
 	</TEXT>	
 	<TEXT>
 		<Tag>TXT_KEY_MISC_ATTITUDE_DISLIKE_BIGGER</Tag>
 		<English>%D1: "We envy your powerful civilization."</English>
+		<French>%D1: "Nous envions votre puissante civilisation."</French>
 	</TEXT>	
 	<TEXT>
 		<Tag>TXT_KEY_MISC_ATTITUDE_LIKE_SMALLER</Tag>
 		<English>%D1: "We admire your small civilization."</English>
+		<French>%D1: "Nous admirons votre petite civilisation."</French>
 	</TEXT>	
 	<TEXT>
 		<Tag>TXT_KEY_MISC_ATTITUDE_DISLIKE_SMALLER</Tag>
 		<English>%D1: "Your civilization is pathetic compared to ours!"</English>
+		<French>%D1: "Votre civilisation est pathétique, comparée à la nôtre !"</French>
 	</TEXT>	
 	<TEXT>
 		<Tag>TXT_KEY_MEMORY_BACKSTABBED_ALLY</Tag>
 		<English>"You betrayed your own friend!"</English>
+		<French>"Vous avez trahi nos amis !"</French>
 	</TEXT>	
 	<TEXT>
 		<Tag>TXT_KEY_MISC_ATTITUDE_BASE_GOOD</Tag>
 		<English>%D1: "We are friendly towards other civilizations."</English>
+		<French>%D1: "Nous sommes amicaux envers les autres civilisations."</French>
 	</TEXT>	
 	<TEXT>
 		<Tag>TXT_KEY_MISC_ATTITUDE_BASE_BAD</Tag>
 		<English>%D1: "We are cautious towards other civilizations."</English>
+		<French>%D1: "Nous sommes prudents face aux autres civilisations."</French>
 	</TEXT>	
 	<TEXT>
 		<Tag>TXT_KEY_CAPITAL_TRADE_ROUTE_MODIFIER</Tag>
 		<English>%D1%%: for Capital</English>
+		<French>%D1%%: pour la capitale</French>
 	</TEXT>	
 	<TEXT>
 		<Tag>TXT_KEY_MISC_HELP_YIELD_TECH</Tag>
 		<English>[ICON_BULLET]%D1%%%F2 from Technologies</English>
+		<French>[ICON_BULLET]%D1%%%F2 grâce aux technologies</French>
 		<German>[ICON_BULLET]%D1%%%F2 durch Technologien</German>
 	</TEXT>
 	<TEXT>
@@ -687,246 +725,307 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_APOSTOLIC_PALACE_HELP</Tag>
 		<English>[ICON_BULLET]All players produce +1[ICON_COMMERCE] with religion buildings of your religion.</English>
+		<French>[ICON_BULLET]Tous les joueurs produisent +1[ICON_COMMERCE] grace aux bâtiments de votre religion.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_PROMOTION_JAGUAR_WARRIOR</Tag>
 		<English>Jaguar Warrior</English>
+		<French>Guerrier Jaguar</French>
 	</TEXT>	
 	<TEXT>
 		<Tag>TXT_KEY_PROMOTION_EAGLE_WARRIOR</Tag>
 		<English>Eagle Warrior</English>
+		<French>Guerrier Aigle</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_RELIGIOUS_BUILDING_DESTROYED</Tag>
 		<English>Devotees of %F1_RelIcon in %s2_CityName burned down our %s3_BldgName!</English>
+		<French>Les fidèles de %F1_RelIcon à %s2_CityName ont réduit notre %s3_BldgName en cendres !</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_SLAVE</Tag>
 		<English>Slave</English>
+		<French>Esclave</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_BOMBARD_RATE</Tag>
 		<English>[ICON_BULLET]Can Bombard Cities (Bombard Strength: %d1_Mod)</English>
+		<French>[ICON_BULLET]Peut bombarder des villes (puissance de bombardement : %d1_Mod)</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_BOMBARD_RATE_SHORT</Tag>
 		<English>[ICON_BULLET]Bombard City: %d1_Mod</English>
+		<French>[ICON_BULLET]Bombardement de ville : %d1_Mod</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISSION_BOMBARD_HELP</Tag>
 		<English>Destroys buildings in nearest city.</English>
+		<French>Détruit des bâtiments dans la ville la plus proche.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TRAIT_VASSAL_COMMERCE_GAIN</Tag>
 		<English>[NEWLINE][SPACE][SPACE][ICON_BULLET]Receive %d1%% of vassal research, gold and espionage.</English>
+		<French>[NEWLINE][SPACE][SPACE][ICON_BULLET]Recevez %d1%% de la recherche, l'or et l'espionnage du vassal.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_WARGALLEY</Tag>
 		<English>War Galley</English>
+		<French>Galère de guerre</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_VIKING_LONGSHIP</Tag>
 		<English>Longship</English>
+		<French>Drakkar</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_ESPIONAGE_CORPORATION_MOD</Tag>
 		<English>%D1%%: for Corporation</English>
+		<French>%D1%%: pour la société commerciale</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_DEFENSE_MOD</Tag>
 		<English>[ICON_BULLET]%d1_Mod%% Defense</English>
+		<French>[ICON_BULLET]%d1_Mod%% Défense</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CORPORATION_1</Tag>
 		<English>Silk Road</English>
+		<French>Route de la Soie</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CORPORATION_2</Tag>
 		<English>East India Company</English>
+		<French>Compagnie des Indes Orientales</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CORPORATION_3</Tag>
 		<English>Royal African Company</English>
+		<French>Compagnie royale d'Afrique</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CORPORATION_4</Tag>
 		<English>Luxury Industry</English>
+		<French>Industrie du luxe</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CORPORATION_5</Tag>
 		<English>Textile Industry</English>
+		<French>Industrie textile</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CORPORATION_6</Tag>
 		<English>Seafood Industry</English>
+		<French>Industrie de la pêche</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CORPORATION_7</Tag>
 		<English>Steel Industry</English>
+		<French>Industrie sidérurgique</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CORPORATION_8</Tag>
 		<English>Oil Industry</English>
+		<French>Industrie pétrolière</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CORPORATION_9</Tag>
 		<English>Fast Food Industry</English>
+		<French>Industrie du fast-food</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CORPORATION_10</Tag>
 		<English>Computer Industry</English>
+		<French>Industrie informatique</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CORPORATION_11</Tag>
 		<English>Arms Industry</English>
+		<French>Industrie de l'armement</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_EXECUTIVE_1</Tag>
 		<English>Silk Road Traveller</English>
+		<French>Voyageur de la Route de la Soie</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_EXECUTIVE_2</Tag>
 		<English>East India Company Ship</English>
+		<French>Navire de la Compagnie des Indes Orientales</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_EXECUTIVE_3</Tag>
 		<English>Royal African Company Ship</English>
+		<French>Navire de la Compagnie royale d'Afrique</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_EXECUTIVE_4</Tag>
 		<English>Luxury Industry Exec.</English>
+		<French>Cadre de l'industrie du luxe</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_EXECUTIVE_5</Tag>
 		<English>Textile Industry Exec.</English>
+		<French>Cadre de l'industrie textile</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_EXECUTIVE_6</Tag>
 		<English>Seafood Industry Exec.</English>
+		<French>Cadre de l'industrie de la pêche</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_EXECUTIVE_7</Tag>
 		<English>Steel Industry Exec.</English>
+		<French>Cadre de l'industrie sidérurgique</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_EXECUTIVE_8</Tag>
 		<English>Oil Industry Exec.</English>
+		<French>Cadre de l'industrie pétrolière</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_EXECUTIVE_9</Tag>
 		<English>Fast Food Industry Exec.</English>
+		<French>Cadre de l'industrie du fast-food</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_EXECUTIVE_10</Tag>
 		<English>Computer Industry Exec.</English>
+		<French>Cadre de l'industrie informatique</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_EXECUTIVE_11</Tag>
 		<English>Arms Industry Exec.</English>
+		<French>Cadre de l'industrie de l'armement</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_ABSOLUTISM</Tag>
 		<English>Absolutism</English>
+		<French>Absolutisme</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_HELP_PROD_SURPLUS_HAPPINESS</Tag>
 		<English>(incl. %D1[ICON_PRODUCTION] from Surplus [ICON_HAPPY])</English>
+		<French>(incl. %D1[ICON_PRODUCTION] grâce au [ICON_HAPPY] en surplus)</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_PLOT_NO_UPGRADE</Tag>
 		<English>[SPACE](Progress to %s1_ImpName halted)</English>
+		<French>[SPACE](Progrès vers %s1_ImpName interrompu)</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_CIVIC_OPTION_NO_ANARCHY</Tag>
 		<English>[ICON_BULLET]No Anarchy for Switching [COLOR_BUILDING_TEXT]%s1[COLOR_REVERT] Civics</English>
+		<French>[ICON_BULLET]Aucune anarchie au changement de doctrines de [COLOR_BUILDING_TEXT]%s1[COLOR_REVERT]</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_HAPPY_CIVIC</Tag>
 		<English>+%d1_Change[ICON_HAPPY]: "We love our ruler!"</English>
+		<French>+%d1_Change[ICON_HAPPY]: "Nous aimons notre dirigeant !"</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_OVERSEA_TRADE_ROUTE_MOD</Tag>
 		<English>[ICON_BULLET]%D1_Mod%% Oversea Trade Route Yield</English>
+		<French>[ICON_BULLET]%D1_Mod%% revenu des routes commerciales outre-mer</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_REQUIRES_POWER_OR</Tag>
 		<English>[COLOR_WARNING_TEXT][SPACE]or Power ([ICON_POWER])[COLOR_REVERT]</English>
+		<French>[COLOR_WARNING_TEXT][SPACE]ou de l'énergie ([ICON_POWER])[COLOR_REVERT]</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_REQUIRES_POWER_AND</Tag>
 		<English>[COLOR_WARNING_TEXT]Requires Power ([ICON_POWER])[COLOR_REVERT]</English>
+		<French>[COLOR_WARNING_TEXT]Nécessite de l'énergie ([ICON_POWER])[COLOR_REVERT]</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_DIMINISHED_RETURNS_WITH</Tag>
 		<English>[ICON_BULLET]Provides [ICON_GOLD] per City with %F1_RelIcon (diminished returns)</English>
+		<French>[ICON_BULLET]Fournit [ICON_GOLD] par ville avec %F1_RelIcon (rendements décroissants)</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_NO_UPKEEP</Tag>
 		<English>[ICON_BULLET]No Upkeep and Supply Cost</English>
+		<French>[ICON_BULLET]Aucun coût d'entretien ou de ravitaillement</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_HELP_GOLD_FOR_HAPPINESS_RESOURCE</Tag>
 		<English>[ICON_BULLET]+%s1[ICON_GOLD] from Resources</English>
+		<French>[ICON_BULLET]+%s1[ICON_GOLD] grâce aux ressources</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_SLAVES_LOST</Tag>
 		<English>After abolishing Slavery, all your Slaves are now free!</English>
+		<French>Suite à l'abolition de l'esclavage, tous vos esclaves sont maintenant libres !</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_SLAVE_STARTED_WORKING</Tag>
 		<English>A slave started working in %s1.</English>
+		<French>Un esclave a commencé à travailler à %s1.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_CANNOT_ENTER</Tag>
 		<English>[ICON_BULLET]Cannot Enter</English>
+		<French>[ICON_BULLET]Ne peut pas entrer</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_CANNOT_ENTER_WITHOUT_ROAD</Tag>
 		<English>[ICON_BULLET]Requires Road To Enter</English>
+		<French>[ICON_BULLET]Nécessite une route pour entrer</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_BONUS_UNIT_PRODUCTION_MOD</Tag>
 		<English>[ICON_BULLET]%D1_Mod%% Military Unit Production with [LINK=literal]%s2[\LINK]</English>
+		<French>[ICON_BULLET]%D1_Mod%% production d'unités militaires avec [LINK=literal]%s2[\LINK]</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_BONUS_BUILDING_PRODUCTION_MOD</Tag>
 		<English>[ICON_BULLET]%D1_Mod%% Building Production with [LINK=literal]%s2[\LINK]</English>
+		<French>[ICON_BULLET]%D1_Mod%% production de bâtiments avec [LINK=literal]%s2[\LINK]</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_MASON</Tag>
 		<English>Mason</English>
+		<French>Maçon</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_TANNERY</Tag>
 		<English>Tannery</English>
+		<French>Tannerie</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_BUILDING_MOD</Tag>
 		<English>[ICON_BULLET]%D1_Mod%% Building Production</English>
+		<French>[ICON_BULLET]%D1_Mod%% production de bâtiments</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_HELP_PROD_MOD_BUILDING</Tag>
 		<English>[ICON_BULLET]%D1%[ICON_PRODUCTION] from Buildings</English>
+		<French>[ICON_BULLET]%D1%[ICON_PRODUCTION] grâce aux bâtiments</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_GREAT_UNIVERSITY</Tag>
 		<English>Great University</English>
+		<French>Grande université</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_REQUIRES_RIVER</Tag>
 		<English>[COLOR_WARNING_TEXT]Requires nearby River[COLOR_REVERT]</English>
+		<French>[COLOR_WARNING_TEXT]Nécessite la proximité d'une rivière[COLOR_REVERT]</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_REQUIRES_COAST</Tag>
 		<English>[COLOR_WARNING_TEXT]Requires nearby Coast[COLOR_REVERT]</English>
+		<French>[COLOR_WARNING_TEXT]Nécessite la proximité de la côte[COLOR_REVERT]</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_YIELD_WITH_SOMETHING</Tag>
 		<English>[SPACE]with [LINK=literal]%s1[\LINK]</English>
+		<French>[SPACE]avec [LINK=literal]%s1[\LINK]</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_MISSILE_SUBMARINE</Tag>
 		<English>Missile Submarine</English>
+		<French>Missile sous-marin</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TRAIT_BUILDING_PRODUCTION_MODIFIER</Tag>
