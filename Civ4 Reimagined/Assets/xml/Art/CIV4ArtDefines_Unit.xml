@@ -10119,7 +10119,7 @@
 		<UnitArtInfo>
 			<Type>ART_DEF_UNIT_PHOENICIAN_MERCHANT</Type>
 			<Button>,Art/Interface/Buttons/Units/Galley.dds,Art/Interface/Buttons/Unit_Resource_Atlas.dds,3,9</Button>
-			<fScale>0.13</fScale>
+			<fScale>0.15</fScale>
 			<fInterfaceScale>0.6</fInterfaceScale>
 			<bActAsLand>0</bActAsLand>
 			<bActAsAir>0</bActAsAir>
@@ -45411,7 +45411,7 @@
 			<Button>Modules/Varietas Delectat/Art/Buttons/Units/Cruiser.dds</Button>
 			<!--<Button>Art/Interface/Buttons/UnitsNew/brooklyn.dds</Button>-->
 			<!--<Button>Modules/Varietas Delectat/Art/Units/[naval]/Avrora Protcruiser/Aurora_Button.dds</Button> -->
-			<fScale>0.5</fScale>
+			<fScale>0.47</fScale>
 			<fInterfaceScale>1.0</fInterfaceScale>
 			<bActAsLand>0</bActAsLand>
 			<bActAsAir>0</bActAsAir>
