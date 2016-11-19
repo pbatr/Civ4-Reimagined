@@ -31,6 +31,7 @@ If you are interested in improving Civ4 Reimagined by translating or otherwise, 
 -Deer and fur appearance increased on most map types
 -Switched rarity for gold and silver.
 -Building preview shows estimated commerce gain for bonus trade routes
+-Different unit art for a couple units: German horseman (looked too advanced for classic tech unit), Japanese axeman (using two swords prior to swordsmen was a bit unfair), Roman caravel and Arab/Babylon/Carthage/Celtic/Egypt/Ethiopian/Malinese/Persian/Sumer frigate (suffering from looking to old/frail and unable to go over the ocean - the model was pretty, but it was hard to tell whether it was a ship of war or a fishing boat).
 -Fixed display for gold per happiness resource from Mercantilism.
 -Maximum number of specialists (i.e. "Max: 6") shows up again even when the number of specialists allowed was doubled
 -Fixed unit buttons for celtic and zulu tanks.

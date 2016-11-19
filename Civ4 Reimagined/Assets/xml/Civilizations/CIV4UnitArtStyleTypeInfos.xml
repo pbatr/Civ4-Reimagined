@@ -384,6 +384,7 @@
 					</UnitMeshGroup>
 				</StyleUnit>
 
+				<!--
 				<StyleUnit>
 					<UnitType>UNIT_FRIGATE</UnitType>
 					<UnitMeshGroup>
@@ -392,6 +393,7 @@
 						<MiddleArtDefineTag>ART_DEF_UNIT_XEBEC_FRIGATE</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
+				-->
 				
 				<StyleUnit>
 					<UnitType>UNIT_GALLEON</UnitType>
@@ -1404,6 +1406,7 @@
 					</UnitMeshGroup>
 				</StyleUnit>
 
+				<!--
 				<StyleUnit>
 					<UnitType>UNIT_FRIGATE</UnitType>
 					<UnitMeshGroup>
@@ -1412,6 +1415,7 @@
 						<MiddleArtDefineTag>ART_DEF_UNIT_XEBEC_FRIGATE</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
+				-->
 				
 				<StyleUnit>
 					<UnitType>UNIT_GALLEON</UnitType>
@@ -2285,6 +2289,7 @@
 					</UnitMeshGroup>
 				</StyleUnit>
 
+				<!--
 				<StyleUnit>
 					<UnitType>UNIT_FRIGATE</UnitType>
 					<UnitMeshGroup>
@@ -2293,6 +2298,7 @@
 						<MiddleArtDefineTag>ART_DEF_UNIT_XEBEC_FRIGATE</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
+				-->
 				
 				<StyleUnit>
 					<UnitType>UNIT_GALLEON</UnitType>
@@ -2412,7 +2418,7 @@
 					</UnitMeshGroup>
 				</StyleUnit>
 
-         <StyleUnit>
+				<StyleUnit>
 					<UnitType>UNIT_EXPLORER</UnitType>
 					<UnitMeshGroup>
 						<EarlyArtDefineTag>ART_DEF_UNIT_EXPLORER_EURO</EarlyArtDefineTag>
@@ -2659,6 +2665,7 @@
 					</UnitMeshGroup>
 				</StyleUnit>
 
+				<!--
 				<StyleUnit>
 					<UnitType>UNIT_FRIGATE</UnitType>
 					<UnitMeshGroup>
@@ -2667,6 +2674,7 @@
 						<MiddleArtDefineTag>ART_DEF_UNIT_XEBEC_FRIGATE</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
+				-->
 
 				<StyleUnit>
 					<UnitType>UNIT_BATTLESHIP</UnitType>
@@ -3603,6 +3611,7 @@
 					</UnitMeshGroup>
 				</StyleUnit>
 
+				<!--
 				<StyleUnit>
 					<UnitType>UNIT_FRIGATE</UnitType>
 					<UnitMeshGroup>
@@ -3611,6 +3620,7 @@
 						<MiddleArtDefineTag>ART_DEF_UNIT_XEBEC_FRIGATE</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
+				-->
 				
 				<StyleUnit>
 					<UnitType>UNIT_GALLEON</UnitType>
@@ -4785,6 +4795,7 @@
 					</UnitMeshGroup>
 				</StyleUnit>
 
+				<!--
 				<StyleUnit>
 					<UnitType>UNIT_FRIGATE</UnitType>
 					<UnitMeshGroup>
@@ -4793,6 +4804,7 @@
 						<MiddleArtDefineTag>ART_DEF_UNIT_XEBEC_FRIGATE</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
+				-->
 				
 				<StyleUnit>
 					<UnitType>UNIT_GALLEON</UnitType>
@@ -5532,9 +5544,9 @@
 				<StyleUnit>
 					<UnitType>UNIT_HORSE_ARCHER</UnitType>
 					<UnitMeshGroup>
-						<EarlyArtDefineTag>ART_DEF_UNIT_HORSEMAN_GERMAN</EarlyArtDefineTag>
-						<LateArtDefineTag>ART_DEF_UNIT_HORSEMAN_GERMAN</LateArtDefineTag>
-						<MiddleArtDefineTag>ART_DEF_UNIT_HORSEMAN_GERMAN</MiddleArtDefineTag>
+						<EarlyArtDefineTag>ART_DEF_UNIT_HORSEMAN_VIKING</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_HORSEMAN_VIKING</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_HORSEMAN_VIKING</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
 
@@ -7969,19 +7981,19 @@
 				<StyleUnit>
 					<UnitType>UNIT_AXEMAN</UnitType>
 					<UnitMeshGroup>
-						<EarlyArtDefineTag>ART_DEF_UNIT_AXEMAN_JAPANESE</EarlyArtDefineTag>
-						<LateArtDefineTag>ART_DEF_UNIT_AXEMAN_JAPANESE</LateArtDefineTag>
-						<MiddleArtDefineTag>ART_DEF_UNIT_AXEMAN_JAPANESE</MiddleArtDefineTag>
+						<EarlyArtDefineTag>ART_DEF_UNIT_AXEMAN_KOREAN</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_AXEMAN_KOREAN</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_AXEMAN_KOREAN</MiddleArtDefineTag>
 					</UnitMeshGroup>
 					<UnitMeshGroup>
-						<EarlyArtDefineTag>ART_DEF_UNIT_AXEMAN_JAPANESE</EarlyArtDefineTag>
-						<LateArtDefineTag>ART_DEF_UNIT_AXEMAN_JAPANESE</LateArtDefineTag>
-						<MiddleArtDefineTag>ART_DEF_UNIT_AXEMAN_JAPANESE</MiddleArtDefineTag>
+						<EarlyArtDefineTag>ART_DEF_UNIT_AXEMAN_KOREAN</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_AXEMAN_KOREAN</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_AXEMAN_KOREAN</MiddleArtDefineTag>
 					</UnitMeshGroup>
 					<UnitMeshGroup>
-						<EarlyArtDefineTag>ART_DEF_UNIT_AXEMAN_JAPANESE</EarlyArtDefineTag>
-						<LateArtDefineTag>ART_DEF_UNIT_AXEMAN_JAPANESE</LateArtDefineTag>
-						<MiddleArtDefineTag>ART_DEF_UNIT_AXEMAN_JAPANESE</MiddleArtDefineTag>
+						<EarlyArtDefineTag>ART_DEF_UNIT_AXEMAN_KOREAN</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_AXEMAN_KOREAN</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_AXEMAN_KOREAN</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
 
@@ -9390,12 +9402,12 @@
 						<LateArtDefineTag>ART_DEF_UNIT_WARRIOR_AFRICAN</LateArtDefineTag>
 						<MiddleArtDefineTag>ART_DEF_UNIT_WARRIOR_AFRICAN</MiddleArtDefineTag>
 					</UnitMeshGroup>
-		<UnitMeshGroup>
+					<UnitMeshGroup>
 						<EarlyArtDefineTag>ART_DEF_UNIT_WARRIOR_AFRICAN</EarlyArtDefineTag>
 						<LateArtDefineTag>ART_DEF_UNIT_WARRIOR_AFRICAN</LateArtDefineTag>
 						<MiddleArtDefineTag>ART_DEF_UNIT_WARRIOR_AFRICAN</MiddleArtDefineTag>
 					</UnitMeshGroup>
-		<UnitMeshGroup>
+					<UnitMeshGroup>
 						<EarlyArtDefineTag>ART_DEF_UNIT_WARRIOR_AFRICAN</EarlyArtDefineTag>
 						<LateArtDefineTag>ART_DEF_UNIT_WARRIOR_AFRICAN</LateArtDefineTag>
 						<MiddleArtDefineTag>ART_DEF_UNIT_WARRIOR_AFRICAN</MiddleArtDefineTag>
@@ -9845,6 +9857,7 @@
 					</UnitMeshGroup>
 				</StyleUnit>
 
+				<!--
 				<StyleUnit>
 					<UnitType>UNIT_FRIGATE</UnitType>
 					<UnitMeshGroup>
@@ -9853,6 +9866,7 @@
 						<MiddleArtDefineTag>ART_DEF_UNIT_XEBEC_FRIGATE</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
+				-->
 				
 				<StyleUnit>
 					<UnitType>UNIT_GALLEON</UnitType>
@@ -12049,6 +12063,7 @@
 					</UnitMeshGroup>
 				</StyleUnit>
 
+				<!--
 				<StyleUnit>
 					<UnitType>UNIT_FRIGATE</UnitType>
 					<UnitMeshGroup>
@@ -12057,6 +12072,7 @@
 						<MiddleArtDefineTag>ART_DEF_UNIT_XEBEC_FRIGATE</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
+				-->
 				
 				<StyleUnit>
 					<UnitType>UNIT_GALLEON</UnitType>
@@ -12909,6 +12925,7 @@
 					</UnitMeshGroup>
 				</StyleUnit>
 
+				<!--
 				<StyleUnit>
 					<UnitType>UNIT_CARAVEL</UnitType>
 					<UnitMeshGroup>
@@ -12917,7 +12934,9 @@
 						<MiddleArtDefineTag>ART_DEF_UNIT_CARAVEL_ROMAN</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
+				-->
 
+				<!--
 				<StyleUnit>
 					<UnitType>UNIT_GALLEON</UnitType>
 					<UnitMeshGroup>
@@ -12926,6 +12945,7 @@
 						<MiddleArtDefineTag>ART_DEF_UNIT_GALLEON_ROMAN</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
+				-->
 
 				<StyleUnit>
 					<UnitType>UNIT_FRIGATE</UnitType>
@@ -14364,6 +14384,7 @@
 					</UnitMeshGroup>
 				</StyleUnit>
 
+				<!--
 				<StyleUnit>
 					<UnitType>UNIT_FRIGATE</UnitType>
 					<UnitMeshGroup>
@@ -14372,6 +14393,7 @@
 						<MiddleArtDefineTag>ART_DEF_UNIT_XEBEC_FRIGATE</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
+				-->
 				
 				<StyleUnit>
 					<UnitType>UNIT_GALLEON</UnitType>
