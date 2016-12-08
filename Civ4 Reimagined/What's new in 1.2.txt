@@ -38,6 +38,7 @@ If you are interested in improving Civ4 Reimagined by translating or otherwise, 
 -Fixed a bug where old BtS Texts were showing up instead of our new ones.
 -Fixed city trade route display now showing custom house oversea trade modifier
 -Fixed various event help texts
+-Improved babylonian unique building text
 -Pushed back the looter and marauder event into the renaissance. For an event that could destroy multiple buildings and improvements it could trigger awfully early.
 -Totestra map script: "Reduce peaks" is disabled per default
 -Totestra map script no longer places starting position close to map boundaries.
