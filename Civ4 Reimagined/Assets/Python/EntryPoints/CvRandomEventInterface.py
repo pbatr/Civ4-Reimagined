@@ -2801,7 +2801,7 @@ def getHelpSportsLeague1(argsList):
 
 	iBuilding = CvUtil.findInfoTypeNum(gc.getBuildingInfo, gc.getNumBuildingInfos(), 'BUILDING_STATUE_OF_ZEUS')
 	
-	szHelp = localText.getText("TXT_KEY_EVENT_SPORTS_LEAGUE_HELP_1", ())
+	szHelp = localText.getText("TXT_KEY_EVENT_SPORTS_LEAGUE_HELP_1", (gc.getBuildingInfo(iBuilding).getTextKey()))
 
 	return szHelp
 

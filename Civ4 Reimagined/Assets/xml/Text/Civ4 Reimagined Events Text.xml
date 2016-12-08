@@ -64,8 +64,8 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_BEST_DEFENSE_HELP_1</Tag>
-		<English>[PARAGRAPH:1]To complete this quest, you must build [COLOR_BUILDING_TEXT]Castles[COLOR_REVERT] in all your cities.[PARAGRAPH:1]An additional reward option will be available if your civilization controls the Great Wall.[PARAGRAPH:1]You will fail this quest if a rival civilization completes it first, or if you discover [COLOR_TECH_TEXT]Rifling[COLOR_REVERT], [COLOR_TECH_TEXT]Railroad[COLOR_REVERT], or [COLOR_TECH_TEXT]Economics[COLOR_REVERT] without having met the conditions.</English>
-		<French>[PARAGRAPH:1]Pour réussir cette quête, vous devez construire des [COLOR_BUILDING_TEXT]Castles[COLOR_REVERT] dans toutes vos villes.[PARAGRAPH:1]Une récompense supplémentaire sera disponible si votre civilisation contrôle la Grande Muraille.[PARAGRAPH:1]Vous échouerez à cette quête si une autre civilisation la réussit d'abord ou si vous découvrez [COLOR_TECH_TEXT]Rifling[COLOR_REVERT], [COLOR_TECH_TEXT]Railroad[COLOR_REVERT] ou [COLOR_TECH_TEXT]Economics[COLOR_REVERT] avant de remplir les conditions.</French>
+		<English>[PARAGRAPH:1]To complete this quest, you must build [COLOR_BUILDING_TEXT]Castles[COLOR_REVERT] in all your cities.[PARAGRAPH:1]An additional reward option will be available if your civilization controls [COLOR_BUILDING_TEXT]The Great Wall[COLOR_REVERT].[PARAGRAPH:1]You will fail this quest if a rival civilization completes it first, or if you discover [COLOR_TECH_TEXT]Rifling[COLOR_REVERT], [COLOR_TECH_TEXT]Railroad[COLOR_REVERT], or [COLOR_TECH_TEXT]Economics[COLOR_REVERT] without having met the conditions.</English>
+		<French>[PARAGRAPH:1]Pour réussir cette quête, vous devez construire des [COLOR_BUILDING_TEXT]Castles[COLOR_REVERT] dans toutes vos villes.[PARAGRAPH:1]Une récompense supplémentaire sera disponible si votre civilisation contrôle [COLOR_BUILDING_TEXT]la Grande Muraille[COLOR_REVERT].[PARAGRAPH:1]Vous échouerez à cette quête si une autre civilisation la réussit d'abord ou si vous découvrez [COLOR_TECH_TEXT]Rifling[COLOR_REVERT], [COLOR_TECH_TEXT]Railroad[COLOR_REVERT] ou [COLOR_TECH_TEXT]Economics[COLOR_REVERT] avant de remplir les conditions.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_SPORTS_LEAGUE_1</Tag>
@@ -74,8 +74,8 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_SPORTS_LEAGUE_HELP_1</Tag>
-		<English>[PARAGRAPH:1]To complete this quest, you must build [COLOR_BUILDING_TEXT]Stadiums[COLOR_REVERT] in all your cities.[PARAGRAPH:1]An additional reward option will be available if you control [COLOR_BUILDING_TEXT]%s2_building[COLOR_REVERT] au moment où vous terminez la quête.[PARAGRAPH:1]You will fail this quest if a rival civilization completes it first, or if you reach the Rennaisance Era without having met the conditions.</English>
-		<French>[PARAGRAPH:1]Pour réussir cette quête, vous devez construire des [COLOR_BUILDING_TEXT]Stadiums[COLOR_REVERT] dans toutes vos villes.[PARAGRAPH:1]Une récompense supplémentaire sera disponible si vous contrôlez [COLOR_BUILDING_TEXT]%s2_building[COLOR_REVERT] au moment où vous terminez la quête.[PARAGRAPH:1]Vous échouerez à cette quête si une autre civilisation la réussit d'abord ou si vous atteignez la Renaissance avant de remplir les conditions.</French>
+		<English>[PARAGRAPH:1]To complete this quest, you must build [COLOR_BUILDING_TEXT]Stadiums[COLOR_REVERT] in all your cities.[PARAGRAPH:1]An additional reward option will be available if you control [COLOR_BUILDING_TEXT]%s1_building[COLOR_REVERT] if and when this quest is successfully completed.[PARAGRAPH:1]You will fail this quest if a rival civilization completes it first, or if you reach the Rennaisance Era without having met the conditions.</English>
+		<French>[PARAGRAPH:1]Pour réussir cette quête, vous devez construire des [COLOR_BUILDING_TEXT]Stadiums[COLOR_REVERT] dans toutes vos villes.[PARAGRAPH:1]Une récompense supplémentaire sera disponible si vous contrôlez [COLOR_BUILDING_TEXT]%s1_building[COLOR_REVERT] au moment où vous terminez la quête.[PARAGRAPH:1]Vous échouerez à cette quête si une autre civilisation la réussit d'abord ou si vous atteignez la Renaissance avant de remplir les conditions.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_ELITE_SWORDS_HELP_1</Tag>
