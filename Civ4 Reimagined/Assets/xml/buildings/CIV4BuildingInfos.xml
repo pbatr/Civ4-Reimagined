@@ -11596,9 +11596,9 @@
 			<BuildingClass>BUILDINGCLASS_COURTHOUSE</BuildingClass>
 			<Type>BUILDING_BABYLON_GARDEN</Type>
 			<SpecialBuildingType>NONE</SpecialBuildingType>
-			<Description>TXT_KEY_BUILDING_BABYLON_GARDEN</Description>
-			<Civilopedia>TXT_KEY_BUILDING_BABYLON_GARDEN_PEDIA</Civilopedia>
-			<Strategy>TXT_KEY_BUILDING_BABYLON_GARDEN_STRATEGY</Strategy>
+			<Description>TXT_KEY_BUILDING_BIT_DINU</Description>
+			<Civilopedia>TXT_KEY_BUILDING_BIT_DINU_PEDIA</Civilopedia>
+			<Strategy>TXT_KEY_BUILDING_BIT_DINU_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<ArtDefineTag>ART_DEF_BUILDING_ROMAN_FORUM</ArtDefineTag>
 			<MovieDefineTag>NONE</MovieDefineTag>
