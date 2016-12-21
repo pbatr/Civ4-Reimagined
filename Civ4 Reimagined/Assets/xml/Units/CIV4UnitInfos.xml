@@ -1438,8 +1438,8 @@
 			<Invisible>NONE</Invisible>
 			<SeeInvisible>NONE</SeeInvisible>
 			<Description>TXT_KEY_UNIT_SLAVE</Description>
-			<Civilopedia>TXT_KEY_UNIT_WORKER_PEDIA</Civilopedia>
-			<Strategy>TXT_KEY_UNIT_WORKER_STRATEGY</Strategy>
+			<Civilopedia>TXT_KEY_UNIT_SLAVE_PEDIA</Civilopedia>
+			<Strategy>TXT_KEY_UNIT_SLAVE_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<bAnimal>0</bAnimal>
 			<bFood>1</bFood>
