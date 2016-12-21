@@ -1334,6 +1334,7 @@ class BonusBalancer:
 
 	def normalizeAddExtras(self):
 	
+		starting_plots = []
 		for i in range(self.gc.getMAX_CIV_PLAYERS()):
 			if (self.gc.getPlayer(i).isAlive()):
 				start_plot = self.gc.getPlayer(i).getStartingPlot() # returns a CyPlot
@@ -1343,8 +1344,10 @@ class BonusBalancer:
 				
 				plots = [] # build a list of the plots near the starting plot
 				additionalPlots = []
-				for dx in range(-5,5):
-					for dy in range(-5,5):
+				outsidePlots = [] # plots outside of balancing range
+
+				for dx in range(-9,9):
+					for dy in range(-9,9):
 						x,y = startx+dx, starty+dy
 						pLoopPlot = self.map.plot(x,y)
 						if (not pLoopPlot.isNone()) and (abs(dx) < 5) and (abs(dy) < 5):
@@ -1359,7 +1362,22 @@ class BonusBalancer:
 									
 						if ((not pLoopPlot.isNone()) and (abs(dx) == 5)) or (abs(dy) == 5):
 							additionalPlots.append(pLoopPlot)
-				
+
+						if ((not pLoopPlot.isNone()) and (abs(dx) >= 5)) or (abs(dy) >= 5):
+							bValid = True
+							for (other_plot) in starting_plots:
+								otherX, otherY = other_plot.getX(), other_plot.getY()
+								if (abs(otherX - x) <= 5 and abs(otherY - y) <= 5):
+									bValid = False
+									break;
+
+							if (bValid):
+								outsidePlots.append(pLoopPlot)
+
+				random.shuffle(plots)
+				random.shuffle(additionalPlots)
+				random.shuffle(outsidePlots)
+
 				for pass_num in range(5):
 					bIgnoreUniqueRange  = pass_num >= 1
 					bIgnoreOneArea 		= pass_num >= 2
@@ -1368,6 +1386,7 @@ class BonusBalancer:
 					for bonus in range(self.gc.getNumBonusInfos()):
 						type_string = self.gc.getBonusInfo(bonus).getType()
 						if (type_string not in resources_placed) and (type_string in self.resourcesToBalance):
+							bBonusPlaced = False
 							
 							if pass_num < 4:
 								for (pLoopPlot) in plots:										
@@ -1375,7 +1394,8 @@ class BonusBalancer:
 										if self.isBonusValid(bonus, pLoopPlot, bIgnoreUniqueRange, bIgnoreOneArea, bIgnoreAdjacent):
 											pLoopPlot.setBonusType(bonus)
 											resources_placed.append(type_string)
-											print "placed", type_string, "on pass", pass_num
+											print "placed", type_string, "on plot", pLoopPlot.getX(), ",", pLoopPlot.getY(), "on pass", pass_num
+											bBonusPlaced = True
 											break # go to the next bonus
 							else:
 								for (pLoopPlot) in additionalPlots:										
@@ -1384,4 +1404,15 @@ class BonusBalancer:
 											pLoopPlot.setBonusType(bonus)
 											resources_placed.append(type_string)
 											print "placed", type_string, "on pass", pass_num
+											bBonusPlaced = True
 											break # go to the next bonus
+
+							# instead of simply adding a bonus, try to move it from outside balancing range
+							if (bBonusPlaced):
+								for (pLoopPlot) in outsidePlots:
+									if (pLoopPlot.getBonusType(-1) == bonus):
+										pLoopPlot.setBonusType(BonusTypes.NO_BONUS)
+										print "removed", type_string, "from", pLoopPlot.getX(), ",", pLoopPlot.getY()
+										break;
+
+				starting_plots.append(start_plot)
