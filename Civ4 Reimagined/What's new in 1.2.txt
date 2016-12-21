@@ -38,6 +38,7 @@ If you are interested in improving Civ4 Reimagined by translating or otherwise, 
 -Fixed a bug where old BtS Texts were showing up instead of our new ones.
 -Fixed city trade route display now showing custom house oversea trade modifier
 -Fixed various event help texts
+-Displays how much gold has been stolen by enemy spies
 -Improved babylonian unique building text
 -Improved slave unit texts, should help to determine how slaves are gained
 -Pushed back the looter and marauder event into the renaissance. For an event that could destroy multiple buildings and improvements it could trigger awfully early.
