@@ -1248,4 +1248,12 @@
 		<Tag>TXT_KEY_GAMEOPTION_NO_COLONY_ANGER_HELP</Tag>
 		<English>Without this game options, colonies (oversea cities of your empire) wish for independance in modern times and eventually you may want to grant them vassal status. This game option is for players who don't like this new dynamic.</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_ESPIONAGE_TARGET_STEAL_TREASURY</Tag>
+		<English>%D1 gold of our state treasury was looted by enemy infiltrators!</English>
+		<French>>Une partie de notre tr&#233;sor a &#233;t&#233; pill&#233;e par des ennemis infiltr&#233;s ! (%D1 or)</French>
+		<German>Feindliche Spione haben %D1 Gold aus unserem Staatsschatz erbeutet!</German>
+		<Italian>Infiltrati nemici hanno rubato una parte del nostro tesoro di stato! (%D1 oro)</Italian>
+		<Spanish>&#161;Los enemigos infiltrados han saqueado parte de nuestro tesoro! (%D1 oro)</Spanish>
+	</TEXT>
 </Civ4GameText>
