@@ -9,6 +9,7 @@ If you are interested in improving Civ4 Reimagined by translating or otherwise, 
 -New building: Tannery. Moved happiness bonus for fur from market to tannery. Deer provides happiness with tannery instead of health with supermarket.
 -All leaders have the same base attitude. There is a relationship bonus in place instead when a civilization doesn't have enough open borders.
 -Adjusted tech costs to incorporate Leather Working change
+-Due to popular demand: Added game option to disable the worker limit.
 -Slightly increased technology progression for medieval+.
 -Production penalties for insufficient (strategic) resources are halved. Example: With a ratio of 0.8 and 1 Iron, your production speed for swordsman will be 90% (-20% for a 0.8 ratio, halved to -10%).
 -Wine health bonus from grocer replaced with happiness bonus from market. Whale provides health instead of happiness (you still get happiness with market though).

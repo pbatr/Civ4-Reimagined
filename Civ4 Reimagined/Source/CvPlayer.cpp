@@ -14381,6 +14381,12 @@ bool CvPlayer::isUnitClassMaxedOut(UnitClassTypes eIndex, int iExtra) const
 	{
 		return false;
 	}
+	
+	// Civ4 Reimagined
+	if (GC.getGameINLINE().isOption(GAMEOPTION_UNLIMITED_WORKERS) && GC.getUnitClassInfo(eIndex).isUnlimitedWorkerGameOption())
+	{
+		return false;
+	}
 
 	FAssertMsg(getUnitClassCount(eIndex) <= GC.getUnitClassInfo(eIndex).getMaxPlayerInstances(), "getUnitClassCount is expected to be less than maximum bound of MaxPlayerInstances (invalid index)");
 
