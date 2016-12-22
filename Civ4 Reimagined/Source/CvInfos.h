@@ -1651,7 +1651,8 @@ public:
 	int getMaxGlobalInstances() const;				// Exposed to Python
 	int getMaxTeamInstances() const;				// Exposed to Python
 	int getMaxPlayerInstances() const;				// Exposed to Python
-	int getInstanceCostModifier() const;				// Exposed to Python
+	bool isUnlimitedWorkerGameOption() const; 		// Civ4 Reimagined
+	int getInstanceCostModifier() const;			// Exposed to Python
 	int getDefaultUnitIndex() const;				// Exposed to Python
 	void setDefaultUnitIndex(int i);
 
@@ -1664,6 +1665,7 @@ protected:
 	int m_iMaxGlobalInstances;	
 	int m_iMaxTeamInstances;	
 	int m_iMaxPlayerInstances;	
+	bool m_bUnlimitedWorkerGameoption; // Civ4 Reimagined
 	int m_iInstanceCostModifier;
 	int m_iDefaultUnitIndex;		
 

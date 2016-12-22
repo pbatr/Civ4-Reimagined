@@ -76,6 +76,7 @@
 	<ElementType name="iMaxGlobalInstances" content="textOnly" dt:type="int"/>
 	<ElementType name="iMaxTeamInstances" content="textOnly" dt:type="int"/>
 	<ElementType name="iMaxPlayerInstances" content="textOnly" dt:type="int"/>
+	<ElementType name="bUnlimitedWorkerGameoption" content="textOnly" dt:type="boolean"/>  <!-- Civ4 Reimagined -->
 	<ElementType name="iInstanceCostModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="DefaultUnit" content="textOnly"/>
 	<ElementType name="UnitClassInfo" content="eltOnly">
@@ -84,6 +85,7 @@
 		<element type="iMaxGlobalInstances"/>
 		<element type="iMaxTeamInstances"/>
 		<element type="iMaxPlayerInstances"/>
+		<element type="bUnlimitedWorkerGameoption" minOccurs="0"/>  <!-- Civ4 Reimagined -->
 		<element type="iInstanceCostModifier"/>
 		<element type="DefaultUnit"/>
 	</ElementType>
@@ -103,7 +105,7 @@
 	<ElementType name="Invisible" content="textOnly"/>
 	<ElementType name="SeeInvisible" content="textOnly"/>
 	<ElementType name="Advisor" content="textOnly"/>
-	<ElementType name="bAnimal" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bAnimal" content="textOnly" dt:type="boolean"/> 
 	<ElementType name="bFood" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bNoBadGoodies" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bOnlyDefensive" content="textOnly" dt:type="boolean"/>

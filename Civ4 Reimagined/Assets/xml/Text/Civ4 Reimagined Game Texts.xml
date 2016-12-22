@@ -1245,8 +1245,16 @@
 		<English>No Modern Unhappiness in Colonies</English>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_GAMEOPTION_UNLIMITED_WORKERS</Tag>
+		<English>Unlimited Workers</English>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_GAMEOPTION_NO_COLONY_ANGER_HELP</Tag>
 		<English>Without this game options, colonies (oversea cities of your empire) wish for independance in modern times and eventually you may want to grant them vassal status. This game option is for players who don't like this new dynamic.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAMEOPTION_UNLIMITED_WORKERS_HELP</Tag>
+		<English>Removes the restriction of 8 workers per player. Per default the number of workers is limited to reduce micro-managing and make expanding more challenging.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_ESPIONAGE_TARGET_STEAL_TREASURY</Tag>

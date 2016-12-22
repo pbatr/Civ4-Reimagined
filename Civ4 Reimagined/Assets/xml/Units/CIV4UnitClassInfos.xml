@@ -57,6 +57,7 @@
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
 			<iMaxTeamInstances>-1</iMaxTeamInstances>
 			<iMaxPlayerInstances>8</iMaxPlayerInstances>
+			<bUnlimitedWorkerGameoption>1</bUnlimitedWorkerGameoption> <!-- Civ4 Reimagined --> 
 			<iInstanceCostModifier>0</iInstanceCostModifier>
 			<DefaultUnit>UNIT_WORKER</DefaultUnit>
 		</UnitClassInfo>

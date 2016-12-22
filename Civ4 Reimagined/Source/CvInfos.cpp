@@ -4346,6 +4346,7 @@ void CvUnitInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iNumUnitNames);
 	stream->Read(&m_iCommandType);
 
+	
 	stream->Read(&m_bAnimal);
 	stream->Read(&m_bFoodProduction);
 	stream->Read(&m_bNoBadGoodies);
@@ -7355,6 +7356,7 @@ CvUnitClassInfo::CvUnitClassInfo() :
 m_iMaxGlobalInstances(0),
 m_iMaxTeamInstances(0),
 m_iMaxPlayerInstances(0),
+m_bUnlimitedWorkerGameoption(false), // Civ4 Reimagined
 m_iInstanceCostModifier(0),
 m_iDefaultUnitIndex(NO_UNIT)
 {
@@ -7386,6 +7388,13 @@ int CvUnitClassInfo::getMaxPlayerInstances() const
 	return m_iMaxPlayerInstances;
 }
 
+// Civ4 Reimagined
+bool CvUnitClassInfo::isUnlimitedWorkerGameOption() const				
+{
+	return m_bUnlimitedWorkerGameoption;
+}
+
+
 int CvUnitClassInfo::getInstanceCostModifier() const
 {
 	return m_iInstanceCostModifier;
@@ -7411,6 +7420,7 @@ bool CvUnitClassInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iMaxGlobalInstances, "iMaxGlobalInstances");
 	pXML->GetChildXmlValByName(&m_iMaxTeamInstances, "iMaxTeamInstances");
 	pXML->GetChildXmlValByName(&m_iMaxPlayerInstances, "iMaxPlayerInstances");
+	pXML->GetChildXmlValByName(&m_bUnlimitedWorkerGameoption, "bUnlimitedWorkerGameoption"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iInstanceCostModifier, "iInstanceCostModifier");
 
 	CvString szTextVal;

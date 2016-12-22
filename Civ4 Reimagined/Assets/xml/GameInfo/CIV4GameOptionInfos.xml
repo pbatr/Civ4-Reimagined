@@ -188,5 +188,12 @@
 			<bDefault>0</bDefault>
 			<bVisible>1</bVisible>
 		</GameOptionInfo>
+		<GameOptionInfo>
+			<Type>GAMEOPTION_UNLIMITED_WORKERS</Type>
+			<Description>TXT_KEY_GAMEOPTION_UNLIMITED_WORKERS</Description>
+			<Help>TXT_KEY_GAMEOPTION_UNLIMITED_WORKERS_HELP</Help>
+			<bDefault>0</bDefault>
+			<bVisible>1</bVisible>
+		</GameOptionInfo>
 	</GameOptionInfos>
 </Civ4GameOptionInfos>
