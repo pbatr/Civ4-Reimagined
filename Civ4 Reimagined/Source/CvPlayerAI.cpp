@@ -15650,6 +15650,12 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	{
 		int iTempValue = std::max(0, GET_TEAM(getTeam()).AI_getWarSuccessRating() * 4 + getNumMilitaryUnits() + iWarmongerFactor/2);
 		iTempValue *= (bWarPlan ? 3 : 1);
+		
+		if (AI_isDoVictoryStrategy(AI_VICTORY_DOMINATION3) || AI_isDoVictoryStrategy(AI_VICTORY_DOMINATION4) || AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST3) || AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST4))
+		{
+			iTempValue *= 3;
+		}
+		
 		iTempValue /= 20;
 		
 		if (gPlayerLogLevel > 0) logBBAI("	Civic Value of No City Resistance on Conquest: %d", iTempValue);
@@ -15677,7 +15683,13 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				}
 			}
 			iTempValue *= iCities;
-			iTempValue /= kCivic.isNoMilitaryProductionMali() ? 40 : 20;
+			if (iTempValue < 0 && kCivic.isNoMilitaryProductionMali())
+			{
+				iTempValue /= 40;
+			} else
+			{
+				iTempValue /= 10;
+			}
 			if (gPlayerLogLevel > 0) logBBAI("	Civic Value of Bonus Ratio Modifier: %d", iTempValue);
 			iValue += iTempValue;
 		}
