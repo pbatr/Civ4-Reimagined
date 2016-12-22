@@ -1201,7 +1201,7 @@
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
 			<iAITradeModifier>0</iAITradeModifier>
-			<iCost>4250</iCost>
+			<iCost>4400</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<Era>ERA_RENAISSANCE</Era>
@@ -1426,7 +1426,7 @@
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
 			<iAITradeModifier>0</iAITradeModifier>
-			<iCost>2000</iCost>
+			<iCost>1900</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<Era>ERA_MEDIEVAL</Era>
@@ -1495,9 +1495,9 @@
 			<Help/>
 			<Strategy>TXT_KEY_TECH_FASCISM_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
-			<iAIWeight>3000</iAIWeight>
+			<iAIWeight>4000</iAIWeight>
 			<iAITradeModifier>0</iAITradeModifier>
-			<iCost>4300</iCost>
+			<iCost>4000</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<Era>ERA_INDUSTRIAL</Era>
@@ -1562,9 +1562,9 @@
 			<Help/>
 			<Strategy>TXT_KEY_TECH_UTOPIA_STRATEGY</Strategy>
 			<Advisor>ADVISOR_GROWTH</Advisor>
-			<iAIWeight>2500</iAIWeight>
+			<iAIWeight>4000</iAIWeight>
 			<iAITradeModifier>0</iAITradeModifier>
-			<iCost>4000</iCost>
+			<iCost>3800</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<Era>ERA_INDUSTRIAL</Era>
@@ -1633,9 +1633,9 @@
 			<Help/>
 			<Strategy>TXT_KEY_TECH_MASS_MEDIA_STRATEGY</Strategy>
 			<Advisor>ADVISOR_CULTURE</Advisor>
-			<iAIWeight>2500</iAIWeight>
+			<iAIWeight>4000</iAIWeight>
 			<iAITradeModifier>0</iAITradeModifier>
-			<iCost>5250</iCost>
+			<iCost>5000</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<Era>ERA_MODERN</Era>
@@ -2644,7 +2644,7 @@
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
 			<iAITradeModifier>0</iAITradeModifier>
-			<iCost>2300</iCost>
+			<iCost>2000</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<Era>ERA_MEDIEVAL</Era>
@@ -2916,9 +2916,9 @@
 			<Help/>
 			<Strategy>TXT_KEY_TECH_ASTRONOMY_STRATEGY</Strategy>
 			<Advisor>ADVISOR_GROWTH</Advisor>
-			<iAIWeight>0</iAIWeight>
+			<iAIWeight>2000</iAIWeight>
 			<iAITradeModifier>0</iAITradeModifier>
-			<iCost>2500</iCost>
+			<iCost>2400</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<Era>ERA_MEDIEVAL</Era>
@@ -2994,7 +2994,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
 			<iAITradeModifier>0</iAITradeModifier>
-			<iCost>3300</iCost>
+			<iCost>3200</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<Era>ERA_RENAISSANCE</Era>
@@ -3063,9 +3063,9 @@
 			<Help/>
 			<Strategy>TXT_KEY_TECH_SCIENTIFIC_METHOD_STRATEGY</Strategy>
 			<Advisor>ADVISOR_SCIENCE</Advisor>
-			<iAIWeight>2000</iAIWeight>
+			<iAIWeight>3500</iAIWeight>
 			<iAITradeModifier>0</iAITradeModifier>
-			<iCost>2800</iCost>
+			<iCost>2600</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<Era>ERA_RENAISSANCE</Era>
@@ -3128,7 +3128,7 @@
 			<Advisor>ADVISOR_SCIENCE</Advisor>
 			<iAIWeight>1500</iAIWeight>
 			<iAITradeModifier>0</iAITradeModifier>
-			<iCost>4200</iCost>
+			<iCost>4100</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<Era>ERA_INDUSTRIAL</Era>
@@ -3394,7 +3394,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
 			<iAITradeModifier>0</iAITradeModifier>
-			<iCost>6250</iCost>
+			<iCost>6000</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<Era>ERA_INDUSTRIAL</Era>
@@ -3538,9 +3538,9 @@
 			<Help/>
 			<Strategy>TXT_KEY_TECH_FLIGHT_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
-			<iAIWeight>2000</iAIWeight>
+			<iAIWeight>4000</iAIWeight>
 			<iAITradeModifier>10</iAITradeModifier>
-			<iCost>5000</iCost>
+			<iCost>4700</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<Era>ERA_INDUSTRIAL</Era>
@@ -3617,9 +3617,9 @@
 			<Help/>
 			<Strategy>TXT_KEY_TECH_ADVANCED_FLIGHT_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
-			<iAIWeight>0</iAIWeight>
+			<iAIWeight>2000</iAIWeight>
 			<iAITradeModifier>10</iAITradeModifier>
-			<iCost>6500</iCost>
+			<iCost>6300</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<Era>ERA_MODERN</Era>
@@ -3690,7 +3690,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>500</iAIWeight>
 			<iAITradeModifier>0</iAITradeModifier>
-			<iCost>5500</iCost>
+			<iCost>5000</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<Era>ERA_MODERN</Era>
@@ -5119,7 +5119,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
 			<iAITradeModifier>10</iAITradeModifier>
-			<iCost>3000</iCost>
+			<iCost>2800</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<Era>ERA_MEDIEVAL</Era>
@@ -5190,7 +5190,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
 			<iAITradeModifier>0</iAITradeModifier>
-			<iCost>3100</iCost>
+			<iCost>3000</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<Era>ERA_RENAISSANCE</Era>
@@ -5259,9 +5259,9 @@
 			<Help/>
 			<Strategy>TXT_KEY_TECH_RIFLING_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
-			<iAIWeight>0</iAIWeight>
+			<iAIWeight>2000</iAIWeight>
 			<iAITradeModifier>10</iAITradeModifier>
-			<iCost>2900</iCost>
+			<iCost>2800</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<Era>ERA_RENAISSANCE</Era>
@@ -5330,7 +5330,7 @@
 			<Help/>
 			<Strategy>TXT_KEY_TECH_STEAM_POWER_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
-			<iAIWeight>6000</iAIWeight>
+			<iAIWeight>7000</iAIWeight>
 			<iAITradeModifier>0</iAITradeModifier>
 			<iCost>1800</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
@@ -5411,7 +5411,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
 			<iAITradeModifier>10</iAITradeModifier>
-			<iCost>6000</iCost>
+			<iCost>5500</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<Era>ERA_INDUSTRIAL</Era>
@@ -5484,7 +5484,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>6500</iAIWeight>
 			<iAITradeModifier>10</iAITradeModifier>
-			<iCost>5000</iCost>
+			<iCost>4600</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<Era>ERA_INDUSTRIAL</Era>
@@ -5551,7 +5551,7 @@
 			<Help/>
 			<Strategy>TXT_KEY_TECH_RAILROAD_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
-			<iAIWeight>2500</iAIWeight>
+			<iAIWeight>3500</iAIWeight>
 			<iAITradeModifier>10</iAITradeModifier>
 			<iCost>2000</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
@@ -5770,7 +5770,7 @@
 			<Advisor>ADVISOR_CULTURE</Advisor>
 			<iAIWeight>1500</iAIWeight>
 			<iAITradeModifier>0</iAITradeModifier>
-			<iCost>4800</iCost>
+			<iCost>4600</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<Era>ERA_MODERN</Era>
@@ -6058,9 +6058,9 @@
 			<Help/>
 			<Strategy>TXT_KEY_TECH_LASER_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
-			<iAIWeight>1800</iAIWeight>
+			<iAIWeight>3000</iAIWeight>
 			<iAITradeModifier>0</iAITradeModifier>
-			<iCost>4400</iCost>
+			<iCost>4100</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<Era>ERA_MODERN</Era>
