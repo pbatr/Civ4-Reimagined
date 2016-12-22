@@ -39,6 +39,7 @@ If you are interested in improving Civ4 Reimagined by translating or otherwise, 
 -Fixed a bug where old BtS Texts were showing up instead of our new ones.
 -Fixed city trade route display now showing custom house oversea trade modifier
 -Fixed various event help texts
+-Slaves can no longer be captured by players without slavery
 -Displays how much gold has been stolen by enemy spies
 -Event log displays enemies that have withdrawn in yellow instead of red.
 -Improved babylonian unique building text
