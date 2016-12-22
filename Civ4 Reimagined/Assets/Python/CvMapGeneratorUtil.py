@@ -1291,13 +1291,15 @@ def pointInRect(point, rect):
 	return False
 
 
+# Civ4 Reimagined: Changed this class to only balance resources in addition to placing them normally on the map. Every civ now has access to at least one of each type of these resources.
 class BonusBalancer:
 	def __init__(self):
 		self.gc = CyGlobalContext()
 		self.map = CyMap()
 		
-		self.resourcesToBalance = ('BONUS_IRON', 'BONUS_OIL', 'BONUS_COPPER')
+		self.resourcesToBalance = ( ) # Civ4 Reimagined: Making sure iron, oil and copper are still placed during map creation.
 		self.resourcesToEliminate = ( )
+		self.resourcesToProcess = ('BONUS_IRON', 'BONUS_OIL', 'BONUS_COPPER')
 		
 	def isSkipBonus(self, iBonusType):
 		type_string = self.gc.getBonusInfo(iBonusType).getType()
@@ -1357,7 +1359,7 @@ class BonusBalancer:
 							print "now handling plotBonus >", plotBonus, "< ."
 							if plotBonus is not -1:
 								plotBonusString = self.gc.getBonusInfo(plotBonus).getType()
-								if (plotBonusString in self.resourcesToBalance):
+								if (plotBonusString in self.resourcesToProcess):
 									resources_placed.append(plotBonusString)
 									
 						if ((not pLoopPlot.isNone()) and (abs(dx) == 5)) or (abs(dy) == 5):
@@ -1385,7 +1387,7 @@ class BonusBalancer:
 					
 					for bonus in range(self.gc.getNumBonusInfos()):
 						type_string = self.gc.getBonusInfo(bonus).getType()
-						if (type_string not in resources_placed) and (type_string in self.resourcesToBalance):
+						if (type_string not in resources_placed) and (type_string in self.resourcesToProcess):
 							bBonusPlaced = False
 							
 							if pass_num < 4:
