@@ -5737,7 +5737,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 			
 			// Civ4 Reimagined
 			if (iK == YIELD_COMMERCE) {
-				iTempValue += (20000 / calculateTotalCommerce()) * GC.getImprovementInfo((ImprovementTypes)iJ).getTechYieldChanges(eTech, iK) * getImprovementCount((ImprovementTypes)iJ);
+				iTempValue += (20000 / std::max(calculateTotalCommerce(), 1)) * GC.getImprovementInfo((ImprovementTypes)iJ).getTechYieldChanges(eTech, iK) * getImprovementCount((ImprovementTypes)iJ);
 			}
 			
 			iTempValue = std::max(iTempValue, GC.getImprovementInfo((ImprovementTypes)iJ).getTechYieldChanges(eTech, iK) * std::max(getImprovementCount((ImprovementTypes)iJ), 2*getNumCities()) * 150);
