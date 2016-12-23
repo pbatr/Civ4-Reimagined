@@ -361,7 +361,7 @@
 				<iRandApp3>0</iRandApp3>
 				<iRandApp4>0</iRandApp4>
 			</Rands>
-			<iPlayer>90</iPlayer>
+			<iPlayer>110</iPlayer>
 			<iTilesPer>128</iTilesPer>
 			<iMinLandPercent>0</iMinLandPercent>
 			<iUnique>6</iUnique>
@@ -521,7 +521,7 @@
 				<iRandApp3>0</iRandApp3>
 				<iRandApp4>0</iRandApp4>
 			</Rands>
-			<iPlayer>175</iPlayer>
+			<iPlayer>185</iPlayer>
 			<iTilesPer>512</iTilesPer>
 			<iMinLandPercent>70</iMinLandPercent>
 			<iUnique>7</iUnique>
@@ -595,7 +595,7 @@
 				<iRandApp3>0</iRandApp3>
 				<iRandApp4>0</iRandApp4>
 			</Rands>
-			<iPlayer>150</iPlayer>
+			<iPlayer>170</iPlayer>
 			<iTilesPer>0</iTilesPer>
 			<iMinLandPercent>0</iMinLandPercent>
 			<iUnique>0</iUnique>
