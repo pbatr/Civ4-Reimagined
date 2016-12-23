@@ -15678,7 +15678,9 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				if (pCapital->hasBonus((BonusTypes)iI))
 				{
 					iCurrentRatio = std::max(0, std::min(100, getTechValue() * pCapital->getNumBonuses((BonusTypes)iI) / totalPop));
-					iNewRatio = std::max(0, std::min(100, iCurrentRatio + kCivic.getBonusRatioModifier()));
+					iNewRatio = iCurrentRatio * (100 + kCivic.getBonusRatioModifier());
+					iNewRatio /= 100;
+					iNewRatio = std::max(0, std::min(100, iNewRatio));
 					iTempValue += iNewRatio - iCurrentRatio;
 				}
 			}
@@ -15688,7 +15690,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				iTempValue /= 40;
 			} else
 			{
-				iTempValue /= 10;
+				iTempValue /= 20;
 			}
 			if (gPlayerLogLevel > 0) logBBAI("	Civic Value of Bonus Ratio Modifier: %d", iTempValue);
 			iValue += iTempValue;
