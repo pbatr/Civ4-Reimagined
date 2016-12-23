@@ -14286,8 +14286,10 @@ void CvUnit::bombardCity(CvCity* pCity, int bombardRate)
 			}
 		}
 	}
+	
+	int iBombChance = GC.getGameINLINE().getSorenRandNum(100, "Airbomb building 2");
 		
-	if (pCity->getNumRealBuilding((BuildingTypes)build) > 0)
+	if (pCity->getNumRealBuilding((BuildingTypes)build) > 0 && iBombChance <= 6 * bombardRate)
 	{
 		pCity->setNumRealBuilding((BuildingTypes)build, pCity->getNumRealBuilding((BuildingTypes)build) - 1);
 		szBuffer = gDLL->getText("TXT_KEY_MISC_ENEMY_AIRBOMBSUCCESS", GC.getBuildingInfo((BuildingTypes)build).getTextKeyWide(), pCity->getNameKey());

@@ -31,6 +31,7 @@ If you are interested in improving Civ4 Reimagined by translating or otherwise, 
 -Improved city resource display, which can now show up to 99 of each resource without overlapping.
 -Deer and fur appearance increased on most map types
 -Switched rarity for gold and silver.
+-Lower chance to destroy buildings with bombard missions (especially fighters and ships)
 -Building preview shows estimated commerce gain for bonus trade routes
 -Different unit art for a couple units: German horseman (looked too advanced for classic tech unit), Japanese axeman (using two swords prior to swordsmen was a bit unfair), Roman caravel and Arab/Babylon/Carthage/Celtic/Egypt/Ethiopian/Malinese/Persian/Sumer frigate (suffering from looking to old/frail and unable to go over the ocean - the model was pretty, but it was hard to tell whether it was a ship of war or a fishing boat).
 -Fixed display for gold per happiness resource from Mercantilism.
