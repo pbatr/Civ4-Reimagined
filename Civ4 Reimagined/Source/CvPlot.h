@@ -515,6 +515,9 @@ public:
 	void applyEvent(EventTypes eEvent);
 
 	bool canTrain(UnitTypes eUnit, bool bContinue, bool bTestVisible) const;
+	
+	//Civ4 Reimagined
+	bool canUpgradeTo(UnitTypes eUnit) const;
 
 	bool isEspionageCounterSpy(TeamTypes eTeam) const;
 
