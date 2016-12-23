@@ -7787,39 +7787,45 @@ CvCity* CvUnit::getUpgradeCity(UnitTypes eUnit, bool bSearch, int* iSearchValue)
 					CvArea* pWaterArea = NULL;
 					if (!bCoastalOnly || ((pWaterArea = pLoopCity->waterArea()) != NULL && !pWaterArea->isLake()))
 					{
-						// can this city train this unit?
-						if (pLoopCity->canTrain(eUnit, false, false, true))
+						// Civ4 Reimagined: Can we upgrade this unit in this city?
+						// This check is necessary because of mercenary civic.
+						CvPlot* cityPlot = pLoopCity->plot();
+						if (cityPlot != NULL && cityPlot->canUpgradeTo(eUnit))
 						{
-							// if we do not care about distance, then the first match will do
-							if (bIgnoreDistance)
+							// can this city train this unit?
+							if (pLoopCity->canTrain(eUnit, false, false, true))
 							{
-								// if we do not care about distance, then return 1 for value
-								if (iSearchValue != NULL)
+								// if we do not care about distance, then the first match will do
+								if (bIgnoreDistance)
 								{
-									*iSearchValue = 1;
+									// if we do not care about distance, then return 1 for value
+									if (iSearchValue != NULL)
+									{
+										*iSearchValue = 1;
+									}
+
+									return pLoopCity;
 								}
 
-								return pLoopCity;
-							}
+								int iValue = plotDistance(iX, iY, pLoopCity->getX_INLINE(), pLoopCity->getY_INLINE());
 
-							int iValue = plotDistance(iX, iY, pLoopCity->getX_INLINE(), pLoopCity->getY_INLINE());
+								// if not same area, not as good (lower numbers are better)
+								if (iArea != pLoopCity->getArea() && (!bCoastalOnly || iArea != pWaterArea->getID()))
+								{
+									iValue *= 16;
+								}
 
-							// if not same area, not as good (lower numbers are better)
-							if (iArea != pLoopCity->getArea() && (!bCoastalOnly || iArea != pWaterArea->getID()))
-							{
-								iValue *= 16;
-							}
+								// if we cannot path there, not as good (lower numbers are better)
+								if (!generatePath(pLoopCity->plot(), 0, true))
+								{
+									iValue *= 16;
+								}
 
-							// if we cannot path there, not as good (lower numbers are better)
-							if (!generatePath(pLoopCity->plot(), 0, true))
-							{
-								iValue *= 16;
-							}
-
-							if (iValue < iBestValue)
-							{
-								iBestValue = iValue;
-								pBestCity = pLoopCity;
+								if (iValue < iBestValue)
+								{
+									iBestValue = iValue;
+									pBestCity = pLoopCity;
+								}
 							}
 						}
 					}
@@ -7833,13 +7839,19 @@ CvCity* CvUnit::getUpgradeCity(UnitTypes eUnit, bool bSearch, int* iSearchValue)
 		CvCity* pClosestCity = GC.getMapINLINE().findCity(getX_INLINE(), getY_INLINE(), NO_PLAYER, getTeam(), true, bCoastalOnly);
 		if (pClosestCity != NULL)
 		{
-			// if we can train, then return this city (otherwise it will return NULL)
-			if (pClosestCity->canTrain(eUnit, false, false, true))
+			// Civ4 Reimagined: Can we upgrade this unit in this city?
+			// This check is necessary because of mercenary civic.
+			CvPlot* cityPlot = pClosestCity->plot();
+			if (cityPlot != NULL && cityPlot->canUpgradeTo(eUnit))
 			{
-				// did not search, always return 1 for search value
-				iBestValue = 1;
+				// if we can train, then return this city (otherwise it will return NULL)
+				if (pClosestCity->canTrain(eUnit, false, false, true))
+				{
+					// did not search, always return 1 for search value
+					iBestValue = 1;
 
-				pBestCity = pClosestCity;
+					pBestCity = pClosestCity;
+				}
 			}
 		}
 	}
