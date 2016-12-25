@@ -349,5 +349,9 @@
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_SLAVE_PEDIA</Tag>
 		<English>[TAB]Slavery existed before written history and in many cultures. It was once institutionally recognized by most societies, but has now been outlawed in all recognized countries, the last being Mauritania in 2007. Chattel slavery is still practiced in areas controlled by ISIS. In other areas slavery continues through such practices as debt bondage, serfdom, domestic servants kept in captivity, certain adoptions in which children are forced to work as slaves, child soldiers, human trafficking, and forced marriage.</English>
-	</TEXT>	
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_MISSILE_SILO_PEDIA</Tag>
+		<English>[TAB]A missile launch facility, also known as an underground missile silo, launch facility-LF or nuclear silo, is a vertical cylindrical structure constructed underground, for the storage and launching of intercontinental ballistic missiles (ICBMs). The structures typically have the missile some distance below ground, protected by a large "blast door" on top. They are usually connected, physically and/or electronically, to a missile launch control center.</English>
+	</TEXT>
 </Civ4GameText>
