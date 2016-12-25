@@ -30990,7 +30990,7 @@
 			<Type>BUILDING_MISSILE_SILO</Type>
 			<SpecialBuildingType>NONE</SpecialBuildingType>
 			<Description>TXT_KEY_BUILDING_MISSILE_SILO</Description>
-			<Civilopedia>TXT_KEY_LOREM_IPSUM</Civilopedia>
+			<Civilopedia>TXT_KEY_BUILDING_MISSILE_SILO_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_BUILDING_MISSILE_SILO_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<ArtDefineTag>ART_DEF_BUILDING_MISSILE_SILO</ArtDefineTag>
