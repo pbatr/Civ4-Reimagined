@@ -334,6 +334,7 @@
 	<ElementType name="iStartingLocPercent" content="textOnly" dt:type="int"/>
 	<ElementType name="iFreeUnits" content="textOnly" dt:type="int"/>
 	<ElementType name="iUnitCostPercent" content="textOnly" dt:type="int"/>
+	<ElementType name="iTechCostPercent" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iMaxNumCitiesMaintenance" content="textOnly" dt:type="int"/>
 	<ElementType name="iMaxColonyMaintenance" content="textOnly" dt:type="int"/>
 	<ElementType name="iCivicUpkeepPercent" content="textOnly" dt:type="int"/>
@@ -417,6 +418,7 @@
 		<element type="iFreeUnits"/>
 		<element type="iUnitCostPercent"/>
 		<element type="iResearchPercent"/>
+		<element type="iTechCostPercent"/> <!-- Civ4 Reimagined -->
 		<element type="iDistanceMaintenancePercent"/>
 		<element type="iNumCitiesMaintenancePercent"/>
 		<element type="iMaxNumCitiesMaintenance"/>

@@ -11738,6 +11738,7 @@ m_iStartingGold(0),
 m_iFreeUnits(0),
 m_iUnitCostPercent(0),
 m_iResearchPercent(0),
+m_iOverallTechCostPercent(0), // Civ4 Reimagined
 m_iDistanceMaintenancePercent(0),				
 m_iNumCitiesMaintenancePercent(0),				
 m_iMaxNumCitiesMaintenance(0),					
@@ -11848,6 +11849,12 @@ int CvHandicapInfo::getUnitCostPercent() const
 int CvHandicapInfo::getResearchPercent() const		
 {
 	return m_iResearchPercent;
+}
+
+// Civ4 Reimagined
+int CvHandicapInfo::getTechCostPercent() const		
+{
+	return m_iOverallTechCostPercent;
 }
 
 int CvHandicapInfo::getDistanceMaintenancePercent() const			
@@ -12150,6 +12157,7 @@ void CvHandicapInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iFreeUnits);
 	stream->Read(&m_iUnitCostPercent);
 	stream->Read(&m_iResearchPercent);
+	stream->Read(&m_iOverallTechCostPercent); // Civ4 Reimagined
 	stream->Read(&m_iDistanceMaintenancePercent);
 	stream->Read(&m_iNumCitiesMaintenancePercent);
 	stream->Read(&m_iMaxNumCitiesMaintenance);
@@ -12236,6 +12244,7 @@ void CvHandicapInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iFreeUnits);
 	stream->Write(m_iUnitCostPercent);
 	stream->Write(m_iResearchPercent);
+	stream->Write(m_iOverallTechCostPercent); // Civ4 Reimagined
 	stream->Write(m_iDistanceMaintenancePercent);
 	stream->Write(m_iNumCitiesMaintenancePercent);
 	stream->Write(m_iMaxNumCitiesMaintenance);
@@ -12316,6 +12325,7 @@ bool CvHandicapInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iFreeUnits, "iFreeUnits");
 	pXML->GetChildXmlValByName(&m_iUnitCostPercent, "iUnitCostPercent");
 	pXML->GetChildXmlValByName(&m_iResearchPercent, "iResearchPercent");
+	pXML->GetChildXmlValByName(&m_iOverallTechCostPercent, "iTechCostPercent"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iDistanceMaintenancePercent, "iDistanceMaintenancePercent");
 	pXML->GetChildXmlValByName(&m_iNumCitiesMaintenancePercent, "iNumCitiesMaintenancePercent");
 	pXML->GetChildXmlValByName(&m_iMaxNumCitiesMaintenance, "iMaxNumCitiesMaintenance");
