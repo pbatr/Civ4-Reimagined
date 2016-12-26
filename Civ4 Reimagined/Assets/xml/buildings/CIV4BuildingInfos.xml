@@ -709,7 +709,7 @@
 			<iFreeTechs>0</iFreeTechs>
 			<iDefense>20</iDefense>
 			<iBombardDefense>0</iBombardDefense>
-			<iTargetAirStrike>20</iTargetAirStrike>
+			<iTargetAirStrike>25</iTargetAirStrike>
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<iAsset>2</iAsset>
@@ -888,7 +888,7 @@
 			<iFreeTechs>0</iFreeTechs>
 			<iDefense>20</iDefense>
 			<iBombardDefense>0</iBombardDefense>
-			<iTargetAirStrike>20</iTargetAirStrike>
+			<iTargetAirStrike>25</iTargetAirStrike>
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<iAsset>2</iAsset>
@@ -1088,7 +1088,7 @@
 			<iFreeTechs>0</iFreeTechs>
 			<iDefense>10</iDefense>
 			<iBombardDefense>0</iBombardDefense>
-			<iTargetAirStrike>60</iTargetAirStrike>
+			<iTargetAirStrike>25</iTargetAirStrike>
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<iAsset>2</iAsset>
@@ -1294,7 +1294,7 @@
 			<iFreeTechs>0</iFreeTechs>
 			<iDefense>20</iDefense>
 			<iBombardDefense>0</iBombardDefense>
-			<iTargetAirStrike>60</iTargetAirStrike>
+			<iTargetAirStrike>25</iTargetAirStrike>
 			<iAllCityDefense>0</iAllCityDefense>
 			<iEspionageDefense>0</iEspionageDefense>
 			<iAsset>2</iAsset>
