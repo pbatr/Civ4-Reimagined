@@ -2,19 +2,39 @@
 Civ4 Reimagined 1.2
 *******************************************
 
-Good news for french players: juni_be_good is working on a french translation for Civ4 Reimagined and has already translated a whole chunk. Thanks!
-If you are interested in improving Civ4 Reimagined by translating or otherwise, just drop us a message.
-
--Tech Archery replaced with Leather Working. Archers are available with Hunting. Horseback Riding requires Leather Working instead of Iron Working but has increased cost.
--New building: Tannery. Moved happiness bonus for fur from market to tannery. Deer provides happiness with tannery instead of health with supermarket.
+*********
+New
+*********
+-French translation project by juni_be_good. If you are interested in helping us to translate Civ4 Reimagined into your language, just drop us a message.
+-New ancient building: Tannery (+2[g], -1[h], costs 90[p], +1[hap] from deer, fur). Available with Leather Working.
+-Archery replaced with Leather Working. Archers moved to Hunting.
 -Removed Totem Pole and added a tannery as unique building for Native Americans.
--All leaders have the same base attitude. There is a relationship bonus in place instead when a civilization doesn't have enough open borders.
--Adjusted tech costs to incorporate Leather Working change
--Due to popular demand: Added game option to disable the worker limit.
+-New game option to disable the worker limit.
+-New game option to disable modern unhappiness in colonies.
+-All leaders have the same base attitude and instead gain a relationship bonus when they don't have enough open border contracts.
+-Tech cost for all players scale with handicap setting. This should result in a more consistent game speed across difficulty levels. Feedback on the modifiers is highly appreciated.
+-Entering war on behalf of an AI player grants a small "You agreed to come to our aid in war-time." diplomatic modifier.
+
+*********
+Changes
+*********
+-Redestributed bonuses for fur, deer, wine and whale across market, grocer, supermarket and tannery.
+-Horseback Riding requires Leather Working instead of Iron Working but at increased cost.
+-Changed the way "balanced resources" map option works: Every player now has at least one copper, iron and oil near his starting position instead of exactly one of each.
+-Production penalties for insufficient strategic resources are halved. Example: With a ratio of 0.8 and 1 Iron, your production speed for swordsman will be 90% (-20% for a 0.8 ratio, halved to -10%).
+-Great Generals are always born in capital
+-All diplomacy modifiers expire eventually. Harsher modifiers such as "nuked us" take more time to be forgotten than smaller ones such as "made demand".
+-No blockade gold from barbarian cities
+-Slaves can no longer be captured by players without slavery
+
+*********
+Tweaks
+*********
+-Lower chance to destroy buildings with bombard missions (especially fighters and ships)
+-Adjusted tech costs to incorporate Leather Working change.
 -Slightly increased technology progression for medieval+.
--Tech cost for all players scale with handicap setting. This means faster technology progression on lower difficulty settings and vice versa.
--Production penalties for insufficient (strategic) resources are halved. Example: With a ratio of 0.8 and 1 Iron, your production speed for swordsman will be 90% (-20% for a 0.8 ratio, halved to -10%).
--Wine health bonus from grocer replaced with happiness bonus from market. Whale provides health instead of happiness (you still get happiness with market though).
+-Some AI adjustments when deciding which technology to research next.
+-AI doesn't cancel deals as often as before (except open borders, which are cancelled quicker)
 -Uranium yield with mine changed from 3 additional commerce to 1 additional production
 -Railroad building time reduced from 400 to 200
 -Tyranny upkeep cost increased from low to medium
@@ -24,37 +44,36 @@ If you are interested in improving Civ4 Reimagined by translating or otherwise, 
 -Commerce yield from gold/silver/gems reduced by 1
 -Academy grants +1 scientist slot.
 -No improvement building speed penalty for tundra terrain
--Great Generals are always born in capital
--All diplomacy modifiers expire eventually (Really, "Your spy was caught stirring up trouble" was such a big deal that the -1 modifier persisted for thousands of years?). Harsher modifiers such as "nuked us" take more time to be forgotten than smaller ones such as "made demand".
--"You agreed to come to our aid in war-time." already existed, but was never used. Entering war on behalf of an AI player now finally grants a small diplomacy bonus.
--Some AI adjustments when deciding which technology to research next.
--AI doesn't cancel deals as often as before (except open borders, which are cancelled quicker)
--New game option to disable modern unhappiness in colonies.
--Improved city resource display, which can now show up to 99 of each resource without overlapping.
--Deer and fur appearance increased on most map types
 -Ajusted appearance of copper, iron, oil, horse and stone
+-Deer and fur appearance increased on most map types
 -Switched rarity for gold and silver.
--Lower chance to destroy buildings with bombard missions (especially fighters and ships)
--No blockade gold from barbarian cities
+-Event quests that require a certain number of units to be build can only trigger with less than 50% quest progress at start. Increased number of units required for completion.
+-Pushed back the looter and marauder event into the renaissance. For an event that could destroy multiple buildings and improvements it could trigger awfully early.
+-Totestra map script: "Reduce peaks" is disabled per default
+
+*********
+Interface
+*********
+-Improved city resource display, which can now show up to 99 of each resource without overlapping.
 -Building preview shows estimated commerce gain for bonus trade routes
--Different unit art for a couple units: German horseman (looked too advanced for classic tech unit), Japanese axeman (using two swords prior to swordsmen was a bit unfair), Roman caravel and Arab/Babylon/Carthage/Celtic/Egypt/Ethiopian/Malinese/Persian/Sumer frigate (suffering from looking to old/frail and unable to go over the ocean - the model was pretty, but it was hard to tell whether it was a ship of war or a fishing boat).
--Fixed display for gold per happiness resource from Mercantilism.
--Maximum number of specialists (i.e. "Max: 6") shows up again even when the number of specialists allowed was doubled
--Fixed unit buttons for celtic and zulu tanks.
--Fixed a bug where old BtS Texts were showing up instead of our new ones.
--Fixed a bug where units could be upgraded without having the appropriate resources when playing with the mercenary civic
--Fixed city trade route display now showing custom house oversea trade modifier
--Fixed various event help texts
--Slaves can no longer be captured by players without slavery
+-Different unit art: German horseman (looked too advanced for classic tech unit), Japanese axeman (using two swords prior to swordsmen was a bit unfair), Roman caravel and Arab/Babylon/Carthage/Celtic/Egypt/Ethiopian/Malinese/Persian/Sumer frigate (suffering from looking to old/frail and unable to go over the ocean - the model was pretty, but it was hard to tell whether it was a ship of war or a fishing boat).
 -Displays how much gold has been stolen by enemy spies
 -Event log displays enemies that have withdrawn in yellow instead of red.
 -Improved babylonian unique building text
 -Improved slave unit texts, should help to determine how slaves are gained
--Event quests that require a certain number of units to be build can only trigger with less than 50% quest progress at start. Increased number of units required for completion.
--Pushed back the looter and marauder event into the renaissance. For an event that could destroy multiple buildings and improvements it could trigger awfully early.
--Changed the way "balanced resources" map option works: Every player now has at least one copper, iron and oil near his starting position instead of exactly one of each.
--Totestra map script: "Reduce peaks" is disabled per default
+
+*********
+Fixes
+*********
+-Fixed a bug where old BtS Texts were showing up instead of our new ones.
+-Fixed a bug where units could be upgraded without having the appropriate resources when playing with the mercenary civic
+-Fixed display for gold per happiness resource from Mercantilism.
+-Maximum number of specialists (i.e. "Max: 6") shows up again even when the number of specialists allowed was doubled
+-Fixed unit buttons for celtic and zulu tanks.
+-Fixed city trade route display now showing custom house oversea trade modifier
+-Fixed various event help texts
 -Totestra map script no longer places starting position close to map boundaries.
+
 
 *******************************************
 Civ4 Reimagined 1.1
