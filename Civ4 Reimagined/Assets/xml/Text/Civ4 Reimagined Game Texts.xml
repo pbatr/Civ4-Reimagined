@@ -1268,4 +1268,8 @@
 		<Italian>Infiltrati nemici hanno rubato una parte del nostro tesoro di stato! (%D1 oro)</Italian>
 		<Spanish>&#161;Los enemigos infiltrados han saqueado parte de nuestro tesoro! (%D1 oro)</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_NATIVE_AMERICA_TANNERY</Tag>
+		<English>Brain Tannery</English>
+	</TEXT>
 </Civ4GameText>
