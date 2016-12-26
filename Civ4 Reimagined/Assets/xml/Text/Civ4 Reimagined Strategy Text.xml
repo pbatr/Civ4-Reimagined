@@ -744,6 +744,6 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_NATIVE_AMERICA_TANNERY_STRATEGY</Tag>
-		<English>The [COLOR_BUILDING_TEXT]Brain Tannery[COLOR_REVERT] grants two artist slots. It produces no unhealthiness and costs half.</English>
+		<English>The [COLOR_BUILDING_TEXT]Brain Tannery[COLOR_REVERT] grants two artist slots. It produces no unhealthiness and costs less.</English>
 	</TEXT>
 </Civ4GameText>
