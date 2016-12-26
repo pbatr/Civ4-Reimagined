@@ -12512,10 +12512,10 @@
 			<OrPreReqs/>
 			<AndPreReqs/>
 			<ObsoleteTechs>
-				<ObsoleteTech>TECH_STEAM_POWER</ObsoleteTech>
-				<ObsoleteTech>TECH_STEEL</ObsoleteTech>
-				<ObsoleteTech>TECH_SCIENTIFIC_METHOD</ObsoleteTech>
-				<ObsoleteTech>TECH_ARTILLERY</ObsoleteTech>
+				<ObsoleteTech>TECH_CHEMISTRY</ObsoleteTech>
+				<ObsoleteTech>TECH_DIVINE_RIGHT</ObsoleteTech>
+				<ObsoleteTech>TECH_MILITARY_TRADITION</ObsoleteTech>
+				<ObsoleteTech>TECH_PRINTING_PRESS</ObsoleteTech>
 			</ObsoleteTechs>
 			<bRecurring>0</bRecurring>
 			<bTeam>0</bTeam>
