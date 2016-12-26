@@ -14273,7 +14273,7 @@ void CvUnit::bombardCity(CvCity* pCity, int bombardRate)
 	
 	if (buildingList.getLength() > 0)
 	{
-		for (pNode = buildingList->head(); pNode; pNode = buildingList->next(pNode))
+		for (pNode = buildingList.head(); pNode; pNode = buildingList.next(pNode))
 		{
 			if (GC.getBuildingInfo((BuildingTypes)iI).getDefenseModifier() > 0 && GC.getBuildingInfo((BuildingTypes)iI).getDefenseModifier() < maxDefense)
 			{

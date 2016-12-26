@@ -2930,7 +2930,7 @@ int CvTeam::getResearchCost(TechTypes eTech, bool bGlobalModifiers, bool bTeamSi
 	const CvGame& kGame = GC.getGameINLINE();
 	
 	// Civ4 Reimagined
-	iCost *= GC.getHandicapInfo(GC.getHandicapInfo(kGame.getHandicapType())).getTechCostPercent();
+	iCost *= GC.getHandicapInfo(kGame.getHandicapType()).getTechCostPercent();
 	iCost /= 100;
 
 	iCost *= GC.getHandicapInfo(getHandicapType()).getResearchPercent();

@@ -2593,6 +2593,7 @@ public:
 	int getFreeUnits() const;				// Exposed to Python
 	int getUnitCostPercent() const;				// Exposed to Python
 	int getResearchPercent() const;				// Exposed to Python
+	int getTechCostPercent() const;	// Civ4 Reimagined
 	int getDistanceMaintenancePercent() const;				// Exposed to Python
 	int getNumCitiesMaintenancePercent() const;				// Exposed to Python
 	int getMaxNumCitiesMaintenance() const;				// Exposed to Python
@@ -2668,7 +2669,8 @@ protected:
 	int m_iStartingGold;											
 	int m_iFreeUnits;												
 	int m_iUnitCostPercent;									
-	int m_iResearchPercent;									
+	int m_iResearchPercent;
+	int m_iOverallTechCostPercent; // Civ4 Reimagined	
 	int m_iDistanceMaintenancePercent;				
 	int m_iNumCitiesMaintenancePercent;				
 	int m_iMaxNumCitiesMaintenance;					
