@@ -14251,45 +14251,49 @@ int CvUnit::LFBgetDefenderCombatOdds(const CvUnit* pAttacker) const
 // Civ4 Reimagined
 void CvUnit::bombardCity(CvCity* pCity, int bombardRate)
 {
-	int build, iI, iAttempts, iMaxAttempts;
+	int build, iI;
 	CvWString szBuffer;
-	bool bNoTarget = true;
+	bool bSuccess = false;
 	CLinkList<int> buildingList;
+	CLLNode<int>* pNode;
 	buildingList.clear();
+	int maxDefense = 0;
 	
 	for (iI = 0; iI < GC.getNumBuildingInfos(); iI++)
 	{
-		if (GC.getBuildingInfo((BuildingTypes)iI).getTargetAirStrike() >= 10)
+		if (pCity->getNumRealBuilding((BuildingTypes)iI) > 0)
 		{
-			if (pCity->getNumRealBuilding((BuildingTypes)iI) <= 0)
+			maxDefense = std::max(maxDefense, GC.getBuildingInfo((BuildingTypes)iI).getDefenseModifier());
+			for (int j = 0; j < GC.getBuildingInfo((BuildingTypes)iI).getTargetAirStrike(); j++)
 			{
-				continue;
-			}
-		}
-		for (int j = 0; j < GC.getBuildingInfo((BuildingTypes)iI).getTargetAirStrike(); j++)
-		{
-			buildingList.insertAtEnd(iI);
-		}
-	}
-	if (buildingList.getLength() > 0)
-	{
-		iAttempts = 0;
-		iMaxAttempts = bombardRate / 4;
-		while (bNoTarget)
-		{
-			iAttempts++;
-			iI = GC.getGameINLINE().getSorenRandNum(buildingList.getLength(), "Airbomb building");
-			build = buildingList.nodeNum(iI)->m_data;
-			if (pCity->getNumRealBuilding((BuildingTypes)build) > 0 || iAttempts >= iMaxAttempts)
-			{
-				bNoTarget = false;
+				buildingList.insertAtEnd(iI);
 			}
 		}
 	}
 	
-	int iBombChance = GC.getGameINLINE().getSorenRandNum(100, "Airbomb building 2");
+	if (buildingList.getLength() > 0)
+	{
+		for (pNode = buildingList->head(); pNode; pNode = buildingList->next(pNode))
+		{
+			if (GC.getBuildingInfo((BuildingTypes)iI).getDefenseModifier() > 0 && GC.getBuildingInfo((BuildingTypes)iI).getDefenseModifier() < maxDefense)
+			{
+				buildingList.deleteNode(pNode);
+			}
+		}
 		
-	if (pCity->getNumRealBuilding((BuildingTypes)build) > 0 && iBombChance <= 6 * bombardRate)
+		iI = GC.getGameINLINE().getSorenRandNum(buildingList.getLength(), "Airbomb building");
+		build = buildingList.nodeNum(iI)->m_data;
+		
+		int iBombChance = GC.getGameINLINE().getSorenRandNum(100, "Airbomb building 2");
+		bool defenseBuilding = GC.getBuildingInfo((BuildingTypes)build).getDefenseModifier() > 0;
+		
+		if (iBombChance <= bombardRate * (defenseBuilding ? 12 : 6))
+		{
+			bSuccess = true;
+		}
+	}
+		
+	if (bSuccess)
 	{
 		pCity->setNumRealBuilding((BuildingTypes)build, pCity->getNumRealBuilding((BuildingTypes)build) - 1);
 		szBuffer = gDLL->getText("TXT_KEY_MISC_ENEMY_AIRBOMBSUCCESS", GC.getBuildingInfo((BuildingTypes)build).getTextKeyWide(), pCity->getNameKey());
