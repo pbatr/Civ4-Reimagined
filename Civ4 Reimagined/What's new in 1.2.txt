@@ -7,6 +7,7 @@ If you are interested in improving Civ4 Reimagined by translating or otherwise, 
 
 -Tech Archery replaced with Leather Working. Archers are available with Hunting. Horseback Riding requires Leather Working instead of Iron Working but has increased cost.
 -New building: Tannery. Moved happiness bonus for fur from market to tannery. Deer provides happiness with tannery instead of health with supermarket.
+-Removed Totem Pole and added a tannery as unique building for Native Americans.
 -All leaders have the same base attitude. There is a relationship bonus in place instead when a civilization doesn't have enough open borders.
 -Adjusted tech costs to incorporate Leather Working change
 -Due to popular demand: Added game option to disable the worker limit.
