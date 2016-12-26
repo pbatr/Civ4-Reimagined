@@ -6641,7 +6641,16 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				}
 				
 				if (gPlayerLogLevel > 2)
-					logBBAI("Tech Religion value: %d", iReligionValue);
+				{
+					if (countTotalHasReligion() > 0)
+					{
+						logBBAI("Tech Religion value: %d (has religion)", iReligionValue);
+					}
+					else
+					{
+						logBBAI("Tech Religion value: %d", iReligionValue);
+					}
+				}
 
 				iValue += iReligionValue;
 			}
