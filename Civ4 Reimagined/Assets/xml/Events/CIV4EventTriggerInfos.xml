@@ -14258,7 +14258,7 @@
 			<bPickOtherPlayerCity>0</bPickOtherPlayerCity>
 			<bShowPlot>0</bShowPlot>
 			<iCityFoodWeight>0</iCityFoodWeight>
-			<PythonCanDo/>
+			<PythonCanDo>canTriggerEliteSwords</PythonCanDo>
 			<PythonCanDoCity/>
 			<PythonCanDoUnit/>
 			<PythonCallback/>
@@ -14601,7 +14601,7 @@
 			<bPickOtherPlayerCity>0</bPickOtherPlayerCity>
 			<bShowPlot>0</bShowPlot>
 			<iCityFoodWeight>0</iCityFoodWeight>
-			<PythonCanDo/>
+			<PythonCanDo>canTriggerGunsButter</PythonCanDo>
 			<PythonCanDoCity/>
 			<PythonCanDoUnit/>
 			<PythonCallback/>
