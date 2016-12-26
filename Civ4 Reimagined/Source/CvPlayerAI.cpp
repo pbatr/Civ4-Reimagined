@@ -9894,7 +9894,7 @@ bool CvPlayerAI::AI_considerOffer(PlayerTypes ePlayer, const CLinkList<TradeData
 	for (CLLNode<TradeData>* pNode = pOurList->head(); pNode; pNode = pOurList->next(pNode))
 	{
 		// Civ4 Reimagined
-		if (iChange > -1 || (pNode->m_data.m_eItemType == TRADE_OPEN_BORDERS && GC.getGameINLINE().getSorenRandNum(10, "AI Cancel Open Borders") == 0))
+		if (iChange > -1 || (pNode->m_data.m_eItemType == TRADE_OPEN_BORDERS && GC.getGameINLINE().getSorenRandNum(4, "AI Cancel Open Borders") == 0))
 		{
 			if (getTradeDenial(ePlayer, pNode->m_data) != NO_DENIAL)
 			{

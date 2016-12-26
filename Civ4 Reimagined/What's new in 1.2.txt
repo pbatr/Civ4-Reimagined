@@ -28,7 +28,7 @@ If you are interested in improving Civ4 Reimagined by translating or otherwise, 
 -All diplomacy modifiers expire eventually (Really, "Your spy was caught stirring up trouble" was such a big deal that the -1 modifier persisted for thousands of years?). Harsher modifiers such as "nuked us" take more time to be forgotten than smaller ones such as "made demand".
 -"You agreed to come to our aid in war-time." already existed, but was never used. Entering war on behalf of an AI player now finally grants a small diplomacy bonus.
 -Some AI adjustments when deciding which technology to research next.
--AI doesn't cancel deals as often as before
+-AI doesn't cancel deals as often as before (except open borders, which are cancelled quicker)
 -New game option to disable modern unhappiness in colonies.
 -Improved city resource display, which can now show up to 99 of each resource without overlapping.
 -Deer and fur appearance increased on most map types
