@@ -11705,8 +11705,8 @@ void CvUnit::collectBlockadeGold()
 			{
 				CvCity* pCity = pLoopPlot->getPlotCity();
 
-				// Civ4 Reimagined: Removed condition !notatWar
-				if (NULL != pCity && !pCity->isPlundered() && isEnemy(pCity->getTeam()))
+				// Civ4 Reimagined: Removed condition !notatWar and added condition !isBarbarian
+				if (NULL != pCity && !pCity->isPlundered() && isEnemy(pCity->getTeam()) && !pCity->isBarbarian())
 				{
 					if (pCity->area() == area() || pCity->plot()->isAdjacentToArea(area()))
 					{
