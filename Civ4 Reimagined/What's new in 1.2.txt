@@ -50,6 +50,7 @@ If you are interested in improving Civ4 Reimagined by translating or otherwise, 
 -Event log displays enemies that have withdrawn in yellow instead of red.
 -Improved babylonian unique building text
 -Improved slave unit texts, should help to determine how slaves are gained
+-Event quests that require a certain number of units to be build can only trigger with less than 50% quest progress at start. Increased number of units required for completion.
 -Pushed back the looter and marauder event into the renaissance. For an event that could destroy multiple buildings and improvements it could trigger awfully early.
 -Changed the way "balanced resources" map option works: Every player now has at least one copper, iron and oil near his starting position instead of exactly one of each.
 -Totestra map script: "Reduce peaks" is disabled per default
