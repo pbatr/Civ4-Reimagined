@@ -5148,7 +5148,7 @@ class StartingArea :
         
         hrangelimit = mc.height - 4
         h = range(hrangelimit)
-        for y in [i+2 for i in h]:
+        for y in [i+4 for i in h]:
             for x in range(mc.width):
                 plot = gameMap.plot(x,y)
                 if plot.getArea() == self.areaID:
