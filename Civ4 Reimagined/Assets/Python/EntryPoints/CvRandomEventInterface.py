@@ -735,7 +735,7 @@ def getHelpTsunami2(argsList):
 	player = gc.getPlayer(kTriggeredData.ePlayer)
 	city = player.getCity(kTriggeredData.iCityId)
 
-	szHelp = localText.getText("TXT_KEY_EVENT_TSUNAMI_2_HELP", (5, city.getNameKey()))
+	szHelp = localText.getText("TXT_KEY_EVENT_TSUNAMI_2_HELP", (city.getNameKey()))
 
 	return szHelp
 
