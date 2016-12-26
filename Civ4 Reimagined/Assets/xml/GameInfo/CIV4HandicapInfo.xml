@@ -18,6 +18,7 @@
 			<iFreeUnits>24</iFreeUnits>
 			<iUnitCostPercent>20</iUnitCostPercent>
 			<iResearchPercent>60</iResearchPercent>
+			<iTechCostPercent>60</iTechCostPercent> <!-- Civ4 Reimagined -->
 			<iDistanceMaintenancePercent>45</iDistanceMaintenancePercent>
 			<iNumCitiesMaintenancePercent>40</iNumCitiesMaintenancePercent>
 			<iMaxNumCitiesMaintenance>4</iMaxNumCitiesMaintenance> <!-- already removed by K-mod -->
@@ -120,6 +121,7 @@
 			<iFreeUnits>18</iFreeUnits>
 			<iUnitCostPercent>30</iUnitCostPercent>
 			<iResearchPercent>75</iResearchPercent>
+			<iTechCostPercent>75</iTechCostPercent> <!-- Civ4 Reimagined -->
 			<iDistanceMaintenancePercent>55</iDistanceMaintenancePercent>
 			<iNumCitiesMaintenancePercent>50</iNumCitiesMaintenancePercent>
 			<iMaxNumCitiesMaintenance>4</iMaxNumCitiesMaintenance> <!-- already removed by K-mod -->
@@ -219,6 +221,7 @@
 			<iFreeUnits>12</iFreeUnits>
 			<iUnitCostPercent>40</iUnitCostPercent>
 			<iResearchPercent>90</iResearchPercent>
+			<iTechCostPercent>90</iTechCostPercent> <!-- Civ4 Reimagined -->
 			<iDistanceMaintenancePercent>65</iDistanceMaintenancePercent>
 			<iNumCitiesMaintenancePercent>60</iNumCitiesMaintenancePercent>
 			<iMaxNumCitiesMaintenance>5</iMaxNumCitiesMaintenance> <!-- already removed by K-mod -->
@@ -314,6 +317,7 @@
 			<iFreeUnits>8</iFreeUnits>
 			<iUnitCostPercent>50</iUnitCostPercent>
 			<iResearchPercent>100</iResearchPercent>
+			<iTechCostPercent>100</iTechCostPercent> <!-- Civ4 Reimagined -->
 			<iDistanceMaintenancePercent>75</iDistanceMaintenancePercent>
 			<iNumCitiesMaintenancePercent>70</iNumCitiesMaintenancePercent>
 			<iMaxNumCitiesMaintenance>5</iMaxNumCitiesMaintenance> <!-- already removed by K-mod -->
@@ -405,6 +409,7 @@
 			<iFreeUnits>6</iFreeUnits>
 			<iUnitCostPercent>60</iUnitCostPercent>
 			<iResearchPercent>110</iResearchPercent>
+			<iTechCostPercent>110</iTechCostPercent> <!-- Civ4 Reimagined -->
 			<iDistanceMaintenancePercent>85</iDistanceMaintenancePercent>
 			<iNumCitiesMaintenancePercent>80</iNumCitiesMaintenancePercent>
 			<iMaxNumCitiesMaintenance>6</iMaxNumCitiesMaintenance> <!-- already removed by K-mod -->
@@ -496,6 +501,7 @@
 			<iFreeUnits>4</iFreeUnits>
 			<iUnitCostPercent>70</iUnitCostPercent>
 			<iResearchPercent>115</iResearchPercent>
+			<iTechCostPercent>115</iTechCostPercent> <!-- Civ4 Reimagined -->
 			<iDistanceMaintenancePercent>90</iDistanceMaintenancePercent>
 			<iNumCitiesMaintenancePercent>85</iNumCitiesMaintenancePercent>
 			<iMaxNumCitiesMaintenance>6</iMaxNumCitiesMaintenance> <!-- already removed by K-mod -->
@@ -591,6 +597,7 @@
 			<iFreeUnits>3</iFreeUnits>
 			<iUnitCostPercent>80</iUnitCostPercent>
 			<iResearchPercent>120</iResearchPercent>
+			<iTechCostPercent>120</iTechCostPercent> <!-- Civ4 Reimagined -->
 			<iDistanceMaintenancePercent>95</iDistanceMaintenancePercent>
 			<iNumCitiesMaintenancePercent>90</iNumCitiesMaintenancePercent>
 			<iMaxNumCitiesMaintenance>7</iMaxNumCitiesMaintenance> <!-- already removed by K-mod -->
@@ -690,6 +697,7 @@
 			<iFreeUnits>2</iFreeUnits>
 			<iUnitCostPercent>90</iUnitCostPercent>
 			<iResearchPercent>125</iResearchPercent>
+			<iTechCostPercent>125</iTechCostPercent> <!-- Civ4 Reimagined -->
 			<iDistanceMaintenancePercent>100</iDistanceMaintenancePercent>
 			<iNumCitiesMaintenancePercent>95</iNumCitiesMaintenancePercent>
 			<iMaxNumCitiesMaintenance>7</iMaxNumCitiesMaintenance> <!-- already removed by K-mod -->
@@ -793,6 +801,7 @@
 			<iFreeUnits>1</iFreeUnits>
 			<iUnitCostPercent>100</iUnitCostPercent>
 			<iResearchPercent>130</iResearchPercent>
+			<iTechCostPercent>130</iTechCostPercent> <!-- Civ4 Reimagined -->
 			<iDistanceMaintenancePercent>100</iDistanceMaintenancePercent>
 			<iNumCitiesMaintenancePercent>100</iNumCitiesMaintenancePercent>
 			<iMaxNumCitiesMaintenance>8</iMaxNumCitiesMaintenance> <!-- already removed by K-mod -->
