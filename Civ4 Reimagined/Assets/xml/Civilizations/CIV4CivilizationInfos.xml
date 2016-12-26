@@ -2923,8 +2923,8 @@
 			</Cities>
 			<Buildings>
 				<Building>
-					<BuildingClassType>BUILDINGCLASS_OBELISK</BuildingClassType>
-					<BuildingType>BUILDING_NATIVE_AMERICA_TOTEM</BuildingType>
+					<BuildingClassType>BUILDINGCLASS_TANNERY</BuildingClassType>
+					<BuildingType>BUILDING_NATIVE_AMERICA_TANNERY</BuildingType>
 				</Building>
 			</Buildings>
 			<Units>
