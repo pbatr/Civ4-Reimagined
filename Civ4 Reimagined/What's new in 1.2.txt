@@ -42,6 +42,7 @@ Tweaks
 -Modern Armor production cost increased from 240 to 260
 -Movement speed for Corporation ships increased from 4 to 6
 -Commerce yield from gold/silver/gems reduced by 1
+-Angkor Wat becomes obsolete with Liberalism (was: Computers).
 -Academy grants +1 scientist slot.
 -No improvement building speed penalty for tundra terrain
 -Ajusted appearance of copper, iron, oil, horse and stone

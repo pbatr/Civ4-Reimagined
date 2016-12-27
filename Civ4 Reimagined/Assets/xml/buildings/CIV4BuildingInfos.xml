@@ -24017,7 +24017,7 @@
 			<VictoryPrereq>NONE</VictoryPrereq>
 			<FreeStartEra>NONE</FreeStartEra>
 			<MaxStartEra>ERA_RENAISSANCE</MaxStartEra>
-			<ObsoleteTech>TECH_COMPUTERS</ObsoleteTech>
+			<ObsoleteTech>TECH_LIBERALISM</ObsoleteTech>
 			<PrereqTech>TECH_ENGINEERING</PrereqTech>
 			<TechTypes>
 				<PrereqTech>TECH_DIVINE_RIGHT</PrereqTech>
