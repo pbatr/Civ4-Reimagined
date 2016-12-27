@@ -125,7 +125,7 @@
 			<Civilopedia>TXT_KEY_CORPORATION_4_PEDIA</Civilopedia>
 			<TechPrereq>NONE</TechPrereq>
 			<FreeUnitClass>NONE</FreeUnitClass>
-			<iSpreadFactor>50</iSpreadFactor>
+			<iSpreadFactor>75</iSpreadFactor>
 			<iSpreadCost>30</iSpreadCost>
 			<iMaintenance>75</iMaintenance>
 			<bCoastal>0</bCoastal>
