@@ -38,8 +38,9 @@ Tweaks
 -Uranium yield with mine changed from 3 additional commerce to 1 additional production
 -Railroad building time reduced from 400 to 200
 -Tyranny upkeep cost increased from low to medium
--Tank production cost increased from 180 to 200
--Modern Armor production cost increased from 240 to 260
+-Tank production cost increased from 180 to 250
+-Tank city strength reduced from -10% to -15%
+-Modern Armor production cost increased from 240 to 320
 -Movement speed for Corporation ships increased from 4 to 6
 -Commerce yield from gold/silver/gems reduced by 1
 -Angkor Wat becomes obsolete with Liberalism (was: Computers).
