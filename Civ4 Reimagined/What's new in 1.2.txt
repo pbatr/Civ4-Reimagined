@@ -47,6 +47,7 @@ Tweaks
 -Ajusted appearance of copper, iron, oil, horse and stone
 -Deer and fur appearance increased on most map types
 -Switched rarity for gold and silver.
+-Increased passive spread for Luxury Industry
 -Event quests that require a certain number of units to be build can only trigger with less than 50% quest progress at start. Increased number of units required for completion.
 -Pushed back the looter and marauder event into the renaissance. For an event that could destroy multiple buildings and improvements it could trigger awfully early.
 -Totestra map script: "Reduce peaks" is disabled per default
