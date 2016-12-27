@@ -1,6 +1,9 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+Civ4 Reimagined is an extensive overhaul for Civilization IV: Beyond the Sword by Pierre Batram and Nils Batram.
+
+* List of features: https://forums.civfanatics.com/threads/civ4-reimagined.569959
+* Download the latest stable version at https://forums.civfanatics.com/resources/civ4-reimagined.25132
 
 ### What is this repository for? ###
 
