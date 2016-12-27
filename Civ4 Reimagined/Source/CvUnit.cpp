@@ -14257,16 +14257,23 @@ void CvUnit::bombardCity(CvCity* pCity, int bombardRate)
 	CLinkList<int> buildingList;
 	CLLNode<int>* pNode;
 	buildingList.clear();
-	int maxDefense = 0;
+	int minDefense = MAX_INT;
 	
 	for (iI = 0; iI < GC.getNumBuildingInfos(); iI++)
 	{
 		if (pCity->getNumRealBuilding((BuildingTypes)iI) > 0)
 		{
-			maxDefense = std::max(maxDefense, GC.getBuildingInfo((BuildingTypes)iI).getDefenseModifier());
-			for (int j = 0; j < GC.getBuildingInfo((BuildingTypes)iI).getTargetAirStrike(); j++)
+			if (GC.getBuildingInfo((BuildingTypes)iI).getTargetAirStrike() > 0)
 			{
-				buildingList.insertAtEnd(iI);
+				if (GC.getBuildingInfo((BuildingTypes)iI).getDefenseModifier() > 0)
+				{
+					minDefense = std::min(minDefense, GC.getBuildingInfo((BuildingTypes)iI).getDefenseModifier());
+				}
+				
+				for (int j = 0; j < GC.getBuildingInfo((BuildingTypes)iI).getTargetAirStrike(); j++)
+				{
+					buildingList.insertAtEnd(iI);
+				}
 			}
 		}
 	}
@@ -14275,7 +14282,7 @@ void CvUnit::bombardCity(CvCity* pCity, int bombardRate)
 	{
 		for (pNode = buildingList.head(); pNode; pNode = buildingList.next(pNode))
 		{
-			if (GC.getBuildingInfo((BuildingTypes)pNode->m_data).getDefenseModifier() > 0 && GC.getBuildingInfo((BuildingTypes)pNode->m_data).getDefenseModifier() < maxDefense)
+			if (GC.getBuildingInfo((BuildingTypes)pNode->m_data).getDefenseModifier() > 0 && GC.getBuildingInfo((BuildingTypes)pNode->m_data).getDefenseModifier() > minDefense)
 			{
 				buildingList.deleteNode(pNode);
 			}
