@@ -14275,7 +14275,7 @@ void CvUnit::bombardCity(CvCity* pCity, int bombardRate)
 	{
 		for (pNode = buildingList.head(); pNode; pNode = buildingList.next(pNode))
 		{
-			if (GC.getBuildingInfo((BuildingTypes)iI).getDefenseModifier() > 0 && GC.getBuildingInfo((BuildingTypes)iI).getDefenseModifier() < maxDefense)
+			if (GC.getBuildingInfo((BuildingTypes)pNode->m_data).getDefenseModifier() > 0 && GC.getBuildingInfo((BuildingTypes)pNode->m_data).getDefenseModifier() < maxDefense)
 			{
 				buildingList.deleteNode(pNode);
 			}
@@ -14284,7 +14284,7 @@ void CvUnit::bombardCity(CvCity* pCity, int bombardRate)
 		iI = GC.getGameINLINE().getSorenRandNum(buildingList.getLength(), "Airbomb building");
 		build = buildingList.nodeNum(iI)->m_data;
 		
-		int iBombChance = GC.getGameINLINE().getSorenRandNum(100, "Airbomb building 2");
+		int iBombChance = GC.getGameINLINE().getSorenRandNum(100, "Airbomb building");
 		bool defenseBuilding = GC.getBuildingInfo((BuildingTypes)build).getDefenseModifier() > 0;
 		
 		if (iBombChance <= bombardRate * (defenseBuilding ? 12 : 6))
