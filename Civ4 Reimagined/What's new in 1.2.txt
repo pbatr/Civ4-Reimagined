@@ -61,7 +61,7 @@ Interface
 -Building preview shows estimated commerce gain for bonus trade routes
 -Different unit art: German horseman (looked too advanced for classic tech unit), Japanese axeman (using two swords prior to swordsmen was a bit unfair), Roman caravel and Arab/Babylon/Carthage/Celtic/Egypt/Ethiopian/Malinese/Persian/Sumer frigate (suffering from looking to old/frail and unable to go over the ocean - the model was pretty, but it was hard to tell whether it was a ship of war or a fishing boat).
 -Displays how much gold has been stolen by enemy spies
--Event log displays enemies that have withdrawn in yellow instead of red.
+-Withdrawal and collateral messages are displayed in yellow instead of red.
 -Improved babylonian unique building text
 -Improved slave unit texts, should help to determine how slaves are gained
 
