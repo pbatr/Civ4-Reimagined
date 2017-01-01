@@ -3467,7 +3467,7 @@
 			<Help/>
 			<Strategy>TXT_KEY_TECH_FISSION_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
-			<iAIWeight>2000</iAIWeight>
+			<iAIWeight>3000</iAIWeight>
 			<iAITradeModifier>10</iAITradeModifier>
 			<iCost>5400</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
@@ -3735,7 +3735,6 @@
 			</Flavors>
 			<OrPreReqs>
 				<PrereqTech>TECH_ARTILLERY</PrereqTech>
-				<PrereqTech>TECH_FASCISM</PrereqTech>
 			</OrPreReqs>
 			<AndPreReqs>
 				<PrereqTech>TECH_INDUSTRIALISM</PrereqTech>
