@@ -36,6 +36,7 @@ Tweaks
 -Some AI adjustments when deciding which technology to research next.
 -AI doesn't cancel deals as often as before (except open borders, which are cancelled quicker)
 -Uranium yield with mine changed from 3 additional commerce to 1 additional production
+-Airports require Oil
 -Railroad building time reduced from 400 to 200
 -Tyranny upkeep cost increased from low to medium
 -Tank production cost increased from 180 to 250
@@ -50,6 +51,7 @@ Tweaks
 -Deer and fur appearance increased on most map types
 -Switched rarity for gold and silver.
 -Increased passive spread for Luxury Industry
+-Reduced cost for The Great Dam
 -Event quests that require a certain number of units to be build can only trigger with less than 50% quest progress at start. Increased number of units required for completion.
 -Pushed back the looter and marauder event into the renaissance. For an event that could destroy multiple buildings and improvements it could trigger awfully early.
 -Totestra map script: "Reduce peaks" is disabled per default
