@@ -10644,7 +10644,7 @@
             <PrereqCivic>NONE</PrereqCivic>
 			<PrereqTech>TECH_PLASTICS</PrereqTech>
 			<TechTypes>
-				<PrereqTech>NONE</PrereqTech>
+				<PrereqTech>TECH_RIFLING</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 			</TechTypes>
@@ -11076,7 +11076,7 @@
 			<PrereqTech>TECH_FLIGHT</PrereqTech>
 			<TechTypes>
 				<PrereqTech>TECH_ASSEMBLY_LINE</PrereqTech>
-				<PrereqTech>NONE</PrereqTech>
+				<PrereqTech>TECH_RIFLING</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 			</TechTypes>
 			<BonusType>NONE</BonusType>
@@ -11277,7 +11277,11 @@
 			<PrereqBuilding>NONE</PrereqBuilding>
             <PrereqCivic>NONE</PrereqCivic>
 			<PrereqTech>TECH_PLASTICS</PrereqTech>
-			<TechTypes/>
+			<TechTypes>
+				<PrereqTech>TECH_RIFLING</PrereqTech>
+				<PrereqTech>NONE</PrereqTech>
+				<PrereqTech>NONE</PrereqTech>
+			</TechTypes>
 			<BonusType>BONUS_OIL</BonusType>
 			<PrereqBonuses/>
 			<ProductionTraits/>
@@ -16215,7 +16219,7 @@
             <PrereqCivic>NONE</PrereqCivic>
 			<PrereqTech>TECH_COMPOSITES</PrereqTech>
 			<TechTypes>
-				<PrereqTech>TECH_PLASTICS</PrereqTech>
+				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 			</TechTypes>
@@ -17385,7 +17389,7 @@
             <PrereqCivic>NONE</PrereqCivic>
 			<PrereqTech>TECH_LASER</PrereqTech>
 			<TechTypes>
-				<PrereqTech>TECH_ARTILLERY</PrereqTech>
+				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 			</TechTypes>
@@ -20669,7 +20673,7 @@
 			<ProductionTraits/>
 			<Flavors/>
 			<iAIWeight>0</iAIWeight>
-			<iCost>280</iCost>
+			<iCost>350</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -20855,7 +20859,7 @@
 			<ProductionTraits/>
 			<Flavors/>
 			<iAIWeight>0</iAIWeight>
-			<iCost>300</iCost>
+			<iCost>370</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -22845,7 +22849,7 @@
             <PrereqCivic>NONE</PrereqCivic>
 			<PrereqTech>TECH_ROCKETRY</PrereqTech>
 			<TechTypes>
-				<PrereqTech>TECH_FISSION</PrereqTech>
+				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 			</TechTypes>
@@ -23017,7 +23021,7 @@
             <PrereqCivic>NONE</PrereqCivic>
 			<PrereqTech>TECH_SATELLITES</PrereqTech>
 			<TechTypes>
-				<PrereqTech>TECH_FISSION</PrereqTech>
+				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 			</TechTypes>
