@@ -532,6 +532,11 @@ public:
 	void changeEnableSlavesCount(int iChange);
 	int getNumSlaveUnits() const;
 	void changeNumSlaveUnits(int iChange);
+	int getSlavePoints() const;
+	void changeSlavePoints(int iChange);
+	int getNewSlaveThreshold() const;
+	void setSlaveThreshold(int iChange);
+	void initSlave(CvCity* pCity);
 	
 	// Civ4 Reimagined
 	int getNoMilitaryProductionMaliCount() const;	
@@ -1467,6 +1472,8 @@ protected:
 	int m_iMilitaryFoodProductionCount;
 	int m_iEnableSlavesCount; // Civ4 Reimagined
 	int m_iSlavesCount; // Civ4 Reimagined
+	int m_iSlavePoints; // Civ4 Reimagined
+	int m_iSlaveThreshold; // Civ4 Reimagined
 	int m_iNoMilitaryProductionMaliCount; // Civ4 Reimagined
 	int m_iConscriptCount;
 	int m_iMaxConscript;

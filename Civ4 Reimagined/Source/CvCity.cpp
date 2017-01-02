@@ -328,16 +328,11 @@ void CvCity::init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, 
 		}
 		
 		// Civ4 Reimagined: Slaves in colonies
-		const UnitClassTypes UNITCLASS_SLAVE = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SLAVE");
-		const UnitTypes UNIT_SLAVE = (UnitTypes)GC.getUnitClassInfo(UNITCLASS_SLAVE).getDefaultUnitIndex();
-		
 		if (isColony())
 		{
 			if (GET_PLAYER(getOwnerINLINE()).hasSlavery() && GET_TEAM(getTeam()).isTerrainTrade((TerrainTypes)GC.getInfoTypeForString("TERRAIN_OCEAN")))
 			{
-				GET_PLAYER(getOwnerINLINE()).initUnit(UNIT_SLAVE, getX_INLINE(), getY_INLINE(), UNITAI_WORKER);
-				gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MISC_SLAVE_STARTED_WORKING", getNameKey()).GetCString(), "AS2D_UNIT_BUILD_UNIT", MESSAGE_TYPE_MINOR_EVENT);
-				if (gCityLogLevel > 0) logBBAI("Slave starts working in %S", getName(0).GetCString());
+				GET_PLAYER(getOwnerINLINE()).initSlave(this);
 			}
 		}
 	}
