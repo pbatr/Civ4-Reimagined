@@ -829,6 +829,8 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iMilitaryFoodProductionCount = 0;
 	m_iEnableSlavesCount = 0; // Civ4 Reimagined
 	m_iSlavesCount = 0; // Civ4 Reimagined
+	m_iSlavePoints = 0; // Civ4 Reimagined
+	m_iSlaveThreshold = 0; // Civ4 Reimagined
 	//m_iNumColonies = 0; // Civ4 Reimagined
 	m_iNoMilitaryProductionMaliCount = 0; // Civ4 Reimagined
 	m_iConscriptCount = 0;
@@ -2597,6 +2599,18 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 
 	bRecapture = ((eHighestCulturePlayer != NO_PLAYER) ? (GET_PLAYER(eHighestCulturePlayer).getTeam() == getTeam()) : false);
 
+	// Civ4 Reimagined: Slaves on city conquest / raze
+	if (bConquest && !bOldEverOwned && hasSlavery())
+	{
+		changeSlavePoints(iPopulation);
+		
+		if (getSlavePoints() >= getNewSlaveThreshold())
+		{
+			changeSlavePoints(-1 * getNewSlaveThreshold());
+			initSlave(pOldCity);
+		}
+	}
+	
 	pOldCity->kill(false);
 
 	if (bTrade)
@@ -2869,7 +2883,7 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 		}
 	}
 	
-	// Civ4 Reimagined
+	// Civ4 Reimagined: Unique Power for greece
 	int iFreeUnitsOnConquest = getFreeUnitsOnConquest();
 	if (iFreeUnitsOnConquest > 0 && bConquest && eOldHighestCulturePlayer != NO_PLAYER && !bOldEverOwned)
 	{
@@ -10676,11 +10690,16 @@ void CvPlayer::changeEnableSlavesCount(int iChange)
 {
 	if (iChange != 0)
 	{
+		if (m_iEnableSlavesCount <= 0 && iChange > 0) // Slavery starts
+		{
+			setSlaveThreshold(GC.getDefineINT("SLAVE_THRESHOLD_START"));
+		}
+		
 		m_iEnableSlavesCount = (m_iEnableSlavesCount + iChange);
 		FAssert(m_iEnableSlavesCount >= 0);
 		int iLoop;
 		
-		if (m_iEnableSlavesCount <= 0 && iChange < 0)
+		if (m_iEnableSlavesCount <= 0 && iChange < 0) // Slavery ends
 		{
 			if (getNumSlaveUnits() > 0)
 			{
@@ -10715,6 +10734,57 @@ void CvPlayer::changeNumSlaveUnits(int iChange)
 		FAssert(m_iSlavesCount >= 0);
 	}
 }
+
+
+// Civ4 Reimagined
+int CvPlayer::getSlavePoints() const														
+{
+	return m_iSlavePoints;
+}
+
+
+// Civ4 Reimagined
+void CvPlayer::changeSlavePoints(int iChange)											
+{
+	if (iChange != 0)
+	{
+		m_iSlavePoints = (m_iSlavePoints + iChange);
+		FAssert(m_iSlavePoints >= 0);
+	}
+}
+
+
+// Civ4 Reimagined
+int CvPlayer::getNewSlaveThreshold() const
+{
+	return m_iSlaveThreshold;
+}
+
+
+// Civ4 Reimagined
+void CvPlayer::setSlaveThreshold(int iValue)
+{
+	m_iSlaveThreshold = iValue;
+}
+
+
+// Civ4 Reimagined
+void CvPlayer::initSlave(CvCity* pCity)											
+{
+	const UnitClassTypes UNITCLASS_SLAVE = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SLAVE");
+	const UnitTypes UNIT_SLAVE = (UnitTypes)GC.getUnitClassInfo(UNITCLASS_SLAVE).getDefaultUnitIndex();
+
+	initUnit(UNIT_SLAVE, pCity->getX_INLINE(), pCity->getY_INLINE(), UNITAI_WORKER);
+	gDLL->getInterfaceIFace()->addHumanMessage(getID(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MISC_SLAVE_STARTED_WORKING", pCity->getNameKey()).GetCString(), "AS2D_UNIT_BUILD_UNIT", MESSAGE_TYPE_MINOR_EVENT);
+	if (gPlayerLogLevel > 0) logBBAI("Slave starts working in %S", pCity->getName(0).GetCString());
+	
+	int iNextSlaveThreshold = getNewSlaveThreshold();
+	iNextSlaveThreshold *= 100 + GC.getDefineINT("SLAVE_THRESHOLD_INCREASE_PERCENT");
+	iNextSlaveThreshold /= 100;
+	setSlaveThreshold(iNextSlaveThreshold);
+	
+}
+
 
 /*
 
@@ -19441,6 +19511,8 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iMilitaryFoodProductionCount);
 	pStream->Read(&m_iEnableSlavesCount); // Civ4 Reimagined
 	pStream->Read(&m_iSlavesCount); // Civ4 Reimagined
+	pStream->Read(&m_iSlavePoints); // Civ4 Reimagined
+	pStream->Read(&m_iSlaveThreshold); // Civ4 Reimagined
 	//pStream->Read(&m_iNumColonies); // Civ4 Reimagined
 	pStream->Read(&m_iNoMilitaryProductionMaliCount); // Civ4 Reimagined
 	pStream->Read(&m_iConscriptCount);
@@ -20022,6 +20094,8 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iMilitaryFoodProductionCount);
 	pStream->Write(m_iEnableSlavesCount); // Civ4 Reimagined
 	pStream->Write(m_iSlavesCount); // Civ4 Reimagined
+	pStream->Write(m_iSlavePoints); // Civ4 Reimagined
+	pStream->Write(m_iSlaveThreshold); // Civ4 Reimagined
 	//pStream->Write(m_iNumColonies); // Civ4 Reimagined
 	pStream->Write(m_iNoMilitaryProductionMaliCount); // Civ4 Reimagined
 	pStream->Write(m_iConscriptCount);
