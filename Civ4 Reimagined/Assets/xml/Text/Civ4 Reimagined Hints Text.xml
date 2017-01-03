@@ -85,7 +85,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_20</Tag>
-		<English>Slaves will work for your empire if you settle on other continents after discovering Astronomy for as long as you maintain slavery.</English>
+		<English>There are two ways to gain Slaves with Slavery. First to conquer enemy cities. Second to settle on large oversea continents after discovering Astronomy.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_21</Tag>
@@ -170,5 +170,9 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_41</Tag>
 		<English>When you are short on strategic ressources, the Mercenary Civic can help you out. It enables you to buy any unit for a little money.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_41</Tag>
+		<English>If you abolish slavery, all Slaves in your empire will be free.</English>
 	</TEXT>
 </Civ4GameText>

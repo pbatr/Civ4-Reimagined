@@ -740,7 +740,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_SLAVE_STRATEGY</Tag>
-		<English>Slaves are less efficient than workers, but they do not affect your worker limit. Use Slaves to modernize a large and distributed empire.[PARAGRAPH:1]With Astronomy you gain one slave for each new city founded on new landmasses, assuming you are still using the Slavery civic. But beware, if you abolish slavery all slaves will be lost.</English>
+		<English>Slaves are less efficient than workers, but they do not affect your worker limit. Use Slaves to modernize a large and distributed empire.[PARAGRAPH:1]There are two ways to gain slaves with slavery. First to conquer enemy cities. Second to settle on large oversea continents after discovering Astronomy. But beware, if you abolish slavery all slaves will be lost.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_NATIVE_AMERICA_TANNERY_STRATEGY</Tag>

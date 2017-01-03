@@ -382,7 +382,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_ENABLES_SLAVES</Tag>
-		<English>[ICON_BULLET]Receive a [LINK=literal]Slave[\LINK] in Every Newly Founded Colony</English>
+		<English>[ICON_BULLET]Enables [LINK=literal]Slaves[\LINK] (Conquer Cities or Found Colonies)</English>
 		<French>[ICON_BULLET]Recevez un [LINK=literal]Slave[\LINK] pour chaque nouvelle colonie fondée</French>
 	</TEXT>
 	<TEXT>
