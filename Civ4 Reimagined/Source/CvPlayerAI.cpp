@@ -14951,7 +14951,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		
 		//Civ4 Reimagined Todo: Scale with required points for next great people
 		
-		iTempValue *= 2 * (kCivic.isNoGreatPeople() ? (-100 - getGreatPeopleRateModifier()) : kCivic.getGreatPeopleRateModifier());
+		iTempValue *= 4 * (kCivic.isNoGreatPeople() ? (-100 - getGreatPeopleRateModifier()) : kCivic.getGreatPeopleRateModifier());
 		iTempValue /= 100;
 		if (iTempValue != 0 && gPlayerLogLevel > 2) logBBAI("	Civic Value of Great People Modifier: %d", iTempValue);
 		iValue += iTempValue;
@@ -16851,34 +16851,49 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		}
 	}
 	
-	// Civ4 Reimagined: Slaves in Colonies
+	// Civ4 Reimagined: Enables Slaves and enables slavery corporations
 	if (kCivic.enablesSlaves())
 	{
 		int iSlaveryCorpCount = 0;
+		int iCorpValue = 0;
+		int iSlaveValue = 0;
+		int iCoastalCities = 0;
+		int iLoop;
+		
+		for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity; pLoopCity = nextCity(&iLoop))
+		{
+			if (pLoopCity->isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
+				iCoastalCities++;
+		}
+		
 		for (int iI = 0; iI < GC.getNumCorporationInfos(); iI++)
 		{
 			if (GC.getCorporationInfo((CorporationTypes)iI).isSlaves())
 			{
 				iSlaveryCorpCount += getHasCorporationCount((CorporationTypes)iI);
+				
+				if (!kGame.isCorporationFounded((CorporationTypes)iI) && !isNoCorporations())
+				{
+					iCorpValue += AI_corporationValue((CorporationTypes)iI) * iCoastalCities / 100;
+				}
+				else if (kTeam.hasHeadquarters((CorporationTypes)iI) && !isNoCorporations())
+				{
+					iCorpValue += (iCoastalCities - getHasCorporationCount((CorporationTypes)iI)) * AI_corporationValue((CorporationTypes)iI) / 25;
+				}
 			}
 		}
-		iTempValue = iCities * getNumSlaveUnits() * (100 + iSlaveryCorpCount * 100/iCities) / 100;
+		iSlaveValue += iCities * getNumSlaveUnits() * (100 + iSlaveryCorpCount * 100/iCities) / 100;
 		
-		// Civ4 Reimagined: Only enable this bonus on "new world" maps
-		// This does not work... Todo: Try something else			
-		/*
-		if (GC.getMapINLINE().getCustomMapOption(GC.getInfoTypeForString("OPTION_NewWorld")) == 2)
-		{
-			logBBAI("NewWorld");
-		}
-		*/
+		// Civ4 Reimagined todo: Only enable this bonus on "new world" maps
+
 		if (GET_TEAM(getTeam()).isTerrainTrade((TerrainTypes)GC.getInfoTypeForString("TERRAIN_OCEAN")) && getCurrentEra() < 5)
 		{
-			iTempValue += std::max(0, GC.getMapINLINE().getLandPlots() - GC.getMapINLINE().getOwnedPlots()) / 10;
+			iSlaveValue += std::max(0, GC.getMapINLINE().getLandPlots() - GC.getMapINLINE().getOwnedPlots()) / 10;
 		}
 		
-		if (iTempValue > 0 && gPlayerLogLevel > 2) logBBAI("	Civic Value of Slaves: %d", iTempValue);
-		iValue += iTempValue;
+		if (iSlaveValue > 0 && gPlayerLogLevel > 2) logBBAI("	Civic Value of Slaves: %d", iSlaveValue);
+		if (iCorpValue > 0 && gPlayerLogLevel > 2) logBBAI("	Civic Value of Corporations: %d", iCorpValue);
+		iValue += iTempValue + std::max(0, iCorpValue);
 	}
 
 	/* for (int iI = 0; iI < GC.getNumSpecialBuildingInfos(); iI++)
