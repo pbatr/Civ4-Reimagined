@@ -1272,4 +1272,12 @@
 		<Tag>TXT_KEY_BUILDING_NATIVE_AMERICA_TANNERY</Tag>
 		<English>Brain Tannery</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_DOUBLE_BUILDING_DEFENSE</Tag>
+		<English>[ICON_BULLET]Defensive Bonus from Buildings is Doubled</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_BUILDING_DEFENSE</Tag>
+		<English>[ICON_BULLET]%D1_Mod%% Defensive Bonus from Buildings</English>
+	</TEXT>
 </Civ4GameText>
