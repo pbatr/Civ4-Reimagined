@@ -5676,7 +5676,7 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 
 			if (GC.getImprovementInfo(eImprovement).getImprovementUpgrade() != NO_IMPROVEMENT)
 			{
-				if (GET_PLAYER(eRevealOwner).getImprovementUpgradeRate() <= 0) // Civ4 Reimagined: No growth case for autocracy.
+				if (eRevealOwner != NO_PLAYER && GET_PLAYER(eRevealOwner).getImprovementUpgradeRate() <= 0) // Civ4 Reimagined: No growth case for autocracy.
 				{
 					szString.append(gDLL->getText("TXT_KEY_PLOT_NO_UPGRADE", GC.getImprovementInfo((ImprovementTypes) GC.getImprovementInfo(eImprovement).getImprovementUpgrade()).getTextKeyWide()));
 				}
