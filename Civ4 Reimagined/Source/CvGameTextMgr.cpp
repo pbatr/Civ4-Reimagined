@@ -3573,7 +3573,7 @@ bool CvGameTextMgr::setCombatPlotHelp(CvWStringBuffer &szString, CvPlot* pPlot)
 
 			if (!(pDefender->noDefensiveBonus()))
 			{
-				iModifier = pPlot->defenseModifier(pDefender->getTeam(), (pAttacker != NULL) ? pAttacker->ignoreBuildingDefense() : true);
+				iModifier = pPlot->defenseModifier(pDefender->getTeam(), (pAttacker != NULL) ? pAttacker->ignoreBuildingDefense() : true, false, pDefender->defenseBuildingModifier());
 
 				if (iModifier != 0)
 				{
@@ -4034,7 +4034,7 @@ bool CvGameTextMgr::setCombatPlotHelp(CvWStringBuffer &szString, CvPlot* pPlot)
 
 		if (!(pDefender->noDefensiveBonus()))
 		{
-			iModifier = pPlot->defenseModifier(pDefender->getTeam(), (pAttacker != NULL) ? pAttacker->ignoreBuildingDefense() : true);
+			iModifier = pPlot->defenseModifier(pDefender->getTeam(), (pAttacker != NULL) ? pAttacker->ignoreBuildingDefense() : true, false, pDefender->defenseBuildingModifier());
 
 			if (iModifier != 0)
 			{
@@ -9106,6 +9106,21 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
 	{
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_NO_DEFENSE_BONUSES"));
+	}
+	
+	// Civ4 Reimagined
+	if (GC.getUnitInfo(eUnit).getDefenseBuildingModifier() != 0)
+	{
+		if (GC.getUnitInfo(eUnit).getDefenseBuildingModifier() == 100)
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_UNIT_DOUBLE_BUILDING_DEFENSE"));
+		}
+		else
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_UNIT_BUILDING_DEFENSE", GC.getUnitInfo(eUnit).getDefenseBuildingModifier()));
+		}
 	}
 
 	// Civ4 Reimagined
