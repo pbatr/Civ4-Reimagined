@@ -10644,7 +10644,7 @@
             <PrereqCivic>NONE</PrereqCivic>
 			<PrereqTech>TECH_PLASTICS</PrereqTech>
 			<TechTypes>
-				<PrereqTech>TECH_RIFLING</PrereqTech>
+				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 			</TechTypes>
@@ -11278,7 +11278,7 @@
             <PrereqCivic>NONE</PrereqCivic>
 			<PrereqTech>TECH_PLASTICS</PrereqTech>
 			<TechTypes>
-				<PrereqTech>TECH_RIFLING</PrereqTech>
+				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 			</TechTypes>
@@ -20846,7 +20846,7 @@
 			<PrereqTech>TECH_ROBOTICS</PrereqTech>
 			<TechTypes>
 				<PrereqTech>TECH_COMPOSITES</PrereqTech>
-				<PrereqTech>NONE</PrereqTech>
+				<PrereqTech>TECH_ROCKETRY</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 			</TechTypes>
 			<BonusType>BONUS_IRON</BonusType>
