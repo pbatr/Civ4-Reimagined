@@ -5527,6 +5527,9 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				if (kBuilding.getGlobalCorporationCommerce() != NO_CORPORATION)
 				{
 					iExpectedSpread += GC.getGameINLINE().countCorporationLevels((CorporationTypes)(kBuilding.getGlobalCorporationCommerce()));
+					
+					//Civ4 Reimagined
+					iExpectedSpread += GC.getCorporationInfo((CorporationTypes)(kBuilding.getGlobalCorporationCommerce())).getSpreadFactor() * GC.getGameINLINE().getNumCities() / 1000;
 
 					if (iExpectedSpread > 0)
 					{
