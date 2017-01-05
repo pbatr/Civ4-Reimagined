@@ -15157,7 +15157,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			iTempValue *= 2;
 			iTempValue /= iUpgradeTime;
 		
-			if (gPlayerLogLevel > 2) logBBAI("	Civic Value of Faster Improvement Growth: %d", iTempValue);
+			if (gPlayerLogLevel > 2) logBBAI("	Civic Value of Changed Improvement Growth: %d", iTempValue);
 		
 			iValue += iTempValue;
 		}
@@ -18876,7 +18876,7 @@ void CvPlayerAI::AI_doCivics()
 
 			if (aeNewCivic[iI] != aeBestCivic[iI])
 			{
-				if ((100*iBestValue > (100+iThreshold)*aiCurrentValue[iI]) && (iThreshold <= 20 || (iBestValue-aiCurrentValue[iI]) > 50))
+				if (((100*iBestValue > (100+iThreshold)*aiCurrentValue[iI]) && (iThreshold <= 20 || (iBestValue-aiCurrentValue[iI]) > 50)) || (iBestValue - aiCurrentValue[iI] > 100))
 				{
 					FAssert(aeBestCivic[iI] != NO_CIVIC);
 					if (gPlayerLogLevel > 0) logBBAI("    %S decides to switch from %S to %S (value: %d vs %d%S)", getCivilizationDescription(0), GC.getCivicInfo(aeBestCivic[iI]).getDescription(0), GC.getCivicInfo(aeNewCivic[iI]).getDescription(0), aiCurrentValue[iI], iBestValue, iPass > 1 ? "" : ", on recheck");
