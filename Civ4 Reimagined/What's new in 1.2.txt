@@ -49,6 +49,7 @@ Tweaks
 -Missile Cruiser production cost increased from 300 to 370
 -Movement speed for Corporation ships increased from 4 to 6
 -Commerce yield from gold/silver/gems reduced by 1
+-Axemen bonus vs Archer reduced from 30% to 25%.
 -Angkor Wat becomes obsolete with Liberalism (was: Computers).
 -Academy grants +1 scientist slot.
 -No improvement building speed penalty for tundra terrain
