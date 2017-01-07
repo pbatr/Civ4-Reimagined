@@ -6331,7 +6331,8 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 				if (iNewCivicValue > iCurrentCivicValue)
 				{
-					iValue += std::min(3000, (3000 * (iNewCivicValue - iCurrentCivicValue)) / std::max(1, iCurrentCivicValue)) * (bNewReligionCivic ? 3 : 1) ;
+					// Civ4 Reimagined
+					iValue += std::min(9000, (3000 * (iNewCivicValue - iCurrentCivicValue)) / std::max(1, iCurrentCivicValue)) * (bNewReligionCivic ? 3 : 1) ;
 				}
 				iValue += std::max(0, 200 * iNewCivicValue / std::max(1, iCurrentCivicValue)); // K-Mod, replacing the flat 200 above.
 
@@ -8941,7 +8942,7 @@ int CvPlayerAI::AI_getNeedOpenBordersAttitude(PlayerTypes ePlayer) const
 
 		if (iTradeRoutes > AI_countPotentialForeignTradeCities(false, true))
 		{
-			iAttitude += 2;
+			iAttitude += 1;
 		}
 	}
 	
@@ -16138,7 +16139,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			iCount++;
 		}
 		
-		iTempValue += ((0 == iCount) ? 50 * iCityHappiness : iHapValue / iCount) * iCities / 10;
+		iTempValue += ((0 == iCount) ? 50 * iCityHappiness : iHapValue / iCount) * iCities / 12;
 		
 		if (gPlayerLogLevel > 0) logBBAI("	Civic Happiness Value: %d", iTempValue);
 		
