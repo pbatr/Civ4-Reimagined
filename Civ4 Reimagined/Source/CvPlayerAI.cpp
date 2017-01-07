@@ -8938,11 +8938,13 @@ int CvPlayerAI::AI_getNeedOpenBordersAttitude(PlayerTypes ePlayer) const
 		for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 		{
 			iTradeRoutes += pLoopCity->getTradeRoutes();
-		}		
+		}
 
-		if (iTradeRoutes > AI_countPotentialForeignTradeCities(false, true))
+		int iForeignTradeCities = AI_countPotentialForeignTradeCities(false, true);
+
+		if (iTradeRoutes > iForeignTradeCities)
 		{
-			iAttitude += 1;
+			iAttitude += (iForeignTradeCities == 0) ? 2 : 1;
 		}
 	}
 	
