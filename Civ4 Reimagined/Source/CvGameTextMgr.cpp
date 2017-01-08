@@ -713,6 +713,21 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 				szString.append(NEWLINE);
 				szString.append(gDLL->getText("TXT_KEY_UNIT_NO_DEFENSE_BONUSES"));
 			}
+			
+			// Civ4 Reimagined
+			if (pUnit->defenseBuildingModifier() != 0)
+			{
+				if (pUnit->defenseBuildingModifier() == 100)
+				{
+					szString.append(NEWLINE);
+					szString.append(gDLL->getText("TXT_KEY_UNIT_DOUBLE_BUILDING_DEFENSE"));
+				}
+				else
+				{
+					szString.append(NEWLINE);
+					szString.append(gDLL->getText("TXT_KEY_UNIT_BUILDING_DEFENSE", pUnit->defenseBuildingModifier()));
+				}
+			}
 
 			if (pUnit->flatMovementCost())
 			{
