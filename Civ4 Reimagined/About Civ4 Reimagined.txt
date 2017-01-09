@@ -1,10 +1,14 @@
 
-Civ4 Reimagined 1.1
+*******************************************
+Civ4 Reimagined
+*******************************************
+
+You can always find the latest version (and a better formatted version of this text) here: https://forums.civfanatics.com/threads/civ4-reimagined.569959
 
 *******************************************
 Introduction:
 *******************************************
-Civ4 Reimagined is a gameplay overhaul mod for Beyond the Sword with the goal of creating a rich and satisfying experience for a game with a high number of players. Despite touching almost every aspect of the game, Civ4 Reimagined strives to feel like a as-it-should-be version of Civilization IV, not a kitchen sink mod. As such, don't expect tons of new units, technologies and whatnot. There *is* new content, but everything new has been carefully added to fix problems and improve the gameplay where we could see opportunities to do so. Civ4 Reimagined started as a K-Modmod (which means you get all the benefits from K-Mod such as a much stronger AI, speed improvements, less OOS errors in multiplayer etc.) and includes the graphic modifications Varietas Delectat and Cultural Citystyles.
+Civ4 Reimagined is an extensive overhaul for Civilization IV: Beyond the Sword. Despite touching almost every aspect of the game, Civ4 Reimagined strives to feel like a as-it-should-be version of Civilization IV, not a kitchen sink mod. As such, don't expect tons of new units, technologies and whatnot. There *is* new content, but everything new has been carefully added to fix problems and improve gameplay. and all new content is AI supported. Civ4 Reimagined started as a K-Modmod (which means you get all the benefits from K-Mod such as a much stronger AI, speed improvements, less OOS errors in multiplayer etc.) and includes the graphic modifications Varietas Delectat and Cultural Citystyles.
 
 *******************************************
 Main Features:
@@ -12,31 +16,35 @@ Main Features:
 
 Resources
 
-A single resource can only support a finite population. If your population grows too large and a single resource can't satisfy the demand all health, happiness and production benefits are reduced accordingly. Additional resources of the same kind are then required to mitigate the resource shortage: If one pig would grant you +0.7 health only because of high population, two pigs will give you the full +1.0 health bonus. When a swordsman is build with a 0.8 ratio in iron the production speed is reduced to 80%. Researching technologies improves your resource ratio, reflecting your increased ability to foster and distribute your resources. This change is a boon for small realms who can keep up their 1.0 ratios easily. However playing a large realm is more fun than ever as your constant struggle to connect new and old resources keeps you on the lookout for good settling positions and trade deals.
+A single resource can only support a finite population. If your population grows too large and a single resource can't satisfy the demand all health, happiness and production benefits are reduced accordingly. Additional resources of the same kind are then required to mitigate the resource shortage: If one pig would grant you only +0.7 health because of high population, two pigs will give you the full +1.0 health bonus. When a swordsman is build with a 0.8 ratio in iron the production speed is reduced to 80%. Researching technologies improves your resource ratio, reflecting your increased ability to foster and distribute your resources. This change is a boon for small realms who can keep up their 1.0 ratios easily. However playing a large realm is more fun than ever as your constant struggle to connect new and old resources keeps you on the lookout for good settling positions and trade deals.
 
 Combat
 
-BTS combat resolves largly around stacking enough collateral damage until you can wipe out the enemy tanks with your swordsmen. Even worse, the artillery units in BTW charge head first into the enemy and die in the process, even though they should logically be attacking safely from afar. As the most drastic redesign in Civ4 Imagined, the combat system has been partially remade to fix both issues. Some units possess a range stat, denoted by the bow symbol next to the movement points: Collateral damage is greatly reduced, but is still very important to tip the scales in an otherwise balanced fight or to even the odds in an unbalanced one. Collateral damage units such as archers and artillery receive an attack bonus against units who cannot match their range. This allows archers to harass melee units with little fear of retribution - at least, until it is their turn to attack!. However, a defending archer might return fire and kill the attacker.
+BTS combat resolves largly around stacking enough collateral damage until you can wipe out the enemy tanks with your swordsmen. Even worse, the artillery units in BTW charge head first into the enemy and die in the process, even though they should logically be attacking safely from afar. As the most drastic redesign in Civ4 Reimagined, the combat system has been partially remade to fix both issues. 
+
+Some units possess a range stat, denoted by the bow symbol next to the movement points. Collateral damage is greatly reduced, but is still very important to tip the scales in an otherwise balanced fight or to even the odds in an unbalanced one. Collateral damage units such as archers and artillery receive an attack bonus against units who cannot match their range. This allows archers to harass melee units with little fear of retribution - at least, until it is their turn to attack! However, a defending archer might return fire and kill the attacker.
+
 Walls and Castles are useful again. While their defensive stats are greatly reduced they can no longer be blasted into oblivion by ancient siege weapons. Now you truely have a defensive advantage with walls instead of buying yourself one turn of time only (when you are lucky). This changes again when cannons and modern ships enter the battlefield with their ability to bombard cities and destroy both defensive structures and buildings alike.
 
 AI
 
-Civ4 Reimagined features a strong AI and as countless AI improvements on top of K-Mod. All new features and changes of this mod are AI supported.
+Civ4 Reimagined features a strong AI and countless AI improvements on top of K-Mod. All new features and changes of this mod are AI supported.
 Just a few examples:
--AI evaluates it's own happiness and health surplus or shortage when trading resources.
--AI demands all ressources from its vassals that could be useful.
--AI evaluates all civic effects plus any correlations that might exist and generally is much more accurate with its evaluations.
--AI will delay revolution when it currently researches a technology that will grant it a better civic.
--Better evaluations when deciding which technologies to research next.
--Smarter city placing and improvement building which results in a stronger economy of your AI opponents.
--AI doesn't use slavery as extensively as before which results in bigger cities and stronger AI overall.
--When deciding which player to attack, AI focuses on its neighbors instead of far away civs.
--AI no longer uses nuclear weapons without thinking. They evaluate the consequences of a nuclear counterattack and may decide to not attack you at all if your nuclear arsenal is big enough.
+ -AI evaluates its own happiness and health surplus or shortage when trading resources.
+ -AI demands all ressources from its vassals that could be useful.
+ -AI evaluates all civic effects plus any correlations that might exist and generally is much more accurate with its evaluations.
+ -AI will delay revolution when it currently researches a technology that will grant it a better civic.
+ -Better evaluations when deciding which technologies to research next.
+ -Smarter city placing and improvement building which results in a stronger economy of your AI opponents.
+ -AI doesn't use slavery as extensively as before which results in bigger cities and stronger AI overall.
+ -When deciding which player to attack, AI focuses on its neighbors instead of far away civs.
+ -AI no longer uses nuclear weapons without thinking. They evaluate the consequences of a nuclear counterattack and may decide to not attack you at all if your nuclear arsenal is big enough.
 
 Minor Features:
 
 -New names, new symbols, and effects for corporations and a few more corporations for the early stages of the game. Corporations automatically spread to cities which have their needed resources nearby. But while you can no longer keep your corporations for yourself, feel solace in the fact that cities with your corporation in it will be weakened to your spionage effords.
 -Almost all technologies, units, buildings and improvements were modified in some way. Unique units have a larger impact, and late-game unique units/buildings are even more powerful.
+-Cvilipoedia entries for all new or modifier content - including strategy and background texts.
 -Archers and crossbows are the new collateral units in the classical/medieval era. Because of this catapults and trebuchets have been removed.
 -Some new units were added: Wargalley (medieval ship), cruiser (industrial ship) and motorized infantry.
 -More compact tech tree and technologies are sorted in a historically more accurate order. How quick everything progresses still depends on your difficulty though. For monarch it usually works quite well, neither being too far ahead nor too far behind of the real timeline.
@@ -94,19 +102,20 @@ Future Plans: Modern Era Overhaul
 
 The industrial and modern eras don't feel right yet. We have lots of ideas to improve things here. Ideologies shall fill the gap that religion leaves after the discovery of secularism. An improved, more realistic UN and the concept of proxy wars should also help to create a better cold war feeling in the modern era. We might also decide to replace Alpha Centauri with a more realistic space race.
 
-Notes:
+Notes and known issues:
 
--This list is by all means not exhaustive! We changed so many things before eventually deciding to publish this mod that it is hard to remember everything. If you are playing our mod and notice something weird or staggering that should be in this introduction, by all means please tell us.
--The mod is not translated yet. English is the only supported language.
+-Our feature list is by all means not exhaustive! We changed so many things before eventually deciding to publish this mod that it is hard to remember everything. If you are playing our mod and notice something weird or staggering that should be in this introduction, by all means please tell us. We are also always happy to hear your suggestions or bug reports.
+ -The mod is not translated yet. English is the only fully supported language. Thanks to contributors some parts are translated in french aswell.
+ -We tried our best to keep Civ4 Reimagined multiplayer stable (we often play with 2-3 players). In some games events might cause OOS errors. If you are encountering frequent OOS issues, one quick fix is to disable events entirely by setting FIRST_DELAY_TURNS in GlobalDefines.xml to a high number e.g. 1000 (does require everyone to make the change, but save game can be continued).
 
 *******************************************
 Recommended settings:
 *******************************************
 
-These are the setting we usually use when playing and testing. Of course you can still use whatever you prefer ;-)
--18-20 players totestra map: Although waiting for the start of the game when playing a Totestra map can be quite time consuming, it is well worth it! You will never want to play on one of the “normal” maps again. We did some adjustments to the mapscript to suit our mod.
--Empty, colonizeable continent ("new world"): Thanks to K-Mod, AI opponents are smart enough to colonize quickly themselves. Colonies provide a faster benefit in our mod and you need the additional ressources to maintain your large empire anyway. On the contrary expect additional unhappiness in your colonies when entering the modern era.
--No technology trading: We recommend playing without tech trading. If you do, an improved tech diffusion mechanic will be in place which makes for a more realistic tech spread.
+You can use any settings you like and Civ4 Reimagined will work reasonably well. But to get the most out of it we recommend these settings:
+-18-20 players: We made many tweaks to support a high amount of players (more wonders of the world, tech diffusion etc.). A high number of players keeps domination victories exciting until modern age, too.
+-We strongly recommend playing without tech trading. It might feel weird at first, but our improved tech diffusion mechanic will make for a more balanced and realistic tech spread. At least give it a shot. ;-)
+-Totestra map with empty, colonizeable continent ("new world"): Our personal favourite mapscript offers realistic landmasses and at least one major oversea continent ready to be explored and exploited. Colonies are more interesting than before and the AI makes quick use of colonization opportunities. The only downside is that creating a new game can be quite time consuming.
 
 *******************************************
 Credits:
@@ -121,7 +130,8 @@ K-Mod by karadoc
 Dawn of Civilization by Leoreth
 Varietas Delectat by avain
 Cultural Citystyles by GeoModder
-Totestra map by Cephalo
+Totestra map by Sam Trenholme
+Partial french translation by juni_be_good
 A few buttons and icons from ambrox62, Edgecrusher, AchillesZero and Caveman2Cosmos
 Events from Cybrxkhan's WOL
 ...and all respective mods and helpers those build upon.
