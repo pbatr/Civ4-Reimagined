@@ -1786,11 +1786,11 @@
 	</Define>
 	<Define>
 		<DefineName>SLAVE_THRESHOLD_INCREASE_PERCENT</DefineName>
-		<iDefineIntVal>20</iDefineIntVal>
+		<iDefineIntVal>50</iDefineIntVal>
 	</Define>
 	<Define>
 		<DefineName>SLAVE_THRESHOLD_START</DefineName>
-		<iDefineIntVal>10</iDefineIntVal>
+		<iDefineIntVal>5</iDefineIntVal>
 	</Define>
 	<!-- Civ4 Reimagined End -->
 </Civ4Defines>
