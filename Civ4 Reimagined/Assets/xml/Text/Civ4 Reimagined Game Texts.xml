@@ -1280,4 +1280,8 @@
 		<Tag>TXT_KEY_UNIT_BUILDING_DEFENSE</Tag>
 		<English>[ICON_BULLET]%D1_Mod%% Defensive Bonus from Buildings</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_GREAT_HARBOR</Tag>
+		<English>Great Harbor</English>
+	</TEXT>
 </Civ4GameText>

@@ -1399,15 +1399,15 @@
 			<VictoryThresholds/>
 		</BuildingClassInfo>
 		<BuildingClassInfo>
-			<Type>BUILDINGCLASS_MOAI_STATUES</Type>
-			<Description>TXT_KEY_BUILDING_MOAI_STATUES</Description>
-			<iMaxGlobalInstances>0</iMaxGlobalInstances>
+			<Type>BUILDINGCLASS_GREAT_HARBOR</Type>
+			<Description>TXT_KEY_BUILDING_GREAT_HARBOR</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
 			<iMaxTeamInstances>-1</iMaxTeamInstances>
-			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iMaxPlayerInstances>1</iMaxPlayerInstances>
 			<iExtraPlayerInstances>0</iExtraPlayerInstances>
 			<bNoLimit>0</bNoLimit>
-			<bMonument>0</bMonument>
-			<DefaultBuilding>BUILDING_MOAI_STATUES</DefaultBuilding>
+			<bMonument>1</bMonument>
+			<DefaultBuilding>BUILDING_GREAT_HARBOR</DefaultBuilding>
 			<VictoryThresholds/>
 		</BuildingClassInfo>
 		<BuildingClassInfo>
