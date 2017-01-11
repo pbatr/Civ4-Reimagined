@@ -536,7 +536,7 @@ public:
 	void changeSlavePoints(int iChange);
 	int getNewSlaveThreshold() const;
 	void setSlaveThreshold(int iChange);
-	void initSlave(CvCity* pCity);
+	void initSlave(CvCity* pCity, bool bIncreaseThreshold);
 	
 	// Civ4 Reimagined
 	int getNoMilitaryProductionMaliCount() const;	

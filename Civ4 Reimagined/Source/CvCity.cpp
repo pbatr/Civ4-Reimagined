@@ -332,7 +332,7 @@ void CvCity::init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, 
 		{
 			if (GET_PLAYER(getOwnerINLINE()).hasSlavery() && GET_TEAM(getTeam()).isTerrainTrade((TerrainTypes)GC.getInfoTypeForString("TERRAIN_OCEAN")))
 			{
-				GET_PLAYER(getOwnerINLINE()).initSlave(this);
+				GET_PLAYER(getOwnerINLINE()).initSlave(this, false);
 			}
 		}
 	}
