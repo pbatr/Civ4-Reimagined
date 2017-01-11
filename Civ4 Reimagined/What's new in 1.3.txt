@@ -5,6 +5,7 @@ Civ4 Reimagined 1.3
 *********
 New
 *********
+-National building: Great Harbor (+1 [P] from water tiles)
 
 *********
 Changes
