@@ -1481,14 +1481,14 @@
 			<Button>,Art/Interface/Buttons/Buildings/HangingGardens.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,8</Button>
 		</BuildingArtInfo>
 		<BuildingArtInfo>
-			<Type>ART_DEF_BUILDING_MOAI_STATUES</Type>
+			<Type>ART_DEF_BUILDING_GREAT_HARBOR</Type>
 			<LSystem>LSYSTEM_COAST</LSystem>
 			<bAnimated>0</bAnimated>
-			<fScale>0.115</fScale>
+			<fScale>1.0</fScale>
 			<fInterfaceScale>0.7</fInterfaceScale>
-			<NIF>Art/Structures/Buildings/Moai_Statues/Moai_Statutes.nif</NIF>
+			<NIF>Art/Structures/Buildings/Harbor/HarborModern.nif</NIF>
 			<KFM/>
-			<Button>,Art/Interface/Buttons/TechTree/Corporation.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,3,14</Button>
+			<Button>,Art/Interface/Buttons/Buildings/ChichenItza.dds,Art/Civ4 Reimagined/Civ4_Reimagined_Atlas.dds,6,2</Button>
 		</BuildingArtInfo>
 		<BuildingArtInfo>
 			<Type>ART_DEF_BUILDING_SHWEDAGON_PAYA</Type>

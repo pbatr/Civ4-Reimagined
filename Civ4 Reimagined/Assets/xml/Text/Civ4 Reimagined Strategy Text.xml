@@ -281,6 +281,10 @@
 		<English>The [COLOR_BUILDING_TEXT]Lighthouse[COLOR_REVERT] improves the food output of water plots.</English>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_BUILDING_GREAT_HARBOR_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Great Harbor[COLOR_REVERT] improves the production output of water plots. Its city is more likely to generate a [COLOR_UNIT_TEXT]Great Merchant[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_BUILDING_TANNERY_STRATEGY</Tag>
 		<English>The [COLOR_BUILDING_TEXT]Tannery[COLOR_REVERT] gives an early gold income, but at a cost to health. It also increases the city's happiness with access to [COLOR_HIGHLIGHT_TEXT]Deer[COLOR_REVERT] or [COLOR_HIGHLIGHT_TEXT]Fur[COLOR_REVERT].</English>
 	</TEXT>
