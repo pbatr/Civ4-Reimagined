@@ -9,7 +9,7 @@ New
 *********
 Changes
 *********
-
+-Achers and Longbowman gain additional defense bonuses from defensive buildings such as walls and castles. Before offensive units with higher ST would benefit more from walls/castles thant he dedicated city defenders, making balancing them tricky. Reduced city defense (Longbowman only) and increased costs  to compensate.
 
 *********
 Tweaks
@@ -24,6 +24,9 @@ Interface
 *********
 Fixes
 *********
+
+
+
 
 
 *******************************************
