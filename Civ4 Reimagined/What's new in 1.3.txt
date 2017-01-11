@@ -1,4 +1,32 @@
 *******************************************
+Civ4 Reimagined 1.3
+*******************************************
+
+*********
+New
+*********
+
+*********
+Changes
+*********
+
+
+*********
+Tweaks
+*********
+-Axemen bonus vs Archer reduced from 30% to 25%.
+
+*********
+Interface
+*********
+
+
+*********
+Fixes
+*********
+
+
+*******************************************
 Civ4 Reimagined 1.2
 *******************************************
 
@@ -26,22 +54,27 @@ Changes
 -All diplomacy modifiers expire eventually. Harsher modifiers such as "nuked us" take more time to be forgotten than smaller ones such as "made demand".
 -No blockade gold from barbarian cities
 -Slaves can no longer be captured by players without slavery
+-Bombarding city mechanic slightly changed. Castles are always targeted before Walls with a small chance to destroy other buildings. Success chance no longer depends on number of buildings in the city
 
 *********
 Tweaks
 *********
--Lower chance to destroy buildings with bombard missions (especially fighters and ships)
+-Fighters and pre-modern ships are less effective when bombarding cities
 -Adjusted tech costs to incorporate Leather Working change.
 -Slightly increased technology progression for medieval+.
 -Some AI adjustments when deciding which technology to research next.
+-Improved AI Civic and Corporation evaluations
 -AI doesn't cancel deals as often as before (except open borders, which are cancelled quicker)
 -Uranium yield with mine changed from 3 additional commerce to 1 additional production
 -Airports require Oil
 -Railroad building time reduced from 400 to 200
 -Tyranny upkeep cost increased from low to medium
+-Capitalism upkeep cost increased from low to medium
 -Tank production cost increased from 180 to 250
 -Tank city strength reduced from -10% to -15%
 -Modern Armor production cost increased from 240 to 320
+-Battleship production cost increased from 280 to 350
+-Missile Cruiser production cost increased from 300 to 370
 -Movement speed for Corporation ships increased from 4 to 6
 -Commerce yield from gold/silver/gems reduced by 1
 -Angkor Wat becomes obsolete with Liberalism (was: Computers).
@@ -52,6 +85,7 @@ Tweaks
 -Switched rarity for gold and silver.
 -Increased passive spread for Luxury Industry
 -Reduced cost for The Great Dam
+-Native Americans start with Hunting instead of Agriculture
 -Event quests that require a certain number of units to be build can only trigger with less than 50% quest progress at start. Increased number of units required for completion.
 -Pushed back the looter and marauder event into the renaissance. For an event that could destroy multiple buildings and improvements it could trigger awfully early.
 -Totestra map script: "Reduce peaks" is disabled per default

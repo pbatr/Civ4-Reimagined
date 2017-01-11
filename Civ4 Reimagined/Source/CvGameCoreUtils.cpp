@@ -1744,7 +1744,7 @@ int pathCost(FAStarNode* parent, FAStarNode* node, int data, const void* pointer
 			{
 				iDefenceCount++;
 				if (pLoopUnit->canDefend(pToPlot))
-					iDefenceMod += pLoopUnit->noDefensiveBonus() ? 0 : pToPlot->defenseModifier(eTeam, false);
+					iDefenceMod += pLoopUnit->noDefensiveBonus() ? 0 : pToPlot->defenseModifier(eTeam, false, false, pLoopUnit->defenseBuildingModifier());
 				else
 					iDefenceMod -= 100; // we don't want to be here.
 
@@ -1765,7 +1765,7 @@ int pathCost(FAStarNode* parent, FAStarNode* node, int data, const void* pointer
 					if (pSelectionGroup->AI_isControlled() || parent->m_iKnownCost != 0 || iFlags & MOVE_HAS_STEPPED)
 					{
 						iAttackCount++;
-						iFromDefenceMod += pLoopUnit->noDefensiveBonus() ? 0 : pFromPlot->defenseModifier(eTeam, false);
+						iFromDefenceMod += pLoopUnit->noDefensiveBonus() ? 0 : pFromPlot->defenseModifier(eTeam, false, false, pLoopUnit->defenseBuildingModifier());
 
 						if (!pFromPlot->isCity())
 						{
