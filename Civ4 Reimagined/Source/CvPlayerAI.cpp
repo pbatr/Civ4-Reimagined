@@ -6331,7 +6331,8 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 				if (iNewCivicValue > iCurrentCivicValue)
 				{
-					iValue += std::min(3000, (3000 * (iNewCivicValue - iCurrentCivicValue)) / std::max(1, iCurrentCivicValue)) * (bNewReligionCivic ? 3 : 1) ;
+					// Civ4 Reimagined
+					iValue += std::min(9000, (3000 * (iNewCivicValue - iCurrentCivicValue)) / std::max(1, iCurrentCivicValue)) * (bNewReligionCivic ? 3 : 1) ;
 				}
 				iValue += std::max(0, 200 * iNewCivicValue / std::max(1, iCurrentCivicValue)); // K-Mod, replacing the flat 200 above.
 
@@ -8937,11 +8938,13 @@ int CvPlayerAI::AI_getNeedOpenBordersAttitude(PlayerTypes ePlayer) const
 		for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 		{
 			iTradeRoutes += pLoopCity->getTradeRoutes();
-		}		
+		}
 
-		if (iTradeRoutes > AI_countPotentialForeignTradeCities(false, true))
+		int iForeignTradeCities = AI_countPotentialForeignTradeCities(true, true);
+
+		if (iTradeRoutes > iForeignTradeCities)
 		{
-			iAttitude += 2;
+			iAttitude += ((iTradeRoutes - iForeignTradeCities) > getNumCities()) ? 2 : 1;
 		}
 	}
 	
@@ -14198,6 +14201,12 @@ int CvPlayerAI::AI_corporationValue(CorporationTypes eCorporation, const CvCity*
 		// expect that we'll be able to trade for at least 1 of the bonuses.
 		iBonuses++;
 	}
+	
+	// Civ4 Reimagined
+	if (GC.getCorporationInfo(eCorporation).isSlaves())
+	{
+		iBonuses += getNumSlaveUnits() + (hasSlavery() ? 1 : 0); 
+	}
 
 	for (int iI = (CommerceTypes)0; iI < NUM_COMMERCE_TYPES; ++iI)
 	{
@@ -14801,7 +14810,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		return 1;
 	}
 
-	if( isBarbarian() )
+	if( isBarbarian() || iCities < 1)
 	{
 		return 1;
 	}
@@ -14951,7 +14960,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		
 		//Civ4 Reimagined Todo: Scale with required points for next great people
 		
-		iTempValue *= 2 * (kCivic.isNoGreatPeople() ? (-100 - getGreatPeopleRateModifier()) : kCivic.getGreatPeopleRateModifier());
+		iTempValue *= 4 * (kCivic.isNoGreatPeople() ? (-100 - getGreatPeopleRateModifier()) : kCivic.getGreatPeopleRateModifier());
 		iTempValue /= 100;
 		if (iTempValue != 0 && gPlayerLogLevel > 2) logBBAI("	Civic Value of Great People Modifier: %d", iTempValue);
 		iValue += iTempValue;
@@ -15151,7 +15160,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			iTempValue *= 2;
 			iTempValue /= iUpgradeTime;
 		
-			if (gPlayerLogLevel > 2) logBBAI("	Civic Value of Faster Improvement Growth: %d", iTempValue);
+			if (gPlayerLogLevel > 2) logBBAI("	Civic Value of Changed Improvement Growth: %d", iTempValue);
 		
 			iValue += iTempValue;
 		}
@@ -15662,7 +15671,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		
 		if (AI_isDoVictoryStrategy(AI_VICTORY_DOMINATION3) || AI_isDoVictoryStrategy(AI_VICTORY_DOMINATION4) || AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST3) || AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST4))
 		{
-			iTempValue *= 3;
+			iTempValue *= 4;
 		}
 		
 		iTempValue /= 20;
@@ -16132,7 +16141,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			iCount++;
 		}
 		
-		iTempValue += ((0 == iCount) ? 50 * iCityHappiness : iHapValue / iCount) * iCities / 10;
+		iTempValue += ((0 == iCount) ? 50 * iCityHappiness : iHapValue / iCount) * iCities / 12;
 		
 		if (gPlayerLogLevel > 0) logBBAI("	Civic Happiness Value: %d", iTempValue);
 		
@@ -16851,34 +16860,91 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		}
 	}
 	
-	// Civ4 Reimagined: Slaves in Colonies
+	// Civ4 Reimagined: Enables Slaves and enables slavery corporations
 	if (kCivic.enablesSlaves())
 	{
 		int iSlaveryCorpCount = 0;
+		int iCorpValue = 0;
+		int iSlaveValue = 0;
+		int iCoastalCities = 0;
+		int iLoop;
+		
+		for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity; pLoopCity = nextCity(&iLoop))
+		{
+			if (pLoopCity->isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
+				iCoastalCities++;
+		}
+		
 		for (int iI = 0; iI < GC.getNumCorporationInfos(); iI++)
 		{
-			if (GC.getCorporationInfo((CorporationTypes)iI).isSlaves())
+			CvCorporationInfo& kCorp = GC.getCorporationInfo((CorporationTypes)iI);
+			if (kCorp.isSlaves())
 			{
-				iSlaveryCorpCount += getHasCorporationCount((CorporationTypes)iI);
+				int iCorpCities = getHasCorporationCount((CorporationTypes)iI);
+				if (iCorpCities > 0 && getNumSlaveUnits() > 0)
+				{
+					for (int iJ = 0; iJ < NUM_COMMERCE_TYPES; ++iJ)
+					{
+						int iTempValue = kCorp.getCommerceProduced((CommerceTypes)iJ) * getNumSlaveUnits();
+
+						if (iTempValue != 0)
+						{
+							iTempValue *= AI_averageCommerceMultiplier((CommerceTypes)iJ);
+							iTempValue /= 100;
+
+							iTempValue *= GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getCorporationMaintenancePercent();
+							iTempValue /= 100;
+
+							iTempValue *= AI_commerceWeight((CommerceTypes)iJ);
+							iTempValue /= 100;
+
+							iSlaveValue += iTempValue * iCorpCities / 100;
+						}
+					}
+
+					for (int iJ = 0; iJ < NUM_YIELD_TYPES; ++iJ)
+					{
+						int iTempValue = kCorp.getYieldProduced((YieldTypes)iJ) * getNumSlaveUnits();
+						if (iTempValue != 0)
+						{
+							iTempValue *= AI_averageYieldMultiplier((YieldTypes)iJ);
+
+							iTempValue /= 100;
+							iTempValue *= GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getCorporationMaintenancePercent();
+							iTempValue /= 100;
+
+							iTempValue *= AI_yieldWeight((YieldTypes)iJ);
+							iTempValue /= 100;
+
+							iSlaveValue += iTempValue * iCorpCities / 100;
+						}
+					}
+				}
+				
+				if (!kGame.isCorporationFounded((CorporationTypes)iI) && !isNoCorporations())
+				{
+					iCorpValue += AI_corporationValue((CorporationTypes)iI) * iCoastalCities / 50;
+				}
+				else if (kTeam.hasHeadquarters((CorporationTypes)iI) && !isNoCorporations())
+				{
+					iCorpValue += (iCoastalCities - getHasCorporationCount((CorporationTypes)iI)) * AI_corporationValue((CorporationTypes)iI) / 25;
+				}
 			}
 		}
-		iTempValue = iCities * getNumSlaveUnits() * (100 + iSlaveryCorpCount * 100/iCities) / 100;
-		
-		// Civ4 Reimagined: Only enable this bonus on "new world" maps
-		// This does not work... Todo: Try something else			
-		/*
-		if (GC.getMapINLINE().getCustomMapOption(GC.getInfoTypeForString("OPTION_NewWorld")) == 2)
-		{
-			logBBAI("NewWorld");
-		}
-		*/
+
+		// Slaves in new colonies
 		if (GET_TEAM(getTeam()).isTerrainTrade((TerrainTypes)GC.getInfoTypeForString("TERRAIN_OCEAN")) && getCurrentEra() < 5)
 		{
-			iTempValue += std::max(0, GC.getMapINLINE().getLandPlots() - GC.getMapINLINE().getOwnedPlots()) / 10;
+			iSlaveValue += std::max(0, GC.getMapINLINE().getLandPlots() - GC.getMapINLINE().getOwnedPlots()) / 10;
+			iSlaveValue *= iCoastalCities;
+			iSlaveValue /= std::max(1, std::max(iCities/2, iCoastalCities));
 		}
 		
-		if (iTempValue > 0 && gPlayerLogLevel > 2) logBBAI("	Civic Value of Slaves: %d", iTempValue);
-		iValue += iTempValue;
+		iSlaveValue += iCities * getNumSlaveUnits();
+		
+		if (iSlaveValue > 0 && gPlayerLogLevel > 2) logBBAI("	Civic Value of Slaves: %d (has %d)", iSlaveValue, getNumSlaveUnits());
+		if (iCorpValue > 0 && gPlayerLogLevel > 2) logBBAI("	Civic Value of Corporations: %d", iCorpValue);
+		iValue += iSlaveValue + std::max(0, iCorpValue);
 	}
 
 	/* for (int iI = 0; iI < GC.getNumSpecialBuildingInfos(); iI++)
@@ -16935,13 +17001,16 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 		{
 			eCulturalOwner = pLoopCity->plot()->calculateCulturalOwner();
-			iCityStrength = pLoopCity->cultureStrength(eCulturalOwner);
-			iGarrison = pLoopCity->cultureGarrison(eCulturalOwner);
-			
-			fRevoltProb = (float)(iCityStrength-iGarrison)/(iCityStrength+2*iGarrison) * (float)pLoopCity->getRevoltTestProbability() / GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getVictoryDelayPercent();
-			if (fRevoltProb > 0)
+			if (eCulturalOwner != NO_PLAYER)
 			{
-				iTempValue += std::max(20 ,(int)(fRevoltProb * pLoopCity->getPopulation()));
+				iCityStrength = pLoopCity->cultureStrength(eCulturalOwner);
+				iGarrison = pLoopCity->cultureGarrison(eCulturalOwner);
+				
+				fRevoltProb = (float)(iCityStrength-iGarrison)/(iCityStrength+2*iGarrison) * (float)pLoopCity->getRevoltTestProbability() / GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getVictoryDelayPercent();
+				if (fRevoltProb > 0)
+				{
+					iTempValue += std::max(20 ,(int)(fRevoltProb * pLoopCity->getPopulation()));
+				}
 			}
 		}
 		iTempValue /= 10;
@@ -18810,7 +18879,7 @@ void CvPlayerAI::AI_doCivics()
 
 			if (aeNewCivic[iI] != aeBestCivic[iI])
 			{
-				if ((100*iBestValue > (100+iThreshold)*aiCurrentValue[iI]) && (iThreshold <= 20 || (iBestValue-aiCurrentValue[iI]) > 50))
+				if (((100*iBestValue > (100+iThreshold)*aiCurrentValue[iI]) && (iThreshold <= 20 || (iBestValue-aiCurrentValue[iI]) > 50)) || (iBestValue - aiCurrentValue[iI] > 100))
 				{
 					FAssert(aeBestCivic[iI] != NO_CIVIC);
 					if (gPlayerLogLevel > 0) logBBAI("    %S decides to switch from %S to %S (value: %d vs %d%S)", getCivilizationDescription(0), GC.getCivicInfo(aeBestCivic[iI]).getDescription(0), GC.getCivicInfo(aeNewCivic[iI]).getDescription(0), aiCurrentValue[iI], iBestValue, iPass > 1 ? "" : ", on recheck");

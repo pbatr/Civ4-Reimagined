@@ -4617,8 +4617,6 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 			if (kBuilding.getGreatPeopleUnitClass() != NO_UNITCLASS)
 			{
 				iValue++; // XXX improve this for diversity...
-				// Civ4 Reimagined: More likely to found corporations because of future value
-				iValue *= 3;
 			}
 
 			// prefer to build great people buildings in places that already have some GP points
@@ -5527,6 +5525,9 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				if (kBuilding.getGlobalCorporationCommerce() != NO_CORPORATION)
 				{
 					iExpectedSpread += GC.getGameINLINE().countCorporationLevels((CorporationTypes)(kBuilding.getGlobalCorporationCommerce()));
+					
+					//Civ4 Reimagined
+					iExpectedSpread += GC.getCorporationInfo((CorporationTypes)(kBuilding.getGlobalCorporationCommerce())).getSpreadFactor() * GC.getGameINLINE().getNumCities() / 500;
 
 					if (iExpectedSpread > 0)
 					{
@@ -8908,34 +8909,22 @@ bool CvCityAI::AI_bestSpreadUnit(bool bMissionary, bool bExecutive, int iBaseCha
 		for (int iCorporation = 0; iCorporation < GC.getNumCorporationInfos(); iCorporation++)
 		{
 			CorporationTypes eCorporation = (CorporationTypes)iCorporation;
-			if (isActiveCorporation(eCorporation))
+			// Civ4 Reimagined
+			if (isActiveCorporation(eCorporation) && kTeam.hasHeadquarters(eCorporation))
 			{
 				int iHasCount = kPlayer.getHasCorporationCount(eCorporation);
 				FAssert(iHasCount > 0);
-				int iRoll = (iHasCount > 4) ? iBaseChance : (((100 - iBaseChance) / iHasCount) + iBaseChance);
+				int iRoll = 10 + (iHasCount > 4) ? iBaseChance : (((100 - iBaseChance) / iHasCount) + iBaseChance);
 				/* original bts code
 				if (!kTeam.hasHeadquarters(eCorporation))
 				{
 					iRoll /= 8;
 				} */
 				// K-Mod
-				if (kTeam.hasHeadquarters(eCorporation))
+				
+				if (iHasCount >= kPlayer.getNumCities())
 				{
-					iRoll += 10;
-					// Civ4 Reimagined
-					if (iHasCount >= kPlayer.getNumCities())
-					{
-						iRoll /= 2;
-					}
-				}
-				else
-				{
-					// Civ4 Reimagined
-					iRoll /= 3;
-					if (iHasCount >= kPlayer.getNumCities())
-					{
-						iRoll = 0;
-					}
+					iRoll /= 2;
 				}
 				
 				// Civ4 Reimagined
@@ -8952,7 +8941,8 @@ bool CvCityAI::AI_bestSpreadUnit(bool bMissionary, bool bExecutive, int iBaseCha
 						}
 						else if (2 * kPlayer.AI_corporationValue((CorporationTypes)iCorp, this) > 3 * kPlayer.AI_corporationValue(eCorporation, this)) 
 						{
-							iRoll /= 2;
+							// Civ4 Reimagined, was 2
+							iRoll /= 3;
 						}
 					}
 				}

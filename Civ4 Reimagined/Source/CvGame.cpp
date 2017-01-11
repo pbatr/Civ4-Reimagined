@@ -1877,7 +1877,7 @@ void CvGame::normalizeAddExtras()
 		for (int iJ = 0; iJ < NUM_CITY_PLOTS; iJ++)
 		{
 			CvPlot* pLoopPlot =plotCity(pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE(), iJ);
-			if (pLoopPlot != NULL)
+			if (pLoopPlot != NULL && pLoopPlot != pStartingPlot)
 			{
 				if (pLoopPlot->isHills())
 				{
@@ -1893,7 +1893,7 @@ void CvGame::normalizeAddExtras()
 				break;
 			}
 			CvPlot* pLoopPlot = plotCity(pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE(), aiShuffle[iJ]);
-			if (pLoopPlot != NULL)
+			if (pLoopPlot != NULL && pLoopPlot != pStartingPlot)
 			{
 				if (!pLoopPlot->isWater())
 				{

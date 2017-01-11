@@ -15402,7 +15402,7 @@ bool CvUnitAI::AI_goToTargetCity(int iFlags, int iMaxPathTurns, CvCity* pTargetC
 							{
 								if( iPathTurns <= iMaxPathTurns )
 								{
-									iValue = std::max(0, (pAdjacentPlot->defenseModifier(getTeam(), false) + 100));
+									iValue = std::max(0, (pAdjacentPlot->defenseModifier(getTeam(), false, false, defenseBuildingModifier()) + 100));
 
 									if (!(pAdjacentPlot->isRiverCrossing(directionXY(pAdjacentPlot, pTargetCity->plot()))))
 									{
@@ -17469,7 +17469,7 @@ bool CvUnitAI::AI_assaultSeaTransport(bool bAttackBarbs, bool bLocal)
 			if (pCity && pLoopPlot->isRiverCrossing(directionXY(pLoopPlot, pCity->plot())))
 				iModifier += GC.getRIVER_ATTACK_MODIFIER()/10;
 
-			iModifier += pLoopPlot->defenseModifier(getTeam(), false) / 10;
+			iModifier += pLoopPlot->defenseModifier(getTeam(), false, false, defenseBuildingModifier()) / 10;
 
 			iValueMultiplier = (100+iModifier)*iValueMultiplier / 100;
 
@@ -24474,7 +24474,7 @@ int CvUnitAI::AI_getWeightedOdds(CvPlot* pPlot, bool bPotentialEnemy)
 	// adjust down if the enemy is on a defensive tile - we'd prefer to attack them on open ground.
 	if (!pDefender->noDefensiveBonus())
 	{
-		iAdjustedOdds -= (100 - iOdds) * pPlot->defenseModifier(pDefender->getTeam(), false) / (getDomainType() == DOMAIN_SEA ? 100 : 300);
+		iAdjustedOdds -= (100 - iOdds) * pPlot->defenseModifier(pDefender->getTeam(), false, false, pDefender->defenseBuildingModifier()) / (getDomainType() == DOMAIN_SEA ? 100 : 300);
 	}
 
 	// adjust the odds up if the enemy is wounded. We want to attack them now before they heal.
