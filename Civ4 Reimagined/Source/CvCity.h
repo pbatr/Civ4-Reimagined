@@ -589,7 +589,8 @@ public:
 	int getTradeCultureRateTimes100(int iLevel) const;							// Exposed to Python
 /*** end */
 
-	int getBuildingDefense() const;												// Exposed to Python
+	// changed by Civ4 Reimagined
+	int getBuildingDefense(bool ignoreWonders = false) const;												// Exposed to Python
 	void changeBuildingDefense(int iChange);
 // BUG - Building Additional Defense - start
 	int getAdditionalDefenseByBuilding(BuildingTypes eBuilding) const;
