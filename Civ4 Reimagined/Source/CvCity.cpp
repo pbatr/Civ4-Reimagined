@@ -8427,9 +8427,27 @@ int CvCity::getTradeCultureRateTimes100(int iLevel) const
 }
 /** end */
 
-int CvCity::getBuildingDefense() const
+// Civ4 Reimagined: Added bIgnoreWonders
+int CvCity::getBuildingDefense(bool bIgnoreWonders) const
 {
-	return m_iBuildingDefense;
+	int iDefense = m_iBuildingDefense;
+	if (bIgnoreWonders && getNumWorldWonders() > 0) {
+		for (int iI = 0; iI < GC.getNumBuildingInfos(); iI++)
+		{
+			if (isWorldWonderClass((BuildingClassTypes)(GC.getBuildingInfo((BuildingTypes)iI).getBuildingClassType())))
+			{
+				if (getNumRealBuilding((BuildingTypes)iI) > 0)
+				{
+					if (GC.getBuildingInfo((BuildingTypes)iI).getDefenseModifier() > 0)
+					{
+						iDefense -= GC.getBuildingInfo((BuildingTypes)iI).getDefenseModifier();
+					}
+				}
+			}
+		}
+	}
+	FAssert(iDefense >= 0);
+	return iDefense;
 }
 
 

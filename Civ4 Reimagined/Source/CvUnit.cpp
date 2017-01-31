@@ -4815,7 +4815,7 @@ bool CvUnit::canBombard(const CvPlot* pPlot) const
 	if (!isHuman())
 	{
 		CvCity* pBombardCity = bombardTarget(pPlot);
-		if (pBombardCity && getDomainType() == DOMAIN_LAND && pBombardCity->getBuildingDefense() <= 0)
+		if (pBombardCity && getDomainType() == DOMAIN_LAND && pBombardCity->getBuildingDefense(true) <= 0)
 		{
 			logBBAI("AI wants to bombard, but no defensive buildings in city %S.", pBombardCity->getNameKey());
 			return false;
