@@ -14294,7 +14294,7 @@ void CvUnit::bombardCity(CvCity* pCity, int bombardRate)
 		int iBombChance = GC.getGameINLINE().getSorenRandNum(100, "Airbomb building");
 		bool defenseBuilding = GC.getBuildingInfo((BuildingTypes)build).getDefenseModifier() > 0;
 		
-		if (iBombChance <= bombardRate * (defenseBuilding ? 12 : 6))
+		if (iBombChance <= bombardRate * (defenseBuilding ? 6 : 3))
 		{
 			bSuccess = true;
 		}
