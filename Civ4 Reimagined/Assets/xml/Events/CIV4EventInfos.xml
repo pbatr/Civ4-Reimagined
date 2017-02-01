@@ -20614,9 +20614,9 @@
 			<BuildingExtraHealths/>
 			<iHappy>0</iHappy>
 			<iHealth>0</iHealth>
-			<iHurryAnger>3</iHurryAnger>
+			<iHurryAnger>0</iHurryAnger>
 			<iHappyTurns>0</iHappyTurns>
-			<iRevoltTurns>0</iRevoltTurns>
+			<iRevoltTurns>1</iRevoltTurns>
 			<iMinPillage>0</iMinPillage>
 			<iMaxPillage>0</iMaxPillage>
 			<iFood>0</iFood>
@@ -20700,9 +20700,9 @@
 			<BuildingExtraHealths/>
 			<iHappy>0</iHappy>
 			<iHealth>0</iHealth>
-			<iHurryAnger>3</iHurryAnger>
+			<iHurryAnger>0</iHurryAnger>
 			<iHappyTurns>0</iHappyTurns>
-			<iRevoltTurns>0</iRevoltTurns>
+			<iRevoltTurns>1</iRevoltTurns>
 			<iMinPillage>0</iMinPillage>
 			<iMaxPillage>0</iMaxPillage>
 			<iFood>0</iFood>
@@ -20786,9 +20786,9 @@
 			<BuildingExtraHealths/>
 			<iHappy>0</iHappy>
 			<iHealth>0</iHealth>
-			<iHurryAnger>3</iHurryAnger>
+			<iHurryAnger>0</iHurryAnger>
 			<iHappyTurns>0</iHappyTurns>
-			<iRevoltTurns>0</iRevoltTurns>
+			<iRevoltTurns>1</iRevoltTurns>
 			<iMinPillage>0</iMinPillage>
 			<iMaxPillage>0</iMaxPillage>
 			<iFood>0</iFood>
