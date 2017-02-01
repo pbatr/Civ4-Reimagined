@@ -28,7 +28,7 @@ Interface
 Fixes
 *********
 -Fixed a bug where AI was bombarding cities without any defensive buildings with land based siege units
-
+-"The old dynasty has died out" event now has a different drawback. "Unhappiness in capital" was always negated by Dynasticism's unlimited happiness.
 
 
 
