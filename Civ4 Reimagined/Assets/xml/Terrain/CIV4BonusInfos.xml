@@ -289,7 +289,7 @@
 			<ArtDefineTag>ART_DEF_BONUS_HORSE</ArtDefineTag>
 			<TechReveal>TECH_ANIMAL_HUSBANDRY</TechReveal>
 			<TechCityTrade>TECH_ANIMAL_HUSBANDRY</TechCityTrade>
-			<TechObsolete>NONE</TechObsolete>
+			<TechObsolete>TECH_INDUSTRIALISM</TechObsolete>
 			<YieldChanges>
 				<iYieldChange>0</iYieldChange>
 				<iYieldChange>1</iYieldChange>
