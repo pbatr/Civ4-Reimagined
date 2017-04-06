@@ -19,6 +19,7 @@ Tweaks
 *********
 -Axemen bonus vs Archer reduced from 30% to 25%.
 -Chance for destroying buildings when bombarding cities halved
+-Cathedrals cannot be destroyed when bombarding cities
 
 *********
 Interface
