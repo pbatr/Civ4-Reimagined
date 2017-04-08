@@ -183,6 +183,15 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 
 	GET_PLAYER(getOwnerINLINE()).changePower(m_pUnitInfo->getPowerValue());
 
+	//Civ4 Reimagined
+	GET_PLAYER(getOwnerINLINE()).changeMilitaryPower(getDomainType(), m_pUnitInfo->getPowerValue());
+
+	//Civ4 Reimagined
+	if (m_pUnitInfo->getPowerValue() > GET_PLAYER(getOwnerINLINE()).getBestUnitPower(getDomainType()))
+	{
+		GET_PLAYER(getOwnerINLINE()).setBestUnitPower(getDomainType(), m_pUnitInfo->getPowerValue());
+	}
+
 	for (iI = 0; iI < GC.getNumPromotionInfos(); iI++)
 	{
 		if (m_pUnitInfo->getFreePromotions(iI))
@@ -644,6 +653,9 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer)
 	GET_PLAYER(getOwnerINLINE()).changeAssets(-(m_pUnitInfo->getAssetValue()));
 
 	GET_PLAYER(getOwnerINLINE()).changePower(-(m_pUnitInfo->getPowerValue()));
+
+	//Civ4 Reimagined
+	GET_PLAYER(getOwnerINLINE()).changeMilitaryPower(getDomainType(), -(m_pUnitInfo->getPowerValue()));
 
 	GET_PLAYER(getOwnerINLINE()).AI_changeNumAIUnits(AI_getUnitAIType(), -1);
 

@@ -67,6 +67,9 @@ CvPlayer::CvPlayer()
 	m_aiDomainProductionModifiers = new int[NUM_DOMAIN_TYPES]; // Leoreth
 	m_aiDomainExperienceModifiers = new int[NUM_DOMAIN_TYPES]; // Leoreth
 
+	m_aiMilitaryPower = new int[NUM_DOMAIN_TYPES]; // Civ4 Reimagined
+	m_aiBestUnitPower = new int[NUM_DOMAIN_TYPES]; // Civ4 Reimagined
+
 	m_abFeatAccomplished = new bool[NUM_FEAT_TYPES];
 	m_abOptions = new bool[NUM_PLAYEROPTION_TYPES];
 
@@ -188,6 +191,8 @@ CvPlayer::~CvPlayer()
 	SAFE_DELETE_ARRAY(m_aiEspionageSpendingWeightAgainstTeam);
 	SAFE_DELETE_ARRAY(m_aiDomainProductionModifiers); // Leoreth
 	SAFE_DELETE_ARRAY(m_aiDomainExperienceModifiers); // Leoreth
+	SAFE_DELETE_ARRAY(m_aiMilitaryPower); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_aiBestUnitPower); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_abFeatAccomplished);
 	SAFE_DELETE_ARRAY(m_abOptions);
 }
@@ -1009,6 +1014,8 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	{
 		m_aiDomainProductionModifiers[iI] = 0;
 		m_aiDomainExperienceModifiers[iI] = 0;
+		m_aiMilitaryPower[iI] = 0; // Civ4 Reimagined
+		m_aiBestUnitPower[iI] = 0; // Civ4 Reimagined
 	}
 	
 	for (iI = 0; iI < MAX_PLAYERS; iI++)
@@ -12236,6 +12243,32 @@ void CvPlayer::changePower(int iChange)
 }
 
 
+int CvPlayer::getMilitaryPower(DomainTypes domain) const
+{
+	return m_aiMilitaryPower[domain];
+}
+
+
+void CvPlayer::changeMilitaryPower(DomainTypes domain, int iChange)
+{
+	m_aiMilitaryPower[domain] = (m_aiMilitaryPower[domain] + iChange);
+	FAssert(getMilitaryPower[domain]() >= 0);
+}
+
+
+int CvPlayer::getBestUnitPower(DomainTypes domain) const
+{
+	return m_aiBestUnitPower[domain];
+}
+
+
+void CvPlayer::setBestUnitPower(DomainTypes domain, int iPower)
+{
+	m_aiBestUnitPower[domain] = iPower;
+	FAssert(m_aiBestUnitPower[domain]() >= 0);
+}
+
+
 int CvPlayer::getPopScore(bool bCheckVassal) const		 
 {
 	if (bCheckVassal && GET_TEAM(getTeam()).isAVassal())
@@ -19715,6 +19748,8 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(GC.getNumTerrainInfos(), m_paiFatcrossTerrainCulture); // Civ4 Reimagined
 	pStream->Read(NUM_COMMERCE_TYPES, m_paiCapitalCommercePopulationThreshold); // Civ4 Reimagined
 	pStream->Read(NUM_COMMERCE_TYPES, m_paiCapitalCommerceModifier); // Civ4 Reimagined
+	pStream->Read(NUM_DOMAIN_TYPES, m_aiMilitaryPower); // Civ4 Reimagined
+	pStream->Read(NUM_DOMAIN_TYPES, m_aiBestUnitPower); // Civ4 Reimagined
 	pStream->Read(GC.getNumBonusInfos(), m_paiPlayerExtraAvailableBonuses); // Civ4 Reimagined
 
 	//pStream->Read(GC.getNumUnitClassInfos(), m_aiUnitProductionModifier); // Civ4 Reimagined
@@ -20288,6 +20323,8 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumTerrainInfos(), m_paiFatcrossTerrainCulture); // Civ4 Reimagined
 	pStream->Write(NUM_COMMERCE_TYPES, m_paiCapitalCommercePopulationThreshold); // Civ4 Reimagined
 	pStream->Write(NUM_COMMERCE_TYPES, m_paiCapitalCommerceModifier); // Civ4 Reimagined
+	pStream->Write(NUM_DOMAIN_TYPES, m_aiMilitaryPower); // Civ4 Reimagined
+	pStream->Write(NUM_DOMAIN_TYPES, m_aiBestUnitPower); // Civ4 Reimagined
 	pStream->Write(GC.getNumBonusInfos(), m_paiPlayerExtraAvailableBonuses); // Civ4 Reimagined
 	
 	FAssertMsg((0 < GC.getNumTechInfos()), "GC.getNumTechInfos() is not greater than zero but it is expected to be in CvPlayer::write");
