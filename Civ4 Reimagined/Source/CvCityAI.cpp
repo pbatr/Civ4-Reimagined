@@ -2433,7 +2433,7 @@ void CvCityAI::AI_chooseProduction()
 		}
 	}
 	
-	//Arr.  Don't build pirates in financial trouble, as they'll be disbanded with high probability
+	// Civ4 Reimagined: Compare pirate power with power of strongest ships of neighboring civs
 	if ((pWaterArea != NULL) && !bLandWar && !bAssault && !bFinancialTrouble && !bUnitExempt)
 	{
 		int iPirateCount = kPlayer.AI_totalWaterAreaUnitAIs(pWaterArea, UNITAI_PIRATE_SEA);
@@ -2446,11 +2446,12 @@ void CvCityAI::AI_chooseProduction()
 			iNeededPirates *= 3;
 			iNeededPirates /= 2;
 		}
-		if (kPlayer.AI_totalWaterAreaUnitAIs(pWaterArea, UNITAI_PIRATE_SEA) < iNeededPirates)
+
+		if (iPirateCount < iNeededPirates)
 		{
-			if (kPlayer.AI_calculateUnitAIViability(UNITAI_PIRATE_SEA, DOMAIN_SEA) > 49)
+			if (AI_pirateValue() > 49)
 			{
-				if (AI_chooseUnit(UNITAI_PIRATE_SEA, iWaterPercent / (1 + iPirateCount)))
+				if (AI_chooseUnit(UNITAI_PIRATE_SEA))
 				{
 					return;
 				}
@@ -13062,3 +13063,50 @@ int CvCityAI::GetPowerImprovement(int eUnit)
 	// how much would it help our military to have access to "eUnit"?
 }
 */
+
+//Civ4 Reimagined
+int CvCityAI::AI_pirateValue()
+{
+	UnitTypes eBestUnit = AI_bestUnitAI(UNITAI_PIRATE_SEA);
+
+	if (eBestUnit == NULL)
+	{
+		return 0;
+	}
+
+	const int piratePower = GC.getUnitInfo(eBestUnit).getPowerValue();
+	const CvPlayer& kPlayer = GET_PLAYER(getOwnerINLINE());
+	int victims = 0;
+	int rivals = 0;
+
+	for (int iI = 0; iI < MAX_PLAYERS; iI++)
+	{
+		const CvPlayer& kOther = GET_PLAYER((PlayerTypes)iI);
+
+		if (!kOther.isAlive() || iI == getID())
+			continue;
+
+		if(!kOther.hasCoastalCitiesByWaterArea(waterArea()))
+			continue;
+
+		rivals++;
+		
+		const int otherPower = kOther.getBestUnitPower(DOMAIN_SEA);
+		if (piratePower > otherPower)
+		{
+			if (kOther.getTeam() != kPlayer.getTeam() && 
+			!GET_TEAM(kOther.getTeam()).isVassal(kPlayer.getTeam()) && 
+			!GET_TEAM(kPlayer.getTeam()).isVassal(kOther.getTeam()))
+			{
+				victims++;
+			}
+		}
+	}
+
+	if (rivals == 0)
+	{
+		return 0;
+	}
+
+	return 100 * victims / rivals;
+}

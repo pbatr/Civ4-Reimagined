@@ -242,6 +242,9 @@ protected:
 	void AI_cachePlayerCloseness(int iMaxDistance);
 	void AI_updateWorkersNeededHere();
 
+	// Civ4 Reimagined
+	int AI_pirateValue();
+
 	// added so under cheat mode we can call protected functions for testing
 	friend class CvGameTextMgr;
 };
