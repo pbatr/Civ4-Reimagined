@@ -12252,7 +12252,7 @@ int CvPlayer::getMilitaryPower(DomainTypes domain) const
 void CvPlayer::changeMilitaryPower(DomainTypes domain, int iChange)
 {
 	m_aiMilitaryPower[domain] = (m_aiMilitaryPower[domain] + iChange);
-	FAssert(getMilitaryPower[domain]() >= 0);
+	FAssert(getMilitaryPower(domain) >= 0);
 }
 
 
@@ -12265,7 +12265,7 @@ int CvPlayer::getBestUnitPower(DomainTypes domain) const
 void CvPlayer::setBestUnitPower(DomainTypes domain, int iPower)
 {
 	m_aiBestUnitPower[domain] = iPower;
-	FAssert(m_aiBestUnitPower[domain]() >= 0);
+	FAssert(getBestUnitPower(domain) >= 0);
 }
 
 
