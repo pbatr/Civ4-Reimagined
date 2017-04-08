@@ -181,6 +181,7 @@ public:
 
 	int countNumCoastalCities() const;	// Exposed to Python
 	int countNumCoastalCitiesByArea(CvArea* pArea) const;	// Exposed to Python
+	bool hasCoastalCitiesByWaterArea(CvArea* pArea) const; // Civ4 Reimagined
 	int countTotalCulture() const;	// Exposed to Python
 	int countOwnedBonuses(BonusTypes eBonus) const;	// Exposed to Python
 	int countUnimprovedBonuses(CvArea* pArea, CvPlot* pFromPlot = NULL) const;	// Exposed to Python

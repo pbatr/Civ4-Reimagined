@@ -4557,6 +4557,28 @@ int CvPlayer::countNumCoastalCitiesByArea(CvArea* pArea) const
 }
 
 
+bool CvPlayer::hasCoastalCitiesByWaterArea(CvArea* pArea) const
+{
+	int iLoop;
+	
+	if (!pArea->isWater())
+	{
+		return false;
+	}
+
+	int iAreaID = pArea->getID();
+	for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+	{
+		if ((pLoopCity->waterArea()->getID() == iAreaID))
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+
 int CvPlayer::countTotalCulture() const
 {
 	CvCity* pLoopCity;
