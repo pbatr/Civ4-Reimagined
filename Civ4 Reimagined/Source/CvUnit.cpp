@@ -14263,69 +14263,62 @@ int CvUnit::LFBgetDefenderCombatOdds(const CvUnit* pAttacker) const
 // Civ4 Reimagined
 void CvUnit::bombardCity(CvCity* pCity, int bombardRate)
 {
-	int build, iI;
-	CvWString szBuffer;
-	bool bSuccess = false;
 	CLinkList<int> buildingList;
-	CLLNode<int>* pNode;
-	buildingList.clear();
 	int minDefense = MAX_INT;
 	
-	for (iI = 0; iI < GC.getNumBuildingInfos(); iI++)
+	for (int iBuilding = 0; iBuilding < GC.getNumBuildingInfos(); iBuilding++)
 	{
-		if (pCity->getNumRealBuilding((BuildingTypes)iI) > 0)
+		BuildingClassTypes kBuilding = GC.getBuildingInfo((BuildingTypes)iBuilding);
+		if (pCity->getNumRealBuilding((BuildingTypes)iBuilding) > 0 && kBuilding.getTargetAirStrike() > 0)
 		{
-			if (GC.getBuildingInfo((BuildingTypes)iI).getTargetAirStrike() > 0)
+			if (kBuilding.getDefenseModifier() > 0)
 			{
-				if (GC.getBuildingInfo((BuildingTypes)iI).getDefenseModifier() > 0)
-				{
-					minDefense = std::min(minDefense, GC.getBuildingInfo((BuildingTypes)iI).getDefenseModifier());
-				}
-				
-				for (int j = 0; j < GC.getBuildingInfo((BuildingTypes)iI).getTargetAirStrike(); j++)
-				{
-					buildingList.insertAtEnd(iI);
-				}
+				minDefense = std::min(minDefense, kBuilding.getDefenseModifier());
+			}
+			
+			for (int iJ = 0; iJ < kBuilding.getTargetAirStrike(); iJ++)
+			{
+				buildingList.insertAtEnd(iBuilding);
 			}
 		}
 	}
+
+	CvWString szBuffer;
 	
 	if (buildingList.getLength() > 0)
 	{
-		for (pNode = buildingList.head(); pNode; pNode = buildingList.next(pNode))
+		for (CLLNode<int> *pNode = buildingList.head(); pNode; pNode = buildingList.next(pNode))
 		{
-			if (GC.getBuildingInfo((BuildingTypes)pNode->m_data).getDefenseModifier() > 0 && GC.getBuildingInfo((BuildingTypes)pNode->m_data).getDefenseModifier() > minDefense)
+			BuildingClassTypes kBuilding = GC.getBuildingInfo((BuildingTypes)pNode->m_data);
+
+			if (kBuilding.getDefenseModifier() > 0 && kBuilding.getDefenseModifier() > minDefense)
 			{
 				buildingList.deleteNode(pNode);
 			}
 		}
 		
-		iI = GC.getGameINLINE().getSorenRandNum(buildingList.getLength(), "Airbomb building");
-		build = buildingList.nodeNum(iI)->m_data;
+		int iRand = GC.getGameINLINE().getSorenRandNum(buildingList.getLength(), "Airbomb building");
+		BuildingTypes eBuilding = (BuildingTypes)buildingList.nodeNum(iRand)->m_data;
 		
-		int iBombChance = GC.getGameINLINE().getSorenRandNum(100, "Airbomb building");
-		bool defenseBuilding = GC.getBuildingInfo((BuildingTypes)build).getDefenseModifier() > 0;
+		int bombChance = GC.getGameINLINE().getSorenRandNum(100, "Airbomb building");
+		bool defenseBuilding = GC.getBuildingInfo(eBuilding).getDefenseModifier() > 0;
 		
-		if (iBombChance <= bombardRate * (defenseBuilding ? 6 : 3))
+		if (bombChance <= bombardRate * (defenseBuilding ? 6 : 3))
 		{
-			bSuccess = true;
+			pCity->setNumRealBuilding(eBuilding, pCity->getNumRealBuilding(eBuilding) - 1);
+			szBuffer = gDLL->getText("TXT_KEY_MISC_ENEMY_AIRBOMBSUCCESS", GC.getBuildingInfo(eBuilding).getTextKeyWide(), pCity->getNameKey());
+			gDLL->getInterfaceIFace()->addMessage(pCity->getOwnerINLINE(), false, GC.getDefineINT("EVENT_MESSAGE_TIME"), szBuffer, "AS2D_BOMBARDED", MESSAGE_TYPE_INFO, 
+				                                  GC.getUnitInfo(getUnitType()).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pCity->getX_INLINE(), pCity->getY_INLINE(), 
+				                                  true, true);
+			szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_AIRBOMBSUCCESS", GC.getBuildingInfo(eBuilding).getTextKeyWide(), pCity->getNameKey());
+			gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getDefineINT("EVENT_MESSAGE_TIME"), szBuffer, "AS2D_BOMBARD", MESSAGE_TYPE_INFO, NULL,
+												 (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pCity->getX_INLINE(), pCity->getY_INLINE(), true, true);
+			return;
 		}
 	}
-		
-	if (bSuccess)
-	{
-		pCity->setNumRealBuilding((BuildingTypes)build, pCity->getNumRealBuilding((BuildingTypes)build) - 1);
-		szBuffer = gDLL->getText("TXT_KEY_MISC_ENEMY_AIRBOMBSUCCESS", GC.getBuildingInfo((BuildingTypes)build).getTextKeyWide(), pCity->getNameKey());
-		gDLL->getInterfaceIFace()->addMessage(pCity->getOwnerINLINE(), false, GC.getDefineINT("EVENT_MESSAGE_TIME"), szBuffer, "AS2D_BOMBARDED", MESSAGE_TYPE_INFO, GC.getUnitInfo(getUnitType()).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pCity->getX_INLINE(), pCity->getY_INLINE(), true, true);
-		szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_AIRBOMBSUCCESS", GC.getBuildingInfo((BuildingTypes)build).getTextKeyWide(), pCity->getNameKey());
-		gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getDefineINT("EVENT_MESSAGE_TIME"), szBuffer, "AS2D_BOMBARD", MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pCity->getX_INLINE(), pCity->getY_INLINE(), true, true);
-	}
-	else
-	{
-		//szBuffer = gDLL->getText("TXT_KEY_MISC_ENEMY_AIRBOMBFAIL", pCity->getNameKey());
-		//gDLL->getInterfaceIFace()->addMessage(pCity->getOwnerINLINE(), false, GC.getDefineINT("EVENT_MESSAGE_TIME"), szBuffer, "AS2D_BOMBARDED", MESSAGE_TYPE_INFO, GC.getUnitInfo(getUnitType()).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pCity->getX_INLINE(), pCity->getY_INLINE(), true, true);
-		szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_AIRBOMBFAIL", pCity->getNameKey());
-		gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getDefineINT("EVENT_MESSAGE_TIME"), szBuffer, "AS2D_BOMBARD", MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pCity->getX_INLINE(), pCity->getY_INLINE(), true, true);
-	}
+
+	szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_AIRBOMBFAIL", pCity->getNameKey());
+	gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getDefineINT("EVENT_MESSAGE_TIME"), szBuffer, "AS2D_BOMBARD", MESSAGE_TYPE_INFO, NULL, 
+										 (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pCity->getX_INLINE(), pCity->getY_INLINE(), true, true);
 }
 
