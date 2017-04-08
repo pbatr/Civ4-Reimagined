@@ -793,6 +793,12 @@ public:
 	DllExport int getPower() const;	// Exposed to Python
 	void changePower(int iChange);
 
+	// Civ4 Reimagined
+	int getMilitaryPower(DomainTypes domain) const;
+	void changeMilitaryPower(DomainTypes domain, int iChange);
+	int getBestUnitPower(DomainTypes domain) const;
+	void setBestUnitPower(DomainTypes domain, int iPower);
+
 	DllExport int getPopScore(bool bCheckVassal = true) const;	// Exposed to Python
 	void changePopScore(int iChange);	// Exposed to Python  
 	DllExport int getLandScore(bool bCheckVassal = true) const;	// Exposed to Python
@@ -1637,6 +1643,8 @@ protected:
 	int* m_aiCommerceFlexibleCount;
 	int* m_aiGoldPerTurnByPlayer;
 	int* m_aiEspionageSpendingWeightAgainstTeam;
+	int* m_aiMilitaryPower; // Civ4 Reimagined
+	int* m_aiBestUnitPower; // Civ4 Reimagined
 	int* m_paiPlayerExtraAvailableBonuses; // Civ4 Reimagined
 	
 	//Leoreth
