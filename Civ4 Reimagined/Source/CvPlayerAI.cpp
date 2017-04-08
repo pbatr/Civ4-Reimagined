@@ -18998,7 +18998,7 @@ void CvPlayerAI::AI_doCivics()
 		int iAccumulatedValue2 = 0;
 		int iNumCivicSwitches1 = 0;
 		int iNumCivicSwitches2 = 0;
-		for (iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
+		for (int iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
 		{
 			processCivics(aeOldCivic[iI], -1);
 			if (gPlayerLogLevel > 0) logBBAI("    ProcessCivics: Remove %S", GC.getCivicInfo(aeOldCivic[iI]).getDescription(0));
@@ -19030,7 +19030,7 @@ void CvPlayerAI::AI_doCivics()
 		}
 		
 		// Switch back to old civics to prepare for recheck 2
-		for (iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
+		for (int iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
 		{
 			if (aeBestCivic[iI] != aeOldCivic[iI])
 			{
@@ -19046,7 +19046,7 @@ void CvPlayerAI::AI_doCivics()
 		
 		// Check Civics from right to left
 		if (gPlayerLogLevel > 0) logBBAI("*** %S iterative recheck 2 ***", getCivilizationDescription(0));
-		for (iI = GC.getNumCivicOptionInfos()-1; iI >= 0; iI--)
+		for (int iI = GC.getNumCivicOptionInfos()-1; iI >= 0; iI--)
 		{
 			processCivics(aeOldCivic[iI], -1);
 			if (gPlayerLogLevel > 0) logBBAI("    ProcessCivics: Remove %S", GC.getCivicInfo(aeOldCivic[iI]).getDescription(0));
@@ -19081,7 +19081,7 @@ void CvPlayerAI::AI_doCivics()
 		if (gPlayerLogLevel > 0) logBBAI("Value difference of Civic Changes2: %d (new: %d, old: %d)", iAccumulatedValue2 - iOldAccumulatedValue2, iAccumulatedValue2, iOldAccumulatedValue2);
 		
 		// Switch back to old civics to prepare for the real revolution
-		for (iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
+		for (int iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
 		{
 			if (aeBestCivic2[iI] != aeOldCivic[iI])
 			{
