@@ -557,7 +557,7 @@
 			<Civilopedia>TXT_KEY_CIVIC_BUREAUCRACY_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_CIVIC_BUREAUCRACY_STRATEGY</Strategy>
 			<Button>,Art/Interface/Buttons/TechTree/Civil Service.dds,Art/Interface/Buttons/TechTree_Atlas.dds,1,2</Button>
-			<TechPrereq>TECH_WRITING</TechPrereq>
+			<TechPrereq>TECH_CIVIL_SERVICE</TechPrereq>
 			<iAnarchyLength>1</iAnarchyLength>
 			<Upkeep>UPKEEP_HIGH</Upkeep>
 			<iAIWeight>0</iAIWeight>
