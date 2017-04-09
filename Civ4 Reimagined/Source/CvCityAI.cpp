@@ -13067,11 +13067,13 @@ int CvCityAI::GetPowerImprovement(int eUnit)
 //Civ4 Reimagined
 int CvCityAI::AI_pirateValue()
 {
-	if (waterArea() == NULL)
+	CvArea* pArea = waterArea();
+
+	if (pArea == NULL)
 	{
 		return 0;
 	}
-	
+
 	UnitTypes eBestUnit = AI_bestUnitAI(UNITAI_PIRATE_SEA);
 
 	if (eBestUnit == NULL)
@@ -13091,7 +13093,7 @@ int CvCityAI::AI_pirateValue()
 		if (!kOther.isAlive() || iI == getID())
 			continue;
 
-		if(!kOther.hasCoastalCitiesByWaterArea(waterArea()))
+		if(!kOther.hasCoastalCitiesByWaterArea(pArea))
 			continue;
 
 		rivals++;
