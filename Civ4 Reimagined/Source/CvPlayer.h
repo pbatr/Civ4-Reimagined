@@ -795,10 +795,10 @@ public:
 	void changePower(int iChange);
 
 	// Civ4 Reimagined
-	int getMilitaryPower(DomainTypes domain) const;
-	void changeMilitaryPower(DomainTypes domain, int iChange);
-	int getBestUnitPower(DomainTypes domain) const;
-	void setBestUnitPower(DomainTypes domain, int iPower);
+	int getMilitaryPower(DomainTypes eDomain) const;
+	void changeMilitaryPower(DomainTypes eDomain, int iChange);
+	int getBestUnitPower(DomainTypes eDomain) const;
+	void setBestUnitPower(DomainTypes eDomain, int iPower);
 
 	DllExport int getPopScore(bool bCheckVassal = true) const;	// Exposed to Python
 	void changePopScore(int iChange);	// Exposed to Python  
