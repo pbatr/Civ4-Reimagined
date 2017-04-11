@@ -579,7 +579,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
 			<iAITradeModifier>0</iAITradeModifier>
-			<iCost>600</iCost>
+			<iCost>400</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<Era>ERA_MEDIEVAL</Era>
@@ -744,8 +744,8 @@
 			<bIrrigation>0</bIrrigation>
 			<bIgnoreIrrigation>0</bIgnoreIrrigation>
 			<bWaterWork>0</bWaterWork>
-			<iGridX>6</iGridX>
-			<iGridY>4</iGridY>
+			<iGridX>7</iGridX>
+			<iGridY>7</iGridY>
 			<DomainExtraMoves/>
 			<CommerceFlexible/>
 			<TerrainTrades/>
@@ -761,12 +761,11 @@
 				</Flavor>
 			</Flavors>
 			<OrPreReqs>
-				<PrereqTech>TECH_CALENDAR</PrereqTech>
-				<PrereqTech>TECH_CONSTRUCTION</PrereqTech>
+				<PrereqTech>TECH_GUILDS</PrereqTech>
 			</OrPreReqs>
 			<AndPreReqs>
-				<PrereqTech>TECH_MONARCHY</PrereqTech>
-				<PrereqTech>TECH_MACHINERY</PrereqTech>
+				<PrereqTech>NONE</PrereqTech>
+				<PrereqTech>NONE</PrereqTech>
 			</AndPreReqs>
 			<Quote>TXT_KEY_TECH_FEUDALISM_QUOTE</Quote>
 			<Sound>AS2D_TECH_FEUDALISM</Sound>
@@ -2456,7 +2455,7 @@
 			<bIgnoreIrrigation>0</bIgnoreIrrigation>
 			<bWaterWork>0</bWaterWork>
 			<iGridX>5</iGridX>
-			<iGridY>3</iGridY>
+			<iGridY>5</iGridY>
 			<DomainExtraMoves/>
 			<CommerceFlexible/>
 			<TerrainTrades/>
@@ -2594,7 +2593,7 @@
 			<bIgnoreIrrigation>0</bIgnoreIrrigation>
 			<bWaterWork>0</bWaterWork>
 			<iGridX>7</iGridX>
-			<iGridY>6</iGridY>
+			<iGridY>4</iGridY>
 			<DomainExtraMoves/>
 			<CommerceFlexible/>
 			<TerrainTrades/>
@@ -2614,7 +2613,6 @@
 				</Flavor>
 			</Flavors>
 			<OrPreReqs>
-				<PrereqTech>TECH_CODE_OF_LAWS</PrereqTech>
 				<PrereqTech>TECH_DRAMA</PrereqTech>
 			</OrPreReqs>
 			<AndPreReqs>
@@ -4910,7 +4908,7 @@
 			<bIgnoreIrrigation>0</bIgnoreIrrigation>
 			<bWaterWork>0</bWaterWork>
 			<iGridX>5</iGridX>
-			<iGridY>5</iGridY>
+			<iGridY>3</iGridY>
 			<DomainExtraMoves/>
 			<CommerceFlexible/>
 			<TerrainTrades/>
@@ -4957,7 +4955,7 @@
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
 			<iAITradeModifier>10</iAITradeModifier>
-			<iCost>750</iCost>
+			<iCost>350</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<Era>ERA_MEDIEVAL</Era>
