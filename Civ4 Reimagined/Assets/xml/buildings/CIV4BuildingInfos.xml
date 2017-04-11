@@ -985,7 +985,7 @@
 			<ObsoleteTech>TECH_CORPORATION</ObsoleteTech>
 			<PrereqTech>TECH_FEUDALISM</PrereqTech>
 			<TechTypes>
-				<PrereqTech>NONE</PrereqTech>
+				<PrereqTech>TECH_MACHINERY</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 			</TechTypes>
@@ -32140,7 +32140,7 @@
 			<FreeStartEra>NONE</FreeStartEra>
 			<MaxStartEra>ERA_RENAISSANCE</MaxStartEra>
 			<ObsoleteTech>TECH_BIOLOGY</ObsoleteTech>
-			<PrereqTech>TECH_GUILDS</PrereqTech>
+			<PrereqTech>TECH_CROP_ROTATION</PrereqTech>
 			<TechTypes/>
 			<Bonus>NONE</Bonus>
 			<BonusFatCross>BONUS_CORN</BonusFatCross>
