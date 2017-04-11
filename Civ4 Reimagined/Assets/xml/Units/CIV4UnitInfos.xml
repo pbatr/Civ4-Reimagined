@@ -12417,7 +12417,7 @@
             <PrereqCivic>NONE</PrereqCivic>
 			<PrereqTech>TECH_CIVIL_SERVICE</PrereqTech>
 			<TechTypes>
-				<PrereqTech>NONE</PrereqTech>
+				<PrereqTech>TECH_MACHINERY</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 			</TechTypes>
@@ -12608,7 +12608,7 @@
             <PrereqCivic>NONE</PrereqCivic>
 			<PrereqTech>TECH_CIVIL_SERVICE</PrereqTech>
 			<TechTypes>
-				<PrereqTech>NONE</PrereqTech>
+				<PrereqTech>TECH_MACHINERY</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 			</TechTypes>
