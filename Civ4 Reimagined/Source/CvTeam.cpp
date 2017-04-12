@@ -6734,7 +6734,7 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 			}
 				
 			//Civ4 Reimagined: Add values for the Quantifiable Resouce System
-			iEraValue = 0;
+			//In theory denominator should be equal to the number of techs of each era. Not true at the moment.
 			switch (GC.getTechInfo(eTech).getEra())
 			{
 			case 0:
@@ -6744,7 +6744,7 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_CLASSICAL") / 15;
 				break;
 			case 2:
-				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_MEDIEVAL") / 10;
+				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_MEDIEVAL") / 12;
 				break;
 			case 3:
 				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_RENAISSANCE") / 15;
