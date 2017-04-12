@@ -629,7 +629,9 @@
 			<OrPreReqs>
 				<PrereqTech>TECH_CODE_OF_LAWS</PrereqTech>
 			</OrPreReqs>
-			<AndPreReqs/>
+			<AndPreReqs>
+				<PrereqTech>TECH_LITERATURE</PrereqTech>
+			</AndPreReqs>
 			<Quote>TXT_KEY_TECH_CIVIL_SERVICE_QUOTE</Quote>
 			<Sound>AS2D_TECH_CIVIL_SERVICE</Sound>
 			<SoundMP>AS2D_TECH_MP_CIVIL_SERVICE</SoundMP>
@@ -745,7 +747,7 @@
 			<bIgnoreIrrigation>0</bIgnoreIrrigation>
 			<bWaterWork>0</bWaterWork>
 			<iGridX>7</iGridX>
-			<iGridY>6</iGridY>
+			<iGridY>8</iGridY>
 			<DomainExtraMoves/>
 			<CommerceFlexible/>
 			<TerrainTrades/>
@@ -762,7 +764,7 @@
 			</Flavors>
 			<OrPreReqs>
 				<PrereqTech>TECH_CROP_ROTATION</PrereqTech>
-				<PrereqTech>TECH_GUILDS</PrereqTech>
+				<PrereqTech>TECH_CIVIL_SERVICE</PrereqTech>
 			</OrPreReqs>
 			<AndPreReqs>
 				<PrereqTech>NONE</PrereqTech>
@@ -957,7 +959,7 @@
 			<bIgnoreIrrigation>0</bIgnoreIrrigation>
 			<bWaterWork>0</bWaterWork>
 			<iGridX>6</iGridX>
-			<iGridY>7</iGridY>
+			<iGridY>5</iGridY>
 			<DomainExtraMoves/>
 			<CommerceFlexible/>
 			<TerrainTrades/>
@@ -980,7 +982,7 @@
 				<PrereqTech>TECH_CURRENCY</PrereqTech>
 			</OrPreReqs>
 			<AndPreReqs>
-				<PrereqTech>TECH_CALENDAR</PrereqTech>
+				<PrereqTech>TECH_COMPASS</PrereqTech>
 			</AndPreReqs>
 			<Quote>TXT_KEY_TECH_GUILDS_QUOTE</Quote>
 			<Sound>AS2D_TECH_GUILDS</Sound>
@@ -1320,7 +1322,7 @@
 				<PrereqTech>TECH_LIBERALISM</PrereqTech>
 			</OrPreReqs>
 			<AndPreReqs>
-				<PrereqTech>TECH_CODE_OF_LAWS</PrereqTech>
+				<PrereqTech>TECH_CIVIL_SERVICE</PrereqTech>
 			</AndPreReqs>
 			<Quote>TXT_KEY_TECH_CONSTITUTION_QUOTE</Quote>
 			<Sound>AS2D_TECH_CONSTITUTION</Sound>
@@ -2456,7 +2458,7 @@
 			<bIgnoreIrrigation>0</bIgnoreIrrigation>
 			<bWaterWork>0</bWaterWork>
 			<iGridX>5</iGridX>
-			<iGridY>5</iGridY>
+			<iGridY>7</iGridY>
 			<DomainExtraMoves/>
 			<CommerceFlexible/>
 			<TerrainTrades/>
@@ -2489,9 +2491,9 @@
 		<TechInfo>
 			<Type>TECH_CROP_ROTATION</Type>
 			<Description>TXT_KEY_TECH_CROP_ROTATION</Description>
-			<Civilopedia>TXT_KEY_TECH_CALENDAR_PEDIA</Civilopedia>
+			<Civilopedia>TXT_KEY_TECH_CROP_ROTATION_PEDIA</Civilopedia>
 			<Help/>
-			<Strategy>TXT_KEY_TECH_CALENDAR_STRATEGY</Strategy>
+			<Strategy/>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
 			<iAITradeModifier>0</iAITradeModifier>
@@ -2527,7 +2529,7 @@
 			<bIgnoreIrrigation>0</bIgnoreIrrigation>
 			<bWaterWork>0</bWaterWork>
 			<iGridX>6</iGridX>
-			<iGridY>5</iGridY>
+			<iGridY>7</iGridY>
 			<DomainExtraMoves/>
 			<CommerceFlexible/>
 			<TerrainTrades/>
@@ -2550,7 +2552,7 @@
 				<PrereqTech>TECH_CALENDAR</PrereqTech>
 			</OrPreReqs>
 			<AndPreReqs>
-				<PrereqTech>NONE</PrereqTech>
+				<PrereqTech>TECH_AGRICULTURE</PrereqTech>
 			</AndPreReqs>
 			<Quote>TXT_KEY_TECH_CALENDAR_QUOTE</Quote>
 			<Sound>AS2D_TECH_CALENDAR</Sound>
@@ -2598,7 +2600,7 @@
 			<bIgnoreIrrigation>0</bIgnoreIrrigation>
 			<bWaterWork>0</bWaterWork>
 			<iGridX>5</iGridX>
-			<iGridY>7</iGridY>
+			<iGridY>5</iGridY>
 			<DomainExtraMoves/>
 			<CommerceFlexible/>
 			<TerrainTrades/>
@@ -2902,6 +2904,7 @@
 			</OrPreReqs>
 			<AndPreReqs>
 				<PrereqTech>TECH_OPTICS</PrereqTech>
+				<PrereqTech>TECH_LITERATURE</PrereqTech>
 			</AndPreReqs>
 			<Quote>TXT_KEY_TECH_EDUCATION_QUOTE</Quote>
 			<Sound>AS2D_TECH_EDUCATION</Sound>
@@ -3377,6 +3380,7 @@
 			</OrPreReqs>
 			<AndPreReqs>
 				<PrereqTech>TECH_REPLACEABLE_PARTS</PrereqTech>
+				<PrereqTech>TECH_CROP_ROTATION</PrereqTech>
 			</AndPreReqs>
 			<Quote>TXT_KEY_TECH_BIOLOGY_QUOTE</Quote>
 			<Sound>AS2D_TECH_BIOLOGY</Sound>
@@ -5307,7 +5311,7 @@
 				<PrereqTech>TECH_PAPER</PrereqTech>
 			</OrPreReqs>
 			<AndPreReqs>
-				<PrereqTech>TECH_GUILDS</PrereqTech>
+				<PrereqTech>TECH_FEUDALISM</PrereqTech>
 			</AndPreReqs>
 			<Quote>TXT_KEY_TECH_GUNPOWDER_QUOTE</Quote>
 			<Sound>AS2D_TECH_GUNPOWDER</Sound>
