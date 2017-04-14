@@ -575,6 +575,24 @@
 			<DefaultUnit>UNIT_TRIREME</DefaultUnit>
 		</UnitClassInfo>
 		<UnitClassInfo>
+			<Type>UNITCLASS_PIRATE</Type>
+			<Description>TXT_KEY_UNIT_PIRATE</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iInstanceCostModifier>0</iInstanceCostModifier>
+			<DefaultUnit>UNIT_PIRATE</DefaultUnit>
+		</UnitClassInfo>
+		<UnitClassInfo>
+			<Type>UNITCLASS_MEDIEVAL_PIRATE</Type>
+			<Description>TXT_KEY_UNIT_MEDIEVAL_PIRATE</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iInstanceCostModifier>0</iInstanceCostModifier>
+			<DefaultUnit>UNIT_MEDIEVAL_PIRATE</DefaultUnit>
+		</UnitClassInfo>
+		<UnitClassInfo>
 			<Type>UNITCLASS_GALLEASS</Type>
 			<Description>TXT_KEY_UNIT_GALLEASS</Description>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
