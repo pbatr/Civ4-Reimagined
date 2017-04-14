@@ -7229,7 +7229,7 @@ void CvGame::createBarbarianUnits()
 		{
 			if (pLoopArea->isWater())
 			{
-				eBarbUnitAI = UNITAI_ATTACK_SEA;
+				eBarbUnitAI = UNITAI_PIRATE_SEA;
 				iDivisor = GC.getHandicapInfo(getHandicapType()).getUnownedWaterTilesPerBarbarianUnit();
 			}
 			else

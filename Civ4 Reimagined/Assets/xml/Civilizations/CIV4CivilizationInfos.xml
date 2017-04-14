@@ -4942,6 +4942,10 @@
 					<UnitType>NONE</UnitType>
 				</Unit>
 				<Unit>
+					<UnitClassType>UNITCLASS_TRIREME</UnitClassType>
+					<UnitType>NONE</UnitType>
+				</Unit>
+				<Unit>
 					<UnitClassType>UNITCLASS_GALLEASS</UnitClassType>
 					<UnitType>NONE</UnitType>
 				</Unit>
