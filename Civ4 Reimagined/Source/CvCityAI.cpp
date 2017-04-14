@@ -782,13 +782,14 @@ void CvCityAI::AI_chooseProduction()
 	CvArea* pWaterArea = waterArea(true);
 	bool bMaybeWaterArea = false;
 	bool bWaterDanger = false;
+	bool bWaterAreaRelevant = false;
 
 	if (pWaterArea != NULL)
 	{
 		bMaybeWaterArea = true;
-		if (!GET_TEAM(getTeam()).AI_isWaterAreaRelevant(pWaterArea))
+		if (GET_TEAM(getTeam()).AI_isWaterAreaRelevant(pWaterArea))
 		{
-			pWaterArea = NULL;
+			bWaterAreaRelevant = true;
 		}
 
 		bWaterDanger = kPlayer.AI_getWaterDanger(plot(), 4) > 0;
@@ -845,7 +846,7 @@ void CvCityAI::AI_chooseProduction()
 	int iNumAreaCitySites = kPlayer.AI_getNumAreaCitySites(getArea(), iAreaBestFoundValue);
 
 	int iWaterAreaBestFoundValue = 0;
-	CvArea* pWaterSettlerArea = pWaterArea;
+	CvArea* pWaterSettlerArea = bWaterAreaRelevant ? pWaterArea : NULL;
 	if( pWaterSettlerArea == NULL )
 	{
 		pWaterSettlerArea = GC.getMap().findBiggestArea(true);
@@ -1251,31 +1252,25 @@ void CvCityAI::AI_chooseProduction()
 		if( !(bLandWar && iWarSuccessRating < -30) && !bDanger && !bFinancialTrouble )
 		{
 			// Civ4 Reimagined
-			if (kPlayer.AI_getNumTrainAIUnits(UNITAI_ATTACK_SEA) + kPlayer.AI_getNumTrainAIUnits(UNITAI_RESERVE_SEA) < std::min(5,kPlayer.getNumCities()))
+			const int iNumSeaUnits = kPlayer.AI_totalAreaUnitAIs(pWaterArea, UNITAI_ATTACK_SEA) + kPlayer.AI_totalAreaUnitAIs(pWaterArea, UNITAI_ATTACK_SEA);
+			const bool bShipsNeeded = iNumSeaUnits < kPlayer.countNumCoastalCitiesByArea(pWaterArea);
+
+			if (isPlundered() || (bShipsNeeded && (bWaterDanger || (bPrimaryArea && kPlayer.AI_countNumAreaHostileUnits(pWaterArea, true, false, false, false) > 0))))
 			{
-				if ((bMaybeWaterArea && bWaterDanger)
-					|| (pWaterArea != NULL && bPrimaryArea && kPlayer.AI_countNumAreaHostileUnits(pWaterArea, true, false, false, false) > 0))
+				if (AI_chooseUnit(UNITAI_ATTACK_SEA))
 				{
 					if( gCityLogLevel >= 2 ) logBBAI("      City %S uses minimal naval", getName().GetCString());
+					return;
+				}
 
-					if (AI_chooseUnit(UNITAI_ATTACK_SEA))
-					{
-						return;
-					}
-					/* Removed by Civ4 Reimagined
-					if (AI_chooseUnit(UNITAI_PIRATE_SEA))
-					{
-						return;
-					}
-					*/
-					if (AI_chooseUnit(UNITAI_RESERVE_SEA))
-					{
-						return;
-					}
+				if (AI_chooseUnit(UNITAI_RESERVE_SEA))
+				{
+					if( gCityLogLevel >= 2 ) logBBAI("      City %S uses minimal naval", getName().GetCString());
+					return;
 				}
 			}
 		
-			if (NULL != pWaterArea)
+			if (bWaterAreaRelevant)
 			{
 				int iOdds = -1;
 				if (iAreaBestFoundValue == 0 || iWaterAreaBestFoundValue > iAreaBestFoundValue)
@@ -1689,7 +1684,7 @@ void CvCityAI::AI_chooseProduction()
 		if ((iAreaBestFoundValue > iMinFoundValue) || (iWaterAreaBestFoundValue > iMinFoundValue))
 		{
 			// BBAI TODO: Needs logic to check for early settler builds, settler builds in small cities, whether settler sea exists for water area sites?
-			if (pWaterArea != NULL)
+			if (pWaterArea != NULL && bWaterAreaRelevant)
 			{
 				int iTotalCities = kPlayer.getNumCities();
 				int iSettlerSeaNeeded = std::min(iNumWaterAreaCitySites, ((iTotalCities + 4) / 8) + 1);
@@ -1835,9 +1830,11 @@ void CvCityAI::AI_chooseProduction()
 		{
 			int iTotalNukes = kPlayer.AI_totalUnitAIs(UNITAI_ICBM);
 			int iNukesWanted = 1 + 2 * std::min(kPlayer.getNumCities(), GC.getGame().getNumCities() - kPlayer.getNumCities());
-			if ((iTotalNukes < iNukesWanted) && (GC.getGame().getSorenRandNum(100, "AI train nuke MWAHAHAH") < (90 - (80 * iTotalNukes / iNukesWanted)))) // Civ4 Reimagined: Fixed brackets
+			// Civ4 Reimagined: Fixed brackets
+			if ((iTotalNukes < iNukesWanted) && (GC.getGame().getSorenRandNum(100, "AI train nuke MWAHAHAH") < (90 - (80 * iTotalNukes / iNukesWanted))))
 			{
-				if (pWaterArea && kPlayer.AI_totalUnitAIs(UNITAI_MISSILE_CARRIER_SEA) < iTotalNukes/2 && GC.getGame().getSorenRandNum(3, "AI train boat instead") == 0)
+				if (pWaterArea && bWaterAreaRelevant && kPlayer.AI_totalUnitAIs(UNITAI_MISSILE_CARRIER_SEA) < 
+					iTotalNukes/2 && GC.getGame().getSorenRandNum(3, "AI train boat instead") == 0)
 				{
 					if (AI_chooseUnit(UNITAI_MISSILE_CARRIER_SEA, 50))
 					{
@@ -1902,7 +1899,8 @@ void CvCityAI::AI_chooseProduction()
 	// K-Mod, short-circuit 2 - a strong chance to build some high value buildings.
 	{
 		//int iOdds = std::max(0, (bLandWar || (bAssault && pWaterArea) ? 80 : 130) * iBestBuildingValue / (iBestBuildingValue + 20 + iBuildUnitProb) - 25);
-		int iOdds = std::max(0, (bLandWar || (bAssault && pWaterArea) ? 90 - iBuildUnitProb/4 : 150 - iBuildUnitProb/2) * iBestBuildingValue / (iBestBuildingValue + 40 + iBuildUnitProb) - 20);
+		int iOdds = std::max(0, (bLandWar || (bAssault && pWaterArea && bWaterAreaRelevant) ? 90 - iBuildUnitProb/4 : 150 - iBuildUnitProb/2) * 
+			iBestBuildingValue / (iBestBuildingValue + 40 + iBuildUnitProb) - 20);
 		if (AI_chooseBuilding(0, INT_MAX, 0, iOdds))
 		{
 			if( gCityLogLevel >= 2 ) logBBAI("      City %S uses building value short-circuit 2 (odds: %d)", getName().GetCString(), iOdds);
@@ -1961,7 +1959,7 @@ void CvCityAI::AI_chooseProduction()
 	{
 		bool bBuildAssault = bAssault;
 		CvArea* pAssaultWaterArea = NULL;
-		if (NULL != pWaterArea)
+		if (NULL != pWaterArea && bWaterAreaRelevant)
 		{
 			// Coastal city extra logic
 
@@ -2406,7 +2404,7 @@ void CvCityAI::AI_chooseProduction()
 		}
 	}
 
-	if ((pWaterArea != NULL) && !bDefenseWar && !bAssault)
+	if ((pWaterArea != NULL) && bWaterAreaRelevant && !bDefenseWar && !bAssault)
 	{
 		if( !bFinancialTrouble )
 		{
@@ -2434,7 +2432,7 @@ void CvCityAI::AI_chooseProduction()
 	}
 	
 	// Civ4 Reimagined: Compare pirate power with power of strongest ships of neighboring civs
-	if ((pWaterArea != NULL) && !bLandWar && !bAssault && !bFinancialTrouble && !bUnitExempt)
+	if ((pWaterArea != NULL) && bWaterAreaRelevant && !bLandWar && !bAssault && !bFinancialTrouble && !bUnitExempt)
 	{
 		int iPirateCount = kPlayer.AI_totalWaterAreaUnitAIs(pWaterArea, UNITAI_PIRATE_SEA);
 		int iNeededPirates = (1 + (pWaterArea->getNumTiles() / std::max(1, 200 - iBuildUnitProb)));
@@ -2459,7 +2457,7 @@ void CvCityAI::AI_chooseProduction()
 	
 	if (!bLandWar && !bFinancialTrouble)
 	{
-		if ((pWaterArea != NULL) && (iWaterPercent > 40))
+		if ((pWaterArea != NULL && bWaterAreaRelevant) && (iWaterPercent > 40))
 		{
 			if (kPlayer.AI_totalAreaUnitAIs(pArea, UNITAI_SPY) > 0)
 			{
@@ -2612,7 +2610,7 @@ void CvCityAI::AI_chooseProduction()
 
 	if (!bLandWar)
 	{
-		if (pWaterArea != NULL && bFinancialTrouble)
+		if (pWaterArea != NULL && bWaterAreaRelevant && bFinancialTrouble)
 		{
 			if (kPlayer.AI_totalAreaUnitAIs(pArea, UNITAI_MISSIONARY) > 0)
 			{
@@ -2672,7 +2670,7 @@ void CvCityAI::AI_chooseProduction()
 
 	if (!bLandWar)
 	{
-		if (pWaterArea != NULL)
+		if (pWaterArea != NULL && bWaterAreaRelevant)
 		{
 			if (bPrimaryArea)
 			{
