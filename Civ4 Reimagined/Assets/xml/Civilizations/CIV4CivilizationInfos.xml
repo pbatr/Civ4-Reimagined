@@ -4043,7 +4043,7 @@
 			</Buildings>
 			<Units>
 				<Unit>
-					<UnitClassType>UNITCLASS_GALLEASS</UnitClassType>
+					<UnitClassType>UNITCLASS_MEDIEVAL_PIRATE</UnitClassType>
 					<UnitType>UNIT_VIKING_LONGSHIP</UnitType>
 				</Unit>
 			</Units>

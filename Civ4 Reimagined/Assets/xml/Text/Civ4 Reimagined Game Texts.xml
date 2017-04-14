@@ -1288,4 +1288,12 @@
 		<Tag>TXT_KEY_TECH_CROP_ROTATION</Tag>
 		<English>Crop Rotation</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_PIRATE</Tag>
+		<English>Pirate</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_MEDIEVAL_PIRATE</Tag>
+		<English>Medieval Pirate</English>
+	</TEXT>
 </Civ4GameText>
