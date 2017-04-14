@@ -2438,8 +2438,6 @@ void CvCityAI::AI_chooseProduction()
 	{
 		int iPirateCount = kPlayer.AI_totalWaterAreaUnitAIs(pWaterArea, UNITAI_PIRATE_SEA);
 		int iNeededPirates = (1 + (pWaterArea->getNumTiles() / std::max(1, 200 - iBuildUnitProb)));
-		iNeededPirates *= (20 + iWaterPercent);
-		iNeededPirates /= 100;
 		
 		if (kPlayer.isNoForeignTrade())
 		{
@@ -13083,6 +13081,7 @@ int CvCityAI::AI_pirateValue()
 
 	const int piratePower = GC.getUnitInfo(eBestUnit).getPowerValue();
 	const CvPlayer& kPlayer = GET_PLAYER(getOwnerINLINE());
+	const CvTeam& kTeam = GET_TEAM(getTeam());
 	int victims = 0;
 	int rivals = 0;
 
@@ -13090,7 +13089,7 @@ int CvCityAI::AI_pirateValue()
 	{
 		const CvPlayer& kOther = GET_PLAYER((PlayerTypes)iI);
 
-		if (!kOther.isAlive() || iI == getID())
+		if (!kOther.isAlive() || iI == getID() || !kTeam.isHasMet(kOther.getTeam()))
 			continue;
 
 		if(!kOther.hasCoastalCitiesByWaterArea(pArea))
@@ -13103,7 +13102,7 @@ int CvCityAI::AI_pirateValue()
 		{
 			if (kOther.getTeam() != kPlayer.getTeam() && 
 			!GET_TEAM(kOther.getTeam()).isVassal(kPlayer.getTeam()) && 
-			!GET_TEAM(kPlayer.getTeam()).isVassal(kOther.getTeam()))
+			!kTeam.isVassal(kOther.getTeam()))
 			{
 				victims++;
 			}
