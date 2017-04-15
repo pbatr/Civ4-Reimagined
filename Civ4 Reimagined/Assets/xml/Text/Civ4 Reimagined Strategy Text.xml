@@ -752,7 +752,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_MARAUDER_STRATEGY</Tag>
-		<English>The [COLOR_UNIT_TEXT]MARAUDER[COLOR_REVERT] is an ancient naval unit that bears no marking of nationality. This allows you to harass your foes without need to declare war.</English>
+		<English>The [COLOR_UNIT_TEXT]Marauder[COLOR_REVERT] is an ancient naval unit that bears no marking of nationality. This allows you to harass your foes without need to declare war.</English>
 	</TEXT>
 		<TEXT>
 		<Tag>TXT_KEY_UNIT_PIRATE_STRATEGY</Tag>
