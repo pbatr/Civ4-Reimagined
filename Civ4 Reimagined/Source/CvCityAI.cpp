@@ -1751,13 +1751,7 @@ void CvCityAI::AI_chooseProduction()
 	if ((pWaterArea != NULL) && bWaterAreaRelevant && !bLandWar && !bAssault && !bFinancialTrouble && !bUnitExempt)
 	{
 		const int iPirateCount = kPlayer.AI_totalWaterAreaUnitAIs(pWaterArea, UNITAI_PIRATE_SEA);
-		int iNeededPirates = 1 + (pWaterArea->getNumTiles() / std::max(1, 200 - iBuildUnitProb));
-		
-		if (kPlayer.isNoForeignTrade())
-		{
-			iNeededPirates *= 3;
-			iNeededPirates /= 2;
-		}
+		int iNeededPirates = kPlayer.countNumCoastalCitiesByArea(pArea);
 
 		if (iPirateCount < iNeededPirates)
 		{
