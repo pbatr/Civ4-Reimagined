@@ -1378,7 +1378,7 @@ class BonusBalancer:
 							if (bValid):
 								outsidePlots.append(pLoopPlot)
 
-				random.seed(gc.getGame().getSorenRandNum(10000), "random shuffle seed")
+				random.seed(gc.getGame().getSorenRandNum(10000, "random shuffle seed"))
 				random.shuffle(plots)
 				random.shuffle(additionalPlots)
 				random.shuffle(outsidePlots)
