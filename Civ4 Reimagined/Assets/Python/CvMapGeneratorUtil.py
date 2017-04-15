@@ -6,6 +6,8 @@ import random
 from math import sqrt
 import sys
 
+game = CyGame()
+
 """
 NOTES ABOUT THE MAP UTILITIES
 
@@ -1376,6 +1378,7 @@ class BonusBalancer:
 							if (bValid):
 								outsidePlots.append(pLoopPlot)
 
+				random.seed(game.getSorenRandNum(10000), "random shuffle seed")
 				random.shuffle(plots)
 				random.shuffle(additionalPlots)
 				random.shuffle(outsidePlots)
