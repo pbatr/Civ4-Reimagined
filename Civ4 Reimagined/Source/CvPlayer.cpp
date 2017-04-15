@@ -4569,7 +4569,8 @@ bool CvPlayer::hasCoastalCitiesByWaterArea(CvArea* pArea) const
 	int iAreaID = pArea->getID();
 	for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 	{
-		if ((pLoopCity->waterArea()->getID() == iAreaID))
+		CvArea* pWaterArea = pLoopCity->waterArea();
+		if (pWaterArea && pWaterArea->getID() == iAreaID)
 		{
 			return true;
 		}
