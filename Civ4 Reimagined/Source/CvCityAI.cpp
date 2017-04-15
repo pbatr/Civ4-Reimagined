@@ -13079,7 +13079,7 @@ int CvCityAI::AI_pirateValue()
 
 	UnitTypes eBestUnit = AI_bestUnitAI(UNITAI_PIRATE_SEA);
 
-	if (eBestUnit == NULL)
+	if (eBestUnit == NO_UNIT)
 	{
 		return 0;
 	}
