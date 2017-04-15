@@ -18081,19 +18081,19 @@
 			<iLeaderExperience>0</iLeaderExperience>
 		</UnitInfo>
 		<UnitInfo>
-			<Class>UNITCLASS_PIRATE</Class>
-			<Type>UNIT_PIRATE</Type>
+			<Class>UNITCLASS_MARAUDER</Class>
+			<Type>UNIT_MARAUDER</Type>
 			<UniqueNames/>
 			<Special>NONE</Special>
 			<Capture>NONE</Capture>
 			<Combat>UNITCOMBAT_NAVAL</Combat>
 			<Domain>DOMAIN_SEA</Domain>
-			<DefaultUnitAI>UNITAI_PIRATE_SEA</DefaultUnitAI>
+			<DefaultUnitAI>UNITAI_MARAUDER_SEA</DefaultUnitAI>
 			<Invisible>NONE</Invisible>
 			<SeeInvisible>NONE</SeeInvisible>
-			<Description>TXT_KEY_UNIT_PIRATE</Description>
-			<Civilopedia>CHANGED_TXT_KEY_UNIT_PIRATE_PEDIA</Civilopedia>
-			<Strategy>TXT_KEY_UNIT_PIRATE_STRATEGY</Strategy>
+			<Description>TXT_KEY_UNIT_MARAUDER</Description>
+			<Civilopedia>TXT_KEY_UNIT_MARAUDER_PEDIA</Civilopedia>
+			<Strategy>TXT_KEY_UNIT_MARAUDER_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bAnimal>0</bAnimal>
 			<bFood>0</bFood>
@@ -18132,7 +18132,7 @@
 			<bAlwaysHostile>1</bAlwaysHostile>
 			<UnitClassUpgrades>
 				<UnitClassUpgrade>
-					<UnitClassUpgradeType>UNITCLASS_MEDIEVAL_PIRATE</UnitClassUpgradeType>
+					<UnitClassUpgradeType>UNITCLASS_PIRATE</UnitClassUpgradeType>
 					<bUnitClassUpgrade>1</bUnitClassUpgrade>
 				</UnitClassUpgrade>
 			</UnitClassUpgrades>
@@ -18259,7 +18259,7 @@
 				<iRangedWaveSize>1</iRangedWaveSize>
 				<UnitMeshGroup>
 					<iRequired>1</iRequired>
-					<EarlyArtDefineTag>ART_DEF_UNIT_PIRATE</EarlyArtDefineTag>
+					<EarlyArtDefineTag>ART_DEF_UNIT_MARAUDER</EarlyArtDefineTag>
 				</UnitMeshGroup>
 			</UnitMeshGroups>
 			<FormationType>FORMATION_TYPE_MACHINE</FormationType>
@@ -18428,13 +18428,13 @@
 			<FeatureDefenses/>
 			<UnitClassAttackMods>
 				<UnitClassAttackMod>
-					<UnitClassType>UNITCLASS_MEDIEVAL_PIRATE</UnitClassType>
+					<UnitClassType>UNITCLASS_PIRATE</UnitClassType>
 					<iUnitClassMod>25</iUnitClassMod>
 				</UnitClassAttackMod>
 			</UnitClassAttackMods>
 			<UnitClassDefenseMods>
 				<UnitClassDefenseMod>
-					<UnitClassType>UNITCLASS_MEDIEVAL_PIRATE</UnitClassType>
+					<UnitClassType>UNITCLASS_PIRATE</UnitClassType>
 					<iUnitClassMod>25</iUnitClassMod>
 				</UnitClassDefenseMod>
 			</UnitClassDefenseMods>
@@ -18474,8 +18474,8 @@
 			<iLeaderExperience>0</iLeaderExperience>
 		</UnitInfo>
 		<UnitInfo>
-			<Class>UNITCLASS_MEDIEVAL_PIRATE</Class>
-			<Type>UNIT_MEDIEVAL_PIRATE</Type>
+			<Class>UNITCLASS_PIRATE</Class>
+			<Type>UNIT_PIRATE</Type>
 			<UniqueNames/>
 			<Special>NONE</Special>
 			<Capture>NONE</Capture>
@@ -18484,8 +18484,8 @@
 			<DefaultUnitAI>UNITAI_PIRATE_SEA</DefaultUnitAI>
 			<Invisible>NONE</Invisible>
 			<SeeInvisible>NONE</SeeInvisible>
-			<Description>TXT_KEY_UNIT_MEDIEVAL_PIRATE</Description>
-			<Civilopedia>CHANGED_TXT_KEY_UNIT_PIRATE_PEDIA</Civilopedia>
+			<Description>TXT_KEY_UNIT_PIRATE</Description>
+			<Civilopedia>TXT_KEY_UNIT_PIRATE_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_UNIT_PIRATE_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<bAnimal>0</bAnimal>
@@ -18652,7 +18652,7 @@
 				<iRangedWaveSize>1</iRangedWaveSize>
 				<UnitMeshGroup>
 					<iRequired>1</iRequired>
-					<EarlyArtDefineTag>ART_DEF_UNIT_MEDIEVAL_PIRATE</EarlyArtDefineTag>
+					<EarlyArtDefineTag>ART_DEF_UNIT_PIRATE</EarlyArtDefineTag>
 				</UnitMeshGroup>
 			</UnitMeshGroups>
 			<FormationType>FORMATION_TYPE_MACHINE</FormationType>
@@ -18666,7 +18666,7 @@
 			<iLeaderExperience>0</iLeaderExperience>
 		</UnitInfo>
 		<UnitInfo>
-			<Class>UNITCLASS_MEDIEVAL_PIRATE</Class>
+			<Class>UNITCLASS_PIRATE</Class>
 			<Type>UNIT_VIKING_LONGSHIP</Type>
 			<UniqueNames/>
 			<Special>NONE</Special>

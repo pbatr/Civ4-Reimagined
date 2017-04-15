@@ -442,4 +442,14 @@
 		<Tag>TXT_KEY_TECH_CROP_ROTATION_PEDIA</Tag>
 		<English>[TAB]Crop rotation is the practice of growing a series of dissimilar or different types of crops in the same area in sequenced seasons. It is done so that the soil of farms is not used for only one set of nutrients. It helps in reducing soil erosion and increases soil fertility and crop yield. Growing the same crop in the same place for many years in a row disproportionately depletes the soil of certain nutrients. With rotation, a crop that leaches the soil of one kind of nutrient is followed during the next growing season by a dissimilar crop that returns that nutrient to the soil or draws a different ratio of nutrients. In addition, crop rotation mitigates the buildup of pathogens and pests that often occurs when one species is continuously cropped, and can also improve soil structure and fertility by increasing biomass from varied root structures. Crop cycle is used in both conventional and organic farming systems.</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_MARAUDER_PEDIA</Tag>
+		<English>[TAB]It may be reasonable to assume that piracy has existed for as long as the oceans were plied for commerce. The earliest documented instances of piracy are the exploits of the Sea Peoples who threatened the ships sailing in the Aegean and Mediterranean waters in the 14th century BC. In classical antiquity, the Phoenicians, Illyrians and Tyrrhenians were known as pirates. The ancient Greeks condoned piracy as a viable profession; it apparently was widespread and "regarded as an entirely honourable way of making a living". References are made to its perfectly normal occurrence many texts including in Homer's Iliad and Odyssey, and adbuction of women and children to be sold into slavery was common. By the era of Classical Greece, piracy was looked upon as a "disgrace" to have as a profession.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_PIRATE_PEDIA</Tag>
+		<English>[TAB]The lack of centralized powers all over Europe during the Middle Ages enabled pirates to attack ships and coastal areas all over the continent. Mediterranean piracy was conducted almost entirely with galleys until the mid-17th century, when they were gradually replaced with highly maneuverable sailing vessels such as xebecs and brigantines. They were, however, of a smaller type than battle galleys, often referred to as galiots or fustas. Pirate galleys were small, nimble, lightly armed, but often heavily manned in order to overwhelm the often minimal crews of merchant ships. </English>
+	</TEXT>
+	
+	
 </Civ4GameText>

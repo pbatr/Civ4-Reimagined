@@ -3675,7 +3675,7 @@
 			<ActionSound>AS3D_UN_OCEAN_END1</ActionSound>
 		</UnitArtInfo>
 		<UnitArtInfo>
-			<Type>ART_DEF_UNIT_PIRATE</Type>
+			<Type>ART_DEF_UNIT_MARAUDER</Type>
 			<Button>,Art/Interface/Buttons/Units/Galley.dds,Art/Civ4 Reimagined/Civ4_Reimagined_Atlas.dds,7,2</Button>
 			<fScale>0.14</fScale>
 			<fInterfaceScale>0.6</fInterfaceScale>
@@ -3714,7 +3714,7 @@
 			<ActionSound>AS3D_UN_OCEAN_END1</ActionSound>
 		</UnitArtInfo>
 		<UnitArtInfo>
-			<Type>ART_DEF_UNIT_MEDIEVAL_PIRATE</Type>
+			<Type>ART_DEF_UNIT_PIRATE</Type>
 			<Button>,Art/Interface/Buttons/Units/Galley.dds,Art/Civ4 Reimagined/Civ4_Reimagined_Atlas.dds,8,2</Button>
 			<fScale>0.12</fScale>
 			<fInterfaceScale>0.6</fInterfaceScale>

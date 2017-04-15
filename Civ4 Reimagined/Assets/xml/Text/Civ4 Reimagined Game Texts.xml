@@ -1289,11 +1289,11 @@
 		<English>Crop Rotation</English>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_UNIT_PIRATE</Tag>
-		<English>Pirate</English>
+		<Tag>TXT_KEY_UNIT_MARAUDER</Tag>
+		<English>Marauder</English>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_UNIT_MEDIEVAL_PIRATE</Tag>
-		<English>Medieval Pirate</English>
+		<Tag>TXT_KEY_UNIT_PIRATE</Tag>
+		<English>Pirate</English>
 	</TEXT>
 </Civ4GameText>
