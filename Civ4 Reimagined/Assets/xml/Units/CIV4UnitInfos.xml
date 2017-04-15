@@ -18035,13 +18035,13 @@
 			<FeatureDefenses/>
 			<UnitClassAttackMods>
 				<UnitClassAttackMod>
-					<UnitClassType>UNITCLASS_PIRATE</UnitClassType>
+					<UnitClassType>UNITCLASS_MARAUDER</UnitClassType>
 					<iUnitClassMod>25</iUnitClassMod>
 				</UnitClassAttackMod>
 			</UnitClassAttackMods>
 			<UnitClassDefenseMods>
 				<UnitClassDefenseMod>
-					<UnitClassType>UNITCLASS_PIRATE</UnitClassType>
+					<UnitClassType>UNITCLASS_MARAUDER</UnitClassType>
 					<iUnitClassMod>25</iUnitClassMod>
 				</UnitClassDefenseMod>
 			</UnitClassDefenseMods>
@@ -18428,15 +18428,23 @@
 			<FeatureDefenses/>
 			<UnitClassAttackMods>
 				<UnitClassAttackMod>
+					<UnitClassType>UNITCLASS_MARAUDER</UnitClassType>
+					<iUnitClassMod>25</iUnitClassMod>
+				</UnitClassAttackMod>
+				<UnitClassAttackMod>
 					<UnitClassType>UNITCLASS_PIRATE</UnitClassType>
 					<iUnitClassMod>25</iUnitClassMod>
 				</UnitClassAttackMod>
 			</UnitClassAttackMods>
 			<UnitClassDefenseMods>
 				<UnitClassDefenseMod>
-					<UnitClassType>UNITCLASS_PIRATE</UnitClassType>
+					<UnitClassType>UNITCLASS_MARAUDER</UnitClassType>
 					<iUnitClassMod>25</iUnitClassMod>
 				</UnitClassDefenseMod>
+				<UnitClassAttackMod>
+					<UnitClassType>UNITCLASS_PIRATE</UnitClassType>
+					<iUnitClassMod>25</iUnitClassMod>
+				</UnitClassAttackMod>
 			</UnitClassDefenseMods>
 			<UnitCombatMods/>
 			<UnitCombatCollateralImmunes/>
