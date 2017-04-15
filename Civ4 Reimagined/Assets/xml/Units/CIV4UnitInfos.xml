@@ -18088,7 +18088,7 @@
 			<Capture>NONE</Capture>
 			<Combat>UNITCOMBAT_NAVAL</Combat>
 			<Domain>DOMAIN_SEA</Domain>
-			<DefaultUnitAI>UNITAI_MARAUDER_SEA</DefaultUnitAI>
+			<DefaultUnitAI>UNITAI_PIRATE_SEA</DefaultUnitAI>
 			<Invisible>NONE</Invisible>
 			<SeeInvisible>NONE</SeeInvisible>
 			<Description>TXT_KEY_UNIT_MARAUDER</Description>
