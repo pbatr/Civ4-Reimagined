@@ -1268,6 +1268,12 @@ void CvCityAI::AI_chooseProduction()
 					if( gCityLogLevel >= 2 ) logBBAI("      City %S uses minimal naval", getName().GetCString());
 					return;
 				}
+
+				if (AI_chooseUnit(UNITAI_ASSAULT_SEA))
+				{
+					if( gCityLogLevel >= 2 ) logBBAI("      City %S uses minimal naval", getName().GetCString());
+					return;
+				}
 			}
 		
 			if (bWaterAreaRelevant)
@@ -1736,6 +1742,31 @@ void CvCityAI::AI_chooseProduction()
 						
 						return;
 					}
+				}
+			}
+		}
+	}
+
+	// Civ4 Reimagined: Compare pirate power with power of strongest ships of neighboring civs
+	if ((pWaterArea != NULL) && bWaterAreaRelevant && !bLandWar && !bAssault && !bFinancialTrouble && !bUnitExempt)
+	{
+		const int iPirateCount = kPlayer.AI_totalWaterAreaUnitAIs(pWaterArea, UNITAI_PIRATE_SEA);
+		int iNeededPirates = 1 + (pWaterArea->getNumTiles() / std::max(1, 200 - iBuildUnitProb));
+		
+		if (kPlayer.isNoForeignTrade())
+		{
+			iNeededPirates *= 3;
+			iNeededPirates /= 2;
+		}
+
+		if (iPirateCount < iNeededPirates)
+		{
+			if (AI_pirateValue() > 49)
+			{
+				if (AI_chooseUnit(UNITAI_PIRATE_SEA))
+				{
+					if( gCityLogLevel >= 2 ) logBBAI("      City %S uses choose pirate (needed Pirates: %d)", getName().GetCString(), iNeededPirates);
+					return;
 				}
 			}
 		}
@@ -2426,30 +2457,6 @@ void CvCityAI::AI_chooseProduction()
 					{
 						return;
 					}
-				}
-			}
-		}
-	}
-	
-	// Civ4 Reimagined: Compare pirate power with power of strongest ships of neighboring civs
-	if ((pWaterArea != NULL) && bWaterAreaRelevant && !bLandWar && !bAssault && !bFinancialTrouble && !bUnitExempt)
-	{
-		int iPirateCount = kPlayer.AI_totalWaterAreaUnitAIs(pWaterArea, UNITAI_PIRATE_SEA);
-		int iNeededPirates = (1 + (pWaterArea->getNumTiles() / std::max(1, 200 - iBuildUnitProb)));
-		
-		if (kPlayer.isNoForeignTrade())
-		{
-			iNeededPirates *= 3;
-			iNeededPirates /= 2;
-		}
-
-		if (iPirateCount < iNeededPirates)
-		{
-			if (AI_pirateValue() > 49)
-			{
-				if (AI_chooseUnit(UNITAI_PIRATE_SEA))
-				{
-					return;
 				}
 			}
 		}
