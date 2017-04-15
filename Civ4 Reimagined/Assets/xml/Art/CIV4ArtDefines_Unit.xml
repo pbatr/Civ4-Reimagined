@@ -3676,7 +3676,7 @@
 		</UnitArtInfo>
 		<UnitArtInfo>
 			<Type>ART_DEF_UNIT_PIRATE</Type>
-			<Button>,Art/Interface/Buttons/Units/Galley.dds,Art/Interface/Buttons/Warlords_Atlas_1.dds,8,8</Button>
+			<Button>,Art/Interface/Buttons/Units/Galley.dds,Art/Civ4 Reimagined/Civ4_Reimagined_Atlas.dds,7,2</Button>
 			<fScale>0.14</fScale>
 			<fInterfaceScale>0.6</fInterfaceScale>
 			<bActAsLand>0</bActAsLand>
@@ -3715,7 +3715,7 @@
 		</UnitArtInfo>
 		<UnitArtInfo>
 			<Type>ART_DEF_UNIT_MEDIEVAL_PIRATE</Type>
-			<Button>Modules/Varietas Delectat/Art/Buttons/Units/Galleas.dds</Button>
+			<Button>,Art/Interface/Buttons/Units/Galley.dds,Art/Civ4 Reimagined/Civ4_Reimagined_Atlas.dds,8,2</Button>
 			<fScale>0.12</fScale>
 			<fInterfaceScale>0.6</fInterfaceScale>
 			<bActAsLand>0</bActAsLand>
