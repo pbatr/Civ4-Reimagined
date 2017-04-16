@@ -1395,7 +1395,7 @@ class BonusBalancer:
 							
 							if pass_num < 4:
 								for (pLoopPlot) in plots:										
-									if (pLoopPlot.canHaveBonus(bonus, True)):
+									if (pLoopPlot.canHaveBonus(bonus, True) and pLoopPlot != start_plot):
 										if self.isBonusValid(bonus, pLoopPlot, bIgnoreUniqueRange, bIgnoreOneArea, bIgnoreAdjacent):
 											pLoopPlot.setBonusType(bonus)
 											resources_placed.append(type_string)
