@@ -196,7 +196,7 @@ public:
 	int getLargestCityHappiness() const;																		// Exposed to Python
 	int getVassalHappiness() const;																		// Exposed to Python
 	int getVassalUnhappiness() const;																		// Exposed to Python
-	int unhappyLevel(int iExtra = 0) const;																	// Exposed to Python 
+	int unhappyLevel(int iExtra = 0, bool bIgnoreNoUnhappiness = false) const;																	// Exposed to Python 
 	int happyLevel() const;																				// Exposed to Python				
 	int angryPopulation(int iExtra = 0) const;										// Exposed to Python
 	int getTerrainHappiness() const; // Civ4 Reimagined
