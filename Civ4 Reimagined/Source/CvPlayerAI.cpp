@@ -7379,6 +7379,17 @@ int CvPlayerAI::AI_techUnitValue(TechTypes eTech, int iPathLength, bool& bEnable
 		}
 	}
 
+	int iLoop;
+	bool bPlundered = false;
+	for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+	{
+		if (pLoopCity->isPlundered())
+		{
+			bPlundered = true;
+			break;
+		}
+	}
+
 	bool bCapitalAlone = (GC.getGameINLINE().getElapsedGameTurns() > 0) ? AI_isCapitalAreaAlone() : false;
 	int iHasMetCount = kTeam.getHasMetCivCount(true);
 	int iCoastalCities = countNumCoastalCities();
@@ -7588,7 +7599,8 @@ int CvPlayerAI::AI_techUnitValue(TechTypes eTech, int iPathLength, bool& bEnable
 						iOffenceValue = std::max(iOffenceValue, (bWarPlan ? 10 : 5) * (10 + kLoopUnit.getCollateralDamage()/20) * iWeight / 100);// K-Mod
 						// K-Mod note: this naval value stuff seems a bit flakey...
 					}
-					iNavalValue = std::max(iNavalValue, 1*iWeight);
+					// Civ4 Reimagined: More value when our cities are plundered
+					iNavalValue = std::max(iNavalValue, (bPlundered ? 10 : 1) * iWeight);
 					break;
 
 				case UNITAI_ESCORT_SEA:

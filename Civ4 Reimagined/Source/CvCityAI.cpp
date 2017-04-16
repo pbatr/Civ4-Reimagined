@@ -1268,12 +1268,6 @@ void CvCityAI::AI_chooseProduction()
 					if( gCityLogLevel >= 2 ) logBBAI("      City %S uses minimal naval", getName().GetCString());
 					return;
 				}
-
-				if (AI_chooseUnit(UNITAI_ASSAULT_SEA))
-				{
-					if( gCityLogLevel >= 2 ) logBBAI("      City %S uses minimal naval", getName().GetCString());
-					return;
-				}
 			}
 		
 			if (bWaterAreaRelevant)
