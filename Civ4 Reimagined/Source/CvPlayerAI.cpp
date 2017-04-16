@@ -15998,7 +15998,6 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		int iCount = 0;
 		int iTempValue = 0;
 		int iHapValue = 0;
-		int iCityHappiness;
 		int iGlobalHappiness = kCivic.getExtraHappiness();
 		
 		if (kCivic.getHappyPerMilitaryUnit() != 0)
@@ -16008,7 +16007,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		
 		for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 		{
-			iCityHappiness = iGlobalHappiness;
+			int iCityHappiness = iGlobalHappiness;
 			
 			if (kCivic.getCivicPercentAnger() != 0)
 			{
@@ -16093,13 +16092,33 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				}
 				iTempValue += iCities * (bWarPlan ? 2 : 1);
 			}
+
+			bool bGlobeTheater = false;
+			if (pLoopCity->isNoUnhappiness())
+			{
+				for (int iBuilding = 0; iBuilding < GC.getNumBuildingInfos(); iBuilding++)
+				{
+					if (pLoopCity->getNumRealBuilding((BuildingTypes)iBuilding) < 1)
+					{
+						continue;
+					}
+					const CvBuildingInfo& kBuildingInfo = GC.getBuildingInfo((BuildingTypes)iBuilding);
+					if (kBuildingInfo.isNoUnhappiness()) {
+						bGlobeTheater = true;
+						break;
+					}
+				}
+			}
+
+			if (bGlobeTheater)
+				continue;
 			
 			if (kCivic.isNoCapitalUnhappiness() && pLoopCity == pCapital)
 			{
-				iCityHappiness = std::max(pLoopCity->unhappyLevel(), pLoopCity->getPopulation());
+				iCityHappiness = std::max(pLoopCity->unhappyLevel(0, true), pLoopCity->getPopulation());
 			}
 			
-			int iCurrentHappy = 100*(pLoopCity->happyLevel() - iHappy - pLoopCity->unhappyLevel(1));
+			int iCurrentHappy = 100*(pLoopCity->happyLevel() - iHappy - pLoopCity->unhappyLevel(1, true));
 			// I'm only going to subtract half of the commerce happiness, because we might not be using that commerce for only happiness.
 			iCurrentHappy -= 50*std::max(0, pLoopCity->getCommerceHappiness());
 			int iTestHappy = iCurrentHappy + 100 * iCityHappiness;
@@ -16131,9 +16150,6 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				}
 			}
 			
-			if (pLoopCity->isNoUnhappiness())
-				continue;
-			
 			iHapValue += std::max(0, -iCurrentHappy) - std::max(0, -iTestHappy); // change in the number of angry citizens
 			// a small bonus for happiness beyond what we need
 			iHapValue += 100*(std::max(0, iTestHappy) - std::max(0, iCurrentHappy))/(400 + std::max(0, iTestHappy) + std::max(0, iCurrentHappy));
@@ -16141,7 +16157,10 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			iCount++;
 		}
 		
-		iTempValue += ((0 == iCount) ? 50 * iCityHappiness : iHapValue / iCount) * iCities / 12;
+		if (iCount > 0)
+		{
+			iTempValue += (iHapValue / iCount) * iCities / 12;
+		}
 		
 		if (gPlayerLogLevel > 0) logBBAI("	Civic Happiness Value: %d", iTempValue);
 		
@@ -17223,6 +17242,9 @@ int CvPlayerAI::AI_religionValue(ReligionTypes eReligion) const
 	}
 	iValue *= 100 + iDiplomaticModifier;
 	iValue /= 100;
+
+	if (gPlayerLogLevel > 2)
+		logBBAI("	AI Religion value for %S: %d", GC.getReligionInfo(eReligion).getDescription(0), iValue);
 
 	return iValue;
 }
@@ -18754,8 +18776,8 @@ void CvPlayerAI::AI_doCivics()
 	int iPass = 0;
 	int iThreshold = 0;
 	
-	bool bWillSwitch;
-	bool bWantSwitch;
+	bool bWillSwitch = false;
+	bool bWantSwitch = false;
 	bool bNoWarWeariness = false;
 	bool bStateReligion = GC.getCivicInfo(getCivics((CivicOptionTypes)GC.getInfoTypeForString("CIVICOPTION_RELIGION"))).isStateReligion();
 
@@ -18794,8 +18816,8 @@ void CvPlayerAI::AI_doCivics()
 			aiHappy[iI] += 5;
 		}
 			
-		if (kCurrentCivic.getNonStateReligionHappiness() != 0 && iI == GC.getInfoTypeForString("CIVICOPTION_RELIGION") && !kCurrentCivic.isStateReligion() && iTotalReligionCount != 0)
-			aiHappy[iI] += kCurrentCivic.getNonStateReligionHappiness() * iTotalReligionCount / getNumCities();
+		if (kCurrentCivic.getNonStateReligionHappiness() != 0 && iI == GC.getInfoTypeForString("CIVICOPTION_RELIGION") && !kCurrentCivic.isStateReligion())
+			aiHappy[iI] += iTotalReligionCount * kCurrentCivic.getNonStateReligionHappiness() / getNumCities();
 
 		if (kCurrentCivic.getWarWearinessModifier() != 0)
 			aiHappy[iI] += ROUND_DIVIDE((getWarWearinessPercentAnger() * -kCurrentCivic.getWarWearinessModifier()*(getTotalPopulation()/getNumCities())) / 100, GC.getPERCENT_ANGER_DIVISOR());
@@ -18882,7 +18904,13 @@ void CvPlayerAI::AI_doCivics()
 				if (((100*iBestValue > (100+iThreshold)*aiCurrentValue[iI]) && (iThreshold <= 20 || (iBestValue-aiCurrentValue[iI]) > 50)) || (iBestValue - aiCurrentValue[iI] > 100))
 				{
 					FAssert(aeBestCivic[iI] != NO_CIVIC);
-					if (gPlayerLogLevel > 0) logBBAI("    %S decides to switch from %S to %S (value: %d vs %d%S)", getCivilizationDescription(0), GC.getCivicInfo(aeBestCivic[iI]).getDescription(0), GC.getCivicInfo(aeNewCivic[iI]).getDescription(0), aiCurrentValue[iI], iBestValue, iPass > 1 ? "" : ", on recheck");
+					if (gPlayerLogLevel > 0) logBBAI("    %S decides to switch from %S to %S (value: %d vs %d%S)", 
+						getCivilizationDescription(0), 
+						GC.getCivicInfo(aeBestCivic[iI]).getDescription(0), 
+						GC.getCivicInfo(aeNewCivic[iI]).getDescription(0), 
+						aiCurrentValue[iI], 
+						iBestValue, 
+						iPass > 1 ? "" : ", on recheck");
 					if (gPlayerLogLevel > 0) logBBAI("    Anarchy length: %d", iTestAnarchy);
 					if (gPlayerLogLevel > 0) logBBAI("    Threshold: %d", iThreshold);
 					if ( GC.getCivicInfo(aeNewCivic[iI]).getWarWearinessModifier() == -100 )
@@ -18968,14 +18996,21 @@ void CvPlayerAI::AI_doCivics()
 							if (100 * iValue > (102+2*iResearchTurns) * aiCurrentValue[kCivic.getCivicOptionType()])
 							{
 								if (gPlayerLogLevel > 0)
-									logBBAI("%S delays revolution to wait for %S (value: %d vs %d)", getCivilizationDescription(0), kCivic.getDescription(0), iValue, aiCurrentValue[kCivic.getCivicOptionType()]);
+									logBBAI("%S delays revolution to wait for %S (value: %d vs %d)", 
+										getCivilizationDescription(0), 
+										kCivic.getDescription(0), 
+										iValue, 
+										aiCurrentValue[kCivic.getCivicOptionType()]);
 								AI_setCivicTimer(iResearchTurns);
 								return;
 							}
 							else
 							{
 								if (gPlayerLogLevel > 0)
-									logBBAI("%S not strong enough to delay Revolution (value: %d vs %d)", kCivic.getDescription(0), iValue, aiCurrentValue[kCivic.getCivicOptionType()]);
+									logBBAI("%S not strong enough to delay Revolution (value: %d vs %d)", 
+										kCivic.getDescription(0), 
+										iValue, 
+										aiCurrentValue[kCivic.getCivicOptionType()]);
 							}
 						}
 						aeBestCivic[kCivic.getCivicOptionType()] = eOtherCivic;
@@ -19010,7 +19045,12 @@ void CvPlayerAI::AI_doCivics()
 				aiCurrentValue[iI] = AI_civicValue(aeBestCivic[iI], false, bStateReligion, 0);
 				if (getCivicAnarchyLength(&aeNewCivic[0]) <= iAnarchyLength)
 				{
-					if (gPlayerLogLevel > 0) logBBAI("    %S switches to %S instead of %S (value: %d vs %d)", getCivilizationDescription(0), GC.getCivicInfo(aeNewCivic[iI]).getDescription(0), GC.getCivicInfo(aeBestCivic[iI]).getDescription(0), iBestValue, aiCurrentValue[iI]);
+					if (gPlayerLogLevel > 0) logBBAI("    %S switches to %S instead of %S (value: %d vs %d)", 
+						getCivilizationDescription(0), 
+						GC.getCivicInfo(aeNewCivic[iI]).getDescription(0), 
+						GC.getCivicInfo(aeBestCivic[iI]).getDescription(0), 
+						iBestValue, 
+						aiCurrentValue[iI]);
 					aeBestCivic[iI] = aeNewCivic[iI];
 				}
 				else
@@ -19058,7 +19098,13 @@ void CvPlayerAI::AI_doCivics()
 				aiCurrentValue[iI] = AI_civicValue(aeBestCivic[iI], false, bStateReligion, 0);
 				if (getCivicAnarchyLength(&aeNewCivic[0]) <= iAnarchyLength)
 				{
-					if (gPlayerLogLevel > 0 && aeBestCivic[iI] != aeNewCivic[iI]) logBBAI("    %S switches to %S instead of %S (value: %d vs %d)", getCivilizationDescription(0), GC.getCivicInfo(aeNewCivic[iI]).getDescription(0), GC.getCivicInfo(aeBestCivic[iI]).getDescription(0), iBestValue, aiCurrentValue[iI]);
+					if (gPlayerLogLevel > 0 && aeBestCivic[iI] != aeNewCivic[iI]) logBBAI
+						("    %S switches to %S instead of %S (value: %d vs %d)", 
+							getCivilizationDescription(0), 
+							GC.getCivicInfo(aeNewCivic[iI]).getDescription(0), 
+							GC.getCivicInfo(aeBestCivic[iI]).getDescription(0), 
+							iBestValue, 
+							aiCurrentValue[iI]);
 					aeBestCivic2[iI] = aeNewCivic[iI];
 				}
 				else

@@ -4906,7 +4906,7 @@ int CvCity::getVassalUnhappiness() const
 }
 
 
-int CvCity::unhappyLevel(int iExtra) const
+int CvCity::unhappyLevel(int iExtra, bool bIgnoreNoUnhappiness) const
 {
 	int iAngerPercent;
 	int iUnhappiness;
@@ -4914,7 +4914,8 @@ int CvCity::unhappyLevel(int iExtra) const
 
 	iUnhappiness = 0;
 
-	if (!isNoUnhappiness() && !(isCapital() && GET_PLAYER(getOwnerINLINE()).isNoCapitalUnhappiness())) // Civ4 Reimagined: Added no unhappiness in capital effect.
+	// Civ4 Reimagined: Added no unhappiness in capital effect.
+	if (bIgnoreNoUnhappiness || (!isNoUnhappiness() && !(isCapital() && GET_PLAYER(getOwnerINLINE()).isNoCapitalUnhappiness())))
 	{
 		iAngerPercent = 0;
 
