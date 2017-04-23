@@ -2934,7 +2934,8 @@ UnitTypes CvCityAI::AI_bestUnit(bool bAsync, AdvisorTypes eIgnoreAdvisor, UnitAI
 					aiUnitAIVal[UNITAI_SPY_SEA]++;
 				}
 
-				aiUnitAIVal[UNITAI_PIRATE_SEA] += pWaterArea->getNumTiles() / 600;
+				// Civ4 Reimagined: Don't build pirates randomly
+				//aiUnitAIVal[UNITAI_PIRATE_SEA] += pWaterArea->getNumTiles() / 600;
 
 				if (bWarPossible)
 				{
@@ -3054,7 +3055,8 @@ UnitTypes CvCityAI::AI_bestUnit(bool bAsync, AdvisorTypes eIgnoreAdvisor, UnitAI
 	aiUnitAIVal[UNITAI_SPY_SEA] *= 10;
 	aiUnitAIVal[UNITAI_CARRIER_SEA] *= 8;
 	aiUnitAIVal[UNITAI_MISSILE_CARRIER_SEA] *= 8;
-	aiUnitAIVal[UNITAI_PIRATE_SEA] *= 5;
+	// Civ4 Reimagined
+	//aiUnitAIVal[UNITAI_PIRATE_SEA] *= 5;
 	aiUnitAIVal[UNITAI_ATTACK_AIR] *= 6;
 	aiUnitAIVal[UNITAI_DEFENSE_AIR] *= 4; // K-Mod, up from *3
 	aiUnitAIVal[UNITAI_CARRIER_AIR] *= 15;
