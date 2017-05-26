@@ -33,6 +33,7 @@ Tweaks
 -Colossus obsolete with Corporation
 -Temple of Artemis obsolete with Astronomy
 -Improved AI civic evaluation
+-Hanging Gardens require Calender instead of Construction
 
 *********
 Interface

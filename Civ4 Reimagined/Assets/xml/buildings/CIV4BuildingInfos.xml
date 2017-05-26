@@ -23098,7 +23098,7 @@
 			<FreeStartEra>NONE</FreeStartEra>
 			<MaxStartEra>ERA_MEDIEVAL</MaxStartEra>
 			<ObsoleteTech>NONE</ObsoleteTech>
-			<PrereqTech>TECH_CONSTRUCTION</PrereqTech>
+			<PrereqTech>TECH_CALENDAR</PrereqTech>
 			<TechTypes/>
 			<Bonus>NONE</Bonus>
 			<BonusFatCross>NONE</BonusFatCross>
