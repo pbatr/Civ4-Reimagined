@@ -1275,4 +1275,8 @@
 		<Tag>TXT_KEY_BLOCKADE_MODIFIER</Tag>
 		<English>[ICON_BULLET]%D1_Mod%% Gold from Blocking Trade Routes</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_FEATURE_PRODUCTION_MODIFIER</Tag>
+		<English>[ICON_BULLET]%D1_Mod%%[ICON_PRODUCTION] from Chopping</English>
+	</TEXT>
 </Civ4GameText>

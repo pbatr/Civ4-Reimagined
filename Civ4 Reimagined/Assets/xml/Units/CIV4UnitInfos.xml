@@ -2480,6 +2480,7 @@
 			<Flavors/>
 			<iAIWeight>0</iAIWeight>
 			<iCost>100</iCost>
+			<iFeatureProductionModifier>100</iFeatureProductionModifier>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -2649,6 +2650,7 @@
 			<Flavors/>
 			<iAIWeight>0</iAIWeight>
 			<iCost>100</iCost>
+			<iFeatureProductionModifier>100</iFeatureProductionModifier>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -17600,6 +17602,7 @@
 			<Flavors/>
 			<iAIWeight>0</iAIWeight>
 			<iCost>30</iCost>
+			<iFeatureProductionModifier>100</iFeatureProductionModifier>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -17789,6 +17792,7 @@
 			<Flavors/>
 			<iAIWeight>0</iAIWeight>
 			<iCost>40</iCost>
+			<iFeatureProductionModifier>100</iFeatureProductionModifier>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -17980,6 +17984,7 @@
 			<Flavors/>
 			<iAIWeight>0</iAIWeight>
 			<iCost>50</iCost>
+			<iFeatureProductionModifier>100</iFeatureProductionModifier>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -18182,6 +18187,7 @@
 			<Flavors/>
 			<iAIWeight>0</iAIWeight>
 			<iCost>50</iCost>
+			<iFeatureProductionModifier>100</iFeatureProductionModifier>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -18372,7 +18378,8 @@
 			<ProductionTraits/>
 			<Flavors/>
 			<iAIWeight>0</iAIWeight>
-			<iCost>70</iCost>
+			<iCost>60</iCost>
+			<iFeatureProductionModifier>100</iFeatureProductionModifier>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -18583,6 +18590,7 @@
 			<Flavors/>
 			<iAIWeight>0</iAIWeight>
 			<iCost>60</iCost>
+			<iFeatureProductionModifier>100</iFeatureProductionModifier>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -18783,6 +18791,7 @@
 			<Flavors/>
 			<iAIWeight>0</iAIWeight>
 			<iCost>60</iCost>
+			<iFeatureProductionModifier>100</iFeatureProductionModifier>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -18981,6 +18990,7 @@
 			<Flavors/>
 			<iAIWeight>0</iAIWeight>
 			<iCost>60</iCost>
+			<iFeatureProductionModifier>100</iFeatureProductionModifier>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -19178,6 +19188,7 @@
 			<Flavors/>
 			<iAIWeight>0</iAIWeight>
 			<iCost>60</iCost>
+			<iFeatureProductionModifier>100</iFeatureProductionModifier>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -19375,6 +19386,7 @@
 			<Flavors/>
 			<iAIWeight>0</iAIWeight>
 			<iCost>80</iCost>
+			<iFeatureProductionModifier>100</iFeatureProductionModifier>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -19562,6 +19574,7 @@
 			<Flavors/>
 			<iAIWeight>0</iAIWeight>
 			<iCost>80</iCost>
+			<iFeatureProductionModifier>100</iFeatureProductionModifier>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -19758,6 +19771,7 @@
 			<Flavors/>
 			<iAIWeight>0</iAIWeight>
 			<iCost>80</iCost>
+			<iFeatureProductionModifier>100</iFeatureProductionModifier>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -19956,6 +19970,7 @@
 			<Flavors/>
 			<iAIWeight>0</iAIWeight>
 			<iCost>90</iCost>
+			<iFeatureProductionModifier>100</iFeatureProductionModifier>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -20143,6 +20158,7 @@
 			<Flavors/>
 			<iAIWeight>0</iAIWeight>
 			<iCost>120</iCost>
+			<iFeatureProductionModifier>100</iFeatureProductionModifier>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>

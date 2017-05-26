@@ -294,6 +294,7 @@
 	</ElementType>
 	<ElementType name="iAIWeight" content="textOnly" dt:type="int"/>
 	<ElementType name="iCost" content="textOnly" dt:type="int"/>
+	<ElementType name="iFeatureProductionModifier" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined --> 
 	<ElementType name="iHurryCostModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="iAdvancedStartCost" content="textOnly" dt:type="int"/>
 	<ElementType name="iAdvancedStartCostIncrease" content="textOnly" dt:type="int"/>
@@ -600,6 +601,7 @@
 		<element type="Flavors"/>
 		<element type="iAIWeight"/>
 		<element type="iCost"/>
+		<element type="iFeatureProductionModifier" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="iHurryCostModifier"/>
 		<element type="iAdvancedStartCost"/>
 		<element type="iAdvancedStartCostIncrease"/>

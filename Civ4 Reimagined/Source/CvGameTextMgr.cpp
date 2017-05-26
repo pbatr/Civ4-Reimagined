@@ -9010,6 +9010,14 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_BLOCKADE_MODIFIER", GC.getUnitInfo(eUnit).getBlockadeGoldModifier()));
 	}
+	
+	// Civ4 Reimagined
+	int iFeatureProductionModifier = GC.getUnitInfo(eUnit).getFeatureProductionModifier();
+	if (iFeatureProductionModifier != 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_FEATURE_PRODUCTION_MODIFIER", GC.getUnitInfo(eUnit).getFeatureProductionModifier()));
+	}
 
 	if (GC.getUnitInfo(eUnit).isHiddenNationality())
 	{
@@ -16063,6 +16071,18 @@ void CvGameTextMgr::setProductionHelp(CvWStringBuffer &szBuffer, CvCity& city)
 	int iFromChops = (city.isProductionProcess() ? 0 : city.getFeatureProduction());
 	if (iFromChops != 0)
 	{
+		// Civ4 Reimagined
+		UnitTypes eUnit = city.getProductionUnit();
+		if (NO_UNIT != eUnit)
+		{
+			int iFeatureProductionModifier = GC.getUnitInfo(eUnit).getFeatureProductionModifier();
+			if (iFeatureProductionModifier != 0)
+			{
+				iFromChops *= (100 + iFeatureProductionModifier);
+				iFromChops /= 100;
+			}
+		}
+		
 		szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_PROD_CHOPS", iFromChops));
 		szBuffer.append(NEWLINE);
 	}
