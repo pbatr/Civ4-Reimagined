@@ -5,33 +5,47 @@ Civ4 Reimagined 1.3
 *********
 New
 *********
--National building: Great Harbor (+1 [P] from water tiles)
+-Two new ships: Marauder (Navigation) and Pirate (Guilds). They are weaker than their military counterparts, but bear no markings of nationality. This allows for some early game naval harassing and makes the early naval game more engaging in general.
+-Two new(ish) medieval technologies: Crop Rotation (Farms spread irrigation; Floating Gardens; Agrarianism) and Civil Service (Longbowman, Crossbowman, Bureaucracy). They are intended to smoothen out some bumps in technology costs.
+-National building: Great Harbor (Refrigeration; +1 [P] from water tiles)
 -Slaves can be gained by conquering enemy cities (dimished returns).
 
 *********
 Changes
 *********
--Achers and Longbowman gain additional defense bonuses from defensive buildings such as walls and castles. Before offensive units with higher ST would benefit more from walls/castles thant he dedicated city defenders, making balancing them tricky. Reduced city defense (Longbowman only) and increased costs  to compensate.
+-Achers and Longbowman gain additional defense bonuses from defensive buildings such as walls and castles. Otherwise offensive units with higher ST would benefit more from walls/castles than dedicated city defenders, making balancing them tricky. Reduced city defense (Longbowman only) and increased costs to compensate.
+-Scouts and Explorers cannot enter rival territory
+-Chance of destroying buildings when bombarding cities halved
 -Horses become obsolete with Industrialism
 
 *********
 Tweaks
 *********
+-Naval tweaks (see also: New pirate ships)
+*-Reduced costs for galleys (50->40)
+*-All sailing ships have +1 ST (to reduce differences between tiers)
+*-AI is more likely to research stronger ships when cities are plundered
+*-Improved AI for building ships in general
+-Machinery is now a classical tech
 -Axemen bonus vs Archer reduced from 30% to 25%.
--Chance for destroying buildings when bombarding cities halved
 -Cathedrals cannot be destroyed when bombarding cities
 -Units with hidden nationality no longer contribute to a civ's power value
+-Colossus obsolete with Corporation
+-Temple of Artemis obsolete with Astronomy
+-Improved AI civic evaluation
 
 *********
 Interface
 *********
 
-
 *********
 Fixes
 *********
+-Fixed an OOS error during map initialisation
 -Fixed a bug where AI was bombarding cities without any defensive buildings with land based siege units
 -"The old dynasty has died out" event now has a different drawback. "Unhappiness in capital" was always negated by Dynasticism's unlimited happiness.
+-Fixed sports league event text tooltip
+-Fixed 'balanced' resources appearing directly on starting positions
 
 
 
