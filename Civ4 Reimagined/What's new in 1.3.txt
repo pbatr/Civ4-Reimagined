@@ -34,6 +34,7 @@ Tweaks
 -Temple of Artemis obsolete with Astronomy
 -Improved AI civic evaluation
 -Hanging Gardens require Calender instead of Construction
+-"Trade route blocked" now has an appropriatly negative sound effect
 
 *********
 Interface
