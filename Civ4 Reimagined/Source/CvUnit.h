@@ -370,6 +370,7 @@ public:
 	int maxXPValue(PlayerTypes eWinner = NO_PLAYER) const;	// Changed by Civ4 Reimagined 	// Exposed to Python	
 	int getCombatXPModifier() const; // Civ4 Reimagined
 	int getBlockadeGoldModifier() const; // Civ4 Reimagined
+	int getFeatureProductionModifier() const; // Civ4 Reimagined
 	
 	int firstStrikes() const;																								// Exposed to Python
 	int chanceFirstStrikes() const;																					// Exposed to Python 

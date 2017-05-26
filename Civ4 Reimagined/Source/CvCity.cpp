@@ -3493,6 +3493,8 @@ int CvCity::getProductionDifference(int iProductionNeeded, int iProduction, int 
 		return 0;
 	}
 	
+	int iFeatureProduction = getFeatureProduction(); // Civ4 Reimagined
+	
 	// Civ4 Reimagined
 	if (iProductionMultiplier < 0)
 	{
@@ -3503,6 +3505,14 @@ int CvCity::getProductionDifference(int iProductionNeeded, int iProduction, int 
 		if (eUnit != NO_UNIT)
 		{
 			iProductionMultiplier = getUnitProductionMultiplier(eUnit);
+			
+			// Civ4 Reimagined
+			int iFeatureProductionModifier = GC.getUnitInfo(eUnit).getFeatureProductionModifier();
+			if (iFeatureProductionModifier != 0)
+			{
+				iFeatureProduction *= (100 + iFeatureProductionModifier);
+				iFeatureProduction /= 100;
+			}
 		}
 		else if (eBuilding != NO_BUILDING)
 		{
@@ -3521,7 +3531,7 @@ int CvCity::getProductionDifference(int iProductionNeeded, int iProduction, int 
 
 	int iFoodProduction = ((bFoodProduction) ? std::max(0, (getYieldRate(YIELD_FOOD) - foodConsumption(true))) : 0);
 
-	int iOverflow = ((bOverflow) ? (getOverflowProduction() + getFeatureProduction()) : 0);
+	int iOverflow = ((bOverflow) ? (getOverflowProduction() + iFeatureProduction) : 0);
 
 	//return (((getBaseYieldRate(YIELD_PRODUCTION) + iOverflow) * getBaseYieldRateModifier(YIELD_PRODUCTION, iProductionModifier)) / 100 + iFoodProduction);
 	// Civ4 Reimagined

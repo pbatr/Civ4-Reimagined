@@ -9386,6 +9386,12 @@ int CvUnit::getBlockadeGoldModifier() const
 	return m_pUnitInfo->getBlockadeGoldModifier();
 }
 
+// Civ4 Reimagined
+int CvUnit::getFeatureProductionModifier() const
+{
+	return m_pUnitInfo->getFeatureProductionModifier();
+}
+
 int CvUnit::maxXPValue(PlayerTypes eWinner) const
 {
 	int iMaxValue;

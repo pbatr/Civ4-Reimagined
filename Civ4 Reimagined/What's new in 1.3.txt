@@ -22,7 +22,7 @@ Changes
 Tweaks
 *********
 -Naval tweaks (see also: New pirate ships)
-*-Reduced costs for galleys (50->40)
+*-Wooden ships gain double production from chopping
 *-All sailing ships have +1 ST (to reduce differences between tiers)
 *-AI is more likely to research stronger ships when cities are plundered
 *-Improved AI for building ships in general
