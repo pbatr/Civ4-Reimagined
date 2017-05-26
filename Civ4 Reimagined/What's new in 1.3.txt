@@ -26,6 +26,7 @@ Tweaks
 *-All sailing ships have +1 ST (to reduce differences between tiers)
 *-AI is more likely to research stronger ships when cities are plundered
 *-Improved AI for building ships in general
+*-Longships are Pirates with improved trade blockade ability
 -Machinery is now a classical tech
 -Axemen bonus vs Archer reduced from 30% to 25%.
 -Cathedrals cannot be destroyed when bombarding cities
@@ -35,7 +36,7 @@ Tweaks
 -Improved AI civic evaluation
 -Hanging Gardens require Calender instead of Construction
 -"Trade route blocked" now has an appropriatly negative sound effect
--Reduced gold gain from blocking trade routes by 33%
+-Reduced gold gain from blockading trade routes by 33%.
 
 *********
 Interface

@@ -1160,31 +1160,6 @@
 		<English>If you are looking for a truly epic experience, this map size is for you.  It has room for you and 31 opponents.</English>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_UNIT_GALLEASS</Tag>
-		<English>Galleass</English>
-		<French>
-			<Text>Galleass</Text>
-			<Gender>Female</Gender>
-			<Plural>0</Plural>
-		</French>
-		<German>
-			<Text>Galleasse</Text>
-			<Gender>Female</Gender>
-			<Plural>0</Plural>
-		</German>
-		<Italian>
-			<Text>Galeazza</Text>
-			<Gender>Female</Gender>
-			<Plural>0</Plural>
-		</Italian>
-		<Spanish>
-			<Text>Galleass</Text>
-			<Gender>Male</Gender>
-			<Plural>0</Plural>
-		</Spanish>
-		<Hungarian>Galleass</Hungarian>
-	</TEXT>
-	<TEXT>
 		<Tag>TXT_KEY_UNIT_MOTORIZED_INFANTRY</Tag>
 		<English>Motorized Infantry</English>
 	</TEXT>
@@ -1295,5 +1270,9 @@
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_PIRATE</Tag>
 		<English>Pirate</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BLOCKADE_MODIFIER</Tag>
+		<English>[ICON_BULLET]%D1_Mod%% Gold from Blocking Trade Routes</English>
 	</TEXT>
 </Civ4GameText>

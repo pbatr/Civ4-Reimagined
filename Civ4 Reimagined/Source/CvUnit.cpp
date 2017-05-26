@@ -9380,6 +9380,12 @@ int CvUnit::getCombatXPModifier() const
 	return m_pUnitInfo->getCombatXPModifier();
 }
 
+// Civ4 Reimagined
+int CvUnit::getBlockadeGoldModifier() const
+{
+	return m_pUnitInfo->getBlockadeGoldModifier();
+}
+
 int CvUnit::maxXPValue(PlayerTypes eWinner) const
 {
 	int iMaxValue;
@@ -11727,6 +11733,13 @@ void CvUnit::collectBlockadeGold()
 						// Civ4 Reimagined
 						//int iGold = pCity->calculateTradeProfitTimes100(pCity) * pCity->getTradeRoutes() / 100;
 						int iGold = pCity->getBaseTradeProfit(pCity) * (pCity->totalTradeModifier(NULL) + GC.getDefineINT("FOREIGN_TRADE_MODIFIER")) * pCity->getTradeRoutes() / 10000;
+						
+						// Civ4 Reimagined
+						if (getBlockadeGoldModifier() != 0)
+						{
+							iGold *= std::max(0, 100 + getBlockadeGoldModifier());
+							iGold /= 100;
+						}
 						
 						// Civ4 Reimagined
 						iGold *= 2;

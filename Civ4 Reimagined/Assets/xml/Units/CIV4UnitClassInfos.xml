@@ -593,13 +593,13 @@
 			<DefaultUnit>UNIT_PIRATE</DefaultUnit>
 		</UnitClassInfo>
 		<UnitClassInfo>
-			<Type>UNITCLASS_GALLEASS</Type>
-			<Description>TXT_KEY_UNIT_GALLEASS</Description>
+			<Type>UNITCLASS_WAR_GALLEY</Type>
+			<Description>TXT_KEY_UNIT_WARGALLEY</Description>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
 			<iMaxTeamInstances>-1</iMaxTeamInstances>
 			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
 			<iInstanceCostModifier>0</iInstanceCostModifier>
-			<DefaultUnit>UNIT_GALLEASS</DefaultUnit>
+			<DefaultUnit>UNIT_WAR_GALLEY</DefaultUnit>
 		</UnitClassInfo>
 		<UnitClassInfo>
 			<Type>UNITCLASS_CARAVEL</Type>

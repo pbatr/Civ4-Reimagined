@@ -1963,7 +1963,7 @@
 				</StyleUnit>
 					
 				<StyleUnit>
-					<UnitType>UNIT_GALLEASS</UnitType>
+					<UnitType>UNIT_WAR_GALLEY</UnitType>
 					<UnitMeshGroup>
 						<EarlyArtDefineTag>ART_DEF_UNIT_GALLEAS_EE2</EarlyArtDefineTag>
 						<LateArtDefineTag>ART_DEF_UNIT_GALLEAS_EE2</LateArtDefineTag>
@@ -2723,7 +2723,7 @@
 				
 
 				<StyleUnit>
-					<UnitType>UNIT_GALLEASS</UnitType>
+					<UnitType>UNIT_WAR_GALLEY</UnitType>
 					<UnitMeshGroup>
 						<EarlyArtDefineTag>ART_DEF_UNIT_GALEASS_COG_SHIP</EarlyArtDefineTag>
 						<LateArtDefineTag>ART_DEF_UNIT_GALEASS_COG_SHIP</LateArtDefineTag>
@@ -3232,11 +3232,11 @@
 	
 				
 				<StyleUnit>
-					<UnitType>UNIT_GALLEASS</UnitType>
+					<UnitType>UNIT_WAR_GALLEY</UnitType>
 					<UnitMeshGroup>
-						<EarlyArtDefineTag>ART_DEF_UNIT_KOBUKSON_GALLEASS</EarlyArtDefineTag>
-						<LateArtDefineTag>ART_DEF_UNIT_KOBUKSON_GALLEASS</LateArtDefineTag>
-						<MiddleArtDefineTag>ART_DEF_UNIT_KOBUKSON_GALLEASS</MiddleArtDefineTag>
+						<EarlyArtDefineTag>ART_DEF_UNIT_KOBUKSON_WAR_GALLEY</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_KOBUKSON_WAR_GALLEY</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_KOBUKSON_WAR_GALLEY</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
 				
@@ -3732,7 +3732,7 @@
 				</StyleUnit>
 
 				<StyleUnit>
-					<UnitType>UNIT_GALLEASS</UnitType>
+					<UnitType>UNIT_WAR_GALLEY</UnitType>
 					<UnitMeshGroup>
 						<EarlyArtDefineTag>ART_DEF_UNIT_GALLEAS_EE2</EarlyArtDefineTag>
 						<LateArtDefineTag>ART_DEF_UNIT_GALLEAS_EE2</LateArtDefineTag>
@@ -5848,7 +5848,7 @@
 				</StyleUnit>
 
 				<StyleUnit>
-					<UnitType>UNIT_GALLEASS</UnitType>
+					<UnitType>UNIT_WAR_GALLEY</UnitType>
 					<UnitMeshGroup>
 						<EarlyArtDefineTag>ART_DEF_UNIT_GALEASS_COG_SHIP</EarlyArtDefineTag>
 						<LateArtDefineTag>ART_DEF_UNIT_GALEASS_COG_SHIP</LateArtDefineTag>
@@ -6644,7 +6644,7 @@
 					</UnitMeshGroup>
 				</StyleUnit>
 				<StyleUnit>
-					<UnitType>UNIT_GALLEASS</UnitType>
+					<UnitType>UNIT_WAR_GALLEY</UnitType>
 					<UnitMeshGroup>
 						<EarlyArtDefineTag>ART_DEF_UNIT_GALEASS_COG_SHIP</EarlyArtDefineTag>
 						<LateArtDefineTag>ART_DEF_UNIT_GALEASS_COG_SHIP</LateArtDefineTag>
@@ -8322,11 +8322,11 @@
 					</UnitMeshGroup>
 				</StyleUnit>							
 				<StyleUnit>
-					<UnitType>UNIT_GALLEASS</UnitType>
+					<UnitType>UNIT_WAR_GALLEY</UnitType>
 					<UnitMeshGroup>
-						<EarlyArtDefineTag>ART_DEF_UNIT_KOBUKSON_GALLEASS</EarlyArtDefineTag>
-						<LateArtDefineTag>ART_DEF_UNIT_KOBUKSON_GALLEASS</LateArtDefineTag>
-						<MiddleArtDefineTag>ART_DEF_UNIT_KOBUKSON_GALLEASS</MiddleArtDefineTag>
+						<EarlyArtDefineTag>ART_DEF_UNIT_KOBUKSON_WAR_GALLEY</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_KOBUKSON_WAR_GALLEY</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_KOBUKSON_WAR_GALLEY</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
 				
@@ -8828,11 +8828,11 @@
 					</UnitMeshGroup>
 				</StyleUnit>				
 				<StyleUnit>
-					<UnitType>UNIT_GALLEASS</UnitType>
+					<UnitType>UNIT_WAR_GALLEY</UnitType>
 					<UnitMeshGroup>
-						<EarlyArtDefineTag>ART_DEF_UNIT_KOBUKSON_GALLEASS</EarlyArtDefineTag>
-						<LateArtDefineTag>ART_DEF_UNIT_KOBUKSON_GALLEASS</LateArtDefineTag>
-						<MiddleArtDefineTag>ART_DEF_UNIT_KOBUKSON_GALLEASS</MiddleArtDefineTag>
+						<EarlyArtDefineTag>ART_DEF_UNIT_KOBUKSON_WAR_GALLEY</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_KOBUKSON_WAR_GALLEY</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_KOBUKSON_WAR_GALLEY</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>	
 
@@ -9307,11 +9307,11 @@
 					</UnitMeshGroup>
 				</StyleUnit>							
 				<StyleUnit>
-					<UnitType>UNIT_GALLEASS</UnitType>
+					<UnitType>UNIT_WAR_GALLEY</UnitType>
 					<UnitMeshGroup>
-						<EarlyArtDefineTag>ART_DEF_UNIT_KOBUKSON_GALLEASS</EarlyArtDefineTag>
-						<LateArtDefineTag>ART_DEF_UNIT_KOBUKSON_GALLEASS</LateArtDefineTag>
-						<MiddleArtDefineTag>ART_DEF_UNIT_KOBUKSON_GALLEASS</MiddleArtDefineTag>
+						<EarlyArtDefineTag>ART_DEF_UNIT_KOBUKSON_WAR_GALLEY</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_KOBUKSON_WAR_GALLEY</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_KOBUKSON_WAR_GALLEY</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
 				
@@ -10831,11 +10831,11 @@
 					</UnitMeshGroup>
 				</StyleUnit>
 				<StyleUnit>
-					<UnitType>UNIT_GALLEASS</UnitType>
+					<UnitType>UNIT_WAR_GALLEY</UnitType>
 					<UnitMeshGroup>
-						<EarlyArtDefineTag>ART_DEF_UNIT_KOBUKSON_GALLEASS</EarlyArtDefineTag>
-						<LateArtDefineTag>ART_DEF_UNIT_KOBUKSON_GALLEASS</LateArtDefineTag>
-						<MiddleArtDefineTag>ART_DEF_UNIT_KOBUKSON_GALLEASS</MiddleArtDefineTag>
+						<EarlyArtDefineTag>ART_DEF_UNIT_KOBUKSON_WAR_GALLEY</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_KOBUKSON_WAR_GALLEY</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_KOBUKSON_WAR_GALLEY</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>								
 			</StyleUnits>
@@ -13046,7 +13046,7 @@
 					</UnitMeshGroup>
 				</StyleUnit>
 				<StyleUnit>
-					<UnitType>UNIT_GALLEASS</UnitType>
+					<UnitType>UNIT_WAR_GALLEY</UnitType>
 					<UnitMeshGroup>
 						<EarlyArtDefineTag>ART_DEF_UNIT_GALLEAS_EE2</EarlyArtDefineTag>
 						<LateArtDefineTag>ART_DEF_UNIT_GALLEAS_EE2</LateArtDefineTag>
@@ -13543,7 +13543,7 @@
 					</UnitMeshGroup>
 				</StyleUnit>				
 				<StyleUnit>
-					<UnitType>UNIT_GALLEASS</UnitType>
+					<UnitType>UNIT_WAR_GALLEY</UnitType>
 					<UnitMeshGroup>
 						<EarlyArtDefineTag>ART_DEF_UNIT_GALEASS_COG_SHIP</EarlyArtDefineTag>
 						<LateArtDefineTag>ART_DEF_UNIT_GALEASS_COG_SHIP</LateArtDefineTag>
@@ -15362,7 +15362,7 @@
 					</UnitMeshGroup>
 				</StyleUnit>
 				<StyleUnit>
-					<UnitType>UNIT_GALLEASS</UnitType>
+					<UnitType>UNIT_WAR_GALLEY</UnitType>
 					<UnitMeshGroup>
 						<EarlyArtDefineTag>ART_DEF_UNIT_GALEASS_COG_SHIP</EarlyArtDefineTag>
 						<LateArtDefineTag>ART_DEF_UNIT_GALEASS_COG_SHIP</LateArtDefineTag>

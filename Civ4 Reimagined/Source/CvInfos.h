@@ -855,6 +855,7 @@ public:
 	int getXPValueAttack() const;				// Exposed to Python
 	int getXPValueDefense() const;				// Exposed to Python
 	int getCombatXPModifier() const; // Civ4 Reimagined
+	int getBlockadeGoldModifier() const; // Civ4 Reimagined
 	int getFirstStrikes() const;				// Exposed to Python
 	int getChanceFirstStrikes() const;				// Exposed to Python
 	int getInterceptionProbability() const;		// Exposed to Python
@@ -1044,6 +1045,7 @@ protected:
 	int m_iXPValueAttack;
 	int m_iXPValueDefense;
 	int m_iCombatXPModifier; // Civ4 Reimagined
+	int m_iBlockadeGoldModifier; // Civ4 Reimagined
 	int m_iFirstStrikes;
 	int m_iChanceFirstStrikes;
 	int m_iInterceptionProbability;

@@ -3069,6 +3069,7 @@ m_iAirCombatLimit(0),
 m_iXPValueAttack(0),
 m_iXPValueDefense(0),
 m_iCombatXPModifier(0), // Civ4 Reimagined
+m_iBlockadeGoldModifier(), // Civ4 Reimgagined
 m_iFirstStrikes(0),
 m_iChanceFirstStrikes(0),
 m_iInterceptionProbability(0),
@@ -3391,6 +3392,12 @@ int CvUnitInfo::getXPValueDefense() const
 int CvUnitInfo::getCombatXPModifier() const			
 {
 	return m_iCombatXPModifier;
+}
+
+// Civ4 Reimagined
+int CvUnitInfo::getBlockadeGoldModifier() const			
+{
+	return m_iBlockadeGoldModifier;
 }
 
 int CvUnitInfo::getFirstStrikes() const
@@ -4288,6 +4295,7 @@ void CvUnitInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iXPValueAttack);
 	stream->Read(&m_iXPValueDefense);
 	stream->Read(&m_iCombatXPModifier); // Civ4 Reimagined
+	stream->Read(&m_iBlockadeGoldModifier); // Civ4 Reimagined
 	stream->Read(&m_iFirstStrikes);
 	stream->Read(&m_iChanceFirstStrikes);
 	stream->Read(&m_iInterceptionProbability);
@@ -4593,6 +4601,7 @@ void CvUnitInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iXPValueAttack);
 	stream->Write(m_iXPValueDefense);
 	stream->Write(m_iCombatXPModifier); // Civ4 Reimagined
+	stream->Write(m_iBlockadeGoldModifier); // Civ4 Reimagined
 	stream->Write(m_iFirstStrikes);
 	stream->Write(m_iChanceFirstStrikes);
 	stream->Write(m_iInterceptionProbability);
@@ -4992,6 +5001,7 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iXPValueAttack, "iXPValueAttack");
 	pXML->GetChildXmlValByName(&m_iXPValueDefense, "iXPValueDefense");
 	pXML->GetChildXmlValByName(&m_iCombatXPModifier, "iCombatXPModifier"); // Civ4 Reimagined
+	pXML->GetChildXmlValByName(&m_iBlockadeGoldModifier, "iBlockadeGoldModifier"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iFirstStrikes, "iFirstStrikes");
 	pXML->GetChildXmlValByName(&m_iChanceFirstStrikes, "iChanceFirstStrikes");
 	pXML->GetChildXmlValByName(&m_iInterceptionProbability, "iInterceptionProbability");
