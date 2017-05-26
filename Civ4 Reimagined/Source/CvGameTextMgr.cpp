@@ -9002,6 +9002,14 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_FASTER_EXPERIENCE_TEXT", GC.getUnitInfo(eUnit).getCombatXPModifier()));
 	}
+	
+	// Civ4 Reimagined
+	int iBlockadeGoldModifier = GC.getUnitInfo(eUnit).getBlockadeGoldModifier();
+	if (iBlockadeGoldModifier != 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_BLOCKADE_MODIFIER", GC.getUnitInfo(eUnit).getBlockadeGoldModifier()));
+	}
 
 	if (GC.getUnitInfo(eUnit).isHiddenNationality())
 	{

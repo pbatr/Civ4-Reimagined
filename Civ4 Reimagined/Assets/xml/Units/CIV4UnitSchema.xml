@@ -351,6 +351,7 @@
 	<ElementType name="iXPValueAttack" content="textOnly" dt:type="int"/>
 	<ElementType name="iXPValueDefense" content="textOnly" dt:type="int"/>
 	<ElementType name="iCombatXPModifier" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
+	<ElementType name="iBlockadeGoldModifier" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iFirstStrikes" content="textOnly" dt:type="int"/>
 	<ElementType name="iChanceFirstStrikes" content="textOnly" dt:type="int"/>
 	<ElementType name="iInterceptionProbability" content="textOnly" dt:type="int"/>
@@ -629,6 +630,7 @@
 		<element type="iXPValueAttack"/>
 		<element type="iXPValueDefense"/>
 		<element type="iCombatXPModifier" minOccurs="0"/> <!-- Civ4 Reimagined -->
+		<element type="iBlockadeGoldModifier" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="iFirstStrikes"/>
 		<element type="iChanceFirstStrikes"/>
 		<element type="iInterceptionProbability"/>
