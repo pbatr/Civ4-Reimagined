@@ -11728,6 +11728,10 @@ void CvUnit::collectBlockadeGold()
 						//int iGold = pCity->calculateTradeProfitTimes100(pCity) * pCity->getTradeRoutes() / 100;
 						int iGold = pCity->getBaseTradeProfit(pCity) * (pCity->totalTradeModifier(NULL) + GC.getDefineINT("FOREIGN_TRADE_MODIFIER")) * pCity->getTradeRoutes() / 10000;
 						
+						// Civ4 Reimagined
+						iGold *= 2;
+						iGold /= 3;
+						
 						if (iGold > 0)
 						{
 							pCity->setPlundered(true);

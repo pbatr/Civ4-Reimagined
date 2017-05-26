@@ -35,6 +35,7 @@ Tweaks
 -Improved AI civic evaluation
 -Hanging Gardens require Calender instead of Construction
 -"Trade route blocked" now has an appropriatly negative sound effect
+-Reduced gold gain from blocking trade routes by 33%
 
 *********
 Interface
