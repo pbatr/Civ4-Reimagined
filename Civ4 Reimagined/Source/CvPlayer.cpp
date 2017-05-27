@@ -22284,6 +22284,7 @@ void CvPlayer::applyEvent(EventTypes eEvent, int iEventTriggeredId, bool bUpdate
 		(*it)->setHasReligion(pTriggeredData->m_eReligion, true, true, false);
 	}
 
+	/* Civ4 Reimagined: Our own actions should not alter how we view others.
 	if (0 != kEvent.getOurAttitudeModifier())
 	{
 		if (NO_PLAYER != pTriggeredData->m_eOtherPlayer)
@@ -22298,6 +22299,7 @@ void CvPlayer::applyEvent(EventTypes eEvent, int iEventTriggeredId, bool bUpdate
 			}
 		}
 	}
+	*/
 
 	if (0 != kEvent.getAttitudeModifier())
 	{
