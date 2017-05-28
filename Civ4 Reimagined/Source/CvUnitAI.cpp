@@ -5627,8 +5627,9 @@ bool CvUnitAI::AI_greatPersonMove()
 							int iCost = pLoopCity->getProductionNeeded(eBuilding);
 							int iHurryProduction = getMaxHurryProduction(pLoopCity);
 							int iProgress = pLoopCity->getBuildingProduction(eBuilding);
+							int iProductionMultiplier = pLoopCity->getProductionMultiplier();
 
-							int iProductionRate = iCost > iHurryProduction + iProgress ? pLoopCity->getProductionDifference(iCost, iProgress, pLoopCity->getProductionModifier(eBuilding), false, 0) : 0;
+							int iProductionRate = iCost > iHurryProduction + iProgress ? pLoopCity->getProductionDifference(iCost, iProgress, pLoopCity->getProductionModifier(eBuilding), false, 0, iProductionMultiplier) : 0;
 							// note: currently, it is impossible for a building to be "food production".
 							// also note that iProductionRate will return 0 if the city is in disorder. This may mess up our great person's decision - but it's a non-trivial problem to fix.
 

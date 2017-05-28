@@ -16440,11 +16440,17 @@ void CvGameTextMgr::setProductionHelp(CvWStringBuffer &szBuffer, CvCity& city)
 	iBaseModifier += city.getBaseYieldRateModifier(YIELD_PRODUCTION);
 
 	// Civ4 Reimagined
-	int iModProduction = iFoodProduction + std::max(1,ROUND_DIVIDE(iBaseModifier * iBaseProduction * iProductionMultiplier, 10000));
-
-	FAssertMsg(iModProduction == city.getCurrentProductionDifference(false, !bIsProcess), "Modified Production does not match actual value");
-
+	int iModProduction = iFoodProduction + std::max(1,ROUND_DIVIDE(iBaseModifier * iBaseProduction * iProductionMultiplier, 10000));	
 	szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_PROD_FINAL_YIELD", iModProduction));
+
+	const int iOverflowReduction = iModProduction - city.getCurrentProductionDifference(false, !bIsProcess);
+	FAssert(iOverflowReduction >= 0);
+
+	if (iOverflowReduction > 0)
+	{
+		iModProduction -= iOverflowReduction;
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_PROD_MAX_YIELD", iModProduction));
+	}
 	//szBuffer.append(NEWLINE);
 
 // BUG - Building Additional Production - start

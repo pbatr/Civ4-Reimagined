@@ -3207,90 +3207,81 @@ int CvCity::getProductionTurnsLeft() const
 
 int CvCity::getProductionTurnsLeft(UnitTypes eUnit, int iNum) const
 {
-	int iProduction;
-	int iFirstUnitOrder;
-	int iProductionNeeded;
-	int iProductionModifier;
-	int iProductionMultiplier; // Civ4 Reimagined
+	int iProduction = 0;
 
-	iProduction = 0;
-
-	iFirstUnitOrder = getFirstUnitOrder(eUnit);
+	const int iFirstUnitOrder = getFirstUnitOrder(eUnit);
 
 	if ((iFirstUnitOrder == -1) || (iFirstUnitOrder == iNum))
 	{
 		iProduction += getUnitProduction(eUnit);
 	}
 
-	iProductionNeeded = getProductionNeeded(eUnit);
-	iProductionModifier = getProductionModifier(eUnit);
-	iProductionMultiplier = getUnitProductionMultiplier(eUnit); // Civ4 Reimagined
+	const int iProductionNeeded = getProductionNeeded(eUnit);
+	const int iProductionModifier = getProductionModifier(eUnit);
+	// Civ4 Reimagined
+	const int iProductionMultiplier = getUnitProductionMultiplier(eUnit);
 
-	return getProductionTurnsLeft(iProductionNeeded, iProduction, getProductionDifference(iProductionNeeded, iProduction, iProductionModifier, isFoodProduction(eUnit), (iNum == 0), iProductionMultiplier), getProductionDifference(iProductionNeeded, iProduction, iProductionModifier, isFoodProduction(eUnit), false, iProductionMultiplier));  // Civ4 Reimagined: ADded iProductionMultiplier
+	return getProductionTurnsLeft(iProductionNeeded, 
+								  iProduction, 
+								  getProductionDifference(iProductionNeeded, iProduction, iProductionModifier, isFoodProduction(eUnit), (iNum == 0), iProductionMultiplier), 
+								  getProductionDifference(iProductionNeeded, iProduction, iProductionModifier, isFoodProduction(eUnit), false, iProductionMultiplier));
 }
 
 
 int CvCity::getProductionTurnsLeft(BuildingTypes eBuilding, int iNum) const
 {
-	int iProduction;
-	int iFirstBuildingOrder;
-	int iProductionNeeded;
-	int iProductionModifier;
-	int iProductionMultiplier; // Civ4 Reimagined
+	int iProduction = 0;
 
-	iProduction = 0;
-
-	iFirstBuildingOrder = getFirstBuildingOrder(eBuilding);
+	const int iFirstBuildingOrder = getFirstBuildingOrder(eBuilding);
 
 	if ((iFirstBuildingOrder == -1) || (iFirstBuildingOrder == iNum))
 	{
 		iProduction += getBuildingProduction(eBuilding);
 	}
 
-	iProductionNeeded = getProductionNeeded(eBuilding);
-	iProductionModifier = getProductionModifier(eBuilding);
-	iProductionMultiplier = getBuildingProductionMultiplier(eBuilding); // Civ4 Reimagined
+	const int iProductionNeeded = getProductionNeeded(eBuilding);
+	const int iProductionModifier = getProductionModifier(eBuilding);
+	// Civ4 Reimagined
+	const int iProductionMultiplier = getBuildingProductionMultiplier(eBuilding);
 
-	return getProductionTurnsLeft(iProductionNeeded, iProduction, getProductionDifference(iProductionNeeded, iProduction, iProductionModifier, false, (iNum == 0), iProductionMultiplier), getProductionDifference(iProductionNeeded, iProduction, iProductionModifier, false, false, iProductionMultiplier)); // Civ4 Reimagined: ADded iProductionMultiplier
+	return getProductionTurnsLeft(iProductionNeeded, 
+								  iProduction, 
+								  getProductionDifference(iProductionNeeded, iProduction, iProductionModifier, false, (iNum == 0), iProductionMultiplier), 
+								  getProductionDifference(iProductionNeeded, iProduction, iProductionModifier, false, false, iProductionMultiplier));
 }
 
 
 int CvCity::getProductionTurnsLeft(ProjectTypes eProject, int iNum) const
 {
-	int iProduction;
-	int iFirstProjectOrder;
-	int iProductionNeeded;
-	int iProductionModifier;
+	int iProduction = 0;
 
-	iProduction = 0;
-
-	iFirstProjectOrder = getFirstProjectOrder(eProject);
+	const int iFirstProjectOrder = getFirstProjectOrder(eProject);
 
 	if ((iFirstProjectOrder == -1) || (iFirstProjectOrder == iNum))
 	{
 		iProduction += getProjectProduction(eProject);
 	}
 
-	iProductionNeeded = getProductionNeeded(eProject);
-	iProductionModifier = getProductionModifier(eProject);
+	const int iProductionNeeded = getProductionNeeded(eProject);
+	const int iProductionModifier = getProductionModifier(eProject);
 
-	return getProductionTurnsLeft(iProductionNeeded, iProduction, getProductionDifference(iProductionNeeded, iProduction, iProductionModifier, false, (iNum == 0)), getProductionDifference(iProductionNeeded, iProduction, iProductionModifier, false, false));
+	return getProductionTurnsLeft(iProductionNeeded, 
+							      iProduction, 
+							      getProductionDifference(iProductionNeeded, iProduction, iProductionModifier, false, (iNum == 0), 100), 
+		   					      getProductionDifference(iProductionNeeded, iProduction, iProductionModifier, false, false, 100));
 }
 
 
 int CvCity::getProductionTurnsLeft(int iProductionNeeded, int iProduction, int iFirstProductionDifference, int iProductionDifference) const
 {
-	int iProductionLeft;
-	int iTurnsLeft;
-
-	iProductionLeft = std::max(0, (iProductionNeeded - iProduction - iFirstProductionDifference));
+	int iProductionLeft = std::max(0, (iProductionNeeded - iProduction - iFirstProductionDifference));
 
 	if (iProductionDifference == 0)
 	{
 		return iProductionLeft + 1;
 	}
 
-	iTurnsLeft = (iProductionLeft / iProductionDifference);
+	int iTurnsLeft = (iProductionLeft / iProductionDifference);
 
 	if ((iTurnsLeft * iProductionDifference) < iProductionLeft)
 	{
@@ -3485,7 +3476,7 @@ int CvCity::getProductionModifier(ProjectTypes eProject) const
 	return std::max(-50, iMultiplier);
 }
 
-
+// Civ4 Reimagined: Added unit specific feature production bonus
 int CvCity::getProductionDifference(int iProductionNeeded, int iProduction, int iProductionModifier, bool bFoodProduction, bool bOverflow, int iProductionMultiplier) const
 {
 	if (isDisorder())
@@ -3493,56 +3484,44 @@ int CvCity::getProductionDifference(int iProductionNeeded, int iProduction, int 
 		return 0;
 	}
 	
-	int iFeatureProduction = getFeatureProduction(); // Civ4 Reimagined
+	int iFeatureProduction = getFeatureProduction();
 	
-	// Civ4 Reimagined
-	if (iProductionMultiplier < 0)
-	{
-		UnitTypes eUnit = getProductionUnit();
-		BuildingTypes eBuilding = getProductionBuilding();
-		//ProjectTypes eProject = getProductionProject();
+	// Civ4 Reimagined: Unit specific feature production bonus
+	int iBonusProduction = 0;
 
-		if (eUnit != NO_UNIT)
+	const UnitTypes eUnit = getProductionUnit();
+	if (eUnit != NO_UNIT)
+	{
+		const int iFeatureProductionModifier = GC.getUnitInfo(eUnit).getFeatureProductionModifier();
+		if (iFeatureProductionModifier != 0)
 		{
-			iProductionMultiplier = getUnitProductionMultiplier(eUnit);
-			
-			// Civ4 Reimagined
-			int iFeatureProductionModifier = GC.getUnitInfo(eUnit).getFeatureProductionModifier();
-			if (iFeatureProductionModifier != 0)
-			{
-				iFeatureProduction *= (100 + iFeatureProductionModifier);
-				iFeatureProduction /= 100;
-			}
-		}
-		else if (eBuilding != NO_BUILDING)
-		{
-			iProductionMultiplier = getBuildingProductionMultiplier(eBuilding);
-		}
-		/*
-		else if (eProject != NO_PROJECT)
-		{
-			iProductionMultiplier = getProjectProductionMultiplier(eProject);
-		}*/
-		else
-		{
-			iProductionMultiplier = 100;
+			iBonusProduction = iFeatureProduction * iFeatureProductionModifier / 100;
+			iFeatureProduction += iBonusProduction;
 		}
 	}
 
-	int iFoodProduction = ((bFoodProduction) ? std::max(0, (getYieldRate(YIELD_FOOD) - foodConsumption(true))) : 0);
-
-	int iOverflow = ((bOverflow) ? (getOverflowProduction() + iFeatureProduction) : 0);
-
-	//return (((getBaseYieldRate(YIELD_PRODUCTION) + iOverflow) * getBaseYieldRateModifier(YIELD_PRODUCTION, iProductionModifier)) / 100 + iFoodProduction);
-	// Civ4 Reimagined
-	return std::max(1,(ROUND_DIVIDE((getBaseYieldRate(YIELD_PRODUCTION) + iOverflow) * iProductionMultiplier * getBaseYieldRateModifier(YIELD_PRODUCTION, iProductionModifier), 10000) + iFoodProduction));
+	const int iFoodProduction = ((bFoodProduction) ? std::max(0, (getYieldRate(YIELD_FOOD) - foodConsumption(true))) : 0);
+	const int iOverflow = ((bOverflow) ? (getOverflowProduction() + iFeatureProduction) : 0);
+	const int iProductionModfiers = iProductionMultiplier * getBaseYieldRateModifier(YIELD_PRODUCTION, iProductionModifier);
 	
+	int iResult = std::max(1, (ROUND_DIVIDE((getBaseYieldRate(YIELD_PRODUCTION) + iOverflow) * iProductionModfiers, 10000) + iFoodProduction));
+	
+	// Civ4 Reimagined: Don't transfer unit specific feature production bonus to overflow
+	const int iProductionLeft = getProductionNeeded() - getProduction();
+	const int iNewOverflow = iResult - iProductionLeft;
+
+	if (iNewOverflow > 0 && iBonusProduction > 0)
+	{
+		iResult -= std::min(iNewOverflow, ROUND_DIVIDE(iBonusProduction * iProductionModfiers, 10000));
+	}
+
+	return iResult;
 }
 
 
 int CvCity::getCurrentProductionDifference(bool bIgnoreFood, bool bOverflow) const
 {
-	return getProductionDifference(getProductionNeeded(), getProduction(), getProductionModifier(), (!bIgnoreFood && isFoodProduction()), bOverflow);
+	return getProductionDifference(getProductionNeeded(), getProduction(), getProductionModifier(), (!bIgnoreFood && isFoodProduction()), bOverflow, getProductionMultiplier());
 }
 
 
@@ -3570,7 +3549,6 @@ int CvCity::getExtraProductionDifference(int iExtra, int iModifier) const
 {
 	return ((iExtra * getBaseYieldRateModifier(YIELD_PRODUCTION, iModifier)) / 100);
 }
-
 
 bool CvCity::canHurry(HurryTypes eHurry, bool bTestVisible) const
 {
@@ -13838,33 +13816,14 @@ void CvCity::pushOrder(OrderTypes eOrder, int iData1, int iData2, bool bSave, bo
 
 void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 {
-	CLLNode<OrderData>* pOrderNode;
-	CvUnit* pUnit;
-	CvPlot* pRallyPlot;
-	wchar szBuffer[1024];
-	wchar szTempBuffer[1024];
-	TCHAR szSound[1024];
-	ProjectTypes eCreateProject;
-	BuildingTypes eConstructBuilding;
-	UnitTypes eTrainUnit;
-	UnitAITypes eTrainAIUnit;
-	bool bWasFoodProduction;
-	bool bStart;
-	bool bMessage;
-	int iCount;
-	int iProductionNeeded;
-	int iOverflow;
-
-	bWasFoodProduction = isFoodProduction();
-
 	if (iNum == -1)
 	{
 		iNum = (getOrderQueueLength() - 1);
 	}
 
-	iCount = 0;
+	int iCount = 0;
 
-	pOrderNode = headOrderQueueNode();
+	CLLNode<OrderData>* pOrderNode = headOrderQueueNode();
 
 	while (pOrderNode != NULL)
 	{
@@ -13889,15 +13848,18 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 		pushOrder(pOrderNode->m_data.eOrderType, pOrderNode->m_data.iData1, pOrderNode->m_data.iData2, true, false, -1);
 	}
 
-	eTrainUnit = NO_UNIT;
-	eConstructBuilding = NO_BUILDING;
-	eCreateProject = NO_PROJECT;
+	const bool bWasFoodProduction = isFoodProduction();
+
+	UnitTypes eTrainUnit = NO_UNIT;
+	BuildingTypes eConstructBuilding = NO_BUILDING;
+	ProjectTypes eCreateProject = NO_PROJECT;
 
 	switch (pOrderNode->m_data.eOrderType)
 	{
 	case ORDER_TRAIN:
+	{
 		eTrainUnit = ((UnitTypes)(pOrderNode->m_data.iData1));
-		eTrainAIUnit = ((UnitAITypes)(pOrderNode->m_data.iData2));
+		const UnitAITypes eTrainAIUnit = ((UnitAITypes)(pOrderNode->m_data.iData2));
 		FAssertMsg(eTrainUnit != NO_UNIT, "eTrainUnit is expected to be assigned a valid unit type");
 		FAssertMsg(eTrainAIUnit != NO_UNITAI, "eTrainAIUnit is expected to be assigned a valid unit AI type");
 
@@ -13908,11 +13870,12 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 
 		if (bFinish)
 		{
-			iProductionNeeded = getProductionNeeded(eTrainUnit);
+			const int iProductionNeeded = getProductionNeeded(eTrainUnit);
+			int iOverflow = getUnitProduction(eTrainUnit) - iProductionNeeded;
 
 			// max overflow is the value of the item produced (to eliminate prebuild exploits)
-			iOverflow = getUnitProduction(eTrainUnit) - iProductionNeeded;
 			int iMaxOverflow = std::max(iProductionNeeded, getCurrentProductionDifference(false, false));
+
 			// UNOFFICIAL_PATCH Start
 			int iLostProduction = std::max(0, iOverflow - iMaxOverflow);
 			iOverflow = std::min(iMaxOverflow, iOverflow);
@@ -13942,7 +13905,7 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 			for (iBuilt = 0; iBuilt < iToBuild; iBuilt++)
 			{
 				// original build code
-				pUnit = GET_PLAYER(getOwnerINLINE()).initUnit(eTrainUnit, getX_INLINE(), getY_INLINE(), eTrainAIUnit);
+				CvUnit* pUnit = GET_PLAYER(getOwnerINLINE()).initUnit(eTrainUnit, getX_INLINE(), getY_INLINE(), eTrainAIUnit);
 				FAssertMsg(pUnit != NULL, "pUnit is expected to be assigned a valid unit object");
 
 				pUnit->finishMoves();
@@ -13958,7 +13921,7 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 				// Civ4 Reimagined: Less XP for food producted Units
 				//addProductionExperience(pUnit, bWasFoodProduction);
 
-				pRallyPlot = getRallyPlot();
+				const CvPlot* pRallyPlot = getRallyPlot();
 
 				if (pRallyPlot != NULL)
 				{
@@ -14008,7 +13971,10 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 				iLostProduction = 0;
 			}
 			else
+			{
 				setUnitProduction(eTrainUnit, 0);
+			}
+
 			setUnitProductionTime(eTrainUnit, 0);
 
 			if (iLostProduction > 0)
@@ -14058,8 +14024,9 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 			// K-Mod end
 		}
 		break;
-
+	}
 	case ORDER_CONSTRUCT:
+	{
 		eConstructBuilding = ((BuildingTypes)(pOrderNode->m_data.iData1));
 
 		GET_PLAYER(getOwnerINLINE()).changeBuildingClassMaking(((BuildingClassTypes)(GC.getBuildingInfo(eConstructBuilding).getBuildingClassType())), -1);
@@ -14084,10 +14051,10 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 
 			setNumRealBuilding(eConstructBuilding, getNumRealBuilding(eConstructBuilding) + 1);
 
-			iProductionNeeded = getProductionNeeded(eConstructBuilding);
+			const int iProductionNeeded = getProductionNeeded(eConstructBuilding);
 			// max overflow is the value of the item produced (to eliminate prebuild exploits)
 			int iOverflow = getBuildingProduction(eConstructBuilding) - iProductionNeeded;
-			int iMaxOverflow = std::max(iProductionNeeded, getCurrentProductionDifference(false, false));
+			const int iMaxOverflow = std::max(iProductionNeeded, getCurrentProductionDifference(false, false));
 			// UNOFFICIAL_PATCH Start
 			int iLostProduction = std::max(0, iOverflow - iMaxOverflow);
 			iOverflow = std::min(iMaxOverflow, iOverflow);
@@ -14133,8 +14100,9 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 /************************************************************************************************/
 		}
 		break;
-
+	}
 	case ORDER_CREATE:
+	{
 		eCreateProject = ((ProjectTypes)(pOrderNode->m_data.iData1));
 
 		GET_TEAM(getTeam()).changeProjectMaking(eCreateProject, -1);
@@ -14198,10 +14166,10 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 				}
 			}
 
-			iProductionNeeded = getProductionNeeded(eCreateProject);
+			const int iProductionNeeded = getProductionNeeded(eCreateProject);
 			// max overflow is the value of the item produced (to eliminate pre-build exploits)
-			iOverflow = getProjectProduction(eCreateProject) - iProductionNeeded;
-			int iMaxOverflow = std::max(iProductionNeeded, getCurrentProductionDifference(false, false));
+			int iOverflow = getProjectProduction(eCreateProject) - iProductionNeeded;
+			const int iMaxOverflow = std::max(iProductionNeeded, getCurrentProductionDifference(false, false));
 			// UNOFFICIAL_PATCH Start
 			int iLostProduction = std::max(0, iOverflow - iMaxOverflow);
 			iOverflow = std::min(iMaxOverflow, iOverflow);
@@ -14237,7 +14205,7 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 /************************************************************************************************/
 		}
 		break;
-
+	}
 	case ORDER_MAINTAIN:
 		break;
 
@@ -14246,14 +14214,12 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 		break;
 	}
 
+	bool bStart = false;
+
 	if (pOrderNode == headOrderQueueNode())
 	{
 		bStart = true;
 		stopHeadOrder();
-	}
-	else
-	{
-		bStart = false;
 	}
 
 	m_orderQueue.deleteNode(pOrderNode);
@@ -14276,7 +14242,7 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 		}
 	}
 
-	bMessage = false;
+	bool bMessage = false;
 
 	if (bChoose)
 	{
@@ -14304,6 +14270,9 @@ void CvCity::popOrder(int iNum, bool bFinish, bool bChoose)
 
 	if (bFinish && !bMessage)
 	{
+		wchar szBuffer[1024];
+		wchar szTempBuffer[1024];
+		TCHAR szSound[1024];
 		if (eTrainUnit != NO_UNIT)
 		{
 			swprintf(szBuffer, gDLL->getText(((isLimitedUnitClass((UnitClassTypes)(GC.getUnitInfo(eTrainUnit).getUnitClassType()))) ? "TXT_KEY_MISC_TRAINED_UNIT_IN_LIMITED" : "TXT_KEY_MISC_TRAINED_UNIT_IN"), GC.getUnitInfo(eTrainUnit).getTextKeyWide(), getNameKey()).GetCString());
@@ -17593,70 +17562,21 @@ void CvCity::updateNumPlotTypesInFatCross(PlotTypes eIndex)
 }
 
 // Civ4 Reimagined
-int CvCity::getBuildingProductionMultiplier(BuildingTypes eBuilding) const
+int CvCity::getProductionMultiplier() const
 {
-	int iAndBonusMultiplier = 100;
-	int iOrBonusMultiplier = 0;
-	int iMultiplier;
-	int iI;
-		
-	bool bRequiresBonus = false;
-	bool bNeedsBonus = true;
-	
-	if (eBuilding == NO_BUILDING)
+	const UnitTypes eUnit = getProductionUnit();
+	const BuildingTypes eBuilding = getProductionBuilding();
+
+	if (eUnit != NO_UNIT)
 	{
-		return 100;
+		return getUnitProductionMultiplier(eUnit);
+	}
+	else if (eBuilding != NO_BUILDING)
+	{
+		return getBuildingProductionMultiplier(eBuilding);
 	}
 	
-	if (GC.getBuildingInfo(eBuilding).isPrereqPowerOr() && isPower())
-	{
-		return 100;
-	}
-	
-	if (GET_PLAYER(getOwnerINLINE()).getTotalPopulation() != 0)
-	{
-		BonusTypes ePrereqBonus = (BonusTypes)GC.getBuildingInfo(eBuilding).getPrereqAndBonus();
-		
-		if (ePrereqBonus != NO_BONUS)
-		{
-			if (hasBonus(ePrereqBonus))
-			{
-				iAndBonusMultiplier = std::min(iAndBonusMultiplier, GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(getNumBonuses(ePrereqBonus)));
-			}
-			else
-			{	
-				// We don't have the required bonus
-				return 0;
-			}
-		}
-		
-		for (iI = 0; iI < GC.getNUM_BUILDING_PREREQ_OR_BONUSES(); iI++)
-		{
-			BonusTypes ePrereqOrBonus = (BonusTypes)GC.getBuildingInfo(eBuilding).getPrereqOrBonuses(iI);
-			
-			if (ePrereqOrBonus != NO_BONUS)
-			{
-				bRequiresBonus = true;
-				if (hasBonus(ePrereqOrBonus))
-				{
-					bNeedsBonus = false;
-					iOrBonusMultiplier = std::max(iOrBonusMultiplier, GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(getNumBonuses(ePrereqOrBonus)));
-				}
-			}
-		}
-		
-		if (bRequiresBonus && bNeedsBonus)
-		{
-			// We don't have the required bonus
-			return 0;
-		}
-	}
-	
-	iMultiplier = std::min(iAndBonusMultiplier, bRequiresBonus ? iOrBonusMultiplier : 100);
-	iMultiplier = (iMultiplier + 100) / 2; // Halve the efficient production malus
-	//if( gCityLogLevel >= 2 ) logBBAI("Building Production Mali for Building in %S: %d", getName(0).GetCString(), iMultiplier);
-	
-	return std::max(50, iMultiplier);
+	return 100;
 }
 
 // Civ4 Reimagined
@@ -17722,6 +17642,73 @@ int CvCity::getUnitProductionMultiplier(UnitTypes eUnit) const
 	iMultiplier = std::min(iAndBonusMultiplier, bRequiresBonus ? iOrBonusMultiplier : 100);
 	iMultiplier = (iMultiplier + 100) / 2; // Halve the efficient production malus
 	//if( gCityLogLevel >= 2 ) logBBAI("Unit Production Mali for Unit in %S: %d", getName(0).GetCString(), iMultiplier);
+	
+	return std::max(50, iMultiplier);
+}
+
+// Civ4 Reimagined
+int CvCity::getBuildingProductionMultiplier(BuildingTypes eBuilding) const
+{
+	int iAndBonusMultiplier = 100;
+	int iOrBonusMultiplier = 0;
+	int iMultiplier;
+	int iI;
+		
+	bool bRequiresBonus = false;
+	bool bNeedsBonus = true;
+	
+	if (eBuilding == NO_BUILDING)
+	{
+		return 100;
+	}
+	
+	if (GC.getBuildingInfo(eBuilding).isPrereqPowerOr() && isPower())
+	{
+		return 100;
+	}
+	
+	if (GET_PLAYER(getOwnerINLINE()).getTotalPopulation() != 0)
+	{
+		BonusTypes ePrereqBonus = (BonusTypes)GC.getBuildingInfo(eBuilding).getPrereqAndBonus();
+		
+		if (ePrereqBonus != NO_BONUS)
+		{
+			if (hasBonus(ePrereqBonus))
+			{
+				iAndBonusMultiplier = std::min(iAndBonusMultiplier, GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(getNumBonuses(ePrereqBonus)));
+			}
+			else
+			{	
+				// We don't have the required bonus
+				return 0;
+			}
+		}
+		
+		for (iI = 0; iI < GC.getNUM_BUILDING_PREREQ_OR_BONUSES(); iI++)
+		{
+			BonusTypes ePrereqOrBonus = (BonusTypes)GC.getBuildingInfo(eBuilding).getPrereqOrBonuses(iI);
+			
+			if (ePrereqOrBonus != NO_BONUS)
+			{
+				bRequiresBonus = true;
+				if (hasBonus(ePrereqOrBonus))
+				{
+					bNeedsBonus = false;
+					iOrBonusMultiplier = std::max(iOrBonusMultiplier, GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(getNumBonuses(ePrereqOrBonus)));
+				}
+			}
+		}
+		
+		if (bRequiresBonus && bNeedsBonus)
+		{
+			// We don't have the required bonus
+			return 0;
+		}
+	}
+	
+	iMultiplier = std::min(iAndBonusMultiplier, bRequiresBonus ? iOrBonusMultiplier : 100);
+	iMultiplier = (iMultiplier + 100) / 2; // Halve the efficient production malus
+	//if( gCityLogLevel >= 2 ) logBBAI("Building Production Mali for Building in %S: %d", getName(0).GetCString(), iMultiplier);
 	
 	return std::max(50, iMultiplier);
 }
