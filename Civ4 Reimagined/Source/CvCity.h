@@ -133,7 +133,7 @@ public:
 	int getProductionModifier(ProjectTypes eProject) const;												// Exposed to Python
 
 	int getOverflowProductionDifference(int iProductionNeeded, int iProduction, int iProductionModifier, int iDiff, int iModifiedProduction) const;
-	int getProductionDifference(int iProductionNeeded, int iProduction, int iProductionModifier, bool bFoodProduction, bool bOverflow, int iProductionMultiplier = -1) const;
+	int getProductionDifference(int iProductionNeeded, int iProduction, int iProductionModifier, bool bFoodProduction, bool bOverflow, int iProductionMultiplier) const;
 	int getCurrentProductionDifference(bool bIgnoreFood, bool bOverflow) const;				// Exposed to Python
 	int getExtraProductionDifference(int iExtra) const;																					// Exposed to Python
 
@@ -1066,6 +1066,7 @@ public:
 	void updateNumBonusesInFatCross(BonusTypes eIndex = NO_BONUS);
 	void updateNumTerrainTypesInFatCross(TerrainTypes eIndex = NO_TERRAIN);
 	void updateNumPlotTypesInFatCross(PlotTypes eIndex = NO_PLOT);
+	int getProductionMultiplier() const;
 	int getUnitProductionMultiplier(UnitTypes eUnit) const;
 	int getBuildingProductionMultiplier(BuildingTypes eBuilding) const;
 	void destroyReligiousBuildings(ReligionTypes eReligion, ReligionTypes eNewReligion);

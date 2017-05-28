@@ -1279,4 +1279,8 @@
 		<Tag>TXT_KEY_FEATURE_PRODUCTION_MODIFIER</Tag>
 		<English>[ICON_BULLET]%D1_Mod%%[ICON_PRODUCTION] from Chopping</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_HELP_PROD_MAX_YIELD</Tag>
+		<English>[NEWLINE]Maximal Production: %d1[ICON_PRODUCTION]</English>
+	</TEXT>
 </Civ4GameText>
