@@ -6132,8 +6132,15 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 	/* ------------------ Unit Value  ------------------ */
 	bool bEnablesUnitWonder;
 	// Civ4 Reimagined: Doubled the value
-	iValue += 2 * AI_techUnitValue( eTech, iPathLength, bEnablesUnitWonder, NO_CIVIC );
-	
+	const int iTechUnitValue = 2 * AI_techUnitValue( eTech, iPathLength, bEnablesUnitWonder, NO_CIVIC );
+
+	if (gPlayerLogLevel >= 2)
+	{
+		logBBAI("Sum of all unit values: %d", iTechUnitValue);
+	}
+
+	iValue += iTechUnitValue;
+
 	if (bEnablesUnitWonder)
 	{
 		int iWonderRandom = ((bAsync) ? GC.getASyncRand().get(400, "AI Research Wonder Unit ASYNC") : GC.getGameINLINE().getSorenRandNum(400, "AI Research Wonder Unit"));
@@ -7589,7 +7596,8 @@ int CvPlayerAI::AI_techUnitValue(TechTypes eTech, int iPathLength, bool& bEnable
 						//iMilitaryValue += ((bWarPlan) ? 200 : 100);
 						iOffenceValue = std::max(iOffenceValue, (bWarPlan ? 2 : 1) * (100 + kLoopUnit.getCollateralDamage()/2) * iWeight / 100);// K-Mod
 					}
-					iNavalValue = std::max(iNavalValue, 1*iWeight);
+					// Civ4 Reimagined: More value when our cities are plundered
+					iNavalValue = std::max(iNavalValue, (bPlundered ? 25 : 1) * iWeight);
 					break;
 
 				case UNITAI_RESERVE_SEA:
@@ -7600,7 +7608,7 @@ int CvPlayerAI::AI_techUnitValue(TechTypes eTech, int iPathLength, bool& bEnable
 						// K-Mod note: this naval value stuff seems a bit flakey...
 					}
 					// Civ4 Reimagined: More value when our cities are plundered
-					iNavalValue = std::max(iNavalValue, (bPlundered ? 10 : 1) * iWeight);
+					iNavalValue = std::max(iNavalValue, (bPlundered ? 25 : 1) * iWeight);
 					break;
 
 				case UNITAI_ESCORT_SEA:
@@ -7784,9 +7792,11 @@ int CvPlayerAI::AI_techUnitValue(TechTypes eTech, int iPathLength, bool& bEnable
 			{
 				if (getCapitalCity() != NULL)
 				{
-					// BBAI TODO: A little odd ... naval value is 0 if have no colonies.
-					iNavalValue *= 2 * (getNumCities() - getCapitalCity()->area()->getCitiesPerPlayer(getID()));
-					iNavalValue /= getNumCities();
+					// Civ4 Reimagined
+					const iNumCities = getNumCities();
+					const iNumColonies = iNumCities - getCapitalCity()->area()->getCitiesPerPlayer(getID());
+					iNavalValue *= iNumCities/2 + iNumColonies;
+					iNavalValue /= iNumCities;
 
 					iTotalUnitValue += iNavalValue;
 				}
@@ -13193,7 +13203,7 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 
 	case UNITAI_ATTACK_SEA:
 		iValue += iCombatValue;
-		iValue += ((iCombatValue * GC.getUnitInfo(eUnit).getMoves()) / 2);
+		iValue += iCombatValue * GC.getUnitInfo(eUnit).getMoves();
 		iValue += (GC.getUnitInfo(eUnit).getBombardRate() * 4);
 		iValue += ((iCombatValue * GC.getUnitInfo(eUnit).getWithdrawalProbability()) / 100);
 		// Civ4 Reimagined
