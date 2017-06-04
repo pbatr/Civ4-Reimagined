@@ -106,7 +106,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_VIKING_LONGSHIP_STRATEGY</Tag>
-		<English>Compared to the [COLOR_UNIT_TEXT]Pirate[COLOR_REVERT] this unit has more movement speed a bonus against war galleys. It also gains more gold with blockade missions.</English>
+		<English>Compared to the [COLOR_UNIT_TEXT]Pirate[COLOR_REVERT] this unit has more movement speed and a bonus against war galleys. It also gains more gold with blockade missions.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_GALLEON_STRATEGY</Tag>
