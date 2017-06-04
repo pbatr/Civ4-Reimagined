@@ -8,7 +8,7 @@ New
 -Two new ships: Marauder (Navigation) and Pirate (Guilds). They are weaker than their military counterparts, but bear no markings of nationality. This allows for some early game naval harassing and makes the early naval game more engaging in general.
 -Two new(ish) medieval technologies: Crop Rotation (Farms spread irrigation; Floating Gardens; Agrarianism) and Civil Service (Longbowman, Crossbowman, Bureaucracy). They are intended to smoothen out some bumps in technology costs.
 -National building: Great Harbor (Refrigeration; +1 [P] from water tiles)
--Slaves can be gained by conquering enemy cities (dimished returns).
+-Slaves can be gained by conquering enemy cities (diminished returns).
 
 *********
 Changes
@@ -16,17 +16,16 @@ Changes
 -Achers and Longbowman gain additional defense bonuses from defensive buildings such as walls and castles. Otherwise offensive units with higher ST would benefit more from walls/castles than dedicated city defenders, making balancing them tricky. Reduced city defense (Longbowman only) and increased costs to compensate.
 -Scouts and Explorers cannot enter rival territory
 -Chance of destroying buildings when bombarding cities halved
--Horses become obsolete with Industrialism
-
-*********
-Tweaks
-*********
--Naval tweaks (see also: New pirate ships)
-*-Wooden ships gain double production from chopping
+-Naval changes (see also: New pirate ships)
+*-Wooden ships gain double production from chopping. This bonus is not applied to overflow production when unit is finished in same turn.
 *-All sailing ships have +1 ST (to reduce differences between tiers)
 *-AI is more likely to research stronger ships when cities are plundered
 *-Improved AI for building ships in general
 *-Longships are Pirates with improved trade blockade ability
+
+*********
+Tweaks
+*********
 -Machinery is now a classical tech
 -Axemen bonus vs Archer reduced from 30% to 25%.
 -Cathedrals cannot be destroyed when bombarding cities
@@ -36,8 +35,13 @@ Tweaks
 -Improved AI civic evaluation
 -Hanging Gardens require Calender instead of Construction
 -"Trade route blocked" now has an appropriatly negative sound effect
--Reduced gold gain from blockading trade routes by 33%.
-
+-Reduced gold gain from blockading trade routes by 33%
+-Horses become obsolete with Industrialism
+-Project Internet now requires Fiber Optics. Cost are reduced from 2000 to 1200
+-Destroyer upgrades to Stealth Destroyer
+-Small Adjustments to modern tech tree
+-Tech Composites requires Robotics instead of Computers
+-Tech Stealth requires Superconductors instead of Advanced Flight and Composites
 *********
 Interface
 *********
