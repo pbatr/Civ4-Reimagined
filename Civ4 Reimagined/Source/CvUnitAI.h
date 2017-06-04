@@ -333,6 +333,8 @@ protected:
 	bool AI_canGroupWithAIType(UnitAITypes eUnitAI) const;
 	bool AI_allowGroup(const CvUnit* pUnit, UnitAITypes eUnitAI) const;
 
+	bool AI_breakBlockade();
+
 	// added so under cheat mode we can call protected functions for testing
 	friend class CvGameTextMgr;
 
