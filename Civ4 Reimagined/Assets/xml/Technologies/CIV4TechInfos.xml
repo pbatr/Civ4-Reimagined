@@ -3788,7 +3788,7 @@
 			<bIrrigation>0</bIrrigation>
 			<bIgnoreIrrigation>0</bIgnoreIrrigation>
 			<bWaterWork>0</bWaterWork>
-			<iGridX>15</iGridX>
+			<iGridX>16</iGridX>
 			<iGridY>3</iGridY>
 			<DomainExtraMoves/>
 			<CommerceFlexible/>
@@ -3922,8 +3922,8 @@
 			<bIrrigation>0</bIrrigation>
 			<bIgnoreIrrigation>0</bIgnoreIrrigation>
 			<bWaterWork>0</bWaterWork>
-			<iGridX>16</iGridX>
-			<iGridY>7</iGridY>
+			<iGridX>17</iGridX>
+			<iGridY>8</iGridY>
 			<DomainExtraMoves/>
 			<CommerceFlexible/>
 			<TerrainTrades/>
@@ -3947,7 +3947,7 @@
 				</Flavor>
 			</Flavors>
 			<OrPreReqs>
-				<PrereqTech>TECH_COMPUTERS</PrereqTech>
+				<PrereqTech>TECH_ROBOTICS</PrereqTech>
 			</OrPreReqs>
 			<AndPreReqs>
 				<PrereqTech>TECH_PLASTICS</PrereqTech>
@@ -3998,7 +3998,7 @@
 			<bIgnoreIrrigation>0</bIgnoreIrrigation>
 			<bWaterWork>0</bWaterWork>
 			<iGridX>16</iGridX>
-			<iGridY>3</iGridY>
+			<iGridY>14</iGridY>
 			<DomainExtraMoves/>
 			<CommerceFlexible/>
 			<TerrainTrades/>
@@ -4010,10 +4010,10 @@
 				</Flavor>
 			</Flavors>
 			<OrPreReqs>
-				<PrereqTech>TECH_ADVANCED_FLIGHT</PrereqTech>
+				<PrereqTech>TECH_SUPERCONDUCTORS</PrereqTech>
 			</OrPreReqs>
 			<AndPreReqs>
-				<PrereqTech>TECH_COMPOSITES</PrereqTech>
+				<PrereqTech>NONE</PrereqTech>
 			</AndPreReqs>
 			<Quote>TXT_KEY_TECH_STEALTH_QUOTE</Quote>
 			<Sound>AS2D_TECH_STEALTH</Sound>
@@ -4032,7 +4032,7 @@
 			<iCost>11000</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
-			<Era>ERA_FUTURE</Era>
+			<Era>ERA_MODERN</Era>
 			<FirstFreeUnitClass>NONE</FirstFreeUnitClass>
 			<iFeatureProductionModifier>0</iFeatureProductionModifier>
 			<iWorkerSpeedModifier>0</iWorkerSpeedModifier>
@@ -4060,8 +4060,8 @@
 			<bIrrigation>0</bIrrigation>
 			<bIgnoreIrrigation>0</bIgnoreIrrigation>
 			<bWaterWork>0</bWaterWork>
-			<iGridX>16</iGridX>
-			<iGridY>14</iGridY>
+			<iGridX>17</iGridX>
+			<iGridY>11</iGridY>
 			<DomainExtraMoves/>
 			<CommerceFlexible/>
 			<TerrainTrades/>
@@ -4077,10 +4077,9 @@
 				</Flavor>
 			</Flavors>
 			<OrPreReqs>
-				<PrereqTech>TECH_SUPERCONDUCTORS</PrereqTech>
+				<PrereqTech>TECH_ECOLOGY</PrereqTech>
 			</OrPreReqs>
 			<AndPreReqs>
-				<PrereqTech>TECH_ECOLOGY</PrereqTech>
 				<PrereqTech>TECH_COMPUTERS</PrereqTech>
 			</AndPreReqs>
 			<Quote>TXT_KEY_TECH_GENETICS_QUOTE</Quote>
@@ -6431,7 +6430,7 @@
 			<bIgnoreIrrigation>0</bIgnoreIrrigation>
 			<bWaterWork>0</bWaterWork>
 			<iGridX>16</iGridX>
-			<iGridY>9</iGridY>
+			<iGridY>8</iGridY>
 			<DomainExtraMoves/>
 			<CommerceFlexible/>
 			<TerrainTrades/>
@@ -6499,8 +6498,8 @@
 			<bIrrigation>0</bIrrigation>
 			<bIgnoreIrrigation>0</bIgnoreIrrigation>
 			<bWaterWork>0</bWaterWork>
-			<iGridX>17</iGridX>
-			<iGridY>14</iGridY>
+			<iGridX>18</iGridX>
+			<iGridY>8</iGridY>
 			<DomainExtraMoves/>
 			<CommerceFlexible/>
 			<TerrainTrades/>
@@ -6533,9 +6532,10 @@
 			</Flavors>
 			<OrPreReqs>
 				<PrereqTech>TECH_GENETICS</PrereqTech>
+				<PrereqTech>TECH_FUSION</PrereqTech>
 			</OrPreReqs>
 			<AndPreReqs>
-				<PrereqTech>TECH_STEALTH</PrereqTech>
+				<PrereqTech>NONE</PrereqTech>
 			</AndPreReqs>
 			<Quote>TXT_KEY_TECH_FUTURE_TECH_QUOTE</Quote>
 			<Sound>AS2D_TECH_FUTURE</Sound>
