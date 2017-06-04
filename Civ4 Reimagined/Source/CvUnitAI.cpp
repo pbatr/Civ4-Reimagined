@@ -6786,40 +6786,10 @@ void CvUnitAI::AI_attackSeaMove()
 		return;
 	}
 
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                      08/10/09                                jdog5000      */
-/*                                                                                              */
-/* Naval AI                                                                                     */
-/************************************************************************************************/
-	// BBAI TODO: Turn this into a function, have docked escort ships do it to
-	CvCity* pCity = plot()->getPlotCity();
-
-	if( pCity != NULL )
+	if (AI_breakBlockade())
 	{
-		if( pCity->isBlockaded() )
-		{
-			// City under blockade
-			// Attacker has low odds since anyAttack checks above passed, try to break if sufficient numbers
-
-			int iAttackers = plot()->plotCount(PUF_isUnitAIType, UNITAI_ATTACK_SEA, -1, NO_PLAYER, getTeam(), PUF_isGroupHead, -1, -1);
-			int iBlockaders = kOwner.AI_getWaterDanger(plot(), 4);
-
-			if( iAttackers > (iBlockaders + 2) )
-			{
-				if( iAttackers > GC.getGameINLINE().getSorenRandNum(2*iBlockaders + 1, "AI - Break blockade") )
-				{
-					// BBAI TODO: Make odds scale by # of blockaders vs number of attackers
-					if (AI_anyAttack(1, 15))
-					{
-						return;
-					}
-				}
-			}
-		}
+		return;
 	}
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                       END                                                  */
-/************************************************************************************************/
 	
 	if (AI_group(UNITAI_CARRIER_SEA, /*iMaxGroup*/ 4, 1, -1, true, false, false, /*iMaxPath*/ 5))
 	{
@@ -7065,6 +7035,11 @@ void CvUnitAI::AI_reserveSeaMove()
 	}
 
 	if (AI_heal(50, 3))
+	{
+		return;
+	}
+
+	if (AI_breakBlockade())
 	{
 		return;
 	}
@@ -25347,4 +25322,29 @@ void CvUnitAI::LFBgetBetterAttacker(CvUnit** ppAttacker, const CvPlot* pPlot, bo
 		iAIAttackOdds = iAIOdds;
 		iAttackerValue = iValue;
 	}
+}
+
+bool CvUnitAI::AI_breakBlockade()
+{
+	const CvCity* pCity = plot()->getPlotCity();
+	const CvPlayerAI& kOwner = GET_PLAYER(getOwnerINLINE());
+
+	if (pCity != NULL)
+	{
+		if (pCity->isBlockaded())
+		{
+			const int iAttackers = plot()->plotCount(PUF_isUnitAIType, UNITAI_ATTACK_SEA, -1, NO_PLAYER, getTeam(), PUF_isGroupHead, -1, -1) + 
+								   plot()->plotCount(PUF_isUnitAIType, UNITAI_RESERVE_SEA, -1, NO_PLAYER, getTeam(), PUF_isGroupHead, -1, -1);
+			const int iBlockaders = kOwner.AI_getWaterDanger(plot(), 4);
+
+			const int iNeededOdds = std::min(50, 40 * iBlockaders / iAttackers);
+
+			if (AI_anyAttack(4, iNeededOdds))
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
 }
