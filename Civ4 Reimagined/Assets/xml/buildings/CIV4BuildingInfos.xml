@@ -30476,7 +30476,7 @@
 			<FreeStartEra>NONE</FreeStartEra>
 			<MaxStartEra>NONE</MaxStartEra>
 			<ObsoleteTech>NONE</ObsoleteTech>
-			<PrereqTech>TECH_ROCKETRY</PrereqTech>
+			<PrereqTech>TECH_PLASTICS</PrereqTech>
 			<TechTypes>
 				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
