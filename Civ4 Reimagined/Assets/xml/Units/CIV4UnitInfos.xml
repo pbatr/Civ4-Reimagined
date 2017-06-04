@@ -20674,7 +20674,12 @@
 			<bSuicide>0</bSuicide>
 			<bHiddenNationality>0</bHiddenNationality>
 			<bAlwaysHostile>0</bAlwaysHostile>
-			<UnitClassUpgrades/>
+			<UnitClassUpgrades>
+				<UnitClassUpgrade>
+					<UnitClassUpgradeType>UNITCLASS_STEALTH_DESTROYER</UnitClassUpgradeType>
+					<bUnitClassUpgrade>1</bUnitClassUpgrade>
+				</UnitClassUpgrade>
+			</UnitClassUpgrades>
 			<UnitClassTargets/>
 			<UnitCombatTargets/>
 			<UnitClassDefenders/>
@@ -21284,8 +21289,8 @@
             <PrereqCivic>NONE</PrereqCivic>
 			<PrereqTech>TECH_ROBOTICS</PrereqTech>
 			<TechTypes>
-				<PrereqTech>TECH_COMPOSITES</PrereqTech>
 				<PrereqTech>TECH_ROCKETRY</PrereqTech>
+				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 			</TechTypes>
 			<BonusType>BONUS_IRON</BonusType>
@@ -21470,7 +21475,7 @@
             <PrereqCivic>NONE</PrereqCivic>
 			<PrereqTech>TECH_STEALTH</PrereqTech>
 			<TechTypes>
-				<PrereqTech>TECH_ROBOTICS</PrereqTech>
+				<PrereqTech>TECH_COMPUTERS</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 			</TechTypes>
@@ -21856,7 +21861,7 @@
             <PrereqCivic>NONE</PrereqCivic>
 			<PrereqTech>TECH_ROCKETRY</PrereqTech>
 			<TechTypes>
-				<PrereqTech>TECH_RADIO</PrereqTech>
+				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 			</TechTypes>
@@ -22935,7 +22940,7 @@
             <PrereqCivic>NONE</PrereqCivic>
 			<PrereqTech>TECH_STEALTH</PrereqTech>
 			<TechTypes>
-				<PrereqTech>TECH_ROBOTICS</PrereqTech>
+				<PrereqTech>TECH_ADVANCED_FLIGHT</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 			</TechTypes>
 			<BonusType>BONUS_OIL</BonusType>
@@ -23116,7 +23121,7 @@
             <PrereqCivic>NONE</PrereqCivic>
 			<PrereqTech>TECH_ROCKETRY</PrereqTech>
 			<TechTypes>
-				<PrereqTech>TECH_RADIO</PrereqTech>
+				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 			</TechTypes>
