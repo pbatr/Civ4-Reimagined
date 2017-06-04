@@ -42,6 +42,7 @@ Tweaks
 -Small Adjustments to modern tech tree
 -Tech Composites requires Robotics instead of Computers
 -Tech Stealth requires Superconductors instead of Advanced Flight and Composites
+-Civic Bureaucracy resource ratio modfier increased from +10% to +25%
 *********
 Interface
 *********
