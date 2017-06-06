@@ -7597,7 +7597,7 @@ int CvPlayerAI::AI_techUnitValue(TechTypes eTech, int iPathLength, bool& bEnable
 						iOffenceValue = std::max(iOffenceValue, (bWarPlan ? 2 : 1) * (100 + kLoopUnit.getCollateralDamage()/2) * iWeight / 100);// K-Mod
 					}
 					// Civ4 Reimagined: More value when our cities are plundered
-					iNavalValue = std::max(iNavalValue, (bPlundered ? 25 : 1) * iWeight);
+					iNavalValue = std::max(iNavalValue, (bPlundered ? 50 : 1) * iWeight);
 					break;
 
 				case UNITAI_RESERVE_SEA:
@@ -7608,7 +7608,7 @@ int CvPlayerAI::AI_techUnitValue(TechTypes eTech, int iPathLength, bool& bEnable
 						// K-Mod note: this naval value stuff seems a bit flakey...
 					}
 					// Civ4 Reimagined: More value when our cities are plundered
-					iNavalValue = std::max(iNavalValue, (bPlundered ? 25 : 1) * iWeight);
+					iNavalValue = std::max(iNavalValue, (bPlundered ? 50 : 1) * iWeight);
 					break;
 
 				case UNITAI_ESCORT_SEA:
