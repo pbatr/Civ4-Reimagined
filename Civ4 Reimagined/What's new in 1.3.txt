@@ -43,6 +43,12 @@ Tweaks
 -Tech Composites requires Robotics instead of Computers
 -Tech Stealth requires Superconductors instead of Advanced Flight and Composites
 -Civic Bureaucracy resource ratio modfier increased from +10% to +25%
+-Ambush promotion no longer available for air units
+-City Raider promotion available for gunpowder units
+-Guerilla promotion available for melee units
+-Interception promotion available for naval units
+-March promotion available for armored units
+-Shock promotion no longer available for siege units
 *********
 Interface
 *********
