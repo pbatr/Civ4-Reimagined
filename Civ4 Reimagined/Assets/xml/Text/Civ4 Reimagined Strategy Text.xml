@@ -170,11 +170,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_BABYLON_BOWMAN_STRATEGY</Tag>
-		<English>Compared to the [COLOR_UNIT_TEXT]Archer[COLOR_REVERT], this unit has +1 ST and is cheaper.</English>
+		<English>Compared to the [COLOR_UNIT_TEXT]Archer[COLOR_REVERT], this unit gains a bonus against archery units and is cheaper.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_INCAN_QUECHUA_STRATEGY</Tag>
-		<English>Compared to the [COLOR_UNIT_TEXT]Axeman[COLOR_REVERT], this unit gains has a bonus against melee units and ignores the enemies defensive advantage of a forest or jungle.</English>
+		<English>Compared to the [COLOR_UNIT_TEXT]Axeman[COLOR_REVERT], this unit gains a bonus against melee units and ignores the enemies defensive advantage of a forest or jungle.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_SUMERIAN_VULTURE_STRATEGY</Tag>
