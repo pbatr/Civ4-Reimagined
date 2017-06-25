@@ -1040,16 +1040,18 @@ def applyGreatDepression(argsList):
 def getHelpGreatDepression(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
+	player = gc.getPlayer(kTriggeredData.ePlayer)
 
 	# Some Civ4 Reimagined edits for civics:
-	if loopPlayer.isCivic(CvUtil.findInfoTypeNum(gc.getCivicInfo,gc.getNumCivicInfos(),'CIVIC_FREE_MARKET')):
+	if player.isCivic(CvUtil.findInfoTypeNum(gc.getCivicInfo,gc.getNumCivicInfos(),'CIVIC_FREE_MARKET')):
 		szHelp = localText.getText("TXT_KEY_EVENT_GREAT_DEPRESSION_HELP", (100, ))	
-	elif loopPlayer.isCivic(CvUtil.findInfoTypeNum(gc.getCivicInfo,gc.getNumCivicInfos(),'CIVIC_CENTRAL_PLANNING')):
+	elif player.isCivic(CvUtil.findInfoTypeNum(gc.getCivicInfo,gc.getNumCivicInfos(),'CIVIC_CENTRAL_PLANNING')):
 		szHelp = localText.getText("TXT_KEY_EVENT_GREAT_DEPRESSION_HELP", (25, ))	
 	else:
 		szHelp = localText.getText("TXT_KEY_EVENT_GREAT_DEPRESSION_HELP", (50, ))	
 		
 	return szHelp
+	
 	
 ######## CHAMPION ###########
 
