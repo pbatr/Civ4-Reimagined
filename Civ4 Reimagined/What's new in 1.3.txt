@@ -61,7 +61,7 @@ Fixes
 -Fixed an OOS error during map initialisation
 -Fixed a bug where AI was bombarding cities without any defensive buildings with land based siege units
 -"The old dynasty has died out" event now has a different drawback. "Unhappiness in capital" was always negated by Dynasticism's unlimited happiness.
--Fixed sports league event text tooltip
+-Fixed sports league and great depression event tooltips
 -Fixed 'balanced' resources appearing directly on starting positions
 -Players no longer automatically receive slaves when conquering colonial cities or acquiring them by trade
 
