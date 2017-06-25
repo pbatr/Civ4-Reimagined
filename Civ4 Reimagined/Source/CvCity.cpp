@@ -326,15 +326,6 @@ void CvCity::init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, 
 				setNumRealBuilding(BUILDING_MASON, 1);
 			}
 		}
-		
-		// Civ4 Reimagined: Slaves in colonies
-		if (isColony())
-		{
-			if (GET_PLAYER(getOwnerINLINE()).hasSlavery() && GET_TEAM(getTeam()).isTerrainTrade((TerrainTypes)GC.getInfoTypeForString("TERRAIN_OCEAN")))
-			{
-				GET_PLAYER(getOwnerINLINE()).initSlave(this, false);
-			}
-		}
 	}
 	
 	updateFreshWaterHealth();

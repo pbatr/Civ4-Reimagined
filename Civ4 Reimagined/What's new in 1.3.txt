@@ -61,7 +61,7 @@ Fixes
 -"The old dynasty has died out" event now has a different drawback. "Unhappiness in capital" was always negated by Dynasticism's unlimited happiness.
 -Fixed sports league event text tooltip
 -Fixed 'balanced' resources appearing directly on starting positions
-
+-Players no longer automatically receive slaves when conquering colonial cities or acquiring them by trade
 
 
 *******************************************
