@@ -6832,6 +6832,15 @@ void CvPlayer::found(int iX, int iY)
 		}
 	}
 
+	// Civ4 Reimagined: Slaves in colonies
+	if (pCity->isColony())
+	{
+		if (hasSlavery() && GET_TEAM(getTeam()).isTerrainTrade((TerrainTypes)GC.getInfoTypeForString("TERRAIN_OCEAN")))
+		{
+			initSlave(pCity, false);
+		}
+	}
+
 	if (isHuman() && getAdvancedStartPoints() < 0)
 	{
 		pCity->chooseProduction();
