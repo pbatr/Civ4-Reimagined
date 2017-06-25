@@ -30,8 +30,9 @@ Tweaks
 -Axemen bonus vs Archer reduced from 30% to 25%.
 -Cathedrals cannot be destroyed when bombarding cities
 -Units with hidden nationality no longer contribute to a civ's power value
--Colossus obsolete with Corporation
--Temple of Artemis obsolete with Astronomy
+-Colossus obsoletes with Corporation
+-Temple of Artemis obsoletes with Astronomy
+-Terracotta Army obsoletes with Rifling
 -Improved AI civic evaluation
 -Hanging Gardens require Calender instead of Construction
 -"Trade route blocked" now has an appropriatly negative sound effect
