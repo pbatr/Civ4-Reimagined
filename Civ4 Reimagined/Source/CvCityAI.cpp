@@ -238,9 +238,6 @@ void CvCityAI::AI_assignWorkingPlots()
 {
 	PROFILE_FUNC();
 
-	CvPlot* pHomePlot;
-	int iI;
-
 	/* original bts code
 	if (0 != GC.getDefineINT("AI_SHOULDNT_MANAGE_PLOT_ASSIGNMENT"))
 	{
@@ -251,21 +248,26 @@ void CvCityAI::AI_assignWorkingPlots()
 	verifyWorkingPlots();
 
 	// if we have more specialists of any type than this city can have, reduce to the max
-	for (iI = 0; iI < GC.getNumSpecialistInfos(); iI++)
+	for (SpecialistTypes i = (SpecialistTypes)0; i < GC.getNumSpecialistInfos(); i=(SpecialistTypes)(i+1))
 	{
-		if (getSpecialistCount((SpecialistTypes)iI) > getMaxSpecialistCount((SpecialistTypes)iI))
+		if (!isSpecialistValid(i))
 		{
-			setSpecialistCount(((SpecialistTypes)iI), getMaxSpecialistCount((SpecialistTypes)iI));
-		}
-		// K-Mod. Apply the cap to forced specialist count as well.
-		if (getForceSpecialistCount((SpecialistTypes)iI) > getMaxSpecialistCount((SpecialistTypes)iI))
-			setForceSpecialistCount((SpecialistTypes)iI, getMaxSpecialistCount((SpecialistTypes)iI));
+			if (getSpecialistCount(i) > getMaxSpecialistCount(i))
+			{
+				setSpecialistCount(i, getMaxSpecialistCount(i));
+			}
+			// K-Mod. Apply the cap to forced specialist count as well.
+			if (getForceSpecialistCount(i) > getMaxSpecialistCount(i))
+			{
+				setForceSpecialistCount(i, getMaxSpecialistCount(i));
+			}
 
-		FAssert(isSpecialistValid((SpecialistTypes)iI));
+			FAssert(isSpecialistValid(i));
+		}
 	}
 	
 	// always work the home plot (center)
-	pHomePlot = getCityIndexPlot(CITY_HOME_PLOT);
+	CvPlot* pHomePlot = getCityIndexPlot(CITY_HOME_PLOT);
 	if (pHomePlot != NULL)
 	{
 		setWorkingPlot(CITY_HOME_PLOT, ((getPopulation() > 0) && canWork(pHomePlot)));
@@ -313,15 +315,15 @@ void CvCityAI::AI_assignWorkingPlots()
 	// K-Mod note: it's best if we don't clear all working specialists,
 	// because AI_specialistValue uses our current GPP rate in its evaluation.
 	bool bNewlyForcedSpecialists = false;
-	for (iI = 0; iI < GC.getNumSpecialistInfos(); iI++)
+	for (SpecialistTypes i = (SpecialistTypes)0; i < GC.getNumSpecialistInfos(); i=(SpecialistTypes)(i+1))
 	{
-		int iForcedSpecialistCount = getForceSpecialistCount((SpecialistTypes)iI);
+		int iForcedSpecialistCount = getForceSpecialistCount(i);
 
-		if (getSpecialistCount((SpecialistTypes)iI) < iForcedSpecialistCount)
+		if (getSpecialistCount(i) < iForcedSpecialistCount)
 		{
-			setSpecialistCount((SpecialistTypes)iI, iForcedSpecialistCount);
+			setSpecialistCount(i, iForcedSpecialistCount);
 			bNewlyForcedSpecialists = true;
-			FAssert(isSpecialistValid((SpecialistTypes)iI));
+			FAssert(isSpecialistValid(i));
 		}
 	}
 
