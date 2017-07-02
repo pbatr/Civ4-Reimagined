@@ -10143,7 +10143,7 @@ int CvCityAI::AI_yieldValue(short* piYields, short* piCommerceYields, bool bRemo
 						iPopToGrow = std::min(iPopToGrow, iGoodTiles + (bRemove || bWorkerOptimization ? 1 : 0));
 						//iPopToGrow = std::min(iPopToGrow, iGoodTiles + 1); // testing
 						if (AI_isEmphasizeYield(YIELD_PRODUCTION) || AI_isEmphasizeGreatPeople())
-+							iPopToGrow = std::min(iPopToGrow, 2);
+							iPopToGrow = std::min(iPopToGrow, 2);
 						else if (AI_isEmphasizeYield(YIELD_COMMERCE))
 							iPopToGrow = std::min(iPopToGrow, 3);
 					}
