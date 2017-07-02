@@ -1374,6 +1374,7 @@ void CvUnit::updateCombat(bool bQuick)
 
 	if (getCombatTimer() > 0)
 	{
+		FAssert(getCombatUnit() && getCombatUnit()->getAttackPlot() == NULL); // K-Mod
 		changeCombatTimer(-1);
 
 		if (getCombatTimer() > 0)
@@ -1406,6 +1407,12 @@ void CvUnit::updateCombat(bool bQuick)
 	}
 	else
 	{
+		FAssert(!isFighting());
+		if (plot()->isFighting() || pPlot->isFighting())
+		{
+			// K-Mod. we need to wait for our turn to attack - so don't bother looking for a defender yet.
+			return;
+		}
 		pDefender = pPlot->getBestDefender(NO_PLAYER, getOwnerINLINE(), this, true);
 	}
 
@@ -1429,8 +1436,6 @@ void CvUnit::updateCombat(bool bQuick)
 
 		return;
 	}
-	
-	FAssert(pDefender->getAttackPlot() == NULL); // K-Mod
 
 	//check if quick combat
 	if (!bQuick)
