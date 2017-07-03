@@ -4910,9 +4910,7 @@
 			<iAsset>4</iAsset>
 			<iPower>1</iPower>
 			<fVisibilityPriority>1.0</fVisibilityPriority>
-			<SeaPlotYieldChanges>
-				<iYield>1</iYield>
-			</SeaPlotYieldChanges>
+			<SeaPlotYieldChanges/>
 			<RiverPlotYieldChanges/>
 			<GlobalSeaPlotYieldChanges/>
 			<YieldChanges/>
