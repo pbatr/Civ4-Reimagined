@@ -4037,7 +4037,7 @@
 			</Cities>
 			<Buildings>
 				<Building>
-					<BuildingClassType>BUILDINGCLASS_LIGHTHOUSE</BuildingClassType>
+					<BuildingClassType>BUILDINGCLASS_HARBOR</BuildingClassType>
 					<BuildingType>BUILDING_VIKING_TRADING_POST</BuildingType>
 				</Building>
 			</Buildings>

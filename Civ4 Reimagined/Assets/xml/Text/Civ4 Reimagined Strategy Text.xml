@@ -363,7 +363,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_VIKING_TRADING_POST_STRATEGY</Tag>
-		<English>The [COLOR_BUILDING_TEXT]Trading Post[COLOR_REVERT] increases trade route yield and gives water units the [LINK=literal]Navigation I[\LINK] promotion.</English>
+		<English>The [COLOR_BUILDING_TEXT]Trading Post[COLOR_REVERT] increases trade route yield and gives water units 2XP and the [LINK=literal]Navigation I[\LINK] promotion.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_CELTIC_DUN_STRATEGY</Tag>
