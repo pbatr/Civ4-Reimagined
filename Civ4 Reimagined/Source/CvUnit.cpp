@@ -8224,6 +8224,24 @@ bool CvUnit::isRivalTerritory() const
 
 bool CvUnit::isMilitaryHappiness() const
 {
+	// Civ4 Reimagined: Units who are from a different era might not prevent a city from becoming unhappy.
+	TechTypes eTech = (TechTypes)m_pUnitInfo->getPrereqAndTech();
+	int iUnitEra;
+	
+	if (eTech == NO_TECH)
+	{
+		iUnitEra = -1; // Warriors count as "one era before ancient"
+	}
+	else
+	{
+		iUnitEra = (EraTypes)GC.getTechInfo(eTech).getEra();
+	}
+	
+	if (iUnitEra + GC.getDefineINT("UNIT_MILITARY_HAPPINESS_ERA_OFFSET") < GET_PLAYER(getOwnerINLINE()).getCurrentEra())
+	{
+		return false;
+	}
+	
 	return m_pUnitInfo->isMilitaryHappiness();
 }
 
@@ -10263,7 +10281,10 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 		{
 			if (isMilitaryHappiness())
 			{
-				pOldCity->changeMilitaryHappinessUnits(-1);
+				if (pOldCity->getOwnerINLINE() == getOwnerINLINE()) // Civ4 Reimagined: Only units you own contribute to happiness.
+				{
+					pOldCity->changeMilitaryHappinessUnits(-1);
+				}
 			}
 		}
 
@@ -10434,7 +10455,10 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 		{
 			if (isMilitaryHappiness())
 			{
-				pNewCity->changeMilitaryHappinessUnits(1);
+				if (pNewCity->getOwnerINLINE() == getOwnerINLINE()) // Civ4 Reimagined: Only units you own contribute to happiness.
+				{
+					pNewCity->changeMilitaryHappinessUnits(1);
+				}
 			}
 		}
 

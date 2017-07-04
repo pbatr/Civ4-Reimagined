@@ -13292,14 +13292,18 @@ void CvPlayer::setCurrentEra(EraTypes eNewValue)
 				}
 			}
 		}
-
-		// dirty all of this player's cities...
+		
+		
+		// dirty all of this player's cities... and check for military happiness. 
 		for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 		{
 			//if (pLoopCity->getOwnerINLINE() == getID())
 			FAssert(pLoopCity->getOwnerINLINE() == getID()); // K-Mod
 			{
 				pLoopCity->setLayoutDirty(true);
+				pLoopCity->changeMilitaryHappinessUnits(-pLoopCity->getMilitaryHappinessUnits()); //Civ4 Reimagined
+				pLoopCity->changeMilitaryHappinessUnits(pLoopCity->plot()->plotCount(PUF_isMilitaryHappiness)); //Civ4 Reimagined
+				pLoopCity->AI_setAssignWorkDirty(true);
 			}
 		}
 
