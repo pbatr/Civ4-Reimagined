@@ -10747,7 +10747,11 @@ int CvCity::getCorporationYieldByCorporation(YieldTypes eIndex, CorporationTypes
 			iBonusCount += GET_PLAYER(getOwnerINLINE()).getNumSlaveUnits();
 		}
 		
-		iYield += (GC.getCorporationInfo(eCorporation).getYieldProduced(eIndex) * iBonusCount * GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getCorporationMaintenancePercent()) / 100;
+		// Civ4 Reimagined: The gain for each resource dimishes with the resource ratio a player has.
+		int iTotalBonusValue = iBonusCount * GET_PLAYER(getOwnerINLINE()).getBonusRatio();
+		iTotalBonusValue /= 100;
+		
+		iYield += (GC.getCorporationInfo(eCorporation).getYieldProduced(eIndex) * iTotalBonusValue * GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getCorporationMaintenancePercent()) / 100;
 	}
 
 	return (iYield + 99) / 100;
@@ -14896,7 +14900,7 @@ void CvCity::doDecay()
 	}
 }
 
-// Civ4 Reimagined
+// Civ4 Reimagined: Corporations can spread passively.
 void CvCity::doCorporation()
 {
 	CvCity* pHeadquarters;

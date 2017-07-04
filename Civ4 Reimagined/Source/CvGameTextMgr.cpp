@@ -14029,6 +14029,10 @@ void CvGameTextMgr::setCorporationHelpCity(CvWStringBuffer &szBuffer, Corporatio
 	{
 		iNumResources += GET_PLAYER(pCity->getOwnerINLINE()).getNumSlaveUnits();
 	}
+	
+	// Civ4 Reimagined: Bonus Ratio
+	int iTotalBonusValue = iNumResources * GET_PLAYER(pCity->getOwnerINLINE()).getBonusRatio();
+	iTotalBonusValue /= 100;
 
 	bool bActive = (pCity->isActiveCorporation(eCorporation) || (bForceCorporation && iNumResources > 0));
 	
@@ -14039,7 +14043,7 @@ void CvGameTextMgr::setCorporationHelpCity(CvWStringBuffer &szBuffer, Corporatio
 
 		if (bActive)
 		{
-			iYield += (kCorporation.getYieldProduced(i) * iNumResources * GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getCorporationMaintenancePercent()) / 100;
+			iYield += (kCorporation.getYieldProduced(i) * iTotalBonusValue * GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getCorporationMaintenancePercent()) / 100;
 		}
 
 		if (iYield != 0)
