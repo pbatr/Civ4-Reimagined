@@ -7275,7 +7275,7 @@ int CvCity::getMilitaryHappinessUnits() const
 
 	if (iMilitaryHappinessLimit > 0)
 	{
-		// Civ4 Reimagined
+		// Civ4 Reimagined: Unique Power
 		if (GET_PLAYER(getOwnerINLINE()).isFullMilitaryHappinessValueWithPantheon())
 		{
 			CivicTypes CIVIC_PANTHEON = (CivicTypes)GC.getInfoTypeForString("CIVIC_PANTHEON");

@@ -1792,5 +1792,9 @@
 		<DefineName>SLAVE_THRESHOLD_START</DefineName>
 		<iDefineIntVal>5</iDefineIntVal>
 	</Define>
+	<Define> <!-- How many eras a unit can fall behind and still contribute to military hapiness. Note that warriors count as "one era before ancient" for this purpose. -->
+		<DefineName>UNIT_MILITARY_HAPPINESS_ERA_OFFSET</DefineName>
+		<iDefineIntVal>2</iDefineIntVal>
+	</Define>
 	<!-- Civ4 Reimagined End -->
 </Civ4Defines>
