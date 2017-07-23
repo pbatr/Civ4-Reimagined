@@ -4093,50 +4093,47 @@ void CvCity::processBonus(BonusTypes eBonus, int iChange, bool bChangeValue, boo
 	if (iChange == 0)
 		return;
 	
-	int iBonusCount = getNumBonuses(eBonus);
-	int iOldCount = iBonusCount - iChange;
-	int iSignum = (iChange < 0) ? -1 : 1;
-	bool bCompleteChange = (iBonusCount <= 0 && iOldCount > 0) || (iBonusCount > 0 && iOldCount <= 0);
+	const int iNewCount = getNumBonuses(eBonus);
+	const int iOldCount = iNewCount - iChange;
+	const int iSignum = (iChange < 0) ? -1 : 1;
+	const bool bCompleteChange = (iNewCount <= 0 && iOldCount > 0) || (iNewCount > 0 && iOldCount <= 0);
 	
-	if (gCityLogLevel >= 2)
+	if (gCityLogLevel > 2)
 	{
-		//logBBAI("%S process Bonus %S (old:%d, new:%d, change:%d, signum:%d)", getName().GetCString(), GC.getBonusInfo(eBonus).getDescription(), iOldCount, iBonusCount, iChange, iSignum);
+		//logBBAI("%S process Bonus %S (old:%d, new:%d, change:%d, signum:%d)", getName().GetCString(), GC.getBonusInfo(eBonus).getDescription(), iOldCount, iNewCount, iChange, iSignum);
 	}
 	
 	if (bChangeValue)
 	{
-		int iI;
-		int iOldValue;
-		int iNewValue;
 		double dGoodHealth = 0.;
 		double dBadHealth = 0.;
 		double dGoodHappiness = 0.;
 		double dBadHappiness = 0.;
 
-		iOldValue = GC.getBonusInfo(eBonus).getHealth() * GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iOldCount);
-		iNewValue = GC.getBonusInfo(eBonus).getHealth() * GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iBonusCount);
-
-		//logBBAI ("oldvalue: %d, newvalue: %d", iOldValue, iNewValue);
+		const int iOldHealth = GC.getBonusInfo(eBonus).getHealth() * GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iOldCount);
+		const int iNewHealth = GC.getBonusInfo(eBonus).getHealth() * GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iNewCount);
+		const double dHealthDifference = (double)(iNewHealth - iOldHealth) / 100.0;
 		
-		if (iNewValue >= 0 && iOldValue >= 0)
+		if (iNewHealth >= 0 && iOldHealth >= 0)
 		{
-			dGoodHealth = (double)(iNewValue - iOldValue) / 100.0;
+			dGoodHealth = dHealthDifference;
 		}
 		else
 		{
-			dBadHealth = (double)(iNewValue - iOldValue) / 100.0;
+			dBadHealth = dHealthDifference;
 		}
 		
-		iOldValue = GC.getBonusInfo(eBonus).getHappiness() * GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iOldCount);
-		iNewValue = GC.getBonusInfo(eBonus).getHappiness() * GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iBonusCount);
+		const int iOldHappiness = GC.getBonusInfo(eBonus).getHappiness() * GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iOldCount);
+		const int iNewHappiness = GC.getBonusInfo(eBonus).getHappiness() * GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iNewCount);
+		const double dHappinessDifference = (double)(iNewHappiness - iOldHappiness) / 100.0;
 
-		if (iNewValue >= 0 && iOldValue >= 0)
+		if (iNewHappiness >= 0 && iOldHappiness >= 0)
 		{
-			dGoodHappiness = (double)(iNewValue - iOldValue) / 100.0;
+			dGoodHappiness = dHappinessDifference;
 		}
 		else
 		{
-			dBadHappiness = (double)(iNewValue - iOldValue) / 100.0;
+			dBadHappiness = dHappinessDifference;
 		}
 		
 		//if (gCityLogLevel > 2) logBBAI("Resource Health: %S %S: int:(%d, %d), (%f, %f)", getName().GetCString(), GC.getBonusInfo(eBonus).getDescription(), (int)dGoodHealth, (int)dBadHealth, dGoodHealth, dBadHealth);
@@ -4144,34 +4141,37 @@ void CvCity::processBonus(BonusTypes eBonus, int iChange, bool bChangeValue, boo
 
 		if (bCompleteChange)
 		{
-			for (iI = 0; iI < GC.getNumBuildingInfos(); iI++)
+			for (int iI = 0; iI < GC.getNumBuildingInfos(); iI++)
 			{
-				int iNumBuildings = getNumActiveBuilding((BuildingTypes)iI);
+				const int iNumBuildings = getNumActiveBuilding((BuildingTypes)iI);
 				if (iNumBuildings > 0)
 				{
-					iNewValue = GC.getBuildingInfo((BuildingTypes) iI).getBonusHealthChanges(eBonus) * iNumBuildings;
+					const int iBuildingHealth = GC.getBuildingInfo((BuildingTypes) iI).getBonusHealthChanges(eBonus) * iNumBuildings;
 					
-					if (iNewValue >= 0)
+					if (iBuildingHealth >= 0)
 					{
-						dGoodHealth += (double)(iNewValue * iSignum);
+						dGoodHealth += (double)(iBuildingHealth * iSignum);
 					}
 					else
 					{
-						dBadHealth += (double)(iNewValue * iSignum);
+						dBadHealth += (double)(iBuildingHealth * iSignum);
 					}
 					
-					iNewValue = GC.getBuildingInfo((BuildingTypes) iI).getBonusHappinessChanges(eBonus) * iNumBuildings;
+					const int iBuildingHappiness = GC.getBuildingInfo((BuildingTypes) iI).getBonusHappinessChanges(eBonus) * iNumBuildings;
 
-					if (iNewValue >= 0)
+					if (iBuildingHappiness >= 0)
 					{
-						dGoodHappiness += (double)(iNewValue * iSignum);
+						dGoodHappiness += (double)(iBuildingHappiness * iSignum);
 					}
 					else
 					{
-						dBadHappiness += (double)(iNewValue * iSignum);
+						dBadHappiness += (double)(iBuildingHappiness * iSignum);
 					}
 				}
 			}
+
+			changePowerCount((getBonusPower(eBonus, true) * iSignum), true);
+			changePowerCount((getBonusPower(eBonus, false) * iSignum), false);
 		}
 		
 		//if (gCityLogLevel > 2) logBBAI("Resource Health after Buildings: %S %S: int:(%d, %d), (%f, %f)", getName().GetCString(), GC.getBonusInfo(eBonus).getDescription(), (int)dGoodHealth, (int)dBadHealth, dGoodHealth, dBadHealth);
@@ -4181,25 +4181,15 @@ void CvCity::processBonus(BonusTypes eBonus, int iChange, bool bChangeValue, boo
 		changeBonusBadHealth(dBadHealth);
 		changeBonusGoodHappiness(dGoodHappiness);
 		changeBonusBadHappiness(dBadHappiness);
-
-		if (bCompleteChange)
-		{
-			changePowerCount((getBonusPower(eBonus, true) * iSignum), true);
-			changePowerCount((getBonusPower(eBonus, false) * iSignum), false);
-		}
 	}
 	
-	if (bCompleteChange)
+	if (bCompleteChange && bYieldModifier)
 	{
-		if (bYieldModifier)
+		for (int iI = 0; iI < NUM_YIELD_TYPES; iI++)
 		{
-			for (int iI = 0; iI < NUM_YIELD_TYPES; iI++)
-			{
-				changeBonusYieldRateModifier(((YieldTypes)iI), (getBonusYieldRateModifier(((YieldTypes)iI), eBonus) * iSignum));
-			}
+			changeBonusYieldRateModifier(((YieldTypes)iI), (getBonusYieldRateModifier(((YieldTypes)iI), eBonus) * iSignum));
 		}
 	}
-	
 }
 
 
@@ -7205,21 +7195,21 @@ void CvCity::updatePowerHealth()
 }
 
 
-// Civ4 Reimagined
+// Civ4 Reimagined: Quantifiable Resource System
 int CvCity::getBonusGoodHealth() const
 {
 	return (int)(m_dBonusGoodHealth + 0.5);
 }
 
 
-// Civ4 Reimagined
+// Civ4 Reimagined: Quantifiable Resource System
 int CvCity::getBonusBadHealth() const
 {
 	return (int)(m_dBonusBadHealth - 0.5);
 }
 
 
-// Civ4 Reimagined
+// Civ4 Reimagined: Quantifiable Resource System
 void CvCity::changeBonusGoodHealth(double dChange)
 {
 	if (dChange != 0)
@@ -7236,7 +7226,7 @@ void CvCity::changeBonusGoodHealth(double dChange)
 	}
 }
 
-// Civ4 Reimagined
+// Civ4 Reimagined: Quantifiable Resource System
 void CvCity::changeBonusBadHealth(double dChange)
 {
 	if (dChange != 0)
@@ -7253,14 +7243,14 @@ void CvCity::changeBonusBadHealth(double dChange)
 	}
 }
 
-// Civ4 Reimagined
+// Civ4 Reimagined: Quantifiable Resource System
 void CvCity::setBonusGoodHealth(double dChange)
 {
 	m_dBonusGoodHealth = dChange;
 	FAssertMsg(getBonusGoodHealth() >= 0, "getBonusGoodHealth is expected to be >= 0");
 }
 
-// Civ4 Reimagined
+// Civ4 Reimagined: Quantifiable Resource System
 void CvCity::setBonusBadHealth(double dChange)
 {
 	m_dBonusBadHealth = dChange;
@@ -11496,7 +11486,7 @@ void CvCity::changeNoBonusCount(BonusTypes eIndex, int iChange)
 		if (getNumBonuses(eIndex) > 0)
 		{
 			//processBonus(eIndex, -1);
-			// Civ4 Reimagined
+			// Civ4 Reimagined: Quantifiable Resource System
 			int iNumBonus = getNumBonuses(eIndex);
 			m_paiNoBonus[eIndex] += iChange;
 			processBonus(eIndex, -iNumBonus);
@@ -11511,7 +11501,7 @@ void CvCity::changeNoBonusCount(BonusTypes eIndex, int iChange)
 		if (getNumBonuses(eIndex) > 0)
 		{
 			//processBonus(eIndex, 1);
-			// Civ4 Reimagined
+			// Civ4 Reimagined: Quantifiable Resource System
 			processBonus(eIndex, getNumBonuses(eIndex));
 		}
 

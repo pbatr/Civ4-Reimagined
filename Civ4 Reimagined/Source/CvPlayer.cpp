@@ -25959,7 +25959,7 @@ void CvPlayer::changePillageGainModifier(int iChange)
 		m_iPillageGainModifier = m_iPillageGainModifier + iChange;
 }
 
-// Civ4 Reimagined
+// Civ4 Reimagined: Quantifiable Resource System
 // Each bonus resource can supply X population of your realm
 // X corresponds to TechValue/100
 int CvPlayer::getTechValue() const
@@ -25967,7 +25967,7 @@ int CvPlayer::getTechValue() const
 	return m_iTechValue;
 }
 
-// Civ4 Reimagined
+// Civ4 Reimagined: Quantifiable Resource System
 void CvPlayer::changeTechValue(int iChange)
 {
 	if (iChange != 0)
@@ -25976,7 +25976,7 @@ void CvPlayer::changeTechValue(int iChange)
 		logBBAI("Tech value: %d", m_iTechValue);
 }
 
-// Civ4 Reimagined
+// Civ4 Reimagined: Quantifiable Resource System
 int CvPlayer::getRealNumBonusNeededTimes100() const
 {
 	long lPopulation = getTotalPopulation() * 10000;
@@ -25986,7 +25986,7 @@ int CvPlayer::getRealNumBonusNeededTimes100() const
 	return ( lPopulation / getTechValue() );
 } 
 
-// Civ4 Reimagined
+// Civ4 Reimagined: Quantifiable Resource System
 int CvPlayer::getBonusValueTimes100(int iBonusCount) const
 {
 	if (iBonusCount <= 0)
@@ -25996,13 +25996,13 @@ int CvPlayer::getBonusValueTimes100(int iBonusCount) const
 	return std::min(100, getBonusRatio() * iBonusCount);
 }
 
-// Civ4 Reimagined
+// Civ4 Reimagined: Quantifiable Resource System
 int CvPlayer::getBonusRatio() const
 {
 	return m_iBonusRatio;
 }
 
-// Civ4 Reimagined
+// Civ4 Reimagined: Quantifiable Resource System
 void CvPlayer::updateBonusRatio(bool bAlwaysUpdate)
 {
 	if (!bAlwaysUpdate && !m_bUpdateBonusRatio)
@@ -26010,7 +26010,7 @@ void CvPlayer::updateBonusRatio(bool bAlwaysUpdate)
 		return;
 	}
 	
-	int iTotalPop = getTotalPopulation();
+	const int iTotalPop = getTotalPopulation();
 	bool bChange = false;
 	
 	if (iTotalPop > 0)
@@ -26030,9 +26030,8 @@ void CvPlayer::updateBonusRatio(bool bAlwaysUpdate)
 	
 	if (bChange)
 	{
-		CvCity* pLoopCity;
 		int iLoop;
-		for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+		for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 		{
 			pLoopCity->updateResources();
 		}

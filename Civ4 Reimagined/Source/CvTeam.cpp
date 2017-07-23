@@ -6549,7 +6549,6 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 	UnitTypes eLoopUnit; // Civ4 Reimagined
 	BonusTypes eBonus;
 	int iI, iJ;
-	int iEraValue; // Civ4 Reimagined
 	
 	const TerrainTypes TERRAIN_OCEAN = (TerrainTypes)GC.getInfoTypeForString("TERRAIN_OCEAN");
 
@@ -6733,8 +6732,13 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 				}
 			}
 				
-			//Civ4 Reimagined: Add values for the Quantifiable Resouce System
-			//In theory denominator should be equal to the number of techs of each era. Not true at the moment.
+			// Civ4 Reimagined: Quantifiable Resource System
+			//
+			// Target population per era is defined in XML. It corresponds to the maximum population which can be sufficiently supplied with one resource when all techs of this era are discovered.
+			// Every tech you discover improves your techValue and by that lets you supply more population with one resource.
+			//
+			// In theory denominator should be equal to the number of techs of each era.
+			int iEraValue = 0;
 			switch (GC.getTechInfo(eTech).getEra())
 			{
 			case 0:
@@ -6758,8 +6762,7 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_FUTURE") / 22;
 				break;
 			default:
-				iEraValue = 0;
-				logBBAI("NO ERA FOUND!");
+				logBBAI("No era found for tech %S", GC.getTechInfo(eTech).getDescription());
 			}
 			GET_PLAYER((PlayerTypes)iI).changeTechValue(iEraValue * iChange);
 		}
