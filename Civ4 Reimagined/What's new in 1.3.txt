@@ -13,7 +13,7 @@ New
 *********
 Changes
 *********
--Achers and Longbowman gain additional defense bonuses from defensive buildings such as walls and castles. Otherwise offensive units with higher ST would benefit more from walls/castles than dedicated city defenders, making balancing them tricky. Reduced city defense (Longbowman only) and increased costs to compensate.
+-Archers and Longbowman gain additional defense bonuses from defensive buildings such as walls and castles. Otherwise offensive units with higher ST would benefit more from walls/castles than dedicated city defenders, making balancing them tricky. Reduced city defense (Longbowman only) and increased costs to compensate.
 -Scouts and Explorers cannot enter rival territory
 -Chance of destroying buildings when bombarding cities halved
 -Naval changes (see also: New pirate ships)
@@ -27,7 +27,8 @@ Changes
 *********
 Tweaks
 *********
--Machinery is now a classical tech
+-Iron Working, Monotheism and Machinery are now classical techs
+-Philosophy is now a medieval tech
 -Axemen bonus vs Archer reduced from 30% to 25%.
 -Cathedrals cannot be destroyed when bombarding cities
 -Units with hidden nationality no longer contribute to a civ's power value
