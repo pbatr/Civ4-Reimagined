@@ -1186,7 +1186,7 @@
 			<PromotionPrereq>NONE</PromotionPrereq>
 			<PromotionPrereqOr1>PROMOTION_COMBAT3</PromotionPrereqOr1>
 			<PromotionPrereqOr2>PROMOTION_DRILL3</PromotionPrereqOr2>
-			<PromotionPrereqOr3>NONE</PromotionPrereqOr3>
+			<PromotionPrereqOr3>PROMOTION_NAVIGATION2</PromotionPrereqOr3>
 			<TechPrereq>TECH_HORSEBACK_RIDING</TechPrereq>
 			<StateReligionPrereq>NONE</StateReligionPrereq>
 			<bLeader>0</bLeader>
@@ -3296,7 +3296,7 @@
 			<bHillsDoubleMove>0</bHillsDoubleMove>
 			<bImmuneToFirstStrikes>0</bImmuneToFirstStrikes>
 			<iVisibilityChange>0</iVisibilityChange>
-			<iMovesChange>1</iMovesChange>
+			<iMovesChange>2</iMovesChange>
 			<iMoveDiscountChange>0</iMoveDiscountChange>
 			<iAirRangeChange>0</iAirRangeChange>
 			<iInterceptChange>0</iInterceptChange>

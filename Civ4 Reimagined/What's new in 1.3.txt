@@ -52,6 +52,7 @@ Tweaks
 -Interception promotion available for naval units
 -March promotion available for armored units
 -Shock promotion no longer available for siege units
+-Navigation II promotion grants 2 movement points and is now an optional requirement for Blitz promotion
 -Babylonian bowman strength reduced to 3 but gains a 100% bonus vs archery units
 -Viking "Trading Post" UB moved to Harbor, grants +50% trade route yield, +2 XP and Navigation I.
 -Wall building quest no longer triggers when walls are obsolete
