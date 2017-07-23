@@ -23,6 +23,7 @@ Changes
 *-Improved AI for building ships in general
 *-Longships are Pirates with improved trade blockade ability
 -Military units only count towards reducing unhappiness in a city ("We demand military protection!") when they are at most 2 eras behind your current era. Also, they no longer reduce unhappiness in other player's cities.
+-Classical temples get converted to state religion temples when adopting a state religion
 
 *********
 Tweaks
