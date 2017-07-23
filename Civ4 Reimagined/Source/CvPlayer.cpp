@@ -9114,20 +9114,37 @@ bool CvPlayer::canConvert(ReligionTypes eReligion) const
 
 void CvPlayer::convert(ReligionTypes eReligion)
 {
-	int iAnarchyLength;
-
 	if (!canConvert(eReligion))
 	{
 		return;
 	}
 
-	iAnarchyLength = getReligionAnarchyLength();
+	const int iAnarchyLength = getReligionAnarchyLength();
 
 	changeAnarchyTurns(iAnarchyLength);
 
 	setLastStateReligion(eReligion);
 
 	setConversionTimer(std::max(1, ((100 + getAnarchyModifier()) * GC.getDefineINT("MIN_CONVERSION_TURNS")) / 100) + iAnarchyLength);
+}
+
+
+void CvPlayer::convertClassicalTemples(ReligionTypes eReligion)
+{
+	bool bConverted = false;
+
+	int iLoop;
+	for (CvCity* pCity = firstCity(&iLoop); pCity != NULL; pCity = nextCity(&iLoop))
+	{
+		bConverted = pCity->convertClassicalTemples(eReligion) || bConverted;
+	}
+
+	if (bConverted)
+	{
+		CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_CLASSICAL_TEMPLES_CONVERTED", GC.getReligionInfo(eReligion).getChar());
+		gDLL->getInterfaceIFace()->addHumanMessage(getID(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_GOLDAGESTART", MESSAGE_TYPE_MINOR_EVENT);
+	}
+
 }
 
 
@@ -13402,6 +13419,12 @@ void CvPlayer::setLastStateReligion(ReligionTypes eNewValue)
 
 					szBuffer = gDLL->getText("TXT_KEY_MISC_PLAYER_CONVERT_RELIGION", getNameKey(), GC.getReligionInfo(getLastStateReligion()).getTextKeyWide());
 					GC.getGameINLINE().addReplayMessage(REPLAY_MESSAGE_MAJOR_EVENT, getID(), szBuffer);
+
+					// Civ4 Reimagined
+					if (eOldReligion == NO_RELIGION)
+					{
+						convertClassicalTemples(getLastStateReligion());
+					}
 				}
 			}
 

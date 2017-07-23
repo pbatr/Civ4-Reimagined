@@ -19935,6 +19935,7 @@
 			<Description>TXT_KEY_BUILDING_CLASSICAL_TEMPLE</Description>
 			<Civilopedia>TXT_KEY_BUILDING_CLASSICAL_TEMPLE_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_BUILDING_CLASSICAL_TEMPLE_STRATEGY</Strategy>
+			<Help>TXT_KEY_BUILDING_CLASSICAL_TEMPLE_HELP</Help>
 			<Advisor>ADVISOR_RELIGION</Advisor>
 			<ArtDefineTag>ART_DEF_BUILDING_CLASSICAL_TEMPLE</ArtDefineTag>
 			<MovieDefineTag>NONE</MovieDefineTag>

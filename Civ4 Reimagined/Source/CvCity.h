@@ -1070,6 +1070,7 @@ public:
 	int getUnitProductionMultiplier(UnitTypes eUnit) const;
 	int getBuildingProductionMultiplier(BuildingTypes eBuilding) const;
 	void destroyReligiousBuildings(ReligionTypes eReligion, ReligionTypes eNewReligion);
+	bool convertClassicalTemples(ReligionTypes eReligion);
 
 	void read(FDataStreamBase* pStream);
 	void write(FDataStreamBase* pStream);

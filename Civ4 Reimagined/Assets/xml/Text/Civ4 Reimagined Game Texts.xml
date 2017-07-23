@@ -1283,4 +1283,12 @@
 		<Tag>TXT_KEY_MISC_HELP_PROD_MAX_YIELD</Tag>
 		<English>[NEWLINE]Maximal Production: %d1[ICON_PRODUCTION]</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_CLASSICAL_TEMPLES_CONVERTED</Tag>
+		<English>Our classical Temples have been converted to Temples of %F1_RelIcon!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_CLASSICAL_TEMPLE_HELP</Tag>
+		<English>[ICON_BULLET]Will be Converted to Temple of State Religion after Adopting a Religion</English>
+	</TEXT>
 </Civ4GameText>

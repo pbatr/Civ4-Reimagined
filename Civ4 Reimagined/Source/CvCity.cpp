@@ -17699,19 +17699,56 @@ void CvCity::destroyReligiousBuildings(ReligionTypes eReligion, ReligionTypes eN
 {
 	for (int iI = 0; iI < GC.getNumBuildingInfos(); iI++)
 	{
-		if (getNumBuilding((BuildingTypes)iI) > 0)
+		if (getNumRealBuilding((BuildingTypes)iI) > 0)
 		{
 			// don't destroy cathedrals
 			if (GC.getBuildingInfo((BuildingTypes)iI).getReligionType() == eReligion && GC.getBuildingInfo((BuildingTypes)iI).getStateReligion() == NO_RELIGION)
 			{
-				if (getNumRealBuilding((BuildingTypes)iI) > 0)
-				{
-					setNumRealBuilding(((BuildingTypes)iI), 0);
-					CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_RELIGIOUS_BUILDING_DESTROYED", GC.getReligionInfo(eNewReligion).getChar(), getNameKey(), GC.getBuildingInfo((BuildingTypes)iI).getTextKeyWide());
-					gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_NOSPREAD", MESSAGE_TYPE_MAJOR_EVENT, GC.getReligionInfo(eReligion).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), getX_INLINE(), getY_INLINE());
-				}
+				setNumRealBuilding(((BuildingTypes)iI), 0);
+				CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_RELIGIOUS_BUILDING_DESTROYED", GC.getReligionInfo(eNewReligion).getChar(), getNameKey(), GC.getBuildingInfo((BuildingTypes)iI).getTextKeyWide());
+				gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_NOSPREAD", MESSAGE_TYPE_MAJOR_EVENT, GC.getReligionInfo(eReligion).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), getX_INLINE(), getY_INLINE());
 			}
 		}
 	}
+}
+
+// Civ4 Reimagined
+bool CvCity::convertClassicalTemples(ReligionTypes eReligion)
+{
+	BuildingTypes eClassicalTemple = NO_BUILDING;
+	SpecialBuildingTypes eGenericTemple = NO_SPECIALBUILDING;
+
+	for (int iI = 0; iI < GC.getNumBuildingInfos(); iI++)
+	{
+		const CvBuildingInfo& kBuilding = GC.getBuildingInfo((BuildingTypes)iI);
+
+		if (kBuilding.getBuildingClassType() == (BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_CLASSICAL_TEMPLE") &&
+			getNumRealBuilding((BuildingTypes)iI) > 0)
+		{
+			eClassicalTemple = (BuildingTypes)iI;
+			eGenericTemple = (SpecialBuildingTypes)kBuilding.getSpecialBuildingType();
+			break;
+		}
+	}
+
+	if (eClassicalTemple == NO_BUILDING || eGenericTemple == NO_SPECIALBUILDING)
+		return false;;
+
+	for (int iI = 0; iI < GC.getNumBuildingInfos(); iI++)
+	{
+		const CvBuildingInfo& kBuilding = GC.getBuildingInfo((BuildingTypes)iI);
+
+		if (kBuilding.getSpecialBuildingType() == eGenericTemple && kBuilding.getReligionType() == eReligion)
+		{
+			if (getNumRealBuilding(BuildingTypes(iI)) > 0)
+				break;
+
+			setNumRealBuilding((eClassicalTemple), 0);
+			setNumRealBuilding((BuildingTypes)iI, 1);
+			return true;
+		}
+	}
+
+	return false;
 }
 
