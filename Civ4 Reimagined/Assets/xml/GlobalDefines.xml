@@ -1692,6 +1692,7 @@
 		<iDefineIntVal>2</iDefineIntVal>
 	</Define>
 	<!-- Civ4 Reimagined Start -->
+	<!-- Target Populations are used for Quantifiable Resouce System. Target population adds up which means real target population for classical era is: TARGET_POPULATION_ANCIENT + TARGET_POPULATION_CLASSICAL -->
 	<Define>
 		<DefineName>TARGET_POPULATION_ANCIENT</DefineName>
 		<iDefineIntVal>15</iDefineIntVal>
