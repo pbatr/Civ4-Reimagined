@@ -6737,29 +6737,29 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 			// Target population per era is defined in XML. It corresponds to the maximum population which can be sufficiently supplied with one resource when all techs of this era are discovered.
 			// Every tech you discover improves your techValue and by that lets you supply more population with one resource.
 			//
-			// In theory denominator should be equal to the number of techs of each era.
+			// Denominator should be equal to the number of techs of each era.
 			int iEraValue = 0;
 			switch (GC.getTechInfo(eTech).getEra())
 			{
 			case 0:
-				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_ANCIENT") / 16;
+				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_ANCIENT") / 17;
 				break;
 			case 1:
 				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_CLASSICAL") / 15;
 				break;
 			case 2:
-				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_MEDIEVAL") / 12;
+				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_MEDIEVAL") / 15;
 				break;
 			case 3:
-				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_RENAISSANCE") / 15;
+				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_RENAISSANCE") / 12;
 			case 4:
-				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_INDUSTRIAL") / 13;
+				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_INDUSTRIAL") / 14;
 				break;
 			case 5:
-				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_MODERN") / 22;
+				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_MODERN") / 17;
 				break;
 			case 6:
-				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_FUTURE") / 22;
+				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_FUTURE") / 2;
 				break;
 			default:
 				logBBAI("No era found for tech %S", GC.getTechInfo(eTech).getDescription());
