@@ -19043,13 +19043,21 @@
 			<UnitClassAttackMods>
 				<UnitClassAttackMod>
 					<UnitClassType>UNITCLASS_TRIREME</UnitClassType>
-					<iUnitClassMod>50</iUnitClassMod>
+					<iUnitClassMod>20</iUnitClassMod>
+				</UnitClassAttackMod>
+				<UnitClassAttackMod>
+					<UnitClassType>UNITCLASS_MARAUDER</UnitClassType>
+					<iUnitClassMod>20</iUnitClassMod>
 				</UnitClassAttackMod>
 			</UnitClassAttackMods>
 			<UnitClassDefenseMods>
 				<UnitClassDefenseMod>
 					<UnitClassType>UNITCLASS_TRIREME</UnitClassType>
-					<iUnitClassMod>50</iUnitClassMod>
+					<iUnitClassMod>20</iUnitClassMod>
+				</UnitClassDefenseMod>
+				<UnitClassDefenseMod>
+					<UnitClassType>UNITCLASS_MARAUDER</UnitClassType>
+					<iUnitClassMod>20</iUnitClassMod>
 				</UnitClassDefenseMod>
 			</UnitClassDefenseMods>
 			<UnitCombatMods/>
