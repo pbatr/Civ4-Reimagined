@@ -6935,6 +6935,15 @@ bool CvPlayer::canTrain(UnitTypes eUnit, bool bContinue, bool bTestVisible, bool
 	{
 		return false;
 	}
+	
+	// Civ4 Reimagined
+	if (GC.getUnitInfo(eUnit).getPrereqAndBonus() != NO_BONUS)
+	{
+		if (GET_TEAM(getTeam()).isBonusObsolete((BonusTypes)GC.getUnitInfo(eUnit).getPrereqAndBonus()))
+		{
+			return false;
+		}
+	}
 
 	/* original bts code
 	if (GET_TEAM(getTeam()).isUnitClassMaxedOut(eUnitClass))
