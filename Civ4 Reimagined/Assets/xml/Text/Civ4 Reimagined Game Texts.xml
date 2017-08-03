@@ -1193,11 +1193,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_BONUS_RATIO_MULTIPLIER_NEGATIVE</Tag>
-		<English>[ICON_BULLET]-%d1% from Civics or Traits</English>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_MISC_BONUS_RATIO_MULTIPLIER_NEGATIVE</Tag>
-		<English>[ICON_BULLET]-%d1% from Civics or Traits</English>
+		<English>[ICON_BULLET]%d1% from Civics or Traits</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_BONUS_RATIO_CAPPED</Tag>
