@@ -16132,16 +16132,13 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 					}
 				}
 			}
-
-			if (bGlobeTheater)
-				continue;
 			
-			if (kCivic.isNoCapitalUnhappiness() && pLoopCity == pCapital)
+			if (kCivic.isNoCapitalUnhappiness() && pLoopCity == pCapital && !bGlobeTheater)
 			{
 				iCityHappiness = std::max(pLoopCity->unhappyLevel(0, true), pLoopCity->getPopulation());
 			}
 			
-			int iCurrentHappy = 100*(pLoopCity->happyLevel() - iHappy - pLoopCity->unhappyLevel(1, true));
+			int iCurrentHappy = 100*(pLoopCity->happyLevel() - iHappy - pLoopCity->unhappyLevel(1, false));
 			// I'm only going to subtract half of the commerce happiness, because we might not be using that commerce for only happiness.
 			iCurrentHappy -= 50*std::max(0, pLoopCity->getCommerceHappiness());
 			int iTestHappy = iCurrentHappy + 100 * iCityHappiness;
@@ -16154,7 +16151,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				iBonusProduction /= 100;
 				iBonusProduction *= AI_yieldWeight(YIELD_PRODUCTION);
 				iBonusProduction /= 100;
-				if (gPlayerLogLevel > 0) logBBAI("	Civic Value of Production per surplus happiness: %d", iBonusProduction);
+				if (gPlayerLogLevel > 0) logBBAI("	Civic Value of Production per surplus happiness: %d (surplus hap: %d)", iBonusProduction, iTestHappy/100);
 				iValue += iBonusProduction;
 			}
 			
@@ -16168,10 +16165,13 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 					iBonusCommerce /= 100;
 					iBonusCommerce *= AI_commerceWeight((CommerceTypes)iI);
 					iBonusCommerce /= 100;
-					if (gPlayerLogLevel > 0 && iBonusCommerce > 0) logBBAI("	Civic Value of Capital Commerce per surplus happiness: %d", iBonusCommerce);
+					if (gPlayerLogLevel > 0 && iBonusCommerce > 0) logBBAI("	Civic Value of Capital Commerce per surplus happiness: %d (surplus hap: %d)", iBonusCommerce, iTestHappy/100);
 					iValue += iBonusCommerce;
 				}
 			}
+
+			if (bGlobeTheater)
+				continue;
 			
 			iHapValue += std::max(0, -iCurrentHappy) - std::max(0, -iTestHappy); // change in the number of angry citizens
 			// a small bonus for happiness beyond what we need
