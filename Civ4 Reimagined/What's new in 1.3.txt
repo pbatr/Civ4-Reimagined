@@ -61,6 +61,8 @@ Tweaks
 *********
 Interface
 *********
+-Don't show units in city screen that require obsolete resources
+-Fix display of negative resource ratio modifiers in city screen
 
 *********
 Fixes
