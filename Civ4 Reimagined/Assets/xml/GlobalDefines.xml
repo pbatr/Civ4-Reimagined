@@ -1695,15 +1695,15 @@
 	<!-- Target Populations are used for Quantifiable Resouce System. Target population adds up which means real target population for classical era is: TARGET_POPULATION_ANCIENT + TARGET_POPULATION_CLASSICAL -->
 	<Define>
 		<DefineName>TARGET_POPULATION_ANCIENT</DefineName>
-		<iDefineIntVal>18</iDefineIntVal>
+		<iDefineIntVal>20</iDefineIntVal>
 	</Define>
 	<Define>
 		<DefineName>TARGET_POPULATION_CLASSICAL</DefineName>
-		<iDefineIntVal>28</iDefineIntVal>
+		<iDefineIntVal>22</iDefineIntVal>
 	</Define>
 	<Define>
 		<DefineName>TARGET_POPULATION_MEDIEVAL</DefineName>
-		<iDefineIntVal>35</iDefineIntVal>
+		<iDefineIntVal>23</iDefineIntVal>
 	</Define>
 	<Define>
 		<DefineName>TARGET_POPULATION_RENAISSANCE</DefineName>
@@ -1711,15 +1711,15 @@
 	</Define>
 	<Define>
 		<DefineName>TARGET_POPULATION_INDUSTRIAL</DefineName>
-		<iDefineIntVal>21</iDefineIntVal>
+		<iDefineIntVal>25</iDefineIntVal>
 	</Define>
 	<Define>
 		<DefineName>TARGET_POPULATION_MODERN</DefineName>
-		<iDefineIntVal>16</iDefineIntVal>
+		<iDefineIntVal>25</iDefineIntVal>
 	</Define>
 	<Define>
 		<DefineName>TARGET_POPULATION_FUTURE</DefineName>
-		<iDefineIntVal>0</iDefineIntVal>
+		<iDefineIntVal>3</iDefineIntVal>
 	</Define>
 	<Define>
 		<DefineName>MAX_STARTING_POS_VALUE</DefineName>
