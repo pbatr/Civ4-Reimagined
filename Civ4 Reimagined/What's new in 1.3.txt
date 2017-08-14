@@ -73,7 +73,8 @@ Fixes
 -Fixed tsunami, sports league and great depression event tooltips
 -Fixed 'balanced' resources appearing directly on starting positions
 -Players no longer automatically receive slaves when conquering colonial cities or acquiring them by trade
--Fixed a bug where units where not automatically moved outside of enemy territory when war is declared
+-Fixed a bug where units were not automatically moved outside of enemy territory when war is declared
+-Fixed a bug where sea units had a bigger visibility range than land units when stationed in cities
 
 *******************************************
 Civ4 Reimagined 1.2

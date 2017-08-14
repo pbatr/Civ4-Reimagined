@@ -8001,7 +8001,7 @@ bool CvUnit::isHuman() const
 int CvUnit::visibilityRange() const
 {
 	// Civ4 Reimagined: Bigger Visibility Range for Sea Units
-	if ( getDomainType() == DOMAIN_SEA )
+	if (getDomainType() == DOMAIN_SEA && plot() != NULL && plot()->isWater())
 	{
 		return std::max(GC.getDefineINT("UNIT_VISIBILITY_RANGE") + getExtraVisibilityRange(), m_pUnitInfo->getMoves() * GC.getDefineINT("NAVAL_SEE_RANGE_PERCENT") / 100 + getExtraVisibilityRange());
 	}

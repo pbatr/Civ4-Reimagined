@@ -1807,17 +1807,17 @@ void CvPlot::changeAdjacentSight(TeamTypes eTeam, int iRange, bool bIncrement, C
 	for(int i=0;i<(int)aSeeInvisibleTypes.size();i++)
 	{
 		// Civ4 Reimagined: Smaller radius to detect invisible units
-		if (aSeeInvisibleTypes[i] != NO_INVISIBLE)
-			iRange -= 2;
-		for (int dx = -iRange; dx <= iRange; dx++)
+		const int iVisRange = (aSeeInvisibleTypes[i] == NO_INVISIBLE) ? iRange : std::max(iRange - 2, 1);
+
+		for (int dx = -iVisRange; dx <= iVisRange; dx++)
 		{
-			for (int dy = -iRange; dy <= iRange; dy++)
+			for (int dy = -iVisRange; dy <= iVisRange; dy++)
 			{
 				//check if in facing direction
-				if (bAerial || shouldProcessDisplacementPlot(dx, dy, iRange - 1, eFacingDirection))
+				if (bAerial || shouldProcessDisplacementPlot(dx, dy, iVisRange - 1, eFacingDirection))
 				{
 					bool outerRing = false;
-					if ((abs(dx) == iRange) || (abs(dy) == iRange))
+					if ((abs(dx) == iVisRange) || (abs(dy) == iVisRange))
 					{
 						outerRing = true;
 					}
@@ -1847,9 +1847,6 @@ void CvPlot::changeAdjacentSight(TeamTypes eTeam, int iRange, bool bIncrement, C
 				}
 			}
 		}
-		// Civ4 Reimagined
-		if (aSeeInvisibleTypes[i] != NO_INVISIBLE)
-			iRange += 2;
 	}
 }
 
