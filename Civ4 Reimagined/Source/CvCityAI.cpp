@@ -9988,8 +9988,10 @@ int CvCityAI::AI_yieldValue(short* piYields, short* piCommerceYields, bool bRemo
 						else if (iPopToGrow < 4)
 							iGrowthValue = iGrowthValue * (17 + 2 * iPopToGrow)/25;
 
+						/* if (iHealthLevel < (bFillingBar ? 0 : 1))
+							iGrowthValue = iGrowthValue * iFoodYield / (iFoodYield + 1); */
 						if (iHealthLevel < (bFillingBar ? 0 : 1))
-							iGrowthValue = iGrowthValue * iFoodYield / (iFoodYield + 1);
+							iGrowthValue = iGrowthValue * 2/3; 
 
 						//iFoodGrowthValue = iFoodYield * iFactorPopToGrow;
 						// K-Mod. think of the integral of (x * iGrowthValue * (100 - iDevalueRate*(iAdjustedFoodPerTurn+x))/100)
@@ -9999,7 +10001,10 @@ int CvCityAI::AI_yieldValue(short* piYields, short* piCommerceYields, bool bRemo
 							if (bFillingBar)
 								iDevalueRate = 25 + 15 * (iFoodLevel + iAdjustedFoodPerTurn) / iFoodToGrow;
 							else
-								iDevalueRate = 20 - std::min(5, iPopToGrow)*2 + (AI_isEmphasizeGreatPeople() || AI_isEmphasizeYield(YIELD_COMMERCE) || AI_isEmphasizeYield(YIELD_PRODUCTION) ? 3 : 0);
+								iDevalueRate = 22 - std::min(5, iPopToGrow)*4;
+
+							if (iHealthLevel < 1)
+								iDevalueRate += 5;
 						}
 						int iBestFoodYield = std::max(0, std::min(iFoodYield, 100/std::max(1, iDevalueRate) - iAdjustedFoodPerTurn)); // maximum value for this amount of food.
 						iFoodGrowthValue = iBestFoodYield * iGrowthValue * (100 - iDevalueRate*iAdjustedFoodPerTurn) / 100;
