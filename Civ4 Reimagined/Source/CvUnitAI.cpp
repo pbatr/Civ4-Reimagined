@@ -8526,7 +8526,9 @@ void CvUnitAI::AI_settlerSeaMove()
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/	
 	
-	if ((GC.getGame().getGameTurn() - getGameTurnCreated()) < 8)
+	//if ((GC.getGame().getGameTurn() - getGameTurnCreated()) < 8)
+	if (GC.getGame().getGameTurn() - getGameTurnCreated() < 8 && plot()->waterArea() &&
+		kOwner.AI_areaMissionAIs(plot()->waterArea(), MISSIONAI_EXPLORE, getGroup()) < kOwner.AI_neededExplorers(plot()->waterArea())) // K-Mod
 	{
 		if ((plot()->getPlotCity() == NULL) || kOwner.AI_totalAreaUnitAIs(plot()->area(), UNITAI_SETTLE) == 0)
 		{
@@ -8758,9 +8760,10 @@ void CvUnitAI::AI_missionarySeaMove()
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/	
 	
-	if (AI_explore())
+	if (plot()->waterArea() && kOwner.AI_areaMissionAIs(plot()->waterArea(), MISSIONAI_EXPLORE, getGroup()) < kOwner.AI_neededExplorers(plot()->waterArea())) // K-Mod
 	{
-		return;
+		if (AI_explore())
+			return;
 	}
 
 	if (AI_retreatToCity(true))
