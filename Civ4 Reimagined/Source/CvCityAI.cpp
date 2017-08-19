@@ -9292,7 +9292,8 @@ void CvCityAI::AI_juggleCitizens()
 				bTakeNewJob = false;
 			}
 			// if forced specialists are still available, don't allow non-forced specialists.
-			else if (bForcedSpecAvailable && unworked_it->second.first && getForceSpecialistCount((SpecialistTypes)unworked_it->second.second) == 0)
+			else if (bForcedSpecAvailable && unworked_it->second.first && getForceSpecialistCount((SpecialistTypes)unworked_it->second.second) == 0 &&
+				unworked_it->second.first && getForceSpecialistCount((SpecialistTypes)unworked_it->second.second) == 0)
 			{
 				bTakeNewJob = false;
 			}
