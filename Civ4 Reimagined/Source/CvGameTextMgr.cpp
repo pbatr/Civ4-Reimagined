@@ -5321,16 +5321,12 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 					for (YieldTypes i = (YieldTypes)0; i < NUM_YIELD_TYPES; i = (YieldTypes)(i+1))
 						szString.append(CvWString::format(L"%s%d%c", i == 0 ? L"" : L", ", pCityAI->AI_specialYieldMultiplier(i), GC.getYieldInfo(i).getChar()));
 					szString.append(L")");
+
+					szString.append(CvWString::format(L"\nCity weights: ("));
+					for (CommerceTypes i = (CommerceTypes)0; i < NUM_COMMERCE_TYPES; i=(CommerceTypes)(i+1))
+						szString.append(CvWString::format(L"%s%d%c", i == 0 ? L"" : L", ", GET_PLAYER(pCity->getOwnerINLINE()).AI_commerceWeight(i, pCity), GC.getCommerceInfo(i).getChar()));
+					szString.append(L")");
 					// K-Mod end
-					
-					// Civ4 Reimagined
-					szString.append(CvWString::format(L"\nWeights:"));
-					for (int iI = 0; iI < NUM_COMMERCE_TYPES; ++iI)
-					{
-						int iCommerceWeight = GET_PLAYER(pCity->getOwnerINLINE()).AI_commerceWeight((CommerceTypes)iI, pCity);
-						szTempBuffer.Format(L", %d%c", iCommerceWeight, GC.getCommerceInfo((CommerceTypes) iI).getChar());
-						szString.append(szTempBuffer);
-					}
 
 					szString.append(CvWString::format(L"\nExchange"));
 					for (int iI = 0; iI < NUM_COMMERCE_TYPES; ++iI)
@@ -5340,11 +5336,7 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 						szString.append(szTempBuffer);
 					}
 
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                      07/08/09                                jdog5000      */
-/*                                                                                              */
-/* DEBUG                                                                                        */
-/************************************************************************************************/
+					// BBAI
 					szString.append(CvWString::format(L"\nAvg mults"));
 					for (int iI = 0; iI < NUM_COMMERCE_TYPES; ++iI)
 					{
@@ -5352,13 +5344,12 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 						szTempBuffer.Format(L", %d%c", iCommerce, GC.getCommerceInfo((CommerceTypes) iI).getChar());
 						szString.append(szTempBuffer);
 					}
+					// BBAI end
 					// K-Mod
 					szString.append(CvWString::format(L"\nAvg %c pressure: %d",
 						GC.getCommerceInfo(COMMERCE_CULTURE).getChar(),
 						GET_PLAYER(pCity->getOwnerINLINE()).AI_averageCulturePressure()));
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                       END                                                  */
-/************************************************************************************************/
+					// K-Mod end
 					
 					if (GET_PLAYER(pCity->getOwnerINLINE()).AI_isFinancialTrouble())
 					{
