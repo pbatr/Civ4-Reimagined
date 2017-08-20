@@ -3739,7 +3739,7 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 
 				if (pLoopPlot != NULL)
 				{
-					if (pLoopPlot->isWater() || (pLoopPlot->area() == pArea))
+					//if (pLoopPlot->isWater() || (pLoopPlot->area() == pArea))
 					{
 						if (plotDistance(iX, iY, pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE()) <= iRange)
 						{
@@ -3767,7 +3767,6 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 							iTempValue += pLoopPlot->getYield(YIELD_COMMERCE) * 3;
 							iTempValue += pLoopPlot->isWater() ? -2 : 0;
 							
-							iValue += iTempValue;
 							if (iTempValue < 13)
 							{
 								// 3 points for unworkable plots (desert, ice, far-ocean)
@@ -3781,6 +3780,10 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 										iGreaterBadTile++;
 								}
 							}
+							if (pLoopPlot->isWater() || pLoopPlot->area() == pArea)
+								iValue += iTempValue;
+							else if (iTempValue >= 13)
+								iGreaterBadTile++; // add at least 1 badness point for other islands.
 							// K-Mod end
 						}
 					}
@@ -3823,7 +3826,7 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 			// bonus for resources per player on the continent. (capped to avoid overflow)
 			iValue = iValue * std::min(400, 100 + 2 * iBonuses/100 + 8 * iTypes/100) / 130;
 
-			// strong penality for a solo start. bonus for pairing with an existing solo start. penality for highly populated islands
+			// penality for a solo start. bonus for pairing with an existing solo start. penality for highly populated islands
 			iValue = iValue * (10 + std::max(-2, iPlayers ? 2 - iPlayers : -2)) / 10;
 
 			// K-Mod end
