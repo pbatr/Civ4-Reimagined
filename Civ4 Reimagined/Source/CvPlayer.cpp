@@ -7870,15 +7870,15 @@ int CvPlayer::calculateTotalYield(YieldTypes eYield) const
 {
 	PROFILE_FUNC();
 	CvCity* pLoopCity;
-	int iTotalCommerce = 0;
+	int iTotalYield = 0;
 	int iLoop = 0;
 
 	for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 	{
-		iTotalCommerce += pLoopCity->getYieldRate(eYield);
+		iTotalYield += pLoopCity->getYieldRate(eYield);
 	}
 
-	return iTotalCommerce;
+	return iTotalYield;
 }
 
 
