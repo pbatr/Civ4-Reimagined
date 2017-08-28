@@ -268,7 +268,9 @@ public:
 	int calculateUnitSupply(int& iPaidUnits, int& iBaseSupplyCost, bool useForeignUnitSupplyModifier = true) const;	// Exposed to Python
 	int calculateUnitSupply() const;	// Exposed to Python
 	int calculatePreInflatedCosts() const;	// Exposed to Python
-	int calculateInflationRate() const;	// Exposed to Python
+	//int calculateInflationRate() const;	// (was exposed to python. Use getInflationRate instead.)
+	void updateInflationRate(); // K-Mod
+	int getInflationRate() const { return m_iInflationRate; } // K-Mod, exposed to Python.
 	int calculateInflatedCosts() const;	// Exposed to Python
 
 	//int calculateBaseNetGold() const; // disabled by K-Mod
@@ -1551,6 +1553,7 @@ protected:
 	int m_iCombatExperience;
 	int m_iPopRushHurryCount;
 	int m_iInflationModifier;
+	int m_iInflationRate; // K-Mod
 	int m_iDomesticTradeModifier; // Civ4 Reimagined
 	int m_iColonyTradeModifier; // Civ4 Reimagined
 	int m_iCapitalTradeModifier; // Civ4 Reimagined
