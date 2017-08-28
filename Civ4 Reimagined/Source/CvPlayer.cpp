@@ -907,6 +907,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iCombatExperience = 0;
 	m_iPopRushHurryCount = 0;
 	m_iInflationModifier = 0;
+	m_iInflationRate = 0; // K-Mod
 	m_uiStartTime = 0;
 
 	m_bAlive = false;
@@ -3850,6 +3851,8 @@ void CvPlayer::doTurn()
 	updateTradeRoutes();
 
 	updateWarWearinessPercentAnger();
+
+	updateInflationRate();
 
 	doEvents();
 
@@ -7812,7 +7815,7 @@ int CvPlayer::getBuildCost(const CvPlot* pPlot, BuildTypes eBuild) const
 		return 0;
 	}
 
-	return std::max(0, GC.getBuildInfo(eBuild).getCost() * (100 + calculateInflationRate())) / 100;
+	return std::max(0, GC.getBuildInfo(eBuild).getCost() * (100 + getInflationRate())) / 100;
 }
 
 
@@ -8203,7 +8206,8 @@ int CvPlayer::calculatePreInflatedCosts() const
 }
 
 
-int CvPlayer::calculateInflationRate() const
+//int CvPlayer::calculateInflationRate() const
+void CvPlayer::updateInflationRate()
 {
 	int iTurns = ((GC.getGameINLINE().getGameTurn() + GC.getGameINLINE().getElapsedGameTurns()) / 2);
 
@@ -8212,12 +8216,42 @@ int CvPlayer::calculateInflationRate() const
 		iTurns = std::min(GC.getGameINLINE().getMaxTurns(), iTurns);
 	}
 
+	// K-Mod. Advance the effective turn proportionally to have many techs have been discovered;
+	// so that games which lots of tech trading will still have a reasonable inflation rate.
+	// Note. This is an experimental change. I might have to revise it in the future.
+	{
+		PROFILE("tech inflation");
+		long iPotentialTech = 0;
+		long iCurrentTech = 0;
+		for (TechTypes eTech = (TechTypes)0; eTech < GC.getNumTechInfos(); eTech=(TechTypes)(eTech+1))
+		{
+			for (PlayerTypes j = (PlayerTypes)0; j < MAX_CIV_PLAYERS; j=(PlayerTypes)(j+1))
+			{
+				const CvPlayer& kLoopPlayer = GET_PLAYER(j);
+				if (kLoopPlayer.isAlive() &&
+					!kLoopPlayer.isMinorCiv() &&
+					kLoopPlayer.canEverResearch(eTech))
+				{
+					iPotentialTech+=kLoopPlayer.getTotalPopulation();
+					if (GET_TEAM(kLoopPlayer.getTeam()).isHasTech(eTech))
+						iCurrentTech+=kLoopPlayer.getTotalPopulation();
+				}
+			}
+		}
+		iTurns += iCurrentTech*GC.getGameINLINE().getEstimateEndTurn()*4/(3*std::max(1L, iPotentialTech)); // based on full tech at 3/4 of max time.
+		iTurns /= 2;
+	}
+	// K-Mod end
+
 	iTurns += GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getInflationOffset();
 
 	if (iTurns <= 0)
 	{
-		return 0;
+		//return 0;
+		m_iInflationRate = 0;
+		return;
 	}
+	/****************************/
 
 	int iInflationPerTurnTimes10000 = GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getInflationPercent();
 	iInflationPerTurnTimes10000 *= GC.getHandicapInfo(getHandicapType()).getInflationPercent();
@@ -8242,7 +8276,8 @@ int CvPlayer::calculateInflationRate() const
 
 	FAssert(iRatePercent >= 0);
 
-	return iRatePercent;
+	//return iRatePercent;
+	m_iInflationRate = iRatePercent;
 }
 
 
@@ -8254,7 +8289,7 @@ int CvPlayer::calculateInflatedCosts() const
 
 	iCosts = calculatePreInflatedCosts();
 
-	iCosts *= std::max(0, (calculateInflationRate() + 100));
+	iCosts *= std::max(0, (getInflationRate() + 100));
 	iCosts /= 100;
 
 	return iCosts;
@@ -20096,6 +20131,12 @@ void CvPlayer::read(FDataStreamBase* pStream)
 
 	pStream->Read(&m_iPopRushHurryCount);
 	pStream->Read(&m_iInflationModifier);
+	// K-Mod
+	if (uiFlag >= 5)
+		pStream->Read(&m_iInflationRate);
+	else
+		m_iInflationRate = 0; // We can't use updateInflationRate, because that relies on game-state which may not have been loaded yet.
+	// K-Mod end
 }
 
 //
@@ -20625,6 +20666,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 
 	pStream->Write(m_iPopRushHurryCount);
 	pStream->Write(m_iInflationModifier);
+	pStream->Write(m_iInflationRate); // K-Mod, uiFlag >= 5
 }
 
 void CvPlayer::createGreatPeople(UnitTypes eGreatPersonUnit, bool bIncrementThreshold, bool bIncrementExperience, int iX, int iY)
@@ -22636,7 +22678,7 @@ int CvPlayer::getEventCost(EventTypes eEvent, PlayerTypes eOtherPlayer, bool bRa
 		iGold += kEvent.getRandomGold();
 	}
 	
-	iGold *= std::max(0, calculateInflationRate() + 100);
+	iGold *= std::max(0, getInflationRate() + 100);
 	iGold /= 100;
 
 	TechTypes eBestTech = getBestEventTech(eEvent, eOtherPlayer);
