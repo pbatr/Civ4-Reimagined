@@ -4036,6 +4036,8 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 
 				int iTempValue = (iExistingUpkeep - iNewUpkeep) / 22; // slightly more then 4x savings, just to acomodate growth.
 
+				iTempValue = iTempValue * (100+kOwner.getInflationRate()) / 100; // We want absolute savings, including inflation.
+
 				/* iTempValue *= kOwner.AI_commerceWeight(COMMERCE_GOLD, 0); // (note, not just for this particular city - because this isn't direct gold production)
 				iTempValue /= 100; */
 
@@ -11093,6 +11095,8 @@ int CvCityAI::AI_cityValue() const
 	iCosts += calculateColonyMaintenanceTimes100() + getMaintenanceTimes100();
 	// Reduced NumCitiesMaintenaince in all cities after split
 	iCosts += kOwner.getNumCities() - iSplitCities;
+
+	iCosts = iCosts * (100+kOwner.getInflationRate()) / 100;
 	
 	// Civ4 Reimagined: split if we have not enough workers there
 	iCosts += iCosts/4 * std::max(0,(kOwner.AI_neededWorkers(area()) / 4 - kOwner.AI_totalAreaUnitAIs(area(), UNITAI_WORKER)));
