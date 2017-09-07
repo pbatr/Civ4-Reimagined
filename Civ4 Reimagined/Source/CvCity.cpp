@@ -3491,7 +3491,7 @@ int CvCity::getProductionDifference(int iProductionNeeded, int iProduction, int 
 		}
 	}
 
-	const int iFoodProduction = ((bFoodProduction) ? std::max(0, (getYieldRate(YIELD_FOOD) - foodConsumption(true))) : 0);
+	const int iFoodProduction = bFoodProduction ? std::max(0, getYieldRate(YIELD_FOOD) - foodConsumption()) : 0;
 	const int iOverflow = ((bOverflow) ? (getOverflowProduction() + iFeatureProduction) : 0);
 	const int iProductionModfiers = iProductionMultiplier * getBaseYieldRateModifier(YIELD_PRODUCTION, iProductionModifier);
 	
