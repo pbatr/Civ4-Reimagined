@@ -17325,7 +17325,7 @@ bool CvUnitAI::AI_assaultSeaTransport(bool bAttackBarbs, bool bLocal)
 	int iAmphibiousAttackers = 0;
 	int iAmphibiousAttackStrength = 0;
 	int iLandedAttackStrength = 0;
-	int iCollateralDamageScale = estimateCollateralWeight(0, NO_TEAM);
+	int iCollateralDamageScale = estimateCollateralWeight(0, getTeam());
 	std::map<CvCity*, int> city_defence_cache;
 
 	std::vector<CvUnit*> aGroupCargo;
@@ -20759,6 +20759,7 @@ bool CvUnitAI::AI_handleStranded(int iFlags)
 
 				if (pLoopPlot->getArea() == getArea() && pLoopPlot->isCoastalLand())
 				{
+					// TODO: check that the water isnt' blocked by ice.
 					int iPathTurns;
 					if (generatePath(pLoopPlot, iFlags, true, &iPathTurns, iShortestPath))
 					{
