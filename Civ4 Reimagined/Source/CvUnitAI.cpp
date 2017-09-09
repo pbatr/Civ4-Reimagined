@@ -19898,9 +19898,9 @@ bool CvUnitAI::AI_improveBonus() // K-Mod. (all that junk wasn't being used anyw
 									{
 										iValue *= 1000;
 
-										if (atPlot(pLoopPlot))
+										if (iPathTurns == 1 && getPathFinder().GetFinalMoves() != 0)
 										{
-											iValue *= 3;
+											iValue *= 2;
 										}
 
 										iValue /= (iPathTurns + 1);
