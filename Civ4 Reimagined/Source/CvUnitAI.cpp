@@ -10150,16 +10150,16 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
 	}
 
 	iTemp = GC.getPromotionInfo(ePromotion).getMovesChange();
-	if ((AI_getUnitAIType() == UNITAI_ATTACK_SEA) ||
-		(AI_getUnitAIType() == UNITAI_PIRATE_SEA) ||
-		  (AI_getUnitAIType() == UNITAI_RESERVE_SEA) ||
-		  (AI_getUnitAIType() == UNITAI_ESCORT_SEA) ||
-			(AI_getUnitAIType() == UNITAI_EXPLORE_SEA) ||
-			(AI_getUnitAIType() == UNITAI_ASSAULT_SEA) ||
-			(AI_getUnitAIType() == UNITAI_SETTLER_SEA) ||
-			(AI_getUnitAIType() == UNITAI_PILLAGE) ||
-			(AI_getUnitAIType() == UNITAI_ATTACK) ||
-			(AI_getUnitAIType() == UNITAI_PARADROP))
+	if ((AI_getUnitAIType() == UNITAI_ATTACK_SEA)  ||
+		(AI_getUnitAIType() == UNITAI_PIRATE_SEA)  ||
+		(AI_getUnitAIType() == UNITAI_RESERVE_SEA) ||
+		(AI_getUnitAIType() == UNITAI_ESCORT_SEA)  ||
+		(AI_getUnitAIType() == UNITAI_EXPLORE_SEA) ||
+		(AI_getUnitAIType() == UNITAI_ASSAULT_SEA) ||
+		(AI_getUnitAIType() == UNITAI_SETTLER_SEA) ||
+		(AI_getUnitAIType() == UNITAI_PILLAGE)     ||
+		(AI_getUnitAIType() == UNITAI_ATTACK)      ||
+		(AI_getUnitAIType() == UNITAI_PARADROP))
 	{
 		iValue += (iTemp * 20);
 	}
@@ -10403,19 +10403,17 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
 	}
 
 	iTemp = GC.getPromotionInfo(ePromotion).getCombatPercent();
-	if ((AI_getUnitAIType() == UNITAI_ATTACK) ||
-		(AI_getUnitAIType() == UNITAI_COUNTER) ||
+	if ((AI_getUnitAIType() == UNITAI_ATTACK)       ||
+		(AI_getUnitAIType() == UNITAI_COUNTER)      ||
 		(AI_getUnitAIType() == UNITAI_CITY_COUNTER) ||
-		  (AI_getUnitAIType() == UNITAI_ATTACK_SEA) ||
-		  (AI_getUnitAIType() == UNITAI_RESERVE_SEA) ||
-			(AI_getUnitAIType() == UNITAI_ATTACK_SEA) ||
-			(AI_getUnitAIType() == UNITAI_PARADROP) ||
-			(AI_getUnitAIType() == UNITAI_PIRATE_SEA) ||
-			(AI_getUnitAIType() == UNITAI_RESERVE_SEA) ||
-			(AI_getUnitAIType() == UNITAI_ESCORT_SEA) ||
-			(AI_getUnitAIType() == UNITAI_CARRIER_SEA) ||
-			(AI_getUnitAIType() == UNITAI_ATTACK_AIR) ||
-			(AI_getUnitAIType() == UNITAI_CARRIER_AIR))
+		(AI_getUnitAIType() == UNITAI_ATTACK_SEA)   ||
+		(AI_getUnitAIType() == UNITAI_PARADROP)     ||
+		(AI_getUnitAIType() == UNITAI_PIRATE_SEA)   ||
+		(AI_getUnitAIType() == UNITAI_RESERVE_SEA)  ||
+		(AI_getUnitAIType() == UNITAI_ESCORT_SEA)   ||
+		(AI_getUnitAIType() == UNITAI_CARRIER_SEA)  ||
+		(AI_getUnitAIType() == UNITAI_ATTACK_AIR)   ||
+		(AI_getUnitAIType() == UNITAI_CARRIER_AIR))
 	{
 		iValue += (iTemp * 2);
 	}
@@ -11107,7 +11105,7 @@ CvUnit* CvUnitAI::AI_findTransport(UnitAITypes eUnitAI, int iFlags, int iMaxPath
 
 	// K-Mod
 	if (eUnitAI != NO_UNITAI && GET_PLAYER(getOwnerINLINE()).AI_getNumAIUnits(eUnitAI) == 0)
-		return false;
+		return NULL;
 	// K-Mod end
 
 	int iBestValue = MAX_INT;

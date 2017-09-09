@@ -1373,7 +1373,7 @@ void CvGame::normalizeRemoveBadFeatures()
 										}
 										else
 										{
-											if (!(iDistance == iMaxRange) && (getSorenRandNum((2 + (pLoopPlot->getBonusType() == NO_BONUS) ? 0 : 2), "Remove Bad Feature") == 0))
+											if (!(iDistance == iMaxRange) && (getSorenRandNum(2 + (pLoopPlot->getBonusType() == NO_BONUS ? 0 : 2), "Remove Bad Feature") == 0))
 											{
 												pLoopPlot->setFeatureType(NO_FEATURE);                                            
 											}
@@ -3312,10 +3312,11 @@ void CvGame::clearSecretaryGeneral(VoteSourceTypes eVoteSource)
 			if (kVote.isSecretaryGeneral())
 			{
 				VoteTriggeredData kData;
+				kData.iId = FFreeList::INVALID_INDEX;
 				kData.eVoteSource = eVoteSource;
 				kData.kVoteOption.eVote = (VoteTypes)j;
 				kData.kVoteOption.iCityId = -1;
-				kData.kVoteOption.szText.empty();
+				kData.kVoteOption.szText.clear();
 				kData.kVoteOption.ePlayer = NO_PLAYER;
 				setVoteOutcome(kData, NO_PLAYER_VOTE);
 				setSecretaryGeneralTimer(eVoteSource, 0);
@@ -6255,7 +6256,7 @@ bool CvGame::isDestroyedCityName(CvWString& szName) const
 {
 	std::vector<CvWString>::const_iterator it;
 
-	for (it = m_aszDestroyedCities.begin(); it != m_aszDestroyedCities.end(); it++)
+	for (it = m_aszDestroyedCities.begin(); it != m_aszDestroyedCities.end(); ++it)
 	{
 		if (*it == szName)
 		{
@@ -6275,7 +6276,7 @@ bool CvGame::isGreatPersonBorn(CvWString& szName) const
 {
 	std::vector<CvWString>::const_iterator it;
 
-	for (it = m_aszGreatPeopleBorn.begin(); it != m_aszGreatPeopleBorn.end(); it++)
+	for (it = m_aszGreatPeopleBorn.begin(); it != m_aszGreatPeopleBorn.end(); ++it)
 	{
 		if (*it == szName)
 		{
@@ -8568,7 +8569,7 @@ void CvGame::addReplayMessage(ReplayMessageTypes eType, PlayerTypes ePlayer, CvW
 
 void CvGame::clearReplayMessageMap()
 {
-	for (ReplayMessageList::const_iterator itList = m_listReplayMessages.begin(); itList != m_listReplayMessages.end(); itList++)
+	for (ReplayMessageList::const_iterator itList = m_listReplayMessages.begin(); itList != m_listReplayMessages.end(); ++itList)
 	{
 		const CvReplayMessage* pMessage = *itList;
 		if (NULL != pMessage)
@@ -9007,13 +9008,13 @@ void CvGame::write(FDataStreamBase* pStream)
 		std::vector<CvWString>::iterator it;
 
 		pStream->Write(m_aszDestroyedCities.size());
-		for (it = m_aszDestroyedCities.begin(); it != m_aszDestroyedCities.end(); it++)
+		for (it = m_aszDestroyedCities.begin(); it != m_aszDestroyedCities.end(); ++it)
 		{
 			pStream->WriteString(*it);
 		}
 
 		pStream->Write(m_aszGreatPeopleBorn.size());
-		for (it = m_aszGreatPeopleBorn.begin(); it != m_aszGreatPeopleBorn.end(); it++)
+		for (it = m_aszGreatPeopleBorn.begin(); it != m_aszGreatPeopleBorn.end(); ++it)
 		{
 			pStream->WriteString(*it);
 		}
@@ -9029,7 +9030,7 @@ void CvGame::write(FDataStreamBase* pStream)
 	ReplayMessageList::_Alloc::size_type iSize = m_listReplayMessages.size();
 	pStream->Write(iSize);
 	ReplayMessageList::const_iterator it;
-	for (it = m_listReplayMessages.begin(); it != m_listReplayMessages.end(); it++)
+	for (it = m_listReplayMessages.begin(); it != m_listReplayMessages.end(); ++it)
 	{
 		const CvReplayMessage* pMessage = *it;
 		if (NULL != pMessage)
@@ -10168,6 +10169,7 @@ void CvGame::doVoteSelection()
 								VoteSelectionSubData kOptionData;
 								kOptionData.iCityId = -1;
 								kOptionData.ePlayer = NO_PLAYER;
+								kOptionData.eOtherPlayer = NO_PLAYER;
 								kOptionData.eVote = (VoteTypes)iJ;
 								kOptionData.szText = gDLL->getText("TXT_KEY_POPUP_ELECTION_OPTION", GC.getVoteInfo((VoteTypes)iJ).getTextKeyWide(), getVoteRequired((VoteTypes)iJ, eVoteSource), countPossibleVote((VoteTypes)iJ, eVoteSource));
 								addVoteTriggered(eVoteSource, kOptionData);
