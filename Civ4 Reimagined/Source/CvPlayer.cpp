@@ -8232,9 +8232,10 @@ void CvPlayer::updateInflationRate()
 					!kLoopPlayer.isMinorCiv() &&
 					kLoopPlayer.canEverResearch(eTech))
 				{
-					iPotentialTech+=kLoopPlayer.getTotalPopulation();
+					int iWeight = kLoopPlayer.iTotalPopulation() * (kLoopPlayer.getTeam() == getTeam() ? 2 : 1);
+					iPotentialTech += iWeigth; 
 					if (GET_TEAM(kLoopPlayer.getTeam()).isHasTech(eTech))
-						iCurrentTech+=kLoopPlayer.getTotalPopulation();
+						iCurrentTech += iWeigth;
 				}
 			}
 		}
