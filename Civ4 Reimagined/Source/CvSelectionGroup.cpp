@@ -4234,6 +4234,7 @@ bool CvSelectionGroup::isAutomated() const
 void CvSelectionGroup::setAutomateType(AutomateTypes eNewValue)
 {
 	FAssert(getOwnerINLINE() != NO_PLAYER);
+	FAssert(isHuman() || eNewValue == NO_AUTOMATE); // The AI shouldn't use automation.
 
 	if (getAutomateType() != eNewValue)
 	{
