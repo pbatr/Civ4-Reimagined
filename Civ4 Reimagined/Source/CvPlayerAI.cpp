@@ -6081,7 +6081,6 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				if (GC.getBonusInfo((BonusTypes)iJ).getYieldChange(YIELD_FOOD) > 0 && GC.getGameINLINE().getElapsedGameTurns() < 25)
 				{
 					iEnableValue *= (GC.getBonusInfo((BonusTypes)iJ).isTerrain((int)GC.getInfoTypeForString("TERRAIN_COAST"))) ? 9 : 13;
-					iEnableValue /= 2;
 				}
 
 				iEnableValue *= (iOwned > 1) ? 120 : 100;
@@ -6420,11 +6419,16 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 						}
 					}
 				}
-				iRaceModifier = (iPathLength <= 1 ? 100 : -100) * iCount / std::max(1, iTotalPlayers);
+
+				if (iCount > 0)
+					iRaceModifier = (iPathLength <= 1 ? 100 : -100) * iCount / std::max(1, iTotalPlayers);
+				// Civ4 Reimagined
+				else
+					iRaceModifier = (iPathLength <= 1 || GC.getGame().getGameTurn() < 3) ? 1 : -1;
 
 				// Civ4 Reimagined
 				// To-do: improve this ugly code later
-				if ( GC.getGame().getGameTurn() < 3 && iTotalPlayers > 12 && getNumCities() <= 1 && iRaceModifier >= -50 && iRaceModifier <= 50)
+				if ( GC.getGame().getGameTurn() < 3 && getNumCities() <= 1 && iRaceModifier >= -50 && iRaceModifier <= 50)
 				{
 					iRaceModifier = std::max(-100, std::min(100, iRaceModifier + (calculateTotalCommerce() - 16) * 25));
 					if( gPlayerLogLevel > 2 )
@@ -6467,7 +6471,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 					
 					if (!(GC.getGameINLINE().isReligionSlotTaken((ReligionTypes)iJ)))
 					{
-						int iRoll = 400;
+						int iRoll = 200;
 
 						if (!GC.getGame().isOption(GAMEOPTION_PICK_RELIGION))
 						{
@@ -6481,10 +6485,11 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 							}
 						}
 
-						iRoll *= 200 + iRaceModifier;
-						iRoll /= 200;
+						iRoll *= 100 + iRaceModifier;
+						iRoll /= 100;
+
 						if (iRaceModifier > 10 && AI_getFlavorValue(FLAVOR_RELIGION) > 0)
-							iReligionValue += iRoll * (iRaceModifier-10) / 300;
+							iReligionValue += iRoll * (iRaceModifier-10) / 150;
 
 						iReligionValue += bAsync ? GC.getASyncRand().get(iRoll, "AI Research Religion ASYNC") : GC.getGameINLINE().getSorenRandNum(iRoll, "AI Research Religion");
 						// Note: relation value will be scaled down by other factors in the next section.
@@ -6521,7 +6526,9 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				else if (iPotentialReligions == 0)
 				{
 					// Civ4 Reimagined
-					iReligionValue += 500;
+
+					// Civ4 Reimagined
+					iReligionValue += 400;
 					bool bHasNeighbors = false;
 
 					bool bNeighbouringReligions = false;
@@ -6551,6 +6558,11 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 					// Civ4 Reimagined
 					if (!bHasNeighbors)
+					{
+						iReligionValue /= 2;
+					}
+
+					if (iRaceModifier < 0)
 					{
 						iReligionValue /= 2;
 					}
@@ -6621,6 +6633,9 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				iRandomMax += iRoll * kTechInfo.getFirstFreeTechs();
 			}
 			// K-Mod end
+
+			if (gPlayerLogLevel > 2)
+				logBBAI("Race modifier: %d", iRaceModifier);
 		}
 	}
 
