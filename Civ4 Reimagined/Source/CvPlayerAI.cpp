@@ -12528,7 +12528,7 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 					if (kLoopInfo.getCombatLimit() < 100)
 						iLimitedUnits += getUnitClassCount(i);
 					else if (kLoopInfo.getCollateralDamage() > 0)
-						iNoLimitCollateral = getUnitClassCount(i);
+						iNoLimitCollateral += getUnitClassCount(i);
 				}
 			}
 
