@@ -4875,6 +4875,7 @@ void CvUnitAI::AI_missionaryMove()
 	// Civ4 Reimagined: Wait with first missionaries
 	if (GET_PLAYER(getOwnerINLINE()).getNumCities() == 1 && GC.getGame().getGameTurn() < 35)
 	{
+		getGroup()->pushMission(MISSION_SKIP);
 		return;
 	}
 
