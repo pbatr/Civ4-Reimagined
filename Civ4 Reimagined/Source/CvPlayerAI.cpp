@@ -14788,17 +14788,10 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	// Civ4 Reimagined
 	// Republic
 	if (kCivic.getImprovementUpgradeRateModifier() != 0)
-	{	
-		int iUpgradeTime = 0;
-		int iNewUpgradeTime = 0;
+	{
 		int iTempValue = 0;
-		int iModifier = 0;
-		int iCount = 0;
-		int iPotCottageCount = 0;
 		
-		ImprovementTypes eImprovement;
-		
-		int iCottageCount = getImprovementCount(IMPROVEMENT_COTTAGE) + getImprovementCount(IMPROVEMENT_HAMLET) + getImprovementCount(IMPROVEMENT_VILLAGE) + getImprovementCount(IMPROVEMENT_TOWN);
+		const int iCottageCount = getImprovementCount(IMPROVEMENT_COTTAGE) + getImprovementCount(IMPROVEMENT_HAMLET) + getImprovementCount(IMPROVEMENT_VILLAGE) + getImprovementCount(IMPROVEMENT_TOWN);
 		
 		if (gPlayerLogLevel > 2) logBBAI("		Cottage Count: %d", getImprovementCount(IMPROVEMENT_COTTAGE));
 		if (gPlayerLogLevel > 2) logBBAI("		Hamlet Count: %d", getImprovementCount(IMPROVEMENT_HAMLET));
@@ -14807,49 +14800,59 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		if (gPlayerLogLevel > 2) logBBAI("		Sum of all cottage types: %d", iCottageCount);
 		
 		// Potential Cottages
+		int iPotCottageCount = 0;
 		if (getCurrentEra() < 5)
 		{
-			iPotCottageCount = std::max(std::min((int)getCurrentEra(), 2) * iCities - iCottageCount, 1);
+			iPotCottageCount += std::max(std::min((int)getCurrentEra(), 2) * iCities - iCottageCount, 1);
 			iPotCottageCount /= (iCottageCount < iCities && getCurrentEra() > 1 ? 2 : 1);
 		}
+
 		if (gPlayerLogLevel > 2) logBBAI("		Additional potential cottages: %d", iPotCottageCount);
+
 		iPotCottageCount *= AI_yieldWeight(YIELD_COMMERCE);
+
 		if (iPotCottageCount != 0)
 			iPotCottageCount /= 100 * (bWarPlan ? 2 : 1);
 		
-		iCount = iPotCottageCount;
+		int iCount = iPotCottageCount;
 		FAssert(iCount >= 0);
-		
+
+		int iUpgradeTime = 0;
 		for (int iI = (int)IMPROVEMENT_COTTAGE; iI < (int)IMPROVEMENT_TOWN; ++iI)
 		{
-			eImprovement = (ImprovementTypes)iI;
+			ImprovementTypes eImprovement = (ImprovementTypes)iI;
+			FAssert(eImprovement == IMPROVEMENT_COTTAGE || eImprovement == IMPROVEMENT_HAMLET || eImprovement == IMPROVEMENT_VILLAGE);
+
 			iUpgradeTime += GC.getGameINLINE().getImprovementUpgradeTime(eImprovement) * iCount + GC.getGameINLINE().getImprovementUpgradeTime(eImprovement)/2 * getImprovementCount(eImprovement);
 			iCount += getImprovementCount(eImprovement);
 		}
 		
 		if (iUpgradeTime > 0)
 		{
-			iNewUpgradeTime = iUpgradeTime * 100;
+			int iNewUpgradeTime = iUpgradeTime * 100;
 			iNewUpgradeTime /= std::max(20, kCivic.getImprovementUpgradeRateModifier() + 100);
 		
 			iTempValue += iUpgradeTime - iNewUpgradeTime;
-			iTempValue *= iCottageCount + iPotCottageCount - getImprovementCount(IMPROVEMENT_TOWN);
+			iTempValue *= iCount;
 			
 			iTempValue *= AI_averageYieldMultiplier(YIELD_COMMERCE);
 			iTempValue /= 100;
 			
 			iTempValue *= AI_yieldWeight(YIELD_COMMERCE);
 			iTempValue /= 100;
-		
+
+			int iYieldChanges = 0;
 			for (int iI = 0; iI < NUM_YIELD_TYPES; iI++)
 			{
-				iModifier += (getImprovementYieldChange(IMPROVEMENT_TOWN, (YieldTypes)iI) + kCivic.getImprovementYieldChanges(IMPROVEMENT_TOWN, (YieldTypes)iI)) * AI_yieldWeight((YieldTypes)iI) / 100;
+				iYieldChanges += (getImprovementYieldChange(IMPROVEMENT_TOWN, (YieldTypes)iI) + kCivic.getImprovementYieldChanges(IMPROVEMENT_TOWN, (YieldTypes)iI)) * AI_yieldWeight((YieldTypes)iI) / 100;
 			}
 		
-			if (iModifier != 0)
-				iTempValue += (iUpgradeTime - iNewUpgradeTime) * (iCottageCount + iPotCottageCount - getImprovementCount(IMPROVEMENT_TOWN)) * iModifier;
+			if (iYieldChanges != 0)
+				iTempValue += (iUpgradeTime - iNewUpgradeTime) * (iCottageCount + iPotCottageCount - getImprovementCount(IMPROVEMENT_TOWN)) * iYieldChanges;
 		
-			iTempValue *= 2;
+			iTempValue *= 5;
+			iTempValue /= 2;
+
 			iTempValue /= iUpgradeTime;
 		
 			if (gPlayerLogLevel > 2) logBBAI("	Civic Value of Changed Improvement Growth: %d", iTempValue);
@@ -15801,16 +15804,14 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 					}
 				}
 			}
-
-			if (bGlobeTheater)
-				continue;
 			
-			if (kCivic.isNoCapitalUnhappiness() && pLoopCity == pCapital)
+			if (kCivic.isNoCapitalUnhappiness() && pLoopCity == pCapital && !bGlobeTheater)
 			{
 				iCityHappiness = std::max(pLoopCity->unhappyLevel(0, true), pLoopCity->getPopulation());
+				iTempValue += pLoopCity->getPopulation();
 			}
 			
-			int iCurrentHappy = 100*(pLoopCity->happyLevel() - iHappy - pLoopCity->unhappyLevel(1, true));
+			int iCurrentHappy = 100*(pLoopCity->happyLevel() - iHappy - pLoopCity->unhappyLevel(1, false));
 			// I'm only going to subtract half of the commerce happiness, because we might not be using that commerce for only happiness.
 			iCurrentHappy -= 50*std::max(0, pLoopCity->getCommerceHappiness());
 			int iTestHappy = iCurrentHappy + 100 * iCityHappiness;
@@ -15823,7 +15824,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				iBonusProduction /= 100;
 				iBonusProduction *= AI_yieldWeight(YIELD_PRODUCTION);
 				iBonusProduction /= 100;
-				if (gPlayerLogLevel > 0) logBBAI("	Civic Value of Production per surplus happiness: %d", iBonusProduction);
+				if (gPlayerLogLevel > 0) logBBAI("	Civic Value of Production per surplus happiness: %d (surplus hap: %d)", iBonusProduction, iTestHappy/100);
 				iValue += iBonusProduction;
 			}
 			
@@ -15837,10 +15838,13 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 					iBonusCommerce /= 100;
 					iBonusCommerce *= AI_commerceWeight((CommerceTypes)iI);
 					iBonusCommerce /= 100;
-					if (gPlayerLogLevel > 0 && iBonusCommerce > 0) logBBAI("	Civic Value of Capital Commerce per surplus happiness: %d", iBonusCommerce);
+					if (gPlayerLogLevel > 0 && iBonusCommerce > 0) logBBAI("	Civic Value of Capital Commerce per surplus happiness: %d (surplus hap: %d)", iBonusCommerce, iTestHappy/100);
 					iValue += iBonusCommerce;
 				}
 			}
+
+			if (bGlobeTheater)
+				continue;
 			
 			iHapValue += std::max(0, -iCurrentHappy) - std::max(0, -iTestHappy); // change in the number of angry citizens
 			// a small bonus for happiness beyond what we need

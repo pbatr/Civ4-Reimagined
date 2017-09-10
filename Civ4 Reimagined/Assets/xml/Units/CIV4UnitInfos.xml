@@ -18338,6 +18338,10 @@
 					<UnitClassUpgradeType>UNITCLASS_FRIGATE</UnitClassUpgradeType>
 					<bUnitClassUpgrade>1</bUnitClassUpgrade>
 				</UnitClassUpgrade>
+				<UnitClassUpgrade>
+					<UnitClassUpgradeType>UNITCLASS_SHIP_OF_THE_LINE</UnitClassUpgradeType>
+					<bUnitClassUpgrade>1</bUnitClassUpgrade>
+				</UnitClassUpgrade>
 			</UnitClassUpgrades>
 			<UnitClassTargets/>
 			<UnitCombatTargets/>
@@ -19043,13 +19047,21 @@
 			<UnitClassAttackMods>
 				<UnitClassAttackMod>
 					<UnitClassType>UNITCLASS_TRIREME</UnitClassType>
-					<iUnitClassMod>50</iUnitClassMod>
+					<iUnitClassMod>20</iUnitClassMod>
+				</UnitClassAttackMod>
+				<UnitClassAttackMod>
+					<UnitClassType>UNITCLASS_MARAUDER</UnitClassType>
+					<iUnitClassMod>20</iUnitClassMod>
 				</UnitClassAttackMod>
 			</UnitClassAttackMods>
 			<UnitClassDefenseMods>
 				<UnitClassDefenseMod>
 					<UnitClassType>UNITCLASS_TRIREME</UnitClassType>
-					<iUnitClassMod>50</iUnitClassMod>
+					<iUnitClassMod>20</iUnitClassMod>
+				</UnitClassDefenseMod>
+				<UnitClassDefenseMod>
+					<UnitClassType>UNITCLASS_MARAUDER</UnitClassType>
+					<iUnitClassMod>20</iUnitClassMod>
 				</UnitClassDefenseMod>
 			</UnitClassDefenseMods>
 			<UnitCombatMods/>

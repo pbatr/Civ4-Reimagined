@@ -11833,9 +11833,9 @@
 			</OrPreReqs>
 			<AndPreReqs/>
 			<ObsoleteTechs>
-				<ObsoleteTech>TECH_RIFLING</ObsoleteTech>
-				<ObsoleteTech>TECH_RAILROAD</ObsoleteTech>
+				<ObsoleteTech>TECH_CHEMISTRY</ObsoleteTech>
 				<ObsoleteTech>TECH_ECONOMICS</ObsoleteTech>
+				<ObsoleteTech>TECH_MILITARY_TRADITION</ObsoleteTech>
 			</ObsoleteTechs>
 			<bRecurring>0</bRecurring>
 			<bTeam>0</bTeam>

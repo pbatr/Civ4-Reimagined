@@ -301,6 +301,7 @@ public:
 	bool canChangeReligion() const;	// Exposed to Python
 	DllExport bool canConvert(ReligionTypes eReligion) const;	// Exposed to Python
 	DllExport void convert(ReligionTypes eReligion);	// Exposed to Python
+	void convertClassicalTemples(ReligionTypes eReligion); // Civ4 Reimagined
 	bool hasHolyCity(ReligionTypes eReligion) const;	// Exposed to Python
 	int countHolyCities() const;	// Exposed to Python
 	DllExport void foundReligion(ReligionTypes eReligion, ReligionTypes eSlotReligion, bool bAward);	// Exposed to Python

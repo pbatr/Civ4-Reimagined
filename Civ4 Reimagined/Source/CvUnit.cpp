@@ -8017,7 +8017,7 @@ bool CvUnit::isHuman() const
 int CvUnit::visibilityRange() const
 {
 	// Civ4 Reimagined: Bigger Visibility Range for Sea Units
-	if ( getDomainType() == DOMAIN_SEA )
+	if (getDomainType() == DOMAIN_SEA && plot() != NULL && plot()->isWater())
 	{
 		return std::max(GC.getDefineINT("UNIT_VISIBILITY_RANGE") + getExtraVisibilityRange(), m_pUnitInfo->getMoves() * GC.getDefineINT("NAVAL_SEE_RANGE_PERCENT") / 100 + getExtraVisibilityRange());
 	}
@@ -8240,6 +8240,24 @@ bool CvUnit::isRivalTerritory() const
 
 bool CvUnit::isMilitaryHappiness() const
 {
+	// Civ4 Reimagined: Units who are from a different era might not prevent a city from becoming unhappy.
+	TechTypes eTech = (TechTypes)m_pUnitInfo->getPrereqAndTech();
+	int iUnitEra;
+	
+	if (eTech == NO_TECH)
+	{
+		iUnitEra = -1; // Warriors count as "one era before ancient"
+	}
+	else
+	{
+		iUnitEra = (EraTypes)GC.getTechInfo(eTech).getEra();
+	}
+	
+	if (iUnitEra + GC.getDefineINT("UNIT_MILITARY_HAPPINESS_ERA_OFFSET") < GET_PLAYER(getOwnerINLINE()).getCurrentEra())
+	{
+		return false;
+	}
+	
 	return m_pUnitInfo->isMilitaryHappiness();
 }
 
@@ -10279,7 +10297,10 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 		{
 			if (isMilitaryHappiness())
 			{
-				pOldCity->changeMilitaryHappinessUnits(-1);
+				if (pOldCity->getOwnerINLINE() == getOwnerINLINE()) // Civ4 Reimagined: Only units you own contribute to happiness.
+				{
+					pOldCity->changeMilitaryHappinessUnits(-1);
+				}
 			}
 		}
 
@@ -10450,7 +10471,10 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 		{
 			if (isMilitaryHappiness())
 			{
-				pNewCity->changeMilitaryHappinessUnits(1);
+				if (pNewCity->getOwnerINLINE() == getOwnerINLINE()) // Civ4 Reimagined: Only units you own contribute to happiness.
+				{
+					pNewCity->changeMilitaryHappinessUnits(1);
+				}
 			}
 		}
 
@@ -11774,19 +11798,9 @@ void CvUnit::collectBlockadeGold()
 
 							CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_TRADE_ROUTE_PLUNDERED", getNameKey(), pCity->getNameKey(), iGold);
 							gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_BUILD_BANK", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX_INLINE(), getY_INLINE());
-
-							// Civ4 Reimagined: We lose money by losing our traderoutes.
-							/*
-							// Civ4 Reimagined: Only subtract gold if player is not already broke
-							iGold = std::min(GET_PLAYER(pCity->getOwnerINLINE()).getGold(), iGold);
-							GET_PLAYER(pCity->getOwnerINLINE()).changeGold(-iGold);
-							*/
 							
-							if (iGold > 0)
-							{
-								szBuffer = gDLL->getText("TXT_KEY_MISC_TRADE_ROUTE_PLUNDER", getNameKey(), pCity->getNameKey(), iGold);
-								gDLL->getInterfaceIFace()->addHumanMessage(pCity->getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "SND_BOMBARDED", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pCity->getX_INLINE(), pCity->getY_INLINE());
-							}
+							szBuffer = gDLL->getText("TXT_KEY_MISC_TRADE_ROUTE_PLUNDER", getNameKey(), pCity->getNameKey(), iGold);
+							gDLL->getInterfaceIFace()->addHumanMessage(pCity->getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "SND_BOMBARDED", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pCity->getX_INLINE(), pCity->getY_INLINE());
 						}
 					}
 				}

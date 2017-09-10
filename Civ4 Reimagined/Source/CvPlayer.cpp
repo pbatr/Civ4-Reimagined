@@ -6938,6 +6938,15 @@ bool CvPlayer::canTrain(UnitTypes eUnit, bool bContinue, bool bTestVisible, bool
 	{
 		return false;
 	}
+	
+	// Civ4 Reimagined
+	if (GC.getUnitInfo(eUnit).getPrereqAndBonus() != NO_BONUS)
+	{
+		if (GET_TEAM(getTeam()).isBonusObsolete((BonusTypes)GC.getUnitInfo(eUnit).getPrereqAndBonus()))
+		{
+			return false;
+		}
+	}
 
 	/* original bts code
 	if (GET_TEAM(getTeam()).isUnitClassMaxedOut(eUnitClass))
@@ -9150,20 +9159,37 @@ bool CvPlayer::canConvert(ReligionTypes eReligion) const
 
 void CvPlayer::convert(ReligionTypes eReligion)
 {
-	int iAnarchyLength;
-
 	if (!canConvert(eReligion))
 	{
 		return;
 	}
 
-	iAnarchyLength = getReligionAnarchyLength();
+	const int iAnarchyLength = getReligionAnarchyLength();
 
 	changeAnarchyTurns(iAnarchyLength);
 
 	setLastStateReligion(eReligion);
 
 	setConversionTimer(std::max(1, ((100 + getAnarchyModifier()) * GC.getDefineINT("MIN_CONVERSION_TURNS")) / 100) + iAnarchyLength);
+}
+
+
+void CvPlayer::convertClassicalTemples(ReligionTypes eReligion)
+{
+	bool bConverted = false;
+
+	int iLoop;
+	for (CvCity* pCity = firstCity(&iLoop); pCity != NULL; pCity = nextCity(&iLoop))
+	{
+		bConverted = pCity->convertClassicalTemples(eReligion) || bConverted;
+	}
+
+	if (bConverted)
+	{
+		CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_CLASSICAL_TEMPLES_CONVERTED", GC.getReligionInfo(eReligion).getChar());
+		gDLL->getInterfaceIFace()->addHumanMessage(getID(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_GOLDAGESTART", MESSAGE_TYPE_MINOR_EVENT);
+	}
+
 }
 
 
@@ -13328,14 +13354,18 @@ void CvPlayer::setCurrentEra(EraTypes eNewValue)
 				}
 			}
 		}
-
-		// dirty all of this player's cities...
+		
+		
+		// dirty all of this player's cities... and check for military happiness. 
 		for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 		{
 			//if (pLoopCity->getOwnerINLINE() == getID())
 			FAssert(pLoopCity->getOwnerINLINE() == getID()); // K-Mod
 			{
 				pLoopCity->setLayoutDirty(true);
+				pLoopCity->changeMilitaryHappinessUnits(-pLoopCity->getMilitaryHappinessUnits()); //Civ4 Reimagined
+				pLoopCity->changeMilitaryHappinessUnits(pLoopCity->plot()->plotCount(PUF_isMilitaryHappiness)); //Civ4 Reimagined
+				pLoopCity->AI_setAssignWorkDirty(true);
 			}
 		}
 
@@ -13434,6 +13464,12 @@ void CvPlayer::setLastStateReligion(ReligionTypes eNewValue)
 
 					szBuffer = gDLL->getText("TXT_KEY_MISC_PLAYER_CONVERT_RELIGION", getNameKey(), GC.getReligionInfo(getLastStateReligion()).getTextKeyWide());
 					GC.getGameINLINE().addReplayMessage(REPLAY_MESSAGE_MAJOR_EVENT, getID(), szBuffer);
+
+					// Civ4 Reimagined
+					if (eOldReligion == NO_RELIGION)
+					{
+						convertClassicalTemples(getLastStateReligion());
+					}
 				}
 			}
 
@@ -25999,7 +26035,7 @@ void CvPlayer::changePillageGainModifier(int iChange)
 		m_iPillageGainModifier = m_iPillageGainModifier + iChange;
 }
 
-// Civ4 Reimagined
+// Civ4 Reimagined: Quantifiable Resource System
 // Each bonus resource can supply X population of your realm
 // X corresponds to TechValue/100
 int CvPlayer::getTechValue() const
@@ -26007,7 +26043,7 @@ int CvPlayer::getTechValue() const
 	return m_iTechValue;
 }
 
-// Civ4 Reimagined
+// Civ4 Reimagined: Quantifiable Resource System
 void CvPlayer::changeTechValue(int iChange)
 {
 	if (iChange != 0)
@@ -26016,7 +26052,7 @@ void CvPlayer::changeTechValue(int iChange)
 		logBBAI("Tech value: %d", m_iTechValue);
 }
 
-// Civ4 Reimagined
+// Civ4 Reimagined: Quantifiable Resource System
 int CvPlayer::getRealNumBonusNeededTimes100() const
 {
 	long lPopulation = getTotalPopulation() * 10000;
@@ -26026,7 +26062,7 @@ int CvPlayer::getRealNumBonusNeededTimes100() const
 	return ( lPopulation / getTechValue() );
 } 
 
-// Civ4 Reimagined
+// Civ4 Reimagined: Quantifiable Resource System
 int CvPlayer::getBonusValueTimes100(int iBonusCount) const
 {
 	if (iBonusCount <= 0)
@@ -26036,13 +26072,13 @@ int CvPlayer::getBonusValueTimes100(int iBonusCount) const
 	return std::min(100, getBonusRatio() * iBonusCount);
 }
 
-// Civ4 Reimagined
+// Civ4 Reimagined: Quantifiable Resource System
 int CvPlayer::getBonusRatio() const
 {
 	return m_iBonusRatio;
 }
 
-// Civ4 Reimagined
+// Civ4 Reimagined: Quantifiable Resource System
 void CvPlayer::updateBonusRatio(bool bAlwaysUpdate)
 {
 	if (!bAlwaysUpdate && !m_bUpdateBonusRatio)
@@ -26050,7 +26086,7 @@ void CvPlayer::updateBonusRatio(bool bAlwaysUpdate)
 		return;
 	}
 	
-	int iTotalPop = getTotalPopulation();
+	const int iTotalPop = getTotalPopulation();
 	bool bChange = false;
 	
 	if (iTotalPop > 0)
@@ -26070,9 +26106,8 @@ void CvPlayer::updateBonusRatio(bool bAlwaysUpdate)
 	
 	if (bChange)
 	{
-		CvCity* pLoopCity;
 		int iLoop;
-		for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+		for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 		{
 			pLoopCity->updateResources();
 		}
