@@ -12,6 +12,7 @@
 import CvUtil
 from CvPythonExtensions import *
 from EventSigns import placeLandmark # K-Mod
+from operator import itemgetter # K-Mod (used to avoid OOS when sorting)
 
 gc = CyGlobalContext()
 localText = CyTranslator()
@@ -987,7 +988,8 @@ def applySaltpeter(argsList):
 			if iDistance > 0:
 				listPlots.append((iDistance, loopPlot))
 
-	listPlots.sort()
+	#listPlots.sort()
+	listPlots.sort(key=itemgetter(0)) # K-Mod. Sorting by pointers can cause OOS.
 	
 	iCount = getSaltpeterNumExtraPlots()
 	for loopPlot in listPlots:
@@ -1184,7 +1186,8 @@ def applyInfluenza2(argsList):
 				listCities.append((iDistance, loopCity))
 		(loopCity, iter) = player.nextCity(iter, false)
 		
-	listCities.sort()
+	#listCities.sort()
+	listCities.sort(key=itemgetter(0)) # K-Mod. Sorting by pointers can cause OOS.
 	
 	if iNumCities > len(listCities): 
 		iNumCities = len(listCities)
@@ -1590,7 +1593,8 @@ def applyEarthDay2(argsList):
 					if (loopPlayer.getTradeDenial(kTriggeredData.ePlayer, tradeData) == DenialTypes.NO_DENIAL):
 						listPlayers.append((-loopPlayer.AI_civicValue(iCivic), iPlayer))
 						
-	listPlayers.sort()	
+	#listPlayers.sort()
+	listPlayers.sort(key=itemgetter(0)) # K-Mod. For consistent usage of 'sort', ignore the player id.
 	
 	if len(listPlayers) > 3:
 		listPlayers = listPlayers[:2]
@@ -3023,7 +3027,8 @@ def applyCrusadeDone3(argsList):
 						
 				(loopCity, iter) = loopPlayer.nextCity(iter, false)
 	
-	listCities.sort()
+	#listCities.sort()
+	listCities.sort(key=itemgetter(0)) # K-Mod. Sorting by pointers can cause OOS.
 	
 	iNumCities = min(gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities(), len(listCities))
 	

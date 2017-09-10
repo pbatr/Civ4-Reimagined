@@ -930,7 +930,7 @@ void CvTeam::shareCounters(TeamTypes eTeam)
 		if (iDelta > 0)
 		{
 			changeProjectCount(eProject, iDelta);
-			// don't count the additional projects that have been added in thiw way
+			// don't count the additional projects that have been added in this way
 			GC.getGameINLINE().incrementProjectCreatedCount(eProject, -iDelta);
 		}
 		//else
@@ -989,6 +989,16 @@ void CvTeam::shareCounters(TeamTypes eTeam)
 		//	kShareTeam.setNoTradeTech((eTech), false);
 		//
 	}
+
+	// K-Mod. Share extra moves.
+	// Note: there is no reliable way to do this. We can't tell if the bonus is from something unique- such as circumnavigation,
+	//       or from something that is already taken into account - such as refrigeration.
+	for (DomainTypes t = (DomainTypes)0; t < NUM_DOMAIN_TYPES; t=(DomainTypes)(t+1))
+	{
+		if (kShareTeam.getExtraMoves(t) > getExtraMoves(t))
+			changeExtraMoves(t, kShareTeam.getExtraMoves(t)-getExtraMoves(t));
+	}
+	// K-Mod end
 }
 
 
@@ -2195,7 +2205,7 @@ int CvTeam::getAtWarCount(bool bIgnoreMinors, bool bIgnoreVassals) const
 					if (isAtWar((TeamTypes)iI))
 					{
 						FAssert(iI != getID());
-						FAssert(!(AI_isSneakAttackPreparing((TeamTypes)iI)));
+						FAssert(!(AI_isSneakAttackPreparing((TeamTypes)iI))); // K-Mod note. This assert can fail when in the process of declaring war
 						iCount++;
 					}
 				}
@@ -4546,7 +4556,7 @@ TeamTypes CvTeam::getMasterTeam() const
 {
 	for (TeamTypes i = (TeamTypes)0; i < MAX_CIV_TEAMS; i=(TeamTypes)(i+1))
 	{
-		if (isVassal(i))
+		if (isVassal(i) && GET_TEAM(i).isAlive())
 			return i;
 	}
 	return getID();
@@ -4805,7 +4815,7 @@ void CvTeam::changeProjectCount(ProjectTypes eIndex, int iChange)
 		{
 			if (kProject.getVictoryThreshold(iVictory) > 0)
 			{
-				m_abCanLaunch[iVictory] = GC.getGameINLINE().testVictory((VictoryTypes)iVictory, getID());
+				setCanLaunch((VictoryTypes)iVictory, GC.getGameINLINE().testVictory((VictoryTypes)iVictory, getID()));
 			}
 		}
 
@@ -6790,9 +6800,9 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 		{
 			if (GC.getBuildInfo((BuildTypes) iI).getRoute() != NO_ROUTE)
 			{
-				for (iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
+				for (iJ = 0; iJ < GC.getMapINLINE().numPlotsINLINE(); iJ++)
 				{
-					pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(iI);
+					pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(iJ);
 
 					pCity = pLoopPlot->getPlotCity();
 

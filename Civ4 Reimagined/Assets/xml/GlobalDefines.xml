@@ -1513,11 +1513,11 @@
 	</Define>
 	<Define>
 		<DefineName>ESPIONAGE_SPY_INTERCEPT_MOD</DefineName>
-		<iDefineIntVal>-100</iDefineIntVal> <!-- Civ4 Reimagined, was -75 -->
+		<iDefineIntVal>-75</iDefineIntVal>
 	</Define>
 	<Define>
 		<DefineName>ESPIONAGE_SPY_NO_INTRUDE_INTERCEPT_MOD</DefineName>
-		<iDefineIntVal>-125</iDefineIntVal> <!-- Civ4 Reimagined, was -90 -->
+		<iDefineIntVal>-90</iDefineIntVal>
 	</Define>
 	<Define>
 		<DefineName>ESPIONAGE_SPY_MISSION_ESCAPE_MOD</DefineName>
