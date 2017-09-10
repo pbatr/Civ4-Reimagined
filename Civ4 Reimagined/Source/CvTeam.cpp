@@ -1330,6 +1330,15 @@ void CvTeam::declareWar(TeamTypes eTeam, bool bNewDiplo, WarPlanTypes eWarPlan, 
 		logBBAI("  Team %d (%S) declares war on team %d", getID(), GET_PLAYER(getLeaderID()).getCivilizationDescription(0), eTeam);
 	}
 
+	for (CvDeal* pLoopDeal = GC.getGameINLINE().firstDeal(&iLoop); pLoopDeal != NULL; pLoopDeal = GC.getGameINLINE().nextDeal(&iLoop))
+	{
+		if (((GET_PLAYER(pLoopDeal->getFirstPlayer()).getTeam() == getID()) && (GET_PLAYER(pLoopDeal->getSecondPlayer()).getTeam() == eTeam)) ||
+				((GET_PLAYER(pLoopDeal->getFirstPlayer()).getTeam() == eTeam) && (GET_PLAYER(pLoopDeal->getSecondPlayer()).getTeam() == getID())))
+		{
+			pLoopDeal->kill();
+		}
+	}
+
 	for (iI = 0; iI < MAX_PLAYERS; iI++)
 	{
 		if ((GET_PLAYER((PlayerTypes)iI).getTeam() == getID()) || (GET_PLAYER((PlayerTypes)iI).getTeam() == eTeam))
@@ -1355,21 +1364,6 @@ void CvTeam::declareWar(TeamTypes eTeam, bool bNewDiplo, WarPlanTypes eWarPlan, 
 		if ((GET_PLAYER((PlayerTypes)iI).getTeam() == getID()) || (GET_PLAYER((PlayerTypes)iI).getTeam() == eTeam))
 		{
 			GET_PLAYER((PlayerTypes)iI).updatePlunder(1, false);
-		}
-	}
-	
-	// Civ4 Reimagined: Moved this function down after actual declaration of war, so that verifying deals see the correct war/peace state.
-	for (CvDeal* pLoopDeal = GC.getGameINLINE().firstDeal(&iLoop); pLoopDeal != NULL; pLoopDeal = GC.getGameINLINE().nextDeal(&iLoop))
-	{
-		if (((GET_PLAYER(pLoopDeal->getFirstPlayer()).getTeam() == getID()) && (GET_PLAYER(pLoopDeal->getSecondPlayer()).getTeam() == eTeam)) ||
-				((GET_PLAYER(pLoopDeal->getFirstPlayer()).getTeam() == eTeam) && (GET_PLAYER(pLoopDeal->getSecondPlayer()).getTeam() == getID())))
-		{
-			pLoopDeal->kill();
-		}
-		else
-		{
-			// Civ4 Reimagined
-			pLoopDeal->verify();
 		}
 	}
 
@@ -1681,6 +1675,12 @@ void CvTeam::declareWar(TeamTypes eTeam, bool bNewDiplo, WarPlanTypes eWarPlan, 
 		}
 	}
 	// K-Mod end
+
+	// Civ4 Reimagined
+	for (CvDeal* pLoopDeal = GC.getGameINLINE().firstDeal(&iLoop); pLoopDeal != NULL; pLoopDeal = GC.getGameINLINE().nextDeal(&iLoop))
+	{
+		pLoopDeal->verify();
+	}
 }
 
 void CvTeam::makePeace(TeamTypes eTeam, bool bBumpUnits)
@@ -6559,7 +6559,6 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 	UnitTypes eLoopUnit; // Civ4 Reimagined
 	BonusTypes eBonus;
 	int iI, iJ;
-	int iEraValue; // Civ4 Reimagined
 	
 	const TerrainTypes TERRAIN_OCEAN = (TerrainTypes)GC.getInfoTypeForString("TERRAIN_OCEAN");
 
@@ -6743,33 +6742,37 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 				}
 			}
 				
-			//Civ4 Reimagined: Add values for the Quantifiable Resouce System
-			//In theory denominator should be equal to the number of techs of each era. Not true at the moment.
+			// Civ4 Reimagined: Quantifiable Resource System
+			//
+			// Target population per era is defined in XML. It corresponds to the maximum population which can be sufficiently supplied with one resource when all techs of this era are discovered.
+			// Every tech you discover improves your techValue and by that lets you supply more population with one resource.
+			//
+			// Denominator should be equal to the number of techs of each era.
+			int iEraValue = 0;
 			switch (GC.getTechInfo(eTech).getEra())
 			{
 			case 0:
-				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_ANCIENT") / 16;
+				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_ANCIENT") / 17;
 				break;
 			case 1:
 				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_CLASSICAL") / 15;
 				break;
 			case 2:
-				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_MEDIEVAL") / 12;
+				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_MEDIEVAL") / 15;
 				break;
 			case 3:
-				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_RENAISSANCE") / 15;
+				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_RENAISSANCE") / 12;
 			case 4:
-				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_INDUSTRIAL") / 13;
+				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_INDUSTRIAL") / 14;
 				break;
 			case 5:
-				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_MODERN") / 22;
+				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_MODERN") / 17;
 				break;
 			case 6:
-				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_FUTURE") / 22;
+				iEraValue = 100 * GC.getDefineINT("TARGET_POPULATION_FUTURE") / 2;
 				break;
 			default:
-				iEraValue = 0;
-				logBBAI("NO ERA FOUND!");
+				logBBAI("No era found for tech %S", GC.getTechInfo(eTech).getDescription());
 			}
 			GET_PLAYER((PlayerTypes)iI).changeTechValue(iEraValue * iChange);
 		}

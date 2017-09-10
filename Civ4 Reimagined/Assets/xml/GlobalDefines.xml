@@ -1692,29 +1692,30 @@
 		<iDefineIntVal>2</iDefineIntVal>
 	</Define>
 	<!-- Civ4 Reimagined Start -->
+	<!-- Target Populations are used for Quantifiable Resouce System. Target population adds up which means real target population for classical era is: TARGET_POPULATION_ANCIENT + TARGET_POPULATION_CLASSICAL -->
 	<Define>
 		<DefineName>TARGET_POPULATION_ANCIENT</DefineName>
-		<iDefineIntVal>15</iDefineIntVal>
+		<iDefineIntVal>18</iDefineIntVal>
 	</Define>
 	<Define>
 		<DefineName>TARGET_POPULATION_CLASSICAL</DefineName>
-		<iDefineIntVal>30</iDefineIntVal>
+		<iDefineIntVal>28</iDefineIntVal>
 	</Define>
 	<Define>
 		<DefineName>TARGET_POPULATION_MEDIEVAL</DefineName>
-		<iDefineIntVal>30</iDefineIntVal>
+		<iDefineIntVal>35</iDefineIntVal>
 	</Define>
 	<Define>
 		<DefineName>TARGET_POPULATION_RENAISSANCE</DefineName>
-		<iDefineIntVal>25</iDefineIntVal>
+		<iDefineIntVal>20</iDefineIntVal>
 	</Define>
 	<Define>
 		<DefineName>TARGET_POPULATION_INDUSTRIAL</DefineName>
-		<iDefineIntVal>20</iDefineIntVal>
+		<iDefineIntVal>21</iDefineIntVal>
 	</Define>
 	<Define>
 		<DefineName>TARGET_POPULATION_MODERN</DefineName>
-		<iDefineIntVal>20</iDefineIntVal>
+		<iDefineIntVal>16</iDefineIntVal>
 	</Define>
 	<Define>
 		<DefineName>TARGET_POPULATION_FUTURE</DefineName>
@@ -1791,6 +1792,10 @@
 	<Define>
 		<DefineName>SLAVE_THRESHOLD_START</DefineName>
 		<iDefineIntVal>5</iDefineIntVal>
+	</Define>
+	<Define> <!-- How many eras a unit can fall behind and still contribute to military hapiness. Note that warriors count as "one era before ancient" for this purpose. -->
+		<DefineName>UNIT_MILITARY_HAPPINESS_ERA_OFFSET</DefineName>
+		<iDefineIntVal>2</iDefineIntVal>
 	</Define>
 	<!-- Civ4 Reimagined End -->
 </Civ4Defines>
