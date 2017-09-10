@@ -2706,7 +2706,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -3320,7 +3320,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -3938,7 +3938,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -4543,7 +4543,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -5152,7 +5152,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -5770,7 +5770,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -6391,7 +6391,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -7008,7 +7008,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -7622,7 +7622,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -8240,7 +8240,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -8856,7 +8856,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -9432,7 +9432,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -10046,7 +10046,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -10655,7 +10655,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -11273,7 +11273,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -11893,7 +11893,7 @@
 			<iDifferentReligionAttitudeChangeLimit>0</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>50</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -12457,7 +12457,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -13068,7 +13068,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -13684,7 +13684,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -14309,7 +14309,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -14927,7 +14927,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -15536,7 +15536,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -16145,7 +16145,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -16759,7 +16759,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -17377,7 +17377,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -17982,7 +17982,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -18600,7 +18600,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -19214,7 +19214,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -19834,7 +19834,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-3</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>50</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -20389,7 +20389,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -21001,7 +21001,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -21619,7 +21619,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -22237,7 +22237,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -22855,7 +22855,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -23480,7 +23480,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -24085,7 +24085,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -24701,7 +24701,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -25313,7 +25313,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -25922,7 +25922,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -26538,7 +26538,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-3</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>50</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -27113,7 +27113,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -27725,7 +27725,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -28334,7 +28334,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -28959,7 +28959,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -29595,7 +29595,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -30220,7 +30220,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -30847,7 +30847,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -31473,7 +31473,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -32105,7 +32105,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -32746,7 +32746,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>
@@ -33380,7 +33380,7 @@
 			<iDifferentReligionAttitudeChangeLimit>-1</iDifferentReligionAttitudeChangeLimit>
 			<iBonusTradeAttitudeDivisor>35</iBonusTradeAttitudeDivisor>
 			<iBonusTradeAttitudeChangeLimit>2</iBonusTradeAttitudeChangeLimit>
-			<iOpenBordersAttitudeDivisor>15</iOpenBordersAttitudeDivisor>
+			<iOpenBordersAttitudeDivisor>10</iOpenBordersAttitudeDivisor>
 			<iOpenBordersAttitudeChangeLimit>2</iOpenBordersAttitudeChangeLimit>
 			<iDefensivePactAttitudeDivisor>12</iDefensivePactAttitudeDivisor>
 			<iDefensivePactAttitudeChangeLimit>2</iDefensivePactAttitudeChangeLimit>

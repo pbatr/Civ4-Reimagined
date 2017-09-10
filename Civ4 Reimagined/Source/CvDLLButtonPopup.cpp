@@ -1678,7 +1678,7 @@ bool CvDLLButtonPopup::launchChangeCivicsPopup(CvPopup* pPopup, CvPopupInfo &inf
 		gDLL->getInterfaceIFace()->popupLaunch(pPopup, false, POPUPSTATE_MINIMIZED);
 	}
 
-	SAFE_DELETE(paeNewCivics);
+	SAFE_DELETE_ARRAY(paeNewCivics);
 
 	return (bValid);
 }
@@ -2639,6 +2639,13 @@ bool CvDLLButtonPopup::launchLaunchPopup(CvPopup* pPopup, CvPopupInfo &info)
 
 	CvTeam& kTeam = GET_TEAM(GET_PLAYER(ePlayer).getTeam());
 
+	// K-Mod. Cancel the popup if something has happened to prevent the launch.
+	if (!kTeam.canLaunch(eVictory))
+	{
+		return false;
+	}
+	// K-Mod end
+
 	if (kTeam.getVictoryCountdown(eVictory) > 0 || GC.getGameINLINE().getGameState() != GAMESTATE_ON)
 	{
 		return false;
@@ -2648,7 +2655,13 @@ bool CvDLLButtonPopup::launchLaunchPopup(CvPopup* pPopup, CvPopupInfo &info)
 	GAMETEXT.setTimeStr(szDate, GC.getGame().getGameTurn() + kTeam.getVictoryDelay(eVictory), false);
 
 	gDLL->getInterfaceIFace()->popupSetHeaderString(pPopup, GC.getVictoryInfo(eVictory).getCivilopedia());
-	gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, gDLL->getText("TXT_KEY_ESTIMATED_VICTORY_DATE", szDate.GetCString()));
+	//gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, gDLL->getText("TXT_KEY_ESTIMATED_VICTORY_DATE", szDate.GetCString()));
+	// K-Mod. Include number of turns, and success probability.
+	gDLL->getInterfaceIFace()->popupSetBodyString(pPopup,
+		gDLL->getText("TXT_KEY_SPACE_SHIP_SCREEN_TRAVEL_TIME_LABEL", kTeam.getVictoryDelay(eVictory)) + NEWLINE +
+		gDLL->getText("TXT_KEY_ESTIMATED_VICTORY_DATE", szDate.GetCString()) + NEWLINE +
+		gDLL->getText("TXT_KEY_SPACESHIP_CHANCE_OF_SUCCESS", kTeam.getLaunchSuccessRate(eVictory)));
+	// K-Mod end
 
 	gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, gDLL->getText("TXT_KEY_POPUP_YES"), NULL, 0, WIDGET_GENERAL);
 	gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, gDLL->getText("TXT_KEY_POPUP_NO"), NULL, 1, WIDGET_GENERAL);

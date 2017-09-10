@@ -13,6 +13,7 @@ New
 *********
 Changes
 *********
+-Update to K-Mod version 1.45
 -Archers and Longbowman gain additional defense bonuses from defensive buildings such as walls and castles. Otherwise offensive units with higher ST would benefit more from walls/castles than dedicated city defenders, making balancing them tricky. Reduced city defense (Longbowman only) and increased costs to compensate.
 -Scouts and Explorers cannot enter rival territory
 -Chance of destroying buildings when bombarding cities halved
@@ -57,6 +58,7 @@ Tweaks
 -Babylonian bowman strength reduced to 3 but gains a 100% bonus vs archery units
 -Viking "Trading Post" UB moved to Harbor, grants +50% trade route yield, +2 XP and Navigation I.
 -Wall building quest no longer triggers when walls are obsolete
+-AI cancels open borders more sensibly.
 
 *********
 Interface
@@ -73,7 +75,8 @@ Fixes
 -Fixed tsunami, sports league and great depression event tooltips
 -Fixed 'balanced' resources appearing directly on starting positions
 -Players no longer automatically receive slaves when conquering colonial cities or acquiring them by trade
--Fixed a bug where units where not automatically moved outside of enemy territory when war is declared
+-Fixed a bug where units were not automatically moved outside of enemy territory when war is declared
+-Fixed a bug where sea units had a bigger visibility range than land units when stationed in cities
 
 *******************************************
 Civ4 Reimagined 1.2

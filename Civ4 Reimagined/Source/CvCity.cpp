@@ -3491,7 +3491,7 @@ int CvCity::getProductionDifference(int iProductionNeeded, int iProduction, int 
 		}
 	}
 
-	const int iFoodProduction = ((bFoodProduction) ? std::max(0, (getYieldRate(YIELD_FOOD) - foodConsumption(true))) : 0);
+	const int iFoodProduction = bFoodProduction ? std::max(0, getYieldRate(YIELD_FOOD) - foodConsumption()) : 0;
 	const int iOverflow = ((bOverflow) ? (getOverflowProduction() + iFeatureProduction) : 0);
 	const int iProductionModfiers = iProductionMultiplier * getBaseYieldRateModifier(YIELD_PRODUCTION, iProductionModifier);
 	
@@ -6438,7 +6438,8 @@ int CvCity::getSavedMaintenanceTimes100ByBuilding(BuildingTypes eBuilding) const
 	if (iModifier != 0 && !isDisorder() && !isWeLoveTheKingDay() && (getPopulation() > 0))
 	{
 		int iNewMaintenance = calculateBaseMaintenanceTimes100() * std::max(0, getMaintenanceModifier() + iModifier + 100) / 100;
-		return getMaintenanceTimes100() - iNewMaintenance;
+		//return getMaintenanceTimes100() - iNewMaintenance;
+		return ROUND_DIVIDE((getMaintenanceTimes100() - iNewMaintenance)*(100+GET_PLAYER(getOwnerINLINE()).getInflationRate()), 100); // K-Mod
 	}
 
 	return 0;
@@ -13135,7 +13136,7 @@ int CvCity::getReligionGrip(ReligionTypes eReligion) const
 
 	int iCurrentTurn = GC.getGame().getGameTurn();
 	int iTurnFounded = GC.getGame().getReligionGameTurnFounded(eReligion);
-	int iTimeScale = GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getVictoryDelayPercent()/3;
+	int iTimeScale = GC.getDefineINT("RELIGION_INFLUENCE_TIME_SCALE")*GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getVictoryDelayPercent()/100;
 	iScore += GC.getDefineINT("RELIGION_INFLUENCE_TIME_WEIGHT") * (iTurnFounded + iTimeScale) / (iCurrentTurn + iTimeScale);
 	
 	//Civ4 Reimagined: todo log this value.. maybe overflow?
@@ -16597,7 +16598,7 @@ void CvCity::invalidateYieldRankCache(YieldTypes eYield)
 
 void CvCity::invalidateCommerceRankCache(CommerceTypes eCommerce)
 {
-	FAssertMsg(eCommerce >= NO_YIELD && eCommerce < NUM_YIELD_TYPES, "invalidateCommerceRankCache passed bogus commerce index");
+	FAssertMsg(eCommerce >= NO_COMMERCE && eCommerce < NUM_COMMERCE_TYPES, "invalidateCommerceRankCache passed bogus commerce index");
 
 	if (eCommerce == NO_COMMERCE)
 	{

@@ -958,16 +958,56 @@ int getCombatOdds(const CvUnit* pAttacker, const CvUnit* pDefender)
 }
 
 // K-Mod
-int estimateCollateralWeight(const CvPlot* pPlot, TeamTypes eDefenceTeam)
+int estimateCollateralWeight(const CvPlot* pPlot, TeamTypes eAttackTeam, TeamTypes eDefenceTeam)
 {
 	int iBaseCollateral = GC.getDefineINT("COLLATERAL_COMBAT_DAMAGE"); // note: the default xml value is "10"
 
 	// Collateral damage does not depend on any kind of strength bonus - so when a unit takes collateral damage, their bonuses are effectively wasted.
 	// Therefore, I'm going to inflate the value of collateral damage based on a rough estimate of the defenders bonuses might be.
-	if (pPlot)
-		iBaseCollateral *= (pPlot->isCity() ? 130 : 110) + pPlot->defenseModifier(eDefenceTeam, false);
-	else
+	if (pPlot == NULL)
+	{
 		iBaseCollateral *= 110;
+	}
+	else
+	{
+		TeamTypes ePlotBonusTeam = eDefenceTeam;
+		if (ePlotBonusTeam == NO_TEAM)
+			ePlotBonusTeam = pPlot->getTeam() == eAttackTeam ? NO_TEAM : pPlot->getTeam();
+
+		iBaseCollateral *= (pPlot->isCity() ? 130 : 110) + pPlot->defenseModifier(ePlotBonusTeam, false);
+
+		// Estimate the average collateral damage reduction of the units on the plot
+		int iResistanceSum = 0;
+		int iUnits = 0;
+
+		CLLNode<IDInfo>* pUnitNode = pPlot->headUnitNode();
+
+		while (pUnitNode)
+		{
+			CvUnit* pLoopUnit = ::getUnit(pUnitNode->m_data);
+			pUnitNode = pPlot->nextUnitNode(pUnitNode);
+
+			if (!pLoopUnit->canDefend(pPlot))
+				continue;
+			if (eDefenceTeam != NO_TEAM && pLoopUnit->getTeam() != eDefenceTeam)
+				continue;
+			if (eAttackTeam != NO_TEAM && pLoopUnit->getTeam() == eAttackTeam)
+				continue;
+
+			iUnits++;
+			// Kludge! I'm only checking for immunity against the unit's own combat type.
+			// Ideally we'd know what kind of collateral damage we're expecting to be hit by, and check for immunity vs that.
+			// Or we could check all types... But the reality is, there are always going to be mods and fringe cases where
+			// the esitmate is inaccurate. And currently in K-Mod, all instances of immunity are to the units own type anyway.
+			// Whichever way we do the estimate, cho-ku-nu is going to mess it up anyway. (Unless I change the game mechanics.)
+			if (pLoopUnit->getUnitInfo().getUnitCombatCollateralImmune(pLoopUnit->getUnitCombatType()))
+				iResistanceSum += 100;
+			else
+				iResistanceSum += pLoopUnit->getCollateralDamageProtection();
+		}
+		if (iUnits > 0)
+			iBaseCollateral = iBaseCollateral * (iUnits * 100 - iResistanceSum)/(iUnits * 100);
+	}
 	return iBaseCollateral; // note, a factor of 100 is included in the result.
 }
 // K-Mod end
@@ -1574,7 +1614,20 @@ int pathCost(FAStarNode* parent, FAStarNode* node, int data, const void* pointer
 
 	TeamTypes eTeam = pSelectionGroup->getHeadTeam();
 
-	//CvDLLFAStarIFaceBase* pAStar = gDLL->getFAStarIFace();
+
+	int iExploreModifier = 3; // (in thirds)
+	if (!pToPlot->isRevealed(eTeam, false))
+	{
+		if (pSelectionGroup->getAutomateType() == AUTOMATE_EXPLORE ||
+			(!pSelectionGroup->isHuman() && (pSelectionGroup->getHeadUnitAI() == UNITAI_EXPLORE || pSelectionGroup->getHeadUnitAI() == UNITAI_EXPLORE_SEA)))
+		{
+			iExploreModifier = 2; // lower cost to encourage exploring unrevealed areas
+		}
+		else if (!pFromPlot->isRevealed(eTeam, false))
+		{
+			iExploreModifier = 4; // higher cost to discourage pathfinding deep into the unknown
+		}
+	}
 
 	{
 		CLLNode<IDInfo>* pUnitNode = pSelectionGroup->headUnitNode();
@@ -1592,6 +1645,7 @@ int pathCost(FAStarNode* parent, FAStarNode* node, int data, const void* pointer
 			iWorstMaxMoves = std::min(iWorstMaxMoves, iMaxMoves);
 
 			int iCost = PATH_MOVEMENT_WEIGHT * (iMovesLeft == 0 ? iMaxMoves : iMoveCost);
+			iCost = iCost * iExploreModifier / 3;
 			if (iCost > iWorstCost)
 			{
 				iWorstCost = iCost;
@@ -1668,7 +1722,6 @@ int pathCost(FAStarNode* parent, FAStarNode* node, int data, const void* pointer
 
 	// end symmetry breaking.
 
-	// lets try this without cheating, shall we?
 	if (!pToPlot->isRevealed(eTeam, false))
 		return iWorstCost;
 

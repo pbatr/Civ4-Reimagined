@@ -3455,21 +3455,13 @@ void CvDLLWidgetData::parseContactCivHelp(CvWidgetDataStruct &widgetDataStruct, 
 
 			if( !szWorstEnemyString.isEmpty() )
 			{
-				CvWString szTempBuffer;
-
-				szTempBuffer.assign(gDLL->getText(L"TXT_KEY_WORST_ENEMY_OF", szWorstEnemyString));
-
 				szBuffer.append(NEWLINE);
-				szBuffer.append(szTempBuffer);
+				szBuffer.append(gDLL->getText(L"TXT_KEY_WORST_ENEMY_OF", szWorstEnemyString.getCString()));
 			}
 			if( !szWarWithString.isEmpty() )
 			{
-				CvWString szTempBuffer;
-
-				szTempBuffer.assign(gDLL->getText(L"TXT_KEY_AT_WAR_WITH", szWarWithString));
-
 				szBuffer.append(NEWLINE);
-				szBuffer.append(szTempBuffer);
+				szBuffer.append(gDLL->getText(L"TXT_KEY_AT_WAR_WITH", szWarWithString.getCString()));
 			}
 
 			if( !(kActiveTeam.isAtWar(eTeam)))
@@ -3750,6 +3742,34 @@ void CvDLLWidgetData::parseScoreboardCheatText(CvWidgetDataStruct &widgetDataStr
         szTempBuffer.Format(L"Diplo4, ");
         szBuffer.append(szTempBuffer);
     }
+
+	// List the top 3 culture cities (by culture value weight).
+	//if (kPlayer.AI_isDoVictoryStrategy(AI_VICTORY_CULTURE1))
+	{
+		szBuffer.append(CvWString::format(L"\n\nTop %c cities by weight:", GC.getCommerceInfo(COMMERCE_CULTURE).getChar()));
+		int iLegendaryCulture = GC.getGame().getCultureThreshold((CultureLevelTypes)(GC.getNumCultureLevelInfos() - 1));
+		std::vector<std::pair<int,int> > city_list; // (weight, city id)
+
+		int iLoop;
+		for (CvCity* pLoopCity = kPlayer.firstCity(&iLoop); pLoopCity != NULL; pLoopCity = kPlayer.nextCity(&iLoop))
+			city_list.push_back(std::make_pair(kPlayer.AI_commerceWeight(COMMERCE_CULTURE, pLoopCity), pLoopCity->getID()));
+
+		int iListCities = std::min((int)city_list.size(), 3);
+		std::partial_sort(city_list.begin(), city_list.begin()+iListCities, city_list.end(), std::greater<std::pair<int,int> >());
+
+		int iGoldCommercePercent = kPlayer.AI_estimateBreakEvenGoldPercent();
+
+		for (int i = 0; i < iListCities; i++)
+		{
+			CvCity* pLoopCity = kPlayer.getCity(city_list[i].second);
+			int iEstimatedRate = pLoopCity->getCommerceRate(COMMERCE_CULTURE);
+			iEstimatedRate += (100 - iGoldCommercePercent - kPlayer.getCommercePercent(COMMERCE_CULTURE)) * pLoopCity->getYieldRate(YIELD_COMMERCE) * pLoopCity->getTotalCommerceRateModifier(COMMERCE_CULTURE) / 10000;
+			int iCountdown = (iLegendaryCulture - pLoopCity->getCulture(kPlayer.getID())) / std::max(1, iEstimatedRate);
+
+			szBuffer.append(CvWString::format(L"\n  %s:\t%d%%, %d turns", pLoopCity->getName().GetCString(), city_list[i].first, iCountdown));
+		}
+		szBuffer.append(CvWString::format(L"\n(assuming %d%% gold)", iGoldCommercePercent));
+	}
 	
 	// skip a line
 	szBuffer.append(NEWLINE);
@@ -4709,11 +4729,14 @@ void CvDLLWidgetData::parseMaintenanceHelp(CvWidgetDataStruct &widgetDataStruct,
 		}
 		else
 		{
+			int iInflationFactor = 100 + GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).getInflationRate(); // K-Mod
+
 			//		szBuffer = "Maintenance represents the total cost of governing this city.\n";
 			szBuffer.assign(gDLL->getText("TXT_KEY_MISC_MAINT_INFO"));
 			szBuffer.append(NEWLINE);
 
-			iMaintenanceValue = pHeadSelectedCity->calculateDistanceMaintenanceTimes100();
+			//iMaintenanceValue = pHeadSelectedCity->calculateDistanceMaintenanceTimes100();
+			iMaintenanceValue = pHeadSelectedCity->calculateDistanceMaintenanceTimes100()*iInflationFactor/100; // K-Mod
 			if (iMaintenanceValue != 0)
 			{
 				//			swprintf(szTempBuffer, "\n%s%d%c: %s", ((iMaintenanceValue > 0) ?  "+" : ""), iMaintenanceValue, GC.getCommerceInfo(COMMERCE_GOLD).getChar(), ((GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).getNumGovernmentCenters() > 0) ? "Distance from Palace" : "No Palace Penalty"));
@@ -4722,7 +4745,8 @@ void CvDLLWidgetData::parseMaintenanceHelp(CvWidgetDataStruct &widgetDataStruct,
 				szBuffer.append(gDLL->getText("TXT_KEY_MISC_NUM_MAINT_FLOAT", szMaint.GetCString()) + ((GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).getNumGovernmentCenters() > 0) ? gDLL->getText("TXT_KEY_MISC_DISTANCE_FROM_PALACE") : gDLL->getText("TXT_KEY_MISC_NO_PALACE_PENALTY")));
 			}
 
-			iMaintenanceValue = pHeadSelectedCity->calculateNumCitiesMaintenanceTimes100();
+			//iMaintenanceValue = pHeadSelectedCity->calculateNumCitiesMaintenanceTimes100();
+			iMaintenanceValue = pHeadSelectedCity->calculateNumCitiesMaintenanceTimes100()*iInflationFactor/100; // K-Mod
 			if (iMaintenanceValue != 0)
 			{
 				//			swprintf(szTempBuffer, "\n%s%d%c: Number of Cities", ((iMaintenanceValue > 0) ? "+" : ""), iMaintenanceValue, GC.getCommerceInfo(COMMERCE_GOLD).getChar());
@@ -4731,7 +4755,8 @@ void CvDLLWidgetData::parseMaintenanceHelp(CvWidgetDataStruct &widgetDataStruct,
 				szBuffer.append(gDLL->getText("TXT_KEY_MISC_NUM_CITIES_FLOAT", szMaint.GetCString()));
 			}
 
-			iMaintenanceValue = pHeadSelectedCity->calculateColonyMaintenanceTimes100();
+			//iMaintenanceValue = pHeadSelectedCity->calculateColonyMaintenanceTimes100();
+			iMaintenanceValue = pHeadSelectedCity->calculateColonyMaintenanceTimes100()*iInflationFactor/100; // K-Mod
 			if (iMaintenanceValue != 0)
 			{
 				CvWString szMaint = CvWString::format(L"%d.%02d", iMaintenanceValue/100, iMaintenanceValue%100);
@@ -4739,7 +4764,8 @@ void CvDLLWidgetData::parseMaintenanceHelp(CvWidgetDataStruct &widgetDataStruct,
 				szBuffer.append(gDLL->getText("TXT_KEY_MISC_COLONY_MAINT_FLOAT", szMaint.GetCString()));
 			}
 
-			iMaintenanceValue = pHeadSelectedCity->calculateCorporationMaintenanceTimes100();
+			//iMaintenanceValue = pHeadSelectedCity->calculateCorporationMaintenanceTimes100();
+			iMaintenanceValue = pHeadSelectedCity->calculateCorporationMaintenanceTimes100()*iInflationFactor/100; // K-Mod
 			if (iMaintenanceValue != 0)
 			{
 				CvWString szMaint = CvWString::format(L"%d.%02d", iMaintenanceValue/100, iMaintenanceValue%100);
@@ -4750,7 +4776,13 @@ void CvDLLWidgetData::parseMaintenanceHelp(CvWidgetDataStruct &widgetDataStruct,
 			szBuffer.append(SEPARATOR);
 
 			//		swprintf(szTempBuffer, "\n%d%c Total Maintenance", pHeadSelectedCity->getMaintenance(), GC.getCommerceInfo(COMMERCE_GOLD).getChar());
-			CvWString szMaint = CvWString::format(L"%d.%02d", pHeadSelectedCity->getMaintenanceTimes100()/100, pHeadSelectedCity->getMaintenanceTimes100()%100);
+			/* CvWString szMaint = CvWString::format(L"%d.%02d", pHeadSelectedCity->getMaintenanceTimes100()/100, pHeadSelectedCity->getMaintenanceTimes100()%100);
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_MISC_TOTAL_MAINT_FLOAT", szMaint.GetCString())); */
+			// K-Mod
+			iMaintenanceValue = pHeadSelectedCity->getMaintenanceTimes100()*iInflationFactor/100;
+
+			CvWString szMaint = CvWString::format(L"%d.%02d", iMaintenanceValue/100, iMaintenanceValue%100);
 			szBuffer.append(NEWLINE);
 			szBuffer.append(gDLL->getText("TXT_KEY_MISC_TOTAL_MAINT_FLOAT", szMaint.GetCString()));
 
@@ -5670,7 +5702,7 @@ void CvDLLWidgetData::parseDescriptionHelp(CvWidgetDataStruct &widgetDataStruct,
 	case CIVILOPEDIA_PAGE_CONCEPT_NEW:
 		{
 			NewConceptTypes eConcept = (NewConceptTypes)widgetDataStruct.m_iData2;
-			if (NO_CONCEPT != eConcept)
+			if (NO_NEW_CONCEPT != eConcept)
 			{
 				szBuffer.assign(GC.getNewConceptInfo(eConcept).getDescription());
 			}

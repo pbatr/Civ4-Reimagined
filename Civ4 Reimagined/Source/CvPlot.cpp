@@ -1807,17 +1807,17 @@ void CvPlot::changeAdjacentSight(TeamTypes eTeam, int iRange, bool bIncrement, C
 	for(int i=0;i<(int)aSeeInvisibleTypes.size();i++)
 	{
 		// Civ4 Reimagined: Smaller radius to detect invisible units
-		if (aSeeInvisibleTypes[i] != NO_INVISIBLE)
-			iRange -= 2;
-		for (int dx = -iRange; dx <= iRange; dx++)
+		const int iVisRange = (aSeeInvisibleTypes[i] == NO_INVISIBLE) ? iRange : std::max(iRange - 2, 1);
+
+		for (int dx = -iVisRange; dx <= iVisRange; dx++)
 		{
-			for (int dy = -iRange; dy <= iRange; dy++)
+			for (int dy = -iVisRange; dy <= iVisRange; dy++)
 			{
 				//check if in facing direction
-				if (bAerial || shouldProcessDisplacementPlot(dx, dy, iRange - 1, eFacingDirection))
+				if (bAerial || shouldProcessDisplacementPlot(dx, dy, iVisRange - 1, eFacingDirection))
 				{
 					bool outerRing = false;
-					if ((abs(dx) == iRange) || (abs(dy) == iRange))
+					if ((abs(dx) == iVisRange) || (abs(dy) == iVisRange))
 					{
 						outerRing = true;
 					}
@@ -1847,9 +1847,6 @@ void CvPlot::changeAdjacentSight(TeamTypes eTeam, int iRange, bool bIncrement, C
 				}
 			}
 		}
-		// Civ4 Reimagined
-		if (aSeeInvisibleTypes[i] != NO_INVISIBLE)
-			iRange += 2;
 	}
 }
 
@@ -2828,10 +2825,12 @@ int CvPlot::movementCost(const CvUnit* pUnit, const CvPlot* pFromPlot) const
 	// K-Mod. Why let the AI cheat this?
 	if (!isRevealed(pUnit->getTeam(), false))
 	{
-		if (!pFromPlot->isRevealed(pUnit->getTeam(), false))
+		/*if (!pFromPlot->isRevealed(pUnit->getTeam(), false))
 			return pUnit->maxMoves();
 		else
 			return GC.getMOVE_DENOMINATOR() + 1;
+		*/ // (further weight adjustments are now done in the pathfinder's moveCost function.)
+		return GC.getMOVE_DENOMINATOR();
 	}
 	// K-Mod end
 
@@ -6376,7 +6375,8 @@ int CvPlot::calculateImprovementYieldChange(ImprovementTypes eImprovement, Yield
 
 	iYield = GC.getImprovementInfo(eImprovement).getYieldChange(eYield);
 
-	if (isRiverSide())
+	//if (isRiverSide())
+	if (isRiver()) // K-Mod
 	{
 		iYield += GC.getImprovementInfo(eImprovement).getRiverSideYieldChange(eYield);
 	}
@@ -8948,7 +8948,7 @@ void CvPlot::doCulture()
 */
 								/* original bts code
 								pCity->changeOccupationTimer(GC.getDefineINT("BASE_REVOLT_OCCUPATION_TURNS") + ((iCityStrength * GC.getDefineINT("REVOLT_OCCUPATION_TURNS_PERCENT")) / 100));*/
-								pCity->changeOccupationTimer(GC.getDefineINT("BASE_REVOLT_OCCUPATION_TURNS") + 2*(pCity->getNumRevolts(eCulturalOwner)-1));
+								pCity->changeOccupationTimer(GC.getDefineINT("BASE_REVOLT_OCCUPATION_TURNS") + std::min(3, pCity->getNumRevolts(eCulturalOwner)-1));
 /*
 ** K-Mod end
 */
