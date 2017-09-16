@@ -5616,8 +5616,8 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 	// K-Mod. A very rough estimate assuming each city has ~2 trade routes; new local trade routes worth ~2 commerce, and foreign worth ~6.
 	if (kTechInfo.getTradeRoutes() != 0)
 	{
-		// Civ4 Reimagined: Determine the number of trade routes from capital
-		int iTradeRoutesPerCity = pCapitalCity ? pCapitalCity->getTradeRoutes() : 2;
+		// Civ4 Reimagined
+		int iTradeRoutesPerCity = GC.getGameINLINE().getTradeRoutes() + getTradeRoutes();
 		int iConnectedForeignCities = AI_countPotentialForeignTradeCities(true, AI_getFlavorValue(FLAVOR_GOLD) == 0);
 		int iAddedCommerce = 2*iCityCount*kTechInfo.getTradeRoutes() + 4*range(iConnectedForeignCities-iTradeRoutesPerCity*getNumCities(), 0, iCityCount*kTechInfo.getTradeRoutes());
 
