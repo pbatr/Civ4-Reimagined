@@ -5616,10 +5616,16 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 	// K-Mod. A very rough estimate assuming each city has ~2 trade routes; new local trade routes worth ~2 commerce, and foreign worth ~6.
 	if (kTechInfo.getTradeRoutes() != 0)
 	{
+		// Civ4 Reimagined: Determine the number of trade routes from capital
+		int iTradeRoutesPerCity = pCapitalCity ? pCapitalCity->getTradeRoutes() : 2;
 		int iConnectedForeignCities = AI_countPotentialForeignTradeCities(true, AI_getFlavorValue(FLAVOR_GOLD) == 0);
-		int iAddedCommerce = (2*iCityCount*kTechInfo.getTradeRoutes() + 4*range(iConnectedForeignCities-2*getNumCities(), 0, iCityCount*kTechInfo.getTradeRoutes()));
-		iValue += iAddedCommerce * (bFinancialTrouble ? 6 : 4) * AI_averageYieldMultiplier(YIELD_COMMERCE)/100;
-		//iValue += (2*iCityCount*kTechInfo.getTradeRoutes() + 4*range(iConnectedForeignCities-2*getNumCities(), 0, iCityCount*kTechInfo.getTradeRoutes())) * (bFinancialTrouble ? 6 : 4);
+		int iAddedCommerce = 2*iCityCount*kTechInfo.getTradeRoutes() + 4*range(iConnectedForeignCities-iTradeRoutesPerCity*getNumCities(), 0, iCityCount*kTechInfo.getTradeRoutes());
+
+		// Civ4 Reimagined
+		iAddedCommerce *= 4; // 1 commerce ~ 4 value points
+		iAddedCommerce *= AI_averageYieldMultiplier(YIELD_COMMERCE);
+		iAddedCommerce /= 100;
+		iValue += iAddedCommerce * AI_yieldWeight(YIELD_COMMERCE) / 100;
 	}
 	// K-Mod end
 	
@@ -6094,8 +6100,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 	/* ------------------ Unit Value  ------------------ */
 	bool bEnablesUnitWonder;
-	// Civ4 Reimagined: Doubled the value
-	const int iTechUnitValue = 2 * AI_techUnitValue( eTech, iPathLength, bEnablesUnitWonder, NO_CIVIC );
+	const int iTechUnitValue = AI_techUnitValue( eTech, iPathLength, bEnablesUnitWonder, NO_CIVIC );
 
 	if (gPlayerLogLevel >= 2)
 	{
