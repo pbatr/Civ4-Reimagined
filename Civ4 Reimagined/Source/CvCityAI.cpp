@@ -6803,8 +6803,9 @@ int CvCityAI::AI_clearFeatureValue(int iIndex)
 			iHealthValue /= 2;
 		} */
 		// K-Mod -
-		iHealthValue += (iHealth < 0 ? 100 : 400/(4+iHealth)) + 100 * pPlot->getPlayerCityRadiusCount(getOwnerINLINE());
-		// Civ4 Reimagined
+		//iHealthValue += (iHealth < 0 ? 100 : 400/(4+iHealth)) + 100 * pPlot->getPlayerCityRadiusCount(getOwnerINLINE());
+		// Civ4 Reimagined: Stop overvaluing forests!
+		iHealthValue += (iHealth < 0 ? 50 : 200/(4+iHealth)) + 50 * pPlot->getPlayerCityRadiusCount(getOwnerINLINE());
 		iHealthValue *= kFeatureInfo.getHealthPercent();
 		iHealthValue /= 100;
 		// note: health is not any more valuable when we aren't working it.
@@ -7245,12 +7246,13 @@ int CvCityAI::AI_getImprovementValue(CvPlot* pPlot, ImprovementTypes eImprovemen
 	int iBestTempBuildValue = 0;
 	BuildTypes eBestTempBuild = NO_BUILD;
 
-	bool bIgnoreFeature = false;
+	const bool bFinancial = kOwner.getExtraYieldThreshold(YIELD_COMMERCE) > 0; // Civ4 Reimagined
+	const bool bSpecialistEconomy = kOwner.AI_isDoStrategy(AI_STRATEGY_SPECIALIST_ECONOMY); // Civ4 Reimagined
+	const BonusTypes eBonus = pPlot->getBonusType(getTeam());
+	const BonusTypes eNonObsoleteBonus = pPlot->getNonObsoleteBonusType(getTeam());
+
 	bool bValid = false;
-	bool bFinancial = kOwner.getExtraYieldThreshold(YIELD_COMMERCE) > 0; // Civ4 Reimagined
-	bool bSpecialistEconomy = kOwner.AI_isDoStrategy(AI_STRATEGY_SPECIALIST_ECONOMY); // Civ4 Reimagined
-	BonusTypes eBonus = pPlot->getBonusType(getTeam());
-	BonusTypes eNonObsoleteBonus = pPlot->getNonObsoleteBonusType(getTeam());
+	bool bIgnoreFeature = false;
 
 	if (eImprovement == pPlot->getImprovementType())
 	{
@@ -7400,6 +7402,7 @@ int CvCityAI::AI_getImprovementValue(CvPlot* pPlot, ImprovementTypes eImprovemen
 		// Getting the time-weighted yields for the new and old improvements; then use them to calculate the final yield and yield difference.
 		AI_timeWeightedImprovementYields(pPlot, eImprovement, iTimeScale, weighted_final_yields);
 		AI_timeWeightedImprovementYields(pPlot, pPlot->getImprovementType(), iTimeScale, weighted_yield_diffs);
+
 		for (int iJ = 0; iJ < NUM_YIELD_TYPES; iJ++)
 		{
 			weighted_final_yields[iJ] += pPlot->calculateNatureYield((YieldTypes)iJ, getTeam(), bIgnoreFeature);
@@ -7450,7 +7453,8 @@ int CvCityAI::AI_getImprovementValue(CvPlot* pPlot, ImprovementTypes eImprovemen
 		}
 		// K-Mod end
 		
-		//logBBAI("diffyields: %d, %d, %d", aiDiffYields[YIELD_FOOD], aiDiffYields[YIELD_PRODUCTION], aiDiffYields[YIELD_COMMERCE]);
+		//logBBAI("diffyields: %d, %d, %d", (int)weighted_yield_diffs[YIELD_FOOD], (int)weighted_yield_diffs[YIELD_PRODUCTION], (int)weighted_yield_diffs[YIELD_COMMERCE]);
+		//logBBAI("finalyields: %d, %d, %d", (int)weighted_final_yields[YIELD_FOOD], (int)weighted_final_yields[YIELD_PRODUCTION], (int)weighted_final_yields[YIELD_COMMERCE]);
 		
 		//logBBAI("value before: %d", iValue);
 
@@ -7482,7 +7486,6 @@ int CvCityAI::AI_getImprovementValue(CvPlot* pPlot, ImprovementTypes eImprovemen
 					//iValue += (int)(iValue*((iCommercePriority - 100) * weighted_yield_diffs[YIELD_COMMERCE]))/200;
 					// Civ4 Reimagined: Use finalyields instead of diffyield so we do not ignore this factor when improvement = current improvement.
 					iValue += (int)(iValue*((iCommercePriority - 100) * weighted_final_yields[YIELD_COMMERCE]))/200;
-					iValue /= 100;
 				}
 			}
 
@@ -10888,12 +10891,6 @@ void CvCityAI::AI_bestPlotBuild(CvPlot* pPlot, long* piBestValue, BuildTypes* pe
 							
 							// Civ4 Reimagined
 							//logBBAI("Feature Remove Value: %d (%d, %d)", iValue, pPlot->getX_INLINE(), pPlot->getY_INLINE());
-							
-							// Civ4 Reimagined
-							if (pPlot->isBeingWorked())
-							{
-								//logBBAI("is beeing worked...");
-							}
 
 							iValue += iClearValue_wYield;
 							

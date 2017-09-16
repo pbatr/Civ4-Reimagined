@@ -4707,9 +4707,6 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
                 szString.append(szTempBuffer);
 			}
 
-			szTempBuffer.Format(L"\nActual Build Values: ");
-			szString.append(szTempBuffer);
-			
 			// Civ4 Reimagined
 			int iClearFeatureValue = 0;
 			if (pPlot->getFeatureType() != NO_FEATURE)
@@ -4717,14 +4714,19 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 				iClearFeatureValue = pWorkingCity->AI_clearFeatureValue(pWorkingCity->getCityPlotIndex(pPlot));
 			}
 
+			szTempBuffer.Format(L"\nClear feature: %d", iClearFeatureValue);
+			szString.append(szTempBuffer);
+
+			szTempBuffer.Format(L"\nActual Build Values: ");
+			szString.append(szTempBuffer);
+
 			for (iI = 0; iI < GC.getNumImprovementInfos(); iI++)
 			{
 				if( pPlot->canHaveImprovement((ImprovementTypes)iI, pWorkingCity->getTeam()) )
 				{
 					int iOtherBuildValue = pWorkingCity->AI_getImprovementValue( pPlot, (ImprovementTypes)iI, iFoodMultiplier, iProductionMultiplier, iCommerceMultiplier, iDesiredFoodChange, iClearFeatureValue);
-					int iOldValue = pWorkingCity->AI_getImprovementValue( pPlot, (ImprovementTypes)iI, iFoodMultiplier, iProductionMultiplier, iCommerceMultiplier, iDesiredFoodChange, iClearFeatureValue);
-
-					szTempBuffer.Format(L"\n   %s : %d  (old %d)", GC.getImprovementInfo((ImprovementTypes)iI).getDescription(), iOtherBuildValue, iOldValue );
+					
+					szTempBuffer.Format(L"\n   %s : %d", GC.getImprovementInfo((ImprovementTypes)iI).getDescription(), iOtherBuildValue);
 					szString.append(szTempBuffer);
 				}
 			}
