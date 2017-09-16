@@ -7288,7 +7288,7 @@ void CvGame::createBarbarianUnits()
 
 					for (iI = 0; iI < iNeededBarbs; iI++)
 					{
-						// Civ4 Reimagined: Reduce the chance of spawning in desert/tundra
+						// Civ4 Reimagined: Reduce the chance of spawning in desert
 						iBarbsInWasteland = getSorenRandNum(100, "Barb Unit Spawning in wasteland");
 						if (pLoopArea->isWater() || iBarbsInWasteland < GC.getDefineINT("BARBARIANS_SPAWNING_IN_WASTELAND_PERCENT"))
 						{
