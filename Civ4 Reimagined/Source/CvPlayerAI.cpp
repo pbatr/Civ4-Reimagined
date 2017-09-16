@@ -6071,6 +6071,8 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 			}
 			// K-Mod end
 
+			if (gPlayerLogLevel >= 2) logBBAI("Value for revealing resources: %d", iRevealValue);
+
 			iValue += iRevealValue;
 		}
 		// K-Mod: Value for enabling resources that are already revealed
@@ -6091,6 +6093,8 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 				iEnableValue *= (iOwned > 1) ? 120 : 100;
 				iEnableValue /= 100;
+
+				if (gPlayerLogLevel >= 2) logBBAI("Value for enabling resources: %d", iEnableValue);
 
 				iValue += iEnableValue;
 			}

@@ -1171,7 +1171,8 @@ void CvCity::doTurn()
 				}
 			}
 
-			//Civ4 Reimagined todo: AssertMsg with name of city
+			// Civ4 Reimagined todo: Production from chopping ships
+
 			FAssert(iCount == getBaseYieldRate((YieldTypes)iI));
 		}
 
