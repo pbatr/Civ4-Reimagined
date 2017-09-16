@@ -190,6 +190,11 @@ bool CvXMLLoadUtility::SetGlobalDefines()
 	{
 		return false;
 	}
+	
+	if (!ReadGlobalDefines("xml\\GlobalDefinesReimagined.xml", cache))
+	{
+		return false;
+	}
 
 	if (!ReadGlobalDefines("xml\\PythonCallbackDefines.xml", cache))
 	{

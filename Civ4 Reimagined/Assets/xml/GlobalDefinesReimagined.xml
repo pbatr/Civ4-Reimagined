@@ -1,0 +1,331 @@
+<?xml version="1.0"?>
+<!-- edited with XMLSPY v2004 rel. 2 U (http://www.xmlspy.com) by Tim McCracken (Firaxis Games) -->
+<!-- Sid Meier's Civilization 4 -->
+<!-- Copyright Firaxis Games 2005 -->
+<!-- -->
+<!-- Global Defines for Civ4 Reimagined -->
+<Civ4Defines xmlns="x-schema:CIV4GlobalDefinesSchema.xml">
+	<Define>
+		<DefineName>NUM_DO_GOODY_ATTEMPTS</DefineName>
+		<iDefineIntVal>20</iDefineIntVal> <!-- original value: 10 -->
+	</Define>
+	<Define>
+		<DefineName>ANIMAL_MAX_XP_VALUE</DefineName>
+		<iDefineIntVal>0</iDefineIntVal> <!-- original value: 5 -->
+	</Define>
+	<Define>
+		<DefineName>MAX_FORTIFY_TURNS</DefineName>
+		<iDefineIntVal>2</iDefineIntVal> <!-- original value: 5 -->
+	</Define>
+	<Define>
+		<DefineName>NUM_CORPORATION_PREREQ_BONUSES</DefineName>
+		<iDefineIntVal>6</iDefineIntVal> <!-- original value: 5 -->
+	</Define>
+	<Define>
+		<DefineName>BASE_CIVIC_ANARCHY_LENGTH</DefineName>
+		<iDefineIntVal>0</iDefineIntVal> <!-- original value: 1 -->
+	</Define>
+	<Define>
+		<DefineName>BASE_RELIGION_ANARCHY_LENGTH</DefineName>
+		<iDefineIntVal>0</iDefineIntVal> <!-- original value: 1 -->
+	</Define>
+	<Define>
+		<DefineName>POWER_HEALTH_CHANGE</DefineName>
+		<iDefineIntVal>0</iDefineIntVal> <!-- original value: -2 -->
+	</Define>
+	<Define>
+		<DefineName>GREAT_PEOPLE_THRESHOLD_INCREASE</DefineName>
+		<iDefineIntVal>65</iDefineIntVal> <!-- original value: 50 -->
+	</Define>
+	<Define>
+		<DefineName>GREAT_PEOPLE_THRESHOLD_INCREASE_TEAM</DefineName>
+		<iDefineIntVal>65</iDefineIntVal> <!-- original value: 50 -->
+	</Define>
+	<Define>
+		<DefineName>GREAT_GENERALS_THRESHOLD_INCREASE</DefineName>
+		<iDefineIntVal>67</iDefineIntVal> <!-- original value: 50 -->
+	</Define>
+	<Define>
+		<DefineName>GREAT_GENERALS_THRESHOLD_INCREASE_TEAM</DefineName>
+		<iDefineIntVal>67</iDefineIntVal> <!-- original value: 50 -->
+	</Define>
+	<Define>
+		<DefineName>OUR_POPULATION_TRADE_MODIFIER_OFFSET</DefineName>
+		<iDefineIntVal>-5</iDefineIntVal> <!-- original value: -10 -->
+	</Define>
+	<Define>
+		<DefineName>TRADE_PROFIT_PERCENT</DefineName>
+		<iDefineIntVal>100</iDefineIntVal> <!-- original value: 20 -->
+	</Define>
+	<Define>
+		<DefineName>MIN_CONVERSION_TURNS</DefineName>
+		<iDefineIntVal>20</iDefineIntVal> <!-- original value: 5 -->
+	</Define>
+	<Define> 
+		<DefineName>BASE_WAR_WEARINESS_MULTIPLIER</DefineName>
+		<iDefineIntVal>3</iDefineIntVal> <!-- original value: 2 -->
+	</Define>
+	<Define>
+		<DefineName>CORPORATION_FOREIGN_SPREAD_COST_PERCENT</DefineName>
+		<iDefineIntVal>50</iDefineIntVal> <!-- original value: 200 -->
+	</Define>
+	<Define>
+		<DefineName>EVENT_PROBABILITY_ROLL_SIDES</DefineName>
+		<iDefineIntVal>90</iDefineIntVal> <!-- original value: 100 -->
+	</Define>
+	<Define>
+		<DefineName>CONSCRIPT_POPULATION_PER_COST</DefineName>
+		<iDefineIntVal>120</iDefineIntVal> <!-- original value: 60 -->
+	</Define>
+	<Define>
+		<DefineName>COLLATERAL_COMBAT_DAMAGE</DefineName>
+		<iDefineIntVal>8</iDefineIntVal> <!-- original value: 10 -->
+	</Define>
+	<Define>
+		<DefineName>HILLS_EXTRA_DEFENSE</DefineName>
+		<iDefineIntVal>0</iDefineIntVal> <!-- original value: 25 -->
+	</Define>
+	<Define>
+		<DefineName>WW_ATTACKED_WITH_NUKE</DefineName>
+		<iDefineIntVal>3</iDefineIntVal> <!-- original value: 12 -->
+	</Define>
+	<Define>
+		<DefineName>WAR_SUCCESS_NUKE</DefineName>
+		<iDefineIntVal>20</iDefineIntVal> <!-- original value: 10 -->
+	</Define>
+	<Define>
+		<DefineName>TECH_COST_TOTAL_KNOWN_TEAM_MODIFIER</DefineName>
+		<iDefineIntVal>100</iDefineIntVal> <!-- original value: 30 -->
+	</Define>
+	<Define>
+		<DefineName>PEACE_TREATY_LENGTH</DefineName>
+		<iDefineIntVal>20</iDefineIntVal> <!-- original value: 10 -->
+	</Define>
+	<Define>
+		<DefineName>AT_WAR_CULTURE_ANGER_MODIFIER</DefineName>
+		<iDefineIntVal>33</iDefineIntVal> <!-- original value: 50 -->
+	</Define>
+	<Define>
+		<DefineName>CULTURE_PERCENT_ANGER</DefineName>
+		<iDefineIntVal>600</iDefineIntVal> <!-- original value: 400 -->
+	</Define>
+	<Define>
+		<DefineName>CONSCRIPT_ANGER_DIVISOR</DefineName>
+		<iDefineIntVal>15</iDefineIntVal> <!-- original value: 10 -->
+	</Define>
+	<Define>
+		<DefineName>MAXED_UNIT_GOLD_PERCENT</DefineName>
+		<iDefineIntVal>50</iDefineIntVal> <!-- original value: 100 -->
+	</Define>
+	<Define>
+		<DefineName>MAXED_BUILDING_GOLD_PERCENT</DefineName>
+		<iDefineIntVal>50</iDefineIntVal> <!-- original value: 100 -->
+	</Define>
+	<Define>
+		<DefineName>MAXED_PROJECT_GOLD_PERCENT</DefineName>
+		<iDefineIntVal>50</iDefineIntVal> <!-- original value: 100 -->
+	</Define>
+	<Define>
+		<DefineName>EXPERIENCE_FROM_WITHDRAWL</DefineName>
+		<iDefineIntVal>0</iDefineIntVal> <!-- original value: 1 -->
+	</Define>
+	<Define>
+		<DefineName>BASE_UNIT_UPGRADE_COST</DefineName>
+		<iDefineIntVal>12</iDefineIntVal> <!-- original value: 20 -->
+	</Define>
+	<Define>
+		<DefineName>UNIT_UPGRADE_COST_PER_PRODUCTION</DefineName>
+		<iDefineIntVal>2</iDefineIntVal> <!-- original value: 3 -->
+	</Define>
+	<Define>
+		<DefineName>DIPLO_VOTE_SECRETARY_GENERAL_INTERVAL</DefineName>
+		<iDefineIntVal>3</iDefineIntVal> <!-- original value: 4 -->
+	</Define>
+	<Define>
+		<DefineName>VASSAL_REVOLT_OWN_LOSSES_FACTOR</DefineName>
+		<iDefineIntVal>40</iDefineIntVal> <!-- original value: 50 -->
+	</Define>
+	<Define>
+		<DefineName>FREE_VASSAL_LAND_PERCENT</DefineName>
+		<iDefineIntVal>40</iDefineIntVal> <!-- original value: 50 -->
+	</Define>
+	<Define>
+		<DefineName>FREE_VASSAL_POPULATION_PERCENT</DefineName>
+		<iDefineIntVal>40</iDefineIntVal> <!-- original value: 50 -->
+	</Define>
+	<Define>
+		<DefineName>ESPIONAGE_CITY_RELIGION_STATE_MOD</DefineName>
+		<iDefineIntVal>-10</iDefineIntVal> <!-- original value: -15 -->
+	</Define>
+	<Define>
+		<DefineName>FIRST_EVENT_DELAY_TURNS</DefineName>
+		<iDefineIntVal>25</iDefineIntVal> <!-- original value: 20 -->
+	</Define>
+	<Define>
+		<DefineName>COLONY_NUM_FREE_DEFENDERS</DefineName>
+		<iDefineIntVal>3</iDefineIntVal> <!-- original value: 2 -->
+	</Define>
+	<!-- Unchanged value but changed semantics, i.e. modifier for every trade route with a capital. If both the actual city and the trading city are capitals the bonus is doubled. 
+	The old modifier was renamed to CONNECTION_TO_CAPITAL_TRADE_MODIFIER (see below) -->
+	<Define>
+		<DefineName>CAPITAL_TRADE_MODIFIER</DefineName>
+		<iDefineIntVal>25</iDefineIntVal>
+	</Define>
+	
+	<!-- Introduced by Civ4 Reimagined -->
+	
+	<!-- Percentage of total movement points that are lost when moving with ships through enemy territory during war. -->
+	<Define> 
+		<DefineName>NAVAL_MOVEMENT_PERCENT_COST_ENEMY_TERRITORY</DefineName>
+		<iDefineIntVal>50</iDefineIntVal>
+	</Define>
+	<!-- This is the old CAPITAL_TRADE_MODIFIER, i.e. modifier for every trade route with a city that is connected to the capital. -->
+	<Define>
+		<DefineName>CONNECTION_TO_CAPITAL_TRADE_MODIFIER</DefineName>
+		<iDefineIntVal>25</iDefineIntVal>
+	</Define>
+	<!-- Trade route modifier for colony cities. Colonies are cities on different continent from the capital. For definition of continent see below. -->
+	<Define>
+		<DefineName>COLONY_TRADE_MODIFIER</DefineName>
+		<iDefineIntVal>100</iDefineIntVal>
+	</Define>
+	<!-- Modifier for anger in colonies that triggers in industrial/modern era. -->
+	<Define>
+		<DefineName>COLONY_PERCENT_ANGER_MODIFIER</DefineName>
+		<iDefineIntVal>100</iDefineIntVal>
+	</Define>
+	<!-- Base colony city maintenaince times 100. -->
+	<Define>
+		<DefineName>COLONY_CITY_MAINTENANCE</DefineName>
+		<iDefineIntVal>600</iDefineIntVal>
+	</Define>
+	<!-- Continent definition is used for oversea trade and if a city counts as a colony. -->
+	<Define>
+		<DefineName>MINIMUM_NUM_TILES_FOR_CONTINENT</DefineName>
+		<iDefineIntVal>15</iDefineIntVal>
+	</Define>
+	<!-- Tech discovery speed modifier for techs that enable religions when the religion is already founded. Higher value means faster discovery. -->
+	<Define>
+		<DefineName>TECH_COST_DISCOVERED_RELIGION_MODIFIER</DefineName>
+		<iDefineIntVal>100</iDefineIntVal>
+	</Define>
+	<!-- Espionage cost modifier for cities that have a corporation controlled by the espionage player (i.e. headquarter is placed in espionage players civ). -->
+	<Define>
+		<DefineName>ESPIONAGE_CITY_CORPORATION_MOD</DefineName>
+		<iDefineIntVal>-25</iDefineIntVal>
+	</Define>
+	<!-- Used for balancing starting positions. Higher value means on average stronger starting positions. -->
+	<Define>
+		<DefineName>MAX_STARTING_POS_VALUE</DefineName>
+		<iDefineIntVal>2150</iDefineIntVal>
+	</Define>
+	<!-- Percentage of barbarian units spawning in wasteland. Wasteland is defined as a tile without food. -->
+	<Define>
+		<DefineName>BARBARIANS_SPAWNING_IN_WASTELAND_PERCENT</DefineName>
+		<iDefineIntVal>25</iDefineIntVal>
+	</Define>
+	<!-- Maximum number of citizens that can be sacrificed when using slavery. -->
+	<Define>
+		<DefineName>MAX_HURRY_POPULATION</DefineName>
+		<iDefineIntVal>3</iDefineIntVal>
+	</Define>
+	<!-- Master civs gain a percentage of its vassals commerce each turn. -->
+	<Define>
+		<DefineName>VASSAL_COMMERCE_GAIN_PERCENT</DefineName>
+		<iDefineIntVal>10</iDefineIntVal>
+	</Define>
+	<!-- Generic Modifier for spreading religion with missionaries. -->
+	<Define>
+		<DefineName>RELIGION_INFLUENCE_UNIT_MODIFIER_PERCENT</DefineName>
+		<iDefineIntVal>130</iDefineIntVal>
+	</Define>
+	<!-- Flat % boost for spreading state religion with missionaries in own empire. -->
+	<Define>
+		<DefineName>RELIGION_INFLUENCE_OWN_STATE_RELIGION_SPREAD</DefineName>
+		<iDefineIntVal>20</iDefineIntVal>
+	</Define>
+	<!-- Generic modifier for removing an existing religion by spreading a new one with missionaries. -->
+	<Define>
+		<DefineName>REMOVE_RELIGION_UNIT_MODIFIER_PERCENT</DefineName>
+		<iDefineIntVal>125</iDefineIntVal>
+	</Define>
+	<!-- City revolt chance gets modified by the number of happy/angry ciizens. -->
+	<Define>
+		<DefineName>REVOLT_HAPPINESS_MODIFIER_PERCENT</DefineName>
+		<iDefineIntVal>5</iDefineIntVal>
+	</Define>	
+	<Define>
+		<DefineName>REVOLT_CHANCE_INCREASE_PER_ANGRY_CITIZEN_PERCENT</DefineName>
+		<iDefineIntVal>10</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>REVOLT_CHANCE_NO_ANGRY_CITIZEN_PERCENT</DefineName>
+		<iDefineIntVal>50</iDefineIntVal>
+	</Define>
+	<!-- Diminished returns are used for income from shrines and corporation headquarters. -->
+	<Define>
+		<DefineName>COMMERCE_CAP_FOR_SHRINES_AND_HEADQUARTERS</DefineName>
+		<iDefineIntVal>60</iDefineIntVal>
+	</Define>
+	<!-- In BtS vassals get unhappiness in cities equal to the happiness gained by the master. We introduced this value to seperate those two factors. -->
+	<Define>
+		<DefineName>VASSAL_UNHAPPINESS</DefineName>
+		<iDefineIntVal>0</iDefineIntVal>
+	</Define>
+	<!-- Slaves can be acquired by conquering or razing enemy cities when having slavery as a civic. There exists a threshold of population points you have to conquer before gaining
+	a slave. The threshold increases with every slave. -->
+	<Define>
+		<DefineName>SLAVE_THRESHOLD_START</DefineName>
+		<iDefineIntVal>5</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>SLAVE_THRESHOLD_INCREASE_PERCENT</DefineName>
+		<iDefineIntVal>50</iDefineIntVal>
+	</Define>
+	<!-- The visibility range of naval units is equal to their movement points. It is then further modified by this percentage value. -->
+	<Define>
+		<DefineName>NAVAL_SEE_RANGE_PERCENT</DefineName>
+		<iDefineIntVal>40</iDefineIntVal>
+	</Define>
+	<!-- How many eras a unit can fall behind and still contribute to military hapiness. Note that warriors count as "one era before ancient" for this purpose. -->
+	<Define>
+		<DefineName>UNIT_MILITARY_HAPPINESS_ERA_OFFSET</DefineName>
+		<iDefineIntVal>2</iDefineIntVal>
+	</Define>
+	<!-- Target Populations are used for Quantifiable Resouce System. They correspond to the maximum population which can be sufficiently supplied with one resource when all techs of this
+	era are discovered. Every tech you discover improves your techValue and by that lets you supply more population with one resource. Target population adds up which means e.g. real
+	target population for classical era is: TARGET_POPULATION_ANCIENT + TARGET_POPULATION_CLASSICAL -->
+	<Define>
+		<DefineName>TARGET_POPULATION_ANCIENT</DefineName>
+		<iDefineIntVal>20</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>TARGET_POPULATION_CLASSICAL</DefineName>
+		<iDefineIntVal>22</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>TARGET_POPULATION_MEDIEVAL</DefineName>
+		<iDefineIntVal>23</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>TARGET_POPULATION_RENAISSANCE</DefineName>
+		<iDefineIntVal>20</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>TARGET_POPULATION_INDUSTRIAL</DefineName>
+		<iDefineIntVal>25</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>TARGET_POPULATION_MODERN</DefineName>
+		<iDefineIntVal>25</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>TARGET_POPULATION_FUTURE</DefineName>
+		<iDefineIntVal>3</iDefineIntVal>
+	</Define>
+	<!-- Not used at the moment. -->	
+	<Define>
+		<DefineName>UNIQUE_POWER_CULTURE_INCOME_PERCENT_PER_CITY</DefineName>
+		<iDefineIntVal>90</iDefineIntVal>
+	</Define>
+</Civ4Defines>
