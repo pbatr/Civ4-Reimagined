@@ -11153,8 +11153,6 @@ int CvPlayerAI::AI_baseBonusVal(BonusTypes eBonus, bool bAdditional) const
 	// Civ4 Reimagined
 	if (getTotalPopulation() != 0)
 	{
-		//iValue += std::min(GC.getBonusInfo(eBonus).getHealth() * 100, GC.getBonusInfo(eBonus).getHealth() * getTechValue() / getTotalPopulation()) / 10;
-		//iValue += std::min(GC.getBonusInfo(eBonus).getHappiness() * 100, GC.getBonusInfo(eBonus).getHappiness() * getTechValue() / getTotalPopulation()) / 10;
 		int iRealHealth = std::min(GC.getBonusInfo(eBonus).getHealth() * 100, GC.getBonusInfo(eBonus).getHealth() * getTechValue() / getTotalPopulation());
 		int iRealHap = std::min(GC.getBonusInfo(eBonus).getHappiness() * 100, GC.getBonusInfo(eBonus).getHappiness() * getTechValue() / getTotalPopulation());
 		if (iRealHealth > 0)
@@ -15662,7 +15660,9 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				// loss of corp resource
 				if (kCorpInfo.getBonusProduced() != NO_BONUS)
 				{
-					iCorpValue -= AI_bonusVal((BonusTypes)kCorpInfo.getBonusProduced(), 1, false) / 4;
+					//iCorpValue -= AI_bonusVal((BonusTypes)kCorpInfo.getBonusProduced(), 1, false) / 4;
+					// Civ4 Reimagined: AI_bonusVal is value per city
+					iCorpValue -= iCities * AI_bonusVal((BonusTypes)kCorpInfo.getBonusProduced(), 1, false) / 4;
 				}
 			}
 
@@ -17013,7 +17013,9 @@ int CvPlayerAI::AI_espionageVal(PlayerTypes eTargetPlayer, EspionageMissionTypes
 					BonusTypes eBonus = pPlot->getNonObsoleteBonusType(GET_PLAYER(eTargetPlayer).getTeam());
 					if (NO_BONUS != eBonus)
 					{
-						iValue += 2*GET_PLAYER(eTargetPlayer).AI_bonusVal(eBonus, -1); // was 1*
+						//iValue += 2*GET_PLAYER(eTargetPlayer).AI_bonusVal(eBonus, -1); // was 1*
+						// Civ4 Reimagined: Value of AI_bonusVal is per city
+						iValue += getNumCities() * 2 * GET_PLAYER(eTargetPlayer).AI_bonusVal(eBonus, -1);
 						
 						int iTempValue = 0;
 						if (NULL != pPlot->getWorkingCity())
@@ -21103,8 +21105,9 @@ int CvPlayerAI::AI_eventValue(EventTypes eEvent, const EventTriggeredData& kTrig
 	int iBonusValue = 0;
 	if (NO_BONUS != kEvent.getBonus())
 	{
-		//iBonusValue = AI_bonusVal((BonusTypes)kEvent.getBonus());
-		iBonusValue = AI_bonusVal((BonusTypes)kEvent.getBonus(), 0, true); // K-Mod
+		//iBonusValue = AI_bonusVal((BonusTypes)kEvent.getBonus(), 0, true); // K-Mod
+		// Civ4 Reimagined: AI_bonusVal is per city
+		iBonusValue = iNumCities * AI_bonusVal((BonusTypes)kEvent.getBonus(), 0, true);
 	}
 
 	if (NULL != pPlot)
@@ -21312,8 +21315,11 @@ int CvPlayerAI::AI_eventValue(EventTypes eEvent, const EventTriggeredData& kTrig
 			iDiploValue += (iBonusValue * GC.getDefineINT("PEACE_TREATY_LENGTH")) / 60; */
 
 			// K-Mod. The original code undervalued our loss of bonus by a factor of 100.
-			iValue -= AI_bonusVal((BonusTypes)kEvent.getBonusGift(), -1) * GC.getDefineINT("PEACE_TREATY_LENGTH") / 4;
-			int iGiftValue = kOtherPlayer.AI_bonusVal((BonusTypes)kEvent.getBonusGift(), +1) * (iOtherPlayerAttitudeWeight - 40) / 100;
+			//iValue -= AI_bonusVal((BonusTypes)kEvent.getBonusGift(), -1) * GC.getDefineINT("PEACE_TREATY_LENGTH") / 4;
+			//int iGiftValue = kOtherPlayer.AI_bonusVal((BonusTypes)kEvent.getBonusGift(), +1) * (iOtherPlayerAttitudeWeight - 40) / 100;
+			// Civ4 Reimagined: Value of AI_bonusVal is per city
+			iValue -= getNumCities() * AI_bonusVal((BonusTypes)kEvent.getBonusGift(), -1) * GC.getDefineINT("PEACE_TREATY_LENGTH") / 4;
+			int iGiftValue = kOtherPlayer.getNumCities() * kOtherPlayer.AI_bonusVal((BonusTypes)kEvent.getBonusGift(), +1) * (iOtherPlayerAttitudeWeight - 40) / 100;
 			iDiploValue += iGiftValue * GC.getDefineINT("PEACE_TREATY_LENGTH") / 4;
 			// K-Mod end
 		}
