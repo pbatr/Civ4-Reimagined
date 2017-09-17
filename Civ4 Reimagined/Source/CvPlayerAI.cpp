@@ -6029,16 +6029,16 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 	iValue += iBuildValue;
 
-	// does tech reveal bonus resources
 	for (int iJ = 0; iJ < GC.getNumBonusInfos(); iJ++)
 	{
+		// does tech reveal bonus resources
 		if (GC.getBonusInfo((BonusTypes)iJ).getTechReveal() == eTech)
 		{
 			int iRevealValue = 8;
 			iRevealValue += AI_bonusVal((BonusTypes)iJ, 1, true) * iCityCount * 2/3;
 			
-			BonusClassTypes eBonusClass = (BonusClassTypes)GC.getBonusInfo((BonusTypes)iJ).getBonusClassType();
-			int iBonusClassTotal = (viBonusClassRevealed[eBonusClass] + viBonusClassUnrevealed[eBonusClass]);
+			const BonusClassTypes eBonusClass = (BonusClassTypes)GC.getBonusInfo((BonusTypes)iJ).getBonusClassType();
+			const int iBonusClassTotal = (viBonusClassRevealed[eBonusClass] + viBonusClassUnrevealed[eBonusClass]);
 			
 			//iMultiplier is basically a desperation value
 			//it gets larger as the AI runs out of options
@@ -6079,20 +6079,28 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 		else if (GC.getBonusInfo((BonusTypes)iJ).getTechCityTrade() == eTech &&
 			(kTeam.isHasTech((TechTypes)GC.getBonusInfo((BonusTypes)iJ).getTechReveal()) || kTeam.isForceRevealedBonus((BonusTypes)iJ)))
 		{
-			int iOwned = countOwnedBonuses((BonusTypes)iJ);
+			const int iOwned = countOwnedBonuses((BonusTypes)iJ);
 			if (iOwned > 0)
 			{
 				int iEnableValue = 4;
-				iEnableValue += AI_bonusVal((BonusTypes)iJ, 1, true) * iCityCount;
+				//Civ4 Reimagined
+				//iEnableValue += AI_bonusVal((BonusTypes)iJ, 1, true) * iCityCount;
+				iEnableValue += AI_bonusVal((BonusTypes)iJ, iOwned, true) * iCityCount;
 
 				// Civ4 Reimagined
-				if (GC.getBonusInfo((BonusTypes)iJ).getYieldChange(YIELD_FOOD) > 0 && GC.getGameINLINE().getElapsedGameTurns() < 25)
+				if (GC.getGameINLINE().getElapsedGameTurns() < 25 && iCityCount == 1)
 				{
-					iEnableValue *= (GC.getBonusInfo((BonusTypes)iJ).isTerrain((int)GC.getInfoTypeForString("TERRAIN_COAST"))) ? 9 : 13;
+					for (int iImprovement = 0; iImprovement < GC.getNumImprovementInfos(); ++iImprovement)
+					{
+						const CvImprovementInfo &kImprovementInfo = GC.getImprovementInfo((ImprovementTypes)iImprovement);
+						const int iFoodBonus = kImprovementInfo.getImprovementBonusYield(iJ, YIELD_FOOD);
+						if (iFoodBonus > 0)
+						{
+							if (gPlayerLogLevel >= 2) logBBAI("Bonus Value for enabling early food resources");
+							iEnableValue += iFoodBonus * 250;
+						}
+					}
 				}
-
-				iEnableValue *= (iOwned > 1) ? 120 : 100;
-				iEnableValue /= 100;
 
 				if (gPlayerLogLevel >= 2) logBBAI("Value for enabling resources: %d", iEnableValue);
 
