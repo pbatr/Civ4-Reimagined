@@ -1084,7 +1084,7 @@
 				</ProductionTrait>
 			</ProductionTraits>
 			<Flavors/>
-			<iAIWeight>30</iAIWeight>
+			<iAIWeight>0</iAIWeight>
 			<iCost>60</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
@@ -1339,7 +1339,7 @@
 				</ProductionTrait>
 			</ProductionTraits>
 			<Flavors/>
-			<iAIWeight>20</iAIWeight>
+			<iAIWeight>0</iAIWeight>
 			<iCost>60</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
@@ -1588,7 +1588,7 @@
 			<PrereqBonuses/>
 			<ProductionTraits/>
 			<Flavors/>
-			<iAIWeight>30</iAIWeight>
+			<iAIWeight>0</iAIWeight>
 			<iCost>-1</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
@@ -6746,7 +6746,7 @@
 			<PrereqBonuses/>
 			<ProductionTraits/>
 			<Flavors/>
-			<iAIWeight>10</iAIWeight>
+			<iAIWeight>0</iAIWeight>
 			<iCost>30</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
@@ -6967,7 +6967,7 @@
 			</PrereqBonuses>
 			<ProductionTraits/>
 			<Flavors/>
-			<iAIWeight>10</iAIWeight>
+			<iAIWeight>0</iAIWeight>
 			<iCost>30</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
