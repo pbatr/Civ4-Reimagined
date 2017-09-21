@@ -5619,13 +5619,16 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 		// Civ4 Reimagined
 		int iTradeRoutesPerCity = GC.getGameINLINE().getTradeRoutes() + getTradeRoutes();
 		int iConnectedForeignCities = AI_countPotentialForeignTradeCities(true, AI_getFlavorValue(FLAVOR_GOLD) == 0);
-		int iAddedCommerce = 2*iCityCount*kTechInfo.getTradeRoutes() + 4*range(iConnectedForeignCities-iTradeRoutesPerCity*getNumCities(), 0, iCityCount*kTechInfo.getTradeRoutes());
+		int iAddedCommerce = 2*(iCityCount+2)*kTechInfo.getTradeRoutes() + 4*range(iConnectedForeignCities-iTradeRoutesPerCity*getNumCities(), 0, iCityCount*kTechInfo.getTradeRoutes());
 
 		// Civ4 Reimagined
 		iAddedCommerce *= 4; // 1 commerce ~ 4 value points
 		iAddedCommerce *= AI_averageYieldMultiplier(YIELD_COMMERCE);
 		iAddedCommerce /= 100;
-		iValue += iAddedCommerce * AI_yieldWeight(YIELD_COMMERCE) / 100;
+		iAddedCommerce *= AI_yieldWeight(YIELD_COMMERCE);
+		iAddedCommerce /= 100;
+		if (gPlayerLogLevel >= 2) logBBAI("Value for trade routes: %d", iAddedCommerce);
+		iValue += iAddedCommerce;
 	}
 	// K-Mod end
 	
@@ -6163,7 +6166,9 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 	// K-Mod. Scale the random wonder bonus based on leader personality.
 	if (bEnablesWonder && iPathLength <= 1 && getTotalPopulation() > 5)
 	{
-		const int iBaseRand = 300;
+		//const int iBaseRand = 300;
+		// Civ4 Reimagined
+		const int iBaseRand = 150;
 		int iWonderRandom = ((bAsync) ? GC.getASyncRand().get(iBaseRand, "AI Research Wonder Building ASYNC") : GC.getGameINLINE().getSorenRandNum(iBaseRand, "AI Research Wonder Building"));
 		
 		//int iFactor = 10 + GC.getLeaderHeadInfo(getPersonalityType()).getWonderConstructRand(); // note: highest value of iWonderConstructRand 50 in the default xml.
@@ -6566,8 +6571,6 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				else if (iPotentialReligions == 0)
 				{
 					// Civ4 Reimagined
-
-					// Civ4 Reimagined
 					iReligionValue += 400;
 					bool bHasNeighbors = false;
 
@@ -6597,7 +6600,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 					}
 
 					// Civ4 Reimagined
-					if (!bHasNeighbors)
+					if (!bHasNeighbors && GC.getGameINLINE().getElapsedGameTurns() >= 20)
 					{
 						iReligionValue /= 2;
 					}
@@ -6680,7 +6683,8 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 	}
 
 	// Civ4 Reimagined
-	if (kTechInfo.getFlavorValue(FLAVOR_MILITARY) > 0) {
+	if (kTechInfo.getFlavorValue(FLAVOR_MILITARY) > 0)
+	{
 		bool bAnyWarPlans = false;
 		bool bTotalWar = false;
 		for (int iI = 0; iI < MAX_CIV_TEAMS; iI++)
@@ -7044,14 +7048,10 @@ int CvPlayerAI::AI_techBuildingValue(TechTypes eTech, bool bConstCache, bool& bE
 						// Civ4 Reimagined
 						if (kLoopBuilding.getPrereqAndBonus() == (BonusTypes)i || kLoopBuilding.getBonusFatCross() == (BonusTypes)i)
 						{
-							iBuildingValue *= isWorldWonderClass(eClass) ? 5 : 2;
+							iMultiplier += 200;
 						}
-						if (kLoopBuilding.getBonusProductionModifier((BonusTypes)i) > 0)
-						{
-							iBuildingValue *= 3;
-							iBuildingValue /= isWorldWonderClass(eClass) ? 1 : 2;
-						}
-					} else if (kLoopBuilding.getPrereqAndBonus() == (BonusTypes)i || kLoopBuilding.getBonusFatCross() == (BonusTypes)i)
+					} 
+					else if (kLoopBuilding.getPrereqAndBonus() == (BonusTypes)i || kLoopBuilding.getBonusFatCross() == (BonusTypes)i)
 					{
 						if (((TechTypes)GC.getBonusInfo((BonusTypes)i).getTechReveal() != eTech && (TechTypes)(GC.getBonusInfo((BonusTypes)i).getTechCityTrade()) != eTech))
 						{
@@ -7059,7 +7059,9 @@ int CvPlayerAI::AI_techBuildingValue(TechTypes eTech, bool bConstCache, bool& bE
 						}
 					}
 				}
-				int iScale = 15 * (3 + getCurrentEra()); // hammers (ideally this would be based on the average city yield or something like that.)
+				//int iScale = 15 * (3 + getCurrentEra()); // hammers (ideally this would be based on the average city yield or something like that.)
+				// Civ4 Reimagined
+				int iScale = 5 * (3 + getCurrentEra());
 				iScale += AI_isCapitalAreaAlone() ? 30 : 0; // can afford to spend more on infrastructure if we are alone.
 				// decrease when at war
 				if (GET_TEAM(getTeam()).getAnyWarPlanCount(true) > 0)
