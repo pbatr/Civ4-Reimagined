@@ -7382,19 +7382,27 @@ int CvCityAI::AI_getImprovementValue(CvPlot* pPlot, ImprovementTypes eImprovemen
 	{
 		// K-Mod. Get a weighted average of the yields for improvements which upgrade (eg. cottages).
 		int iTimeScale = 60;
-		iTimeScale += (100*GC.getGameINLINE().getElapsedGameTurns()/GC.getGameINLINE().getEstimateEndTurn() < 30 ? 10 : 0);
-		iTimeScale -= (kOwner.AI_isDoVictoryStrategyLevel4() ? 30 : (100*GC.getGameINLINE().getElapsedGameTurns()/GC.getGameINLINE().getEstimateEndTurn() > 70 ? 10 : 0));
-		iTimeScale += (kOwner.AI_isDoVictoryStrategy(AI_STRATEGY_ECONOMY_FOCUS) ? 50 : 0);
-		iTimeScale -= (GET_TEAM(getTeam()).getWarPlanCount(WARPLAN_TOTAL, true) ? 20 : (kOwner.AI_getFlavorValue(FLAVOR_MILITARY) > 0) ? 10 : 0);
-		if (eNonObsoleteBonus != NO_BONUS && !kOwner.doesImprovementConnectBonus(eImprovement, eNonObsoleteBonus))
-			iTimeScale = std::min(30, iTimeScale);
-		iTimeScale = std::max(iTimeScale, 20);
-		// Other adjustments?
+		// Civ4 Reimagined: UpgradeRate can be 0
+		if (kOwner.getImprovementUpgradeRate() > 0)
+		{
+			iTimeScale += (100*GC.getGameINLINE().getElapsedGameTurns()/GC.getGameINLINE().getEstimateEndTurn() < 30 ? 10 : 0);
+			iTimeScale -= (kOwner.AI_isDoVictoryStrategyLevel4() ? 30 : (100*GC.getGameINLINE().getElapsedGameTurns()/GC.getGameINLINE().getEstimateEndTurn() > 70 ? 10 : 0));
+			iTimeScale += (kOwner.AI_isDoVictoryStrategy(AI_STRATEGY_ECONOMY_FOCUS) ? 50 : 0);
+			iTimeScale -= (GET_TEAM(getTeam()).getWarPlanCount(WARPLAN_TOTAL, true) ? 20 : (kOwner.AI_getFlavorValue(FLAVOR_MILITARY) > 0) ? 10 : 0);
+			if (eNonObsoleteBonus != NO_BONUS && !kOwner.doesImprovementConnectBonus(eImprovement, eNonObsoleteBonus))
+				iTimeScale = std::min(30, iTimeScale);
+			iTimeScale = std::max(iTimeScale, 20);
+			// Other adjustments?
 
-		// Adjustments to match calculation in CvPlot::doImprovementUpgrade.
-		iTimeScale = iTimeScale * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getImprovementPercent()/100;
-		iTimeScale = iTimeScale * GC.getEraInfo(GC.getGameINLINE().getStartEra()).getImprovementPercent()/100;
-		iTimeScale = iTimeScale / kOwner.getImprovementUpgradeRate();
+			// Adjustments to match calculation in CvPlot::doImprovementUpgrade.
+			iTimeScale = iTimeScale * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getImprovementPercent()/100;
+			iTimeScale = iTimeScale * GC.getEraInfo(GC.getGameINLINE().getStartEra()).getImprovementPercent()/100;
+			iTimeScale = iTimeScale / kOwner.getImprovementUpgradeRate();
+		} 
+		else
+		{
+			iTimeScale = 1;
+		}
 
 		std::vector<float> weighted_final_yields(NUM_YIELD_TYPES);
 		std::vector<float> weighted_yield_diffs(NUM_YIELD_TYPES);
