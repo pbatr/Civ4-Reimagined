@@ -6087,17 +6087,40 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				//iEnableValue += AI_bonusVal((BonusTypes)iJ, 1, true) * iCityCount;
 				iEnableValue += AI_bonusVal((BonusTypes)iJ, iOwned, true) * iCityCount;
 
-				// Civ4 Reimagined
-				if (GC.getGameINLINE().getElapsedGameTurns() < 25 && iCityCount == 1)
+				//Civ4 Reimagined: Additional yield from bonus
+				int iLoop;
+				int iInCityRadius = 0;
+				for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+				{
+					iInCityRadius += pLoopCity->AI_countNumBonuses((BonusTypes)iJ, true, pLoopCity->getCommerceRate(COMMERCE_CULTURE) > 0, -1);
+				}
+
+				if (iInCityRadius > 0)
 				{
 					for (int iImprovement = 0; iImprovement < GC.getNumImprovementInfos(); ++iImprovement)
 					{
 						const CvImprovementInfo &kImprovementInfo = GC.getImprovementInfo((ImprovementTypes)iImprovement);
-						const int iFoodBonus = kImprovementInfo.getImprovementBonusYield(iJ, YIELD_FOOD);
-						if (iFoodBonus > 0)
+
+						for (int iYield = 0; iYield < NUM_YIELD_TYPES; ++iYield)
 						{
-							if (gPlayerLogLevel >= 2) logBBAI("Bonus Value for enabling early food resources");
-							iEnableValue += iFoodBonus * 250;
+							int iImpYield = kImprovementInfo.getImprovementBonusYield(iJ, (YieldTypes)iYield);
+
+							if (iImpYield > 0)
+							{
+								iImpYield *= AI_averageYieldMultiplier((YieldTypes)iYield);
+								iImpYield /= 100;
+
+								iImpYield *= AI_yieldWeight((YieldTypes)iYield);
+								iImpYield /= 100;
+
+								iEnableValue += 4 * iInCityRadius * iImpYield;
+
+								if (GC.getGameINLINE().getElapsedGameTurns() < 25 && iCityCount == 1 && (YieldTypes)iYield == YIELD_FOOD)
+								{
+									if (gPlayerLogLevel >= 2) logBBAI("Bonus Value for enabling early food resources");
+									iEnableValue += iImpYield * 100;
+								}
+							}
 						}
 					}
 				}
