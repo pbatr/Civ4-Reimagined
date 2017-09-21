@@ -134,5 +134,8 @@
 		<HintInfo>
 			<Description>TXT_KEY_CIV4_REIMAGINED_HINT_41</Description>
 		</HintInfo>
+		<HintInfo>
+			<Description>TXT_KEY_CIV4_REIMAGINED_HINT_42</Description>
+		</HintInfo>
 	</HintInfos>
 </Civ4Hints>
