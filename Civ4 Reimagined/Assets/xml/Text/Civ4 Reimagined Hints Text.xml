@@ -121,7 +121,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_29</Tag>
-		<English>Scouts and early ships can move into rival territory without open border agreements. Be sure to make use of them to establish trade routes and to keep an eye on your opponents.</English>
+		<English>Early ships can move into rival territory without open border agreements. Be sure to make use of them to establish trade routes and to keep an eye on your opponents.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_30</Tag>
@@ -172,7 +172,7 @@
 		<English>When you are short on strategic ressources, the Mercenary Civic can help you out. It enables you to buy any unit for a little money.</English>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_41</Tag>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_42</Tag>
 		<English>If you abolish slavery, all Slaves in your empire will be free.</English>
 	</TEXT>
 </Civ4GameText>
