@@ -6140,7 +6140,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 	bool bEnablesUnitWonder;
 	const int iTechUnitValue = AI_techUnitValue( eTech, iPathLength, bEnablesUnitWonder, NO_CIVIC );
 
-	if (gPlayerLogLevel >= 2)
+	if (gPlayerLogLevel >= 2 && iTechUnitValue > 0)
 	{
 		logBBAI("Sum of all unit values: %d", iTechUnitValue);
 	}
@@ -6164,7 +6164,9 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 	iValue -= AI_obsoleteBuildingPenalty(eTech, bAsync); // K-Mod!
 
 	// K-Mod. Scale the random wonder bonus based on leader personality.
-	if (bEnablesWonder && iPathLength <= 1 && getTotalPopulation() > 5)
+	//if (bEnablesWonder && iPathLength <= 1 && getTotalPopulation() > 5)
+	// Civ4 Reimagined: Only use wonder bonus when nobody has the tech yet
+	if (bEnablesWonder && iPathLength <= 1 && getTotalPopulation() > 5 && GC.getGameINLINE().countKnownTechNumTeams(eTech) == 0)
 	{
 		//const int iBaseRand = 300;
 		// Civ4 Reimagined
@@ -6345,7 +6347,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 	if (iPathLength <= 2)
 	{
-		bool bFirst = GC.getGameINLINE().countKnownTechNumTeams(eTech) == 0; // K-Mod
+		const bool bFirst = GC.getGameINLINE().countKnownTechNumTeams(eTech) == 0; // K-Mod
 
 		// K-Mod. Make a list of corporation HQs that this tech enables.
 		// (note: for convenience, I've assumed that each corp has at most one type of HQ building.)
@@ -7024,6 +7026,11 @@ int CvPlayerAI::AI_techBuildingValue(TechTypes eTech, bool bConstCache, bool& bE
 		}
 		if (iBuildingValue > 0)
 		{
+			if (gPlayerLogLevel > 2)
+			{
+				logBBAI("	%S Tech Building Value before scaling: %d", kLoopBuilding.getDescription(0), iBuildingValue);
+			}
+
 			if (kLoopBuilding.getProductionCost() > 0)
 			{
 				int iMultiplier = 0;
@@ -7069,11 +7076,12 @@ int CvPlayerAI::AI_techBuildingValue(TechTypes eTech, bool bConstCache, bool& bE
 				// increase scale for limited wonders, because they don't need to be built in every city.
 				if (isLimitedWonderClass(eClass))
 					iScale *= std::min((int)relevant_cities.size(), GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getTargetNumCities());
+
 				// adjust for game speed
 				iScale = iScale * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getBuildPercent() / 100;
 				// use the multiplier we calculated earlier
 				iScale = iScale * (100 + iMultiplier) / 100;
-				//
+
 				iBuildingValue *= 100;
 				iBuildingValue /= std::max(33, 100 * kLoopBuilding.getProductionCost() / std::max(1, iScale));
 			}
@@ -7082,7 +7090,7 @@ int CvPlayerAI::AI_techBuildingValue(TechTypes eTech, bool bConstCache, bool& bE
 			
 			if (gPlayerLogLevel > 2)
 			{
-				logBBAI("	%S Tech Building Value: %d", kLoopBuilding.getDescription(0), iBuildingValue);
+				logBBAI("	%S Tech Building Value after scaling: %d", kLoopBuilding.getDescription(0), iBuildingValue);
 			}
 		}
 	}
