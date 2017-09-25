@@ -42,6 +42,7 @@ Tweaks
 -Temple of Artemis obsoletes with Astronomy
 -Terracotta Army obsoletes with Rifling
 -Hanging Gardens require Calender instead of Construction
+-Fewer world wonders require stone. Having access to stone still gives production boni in most cases
 -"Trade route blocked" now has an appropriatly negative sound effect
 -Reduced gold gain from blockading trade routes by 33%
 -Horses become obsolete with Industrialism

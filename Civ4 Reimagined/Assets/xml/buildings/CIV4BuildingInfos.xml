@@ -24188,11 +24188,7 @@
 			<BonusProductionModifiers>
 				<BonusProductionModifier>
 					<BonusType>BONUS_MARBLE</BonusType>
-					<iProductonModifier>50</iProductonModifier>
-				</BonusProductionModifier>
-				<BonusProductionModifier>
-					<BonusType>BONUS_STONE</BonusType>
-					<iProductonModifier>50</iProductonModifier>
+					<iProductonModifier>100</iProductonModifier>
 				</BonusProductionModifier>
 			</BonusProductionModifiers>
 			<UnitCombatFreeExperiences/>
@@ -24627,7 +24623,7 @@
 			<ObsoleteTech>TECH_COMPUTERS</ObsoleteTech>
 			<PrereqTech>TECH_DIVINE_RIGHT</PrereqTech>
 			<TechTypes/>
-			<Bonus>BONUS_STONE</Bonus>
+			<Bonus>NONE</Bonus>
 			<BonusFatCross>NONE</BonusFatCross>
 			<PrereqBonuses/>
 			<ProductionTraits/>
@@ -24761,7 +24757,12 @@
 			<ConstructSound/>
 			<BonusHealthChanges/>
 			<BonusHappinessChanges/>
-			<BonusProductionModifiers/>
+			<BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>100</iProductonModifier>
+				</BonusProductionModifier>
+			</BonusProductionModifiers>
 			<UnitCombatFreeExperiences/>
 			<DomainFreeExperiences/>
 			<DomainProductionModifiers/>
@@ -24814,7 +24815,7 @@
 				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 			</TechTypes>
-			<Bonus>BONUS_STONE</Bonus>
+			<Bonus>NONE</Bonus>
 			<BonusFatCross>NONE</BonusFatCross>
 			<PrereqBonuses/>
 			<ProductionTraits/>
@@ -24946,7 +24947,12 @@
 			<ConstructSound/>
 			<BonusHealthChanges/>
 			<BonusHappinessChanges/>
-			<BonusProductionModifiers/>
+			<BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>100</iProductonModifier>
+				</BonusProductionModifier>
+			</BonusProductionModifiers>
 			<UnitCombatFreeExperiences/>
 			<DomainFreeExperiences/>
 			<DomainProductionModifiers/>
@@ -25181,7 +25187,7 @@
 			<ObsoleteTech>TECH_ASSEMBLY_LINE</ObsoleteTech>
 			<PrereqTech>TECH_MILITARY_TRADITION</PrereqTech>
 			<TechTypes/>
-			<Bonus>BONUS_STONE</Bonus>
+			<Bonus>NONE</Bonus>
 			<BonusFatCross>NONE</BonusFatCross>
 			<PrereqBonuses/>
 			<ProductionTraits/>
@@ -25318,7 +25324,12 @@
 			<ConstructSound/>
 			<BonusHealthChanges/>
 			<BonusHappinessChanges/>
-			<BonusProductionModifiers/>
+			<BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>100</iProductonModifier>
+				</BonusProductionModifier>
+			</BonusProductionModifiers>
 			<UnitCombatFreeExperiences/>
 			<DomainFreeExperiences/>
 			<DomainProductionModifiers/>
@@ -27361,7 +27372,7 @@
 			<ObsoleteTech>TECH_COMPUTERS</ObsoleteTech>
 			<PrereqTech>TECH_PAPER</PrereqTech>
 			<TechTypes/>
-			<Bonus>BONUS_STONE</Bonus>
+			<Bonus>NONE</Bonus>
 			<BonusFatCross>NONE</BonusFatCross>
 			<PrereqBonuses/>
 			<ProductionTraits/>
@@ -27496,7 +27507,12 @@
 			<ConstructSound/>
 			<BonusHealthChanges/>
 			<BonusHappinessChanges/>
-			<BonusProductionModifiers/>
+			<BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>100</iProductonModifier>
+				</BonusProductionModifier>
+			</BonusProductionModifiers>
 			<UnitCombatFreeExperiences/>
 			<DomainFreeExperiences/>
 			<DomainProductionModifiers/>
@@ -33286,7 +33302,7 @@
 			<ObsoleteTech>TECH_ARTILLERY</ObsoleteTech>
 			<PrereqTech>TECH_GUNPOWDER</PrereqTech>
 			<TechTypes/>
-			<Bonus>BONUS_STONE</Bonus>
+			<Bonus>NONE</Bonus>
 			<BonusFatCross/>
 			<PrereqBonuses/>
 			<ProductionTraits/>
@@ -33419,7 +33435,12 @@
 			<ConstructSound>AS2D_BUILD_CASTLE</ConstructSound>
 			<BonusHealthChanges/>
 			<BonusHappinessChanges/>
-			<BonusProductionModifiers/>
+			<BonusProductionModifiers>
+				<BonusProductionModifier>
+					<BonusType>BONUS_STONE</BonusType>
+					<iProductonModifier>100</iProductonModifier>
+				</BonusProductionModifier>
+			</BonusProductionModifiers>
 			<UnitCombatFreeExperiences/>
 			<DomainFreeExperiences>
 				<DomainFreeExperience>
@@ -33613,12 +33634,7 @@
 			<ConstructSound>AS2D_BUILD_CASTLE</ConstructSound>
 			<BonusHealthChanges/>
 			<BonusHappinessChanges/>
-			<BonusProductionModifiers>
-				<BonusProductionModifier>
-					<BonusType>BONUS_STONE</BonusType>
-					<iProductonModifier>100</iProductonModifier>
-				</BonusProductionModifier>
-			</BonusProductionModifiers>
+			<BonusProductionModifiers/>
 			<UnitCombatFreeExperiences/>
 			<DomainFreeExperiences>
 				<DomainFreeExperience>
