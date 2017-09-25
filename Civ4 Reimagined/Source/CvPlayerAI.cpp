@@ -5345,23 +5345,20 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 	FAssert(viBonusClassUnrevealed.size() == GC.getNumBonusClassInfos());
 	FAssert(viBonusClassHave.size() == GC.getNumBonusClassInfos());
 
-	long iValue; // K-Mod. (the int was overflowing in parts of the calculation)
+	long iValue = 1; // K-Mod. (the int was overflowing in parts of the calculation)
 
-	CvCity* pCapitalCity = getCapitalCity();
+	const CvCity* pCapitalCity = getCapitalCity();
 	const CvTeamAI& kTeam = GET_TEAM(getTeam());
 	const CvTechInfo& kTechInfo = GC.getTechInfo(eTech); // K-Mod
 
-	bool bCapitalAlone = (GC.getGameINLINE().getElapsedGameTurns() > 0) ? AI_isCapitalAreaAlone() : false;
-	bool bFinancialTrouble = AI_isFinancialTrouble();
-	bool bAdvancedStart = getAdvancedStartPoints() >= 0;
+	const bool bCapitalAlone = (GC.getGameINLINE().getElapsedGameTurns() > 0) ? AI_isCapitalAreaAlone() : false;
+	const bool bFinancialTrouble = AI_isFinancialTrouble();
+	const bool bAdvancedStart = getAdvancedStartPoints() >= 0;
 
-	int iHasMetCount = kTeam.getHasMetCivCount(true);
-	int iCoastalCities = countNumCoastalCities();
-
-	int iCityCount = getNumCities();
-	int iCityTarget = GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getTargetNumCities();
-
-	iValue = 1;
+	const int iHasMetCount = kTeam.getHasMetCivCount(true);
+	const int iCoastalCities = countNumCoastalCities();
+	const int iCityCount = getNumCities();
+	const int iCityTarget = GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getTargetNumCities();
 
 	int iRandomFactor = ((bAsync) ? GC.getASyncRand().get(80*iCityCount, "AI Research ASYNC") : GC.getGameINLINE().getSorenRandNum(80*iCityCount, "AI Research"));
 	int iRandomMax = 80*iCityCount;
@@ -5497,15 +5494,21 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 	if (kTechInfo.isOpenBordersTrading())
 	{
-		// (Todo: copy the NewTrade / ExistingTrade method from above.)
+		// Civ4 Reimagined
 		if (iHasMetCount > 0)
 		{
-			iValue += 12 * iCityCount;
+			// trade routes
+			int iOpenBordersValue = 12 * (iCityCount + 1) + iCoastalCities * 4;
 
-			if (iCoastalCities > 0)
+			if (GC.getTECH_DIFFUSION_ENABLE() && GC.getGameINLINE().isOption(GAMEOPTION_NO_TECH_TRADING))
 			{
-				iValue += 4 * iCityCount;
+				iOpenBordersValue += iHasMetCount * 4;
 			}
+
+			if (gPlayerLogLevel > 2)
+				logBBAI("Tech value for open borders: %d", iOpenBordersValue);
+
+			iValue += iOpenBordersValue;
 		}
 	}
 
@@ -6573,7 +6576,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				else if (iPotentialReligions == 0)
 				{
 					// Civ4 Reimagined
-					iReligionValue += 400;
+					iReligionValue += 300;
 					bool bHasNeighbors = false;
 
 					bool bNeighbouringReligions = false;
@@ -6958,7 +6961,7 @@ int CvPlayerAI::AI_techBuildingValue(TechTypes eTech, bool bConstCache, bool& bE
 					eAdditionalTech = (TechTypes)kLoopBuilding.getPrereqAndTechs(iJ);
 					if (eAdditionalTech != NO_TECH && eAdditionalTech != eTech)
 					{
-						if (!kTeam.isHasTech(eAdditionalTech) && GC.getTechInfo(eAdditionalTech).getEra() > getCurrentEra())
+						if (!kTeam.isHasTech(eAdditionalTech))
 						{
 							bNeedsMoreTech = true;
 						}
