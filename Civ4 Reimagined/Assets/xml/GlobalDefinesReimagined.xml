@@ -222,7 +222,7 @@
 	<!-- Percentage of barbarian units spawning in wasteland. Wasteland is defined as a tile without food. -->
 	<Define>
 		<DefineName>BARBARIANS_SPAWNING_IN_WASTELAND_PERCENT</DefineName>
-		<iDefineIntVal>25</iDefineIntVal>
+		<iDefineIntVal>15</iDefineIntVal>
 	</Define>
 	<!-- Maximum number of citizens that can be sacrificed when using slavery. -->
 	<Define>
