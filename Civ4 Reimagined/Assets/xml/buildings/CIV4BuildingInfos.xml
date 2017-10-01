@@ -29220,7 +29220,7 @@
 			<ObsoleteTech>NONE</ObsoleteTech>
 			<PrereqTech>TECH_ECONOMICS</PrereqTech>
 			<TechTypes>
-				<PrereqTech>TECH_CORPORATION</PrereqTech>
+				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 			</TechTypes>
