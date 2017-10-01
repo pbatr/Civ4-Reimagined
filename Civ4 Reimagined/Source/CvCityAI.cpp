@@ -820,11 +820,11 @@ void CvCityAI::AI_chooseProduction()
 	if (eBestBuilding != NO_BUILDING)
 	{
 		const CvBuildingInfo& kBestBuilding = GC.getBuildingInfo(eBestBuilding);
-		if( gCityLogLevel >= 3 ) logBBAI("      City %S pop %d considering new production: iProdRank %d, iBuildUnitProb %d%s, iBestBuildingValue %d (%S)", getName().GetCString(), getPopulation(), iProductionRank, iBuildUnitProb, bUnitExempt?"*":"", iBestBuildingValue, kBestBuilding.getDescription());
+		if( gCityLogLevel >= 3 ) logBBAI("      City %S pop %d considering new production: iProdRank %d, iBuildUnitProb %d%s, iBestBuildingValue %d (%S) %S", getName().GetCString(), getPopulation(), iProductionRank, iBuildUnitProb, bUnitExempt?"*":"", iBestBuildingValue, kBestBuilding.getDescription(), isPlundered()?"(is plundered)":"");
 	}
 	else
 	{
-		if( gCityLogLevel >= 3 ) logBBAI("      City %S pop %d considering new production: iProdRank %d, iBuildUnitProb %d%s", getName().GetCString(), getPopulation(), iProductionRank, iBuildUnitProb, bUnitExempt?"*":"");
+		if( gCityLogLevel >= 3 ) logBBAI("      City %S pop %d considering new production: iProdRank %d, iBuildUnitProb %d%s %S", getName().GetCString(), getPopulation(), iProductionRank, iBuildUnitProb, bUnitExempt?"*":"", isPlundered()?"(is plundered)":"");
 	}
 
 	// if we need to pop borders, then do that immediately if we have drama and can do it
@@ -915,7 +915,7 @@ void CvCityAI::AI_chooseProduction()
 			}
 		}
 		
-		if (!(bLandWar && iWarSuccessRating < -50)) //Civ4 Reimagined
+		if (!(bLandWar && iWarSuccessRating < -50) && !isPlundered()) //Civ4 Reimagined
 		{
 			int iOdds = std::max(0, 100 * iBestBuildingValue / (3 * iBestBuildingValue + 300) - 10);
 			if (AI_chooseBuilding(0, INT_MAX, 0, iOdds))
@@ -1105,7 +1105,8 @@ void CvCityAI::AI_chooseProduction()
     
     if (bMaybeWaterArea)
 	{
-		if( !(bLandWar && iWarSuccessRating < -30) && !bDanger && !bFinancialTrouble )
+		// Civ4 Reimagined: Moved !bFinancialTrouble further inside
+		if( !(bLandWar && iWarSuccessRating < -30) && !bDanger )
 		{
 			// Civ4 Reimagined
 			const int iNumSeaUnits = kPlayer.AI_totalAreaUnitAIs(pWaterArea, UNITAI_ATTACK_SEA) + kPlayer.AI_totalAreaUnitAIs(pWaterArea, UNITAI_ATTACK_SEA);
@@ -1126,7 +1127,7 @@ void CvCityAI::AI_chooseProduction()
 				}
 			}
 		
-			if (bWaterAreaRelevant)
+			if (bWaterAreaRelevant && !bFinancialTrouble)
 			{
 				int iOdds = -1;
 				if (iAreaBestFoundValue == 0 || iWaterAreaBestFoundValue > iAreaBestFoundValue)
