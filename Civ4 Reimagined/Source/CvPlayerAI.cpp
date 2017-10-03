@@ -6326,25 +6326,30 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 	{
 		if (GC.getCivicInfo((CivicTypes)iJ).getTechPrereq() == eTech)
 		{
-			CivicTypes eCivic = getCivics((CivicOptionTypes)(GC.getCivicInfo((CivicTypes)iJ).getCivicOptionType()));
+			const CivicTypes eCurrentCivic = getCivics((CivicOptionTypes)(GC.getCivicInfo((CivicTypes)iJ).getCivicOptionType()));
+			const CivicTypes eNewCivic = (CivicTypes)iJ;
 
-			int iCurrentCivicValue = AI_civicValue(eCivic); // Note: scale of AI_civicValue is 1 = commerce/turn
-			int iNewCivicValue = AI_civicValue((CivicTypes)iJ);
+			// Note: scale of AI_civicValue is 1 = commerce/turn
+			const int iCurrentCivicValue = AI_civicValue(eCurrentCivic);
+			const int iNewCivicValue = AI_civicValue(eNewCivic);
+
+			if (gPlayerLogLevel > 2) logBBAI("	Current Civic Value for %S: %d", GC.getCivicInfo(eCurrentCivic).getDescription(0), iCurrentCivicValue);
+			if (gPlayerLogLevel > 2) logBBAI("	Future Civic Value for %S: %d", GC.getCivicInfo(eNewCivic).getDescription(0), iNewCivicValue);
 
 			// Civ4 Reimagined
-			bool bNewReligionCivic = GC.getCivicInfo((CivicTypes)iJ).isStateReligion() && !isStateReligion() && AI_bestReligion() != NO_RELIGION;
+			bool bNewReligionCivic = GC.getCivicInfo(eNewCivic).isStateReligion() && !isStateReligion() && AI_bestReligion() != NO_RELIGION;
 
 			if (iNewCivicValue > iCurrentCivicValue)
 			{
 				//iValue += 3 * (iNewCivicValue - iCurrentCivicValue);
 				// Civ4 Reimagined
-				iValue += 3 * (iNewCivicValue - iCurrentCivicValue) * (bNewReligionCivic ? 3 : 1);
-			}
+				const bool bFavorite = (eNewCivic == GC.getLeaderHeadInfo(getPersonalityType()).getFavoriteCivic());
+				const int iCivicValue = (bFavorite ? 5 : 4) * (iNewCivicValue - iCurrentCivicValue) * (bNewReligionCivic ? 3 : 1);
 
-			if (eCivic == GC.getLeaderHeadInfo(getPersonalityType()).getFavoriteCivic())
-				iValue += 20*iCityCount;
-			else
-				iValue += 4*iCityCount;
+				if (gPlayerLogLevel > 2) logBBAI("	%S Tech Civic Value: %d", GC.getCivicInfo(eNewCivic).getDescription(0), iCivicValue);
+
+				iValue += iCivicValue;
+			}
 		}
 	}
 
@@ -15444,35 +15449,50 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	}
 	
 	// Civ4 Reimagined: getBonusRatioModifier
-	if (kCivic.getBonusRatioModifier() != 0 && pCapital)
+	if (kCivic.getBonusRatioModifier() != 0 && pCapital && getTotalPopulation() > 0)
 	{
-		int totalPop = getTotalPopulation();
-	
-		if (totalPop > 0)
+		const int iBaseRatio    = getTechValue() / getTotalPopulation();
+		const int iCurrentRatio = range(iBaseRatio * (100 + getBonusValueModifier()) / 100, 0, 100);
+		const int iNewRatio     = range(iBaseRatio * (100 + getBonusValueModifier() + kCivic.getBonusRatioModifier()) / 100, 0, 100);
+
+		if (iCurrentRatio != iNewRatio)
 		{
-			int iCurrentRatio;
-			int iNewRatio;
-			int iTempValue = 0;
-			for (int iI = 0; iI < GC.getNumBonusInfos(); iI++)
+			int iHappinessChange = 0;
+			int iHealthChange = 0;
+			int iProductionDifference = 0;
+
+			for (int iI = 0; iI < GC.getNumBonusInfos(); ++iI)
 			{
 				if (pCapital->hasBonus((BonusTypes)iI))
 				{
-					iCurrentRatio = std::max(0, std::min(100, getTechValue() * pCapital->getNumBonuses((BonusTypes)iI) / totalPop));
-					iNewRatio = iCurrentRatio * (100 + kCivic.getBonusRatioModifier());
-					iNewRatio /= 100;
-					iNewRatio = std::max(0, std::min(100, iNewRatio));
-					iTempValue += iNewRatio - iCurrentRatio;
+					const int iNumBonus = pCapital->getNumBonuses((BonusTypes)iI);
+					if (GC.getBonusInfo((BonusTypes)iI).getHappiness() > 0 || GC.getBonusInfo((BonusTypes)iI).getHealth() > 0)
+					{
+						const int iCurrentBonusHappiness = GC.getBonusInfo((BonusTypes)iI).getHappiness() * iNumBonus * iCurrentRatio;
+						const int iNewBonusHappiness     = GC.getBonusInfo((BonusTypes)iI).getHappiness() * iNumBonus * iNewRatio;
+						iHappinessChange += iNewBonusHappiness - iCurrentBonusHappiness;
+
+						const int iCurrentBonusHealth = GC.getBonusInfo((BonusTypes)iI).getHealth() * iNumBonus * iCurrentRatio;
+						const int iNewBonusHealth     = GC.getBonusInfo((BonusTypes)iI).getHealth() * iNumBonus * iNewRatio;
+						iHealthChange += iNewBonusHealth - iCurrentBonusHealth;
+					} 
+					else // strategic resource... this is a bit of a stretch because we are missing some resources like ivory
+					{
+						if (kCivic.isNoMilitaryProductionMali())
+							continue;
+
+						iProductionDifference += AI_baseBonusVal((BonusTypes)iI) * (std::max(100, iNewRatio * iNumBonus) - std::max(100, iCurrentRatio * iNumBonus));
+					}
 				}
 			}
-			iTempValue *= iCities;
-			if (iTempValue < 0 && kCivic.isNoMilitaryProductionMali())
-			{
-				iTempValue /= 40;
-			} else
-			{
-				iTempValue /= 20;
-			}
+
+			int iTempValue = 10 * iCities * AI_getHappinessWeight(iHappinessChange / 100, 1) / 100;
+			iTempValue += 9 * iCities * AI_getHealthWeight(iHealthChange / 100, 1) / 100;
+			// this is a tough one... just a guess
+			iTempValue += iCities * iProductionDifference / 2500;
+
 			if (gPlayerLogLevel > 0) logBBAI("	Civic Value of Bonus Ratio Modifier: %d", iTempValue);
+
 			iValue += iTempValue;
 		}
 	}
@@ -15942,14 +15962,14 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 		{
 			iHealthDifference = ROUND_DIVIDE(pLoopCity->badHealth() - (100 + kCivic.getPollutionModifier()) * pLoopCity->badHealth(), 100);
-			iTempValue += (6 * AI_getHealthWeight(isCivic(eCivic) ? -iHealthDifference : iHealthDifference, 1));
+			iTempValue += (9 * AI_getHealthWeight(isCivic(eCivic) ? -iHealthDifference : iHealthDifference, 1));
 		}
 		iValue += iTempValue / 100;
 	}
 	
 
 	if (kCivic.getExtraHealth() != 0)
-		iValue += (iCities * 5 * AI_getHealthWeight(iS*kCivic.getExtraHealth(), 1)) / 100;
+		iValue += (iCities * 9 * AI_getHealthWeight(iS*kCivic.getExtraHealth(), 1)) / 100;
 	
 	//iValue += (kCivic.getNonStateReligionHappiness() * (iTotalReligonCount - iHighestReligionCount) * 5);
 	// K-Mod
