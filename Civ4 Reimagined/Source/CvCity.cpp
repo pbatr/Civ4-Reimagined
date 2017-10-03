@@ -17624,7 +17624,7 @@ int CvCity::getUnitProductionMultiplier(UnitTypes eUnit) const
 	
 	iMultiplier = std::min(iAndBonusMultiplier, bRequiresBonus ? iOrBonusMultiplier : 100);
 	iMultiplier = (iMultiplier + 100) / 2; // Halve the efficient production malus
-	//if( gCityLogLevel >= 2 ) logBBAI("Unit Production Mali for Unit in %S: %d", getName(0).GetCString(), iMultiplier);
+	//if( gCityLogLevel >= 2 ) logBBAI("Unit Production Mali for Unit %S in %S: %d", GC.getUnitInfo(eUnit).getDescription(0), getName(0).GetCString(), iMultiplier);
 	
 	return std::max(50, iMultiplier);
 }
@@ -17691,7 +17691,7 @@ int CvCity::getBuildingProductionMultiplier(BuildingTypes eBuilding) const
 	
 	iMultiplier = std::min(iAndBonusMultiplier, bRequiresBonus ? iOrBonusMultiplier : 100);
 	iMultiplier = (iMultiplier + 100) / 2; // Halve the efficient production malus
-	//if( gCityLogLevel >= 2 ) logBBAI("Building Production Mali for Building in %S: %d", getName(0).GetCString(), iMultiplier);
+	//if( gCityLogLevel >= 2 ) logBBAI("Building Production Mali for Building %S in %S: %d", GC.getBuildingInfo(eBuilding).getDescription(0), getName(0).GetCString(), iMultiplier);
 	
 	return std::max(50, iMultiplier);
 }
