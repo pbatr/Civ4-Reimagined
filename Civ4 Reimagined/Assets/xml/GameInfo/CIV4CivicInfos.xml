@@ -600,7 +600,7 @@
 			<iStateReligionUnitProductionModifier>0</iStateReligionUnitProductionModifier>
 			<iStateReligionBuildingProductionModifier>0</iStateReligionBuildingProductionModifier>
 			<iStateReligionFreeExperience>0</iStateReligionFreeExperience>
-			<iBonusRatioModifier>25</iBonusRatioModifier>
+			<iBonusRatioModifier>20</iBonusRatioModifier>
 			<YieldModifiers/>
 			<ExtraYields/>
 			<CapitalYieldModifiers/>
