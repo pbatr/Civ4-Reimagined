@@ -5744,6 +5744,9 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 			iTempValue *= AI_yieldWeight((YieldTypes)iK);
 			iTempValue /= 100;
 
+			if (iTempValue > 0 && gPlayerLogLevel >= 2) 
+				logBBAI("Value for %S yield change: %d", GC.getImprovementInfo((ImprovementTypes)iJ).getDescription(), iTempValue);
+
 			iValue += iTempValue;
 		}
 	}
@@ -6032,6 +6035,8 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 			}
 		}
 	}
+
+	if (iBuildValue > 0 && gPlayerLogLevel >= 2) logBBAI("Value for enabling improvements: %d", iBuildValue);
 
 	iValue += iBuildValue;
 
