@@ -503,6 +503,7 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 	m_iFeatureProduction = 0;
 	m_iMilitaryProductionModifier = 0;
 	m_iBuildingProductionModifier = 0; // Civ4 Reimagined
+	m_iNuclearProductionModifier = 0; // Civ4 Reimagined
 	m_iSpaceProductionModifier = 0;
 	m_iExtraTradeRoutes = 0;
 	m_iTradeRouteModifier = 0;
@@ -3366,6 +3367,12 @@ int CvCity::getProductionModifier(UnitTypes eUnit) const
 		iMultiplier += getMilitaryProductionModifier();
 	}
 
+	// Civ4 Reimagined
+	if (GC.getUnitInfo(eUnit).getNukeRange() > 0)
+	{
+		iMultiplier += getNuclearProductionModifier();
+	}
+
 	if (GET_PLAYER(getOwnerINLINE()).getTotalPopulation() != 0)
 	{
 		for (iI = 0; iI < GC.getNumBonusInfos(); iI++)
@@ -4270,6 +4277,7 @@ void CvCity::processBuilding(BuildingTypes eBuilding, int iChange, bool bObsolet
 		}
 		changeMilitaryProductionModifier(GC.getBuildingInfo(eBuilding).getMilitaryProductionModifier() * iChange);
 		changeBuildingProductionModifier(GC.getBuildingInfo(eBuilding).getBuildingProductionModifier() * iChange); // Civ4 Reimagined
+		changeNuclearProductionModifier(GC.getBuildingInfo(eBuilding).getNuclearProductionModifier() * iChange); // Civ4 Reimagined
 		changeSpaceProductionModifier(GC.getBuildingInfo(eBuilding).getSpaceProductionModifier() * iChange);
 		changeExtraTradeRoutes(GC.getBuildingInfo(eBuilding).getTradeRoutes() * iChange);
 		changeTradeRouteModifier(GC.getBuildingInfo(eBuilding).getTradeRouteModifier() * iChange);
@@ -8303,6 +8311,20 @@ void CvCity::changeBonusBuildingProductionModifier(BonusTypes eIndex, int iChang
 }
 
 
+// Civ4 Reimagined
+int CvCity::getNuclearProductionModifier() const															
+{
+	return m_iNuclearProductionModifier;
+}
+
+
+// Civ4 Reimagined
+void CvCity::changeNuclearProductionModifier(int iChange)												
+{
+	m_iNuclearProductionModifier = (m_iNuclearProductionModifier + iChange);
+}
+
+
 int CvCity::getSpaceProductionModifier() const															
 {
 	return m_iSpaceProductionModifier;
@@ -9435,6 +9457,7 @@ int CvCity::getAdditionalYieldRateModifierByBuilding(YieldTypes eIndex, Building
 		{
 			iExtraModifier += kBuilding.getMilitaryProductionModifier();
 			iExtraModifier += kBuilding.getBuildingProductionModifier(); // Civ4 Reimagined
+			iExtraModifier += kBuilding.getNuclearProductionModifier(); // Civ4 Reimagined
 			iExtraModifier += kBuilding.getSpaceProductionModifier();
 			iExtraModifier += kBuilding.getGlobalSpaceProductionModifier();
 
@@ -15308,6 +15331,7 @@ void CvCity::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iFeatureProduction);
 	pStream->Read(&m_iMilitaryProductionModifier);
 	pStream->Read(&m_iBuildingProductionModifier); // Civ4 Reimagined
+	pStream->Read(&m_iNuclearProductionModifier); // Civ4 Reimagined
 	pStream->Read(&m_iSpaceProductionModifier);
 	pStream->Read(&m_iExtraTradeRoutes);
 	pStream->Read(&m_iTradeRouteModifier);
@@ -15559,6 +15583,7 @@ void CvCity::write(FDataStreamBase* pStream)
 	pStream->Write(m_iFeatureProduction);
 	pStream->Write(m_iMilitaryProductionModifier);
 	pStream->Write(m_iBuildingProductionModifier); // Civ4 Reimagined
+	pStream->Write(m_iNuclearProductionModifier); // Civ4 Reimagined
 	pStream->Write(m_iSpaceProductionModifier);
 	pStream->Write(m_iExtraTradeRoutes);
 	pStream->Write(m_iTradeRouteModifier);

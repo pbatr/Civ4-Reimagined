@@ -10793,6 +10793,13 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 		}
 	}
 
+	// Civ4 Reimagined
+	if (kBuilding.getNuclearProductionModifier() != 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_NUCLEAR_MOD", kBuilding.getNuclearProductionModifier()));
+	}
+
 	if (kBuilding.getSpaceProductionModifier() != 0)
 	{
 		szBuffer.append(NEWLINE);
@@ -16155,6 +16162,18 @@ void CvGameTextMgr::setProductionHelp(CvWStringBuffer &szBuffer, CvCity& city)
 				szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_PROD_MILITARY", iMilitaryMod));
 				szBuffer.append(NEWLINE);
 				iBaseModifier += iMilitaryMod;
+			}
+		}
+
+		// Civ4 Reimagined
+		if (unit.getNukeRange() > 0)
+		{
+			const int iNuclearMod = city.getNuclearProductionModifier();
+			if (0 != iNuclearMod)
+			{
+				szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_PROD_NUCLEAR", iNuclearMod));
+				szBuffer.append(NEWLINE);
+				iBaseModifier += iNuclearMod;
 			}
 		}
 
