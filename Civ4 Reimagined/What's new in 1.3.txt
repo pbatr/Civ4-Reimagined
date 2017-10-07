@@ -66,6 +66,7 @@ Tweaks
 -AI cancels open borders more sensibly
 -Improved AI civic and research tech evaluation
 -Smaller chance for barbarian units to spawn in deserts
+-More stone, more marble.
 
 *********
 Interface
