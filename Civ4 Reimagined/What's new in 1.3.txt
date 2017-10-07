@@ -14,7 +14,7 @@ New
 Changes
 *********
 -Update to K-Mod version 1.45
--Archers and Longbowman gain additional defense bonuses from defensive buildings such as walls and castles. Otherwise offensive units with higher ST would benefit more from walls/castles than dedicated city defenders, making balancing them tricky. Reduced city defense (Longbowman only) and increased costs to compensate
+-Archers and Longbowman gain additional defense bonuses from defensive buildings such as walls and castles. Otherwise offensive units with higher ST would benefit more from walls/castles than dedicated city defenders, making balancing them tricky. Increased costs to compensate
 -Scouts and Explorers cannot enter rival territory
 -Chance of destroying buildings when bombarding cities halved
 -Naval changes (see also: New pirate ships)
@@ -33,7 +33,7 @@ Tweaks
 *********
 -Iron Working, Monotheism and Machinery are now classical techs
 -Philosophy is now a medieval tech
--Knights strength increased from 9 to 10, cost changed from 70 to 80
+-Knights strength increased from 9 to 10, cost changed from 70 to 90 and they have -50% city strength
 -Heavy Footmen upgrade to Riflemen
 -Musketmen no longer have city attack mali
 -Axemen bonus vs Archer reduced from 30% to 25%
