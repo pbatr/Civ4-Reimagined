@@ -1745,6 +1745,7 @@ public:
 	int getWorkerSpeedModifier() const;				// Exposed to Python
 	int getMilitaryProductionModifier() const;				// Exposed to Python
 	int getBuildingProductionModifier() const; // Civ4 Reimagined
+    int getNuclearProductionModifier() const; // Civ4 Reimagined
 	int getSpaceProductionModifier() const;				// Exposed to Python
 	int getGlobalSpaceProductionModifier() const;				// Exposed to Python
 	int getTradeRoutes() const;				// Exposed to Python
@@ -1998,6 +1999,7 @@ protected:
 	int m_iWorkerSpeedModifier;					
 	int m_iMilitaryProductionModifier;
 	int m_iBuildingProductionModifier; // Civ4 Reimagined
+    int m_iNuclearProductionModifier; // Civ4 Reimagined
 	int m_iSpaceProductionModifier;				
 	int m_iGlobalSpaceProductionModifier;	
 	int m_iTradeRoutes;									

@@ -171,6 +171,7 @@
 	<ElementType name="iWorkerSpeedModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="iMilitaryProductionModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="iBuildingProductionModifier" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
+	<ElementType name="iNuclearProductionModifier" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iSpaceProductionModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="iGlobalSpaceProductionModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="iTradeRoutes" content="textOnly" dt:type="int"/>
@@ -573,6 +574,7 @@
 		<element type="iWorkerSpeedModifier"/>
 		<element type="iMilitaryProductionModifier"/>
 		<element type="iBuildingProductionModifier" minOccurs="0"/> <!-- Civ4 Reimagined -->
+		<element type="iNuclearProductionModifier" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="iSpaceProductionModifier"/>
 		<element type="iGlobalSpaceProductionModifier"/>
 		<element type="iTradeRoutes"/>

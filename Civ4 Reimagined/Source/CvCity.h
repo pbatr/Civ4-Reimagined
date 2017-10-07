@@ -564,7 +564,8 @@ public:
 	void changeBonusUnitProductionModifier(BonusTypes eIndex, int iChange);
 	int getBonusBuildingProductionModifier(BonusTypes eIndex) const;
 	void changeBonusBuildingProductionModifier(BonusTypes eIndex, int iChange);
-	
+	int getNuclearProductionModifier() const;
+	void changeNuclearProductionModifier(int iChange);
 
 	int getSpaceProductionModifier() const;																// Exposed to Python
 	void changeSpaceProductionModifier(int iChange);
@@ -1225,6 +1226,7 @@ protected:
 	int m_iFeatureProduction;
 	int m_iMilitaryProductionModifier;
 	int m_iBuildingProductionModifier; // Civ4 Reimagined
+	int m_iNuclearProductionModifier; // Civ4 Reimagined
 	int m_iSpaceProductionModifier;
 	int m_iExtraTradeRoutes;
 	int m_iTradeRouteModifier;
