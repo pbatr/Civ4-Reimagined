@@ -4465,6 +4465,16 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				}
 			}
 
+			// Civ4 Reimagined
+			if (kBuilding.getNuclearProductionModifier() != 0)
+			{
+				const BuildingTypes eSilo = (BuildingTypes)GC.getInfoTypeForString("BUILDING_MISSILE_SILO");
+				if (getNumRealBuilding(eSilo) > 0)
+				{
+					iValue += kBuilding.getNuclearProductionModifier() / 8;
+				}
+			}
+
 			iValue += (kBuilding.getSpaceProductionModifier() / 5);
 			iValue += ((kBuilding.getGlobalSpaceProductionModifier() * iNumCities) / 20);
 
