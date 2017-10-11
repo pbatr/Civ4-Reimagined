@@ -25,6 +25,7 @@ Changes
 *-AI is more likely to research stronger ships when cities are plundered
 *-Improved AI for building ships in general
 *-Longships are Pirates with improved trade blockade ability
+*-Ships with hidden nationality now get the same movement penalty when entering enemy territory during war times
 -Military units only count towards reducing unhappiness in a city ("We demand military protection!") when they are at most 2 eras behind your current era. Also, they no longer reduce unhappiness in other player's cities
 -Classical temples get converted to state religion temples when adopting a state religion
 -Modified resource ratios: Worse ratios during Middle Ages / Renaissance, better ratios later in the game
