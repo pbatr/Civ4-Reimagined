@@ -19,7 +19,9 @@ Changes
 -Chance of destroying buildings when bombarding cities halved
 -Naval changes (see also: New pirate ships)
 *-Wooden ships gain double production from chopping. This bonus is not applied to overflow production when unit is finished in same turn.
-*-All sailing ships have +1 ST (to reduce differences between tiers)
+*-All sailing ships have +1 ST (to reduce differences between tiers) except Frigates
+*-Frigates and Privateers have +1 movement
+*-Ship of the Lines no longer have combat boni vs frigates
 *-AI is more likely to research stronger ships when cities are plundered
 *-Improved AI for building ships in general
 *-Longships are Pirates with improved trade blockade ability
