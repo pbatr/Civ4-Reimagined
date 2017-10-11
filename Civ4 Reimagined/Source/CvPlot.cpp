@@ -2872,9 +2872,9 @@ int CvPlot::movementCost(const CvUnit* pUnit, const CvPlot* pFromPlot) const
 	iRegularCost *= GC.getMOVE_DENOMINATOR();
 	
 	// Civ4 Reimagined
-	if (isOwned() && isWater() && getOwnerINLINE() != pUnit->getOwnerINLINE() && !GC.getUnitInfo(pUnit->getUnitType()).isHiddenNationality())
+	if (isOwned() && isWater() && getOwnerINLINE() != pUnit->getOwnerINLINE())
 	{
-		if (atWar(GET_PLAYER((PlayerTypes)getOwnerINLINE()).getTeam(),GET_PLAYER((PlayerTypes)pUnit->getOwnerINLINE()).getTeam()))
+		if (atWar(GET_PLAYER((PlayerTypes)getOwnerINLINE()).getTeam(), GET_PLAYER((PlayerTypes)pUnit->getOwnerINLINE()).getTeam()))
 		{
 			iRegularCost = std::max(iRegularCost, GC.getMOVE_DENOMINATOR() * GC.getDefineINT("NAVAL_MOVEMENT_PERCENT_COST_ENEMY_TERRITORY") * pUnit->baseMoves() / 100);
 		}
