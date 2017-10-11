@@ -8,7 +8,7 @@ New
 -Two new ships: Marauder (Navigation) and Pirate (Guilds). They are weaker than their military counterparts, but bear no markings of nationality. This allows for some early game naval harassing and makes the early naval game more engaging in general
 -Two new(ish) medieval technologies: Crop Rotation (Farms spread irrigation; Floating Gardens; Agrarianism) and Civil Service (Longbowman, Crossbowman, Bureaucracy). They are intended to smoothen out some bumps in technology costs
 -National building: Great Harbor (Refrigeration; +1 [P] from water tiles)
--Slaves can be gained by conquering enemy cities (diminished returns) TODO: a bit more detailed description
+-Slaves can be acquired by conquering or razing enemy cities when having slavery as a civic. There exists a threshold of population points you have to conquer before gaining a slave. The threshold increases with every slave.
 
 *********
 Changes
