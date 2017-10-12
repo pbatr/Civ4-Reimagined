@@ -140,7 +140,9 @@ def findNextCity():
 		iRate = city.getGreatPeopleRate()
 		if (iRate > 0):
 			iProgress = city.getGreatPeopleProgress()
-			iTurns = (iThreshold - iProgress + iRate - 1) / iRate
+			#iTurns = (iThreshold - iProgress + iRate - 1) / iRate
+			# Civ4 Reimagined
+			iTurns = max(1, (iThreshold - iProgress + iRate - 1) / iRate)
 			if (iMinTurns is None or iTurns < iMinTurns):
 				iMinTurns = iTurns
 				bestCity = city
@@ -164,7 +166,9 @@ def getCityTurns(city):
 		iRate = city.getGreatPeopleRate()
 		if (iRate > 0):
 			iProgress = city.getGreatPeopleProgress()
-			iTurns = (iThreshold - iProgress + iRate - 1) / iRate
+			#iTurns = (iThreshold - iProgress + iRate - 1) / iRate
+			# Civ4 Reimagined
+			iTurns = max(1, (iThreshold - iProgress + iRate - 1) / iRate)
 			return iTurns
 	return None
 
