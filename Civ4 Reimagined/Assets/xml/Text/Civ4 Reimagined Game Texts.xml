@@ -764,7 +764,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TRAIT_VASSAL_COMMERCE_GAIN</Tag>
-		<English>[NEWLINE][SPACE][SPACE][ICON_BULLET]Receive %d1%% of vassal research, gold and espionage.</English>
+		<English>[NEWLINE][SPACE][SPACE][ICON_BULLET]Receive additional %d1%% of vassal research, gold and espionage.</English>
 		<French>[NEWLINE][SPACE][SPACE][ICON_BULLET]Recevez %d1%% de la recherche, l'or et l'espionnage du vassal.</French>
 	</TEXT>
 	<TEXT>
