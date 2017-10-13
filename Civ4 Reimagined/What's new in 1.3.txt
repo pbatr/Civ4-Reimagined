@@ -90,6 +90,7 @@ Fixes
 -Fixed a bug that prevented units from getting automatically moved outside of enemy territory when war was declared
 -Fixed a bug that caused sea units to have a bigger visibility range than land units when stationed in cities
 -Fixed great person bar showing negative turn numbers on special occasions
+-'Homeless children' now correctly costs you money when selecting the second option, not giving you money.
 
 *******************************************
 Civ4 Reimagined 1.2
