@@ -71,6 +71,7 @@ Tweaks
 -Improved AI civic and research tech evaluation
 -Smaller chance for barbarian units to spawn in deserts
 -More stone, more marble.
+-Increased number of slaves gained from city conquest
 
 *********
 Interface

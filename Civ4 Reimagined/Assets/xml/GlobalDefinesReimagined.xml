@@ -280,7 +280,7 @@
 	</Define>
 	<Define>
 		<DefineName>SLAVE_THRESHOLD_INCREASE_PERCENT</DefineName>
-		<iDefineIntVal>50</iDefineIntVal>
+		<iDefineIntVal>35</iDefineIntVal>
 	</Define>
 	<!-- The visibility range of naval units is equal to their movement points. It is then further modified by this percentage value. -->
 	<Define>
