@@ -30,6 +30,7 @@ Changes
 -Classical temples get converted to state religion temples when adopting a state religion
 -Modified resource ratios: Worse ratios during Middle Ages / Renaissance, better ratios later in the game
 -Units with hidden nationality no longer contribute to a civ's power value
+-Nuclear plants grant +100% production speed for nuclear missles
 
 *********
 Tweaks

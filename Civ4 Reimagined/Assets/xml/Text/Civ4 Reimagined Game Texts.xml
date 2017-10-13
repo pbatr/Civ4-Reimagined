@@ -1287,4 +1287,13 @@
 		<Tag>TXT_KEY_BUILDING_CLASSICAL_TEMPLE_HELP</Tag>
 		<English>[ICON_BULLET]Will be Converted to Temple of State Religion after Adopting a Religion</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_HELP_PROD_NUCLEAR</Tag>
+		<English>[ICON_BULLET]%D1%[ICON_PRODUCTION] for Nuclear Weapons</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_NUCLEAR_MOD</Tag>
+		<English>[ICON_BULLET]%D1_Mod%% Nuclear Weapon Production Speed</English>
+	</TEXT>
+	
 </Civ4GameText>
