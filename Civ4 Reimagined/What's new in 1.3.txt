@@ -41,6 +41,7 @@ Tweaks
 -Heavy Footmen upgrade to Riflemen
 -Musketmen no longer have city attack mali
 -Axemen bonus vs Archer reduced from 30% to 25%
+-Cho-Ko-Nu deals collateral damage to 4 units instead of 3
 -Cathedrals cannot be destroyed when bombarding cities
 -Colossus obsoletes with Corporation
 -Temple of Artemis obsoletes with Astronomy
@@ -69,7 +70,7 @@ Tweaks
 -Wall building quest no longer triggers when walls are obsolete
 -AI cancels open borders more sensibly
 -Improved AI civic and research tech evaluation
--Smaller chance for barbarian units to spawn in deserts
+-Smaller chance for barbarian units to spawn in tiles without food
 -More stone, more marble.
 -Increased number of slaves gained from city conquest
 

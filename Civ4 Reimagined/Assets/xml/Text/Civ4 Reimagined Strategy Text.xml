@@ -210,7 +210,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_CHINA_CHOKONU_STRATEGY</Tag>
-		<English>Compared to the [COLOR_UNIT_TEXT]Crossbowman[COLOR_REVERT], this unit has six potential first strikes more.</English>
+		<English>Compared to the [COLOR_UNIT_TEXT]Crossbowman[COLOR_REVERT], this unit has six potential first strikes more and deals collateral damage to four units instead of three.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_JAPAN_SAMURAI_STRATEGY</Tag>

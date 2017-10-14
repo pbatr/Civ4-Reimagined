@@ -12666,7 +12666,7 @@
 			<iWithdrawalProb>0</iWithdrawalProb>
 			<iCollateralDamage>50</iCollateralDamage>
 			<iCollateralDamageLimit>15</iCollateralDamageLimit>
-			<iCollateralDamageMaxUnits>3</iCollateralDamageMaxUnits>
+			<iCollateralDamageMaxUnits>4</iCollateralDamageMaxUnits>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
 			<iDefenseBuildingModifier>0</iDefenseBuildingModifier>
