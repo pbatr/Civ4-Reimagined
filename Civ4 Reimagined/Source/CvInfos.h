@@ -1705,6 +1705,7 @@ public:
 	int getNumFreeBonuses() const;				// Exposed to Python
 	int getFreeBuildingClass() const;				// Exposed to Python
 	void setNumFreeBuildingClass(int i);
+	int getAreaFreeBuildingClass() const; // Civ4 Reimagined
 	int getFreePromotion() const;				// Exposed to Python
 	int getCivicOption() const;				// Exposed to Python
 	int getNoAnarchyCivicOption() const; // Civ4 Reimagined
@@ -1958,7 +1959,8 @@ protected:
 	int m_iPowerBonus;									
 	int m_iFreeBonus;									
 	int m_iNumFreeBonuses;							
-	int m_iFreeBuildingClass;									
+	int m_iFreeBuildingClass;	
+	int m_iAreaFreeBuildingClass; // Civ4 Reimagined							
 	int m_iFreePromotion;								
 	int m_iCivicOption;		
 	int m_iNoAnarchyCivicOption; // Civ4 Reimagined

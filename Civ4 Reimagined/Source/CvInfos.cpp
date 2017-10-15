@@ -7490,6 +7490,7 @@ m_iPowerBonus(NO_BONUS),
 m_iFreeBonus(NO_BONUS),
 m_iNumFreeBonuses(0),
 m_iFreeBuildingClass(NO_BUILDINGCLASS),
+m_iAreaFreeBuildingClass(NO_BUILDINGCLASS), // Civ4 Reimagined
 m_iFreePromotion(NO_PROMOTION),
 m_iCivicOption(NO_CIVICOPTION),
 m_iNoAnarchyCivicOption(NO_CIVICOPTION), // Civ4 Reimagined
@@ -7823,6 +7824,12 @@ int CvBuildingInfo::getFreeBuildingClass() const
 void CvBuildingInfo::setNumFreeBuildingClass(int i)
 {
 	m_iFreeBuildingClass = i;
+}
+
+// Civ4 Reimagined
+int CvBuildingInfo::getAreaFreeBuildingClass() const			
+{
+	return m_iAreaFreeBuildingClass;
 }
 
 int CvBuildingInfo::getFreePromotion() const			
@@ -9038,6 +9045,7 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iFreeBonus);
 	stream->Read(&m_iNumFreeBonuses);
 	stream->Read(&m_iFreeBuildingClass);
+	stream->Read(&m_iAreaFreeBuildingClass); // Civ4 Reimagined
 	stream->Read(&m_iFreePromotion);
 	stream->Read(&m_iCivicOption);
 	stream->Read(&m_iNoAnarchyCivicOption); // Civ4 Reimagined
@@ -9493,6 +9501,7 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iFreeBonus);
 	stream->Write(m_iNumFreeBonuses);
 	stream->Write(m_iFreeBuildingClass);
+	stream->Write(m_iAreaFreeBuildingClass); // Civ4 Reimagined
 	stream->Write(m_iFreePromotion);
 	stream->Write(m_iCivicOption);
 	stream->Write(m_iNoAnarchyCivicOption); // Civ4 Reimagined
@@ -9859,6 +9868,10 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(szTextVal, "FreeBuilding");
 	m_iFreeBuildingClass = pXML->FindInInfoClass(szTextVal);
+
+	// Civ4 Reimagined
+	pXML->GetChildXmlValByName(szTextVal, "AreaFreeBuilding");
+	m_iAreaFreeBuildingClass = pXML->FindInInfoClass(szTextVal);
 
 	pXML->GetChildXmlValByName(szTextVal, "FreePromotion");
 	m_iFreePromotion = pXML->FindInInfoClass(szTextVal);

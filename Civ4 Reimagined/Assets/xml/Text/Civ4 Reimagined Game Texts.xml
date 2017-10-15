@@ -1295,5 +1295,8 @@
 		<Tag>TXT_KEY_BUILDING_NUCLEAR_MOD</Tag>
 		<English>[ICON_BULLET]%D1_Mod%% Nuclear Weapon Production Speed</English>
 	</TEXT>
-	
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_FREE_IN_AREA_CITY</Tag>
+		<English>[ICON_BULLET]Free [COLOR_BUILDING_TEXT][LINK=literal]%s1_Name[\LINK][COLOR_REVERT] in Every City on this Continent</English>
+	</TEXT>
 </Civ4GameText>

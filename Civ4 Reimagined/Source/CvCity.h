@@ -976,7 +976,7 @@ public:
 	bool isValidBuildingLocation(BuildingTypes eIndex) const;
 
 	int getNumFreeBuilding(BuildingTypes eIndex) const;															// Exposed to Python
-	void setNumFreeBuilding(BuildingTypes eIndex, int iNewValue);
+	void changeNumFreeBuilding(BuildingTypes eIndex, int iChange); // Civ4 Reimagined
 
 	bool isHasReligion(ReligionTypes eIndex) const;
 	void setHasReligion(ReligionTypes eIndex, bool bNewValue, bool bAnnounce, bool bArrows = true);
@@ -1392,6 +1392,9 @@ protected:
 	bool canHurryUnit(HurryTypes eHurry, UnitTypes eUnit, bool bIgnoreNew) const;
 	bool canHurryBuilding(HurryTypes eHurry, BuildingTypes eBuilding, bool bIgnoreNew) const;
 	bool canHurryProject(HurryTypes eHurry, ProjectTypes eProject, bool bIgnoreNew) const; //Civ4 Reimagined
+
+	// Civ4 Reimagined: Made this protected
+	void setNumFreeBuilding(BuildingTypes eIndex, int iNewValue);
 
 	virtual bool AI_addBestCitizen(bool bWorkers, bool bSpecialists, int* piBestPlot = NULL, SpecialistTypes* peBestSpecialist = NULL) = 0;
 	virtual bool AI_removeWorstCitizen(SpecialistTypes eIgnoreSpecialist = NO_SPECIALIST) = 0;

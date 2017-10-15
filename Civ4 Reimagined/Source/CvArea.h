@@ -78,6 +78,10 @@ public:
 	int getFreeSpecialist(PlayerTypes eIndex) const;													// Exposed to Python
 	void changeFreeSpecialist(PlayerTypes eIndex, int iChange);
 
+	// Civ4 Reimagined
+	int getFreeBuildingCount(PlayerTypes eIndex, BuildingTypes eBuilding) const;											// Exposed to Python
+	void changeFreeBuildingCount(PlayerTypes eIndex, BuildingTypes eBuilding, int iChange);
+
 	int getPower(PlayerTypes eIndex) const;																		// Exposed to Python
 	void changePower(PlayerTypes eIndex, int iChange);
 
@@ -152,6 +156,8 @@ protected:
 	int** m_aaiYieldRateModifier;
 	int** m_aaiNumTrainAIUnits;
 	int** m_aaiNumAIUnits;
+	// Civ4 Reimagined
+	int** m_aaiFreeBuilding;
 
 	int* m_paiNumBonuses;
 	int* m_paiNumImprovements;

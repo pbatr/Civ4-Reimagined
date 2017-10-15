@@ -50,6 +50,12 @@ CvArea::CvArea()
 	{
 		m_aaiNumAIUnits[i] = new int[NUM_UNITAI_TYPES];
 	}
+	//Civ4 Reimagined
+	m_aaiFreeBuilding = new int*[MAX_PLAYERS];
+	for (int i = 0; i < MAX_PLAYERS; i++)
+	{
+		m_aaiFreeBuilding[i] = new int[GC.getNumBuildingInfos()];
+	}
 
 	m_paiNumBonuses = NULL;
 	m_paiNumImprovements = NULL;
@@ -93,6 +99,12 @@ CvArea::~CvArea()
 		SAFE_DELETE_ARRAY(m_aaiNumAIUnits[i]);
 	}
 	SAFE_DELETE_ARRAY(m_aaiNumAIUnits);
+	//Civ4 Reimagined
+	for (int i = 0; i < MAX_PLAYERS; i++)
+	{
+		SAFE_DELETE_ARRAY(m_aaiFreeBuilding[i]);
+	}
+	SAFE_DELETE_ARRAY(m_aaiFreeBuilding);
 }
 
 
@@ -180,6 +192,12 @@ void CvArea::reset(int iID, bool bWater, bool bConstructorCall)
 		{
 			m_aaiNumTrainAIUnits[iI][iJ] = 0;
 			m_aaiNumAIUnits[iI][iJ] = 0;
+		}
+
+		// Civ4 Reimagined
+		for (int iBuilding = 0; iBuilding < GC.getNumBuildingInfos(); ++iBuilding)
+		{
+			m_aaiFreeBuilding[iI][iBuilding] = 0;
 		}
 	}
 
@@ -616,6 +634,35 @@ void CvArea::changeFreeSpecialist(PlayerTypes eIndex, int iChange)
 }
 
 
+// Civ4 Reimagind
+int CvArea::getFreeBuildingCount(PlayerTypes eIndex, BuildingTypes eBuilding) const 
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be >= 0");
+	FAssertMsg(eIndex < MAX_PLAYERS, "eIndex is expected to be < MAX_PLAYERS");
+	FAssertMsg(eBuilding >= 0, "eBuilding is expected to be >= 0");
+	FAssertMsg(eBuilding < GC.getNumBuildingInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_aaiFreeBuilding[eIndex][eBuilding];
+}
+
+
+// Civ4 Reimagined
+void CvArea::changeFreeBuildingCount(PlayerTypes eIndex, BuildingTypes eBuilding, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be >= 0");
+	FAssertMsg(eIndex < MAX_PLAYERS, "eIndex is expected to be < MAX_PLAYERS");
+	FAssertMsg(eBuilding >= 0, "eBuilding is expected to be >= 0");
+	FAssertMsg(eBuilding < GC.getNumBuildingInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	if (iChange != 0)
+	{
+		m_aaiFreeBuilding[eIndex][eBuilding] = (m_aaiFreeBuilding[eIndex][eBuilding] + iChange);
+		FAssert(getFreeBuildingCount(eIndex, eBuilding) >= 0);
+
+		GET_PLAYER(eIndex).changeAreaFreeBuildings(eBuilding, getID(), iChange);
+	}
+}
+
+
 int CvArea::getPower(PlayerTypes eIndex) const
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be >= 0");
@@ -964,6 +1011,11 @@ void CvArea::read(FDataStreamBase* pStream)
 	{
 		pStream->Read(NUM_UNITAI_TYPES, m_aaiNumAIUnits[iI]);
 	}
+	// Civ4 Reimagind
+	for (iI = 0; iI < MAX_PLAYERS; iI++)
+	{
+		pStream->Read(GC.getNumBuildingInfos(), m_aaiFreeBuilding[iI]);
+	}
 
 	pStream->Read(GC.getNumBonusInfos(), m_paiNumBonuses);
 	pStream->Read(GC.getNumImprovementInfos(), m_paiNumImprovements);
@@ -1022,6 +1074,12 @@ void CvArea::write(FDataStreamBase* pStream)
 	{
 		pStream->Write(NUM_UNITAI_TYPES, m_aaiNumAIUnits[iI]);
 	}
+	// Civ4 Reimagined
+	for (iI = 0; iI < MAX_PLAYERS; iI++)
+	{
+		pStream->Write(GC.getNumBuildingInfos(), m_aaiFreeBuilding[iI]);
+	}
+
 	pStream->Write(GC.getNumBonusInfos(), m_paiNumBonuses);
 	pStream->Write(GC.getNumImprovementInfos(), m_paiNumImprovements);
 }
