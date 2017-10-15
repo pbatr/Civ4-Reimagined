@@ -94,6 +94,7 @@
 	<ElementType name="FreeBonus" content="textOnly"/>
 	<ElementType name="iNumFreeBonuses" content="textOnly" dt:type="int"/>
 	<ElementType name="FreeBuilding" content="textOnly"/>
+	<ElementType name="AreaFreeBuilding" content="textOnly"/> <!-- Civ4 Reimagined -->
 	<ElementType name="bTeamShare" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bWater" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bRiver" content="textOnly" dt:type="boolean"/>
@@ -490,6 +491,7 @@
 		<element type="FreeBonus"/>
 		<element type="iNumFreeBonuses"/>
 		<element type="FreeBuilding"/>
+		<element type="AreaFreeBuilding" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="FreePromotion"/>
 		<element type="CivicOption"/>
 		<element type="NoAnarchyCivicOption" minOccurs="0"/> <!-- Civ4 Reimagined -->

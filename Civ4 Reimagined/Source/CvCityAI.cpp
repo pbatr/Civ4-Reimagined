@@ -4649,6 +4649,20 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 						iValue += iFreeBuildingValue * (std::max(iCitiesTarget, kOwner.getNumCities()*2/3) - kOwner.getBuildingClassCountPlusMaking((BuildingClassTypes)kBuilding.getFreeBuildingClass()));
 					}
 				}
+
+				// Civ4 Reimagined
+				if (kBuilding.getAreaFreeBuildingClass() != NO_BUILDINGCLASS)
+				{
+					BuildingTypes eFreeBuilding = (BuildingTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationBuildings(kBuilding.getAreaFreeBuildingClass());
+					if (NO_BUILDING != eFreeBuilding)
+					{
+						int iFreeBuildingValue = std::min(AI_buildingValue(eFreeBuilding, 0, 0, bConstCache, false), kOwner.getProductionNeeded(eFreeBuilding)/2);
+						iFreeBuildingValue *= iNumCitiesInArea;
+						iFreeBuildingValue /= kOwner.getNumCities();
+						iValue += iFreeBuildingValue * (std::max(iCitiesTarget, kOwner.getNumCities()*2/3) - kOwner.getBuildingClassCountPlusMaking((BuildingClassTypes)kBuilding.getAreaFreeBuildingClass()));
+					}
+				}
+
 				//
 				for (BuildingClassTypes eLoopClass = (BuildingClassTypes)0; eLoopClass < GC.getNumBuildingClassInfos(); eLoopClass = (BuildingClassTypes)(eLoopClass+1))
 				{

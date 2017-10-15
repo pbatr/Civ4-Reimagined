@@ -7683,6 +7683,13 @@ void CvPlayer::processBuilding(BuildingTypes eBuilding, int iChange, CvArea* pAr
 		changeFreeBuildingCount(eFreeBuilding, iChange);
 	}
 
+	// Civ4 Reimagined
+	if (GC.getBuildingInfo(eBuilding).getAreaFreeBuildingClass() != NO_BUILDINGCLASS)
+	{
+		BuildingTypes eFreeBuilding = (BuildingTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationBuildings(GC.getBuildingInfo(eBuilding).getAreaFreeBuildingClass());
+		pArea->changeFreeBuildingCount(getID(), eFreeBuilding, iChange);
+	}
+
 	if (GC.getBuildingInfo(eBuilding).getCivicOption() != NO_CIVICOPTION)
 	{
 		changeHasCivicOptionCount(((CivicOptionTypes)GC.getBuildingInfo(eBuilding).getCivicOption()), iChange);
@@ -14449,36 +14456,37 @@ bool CvPlayer::isBuildingFree(BuildingTypes eIndex)	const
 
 void CvPlayer::changeFreeBuildingCount(BuildingTypes eIndex, int iChange)
 {
-	CvCity* pLoopCity;
-	int iOldFreeBuildingCount;
-	int iLoop;
-
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
 	FAssertMsg(eIndex < GC.getNumBuildingInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
 
 	if (iChange != 0)
 	{
-		iOldFreeBuildingCount = getFreeBuildingCount(eIndex);
-
 		m_paiFreeBuildingCount[eIndex] = (m_paiFreeBuildingCount[eIndex] + iChange);
 		FAssert(getFreeBuildingCount(eIndex) >= 0);
 
-		if (iOldFreeBuildingCount == 0)
+		int iLoop;
+		for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 		{
-			FAssertMsg(getFreeBuildingCount(eIndex) > 0, "getFreeBuildingCount(eIndex) is expected to be greater than 0");
-
-			for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
-			{
-				pLoopCity->setNumFreeBuilding(eIndex, 1);
-			}
+			pLoopCity->changeNumFreeBuilding(eIndex, iChange);
 		}
-		else if (getFreeBuildingCount(eIndex) == 0)
-		{
-			FAssertMsg(iOldFreeBuildingCount > 0, "iOldFreeBuildingCount is expected to be greater than 0");
+	}
+}
 
-			for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+
+// Civ4 Reimagined
+void CvPlayer::changeAreaFreeBuildings(BuildingTypes eIndex, int iAreaID, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumBuildingInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	if (iChange != 0)
+	{
+		int iLoop;
+		for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+		{
+			if (pLoopCity->getArea() == iAreaID)
 			{
-				pLoopCity->setNumFreeBuilding(eIndex, 0);
+				pLoopCity->changeNumFreeBuilding(eIndex, iChange);
 			}
 		}
 	}

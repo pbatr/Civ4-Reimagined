@@ -974,6 +974,9 @@ public:
 	bool isBuildingFree(BuildingTypes eIndex) const;	// Exposed to Python
 	void changeFreeBuildingCount(BuildingTypes eIndex, int iChange);
 
+	// Civ4 Reimagined
+	void changeAreaFreeBuildings(BuildingTypes eIndex, int iAreaID, int iChange);
+
 	int getExtraBuildingHappiness(BuildingTypes eIndex) const;	// Exposed to Python
 	void changeExtraBuildingHappiness(BuildingTypes eIndex, int iChange);
 	int getExtraBuildingHealth(BuildingTypes eIndex) const;	// Exposed to Python

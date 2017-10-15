@@ -273,7 +273,13 @@ void CvCity::init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, 
 	{
 		if (GET_PLAYER(getOwnerINLINE()).isBuildingFree((BuildingTypes)iI))
 		{
-			setNumFreeBuilding(((BuildingTypes)iI), 1);
+			changeNumFreeBuilding(((BuildingTypes)iI), 1);
+		}
+
+		// Civ4 Reimagined
+		if (area()->getFreeBuildingCount(getOwnerINLINE(), (BuildingTypes)iI) > 0)
+		{
+			changeNumFreeBuilding(((BuildingTypes)iI), 1);
 		}
 	}
 
@@ -13013,6 +13019,20 @@ void CvCity::setNumFreeBuilding(BuildingTypes eIndex, int iNewValue)
 		{
 			processBuilding(eIndex, iNewValue - iOldNumBuilding);
 		}
+	}
+}
+
+
+// Civ4 Reimagined
+void CvCity::changeNumFreeBuilding(BuildingTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
+	FAssertMsg(eIndex < GC.getNumBuildingInfos(), "eIndex expected to be < GC.getNumBuildingInfos()");
+
+	if (iChange != 0)
+	{
+		setNumFreeBuilding(eIndex, getNumFreeBuilding(eIndex) + iChange);
+		FAssert(getNumFreeBuilding(eIndex) >= 0);
 	}
 }
 
