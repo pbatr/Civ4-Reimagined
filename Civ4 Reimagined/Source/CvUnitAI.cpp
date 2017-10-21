@@ -25284,7 +25284,7 @@ bool CvUnitAI::AI_breakBlockade()
 
 	if (pCity != NULL)
 	{
-		if (pCity->isBlockaded())
+		if (pCity->isPlundered())
 		{
 			const int iAttackers = plot()->plotCount(PUF_isUnitAIType, UNITAI_ATTACK_SEA, -1, NO_PLAYER, getTeam(), PUF_isGroupHead, -1, -1) + 
 								   plot()->plotCount(PUF_isUnitAIType, UNITAI_RESERVE_SEA, -1, NO_PLAYER, getTeam(), PUF_isGroupHead, -1, -1);

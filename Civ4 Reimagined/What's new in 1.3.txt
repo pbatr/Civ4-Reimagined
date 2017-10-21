@@ -93,6 +93,7 @@ Fixes
 -Fixed a bug that caused sea units to have a bigger visibility range than land units when stationed in cities
 -Fixed great person bar showing negative turn numbers on special occasions
 -'Homeless children' now correctly costs you money when selecting the second option, not giving you money
+-Ships can no longer plunder cities that are unreachable (e.g. on the other side of continent)
 
 *******************************************
 Civ4 Reimagined 1.2

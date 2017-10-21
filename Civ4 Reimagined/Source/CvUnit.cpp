@@ -5289,6 +5289,39 @@ void CvUnit::updatePlunder(int iChange, bool bUpdatePlotGroups)
 }
 
 
+// Civ4 Reimagined
+bool CvUnit::canPlunderCity(const CvCity* pCity) const
+{
+	if (pCity == NULL)
+		return false;
+
+	if (pCity->isPlundered() || !isEnemy(pCity->getTeam()) || pCity->isBarbarian())
+		return false;
+
+	const int iBlockadeRange = GC.getDefineINT("SHIP_BLOCKADE_RANGE");
+
+	for (int iDir = 0; iDir < NUM_DIRECTION_TYPES; ++iDir)
+	{
+		CvPlot* pAdjacentPlot = plotDirection(pCity->getX(), pCity->getY(), ((DirectionTypes)iDir));
+
+		if (pAdjacentPlot == NULL || !pAdjacentPlot->isWater())
+			continue;
+
+		const int iPathDist = GC.getMapINLINE().calculatePathDistance(plot(), pAdjacentPlot);
+				
+		// BBAI NOTES:  There are rare issues where the path finder will return incorrect results
+		// for unknown reasons.  Seems to find a suboptimal path sometimes in partially repeatable 
+		// circumstances.  The fix below is a hack to address the permanent one or two tile blockades which 
+		// would appear randomly, it should cause extra blockade clearing only very rarely.		
+		if ((iPathDist >= 0) && (iPathDist <= iBlockadeRange + 2))
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+
 int CvUnit::sabotageCost(const CvPlot* pPlot) const
 {
 	return GC.getDefineINT("BASE_SPY_SABOTAGE_COST");
@@ -11771,37 +11804,34 @@ void CvUnit::collectBlockadeGold()
 			{
 				CvCity* pCity = pLoopPlot->getPlotCity();
 
-				// Civ4 Reimagined: Removed condition !notatWar and added condition !isBarbarian
-				if (NULL != pCity && !pCity->isPlundered() && isEnemy(pCity->getTeam()) && !pCity->isBarbarian())
+				// Civ4 Reimagined
+				if (canPlunderCity(pCity))
 				{
-					if (pCity->area() == area() || pCity->plot()->isAdjacentToArea(area()))
+					// Civ4 Reimagined
+					//int iGold = pCity->calculateTradeProfitTimes100(pCity) * pCity->getTradeRoutes() / 100;
+					int iGold = pCity->getBaseTradeProfit(pCity) * (pCity->totalTradeModifier(NULL) + GC.getDefineINT("FOREIGN_TRADE_MODIFIER")) * pCity->getTradeRoutes() / 10000;
+					
+					// Civ4 Reimagined
+					if (getBlockadeGoldModifier() != 0)
 					{
-						// Civ4 Reimagined
-						//int iGold = pCity->calculateTradeProfitTimes100(pCity) * pCity->getTradeRoutes() / 100;
-						int iGold = pCity->getBaseTradeProfit(pCity) * (pCity->totalTradeModifier(NULL) + GC.getDefineINT("FOREIGN_TRADE_MODIFIER")) * pCity->getTradeRoutes() / 10000;
-						
-						// Civ4 Reimagined
-						if (getBlockadeGoldModifier() != 0)
-						{
-							iGold *= std::max(0, 100 + getBlockadeGoldModifier());
-							iGold /= 100;
-						}
-						
-						// Civ4 Reimagined
-						iGold *= 2;
-						iGold /= 3;
-						
-						if (iGold > 0)
-						{
-							pCity->setPlundered(true);
-							GET_PLAYER(getOwnerINLINE()).changeGold(iGold);
+						iGold *= std::max(0, 100 + getBlockadeGoldModifier());
+						iGold /= 100;
+					}
+					
+					// Civ4 Reimagined
+					iGold *= 2;
+					iGold /= 3;
+					
+					if (iGold > 0)
+					{
+						pCity->setPlundered(true);
+						GET_PLAYER(getOwnerINLINE()).changeGold(iGold);
 
-							CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_TRADE_ROUTE_PLUNDERED", getNameKey(), pCity->getNameKey(), iGold);
-							gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_BUILD_BANK", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX_INLINE(), getY_INLINE());
-							
-							szBuffer = gDLL->getText("TXT_KEY_MISC_TRADE_ROUTE_PLUNDER", getNameKey(), pCity->getNameKey(), iGold);
-							gDLL->getInterfaceIFace()->addHumanMessage(pCity->getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "SND_BOMBARDED", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pCity->getX_INLINE(), pCity->getY_INLINE());
-						}
+						CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_TRADE_ROUTE_PLUNDERED", getNameKey(), pCity->getNameKey(), iGold);
+						gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_BUILD_BANK", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX_INLINE(), getY_INLINE());
+						
+						szBuffer = gDLL->getText("TXT_KEY_MISC_TRADE_ROUTE_PLUNDER", getNameKey(), pCity->getNameKey(), iGold);
+						gDLL->getInterfaceIFace()->addHumanMessage(pCity->getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "SND_BOMBARDED", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pCity->getX_INLINE(), pCity->getY_INLINE());
 					}
 				}
 			}
