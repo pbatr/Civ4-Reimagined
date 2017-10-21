@@ -13183,11 +13183,11 @@ int CvCityAI::AI_pirateValue()
 	int victims = 0;
 	int rivals = 0;
 
-	for (int iI = 0; iI < MAX_PLAYERS; iI++)
+	for (int iI = 0; iI < MAX_PLAYERS; ++iI)
 	{
 		const CvPlayer& kOther = GET_PLAYER((PlayerTypes)iI);
 
-		if (!kOther.isAlive() || iI == getID() || !kTeam.isHasMet(kOther.getTeam()))
+		if (!kOther.isAlive() || iI == getID() || !kTeam.isHasMet(kOther.getTeam()) || kOther.isBarbarian())
 			continue;
 
 		if(!kOther.hasCoastalCitiesByWaterArea(pArea))
