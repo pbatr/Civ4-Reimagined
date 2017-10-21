@@ -3768,10 +3768,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 					// defence bonus
 					//iTemp += std::max(0, std::min((bRemove? 0 :kBuilding.getDefenseModifier()) + getBuildingDefense() - getNaturalDefense() - 10, kBuilding.getDefenseModifier())) / 4;
 					// Civ4 Reimagined
-					iTemp += bRemove? 0 : kBuilding.getDefenseModifier();
-
-					iTemp *= (bWarPlan ? 3 : 2);
-					iTemp /= 3;
+					iTemp += bRemove? 0 : kBuilding.getDefenseModifier() * 2;
 					iValue += iTemp;
 				}
 			}
