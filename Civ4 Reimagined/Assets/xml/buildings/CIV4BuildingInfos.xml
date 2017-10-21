@@ -28458,7 +28458,7 @@
 			<Type>BUILDING_GREAT_HARBOR</Type>
 			<SpecialBuildingType>NONE</SpecialBuildingType>
 			<Description>TXT_KEY_BUILDING_GREAT_HARBOR</Description>
-			<Civilopedia>TXT_KEY_BUILDING_HARBOR_PEDIA</Civilopedia>
+			<Civilopedia>TXT_KEY_BUILDING_GREAT_HARBOR_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_BUILDING_GREAT_HARBOR_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<ArtDefineTag>ART_DEF_BUILDING_GREAT_HARBOR</ArtDefineTag>
