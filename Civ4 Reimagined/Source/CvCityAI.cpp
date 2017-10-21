@@ -938,7 +938,9 @@ void CvCityAI::AI_chooseProduction()
 			// Removed by Civ4 Reimagined:
 			//if( kPlayer.AI_bestCityUnitAIValue(UNITAI_CITY_DEFENSE, this) == 0 )
 			{
-				iPlotCityDefenderCount = plot()->plotCount(PUF_canDefend, -1, -1, getOwnerINLINE(), NO_TEAM, PUF_isDomainType, DOMAIN_LAND);
+				//iPlotCityDefenderCount = plot()->plotCount(PUF_canDefend, -1, -1, getOwnerINLINE(), NO_TEAM, PUF_isDomainType, DOMAIN_LAND);
+				// Civ4 Reimagined: Don't count Scouts
+				iPlotCityDefenderCount += plot()->plotCount(PUF_isUnitAIType, UNITAI_ATTACK, -1, getOwnerINLINE());
 			}
 		}
 	}
