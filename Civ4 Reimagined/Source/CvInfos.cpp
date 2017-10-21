@@ -7559,6 +7559,8 @@ m_iGreatPeopleUnitClass(NO_UNITCLASS),
 m_iGreatPeopleRateChange(0),				
 m_iConquestProbability(0),
 m_iMaintenanceModifier(0),
+m_iAreaDistanceMaintenanceModifier(0), // Civ4 Reimagined
+m_iAreaCorporationMaintenanceModifier(0), // Civ4 Reimagined
 m_iWarWearinessModifier(0),
 m_iGlobalWarWearinessModifier(0),
 m_iEnemyWarWearinessModifier(0),
@@ -8176,6 +8178,18 @@ int CvBuildingInfo::getConquestProbability() const
 int CvBuildingInfo::getMaintenanceModifier() const
 {
 	return m_iMaintenanceModifier;
+}
+
+// Civ4 Reimagined
+int CvBuildingInfo::getAreaDistanceMaintenanceModifier() const
+{
+	return m_iAreaDistanceMaintenanceModifier;
+}
+
+// Civ4 Reimagined
+int CvBuildingInfo::getAreaCorporationMaintenanceModifier() const
+{
+	return m_iAreaDistanceMaintenanceModifier;
 }
 
 int CvBuildingInfo::getWarWearinessModifier() const
@@ -9114,6 +9128,8 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iGreatPeopleRateChange);
 	stream->Read(&m_iConquestProbability);
 	stream->Read(&m_iMaintenanceModifier);
+	stream->Read(&m_iAreaDistanceMaintenanceModifier); // Civ4 Reimagined
+	stream->Read(&m_iAreaCorporationMaintenanceModifier); // Civ4 Reimagined
 	stream->Read(&m_iWarWearinessModifier);
 	stream->Read(&m_iGlobalWarWearinessModifier);
 	stream->Read(&m_iEnemyWarWearinessModifier);
@@ -9568,6 +9584,8 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iGreatPeopleRateChange);
 	stream->Write(m_iConquestProbability);
 	stream->Write(m_iMaintenanceModifier);
+	stream->Write(m_iAreaDistanceMaintenanceModifier); // Civ4 Reimagined
+	stream->Write(m_iAreaCorporationMaintenanceModifier); // Civ4 Reimagined
 	stream->Write(m_iWarWearinessModifier);
 	stream->Write(m_iGlobalWarWearinessModifier);
 	stream->Write(m_iEnemyWarWearinessModifier);
@@ -9958,6 +9976,8 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iAreaFreeSpecialist, "iAreaFreeSpecialist");
 	pXML->GetChildXmlValByName(&m_iGlobalFreeSpecialist, "iGlobalFreeSpecialist");
 	pXML->GetChildXmlValByName(&m_iMaintenanceModifier, "iMaintenanceModifier");
+	pXML->GetChildXmlValByName(&m_iAreaDistanceMaintenanceModifier, "iAreaDistanceMaintenanceModifier"); // Civ4 Reimagined
+	pXML->GetChildXmlValByName(&m_iAreaCorporationMaintenanceModifier, "iAreaCorporationMaintenanceModifier"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iWarWearinessModifier, "iWarWearinessModifier");
 	pXML->GetChildXmlValByName(&m_iGlobalWarWearinessModifier, "iGlobalWarWearinessModifier");
 	pXML->GetChildXmlValByName(&m_iEnemyWarWearinessModifier, "iEnemyWarWearinessModifier");

@@ -6551,7 +6551,12 @@ int CvCity::calculateDistanceMaintenanceTimes100() const
 		iTempMaintenance *= (getPopulation() + 7);
 		iTempMaintenance /= 10;
 
-		iTempMaintenance *= std::max(0, (GET_PLAYER(getOwnerINLINE()).getDistanceMaintenanceModifier() + 100));
+		// Civ4 Reimagined
+		int iModifier = 100;
+		iModifier += GET_PLAYER(getOwnerINLINE()).getDistanceMaintenanceModifier();
+		iModifier += area()->getDistanceMaintenanceModifier(getOwnerINLINE());
+
+		iTempMaintenance *= std::max(0, iModifier);
 		iTempMaintenance /= 100;
 
 		iTempMaintenance *= GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getDistanceMaintenancePercent();
@@ -6776,8 +6781,13 @@ int CvCity::calculateCorporationMaintenanceTimes100(CorporationTypes eCorporatio
 
 	iMaintenance *= GC.getCorporationInfo(eCorporation).getMaintenance();
 	iMaintenance /= 100;
+
+	// Civ4 Reimagined
+	int iModifier = 100;
+	iModifier += GET_PLAYER(getOwnerINLINE()).getCorporationMaintenanceModifier();
+	iModifier += area()->getCorporationMaintenanceModifier(getOwnerINLINE());
 	
-	iMaintenance *= std::max(0, (GET_PLAYER(getOwnerINLINE()).getCorporationMaintenanceModifier() + 100));
+	iMaintenance *= std::max(0, iModifier);
 	iMaintenance /= 100;
 
 	FAssert(iMaintenance >= 0);

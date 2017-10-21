@@ -10665,6 +10665,20 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_MAINT_MOD", kBuilding.getMaintenanceModifier()));
 	}
 
+	// Civ4 Reimagined
+	if (kBuilding.getAreaDistanceMaintenanceModifier() != 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_AREA_DISTANCE_MAINT_MOD", kBuilding.getAreaDistanceMaintenanceModifier()));
+	}
+
+	// Civ4 Reimagined
+	if (kBuilding.getAreaCorporationMaintenanceModifier() != 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_AREA_CORPORATION_MAINT_MOD", kBuilding.getAreaCorporationMaintenanceModifier()));
+	}
+
 	if (kBuilding.getHurryAngerModifier() != 0)
 	{
 		szBuffer.append(NEWLINE);

@@ -1299,4 +1299,16 @@
 		<Tag>TXT_KEY_BUILDING_FREE_IN_AREA_CITY</Tag>
 		<English>[ICON_BULLET]Free [COLOR_BUILDING_TEXT][LINK=literal]%s1_Name[\LINK][COLOR_REVERT] in Every City on this Continent</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_AREA_DISTANCE_MAINT_MOD</Tag>
+		<English>[ICON_BULLET]%D1_Mod%% Maintenance Cost from Distance to Palace in Every City on this Continent</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_AREA_CORPORATION_MAINT_MOD</Tag>
+		<English>[ICON_BULLET]%D1_Mod%% Maintenance Cost from Corporations in Every City on this Continent</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_BORDER_OBSTACLE</Tag>
+		<English>[ICON_BULLET]Prevents Barbarians from Entering Borders on this Continent</English>
+	</TEXT>
 </Civ4GameText>

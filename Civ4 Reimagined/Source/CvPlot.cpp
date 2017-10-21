@@ -9062,6 +9062,15 @@ void CvPlot::processArea(CvArea* pArea, int iChange)
 				{
 					pArea->changeYieldRateModifier(pCity->getOwnerINLINE(), ((YieldTypes)iJ), (GC.getBuildingInfo((BuildingTypes)iI).getAreaYieldModifier(iJ) * iChange * pCity->getNumActiveBuilding((BuildingTypes)iI)));
 				}
+
+				// Civ4 Reimagined
+				pArea->changeDistanceMaintenanceModifier(pCity->getOwnerINLINE(), (GC.getBuildingInfo((BuildingTypes)iI).getAreaDistanceMaintenanceModifier() * iChange * pCity->getNumActiveBuilding((BuildingTypes)iI)));
+				pArea->changeCorporationMaintenanceModifier(pCity->getOwnerINLINE(), (GC.getBuildingInfo((BuildingTypes)iI).getAreaCorporationMaintenanceModifier() * iChange * pCity->getNumActiveBuilding((BuildingTypes)iI)));
+				if (GC.getBuildingInfo((BuildingTypes) iI).getAreaFreeBuildingClass() != NO_BUILDINGCLASS)
+				{
+					BuildingTypes eFreeBuilding = (BuildingTypes)GC.getCivilizationInfo(GET_PLAYER(getOwnerINLINE()).getCivilizationType()).getCivilizationBuildings(GC.getBuildingInfo((BuildingTypes) iI).getAreaFreeBuildingClass());
+					pArea->changeFreeBuildingCount(pCity->getOwnerINLINE(), eFreeBuilding, iChange * pCity->getNumActiveBuilding((BuildingTypes)iI));
+				}
 			}
 		}
 

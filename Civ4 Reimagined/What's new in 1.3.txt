@@ -31,6 +31,7 @@ Changes
 -Modified resource ratios: Worse ratios during Middle Ages / Renaissance, better ratios later in the game
 -Units with hidden nationality no longer contribute to a civ's power value
 -Nuclear plants grant +100% production speed for nuclear missles
+-Great Wall has been changed: Available with Construction, free Walls on continent and reduced maintenance for all cities on continent
 
 *********
 Tweaks
