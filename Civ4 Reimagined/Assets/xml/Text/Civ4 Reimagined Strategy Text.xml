@@ -688,7 +688,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_GREAT_WALL_STRATEGY</Tag>
-		<English>The [COLOR_BUILDING_TEXT]Great Wall[COLOR_REVERT] affects the area inside its owner's cultural borders on that continent, even if it is physically outside of the Great Wall. The effects are that [COLOR_HIGHLIGHT_TEXT]Barbarians[COLOR_REVERT] cannot enter that area, and the owner receives more [COLOR_HIGHLIGHT_TEXT]Great General[COLOR_REVERT] points from combat within that area. It also adds 15% defense in all cities.</English>
+		<English>The [COLOR_BUILDING_TEXT]Great Wall[COLOR_REVERT] affects the area inside its owner's cultural borders on that continent, even if it is physically outside of the Great Wall. The effects are that [COLOR_HIGHLIGHT_TEXT]Barbarians[COLOR_REVERT] cannot enter that area, and cities in this area pay less maintenance. It also adds free walls in all cities in that area.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_HANGING_GARDEN_STRATEGY</Tag>

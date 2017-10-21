@@ -4215,6 +4215,18 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				// K-Mod end
 			}
 
+			// Civ4 Reimagined
+			if (kBuilding.getAreaDistanceMaintenanceModifier() != 0)
+			{
+				iValue += iNumCitiesInArea * (-kBuilding.getAreaDistanceMaintenanceModifier()) / 4;
+			}
+
+			// Civ4 Reimagined
+			if (kBuilding.getAreaCorporationMaintenanceModifier() != 0)
+			{
+				iValue += iNumCitiesInArea / iNumCities * kOwner.countTotalHasCorporation() * (-kBuilding.getAreaCorporationMaintenanceModifier()) / 2;
+			}
+
 			if (kBuilding.isMapCentering())
 			{
 				iValue++;

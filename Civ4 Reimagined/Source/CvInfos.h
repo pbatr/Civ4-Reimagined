@@ -1774,6 +1774,8 @@ public:
 	int getGreatPeopleRateChange() const;				// Exposed to Python
 	int getConquestProbability() const;				// Exposed to Python
 	int getMaintenanceModifier() const;				// Exposed to Python
+	int getAreaDistanceMaintenanceModifier() const; // Civ4 Reimagined
+	int getAreaCorporationMaintenanceModifier() const; // Civ4 Reimagined
 	int getWarWearinessModifier() const;				// Exposed to Python
 	int getGlobalWarWearinessModifier() const;				// Exposed to Python
 	int getEnemyWarWearinessModifier() const;				// Exposed to Python
@@ -2028,7 +2030,9 @@ protected:
 	int m_iGreatPeopleUnitClass;					
 	int m_iGreatPeopleRateChange;				
 	int m_iConquestProbability;						
-	int m_iMaintenanceModifier;					
+	int m_iMaintenanceModifier;
+	int m_iAreaDistanceMaintenanceModifier; // Civ4 Reimagined
+	int m_iAreaCorporationMaintenanceModifier; // Civ4 Reimagined					
 	int m_iWarWearinessModifier;					
 	int m_iGlobalWarWearinessModifier;
 	int m_iEnemyWarWearinessModifier;

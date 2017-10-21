@@ -25,6 +25,8 @@ CvArea::CvArea()
 	m_aiBuildingBadHealth = new int[MAX_PLAYERS];
 	m_aiBuildingHappiness = new int[MAX_PLAYERS];
 	m_aiFreeSpecialist = new int[MAX_PLAYERS];
+	m_aiDistanceMaintenanceModifier = new int[MAX_PLAYERS]; // Civ4 Reimagined
+	m_aiCorporationMaintenanceModifier = new int[MAX_PLAYERS]; // Civ4 Reimagined
 	m_aiPower = new int[MAX_PLAYERS];
 	m_aiBestFoundValue = new int[MAX_PLAYERS];
 	m_aiNumRevealedTiles = new int[MAX_TEAMS];
@@ -77,6 +79,8 @@ CvArea::~CvArea()
 	SAFE_DELETE_ARRAY(m_aiBuildingBadHealth);
 	SAFE_DELETE_ARRAY(m_aiBuildingHappiness);
 	SAFE_DELETE_ARRAY(m_aiFreeSpecialist);
+	SAFE_DELETE_ARRAY(m_aiDistanceMaintenanceModifier); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_aiCorporationMaintenanceModifier); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiPower);
 	SAFE_DELETE_ARRAY(m_aiBestFoundValue);
 	SAFE_DELETE_ARRAY(m_aiNumRevealedTiles);
@@ -160,6 +164,8 @@ void CvArea::reset(int iID, bool bWater, bool bConstructorCall)
 		m_aiBuildingBadHealth[iI] = 0;
 		m_aiBuildingHappiness[iI] = 0;
 		m_aiFreeSpecialist[iI] = 0;
+		m_aiDistanceMaintenanceModifier[iI] = 0; // Civ4 Reimagined
+		m_aiCorporationMaintenanceModifier[iI] = 0; // Civ4 Reimagined
 		m_aiPower[iI] = 0;
 		m_aiBestFoundValue[iI] = 0;
 	}
@@ -634,6 +640,50 @@ void CvArea::changeFreeSpecialist(PlayerTypes eIndex, int iChange)
 }
 
 
+// Civ4 Reimagined
+int CvArea::getDistanceMaintenanceModifier(PlayerTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be >= 0");
+	FAssertMsg(eIndex < MAX_PLAYERS, "eIndex is expected to be < MAX_PLAYERS");
+	return m_aiDistanceMaintenanceModifier[eIndex];
+}
+
+
+// Civ4 Reimagined
+void CvArea::changeDistanceMaintenanceModifier(PlayerTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be >= 0");
+	FAssertMsg(eIndex < MAX_PLAYERS, "eIndex is expected to be < MAX_PLAYERS");
+
+	if (iChange != 0)
+	{
+		m_aiDistanceMaintenanceModifier[eIndex] = (m_aiDistanceMaintenanceModifier[eIndex] + iChange);
+	}
+}
+
+
+// Civ4 Reimagined
+int CvArea::getCorporationMaintenanceModifier(PlayerTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be >= 0");
+	FAssertMsg(eIndex < MAX_PLAYERS, "eIndex is expected to be < MAX_PLAYERS");
+	return m_aiCorporationMaintenanceModifier[eIndex];
+}
+
+
+// Civ4 Reimagined
+void CvArea::changeCorporationMaintenanceModifier(PlayerTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be >= 0");
+	FAssertMsg(eIndex < MAX_PLAYERS, "eIndex is expected to be < MAX_PLAYERS");
+
+	if (iChange != 0)
+	{
+		m_aiCorporationMaintenanceModifier[eIndex] = (m_aiCorporationMaintenanceModifier[eIndex] + iChange);
+	}
+}
+
+
 // Civ4 Reimagind
 int CvArea::getFreeBuildingCount(PlayerTypes eIndex, BuildingTypes eBuilding) const 
 {
@@ -985,6 +1035,8 @@ void CvArea::read(FDataStreamBase* pStream)
 	pStream->Read(MAX_PLAYERS, m_aiBuildingBadHealth);
 	pStream->Read(MAX_PLAYERS, m_aiBuildingHappiness);
 	pStream->Read(MAX_PLAYERS, m_aiFreeSpecialist);
+	pStream->Read(MAX_PLAYERS, m_aiDistanceMaintenanceModifier); // Civ4 Reimagined
+	pStream->Read(MAX_PLAYERS, m_aiCorporationMaintenanceModifier); // Civ4 Reimagined
 	pStream->Read(MAX_PLAYERS, m_aiPower);
 	pStream->Read(MAX_PLAYERS, m_aiBestFoundValue);
 	pStream->Read(MAX_TEAMS, m_aiNumRevealedTiles);
@@ -1048,6 +1100,8 @@ void CvArea::write(FDataStreamBase* pStream)
 	pStream->Write(MAX_PLAYERS, m_aiBuildingBadHealth);
 	pStream->Write(MAX_PLAYERS, m_aiBuildingHappiness);
 	pStream->Write(MAX_PLAYERS, m_aiFreeSpecialist);
+	pStream->Write(MAX_PLAYERS, m_aiDistanceMaintenanceModifier); // Civ4 Reimagined
+	pStream->Write(MAX_PLAYERS, m_aiCorporationMaintenanceModifier); // Civ4 Reimagined
 	pStream->Write(MAX_PLAYERS, m_aiPower);
 	pStream->Write(MAX_PLAYERS, m_aiBestFoundValue);
 	pStream->Write(MAX_TEAMS, m_aiNumRevealedTiles);

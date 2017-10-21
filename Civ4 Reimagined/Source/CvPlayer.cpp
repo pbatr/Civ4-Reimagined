@@ -7718,6 +7718,8 @@ void CvPlayer::processBuilding(BuildingTypes eBuilding, int iChange, CvArea* pAr
 	changeFreeSpecialist(GC.getBuildingInfo(eBuilding).getGlobalFreeSpecialist() * iChange);
 	changeCoastalTradeRoutes(GC.getBuildingInfo(eBuilding).getCoastalTradeRoutes() * iChange);
 	changeTradeRoutes(GC.getBuildingInfo(eBuilding).getGlobalTradeRoutes() * iChange);
+	pArea->changeDistanceMaintenanceModifier(getID(), GC.getBuildingInfo(eBuilding).getAreaDistanceMaintenanceModifier() * iChange); // Civ4 Reimagined
+	pArea->changeCorporationMaintenanceModifier(getID(), GC.getBuildingInfo(eBuilding).getAreaCorporationMaintenanceModifier() * iChange); // Civ4 Reimagined
 	if (GC.getBuildingInfo(eBuilding).getAreaHealth() > 0)
 	{
 		pArea->changeBuildingGoodHealth(getID(), (GC.getBuildingInfo(eBuilding).getAreaHealth() * iChange));

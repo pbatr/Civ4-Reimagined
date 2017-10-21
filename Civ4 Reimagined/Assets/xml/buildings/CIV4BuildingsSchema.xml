@@ -158,6 +158,8 @@
 	<ElementType name="iAreaFreeSpecialist" content="textOnly" dt:type="int"/>
 	<ElementType name="iGlobalFreeSpecialist" content="textOnly" dt:type="int"/>
 	<ElementType name="iMaintenanceModifier" content="textOnly" dt:type="int"/>
+	<ElementType name="iAreaDistanceMaintenanceModifier" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
+	<ElementType name="iAreaCorporationMaintenanceModifier" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iWarWearinessModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="iGlobalWarWearinessModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="iEnemyWarWearinessModifier" content="textOnly" dt:type="int"/>
@@ -562,6 +564,8 @@
 		<element type="iAreaFreeSpecialist"/>
 		<element type="iGlobalFreeSpecialist"/>
 		<element type="iMaintenanceModifier"/>
+		<element type="iAreaDistanceMaintenanceModifier" minOccurs="0"/> <!-- Civ4 Reimagined -->
+		<element type="iAreaCorporationMaintenanceModifier" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="iWarWearinessModifier"/>
 		<element type="iGlobalWarWearinessModifier"/>
 		<element type="iEnemyWarWearinessModifier"/>

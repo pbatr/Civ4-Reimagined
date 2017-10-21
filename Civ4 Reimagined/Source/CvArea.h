@@ -79,7 +79,13 @@ public:
 	void changeFreeSpecialist(PlayerTypes eIndex, int iChange);
 
 	// Civ4 Reimagined
-	int getFreeBuildingCount(PlayerTypes eIndex, BuildingTypes eBuilding) const;											// Exposed to Python
+	int getDistanceMaintenanceModifier(PlayerTypes eIndex) const;
+	void changeDistanceMaintenanceModifier(PlayerTypes eIndex, int iChange);
+	int getCorporationMaintenanceModifier(PlayerTypes eIndex) const;
+	void changeCorporationMaintenanceModifier(PlayerTypes eIndex, int iChange);
+
+	// Civ4 Reimagined
+	int getFreeBuildingCount(PlayerTypes eIndex, BuildingTypes eBuilding) const;
 	void changeFreeBuildingCount(PlayerTypes eIndex, BuildingTypes eBuilding, int iChange);
 
 	int getPower(PlayerTypes eIndex) const;																		// Exposed to Python
@@ -143,6 +149,8 @@ protected:
 	int* m_aiBuildingBadHealth;
 	int* m_aiBuildingHappiness;
 	int* m_aiFreeSpecialist;
+	int* m_aiDistanceMaintenanceModifier; // Civ4 Reimagined
+	int* m_aiCorporationMaintenanceModifier; // Civ4 Reimagined
 	int* m_aiPower;
 	int* m_aiBestFoundValue;
 	int* m_aiNumRevealedTiles;
