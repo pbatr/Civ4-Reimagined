@@ -8,29 +8,29 @@ New
 -Two new ships: Marauder (Navigation) and Pirate (Guilds). They are weaker than their military counterparts, but bear no markings of nationality. This allows for some early game naval harassing and makes the early naval game more engaging in general
 -Two new(ish) medieval technologies: Crop Rotation (Farms spread irrigation; Floating Gardens; Agrarianism) and Civil Service (Longbowman, Crossbowman, Bureaucracy). They are intended to smoothen out some bumps in technology costs
 -National building: Great Harbor (Refrigeration; +1 [P] from water tiles)
--Slaves can be acquired by conquering or razing enemy cities when having slavery as a civic. There exists a threshold of population points you have to conquer before gaining a slave. The threshold increases with every slave.
+-Slaves can be acquired by conquering or razing enemy cities when having Slavery as a civic. There exists a threshold of population points you have to conquer before gaining a Slave. The threshold increases with every Slave.
 
 *********
 Changes
 *********
 -Update to K-Mod version 1.45
--Archers and Longbowman gain additional defense bonuses from defensive buildings such as walls and castles. Otherwise offensive units with higher ST would benefit more from walls/castles than dedicated city defenders, making balancing them tricky. Increased costs to compensate
+-Archers and Longbowman gain additional defense bonuses from defensive buildings such as Walls and Castles. Otherwise offensive units with higher ST would benefit more from Walls/Castles than dedicated city defenders, making balancing them tricky. Increased costs to compensate
 -Scouts and Explorers cannot enter rival territory
 -Chance of destroying buildings when bombarding cities halved
 -Naval changes (see also: New pirate ships)
-*-Wooden ships gain double production from chopping. This bonus is not applied to overflow production when unit is finished in same turn.
-*-All sailing ships have +1 ST (to reduce differences between tiers) except Frigates
+*-Wooden ships gain double production from chopping. This bonus is not applied to overflow production when unit is finished in the same turn.
+*-All sailing ships except Frigates have +1 ST (to reduce differences between tiers)
 *-Frigates and Privateers have +1 movement
-*-Ship of the Lines no longer have combat boni vs frigates
-*-AI is more likely to research stronger ships when cities are plundered
+*-Ship of the Lines no longer have combat bonuses vs Frigates
+*-AI is more likely to research stronger ships when cities are plundered by pirates
 *-Improved AI for building ships in general
-*-Longships are Pirates with improved trade blockade ability
+*-Viking Longships are Pirates with improved trade blockade ability
 *-Ships with hidden nationality now get the same movement penalty when entering enemy territory during war times
 -Military units only count towards reducing unhappiness in a city ("We demand military protection!") when they are at most 2 eras behind your current era. Also, they no longer reduce unhappiness in other player's cities
--Classical temples get converted to state religion temples when adopting a state religion
+-Classical Temples get converted to state religion temples when adopting a state religion
 -Modified resource ratios: Worse ratios during Middle Ages / Renaissance, better ratios later in the game
 -Units with hidden nationality no longer contribute to a civ's power value
--Nuclear plants grant +100% production speed for nuclear missles
+-Nuclear plants grant +100% production speed for nuclear missiles
 -Great Wall has been changed: Available with Construction, free Walls on continent and reduced maintenance for all cities on continent
 
 *********
@@ -39,13 +39,13 @@ Tweaks
 -Iron Working, Monotheism and Machinery are now classical techs
 -Philosophy is now a medieval tech
 -Knights strength increased from 9 to 10, cost changed from 70 to 90 and they have -50% city strength
--Heavy Footmen upgrade to Riflemen
+-Heavy Footmen upgrade to Musketmen
 -Musketmen no longer have city attack mali
 -Axemen bonus vs Archer reduced from 30% to 25%
 -Cho-Ko-Nu deals collateral damage to 4 units instead of 3
 -Cathedrals cannot be destroyed when bombarding cities
 -Colossus obsoletes with Corporation
--Temple of Artemis obsoletes with Astronomy
+-Temple of Artemis obsoletes with Education
 -Terracotta Army obsoletes with Rifling
 -Hanging Gardens require Calender instead of Construction
 -Fewer world wonders require stone. Having access to stone still gives production boni in most cases
@@ -53,9 +53,9 @@ Tweaks
 -"Trade route blocked" now has an appropriatly negative sound effect
 -Reduced gold gain from blockading trade routes by 33%
 -Horses become obsolete with Industrialism
--Project Internet now requires Fiber Optics. Cost are reduced from 2000 to 1200
--Destroyer upgrades to Stealth Destroyer
--Small Adjustments to modern tech tree
+-Project Internet now requires Fiber Optics. Costs are reduced from 2000 to 1200
+-Destroyer upgrade to Stealth Destroyer
+-Small adjustments to modern tech tree
 -Tech Composites requires Robotics instead of Computers
 -Tech Stealth requires Superconductors instead of Advanced Flight and Composites
 -Civic Bureaucracy resource ratio modfier increased from +10% to +20%
@@ -67,13 +67,12 @@ Tweaks
 -Shock promotion no longer available for siege units
 -Navigation II promotion grants 2 movement points and is now an optional requirement for Blitz promotion
 -Babylonian bowman strength reduced to 3 but gains a 100% bonus vs archery units
--Viking "Trading Post" UB moved to Harbor, grants +50% trade route yield, +2 XP and Navigation I
--Wall building quest no longer triggers when walls are obsolete
+-Viking Trading Post moved to Harbor, grants +50% trade route yield, +2 XP and Navigation I
+-Wall building quest no longer triggers when Walls are obsolete
 -AI cancels open borders more sensibly
 -Improved AI civic and research tech evaluation
 -Smaller chance for barbarian units to spawn in tiles without food
--More stone, more marble.
--Increased number of slaves gained from city conquest
+-More stone, more marble
 
 *********
 Interface
@@ -84,7 +83,7 @@ Interface
 *********
 Fixes
 *********
--Fixed an OOS error during map initialisation
+-Fixed an OOS error during map initialization
 -"The old dynasty has died out" event now has a different drawback. "Unhappiness in capital" was always negated by Dynasticism's unlimited happiness
 -Fixed tsunami, sports league and great depression event tooltips
 -Fixed 'balanced' resources appearing directly on starting positions
@@ -93,7 +92,7 @@ Fixes
 -Fixed a bug that prevented units from getting automatically moved outside of enemy territory when war was declared
 -Fixed a bug that caused sea units to have a bigger visibility range than land units when stationed in cities
 -Fixed great person bar showing negative turn numbers on special occasions
--'Homeless children' now correctly costs you money when selecting the second option, not giving you money.
+-'Homeless children' now correctly costs you money when selecting the second option, not giving you money
 
 *******************************************
 Civ4 Reimagined 1.2
