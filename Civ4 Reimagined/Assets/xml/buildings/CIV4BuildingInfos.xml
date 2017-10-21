@@ -27179,7 +27179,7 @@
 			<VictoryPrereq>NONE</VictoryPrereq>
 			<FreeStartEra>NONE</FreeStartEra>
 			<MaxStartEra>ERA_CLASSICAL</MaxStartEra>
-			<ObsoleteTech>TECH_ASTRONOMY</ObsoleteTech>
+			<ObsoleteTech>TECH_EDUCATION</ObsoleteTech>
 			<PrereqTech>TECH_PRIESTHOOD</PrereqTech>
 			<TechTypes/>
 			<Bonus>BONUS_MARBLE</Bonus>
