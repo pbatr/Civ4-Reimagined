@@ -343,7 +343,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -949,7 +949,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -1565,7 +1565,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -2174,7 +2174,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -2788,7 +2788,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -3402,7 +3402,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -4020,7 +4020,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -4625,7 +4625,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -5234,7 +5234,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -5852,7 +5852,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -6473,7 +6473,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -7090,7 +7090,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -7704,7 +7704,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -8322,7 +8322,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -8934,7 +8934,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -9514,7 +9514,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -10128,7 +10128,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -10737,7 +10737,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -11355,7 +11355,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -11975,7 +11975,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>25</iContactRand>
+					<iContactRand>6</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -12539,7 +12539,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -13150,7 +13150,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -13766,7 +13766,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -14391,7 +14391,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -15009,7 +15009,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -15618,7 +15618,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -16227,7 +16227,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -16841,7 +16841,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -17459,7 +17459,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -18064,7 +18064,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -18682,7 +18682,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -19296,7 +19296,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -19916,7 +19916,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>25</iContactRand>
+					<iContactRand>6</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -20471,7 +20471,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -21083,7 +21083,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -21701,7 +21701,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -22319,7 +22319,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -22937,7 +22937,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -23562,7 +23562,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -24167,7 +24167,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -24783,7 +24783,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -25395,7 +25395,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -26004,7 +26004,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -26620,7 +26620,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>25</iContactRand>
+					<iContactRand>6</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -27195,7 +27195,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -27807,7 +27807,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -28416,7 +28416,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -29041,7 +29041,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -29677,7 +29677,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -30302,7 +30302,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>20</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -30929,7 +30929,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -31555,7 +31555,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -32187,7 +32187,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -32828,7 +32828,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
@@ -33462,7 +33462,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
-					<iContactRand>20</iContactRand>
+					<iContactRand>5</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>

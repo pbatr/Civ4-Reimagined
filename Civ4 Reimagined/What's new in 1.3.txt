@@ -69,6 +69,7 @@ Tweaks
 -Babylonian bowman strength reduced to 3 but gains a 100% bonus vs archery units
 -Viking Trading Post moved to Harbor, grants +50% trade route yield, +2 XP and Navigation I
 -Wall building quest no longer triggers when Walls are obsolete
+-AI is quicker in negotiating open border deals
 -AI cancels open borders more sensibly
 -Improved AI civic and research tech evaluation
 -Smaller chance for barbarian units to spawn in tiles without food
