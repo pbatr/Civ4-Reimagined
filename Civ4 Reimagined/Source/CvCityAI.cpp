@@ -4095,16 +4095,14 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 			// 1.2 * average population seems wrong. Instead, do something roughly compariable to what's used in CvPlayerAI::AI_civicValue.
 			int iGlobalTradeValue = (bForeignTrade ? 5 : 3) * (2*(kOwner.getCurrentEra()+1) + GC.getNumEraInfos()) / GC.getNumEraInfos();
 
-			const int iBaseTradeYield = getTradeYield(YIELD_COMMERCE) / std::max(1, iTotalTradeModifier);
-
-			iTempValue += 5 * kBuilding.getTradeRouteModifier() * iBaseTradeYield;
+			iTempValue += 5 * kBuilding.getTradeRouteModifier() * getTradeYield(YIELD_COMMERCE) / std::max(1, iTotalTradeModifier);
+				
 			if (bForeignTrade)
 			{
-				iTempValue += 5 * iForeignTradeRoutes * kBuilding.getForeignTradeRouteModifier() * iBaseTradeYield / iNumTradeRoutes;
+				iTempValue += 5 * iForeignTradeRoutes * kBuilding.getForeignTradeRouteModifier() * getTradeYield(YIELD_COMMERCE) / std::max(1, iTotalTradeModifier) / iNumTradeRoutes;
 			}
-			
-			// Civ4 Reimagined
-			iTempValue += iTempValue += 5 * iOverseaTradeRoutes * kBuilding.getOverseaTradeRouteModifier() * iBaseTradeYield / iNumTradeRoutes;
+
+			iTempValue += iTempValue += 5 * iOverseaTradeRoutes * kBuilding.getOverseaTradeRouteModifier() * getTradeYield(YIELD_COMMERCE) / std::max(1, iTotalTradeModifier) / iNumTradeRoutes;
 
 			iTempValue *= AI_yieldMultiplier(YIELD_COMMERCE);
 			iTempValue /= 100;
