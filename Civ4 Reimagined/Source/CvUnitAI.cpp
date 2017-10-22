@@ -6682,12 +6682,10 @@ void CvUnitAI::AI_pirateSeaMove()
 		}
 	}
 
-	if (GC.getGame().getSorenRandNum(11, "AI Pirate Pillage") == 0)
+	// Civ4 Reimagined: Pillage first and then start blockading
+	if (AI_pillageRange(3))
 	{
-		if (AI_pillageRange(1))
-		{
-			return;
-		}
+		return;
 	}
 	
 	//Includes heal and retreat to sea routines.
@@ -25284,7 +25282,7 @@ bool CvUnitAI::AI_breakBlockade()
 
 	if (pCity != NULL)
 	{
-		if (pCity->isPlundered())
+		if (pCity->isBlockaded())
 		{
 			const int iAttackers = plot()->plotCount(PUF_isUnitAIType, UNITAI_ATTACK_SEA, -1, NO_PLAYER, getTeam(), PUF_isGroupHead, -1, -1) + 
 								   plot()->plotCount(PUF_isUnitAIType, UNITAI_RESERVE_SEA, -1, NO_PLAYER, getTeam(), PUF_isGroupHead, -1, -1);
