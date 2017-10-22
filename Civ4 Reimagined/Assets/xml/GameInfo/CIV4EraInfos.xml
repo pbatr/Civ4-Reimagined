@@ -173,7 +173,7 @@
 			<iCreatePercent>100</iCreatePercent>
 			<iResearchPercent>80</iResearchPercent>
 			<!-- BBAI start: effectively modify cost for all techs from this era.  Default: 4 BBAI: 6-->
-			<iTechCostModifier>35</iTechCostModifier>
+			<iTechCostModifier>30</iTechCostModifier>
 			<!-- BBAI end -->
 			<iBuildPercent>100</iBuildPercent>
 			<iImprovementPercent>100</iImprovementPercent>
@@ -253,7 +253,7 @@
 			<iCreatePercent>90</iCreatePercent>
 			<iResearchPercent>70</iResearchPercent>
 			<!-- BBAI start: effectively modify cost for all techs from this era.  Default: 9 -->
-			<iTechCostModifier>45</iTechCostModifier>
+			<iTechCostModifier>40</iTechCostModifier>
 			<!-- BBAI end -->
 			<iBuildPercent>90</iBuildPercent>
 			<iImprovementPercent>90</iImprovementPercent>
@@ -394,7 +394,7 @@
 			<iCreatePercent>70</iCreatePercent>
 			<iResearchPercent>50</iResearchPercent>
 			<!-- BBAI start: effectively modify cost for all techs from this era.  Default: 18 -->
-			<iTechCostModifier>65</iTechCostModifier>
+			<iTechCostModifier>63</iTechCostModifier>
 			<!-- BBAI end -->
 			<iBuildPercent>70</iBuildPercent>
 			<iImprovementPercent>70</iImprovementPercent>
