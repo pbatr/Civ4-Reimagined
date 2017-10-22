@@ -5616,13 +5616,13 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 	iValue += kTechInfo.getWorkerSpeedModifier() * 2 * std::max(iCityCount, iCityTarget/2) / 25;
 
 	//iValue += (kTechInfo.getTradeRoutes() * (std::max((getNumCities() + 2), iConnectedForeignCities) + 1) * ((bFinancialTrouble) ? 200 : 100));
-	// K-Mod. A very rough estimate assuming each city has ~2 trade routes; new local trade routes worth ~2 commerce, and foreign worth ~6.
+	// K-Mod. A very rough estimate assuming each city has ~2 trade routes; new local trade routes worth ~3 commerce, and foreign worth ~6.
 	if (kTechInfo.getTradeRoutes() != 0)
 	{
 		// Civ4 Reimagined
 		int iTradeRoutesPerCity = GC.getGameINLINE().getTradeRoutes() + getTradeRoutes();
 		int iConnectedForeignCities = AI_countPotentialForeignTradeCities(true, AI_getFlavorValue(FLAVOR_GOLD) == 0);
-		int iAddedCommerce = 2*(iCityCount+2)*kTechInfo.getTradeRoutes() + 4*range(iConnectedForeignCities-iTradeRoutesPerCity*getNumCities(), 0, iCityCount*kTechInfo.getTradeRoutes());
+		int iAddedCommerce = 3*(iCityCount+2)*kTechInfo.getTradeRoutes() + 3*range(iConnectedForeignCities-iTradeRoutesPerCity*getNumCities(), 0, iCityCount*kTechInfo.getTradeRoutes());
 
 		// Civ4 Reimagined
 		iAddedCommerce *= 4; // 1 commerce ~ 4 value points
@@ -5696,12 +5696,16 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 					int iNewForeignRoutes = AI_countPotentialForeignTradeCities(false, AI_getFlavorValue(FLAVOR_GOLD) == 0) - iCurrentForeignRoutes;
 
 					int iNewOverseasRoutes = std::max(0, AI_countPotentialForeignTradeCities(false, AI_getFlavorValue(FLAVOR_GOLD) == 0, pCapitalCity->area()) - iCurrentForeignRoutes);
-					int iLocalRoutes = std::max(0, iCityCount*3 - iCurrentForeignRoutes);
+					
+					//int iLocalRoutes = std::max(0, iCityCount*3 - iCurrentForeignRoutes);
+					// Civ4 Reimagined
+					const int iRoutesPerCity = std::min(4, getCurrentEra() + 1);
+					int iLocalRoutes = std::max(0, iCityCount*iRoutesPerCity - iCurrentForeignRoutes);
 
 					// TODO: multiply by average commerce multiplier?
 
 					// 4 for upgrading local to foreign. 2 for upgrading to overseas. Divide by 3 if we don't have coastal cities.
-					iValue += (std::min(iLocalRoutes, iNewForeignRoutes) * 16  + std::min(iNewOverseasRoutes, iCityCount*3) * 8) / (iCoastalCities > 0 ? 1 : 3);
+					iValue += (std::min(iLocalRoutes, iNewForeignRoutes) * 16  + std::min(iNewOverseasRoutes, iCityCount*iRoutesPerCity) * 8) / (iCoastalCities > 0 ? 1 : 3);
 					// K-Mod end
 				}
 
@@ -5811,12 +5815,12 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 						// use average of final and initial improvements
 						iTempValue += (kBuildImprovement.getYieldChange(iK) * 100);
 						iTempValue += (kBuildImprovement.getRiverSideYieldChange(iK) * 50);
-						iTempValue += (kBuildImprovement.getHillsYieldChange(iK) * 75);
+						iTempValue += (kBuildImprovement.getHillsYieldChange(iK) * 80); // Civ4 Reimagined, was 75
 						iTempValue += (kBuildImprovement.getIrrigatedYieldChange(iK) * 80);
 
 						iTempValue += (kFinalImprovement.getYieldChange(iK) * 100);
 						iTempValue += (kFinalImprovement.getRiverSideYieldChange(iK) * 50);
-						iTempValue += (kFinalImprovement.getHillsYieldChange(iK) * 75);
+						iTempValue += (kFinalImprovement.getHillsYieldChange(iK) * 80); // Civ4 Reimagined, was 75
 						iTempValue += (kFinalImprovement.getIrrigatedYieldChange(iK) * 80);
 
 						iTempValue /= 2;
@@ -6016,7 +6020,9 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 		if (bIsFeatureRemove)
 		{
-			int iChopValue = iChopProduction / 8;
+			//int iChopValue = iChopProduction / 8;
+			// Civ4 Reimagined
+			int iChopValue = iChopProduction / 5;
 
 			if ((GC.getFeatureInfo(FeatureTypes(iJ)).getHealthPercent() < 0) ||
 				((GC.getFeatureInfo(FeatureTypes(iJ)).getYieldChange(YIELD_FOOD) + GC.getFeatureInfo(FeatureTypes(iJ)).getYieldChange(YIELD_PRODUCTION) + GC.getFeatureInfo(FeatureTypes(iJ)).getYieldChange(YIELD_COMMERCE)) < 0))
