@@ -5622,10 +5622,10 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 		// Civ4 Reimagined
 		int iTradeRoutesPerCity = GC.getGameINLINE().getTradeRoutes() + getTradeRoutes();
 		int iConnectedForeignCities = AI_countPotentialForeignTradeCities(true, AI_getFlavorValue(FLAVOR_GOLD) == 0);
-		int iAddedCommerce = 3*(iCityCount+2)*kTechInfo.getTradeRoutes() + 3*range(iConnectedForeignCities-iTradeRoutesPerCity*getNumCities(), 0, iCityCount*kTechInfo.getTradeRoutes());
+		int iAddedCommerce = 3*(iCityCount+2)*kTechInfo.getTradeRoutes() + 3*range(iConnectedForeignCities-iTradeRoutesPerCity*iCityCount, 0, iCityCount*kTechInfo.getTradeRoutes());
 
 		// Civ4 Reimagined
-		iAddedCommerce *= 4; // 1 commerce ~ 4 value points
+		iAddedCommerce *= 6; // 1 commerce ~ 4 value points and a little bit more because trade is awesome ;)
 		iAddedCommerce *= AI_averageYieldMultiplier(YIELD_COMMERCE);
 		iAddedCommerce /= 100;
 		iAddedCommerce *= AI_yieldWeight(YIELD_COMMERCE);
