@@ -7274,6 +7274,13 @@ void CvCity::setBonusGoodHealth(double dChange)
 {
 	m_dBonusGoodHealth = dChange;
 	FAssertMsg(getBonusGoodHealth() >= 0, "getBonusGoodHealth is expected to be >= 0");
+
+	AI_setAssignWorkDirty(true);
+
+	if (getTeam() == GC.getGameINLINE().getActiveTeam())
+	{
+		setInfoDirty(true);
+	}
 }
 
 // Civ4 Reimagined: Quantifiable Resource System
@@ -7281,6 +7288,13 @@ void CvCity::setBonusBadHealth(double dChange)
 {
 	m_dBonusBadHealth = dChange;
 	FAssertMsg(getBonusBadHealth() <= 0, "getBonusBadHealth is expected to be <= 0");
+
+	AI_setAssignWorkDirty(true);
+
+	if (getTeam() == GC.getGameINLINE().getActiveTeam())
+	{
+		setInfoDirty(true);
+	}
 }
 
 
@@ -7404,6 +7418,13 @@ void CvCity::setBonusGoodHappiness(double dChange)
 {
 	m_dBonusGoodHappiness = dChange;
 	FAssertMsg(getBonusGoodHappiness() >= 0, "getBonusGoodHappiness is expected to be >= 0");
+
+	AI_setAssignWorkDirty(true);
+
+	if (getTeam() == GC.getGameINLINE().getActiveTeam())
+	{
+		setInfoDirty(true);
+	}
 }
 
 // Civ4 Reimagined
@@ -7411,6 +7432,13 @@ void CvCity::setBonusBadHappiness(double dChange)
 {
 	m_dBonusBadHappiness = dChange;
 	FAssertMsg(getBonusBadHappiness() <= 0, "getBonusBadHappiness is expected to be <= 0");
+
+	AI_setAssignWorkDirty(true);
+
+	if (getTeam() == GC.getGameINLINE().getActiveTeam())
+	{
+		setInfoDirty(true);
+	}
 }
 
 
@@ -10131,6 +10159,15 @@ int CvCity::getCommerceRateTimes100(CommerceTypes eIndex) const
 
 	int iRate = m_aiCommerceRate[eIndex];
 
+	// Civ4 Reimagined
+	if (GC.getGameINLINE().isDebugMode())
+	{
+		int iCommerce = (getBaseCommerceRateTimes100(eIndex) * getTotalCommerceRateModifier(eIndex)) / 100;
+		iCommerce += getYieldRate(YIELD_PRODUCTION) * getProductionToCommerceModifier(eIndex);
+
+		FAssertMsg(iCommerce == iRate, "commerceCache is invalid");
+	}
+
 	if (GC.getGameINLINE().isOption(GAMEOPTION_NO_ESPIONAGE))
 	{
 		if (eIndex == COMMERCE_CULTURE)
@@ -10295,7 +10332,7 @@ void CvCity::changeProductionToCommerceModifier(CommerceTypes eIndex, int iChang
 	{
 		m_aiProductionToCommerceModifier[eIndex] = (m_aiProductionToCommerceModifier[eIndex] + iChange);
 
-		updateCommerce(eIndex);
+		updateCommerce();
 	}
 }
 
@@ -11550,6 +11587,8 @@ void CvCity::changeNoBonusCount(BonusTypes eIndex, int iChange)
 
 		updateCorporation();
 
+		updateCommerce();
+
 		AI_setAssignWorkDirty(true);
 
 		setInfoDirty(true);
@@ -11748,8 +11787,7 @@ void CvCity::changeNumBonuses(BonusTypes eIndex, int iChange)
 			// Civ4 Reimagined
 			if (isCapital() && GC.getBonusInfo((BonusTypes)eIndex).getHappiness() > 0)
 			{
-				setGoldForHappinessBonus(getGoldForHappinessBonus() + GET_PLAYER(getOwnerINLINE()).getGoldPerHappinessBonus() * iChange);
-				setInfoDirty(true);
+				setGoldForHappinessBonus(getGoldForHappinessBonus() + GET_PLAYER(getOwnerINLINE()).getGoldPerHappinessBonus() * iChange);		
 			}
 		}
 	}
@@ -11761,6 +11799,8 @@ void CvCity::setGoldForHappinessBonus(int iValue)
 	m_iGoldForHappinessBonus = iValue;
 	
 	updateCommerce(COMMERCE_GOLD);
+
+	setInfoDirty(true);
 }
 
 // Civ4 Reimagined
