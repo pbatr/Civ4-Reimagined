@@ -14147,7 +14147,7 @@ void CvPlayer::changeCapitalCommerceRateModifierPerHappinessSurplus(CommerceType
 
 		if (pCapitalCity != NULL)
 		{
-			pCapitalCity->updateCommerce();
+			pCapitalCity->updateCommerce(eIndex);
 
 			pCapitalCity->AI_setAssignWorkDirty(true);
 		}
@@ -26016,6 +26016,8 @@ void CvPlayer::changeProductionPerSurplusHappiness(int iChange)
 	{
 		m_iProductionPerSurplusHappiness = m_iProductionPerSurplusHappiness + iChange;
 		FAssert(m_iProductionPerSurplusHappiness >= 0);
+		
+		updateYield();
 	}
 }
 
@@ -26708,8 +26710,14 @@ void CvPlayer::setCapitalCommercePerPopulation(CommerceTypes eIndex, int iCommer
 	m_paiCapitalCommercePopulationThreshold[eIndex] = iTargetPopulation;
 	m_paiCapitalCommerceModifier[eIndex] = iCommerceModifierPerPopulation;
 	
-	updateCommerce();
-	AI_makeAssignWorkDirty();
+	CvCity* pCapitalCity = getCapitalCity();
+
+	if (pCapitalCity != NULL)
+	{
+		pCapitalCity->updateCommerce();
+
+		pCapitalCity->AI_setAssignWorkDirty(true);
+	}
 }
 
 // Civ4 Reimagined

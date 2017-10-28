@@ -11021,6 +11021,8 @@ void CvCity::changeCommerceHappinessPer(CommerceTypes eIndex, int iChange)
 		m_aiCommerceHappinessPer[eIndex] = (m_aiCommerceHappinessPer[eIndex] + iChange);
 		FAssert(getCommerceHappinessPer(eIndex) >= 0);
 
+		updateCommerce(eIndex);
+		
 		AI_setAssignWorkDirty(true);
 	}
 }
@@ -11757,6 +11759,8 @@ void CvCity::changeNumBonuses(BonusTypes eIndex, int iChange)
 void CvCity::setGoldForHappinessBonus(int iValue)
 {
 	m_iGoldForHappinessBonus = iValue;
+	
+	updateCommerce(COMMERCE_GOLD);
 }
 
 // Civ4 Reimagined
