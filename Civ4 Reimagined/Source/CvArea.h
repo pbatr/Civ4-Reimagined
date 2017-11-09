@@ -22,6 +22,8 @@ public:
 	void uninit();
 	void reset(int iID = 0, bool bWater = false, bool bConstructorCall = false);
 
+	void mergeWith(CvArea* pOther); // Civ4 Reimagined
+
 	int calculateTotalBestNatureYield() const;																// Exposed to Python
 
 	int countCoastalLand() const;																							// Exposed to Python
