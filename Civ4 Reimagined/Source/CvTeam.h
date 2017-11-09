@@ -530,6 +530,7 @@ protected:
 
 	void cancelDefensivePacts();
 	void announceTechToPlayers(TechTypes eIndex, bool bPartial = false);
+	void announceFirstDiscoveredTech(TechTypes eTech, PlayerTypes ePlayer) const; // Civ4 Reimagined
 
 	virtual void read(FDataStreamBase* pStream);
 	virtual void write(FDataStreamBase* pStream);
