@@ -25,6 +25,12 @@ Fixes
 
 
 *******************************************
+Civ4 Reimagined 1.3a
+*******************************************
+-Fixed a bug that caused incorrect calculations of capital commerce for players with either Mercantilism or Absolutism
+
+
+*******************************************
 Civ4 Reimagined 1.3
 *******************************************
 
@@ -121,6 +127,7 @@ Fixes
 -Fixed great person bar showing negative turn numbers on special occasions
 -'Homeless children' now correctly costs you money when selecting the second option, not giving you money
 -Ships can no longer plunder cities that are unreachable (e.g. on the other side of continent)
+
 
 *******************************************
 Civ4 Reimagined 1.2
