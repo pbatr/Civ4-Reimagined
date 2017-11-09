@@ -11785,29 +11785,54 @@ void CvCity::changeNumBonuses(BonusTypes eIndex, int iChange)
 			}	
 			
 			// Civ4 Reimagined
-			if (isCapital() && GC.getBonusInfo((BonusTypes)eIndex).getHappiness() > 0)
+			// numBonuses can become negative unfortunately and because of updateCommerce() mess up player commerce (can become negative as well). 
+			// This is why we have to recalculate gold for happiness bonuses instead of just caching it.
+			if (isCapital() && GC.getBonusInfo((BonusTypes)eIndex).getHappiness() > 0 && GET_PLAYER(getOwnerINLINE()).getGoldPerHappinessBonus() > 0)
 			{
-				setGoldForHappinessBonus(getGoldForHappinessBonus() + GET_PLAYER(getOwnerINLINE()).getGoldPerHappinessBonus() * iChange);		
+				updateGoldForHappinessBonus();
 			}
 		}
 	}
 }
 
+
+// Civ4 Reimagined
+void CvCity::updateGoldForHappinessBonus()
+{
+	int iGoldForHapBonus = 0;
+	for (int iI = 0; iI < GC.getNumBonusInfos(); ++iI)
+	{
+		if (GC.getBonusInfo((BonusTypes)iI).getHappiness() > 0)
+		{
+			iGoldForHapBonus += std::max(0, getNumBonuses((BonusTypes)iI)) * GET_PLAYER(getOwnerINLINE()).getGoldPerHappinessBonus();
+		}
+	}
+
+	setGoldForHappinessBonus(iGoldForHapBonus);
+}
+
+
 // Civ4 Reimagined
 void CvCity::setGoldForHappinessBonus(int iValue)
 {
-	m_iGoldForHappinessBonus = iValue;
-	
-	updateCommerce(COMMERCE_GOLD);
+	if (iValue != getGoldForHappinessBonus())
+	{
+		m_iGoldForHappinessBonus = iValue;
+		FAssert(getGoldForHappinessBonus() >= 0);
+		
+		updateCommerce(COMMERCE_GOLD);
 
-	setInfoDirty(true);
+		setInfoDirty(true);
+	}
 }
+
 
 // Civ4 Reimagined
 int CvCity::getGoldForHappinessBonus() const
 {
 	return m_iGoldForHappinessBonus;
 }
+
 
 // Civ4 Reimagined
 void CvCity::changeNumBonusesInFatCross(BonusTypes eIndex, int iChange)
@@ -11820,6 +11845,7 @@ void CvCity::changeNumBonusesInFatCross(BonusTypes eIndex, int iChange)
 		m_paiNumBonusesInFatCross[eIndex] += iChange;
 	}
 }
+
 
 // Civ4 Reimagined
 void CvCity::changeNumTerrainTypesInFatCross(TerrainTypes eIndex, int iChange)
@@ -11845,6 +11871,7 @@ void CvCity::changeNumPlotTypesInFatCross(PlotTypes eIndex, int iChange)
 		m_paiNumPlotTypesInFatCross[eIndex] += iChange;
 	}
 }
+
 
 int CvCity::getNumCorpProducedBonuses(BonusTypes eIndex) const
 {
