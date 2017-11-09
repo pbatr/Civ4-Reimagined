@@ -302,6 +302,8 @@ protected:
 	FFreeListTrashArray<CvArea> m_areas;
 
 	void calculateAreas();
+	void combineAreas(); // Civ4 Reimagined
+	void mergeAreas(pArea* biggerArea, pArea* smallerArea); // Civ4 Reimagined
 
 };
 

@@ -226,6 +226,73 @@ void CvArea::reset(int iID, bool bWater, bool bConstructorCall)
 }
 
 
+// Civ4 Reimagined
+void CvArea::mergeWith(CvArea* pOther)
+{
+	FAssert(m_bWater == pOther->isWater());
+
+	m_iNumTiles         += pOther->getNumTiles();
+	m_iNumOwnedTiles    += pOther->getNumOwnedTiles();
+	m_iNumRiverEdges    += pOther->getNumRiverEdges();
+	m_iNumUnits         += pOther->getNumUnits();
+	m_iNumCities        += pOther->getNumCities();
+	m_iTotalPopulation  += pOther->getTotalPopulation();
+	m_iNumStartingPlots += pOther->getNumStartingPlots();
+
+	for (int iI = 0; iI < MAX_PLAYERS; ++iI)
+	{
+		m_aiUnitsPerPlayer[iI]                 += pOther->getUnitsPerPlayer((PlayerTypes)iI);
+		m_aiAnimalsPerPlayer[iI]               += pOther->getAnimalsPerPlayer((PlayerTypes)iI);
+		m_aiCitiesPerPlayer[iI]                += pOther->getCitiesPerPlayer((PlayerTypes)iI);
+		m_aiPopulationPerPlayer[iI]            += pOther->getAnimalsPerPlayer((PlayerTypes)iI);
+		m_aiBuildingGoodHealth[iI]             += pOther->getBuildingGoodHealth((PlayerTypes)iI);
+		m_aiBuildingBadHealth[iI]              += pOther->getBuildingBadHealth((PlayerTypes)iI);
+		m_aiBuildingHappiness[iI]              += pOther->getBuildingHappiness((PlayerTypes)iI);
+		m_aiFreeSpecialist[iI]                 += pOther->getFreeSpecialist((PlayerTypes)iI);
+		m_aiDistanceMaintenanceModifier[iI]    += pOther->getDistanceMaintenanceModifier((PlayerTypes)iI);
+		m_aiCorporationMaintenanceModifier[iI] += pOther->getCorporationMaintenanceModifier((PlayerTypes)iI);
+		m_aiPower[iI]                          += pOther->getPower((PlayerTypes)iI);
+		m_aiBestFoundValue[iI]                  = std::max(getBestFoundValue((PlayerTypes)iI), pOther->getBestFoundValue((PlayerTypes)iI));
+	}
+
+	for (int iI = 0; iI < MAX_TEAMS; ++iI)
+	{
+		m_aiNumRevealedTiles[iI]    += pOther->getNumRevealedTiles((TeamTypes)iI);
+		m_aiCleanPowerCount[iI]     += pOther->getCleanPowerCount((TeamTypes)iI);
+		m_aiBorderObstacleCount[iI] += pOther->getBorderObstacleCount((TeamTypes)iI);
+	}
+
+	for (int iI = 0; iI < MAX_PLAYERS; ++iI)
+	{
+		for (int iJ = 0; iJ < NUM_YIELD_TYPES; ++iJ)
+		{
+			m_aaiYieldRateModifier[iI][iJ] += pOther->getYieldRateModifier((PlayerTypes)iI, (YieldTypes)iJ);
+		}
+
+		for (int iJ = 0; iJ < NUM_UNITAI_TYPES; ++iJ)
+		{
+			m_aaiNumTrainAIUnits[iI][iJ] += pOther->getNumTrainAIUnits((PlayerTypes)iI, (UnitAITypes)iJ);
+			m_aaiNumAIUnits[iI][iJ]      += pOther->getNumAIUnits((PlayerTypes)iI, (UnitAITypes)iJ);
+		}
+
+		for (int iJ = 0; iJ < GC.getNumBuildingInfos(); ++iJ)
+		{
+			m_aaiFreeBuilding[iI][iJ] += pOther->getFreeBuildingCount((PlayerTypes)iI, (BuildingTypes)iJ);
+		}
+	}
+
+	for (int iI = 0; iI < GC.getNumBonusInfos(); ++iI)
+	{
+		m_paiNumBonuses[iI] += pOther->getNumBonuses((BonusTypes)iI);
+	}
+
+	for (int iI = 0; iI < GC.getNumImprovementInfos(); ++iI)
+	{
+		m_paiNumImprovements[iI] += pOther->getNumImprovements((ImprovementTypes)iI);
+	}
+}
+
+
 int CvArea::getID() const						
 {
 	return m_iID;

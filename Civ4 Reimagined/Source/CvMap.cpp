@@ -1489,5 +1489,54 @@ void CvMap::calculateAreas()
 	}
 }
 
+// Civ4 Reimagined: Merge areas that are close together
+void CvMap::combineAreas()
+{
+	for (int iI = 0; iI < numPlotsINLINE(); ++iI)
+	{
+		CvPlot* pLoopPlot = plotByIndexINLINE(iI);
+		FAssertMsg(pLoopPlot != NULL, "LoopPlot is not assigned a valid value");
+
+		if (!pLoopPlot->isCoastalLand())
+			continue;
+
+		for (int iPlot = 0; iPlot < NUM_CITY_PLOTS; ++iPlot)
+		{
+			CvPlot* pRadiusPlot = ::plotCity(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), iPlot);
+
+			if (pRadiusPlot != NULL && !pRadiusPlot->isWater() && pLoopPlot->getArea() != pRadiusPlot->getArea())
+			{
+				if (pLoopPlot->getArea()->getNumTiles() >= pRadiusPlot->getArea()->getNumTiles())
+				{
+					mergeAreas(pLoopPlot->area(), pRadiusPlot->area());
+				}
+				else
+				{
+					mergeAreas(pRadiusPlot->area(), pLoopPlot->area());
+				}
+			}
+		}
+	}
+}
+
+// Civ4 Reimagined: Merge two areas
+void CvMap::mergeAreas(pArea* biggerArea, pArea* smallerArea)
+{
+	biggerArea->mergeWith(smallerArea->getID());
+
+	for (iI = 0; iI < numPlotsINLINE(); ++iI)
+	{
+		CvPlot* pLoopPlot = plotByIndexINLINE(iI);
+		FAssertMsg(pLoopPlot != NULL, "LoopPlot is not assigned a valid value");
+
+		if (pLoopPlot->getArea() == smallerArea->getID())
+		{
+			pLoopPlot->setArea(biggerArea->setID());
+		}
+	}
+
+	deleteArea(smallerArea->getID());
+}
+
 
 // Private Functions...
