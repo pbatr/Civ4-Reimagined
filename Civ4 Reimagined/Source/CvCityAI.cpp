@@ -3462,12 +3462,15 @@ BuildingTypes CvCityAI::AI_bestBuildingThreshold(int iFocusFlags, int iMaxTurns,
 						int iPrereqBuilt = kOwner.getBuildingClassCount((BuildingClassTypes)iJ);
 						FAssert(iPrereqEach > 0);
 						iLimit = iPrereqBuilt / iPrereqEach - iBuilt - iBuilding;
-						FAssert(iLimit > 0);
+						// Civ4 Reimagined: This assertion is not always true. E.g. you can lose cities with the required building.
+						//FAssert(iLimit > 0);
 						break;
 					}
 				}
 			}
-			if (iLimit != -1)
+			//if (iLimit != -1)
+			// Civ4 Reimagined
+			if (iLimit > 0)
 			{
 				const int iMaxNumWonders = (GC.getGameINLINE().isOption(GAMEOPTION_ONE_CITY_CHALLENGE) && isHuman()) ? GC.getDefineINT("MAX_NATIONAL_WONDERS_PER_CITY_FOR_OCC") : GC.getDefineINT("MAX_NATIONAL_WONDERS_PER_CITY");
 
@@ -10271,9 +10274,7 @@ int CvCityAI::AI_jobChangeValue(std::pair<bool, int> new_job, std::pair<bool, in
 		iFinalYieldValue -= 100 * AI_yieldValue(aiYieldLost, NULL, true, bIgnoreFood, bIgnoreStarvation, false, iGrowthValue);
 
 		if (iFinalYieldValue > iYieldValue)
-			//iYieldValue = (40 * iYieldValue + 60 * iFinalYieldValue) / 100
-			// Civ4 Reimagined: Work more cottages to make them grow
-			iYieldValue = (20 * iYieldValue + 80 * iFinalYieldValue) / 100;
+			iYieldValue = (40 * iYieldValue + 60 * iFinalYieldValue) / 100;
 		else
 			iYieldValue = (60 * iYieldValue + 40 * iFinalYieldValue) / 100;
 	}

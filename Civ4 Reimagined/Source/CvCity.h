@@ -879,6 +879,7 @@ public:
 	void changeNumTerrainTypesInFatCross(TerrainTypes eIndex, int iChange); // Civ4 Reimagined
 	int getNumPlotTypesInFatCross(PlotTypes eIndex, bool bIgnoreCulture = true) const; // Civ4 Reimagined
 	void changeNumPlotTypesInFatCross(PlotTypes eIndex, int iChange); // Civ4 Reimagined
+	void updateGoldForHappinessBonus(); // Civ4 Reimagined
 	void setGoldForHappinessBonus(int iValue); // Civ4 Reimagined
 	int getGoldForHappinessBonus() const; // Civ4 Reimagined
 

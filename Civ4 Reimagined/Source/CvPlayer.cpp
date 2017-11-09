@@ -11641,16 +11641,7 @@ void CvPlayer::changeGoldPerHappinessBonus(int iChange, bool bRecalculate)
 		CvCity* pCapitalCity = getCapitalCity();
 		if (pCapitalCity != NULL)
 		{
-			// Calculate the number of happiness resources from scratch when the modifier changes or when a recalculation is forced. Afterwards, adjust the value only when a bonus is added or removed from the capital city in CvCity::changeNumBonuses.
-			int iNumHappinessBoni = 0;
-			for (int iI = 0; iI < GC.getNumBonusInfos(); iI++)
-			{
-				if (GC.getBonusInfo((BonusTypes)iI).getHappiness() > 0)
-				{
-					iNumHappinessBoni += pCapitalCity->getNumBonuses((BonusTypes)iI);
-				}
-			}
-			pCapitalCity->setGoldForHappinessBonus(iNumHappinessBoni * m_iGoldPerHappinessBonus);
+			pCapitalCity->updateGoldForHappinessBonus();
 		}
 		AI_makeAssignWorkDirty();
 	}
