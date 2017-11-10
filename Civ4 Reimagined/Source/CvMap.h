@@ -303,7 +303,7 @@ protected:
 
 	void calculateAreas();
 	void combineAreas(); // Civ4 Reimagined
-	void mergeAreas(pArea* biggerArea, pArea* smallerArea); // Civ4 Reimagined
+	void mergeAreas(CvArea* pBiggerArea, CvArea* pSmallerArea); // Civ4 Reimagined
 
 };
 

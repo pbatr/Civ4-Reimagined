@@ -1506,7 +1506,7 @@ void CvMap::combineAreas()
 
 			if (pRadiusPlot != NULL && !pRadiusPlot->isWater() && pLoopPlot->getArea() != pRadiusPlot->getArea())
 			{
-				if (pLoopPlot->getArea()->getNumTiles() >= pRadiusPlot->getArea()->getNumTiles())
+				if (pLoopPlot->area()->getNumTiles() >= pRadiusPlot->area()->getNumTiles())
 				{
 					mergeAreas(pLoopPlot->area(), pRadiusPlot->area());
 				}
@@ -1520,22 +1520,22 @@ void CvMap::combineAreas()
 }
 
 // Civ4 Reimagined: Merge two areas
-void CvMap::mergeAreas(pArea* biggerArea, pArea* smallerArea)
+void CvMap::mergeAreas(CvArea* pBiggerArea, CvArea* pSmallerArea)
 {
-	biggerArea->mergeWith(smallerArea->getID());
+	pBiggerArea->mergeWith(pSmallerArea);
 
-	for (iI = 0; iI < numPlotsINLINE(); ++iI)
+	for (int iI = 0; iI < numPlotsINLINE(); ++iI)
 	{
 		CvPlot* pLoopPlot = plotByIndexINLINE(iI);
 		FAssertMsg(pLoopPlot != NULL, "LoopPlot is not assigned a valid value");
 
-		if (pLoopPlot->getArea() == smallerArea->getID())
+		if (pLoopPlot->getArea() == pSmallerArea->getID())
 		{
-			pLoopPlot->setArea(biggerArea->setID());
+			pLoopPlot->setArea(pBiggerArea->getID());
 		}
 	}
 
-	deleteArea(smallerArea->getID());
+	deleteArea(pSmallerArea->getID());
 }
 
 
