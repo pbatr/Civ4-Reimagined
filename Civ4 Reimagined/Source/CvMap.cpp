@@ -1487,6 +1487,9 @@ void CvMap::calculateAreas()
 			gDLL->getFAStarIFace()->GeneratePath(&GC.getAreaFinder(), pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), -1, -1, pLoopPlot->isWater(), iArea);
 		}
 	}
+
+	// Civ4 Reimagined
+	combineAreas();
 }
 
 // Civ4 Reimagined: Merge areas that are close together
