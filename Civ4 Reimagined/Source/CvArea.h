@@ -34,6 +34,10 @@ public:
 	int getID() const;																							// Exposed to Python
 	void setID(int iID);
 
+	// Civ4 Reimagined
+	CvWString getName() const;
+	void setName(const CvWString &szNewValue);
+
 	int getNumTiles() const;																									// Exposed to Python
 	bool isLake() const;																											// Exposed to Python
 	void changeNumTiles(int iChange);
@@ -142,6 +146,8 @@ protected:
 	int m_iNumStartingPlots;
 
 	bool m_bWater;
+
+	CvWString m_szName; // Civ4 Reimagined
 
 	int* m_aiUnitsPerPlayer;
 	int* m_aiAnimalsPerPlayer;

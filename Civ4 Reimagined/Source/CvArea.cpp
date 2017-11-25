@@ -62,6 +62,8 @@ CvArea::CvArea()
 	m_paiNumBonuses = NULL;
 	m_paiNumImprovements = NULL;
 
+	// Civ4 Reimagined
+	CvWString m_szName = "";
 
 	reset(0, false, true);
 }
@@ -153,6 +155,9 @@ void CvArea::reset(int iID, bool bWater, bool bConstructorCall)
 	m_iNumStartingPlots = 0;
 
 	m_bWater = bWater;
+
+	// Civ4 Reimagined
+	CvWString m_szName = "";
 
 	for (iI = 0; iI < MAX_PLAYERS; iI++)
 	{
@@ -302,6 +307,20 @@ int CvArea::getID() const
 void CvArea::setID(int iID)														
 {
 	m_iID = iID;
+}
+
+
+// Civ4 Reimagined
+CvWString CvArea::getName() const
+{
+	return m_szName;
+}
+
+
+// Civ4 Reimagined
+void CvArea::setName(const CvWString &szNewValue)
+{
+	m_szName = szNewValue;
 }
 
 
@@ -1138,6 +1157,9 @@ void CvArea::read(FDataStreamBase* pStream)
 
 	pStream->Read(GC.getNumBonusInfos(), m_paiNumBonuses);
 	pStream->Read(GC.getNumImprovementInfos(), m_paiNumImprovements);
+
+	// Civ4 Reimagined
+	pStream->ReadString(m_szName);
 }
 
 
@@ -1203,6 +1225,9 @@ void CvArea::write(FDataStreamBase* pStream)
 
 	pStream->Write(GC.getNumBonusInfos(), m_paiNumBonuses);
 	pStream->Write(GC.getNumImprovementInfos(), m_paiNumImprovements);
+
+	// Civ4 Reimagined
+	pStream->WriteString(m_szName);
 }
 
 // Protected Functions...

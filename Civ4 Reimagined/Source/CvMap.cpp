@@ -1490,6 +1490,39 @@ void CvMap::calculateAreas()
 
 	// Civ4 Reimagined
 	combineAreas();
+
+	std::vector<CvWString> areaNames; 
+	areaNames.push_back("Africa");
+	areaNames.push_back("Asia");
+	areaNames.push_back("America");
+	areaNames.push_back("Europe");
+	areaNames.push_back("Australia");
+	areaNames.push_back("Oceania");
+	areaNames.push_back("Zealandia");
+	areaNames.push_back("Antarctica");
+	areaNames.push_back("Anatolia");
+	areaNames.push_back("Assuwa");
+
+	int iLoop;
+	size_t iNameID = 0;
+	for(CvArea* pLoopArea = GC.getMap().firstArea(&iLoop); pLoopArea != NULL; pLoopArea = GC.getMap().nextArea(&iLoop))
+	{
+		if (pLoopArea->isWater())
+			continue;
+
+		if (iNameID >= areaNames.size())
+		{
+			CvWString szTempBuffer;
+			szTempBuffer.Format(L"Continent %d", iNameID);
+			pLoopArea->setName(szTempBuffer);
+		}
+		else
+		{
+			pLoopArea->setName(areaNames[iNameID]);
+		}
+
+		++iNameID;
+	}
 }
 
 // Civ4 Reimagined: Merge areas that are close together
@@ -1520,6 +1553,8 @@ void CvMap::combineAreas()
 			}
 		}
 	}
+
+	//todo: merge smaller areas (max X tiles) with bigger radius
 }
 
 // Civ4 Reimagined: Merge two areas
