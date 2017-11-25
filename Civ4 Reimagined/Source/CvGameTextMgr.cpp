@@ -5514,6 +5514,13 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 			}
 		}
 
+		// Civ4 Reimangined
+		if (!pPlot->isWater())
+		{
+			szString.append(NEWLINE);
+			szString.append(pPlot->area()->getName());
+		}
+
 		if (pPlot->isFreshWater())
 		{
 			szString.append(NEWLINE);
