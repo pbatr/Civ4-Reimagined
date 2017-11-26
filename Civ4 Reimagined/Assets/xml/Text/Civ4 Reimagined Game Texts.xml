@@ -1311,4 +1311,8 @@
 		<Tag>TXT_KEY_BUILDING_BORDER_OBSTACLE</Tag>
 		<English>[ICON_BULLET]Prevents Barbarians from Entering Borders on this Continent</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_CENTERS_MAP</Tag>
+		<English>[ICON_BULLET]Centers [LINK=CONCEPT_MAPS]World Map[\LINK] and displays Continents</English>
+	</TEXT>
 </Civ4GameText>
