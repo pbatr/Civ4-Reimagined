@@ -1526,39 +1526,67 @@ void CvMap::calculateAreas()
 }
 
 // Civ4 Reimagined: Merge areas that are close together
+//
+// First round: Combine big areas (15 tiles or more) and merge adjacent small islands.
+// Second round: Try to merge more small islands (use bigger radius).
 void CvMap::combineAreas()
 {
-	for (int iI = 0; iI < numPlotsINLINE(); ++iI)
+	for (int iRound = 1; iRound < 3; ++iRound)
 	{
-		CvPlot* pLoopPlot = plotByIndexINLINE(iI);
-		FAssertMsg(pLoopPlot != NULL, "LoopPlot is not assigned a valid value");
-
-		if (!pLoopPlot->isCoastalLand())
-			continue;
-
-		for (int iPlot = 0; iPlot < NUM_CITY_PLOTS; ++iPlot)
+		for (int iI = 0; iI < numPlotsINLINE(); ++iI)
 		{
-			CvPlot* pRadiusPlot = ::plotCity(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), iPlot);
+			CvPlot* pLoopPlot = plotByIndexINLINE(iI);
+			FAssertMsg(pLoopPlot != NULL, "LoopPlot is not assigned a valid value");
 
-			if (pRadiusPlot != NULL && !pRadiusPlot->isWater() && pLoopPlot->getArea() != pRadiusPlot->getArea())
+			if (!pLoopPlot->isCoastalLand())
+				continue;
+
+			if (pLoopPlot->area()->getNumTiles() >= GC.getDefineINT("MINIMUM_NUM_TILES_FOR_CONTINENT") && iRound > 1)
+				continue;
+
+			for (int iPlot = 0; iPlot < NUM_CITY_PLOTS; ++iPlot)
 			{
-				if (pLoopPlot->area()->getNumTiles() >= pRadiusPlot->area()->getNumTiles())
+				CvPlot* pRadiusPlot = ::plotCity(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), iPlot);
+
+				if (pRadiusPlot == NULL)
+					continue;
+
+				if (!pRadiusPlot->isWater() && pLoopPlot->getArea() != pRadiusPlot->getArea())
 				{
-					mergeAreas(pLoopPlot->area(), pRadiusPlot->area());
+					mergePlotAreas(pRadiusPlot, pLoopPlot);
 				}
-				else
+				// extend lookup radius for smaller islands
+				else if (iRound > 1 && pRadiusPlot->isWater())
 				{
-					mergeAreas(pRadiusPlot->area(), pLoopPlot->area());
+					CvPlot* pNearestLandPlot = pRadiusPlot->getNearestLandPlot();
+
+					if (pNearestLandPlot->getArea() != pLoopPlot->getArea())
+					{
+						mergePlotAreas(pNearestLandPlot, pLoopPlot);
+					}
 				}
 			}
 		}
 	}
-
-	//todo: merge smaller areas (max X tiles) with bigger radius
 }
 
-// Civ4 Reimagined: Merge two areas
-void CvMap::mergeAreas(CvArea* pBiggerArea, CvArea* pSmallerArea)
+
+// Civ4 Reimagined
+void CvMap::mergePlotAreas(CvPlot* pPlot1, CvPlot* pPlot2)
+{
+	if (pPlot1->area()->getNumTiles() >= pPlot2->area()->getNumTiles())
+	{
+		swallowArea(pPlot1->area(), pPlot2->area());
+	}
+	else
+	{
+		swallowArea(pPlot2->area(), pPlot1->area());
+	}
+}
+
+
+// Civ4 Reimagined
+void CvMap::swallowArea(CvArea* pBiggerArea, CvArea* pSmallerArea)
 {
 	pBiggerArea->mergeWith(pSmallerArea);
 
