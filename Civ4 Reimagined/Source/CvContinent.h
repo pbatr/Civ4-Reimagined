@@ -29,6 +29,7 @@ public:
 	void setName(const CvWString &szNewValue);
 
 	int getNumTiles() const;
+	void changeNumTiles(int iChange);
 
 	int getBuildingGoodHealth(PlayerTypes eIndex) const;
 	void changeBuildingGoodHealth(PlayerTypes eIndex, int iChange);

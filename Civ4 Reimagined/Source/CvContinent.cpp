@@ -1,7 +1,6 @@
 // Civ4 Reimagined
 // continent.cpp
 
-#include <algorithm>
 #include <set>
 #include <iterator>
 
@@ -18,7 +17,7 @@
 
 // Public Functions...
 
-CvArea::CvContinent()
+CvContinent::CvContinent()
 {
 	m_aiBuildingGoodHealth = new int[MAX_PLAYERS];
 	m_aiBuildingBadHealth = new int[MAX_PLAYERS];
@@ -45,7 +44,7 @@ CvArea::CvContinent()
 }
 
 
-CvArea::~CvContinent()
+CvContinent::~CvContinent()
 {
 	SAFE_DELETE_ARRAY(m_aiBuildingGoodHealth);
 	SAFE_DELETE_ARRAY(m_aiBuildingBadHealth);
@@ -392,7 +391,7 @@ void CvContinent::changeYieldRateModifier(PlayerTypes eIndex1, YieldTypes eIndex
 }
 
 
-void CvArea::read(FDataStreamBase* pStream)
+void CvContinent::read(FDataStreamBase* pStream)
 {
 	int iI;
 	int iNumAreas;
@@ -436,7 +435,7 @@ void CvArea::read(FDataStreamBase* pStream)
 }
 
 
-void CvArea::write(FDataStreamBase* pStream)
+void CvContinent::write(FDataStreamBase* pStream)
 {
 	int iI;
 
