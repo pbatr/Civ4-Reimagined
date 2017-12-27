@@ -1491,35 +1491,35 @@ void CvMap::calculateAreas()
 	// Civ4 Reimagined
 	combineAreas();
 
-	std::vector<CvWString> areaNames; 
-	areaNames.push_back("Africa");
-	areaNames.push_back("Asia");
-	areaNames.push_back("America");
-	areaNames.push_back("Europe");
-	areaNames.push_back("Australia");
-	areaNames.push_back("Oceania");
-	areaNames.push_back("Gondwana");
-	areaNames.push_back("Laurasia");
-	areaNames.push_back("Pannotia");
-	areaNames.push_back("Rodinia");
-	areaNames.push_back("Kenorland");
-	areaNames.push_back("Gondwana");
-	areaNames.push_back("Nena");
-	areaNames.push_back("Sclavia");
-	areaNames.push_back("Ur");
-	areaNames.push_back("Vaalbara");
-	areaNames.push_back("Gondwana");
-	areaNames.push_back("Kerguelen Plateau");
-	areaNames.push_back("Zealandia");
-	areaNames.push_back("Amazonia");
-	areaNames.push_back("Atlantica");
-	areaNames.push_back("Avalonia");
-	areaNames.push_back("Baltica");
-	areaNames.push_back("Cimmeria");
-	areaNames.push_back("Kalaharia");
-	areaNames.push_back("Kazakhstania");
-	areaNames.push_back("Laurentia");
-	areaNames.push_back("Siberia");
+	std::vector<CvWString> continentNames; 
+	continentNames.push_back("Africa");
+	continentNames.push_back("Asia");
+	continentNames.push_back("America");
+	continentNames.push_back("Europe");
+	continentNames.push_back("Australia");
+	continentNames.push_back("Oceania");
+	continentNames.push_back("Gondwana");
+	continentNames.push_back("Laurasia");
+	continentNames.push_back("Pannotia");
+	continentNames.push_back("Rodinia");
+	continentNames.push_back("Kenorland");
+	continentNames.push_back("Gondwana");
+	continentNames.push_back("Nena");
+	continentNames.push_back("Sclavia");
+	continentNames.push_back("Ur");
+	continentNames.push_back("Vaalbara");
+	continentNames.push_back("Gondwana");
+	continentNames.push_back("Kerguelen Plateau");
+	continentNames.push_back("Zealandia");
+	continentNames.push_back("Amazonia");
+	continentNames.push_back("Atlantica");
+	continentNames.push_back("Avalonia");
+	continentNames.push_back("Baltica");
+	continentNames.push_back("Cimmeria");
+	continentNames.push_back("Kalaharia");
+	continentNames.push_back("Kazakhstania");
+	continentNames.push_back("Laurentia");
+	continentNames.push_back("Siberia");
 
 	int iLoop;
 	size_t iNameID = 0;
@@ -1528,7 +1528,7 @@ void CvMap::calculateAreas()
 		if (pLoopArea->isWater())
 			continue;
 
-		if (iNameID >= areaNames.size())
+		if (iNameID >= continentNames.size())
 		{
 			CvWString szTempBuffer;
 			szTempBuffer.Format(L"Continent %d", iNameID);
@@ -1536,7 +1536,7 @@ void CvMap::calculateAreas()
 		}
 		else
 		{
-			pLoopArea->setName(areaNames[iNameID]);
+			pLoopArea->setName(continentNames[iNameID]);
 		}
 
 		++iNameID;

@@ -9,6 +9,7 @@
 
 class CvCity;
 class CvPlot;
+class CvContinent;
 
 class CvArea
 {
@@ -35,8 +36,8 @@ public:
 	void setID(int iID);
 
 	// Civ4 Reimagined
-	CvWString getName() const;
-	void setName(const CvWString &szNewValue);
+	CvContinent* getContinent() const;
+	void setContinent(CvContinent* pContinent);
 
 	int getNumTiles() const;																									// Exposed to Python
 	bool isLake() const;																											// Exposed to Python
@@ -166,6 +167,8 @@ protected:
 	int* m_aiBorderObstacleCount;
 
 	AreaAITypes* m_aeAreaAIType;
+
+	CvContinent* m_pContinent;
 
 	IDInfo* m_aTargetCities;
 

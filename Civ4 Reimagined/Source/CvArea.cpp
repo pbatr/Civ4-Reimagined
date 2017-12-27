@@ -2,6 +2,7 @@
 
 #include "CvGameCoreDLL.h"
 #include "CvArea.h"
+#include "CvContinent.h"
 #include "CvMap.h"
 #include "CvPlot.h"
 #include "CvGlobals.h"
@@ -61,9 +62,6 @@ CvArea::CvArea()
 
 	m_paiNumBonuses = NULL;
 	m_paiNumImprovements = NULL;
-
-	// Civ4 Reimagined
-	CvWString m_szName = "";
 
 	reset(0, false, true);
 }
@@ -311,16 +309,26 @@ void CvArea::setID(int iID)
 
 
 // Civ4 Reimagined
-CvWString CvArea::getName() const
+CvContinent* CvArea::getContinent() const
 {
-	return m_szName;
+	return m_pContinent;
 }
 
 
 // Civ4 Reimagined
-void CvArea::setName(const CvWString &szNewValue)
+void CvArea::setContinent(CvContinent* pContinent)
 {
-	m_szName = szNewValue;
+	if (m_pContinent != NULL)
+	{
+		m_pContinent->removeArea(getID());
+	}	
+
+	if (pContinent != NULL)
+	{
+		pContinent->addArea(getID());
+	}
+
+	m_pContinent = pContinent;
 }
 
 
@@ -620,6 +628,7 @@ int CvArea::getPopulationPerPlayer(PlayerTypes eIndex) const
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be >= 0");
 	FAssertMsg(eIndex < MAX_PLAYERS, "eIndex is expected to be < MAX_PLAYERS");
+
 	return m_aiPopulationPerPlayer[eIndex];
 }
 
@@ -637,6 +646,14 @@ void CvArea::changePopulationPerPlayer(PlayerTypes eIndex, int iChange)
 
 int CvArea::getBuildingGoodHealth(PlayerTypes eIndex) const 
 {
+	// Civ4 Reimagined
+	if (m_pContinent != NULL)
+	{
+		return m_pContinent->getBuildingGoodHealth(eIndex);
+	}
+
+	// Civ4 Reimagined: This code stays here for compability reasons. If you play non auto generated maps there exist no continents at the moment.
+
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be >= 0");
 	FAssertMsg(eIndex < MAX_PLAYERS, "eIndex is expected to be < MAX_PLAYERS");
 	return m_aiBuildingGoodHealth[eIndex];
@@ -645,6 +662,13 @@ int CvArea::getBuildingGoodHealth(PlayerTypes eIndex) const
 
 void CvArea::changeBuildingGoodHealth(PlayerTypes eIndex, int iChange)
 {
+	// Civ4 Reimagined
+	if (m_pContinent != NULL)
+	{
+		m_pContinent->changeBuildingGoodHealth(eIndex, iChange);
+		return;
+	}
+
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be >= 0");
 	FAssertMsg(eIndex < MAX_PLAYERS, "eIndex is expected to be < MAX_PLAYERS");
 
@@ -660,6 +684,12 @@ void CvArea::changeBuildingGoodHealth(PlayerTypes eIndex, int iChange)
 
 int CvArea::getBuildingBadHealth(PlayerTypes eIndex) const
 {
+	// Civ4 Reimagined
+	if (m_pContinent != NULL)
+	{
+		return m_pContinent->getBuildingBadHealth(eIndex);
+	}
+
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be >= 0");
 	FAssertMsg(eIndex < MAX_PLAYERS, "eIndex is expected to be < MAX_PLAYERS");
 	return m_aiBuildingBadHealth[eIndex];
@@ -668,6 +698,13 @@ int CvArea::getBuildingBadHealth(PlayerTypes eIndex) const
 
 void CvArea::changeBuildingBadHealth(PlayerTypes eIndex, int iChange)
 {
+	// Civ4 Reimagined
+	if (m_pContinent != NULL)
+	{
+		m_pContinent->changeBuildingBadHealth(eIndex, iChange);
+		return;
+	}
+
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be >= 0");
 	FAssertMsg(eIndex < MAX_PLAYERS, "eIndex is expected to be < MAX_PLAYERS");
 
@@ -683,6 +720,12 @@ void CvArea::changeBuildingBadHealth(PlayerTypes eIndex, int iChange)
 
 int CvArea::getBuildingHappiness(PlayerTypes eIndex) const
 {
+	// Civ4 Reimagined
+	if (m_pContinent != NULL)
+	{
+		return m_pContinent->getBuildingHappiness(eIndex);
+	}
+
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be >= 0");
 	FAssertMsg(eIndex < MAX_PLAYERS, "eIndex is expected to be < MAX_PLAYERS");
 	return m_aiBuildingHappiness[eIndex];
@@ -691,6 +734,13 @@ int CvArea::getBuildingHappiness(PlayerTypes eIndex) const
 
 void CvArea::changeBuildingHappiness(PlayerTypes eIndex, int iChange)
 {
+	// Civ4 Reimagined
+	if (m_pContinent != NULL)
+	{
+		m_pContinent->changeBuildingHappiness(eIndex, iChange);
+		return;
+	}
+
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be >= 0");
 	FAssertMsg(eIndex < MAX_PLAYERS, "eIndex is expected to be < MAX_PLAYERS");
 
@@ -705,6 +755,12 @@ void CvArea::changeBuildingHappiness(PlayerTypes eIndex, int iChange)
 
 int CvArea::getFreeSpecialist(PlayerTypes eIndex) const
 {
+	// Civ4 Reimagined
+	if (m_pContinent != NULL)
+	{
+		return m_pContinent->getFreeSpecialist(eIndex);
+	}
+
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be >= 0");
 	FAssertMsg(eIndex < MAX_PLAYERS, "eIndex is expected to be < MAX_PLAYERS");
 	return m_aiFreeSpecialist[eIndex];
@@ -713,6 +769,13 @@ int CvArea::getFreeSpecialist(PlayerTypes eIndex) const
 
 void CvArea::changeFreeSpecialist(PlayerTypes eIndex, int iChange)
 {
+	// Civ4 Reimagined
+	if (m_pContinent != NULL)
+	{
+		m_pContinent->changeFreeSpecialist(eIndex, iChange);
+		return;
+	}
+
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be >= 0");
 	FAssertMsg(eIndex < MAX_PLAYERS, "eIndex is expected to be < MAX_PLAYERS");
 
@@ -729,6 +792,11 @@ void CvArea::changeFreeSpecialist(PlayerTypes eIndex, int iChange)
 // Civ4 Reimagined
 int CvArea::getDistanceMaintenanceModifier(PlayerTypes eIndex) const
 {
+	if (m_pContinent != NULL)
+	{
+		return m_pContinent->getDistanceMaintenanceModifier(eIndex);
+	}
+
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be >= 0");
 	FAssertMsg(eIndex < MAX_PLAYERS, "eIndex is expected to be < MAX_PLAYERS");
 	return m_aiDistanceMaintenanceModifier[eIndex];
@@ -738,6 +806,12 @@ int CvArea::getDistanceMaintenanceModifier(PlayerTypes eIndex) const
 // Civ4 Reimagined
 void CvArea::changeDistanceMaintenanceModifier(PlayerTypes eIndex, int iChange)
 {
+	if (m_pContinent != NULL)
+	{
+		m_pContinent->changeDistanceMaintenanceModifier(eIndex, iChange);
+		return;
+	}
+
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be >= 0");
 	FAssertMsg(eIndex < MAX_PLAYERS, "eIndex is expected to be < MAX_PLAYERS");
 
@@ -751,6 +825,11 @@ void CvArea::changeDistanceMaintenanceModifier(PlayerTypes eIndex, int iChange)
 // Civ4 Reimagined
 int CvArea::getCorporationMaintenanceModifier(PlayerTypes eIndex) const
 {
+	if (m_pContinent != NULL)
+	{
+		return m_pContinent->getCorporationMaintenanceModifier(eIndex);
+	}
+
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be >= 0");
 	FAssertMsg(eIndex < MAX_PLAYERS, "eIndex is expected to be < MAX_PLAYERS");
 	return m_aiCorporationMaintenanceModifier[eIndex];
@@ -760,6 +839,12 @@ int CvArea::getCorporationMaintenanceModifier(PlayerTypes eIndex) const
 // Civ4 Reimagined
 void CvArea::changeCorporationMaintenanceModifier(PlayerTypes eIndex, int iChange)
 {
+	if (m_pContinent != NULL)
+	{
+		m_pContinent->changeCorporationMaintenanceModifier(eIndex, iChange);
+		return;
+	}
+
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be >= 0");
 	FAssertMsg(eIndex < MAX_PLAYERS, "eIndex is expected to be < MAX_PLAYERS");
 
@@ -773,6 +858,11 @@ void CvArea::changeCorporationMaintenanceModifier(PlayerTypes eIndex, int iChang
 // Civ4 Reimagind
 int CvArea::getFreeBuildingCount(PlayerTypes eIndex, BuildingTypes eBuilding) const 
 {
+	if (m_pContinent != NULL)
+	{
+		return m_pContinent->getFreeBuildingCount(eIndex, eBuilding);
+	}
+
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be >= 0");
 	FAssertMsg(eIndex < MAX_PLAYERS, "eIndex is expected to be < MAX_PLAYERS");
 	FAssertMsg(eBuilding >= 0, "eBuilding is expected to be >= 0");
@@ -784,6 +874,12 @@ int CvArea::getFreeBuildingCount(PlayerTypes eIndex, BuildingTypes eBuilding) co
 // Civ4 Reimagined
 void CvArea::changeFreeBuildingCount(PlayerTypes eIndex, BuildingTypes eBuilding, int iChange)
 {
+	if (m_pContinent != NULL)
+	{
+		m_pContinent->changeFreeBuildingCount(eIndex, eBuilding, iChange);
+		return;
+	}
+
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be >= 0");
 	FAssertMsg(eIndex < MAX_PLAYERS, "eIndex is expected to be < MAX_PLAYERS");
 	FAssertMsg(eBuilding >= 0, "eBuilding is expected to be >= 0");
@@ -801,6 +897,12 @@ void CvArea::changeFreeBuildingCount(PlayerTypes eIndex, BuildingTypes eBuilding
 
 int CvArea::getPower(PlayerTypes eIndex) const
 {
+	// Civ4 Reimagined
+	if (m_pContinent != NULL)
+	{
+		return m_pContinent->getPower(eIndex);
+	}
+
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be >= 0");
 	FAssertMsg(eIndex < MAX_PLAYERS, "eIndex is expected to be < MAX_PLAYERS");
 	return m_aiPower[eIndex];
@@ -809,6 +911,13 @@ int CvArea::getPower(PlayerTypes eIndex) const
 
 void CvArea::changePower(PlayerTypes eIndex, int iChange)
 {
+	// Civ4 Reimagined
+	if (m_pContinent != NULL)
+	{
+		m_pContinent->changePower(eIndex, iChange);
+		return;
+	}
+
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be >= 0");
 	FAssertMsg(eIndex < MAX_PLAYERS, "eIndex is expected to be < MAX_PLAYERS");
 	m_aiPower[eIndex] = (m_aiPower[eIndex] + iChange);

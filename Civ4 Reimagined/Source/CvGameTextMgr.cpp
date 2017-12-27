@@ -5515,10 +5515,10 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 		}
 
 		// Civ4 Reimangined
-		if (!pPlot->isWater()&& GET_TEAM(GC.getGameINLINE().getActiveTeam()).isMapCentering())
+		if (!pPlot->isWater() && GET_TEAM(GC.getGameINLINE().getActiveTeam()).isMapCentering() && pPlot->area()->getContinent() != NULL)
 		{
 			szString.append(NEWLINE);
-			szString.append(pPlot->area()->getName());
+			szString.append(pPlot->area()->getContinent()->getName());
 		}
 
 		if (pPlot->isFreshWater())
