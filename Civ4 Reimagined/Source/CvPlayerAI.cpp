@@ -18336,21 +18336,18 @@ void CvPlayerAI::AI_doCommerce()
 									(iModifier == iMinModifier && iAttitude < kTeam.AI_getAttitudeVal(eMinModTeam)))
 								{
 									// do they have any techs we can steal?
-									bool bValid = false;
-									for (int iT = 0; iT < GC.getNumTechInfos(); ++it)
+									for (int iTech = 0; iTech < GC.getNumTechInfos(); ++iTech)
 									{
-										if (canStealTech((PlayerTypes)iPlayer, (TechTypes)iT))
+										if (canStealTech((PlayerTypes)iPlayer, (TechTypes)iTech))
 										{
-											bValid = iApproxTechCost > 0; // don't set it true unless there are at least 2 stealable techs.
 											// get a (very rough) approximation of how much it will cost to steal a tech.
-											iApproxTechCost = (kTeam.getResearchCost((TechTypes)iT) + iApproxTechCost) / (iApproxTechCost != 0 ? 2 : 1);
+											iApproxTechCost = (kTeam.getResearchCost((TechTypes)iTech) + iApproxTechCost) / (iApproxTechCost != 0 ? 2 : 1);
+
+											// Civ4 Reimagined: Removed illogical bValid condition
+											iMinModifier = iModifier;
+											eMinModTeam = (TeamTypes)iTeam;
 											break;
 										}
-									}
-									if (bValid)
-									{
-										iMinModifier = iModifier;
-										eMinModTeam = (TeamTypes)iTeam;
 									}
 								}
 							}
