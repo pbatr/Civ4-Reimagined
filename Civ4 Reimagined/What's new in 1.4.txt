@@ -22,7 +22,7 @@ Interface
 *********
 Fixes
 *********
-
+- Fixed a bug in AI steal tech evaluations that could cause an infinite loop during AI turn
 
 *******************************************
 Civ4 Reimagined 1.3a
