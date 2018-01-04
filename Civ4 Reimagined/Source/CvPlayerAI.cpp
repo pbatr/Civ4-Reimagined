@@ -18784,7 +18784,7 @@ void CvPlayerAI::AI_doCivics()
 						if (getCivicAnarchyLength(&aeBestCivic[0]) <= iAnarchyLength)
 						{
 							// if the anarchy length would be the same, consider waiting for the new civic..
-							int iValue = AI_civicValue((CivicTypes)iI, bNoWarWeariness, bStateReligion, aiHappy[iI]);
+							int iValue = AI_civicValue((CivicTypes)iI, bNoWarWeariness, bStateReligion, aiHappy[kCivic.getCivicOptionType()]);
 							
 							if (100 * iValue > (102+2*iResearchTurns) * aiCurrentValue[kCivic.getCivicOptionType()])
 							{
