@@ -7351,6 +7351,8 @@ void CvCity::changeMilitaryHappinessUnits(int iChange)
 		FAssert(getMilitaryHappinessUnits() >= 0);
 
 		AI_setAssignWorkDirty(true);
+		// Civ4 Reimagined
+		updateHappinessCommerce();
 	}
 }
 
@@ -7410,6 +7412,8 @@ void CvCity::changeBuildingGoodHappiness(int iChange)
 		FAssert(getBuildingGoodHappiness() >= 0);
 
 		AI_setAssignWorkDirty(true);
+		// Civ4 Reimagined
+		updateHappinessCommerce();
 	}
 }
 
@@ -7422,6 +7426,8 @@ void CvCity::changeBuildingBadHappiness(int iChange)
 		FAssert(getBuildingBadHappiness() <= 0);
 
 		AI_setAssignWorkDirty(true);
+		// Civ4 Reimagined
+		updateHappinessCommerce();
 	}
 }
 
@@ -7432,6 +7438,8 @@ void CvCity::setBonusGoodHappiness(double dChange)
 	FAssertMsg(getBonusGoodHappiness() >= 0, "getBonusGoodHappiness is expected to be >= 0");
 
 	AI_setAssignWorkDirty(true);
+	// Civ4 Reimagined
+	updateHappinessCommerce();
 
 	if (getTeam() == GC.getGameINLINE().getActiveTeam())
 	{
@@ -7446,6 +7454,8 @@ void CvCity::setBonusBadHappiness(double dChange)
 	FAssertMsg(getBonusBadHappiness() <= 0, "getBonusBadHappiness is expected to be <= 0");
 
 	AI_setAssignWorkDirty(true);
+	// Civ4 Reimagined
+	updateHappinessCommerce();
 
 	if (getTeam() == GC.getGameINLINE().getActiveTeam())
 	{
@@ -7495,6 +7505,9 @@ void CvCity::updateExtraBuildingHappiness()
 		m_iExtraBuildingGoodHappiness = iNewExtraBuildingGoodHappiness;
 		FAssert(getExtraBuildingGoodHappiness() >= 0);
 
+		// Civ4 Reimagined
+		updateHappinessCommerce();
+
 		AI_setAssignWorkDirty(true);
 	}
 
@@ -7502,6 +7515,9 @@ void CvCity::updateExtraBuildingHappiness()
 	{
 		m_iExtraBuildingBadHappiness = iNewExtraBuildingBadHappiness;
 		FAssert(getExtraBuildingBadHappiness() <= 0);
+
+		// Civ4 Reimagined
+		updateHappinessCommerce();
 
 		AI_setAssignWorkDirty(true);
 	}
@@ -7864,6 +7880,9 @@ void CvCity::updateFeatureHappiness()
 		m_iFeatureGoodHappiness = iNewFeatureGoodHappiness;
 		FAssert(getFeatureGoodHappiness() >= 0);
 
+		// Civ4 Reimagined
+		updateHappinessCommerce();
+
 		AI_setAssignWorkDirty(true);
 	}
 
@@ -7871,6 +7890,9 @@ void CvCity::updateFeatureHappiness()
 	{
 		m_iFeatureBadHappiness = iNewFeatureBadHappiness;
 		FAssert(getFeatureBadHappiness() <= 0);
+
+		// Civ4 Reimagined
+		updateHappinessCommerce();
 
 		AI_setAssignWorkDirty(true);
 	}
@@ -7896,6 +7918,9 @@ void CvCity::changeBonusGoodHappiness(double dChange)
 		m_dBonusGoodHappiness = (m_dBonusGoodHappiness + dChange);
 		FAssert(getBonusGoodHappiness() >= 0);
 
+		// Civ4 Reimagined
+		updateHappinessCommerce();
+
 		AI_setAssignWorkDirty(true);
 	}
 }
@@ -7907,6 +7932,9 @@ void CvCity::changeBonusBadHappiness(double dChange)
 	{
 		m_dBonusBadHappiness = (m_dBonusBadHappiness + dChange);
 		FAssert(getBonusBadHappiness() <= 0);
+
+		// Civ4 Reimagined
+		updateHappinessCommerce();
 
 		AI_setAssignWorkDirty(true);
 	}
@@ -7982,6 +8010,9 @@ void CvCity::updateReligionHappiness()
 		m_iReligionGoodHappiness = iNewReligionGoodHappiness;
 		FAssert(getReligionGoodHappiness() >= 0);
 
+		// Civ4 Reimagined
+		updateHappinessCommerce();
+
 		AI_setAssignWorkDirty(true);
 	}
 
@@ -7989,6 +8020,9 @@ void CvCity::updateReligionHappiness()
 	{
 		m_iReligionBadHappiness = iNewReligionBadHappiness;
 		FAssert(getReligionBadHappiness() <= 0);
+
+		// Civ4 Reimagined
+		updateHappinessCommerce();
 
 		AI_setAssignWorkDirty(true);
 	}
@@ -8006,6 +8040,9 @@ void CvCity::changeExtraHappiness(int iChange)
 	if (iChange != 0)
 	{
 		m_iExtraHappiness += iChange;
+
+		// Civ4 Reimagined
+		updateHappinessCommerce();
 
 		AI_setAssignWorkDirty(true);
 	}
@@ -8042,6 +8079,9 @@ void CvCity::changeHurryAngerTimer(int iChange)
 		m_iHurryAngerTimer = (m_iHurryAngerTimer + iChange);
 		FAssert(getHurryAngerTimer() >= 0);
 
+		// Civ4 Reimagined
+		updateHappinessCommerce();
+
 		AI_setAssignWorkDirty(true);
 	}
 }
@@ -8060,6 +8100,9 @@ void CvCity::changeConscriptAngerTimer(int iChange)
 		m_iConscriptAngerTimer = (m_iConscriptAngerTimer + iChange);
 		FAssert(getConscriptAngerTimer() >= 0);
 
+		// Civ4 Reimagined
+		updateHappinessCommerce();
+
 		AI_setAssignWorkDirty(true);
 	}
 }
@@ -8076,6 +8119,9 @@ void CvCity::changeDefyResolutionAngerTimer(int iChange)
 	{
 		m_iDefyResolutionAngerTimer += iChange;
 		FAssert(getDefyResolutionAngerTimer() >= 0);
+
+		// Civ4 Reimagined
+		updateHappinessCommerce();
 
 		AI_setAssignWorkDirty(true);
 	}
@@ -8107,6 +8153,9 @@ void CvCity::changeHappinessTimer(int iChange)
 		m_iHappinessTimer += iChange;
 		FAssert(getHappinessTimer() >= 0);
 
+		// Civ4 Reimagined
+		updateHappinessCommerce();
+
 		AI_setAssignWorkDirty(true);
 	}
 }
@@ -8130,6 +8179,9 @@ void CvCity::changeNoUnhappinessCount(int iChange)
 	{
 		m_iNoUnhappinessCount = (m_iNoUnhappinessCount + iChange);
 		FAssert(getNoUnhappinessCount() >= 0);
+
+		// Civ4 Reimagined
+		updateHappinessCommerce();
 
 		AI_setAssignWorkDirty(true);
 	}
@@ -10332,6 +10384,24 @@ void CvCity::updateCommerce()
 }
 
 
+// Civ4 Reimagined
+void CvCity::updateHappinessCommerce()
+{
+	if (!isCapital())
+	{
+		return;
+	}
+
+	for (int iI = 0; iI < NUM_COMMERCE_TYPES; ++iI)
+	{
+		if (GET_PLAYER(getOwnerINLINE()).getCapitalCommerceRateModifierPerHappinessSurplus((CommerceTypes)iI) > 0)
+		{
+			updateCommerce((CommerceTypes)iI);
+		}
+	}
+}
+
+
 int CvCity::getProductionToCommerceModifier(CommerceTypes eIndex) const										 
 {
 	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
@@ -11632,6 +11702,7 @@ void CvCity::changeFreeBonus(BonusTypes eIndex, int iChange)
 		m_paiFreeBonus[eIndex] += iChange;
 		FAssert(getFreeBonus(eIndex) >= 0);
 		plot()->updatePlotGroupBonus(true);
+		updateCommerce();
 	}
 }
 
@@ -12524,6 +12595,9 @@ void CvCity::changeStateReligionHappiness(ReligionTypes eIndex, int iChange)
 	if (iChange != 0)
 	{
 		m_paiStateReligionHappiness[eIndex] = (m_paiStateReligionHappiness[eIndex] + iChange);
+
+		// Civ4 Reimagined
+		updateHappinessCommerce();
 
 		AI_setAssignWorkDirty(true);
 	}
