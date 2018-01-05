@@ -773,6 +773,8 @@ public:
 	int getTotalCommerceRateModifier(CommerceTypes eIndex) const;								// Exposed to Python
 	void updateCommerce(CommerceTypes eIndex);
 	void updateCommerce();
+	// Civ4 Reimagined
+	void updateHappinessCommerce();
 
 	int getProductionToCommerceModifier(CommerceTypes eIndex) const;						// Exposed to Python
 	void changeProductionToCommerceModifier(CommerceTypes eIndex, int iChange);

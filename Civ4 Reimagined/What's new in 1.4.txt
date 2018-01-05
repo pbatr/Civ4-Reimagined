@@ -25,6 +25,7 @@ Fixes
 - Fixed a bug in AI steal tech evaluations that could cause an infinite loop during AI turn
 - Fixed a bug that caused miscalculations when AI decided if delaying anarchy to wait for another tech made sense
 - Fixed a bug that occured when wonders that granted free buildings were captured or destroyed
+- Commerce from Happiness in capital was not always updated during a players turn
 
 *******************************************
 Civ4 Reimagined 1.3a

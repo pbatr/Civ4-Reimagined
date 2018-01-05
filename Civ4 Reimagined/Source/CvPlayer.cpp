@@ -26157,6 +26157,11 @@ void CvPlayer::updateBonusRatio(bool bAlwaysUpdate)
 		for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 		{
 			pLoopCity->updateResources();
+
+			if (pLoopCity->isCapital())
+			{
+				pLoopCity->updateCommerce();
+			}
 		}
 	}
 	m_bUpdateBonusRatio = true;
