@@ -1148,6 +1148,8 @@ void CvCity::doTurn()
 			for (iJ = 0; iJ < GC.getNumSpecialistInfos(); iJ++)
 			{
 				iCount += (GET_PLAYER(getOwnerINLINE()).specialistYield(((SpecialistTypes)iJ), ((YieldTypes)iI)) * (getSpecialistCount((SpecialistTypes)iJ) + getFreeSpecialistCount((SpecialistTypes)iJ)));
+				// Civ4 Reimagined
+				iCount += getExtraSpecialistThresholdYield((YieldTypes)iI, (SpecialistTypes)iJ);
 			}
 
 			for (iJ = 0; iJ < GC.getNumBuildingInfos(); iJ++)
@@ -1176,9 +1178,17 @@ void CvCity::doTurn()
 				{
 					iCount += GET_PLAYER(getOwnerINLINE()).getProductionNearRiver();
 				}
+
+				if (GET_PLAYER(getOwnerINLINE()).getProductionPerSurplusHappiness() > 0)
+				{
+					iCount += std::min(getPopulation(), std::max(0, (happyLevel() - unhappyLevel())) * GET_PLAYER(getOwnerINLINE()).getProductionPerSurplusHappiness() / 100);
+				}
 			}
 
-			// Civ4 Reimagined todo: Production from chopping ships
+			if (iCount != getBaseYieldRate((YieldTypes)iI))
+			{
+				logBBAI("base yieldRate is invalid in %S for %d (value: %d, count: %d)", getName().GetCString(), iI, getBaseYieldRate((YieldTypes)iI), iCount);
+			}
 
 			FAssert(iCount == getBaseYieldRate((YieldTypes)iI));
 		}
@@ -6037,8 +6047,10 @@ void CvCity::setPopulation(int iNewValue)
 		plot()->updateYield();
 
 		updateMaintenance();
-		
-		updateCommerce(); // Civ4 Reimagined
+
+		// Civ4 Reimagined
+		updateExtraSpecialistYield();
+		updateCommerce();
 
 		if (((iOldPopulation == 1) && (getPopulation() > 1)) ||
 			  ((getPopulation() == 1) && (iOldPopulation > 1))
@@ -10160,13 +10172,18 @@ int CvCity::getCommerceRateTimes100(CommerceTypes eIndex) const
 	int iRate = m_aiCommerceRate[eIndex];
 
 	// Civ4 Reimagined
-	if (GC.getGameINLINE().isDebugMode())
-	{
-		int iCommerce = (getBaseCommerceRateTimes100(eIndex) * getTotalCommerceRateModifier(eIndex)) / 100;
-		iCommerce += getYieldRate(YIELD_PRODUCTION) * getProductionToCommerceModifier(eIndex);
+#ifdef _DEBUG
+	int iCommerce = 0;
 
-		FAssertMsg(iCommerce == iRate, "commerceCache is invalid");
+	if (!isDisorder())
+	{
+		iCommerce += (getBaseCommerceRateTimes100(eIndex) * getTotalCommerceRateModifier(eIndex)) / 100;
+		iCommerce += getYieldRate(YIELD_PRODUCTION) * getProductionToCommerceModifier(eIndex);
 	}
+
+	//logBBAI("commerceCache in %S for %d (cache: %d, value: %d)", getName().GetCString(), (int)eIndex, iRate, iCommerce);
+	FAssertMsg(iCommerce == iRate, "commerceCache is invalid");
+#endif
 
 	if (GC.getGameINLINE().isOption(GAMEOPTION_NO_ESPIONAGE))
 	{
