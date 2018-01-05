@@ -16124,7 +16124,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				if (getNoNonStateReligionSpreadCount() < (isCivic(eCivic) ? 2 : 1))
 				{
 					int iTempValue = 0;
-					if (AI_isDoVictoryStrategy(AI_VICTORY_CULTURE2))
+					if (AI_isDoVictoryStrategy(AI_VICTORY_CULTURE2) || eBestReligion == NO_RELIGION)
 					{
 						iTempValue -= 3 * std::max(0, iCities + iBestReligionCities - iTotalReligonCount);
 					}

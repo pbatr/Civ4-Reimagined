@@ -4378,7 +4378,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 			// Civ4 Reimagined
 			if (kBuilding.isNoNonStateReligionSpread() && !kOwner.isNoNonStateReligionSpread())
 			{
-				if (bCulturalVictory2)
+				if (bCulturalVictory2 || eStateReligion == NO_RELIGION)
 				{
 					iValue -= 3 * std::max(0, iNumCities + iStateReligionCities - iTotalReligonCount);
 				}
@@ -4387,6 +4387,9 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				{
 					iValue += iNumCities * 2; // protection vs espionage? depriving foreign civs of religion revenue?
 				}
+
+				int iNonStateReligionHappiness = kOwner.getNonStateReligionHappiness();
+				iValue += -iNonStateReligionHappiness * iNumCities;
 			}
 			
 			/* original bts code. (moved to where the rest of foodKept is valued)
