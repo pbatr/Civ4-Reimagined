@@ -4045,7 +4045,14 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				iTempValue /= 100; */
 
 				if (bFinancialTrouble)
-					iTempValue = iTempValue*2;
+					iTempValue *= 2;
+
+				// Civ4 Reimagined: Expect colony maintenance to rise
+				if (isColony())
+				{
+					iTempValue *= 3;
+					iTempValue /= 2;
+				}
 
 				iValue += iTempValue;
 			}
