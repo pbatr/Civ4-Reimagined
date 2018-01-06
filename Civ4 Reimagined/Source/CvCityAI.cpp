@@ -521,7 +521,6 @@ int CvCityAI::AI_permanentSpecialistValue(SpecialistTypes eSpecialist) const
 }
 
 // Heavily edited by K-Mod. (note, I've deleted a lot of the old code from BtS and from BBAI, and some of my changes are unmarked.)
-// Civ4 Reimagined TO-DO: Check if happieness from monuments with Parthenon is counted
 void CvCityAI::AI_chooseProduction()
 {
 	PROFILE_FUNC();
@@ -11988,8 +11987,11 @@ int CvCityAI::AI_countGoodSpecialists(bool bHealthy) const
 			// Civ4 Reimagined: Removed Specialist.isValid
 			if (eSpecialist == GC.getDefineINT("DEFAULT_SPECIALIST"))
 				return getPopulation(); // unlimited
+
 			iCount += getMaxSpecialistCount(eSpecialist) - getSpecialistCount(eSpecialist);
-			FAssert(getMaxSpecialistCount(eSpecialist) - getSpecialistCount(eSpecialist) >= 0);
+
+			// Civ4 Reimagined: This assertion is not always true. This method is sometimes called during an AI turn when citizens have not been correctly assigned yet.
+			//FAssert(getMaxSpecialistCount(eSpecialist) - getSpecialistCount(eSpecialist) >= 0);
 			// K-Mod end
 		}
 	}
