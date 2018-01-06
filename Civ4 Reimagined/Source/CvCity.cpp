@@ -10364,6 +10364,12 @@ void CvCity::updateCommerce(CommerceTypes eIndex)
 
 		GET_PLAYER(getOwnerINLINE()).changeCommerceRate(eIndex, (iNewCommerce - iOldCommerce));
 
+		// Civ4 Reimagined
+		if (GET_PLAYER(getOwnerINLINE()).getResearchPerCulture() > 0 && eIndex == COMMERCE_CULTURE)
+		{
+			updateCommerce(COMMERCE_RESEARCH);
+		}
+
 		if (isCitySelected())
 		{
 			gDLL->getInterfaceIFace()->setDirty(InfoPane_DIRTY_BIT, true );
