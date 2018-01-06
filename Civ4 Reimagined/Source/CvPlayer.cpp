@@ -13704,6 +13704,21 @@ void CvPlayer::changeExtraYield(YieldTypes eIndex, int iChange)
 		{
 			updateCommerce();
 		}
+		// Civ4 Reimagined
+		else if (eIndex == YIELD_PRODUCTION)
+		{
+			int iLoop;
+			for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+			{
+				for (int iCommerce = 0; iCommerce < NUM_COMMERCE_TYPES; ++iCommerce)
+				{
+					if (pLoopCity->getProductionToCommerceModifier((CommerceTypes)iCommerce) > 0)
+					{
+						pLoopCity->updateCommerce((CommerceTypes)iCommerce);
+					}
+				}
+			}
+		}
 
 		AI_makeAssignWorkDirty();
 
@@ -13736,9 +13751,20 @@ void CvPlayer::changeCapitalExtraYieldFromCityPercent(YieldTypes eIndex, int iCh
 
 		invalidateYieldRankCache(eIndex);
 		
-		if (eIndex == YIELD_COMMERCE)
+		CvCity* pCapitalCity = getCapitalCity();
+		if (pCapitalCity != NULL && eIndex == YIELD_COMMERCE)
 		{
-			updateCommerce();
+			pCapitalCity->updateCommerce();
+		}
+		else if (eIndex == YIELD_PRODUCTION)
+		{
+			for (int iCommerce = 0; iCommerce < NUM_COMMERCE_TYPES; ++iCommerce)
+			{
+				if (pCapitalCity->getProductionToCommerceModifier((CommerceTypes)iCommerce) > 0)
+				{
+					pCapitalCity->updateCommerce((CommerceTypes)iCommerce);
+				}
+			}
 		}
 
 		AI_makeAssignWorkDirty();
@@ -13779,6 +13805,17 @@ void CvPlayer::changeCapitalYieldRateModifier(YieldTypes eIndex, int iChange)
 			if (eIndex == YIELD_COMMERCE)
 			{
 				pCapitalCity->updateCommerce();
+			}
+			// Civ4 Reimagined
+			else if (eIndex == YIELD_PRODUCTION)
+			{
+				for (int iCommerce = 0; iCommerce < NUM_COMMERCE_TYPES; ++iCommerce)
+				{
+					if (pCapitalCity->getProductionToCommerceModifier((CommerceTypes)iCommerce) > 0)
+					{
+						pCapitalCity->updateCommerce((CommerceTypes)iCommerce);
+					}
+				}
 			}
 
 			pCapitalCity->AI_setAssignWorkDirty(true);
