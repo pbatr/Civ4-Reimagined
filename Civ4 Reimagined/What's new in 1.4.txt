@@ -25,6 +25,7 @@ Fixes
 - Fixed a bug in AI steal tech evaluations that could cause an infinite loop during AI turn
 - Fixed a bug that caused miscalculations when AI decided if delaying anarchy to wait for another tech made sense
 - Fixed a bug that occured when wonders that granted free buildings were captured or destroyed
+- Fixed a bug that made liberated colonies always decline unit gifts on first turn of their existance
 - Commerce was not always updated during a player's turn
 
 *******************************************

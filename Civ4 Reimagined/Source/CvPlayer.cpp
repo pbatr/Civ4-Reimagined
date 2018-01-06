@@ -23882,6 +23882,9 @@ bool CvPlayer::splitEmpire(int iAreaId)
 	GET_PLAYER(getID()).AI_updateAttitudeCache(eNewPlayer);
 	// K-Mod end
 
+	// Civ4 Reimagined
+	GET_PLAYER(eNewPlayer).updateCacheData();
+
 	return true;
 }
 
