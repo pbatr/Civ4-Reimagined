@@ -394,7 +394,7 @@
 			<iCreatePercent>70</iCreatePercent>
 			<iResearchPercent>50</iResearchPercent>
 			<!-- BBAI start: effectively modify cost for all techs from this era.  Default: 18 -->
-			<iTechCostModifier>63</iTechCostModifier>
+			<iTechCostModifier>60</iTechCostModifier>
 			<!-- BBAI end -->
 			<iBuildPercent>70</iBuildPercent>
 			<iImprovementPercent>70</iImprovementPercent>

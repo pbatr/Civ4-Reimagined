@@ -2,11 +2,13 @@
 Civ4 Reimagined 1.3b
 *******************************************
 -"Tech X has been discovered by someone" announcements for all techs that grant free great persons
-- Fixed a bug in AI steal tech evaluations that could cause an infinite loop during AI turn
-- Fixed a bug that caused miscalculations when AI decided if delaying anarchy to wait for another tech made sense
-- Fixed a bug that occured when wonders granting free buildings were captured or destroyed
-- Fixed a bug that made colonies always decline unit gifts on turn of their liberation
-- Commerce was not always updated during a player's turn
+-Some small AI improvements
+-Adjust tech costs
+-Fixed a bug in AI steal tech evaluations that could cause an infinite loop during AI turn
+-Fixed a bug that caused miscalculations when AI decided if delaying anarchy to wait for another tech made sense
+-Fixed a bug that occured when wonders granting free buildings were captured or destroyed
+-Fixed a bug that made colonies always decline unit gifts on turn of their liberation
+-Commerce was not always updated during a player's turn
 
 
 *******************************************
