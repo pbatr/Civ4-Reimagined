@@ -5625,7 +5625,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 		int iAddedCommerce = 3*(iCityCount+2)*kTechInfo.getTradeRoutes() + 3*range(iConnectedForeignCities-iTradeRoutesPerCity*iCityCount, 0, iCityCount*kTechInfo.getTradeRoutes());
 
 		// Civ4 Reimagined
-		iAddedCommerce *= 6; // 1 commerce ~ 4 value points and a little bit more because trade is awesome ;)
+		iAddedCommerce *= 8; // usually 1 commerce ~ 4 value points, higher value here because AI always underestimates trade routes
 		iAddedCommerce *= AI_averageYieldMultiplier(YIELD_COMMERCE);
 		iAddedCommerce /= 100;
 		iAddedCommerce *= AI_yieldWeight(YIELD_COMMERCE);
