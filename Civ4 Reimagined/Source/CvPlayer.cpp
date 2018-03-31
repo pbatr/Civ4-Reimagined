@@ -7879,8 +7879,6 @@ int CvPlayer::getImprovementUpgradeRate() const
 	// Civ4 Reimagind: Before improvementUpgradeRateModifier was divided by 100 which resulted in rounding down all modifiers less than 100.
 	int iRate = 100 + getImprovementUpgradeRateModifier();
 
-	logBBAI("Improvement upgrade rate: %d", iRate);
-
 	return std::max(0, iRate);
 }
 
