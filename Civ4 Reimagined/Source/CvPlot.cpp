@@ -533,7 +533,9 @@ void CvPlot::doImprovementUpgrade()
 			{
 				changeUpgradeProgress(GET_PLAYER(getOwnerINLINE()).getImprovementUpgradeRate());
 
-				if (getUpgradeProgress() >= GC.getGameINLINE().getImprovementUpgradeTime(getImprovementType()))
+				//if (getUpgradeProgress() >= GC.getGameINLINE().getImprovementUpgradeTime(getImprovementType()))
+				// Civ4 Reimagined
+				if (getUpgradeProgress() >= GC.getGameINLINE().getImprovementUpgradeTime(getImprovementType()) * 100)
 				{
 					setImprovementType(eImprovementUpdrade);
 				}
@@ -4421,7 +4423,9 @@ int CvPlot::getUpgradeTimeLeft(ImprovementTypes eImprovement, PlayerTypes ePlaye
 	int iUpgradeRate;
 	int iTurnsLeft;
 
-	iUpgradeLeft = (GC.getGameINLINE().getImprovementUpgradeTime(eImprovement) - ((getImprovementType() == eImprovement) ? getUpgradeProgress() : 0));
+	// Civ4 Reimagined 
+	//iUpgradeLeft = (GC.getGameINLINE().getImprovementUpgradeTime(eImprovement) - ((getImprovementType() == eImprovement) ? getUpgradeProgress() : 0));
+	iUpgradeLeft = (GC.getGameINLINE().getImprovementUpgradeTime(eImprovement) * 100 - ((getImprovementType() == eImprovement) ? getUpgradeProgress() : 0));
 
 	if (ePlayer == NO_PLAYER)
 	{

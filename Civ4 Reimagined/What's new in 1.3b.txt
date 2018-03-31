@@ -8,6 +8,7 @@ Civ4 Reimagined 1.3b
 -Fixed a bug that caused miscalculations when AI decided if delaying anarchy to wait for another tech made sense
 -Fixed a bug that occured when wonders granting free buildings were captured or destroyed
 -Fixed a bug that made colonies always decline unit gifts on turn of their liberation
+-Republic civic did not change improvement upgrade rate
 -Commerce was not always updated during a player's turn
 
 
