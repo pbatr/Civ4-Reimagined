@@ -7446,6 +7446,8 @@ int CvCityAI::AI_getImprovementValue(CvPlot* pPlot, ImprovementTypes eImprovemen
 			// Adjustments to match calculation in CvPlot::doImprovementUpgrade.
 			iTimeScale = iTimeScale * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getImprovementPercent()/100;
 			iTimeScale = iTimeScale * GC.getEraInfo(GC.getGameINLINE().getStartEra()).getImprovementPercent()/100;
+			//Civ4 Reimagined: getImprovementUpgradeRate now returns a value scaled by turns times 100
+			iTimeScale *= 100;
 			iTimeScale = iTimeScale / kOwner.getImprovementUpgradeRate();
 		} 
 		else
@@ -7678,7 +7680,9 @@ int CvCityAI::AI_getImprovementValue(CvPlot* pPlot, ImprovementTypes eImprovemen
 
 			if (GC.getImprovementInfo(pPlot->getImprovementType()).getImprovementUpgrade() != NO_IMPROVEMENT)
 			{
-				iValue -= (GC.getImprovementInfo(pPlot->getImprovementType()).getUpgradeTime() * 8 * (pPlot->getUpgradeProgress())) / std::max(1, GC.getGameINLINE().getImprovementUpgradeTime(pPlot->getImprovementType()));
+				//iValue -= (GC.getImprovementInfo(pPlot->getImprovementType()).getUpgradeTime() * 8 * (pPlot->getUpgradeProgress())) / std::max(1, GC.getGameINLINE().getImprovementUpgradeTime(pPlot->getImprovementType()));
+				// Civ4 Reimagined: getUpgradeProcess now scales with turn times 100
+				iValue -= (GC.getImprovementInfo(pPlot->getImprovementType()).getUpgradeTime() * 8 * (pPlot->getUpgradeProgress() / 100)) / std::max(1, GC.getGameINLINE().getImprovementUpgradeTime(pPlot->getImprovementType()));
 			}
 
 			// Civ4 Reimagined: I don't undestand what this code is useful for... Removed this because it encourages alternating improvements on the same tile and makes the evaluation more complicated.
@@ -10559,7 +10563,9 @@ int CvCityAI::AI_specialPlotImprovementValue(CvPlot* pPlot) const
 		if (GC.getImprovementInfo(eImprovement).getImprovementUpgrade() != NO_IMPROVEMENT)
 		{
 			// Prefer plots that are close to upgrading, but not over immediate yield differences. (kludge)
-			iValue += 100 * pPlot->getUpgradeProgress() / std::max(1, GC.getGameINLINE().getImprovementUpgradeTime(eImprovement));
+			//iValue += 100 * pPlot->getUpgradeProgress() / std::max(1, GC.getGameINLINE().getImprovementUpgradeTime(eImprovement));
+			// Civ 4 Reimagined: getUpgradeProcess now scales with turns times 100
+			iValue += pPlot->getUpgradeProgress() / std::max(1, GC.getGameINLINE().getImprovementUpgradeTime(eImprovement));
 		}
 
 		// small value bonus for the possibility of popping new resources. (cf. CvGame::doFeature)

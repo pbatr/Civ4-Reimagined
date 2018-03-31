@@ -7876,14 +7876,12 @@ RouteTypes CvPlayer::getBestRoute(const CvPlot* pPlot) const
 
 int CvPlayer::getImprovementUpgradeRate() const
 {
-	int iRate;
+	// Civ4 Reimagind: Before improvementUpgradeRateModifier was divided by 100 which resulted in rounding down all modifiers less than 100.
+	int iRate = 100 + getImprovementUpgradeRateModifier();
 
-	iRate = 1; // XXX
+	logBBAI("Improvement upgrade rate: %d", iRate);
 
-	iRate *= std::max(0, (getImprovementUpgradeRateModifier() + 100));
-	iRate /= 100;
-
-	return iRate;
+	return std::max(0, iRate);
 }
 
 
