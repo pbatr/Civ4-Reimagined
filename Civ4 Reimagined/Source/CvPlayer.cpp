@@ -7404,6 +7404,10 @@ int CvPlayer::getProductionNeeded(UnitTypes eUnit) const
 	iProductionNeeded *= GC.getEraInfo(GC.getGameINLINE().getStartEra()).getTrainPercent();
 	iProductionNeeded /= 100;
 
+	// Civ4 Reimagind
+	iProductionNeeded *= 100 + GC.getUnitInfo(eUnit).getEraCostModifier() * getCurrentEra();
+	iProductionNeeded /= 100;
+
 	if (!isHuman() && !isBarbarian())
 	{
 		if (isWorldUnitClass(eUnitClass))

@@ -829,6 +829,7 @@ public:
 
 	int getAIWeight() const;				// Exposed to Python
 	int getProductionCost() const;				// Exposed to Python
+	int getEraCostModifier() const; // Civ4 Reimagined
 	int getHurryCostModifier() const;				// Exposed to Python
 	int getAdvancedStartCost() const;				// Exposed to Python
 	int getAdvancedStartCostIncrease() const;				// Exposed to Python
@@ -1021,6 +1022,7 @@ protected:
 
 	int m_iAIWeight;
 	int m_iProductionCost;
+	int m_iEraCostModifier; // Civ4 Reimagined
 	int m_iHurryCostModifier;
 	int m_iAdvancedStartCost;
 	int m_iAdvancedStartCostIncrease;

@@ -2,6 +2,7 @@
 Civ4 Reimagined 1.3b
 *******************************************
 -"Tech X has been discovered by someone" announcements for all techs that grant free great persons
+-Corporation Executives cost scale with era
 -Some small AI improvements
 -Adjust tech costs
 -Fixed a bug in AI steal tech evaluations that could cause an infinite loop during AI turn
