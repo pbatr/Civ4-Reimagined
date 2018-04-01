@@ -3044,6 +3044,7 @@ std::wstring CvActionInfo::getHotKeyDescription() const
 CvUnitInfo::CvUnitInfo() :
 m_iAIWeight(0),
 m_iProductionCost(0),
+m_iEraCostModifier(0), // Civ4 Reimagined
 m_iHurryCostModifier(0),
 m_iAdvancedStartCost(0),
 m_iAdvancedStartCostIncrease(0),
@@ -3264,6 +3265,12 @@ int CvUnitInfo::getAIWeight() const
 int CvUnitInfo::getProductionCost() const			
 {
 	return m_iProductionCost;
+}
+
+// Civ4 Reimagined
+int CvUnitInfo::getEraCostModifier() const			
+{
+	return m_iEraCostModifier;
 }
 
 int CvUnitInfo::getHurryCostModifier() const		
@@ -4279,6 +4286,7 @@ void CvUnitInfo::read(FDataStreamBase* stream)
 
 	stream->Read(&m_iAIWeight);
 	stream->Read(&m_iProductionCost);
+	stream->Read(&m_iEraCostModifier); // Civ4 Reimagined
 	stream->Read(&m_iHurryCostModifier);
 	stream->Read(&m_iAdvancedStartCost);
 	stream->Read(&m_iAdvancedStartCostIncrease);
@@ -4586,6 +4594,7 @@ void CvUnitInfo::write(FDataStreamBase* stream)
 
 	stream->Write(m_iAIWeight);
 	stream->Write(m_iProductionCost);
+	stream->Write(m_iEraCostModifier); // Civ4 Reimagined
 	stream->Write(m_iHurryCostModifier);
 	stream->Write(m_iAdvancedStartCost);
 	stream->Write(m_iAdvancedStartCostIncrease);
@@ -4983,6 +4992,7 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(&m_iAIWeight, "iAIWeight");
 	pXML->GetChildXmlValByName(&m_iProductionCost, "iCost");
+	pXML->GetChildXmlValByName(&m_iEraCostModifier, "iEraCostModifier"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iHurryCostModifier, "iHurryCostModifier");
 	pXML->GetChildXmlValByName(&m_iAdvancedStartCost, "iAdvancedStartCost");
 	pXML->GetChildXmlValByName(&m_iAdvancedStartCostIncrease, "iAdvancedStartCostIncrease");

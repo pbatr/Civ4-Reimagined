@@ -8760,6 +8760,12 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
 		}
 	}
 
+	if (GC.getUnitInfo(eUnit).getEraCostModifier() != 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_ERA_COST_MODIFIER"));
+	}
+
 	if (GC.getUnitInfo(eUnit).isGoldenAge())
 	{
 		szBuffer.append(NEWLINE);
