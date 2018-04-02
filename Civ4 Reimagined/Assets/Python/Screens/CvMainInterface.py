@@ -4059,8 +4059,9 @@ class CvMainInterface:
 						iHealth = pHeadSelectedCity.getBonusHealth(i)
 						iHappiness = pHeadSelectedCity.getBonusHappiness(i)
 						
-						iHappinessCount += iHappiness
-						iHealthCount += iHealth
+						# Ignore negative happiness/health resource impact to make the result sync up more nicely with happiness/health mouseover.
+						iHappinessCountPositive += (iHappiness, 0)
+						iHealthCountPositive += (iHealth, 0)
 						
 						szBuffer = u""
 						szLeadBuffer = u""
@@ -4149,7 +4150,7 @@ class CvMainInterface:
 				screen.setLabel( "RatioAmountText", "Background", szBuffer, CvUtil.FONT_LEFT_JUSTIFY, xResolution - 245, 94, -0.3, FontTypes.GAME_FONT, WidgetTypes.WIDGET_HELP_BONUS_RATIO, -1, -1 )
 				screen.show( "RatioAmountText" )
 				
-				szBuffer = u"City Totals: %d.%02d %c" %(iHealthCount/100, iHealthCount%100, CyGame().getSymbolID( FontSymbols.HEALTHY_CHAR) ) + u" %d.%02d %c" %(iHappinessCount/100, iHappinessCount%100, CyGame().getSymbolID(FontSymbols.HAPPY_CHAR) )
+				szBuffer = u"City Totals: %d.%02d %c" %(iHealthCountPositive/100, iHealthCountPositive%100, CyGame().getSymbolID( FontSymbols.HEALTHY_CHAR) ) + u" %d.%02d %c" %(iHappinessCountPositive/100, iHappinessCountPositive%100, CyGame().getSymbolID(FontSymbols.HAPPY_CHAR) )
 				screen.setLabel( "CityBonusSum", "Background", szBuffer, CvUtil.FONT_LEFT_JUSTIFY, xResolution - 245, 114, -0.3, FontTypes.GAME_FONT, WidgetTypes.WIDGET_HELP_BONUS_SUM, -1, -1 )
 				screen.show( "CityBonusSum" )
 				
