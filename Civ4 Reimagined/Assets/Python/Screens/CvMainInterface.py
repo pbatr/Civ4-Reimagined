@@ -3446,6 +3446,7 @@ class CvMainInterface:
 		screen.hide( "MaintenanceText" )
 		screen.hide( "MaintenanceAmountText" )
 		screen.hide( "RatioAmountText" )
+		screen.hide( "CityBonusSum" )
 
 # BUG - Progress Bar - Tick Marks - start
 		self.pBarPopulationBar.hide(screen)
@@ -3496,24 +3497,24 @@ class CvMainInterface:
 
 		
 		#screen.addPanel( "BonusPane0", u"", u"", True, False, xResolution - 244, 94, 57, yResolution - 520, PanelStyles.PANEL_STYLE_CITY_COLUMNL )
-		screen.addPanel( "BonusPane0", u"", u"", True, False, xResolution - 257, 114, 38, yResolution - 540, PanelStyles.PANEL_STYLE_CITY_COLUMNL ) # Civ4 Reimagined
+		screen.addPanel( "BonusPane0", u"", u"", True, False, xResolution - 257, 134, 38, yResolution - 560, PanelStyles.PANEL_STYLE_CITY_COLUMNL ) # Civ4 Reimagined
 		screen.hide( "BonusPane0" )
 		#screen.addScrollPanel( "BonusBack0", u"", xResolution - 242, 94, 157, yResolution - 536, PanelStyles.PANEL_STYLE_EXTERNAL )
-		screen.addScrollPanel( "BonusBack0", u"", xResolution - 264, 114, 157, yResolution - 556, PanelStyles.PANEL_STYLE_EXTERNAL ) # Civ4 Reimagined
+		screen.addScrollPanel( "BonusBack0", u"", xResolution - 264, 134, 157, yResolution - 576, PanelStyles.PANEL_STYLE_EXTERNAL ) # Civ4 Reimagined
 		screen.hide( "BonusBack0" )
 
 		#screen.addPanel( "BonusPane1", u"", u"", True, False, xResolution - 187, 94, 68, yResolution - 520, PanelStyles.PANEL_STYLE_CITY_COLUMNC )
-		screen.addPanel( "BonusPane1", u"", u"", True, False, xResolution - 219, 114, 85, yResolution - 540, PanelStyles.PANEL_STYLE_CITY_COLUMNC ) # Civ4 Reimagined
+		screen.addPanel( "BonusPane1", u"", u"", True, False, xResolution - 219, 134, 85, yResolution - 560, PanelStyles.PANEL_STYLE_CITY_COLUMNC ) # Civ4 Reimagined
 		screen.hide( "BonusPane1" )
 		#screen.addScrollPanel( "BonusBack1", u"", xResolution - 191, 94, 184, yResolution - 536, PanelStyles.PANEL_STYLE_EXTERNAL )
-		screen.addScrollPanel( "BonusBack1", u"", xResolution - 226, 114, 184, yResolution - 556, PanelStyles.PANEL_STYLE_EXTERNAL ) # Civ4 Reimagined
+		screen.addScrollPanel( "BonusBack1", u"", xResolution - 226, 134, 184, yResolution - 576, PanelStyles.PANEL_STYLE_EXTERNAL ) # Civ4 Reimagined
 		screen.hide( "BonusBack1" )
 
 		#screen.addPanel( "BonusPane2", u"", u"", True, False, xResolution - 119, 94, 107, yResolution - 520, PanelStyles.PANEL_STYLE_CITY_COLUMNR )
-		screen.addPanel( "BonusPane2", u"", u"", True, False, xResolution - 134, 114, 133, yResolution - 540, PanelStyles.PANEL_STYLE_CITY_COLUMNR ) # Civ4 Reimagined
+		screen.addPanel( "BonusPane2", u"", u"", True, False, xResolution - 134, 134, 133, yResolution - 560, PanelStyles.PANEL_STYLE_CITY_COLUMNR ) # Civ4 Reimagined
 		screen.hide( "BonusPane2" )
 		#screen.addScrollPanel( "BonusBack2", u"", xResolution - 125, 94, 205, yResolution - 536, PanelStyles.PANEL_STYLE_EXTERNAL )
-		screen.addScrollPanel( "BonusBack2", u"", xResolution - 142, 114, 205, yResolution - 556, PanelStyles.PANEL_STYLE_EXTERNAL ) # Civ4 Reimagined
+		screen.addScrollPanel( "BonusBack2", u"", xResolution - 142, 134, 205, yResolution - 576, PanelStyles.PANEL_STYLE_EXTERNAL ) # Civ4 Reimagined
 		screen.hide( "BonusBack2" )
 
 		screen.hide( "TradeRouteTable" )
@@ -4048,12 +4049,18 @@ class CvMainInterface:
 				iCenterCount = 0
 				iRightCount = 0
 				
+				iHappinessCount = 0
+				iHealthCount = 0
+				
 				for i in range( gc.getNumBonusInfos() ):
 					bHandled = False
 					if ( pHeadSelectedCity.hasBonus(i) ):
 
 						iHealth = pHeadSelectedCity.getBonusHealth(i)
 						iHappiness = pHeadSelectedCity.getBonusHappiness(i)
+						
+						iHappinessCount += iHappiness
+						iHealthCount += iHealth
 						
 						szBuffer = u""
 						szLeadBuffer = u""
@@ -4132,7 +4139,7 @@ class CvMainInterface:
 				screen.show( "MaintenanceAmountText" )
 				
 				
-				#Civ4 Reimagined Test: Display resource ratio
+				#Civ4 Reimagined: Display resource ratio and total health/happiness
 				iBonusRatio = int(gc.getPlayer(pHeadSelectedCity.getOwner()).getTechValue() / max(1, gc.getPlayer(pHeadSelectedCity.getOwner()).getTotalPopulation()))
 				iBonusRatio *= (100 + gc.getPlayer(pHeadSelectedCity.getOwner()).getBonusValueModifier())
 				iBonusRatio /= 100
@@ -4141,6 +4148,12 @@ class CvMainInterface:
 					szBuffer = szBuffer + " " + localText.getText("TXT_KEY_MISC_BONUS_RATIO_CAPPED", ())
 				screen.setLabel( "RatioAmountText", "Background", szBuffer, CvUtil.FONT_LEFT_JUSTIFY, xResolution - 245, 94, -0.3, FontTypes.GAME_FONT, WidgetTypes.WIDGET_HELP_BONUS_RATIO, -1, -1 )
 				screen.show( "RatioAmountText" )
+				
+				szBuffer = u"City Totals: %d.%02d %c" %(iHealthCount/100, iHealthCount%100, CyGame().getSymbolID( FontSymbols.HEALTHY_CHAR) ) + u" %d.%02d %c" %(iHappinessCount/100, iHappinessCount%100, CyGame().getSymbolID(FontSymbols.HAPPY_CHAR) )
+				screen.setLabel( "CityBonusSum", "Background", szBuffer, CvUtil.FONT_LEFT_JUSTIFY, xResolution - 245, 114, -0.3, FontTypes.GAME_FONT, WidgetTypes.WIDGET_HELP_BONUS_SUM, -1, -1 )
+				screen.show( "CityBonusSum" )
+				
+				
 				
 # BUG - Raw Yields - start
 				if (bShowRawYields):

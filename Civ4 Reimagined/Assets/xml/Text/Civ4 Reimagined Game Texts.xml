@@ -1315,4 +1315,8 @@
 		<Tag>TXT_KEY_UNIT_ERA_COST_MODIFIER</Tag>
 		<English>[ICON_BULLET]Unit Cost Scales with Era</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_BONUS_SUM_HELP</Tag>
+		<English>The Sum of All Happiness and Health Resource Values of this City.</English>
+	</TEXT>	
 </Civ4GameText>

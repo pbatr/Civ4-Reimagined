@@ -196,7 +196,12 @@ void CvDLLWidgetData::parseHelp(CvWStringBuffer &szBuffer, CvWidgetDataStruct &w
 	case WIDGET_HELP_BONUS_RATIO:
 		parseBonusRatioHelp(widgetDataStruct, szBuffer);
 		break;
-
+	
+	// Civ4 Reimagined
+	case WIDGET_HELP_BONUS_SUM:
+		parseBonusSumHelp(widgetDataStruct, szBuffer);
+		break;
+	
 	case WIDGET_HELP_RELIGION:
 		parseReligionHelp(widgetDataStruct, szBuffer);
 		break;
@@ -4850,6 +4855,13 @@ void CvDLLWidgetData::parseBonusRatioHelp(CvWidgetDataStruct &widgetDataStruct, 
 		// Todo: Fassert getBonusRatio vs eigene Berechnung
 	}
 }
+	
+	
+// Civ4 Reimagined
+void CvDLLWidgetData::parseBonusSumHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)
+{
+	szBuffer.assign(gDLL->getText("TXT_KEY_MISC_BONUS_SUM_HELP"));
+}	
 
 
 void CvDLLWidgetData::parseHealthHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)
