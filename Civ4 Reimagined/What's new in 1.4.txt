@@ -1,10 +1,11 @@
 *******************************************
-Civ4 Reimagined 1.3b
+Civ4 Reimagined 1.4
 *******************************************
 -"Tech X has been discovered by someone" announcements for all techs that grant free great persons
 -Corporation Executives cost scale with era
 -Some small AI improvements
 -Adjust tech costs
+-Display sum of health and happiness gained from resources for convenience
 -Fixed a bug in AI steal tech evaluations that could cause an infinite loop during AI turn
 -Fixed a bug that caused miscalculations when AI decided if delaying anarchy to wait for another tech made sense
 -Fixed a bug that occured when wonders granting free buildings were captured or destroyed

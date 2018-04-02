@@ -118,6 +118,7 @@ public:
 	void parseNationalityHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer);
 	void parseHealthHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer);
 	void parseBonusRatioHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer); // Civ4 Reimagined
+	void parseBonusSumHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer); // Civ4 Reimagined
 	void parseHappinessHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer);
 	void parsePopulationHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer);
 	void parseProductionHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer);
