@@ -69,8 +69,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_SPORTS_LEAGUE_1</Tag>
-		<English>National Sports League[PARAGRAPH:1]You are tasked by your cultural advisors to build enough [COLOR_BUILDING_TEXT]Stadiums[COLOR_REVERT] to support viable sports leagues.</English>
-		<French>Ligue de sports nationale[PARAGRAPH:1]Vos conseillers culturels vous chargent de construire suffisamment de [COLOR_BUILDING_TEXT]Stadiums[COLOR_REVERT] pour supporter des ligues de sports viables.</French>
+		<English>[PARAGRAPH:1]You are tasked by your cultural advisors to build [COLOR_BUILDING_TEXT]Stadiums[COLOR_REVERT] in all cities.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_EVENT_TRIGGER_SPORTS_LEAGUE</Tag>
+		<English>Our cultural advisors believe that our empire could benefit greatly from being the first to organize competitive sport games on a grand scale. To achieve this, we should build [COLOR_BUILDING_TEXT]Stadiums[COLOR_REVERT] in all cities.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_EVENT_SPORTS_LEAGUE_HELP_1</Tag>
