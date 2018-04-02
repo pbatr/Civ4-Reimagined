@@ -4049,8 +4049,8 @@ class CvMainInterface:
 				iCenterCount = 0
 				iRightCount = 0
 				
-				iHappinessCount = 0
-				iHealthCount = 0
+				iHappinessCountPositive = 0
+				iHealthCountPositive = 0
 				
 				for i in range( gc.getNumBonusInfos() ):
 					bHandled = False
@@ -4060,8 +4060,8 @@ class CvMainInterface:
 						iHappiness = pHeadSelectedCity.getBonusHappiness(i)
 						
 						# Ignore negative happiness/health resource impact to make the result sync up more nicely with happiness/health mouseover.
-						iHappinessCountPositive += (iHappiness, 0)
-						iHealthCountPositive += (iHealth, 0)
+						iHappinessCountPositive += max(iHappiness, 0)
+						iHealthCountPositive += max(iHealth, 0)
 						
 						szBuffer = u""
 						szLeadBuffer = u""
