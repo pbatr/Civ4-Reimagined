@@ -12,11 +12,12 @@ Changes
 *********
 Tweaks
 *********
+-Babylonian Bowman gain 2 potential first strike chances.
 
 *********
 Interface
 *********
--Maintenance cost in domestic advisor screen now takes inflation into account
+-Maintenance cost in domestic advisor screen now takes inflation into account.
 
 *********
 Fixes
