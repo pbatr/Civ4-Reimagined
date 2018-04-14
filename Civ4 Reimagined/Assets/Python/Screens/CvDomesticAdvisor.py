@@ -268,7 +268,10 @@ class CvDomesticAdvisor:
 		screen.setTableInt( "CityListBackground", 11, i, unicode(pLoopCity.getTradeYield(YieldTypes.YIELD_COMMERCE)), "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
 
 		# Maintenance...
-		screen.setTableInt( "CityListBackground", 12, i, unicode(pLoopCity.getMaintenance()), "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
+		player = gc.getPlayer(gc.getGame().getActivePlayer())
+		inflationFactor = 100+player.getInflationRate()
+		maintenance = (pLoopCity.getMaintenance() * inflationFactor + 50)/100
+		screen.setTableInt( "CityListBackground", 12, i, unicode(maintenance), "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
 
 		# Great Person
 		iGreatPersonRate = pLoopCity.getGreatPeopleRate()
