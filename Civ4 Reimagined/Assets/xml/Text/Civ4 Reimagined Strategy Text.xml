@@ -170,7 +170,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_BABYLON_BOWMAN_STRATEGY</Tag>
-		<English>Compared to the [COLOR_UNIT_TEXT]Archer[COLOR_REVERT], this unit gains a bonus against archery units and is cheaper.</English>
+		<English>Compared to the [COLOR_UNIT_TEXT]Archer[COLOR_REVERT], this unit gains a bonus against archery units, gains additional first strike chances, and is cheaper.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_INCAN_QUECHUA_STRATEGY</Tag>
