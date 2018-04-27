@@ -8,6 +8,7 @@ New
 *********
 Changes
 *********
+- Cavalry upgrades to motorized infantry
 
 *********
 Tweaks
