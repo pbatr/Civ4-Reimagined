@@ -2884,11 +2884,11 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 		}
 	}
 	
-	// Civ4 Reimagined: Unique Power for greece
+	// Civ4 Reimagined: Unique Power for rome
 	int iFreeUnitsOnConquest = getFreeUnitsOnConquest();
 	if (iFreeUnitsOnConquest > 0 && bConquest && eOldHighestCulturePlayer != NO_PLAYER && !bOldEverOwned)
 	{
-		int iNumUnits = iOldCultureLevel + 1;
+		int iNumUnits = iOldCultureLevel;
 		
 		PlayerTypes eOtherPlayer = eOldHighestCulturePlayer; //pNewCity->getOriginalOwner();
 		
@@ -2919,7 +2919,7 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 		{
 			for (int i = 0; i < iNumUnits; i++)
 			{
-				int iRand = 1 + GC.getGameINLINE().getSorenRandNum(iTotalWeight, "Random unit for greece"); // Range: [1,iTotalWeight]
+				int iRand = 1 + GC.getGameINLINE().getSorenRandNum(iTotalWeight, "Random unit for rome"); // Range: [1,iTotalWeight]
 				
 				if (iRand <= iSpearmanWeight)
 				{
@@ -2960,7 +2960,7 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 								}
 							} else
 							{
-								FAssertMsg(false, "Random unit generation for greece out of bounds");
+								FAssertMsg(false, "Random unit generation for rome out of bounds");
 							}
 						}
 					}
@@ -26925,337 +26925,30 @@ void CvPlayer::updateUniquePowers(EraTypes iEra)
 	{
 		return;
 	}
-	/*
-	// Aztec
-	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AZTEC")) 
-	{
-		(iEra == 1 ? )
-		if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AZTEC")) 
-		{
-			setUniqueAztecPromotion(true);
-		}
-		
-	} 
 	
-	// Sumeria:
-	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SUMERIA")) 
+	switch (getCivilizationType())
 	{
-		(iEra == 0 ? changeFreePopulationInCapital(1));
+		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AZTEC"): 		(iEra <= 1 ? setUniqueAztecPromotion(true) : setUniqueAztecPromotion(false)); break;
+		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CARTHAGE"): 	(iEra == 1 ? setSpecialTradeRoutePerPlayer(true) : setSpecialTradeRoutePerPlayer(false)); break;
+		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME"):		(iEra == 1 ? changeFreeUnitsOnConquest(1)); break;
+		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME"):		(iEra == 2 ? changeFreeUnitsOnConquest(-1)); break;
+		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SUMERIA"): 	(iEra == 0 ? changeFreePopulationInCapital(1)); break;
+		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_INCA"):		(iEra == 0 ? changeCanFarmHillsCount(1)); break;
+		
+		default: changeUniquePowerCommerceModifier(((CommerceTypes)iI), 3); break;
 	}
-	*/
-	/*		
-		
-		
-		// Babylon:
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON")) 
-		{
-			if (getCapitalCity() != NULL)
-			{
-				getCapitalCity()->changeMaxFoodKeptPercent(25);
-			}
-			
-			BuildingClassTypes BUILDINGCLASS_WALLS = (BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_WALLS");
-			BuildingTypes BUILDING_WALLS = (BuildingTypes)(GC.getCivilizationInfo(getCivilizationType()).getCivilizationBuildings(BUILDINGCLASS_WALLS));
-			if (getCapitalCity() != NULL && getCapitalCity()->getNumBuilding(BUILDING_WALLS) < 1)
-			{
-				getCapitalCity()->setNumRealBuilding(BUILDING_WALLS, 1);
-			}
-			
-		}
-		
-		// Carthage
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CARTHAGE")) 
-		{
-			setExploreRivalSea(true);
-			
-			if (getCurrentEra() < 3)
-			{
-				// Remember to update checkObsoleteUniquePowers when making changes to this
-				changeDomainProductionModifier(DOMAIN_SEA, 50);
-			}
-		}
-		
-		// Egypt
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_EGYPT")) 
-		{
-			placeBonusAtCapitalFatCross((BonusTypes)GC.getInfoTypeForString("BONUS_STONE"));
-		}
-		
-		// Greece
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_GREECE")) 
-		{
-			placeBonusAtCapitalFatCross((BonusTypes)GC.getInfoTypeForString("BONUS_MARBLE"));
-		}
-		
-		// Inca
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_INCA")) 
-		{
-			changeCanFarmHillsCount(1);
-		}
-		
-		// India
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_INDIA")) 
-		{
-			changeReligionTechModifier(25);
-		}
-		
-		// Maya
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA")) 
-		{
-			changeUnlimitedBarbXPCount(1);
-			changeBarbarianGreatGeneralCount(1);
-			changeGreatGeneralRateModifier(25);
-		}
-		
-		// Sumeria:
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SUMERIA")) 
-		{
-			changeFreePopulationInCapital(1);
-		}
-		
-		// Unfinished Civilizations:
-		else
-		{
-			for (int iI = 0; iI < NUM_COMMERCE_TYPES; iI++)
-			{
-				changeUniquePowerCommerceModifier(((CommerceTypes)iI), 5);
-			}
-		}
-	}
-	else if (iPowerLevel == 2)
-	{
-		// Babylon:
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON")) 
-		{
-			TechTypes freeTech = (TechTypes)GC.getInfoTypeForString("TECH_CODE_OF_LAWS");
-			FAssert(getTeam() != NO_TEAM);
-			int researchLeft = GET_TEAM(getTeam()).getResearchLeft(freeTech);
-			GET_TEAM(getTeam()).changeResearchProgress(freeTech, researchLeft, GET_TEAM(getTeam()).getLeaderID());
-		}
-		
-		// Carthage
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CARTHAGE")) 
-		{
-			setEnableFinancial(true);
-		}
-		
-		// Egypt:
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_EGYPT")) 
-		{
-			changeProductionNearRiver(1);
-		}
-		
-		// Greece
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_GREECE")) 
-		{
-			if (getCurrentEra() < 2)
-			{
-				// Remember to update checkObsoleteUniquePowers when making changes to this
-				changeCoastalTradeRouteModifier(75);
-			}
-		}
-		
-		// Inca
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_INCA")) 
-		{
-			GET_TEAM(getTeam()).changeIrrigationCount(1);
-		}
-		
-		// India
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_INDIA")) 
-		{
-			changeNonStateReligionHappinessWithStateReligion(1);
-		}
-		
-		// Maya
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA")) 
-		{
-			TechTypes freeTech = (TechTypes)GC.getInfoTypeForString("TECH_MATHEMATICS");
-			FAssert(getTeam() != NO_TEAM);
-			int researchLeft = GET_TEAM(getTeam()).getResearchLeft(freeTech);
-			GET_TEAM(getTeam()).changeResearchProgress(freeTech, researchLeft, GET_TEAM(getTeam()).getLeaderID());
-		}
-		
-		// Sumeria:
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SUMERIA")) 
-		{
-			TechTypes freeTech = (TechTypes)GC.getInfoTypeForString("TECH_WRITING");
-			FAssert(getTeam() != NO_TEAM);
-			int researchLeft = GET_TEAM(getTeam()).getResearchLeft(freeTech);
-			GET_TEAM(getTeam()).changeResearchProgress(freeTech, researchLeft, GET_TEAM(getTeam()).getLeaderID());
-		}
-		
-		// Unfinished Civilizations:
-		else
-		{
-			for (int iI = 0; iI < NUM_COMMERCE_TYPES; iI++)
-			{
-				changeUniquePowerCommerceModifier(((CommerceTypes)iI), 5);
-			}
-		}
-	}
-	else if (iPowerLevel == 3)
-	{
-		// Babylon:
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON")) 
-		{
-			if (getCurrentEra() < 3)
-			{
-				// Remember to update checkObsoleteUniquePowers when making changes to this
-				changeUniquePowerWorldWonderCapitalModifier(50);
-			}
-			
-			changeNoCapitalCount(-1);
-		}
-		
-		// Carthage
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CARTHAGE")) 
-		{
-			if (getCurrentEra() < 3)
-			{
-				// Remember to update checkObsoleteUniquePowers when making changes to this
-				setSpecialTradeRoutePerPlayer(true);
-			}
-			
-		}
-		
-		// Egypt:
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_EGYPT")) 
-		{
-			changeProductionPerPopulationModifier(25);
-		}
-		
-		// Greece
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_GREECE")) 
-		{
-			changeUniquePowerGreatPeopleModifier(50);
-		}
-		
-		// Inca
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_INCA")) 
-		{
-			CivicTypes enableCivic = (CivicTypes)GC.getInfoTypeForString("CIVIC_CONSCRIPTION");
-			setFreeCivicEnabled(enableCivic);
-			changeFatcrossPeakHappiness(2);
-			changeFatcrossPeakCulture(200);
-		}
-		
-		// Maya
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA")) 
-		{
-			if (getCurrentEra() < 3)
-			{
-				// Remember to update checkObsoleteUniquePowers when making changes to this
-				changeUniquePowerBuildingModifier(30);
-			}
-		}
-		
-		// Sumeria:
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SUMERIA")) 
-		{
-			CivicTypes enableCivic = (CivicTypes)GC.getInfoTypeForString("CIVIC_AGRARIANISM");
-			setFreeCivicEnabled(enableCivic);
-		}
-		
-		// Unfinished Civilizations:
-		else
-		{
-			for (int iI = 0; iI < NUM_COMMERCE_TYPES; iI++)
-			{
-				changeUniquePowerCommerceModifier(((CommerceTypes)iI), 5);
-			}
-		}
 
-	}
-	else if (iPowerLevel == 4)
-	{
-		// Babylon:
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON")) 
-		{
-			if (getCurrentEra() < 2)
-			{
-				// Remember to update checkObsoleteUniquePowers when making changes to this
-				changeEarlyScientistBonusCommerce(1);
-			}
-		}
 		
-		// Carthage
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CARTHAGE")) 
-		{
-			BonusTypes freeBonus = (BonusTypes)GC.getInfoTypeForString("BONUS_DYE");
-			changePlayerExtraAvailableBonuses(freeBonus, 5);
-			setHasExtraAvailableBonuses(true);
-			
-			/*
-			if (getCapitalCity() != NULL)
-			{
-				getCapitalCity()->changeNumBonuses(freeBonus, 5);
-			}
-			
-		}
-		
-		// Egypt:
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_EGYPT")) 
-		{
-			setFullMilitaryHappinessValueWithPantheon(true);
-		}
-		
-		// Greece
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_GREECE")) 
-		{
-			changeUniqueUnitFreeExperience(5);
-		}
-		
-		// Inca
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_INCA")) 
-		{
-			if (getCurrentEra() < 4)
-			{
-				// Remember to update checkObsoleteUniquePowers when making changes to this
-				changeWorkerSpeedModifier(50);
-			}
-		}
-		
+	/*		
+		With Calendar: A random great person appears every 394 in-game years.
+Egypt	Gain slavery points for sacrificing population. (Ancient)+
+		Bonus for special traderoute
+
 		// Maya
 		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA")) 
 		{
-			CvCity* pLoopCity;
-			int iLoop;
-			
-			for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
-			{
-				if (pLoopCity->findPopulationRank() <= GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getTargetNumCities())
-				{
-					pLoopCity->changeFreeSpecialistCount((SpecialistTypes)GC.getInfoTypeForString("SPECIALIST_PRIEST"), 1);
-				}	
-			}
-		}
-		
-		// Sumeria:
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SUMERIA")) 
-		{
-			if (getCurrentEra() < 2)
-			{
-				// Remember to update checkObsoleteUniquePowers when making changes to this
-				changeEarlyPriestExtraFood(1);
-			}
-		}
-		
-		// Unfinished Civilizations:
-		else
-		{
-			for (int iI = 0; iI < NUM_COMMERCE_TYPES; iI++)
-			{
-				changeUniquePowerCommerceModifier(((CommerceTypes)iI), 5);
-			}
-		}
-	}
-	else if (iPowerLevel == 5)
-	{
-		// Aztec
-		if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AZTEC")) 
-		{
-			
+			setMayaCalendar(GC.getGameINLINE().getGameTurnYear());
+			checkMayaCalendar();
 		}
 		
 		// Babylon:
@@ -27277,16 +26970,6 @@ void CvPlayer::updateUniquePowers(EraTypes iEra)
 			
 		}
 		
-		// Carthage
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CARTHAGE")) 
-		{
-			if (getCurrentEra() < 3)
-			{
-				// Remember to update checkObsoleteUniquePowers when making changes to this
-				changeHurryGoldCostModifier(-25);
-			}
-		}
-		
 		// Egypt:
 		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_EGYPT")) 
 		{
@@ -27295,36 +26978,7 @@ void CvPlayer::updateUniquePowers(EraTypes iEra)
 			setFreeCivicEnabled(enableCivic);
 			setCivics(enlableCivicOption, enableCivic);
 		}
-		
-		// Greece
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_GREECE")) 
-		{
-			changeFreeUnitsOnConquest(1);
-		}
-		
-		// Inca
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_INCA")) 
-		{
-			if (getCurrentEra() < 3)
-			{
-				// Remember to update checkObsoleteUniquePowers when making changes to this
-				changeUniquePowerCommerceModifier(COMMERCE_GOLD, 25); 
-			}
-		}
-		
-		// Maya
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA")) 
-		{
-			setMayaCalendar(GC.getGameINLINE().getGameTurnYear());
-			checkMayaCalendar();
-		}
-		
-		// Sumeria:
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SUMERIA")) 
-		{
-			changeUniquePowerCommerceModifier(COMMERCE_CULTURE, 20);
-		}
-		
+
 		// Unfinished Civilizations:
 		else
 		{
@@ -27334,6 +26988,19 @@ void CvPlayer::updateUniquePowers(EraTypes iEra)
 			}
 		}
 	}
+	
+	
+			
+	// Sumeria:
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SUMERIA")) 
+	{
+		if (getCurrentEra() < 2)
+		{
+			// Remember to update checkObsoleteUniquePowers when making changes to this
+			changeEarlyPriestExtraFood(1);
+		}
+	}
+	
 	*/
 }
 
