@@ -1162,15 +1162,20 @@ class CvMilitaryAdvisor:
 
 		szSlaveryBar_ID = self.getNextWidgetName()
 		szSlaveryText_ID = self.getNextWidgetName()
+		
+		iSlavePoints = gc.getPlayer(self.iActivePlayer).getSlavePoints()
+		iNewSlaveThreshold = gc.getPlayer(self.iActivePlayer).getNewSlaveThreshold()
+		
+		if (iNewSlaveThreshold != 0):
+		
+			screen.addStackedBarGFC(szSlaveryBar_ID, self.X_GREAT_GENERAL_BAR, self.Y_GREAT_GENERAL_BAR + 50, self.W_GREAT_GENERAL_BAR, self.H_GREAT_GENERAL_BAR, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_HELP_SLAVERY_BAR, -1, -1)
+			screen.setStackedBarColors(szSlaveryBar_ID, InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_GREAT_PEOPLE_STORED"))
+			screen.setStackedBarColors(szSlaveryBar_ID, InfoBarTypes.INFOBAR_RATE, gc.getInfoTypeForString("COLOR_GREAT_PEOPLE_RATE"))
+			screen.setStackedBarColors(szSlaveryBar_ID, InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_EMPTY"))
+			screen.setStackedBarColors(szSlaveryBar_ID, InfoBarTypes.INFOBAR_EMPTY, gc.getInfoTypeForString("COLOR_EMPTY"))
+			screen.setBarPercentage(szSlaveryBar_ID, InfoBarTypes.INFOBAR_STORED, float(iSlavePoints) / float(iNewSlaveThreshold))
 
-		screen.addStackedBarGFC(szSlaveryBar_ID, self.X_GREAT_GENERAL_BAR, self.Y_GREAT_GENERAL_BAR + 50, self.W_GREAT_GENERAL_BAR, self.H_GREAT_GENERAL_BAR, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_HELP_SLAVERY_BAR, -1, -1)
-		screen.setStackedBarColors(szSlaveryBar_ID, InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_GREAT_PEOPLE_STORED"))
-		screen.setStackedBarColors(szSlaveryBar_ID, InfoBarTypes.INFOBAR_RATE, gc.getInfoTypeForString("COLOR_GREAT_PEOPLE_RATE"))
-		screen.setStackedBarColors(szSlaveryBar_ID, InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_EMPTY"))
-		screen.setStackedBarColors(szSlaveryBar_ID, InfoBarTypes.INFOBAR_EMPTY, gc.getInfoTypeForString("COLOR_EMPTY"))
-		screen.setBarPercentage(szSlaveryBar_ID, InfoBarTypes.INFOBAR_STORED, 20)
-
-		screen.setLabel(szSlaveryText_ID, "", localText.getText("TXT_KEY_MISC_SLAVERY_BAR", ()), CvUtil.FONT_CENTER_JUSTIFY, self.X_SLAVERY_BAR + self.W_SLAVERY_BAR/2, self.Y_SLAVERY_BAR + 6 + 50, 0, FontTypes.GAME_FONT, WidgetTypes.WIDGET_HELP_SLAVERY_BAR, -1, -1)
+			screen.setLabel(szSlaveryText_ID, "", localText.getText("TXT_KEY_MISC_SLAVERY_BAR", ()), CvUtil.FONT_CENTER_JUSTIFY, self.X_SLAVERY_BAR + self.W_SLAVERY_BAR/2, self.Y_SLAVERY_BAR + 6, 0, FontTypes.GAME_FONT, WidgetTypes.WIDGET_HELP_SLAVERY_BAR, -1, -1)
 		
 	def minimapClicked(self):
 		self.hideScreen()
