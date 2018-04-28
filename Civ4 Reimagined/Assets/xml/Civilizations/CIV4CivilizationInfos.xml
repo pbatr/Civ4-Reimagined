@@ -130,7 +130,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -251,7 +251,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -368,7 +368,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -485,7 +485,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -606,7 +606,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -724,7 +724,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -846,7 +846,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -971,7 +971,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -1108,7 +1108,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -1227,7 +1227,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -1350,7 +1350,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -1467,7 +1467,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -1605,7 +1605,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -1731,7 +1731,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -1858,7 +1858,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -1969,7 +1969,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -2143,7 +2143,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -2259,7 +2259,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -2381,7 +2381,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -2488,7 +2488,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -2599,7 +2599,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -2720,7 +2720,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -2830,7 +2830,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -2961,7 +2961,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -3083,7 +3083,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -3196,7 +3196,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -3342,7 +3342,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -3468,7 +3468,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -3600,7 +3600,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -3719,7 +3719,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -3845,7 +3845,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -3959,7 +3959,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -4075,7 +4075,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -4188,7 +4188,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -4336,7 +4336,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
@@ -5075,7 +5075,7 @@
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
 				<CivicType>CIVIC_TRIBALISM</CivicType>
 				<CivicType>CIVIC_SELF_SUFFICIENCY</CivicType>
-				<CivicType>CIVIC_ANIMISM</CivicType>
+				<CivicType>CIVIC_PANTHEON</CivicType>
 				<CivicType>CIVIC_MILITIA</CivicType>
 			</InitialCivics>
 			<Leaders>
