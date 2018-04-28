@@ -17552,7 +17552,11 @@ void CvGameTextMgr::parseGreatGeneralHelp(CvWStringBuffer &szBuffer, CvPlayer& k
 		}
 
 	}
-	
+}
+
+void CvGameTextMgr::parseSlaveryBarHelp(CvWStringBuffer &szBuffer, CvPlayer& kPlayer)
+{
+	szBuffer.assign(gDLL->getText("TXT_KEY_MISC_SLAVERY_PROGRESS", kPlayer.getSlavePoints(), kPlayer.getNewSlaveThreshold()));
 }
 
 

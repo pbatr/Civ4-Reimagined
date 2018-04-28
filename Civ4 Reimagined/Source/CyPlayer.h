@@ -451,6 +451,9 @@ public:
 	int getCombatExperience() const;
 	void changeCombatExperience(int iChange);
 	void setCombatExperience(int iExperience);
+	
+	int getSlavePoints() const;
+	int getNewSlaveThreshold() const;
 
 	int getSpecialistExtraYield(int /*SpecialistTypes*/ eIndex1, int /*YieldTypes*/ eIndex2);
 

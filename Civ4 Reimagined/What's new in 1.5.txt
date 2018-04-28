@@ -19,6 +19,7 @@ Tweaks
 Interface
 *********
 -Maintenance cost in domestic advisor screen now takes inflation into account.
+-Display slavery points in military advisor (BUG military advisor needs to be activated)
 
 *********
 Fixes

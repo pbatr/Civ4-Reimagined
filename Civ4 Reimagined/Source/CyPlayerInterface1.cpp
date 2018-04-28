@@ -435,6 +435,9 @@ void CyPlayerPythonInterface1(python::class_<CyPlayer>& x)
 		.def("getCombatExperience", &CyPlayer::getCombatExperience, "int () - Combat experience used to produce Warlords")
 		.def("changeCombatExperience", &CyPlayer::changeCombatExperience, "void (int) - Combat experience used to produce Warlords")
 		.def("setCombatExperience", &CyPlayer::setCombatExperience, "void (int) - Combat experience used to produce Warlords")
+		
+		.def("getSlavePoints", &CyPlayer::getSlavePoints, "int () - Current slave points")
+		.def("getNewSlaveThreshold", &CyPlayer::getNewSlaveThreshold, "int () - Slave points required to get new slave")
 
 		.def("getSpecialistExtraYield", &CyPlayer::getSpecialistExtraYield, "int (int /*SpecialistTypes*/ eIndex1, int /*YieldTypes*/ eIndex2)")
 
