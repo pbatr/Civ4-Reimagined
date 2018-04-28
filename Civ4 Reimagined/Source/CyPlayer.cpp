@@ -1933,6 +1933,24 @@ void CyPlayer::setCombatExperience(int iExperience)
 
 }
 
+int CyPlayer::getSlavePoints() const
+{
+	if (m_pPlayer)
+	{
+		return m_pPlayer->getSlavePoints();
+	}
+	return -1;
+}
+
+int CyPlayer::getNewSlaveThreshold() const
+{
+	if (m_pPlayer)
+	{
+		return m_pPlayer->getNewSlaveThreshold();
+	}
+	return -1;
+}
+
 int CyPlayer::getSpecialistExtraYield(int /*SpecialistTypes*/ eIndex1, int /*YieldTypes*/ eIndex2)
 {
 	return m_pPlayer ? m_pPlayer->getSpecialistExtraYield((SpecialistTypes) eIndex1, (YieldTypes) eIndex2) : -1;

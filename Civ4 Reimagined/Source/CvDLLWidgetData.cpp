@@ -248,6 +248,10 @@ void CvDLLWidgetData::parseHelp(CvWStringBuffer &szBuffer, CvWidgetDataStruct &w
 	case WIDGET_HELP_GREAT_GENERAL:
 		parseGreatGeneralHelp(widgetDataStruct, szBuffer);
 		break;
+		
+	case WIDGET_HELP_SLAVERY_BAR:
+		parseSlaveryBarHelp(widgetDataStruct, szBuffer);
+		break;
 
 	case WIDGET_HELP_SELECTED:
 		parseSelectedHelp(widgetDataStruct, szBuffer);
@@ -5062,6 +5066,16 @@ void CvDLLWidgetData::parseGreatGeneralHelp(CvWidgetDataStruct &widgetDataStruct
 		GAMETEXT.parseGreatGeneralHelp(szBuffer, GET_PLAYER(GC.getGame().getActivePlayer()));
 	}
 }
+
+
+void CvDLLWidgetData::parseSlaveryBarHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)
+{
+	if (NO_PLAYER != GC.getGame().getActivePlayer())
+	{
+		GAMETEXT.parseSlaveryBarHelp(szBuffer, GET_PLAYER(GC.getGame().getActivePlayer()));
+	}
+}
+
 
 
 void CvDLLWidgetData::parseSelectedHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)
