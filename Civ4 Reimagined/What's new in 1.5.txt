@@ -15,6 +15,7 @@ Changes
 - Classical temples have same effects and costs as normal temples
 - Ziggurat replaces Classical Temple and is available with Mysticism
 - Cavalry upgrades to Motorized Infantry
+- Barbarians cannot spawn on tiles without food
 
 *********
 Tweaks
