@@ -6872,6 +6872,32 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 	return iValue;
 }
 
+
+// Civ4 Reimagined
+// How great this era in regards to gaining or losing unique powers. 100 is the default, powerless era. The higher the number, the better. 
+// Relative value is important. For example, switching from an era with value 110 (a small benefit) to an era with value 125 (a large benefit) nets a bonus of 125/110 in calculations.
+int CvPlayerAI::uniquePowerAIEraValueMult(EraTypes iEra) const
+{
+	int iEraValueMult = 100;
+	FAssert(iEra >= -1);
+	switch(iEra)
+	{
+		case 0: 
+			break;
+		case 1:
+			break;
+		case 2:
+			break;
+		case 3:
+			break;
+		case 4:
+			break;
+		default:
+	}
+
+	return iEraValueMult;
+}
+
 // K-mod. This function returns the (positive) value of the buildings we will lose by researching eTech.
 // (I think it's crazy that this stuff wasn't taken into account in original BtS)
 int CvPlayerAI::AI_obsoleteBuildingPenalty(TechTypes eTech, bool bConstCache) const

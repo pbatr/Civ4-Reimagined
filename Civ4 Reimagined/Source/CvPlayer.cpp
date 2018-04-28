@@ -13331,8 +13331,10 @@ void CvPlayer::setCurrentEra(EraTypes eNewValue)
 
 		// Civ4 Reimagined
 		if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS))
-			gainNewUniquePowers((EraTypes)getCurrentEra());
-			checkObsoleteUniquePowers((EraTypes)getCurrentEra());
+		{
+			updateUniquePowers((EraTypes)getCurrentEra());
+		}
+		
 		if (GC.getGameINLINE().getActiveTeam() != NO_TEAM)
 		{
 			for (iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
@@ -26917,32 +26919,6 @@ void CvPlayer::doUniqueAztecPromotion(CvUnit* pUnit)
 }
 
 // Civ4 Reimagined
-// How great this era is for this AI, in regards to gaining or losing unique powers. 100 is the default, powerless era. The higher the number, the better. 
-// Relative value is important. For example, switching from an era with value 110 (a small benefit) to an era with value 125 (a large benefit) nets a bonus of 125/110 in calculations.
-int CvPlayer::uniquePowerAIEraValueMult(EraTypes iEra) const
-{
-	int iObsoleteValue = 100;
-	FAssert(iEra >= -1);
-	switch(iEra)
-	{
-		case 0: 
-			break;
-		case 1:
-			break;
-		case 2:
-			break;
-		case 3:
-			break;
-		case 4:
-			break;
-		default:
-			break;
-	}
-
-	return iObsoleteValue;
-}
-
-// Civ4 Reimagined
 void CvPlayer::updateUniquePowers(EraTypes iEra)
 {
 	if (getID() == NO_PLAYER)
@@ -26950,13 +26926,25 @@ void CvPlayer::updateUniquePowers(EraTypes iEra)
 		return;
 	}
 	/*
-	if (iPowerLevel == 1) 
-	{				
-		// Aztec
+	// Aztec
+	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AZTEC")) 
+	{
+		(iEra == 1 ? )
 		if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AZTEC")) 
 		{
-			placeBonusAtCapitalFatCross((BonusTypes)GC.getInfoTypeForString("BONUS_CORN"));
-		} 
+			setUniqueAztecPromotion(true);
+		}
+		
+	} 
+	
+	// Sumeria:
+	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SUMERIA")) 
+	{
+		(iEra == 0 ? changeFreePopulationInCapital(1));
+	}
+	*/
+	/*		
+		
 		
 		// Babylon:
 		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON")) 
@@ -27036,12 +27024,6 @@ void CvPlayer::updateUniquePowers(EraTypes iEra)
 	}
 	else if (iPowerLevel == 2)
 	{
-		// Aztec
-		if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AZTEC")) 
-		{
-			changeCulturePerPopulationSacrified(300);
-		}
-		
 		// Babylon:
 		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON")) 
 		{
@@ -27114,12 +27096,6 @@ void CvPlayer::updateUniquePowers(EraTypes iEra)
 	}
 	else if (iPowerLevel == 3)
 	{
-		// Aztec
-		if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AZTEC")) 
-		{
-			
-		}
-		
 		// Babylon:
 		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON")) 
 		{
@@ -27193,12 +27169,6 @@ void CvPlayer::updateUniquePowers(EraTypes iEra)
 	}
 	else if (iPowerLevel == 4)
 	{
-		// Aztec
-		if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AZTEC")) 
-		{
-			setUniqueAztecPromotion(true);
-		}
-		
 		// Babylon:
 		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON")) 
 		{
