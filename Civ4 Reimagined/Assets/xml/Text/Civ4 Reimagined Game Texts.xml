@@ -1327,4 +1327,8 @@
 		<Tag>TXT_KEY_MISC_SLAVERY_PROGRESS</Tag>
 		<English>Slave: %d1_Curr/%d2_Need Progress</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_MELEE_MILITARY_FOOD</Tag>
+		<English>[ICON_BULLET]Melee Units Produced with [ICON_FOOD] (1 [ICON_FOOD] for 2 [ICON_PRODUCTION]) </English>
+	</TEXT>
 </Civ4GameText>

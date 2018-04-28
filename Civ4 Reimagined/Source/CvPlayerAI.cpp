@@ -15004,32 +15004,26 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	}
 
 	// Civ4 Reimagined
-	if( kCivic.isMilitaryFoodProduction() )
+	if( kCivic.isMilitaryFoodProduction() || kCivic.isMeleeMilitaryFoodProduction())
 	{
 		int iLoop;
-		int iHappyLevel;
-		int iHealth;
 		int iTempValue = 0;
-		CvCity* pLoopCity;
 		
-		for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+		for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 		{
-			iHappyLevel = pLoopCity->happyLevel() - pLoopCity->unhappyLevel(0);
-			iHealth = pLoopCity->goodHealth() - pLoopCity->badHealth(false, 0);
-			iTempValue += pLoopCity->foodDifference(true, true) * (bWarPlan ? 2 : 1) * GC.getLeaderHeadInfo(getPersonalityType()).getBuildUnitProb();
-			iTempValue -= std::max(0, std::min(iHappyLevel, std::min(iHealth/2, pLoopCity->foodDifference(true, true)))) * 500;
+			const int iHappyLevel = pLoopCity->happyLevel() - pLoopCity->unhappyLevel(0);
+			const int iHealth = pLoopCity->goodHealth() - pLoopCity->badHealth(false, 0);
+			const int iBuildUnitProb = GC.getLeaderHeadInfo(getPersonalityType()).getBuildUnitProb() / (kCivic.isMeleeMilitaryFoodProduction() ? 2 : 1);
+			const int iFoodProd = pLoopCity->foodDifference(true, true) * (kCivic.isMeleeMilitaryFoodProduction() ? 2 : 1);
+
+			iTempValue += iFoodProd * (bWarPlan ? 2 : 1) * iBuildUnitProb;
+			iTempValue -= std::max(0, std::min(iHappyLevel, std::min(iHealth/2, iFoodProd))) * 500;
 		}
 		
 		iTempValue /= 30;
 		if (gPlayerLogLevel > 2) logBBAI("	Civic Value of Military Food Production: %d", iTempValue);
 		iValue += iTempValue;
 		
-	}
-	
-	// Civ4 Reimagined
-	if( kCivic.isMeleeMilitaryFoodProduction() )
-	{
-		// TODO
 	}
 	
 	// bbai
