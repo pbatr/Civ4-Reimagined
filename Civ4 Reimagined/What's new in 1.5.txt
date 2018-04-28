@@ -8,6 +8,11 @@ New
 *********
 Changes
 *********
+- Animism civic removed, Pantheon is start civic
+- Organized Religion requires Polytheism
+- Theocracy requires Monotheism
+- Public Welfare requires Mass Media
+- Classical temples have same effects and costs as normal temples
 - Cavalry upgrades to motorized infantry
 
 *********
