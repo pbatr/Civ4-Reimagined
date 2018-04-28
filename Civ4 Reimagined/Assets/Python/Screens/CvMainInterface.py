@@ -788,12 +788,8 @@ class CvMainInterface:
 		screen.hide( "ResearchBar" )
 
 # BUG - Great General Bar - start
-		if (gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_UNIQUE_POWERS)): # Civ4 Reimagined 
-			screen.addStackedBarGFC( "GreatGeneralBar", xCoord, 27, 100, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_HELP_GREAT_GENERAL, -1, -1 )
-			screen.setStackedBarColors( "GreatGeneralBar", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_NEGATIVE_RATE") ) 
-		else:
-			screen.addStackedBarGFC( "GreatGeneralBar", xCoord - 50, 27, 100 + 50, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_HELP_GREAT_GENERAL, -1, -1 )
-			screen.setStackedBarColors( "GreatGeneralBar", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_CULTURE_STORED") )
+		screen.addStackedBarGFC( "GreatGeneralBar", xCoord, 27, 100, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_HELP_GREAT_GENERAL, -1, -1 )
+		screen.setStackedBarColors( "GreatGeneralBar", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_NEGATIVE_RATE") ) 
 		screen.setStackedBarColors( "GreatGeneralBar", InfoBarTypes.INFOBAR_RATE, gc.getInfoTypeForString("COLOR_EMPTY") )
 		screen.setStackedBarColors( "GreatGeneralBar", InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_EMPTY") )
 		screen.setStackedBarColors( "GreatGeneralBar", InfoBarTypes.INFOBAR_EMPTY, gc.getInfoTypeForString("COLOR_EMPTY") )
@@ -813,10 +809,7 @@ class CvMainInterface:
 # BUG - Bars on single line for higher resolution screens - start
 		xCoord = 268 + (xResolution - 1440) / 2
 		screen.addStackedBarGFC( "GreatGeneralBar-w", xCoord - 50, 2, 84 + 50, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_HELP_GREAT_GENERAL, -1, -1 )
-		if (gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_UNIQUE_POWERS)): # Civ4 Reimagined
-			screen.setStackedBarColors( "GreatGeneralBar-w", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_NEGATIVE_RATE") )
-		else:
-			screen.setStackedBarColors( "GreatGeneralBar-w", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_CULTURE_STORED") )
+		screen.setStackedBarColors( "GreatGeneralBar-w", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_NEGATIVE_RATE") )
 		screen.setStackedBarColors( "GreatGeneralBar-w", InfoBarTypes.INFOBAR_RATE, gc.getInfoTypeForString("COLOR_EMPTY") )
 		screen.setStackedBarColors( "GreatGeneralBar-w", InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_EMPTY") )
 		screen.setStackedBarColors( "GreatGeneralBar-w", InfoBarTypes.INFOBAR_EMPTY, gc.getInfoTypeForString("COLOR_EMPTY") )
@@ -3254,86 +3247,34 @@ class CvMainInterface:
 
 # BUG - Great General Bar - start
 
-	# Civ4 Reimagined: Used for unique powers
 	def updateGreatGeneralBar(self, screen):
-		if (not CyInterface().isCityScreenUp() and not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_UNIQUE_POWERS)):
+		if not CyInterface().isCityScreenUp() and MainOpt.isShowGGProgressBar():
 			pPlayer = gc.getActivePlayer()
-			iAccumulatedCultureTimes100 = int(pPlayer.getAccumulatedCulture())
-			iUniquePowerLevel = pPlayer.getUniquePowerLevel()
-			iMayaCalendar = pPlayer.getMayaCalendar()
+			iCombatExp = pPlayer.getCombatExperience()
+			iThresholdExp = pPlayer.greatPeopleThreshold(True)
+			iNeededExp = iThresholdExp - iCombatExp
 			
-			if (iUniquePowerLevel >= 5 and iMayaCalendar == -5000):
-				screen.hide("GreatGeneralBar")
-				screen.hide("GreatGeneralBar-w")
+			szText = u"<font=2>%s</font>" %(GGUtil.getGreatGeneralText(iNeededExp))
+			
+# BUG - Bars on single line for higher resolution screens - start
+			xResolution = screen.getXResolution()
+			if (xResolution >= 1440):
+				szGreatGeneralBar = "GreatGeneralBar-w"
+				xCoord = 268 + (xResolution - 1440) / 2 + 84 / 2
+				yCoord = 5
 			else:
-				iThresholdExpTimes100 = int(pPlayer.getUniquePowerRequirement(iUniquePowerLevel + 1))
-				iNeededExpTimes100 = iThresholdExpTimes100 - iAccumulatedCultureTimes100
-				iUniquePowerRateTimes100 = pPlayer.getUniquePowerRate()
-				
-				if (iUniquePowerRateTimes100 > 0):
-					iTurnsUniquePower = (iNeededExpTimes100 / iUniquePowerRateTimes100) + (iNeededExpTimes100 % iUniquePowerRateTimes100 > 0) # Adds +1 turn required in case any remainder is left
-					iTurnsUniquePower = max(1, iTurnsUniquePower)
-				else:
-					iTurnsUniquePower = 999
-				
-				szText = u"<font=2>%s</font>" %(GGUtil.getUniquePowerText(iUniquePowerLevel, (iUniquePowerRateTimes100 / 100), (iUniquePowerRateTimes100 % 100) / 10, iTurnsUniquePower))
-				
-				if (iMayaCalendar > -5000):
-					if (iMayaCalendar >= 0):
-						szText = u"<font=2>Next: %d AD</font>" %(iMayaCalendar)
-					else:
-						szText = u"<font=2>Next: %d BC</font>" %(-iMayaCalendar)
-				
-	# BUG - Bars on single line for higher resolution screens - start
-				xResolution = screen.getXResolution()
-				if (xResolution >= 1440):
-					szGreatGeneralBar = "GreatGeneralBar-w"
-					xCoord = 268 + (xResolution - 1440) / 2 + 84 / 2 - 50 / 2
-					yCoord = 5
-				else:
-					szGreatGeneralBar = "GreatGeneralBar"
-					xCoord = 268 + (xResolution - 1024) / 2 + 100 / 2 - 50 / 2
-					yCoord = 32
-	# BUG - Bars on single line for higher resolution screens - end
+				szGreatGeneralBar = "GreatGeneralBar"
+				xCoord = 268 + (xResolution - 1024) / 2 + 100 / 2
+				yCoord = 32
 
-				screen.setLabel( "GreatGeneralBarText", "Background", szText, CvUtil.FONT_CENTER_JUSTIFY, xCoord, yCoord, -0.4, FontTypes.GAME_FONT, WidgetTypes.WIDGET_HELP_GREAT_GENERAL, -1, -1 )
-				screen.show( "GreatGeneralBarText" )
+			screen.setLabel( "GreatGeneralBarText", "Background", szText, CvUtil.FONT_CENTER_JUSTIFY, xCoord, yCoord, -0.4, FontTypes.GAME_FONT, WidgetTypes.WIDGET_HELP_GREAT_GENERAL, -1, -1 )
+			screen.show( "GreatGeneralBarText" )
+# BUG - Bars on single line for higher resolution screens - end
 
-
-				iProgressBarAccumulatedCulture = iAccumulatedCultureTimes100 - pPlayer.getUniquePowerRequirement(iUniquePowerLevel)
-				iProgressBarThresholdExp = max(1, (iThresholdExpTimes100 - pPlayer.getUniquePowerRequirement(iUniquePowerLevel)))
-				fProgress = float(iProgressBarAccumulatedCulture) / float(iProgressBarThresholdExp)
-				screen.setBarPercentage( szGreatGeneralBar, InfoBarTypes.INFOBAR_STORED, fProgress)
-				#screen.setBarPercentage( szGreatGeneralBar, InfoBarTypes.INFOBAR_RATE, 10 / float(iThresholdExp))
-				screen.show( szGreatGeneralBar )
-		else:
-			if not CyInterface().isCityScreenUp() and MainOpt.isShowGGProgressBar():
-				pPlayer = gc.getActivePlayer()
-				iCombatExp = pPlayer.getCombatExperience()
-				iThresholdExp = pPlayer.greatPeopleThreshold(True)
-				iNeededExp = iThresholdExp - iCombatExp
-				
-				szText = u"<font=2>%s</font>" %(GGUtil.getGreatGeneralText(iNeededExp))
-				
-	# BUG - Bars on single line for higher resolution screens - start
-				xResolution = screen.getXResolution()
-				if (xResolution >= 1440):
-					szGreatGeneralBar = "GreatGeneralBar-w"
-					xCoord = 268 + (xResolution - 1440) / 2 + 84 / 2
-					yCoord = 5
-				else:
-					szGreatGeneralBar = "GreatGeneralBar"
-					xCoord = 268 + (xResolution - 1024) / 2 + 100 / 2
-					yCoord = 32
-
-				screen.setLabel( "GreatGeneralBarText", "Background", szText, CvUtil.FONT_CENTER_JUSTIFY, xCoord, yCoord, -0.4, FontTypes.GAME_FONT, WidgetTypes.WIDGET_HELP_GREAT_GENERAL, -1, -1 )
-				screen.show( "GreatGeneralBarText" )
-	# BUG - Bars on single line for higher resolution screens - end
-
-				fProgress = float(iCombatExp) / float(iThresholdExp)
-				screen.setBarPercentage( szGreatGeneralBar, InfoBarTypes.INFOBAR_STORED, fProgress )
-				screen.show( szGreatGeneralBar )
-	# BUG - Great General Bar - end
+			fProgress = float(iCombatExp) / float(iThresholdExp)
+			screen.setBarPercentage( szGreatGeneralBar, InfoBarTypes.INFOBAR_STORED, fProgress )
+			screen.show( szGreatGeneralBar )
+# BUG - Great General Bar - end
 			
 # BUG - Great General Bar - end
 					

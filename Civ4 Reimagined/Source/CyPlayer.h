@@ -442,10 +442,6 @@ public:
 	int getBonusValueModifier(); /// Civ4 Reimagined
 	int getTechValue(); // Civ4 Reimagined
 	int getBonusRatio(); // Civ4 Reimagined
-	int getUniquePowerLevel(); // Civ4 Reimagined
-	long getUniquePowerRequirement(int iLevel); // Civ4 Reimagined
-	long getAccumulatedCulture(); // Civ4 Reimagined
-	long getUniquePowerRate(); // Civ4 Reimagined
 	int getMayaCalendar(); // Civ4 Reimagined
 	
 	int getCombatExperience() const;

@@ -1292,12 +1292,6 @@ public:
 	void updateBonusRatio(bool bAlwaysUpdate = false); // Civ4 Reimagined
 	int getResearchPerCulture() const; // Civ4 Reimagined
 	void changeResearchPerCulture(int iChange);
-	long getAccumulatedCulture() const;  // Civ4 Reimagined	// Exposed to Python
-	long getUniquePowerRate() const;  // Civ4 Reimagined	// Exposed to Python
-	void changeAccumulatedCulture(int iChange); // Civ4 Reimagined
-	int getUniquePowerLevel() const;  // Civ4 Reimagined	// Exposed to Python
-	long getUniquePowerRequirement(int iLevel) const;  // Civ4 Reimagined	// Exposed to Python
-	void setUniquePowerLevel(int iLevel); // Civ4 Reimagined
 	bool isWrongCivicBuilding(BuildingTypes eBuilding) const; // Civ4 Reimagined
 	int getUniquePowerCommerceModifier(CommerceTypes eIndex) const; // Civ4 Reimagined
 	void changeUniquePowerCommerceModifier(CommerceTypes eIndex, int iChange); // Civ4 Reimagined
@@ -1314,8 +1308,6 @@ public:
 	void changeCoastalTradeRouteModifier(int iChange); // Civ4 Reimagined
 	int getUniquePowerGreatPeopleModifier() const; // Civ4 Reimagined
 	void changeUniquePowerGreatPeopleModifier(int iChange); // Civ4 Reimagined
-	bool isFullMilitaryHappinessValueWithPantheon() const; // Civ4 Reimagined
-	void setFullMilitaryHappinessValueWithPantheon(bool bMilitary); // Civ4 Reimagined
 	int getUniqueUnitFreeExperience() const; // Civ4 Reimagined
 	void changeUniqueUnitFreeExperience(int iChange); // Civ4 Reimagined
 	int getFreeUnitsOnConquest() const; // Civ4 Reimagined
@@ -1338,7 +1330,8 @@ public:
 	void changeFatcrossPeakCulture(int iChange); // Civ4 Reimagined
 	int getNonStateReligionHappinessWithStateReligion() const; // Civ4 Reimagined
 	void changeNonStateReligionHappinessWithStateReligion(int iChange); // Civ4 Reimagined
-	void checkObsoleteUniquePowers(EraTypes iEra); // Civ4 Reimagined
+	void uniquePowerAIEraValueMult(EraTypes iEra); // Civ4 Reimagined
+	void updateUniquePowers(EraTypes iEra); // Civ4 Reimagined
 	int checkForObsoleteUniquePowers(EraTypes iEra) const; // Civ4 Reimagined
 	bool isExploreRivalSea() const; // Civ4 Reimagined
 	void setExploreRivalSea(bool bNewValue); // Civ4 Reimagined
@@ -1568,8 +1561,6 @@ protected:
 	int m_iTechValue; // Civ4 Reimagined
 	int m_iBonusRatio; // Civ4 Reimagined
 	int m_iResearchPerCulture; // Civ4 Reimagined
-	long m_dAccumulatedCulture; // Civ4 Reimagined
-	int m_iUniquePowerLevel; // Civ4 Reimagined
 	int m_iFreePopulationInCapital; // Civ4 Reimagined
 	CivicTypes m_iFreeCivicEnabled; // Civ4 Reimagined
 	int m_iEarlyScientistBonusCommerce; // Civ4 Reimagined
@@ -1580,7 +1571,6 @@ protected:
 	int m_iHurryWithGreatPriestsRatio; // Civ4 Reimagined
 	int m_iCoastalTradeRouteModifier; // Civ4 Reimagined
 	int m_iUniquePowerGreatPeopleModifier; // Civ4 Reimagined
-	bool m_bFullMilitaryHappinessValueWithPantheon; // Civ4 Reimagined
 	int m_iUniqueUnitFreeExperience; // Civ4 Reimagined
 	int m_iFreeUnitsOnConquest; // Civ4 Reimagined
 	int m_iReligionTechModifier; // Civ4 Reimagined
