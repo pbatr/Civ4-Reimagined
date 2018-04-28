@@ -13,7 +13,8 @@ Changes
 - Theocracy requires Monotheism
 - Public Welfare requires Mass Media
 - Classical temples have same effects and costs as normal temples
-- Cavalry upgrades to motorized infantry
+- Ziggurat replaces Classical Temple and is available with Mysticism
+- Cavalry upgrades to Motorized Infantry
 
 *********
 Tweaks
