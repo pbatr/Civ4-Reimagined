@@ -1399,6 +1399,7 @@ public:
 	int getSpecialistExtraYieldEraThreshold() const; //Leoreth
 
 	bool isMilitaryFoodProduction() const;				// Exposed to Python
+	bool isMeleeMilitaryFoodProduction() const; // Civ4 Reimagined
 	bool enablesSlaves() const; // Civ4 Reimagined
 	bool isNoMilitaryProductionMali() const; //Civ4 Reimagined
 	bool isNoUnitSupply() const; //Civ4 Reimagined
@@ -1540,6 +1541,7 @@ protected:
 	int m_iSpecialistExtraYieldEraThreshold; //Leoreth
 
 	bool m_bMilitaryFoodProduction;
+	bool m_bMeleeMilitaryFoodProduction; // Civ4 Reimagined
 	bool m_bSlaves; // Civ4 Reimagined
 	bool m_bNoMilitaryProductionMali; // Civ4 Reimagined
 	bool m_bNoUnitSupply; // Civ4 Reimagined

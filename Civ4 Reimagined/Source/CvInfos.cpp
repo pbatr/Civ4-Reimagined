@@ -5462,6 +5462,7 @@ m_iExpInBorderModifier(0),
 m_iSpecialistExtraYieldBaseThreshold(0), //Leoreth
 m_iSpecialistExtraYieldEraThreshold(0), //Leoreth
 m_bMilitaryFoodProduction(false),
+m_bMeleeMilitaryFoodProduction(false), // Civ4 Reimagined
 m_bSlaves(false), // Civ4 Reimagined
 m_bNoMilitaryProductionMali(false), // Civ4 Reimagined
 m_bNoUnitSupply(false), //Civ4 Reimagined
@@ -5846,6 +5847,12 @@ int CvCivicInfo::getExpInBorderModifier() const
 bool CvCivicInfo::isMilitaryFoodProduction() const
 {
 	return m_bMilitaryFoodProduction;
+}
+
+// Civ4 Reimagined
+bool CvCivicInfo::isMeleeMilitaryFoodProduction() const
+{
+	return m_bMeleeMilitaryFoodProduction;
 }
 
 // Civ4 Reimagined
@@ -6396,6 +6403,7 @@ void CvCivicInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iBonusRatioModifier); //Civ4 Reimagined
 	stream->Read(&m_iResearchPerCulture); //Civ4 Reimagined
 	stream->Read(&m_bMilitaryFoodProduction);
+	stream->Read(&m_bMeleeMilitaryFoodProduction); //Civ4 Reimagined
 	stream->Read(&m_bSlaves); //Civ4 Reimagined
 	stream->Read(&m_bNoMilitaryProductionMali); //Civ4 Reimagined
 	stream->Read(&m_bNoUnitSupply); //Civ4 Reimagined
@@ -6674,6 +6682,7 @@ void CvCivicInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iBonusRatioModifier); //Civ4 Reimagined
 	stream->Write(m_iResearchPerCulture); //Civ4 Reimagined
 	stream->Write(m_bMilitaryFoodProduction);
+	stream->Write(m_bMeleeMilitaryFoodProduction); // Civ4 Reimagined
 	stream->Write(m_bSlaves); //Civ4 Reimagined
 	stream->Write(m_bNoMilitaryProductionMali); //Civ4 Reimagined
 	stream->Write(m_bNoUnitSupply); //Civ4 Reimagined
@@ -6799,6 +6808,7 @@ bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iHappyPerMilitaryUnit, "iHappyPerMilitaryUnit");
 	pXML->GetChildXmlValByName(&m_iMilitaryHappinessLimit, "iMilitaryHappinessLimit"); //Leoreth
 	pXML->GetChildXmlValByName(&m_bMilitaryFoodProduction, "bMilitaryFoodProduction");
+	pXML->GetChildXmlValByName(&m_bMeleeMilitaryFoodProduction, "bMeleeMilitaryFoodProduction"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_bSlaves, "bSlaves"); //Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_bNoMilitaryProductionMali, "bNoMilitaryProductionMali"); //Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_bNoUnitSupply, "bNoUnitSupply"); //Civ4 Reimagined

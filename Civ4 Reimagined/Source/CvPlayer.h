@@ -531,6 +531,10 @@ public:
 	void changeMilitaryFoodProductionCount(int iChange);
 	
 	// Civ4 Reimagined
+	int getMeleeMilitaryFoodProductionCount() const;	
+	bool isMeleeMilitaryFoodProduction() const;
+	void changeMeleeMilitaryFoodProductionCount(int iChange);
+	
 	int getEnableSlavesCount() const;	
 	bool hasSlavery() const;
 	void changeEnableSlavesCount(int iChange);
@@ -1483,6 +1487,7 @@ protected:
 	int m_iHappyPerMilitaryUnit;
 	int m_iMilitaryHappinessLimit; //Leoreth
 	int m_iMilitaryFoodProductionCount;
+	int m_iMeleeMilitaryFoodProductionCount; // Civ4 Reimagined
 	int m_iEnableSlavesCount; // Civ4 Reimagined
 	int m_iSlavesCount; // Civ4 Reimagined
 	int m_iSlavePoints; // Civ4 Reimagined

@@ -682,6 +682,7 @@
 	<ElementType name="iHappyPerMilitaryUnit" content="textOnly" dt:type="int"/>
 	<ElementType name="iMilitaryHappinessLimit" content="textOnly" dt:type="int"/> <!-- Leoreth -->
 	<ElementType name="bMilitaryFoodProduction" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bMeleeMilitaryFoodProduction" content="textOnly" dt:type="boolean"/> <!-- Civ4 Reimagined -->
 	<ElementType name="bSlaves" content="textOnly" dt:type="boolean"/> <!-- Civ4 Reimagined -->
 	<ElementType name="bNoMilitaryProductionMali" content="textOnly" dt:type="boolean"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iMaxConscript" content="textOnly" dt:type="int"/>
@@ -965,6 +966,7 @@
 		<element type="iHappyPerMilitaryUnit"/>
 		<element type="iMilitaryHappinessLimit" minOccurs="0"/> <!-- Leoreth -->
 		<element type="bMilitaryFoodProduction"/>
+		<element type="bMeleeMilitaryFoodProduction" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="bSlaves" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="bNoMilitaryProductionMali" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="iMaxConscript"/>

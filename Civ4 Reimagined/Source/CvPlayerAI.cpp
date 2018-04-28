@@ -15026,6 +15026,12 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		
 	}
 	
+	// Civ4 Reimagined
+	if( kCivic.isMeleeMilitaryFoodProduction() )
+	{
+		// TODO
+	}
+	
 	// bbai
 	int iMaxConscript = getWorldSizeMaxConscript(eCivic);
 	if( iMaxConscript > 0 && (pCapital != NULL) )

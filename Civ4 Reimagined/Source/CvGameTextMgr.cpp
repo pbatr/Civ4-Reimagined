@@ -7432,6 +7432,13 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 	}
 	
 	// Civ4 Reimagined
+	if (GC.getCivicInfo(eCivic).isMeleeMilitaryFoodProduction())
+	{
+		szHelpText.append(NEWLINE);
+		szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_MELEE_MILITARY_FOOD"));
+	}
+	
+	// Civ4 Reimagined
 	if (GC.getCivicInfo(eCivic).enablesSlaves())
 	{
 		szHelpText.append(NEWLINE);

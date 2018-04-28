@@ -108,6 +108,7 @@ public:
 	int getGeneralProductionTurnsLeft() const;										// Exposed to Python
 
 	bool isFoodProduction() const;																								// Exposed to Python
+	bool isMeleeFoodProduction(UnitTypes eUnit) const; // Civ4 Reimagined
 	bool isFoodProduction(UnitTypes eUnit) const;																	// Exposed to Python
 	int getFirstUnitOrder(UnitTypes eUnit) const;																	// Exposed to Python
 	int getFirstBuildingOrder(BuildingTypes eBuilding) const;											// Exposed to Python
