@@ -8,19 +8,22 @@ New
 *********
 Changes
 *********
-- Animism civic removed, Pantheon is start civic
-- Organized Religion requires Polytheism
-- Theocracy requires Monotheism
-- Public Welfare requires Mass Media
-- Classical temples have same effects and costs as normal temples
-- Ziggurat replaces Classical Temple and is available with Mysticism
-- Cavalry upgrades to Motorized Infantry
-- Barbarians cannot spawn on tiles without food
+-Animism civic removed, Pantheon is start civic
+-Classical temples have same effects and costs as normal temples
+-Ziggurat replaces Classical Temple and is available with Mysticism
+-Cavalry upgrades to Motorized Infantry
+-Barbarians cannot spawn on tiles without food
+-New effect for Levy Armies: Melee Units produced with food (2:1 ratio)
 
 *********
 Tweaks
 *********
 -Babylonian Bowman gain 2 potential first strike chances.
+-Organized Religion requires Polytheism
+-Theocracy requires Monotheism
+-Public Welfare requires Mass Media
+-Standing Army upkeep cost decreased from medium to low
+-Conscription upkeep cost decreased from high to medium
 
 *********
 Interface
