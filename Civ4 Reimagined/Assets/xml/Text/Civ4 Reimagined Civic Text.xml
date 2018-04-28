@@ -98,11 +98,6 @@
 		<French>Economie planifiée</French>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_CIVIC_ANIMISM</Tag>
-		<English>Animism</English>
-		<French>Animisme</French>
-	</TEXT>
-	<TEXT>
 		<Tag>TXT_KEY_CIVIC_PANTHEON</Tag>
 		<English>Pantheon</English>
 		<French>Panthéon</French>
@@ -424,5 +419,9 @@
 		<Tag>TXT_KEY_CIVIC_NO_CITY_RESISTANCE</Tag>
 		<English>[ICON_BULLET]No City Resistance on Conquest</English>
 		<French>[ICON_BULLET]Aucune résistance dans les villes conquises</French>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_STATE_IDEOLOGY</Tag>
+		<English>State Ideology</English>
 	</TEXT>
 </Civ4GameText>
