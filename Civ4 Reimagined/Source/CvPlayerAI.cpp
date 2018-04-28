@@ -2404,13 +2404,6 @@ int CvPlayerAI::AI_commerceWeight(CommerceTypes eCommerce, const CvCity* pCity) 
 				}
 			}
 			// K-Mod end
-			
-			// Civ4 Reimagined
-			if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS) && getUniquePowerLevel() < 5)
-			{
-				iWeight *= 3;
-				iWeight /= 2;
-			}
 		}
 		break;
 	case COMMERCE_ESPIONAGE:
@@ -2476,13 +2469,6 @@ void CvPlayerAI::AI_updateCommerceWeights()
 		// COMMERCE_CULTURE AIWeightPercent is set to 30% in the current xml.
 		int iWeight = GC.getCommerceInfo(COMMERCE_CULTURE).getAIWeightPercent();
 		
-		// Civ4 Reimagined
-		if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS) && getUniquePowerLevel() < 5)
-		{
-			iWeight *= 3;
-			iWeight /= 2;
-		}
-
 		int iPressureFactor = pCity->culturePressureFactor();
 		if (AI_isDoVictoryStrategy(AI_VICTORY_CULTURE2))
 			iPressureFactor = std::min(300, iPressureFactor); // don't let culture pressure dominate our decision making about where to put our culture.
@@ -6864,11 +6850,8 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 		int iEra = kTechInfo.getEra();
 		if (kTechInfo.getEra() != getCurrentEra())
 		{
-			if (checkForObsoleteUniquePowers((EraTypes)iEra))
-			{
-				iValue /= 3;
-				iValue *= 2;
-			}
+			iValue *= uniquePowerAIEraValueMult((EraTypes)iEra);
+			iValue /= uniquePowerAIEraValueMult(getCurrentEra());
 		}
 	}
 

@@ -6102,14 +6102,7 @@ void CvGameTextMgr::parseTraits(CvWStringBuffer &szHelpString, TraitTypes eTrait
 		{
 			if (GC.getTraitInfo(eTrait).getCommerceChange(iI) != 0)
 			{
-				if (iI == COMMERCE_CULTURE && !GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS)) // Civ4 Reimagined Todo
-				{
-					szHelpString.append(gDLL->getText("TXT_KEY_TRAIT_COMMERCE_CHANGES_UNIQUE_POWERS", 	GC.getTraitInfo(eTrait).getCommerceChange(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar(), "COMMERCE"));
-				}
-				else 
-				{
-					szHelpString.append(gDLL->getText("TXT_KEY_TRAIT_COMMERCE_CHANGES", 	GC.getTraitInfo(eTrait).getCommerceChange(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar(), "COMMERCE"));
-				}
+				szHelpString.append(gDLL->getText("TXT_KEY_TRAIT_COMMERCE_CHANGES", 	GC.getTraitInfo(eTrait).getCommerceChange(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar(), "COMMERCE"));
 			}
 
 			if (GC.getTraitInfo(eTrait).getCommerceModifier(iI) != 0)
@@ -17539,19 +17532,7 @@ bool CvGameTextMgr::setBuildingAdditionalGreatPeopleHelp(CvWStringBuffer &szBuff
 
 void CvGameTextMgr::parseGreatGeneralHelp(CvWStringBuffer &szBuffer, CvPlayer& kPlayer)
 {
-	// Civ4 Reimagined: Use unique power progress text for mouseover if unique powers are enabled.
-	if (GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS))
-	{
-		szBuffer.assign(gDLL->getText("TXT_KEY_MISC_GREAT_GENERAL", kPlayer.getCombatExperience(), kPlayer.greatPeopleThreshold(true)));
-	}
-	else
-	{
-		if (kPlayer.getUniquePowerLevel() <= 4)
-		{
-			szBuffer.assign(gDLL->getText("TXT_KEY_MISC_UNIQUE_POWER_PROGRESS", kPlayer.getAccumulatedCulture() / 100, kPlayer.getUniquePowerRequirement(kPlayer.getUniquePowerLevel() + 1) / 100));
-		}
-
-	}
+	szBuffer.assign(gDLL->getText("TXT_KEY_MISC_GREAT_GENERAL", kPlayer.getCombatExperience(), kPlayer.greatPeopleThreshold(true))); 
 }
 
 void CvGameTextMgr::parseSlaveryBarHelp(CvWStringBuffer &szBuffer, CvPlayer& kPlayer)
