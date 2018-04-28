@@ -536,9 +536,9 @@ public:
 	void changeEnableSlavesCount(int iChange);
 	int getNumSlaveUnits() const;
 	void changeNumSlaveUnits(int iChange);
-	int getSlavePoints() const;
+	int getSlavePoints() const; // Exposed to Python
 	void changeSlavePoints(int iChange);
-	int getNewSlaveThreshold() const;
+	int getNewSlaveThreshold() const; // Exposed to Python
 	void setSlaveThreshold(int iChange);
 	void initSlave(CvCity* pCity, bool bIncreaseThreshold);
 	
