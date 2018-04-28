@@ -832,6 +832,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iHappyPerMilitaryUnit = 0;
 	m_iMilitaryHappinessLimit = 0; //Leoreth
 	m_iMilitaryFoodProductionCount = 0;
+	m_iMeleeMilitaryFoodProductionCount = 0; // Civ4 Reimagind
 	m_iEnableSlavesCount = 0; // Civ4 Reimagined
 	m_iSlavesCount = 0; // Civ4 Reimagined
 	m_iSlavePoints = 0; // Civ4 Reimagined
@@ -10780,6 +10781,36 @@ void CvPlayer::changeMilitaryFoodProductionCount(int iChange)
 }
 
 
+// Civ4 Reimagind
+int CvPlayer::getMeleeMilitaryFoodProductionCount() const														
+{
+	return m_iMeleeMilitaryFoodProductionCount;
+}
+
+
+// Civ4 Reimagind
+bool CvPlayer::isMeleeMilitaryFoodProduction() const																
+{
+	return (getMeleeMilitaryFoodProductionCount() > 0);
+}
+
+
+// Civ4 Reimagind
+void CvPlayer::changeMeleeMilitaryFoodProductionCount(int iChange)											
+{
+	if (iChange != 0)
+	{
+		m_iMeleeMilitaryFoodProductionCount = (m_iMeleeMilitaryFoodProductionCount + iChange);
+		FAssert(getMeleeMilitaryFoodProductionCount() >= 0);
+
+		if (getTeam() == GC.getGameINLINE().getActiveTeam())
+		{
+			gDLL->getInterfaceIFace()->setDirty(CityInfo_DIRTY_BIT, true);
+		}
+	}
+}
+
+
 // Civ4 Reimagined
 int CvPlayer::getEnableSlavesCount() const														
 {
@@ -19483,6 +19514,7 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
 	changeHappyPerMilitaryUnit(GC.getCivicInfo(eCivic).getHappyPerMilitaryUnit() * iChange);
 	changeMilitaryHappinessLimit(GC.getCivicInfo(eCivic).getMilitaryHappinessLimit() * iChange); //Leoreth
 	changeMilitaryFoodProductionCount((GC.getCivicInfo(eCivic).isMilitaryFoodProduction()) ? iChange : 0);
+	changeMeleeMilitaryFoodProductionCount((GC.getCivicInfo(eCivic).isMeleeMilitaryFoodProduction()) ? iChange : 0); // Civ4 Reimagined
 	changeEnableSlavesCount((GC.getCivicInfo(eCivic).enablesSlaves()) ? iChange : 0); // Civ4 Reimagined
 	changeNoMilitaryProductionMaliCount((GC.getCivicInfo(eCivic).isNoMilitaryProductionMali()) ? iChange : 0); // Civ4 Reimagined
 	changeMaxConscript(getWorldSizeMaxConscript(eCivic) * iChange);
@@ -19730,6 +19762,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iHappyPerMilitaryUnit);
 	pStream->Read(&m_iMilitaryHappinessLimit); //Leoreth
 	pStream->Read(&m_iMilitaryFoodProductionCount);
+	pStream->Read(&m_iMeleeMilitaryFoodProductionCount); // Civ4 Reimagined
 	pStream->Read(&m_iEnableSlavesCount); // Civ4 Reimagined
 	pStream->Read(&m_iSlavesCount); // Civ4 Reimagined
 	pStream->Read(&m_iSlavePoints); // Civ4 Reimagined
@@ -20321,6 +20354,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iHappyPerMilitaryUnit);
 	pStream->Write(m_iMilitaryHappinessLimit); //Leoreth
 	pStream->Write(m_iMilitaryFoodProductionCount);
+	pStream->Write(m_iMeleeMilitaryFoodProductionCount); // Civ4 Reimagined
 	pStream->Write(m_iEnableSlavesCount); // Civ4 Reimagined
 	pStream->Write(m_iSlavesCount); // Civ4 Reimagined
 	pStream->Write(m_iSlavePoints); // Civ4 Reimagined

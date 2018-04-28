@@ -2965,6 +2965,22 @@ bool CvCity::isFoodProduction() const
 }
 
 
+// Civ4 Reimagined
+bool CvCity::isMeleeFoodProduction(UnitTypes eUnit) const
+{
+	if (GET_PLAYER(getOwnerINLINE()).isMeleeMilitaryFoodProduction())
+	{
+		if (GC.getUnitInfo(eUnit).isMilitaryProduction() &&
+		GC.getUnitInfo(eUnit).getUnitCombatType() == (UnitCombatTypes)GC.getInfoTypeForString("UNITCOMBAT_MELEE"))
+		{
+			return true;
+		}
+	}
+	
+	return false;
+}
+
+
 bool CvCity::isFoodProduction(UnitTypes eUnit) const
 {
 	if (GC.getUnitInfo(eUnit).isFoodProduction())
@@ -2979,8 +2995,9 @@ bool CvCity::isFoodProduction(UnitTypes eUnit) const
 			return true;
 		}
 	}
-
-	return false;
+	
+	// Civ4 Reimagined
+	return isMeleeFoodProduction(eUnit);
 }
 
 
@@ -3515,7 +3532,14 @@ int CvCity::getProductionDifference(int iProductionNeeded, int iProduction, int 
 		}
 	}
 
-	const int iFoodProduction = bFoodProduction ? std::max(0, getYieldRate(YIELD_FOOD) - foodConsumption()) : 0;
+	int iFoodProduction = bFoodProduction ? std::max(0, getYieldRate(YIELD_FOOD) - foodConsumption()) : 0;
+	
+	// Civ4 Reimagined
+	if (isMeleeFoodProduction(eUnit))
+	{
+		iFoodProduction *= 2;
+	}
+	
 	const int iOverflow = ((bOverflow) ? (getOverflowProduction() + iFeatureProduction) : 0);
 	const int iProductionModfiers = iProductionMultiplier * getBaseYieldRateModifier(YIELD_PRODUCTION, iProductionModifier);
 	
