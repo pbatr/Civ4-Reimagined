@@ -1330,9 +1330,7 @@ public:
 	void changeFatcrossPeakCulture(int iChange); // Civ4 Reimagined
 	int getNonStateReligionHappinessWithStateReligion() const; // Civ4 Reimagined
 	void changeNonStateReligionHappinessWithStateReligion(int iChange); // Civ4 Reimagined
-	void uniquePowerAIEraValueMult(EraTypes iEra); // Civ4 Reimagined
 	void updateUniquePowers(EraTypes iEra); // Civ4 Reimagined
-	int checkForObsoleteUniquePowers(EraTypes iEra) const; // Civ4 Reimagined
 	bool isExploreRivalSea() const; // Civ4 Reimagined
 	void setExploreRivalSea(bool bNewValue); // Civ4 Reimagined
 	bool isEnableFinancial() const; // Civ4 Reimagined

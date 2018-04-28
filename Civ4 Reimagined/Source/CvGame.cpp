@@ -310,7 +310,7 @@ void CvGame::setInitialItems()
 			// Civ4 Reimagined: Quick fix to get powers working on game start.
 			if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS))
 			{		
-				kPlayer.checkForUniquePowers(0); 
+				kPlayer.updateUniquePowers((EraTypes)0); 
 			}
 		}
 	}
