@@ -20247,7 +20247,9 @@
 			<SeaPlotYieldChanges/>
 			<RiverPlotYieldChanges/>
 			<GlobalSeaPlotYieldChanges/>
-			<YieldChanges/>
+			<YieldChanges>
+				<iYield>1</iYield>
+			</YieldChanges>
 			<CommerceChanges/>
 			<ObsoleteSafeCommerceChanges>
 				<iCommerce>0</iCommerce>
