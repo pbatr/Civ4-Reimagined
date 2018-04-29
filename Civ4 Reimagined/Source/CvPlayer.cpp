@@ -26919,55 +26919,67 @@ void CvPlayer::doUniqueAztecPromotion(CvUnit* pUnit)
 }
 
 // Civ4 Reimagined
-void CvPlayer::updateUniquePowers(TechTypes eNewTech)
+void CvPlayer::updateUniquePowers(TechTypes eTech)
 {
 	if (getID() == NO_PLAYER)
 	{
 		return;
 	}
 	
-	switch (getCivilizationType())
+	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA")
+		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_CALENDAR"))
 	{
-		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA"):		
-			if (eNewTech == (TechTypes)GC.getInfoTypeForString("TECH_CALENDAR"))
-			{
-				setMayaCalendar(GC.getGameINLINE().getGameTurnYear());
-				checkMayaCalendar();
-			} 
-			break;
-			
-		default: break;
+		setMayaCalendar(GC.getGameINLINE().getGameTurnYear());
+		checkMayaCalendar();
 	}
 }
 
 
 // Civ4 Reimagined
-void CvPlayer::updateUniquePowers(EraTypes eNewEra)
+void CvPlayer::updateUniquePowers(EraTypes eEra)
 {
 	if (getID() == NO_PLAYER)
 	{
 		return;
 	}
 	
-	switch (getCivilizationType())
+	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AZTEC"))
 	{
-		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AZTEC"): 		(eNewEra <= 1 ? setUniqueAztecPromotion(true) : setUniqueAztecPromotion(false)); break;
-		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON"): 	
-			(eNewEra <= 1 ? setCapitalCommercePerPopulation(COMMERCE_GOLD, 3, 0) : setCapitalCommercePerPopulation(COMMERCE_GOLD, 0, 0);
-			(eNewEra == 0 ? changeNoCapitalUnhappinessCount(1);
-			(eNewEra == 2 ? changeNoCapitalUnhappinessCount(-1); break;
-		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CARTHAGE"): 	(eNewEra == 1 ? setSpecialTradeRoutePerPlayer(true) : setSpecialTradeRoutePerPlayer(false)); break;
-		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME"):		
-			(eNewEra == 1 ? changeFreeUnitsOnConquest(1));
-			(eNewEra == 2 ? changeFreeUnitsOnConquest(-1)); break;
-		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SUMERIA"): 	(eNewEra == 0 ? changeFreePopulationInCapital(1)); break;
-		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_INCA"):		(eNewEra == 0 ? changeCanFarmHillsCount(1)); break;
-		
-		default: 
-			for (int iI = 0; iI < NUM_COMMERCE_TYPES; iI++)
-			{
-				changeUniquePowerCommerceModifier(((CommerceTypes)iI), 2);
-			}
+		(eEra <= 1 ? setUniqueAztecPromotion(true) : setUniqueAztecPromotion(false));
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON"))
+	{
+		(eEra <= 1 ? setCapitalCommercePerPopulation(COMMERCE_GOLD, 3, 0) : setCapitalCommercePerPopulation(COMMERCE_GOLD, 0, 0));
+		(eEra == 0 ? changeNoCapitalUnhappinessCount(1));
+		(eEra == 2 ? changeNoCapitalUnhappinessCount(-1));
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CARTHAGE"))
+	{
+		(eNewEra == 1 ? setSpecialTradeRoutePerPlayer(true) : setSpecialTradeRoutePerPlayer(false));
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME"))
+	{
+		(eNewEra == 1 ? changeFreeUnitsOnConquest(1));
+		(eNewEra == 2 ? changeFreeUnitsOnConquest(-1));
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SUMERIA"))
+	{
+		(eNewEra == 0 ? changeFreePopulationInCapital(1));
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_INCA"))
+	{
+		(eNewEra == 0 ? changeCanFarmHillsCount(1));
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA"))
+	{
+		// No effect, gain power elsewhere. But no compensation bonus either.
+	}
+	else
+	{
+		for (int iI = 0; iI < NUM_COMMERCE_TYPES; iI++)
+		{
+			changeUniquePowerCommerceModifier(((CommerceTypes)iI), 2);
+		}
 	}
 
 		
@@ -26975,11 +26987,7 @@ void CvPlayer::updateUniquePowers(EraTypes eNewEra)
 		TO-Do:
 			Egypt
 			Greece
-		
-		Maya python
-		
-		Unique powers for Aztec, Babylon, Carthage, Inca, Maya, Rome, Sumer
-		
+			
 		// Sumeria:
 		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SUMERIA")) 
 		{
