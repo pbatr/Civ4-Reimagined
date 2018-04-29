@@ -565,7 +565,6 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 		m_aiPowerYieldRateModifier[iI] = 0;
 		m_aiBonusYieldRateModifier[iI] = 0;
 		m_aiTechYieldRateModifier[iI] = 0; // Civ4 Reimagined
-		m_aiTechCommerceRateModifier[iI] = 0; // Civ4 Reimagined
 		m_aiTradeYield[iI] = 0;
 		m_aiCorporationYield[iI] = 0;
 		m_aiExtraSpecialistYield[iI] = 0;
@@ -581,6 +580,7 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 		m_aiCorporationCommerce[iI] = 0;
 		m_aiCommerceRateModifier[iI] = 0;
 		m_aiCommerceHappinessPer[iI] = 0;
+		m_aiTechCommerceRateModifier[iI] = 0; // Civ4 Reimagined
 	}
 
 	for (iI = 0; iI < NUM_DOMAIN_TYPES; iI++)
