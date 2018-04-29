@@ -26941,7 +26941,15 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	if (getID() == NO_PLAYER)
 	{
 		return;
+		
 	}
+	
+	//gainedUniquePowerMessage()
+	//lostUniquePowerMessage()
+	//
+	//CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_UNIQUE_POWER");
+	//CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_UNIQUE_POWER_LOST");
+	//gDLL->getInterfaceIFace()->addHumanMessage(getID(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_NEW_ERA", MESSAGE_TYPE_MAJOR_EVENT);
 	
 	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AZTEC"))
 	{
