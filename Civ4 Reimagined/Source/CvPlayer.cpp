@@ -26950,25 +26950,25 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON"))
 	{
 		(eEra <= 1 ? setCapitalCommercePerPopulation(COMMERCE_GOLD, 3, 0) : setCapitalCommercePerPopulation(COMMERCE_GOLD, 0, 0));
-		(eEra == 0 ? changeNoCapitalUnhappinessCount(1));
-		(eEra == 2 ? changeNoCapitalUnhappinessCount(-1));
+		if (eEra == 0) changeNoCapitalUnhappinessCount(1);
+		if (eEra == 2) changeNoCapitalUnhappinessCount(-1);
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CARTHAGE"))
 	{
-		(eNewEra == 1 ? setSpecialTradeRoutePerPlayer(true) : setSpecialTradeRoutePerPlayer(false));
+		(eEra == 1 ? setSpecialTradeRoutePerPlayer(true) : setSpecialTradeRoutePerPlayer(false));
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME"))
 	{
-		(eNewEra == 1 ? changeFreeUnitsOnConquest(1));
-		(eNewEra == 2 ? changeFreeUnitsOnConquest(-1));
+		if (eEra == 1) changeFreeUnitsOnConquest(1);
+		if (eEra == 2) changeFreeUnitsOnConquest(-1);
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SUMERIA"))
 	{
-		(eNewEra == 0 ? changeFreePopulationInCapital(1));
+		if (eEra == 0) changeFreePopulationInCapital(1);
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_INCA"))
 	{
-		(eNewEra == 0 ? changeCanFarmHillsCount(1));
+		if (eEra == 0) changeCanFarmHillsCount(1);
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA"))
 	{
