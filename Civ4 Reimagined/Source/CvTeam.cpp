@@ -6719,11 +6719,7 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 						}
 					}
 				}
-			}
 
-			// Civ4 Reimagined
-			for (iJ = 0; iJ < GC.getNumBuildingInfos(); iJ++)
-			{
 				if (GC.getBuildingInfo((BuildingTypes)iJ).isAnyTechCommerceModifier())
 				{
 					for (int iK = 0; iK < NUM_COMMERCE_TYPES; iK++)
