@@ -9916,6 +9916,11 @@ int CvCity::totalTradeModifier(CvCity* pOtherCity) const
 			{
 				bTradeThroughCapital = true;
 			}
+			
+			if (GET_PLAYER(getOwnerINLINE()).isSpecialTradeRoutePerPlayer())
+			{
+				iModifier += GC.getDefineINT("SPECIAL_TRADE_MODIFIER");
+			}
 		}
 		
 		// Civ4 Reimagined

@@ -26919,7 +26919,7 @@ void CvPlayer::doUniqueAztecPromotion(CvUnit* pUnit)
 }
 
 // Civ4 Reimagined
-void CvPlayer::updateUniquePowers(EraTypes iEra)
+void CvPlayer::updateUniquePowers(TechTypes eNewTech)
 {
 	if (getID() == NO_PLAYER)
 	{
@@ -26928,79 +26928,68 @@ void CvPlayer::updateUniquePowers(EraTypes iEra)
 	
 	switch (getCivilizationType())
 	{
-		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AZTEC"): 		(iEra <= 1 ? setUniqueAztecPromotion(true) : setUniqueAztecPromotion(false)); break;
-		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CARTHAGE"): 	(iEra == 1 ? setSpecialTradeRoutePerPlayer(true) : setSpecialTradeRoutePerPlayer(false)); break;
-		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME"):		(iEra == 1 ? changeFreeUnitsOnConquest(1)); break;
-		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME"):		(iEra == 2 ? changeFreeUnitsOnConquest(-1)); break;
-		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SUMERIA"): 	(iEra == 0 ? changeFreePopulationInCapital(1)); break;
-		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_INCA"):		(iEra == 0 ? changeCanFarmHillsCount(1)); break;
-		
-		default: changeUniquePowerCommerceModifier(((CommerceTypes)iI), 3); break;
-	}
-
-		
-	/*		
-		With Calendar: A random great person appears every 394 in-game years.
-Egypt	Gain slavery points for sacrificing population. (Ancient)+
-		Bonus for special traderoute
-
-		// Maya
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA")) 
-		{
-			setMayaCalendar(GC.getGameINLINE().getGameTurnYear());
-			checkMayaCalendar();
-		}
-		
-		// Babylon:
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON")) 
-		{
-			if (getCurrentEra() < 3)
+		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA"):		
+			if (eNewTech == (TechTypes)GC.getInfoTypeForString("TECH_CALENDAR"))
 			{
-				// Remember to update checkObsoleteUniquePowers when making changes to this
-				setCapitalCommercePerPopulation(COMMERCE_RESEARCH, 5, 10);
-			}
+				setMayaCalendar(GC.getGameINLINE().getGameTurnYear());
+				checkMayaCalendar();
+			} 
+			break;
 			
-			
-			BuildingClassTypes BUILDINGCLASS_PALACE = (BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_PALACE");
-			BuildingTypes BUILDING_PALACE = (BuildingTypes)(GC.getCivilizationInfo(getCivilizationType()).getCivilizationBuildings(BUILDINGCLASS_PALACE));
-			changeBuildingYieldChange(BUILDINGCLASS_PALACE, YIELD_FOOD, 4);
-			changeExtraBuildingHappiness(BUILDING_PALACE, 2);
-			changeExtraBuildingHealth(BUILDING_PALACE, 2);
-			changeCapitalCommerceRateModifier(COMMERCE_CULTURE, 100);
-			
-		}
-		
-		// Egypt:
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_EGYPT")) 
-		{
-			CivicTypes enableCivic = (CivicTypes)GC.getInfoTypeForString("CIVIC_ABSOLUTISM");
-			CivicOptionTypes enlableCivicOption = (CivicOptionTypes)GC.getInfoTypeForString("CIVICOPTION_ORGANIZATION");
-			setFreeCivicEnabled(enableCivic);
-			setCivics(enlableCivicOption, enableCivic);
-		}
+		default: break;
+	}
+}
 
-		// Unfinished Civilizations:
-		else
-		{
+
+// Civ4 Reimagined
+void CvPlayer::updateUniquePowers(EraTypes eNewEra)
+{
+	if (getID() == NO_PLAYER)
+	{
+		return;
+	}
+	
+	switch (getCivilizationType())
+	{
+		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AZTEC"): 		(eNewEra <= 1 ? setUniqueAztecPromotion(true) : setUniqueAztecPromotion(false)); break;
+		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON"): 	
+			(eNewEra <= 1 ? setCapitalCommercePerPopulation(COMMERCE_GOLD, 3, 0) : setCapitalCommercePerPopulation(COMMERCE_GOLD, 0, 0);
+			(eNewEra == 0 ? changeNoCapitalUnhappinessCount(1);
+			(eNewEra == 2 ? changeNoCapitalUnhappinessCount(-1); break;
+		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CARTHAGE"): 	(eNewEra == 1 ? setSpecialTradeRoutePerPlayer(true) : setSpecialTradeRoutePerPlayer(false)); break;
+		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME"):		
+			(eNewEra == 1 ? changeFreeUnitsOnConquest(1));
+			(eNewEra == 2 ? changeFreeUnitsOnConquest(-1)); break;
+		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SUMERIA"): 	(eNewEra == 0 ? changeFreePopulationInCapital(1)); break;
+		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_INCA"):		(eNewEra == 0 ? changeCanFarmHillsCount(1)); break;
+		
+		default: 
 			for (int iI = 0; iI < NUM_COMMERCE_TYPES; iI++)
 			{
-				changeUniquePowerCommerceModifier(((CommerceTypes)iI), 5);
+				changeUniquePowerCommerceModifier(((CommerceTypes)iI), 2);
+			}
+	}
+
+		
+	/*	
+		TO-Do:
+			Egypt
+			Greece
+		
+		Maya python
+		
+		Unique powers for Aztec, Babylon, Carthage, Inca, Maya, Rome, Sumer
+		
+		// Sumeria:
+		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SUMERIA")) 
+		{
+			if (getCurrentEra() < 2)
+			{
+				// Remember to update checkObsoleteUniquePowers when making changes to this
+				changeEarlyPriestExtraFood(1);
 			}
 		}
-	}
-	
-	
-			
-	// Sumeria:
-	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SUMERIA")) 
-	{
-		if (getCurrentEra() < 2)
-		{
-			// Remember to update checkObsoleteUniquePowers when making changes to this
-			changeEarlyPriestExtraFood(1);
-		}
-	}
-	
+
 	*/
 }
 
