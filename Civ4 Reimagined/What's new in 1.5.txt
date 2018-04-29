@@ -12,7 +12,7 @@ Changes
 *********
 -Animism civic removed, Pantheon is start civic
 -Classical temples have same effects and costs as normal temples
--Ziggurat replaces Classical Temple and is available with Mysticism
+-Ziggurat replaces Classical Temple, provides 1 additional food and is available with Mysticism
 -Cavalry upgrades to Motorized Infantry
 -Barbarians cannot spawn on tiles without food
 -New effect for Levy Armies: Melee Units produced with food (2:1 ratio)
