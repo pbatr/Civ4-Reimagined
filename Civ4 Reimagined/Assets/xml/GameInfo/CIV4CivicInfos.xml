@@ -922,7 +922,7 @@
 			<iExpInBorderModifier>0</iExpInBorderModifier>
 			<bBuildingOnlyHealthy>0</bBuildingOnlyHealthy>
 			<iLargestCityHappiness>0</iLargestCityHappiness>
-			<iWarWearinessModifier>-100</iWarWearinessModifier>
+			<iWarWearinessModifier>-50</iWarWearinessModifier>
 			<iFreeSpecialist>0</iFreeSpecialist>
 			<iTradeRoutes>0</iTradeRoutes>
 			<bNoForeignTrade>0</bNoForeignTrade>
@@ -2435,7 +2435,7 @@
 			<iExpInBorderModifier>0</iExpInBorderModifier>
 			<bBuildingOnlyHealthy>0</bBuildingOnlyHealthy>
 			<iLargestCityHappiness>0</iLargestCityHappiness>
-			<iWarWearinessModifier>0</iWarWearinessModifier>
+			<iWarWearinessModifier>-50</iWarWearinessModifier>
 			<iFreeSpecialist>0</iFreeSpecialist>
 			<iTradeRoutes>0</iTradeRoutes>
 			<bNoForeignTrade>0</bNoForeignTrade>
@@ -2455,9 +2455,9 @@
 			<TradeYieldModifiers/>
 			<CommerceModifiers>
 				<iCommerce>0</iCommerce>
-				<iCommerce>10</iCommerce>
 				<iCommerce>0</iCommerce>
-				<iCommerce>10</iCommerce>
+				<iCommerce>0</iCommerce>
+				<iCommerce>20</iCommerce>
 			</CommerceModifiers>
 			<CapitalCommerceModifiers/>
 			<SpecialistExtraCommerces/>
