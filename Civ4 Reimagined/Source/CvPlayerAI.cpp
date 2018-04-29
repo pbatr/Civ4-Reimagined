@@ -6853,6 +6853,9 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 			iValue *= uniquePowerAIEraValueMult((EraTypes)iEra);
 			iValue /= uniquePowerAIEraValueMult(getCurrentEra());
 		}
+		
+		iValue *= uniquePowerAITechValueMult(eTech);
+		iValue /= 100;
 	}
 
 /***
@@ -6880,23 +6883,39 @@ int CvPlayerAI::uniquePowerAIEraValueMult(EraTypes iEra) const
 {
 	int iEraValueMult = 100;
 	FAssert(iEra >= -1);
-	switch(iEra)
+	switch(getCivilizationType())
 	{
-		case 0: 
-			break;
-		case 1:
-			break;
-		case 2:
-			break;
-		case 3:
-			break;
-		case 4:
-			break;
-		default:
+		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AZTEC"): 		(iEra <= 1 ? return 150); break;
+		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON"): 	(iEra <= 1 ? return 150); break;
+		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CARTHAGE"): 	(iEra == 1 ? return 200); break;
+		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME"):		(iEra == 1 ? return 200); break;
 	}
 
 	return iEraValueMult;
 }
+
+
+// Civ4 Reimagined
+// See uniquePowerAIEraValueMult.
+int CvPlayerAI::uniquePowerAITechValueMult(TechTypes iTech) const
+{
+	int iTechValueMult = 100;
+	
+	switch(iTech)
+	{
+		case (TechTypes)GC.getInfoTypeForString("TECH_CALENDAR"):	
+			if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA"))
+			{
+				iTechValueMult = 300;
+			}
+			break;
+			
+		default: break;
+	}
+	
+	return iTechValueMult;
+}
+
 
 // K-mod. This function returns the (positive) value of the buildings we will lose by researching eTech.
 // (I think it's crazy that this stuff wasn't taken into account in original BtS)

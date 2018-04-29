@@ -18730,8 +18730,19 @@ void CvGameTextMgr::setTradeRouteHelp(CvWStringBuffer &szBuffer, int iRoute, CvC
 				}
 
 				// Civ4 Reimagined
-				iNewMod = ((pCity->isCapital() && !GET_PLAYER(pCity->getOwnerINLINE()).isNoCapital()) ? GC.getDefineINT("CAPITAL_TRADE_MODIFIER") : 0) + ((pOtherCity->isCapital() && !GET_PLAYER(pOtherCity->getOwnerINLINE()).isNoCapital()) ? GC.getDefineINT("CAPITAL_TRADE_MODIFIER") : 0);
-				
+				iNewMod =  ((pCity->isCapital() && !GET_PLAYER(pCity->getOwnerINLINE()).isNoCapital()) ? GC.getDefineINT("CAPITAL_TRADE_MODIFIER") : 0);
+
+				if (pOtherCity->isCapital() && !GET_PLAYER(pOtherCity->getOwnerINLINE()).isNoCapital())
+				{
+					iNewMod += GC.getDefineINT("CAPITAL_TRADE_MODIFIER");
+					
+					if (GET_PLAYER(pCity->getOwnerINLINE()).isSpecialTradeRoutePerPlayer())
+					{
+						szBuffer.append(NEWLINE);
+						szBuffer.append(gDLL->getText("TXT_KEY_SPECIAL_TRADE_MOD", GC.getDefineINT("SPECIAL_TRADE_MODIFIER")));
+					}
+				}
+
 				if (0 != iNewMod)
 				{
 					if (pCity->isCapital() || (pOtherCity->isCapital() && pCity->getOwnerINLINE() == pOtherCity->getOwnerINLINE()))
