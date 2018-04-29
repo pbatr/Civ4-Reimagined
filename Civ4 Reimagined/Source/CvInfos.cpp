@@ -7650,6 +7650,7 @@ m_piGlobalYieldModifier(NULL),
 m_piCommerceChange(NULL),
 m_piObsoleteSafeCommerceChange(NULL),
 m_piCommerceChangeDoubleTime(NULL),
+m_piCommercePerCultureLevel(NULL), // Civ4 Reimagined
 m_piCommerceModifier(NULL),
 m_piGlobalCommerceModifier(NULL),
 m_piSpecialistExtraCommerce(NULL),
@@ -7722,6 +7723,7 @@ CvBuildingInfo::~CvBuildingInfo()
 	SAFE_DELETE_ARRAY(m_piCommerceChange);
 	SAFE_DELETE_ARRAY(m_piObsoleteSafeCommerceChange);
 	SAFE_DELETE_ARRAY(m_piCommerceChangeDoubleTime);
+	SAFE_DELETE_ARRAY(m_piCommercePerCultureLevel);
 	SAFE_DELETE_ARRAY(m_piCommerceModifier);
 	SAFE_DELETE_ARRAY(m_piGlobalCommerceModifier);
 	SAFE_DELETE_ARRAY(m_piSpecialistExtraCommerce);
@@ -8681,6 +8683,20 @@ int CvBuildingInfo::getCommerceChangeDoubleTime(int i) const
 	return m_piCommerceChangeDoubleTime ? m_piCommerceChangeDoubleTime[i] : -1;
 }
 
+// Civ4 Reimagined
+int CvBuildingInfo::getCommercePerCultureLevel(int i) const			
+{
+	FAssertMsg(i < NUM_COMMERCE_TYPES, "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_piCommercePerCultureLevel ? m_piCommercePerCultureLevel[i] : -1;
+}
+
+// Civ4 Reimagined
+int* CvBuildingInfo::getCommercePerCultureLevelArray() const
+{
+	return m_piCommercePerCultureLevel;
+}
+
 int CvBuildingInfo::getCommerceModifier(int i) const	
 {
 	FAssertMsg(i < NUM_COMMERCE_TYPES, "Index out of bounds");
@@ -9307,6 +9323,11 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 	m_piCommerceChangeDoubleTime = new int[NUM_COMMERCE_TYPES];
 	stream->Read(NUM_COMMERCE_TYPES, m_piCommerceChangeDoubleTime);
 
+	// Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_piCommercePerCultureLevel);
+	m_piCommercePerCultureLevel = new int[NUM_COMMERCE_TYPES];
+	stream->Read(NUM_COMMERCE_TYPES, m_piCommercePerCultureLevel);
+
 	SAFE_DELETE_ARRAY(m_piCommerceModifier);
 	m_piCommerceModifier = new int[NUM_COMMERCE_TYPES];
 	stream->Read(NUM_COMMERCE_TYPES, m_piCommerceModifier);
@@ -9750,6 +9771,7 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 	stream->Write(NUM_COMMERCE_TYPES, m_piCommerceChange);
 	stream->Write(NUM_COMMERCE_TYPES, m_piObsoleteSafeCommerceChange);
 	stream->Write(NUM_COMMERCE_TYPES, m_piCommerceChangeDoubleTime);
+	stream->Write(NUM_COMMERCE_TYPES, m_piCommercePerCultureLevel); // Civ4 Reimagined
 	stream->Write(NUM_COMMERCE_TYPES, m_piCommerceModifier);
 	stream->Write(NUM_COMMERCE_TYPES, m_piGlobalCommerceModifier);
 	stream->Write(NUM_COMMERCE_TYPES, m_piSpecialistExtraCommerce);
@@ -10226,6 +10248,17 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 	else
 	{
 		pXML->InitList(&m_piCommerceChangeDoubleTime, NUM_COMMERCE_TYPES);
+	}
+
+	// Civ4 Reimagined
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"CommercePerCultureLevel"))
+	{
+		pXML->SetCommerce(&m_piCommercePerCultureLevel);
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+	else
+	{
+		pXML->InitList(&m_piCommercePerCultureLevel, NUM_COMMERCE_TYPES);
 	}
 
 	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"CommerceModifiers"))

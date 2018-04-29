@@ -1346,4 +1346,8 @@
 		<Tag>TXT_KEY_BUILDING_SEWER</Tag>
 		<English>Sewer</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_COMMERCE_PER_CULTURE_LEVEL</Tag>
+		<English>[ICON_BULLET]%D1% %F2_CmrcIcon per Culture Level</English>
+	</TEXT>
 </Civ4GameText>
