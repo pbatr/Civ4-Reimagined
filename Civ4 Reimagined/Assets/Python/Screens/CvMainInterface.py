@@ -807,13 +807,26 @@ class CvMainInterface:
 # BUG - Great Person Bar - end
 
 # BUG - Bars on single line for higher resolution screens - start
-		xCoord = 268 + (xResolution - 1440) / 2
 		screen.addStackedBarGFC( "GreatGeneralBar-w", xCoord - 50, 2, 84 + 50, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_HELP_GREAT_GENERAL, -1, -1 )
 		screen.setStackedBarColors( "GreatGeneralBar-w", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_NEGATIVE_RATE") )
 		screen.setStackedBarColors( "GreatGeneralBar-w", InfoBarTypes.INFOBAR_RATE, gc.getInfoTypeForString("COLOR_EMPTY") )
 		screen.setStackedBarColors( "GreatGeneralBar-w", InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_EMPTY") )
 		screen.setStackedBarColors( "GreatGeneralBar-w", InfoBarTypes.INFOBAR_EMPTY, gc.getInfoTypeForString("COLOR_EMPTY") )
 		screen.hide( "GreatGeneralBar-w" )
+	
+		xCoord += 6 + 84
+		xCoordUnique = xCoord
+		yCoordUnique = 2
+		if (screen.getXResolution() >= 1440):
+			xCoordUnique += 50
+		else:
+			yCoordUnique += 20
+		screen.addStackedBarGFC( "UniquePowerBar", xCoordUnique - 50, yCoordUnique, 84 + 50, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_HELP_UNIQUE_, -1, -1 )
+		screen.setStackedBarColors( "UniquePowerBar", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_NEGATIVE_RATE") )
+		screen.setStackedBarColors( "UniquePowerBar", InfoBarTypes.INFOBAR_RATE, gc.getInfoTypeForString("COLOR_EMPTY") )
+		screen.setStackedBarColors( "UniquePowerBar", InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_EMPTY") )
+		screen.setStackedBarColors( "UniquePowerBar", InfoBarTypes.INFOBAR_EMPTY, gc.getInfoTypeForString("COLOR_EMPTY") )
+		screen.hide( "UniquePowerBar" )
 
 		xCoord += 6 + 84
 		screen.addStackedBarGFC( "ResearchBar-w", xCoord, 2, 487, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_RESEARCH, -1, -1 )
@@ -3006,30 +3019,20 @@ class CvMainInterface:
 		screen.hide( "TimeText" )
 		screen.hide( "ResearchBar" )
 
-# BUG - NJAGC - start
 		screen.hide( "EraText" )
-# BUG - NJAGC - end
-
-# BUG - Great Person Bar - start
 		screen.hide( "GreatPersonBar" )
 		screen.hide( "GreatPersonBarText" )
-# BUG - Great Person Bar - end
-
-# BUG - Great General Bar - start
 		screen.hide( "GreatGeneralBar" )
 		screen.hide( "GreatGeneralBarText" )
-# BUG - Great General Bar - end
+		screen.hide( "UniquePowerBar" )
+		screen.hide( "UniquePowerBarText" )
 
-# BUG - Bars on single line for higher resolution screens - start
 		screen.hide( "GreatGeneralBar-w" )
 		screen.hide( "ResearchBar-w" )
 		screen.hide( "GreatPersonBar-w" )
-# BUG - Bars on single line for higher resolution screens - end
 
-# BUG - Progress Bar - Tick Marks - start
 		self.pBarResearchBar_n.hide(screen)
 		self.pBarResearchBar_w.hide(screen)
-# BUG - Progress Bar - Tick Marks - end
 
 		bShift = CyInterface().shiftKey()
 		
@@ -3190,17 +3193,36 @@ class CvMainInterface:
 							self.pBarResearchBar_w.drawTickMarks(screen, researchProgress + overflowResearch, researchCost, researchRate, researchRate, False)
 # BUG - Progress Bar - Tick Marks - end
 
-# BUG - Great Person Bar - start
 				self.updateGreatPersonBar(screen)
-# BUG - Great Person Bar - end
-
-# BUG - Great General Bar - start
 				self.updateGreatGeneralBar(screen)
-# BUG - Great General Bar - end
+				self.updateUniquePowerBar(screen)
 					
 		return 0
+	
+	
+	def updateUniquePower(self, screen):
+		if (not CyInterface().isCityScreenUp()):
 		
-# BUG - Great Person Bar - start
+			iMayaCalendar = pPlayer.getMayaCalendar()
+			if (iMayaCalendar > -5000):
+				if (iMayaCalendar >= 0):
+					szText = u"<font=2>Next: %d AD</font>" %(iMayaCalendar)
+				else:
+					szText = u"<font=2>Next: %d BC</font>" %(-iMayaCalendar)
+			
+			xResolution = screen.getXResolution()
+			szUniquePowerBar = "UniquePowerBar"
+			if (xResolution >= 1440):
+				xCoord = 268 + (xResolution - 1440) / 2 + 84 / 2 - 50 / 2
+				yCoord = 5 + 20
+			else:
+				xCoord = 268 + (xResolution - 1024) / 2 + 100 / 2 - 50 / 2 + 50
+				yCoord = 32
+			
+			screen.setLabel( "UniquePowerBarText", "Background", szText, CvUtil.FONT_CENTER_JUSTIFY, xCoord, yCoord, -0.4, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+			screen.show( "UniquePowerBarText" )
+			screen.show( szUniquePowerBar )
+	
 	def updateGreatPersonBar(self, screen):
 		if (not CyInterface().isCityScreenUp() and MainOpt.isShowGPProgressBar()):
 			pGPCity, iGPTurns = GPUtil.getDisplayCity()
@@ -3243,9 +3265,7 @@ class CvMainInterface:
 				screen.setBarPercentage( szGreatPersonBar, InfoBarTypes.INFOBAR_RATE, 0 )
 
 			screen.show( szGreatPersonBar )
-# BUG - Great Person Bar - end
-
-# BUG - Great General Bar - start
+			
 
 	def updateGreatGeneralBar(self, screen):
 		if not CyInterface().isCityScreenUp() and MainOpt.isShowGGProgressBar():
@@ -3274,10 +3294,8 @@ class CvMainInterface:
 			fProgress = float(iCombatExp) / float(iThresholdExp)
 			screen.setBarPercentage( szGreatGeneralBar, InfoBarTypes.INFOBAR_STORED, fProgress )
 			screen.show( szGreatGeneralBar )
-# BUG - Great General Bar - end
 			
-# BUG - Great General Bar - end
-					
+			
 	def updateTimeText( self ):
 		
 		global g_szTimeText

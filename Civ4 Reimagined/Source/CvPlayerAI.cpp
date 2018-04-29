@@ -6879,16 +6879,26 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 // Civ4 Reimagined
 // How great this era in regards to gaining or losing unique powers. 100 is the default, powerless era. The higher the number, the better. 
 // Relative value is important. For example, switching from an era with value 110 (a small benefit) to an era with value 125 (a large benefit) nets a bonus of 125/110 in calculations.
-int CvPlayerAI::uniquePowerAIEraValueMult(EraTypes iEra) const
+int CvPlayerAI::uniquePowerAIEraValueMult(EraTypes eEra) const
 {
 	int iEraValueMult = 100;
-	FAssert(iEra >= -1);
-	switch(getCivilizationType())
+	FAssert(eEra >= -1);
+	
+	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AZTEC") && eEra <= 1)
 	{
-		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AZTEC"): 		(iEra <= 1 ? return 150); break;
-		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON"): 	(iEra <= 1 ? return 150); break;
-		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CARTHAGE"): 	(iEra == 1 ? return 200); break;
-		case (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME"):		(iEra == 1 ? return 200); break;
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON") && eEra <= 1)
+	{
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CARTHAGE") && eEra == 1)
+	{
+		return 200;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME") && eEra == 1)
+	{
+		return 200;
 	}
 
 	return iEraValueMult;
@@ -6897,20 +6907,14 @@ int CvPlayerAI::uniquePowerAIEraValueMult(EraTypes iEra) const
 
 // Civ4 Reimagined
 // See uniquePowerAIEraValueMult.
-int CvPlayerAI::uniquePowerAITechValueMult(TechTypes iTech) const
+int CvPlayerAI::uniquePowerAITechValueMult(TechTypes eTech) const
 {
 	int iTechValueMult = 100;
 	
-	switch(iTech)
+	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA")
+		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_CALENDAR"))
 	{
-		case (TechTypes)GC.getInfoTypeForString("TECH_CALENDAR"):	
-			if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA"))
-			{
-				iTechValueMult = 300;
-			}
-			break;
-			
-		default: break;
+		return 300;
 	}
 	
 	return iTechValueMult;
