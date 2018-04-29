@@ -26931,11 +26931,30 @@ void CvPlayer::updateUniquePowers(TechTypes eTech)
 	{
 		setMayaCalendar(GC.getGameINLINE().getGameTurnYear());
 		checkMayaCalendar();
+		notifyUniquePowersChanged(true);
 	}
 }
 
 
-// Civ4 Reimagined
+void CvPlayer::notifyUniquePowersChanged(bool bGained) const
+{
+	if (isHuman())
+	{
+		if (bGained)
+		{
+			CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_UNIQUE_POWER");
+			gDLL->getInterfaceIFace()->addHumanMessage(getID(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_GOLDAGESTART", MESSAGE_TYPE_MAJOR_EVENT);
+		}
+		else
+		{
+			CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_UNIQUE_POWER_LOST");
+			gDLL->getInterfaceIFace()->addHumanMessage(getID(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_GOLDAGEEND", MESSAGE_TYPE_MAJOR_EVENT);
+		}
+
+	}
+	
+}
+
 void CvPlayer::updateUniquePowers(EraTypes eEra)
 {
 	if (getID() == NO_PLAYER)
@@ -26943,40 +26962,76 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		return;
 		
 	}
-	
-	//gainedUniquePowerMessage()
-	//lostUniquePowerMessage()
-	//
-	//CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_UNIQUE_POWER");
-	//CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_UNIQUE_POWER_LOST");
-	//gDLL->getInterfaceIFace()->addHumanMessage(getID(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_NEW_ERA", MESSAGE_TYPE_MAJOR_EVENT);
-	
+
 	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AZTEC"))
 	{
-		(eEra <= 1 ? setUniqueAztecPromotion(true) : setUniqueAztecPromotion(false));
+		if (eEra == 0)
+		{
+			setUniqueAztecPromotion(true);
+			notifyUniquePowersChanged(true);
+		}
+		else if (eEra == 2)
+		{
+			setUniqueAztecPromotion(false);
+			notifyUniquePowersChanged(false);
+		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON"))
 	{
-		(eEra <= 1 ? setCapitalCommercePerPopulation(COMMERCE_GOLD, 3, 0) : setCapitalCommercePerPopulation(COMMERCE_GOLD, 0, 0));
-		if (eEra == 0) changeNoCapitalUnhappinessCount(1);
-		if (eEra == 2) changeNoCapitalUnhappinessCount(-1);
+		if (eEra == 0)
+		{
+			changeNoCapitalUnhappinessCount(1);
+			setCapitalCommercePerPopulation(COMMERCE_GOLD, 5, 0);
+			notifyUniquePowersChanged(true);
+		}
+		else if (eEra == 2)
+		{
+			changeNoCapitalUnhappinessCount(-1);
+			setCapitalCommercePerPopulation(COMMERCE_GOLD, 0, 0);
+			notifyUniquePowersChanged(false);
+		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CARTHAGE"))
 	{
-		(eEra == 1 ? setSpecialTradeRoutePerPlayer(true) : setSpecialTradeRoutePerPlayer(false));
+		if (eEra == 1)
+		{
+			setSpecialTradeRoutePerPlayer(true);
+			notifyUniquePowersChanged(true);
+		}
+		else if (eEra == 2)
+		{
+			setSpecialTradeRoutePerPlayer(false);
+			notifyUniquePowersChanged(false);
+		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME"))
 	{
-		if (eEra == 1) changeFreeUnitsOnConquest(1);
-		if (eEra == 2) changeFreeUnitsOnConquest(-1);
+		if (eEra == 1) 
+		{
+			changeFreeUnitsOnConquest(1);
+			notifyUniquePowersChanged(true);
+		}
+		else if (eEra == 2)
+		{
+			changeFreeUnitsOnConquest(-1);
+			notifyUniquePowersChanged(false);
+		}			
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SUMERIA"))
 	{
-		if (eEra == 0) changeFreePopulationInCapital(1);
+		if (eEra == 0) 
+		{
+			changeFreePopulationInCapital(1);
+			notifyUniquePowersChanged(true);
+		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_INCA"))
 	{
-		if (eEra == 0) changeCanFarmHillsCount(1);
+		if (eEra == 0) 
+		{
+			changeCanFarmHillsCount(1);
+			notifyUniquePowersChanged(true);
+		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA"))
 	{

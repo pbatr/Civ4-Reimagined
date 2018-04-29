@@ -6886,19 +6886,19 @@ int CvPlayerAI::uniquePowerAIEraValueMult(EraTypes eEra) const
 	
 	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AZTEC") && eEra <= 1)
 	{
-		return 150;
+		return 125;
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON") && eEra <= 1)
 	{
-		return 150;
+		return 125;
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CARTHAGE") && eEra == 1)
 	{
-		return 200;
+		return 150;
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME") && eEra == 1)
 	{
-		return 200;
+		return 150;
 	}
 
 	return iEraValueMult;
