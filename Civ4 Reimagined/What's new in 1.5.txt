@@ -4,6 +4,7 @@ Civ4 Reimagined 1.4
 *********
 New
 *********
+-New renaissance building: Sewer (+2[h], costs 200[p]). Available with Scientific Method. Replaces flat health bonus from Scientific Method.
 
 *********
 Changes

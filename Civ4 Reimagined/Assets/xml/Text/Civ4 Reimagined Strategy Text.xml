@@ -762,6 +762,8 @@
 		<Tag>TXT_KEY_CIVIC_STATE_IDEOLOGY_STRATEGY</Tag>
 		<English>tbd...</English>
 	</TEXT>
-
-	
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_SEWER_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Sewer[COLOR_REVERT] provides health in your city.</English>
+	</TEXT>
 </Civ4GameText>

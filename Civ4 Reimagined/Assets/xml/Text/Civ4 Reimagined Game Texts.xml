@@ -1342,4 +1342,8 @@
 		<Tag>TXT_KEY_CIVIC_MELEE_MILITARY_FOOD</Tag>
 		<English>[ICON_BULLET]Melee Units Produced with [ICON_FOOD] (1 [ICON_FOOD] for 2 [ICON_PRODUCTION]) </English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_SEWER</Tag>
+		<English>Sewer</English>
+	</TEXT>
 </Civ4GameText>

@@ -458,6 +458,16 @@
 			<Button>,Art/Interface/Buttons/Buildings/Observatory.dds,Art/Interface/Buttons/Warlords_Atlas_1.dds,5,2</Button>
 		</BuildingArtInfo>
 		<BuildingArtInfo>
+			<Type>ART_DEF_BUILDING_SEWER</Type>
+			<LSystem>LSYSTEM_1x1</LSystem>
+			<bAnimated>0</bAnimated>
+			<fScale>1.4</fScale>
+			<fInterfaceScale>0.8</fInterfaceScale>
+			<NIF>Art/Structures/Buildings/Sewer/Sewer.nif</NIF>
+			<KFM/>
+			<Button>Art/Structures/Buildings/Sewer/Button_Sewer.dds</Button>
+		</BuildingArtInfo>
+		<BuildingArtInfo>
 			<Type>ART_DEF_BUILDING_LABORATORY</Type>
 			<LSystem>LSYSTEM_2x2</LSystem>
 			<bAnimated>0</bAnimated>
