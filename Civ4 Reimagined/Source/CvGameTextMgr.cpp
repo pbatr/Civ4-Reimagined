@@ -16456,10 +16456,12 @@ void CvGameTextMgr::setProductionHelp(CvWStringBuffer &szBuffer, CvCity& city)
 		}
 	}
 
-	int iFoodProduction = (city.isFoodProduction() ? std::max(0, (city.getYieldRate(YIELD_FOOD) - city.foodConsumption(true))) : 0);
+	// Civ4 Reimagined
+	const int iSurplusFood = (city.isFoodProduction() ? std::max(0, (city.getYieldRate(YIELD_FOOD) - city.foodConsumption(true))) : 0);
+	const int iFoodProduction = iSurplusFood * (city.isMeleeFoodProduction() ? 2 : 1);
 	if (iFoodProduction > 0)
 	{
-		szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_PROD_FOOD", iFoodProduction, iFoodProduction));
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_PROD_FOOD", iFoodProduction, iSurplusFood));
 		szBuffer.append(NEWLINE);
 	}
 	

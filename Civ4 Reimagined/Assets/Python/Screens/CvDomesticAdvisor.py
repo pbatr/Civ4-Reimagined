@@ -233,7 +233,7 @@ class CvDomesticAdvisor:
 		screen.setTableInt( "CityListBackground", 4, i, szText, "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY )
 
 		# Food status...
-		iNetFood = pLoopCity.foodDifference(true)
+		iNetFood = pLoopCity.foodDifference(true, false)
 		szText = unicode(iNetFood)
 		if iNetFood > 0:
 			szText = localText.getText("TXT_KEY_COLOR_POSITIVE", ()) + szText + localText.getText("TXT_KEY_COLOR_REVERT", ())

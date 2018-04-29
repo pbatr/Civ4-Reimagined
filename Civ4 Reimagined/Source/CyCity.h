@@ -145,7 +145,7 @@ public:
 	int badHealth(bool bNoAngry);
 	int healthRate(bool bNoAngry, int iExtra);															 
 	int foodConsumption(bool bNoAngry, int iExtra);												 
-	int foodDifference(bool bBottom);
+	int foodDifference(bool bBottom, bool bIgnoreFoodProduction = false);
 	int growthThreshold();
 	int productionLeft();
 	int hurryCost(bool bExtra);																						 

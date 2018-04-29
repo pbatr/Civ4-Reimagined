@@ -585,9 +585,9 @@ int CyCity::foodConsumption(bool bNoAngry, int iExtra)
 	return m_pCity ? m_pCity->foodConsumption(bNoAngry, iExtra) : -1;
 }
 
-int CyCity::foodDifference(bool bBottom)
+int CyCity::foodDifference(bool bBottom, bool bIgnoreFoodProduction)
 {
-	return m_pCity ? m_pCity->foodDifference(bBottom) : -1;
+	return m_pCity ? m_pCity->foodDifference(bBottom, bIgnoreFoodProduction) : -1;
 }
 
 int CyCity::growthThreshold()

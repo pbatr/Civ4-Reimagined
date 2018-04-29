@@ -3573,7 +3573,7 @@ class CvMainInterface:
 				# Help Text Area
 				screen.setHelpTextArea( 390, FontTypes.SMALL_FONT, 0, 0, -2.2, True, ArtFileMgr.getInterfaceArtInfo("POPUPS_BACKGROUND_TRANSPARENT").getPath(), True, True, CvUtil.FONT_LEFT_JUSTIFY, 0 )
 
-				iFoodDifference = pHeadSelectedCity.foodDifference(True)
+				iFoodDifference = pHeadSelectedCity.foodDifference(True, False)
 				iProductionDiffNoFood = pHeadSelectedCity.getCurrentProductionDifference(True, True)
 				iProductionDiffJustFood = (pHeadSelectedCity.getCurrentProductionDifference(False, True) - iProductionDiffNoFood)
 
@@ -3640,7 +3640,6 @@ class CvMainInterface:
 					# draw label below
 					
 				else:
-
 					szBuffer = u"%d%c" %(iFoodDifference, gc.getYieldInfo(YieldTypes.YIELD_FOOD).getChar())
 					# draw label below
 
@@ -3746,7 +3745,8 @@ class CvMainInterface:
 				if (pHeadSelectedCity.isProductionProcess()):
 					szBuffer = u"%d%c" %(pHeadSelectedCity.getYieldRate(YieldTypes.YIELD_PRODUCTION), gc.getYieldInfo(YieldTypes.YIELD_PRODUCTION).getChar())
 				elif (pHeadSelectedCity.isFoodProduction() and (iProductionDiffJustFood > 0)):
-					szBuffer = u"%d%c + %d%c" %(iProductionDiffJustFood, gc.getYieldInfo(YieldTypes.YIELD_FOOD).getChar(), iProductionDiffNoFood, gc.getYieldInfo(YieldTypes.YIELD_PRODUCTION).getChar())
+					# Civ4 Reimagind: Always display real food difference here
+					szBuffer = u"%d%c + %d%c" %(pHeadSelectedCity.foodDifference(True, True), gc.getYieldInfo(YieldTypes.YIELD_FOOD).getChar(), iProductionDiffNoFood, gc.getYieldInfo(YieldTypes.YIELD_PRODUCTION).getChar())
 				else:
 					szBuffer = u"%d%c" %(iProductionDiffNoFood, gc.getYieldInfo(YieldTypes.YIELD_PRODUCTION).getChar())
 					

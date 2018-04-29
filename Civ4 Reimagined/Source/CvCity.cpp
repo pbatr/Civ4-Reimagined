@@ -2965,22 +2965,6 @@ bool CvCity::isFoodProduction() const
 }
 
 
-// Civ4 Reimagined
-bool CvCity::isMeleeFoodProduction(UnitTypes eUnit) const
-{
-	if (GET_PLAYER(getOwnerINLINE()).isMeleeMilitaryFoodProduction())
-	{
-		if (GC.getUnitInfo(eUnit).isMilitaryProduction() &&
-		GC.getUnitInfo(eUnit).getUnitCombatType() == (UnitCombatTypes)GC.getInfoTypeForString("UNITCOMBAT_MELEE"))
-		{
-			return true;
-		}
-	}
-	
-	return false;
-}
-
-
 bool CvCity::isFoodProduction(UnitTypes eUnit) const
 {
 	if (GC.getUnitInfo(eUnit).isFoodProduction())
@@ -2998,6 +2982,36 @@ bool CvCity::isFoodProduction(UnitTypes eUnit) const
 	
 	// Civ4 Reimagined
 	return isMeleeFoodProduction(eUnit);
+}
+
+
+// Civ4 Reimagined
+bool CvCity::isMeleeFoodProduction() const
+{
+	CLLNode<OrderData>* pOrderNode = headOrderQueueNode();
+
+	if (pOrderNode == NULL || pOrderNode->m_data.eOrderType != ORDER_TRAIN)
+	{
+		return false;
+	}
+
+	return isMeleeFoodProduction((UnitTypes)(pOrderNode->m_data.iData1));
+}
+
+
+// Civ4 Reimagined
+bool CvCity::isMeleeFoodProduction(UnitTypes eUnit) const
+{
+	if (GET_PLAYER(getOwnerINLINE()).isMeleeMilitaryFoodProduction())
+	{
+		if (GC.getUnitInfo(eUnit).isMilitaryProduction() &&
+		GC.getUnitInfo(eUnit).getUnitCombatType() == (UnitCombatTypes)GC.getInfoTypeForString("UNITCOMBAT_MELEE"))
+		{
+			return true;
+		}
+	}
+	
+	return false;
 }
 
 
