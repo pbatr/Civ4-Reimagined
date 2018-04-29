@@ -11223,28 +11223,6 @@ bool CvCivilizationInfo::isPlayable() const
 }
 
 // Civ4 Reimagined
-int CvCivilizationInfo::getUniquePowerRequirement(int iLevel) const
-{
-	switch(iLevel)
-	{
-		case 0:
-			return 0;
-		case 1:
-			return m_iUnique1;
-		case 2:
-			return m_iUnique2;
-		case 3:
-			return m_iUnique3;
-		case 4:
-			return m_iUnique4;
-		case 5:
-			return m_iUnique5;
-		default:
-			return -1;
-	}
-}
-
-// Civ4 Reimagined
 std::string CvCivilizationInfo::getCivilizationUniquePowerText(int iLevel) const
 {
 	switch(iLevel)

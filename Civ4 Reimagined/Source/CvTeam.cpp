@@ -6676,6 +6676,12 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 			GET_PLAYER((PlayerTypes)iI).changeTechScore(getTechScore(eTech) * iChange);
 			
 			// Civ4 Reimagined
+			if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS))
+			{
+				GET_PLAYER((PlayerTypes)iI).updateUniquePowers(eTech);
+			}
+			
+			// Civ4 Reimagined
 			if (!GET_PLAYER((PlayerTypes)iI).canExploreSea())
 			{
 				for (iJ = 0; iJ < GC.getNumUnitClassInfos(); iJ++)
@@ -6713,11 +6719,7 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 						}
 					}
 				}
-			}
 
-			// Civ4 Reimagined
-			for (iJ = 0; iJ < GC.getNumBuildingInfos(); iJ++)
-			{
 				if (GC.getBuildingInfo((BuildingTypes)iJ).isAnyTechCommerceModifier())
 				{
 					for (int iK = 0; iK < NUM_COMMERCE_TYPES; iK++)
