@@ -179,7 +179,7 @@
 			<Description>TXT_KEY_GAME_OPTION_NO_UNIQUE_POWERS</Description>
 			<Help>TXT_KEY_GAME_OPTION_NO_UNIQUE_POWERS_HELP</Help>
 			<bDefault>1</bDefault>
-			<bVisible>0</bVisible>
+			<bVisible>1</bVisible>
 		</GameOptionInfo>
 		<GameOptionInfo>
 			<Type>GAMEOPTION_NO_COLONY_ANGER</Type>
