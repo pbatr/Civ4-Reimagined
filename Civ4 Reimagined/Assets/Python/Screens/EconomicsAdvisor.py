@@ -536,15 +536,9 @@ class EconomicsAdvisor:
 			#Unique powers
 			for i in range(1,6):
 				iRow = screen.appendTableRow(szTable)
-				
-				szText = BugUtil.getText("TXT_KEY_ECONOMICS_ADVISOR_UNIQUE_POWERS_LEVEL", i)
-				screen.setTableText(szTable, 0, iRow, szText, "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
-				
-				szText = BugUtil.getText("TXT_KEY_ECONOMICS_ADVISOR_UNIQUE_POWERS_REQUIREMENT", int(player.getUniquePowerRequirement(i) / 100))
-				screen.setTableText(szTable, 1, iRow, szText, "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_RIGHT_JUSTIFY)
-			
+
 				szText = BugUtil.getText(civInfo.getCivilizationUniquePowerText(i))
-				screen.setTableText(szTable, 2, iRow, szText, "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
+				screen.setTableText(szTable, 0, iRow, szText, "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
 		
 		return 0
 		
