@@ -6102,14 +6102,7 @@ void CvGameTextMgr::parseTraits(CvWStringBuffer &szHelpString, TraitTypes eTrait
 		{
 			if (GC.getTraitInfo(eTrait).getCommerceChange(iI) != 0)
 			{
-				if (iI == COMMERCE_CULTURE && !GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS)) // Civ4 Reimagined Todo
-				{
-					szHelpString.append(gDLL->getText("TXT_KEY_TRAIT_COMMERCE_CHANGES_UNIQUE_POWERS", 	GC.getTraitInfo(eTrait).getCommerceChange(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar(), "COMMERCE"));
-				}
-				else 
-				{
-					szHelpString.append(gDLL->getText("TXT_KEY_TRAIT_COMMERCE_CHANGES", 	GC.getTraitInfo(eTrait).getCommerceChange(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar(), "COMMERCE"));
-				}
+				szHelpString.append(gDLL->getText("TXT_KEY_TRAIT_COMMERCE_CHANGES", 	GC.getTraitInfo(eTrait).getCommerceChange(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar(), "COMMERCE"));
 			}
 
 			if (GC.getTraitInfo(eTrait).getCommerceModifier(iI) != 0)
@@ -17565,19 +17558,7 @@ bool CvGameTextMgr::setBuildingAdditionalGreatPeopleHelp(CvWStringBuffer &szBuff
 
 void CvGameTextMgr::parseGreatGeneralHelp(CvWStringBuffer &szBuffer, CvPlayer& kPlayer)
 {
-	// Civ4 Reimagined: Use unique power progress text for mouseover if unique powers are enabled.
-	if (GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS))
-	{
-		szBuffer.assign(gDLL->getText("TXT_KEY_MISC_GREAT_GENERAL", kPlayer.getCombatExperience(), kPlayer.greatPeopleThreshold(true)));
-	}
-	else
-	{
-		if (kPlayer.getUniquePowerLevel() <= 4)
-		{
-			szBuffer.assign(gDLL->getText("TXT_KEY_MISC_UNIQUE_POWER_PROGRESS", kPlayer.getAccumulatedCulture() / 100, kPlayer.getUniquePowerRequirement(kPlayer.getUniquePowerLevel() + 1) / 100));
-		}
-
-	}
+	szBuffer.assign(gDLL->getText("TXT_KEY_MISC_GREAT_GENERAL", kPlayer.getCombatExperience(), kPlayer.greatPeopleThreshold(true))); 
 }
 
 void CvGameTextMgr::parseSlaveryBarHelp(CvWStringBuffer &szBuffer, CvPlayer& kPlayer)
@@ -18775,8 +18756,19 @@ void CvGameTextMgr::setTradeRouteHelp(CvWStringBuffer &szBuffer, int iRoute, CvC
 				}
 
 				// Civ4 Reimagined
-				iNewMod = ((pCity->isCapital() && !GET_PLAYER(pCity->getOwnerINLINE()).isNoCapital()) ? GC.getDefineINT("CAPITAL_TRADE_MODIFIER") : 0) + ((pOtherCity->isCapital() && !GET_PLAYER(pOtherCity->getOwnerINLINE()).isNoCapital()) ? GC.getDefineINT("CAPITAL_TRADE_MODIFIER") : 0);
-				
+				iNewMod =  ((pCity->isCapital() && !GET_PLAYER(pCity->getOwnerINLINE()).isNoCapital()) ? GC.getDefineINT("CAPITAL_TRADE_MODIFIER") : 0);
+
+				if (pOtherCity->isCapital() && !GET_PLAYER(pOtherCity->getOwnerINLINE()).isNoCapital())
+				{
+					iNewMod += GC.getDefineINT("CAPITAL_TRADE_MODIFIER");
+					
+					if (GET_PLAYER(pCity->getOwnerINLINE()).isSpecialTradeRoutePerPlayer())
+					{
+						szBuffer.append(NEWLINE);
+						szBuffer.append(gDLL->getText("TXT_KEY_SPECIAL_TRADE_MOD", GC.getDefineINT("SPECIAL_TRADE_MODIFIER")));
+					}
+				}
+
 				if (0 != iNewMod)
 				{
 					if (pCity->isCapital() || (pOtherCity->isCapital() && pCity->getOwnerINLINE() == pOtherCity->getOwnerINLINE()))

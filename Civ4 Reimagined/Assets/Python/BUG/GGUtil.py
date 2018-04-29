@@ -18,7 +18,6 @@ gc = CyGlobalContext()
 g_ePromo = -1
 g_promoButton = ""
 g_cGreatGeneral = ""
-g_cUniquePower = ""
 
 def init():
 	global g_ePromo
@@ -37,22 +36,3 @@ def getPromotion():
 def getGreatGeneralText(iNeededExp):
 	return BugUtil.getText("INTERFACE_NEXT_GREAT_GENERAL_XP", 
 			(g_cGreatGeneral, iNeededExp))
-
-#Civ4 Reimagined
-def getUniquePowerText(iUniquePowerLevel, iUniquePowerRate, iUniquePowerRateAfterDecimalPoint, iTurnsUniquePower):
-	
-	if (iUniquePowerLevel == 0):
-		g_cUniquePower = "[I]"
-	if(iUniquePowerLevel == 1):
-		g_cUniquePower = "[II]"
-	if(iUniquePowerLevel == 2):
-		g_cUniquePower = "[III]"
-	if(iUniquePowerLevel == 3):
-		g_cUniquePower = "[IV]"
-	if(iUniquePowerLevel == 4):
-		g_cUniquePower = "[V]"
-	if(iUniquePowerLevel == 5):
-		g_cUniquePower = "[-]"	
-		
-	return BugUtil.getText("INTERFACE_NEXT_UNIQUE_POWER_LEVEL", 
-			(g_cUniquePower, iUniquePowerRate, iUniquePowerRateAfterDecimalPoint, iTurnsUniquePower))
