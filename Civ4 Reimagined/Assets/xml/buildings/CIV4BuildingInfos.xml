@@ -9154,6 +9154,15 @@
 			</BuildingClassNeededs>
 			<SpecialistYieldChanges/>
 			<BonusYieldModifiers/>
+			<TechnologyCommerceModifiers> <!-- Civ4 Reimagined -->
+				<TechnologyCommerceModifier>
+					<TechType>TECH_SCIENTIFIC_METHOD</TechType>
+					<CommerceModifiers>
+						<iCommerce>0</iCommerce>
+						<iCommerce>15</iCommerce>
+					</CommerceModifiers>
+				</TechnologyCommerceModifier>
+			</TechnologyCommerceModifiers>
 			<ImprovementFreeSpecialists/>
 			<Flavors>
 				<Flavor>

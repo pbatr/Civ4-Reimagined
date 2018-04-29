@@ -715,6 +715,12 @@
 		<German>[ICON_BULLET]%D1%%%F2 durch Technologien</German>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_MISC_HELP_COMMERCE_TECH</Tag>
+		<English>[ICON_BULLET]%D1%%%F2 from Technologies</English>
+		<French>[ICON_BULLET]%D1%%%F2 grâce aux technologies</French>
+		<German>[ICON_BULLET]%D1%%%F2 durch Technologien</German>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_MISSION_FORTIFY_HELP</Tag>
 		<English>The unit "digs in" to better withstand enemy attack. A unit gets a 5%% defensive bonus for each turn it is fortified, to a maximum bonus of 10%%.</English>
 		<French>L'unit&#233; se retranche pour mieux r&#233;sister aux attaques ennemies. Une unit&#233; retranch&#233;e b&#233;n&#233;ficie d'un bonus de d&#233;fense de 5%% pour chaque tour pass&#233; &#224; se r&#233;g&#233;n&#233;rer, avec un maximum de 10%%.</French>
@@ -1019,6 +1025,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_YIELD_WITH_SOMETHING</Tag>
+		<English>[SPACE]with [LINK=literal]%s1[\LINK]</English>
+		<French>[SPACE]avec [LINK=literal]%s1[\LINK]</French>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_COMMERCE_WITH_SOMETHING</Tag>
 		<English>[SPACE]with [LINK=literal]%s1[\LINK]</English>
 		<French>[SPACE]avec [LINK=literal]%s1[\LINK]</French>
 	</TEXT>

@@ -5113,6 +5113,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 
 				iTempValue += (kBuilding.getCommerceChange(iI) * 4);
 				iTempValue += (kBuilding.getObsoleteSafeCommerceChange(iI) * 4);
+
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      03/13/10                              jdog5000        */
 /*                                                                                              */
@@ -5162,6 +5163,19 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 
 				// add value for a commerce modifier
 				int iCommerceModifier = kBuilding.getCommerceModifier(iI);
+
+				// Civ4 Reimagined
+				if (kBuilding.isAnyTechCommerceModifier())
+				{
+					for (int iJ = 0; iJ < GC.getNumTechInfos(); iJ++)
+					{
+						if (GET_TEAM(GET_PLAYER(getOwnerINLINE()).getTeam()).isHasTech((TechTypes)iJ))
+						{
+							iCommerceModifier += kBuilding.getTechCommerceModifier(iJ, iI);
+						}
+					}
+				}
+
 				int iBaseCommerceRate = getBaseCommerceRate((CommerceTypes) iI);
 				// K-Mod. inflate the base commerce rate, to account for the fact that commerce multipliers give us flexibility.
 				

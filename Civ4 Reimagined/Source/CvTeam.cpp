@@ -6695,23 +6695,41 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 			}
 			
 			// Civ4 Reimagined
-			int iLoop;
-			int iTechYieldModifier;
-			int iNumBuildings;
-			CvCity* pLoopCity;
 			for (iJ = 0; iJ < GC.getNumBuildingInfos(); iJ++)
 			{
 				if (GC.getBuildingInfo((BuildingTypes)iJ).isAnyTechYieldModifier())
 				{
 					for (int iK = 0; iK < NUM_YIELD_TYPES; iK++)
 					{
-						iTechYieldModifier = GC.getBuildingInfo((BuildingTypes)iJ).getTechYieldModifier(eTech, iK);
+						const int iTechYieldModifier = GC.getBuildingInfo((BuildingTypes)iJ).getTechYieldModifier(eTech, iK);
 						if (iTechYieldModifier != 0)
 						{
-							for (pLoopCity = GET_PLAYER((PlayerTypes)iI).firstCity(&iLoop); pLoopCity != NULL; pLoopCity = GET_PLAYER((PlayerTypes)iI).nextCity(&iLoop))
+							int iLoop;
+							for (CvCity* pLoopCity = GET_PLAYER((PlayerTypes)iI).firstCity(&iLoop); pLoopCity != NULL; pLoopCity = GET_PLAYER((PlayerTypes)iI).nextCity(&iLoop))
 							{
-								iNumBuildings = pLoopCity->getNumBuilding((BuildingTypes)iJ);
+								const int iNumBuildings = pLoopCity->getNumBuilding((BuildingTypes)iJ);
 								pLoopCity->changeTechYieldRateModifier(((YieldTypes)iK), (iTechYieldModifier * iNumBuildings * iChange));
+							}
+						}
+					}
+				}
+			}
+
+			// Civ4 Reimagined
+			for (iJ = 0; iJ < GC.getNumBuildingInfos(); iJ++)
+			{
+				if (GC.getBuildingInfo((BuildingTypes)iJ).isAnyTechCommerceModifier())
+				{
+					for (int iK = 0; iK < NUM_COMMERCE_TYPES; iK++)
+					{
+						const int iTechCommerceModifier = GC.getBuildingInfo((BuildingTypes)iJ).getTechCommerceModifier(eTech, iK);
+						if (iTechCommerceModifier != 0)
+						{
+							int iLoop;
+							for (CvCity* pLoopCity = GET_PLAYER((PlayerTypes)iI).firstCity(&iLoop); pLoopCity != NULL; pLoopCity = GET_PLAYER((PlayerTypes)iI).nextCity(&iLoop))
+							{
+								const int iNumBuildings = pLoopCity->getNumBuilding((BuildingTypes)iJ);
+								pLoopCity->changeTechCommerceRateModifier(((CommerceTypes)iK), (iTechCommerceModifier * iNumBuildings * iChange));
 							}
 						}
 					}

@@ -1928,6 +1928,10 @@ public:
 	int getTechYieldModifier(int i, int j) const; // Civ4 Reimagined
 	int* getTechYieldModifierArray(int i) const; // Civ4 Reimagined
 	bool isAnyTechYieldModifier() const; // Civ4 Reimagined
+
+	int getTechCommerceModifier(int i, int j) const; // Civ4 Reimagined
+	int* getTechCommerceModifierArray(int i) const; // Civ4 Reimagined
+	bool isAnyTechCommerceModifier() const; // Civ4 Reimagined
 	
 	// Other
 
@@ -2094,6 +2098,7 @@ protected:
 	bool m_bNoConquestResistance; // Civ4 Reimagined
 	bool m_bNoWarAgainstSameFaithUnhappiness; // Civ4 Reimagined
 	bool m_bAnyTechYieldModifier; // Civ4 Reimagined
+	bool m_bAnyTechCommerceModifier; // Civ4 Reimagined
 
 	CvString m_szConstructSound;
 	CvString m_szArtDefineTag;
@@ -2146,6 +2151,7 @@ protected:
 	int** m_ppaiBonusYieldModifier;
 	int** m_ppaiBonusCommerceModifier; // Civ4 Reimagined
 	int** m_ppaiTechYieldModifier; // Civ4 Reimagined
+	int** m_ppaiTechCommerceModifier; // Civ4 Reimagined
 /************************************************************************************************/
 /* UNOFFICIAL_PATCH                       06/27/10                    Afforess & jdog5000       */
 /*                                                                                              */

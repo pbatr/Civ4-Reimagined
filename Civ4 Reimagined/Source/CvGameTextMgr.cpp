@@ -11027,6 +11027,15 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 
 	setYieldChangeHelp(szBuffer, L"", L"", gDLL->getText("TXT_KEY_BUILDING_ALL_CITIES").c_str(), kBuilding.getGlobalYieldModifierArray(), true);
 
+	// Civ4 Reimagined
+	if (kBuilding.isAnyTechCommerceModifier())
+	{
+		for (int iI = 0; iI < GC.getNumTechInfos(); iI++)
+		{
+			setCommerceChangeHelp(szBuffer, L"", L"", gDLL->getText("TXT_KEY_BUILDING_COMMERCE_WITH_SOMETHING", GC.getTechInfo((TechTypes)iI).getDescription()).c_str(), kBuilding.getTechCommerceModifierArray(iI), true);
+		}
+	}
+
 	setCommerceChangeHelp(szBuffer, L"", L"", gDLL->getText("TXT_KEY_BUILDING_ALL_CITIES").c_str(), kBuilding.getGlobalCommerceModifierArray(), true);
 
 	setCommerceChangeHelp(szBuffer, L"", L"", gDLL->getText("TXT_KEY_BUILDING_PER_SPECIALIST_ALL_CITIES").c_str(), kBuilding.getSpecialistExtraCommerceArray());
@@ -16982,6 +16991,14 @@ void CvGameTextMgr::setCommerceHelp(CvWStringBuffer &szBuffer, CvCity& city, Com
 		iModifier += iBuildingMod;
 	}
 
+	// Civ4 Reimagined: Technologies
+	int iTechMod = city.getTechCommerceRateModifier(eCommerceType);
+	if (0 != iTechMod)
+	{
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_COMMERCE_TECH", iTechMod, info.getChar()));
+		szBuffer.append(NEWLINE);
+		iModifier += iTechMod;
+	}
 
 	// Trait
 	for (int i = 0; i < GC.getNumTraitInfos(); i++)

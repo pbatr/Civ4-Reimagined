@@ -48,6 +48,7 @@ CvCity::CvCity()
 	m_aiPowerYieldRateModifier = new int[NUM_YIELD_TYPES];
 	m_aiBonusYieldRateModifier = new int[NUM_YIELD_TYPES];
 	m_aiTechYieldRateModifier = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
+	m_aiTechCommerceRateModifier = new int[NUM_COMMERCE_TYPES]; // Civ4 Reimagined
 	m_aiTradeYield = new int[NUM_YIELD_TYPES];
 	m_aiCorporationYield = new int[NUM_YIELD_TYPES];
 	m_aiExtraSpecialistYield = new int[NUM_YIELD_TYPES];
@@ -139,6 +140,7 @@ CvCity::~CvCity()
 	SAFE_DELETE_ARRAY(m_aiPowerYieldRateModifier);
 	SAFE_DELETE_ARRAY(m_aiBonusYieldRateModifier);
 	SAFE_DELETE_ARRAY(m_aiTechYieldRateModifier); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_aiTechCommerceRateModifier); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiTradeYield);
 	SAFE_DELETE_ARRAY(m_aiCorporationYield);
 	SAFE_DELETE_ARRAY(m_aiExtraSpecialistYield);
@@ -563,6 +565,7 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 		m_aiPowerYieldRateModifier[iI] = 0;
 		m_aiBonusYieldRateModifier[iI] = 0;
 		m_aiTechYieldRateModifier[iI] = 0; // Civ4 Reimagined
+		m_aiTechCommerceRateModifier[iI] = 0; // Civ4 Reimagined
 		m_aiTradeYield[iI] = 0;
 		m_aiCorporationYield[iI] = 0;
 		m_aiExtraSpecialistYield[iI] = 0;
@@ -4424,6 +4427,21 @@ void CvCity::processBuilding(BuildingTypes eBuilding, int iChange, bool bObsolet
 					for (iJ = 0; iJ < NUM_YIELD_TYPES; iJ++)
 					{
 						changeTechYieldRateModifier(((YieldTypes)iJ), (GC.getBuildingInfo(eBuilding).getTechYieldModifier(iI, iJ) * iChange));
+					}
+				}
+			}
+		}
+
+		// Civ4 Reimagined
+		if (GC.getBuildingInfo(eBuilding).isAnyTechCommerceModifier())
+		{
+			for (iI = 0; iI < GC.getNumTechInfos(); iI++)
+			{
+				if (GET_TEAM(GET_PLAYER(getOwnerINLINE()).getTeam()).isHasTech((TechTypes)iI))
+				{
+					for (iJ = 0; iJ < NUM_COMMERCE_TYPES; iJ++)
+					{
+						changeTechCommerceRateModifier(((CommerceTypes)iJ), (GC.getBuildingInfo(eBuilding).getTechCommerceModifier(iI, iJ) * iChange));
 					}
 				}
 			}
@@ -9916,6 +9934,38 @@ void CvCity::changeTechYieldRateModifier(YieldTypes eIndex, int iChange)
 	
 }
 
+// Civ4 Reimagined
+int CvCity::getTechCommerceRateModifier(CommerceTypes eIndex) const												
+{
+	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
+	FAssertMsg(eIndex < NUM_COMMERCE_TYPES, "eIndex expected to be < NUM_COMMERCE_TYPES");
+	return m_aiTechCommerceRateModifier[eIndex];
+}
+
+// Civ4 Reimagined
+void CvCity::changeTechCommerceRateModifier(CommerceTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
+	FAssertMsg(eIndex < NUM_COMMERCE_TYPES, "eIndex expected to be < NUM_COMMERCE_TYPES");
+	
+	if (iChange != 0)
+	{
+		m_aiTechCommerceRateModifier[eIndex] = (m_aiTechCommerceRateModifier[eIndex] + iChange);
+		FAssert(getCommerceRate(eIndex) >= 0);
+
+		GET_PLAYER(getOwnerINLINE()).invalidateCommerceRankCache(eIndex);
+
+		updateCommerce();
+
+		AI_setAssignWorkDirty(true);
+
+		if (getTeam() == GC.getGameINLINE().getActiveTeam())
+		{
+			setInfoDirty(true);
+		}
+	}
+	
+}
 
 int CvCity::getTradeYield(YieldTypes eIndex) const
 {
@@ -10354,6 +10404,7 @@ int CvCity::getTotalCommerceRateModifier(CommerceTypes eIndex) const
 {
 	int iTotal = 100;
 	iTotal += getCommerceRateModifier(eIndex) + GET_PLAYER(getOwnerINLINE()).getCommerceRateModifier(eIndex);
+	iTotal += getTechCommerceRateModifier(eIndex); // Civ4 Reimagined
 	
 	if (isCapital() && !GET_PLAYER(getOwnerINLINE()).isNoCapital()) // Civ4 Reimagined: Excluded capital modifier if player does not gain the benefits of a capital.
 	{
@@ -10721,6 +10772,15 @@ int CvCity::getAdditionalCommerceRateModifierByBuildingImpl(CommerceTypes eIndex
 	{
 		iExtraModifier += kBuilding.getCommerceModifier(eIndex);
 		iExtraModifier += kBuilding.getGlobalCommerceModifier(eIndex);
+
+		// Civ4 Reimagined
+		for (int iI = 0; iI < GC.getNumTechInfos(); ++iI)
+		{
+			if (GET_TEAM(GET_PLAYER(getOwnerINLINE()).getTeam()).isHasTech((TechTypes)iI))
+			{
+				iExtraModifier += kBuilding.getTechCommerceModifier(iI, eIndex);
+			}
+		}
 	}
 	
 	return iExtraModifier;
@@ -15616,6 +15676,7 @@ void CvCity::read(FDataStreamBase* pStream)
 	pStream->Read(NUM_COMMERCE_TYPES, m_aiCorporationCommerce);
 	pStream->Read(NUM_COMMERCE_TYPES, m_aiCommerceRateModifier);
 	pStream->Read(NUM_COMMERCE_TYPES, m_aiCommerceHappinessPer);
+	pStream->Read(NUM_COMMERCE_TYPES, m_aiTechCommerceRateModifier); // Civ4 Reimagined
 	pStream->Read(NUM_DOMAIN_TYPES, m_aiDomainFreeExperience);
 	pStream->Read(NUM_DOMAIN_TYPES, m_aiDomainProductionModifier);
 	pStream->Read(MAX_PLAYERS, m_aiCulture);
@@ -15868,6 +15929,7 @@ void CvCity::write(FDataStreamBase* pStream)
 	pStream->Write(NUM_COMMERCE_TYPES, m_aiCorporationCommerce);
 	pStream->Write(NUM_COMMERCE_TYPES, m_aiCommerceRateModifier);
 	pStream->Write(NUM_COMMERCE_TYPES, m_aiCommerceHappinessPer);
+	pStream->Write(NUM_COMMERCE_TYPES, m_aiTechCommerceRateModifier); // Civ4 Reimagined
 	pStream->Write(NUM_DOMAIN_TYPES, m_aiDomainFreeExperience);
 	pStream->Write(NUM_DOMAIN_TYPES, m_aiDomainProductionModifier);
 	pStream->Write(MAX_PLAYERS, m_aiCulture);
