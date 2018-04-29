@@ -807,6 +807,7 @@ class CvMainInterface:
 # BUG - Great Person Bar - end
 
 # BUG - Bars on single line for higher resolution screens - start
+		xCoord = 268 + (xResolution - 1440) / 2
 		screen.addStackedBarGFC( "GreatGeneralBar-w", xCoord - 50, 2, 84 + 50, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_HELP_GREAT_GENERAL, -1, -1 )
 		screen.setStackedBarColors( "GreatGeneralBar-w", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_NEGATIVE_RATE") )
 		screen.setStackedBarColors( "GreatGeneralBar-w", InfoBarTypes.INFOBAR_RATE, gc.getInfoTypeForString("COLOR_EMPTY") )
@@ -814,14 +815,13 @@ class CvMainInterface:
 		screen.setStackedBarColors( "GreatGeneralBar-w", InfoBarTypes.INFOBAR_EMPTY, gc.getInfoTypeForString("COLOR_EMPTY") )
 		screen.hide( "GreatGeneralBar-w" )
 	
-		xCoord += 6 + 84
 		xCoordUnique = xCoord
 		yCoordUnique = 2
 		if (screen.getXResolution() >= 1440):
-			xCoordUnique += 50
-		else:
 			yCoordUnique += 20
-		screen.addStackedBarGFC( "UniquePowerBar", xCoordUnique - 50, yCoordUnique, 84 + 50, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_HELP_UNIQUE_, -1, -1 )
+		else:
+			xCoordUnique += 50
+		screen.addStackedBarGFC( "UniquePowerBar", xCoordUnique - 50, yCoordUnique, 84 + 50, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_GENERAL, -1, -1 )
 		screen.setStackedBarColors( "UniquePowerBar", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_NEGATIVE_RATE") )
 		screen.setStackedBarColors( "UniquePowerBar", InfoBarTypes.INFOBAR_RATE, gc.getInfoTypeForString("COLOR_EMPTY") )
 		screen.setStackedBarColors( "UniquePowerBar", InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_EMPTY") )
@@ -3200,21 +3200,26 @@ class CvMainInterface:
 		return 0
 	
 	
-	def updateUniquePower(self, screen):
-		if (not CyInterface().isCityScreenUp()):
+	def updateUniquePowerBar(self, screen):
+		if (not CyInterface().isCityScreenUp() and not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_UNIQUE_POWERS)):
 		
+			pPlayer = gc.getActivePlayer()
 			iMayaCalendar = pPlayer.getMayaCalendar()
+			szText = u"<font=2>%d</font>" %(iMayaCalendar)
+			
 			if (iMayaCalendar > -5000):
 				if (iMayaCalendar >= 0):
 					szText = u"<font=2>Next: %d AD</font>" %(iMayaCalendar)
 				else:
 					szText = u"<font=2>Next: %d BC</font>" %(-iMayaCalendar)
+			else:
+				return
 			
 			xResolution = screen.getXResolution()
 			szUniquePowerBar = "UniquePowerBar"
 			if (xResolution >= 1440):
 				xCoord = 268 + (xResolution - 1440) / 2 + 84 / 2 - 50 / 2
-				yCoord = 5 + 20
+				yCoord = 5 + 25
 			else:
 				xCoord = 268 + (xResolution - 1024) / 2 + 100 / 2 - 50 / 2 + 50
 				yCoord = 32
