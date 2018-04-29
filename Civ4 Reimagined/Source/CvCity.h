@@ -157,6 +157,8 @@ public:
 	
 	int getTechYieldRateModifier(YieldTypes eIndex) const; // Civ4 Reimagined
 	void changeTechYieldRateModifier(YieldTypes eIndex, int iChange); // Civ4 Reimagined
+	int getTechCommerceRateModifier(CommerceTypes eIndex) const; // Civ4 Reimagined
+	void changeTechCommerceRateModifier(CommerceTypes eIndex, int iChange); // Civ4 Reimagined
 	
 	//Civ4 Reimagined
 	void processBonus(BonusTypes eBonus, int iChange, bool bChangeValue = true, bool YieldModifier = true);
@@ -1283,6 +1285,7 @@ protected:
 	int* m_aiPowerYieldRateModifier;
 	int* m_aiBonusYieldRateModifier;
 	int* m_aiTechYieldRateModifier; // Civ4 Reimagined
+	int* m_aiTechCommerceRateModifier; // Civ4 Reimagined
 	int* m_aiTradeYield;
 	int* m_aiCorporationYield;
 	int* m_aiExtraSpecialistYield;

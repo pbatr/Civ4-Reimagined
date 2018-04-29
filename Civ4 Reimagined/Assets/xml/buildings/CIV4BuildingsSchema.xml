@@ -405,6 +405,13 @@
 		<element type="TechType"/>
 		<element type="YieldModifiers"/>
 	</ElementType>
+	<ElementType name="TechnologyCommerceModifiers" content="eltOnly">
+		<element type="TechnologyCommerceModifier" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="TechnologyCommerceModifier" content="eltOnly">
+		<element type="TechType"/>
+		<element type="CommerceModifiers"/>
+	</ElementType>
 	<ElementType name="TechType" content="textOnly"/>
 	<!-- Civ4 Reimagined end -->
 	<ElementType name="ImprovementFreeSpecialist" content="eltOnly">
@@ -637,6 +644,7 @@
 		<element type="BonusUnitProductionModifiers" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="BonusBuildingProductionModifiers" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="TechnologyYieldModifiers" minOccurs="0"/> <!-- Civ4 Reimagined -->
+		<element type="TechnologyCommerceModifiers" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="ImprovementFreeSpecialists"/>
 		<element type="Flavors"/>
 		<element type="HotKey"/>

@@ -7690,6 +7690,8 @@ m_bAnyBonusCommerceModifier(false), // Civ4 Reimagined
 /************************************************************************************************/
 m_ppaiTechYieldModifier(NULL), // Civ4 Reimagined
 m_bAnyTechYieldModifier(false), // Civ4 Reimagined
+m_ppaiTechCommerceModifier(NULL), // Civ4 Reimagined
+m_bAnyTechCommerceModifier(false), // Civ4 Reimagined
 // < Building Civic Prereqs Start >
 m_pbPrereqCivics(NULL)
 // < Building Civic Prereqs End   >
@@ -7781,6 +7783,16 @@ CvBuildingInfo::~CvBuildingInfo()
 			SAFE_DELETE_ARRAY(m_ppaiTechYieldModifier[i]);
 		}
 		SAFE_DELETE_ARRAY(m_ppaiTechYieldModifier);
+	}
+
+	// Civ4 Reimagined
+	if (m_ppaiTechCommerceModifier != NULL)
+	{
+		for(int i=0;i<GC.getNumTechInfos();i++)
+		{
+			SAFE_DELETE_ARRAY(m_ppaiTechCommerceModifier[i]);
+		}
+		SAFE_DELETE_ARRAY(m_ppaiTechCommerceModifier);
 	}
 	
 	// < Building Civic Prereqs Start >
@@ -8986,6 +8998,30 @@ int* CvBuildingInfo::getTechYieldModifierArray(int i) const
 	return m_ppaiTechYieldModifier[i];
 }
 
+// Civ4 Reimagined 
+bool CvBuildingInfo::isAnyTechCommerceModifier() const
+{
+	return m_bAnyTechCommerceModifier;
+}
+
+// Civ4 Reimagined
+int CvBuildingInfo::getTechCommerceModifier(int i, int j) const
+{
+	FAssertMsg(i < GC.getNumTechInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	FAssertMsg(j < NUM_COMMERCE_TYPES, "Index out of bounds");
+	FAssertMsg(j > -1, "Index out of bounds");
+	return m_ppaiTechCommerceModifier ? m_ppaiTechCommerceModifier[i][j] : -1;
+}
+
+// Civ4 Reimagined
+int* CvBuildingInfo::getTechCommerceModifierArray(int i) const
+{
+	FAssertMsg(i < GC.getNumTechInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_ppaiTechCommerceModifier[i];
+}
+
 const TCHAR* CvBuildingInfo::getButton() const
 {
 	const CvArtInfoBuilding * pBuildingArtInfo;
@@ -9508,6 +9544,38 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 			}
 		}
 	}
+
+	// Civ4 Reimagined
+	if (m_ppaiTechCommerceModifier != NULL)
+	{
+		for(i=0;i<GC.getNumTechInfos();i++)
+		{
+			SAFE_DELETE_ARRAY(m_ppaiTechCommerceModifier[i]);
+		}
+		SAFE_DELETE_ARRAY(m_ppaiTechCommerceModifier);
+	}
+
+	// Civ4 Reimagined
+	m_ppaiTechCommerceModifier = new int*[GC.getNumTechInfos()];
+	for(i=0;i<GC.getNumTechInfos();i++)
+	{
+		m_ppaiTechCommerceModifier[i]  = new int[NUM_COMMERCE_TYPES];
+		stream->Read(NUM_COMMERCE_TYPES, m_ppaiTechCommerceModifier[i]);
+	}
+	
+	// Civ4 Reimagined
+	m_bAnyTechCommerceModifier = false;
+	for(i=0;(!m_bAnyTechCommerceModifier) && i<GC.getNumTechInfos();i++)
+	{
+		for(int j=0; j < NUM_COMMERCE_TYPES; j++ )
+		{
+			if( m_ppaiTechCommerceModifier[i][j] != 0 )
+			{
+				m_bAnyTechCommerceModifier = true;
+				break;
+			}
+		}
+	}
 	
 	// < Building Civic Prereqs Start >
 	SAFE_DELETE_ARRAY(m_pbPrereqCivics);
@@ -9729,6 +9797,7 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 	for(i=0;i<GC.getNumTechInfos();i++)
 	{
 		stream->Write(NUM_YIELD_TYPES, m_ppaiTechYieldModifier[i]);
+		stream->Write(NUM_COMMERCE_TYPES, m_ppaiTechCommerceModifier[i]);
 	}
 	
 	// < Building Civic Prereqs Start >
@@ -10476,6 +10545,61 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 					if( m_ppaiTechYieldModifier[ii][ij] != 0 )
 					{
 						m_bAnyTechYieldModifier = true;
+						break;
+					}
+				}
+			}
+
+			// set the current xml node to it's parent node
+			gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+		}
+
+		// set the current xml node to it's parent node
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+
+	m_bAnyTechCommerceModifier = false;
+	pXML->Init2DIntList(&m_ppaiTechCommerceModifier, GC.getNumTechInfos(), NUM_COMMERCE_TYPES);
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"TechnologyCommerceModifiers"))
+	{
+		iNumChildren = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+
+		if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"TechnologyCommerceModifier"))
+		{
+			for(j=0;j<iNumChildren;j++)
+			{
+				pXML->GetChildXmlValByName(szTextVal, "TechType");
+				k = pXML->FindInInfoClass(szTextVal);
+				if (k > -1)
+				{
+					// delete the array since it will be reallocated
+					SAFE_DELETE_ARRAY(m_ppaiTechCommerceModifier[k]);
+					if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"CommerceModifiers"))
+					{
+						// call the function that sets the yield change variable
+						pXML->SetYields(&m_ppaiTechCommerceModifier[k]);
+						gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+					}
+					else
+					{
+						pXML->InitList(&m_ppaiTechCommerceModifier[k], NUM_COMMERCE_TYPES);
+					}
+
+				}
+
+				if (!gDLL->getXMLIFace()->NextSibling(pXML->GetXML()))
+				{
+					break;
+				}
+			}
+
+			for(int ii=0;(!m_bAnyTechCommerceModifier) && ii<GC.getNumTechInfos(); ii++)
+			{
+				for(int ij=0; ij < NUM_COMMERCE_TYPES; ij++ )
+				{
+					if( m_ppaiTechCommerceModifier[ii][ij] != 0 )
+					{
+						m_bAnyTechCommerceModifier = true;
 						break;
 					}
 				}

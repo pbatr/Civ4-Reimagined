@@ -5534,6 +5534,25 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				iValue += iTempValue;
 			}
 		}
+
+		if (kBuildingInfo.isAnyTechCommerceModifier())
+		{
+			int iCount = getBuildingClassCountPlusMaking((BuildingClassTypes)kBuildingInfo.getBuildingClassType());
+			for (int iJ = 0; iJ < NUM_COMMERCE_TYPES; iJ++)
+			{
+				const int iTechCommerceModifier = kBuildingInfo.getTechCommerceModifier(eTech, (CommerceTypes)iJ);
+				if (iTechCommerceModifier == 0)
+					continue;
+
+				const int iAverageCommerce = getCommerceRate((CommerceTypes)iJ) / iCityCount;
+
+				int iTempValue = 4 * iAverageCommerce * iTechCommerceModifier * std::max(iCityCount/ 3, iCount);
+				iTempValue /= 100;
+				iTempValue *= AI_commerceWeight((CommerceTypes)iJ);
+				iTempValue /= 100;
+				iValue += iTempValue;
+			}
+		}
 	}
 
 	// K-Mod. Value pact trading based on how many civs are willing, and on how much we think we need it!
