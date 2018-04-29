@@ -1256,7 +1256,7 @@ class CvCustomizableDomesticAdvisor:
 		szReturn = u""
 
 		# Turns til Growth
- 		nFood = city.foodDifference (True)
+ 		nFood = city.foodDifference (True, False)
 
 		# If this is a food production (i.e., worker or settler)
 		if (self.isFoodProduction(city.getProductionName())):
@@ -1281,7 +1281,7 @@ class CvCustomizableDomesticAdvisor:
 		if (self.isFoodProduction(city.getProductionName())):
 			nFood = city.getCurrentProductionDifference (False, False) - city.getCurrentProductionDifference (True, False)
 		else:
-			nFood = city.foodDifference (True)
+			nFood = city.foodDifference (True, False)
 		return nFood
 
 	def calculateProduction (self, city, szKey, arg):

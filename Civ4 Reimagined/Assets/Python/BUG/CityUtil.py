@@ -22,7 +22,7 @@ def willGrowThisTurn(city):
 	
 	Emphasize No Growth must be off for the city, and its food rate plus storage must reach the growth threshold.
 	"""
-	return not city.AI_isEmphasize(5) and city.getFood() + city.foodDifference(True) >= city.growthThreshold()
+	return not city.AI_isEmphasize(5) and city.getFood() + city.foodDifference(True, False) >= city.growthThreshold()
 
 def willShrinkThisTurn(city):
 	"""
@@ -30,4 +30,4 @@ def willShrinkThisTurn(city):
 	
 	It must have at least two population, and its food rate plus storage must be negative.
 	"""
-	return city.getPopulation() > 1 and city.getFood() + city.foodDifference(True) < 0
+	return city.getPopulation() > 1 and city.getFood() + city.foodDifference(True, False) < 0
