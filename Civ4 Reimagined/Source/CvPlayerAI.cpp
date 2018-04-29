@@ -15013,8 +15013,21 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		{
 			const int iHappyLevel = pLoopCity->happyLevel() - pLoopCity->unhappyLevel(0);
 			const int iHealth = pLoopCity->goodHealth() - pLoopCity->badHealth(false, 0);
-			const int iBuildUnitProb = GC.getLeaderHeadInfo(getPersonalityType()).getBuildUnitProb() / (kCivic.isMeleeMilitaryFoodProduction() ? 2 : 1);
 			const int iFoodProd = pLoopCity->foodDifference(true, true) * (kCivic.isMeleeMilitaryFoodProduction() ? 2 : 1);
+
+			int iBuildUnitProb = GC.getLeaderHeadInfo(getPersonalityType()).getBuildUnitProb();
+
+			if (kCivic.isMeleeMilitaryFoodProduction())
+			{
+				if (getCurrentEra() <= 3) 
+				{
+					iBuildUnitProb /= std::max(1, (int)getCurrentEra());
+				}
+				else
+				{
+					iBuildUnitProb = 0;
+				}
+			}
 
 			iTempValue += iFoodProd * (bWarPlan ? 2 : 1) * iBuildUnitProb;
 			iTempValue -= std::max(0, std::min(iHappyLevel, std::min(iHealth/2, iFoodProd))) * 500;
