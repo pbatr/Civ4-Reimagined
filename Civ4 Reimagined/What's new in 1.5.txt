@@ -1,10 +1,11 @@
 *******************************************
-Civ4 Reimagined 1.4
+Civ4 Reimagined 1.5
 *******************************************
 *********
 New
 *********
 -New renaissance building: Sewer (+2[h], costs 200[p]). Available with Scientific Method. Replaces flat health bonus from Scientific Method.
+-New religious civic State Ideology: No state religion, unhappiness from religions, no religion spread, less war weariness and espionage bonus. Available with Communism.
 
 *********
 Changes
@@ -26,6 +27,7 @@ Tweaks
 -Public Welfare requires Mass Media
 -Standing Army upkeep cost decreased from medium to low
 -Conscription upkeep cost decreased from high to medium
+-Secularism no longer provides espionage bonus
 
 *********
 Interface
