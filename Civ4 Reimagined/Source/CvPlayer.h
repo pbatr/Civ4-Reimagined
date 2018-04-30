@@ -1357,6 +1357,8 @@ public:
 	bool isHasUniqueAztecPromotion() const; // Civ4 Reimagined
 	void setUniqueAztecPromotion(bool bNewValue); // Civ4 Reimagined
 	void doUniqueAztecPromotion(CvUnit* pUnit); // Civ4 Reimagined
+	void changeSlavePointsPerPopulationSacrificed(int iChange); // Civ4 Reimagined
+	void getSlavePointsPerPopulationSacrificed() const; // Civ4 Reimagined
 	
 	
 	// K-Mod note: Adding new virtual functions to this list seems to cause unpredictable behaviour during the initialization of the game.
