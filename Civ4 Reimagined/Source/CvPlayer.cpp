@@ -834,6 +834,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iSlavesCount = 0; // Civ4 Reimagined
 	m_iSlavePoints = 0; // Civ4 Reimagined
 	m_iSlaveThreshold = 0; // Civ4 Reimagined
+	m_iSlavePointsFromSacrificePopulation = 0; // Civ4 Reimagined
 	//m_iNumColonies = 0; // Civ4 Reimagined
 	m_iNoMilitaryProductionMaliCount = 0; // Civ4 Reimagined
 	m_iConscriptCount = 0;
@@ -19764,6 +19765,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iSlavesCount); // Civ4 Reimagined
 	pStream->Read(&m_iSlavePoints); // Civ4 Reimagined
 	pStream->Read(&m_iSlaveThreshold); // Civ4 Reimagined
+	pStream->Read(&m_iSlavePointsFromSacrificePopulation); // Civ4 Reimagined
 	//pStream->Read(&m_iNumColonies); // Civ4 Reimagined
 	pStream->Read(&m_iNoMilitaryProductionMaliCount); // Civ4 Reimagined
 	pStream->Read(&m_iConscriptCount);
@@ -20353,6 +20355,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iSlavesCount); // Civ4 Reimagined
 	pStream->Write(m_iSlavePoints); // Civ4 Reimagined
 	pStream->Write(m_iSlaveThreshold); // Civ4 Reimagined
+	pStream->Write(m_iSlavePointsFromSacrificePopulation); // Civ4 Reimagined
 	//pStream->Write(m_iNumColonies); // Civ4 Reimagined
 	pStream->Write(m_iNoMilitaryProductionMaliCount); // Civ4 Reimagined
 	pStream->Write(m_iConscriptCount);
@@ -26953,6 +26956,20 @@ void CvPlayer::doUniqueAztecPromotion(CvUnit* pUnit)
 }
 
 // Civ4 Reimagined
+void CvPlayer::changeSlavePointsPerPopulationSacrificed(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iSlavePointsFromSacrificePopulation += iChange; 
+	}
+}
+
+// Civ4 Reimagined
+void CvPlayer::getSlavePointsPerPopulationSacrificed() const
+{
+	return m_iSlavePointsFromSacrificePopulation;
+}
+// Civ4 Reimagined
 void CvPlayer::updateUniquePowers(TechTypes eTech)
 {
 	if (getID() == NO_PLAYER)
@@ -27038,6 +27055,31 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			notifyUniquePowersChanged(false);
 		}
 	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_EGYPT"))
+	{
+		if (eEra == 0)
+		{
+			changeSlavePointsPerPopulationSacrificed(3);
+			notifyUniquePowersChanged(true);
+		}
+		else if (eEra == 1)
+		{
+			changeSlavePointsPerPopulationSacrificed(-3);
+			notifyUniquePowersChanged(false);
+		}
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_INCA"))
+	{
+		if (eEra == 0) 
+		{
+			changeCanFarmHillsCount(1);
+			notifyUniquePowersChanged(true);
+		}
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA"))
+	{
+		// No effect, gain power elsewhere. But no compensation bonus either.
+	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME"))
 	{
 		if (eEra == 1) 
@@ -27059,18 +27101,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			notifyUniquePowersChanged(true);
 		}
 	}
-	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_INCA"))
-	{
-		if (eEra == 0) 
-		{
-			changeCanFarmHillsCount(1);
-			notifyUniquePowersChanged(true);
-		}
-	}
-	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA"))
-	{
-		// No effect, gain power elsewhere. But no compensation bonus either.
-	}
+
 	else
 	{
 		for (int iI = 0; iI < NUM_COMMERCE_TYPES; iI++)

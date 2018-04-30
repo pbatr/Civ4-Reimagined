@@ -3814,7 +3814,12 @@ void CvCity::hurry(HurryTypes eHurry)
 	changePopulation(-(iHurryPopulation));
 	
 	changeCultureTimes100(getOwnerINLINE(), iHurryPopulation * GET_PLAYER(getOwnerINLINE()).getCulturePerPopulationSacrified(), true, true); // Civ4 Reimagined
-
+	
+	if (GET_PLAYER(getOwnerINLINE()).getSlavePointsPerPopulationSacrificed() != 0)
+	{
+		GET_PLAYER(getOwnerINLINE()).changeSlavePoints(iHurryPopulation * GET_PLAYER(getOwnerINLINE()).getSlavePointsPerPopulationSacrificed()); // Civ4 Reimagined
+	}
+	
 	changeHurryAngerTimer(iHurryAngerLength);
 
 /************************************************************************************************/
