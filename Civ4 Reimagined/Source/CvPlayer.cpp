@@ -112,53 +112,6 @@ CvPlayer::CvPlayer()
 	m_ppaaiRadiusImprovementCommerceChange = NULL; // Civ4 Reimagined
 	m_ppaaiBuildingYieldChange = NULL; // Civ4 Reimagined
 
-	m_bDisableHuman = false; // bbai
-	m_iChoosingFreeTechCount = 0; // K-Mod
-	m_iDomesticTradeModifier = 0; // Civ4 Reimagined
-	m_iColonyTradeModifier = 0; // Civ4 Reimagined
-	m_iCapitalTradeModifier = 0; // Civ4 Reimagined
-	m_iUnitUpgradeCostModifier = 0; // Civ4 Reimagined
-	m_iForeignUnitSupply = 100; // Civ4 Reimagined
-	m_iPillageGainModifier = 0; // Civ4 Reimagined
-	m_iTechValue = 0; // Civ4 Reimagined
-	m_iBonusRatio = 100; // Civ4 Reimagined
-	m_iResearchPerCulture = 0; // Civ4 Reimagined
-	m_dAccumulatedCulture = 0; // Civ4 Reimagined
-	m_iUniquePowerLevel = 0; // Civ4 Reimagined
-	m_iFreePopulationInCapital = 0; // Civ4 Reimagined
-	m_iFreeCivicEnabled = NO_CIVIC; // Civ4 Reimagined
-	m_iEarlyScientistBonusCommerce = 0; // Civ4 Reimagined
-	m_iEarlyPriestExtraFood = 0; // Civ4 Reimagined
-	m_iUniquePowerWorldWonderCapitalModifier = 0; // Civ4 Reimagined
-	m_iProductionNearRiver = 0; // Civ4 Reimagined
-	m_iProductionPerPopulationModifier = 100; // Civ4 Reimagined
-	m_iHurryWithGreatPriestsRatio = 0; // Civ4 Reimagined
-	m_iCoastalTradeRouteModifier = 0; // Civ4 Reimagined
-	m_iUniquePowerGreatPeopleModifier = 0; // Civ4 Reimagined
-	m_bFullMilitaryHappinessValueWithPantheon = false; // Civ4 Reimagined
-	m_iUniqueUnitFreeExperience = 0; // Civ4 Reimagined
-	m_iReligionTechModifier = 0; // Civ4 Reimagined
-	m_iFreeUnitsOnConquest = 0; // Civ4 Reimagined
-	m_iMayaCalendar = -5000; // Civ4 Reimagined
-	m_iUniquePowerBuildingModifier = 0; // Civ4 Reimagined
-	m_iEarlyWorkerSpeedModifier = 0; // Civ4 Reimagined
-	m_iFatcrossPeakHappiness = 0; // Civ4 Reimagined
-	m_iFatcrossPeakCulture = 0; // Civ4 Reimagined
-	m_iNonStateReligionHappinessWithStateReligion = 0; // Civ4 Reimagined
-	m_bExploreRivalSea = false; // Civ4 Reimagined
-	m_bEnableFinancial = false; // Civ4 Reimagined
-	m_iHurryGoldCostModifier = 0; // Civ4 Reimagined
-	m_iCanFarmHillsCount = 0; // Civ4 Reimagined
-	m_bSpecialTradeRoutePerPlayer = false; // Civ4 Reimagined
-	m_bExtraAvailableBonuses = false; // Civ4 Reimagined
-	m_iCulturePerPopulationSacrified = 0; // Civ4 Reimagined
-	m_bUniqueAztecPromotion = false; // Civ4 Reimagined
-	m_bCanExploreSea = false; // Civ4 Reimagined
-	m_iNoForeignCultureUnhappinessCount = 0; // Civ4 Reimagined
-	m_iNoCityResistanceCount = 0; // Civ4 Reimagined
-	m_iProductionPerSurplusHappiness = 0; // Civ4 Reimagined
-	m_bUpdateBonusRatio = true; // Civ4 Reimagined
-
 	reset(NO_PLAYER, true);
 }
 
@@ -928,6 +881,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iCapitalTradeModifier = 0; // Civ4 Reimagined
 	m_iUnitUpgradeCostModifier = 0; // Civ4 Reimagined
 	m_iForeignUnitSupply = 100; // Civ4 Reimagined
+	m_iPillageGainModifier = 0; // Civ4 Reimagined
 	m_iTechValue = 0; // Civ4 Reimagined
 	m_iBonusRatio = 100; // Civ4 Reimagined
 	m_iResearchPerCulture = 0; // Civ4 Reimagined
