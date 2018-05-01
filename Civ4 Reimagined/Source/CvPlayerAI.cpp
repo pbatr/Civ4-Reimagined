@@ -6903,15 +6903,15 @@ int CvPlayerAI::uniquePowerAIEraValueMult(EraTypes eEra) const
 	int iEraValueMult = 100;
 	FAssert(eEra >= -1);
 	
-	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AZTEC") && eEra <= 1)
-	{
-		return 125;
-	}
-	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON") && eEra <= 1)
+	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON") && eEra <= 1)
 	{
 		return 125;
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CARTHAGE") && eEra == 1)
+	{
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_EGYPT") && eEra == 0)
 	{
 		return 150;
 	}
