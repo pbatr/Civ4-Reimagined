@@ -427,7 +427,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_SUMERIAN_ZIGGURAT_STRATEGY</Tag>
-		<English>The [COLOR_BUILDING_TEXT]Ziggurat[COLOR_REVERT] is available earlier.</English>
+		<English>The [COLOR_BUILDING_TEXT]Ziggurat[COLOR_REVERT] is available earlier and grants one additional food. But beware, as is the case with all classical temples, you can only use them without state religion!</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_HOLY_ROMAN_RATHAUS_STRATEGY</Tag>
