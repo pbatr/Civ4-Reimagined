@@ -796,7 +796,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iMaxConscript = 0;
 	m_iHighestUnitLevel = 1;
 	m_iHighestNavalUnitLevel = 1; // Civ4 Reimagined
-	m_iLootingModifier = 100; // Civ4 Reimagined
+	m_iLootingModifier = 0; // Civ4 Reimagined
 	m_iBarbarianGreatGeneralCount = 0; // Civ4 Reimagined
 	m_iUnlimitedBarbXPCount = 0; // Civ4 Reimagined
 	m_iNoWarAgainstSameFaithUnhappinessCount = 0; // Civ4 Reimagined
