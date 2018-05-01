@@ -15,7 +15,7 @@ Changes
 -Ziggurat replaces Classical Temple, provides 1 additional food and is available with Mysticism
 -Cavalry upgrades to Motorized Infantry
 -Barbarians cannot spawn on tiles without food
--New effect for Levy Armies: Melee Units produced with food (2:1 ratio)
+-New effect for Levy Armies: Melee Units produced with food (2:1 ratio), but free units reduced
 -Scientific Method enables +15% research from Universities
 
 *********
