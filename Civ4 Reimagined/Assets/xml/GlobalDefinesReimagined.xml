@@ -11,7 +11,7 @@
 	</Define>
 	<Define>
 		<DefineName>ANIMAL_MAX_XP_VALUE</DefineName>
-		<iDefineIntVal>0</iDefineIntVal> <!-- original value: 5 -->
+		<iDefineIntVal>5</iDefineIntVal> <!-- original value: 5 -->
 	</Define>
 	<Define>
 		<DefineName>MAX_FORTIFY_TURNS</DefineName>
