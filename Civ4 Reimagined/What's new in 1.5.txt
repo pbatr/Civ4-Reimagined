@@ -29,6 +29,7 @@ Tweaks
 -Standing Army upkeep cost decreased from medium to low
 -Conscription upkeep cost decreased from high to medium
 -Secularism no longer provides espionage bonus
+-The Great Harbor grants an additional +1 Commerce per water tile.
 
 *********
 Interface

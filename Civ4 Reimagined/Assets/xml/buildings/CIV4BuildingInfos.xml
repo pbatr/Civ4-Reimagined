@@ -28767,6 +28767,7 @@
 			<SeaPlotYieldChanges>
 				<iYield>0</iYield>
 				<iYield>1</iYield>
+				<iYield>1</iYield>
 			</SeaPlotYieldChanges>
 			<RiverPlotYieldChanges/>
 			<GlobalSeaPlotYieldChanges/>
