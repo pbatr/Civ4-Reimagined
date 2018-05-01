@@ -26942,7 +26942,7 @@ void CvPlayer::doUniqueAztecPromotion(CvUnit* pUnit)
 		return;
 	}
 	
-	if (GC.getGameINLINE().getSorenRandNum(10, "Aztec unique promotion") < pUnit->getLevel())
+	if (GC.getGameINLINE().getSorenRandNum(100, "Aztec unique promotion") < 20 * pUnit->getLevel()) // x% chance per level o gain a promotion
 	{		
 		if (GC.getGameINLINE().getSorenRandNum(2, "Aztec unique promotion - choose promotion") == 0)
 		{
@@ -26994,12 +26994,12 @@ void CvPlayer::notifyUniquePowersChanged(bool bGained) const
 		if (bGained)
 		{
 			CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_UNIQUE_POWER");
-			gDLL->getInterfaceIFace()->addHumanMessage(getID(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_GOLDAGESTART", MESSAGE_TYPE_MAJOR_EVENT);
+			gDLL->getInterfaceIFace()->addHumanMessage(getID(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_GOLDAGESTART", MESSAGE_TYPE_MAJOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"));
 		}
 		else
 		{
 			CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_UNIQUE_POWER_LOST");
-			gDLL->getInterfaceIFace()->addHumanMessage(getID(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_GOLDAGEEND", MESSAGE_TYPE_MAJOR_EVENT);
+			gDLL->getInterfaceIFace()->addHumanMessage(getID(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_GOLDAGEEND", MESSAGE_TYPE_MAJOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_RED"));
 		}
 
 	}
@@ -27020,11 +27020,6 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		{
 			setUniqueAztecPromotion(true);
 			notifyUniquePowersChanged(true);
-		}
-		else if (eEra == 2)
-		{
-			setUniqueAztecPromotion(false);
-			notifyUniquePowersChanged(false);
 		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON"))
