@@ -30,6 +30,7 @@ Tweaks
 -Conscription upkeep cost decreased from high to medium
 -Secularism no longer provides espionage bonus
 -The Great Harbor grants an additional +1 Commerce per water tile.
+-Ancient wonder grant less great person points, later wonders grant more.
 
 *********
 Interface
