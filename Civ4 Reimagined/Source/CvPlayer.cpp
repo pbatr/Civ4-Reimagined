@@ -9387,7 +9387,10 @@ void CvPlayer::foundCorporation(CorporationTypes eCorporation)
 	}
 }
 
-
+/*
+ *	How many civics can be changed for 1 turn of anarchy is currently defined with gamestartera in EraInfos.xml 
+ *	-> Anarchy Turns = (iAnarchyPercent * CivicsChanged) / 100, rounded down (but min 1 unless player switches for free)
+ */
 int CvPlayer::getCivicAnarchyLength(CivicTypes* paeNewCivics) const
 {
 	bool bChange;

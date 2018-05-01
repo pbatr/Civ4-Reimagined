@@ -21,6 +21,7 @@ Changes
 *********
 Tweaks
 *********
+-Can change only two civics instead of three for one turn of anarchy (with ancient starting era)
 -Babylonian Bowman gain 2 potential first strike chances.
 -Organized Religion requires Polytheism
 -Theocracy requires Monotheism
