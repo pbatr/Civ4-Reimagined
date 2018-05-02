@@ -2563,12 +2563,7 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 	// Civ4 Reimagined: Slaves on city conquest / raze
 	if (bConquest && !bOldEverOwned && hasSlavery())
 	{
-		changeSlavePoints(iPopulation);
-		
-		if (getSlavePoints() >= getNewSlaveThreshold())
-		{
-			initSlave(pOldCity, true);
-		}
+		changeSlavePoints(iPopulation, pOldCity);
 	}
 	
 	pOldCity->kill(false);
@@ -6793,7 +6788,7 @@ void CvPlayer::found(int iX, int iY)
 	{
 		if (hasSlavery() && GET_TEAM(getTeam()).isTerrainTrade((TerrainTypes)GC.getInfoTypeForString("TERRAIN_OCEAN")))
 		{
-			initSlave(pCity, false);
+			initSlave(pCity);
 		}
 	}
 
@@ -10839,18 +10834,32 @@ int CvPlayer::getSlavePoints() const
 
 
 // Civ4 Reimagined
-void CvPlayer::changeSlavePoints(int iChange)											
+void CvPlayer::changeSlavePoints(int iChange, CvCity* pCity)											
 {
+	FAssert(pCity != NULL);
 	if (iChange != 0)
 	{
 		m_iSlavePoints = (m_iSlavePoints + iChange);
 		FAssert(m_iSlavePoints >= 0);
+
+		if (getSlavePoints() >= getSlaveThreshold())
+		{
+			initSlave(pCity);
+
+			const int iCurrentSlaveThreshold = getSlaveThreshold();
+			int iNewThreshold = iCurrentSlaveThreshold * (100 + GC.getDefineINT("SLAVE_THRESHOLD_INCREASE_PERCENT"));
+			iNewThreshold /= 100;
+			setSlaveThreshold(iNewThreshold);
+
+			changeSlavePoints(-iCurrentSlaveThreshold, pCity);
+			FAssert(m_iSlavePoints >= 0);
+		}
 	}
 }
 
 
 // Civ4 Reimagined
-int CvPlayer::getNewSlaveThreshold() const
+int CvPlayer::getSlaveThreshold() const
 {
 	return m_iSlaveThreshold;
 }
@@ -10864,7 +10873,7 @@ void CvPlayer::setSlaveThreshold(int iValue)
 
 
 // Civ4 Reimagined
-void CvPlayer::initSlave(CvCity* pCity, bool bIncreaseThreshold)
+void CvPlayer::initSlave(CvCity* pCity)
 {
 	const UnitClassTypes UNITCLASS_SLAVE = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SLAVE");
 	const UnitTypes UNIT_SLAVE = (UnitTypes)GC.getUnitClassInfo(UNITCLASS_SLAVE).getDefaultUnitIndex();
@@ -10872,15 +10881,6 @@ void CvPlayer::initSlave(CvCity* pCity, bool bIncreaseThreshold)
 	initUnit(UNIT_SLAVE, pCity->getX_INLINE(), pCity->getY_INLINE(), UNITAI_WORKER);
 	gDLL->getInterfaceIFace()->addHumanMessage(getID(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MISC_SLAVE_STARTED_WORKING", pCity->getNameKey()).GetCString(), "AS2D_UNIT_BUILD_UNIT", MESSAGE_TYPE_MINOR_EVENT);
 	if (gPlayerLogLevel > 0) logBBAI("Slave starts working in %S", pCity->getName(0).GetCString());
-	
-	if (bIncreaseThreshold)
-	{
-		int iNewSlaveThreshold = getNewSlaveThreshold();
-		changeSlavePoints(-1 * iNewSlaveThreshold);
-		iNewSlaveThreshold *= 100 + GC.getDefineINT("SLAVE_THRESHOLD_INCREASE_PERCENT");
-		iNewSlaveThreshold /= 100;
-		setSlaveThreshold(iNewSlaveThreshold);
-	}	
 }
 
 
