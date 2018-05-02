@@ -32,7 +32,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_UNIQUE_POWER</Tag>
-		<English>Your unique powers improved to level %d1!</English>
+		<English>You now have access to your unique power!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_UNIQUE_POWER_LOST</Tag>
+		<English>You lost access to your unique power!</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TRAIT_COMMERCE_CHANGES_UNIQUE_POWERS</Tag>
