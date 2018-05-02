@@ -26965,10 +26965,11 @@ void CvPlayer::changeSlavePointsPerPopulationSacrificed(int iChange)
 }
 
 // Civ4 Reimagined
-void CvPlayer::getSlavePointsPerPopulationSacrificed() const
+int CvPlayer::getSlavePointsPerPopulationSacrificed() const
 {
 	return m_iSlavePointsFromSacrificePopulation;
 }
+
 // Civ4 Reimagined
 void CvPlayer::updateUniquePowers(TechTypes eTech)
 {

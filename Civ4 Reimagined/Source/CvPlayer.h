@@ -1358,7 +1358,7 @@ public:
 	void setUniqueAztecPromotion(bool bNewValue); // Civ4 Reimagined
 	void doUniqueAztecPromotion(CvUnit* pUnit); // Civ4 Reimagined
 	void changeSlavePointsPerPopulationSacrificed(int iChange); // Civ4 Reimagined
-	void getSlavePointsPerPopulationSacrificed() const; // Civ4 Reimagined
+	int getSlavePointsPerPopulationSacrificed() const; // Civ4 Reimagined
 	
 	
 	// K-Mod note: Adding new virtual functions to this list seems to cause unpredictable behaviour during the initialization of the game.
@@ -1599,6 +1599,7 @@ protected:
 	bool m_bUniqueAztecPromotion; // Civ4 Reimagined
 	bool m_bUpdateBonusRatio; // Civ4 Reimagined
 	//int m_iNumColonies; // Civ4 Reimagined
+	int m_iSlavePointsFromSacrificePopulation; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
 
