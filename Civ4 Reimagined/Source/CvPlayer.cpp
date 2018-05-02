@@ -20515,7 +20515,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(NUM_DOMAIN_TYPES, m_aiMilitaryPower); // Civ4 Reimagined
 	pStream->Write(NUM_DOMAIN_TYPES, m_aiBestUnitPower); // Civ4 Reimagined
 	pStream->Write(GC.getNumBonusInfos(), m_paiPlayerExtraAvailableBonuses); // Civ4 Reimagined
-	pStream->Write(GC.getNumCivicInfos(), m_paiCivicEffects); // Civ4 Reimagined
+	pStream->Write(GC.getNumCivicInfos(), m_paiCivicEffect); // Civ4 Reimagined
 	
 	FAssertMsg((0 < GC.getNumTechInfos()), "GC.getNumTechInfos() is not greater than zero but it is expected to be in CvPlayer::write");
 	pStream->Write(GC.getNumTechInfos(), m_pabResearchingTech);
@@ -26962,7 +26962,7 @@ void CvPlayer::updateEffectFromStayingAtCivic()
 		if (eCivic != NULL)
 		{
 			// Exclude starting civics
-			const CivicTypes startingGovernmentCivic = GC.getCivilizationInfo(getCivilizationType()).getCivilizationInitialCivics(governmentCivicOption);
+			const CivicTypes startingGovernmentCivic = (CivicTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationInitialCivics(governmentCivicOption);
 			if ( eCivic != startingGovernmentCivic)
 			{
 				changeTurnsToEffectFromStayingAtCivic(eCivic, -1);
@@ -27092,8 +27092,8 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			setHasCivicEffect(true); // Activate before calling changeTurnsToEffectFromStayingAtCivic
 
 			const CivicOptionTypes governmentCivicOption = (CivicOptionTypes)GC.getInfoTypeForString("CIVICOPTION_GOVERNMENT");
-			const CivicTypes startingGovernmentCivic = GC.getCivilizationInfo(getCivilizationType()).getCivilizationInitialCivics(governmentCivicOption);
-			for (iI = 0; iI < GC.getNumCivicInfos(); iI++)
+			const CivicTypes startingGovernmentCivic = (CivicTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationInitialCivics(governmentCivicOption);
+			for (int iI = 0; iI < GC.getNumCivicInfos(); iI++)
 			{
 				// Exclude non-government civics
 				if (GC.getCivicInfo((CivicTypes)iI).getCivicOptionType() == governmentCivicOption)
