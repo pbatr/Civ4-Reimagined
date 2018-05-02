@@ -1359,6 +1359,10 @@ public:
 	void doUniqueAztecPromotion(CvUnit* pUnit); // Civ4 Reimagined
 	void changeSlavePointsPerPopulationSacrificed(int iChange); // Civ4 Reimagined
 	void getSlavePointsPerPopulationSacrificed() const; // Civ4 Reimagined
+	void setHasCivicEffect(bool bEnabled); // Civ4 Reimagined
+	bool isHasCivicEffect() const; // Civ4 Reimagined
+	void changeTurnsToEffectFromStayingAtCivic(CivicTypes eCivic, int iChange); // Civ4 Reimagined
+	void updateEffectFromStayingAtCivic(); // Civ4 Reimagined
 	
 	
 	// K-Mod note: Adding new virtual functions to this list seems to cause unpredictable behaviour during the initialization of the game.
@@ -1599,6 +1603,8 @@ protected:
 	bool m_bUniqueAztecPromotion; // Civ4 Reimagined
 	bool m_bUpdateBonusRatio; // Civ4 Reimagined
 	//int m_iNumColonies; // Civ4 Reimagined
+	int m_iSlavePointsFromSacrificePopulation; // Civ4 Reimagined
+	bool m_bCivicEffect; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
 
@@ -1651,6 +1657,7 @@ protected:
 	int* m_aiMilitaryPower; // Civ4 Reimagined
 	int* m_aiBestUnitPower; // Civ4 Reimagined
 	int* m_paiPlayerExtraAvailableBonuses; // Civ4 Reimagined
+	int* m_paiCivicEffect; // Civ4 Reimagined
 	
 	//Leoreth
 	int* m_aiDomainProductionModifiers;
