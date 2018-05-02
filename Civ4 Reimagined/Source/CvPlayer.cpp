@@ -100,11 +100,13 @@ CvPlayer::CvPlayer()
 	m_paiCapitalCommercePopulationThreshold = NULL; // Civ4 Reimagined
 	m_paiCapitalCommerceModifier = NULL; // Civ4 Reimagined
 	m_paiPlayerExtraAvailableBonuses = NULL; // Civ4 Reimagined
+	m_paiCivicEffect = NULL; // Civ4 Reimagined
 
 	m_pabResearchingTech = NULL;
 	m_pabLoyalMember = NULL;
 
 	m_paeCivics = NULL;
+	
 
 	m_ppaaiSpecialistExtraYield = NULL;
 	m_ppaaiSpecialistThresholdExtraYield = NULL; //Leoreth
@@ -155,6 +157,7 @@ CvPlayer::CvPlayer()
 	m_iNoCityResistanceCount = 0; // Civ4 Reimagined
 	m_iProductionPerSurplusHappiness = 0; // Civ4 Reimagined
 	m_bUpdateBonusRatio = true; // Civ4 Reimagined
+	m_bCivicEffect = false; // Civ4 Reimagined
 
 	reset(NO_PLAYER, true);
 }
@@ -685,12 +688,14 @@ void CvPlayer::uninit()
 	SAFE_DELETE_ARRAY(m_paiCapitalCommercePopulationThreshold); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiCapitalCommerceModifier); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiPlayerExtraAvailableBonuses); // Civ4 Reimagined
-	
+	SAFE_DELETE_ARRAY(m_paiCivicEffect); // Civ4 Reimagined
 
 	SAFE_DELETE_ARRAY(m_pabResearchingTech);
 	SAFE_DELETE_ARRAY(m_pabLoyalMember);
 
 	SAFE_DELETE_ARRAY(m_paeCivics);
+	
+
 
 	m_triggersFired.clear();
 
@@ -961,6 +966,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iNoCityResistanceCount = 0; // Civ4 Reimagined
 	m_iProductionPerSurplusHappiness = 0; // Civ4 Reimagined
 	m_bUpdateBonusRatio = true; // Civ4 Reimagined
+	m_bCivicEffect = false; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -1159,6 +1165,14 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 			m_paeCivics[iI] = NO_CIVIC;
 		}
 
+		// Civ4 Reimagined
+		FAssertMsg(m_paiCivicEffect==NULL, "about to leak memory, CvPlayer::m_paiCivicEffect");
+		m_paiCivicEffect = new int[GC.getNumCivicInfos()];
+		for (iI = 0; iI < GC.getNumCivicInfos(); iI++)
+		{
+			m_paiCivicEffect[iI] = 0;
+		}
+		
 		FAssertMsg(m_paiHasReligionCount==NULL, "about to leak memory, CvPlayer::m_paiHasReligionCount");
 		m_paiHasReligionCount = new int[GC.getNumReligionInfos()];
 		for (iI = 0;iI < GC.getNumReligionInfos();iI++)
@@ -3861,6 +3875,8 @@ void CvPlayer::doTurn()
 	expireMessages();  // turn log
 	
 	checkMayaCalendar(); // Civ4 Reimagined
+	
+	updateEffectFromStayingAtCivic(); // Civ4 Reimagined
 	
 	gDLL->getInterfaceIFace()->setDirty(CityInfo_DIRTY_BIT, true);
 
@@ -8895,19 +8911,11 @@ bool CvPlayer::canDoCivics(CivicTypes eCivic) const
 {
 	PROFILE_FUNC();
 
-/************************************************************************************************/
-/* UNOFFICIAL_PATCH                       02/16/10                                jdog5000      */
-/*                                                                                              */
-/* Bugfix                                                                                       */
-/************************************************************************************************/
 	// Circumvents second crash bug in simultaneous turns MP games
 	if( eCivic == NO_CIVIC )
 	{
 		return true;
 	}
-/************************************************************************************************/
-/* UNOFFICIAL_PATCH                        END                                                  */
-/************************************************************************************************/	
 
 	if (GC.getGameINLINE().isForceCivicOption((CivicOptionTypes)(GC.getCivicInfo(eCivic).getCivicOptionType())))
 	{
@@ -19876,6 +19884,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iNoCityResistanceCount); // Civ4 Reimagined
 	pStream->Read(&m_iProductionPerSurplusHappiness); // Civ4 Reimagined
 	pStream->Read(&m_bUpdateBonusRatio); // Civ4 Reimagined
+	pStream->Read(&m_bCivicEffect); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -19966,8 +19975,8 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(NUM_DOMAIN_TYPES, m_aiMilitaryPower); // Civ4 Reimagined
 	pStream->Read(NUM_DOMAIN_TYPES, m_aiBestUnitPower); // Civ4 Reimagined
 	pStream->Read(GC.getNumBonusInfos(), m_paiPlayerExtraAvailableBonuses); // Civ4 Reimagined
-
 	//pStream->Read(GC.getNumUnitClassInfos(), m_aiUnitProductionModifier); // Civ4 Reimagined
+	pStream->Read(GC.getNumCivicInfos(), m_paiCivicEffect); // Civ4 Reimagined
 
 	FAssertMsg((0 < GC.getNumTechInfos()), "GC.getNumTechInfos() is not greater than zero but it is expected to be in CvPlayer::read");
 	pStream->Read(GC.getNumTechInfos(), m_pabResearchingTech);
@@ -20466,6 +20475,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iNoCityResistanceCount); // Civ4 Reimagined
 	pStream->Write(m_iProductionPerSurplusHappiness); // Civ4 Reimagined
 	pStream->Write(m_bUpdateBonusRatio); // Civ4 Reimagined
+	pStream->Write(m_bCivicEffect); // Civ4 Reimagined
 	
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -20546,6 +20556,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(NUM_DOMAIN_TYPES, m_aiMilitaryPower); // Civ4 Reimagined
 	pStream->Write(NUM_DOMAIN_TYPES, m_aiBestUnitPower); // Civ4 Reimagined
 	pStream->Write(GC.getNumBonusInfos(), m_paiPlayerExtraAvailableBonuses); // Civ4 Reimagined
+	pStream->Write(GC.getNumCivicInfos(), m_paiCivicEffects); // Civ4 Reimagined
 	
 	FAssertMsg((0 < GC.getNumTechInfos()), "GC.getNumTechInfos() is not greater than zero but it is expected to be in CvPlayer::write");
 	pStream->Write(GC.getNumTechInfos(), m_pabResearchingTech);
@@ -26604,9 +26615,7 @@ void CvPlayer::checkMayaCalendar()
 			
 			int iRand = GC.getGameINLINE().getSorenRandNum(7, "Maya Calendar SpecialistTypes"); // Range: 0,6
 			CvCity* pCapitalCity = getCapitalCity();
-			
-			bool bGreatGeneral = false;
-			
+						
 			switch (iRand)
 			{
 			case 0:
@@ -26626,7 +26635,6 @@ void CvPlayer::checkMayaCalendar()
 				break;
 			case 5:
 				eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_GREAT_GENERAL");
-				bGreatGeneral = true;
 				break;
 			case 6:
 				eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_GREAT_SPY");
@@ -26636,9 +26644,9 @@ void CvPlayer::checkMayaCalendar()
 				break;
 			}		
 			
-			if (eUnit != NO_UNIT)
+			if (eUnit != NO_UNIT && pCapitalCity != NULL)
 			{
-				pCapitalCity->createGreatPeople(eUnit, !bGreatGeneral, bGreatGeneral);
+				pCapitalCity->createGreatPeople(eUnit, false, false);
 			}
 
 		}
@@ -26969,6 +26977,61 @@ void CvPlayer::getSlavePointsPerPopulationSacrificed() const
 {
 	return m_iSlavePointsFromSacrificePopulation;
 }
+
+//Civ4 Reimagined
+bool CvPlayer::isHasCivicEffect() const
+{
+	return m_bCivicEffect;
+}
+
+//Civ4Reimagined
+void CvPlayer::setHasCivicEffect(bool bEnabled)
+{
+	m_bCivicEffect = bEnabled;
+}
+
+//Civ4Reimagined
+void CvPlayer::updateEffectFromStayingAtCivic()
+{
+	const CivicOptionTypes governmentCivicOption = (CivicOptionTypes)GC.getInfoTypeForString("CIVICOPTION_GOVERNMENT");
+	// Do we even have this unique power?
+	if (isHasCivicEffect())
+	{
+		// Get our current government civic
+		CivicTypes eCivic = getCivics(governmentCivicOption);
+		
+		if (eCivic != NULL)
+		{
+			// Exclude starting civics
+			const CivicTypes startingGovernmentCivic = GC.getCivilizationInfo(getCivilizationType()).getCivilizationInitialCivics(governmentCivicOption);
+			if ( eCivic != startingGovernmentCivic)
+			{
+				changeTurnsToEffectFromStayingAtCivic(eCivic, -1);
+			}
+		}
+	}	
+}
+
+//Civ4 Reimagined
+void CvPlayer::changeTurnsToEffectFromStayingAtCivic(CivicTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumCivicInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");	
+	
+	m_paiCivicEffect[eIndex] = (m_paiCivicEffect[eIndex] + iChange);
+	
+	// Trigger effect when the player stayed on that civic for the specified number of turns
+	if(iChange < 0 && m_paiCivicEffect[eIndex] == 0)
+	{
+		UnitTypes eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_SCIENTIST");
+		CvCity* pCapitalCity = getCapitalCity();
+		if (eUnit != NO_UNIT && pCapitalCity != NULL)
+		{
+			pCapitalCity->createGreatPeople(eUnit, false, false);
+		}
+	}
+}
+
 // Civ4 Reimagined
 void CvPlayer::updateUniquePowers(TechTypes eTech)
 {
@@ -26986,7 +27049,7 @@ void CvPlayer::updateUniquePowers(TechTypes eTech)
 	}
 }
 
-
+//Civ4 Reimagined
 void CvPlayer::notifyUniquePowersChanged(bool bGained) const
 {
 	if (isHuman())
@@ -27063,6 +27126,32 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			notifyUniquePowersChanged(false);
 		}
 	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_GREECE"))
+	{
+		if (eEra == 0)
+		{
+			setHasCivicEffect(true); // Activate before calling changeTurnsToEffectFromStayingAtCivic
+
+			const CivicOptionTypes governmentCivicOption = (CivicOptionTypes)GC.getInfoTypeForString("CIVICOPTION_GOVERNMENT");
+			const CivicTypes startingGovernmentCivic = GC.getCivilizationInfo(getCivilizationType()).getCivilizationInitialCivics(governmentCivicOption);
+			for (iI = 0; iI < GC.getNumCivicInfos(); iI++)
+			{
+				// Exclude non-government civics
+				if (GC.getCivicInfo((CivicTypes)iI).getCivicOptionType() == governmentCivicOption)
+				{
+					// Exclude starting civics
+					if (((CivicTypes)iI) != startingGovernmentCivic)
+					{
+						m_paiCivicEffect[iI] = 30;
+					}
+				}
+			}
+		}
+		else if (eEra == 2)
+		{
+			setHasCivicEffect(false);
+		}
+	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_INCA"))
 	{
 		if (eEra == 0) 
@@ -27104,24 +27193,6 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			changeUniquePowerCommerceModifier(((CommerceTypes)iI), 2);
 		}
 	}
-
-		
-	/*	
-		TO-Do:
-			Egypt
-			Greece
-			
-		// Sumeria:
-		else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SUMERIA")) 
-		{
-			if (getCurrentEra() < 2)
-			{
-				// Remember to update checkObsoleteUniquePowers when making changes to this
-				changeEarlyPriestExtraFood(1);
-			}
-		}
-
-	*/
 }
 
 /************************************************************************************************/

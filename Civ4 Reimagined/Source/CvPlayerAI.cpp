@@ -6915,6 +6915,10 @@ int CvPlayerAI::uniquePowerAIEraValueMult(EraTypes eEra) const
 	{
 		return 150;
 	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_GREECE") && eEra <= 1)
+	{
+		return 150;
+	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME") && eEra == 1)
 	{
 		return 150;
