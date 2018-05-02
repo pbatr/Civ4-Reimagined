@@ -5764,18 +5764,20 @@ void CvTeam::setHasTech(TechTypes eIndex, bool bNewValue, PlayerTypes ePlayer, b
 						}
 					}
 
+					bool bAnnounceTech = false;
+
 					// Civ4 Reimagined
 					if ((UnitClassTypes)GC.getTechInfo(eIndex).getFirstFreeUnitClass() != NO_UNITCLASS)
 					{
-						announceFirstDiscoveredTech(eIndex, ePlayer);
+						bAnnounceTech = true;
 					}
 					
 					// Civ4 Reimagined
 					if (GC.getTechInfo(eIndex).isEnableIdeologies())
 					{						
 						GC.getGameINLINE().enableIdeologies(true);
-						
-						announceFirstDiscoveredTech(eIndex, ePlayer);
+
+						bAnnounceTech = true;
 					}
 
 					if (GC.getTechInfo(eIndex).getFirstFreeTechs() > 0)
@@ -5795,10 +5797,14 @@ void CvTeam::setHasTech(TechTypes eIndex, bool bNewValue, PlayerTypes ePlayer, b
 							GET_PLAYER(ePlayer).chooseTech(GC.getTechInfo(eIndex).getFirstFreeTechs(), szBuffer.GetCString());
 						}
 
-						announceFirstDiscoveredTech(eIndex, ePlayer);
+						bAnnounceTech = true;
 
 						szBuffer = gDLL->getText("TXT_KEY_MISC_SOMEONE_FIRST_TO_TECH", GET_PLAYER(ePlayer).getReplayName(), GC.getTechInfo(eIndex).getTextKeyWide());
-						GC.getGameINLINE().addReplayMessage(REPLAY_MESSAGE_MAJOR_EVENT, ePlayer, szBuffer, -1, -1, (ColorTypes)GC.getInfoTypeForString("COLOR_HIGHLIGHT_TEXT"));
+					}
+
+					if (bAnnounceTech)
+					{
+						announceFirstDiscoveredTech(eIndex, ePlayer);
 					}
 
 					if (bFirstBonus)
@@ -7169,6 +7175,7 @@ void CvTeam::announceFirstDiscoveredTech(TechTypes eTech, PlayerTypes ePlayer) c
 				szBuffer = gDLL->getText("TXT_KEY_MISC_UNKNOWN_FIRST_TO_TECH", GC.getTechInfo(eTech).getTextKeyWide());
 			}
 			gDLL->getInterfaceIFace()->addHumanMessage(((PlayerTypes)iI), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_FIRSTTOTECH", MESSAGE_TYPE_MAJOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_HIGHLIGHT_TEXT"));
+			GC.getGameINLINE().addReplayMessage(REPLAY_MESSAGE_MAJOR_EVENT, ePlayer, szBuffer, -1, -1, (ColorTypes)GC.getInfoTypeForString("COLOR_HIGHLIGHT_TEXT"));
 		}
 	}
 }
