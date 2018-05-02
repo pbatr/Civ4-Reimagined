@@ -114,51 +114,6 @@ CvPlayer::CvPlayer()
 	m_ppaaiRadiusImprovementCommerceChange = NULL; // Civ4 Reimagined
 	m_ppaaiBuildingYieldChange = NULL; // Civ4 Reimagined
 
-	m_bDisableHuman = false; // bbai
-	m_iChoosingFreeTechCount = 0; // K-Mod
-	m_iDomesticTradeModifier = 0; // Civ4 Reimagined
-	m_iColonyTradeModifier = 0; // Civ4 Reimagined
-	m_iCapitalTradeModifier = 0; // Civ4 Reimagined
-	m_iUnitUpgradeCostModifier = 0; // Civ4 Reimagined
-	m_iForeignUnitSupply = 100; // Civ4 Reimagined
-	m_iPillageGainModifier = 0; // Civ4 Reimagined
-	m_iTechValue = 0; // Civ4 Reimagined
-	m_iBonusRatio = 100; // Civ4 Reimagined
-	m_iResearchPerCulture = 0; // Civ4 Reimagined
-	m_iFreePopulationInCapital = 0; // Civ4 Reimagined
-	m_iFreeCivicEnabled = NO_CIVIC; // Civ4 Reimagined
-	m_iEarlyScientistBonusCommerce = 0; // Civ4 Reimagined
-	m_iEarlyPriestExtraFood = 0; // Civ4 Reimagined
-	m_iUniquePowerWorldWonderCapitalModifier = 0; // Civ4 Reimagined
-	m_iProductionNearRiver = 0; // Civ4 Reimagined
-	m_iProductionPerPopulationModifier = 100; // Civ4 Reimagined
-	m_iHurryWithGreatPriestsRatio = 0; // Civ4 Reimagined
-	m_iCoastalTradeRouteModifier = 0; // Civ4 Reimagined
-	m_iUniquePowerGreatPeopleModifier = 0; // Civ4 Reimagined
-	m_iUniqueUnitFreeExperience = 0; // Civ4 Reimagined
-	m_iReligionTechModifier = 0; // Civ4 Reimagined
-	m_iFreeUnitsOnConquest = 0; // Civ4 Reimagined
-	m_iMayaCalendar = -5000; // Civ4 Reimagined
-	m_iUniquePowerBuildingModifier = 0; // Civ4 Reimagined
-	m_iEarlyWorkerSpeedModifier = 0; // Civ4 Reimagined
-	m_iFatcrossPeakHappiness = 0; // Civ4 Reimagined
-	m_iFatcrossPeakCulture = 0; // Civ4 Reimagined
-	m_iNonStateReligionHappinessWithStateReligion = 0; // Civ4 Reimagined
-	m_bExploreRivalSea = false; // Civ4 Reimagined
-	m_bEnableFinancial = false; // Civ4 Reimagined
-	m_iHurryGoldCostModifier = 0; // Civ4 Reimagined
-	m_iCanFarmHillsCount = 0; // Civ4 Reimagined
-	m_bSpecialTradeRoutePerPlayer = false; // Civ4 Reimagined
-	m_bExtraAvailableBonuses = false; // Civ4 Reimagined
-	m_iCulturePerPopulationSacrified = 0; // Civ4 Reimagined
-	m_bUniqueAztecPromotion = false; // Civ4 Reimagined
-	m_bCanExploreSea = false; // Civ4 Reimagined
-	m_iNoForeignCultureUnhappinessCount = 0; // Civ4 Reimagined
-	m_iNoCityResistanceCount = 0; // Civ4 Reimagined
-	m_iProductionPerSurplusHappiness = 0; // Civ4 Reimagined
-	m_bUpdateBonusRatio = true; // Civ4 Reimagined
-	m_bCivicEffect = false; // Civ4 Reimagined
-
 	reset(NO_PLAYER, true);
 }
 
@@ -846,7 +801,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iMaxConscript = 0;
 	m_iHighestUnitLevel = 1;
 	m_iHighestNavalUnitLevel = 1; // Civ4 Reimagined
-	m_iLootingModifier = 100; // Civ4 Reimagined
+	m_iLootingModifier = 0; // Civ4 Reimagined
 	m_iBarbarianGreatGeneralCount = 0; // Civ4 Reimagined
 	m_iUnlimitedBarbXPCount = 0; // Civ4 Reimagined
 	m_iNoWarAgainstSameFaithUnhappinessCount = 0; // Civ4 Reimagined
@@ -931,6 +886,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iCapitalTradeModifier = 0; // Civ4 Reimagined
 	m_iUnitUpgradeCostModifier = 0; // Civ4 Reimagined
 	m_iForeignUnitSupply = 100; // Civ4 Reimagined
+	m_iPillageGainModifier = 0; // Civ4 Reimagined
 	m_iTechValue = 0; // Civ4 Reimagined
 	m_iBonusRatio = 100; // Civ4 Reimagined
 	m_iResearchPerCulture = 0; // Civ4 Reimagined
@@ -2620,12 +2576,7 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 	// Civ4 Reimagined: Slaves on city conquest / raze
 	if (bConquest && !bOldEverOwned && hasSlavery())
 	{
-		changeSlavePoints(iPopulation);
-		
-		if (getSlavePoints() >= getNewSlaveThreshold())
-		{
-			initSlave(pOldCity, true);
-		}
+		changeSlavePoints(iPopulation, pOldCity);
 	}
 	
 	pOldCity->kill(false);
@@ -6852,7 +6803,7 @@ void CvPlayer::found(int iX, int iY)
 	{
 		if (hasSlavery() && GET_TEAM(getTeam()).isTerrainTrade((TerrainTypes)GC.getInfoTypeForString("TERRAIN_OCEAN")))
 		{
-			initSlave(pCity, false);
+			initSlave(pCity);
 		}
 	}
 
@@ -9436,7 +9387,10 @@ void CvPlayer::foundCorporation(CorporationTypes eCorporation)
 	}
 }
 
-
+/*
+ *	How many civics can be changed for 1 turn of anarchy is currently defined with gamestartera in EraInfos.xml 
+ *	-> Anarchy Turns = (iAnarchyPercent * CivicsChanged) / 100, rounded down (but min 1 unless player switches for free)
+ */
 int CvPlayer::getCivicAnarchyLength(CivicTypes* paeNewCivics) const
 {
 	bool bChange;
@@ -10887,18 +10841,32 @@ int CvPlayer::getSlavePoints() const
 
 
 // Civ4 Reimagined
-void CvPlayer::changeSlavePoints(int iChange)											
+void CvPlayer::changeSlavePoints(int iChange, CvCity* pCity)											
 {
+	FAssert(pCity != NULL);
 	if (iChange != 0)
 	{
 		m_iSlavePoints = (m_iSlavePoints + iChange);
 		FAssert(m_iSlavePoints >= 0);
+
+		if (getSlavePoints() >= getSlaveThreshold())
+		{
+			initSlave(pCity);
+
+			const int iCurrentSlaveThreshold = getSlaveThreshold();
+			int iNewThreshold = iCurrentSlaveThreshold * (100 + GC.getDefineINT("SLAVE_THRESHOLD_INCREASE_PERCENT"));
+			iNewThreshold /= 100;
+			setSlaveThreshold(iNewThreshold);
+
+			changeSlavePoints(-iCurrentSlaveThreshold, pCity);
+			FAssert(m_iSlavePoints >= 0);
+		}
 	}
 }
 
 
 // Civ4 Reimagined
-int CvPlayer::getNewSlaveThreshold() const
+int CvPlayer::getSlaveThreshold() const
 {
 	return m_iSlaveThreshold;
 }
@@ -10912,7 +10880,7 @@ void CvPlayer::setSlaveThreshold(int iValue)
 
 
 // Civ4 Reimagined
-void CvPlayer::initSlave(CvCity* pCity, bool bIncreaseThreshold)
+void CvPlayer::initSlave(CvCity* pCity)
 {
 	const UnitClassTypes UNITCLASS_SLAVE = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SLAVE");
 	const UnitTypes UNIT_SLAVE = (UnitTypes)GC.getUnitClassInfo(UNITCLASS_SLAVE).getDefaultUnitIndex();
@@ -10920,15 +10888,6 @@ void CvPlayer::initSlave(CvCity* pCity, bool bIncreaseThreshold)
 	initUnit(UNIT_SLAVE, pCity->getX_INLINE(), pCity->getY_INLINE(), UNITAI_WORKER);
 	gDLL->getInterfaceIFace()->addHumanMessage(getID(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MISC_SLAVE_STARTED_WORKING", pCity->getNameKey()).GetCString(), "AS2D_UNIT_BUILD_UNIT", MESSAGE_TYPE_MINOR_EVENT);
 	if (gPlayerLogLevel > 0) logBBAI("Slave starts working in %S", pCity->getName(0).GetCString());
-	
-	if (bIncreaseThreshold)
-	{
-		int iNewSlaveThreshold = getNewSlaveThreshold();
-		changeSlavePoints(-1 * iNewSlaveThreshold);
-		iNewSlaveThreshold *= 100 + GC.getDefineINT("SLAVE_THRESHOLD_INCREASE_PERCENT");
-		iNewSlaveThreshold /= 100;
-		setSlaveThreshold(iNewSlaveThreshold);
-	}	
 }
 
 
@@ -26973,7 +26932,7 @@ void CvPlayer::changeSlavePointsPerPopulationSacrificed(int iChange)
 }
 
 // Civ4 Reimagined
-void CvPlayer::getSlavePointsPerPopulationSacrificed() const
+int CvPlayer::getSlavePointsPerPopulationSacrificed() const
 {
 	return m_iSlavePointsFromSacrificePopulation;
 }

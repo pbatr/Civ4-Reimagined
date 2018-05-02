@@ -2558,7 +2558,7 @@
 			<Help/>
 			<Strategy>TXT_KEY_TECH_CURRENCY_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
-			<iAIWeight>0</iAIWeight>
+			<iAIWeight>200</iAIWeight>
 			<iAITradeModifier>0</iAITradeModifier>
 			<iCost>300</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>

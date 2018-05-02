@@ -448,8 +448,9 @@ public:
 	void changeCombatExperience(int iChange);
 	void setCombatExperience(int iExperience);
 	
+	// Civ4 Reimagined
 	int getSlavePoints() const;
-	int getNewSlaveThreshold() const;
+	int getSlaveThreshold() const;
 
 	int getSpecialistExtraYield(int /*SpecialistTypes*/ eIndex1, int /*YieldTypes*/ eIndex2);
 

@@ -5091,8 +5091,8 @@ bool CvUnit::pillage()
 			{
 				int iPillageBase = GC.getImprovementInfo((ImprovementTypes)pPlot->getImprovementType()).getPillageGold();
 				iPillageGold = 0;
-				iPillageGold += GC.getGameINLINE().getSorenRandNum(iPillageBase, "Pillage Gold 1");
-				iPillageGold += GC.getGameINLINE().getSorenRandNum(iPillageBase, "Pillage Gold 2");
+				iPillageGold += GC.getGameINLINE().getSorenRandNum(iPillageBase + 1, "Pillage Gold 1"); // Civ4 Reimagined: Added +1 in both instances to make the sum yield iPillageBase on average.
+				iPillageGold += GC.getGameINLINE().getSorenRandNum(iPillageBase + 1, "Pillage Gold 2");
 				iPillageGold += getPillageChange() * iPillageGold / 100;
 				
 				// Civ4 Reimagined
