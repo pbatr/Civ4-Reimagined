@@ -16628,7 +16628,12 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 					{
 						iTempValue += iBuildingValue * iTempProduction / 200;
 					}
-					iTempValue += kBuildingInfo.isPrereqCivic(eCivic) ? iBuildingValue/3 : 0;
+
+					// specialbuildings (e.g. temples) are not unique to this civic and should not contribute to civic value
+					if (kBuildingInfo.getSpecialBuildingType() == NO_SPECIALBUILDING && kBuildingInfo.isPrereqCivic(eCivic))
+					{
+						iTempValue += iBuildingValue/3;
+					}
 				}
 				if (iTempValue > 0)
 					iTempValue /= iCities * (bHasTech ? 2 : 4);
