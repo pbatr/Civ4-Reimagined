@@ -1917,11 +1917,11 @@ int CyPlayer::getSlavePoints() const
 	return -1;
 }
 
-int CyPlayer::getNewSlaveThreshold() const
+int CyPlayer::getSlaveThreshold() const
 {
 	if (m_pPlayer)
 	{
-		return m_pPlayer->getNewSlaveThreshold();
+		return m_pPlayer->getSlaveThreshold();
 	}
 	return -1;
 }
