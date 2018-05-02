@@ -535,16 +535,17 @@ public:
 	bool isMeleeMilitaryFoodProduction() const;
 	void changeMeleeMilitaryFoodProductionCount(int iChange);
 	
+	// Civ4 Reimagined
 	int getEnableSlavesCount() const;	
 	bool hasSlavery() const;
 	void changeEnableSlavesCount(int iChange);
 	int getNumSlaveUnits() const;
 	void changeNumSlaveUnits(int iChange);
 	int getSlavePoints() const; // Exposed to Python
-	void changeSlavePoints(int iChange);
-	int getNewSlaveThreshold() const; // Exposed to Python
+	void changeSlavePoints(int iChange, CvCity* pCity);
+	int getSlaveThreshold() const; // Exposed to Python
 	void setSlaveThreshold(int iChange);
-	void initSlave(CvCity* pCity, bool bIncreaseThreshold);
+	void initSlave(CvCity* pCity);
 	
 	// Civ4 Reimagined
 	int getNoMilitaryProductionMaliCount() const;	
@@ -1358,12 +1359,11 @@ public:
 	void setUniqueAztecPromotion(bool bNewValue); // Civ4 Reimagined
 	void doUniqueAztecPromotion(CvUnit* pUnit); // Civ4 Reimagined
 	void changeSlavePointsPerPopulationSacrificed(int iChange); // Civ4 Reimagined
-	void getSlavePointsPerPopulationSacrificed() const; // Civ4 Reimagined
+	int getSlavePointsPerPopulationSacrificed() const; // Civ4 Reimagined
 	void setHasCivicEffect(bool bEnabled); // Civ4 Reimagined
 	bool isHasCivicEffect() const; // Civ4 Reimagined
 	void changeTurnsToEffectFromStayingAtCivic(CivicTypes eCivic, int iChange); // Civ4 Reimagined
 	void updateEffectFromStayingAtCivic(); // Civ4 Reimagined
-	
 	
 	// K-Mod note: Adding new virtual functions to this list seems to cause unpredictable behaviour during the initialization of the game.
 	// So beware!

@@ -1164,7 +1164,7 @@ class CvMilitaryAdvisor:
 		szSlaveryText_ID = self.getNextWidgetName()
 		
 		iSlavePoints = gc.getPlayer(self.iActivePlayer).getSlavePoints()
-		iNewSlaveThreshold = gc.getPlayer(self.iActivePlayer).getNewSlaveThreshold()
+		iNewSlaveThreshold = gc.getPlayer(self.iActivePlayer).getSlaveThreshold()
 		
 		if (iNewSlaveThreshold != 0):
 		

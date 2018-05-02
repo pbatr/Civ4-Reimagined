@@ -15,12 +15,13 @@ Changes
 -Ziggurat replaces Classical Temple, provides 1 additional food and is available with Mysticism
 -Cavalry upgrades to Motorized Infantry
 -Barbarians cannot spawn on tiles without food
--New effect for Levy Armies: Melee Units produced with food (2:1 ratio)
+-New effect for Levy Armies: Melee Units produced with food (2:1 ratio), but free units reduced
 -Scientific Method enables +15% research from Universities
 
 *********
 Tweaks
 *********
+-Can change only two civics instead of three for one turn of anarchy (with ancient starting era)
 -Babylonian Bowman gain 2 potential first strike chances.
 -Organized Religion requires Polytheism
 -Theocracy requires Monotheism
@@ -28,6 +29,8 @@ Tweaks
 -Standing Army upkeep cost decreased from medium to low
 -Conscription upkeep cost decreased from high to medium
 -Secularism no longer provides espionage bonus
+-The Great Harbor grants an additional +1 Commerce per water tile.
+-Ancient wonder grant less great person points, later wonders grant more.
 
 *********
 Interface
@@ -38,7 +41,7 @@ Interface
 *********
 Fixes
 *********
-
+-Fixed a bug that doubled pillage gold and gold stolen by spies.
 
 *******************************************
 Civ4 Reimagined 1.4

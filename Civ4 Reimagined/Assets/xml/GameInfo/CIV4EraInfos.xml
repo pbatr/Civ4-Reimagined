@@ -35,14 +35,12 @@
 			<iConstructPercent>100</iConstructPercent>
 			<iCreatePercent>100</iCreatePercent>
 			<iResearchPercent>100</iResearchPercent>
-			<!-- BBAI start: effectively modify cost for all techs from this era. Reduces Research by X %. Default: 0 -->
-			<iTechCostModifier>0</iTechCostModifier>
-			<!-- BBAI end -->
+			<iTechCostModifier>0</iTechCostModifier> <!-- BBAI start: effectively modify cost for all techs from this era. Reduces Research by X %. Default: 0 -->
 			<iBuildPercent>100</iBuildPercent>
 			<iImprovementPercent>100</iImprovementPercent>
 			<iGreatPeoplePercent>100</iGreatPeoplePercent>
 			<iCulturePercent>100</iCulturePercent>
-			<iAnarchyPercent>50</iAnarchyPercent>
+			<iAnarchyPercent>67</iAnarchyPercent>
 			<iEventChancePerTurn>3</iEventChancePerTurn>
 			<iSoundtrackSpace>0</iSoundtrackSpace>
 			<bFirstSoundtrackFirst>0</bFirstSoundtrackFirst>
@@ -104,7 +102,7 @@
 			<iImprovementPercent>100</iImprovementPercent>
 			<iGreatPeoplePercent>100</iGreatPeoplePercent>
 			<iCulturePercent>100</iCulturePercent>
-			<iAnarchyPercent>50</iAnarchyPercent>
+			<iAnarchyPercent>67</iAnarchyPercent>
 			<iEventChancePerTurn>5</iEventChancePerTurn>
 			<iSoundtrackSpace>400</iSoundtrackSpace>
 			<bFirstSoundtrackFirst>0</bFirstSoundtrackFirst>
@@ -179,7 +177,7 @@
 			<iImprovementPercent>100</iImprovementPercent>
 			<iGreatPeoplePercent>100</iGreatPeoplePercent>
 			<iCulturePercent>100</iCulturePercent>
-			<iAnarchyPercent>40</iAnarchyPercent>
+			<iAnarchyPercent>50</iAnarchyPercent>
 			<iEventChancePerTurn>7</iEventChancePerTurn>
 			<iSoundtrackSpace>200</iSoundtrackSpace>
 			<bFirstSoundtrackFirst>0</bFirstSoundtrackFirst>
@@ -259,7 +257,7 @@
 			<iImprovementPercent>90</iImprovementPercent>
 			<iGreatPeoplePercent>90</iGreatPeoplePercent>
 			<iCulturePercent>90</iCulturePercent>
-			<iAnarchyPercent>40</iAnarchyPercent>
+			<iAnarchyPercent>50</iAnarchyPercent>
 			<iEventChancePerTurn>9</iEventChancePerTurn>
 			<iSoundtrackSpace>160</iSoundtrackSpace>
 			<bFirstSoundtrackFirst>0</bFirstSoundtrackFirst>
@@ -331,7 +329,7 @@
 			<iImprovementPercent>80</iImprovementPercent>
 			<iGreatPeoplePercent>80</iGreatPeoplePercent>
 			<iCulturePercent>80</iCulturePercent>
-			<iAnarchyPercent>34</iAnarchyPercent>
+			<iAnarchyPercent>40</iAnarchyPercent>
 			<iEventChancePerTurn>11</iEventChancePerTurn>
 			<iSoundtrackSpace>120</iSoundtrackSpace>
 			<bFirstSoundtrackFirst>0</bFirstSoundtrackFirst>
@@ -400,7 +398,7 @@
 			<iImprovementPercent>70</iImprovementPercent>
 			<iGreatPeoplePercent>70</iGreatPeoplePercent>
 			<iCulturePercent>70</iCulturePercent>
-			<iAnarchyPercent>34</iAnarchyPercent>
+			<iAnarchyPercent>40</iAnarchyPercent>
 			<iEventChancePerTurn>13</iEventChancePerTurn>
 			<iSoundtrackSpace>80</iSoundtrackSpace>
 			<bFirstSoundtrackFirst>0</bFirstSoundtrackFirst>
