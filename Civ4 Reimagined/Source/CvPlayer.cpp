@@ -2882,7 +2882,7 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 		int iTotalWeight = iSpearmanWeight + iArcherWeight + iInfantryWeight + iCavalryWeight;
 		int iOffset = 0;
 		
-		if (iTotalWeight > 0 && GET_PLAYER(eOtherPlayer).getCurrentEra() < 2)
+		if (iTotalWeight > 0)
 		{
 			for (int i = 0; i < iNumUnits; i++)
 			{
