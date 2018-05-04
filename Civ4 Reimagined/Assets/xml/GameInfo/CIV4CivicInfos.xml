@@ -2401,11 +2401,11 @@
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_RELIGION</CivicOptionType>
-			<Type>CIVIC_STATE_IDEOLOGY</Type>
-			<Description>TXT_KEY_CIVIC_STATE_IDEOLOGY</Description>
-			<Civilopedia>TXT_KEY_CIVIC_STATE_IDEOLOGY_PEDIA</Civilopedia>
-			<Strategy>TXT_KEY_CIVIC_STATE_IDEOLOGY_STRATEGY</Strategy>
-			<Button>,Art/Interface/Buttons/Civics/Free_Religion.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,1,3</Button>
+			<Type>CIVIC_STATE_ATHEISM</Type>
+			<Description>TXT_KEY_CIVIC_STATE_ATHEISM</Description>
+			<Civilopedia>TXT_KEY_CIVIC_STATE_ATHEISM_PEDIA</Civilopedia>
+			<Strategy>TXT_KEY_CIVIC_STATE_ATHEISM_STRATEGY</Strategy>
+			<Button>,Art/Interface/Buttons/Civics/State_Atheism.dds</Button>
 			<TechPrereq>TECH_UTOPIA</TechPrereq>
 			<iAnarchyLength>1</iAnarchyLength>
 			<Upkeep>UPKEEP_LOW</Upkeep>
