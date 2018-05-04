@@ -1,16 +1,19 @@
 *******************************************
 Civ4 Reimagined 1.5
 *******************************************
+
 *********
 New
 *********
 -New renaissance building: Sewer (+2[h], costs 200[p]). Available with Scientific Method. Replaces flat health bonus from Scientific Method.
--New religious civic State Ideology: No state religion, unhappiness from religions, no religion spread, less war weariness and espionage bonus. Available with Communism.
+-New religious civic: State Ideology (No state religion, unhappiness from religions, no religion spread, less war weariness and espionage bonus). Available with Communism.
 
 *********
 Changes
 *********
--Animism civic removed, Pantheon is start civic
+-Can change only two civics instead of three for one turn of anarchy (with ancient starting era)
+-Animism civic removed (XP from animals is enabled by default), Pantheon is start civic
+-Pantheon new effects: No state religion, 1 unhappiness from religions and enables Classical Temple
 -Classical temples have same effects and costs as normal temples
 -Ziggurat replaces Classical Temple, provides 1 additional food and is available with Mysticism
 -Cavalry upgrades to Motorized Infantry
@@ -21,11 +24,11 @@ Changes
 *********
 Tweaks
 *********
--Can change only two civics instead of three for one turn of anarchy (with ancient starting era)
 -Babylonian Bowman gain 2 potential first strike chances.
 -Organized Religion requires Polytheism
 -Theocracy requires Monotheism
 -Public Welfare requires Mass Media
+-Totalitarianism war weariness modifier changed from -100% to -50%
 -Standing Army upkeep cost decreased from medium to low
 -Conscription upkeep cost decreased from high to medium
 -Secularism no longer provides espionage bonus
