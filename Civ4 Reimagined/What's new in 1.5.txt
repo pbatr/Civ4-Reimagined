@@ -5,8 +5,8 @@ Civ4 Reimagined 1.5
 *********
 New
 *********
--New renaissance building: Sewer (+2[h], costs 200[p]). Available with Scientific Method. Replaces flat health bonus from Scientific Method.
--New religious civic: State Ideology (No state religion, unhappiness from religions, no religion spread, less war weariness and espionage bonus). Available with Communism.
+-New renaissance building: Sewer (+2[h], costs 200[p]). Available with Scientific Method. Replaces flat health bonus from Scientific Method
+-New religious civic: State Ideology (No state religion, unhappiness from religions, no religion spread, less war weariness and espionage bonus). Available with Communism
 
 *********
 Changes
@@ -24,7 +24,7 @@ Changes
 *********
 Tweaks
 *********
--Babylonian Bowman gain 2 potential first strike chances.
+-Babylonian Bowman gain 2 potential first strike chances
 -Organized Religion requires Polytheism
 -Theocracy requires Monotheism
 -Public Welfare requires Mass Media
@@ -32,13 +32,14 @@ Tweaks
 -Standing Army upkeep cost decreased from medium to low
 -Conscription upkeep cost decreased from high to medium
 -Secularism no longer provides espionage bonus
--The Great Harbor grants an additional +1 Commerce per water tile.
--Ancient wonder grant less great person points, later wonders grant more.
+-The Great Harbor grants an additional +1 Commerce per water tile
+-Ancient wonder grant less great person points, later wonders grant more
+-Better starting position evaluation
 
 *********
 Interface
 *********
--Maintenance cost in domestic advisor screen now takes inflation into account.
+-Maintenance cost in domestic advisor screen now takes inflation into account
 -Display slavery points in military advisor (BUG military advisor needs to be activated)
 
 *********
