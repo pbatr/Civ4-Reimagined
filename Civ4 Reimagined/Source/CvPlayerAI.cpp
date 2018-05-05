@@ -2858,12 +2858,12 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 	int iAdditionalFood = 0; // Civ4 Reimagined
 	int iNeededFood = 0; // Civ4 Reimagined
 	
-	CvCity* pCapital = getCapitalCity();
+	const CvCity* pCapital = getCapitalCity();
 	
 	// Civ4 Reimagined
-	ImprovementTypes IMPROVEMENT_MINE = (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_MINE");
-	ImprovementTypes IMPROVEMENT_FARM = (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FARM");
-	ImprovementTypes IMPROVEMENT_HAMLET = (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_HAMLET");
+	const ImprovementTypes IMPROVEMENT_MINE = (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_MINE");
+	const ImprovementTypes IMPROVEMENT_FARM = (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FARM");
+	const ImprovementTypes IMPROVEMENT_HAMLET = (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_HAMLET");
 
 	bool bNeutralTerritory = true;
 
@@ -2874,8 +2874,8 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 
 	CvPlot* pPlot = GC.getMapINLINE().plotINLINE(iX, iY);
 	CvArea* pArea = pPlot->area();
-	bool bIsCoastal = pPlot->isCoastalLand(GC.getMIN_WATER_SIZE_FOR_OCEAN());
-	int iNumAreaCities = pArea->getCitiesPerPlayer(getID());
+	const bool bIsCoastal = pPlot->isCoastalLand(GC.getMIN_WATER_SIZE_FOR_OCEAN());
+	const int iNumAreaCities = pArea->getCitiesPerPlayer(getID());
 	const CvTeamAI& kTeam = GET_TEAM(getTeam());
 
 	bool bAdvancedStart = (getAdvancedStartPoints() >= 0);
@@ -2890,7 +2890,6 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 
 	if (bAdvancedStart)
 	{
-		//FAssert(!bStartingLoc);
 		FAssert(GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_START));
 		if (kSet.bStartingLoc)
 		{
@@ -3032,9 +3031,6 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 		}
 	}
 
-	// Removed by Civ4 Reimagined
-	//iBadTile /= 2;
-
 	if (!kSet.bStartingLoc)
 	{
 		// Civ4 Reimagined: Added case for settling small islands in late eras
@@ -3052,7 +3048,6 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 					{
 						if (pLoopPlot->isWater() || (pLoopPlot->area() == pArea) || (pLoopPlot->area()->getCitiesPerPlayer(getID()) > 0))
 						{
-							//BonusTypes eBonus = pLoopPlot->getBonusType(getTeam());
 							BonusTypes eBonus = pLoopPlot->getNonObsoleteBonusType(getTeam()); // K-Mod
 
 							if (eBonus != NO_BONUS)
@@ -3078,9 +3073,13 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 
 	int iTakenTiles = 0;
 	int iTeammateTakenTiles = 0;
-	int iHealthValue = 0;
 	int iValue = 800; // was 1000
+
+	// iHealth just counts the actual health in this moment for this city
 	int iHealth = -200;
+
+	// iHealthValue is the value for health that will be eventually added to total iValue
+	int iHealthValue = 0;
 	
 	iHealth += getExtraHealth() * 100;
 	iHealth += GC.getHandicapInfo(getHandicapType()).getHealthBonus() * 100;
@@ -3096,7 +3095,6 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 		{
 			iTakenTiles++;
 		}
-		//else if (pLoopPlot->isCityRadius() || abCitySiteRadius[iI])
 		else if (iI != CITY_HOME_PLOT && (pLoopPlot->isCityRadius() || abCitySiteRadius[iI])) // K-Mod
 		{
 			iTakenTiles++;
@@ -3129,14 +3127,18 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 						if (GET_TEAM(getTeam()).isHasTech((TechTypes)GC.getBuildInfo((BuildTypes)i).getTechPrereq()) && GET_TEAM(getTeam()).isHasTech((TechTypes)GC.getBuildInfo((BuildTypes)i).getFeatureTech(eFeature)))
 						{
 							bRemoveableFeature = true;
-							iModernizableTiles++;
+
+							if (iI != CITY_HOME_PLOT)
+							{
+								iModernizableTiles++;	
+							}
 							break;
 						}
 					}
 				}
 				
 				//// Civ4 Reimagined: Flood Plains / Oasis
-				if (!bEventuallyRemoveableFeature && !pLoopPlot->isImpassable())
+				if (iI != CITY_HOME_PLOT && !bEventuallyRemoveableFeature && !pLoopPlot->isImpassable())
 				{
 					iModernizableTiles++;
 				}
@@ -3146,7 +3148,10 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 				{
 					if (kTeam.isBonusRevealed(eBonus) || GC.getTechInfo((TechTypes)GC.getBonusInfo(eBonus).getTechReveal()).getEra() <= getCurrentEra())
 					{
-						iModernizableTiles++;
+						if (iI != CITY_HOME_PLOT)
+						{
+							iModernizableTiles++;	
+						}
 						bRemoveableFeature = true;
 					}
 				}
@@ -3157,7 +3162,7 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 					iHealthValue += GC.getFeatureInfo(eFeature).getHealthPercent(); // note, this will be reduced by some factor before being added to the total value.
 			}
 			// Civ4 Reimagined
-			else if ((!pLoopPlot->isWater() || eBonus != NO_BONUS) && !pLoopPlot->isImpassable())
+			else if (iI != CITY_HOME_PLOT && (!pLoopPlot->isWater() || eBonus != NO_BONUS) && !pLoopPlot->isImpassable())
 			{
 				iModernizableTiles++;
 			}
@@ -3193,8 +3198,7 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 				{
 					CvImprovementInfo& kImprovement = GC.getImprovementInfo((ImprovementTypes)iImprovement);
 
-					//if (kImprovement.isImprovementBonusMakesValid(eBonus))
-					if (kImprovement.isImprovementBonusTrade(eBonus)) // K-Mod. (!!)
+					if (kImprovement.isImprovementBonusTrade(eBonus)) // K-Mod
 					{
 						eImprovement = (ImprovementTypes)iImprovement;
 						break;
@@ -3218,7 +3222,7 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 			{
 				eImprovement = (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FARM");
 			}
-			if (eImprovement == NO_IMPROVEMENT && pLoopPlot->canHaveImprovement(IMPROVEMENT_HAMLET, getTeam(), true))
+			if (eImprovement == NO_IMPROVEMENT && eBonus == NO_BONUS && pLoopPlot->canHaveImprovement(IMPROVEMENT_HAMLET, getTeam(), true))
 			{
 				eImprovement = (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_HAMLET");
 			}
@@ -3228,7 +3232,6 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 			for (int iYieldType = 0; iYieldType < NUM_YIELD_TYPES; ++iYieldType)
 			{
 				YieldTypes eYield = (YieldTypes)iYieldType;
-				//aiYield[eYield] = pLoopPlot->getYield(eYield);
 				aiYield[eYield] = pLoopPlot->calculateNatureYield(eYield, getTeam(), bEventuallyRemoveableFeature); // K-Mod
 
 				if (iI == CITY_HOME_PLOT)
@@ -3282,27 +3285,13 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 					{
 						aiYield[eYield] += 1;
 					}
-					
-					if (bEventuallyRemoveableFeature) // (not city tile). adjust for removable features
-					{
-						const CvFeatureInfo& kFeature = GC.getFeatureInfo(eFeature);
 
-						if (bRemoveableFeature)
-						{
-							// Civ4 Reimagined: removed this
-							//iPlotValue += 10 * kFeature.getYieldChange(eYield);
-						}
-						else
-						{
-							if (kFeature.getYieldChange(eYield) <= 0)
-							{
-								// Removed by Civ4 Reimagined
-								//iPlotValue -= eBonus != NO_BONUS ? 25 : 5;
-								// Civ4 Reimagined
-								iPlotValue += 40 * kFeature.getYieldChange(eYield);
-								iPlotValue -= 3;
-							}
-						}
+					const CvFeatureInfo& kFeature = GC.getFeatureInfo(eFeature);
+					if (bEventuallyRemoveableFeature && !bRemoveableFeature && kFeature.getYieldChange(eYield) <= 0)
+					{
+						// Civ4 Reimagined
+						iPlotValue += 40 * kFeature.getYieldChange(eYield);
+						iPlotValue -= 3;
 					}
 				}
 				// K-Mod end
@@ -3337,12 +3326,6 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 				{
 					iAdditionalFood++;
 				}
-
-				/* original bts code
-				if (kSet.bStartingLoc)
-				{
-					iPlotValue *= 2;
-				} */
 			}
 			else if (aiYield[YIELD_FOOD] == GC.getFOOD_CONSUMPTION_PER_POPULATION() - 1)
 			{
@@ -3360,7 +3343,6 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 			if (pLoopPlot->isWater())
 			{
 				// K-Mod. kludge to account for lighthouse and lack of improvements.
-				//iPlotValue /= (bIsCoastal ? 2 : 3);
 				// Civ4 Reimagined
 				iPlotValue *= 9;
 				iPlotValue /= 10;
@@ -3382,8 +3364,9 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 			{
 				if ((pLoopPlot->getOwnerINLINE() == getID()) || (stepDistance(iX, iY, pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE()) <= 1))
 				{
-					iPlotValue *= 3;
-					iPlotValue /= 2;
+					// Civ4 Reimagined, was *3/2
+					iPlotValue *= 5;
+					iPlotValue /= 4;
 				}
 			}
 			iPlotValue *= kSet.iGreed;
@@ -3402,19 +3385,13 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 			
 			//Civ4 Reimagined:
 			iPlotValueList.push_back(iPlotValue);
-			
-			//iValue += iPlotValue;
 
 			if (iCultureMultiplier > 33) //ignore hopelessly entrenched tiles.
 			{
 
 				if (eBonus != NO_BONUS && // K-Mod added water case (!!)
 					((pLoopPlot->isWater() && bIsCoastal) || pLoopPlot->area() == pPlot->area() || pLoopPlot->area()->getCitiesPerPlayer(getID()) > 0))
-				{
-					//iBonusValue = AI_bonusVal(eBonus, 1, true) * ((!kSet.bStartingLoc && (getNumTradeableBonuses(eBonus) == 0) && (viBonusCount[eBonus] == 1)) ? 80 : 20);
-					// K-Mod
-					//int iCount = getNumTradeableBonuses(eBonus) == 0 + viBonusCount[eBonus];
-					
+				{					
 					// Civ4 Reimagined
 					int iCount = viBonusCount[eBonus];
 					int iBonusValue = AI_bonusVal(eBonus, 1, true) * 10 / (1 + iCount);
@@ -3430,7 +3407,6 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 					//       2. iTempValue use to be used throughout this section. I've replaced all references with iBonusValue, for clarity.
 					viBonusCount[eBonus]++; // (this use to be above the iBonusValue initialization)
 					FAssert(viBonusCount[eBonus] > 0);
-					//
 
 					iBonusValue *= (kSet.bStartingLoc ? 100 : kSet.iGreed);
 					iBonusValue /= 100;
@@ -3440,15 +3416,6 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 						// K-Mod. (original code deleted)
 						if (iI != CITY_HOME_PLOT)
 						{
-							// Removed by Civ4 Reimagined
-							/*
-							if (pLoopPlot->isWater())
-							{
-								iBonusValue *= 2;
-								iBonusValue /= 3;
-							}
-							*/
-
 							if (pLoopPlot->getOwnerINLINE() != getID() && stepDistance(pPlot->getX_INLINE(),pPlot->getY_INLINE(), pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE()) > 1)
 							{
 								if (!kSet.bEasyCulture)
@@ -3540,31 +3507,6 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 	{
 		logBBAI("    Player %d (%S) Tiles value: %d", getID(), getCivilizationDescription(0) , totalPlotValue);
 	}
-		
-	// NP_Mod end
-	
-	/* original bts code
-	iResourceValue += iSpecialFood * 50;
-	iResourceValue += iSpecialProduction * 50;
-	iResourceValue += iSpecialCommerce * 50;
-	if (kSet.bStartingLoc)
-	{
-		iResourceValue /= 2;
-	} */
-	// K-mod. It's tricky to get this right. Special commerce is great in the early game, but not so great later on.
-	//        Food is always great - unless we already have too much; and food already affects a bunch of other parts of the site evaluation...
-	
-	// Removed by Civ4 Reimagined:
-	//if (kSet.bStartingLoc)
-	//	iResourceValue /= 4; // try not to make the value of strategic resources too overwhelming. (note: I removed a bigger value reduction from the original code higher up.)
-	
-	// Removed by Civ4 Reimagined: (we have already accounted for these values)
-	/*
-	iResourceValue += iSpecialFood * 20; // Note: iSpecialFood is whatever food happens to be asscioated with bonuses. Don't value it highly, because it's also counted in a bunch of other ways.
-	iResourceValue += iSpecialProduction * 40;
-	iResourceValue += iSpecialCommerce * 35;
-	*/
-	//
 	
 	if( gPlayerLogLevel >= 3 && kSet.bStartingLoc)
 	{
@@ -3577,16 +3519,9 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 	{
 		return 0;
 	}
-
-	/* original bts code (K-Mod: just go look at what "iTeammateTakenTiles" actually is...)
-	if (iTeammateTakenTiles > 1)
-	{
-		return 0;
-	}*/
 	
 	if (pPlot->isFreshWater())
 	{
-		// iValue += 40; // K-Mod (commented this out, compensated by the river bonuses I added.)
 		iHealth += GC.getDefineINT("FRESH_WATER_HEALTH_CHANGE") * 100;
 		iValue += GC.getDefineINT("FRESH_WATER_HEALTH_CHANGE") * 500; // Civ4 Reimagined
 		/*
@@ -3632,35 +3567,23 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 			{
 				if (bNeutralTerritory)
 				{
-					//iValue += (iResourceValue > 0) ? 800 : 100;
 					iValue += iResourceValue > 0 ? (kSet.bSeafaring ? 600 : 400) : 100; // K-Mod
 				}
 			}
 			else
 			{
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                      02/03/09                                jdog5000      */
-/*                                                                                              */
-/* Settler AI           (edited by K-Mod)                                                       */
-/************************************************************************************************/
-				//iValue += 200;
-				
-				//int iSeaValue = 50;
 				int iSeaValue = 200; // Civ4 Reimagined
 
 				// Push players to get more coastal cities so they can build navies
 				CvArea* pWaterArea = pPlot->waterArea(true);
 				if( pWaterArea != NULL )
 				{
-					//iSeaValue += 120 + (kSet.bSeafaring ? 160 : 0);
 					iSeaValue += 160 + (kSet.bSeafaring ? 160 : 0); // Civ4 Reimagined
 
 					if( GET_TEAM(getTeam()).AI_isWaterAreaRelevant(pWaterArea) )
 					{
-						//iSeaValue += 120 + (kSet.bSeafaring ? 160 : 0);
 						iSeaValue += 160 + (kSet.bSeafaring ? 160 : 0);
 
-						//if( (countNumCoastalCities() < (getNumCities()/4)) || (countNumCoastalCitiesByArea(pPlot->area()) == 0) )
 						if (countNumCoastalCities() < getNumCities()/4 ||
 							(pPlot->area()->getCitiesPerPlayer(getID()) > 0 && countNumCoastalCitiesByArea(pPlot->area()) == 0))
 						{
@@ -3671,9 +3594,6 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 				iSeaValue *= kSet.iGreed;
 				iSeaValue /= 100;
 				iValue += iSeaValue;
-/************************************************************************************************/
-/* BETTER_BTS_AI_MOD                       END                                                  */
-/************************************************************************************************/
 			}
 		}
 		else
@@ -3687,8 +3607,7 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 				logBBAI("    Player %d (%S) Extra Coastal Value: 800", getID(), getCivilizationDescription(0));
 			}
 			*/
-			
-			//if (!pPlot->isStartingPlot())
+
 			if (getStartingPlot() != pPlot) // K-Mod
 			{
 				if (pArea->getNumStartingPlots() == 0)
@@ -3727,7 +3646,6 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 
 	if (kSet.bStartingLoc)
 	{
-		//int iRange = GREATER_FOUND_RANGE;
 		int iRange = 8; // K-Mod (originally was 5)
 		int iGreaterBadTile = 0;
 
@@ -3739,68 +3657,40 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 
 				if (pLoopPlot != NULL)
 				{
-					//if (pLoopPlot->isWater() || (pLoopPlot->area() == pArea))
+					if (plotDistance(iX, iY, pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE()) <= iRange)
 					{
-						if (plotDistance(iX, iY, pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE()) <= iRange)
+						// K-Mod
+						int iTempValue = 0;
+						iTempValue += pLoopPlot->getYield(YIELD_FOOD) * 9;
+						iTempValue += pLoopPlot->getYield(YIELD_PRODUCTION) * 5;
+						iTempValue += pLoopPlot->getYield(YIELD_COMMERCE) * 3;
+						iTempValue += pLoopPlot->isWater() ? -2 : 0;
+						
+						if (iTempValue < 13)
 						{
-							/* original bts code
-							int iTempValue = 0;
-							iTempValue += (pLoopPlot->getYield(YIELD_FOOD) * 15);
-							iTempValue += (pLoopPlot->getYield(YIELD_PRODUCTION) * 11);
-							iTempValue += (pLoopPlot->getYield(YIELD_COMMERCE) * 5);
-							iValue += iTempValue;
-							if (iTempValue < 21)
+							// 3 points for unworkable plots (desert, ice, far-ocean)
+							// 2 points for bad plots (ocean, tundra)
+							// 1 point for fixable bad plots (jungle)
+							iGreaterBadTile++;
+							if (pLoopPlot->calculateBestNatureYield(YIELD_FOOD,getTeam()) < 2)
 							{
-								iGreaterBadTile += 2;
-								if (pLoopPlot->getFeatureType() != NO_FEATURE)
-								{
-									if (pLoopPlot->calculateBestNatureYield(YIELD_FOOD,getTeam()) > 1)
-									{
-										iGreaterBadTile--;
-									}
-								}
-							} */
-							// K-Mod
-							int iTempValue = 0;
-							iTempValue += pLoopPlot->getYield(YIELD_FOOD) * 9;
-							iTempValue += pLoopPlot->getYield(YIELD_PRODUCTION) * 5;
-							iTempValue += pLoopPlot->getYield(YIELD_COMMERCE) * 3;
-							iTempValue += pLoopPlot->isWater() ? -2 : 0;
-							
-							if (iTempValue < 13)
-							{
-								// 3 points for unworkable plots (desert, ice, far-ocean)
-								// 2 points for bad plots (ocean, tundra)
-								// 1 point for fixable bad plots (jungle)
 								iGreaterBadTile++;
-								if (pLoopPlot->calculateBestNatureYield(YIELD_FOOD,getTeam()) < 2)
-								{
+								if (iTempValue <= 0)
 									iGreaterBadTile++;
-									if (iTempValue <= 0)
-										iGreaterBadTile++;
-								}
 							}
-							if (pLoopPlot->isWater() || pLoopPlot->area() == pArea)
-								iValue += iTempValue;
-							else if (iTempValue >= 13)
-								iGreaterBadTile++; // add at least 1 badness point for other islands.
-							// K-Mod end
 						}
+						if (pLoopPlot->isWater() || pLoopPlot->area() == pArea)
+							iValue += iTempValue;
+						else if (iTempValue >= 13)
+							iGreaterBadTile++; // add at least 1 badness point for other islands.
+						// K-Mod end
 					}
 				}
 			}
 		}
 
-		//if (!pPlot->isStartingPlot())
 		if (getStartingPlot() != pPlot) // K-Mod
 		{
-			/* original bts code
-			iGreaterBadTile /= 2;
-			if (iGreaterBadTile > 12)
-			{
-				iValue *= 11;
-				iValue /= iGreaterBadTile;
-			} */
 			// K-Mod. note: the range has been extended, and the 'bad' counting has been rescaled.
 			iGreaterBadTile /= 3;
 			int iGreaterRangePlots = 2*(iRange*iRange + iRange) + 1;
@@ -3831,74 +3721,16 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 
 			// K-Mod end
 		}
-
-		/* original bts code
-		int iWaterCount = 0;
-
-		for (int iI = 0; iI < NUM_CITY_PLOTS; iI++)
-		{
-			CvPlot* pLoopPlot = plotCity(iX, iY, iI);
-
-			if (pLoopPlot != NULL)
-			{
-				if (pLoopPlot->isWater())
-				{
-					iWaterCount ++;
-					if (pLoopPlot->getYield(YIELD_FOOD) <= 1)
-					{
-						iWaterCount++;
-					}
-				}
-			}
-		}
-		iWaterCount /= 2;
-
-		int iLandCount = (NUM_CITY_PLOTS - iWaterCount);
-
-		if (iLandCount < (NUM_CITY_PLOTS / 2))
-		{
-			//discourage very water-heavy starts.
-			iValue *= 1 + iLandCount;
-			iValue /= (1 + (NUM_CITY_PLOTS / 2));
-		} */ // disabled by K-Mod (water starts are discouraged in other ways)
 	}
 
 	if (kSet.bStartingLoc)
 	{
-		/* original bts code
-		if (pPlot->getMinOriginalStartDist() == -1)
-		{
-			iValue += (GC.getMapINLINE().maxStepDistance() * 100);
-		}
-		else
-		{
-			iValue *= (1 + 4 * pPlot->getMinOriginalStartDist());
-			iValue /= (1 + 2 * GC.getMapINLINE().maxStepDistance());
-		} */
-		// K-Mod. In the original code, getMinOriginalStartDist was always zero once the
-		// starting positions had been assigned; and so this factor didn't work correctly.
-		// I've fixed it (see change in updateMinOriginalStartDist.)
-		// But I've now disabled it completely because this stuff is handled elsewhere anyway.
-		/* int iMinRange = startingPlotRange();
-		{
-			int iScale = std::min(4*iMinRange, GC.getMapINLINE().maxStepDistance());
-			int iExistingDist = pPlot->getMinOriginalStartDist() > 0
-				? std::min(pPlot->getMinOriginalStartDist(), iScale)
-				: iScale;
-			FAssert(iScale > 2 && iExistingDist > 2); // sanity check
-			iValue *= (1 + iScale + 4 * iExistingDist);
-			iValue /= (1 + 3 * iScale);
-		} */
-		// K-Mod end
-
 		//nice hacky way to avoid this messing with normalizer, use elsewhere?
-		//if (!pPlot->isStartingPlot())
 		if (getStartingPlot() != pPlot) // K-Mod. 'isStartingPlot' is not automatically set.
 		{
 			int iMinDistanceFactor = MAX_INT;
 			int iMinRange = startingPlotRange();
 
-			//iValue *= 100; // (disabled by K-Mod to prevent int overflow)
 			for (int iJ = 0; iJ < MAX_CIV_PLAYERS; iJ++)
 			{
 				if (GET_PLAYER((PlayerTypes)iJ).isAlive())
@@ -3953,21 +3785,6 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 			iValue /= 100;
 		}
 	}
-
-	/* Removed by Civ4 Reimagined
-	// K-Mod. reduce value of cities which will struggle to get any productivity.
-	{
-		iBaseProduction += iSpecialProduction;
-		FAssert(!pPlot->isRevealed(getTeam(), false) || iBaseProduction >= GC.getYieldInfo(YIELD_PRODUCTION).getMinCity());
-		const int iThreshold = 9; // pretty arbitrary
-		if (iBaseProduction < iThreshold)
-		{
-			iValue *= iBaseProduction;
-			iValue /= iThreshold;
-		}
-	}
-	// K-Mod end
-	*/
 	
 	if( gPlayerLogLevel >= 3 && kSet.bStartingLoc)
 	{
@@ -4070,24 +3887,7 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 		{
 			int iDistance = plotDistance(iX, iY, pNearestCity->getX_INLINE(), pNearestCity->getY_INLINE());
 			int iNumCities = getNumCities();
-			/* original bts code
-			if (iDistance > 5)
-			{
-				iValue -= (iDistance - 5) * 500;
-			}
-			else if (iDistance < 4)
-			{
-				iValue -= (4 - iDistance) * 2000;
-			}
-			iValue *= (8 + iNumCities * 4);
-			iValue /= (2 + (iNumCities * 4) + iDistance);
 
-			if (pNearestCity->isCapital())
-			{
-				iValue *= 150;
-				iValue /= 100;
-			}
-			else if (getCapitalCity() != NULL) */
 			// K-Mod.
 			// Close cities are penalised in other ways
 			int iTargetRange = (kSet.bExpansive ? 6 : 5);
@@ -4106,14 +3906,11 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 				//compared with the most distance city from the core
 				//(having a boost rather than distance penalty avoids some distortion)
 
-				//This is not primarly about maitenance but more about empire 
+				//This is not primarly about mai´ntenance but more about empire 
 				//shape as such forbidden palace/state property are not big deal.
 				int iDistanceToCapital = plotDistance(pCapital->plot(), pPlot);
 
 				FAssert(iMaxDistanceFromCapital > 0);
-				/* original bts code
-				iValue *= 100 + (((bAdvancedStart ? 80 : 50) * std::max(0, (iMaxDistanceFromCapital - iDistance))) / iMaxDistanceFromCapital);
-				iValue /= 100; */
 				// K-Mod. just a touch of flavour. (note, for a long time this adjustment used iDistance instead of iDistanceToCaptial; and so I've reduced the scale to compensate)
 				int iShapeWeight = bAdvancedStart ? 50 : (kSet.bAmbitious ? 15 : 30);
 				iValue *= 100 + iShapeWeight * std::max(0, iMaxDistanceFromCapital - iDistanceToCapital) / iMaxDistanceFromCapital;
@@ -4180,9 +3977,6 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 		int iFoodSurplus = std::max(0, iSpecialFoodPlus - iSpecialFoodMinus);
 		int iFoodDeficit = std::max(0, iSpecialFoodMinus - iSpecialFoodPlus);
 
-		/* original bts code
-		iValue *= 100 + 20 * std::max(0, std::min(iFoodSurplus, 2 * GC.getFOOD_CONSUMPTION_PER_POPULATION()));
-		iValue /= 100 + 20 * std::max(0, iFoodDeficit); */
 		// K-Mod. (note that iFoodSurplus and iFoodDeficit already have the "max(0, x)" built in.
 		iValue *= 100 + (kSet.bExpansive ? 20 : 15) * std::min((iFoodSurplus + iSpecialFoodPlus)/2, 2 * GC.getFOOD_CONSUMPTION_PER_POPULATION());
 		iValue /= 100 + (kSet.bExpansive ? 20 : 15) * iFoodDeficit;
@@ -4192,8 +3986,8 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 	// Civ4 Reimagined
 	if (kSet.bStartingLoc && iNeededFood > iAdditionalFood)
 	{
-		iValue /= 55 + (iNeededFood - iAdditionalFood);
 		iValue *= 55;
+		iValue /= 55 + (iNeededFood - iAdditionalFood);
 		if( gPlayerLogLevel >= 3)
 		{
 			logBBAI("    Player %d (%S) Value Reduction because not enough food (%d). New Value: %d", getID(), getCivilizationDescription(0), iNeededFood - iAdditionalFood, iValue);
@@ -4201,10 +3995,10 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 	}
 	
 	// Civ4 Reimagined
-	if (kSet.bStartingLoc && iModernizableTiles < 4)
+	if (kSet.bStartingLoc && iModernizableTiles < 5)
 	{
-		iValue /= 58 - iModernizableTiles*2;
 		iValue *= 50;
+		iValue /= 65 - iModernizableTiles*3;
 		if( gPlayerLogLevel >= 3)
 		{
 			logBBAI("    Player %d (%S) Value Reduction because not enough modernizable tiles (%d). New Value: %d", getID(), getCivilizationDescription(0), iModernizableTiles, iValue);
@@ -4243,7 +4037,6 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 		iValue -= iBadTile * 15; // Civ4 Reimagined
 	}
 
-	//iValue /= (std::max(0, (iBadTile - (NUM_CITY_PLOTS / 4))) + 3);
 	// Civ4 Reimagined
 	iValue /= (std::max(0, (1+iBadTile - (NUM_CITY_PLOTS / 2))) + 12);
 	iValue *= 2;
@@ -4257,24 +4050,6 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 	{
 		logBBAI("    Player %d (%S) Final StartingLoc (%d,%d) Value: %d", getID(), getCivilizationDescription(0), iX, iY, iValue);
 	}
-
-	/* original bts code
-	if (kSet.bStartingLoc)
-	{
-		int iDifferentAreaTile = 0;
-
-		for (int iI = 0; iI < NUM_CITY_PLOTS; iI++)
-		{
-			CvPlot* pLoopPlot = plotCity(iX, iY, iI);
-
-			if ((pLoopPlot == NULL) || !(pLoopPlot->isWater() || pLoopPlot->area() == pArea))
-			{
-				iDifferentAreaTile++;
-			}
-		}
-
-		iValue /= (std::max(0, (iDifferentAreaTile - ((NUM_CITY_PLOTS * 2) / 3))) + 2);
-	} */ // disabled by K-Mod. This kind of stuff is already taken into account.
 
 	// K-Mod. Note: iValue is an int, but this function only return a short - so we need to be careful.
 	FAssert(iValue < MAX_SHORT);
