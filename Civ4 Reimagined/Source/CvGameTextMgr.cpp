@@ -11091,6 +11091,13 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 			szBuffer.append(NEWLINE);
 			szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_PER_CULTURE_LEVEL", kBuilding.getCommercePerCultureLevel(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
 		}
+
+		// Civ4 Reimagined
+		if (kBuilding.getCommerceFromCoast(iI) != 0)
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_FROM_COAST", kBuilding.getCommerceFromCoast(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
+		}
 	}
 /************************************************************************************************/
 /* UNOFFICIAL_PATCH                       06/27/10                    Afforess & jdog5000       */

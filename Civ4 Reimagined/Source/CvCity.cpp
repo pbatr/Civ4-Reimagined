@@ -10562,6 +10562,12 @@ int CvCity::getBuildingCommerceByBuilding(CommerceTypes eIndex, BuildingTypes eB
 				// Civ4 Reimagined
 				iCommerce += GC.getBuildingInfo(eBuilding).getCommercePerCultureLevel(eIndex) * getNumActiveBuilding(eBuilding) * getCultureLevel();
 
+				// Civ4 Reimagined
+				if (isCoastal())
+				{
+					iCommerce += GC.getBuildingInfo(eBuilding).getCommerceFromCoast(eIndex) * getNumActiveBuilding(eBuilding);
+				}
+
 				if (GC.getBuildingInfo(eBuilding).getReligionType() != NO_RELIGION)
 				{
 					if (GC.getBuildingInfo(eBuilding).getReligionType() == GET_PLAYER(getOwnerINLINE()).getStateReligion())
@@ -10698,6 +10704,13 @@ int CvCity::getAdditionalBaseCommerceRateByBuildingImpl(CommerceTypes eIndex, Bu
 		iExtraRate += getBuildingCommerceChange((BuildingClassTypes)kBuilding.getBuildingClassType(), eIndex);
 		// Civ4 Reimagind
 		iExtraRate += kBuilding.getCommercePerCultureLevel(eIndex) * getCultureLevel();
+
+		// Civ4 Reimagind
+		if (isCoastal())
+		{
+			iExtraRate += kBuilding.getCommerceFromCoast(eIndex);
+		}
+
 		if (kBuilding.getReligionType() != NO_RELIGION)
 		{
 			if (kBuilding.getReligionType() == GET_PLAYER(getOwnerINLINE()).getStateReligion())
