@@ -5117,7 +5117,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				iTempValue += kBuilding.getCommercePerCultureLevel(iI) * getCultureLevel() * 4;
 
 				// Civ4 Reimagind
-				if (isCoastal())
+				if (isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
 				{
 					iTempValue += kBuilding.getCommerceFromCoast(iI) * 4;
 				}
@@ -5559,7 +5559,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				iValue += (kBuilding.getCommercePerCultureLevel(COMMERCE_GOLD) * getCultureLevel() * 4);
 
 				// Civ4 Reimagind
-				if (isCoastal())
+				if (isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
 				{
 					iValue += kBuilding.getCommerceFromCoast(COMMERCE_GOLD) * 4;
 				}
@@ -5591,7 +5591,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				iValue += (kBuilding.getCommercePerCultureLevel(COMMERCE_RESEARCH) * getCultureLevel() * 4);
 
 				// Civ4 Reimagind
-				if (isCoastal())
+				if (isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
 				{
 					iValue += kBuilding.getCommerceFromCoast(COMMERCE_RESEARCH) * 4;
 				}
@@ -5609,7 +5609,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 					iTempValue += (kBuilding.getCommercePerCultureLevel(COMMERCE_ESPIONAGE) * getCultureLevel() * 3);
 
 					// Civ4 Reimagind
-					if (isCoastal())
+					if (isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
 					{
 						iValue += kBuilding.getCommerceFromCoast(COMMERCE_ESPIONAGE) * 3;
 					}
@@ -5725,7 +5725,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				iTempValue += kBuilding.getCommercePerCultureLevel(COMMERCE_ESPIONAGE) * getCultureLevel() * 4; // Civ4 Reimagined
 
 				// Civ4 Reimagind
-				if (isCoastal())
+				if (isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
 				{
 					iTempValue += kBuilding.getCommerceFromCoast(COMMERCE_ESPIONAGE) * 4;
 				}

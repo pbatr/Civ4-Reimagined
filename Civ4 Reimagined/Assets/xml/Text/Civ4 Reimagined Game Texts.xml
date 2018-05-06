@@ -1347,11 +1347,15 @@
 		<English>Sewer</English>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_BUILDING_HOTEL</Tag>
+		<English>Hotel</English>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_BUILDING_COMMERCE_PER_CULTURE_LEVEL</Tag>
-		<English>[ICON_BULLET]%D1% %F2_CmrcIcon per Culture Level</English>
+		<English>[ICON_BULLET]%D1%F2_CmrcIcon per Culture Level</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_COMMERCE_FROM_COAST</Tag>
-		<English>[ICON_BULLET]%D1% %F2_CmrcIcon from Access to Coast</English>
+		<English>[ICON_BULLET]%D1%F2_CmrcIcon from Access to Coast</English>
 	</TEXT>
 </Civ4GameText>
