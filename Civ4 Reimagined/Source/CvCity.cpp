@@ -10563,7 +10563,7 @@ int CvCity::getBuildingCommerceByBuilding(CommerceTypes eIndex, BuildingTypes eB
 				iCommerce += GC.getBuildingInfo(eBuilding).getCommercePerCultureLevel(eIndex) * getNumActiveBuilding(eBuilding) * getCultureLevel();
 
 				// Civ4 Reimagined
-				if (isCoastal())
+				if (isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
 				{
 					iCommerce += GC.getBuildingInfo(eBuilding).getCommerceFromCoast(eIndex) * getNumActiveBuilding(eBuilding);
 				}
@@ -10706,7 +10706,7 @@ int CvCity::getAdditionalBaseCommerceRateByBuildingImpl(CommerceTypes eIndex, Bu
 		iExtraRate += kBuilding.getCommercePerCultureLevel(eIndex) * getCultureLevel();
 
 		// Civ4 Reimagind
-		if (isCoastal())
+		if (isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
 		{
 			iExtraRate += kBuilding.getCommerceFromCoast(eIndex);
 		}
