@@ -5116,6 +5116,12 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				// Civ4 Reimagind
 				iTempValue += kBuilding.getCommercePerCultureLevel(iI) * getCultureLevel() * 4;
 
+				// Civ4 Reimagind
+				if (isCoastal())
+				{
+					iTempValue += kBuilding.getCommerceFromCoast(iI) * 4;
+				}
+
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      03/13/10                              jdog5000        */
 /*                                                                                              */
@@ -5551,6 +5557,12 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				iValue += (kBuilding.getObsoleteSafeCommerceChange(COMMERCE_GOLD) * 4);
 				// Civ4 Reimagined
 				iValue += (kBuilding.getCommercePerCultureLevel(COMMERCE_GOLD) * getCultureLevel() * 4);
+
+				// Civ4 Reimagind
+				if (isCoastal())
+				{
+					iValue += kBuilding.getCommerceFromCoast(COMMERCE_GOLD) * 4;
+				}
 			}
 
 			if (iFocusFlags & BUILDINGFOCUS_RESEARCH)
@@ -5577,6 +5589,12 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				iValue += (kBuilding.getObsoleteSafeCommerceChange(COMMERCE_RESEARCH) * 4);
 				// Civ4 Reimagined
 				iValue += (kBuilding.getCommercePerCultureLevel(COMMERCE_RESEARCH) * getCultureLevel() * 4);
+
+				// Civ4 Reimagind
+				if (isCoastal())
+				{
+					iValue += kBuilding.getCommerceFromCoast(COMMERCE_RESEARCH) * 4;
+				}
 			}
 
 			if (iFocusFlags & BUILDINGFOCUS_CULTURE)
@@ -5589,6 +5607,12 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 					iTempValue += (kBuilding.getObsoleteSafeCommerceChange(COMMERCE_ESPIONAGE) * 3);
 					// Civ4 Reimagined
 					iTempValue += (kBuilding.getCommercePerCultureLevel(COMMERCE_ESPIONAGE) * getCultureLevel() * 3);
+
+					// Civ4 Reimagind
+					if (isCoastal())
+					{
+						iValue += kBuilding.getCommerceFromCoast(COMMERCE_ESPIONAGE) * 3;
+					}
 				}
 
 				//if ((getCommerceRate(COMMERCE_CULTURE) == 0) && (AI_calculateTargetCulturePerTurn() == 1))
@@ -5699,6 +5723,13 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				iTempValue = (kBuilding.getCommerceChange(COMMERCE_ESPIONAGE) * 4);
 				iTempValue += (kBuilding.getObsoleteSafeCommerceChange(COMMERCE_ESPIONAGE) * 4);
 				iTempValue += kBuilding.getCommercePerCultureLevel(COMMERCE_ESPIONAGE) * getCultureLevel() * 4; // Civ4 Reimagined
+
+				// Civ4 Reimagind
+				if (isCoastal())
+				{
+					iTempValue += kBuilding.getCommerceFromCoast(COMMERCE_ESPIONAGE) * 4;
+				}
+
 				iTempValue *= 100 + getTotalCommerceRateModifier(COMMERCE_ESPIONAGE) + kBuilding.getCommerceModifier(COMMERCE_ESPIONAGE);
 				iValue += iTempValue / 100;
 /************************************************************************************************/

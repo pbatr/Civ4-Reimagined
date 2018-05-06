@@ -1871,6 +1871,8 @@ public:
 	int getCommerceChangeDoubleTime(int i) const;				// Exposed to Python
 	int getCommercePerCultureLevel(int i) const;	// Civ4 Reimagined
 	int* getCommercePerCultureLevelArray() const; // Civ4 Reimagined
+	int getCommerceFromCoast(int i) const;	// Civ4 Reimagined
+	int* getCommerceFromCoastArray() const; // Civ4 Reimagined
 	int getCommerceModifier(int i) const;				// Exposed to Python
 	int* getCommerceModifierArray() const;
 	int getGlobalCommerceModifier(int i) const;				// Exposed to Python
@@ -2124,6 +2126,7 @@ protected:
 	int* m_piObsoleteSafeCommerceChange;
 	int* m_piCommerceChangeDoubleTime;
 	int* m_piCommercePerCultureLevel; // Civ4 Reimagined
+	int* m_piCommerceFromCoast; // Civ4 Reimagined
 	int* m_piCommerceModifier;
 	int* m_piGlobalCommerceModifier;
 	int* m_piSpecialistExtraCommerce;
