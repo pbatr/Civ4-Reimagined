@@ -5115,6 +5115,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				iTempValue += (kBuilding.getObsoleteSafeCommerceChange(iI) * 4);
 				// Civ4 Reimagind
 				iTempValue += kBuilding.getCommercePerCultureLevel(iI) * getCultureLevel() * 4;
+				iTempValue += kBuilding.getCommercePerWorldWonder(iI) * getNumWorldWonders() * 4;
 
 				// Civ4 Reimagind
 				if (isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
@@ -5557,6 +5558,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				iValue += (kBuilding.getObsoleteSafeCommerceChange(COMMERCE_GOLD) * 4);
 				// Civ4 Reimagined
 				iValue += (kBuilding.getCommercePerCultureLevel(COMMERCE_GOLD) * getCultureLevel() * 4);
+				iValue += (kBuilding.getCommercePerWorldWonder(COMMERCE_GOLD) * getNumWorldWonders() * 4);
 
 				// Civ4 Reimagind
 				if (isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
@@ -5589,6 +5591,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				iValue += (kBuilding.getObsoleteSafeCommerceChange(COMMERCE_RESEARCH) * 4);
 				// Civ4 Reimagined
 				iValue += (kBuilding.getCommercePerCultureLevel(COMMERCE_RESEARCH) * getCultureLevel() * 4);
+				iValue += (kBuilding.getCommercePerWorldWonder(COMMERCE_RESEARCH) * getNumWorldWonders() * 4);
 
 				// Civ4 Reimagind
 				if (isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
@@ -5607,6 +5610,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 					iTempValue += (kBuilding.getObsoleteSafeCommerceChange(COMMERCE_ESPIONAGE) * 3);
 					// Civ4 Reimagined
 					iTempValue += (kBuilding.getCommercePerCultureLevel(COMMERCE_ESPIONAGE) * getCultureLevel() * 3);
+					iTempValue += (kBuilding.getCommercePerWorldWonder(COMMERCE_ESPIONAGE) * getNumWorldWonders() * 3);
 
 					// Civ4 Reimagind
 					if (isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
@@ -5723,6 +5727,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				iTempValue = (kBuilding.getCommerceChange(COMMERCE_ESPIONAGE) * 4);
 				iTempValue += (kBuilding.getObsoleteSafeCommerceChange(COMMERCE_ESPIONAGE) * 4);
 				iTempValue += kBuilding.getCommercePerCultureLevel(COMMERCE_ESPIONAGE) * getCultureLevel() * 4; // Civ4 Reimagined
+				iTempValue += kBuilding.getCommercePerWorldWonder(COMMERCE_ESPIONAGE) * getNumWorldWonders() * 4; // Civ4 Reimagined
 
 				// Civ4 Reimagind
 				if (isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))

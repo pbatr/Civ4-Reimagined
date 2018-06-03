@@ -1355,6 +1355,10 @@
 		<English>[ICON_BULLET]%D1%F2_CmrcIcon per Culture Level</English>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_BUILDING_COMMERCE_PER_WORLD_WONDER</Tag>
+		<English>[ICON_BULLET]%D1%F2_CmrcIcon per World Wonder in City</English>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_BUILDING_COMMERCE_FROM_COAST</Tag>
 		<English>[ICON_BULLET]%D1%F2_CmrcIcon from Access to Coast</English>
 	</TEXT>
