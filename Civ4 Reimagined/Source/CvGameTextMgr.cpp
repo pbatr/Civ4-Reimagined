@@ -11094,6 +11094,12 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 				szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_PER_CULTURE_LEVEL", kBuilding.getCommercePerCultureLevel(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
 			}
 
+			if (kBuilding.getCommercePerWorldWonder(iI) != 0)
+			{
+				szBuffer.append(NEWLINE);
+				szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_PER_WORLD_WONDER", kBuilding.getCommercePerWorldWonder(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
+			}
+
 			if (kBuilding.getCommerceFromCoast(iI) != 0)
 			{
 				szBuffer.append(NEWLINE);

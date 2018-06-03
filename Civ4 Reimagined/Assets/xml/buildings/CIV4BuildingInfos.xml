@@ -34366,6 +34366,9 @@
 			<CommercePerCultureLevel>
 				<iCommerce>1</iCommerce>
 			</CommercePerCultureLevel>
+			<CommercePerWorldWonder>
+				<iCommerce>1</iCommerce>
+			</CommercePerWorldWonder>
 			<CommerceFromCoast>
 				<iCommerce>1</iCommerce>
 			</CommerceFromCoast>

@@ -238,6 +238,9 @@
 	<ElementType name="CommercePerCultureLevel" content="eltOnly">
 		<element type="iCommerce" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
+	<ElementType name="CommercePerWorldWonder" content="eltOnly">
+		<element type="iCommerce" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
 	<ElementType name="CommerceFromCoast" content="eltOnly">
 		<element type="iCommerce" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
@@ -626,6 +629,7 @@
 		<element type="ObsoleteSafeCommerceChanges"/>
 		<element type="CommerceChangeDoubleTimes"/>
 		<element type="CommercePerCultureLevel" minOccurs="0"/> <!-- Civ4 Reimagined -->
+		<element type="CommercePerWorldWonder" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="CommerceFromCoast" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="CommerceModifiers"/>
 		<element type="GlobalCommerceModifiers"/>
