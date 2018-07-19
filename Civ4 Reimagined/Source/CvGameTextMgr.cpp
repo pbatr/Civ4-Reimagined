@@ -11105,6 +11105,12 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 				szBuffer.append(NEWLINE);
 				szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_FROM_COAST", kBuilding.getCommerceFromCoast(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
 			}
+
+			if (kBuilding.getCommerceFromAirlift(iI) != 0)
+			{
+				szBuffer.append(NEWLINE);
+				szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_FROM_AIRLIFT", kBuilding.getCommerceFromAirlift(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
+			}
 		}
 	}
 /************************************************************************************************/

@@ -5123,6 +5123,12 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 					iTempValue += kBuilding.getCommerceFromCoast(iI) * 4;
 				}
 
+				// Civ4 Reimagind
+		        if (getMaxAirlift() > 0)
+		        {
+		            iTempValue += kBuilding.getCommerceFromAirlift(iI);
+		        }
+
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      03/13/10                              jdog5000        */
 /*                                                                                              */
@@ -5565,6 +5571,12 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				{
 					iValue += kBuilding.getCommerceFromCoast(COMMERCE_GOLD) * 4;
 				}
+
+				// Civ4 Reimagind
+		        if (getMaxAirlift() > 0)
+		        {
+		            iValue += kBuilding.getCommerceFromAirlift(COMMERCE_GOLD);
+		        }
 			}
 
 			if (iFocusFlags & BUILDINGFOCUS_RESEARCH)
@@ -5598,6 +5610,12 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				{
 					iValue += kBuilding.getCommerceFromCoast(COMMERCE_RESEARCH) * 4;
 				}
+
+				// Civ4 Reimagind
+		        if (getMaxAirlift() > 0)
+		        {
+		            iValue += kBuilding.getCommerceFromAirlift(COMMERCE_RESEARCH);
+		        }
 			}
 
 			if (iFocusFlags & BUILDINGFOCUS_CULTURE)
@@ -5734,6 +5752,12 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				{
 					iTempValue += kBuilding.getCommerceFromCoast(COMMERCE_ESPIONAGE) * 4;
 				}
+
+				// Civ4 Reimagind
+		        if (getMaxAirlift() > 0)
+		        {
+		            iTempValue += kBuilding.getCommerceFromAirlift(COMMERCE_ESPIONAGE);
+		        }
 
 				iTempValue *= 100 + getTotalCommerceRateModifier(COMMERCE_ESPIONAGE) + kBuilding.getCommerceModifier(COMMERCE_ESPIONAGE);
 				iValue += iTempValue / 100;
