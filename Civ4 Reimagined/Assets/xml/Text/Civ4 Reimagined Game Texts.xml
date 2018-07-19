@@ -1362,4 +1362,8 @@
 		<Tag>TXT_KEY_BUILDING_COMMERCE_FROM_COAST</Tag>
 		<English>[ICON_BULLET]%D1%F2_CmrcIcon from Access to Coast</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_COMMERCE_FROM_AIRLIFT</Tag>
+		<English>[ICON_BULLET]%D1%F2_CmrcIcon from Airport present in the City</English>
+	</TEXT>
 </Civ4GameText>

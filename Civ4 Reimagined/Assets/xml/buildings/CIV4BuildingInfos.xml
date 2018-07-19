@@ -34372,6 +34372,9 @@
 			<CommerceFromCoast>
 				<iCommerce>1</iCommerce>
 			</CommerceFromCoast>
+			<CommerceFromAirlift>
+				<iCommerce>1</iCommerce>
+			</CommerceFromAirlift>
 			<CommerceModifiers/>
 			<GlobalCommerceModifiers/>
 			<SpecialistExtraCommerces/>
