@@ -5483,6 +5483,10 @@ m_bNoForeignCorporations(false),
 m_bUnlimitedAnimalXP(false), // Civ4 Reimagined
 m_bStateReligion(false),
 m_bNoNonStateReligionSpread(false),
+m_iConservative(0), // Civ4 Reimagined
+m_iLiberal(0), // Civ4 Reimagined
+m_iCommunist(0), // Civ4 Reimagined
+m_iFascist(0), // Civ4 Reimagined
 m_piYieldModifier(NULL),
 m_piUnitProductionModifiers(NULL), // Civ4 Reimagined
 m_piExtraYield(NULL), // Civ4 Reimagined
@@ -6032,6 +6036,30 @@ int CvCivicInfo::getSpecialistExtraYieldEraThreshold() const
 	return m_iSpecialistExtraYieldEraThreshold;
 }
 
+// Civ4 Reimagind
+int CvCivicInfo::getConservative() const						
+{
+	return m_iConservative;
+}
+
+// Civ4 Reimagind
+int CvCivicInfo::getLiberal() const						
+{
+	return m_iLiberal;
+}
+
+// Civ4 Reimagind
+int CvCivicInfo::getCommunist() const						
+{
+	return m_iCommunist;
+}
+
+// Civ4 Reimagind
+int CvCivicInfo::getFascist() const						
+{
+	return m_iFascist;
+}
+
 // Arrays
 
 int CvCivicInfo::getYieldModifier(int i) const
@@ -6418,6 +6446,10 @@ void CvCivicInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bNoGreatPeople); //Civ4 Reimagined
 	stream->Read(&m_bNoCultureFlip); //Civ4 Reimagined
 	stream->Read(&m_bNoCapital); // Civ4 Reimagined
+	stream->Read(&m_iConservative); // Civ4 Reimagined
+	stream->Read(&m_iLiberal); // Civ4 Reimagined
+	stream->Read(&m_iCommunist); // Civ4 Reimagined
+	stream->Read(&m_iFascist); // Civ4 Reimagined
 
 
 	// Arrays
@@ -6697,6 +6729,10 @@ void CvCivicInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bNoGreatPeople); //Civ4 Reimagined
 	stream->Write(m_bNoCultureFlip); //Civ4 Reimagined
 	stream->Write(m_bNoCapital); //Civ4 Reimagined
+	stream->Write(m_iConservative); //Civ4 Reimagined
+	stream->Write(m_iLiberal); //Civ4 Reimagined
+	stream->Write(m_iCommunist); //Civ4 Reimagined
+	stream->Write(m_iFascist); //Civ4 Reimagined
 
 	// Arrays
 
@@ -6846,6 +6882,10 @@ bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iResearchPerCulture, "iResearchPerCulture"); //Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iWonderProductionBonus, "iWonderProductionBonus"); //Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iExpInBorderModifier, "iExpInBorderModifier");
+	pXML->GetChildXmlValByName(&m_iConservative, "iConservative"); // Civ4 Reimagined
+	pXML->GetChildXmlValByName(&m_iLiberal, "iLiberal"); // Civ4 Reimagined
+	pXML->GetChildXmlValByName(&m_iCommunist, "iCommunist"); // Civ4 Reimagined
+	pXML->GetChildXmlValByName(&m_iFascist, "iFascist"); // Civ4 Reimagined
 
 
 	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"YieldModifiers"))

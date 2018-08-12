@@ -2819,4 +2819,17 @@ enum CivilopediaWidgetShowTypes
 	CIVILOPEDIA_WIDGET_SHOW_WATER,
 };
 
+// Civ4 Reimagind
+enum IdeologyTypes
+{
+	IDEOLOGY_CONSERVATIVE,
+	IDEOLOGY_LIBERAL,
+	IDEOLOGY_COMMUNIST,
+	IDEOLOGY_FASCIST,
+
+#ifdef _USRDLL
+	NUM_IDEOLOGY_TYPES
+#endif
+};
+
 #endif	// CVENUMS_h

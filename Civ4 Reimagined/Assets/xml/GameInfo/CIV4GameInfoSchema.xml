@@ -918,7 +918,7 @@
 	<!-- Leoreth end -->
 	<ElementType name="WeLoveTheKing" content="textOnly"/>
 	<!-- Civ4 Reimagined start -->
-	<ElementType name="iMonarchist" content="textOnly" dt:type="int"/>
+	<ElementType name="iConservative" content="textOnly" dt:type="int"/>
 	<ElementType name="iLiberal" content="textOnly" dt:type="int"/>
 	<ElementType name="iCommunist" content="textOnly" dt:type="int"/>
 	<ElementType name="iFascist" content="textOnly" dt:type="int"/>
@@ -1035,7 +1035,7 @@
 		<element type="DomainProductionModifiers" minOccurs="0"/> <!-- Leoreth -->
 		<element type="DomainExperienceModifiers" minOccurs="0"/> <!-- Leoreth -->
 		<element type="WeLoveTheKing"/>
-		<element type="iMonarchist"/> <!-- Civ4 Reimagined -->
+		<element type="iConservative"/> <!-- Civ4 Reimagined -->
 		<element type="iLiberal"/> <!-- Civ4 Reimagined -->
 		<element type="iCommunist"/> <!-- Civ4 Reimagined -->
 		<element type="iFascist"/> <!-- Civ4 Reimagined -->
