@@ -69,6 +69,7 @@ CvPlayer::CvPlayer()
 
 	m_aiMilitaryPower = new int[NUM_DOMAIN_TYPES]; // Civ4 Reimagined
 	m_aiBestUnitPower = new int[NUM_DOMAIN_TYPES]; // Civ4 Reimagined
+	m_aiIdeologyValue = new int[NUM_IDEOLOGY_TYPES]; // Civ4 Reimagind
 
 	m_abFeatAccomplished = new bool[NUM_FEAT_TYPES];
 	m_abOptions = new bool[NUM_PLAYEROPTION_TYPES];
@@ -146,6 +147,7 @@ CvPlayer::~CvPlayer()
 	SAFE_DELETE_ARRAY(m_aiDomainExperienceModifiers); // Leoreth
 	SAFE_DELETE_ARRAY(m_aiMilitaryPower); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiBestUnitPower); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_aiIdeologyValue); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_abFeatAccomplished);
 	SAFE_DELETE_ARRAY(m_abOptions);
 }
@@ -920,6 +922,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iNoCityResistanceCount = 0; // Civ4 Reimagined
 	m_iProductionPerSurplusHappiness = 0; // Civ4 Reimagined
 	m_bUpdateBonusRatio = true; // Civ4 Reimagined
+	m_eIdeology = IDEOLOGY_CONSERVATIVE; // Civ4 Reimagind
 	
 	m_eID = eID;
 	updateTeamType();
@@ -997,6 +1000,12 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 				}
 			}
 		}
+	}
+
+	// Civ4 Reimagind
+	for (iI = 0; iI < NUM_IDEOLOGY_TYPES; iI++)
+	{
+		m_aiIdeologyValue[iI] = 0;
 	}
 
 	for (iI = 0; iI < NUM_FEAT_TYPES; iI++)
@@ -19545,6 +19554,13 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
 	changeBonusValueModifier(GC.getCivicInfo(eCivic).getBonusRatioModifier() * iChange); //Civ4 Reimagined
 	changeResearchPerCulture(GC.getCivicInfo(eCivic).getResearchPerCulture() * iChange); //Civ4 Reimagined
 	changeUnlimitedAnimalXPCount((GC.getCivicInfo(eCivic).isUnlimitedAnimalXP()) ? iChange : 0); // Civ4 Reimagined
+
+	// Civ4 Reimagined: Ideologies
+	changeIdeologyValue(IDEOLOGY_CONSERVATIVE, GC.getCivicInfo(eCivic).getConservative() * iChange);
+	changeIdeologyValue(IDEOLOGY_LIBERAL, GC.getCivicInfo(eCivic).getLiberal() * iChange);
+	changeIdeologyValue(IDEOLOGY_COMMUNIST, GC.getCivicInfo(eCivic).getCommunist() * iChange);
+	changeIdeologyValue(IDEOLOGY_FASCIST, GC.getCivicInfo(eCivic).getFascist() * iChange);
+	updateIdeology();
 	
 	/*
 	for (iI = 0; iI < GC.getNumUnitClassInfos(); iI++)
@@ -19898,6 +19914,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read((int*)&m_eCurrentEra);
 	pStream->Read((int*)&m_eLastStateReligion);
 	pStream->Read((int*)&m_eParent);
+	pStream->Read((int*)&m_eIdeology); // Civ4 Reimagined
 	updateTeamType(); //m_eTeamType not saved
 	updateHuman();
 
@@ -19961,6 +19978,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(NUM_COMMERCE_TYPES, m_paiCapitalCommerceModifier); // Civ4 Reimagined
 	pStream->Read(NUM_DOMAIN_TYPES, m_aiMilitaryPower); // Civ4 Reimagined
 	pStream->Read(NUM_DOMAIN_TYPES, m_aiBestUnitPower); // Civ4 Reimagined
+	pStream->Read(NUM_IDEOLOGY_TYPES, m_aiIdeologyValue); // Civ4 Reimagined
 	pStream->Read(GC.getNumBonusInfos(), m_paiPlayerExtraAvailableBonuses); // Civ4 Reimagined
 
 	//pStream->Read(GC.getNumUnitClassInfos(), m_aiUnitProductionModifier); // Civ4 Reimagined
@@ -20481,6 +20499,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_eCurrentEra);
 	pStream->Write(m_eLastStateReligion);
 	pStream->Write(m_eParent);
+	pStream->Write(m_eIdeology); // Civ4 Reimagined
 	//m_eTeamType not saved
 
 	pStream->Write(NUM_YIELD_TYPES, m_aiSeaPlotYield);
@@ -20543,6 +20562,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(NUM_COMMERCE_TYPES, m_paiCapitalCommerceModifier); // Civ4 Reimagined
 	pStream->Write(NUM_DOMAIN_TYPES, m_aiMilitaryPower); // Civ4 Reimagined
 	pStream->Write(NUM_DOMAIN_TYPES, m_aiBestUnitPower); // Civ4 Reimagined
+	pStream->Write(NUM_IDEOLOGY_TYPES, m_aiIdeologyValue); // Civ4 Reimagined
 	pStream->Write(GC.getNumBonusInfos(), m_paiPlayerExtraAvailableBonuses); // Civ4 Reimagined
 	
 	FAssertMsg((0 < GC.getNumTechInfos()), "GC.getNumTechInfos() is not greater than zero but it is expected to be in CvPlayer::write");
@@ -26269,6 +26289,56 @@ bool CvPlayer::isWrongCivicBuilding(BuildingTypes eBuilding) const
 	
 	return false;
 }
+
+/************************************************************************************************/
+/* Civ4 Reimagined Ideologies                   START                                           */
+/************************************************************************************************/
+
+int CvPlayer::getIdeologyValue(IdeologyTypes eIdeology) const
+{
+	FAssertMsg(eIdeology >= 0, "eIdeology is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIdeology < NUM_IDEOLOGY_TYPES, "eIdeology is expected to be within maximum bounds (invalid Index)");
+	return m_aiIdeologyValue[eIdeology];
+}
+
+void CvPlayer::changeIdeologyValue(IdeologyTypes eIdeology, int iChange)
+{
+	FAssertMsg(eIdeology >= 0, "eIdeology is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIdeology < NUM_IDEOLOGY_TYPES, "eIdeology is expected to be within maximum bounds (invalid Index)");
+	if (iChange != 0)
+	{
+		m_aiIdeologyValue[eIdeology] = m_aiIdeologyValue[eIdeology] + iChange;
+	}	
+}
+
+IdeologyTypes CvPlayer::getIdeology() const
+{
+	return m_eIdeology;
+}
+
+void CvPlayer::updateIdeology()
+{
+	IdeologyTypes eBestIdeology = IDEOLOGY_CONSERVATIVE;
+	int iBestValue = INT_MIN;
+
+	for (int iI = 0; iI < NUM_IDEOLOGY_TYPES; ++iI)
+	{
+		if (getIdeologyValue((IdeologyTypes)iI) > iBestValue)
+		{
+			eBestIdeology = (IdeologyTypes)iI;
+			iBestValue = getIdeologyValue((IdeologyTypes)iI);
+		}
+	}
+
+	if (getIdeology() != eBestIdeology)
+	{
+		m_eIdeology = eBestIdeology;
+	}
+}
+
+/************************************************************************************************/
+/* Civ4 Reimagined Ideologies                   END                                           */
+/************************************************************************************************/
 
 /************************************************************************************************/
 /* Civ4 Reimagined Unique Powers                   START                                                 */

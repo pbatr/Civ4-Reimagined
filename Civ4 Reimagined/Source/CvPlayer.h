@@ -1364,6 +1364,12 @@ public:
 	bool isHasUniqueAztecPromotion() const; // Civ4 Reimagined
 	void setUniqueAztecPromotion(bool bNewValue); // Civ4 Reimagined
 	void doUniqueAztecPromotion(CvUnit* pUnit); // Civ4 Reimagined
+
+	// Civ4 Reimagind Ideologies
+	int getIdeologyValue(IdeologyTypes eIdeology) const;
+	void changeIdeologyValue(IdeologyTypes eIdeology, int iChange);
+	IdeologyTypes getIdeology() const;
+	void updateIdeology();
 	
 	
 	// K-Mod note: Adding new virtual functions to this list seems to cause unpredictable behaviour during the initialization of the game.
@@ -1633,6 +1639,7 @@ protected:
 	ReligionTypes m_eLastStateReligion;
 	PlayerTypes m_eParent;
 	TeamTypes m_eTeamType;
+	IdeologyTypes m_eIdeology; // Civ4 Reimagined
 
 	int* m_aiSeaPlotYield;
 	int* m_aiYieldRateModifier;
@@ -1659,6 +1666,7 @@ protected:
 	int* m_aiMilitaryPower; // Civ4 Reimagined
 	int* m_aiBestUnitPower; // Civ4 Reimagined
 	int* m_paiPlayerExtraAvailableBonuses; // Civ4 Reimagined
+	int* m_aiIdeologyValue; // Civ4Reimagind
 	
 	//Leoreth
 	int* m_aiDomainProductionModifiers;
