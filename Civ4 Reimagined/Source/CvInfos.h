@@ -1419,6 +1419,11 @@ public:
 	bool isNoForeignCultureUnhappiness() const; //Civ4 Reimagined
 	bool isNoCityResistance() const; //Civ4 Reimagined
 
+	int getConservative() const; //Civ4 Reimagined
+	int getLiberal() const; //Civ4 Reimagined
+	int getCommunist() const; //Civ4 Reimagined
+	int getFascist() const; //Civ4 Reimagined
+
 	std::wstring pyGetWeLoveTheKing() { return getWeLoveTheKing(); }			// Exposed to Python
 	const wchar* getWeLoveTheKing();
 	void setWeLoveTheKingKey(const TCHAR* szVal);
@@ -1559,6 +1564,10 @@ protected:
 	bool m_bNoCapital; //Civ4 Reimagined
 	bool m_bNoForeignCultureUnhappiness; // Civ4 Reimagined
 	bool m_bNoCityResistance; // Civ4 Reimagined
+	int m_iConservative; // Civ4 Reimagined
+	int m_iLiberal; // Civ4 Reimagined
+	int m_iCommunist; // Civ4 Reimagined
+	int m_iFascist; // Civ4 Reimagined
 
 	CvWString m_szWeLoveTheKingKey;
 

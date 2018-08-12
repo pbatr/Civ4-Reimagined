@@ -8061,6 +8061,8 @@ void CvPlayerAI::AI_updateAttitudeCache(PlayerTypes ePlayer)
 	iAttitude += AI_getTradeAttitude(ePlayer);
 	iAttitude += AI_getRivalTradeAttitude(ePlayer);
 	iAttitude += AI_getNeedOpenBordersAttitude(ePlayer); // Civ4 Reimagined
+	iAttitude += AI_getSameIdeologyAttitude(ePlayer); // Civ4 Reimagined
+	iAttitude += AI_getDifferentIdeologyAttitude(ePlayer); // Civ4 Reimagined
 
 	for (int iI = 0; iI < NUM_MEMORY_TYPES; iI++)
 	{
@@ -8539,6 +8541,36 @@ int CvPlayerAI::AI_getNeedOpenBordersAttitude(PlayerTypes ePlayer) const
 	}
 	
 	return iAttitude;
+}
+
+
+// Civ4 Reimagined
+int CvPlayerAI::AI_getSameIdeologyAttitude(PlayerTypes ePlayer) const
+{
+	if (getIdeology() != GET_PLAYER(ePlayer).getIdeology())
+	{
+		return 0;
+	}
+
+	// Conservatives do net get relation bonus for each other
+	if (getIdeology() == IDEOLOGY_CONSERVATIVE)
+	{
+		return 0;
+	}
+
+	return 2;
+}
+
+
+// Civ4 Reimagined
+int CvPlayerAI::AI_getDifferentIdeologyAttitude(PlayerTypes ePlayer) const
+{
+	if (getIdeology() == GET_PLAYER(ePlayer).getIdeology())
+	{
+		return 0;
+	}
+
+	return -2;
 }
 
 
