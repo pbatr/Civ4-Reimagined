@@ -19526,6 +19526,12 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
 	changeIdeologyValue(IDEOLOGY_COMMUNIST, GC.getCivicInfo(eCivic).getCommunist() * iChange);
 	changeIdeologyValue(IDEOLOGY_FASCIST, GC.getCivicInfo(eCivic).getFascist() * iChange);
 	updateIdeology();
+
+	if ( gPlayerLogLevel >= 2 )
+	{
+		logBBAI("%S Conservative: %d, Liberal: %d, Communist: %d, Fascist: %d --> Ideology: %d", getCivilizationDescription(0), getIdeologyValue(IDEOLOGY_CONSERVATIVE),
+		getIdeologyValue(IDEOLOGY_LIBERAL), getIdeologyValue(IDEOLOGY_COMMUNIST), getIdeologyValue(IDEOLOGY_FASCIST), (int)getIdeology());
+	}
 	
 	/*
 	for (iI = 0; iI < GC.getNumUnitClassInfos(); iI++)
