@@ -123,6 +123,7 @@ class CvAutomateInfo;
 class CvPromotionInfo;
 class CvTechInfo;
 class CvReligionInfo;
+class CvIdeologyInfo; // Civ4 Reimagined
 class CvCorporationInfo;
 class CvSpecialistInfo;
 class CvCivicOptionInfo;
@@ -559,6 +560,10 @@ public:
 	std::vector<CvReligionInfo*>& getReligionInfo();
 	CvReligionInfo& getReligionInfo(ReligionTypes eReligionNum);
 
+	// Civ4 Reimagined
+	std::vector<CvIdeologyInfo*>& getIdeologyInfo();
+	CvIdeologyInfo& getIdeologyInfo(IdeologyTypes eIdeologyNum);
+
 	int getNumCorporationInfos();
 	std::vector<CvCorporationInfo*>& getCorporationInfo();
 	CvCorporationInfo& getCorporationInfo(CorporationTypes eCorporationNum);
@@ -644,6 +649,7 @@ public:
 	DllExport int getNUM_HEALTHBAR_TYPES() const;
 	DllExport int getNUM_CONTROL_TYPES() const;
 	DllExport int getNUM_LEADERANIM_TYPES() const;
+	DllExport int getNUM_IDEOLOGY_TYPES() const; // Civ4 Reimagined
 
 	DllExport int& getNumEntityEventTypes();
 	CvString*& getEntityEventTypes();
@@ -1070,6 +1076,7 @@ protected:
 	std::vector<CvUpkeepInfo*> m_paUpkeepInfo;
 	std::vector<CvCultureLevelInfo*> m_paCultureLevelInfo;
 	std::vector<CvReligionInfo*> m_paReligionInfo;
+	std::vector<CvIdeologyInfo*> m_paIdeologyInfo; // Civ4 Reimagined
 	std::vector<CvCorporationInfo*> m_paCorporationInfo;
 	std::vector<CvActionInfo*> m_paActionInfo;
 	std::vector<CvMissionInfo*> m_paMissionInfo;
