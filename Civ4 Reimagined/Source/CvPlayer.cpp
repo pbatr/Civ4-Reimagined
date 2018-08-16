@@ -922,7 +922,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iNoCityResistanceCount = 0; // Civ4 Reimagined
 	m_iProductionPerSurplusHappiness = 0; // Civ4 Reimagined
 	m_bUpdateBonusRatio = true; // Civ4 Reimagined
-	m_eIdeology = IDEOLOGY_CONSERVATIVE; // Civ4 Reimagind
+	m_eIdeology = IDEOLOGY_CONSERVATISM; // Civ4 Reimagind
 	
 	m_eID = eID;
 	updateTeamType();
@@ -19554,16 +19554,16 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
 	changeUnlimitedAnimalXPCount((GC.getCivicInfo(eCivic).isUnlimitedAnimalXP()) ? iChange : 0); // Civ4 Reimagined
 
 	// Civ4 Reimagined: Ideologies
-	changeIdeologyValue(IDEOLOGY_CONSERVATIVE, GC.getCivicInfo(eCivic).getConservative() * iChange);
-	changeIdeologyValue(IDEOLOGY_LIBERAL, GC.getCivicInfo(eCivic).getLiberal() * iChange);
-	changeIdeologyValue(IDEOLOGY_COMMUNIST, GC.getCivicInfo(eCivic).getCommunist() * iChange);
-	changeIdeologyValue(IDEOLOGY_FASCIST, GC.getCivicInfo(eCivic).getFascist() * iChange);
+	changeIdeologyValue(IDEOLOGY_CONSERVATISM, GC.getCivicInfo(eCivic).getConservative() * iChange);
+	changeIdeologyValue(IDEOLOGY_LIBERALISM, GC.getCivicInfo(eCivic).getLiberal() * iChange);
+	changeIdeologyValue(IDEOLOGY_COMMUNISM, GC.getCivicInfo(eCivic).getCommunist() * iChange);
+	changeIdeologyValue(IDEOLOGY_FASCISM, GC.getCivicInfo(eCivic).getFascist() * iChange);
 	updateIdeology();
 
 	if ( gPlayerLogLevel >= 2 )
 	{
-		logBBAI("%S Conservative: %d, Liberal: %d, Communist: %d, Fascist: %d --> Ideology: %d", getCivilizationDescription(0), getIdeologyValue(IDEOLOGY_CONSERVATIVE),
-		getIdeologyValue(IDEOLOGY_LIBERAL), getIdeologyValue(IDEOLOGY_COMMUNIST), getIdeologyValue(IDEOLOGY_FASCIST), (int)getIdeology());
+		logBBAI("%S Conservative: %d, Liberal: %d, Communist: %d, Fascist: %d --> Ideology: %d", getCivilizationDescription(0), getIdeologyValue(IDEOLOGY_CONSERVATISM),
+		getIdeologyValue(IDEOLOGY_LIBERALISM), getIdeologyValue(IDEOLOGY_COMMUNISM), getIdeologyValue(IDEOLOGY_FASCISM), (int)getIdeology());
 	}
 	
 	/*
@@ -26322,11 +26322,21 @@ IdeologyTypes CvPlayer::getIdeology() const
 
 void CvPlayer::updateIdeology()
 {
-	IdeologyTypes eBestIdeology = IDEOLOGY_CONSERVATIVE;
+	if (isBarbarian())
+	{
+		return;
+	}
+
+	IdeologyTypes eBestIdeology = IDEOLOGY_CONSERVATISM;
 	int iBestValue = INT_MIN;
 
 	for (int iI = 0; iI < NUM_IDEOLOGY_TYPES; ++iI)
 	{
+		if (!GET_TEAM(getTeam()).isHasTech((TechTypes)(GC.getIdeologyInfo((IdeologyTypes)iI).getTechPrereq())))
+		{
+			continue;
+		}
+
 		if (getIdeologyValue((IdeologyTypes)iI) > iBestValue)
 		{
 			eBestIdeology = (IdeologyTypes)iI;
@@ -26337,6 +26347,7 @@ void CvPlayer::updateIdeology()
 	if (getIdeology() != eBestIdeology)
 	{
 		m_eIdeology = eBestIdeology;
+		logBBAI("new ideology: %d", (int)eBestIdeology);
 	}
 }
 
