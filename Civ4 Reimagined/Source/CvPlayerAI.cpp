@@ -3286,12 +3286,15 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 						aiYield[eYield] += 1;
 					}
 
-					const CvFeatureInfo& kFeature = GC.getFeatureInfo(eFeature);
-					if (bEventuallyRemoveableFeature && !bRemoveableFeature && kFeature.getYieldChange(eYield) <= 0)
+					if (eFeature != NO_FEATURE)
 					{
-						// Civ4 Reimagined
-						iPlotValue += 40 * kFeature.getYieldChange(eYield);
-						iPlotValue -= 3;
+						const CvFeatureInfo& kFeature = GC.getFeatureInfo(eFeature);
+						if (bEventuallyRemoveableFeature && !bRemoveableFeature && kFeature.getYieldChange(eYield) <= 0)
+						{
+							// Civ4 Reimagined
+							iPlotValue += 40 * kFeature.getYieldChange(eYield);
+							iPlotValue -= 3;
+						}
 					}
 				}
 				// K-Mod end
