@@ -235,6 +235,19 @@
 	<ElementType name="ReligionInfos" content="eltOnly">
 		<element type="ReligionInfo" maxOccurs="*"/>
 	</ElementType>
+	<!-- Civ4 Reimagined start -->
+	<ElementType name="IdeologyInfo" content="eltOnly">
+		<element type="Type"/>
+		<element type="Description"/>
+		<element type="Adjective"/>
+		<element type="TechPrereq"/>
+		<element type="Button"/>
+		<element type="iOrderPriority" minOccurs="0"/>
+	</ElementType>
+	<ElementType name="IdeologyInfos" content="eltOnly">
+		<element type="IdeologyInfo" maxOccurs="*"/>
+	</ElementType>
+	<!-- Civ4 Reimagined end -->
 	<ElementType name="CorporationInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description"/>
@@ -1494,6 +1507,11 @@
 	<ElementType name="Civ4ReligionInfo" content="eltOnly">
 		<element type="ReligionInfos"/>
 	</ElementType>
+	<!-- Civ4 Reimagined start -->
+	<ElementType name="Civ4IdeologyInfo" content="eltOnly">
+		<element type="IdeologyInfos"/>
+	</ElementType>
+	<!-- Civ4 Reimagined end -->
 	<ElementType name="Civ4CorporationInfo" content="eltOnly">
 		<element type="CorporationInfos"/>
 	</ElementType>
@@ -1575,6 +1593,7 @@
 		<element type="SeaLevelInfos"/>
 		<element type="ProcessInfos"/>
 		<element type="ReligionInfos"/>
+		<element type="IdeologyInfos" minOccurs="0" maxOccurs="*"/>
 		<element type="HintInfos" minOccurs="0" maxOccurs="*"/>
 		<element type="GameTurnInfos" minOccurs="0" maxOccurs="*"/>
 		<element type="GoodyInfos" minOccurs="0" maxOccurs="*"/>

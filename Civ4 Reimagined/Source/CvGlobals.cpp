@@ -2146,6 +2146,20 @@ CvReligionInfo& CvGlobals::getReligionInfo(ReligionTypes eReligionNum)
 	return *(m_paReligionInfo[eReligionNum]);
 }
 
+// Civ4 Reimagined
+std::vector<CvIdeologyInfo*>& CvGlobals::getIdeologyInfo()	// For Moose - XML Load Util, CvInfos
+{
+	return m_paIdeologyInfo;
+}
+
+// Civ4 Reimagined
+CvIdeologyInfo& CvGlobals::getIdeologyInfo(IdeologyTypes eIdeologyNum)
+{
+	FAssert(eIdeologyNum > -1);
+	FAssert(eIdeologyNum < NUM_IDEOLOGY_TYPES);
+	return *(m_paIdeologyInfo[eIdeologyNum]);
+}
+
 int CvGlobals::getNumCorporationInfos()
 {
 	return (int)m_paCorporationInfo.size();
@@ -3527,6 +3541,7 @@ void CvGlobals::deleteInfoArrays()
 	deleteInfoArray(m_paVoteInfo);
 	deleteInfoArray(m_paProjectInfo);
 	deleteInfoArray(m_paReligionInfo);
+	deleteInfoArray(m_paIdeologyInfo); // Civ4 Reimagined
 	deleteInfoArray(m_paCorporationInfo);
 	deleteInfoArray(m_paCommerceInfo);
 	deleteInfoArray(m_paEmphasizeInfo);

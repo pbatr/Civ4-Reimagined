@@ -8547,7 +8547,7 @@ int CvPlayerAI::AI_getSameIdeologyAttitude(PlayerTypes ePlayer) const
 	}
 
 	// Conservatives do net get relation bonus for each other
-	if (getIdeology() == IDEOLOGY_CONSERVATIVE)
+	if (getIdeology() == IDEOLOGY_CONSERVATISM)
 	{
 		return 0;
 	}

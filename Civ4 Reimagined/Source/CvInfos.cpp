@@ -18162,6 +18162,80 @@ bool CvReligionInfo::read(CvXMLLoadUtility* pXML)
 }
 
 //======================================================================================================
+//					CvIdeologyInfo (Civ4 Reimagined)
+//======================================================================================================
+
+//------------------------------------------------------------------------------------------------------
+//
+//  FUNCTION:   CvIdeologyInfo()
+//
+//  PURPOSE :   Default constructor
+//
+//------------------------------------------------------------------------------------------------------
+CvIdeologyInfo::CvIdeologyInfo() :
+m_iChar(0),
+m_iTechPrereq(NO_TECH)
+{
+	reset();
+}
+
+//------------------------------------------------------------------------------------------------------
+//
+//  FUNCTION:   ~CvIdeologyInfo()
+//
+//  PURPOSE :   Default destructor
+//
+//------------------------------------------------------------------------------------------------------
+CvIdeologyInfo::~CvIdeologyInfo()
+{
+}
+
+int CvIdeologyInfo::getChar() const
+{
+	return m_iChar; 
+}
+
+void CvIdeologyInfo::setChar(int i)
+{
+	m_iChar = i; 
+}
+
+int CvIdeologyInfo::getTechPrereq() const
+{
+	return m_iTechPrereq; 
+}
+
+void CvIdeologyInfo::setAdjectiveKey(const TCHAR* szVal)
+{
+	m_szAdjectiveKey = szVal;
+}
+
+const wchar* CvIdeologyInfo::getAdjectiveKey() const
+{
+	return m_szAdjectiveKey;
+}
+
+//
+// read from xml
+//
+bool CvIdeologyInfo::read(CvXMLLoadUtility* pXML)
+{
+	CvString szTextVal;
+	if (!CvHotkeyInfo::read(pXML))
+	{
+		return false;
+	}
+
+	pXML->GetChildXmlValByName(szTextVal, "TechPrereq");
+	m_iTechPrereq = pXML->FindInInfoClass(szTextVal);
+
+	pXML->GetChildXmlValByName(szTextVal, "Adjective");
+	setAdjectiveKey(szTextVal);
+
+	return true;
+}
+
+//======================================================================================================
 //					CvCorporationInfo
 //======================================================================================================
 
