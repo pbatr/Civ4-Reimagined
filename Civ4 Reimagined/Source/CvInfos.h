@@ -4421,6 +4421,40 @@ protected:
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 //
+//  class : CvIdeologyInfo (Civ4 Reimagined)
+//
+//  DESC:   
+//
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+class CvIdeologyInfo : public CvHotkeyInfo
+{
+	//---------------------------------------PUBLIC INTERFACE----------------------------------------
+public:
+
+	CvIdeologyInfo();
+	virtual ~CvIdeologyInfo();
+
+	int getChar() const;
+	void setChar(int i);			
+	int getTechPrereq() const;	
+
+	void setAdjectiveKey(const TCHAR* szVal);
+	const wchar* getAdjectiveKey() const;
+	std::wstring pyGetAdjectiveKey() { return getAdjectiveKey(); }
+
+	bool read(CvXMLLoadUtility* pXML);
+
+	//---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
+protected:
+
+	int m_iChar;						
+	int m_iTechPrereq;
+
+	CvWString m_szAdjectiveKey;
+};
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//
 //  class : CvCorporationInfo
 //
 //  DESC:   
