@@ -254,6 +254,14 @@ void CyInfoPythonInterface3()
 		.def("getStateReligionCommerce", &CvReligionInfo::getStateReligionCommerce, "int (int i)")
 		;
 
+	// Civ4 Reimagined
+	python::class_<CvIdeologyInfo, python::bases<CvInfoBase> >("CvIdeologyInfo")
+		.def("getChar", &CvIdeologyInfo::getChar, "int ()")
+		.def("getTechPrereq", &CvIdeologyInfo::getTechPrereq, "int ()")
+
+		.def("getAdjectiveKey", &CvIdeologyInfo::pyGetAdjectiveKey, "wstring ()")
+		;
+
 	python::class_<CvCorporationInfo, python::bases<CvInfoBase> >("CvCorporationInfo")
 		.def("getChar", &CvCorporationInfo::getChar, "int ()")
 		.def("getHeadquarterChar", &CvCorporationInfo::getHeadquarterChar, "int ()")
