@@ -429,6 +429,12 @@ void CyInfoPythonInterface1()
 		.def("isStateReligion", &CvCivicInfo::isStateReligion, "bool ()")
 		.def("isNoNonStateReligionSpread", &CvCivicInfo::isNoNonStateReligionSpread, "bool ()")
 
+		// Civ4 Reimagined
+		.def("getConservative", &CvCivicInfo::getConservative, "int ()")
+		.def("getLiberal", &CvCivicInfo::getLiberal, "int ()")
+		.def("getCommunist", &CvCivicInfo::getCommunist, "int ()")
+		.def("getFascist", &CvCivicInfo::getFascist, "int ()")
+
 		.def("pyGetWeLoveTheKing", &CvCivicInfo::pyGetWeLoveTheKing, "wstring ()")
 
 		// Arrays

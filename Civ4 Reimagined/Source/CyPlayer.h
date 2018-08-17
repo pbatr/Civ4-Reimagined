@@ -533,6 +533,9 @@ public:
 	// Civ4 Reimagined
 	int getBuildingYieldChange(int /*BuildingClassTypes*/ eIndex1, int /*YieldTypes*/ eIndex2) const;
 
+	// Civ4 Reimagined
+	int /*IdeologyTypes*/ getIdeology() const;
+
 private:
 	CvPlayer* m_pPlayer;
 };
