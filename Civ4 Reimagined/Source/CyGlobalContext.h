@@ -74,6 +74,7 @@ public:
 	CvProcessInfo* getProcessInfo(int i) const;
 	CvSpecialistInfo* getSpecialistInfo(int i) const;
 	CvReligionInfo* getReligionInfo(int i) const;
+	CvIdeologyInfo* getIdeologyInfo(int i) const; // Civ4 Reimagined
 	CvCorporationInfo* getCorporationInfo(int i) const;
 	CvControlInfo* getControlInfo(int i) const;
 	CvTechInfo* getTechInfo(int i) const;
