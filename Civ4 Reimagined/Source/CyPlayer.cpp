@@ -2361,3 +2361,9 @@ int CyPlayer::getBuildingYieldChange(int /*BuildingClassTypes*/ eIndex1, int /*Y
 	FAssertMsg(eIndex2 < NUM_YIELD_TYPES, "eIndex2 is expected to be within maximum bounds (invalid Index)");
 	return m_pPlayer ? m_pPlayer->getBuildingYieldChange((BuildingClassTypes)eIndex1, (YieldTypes)eIndex2) : 0;
 }
+
+// Civ4 Reimagined
+int /*IdeologyTypes*/ CyPlayer::getIdeology() const
+{
+	return m_pPlayer ? (int) m_pPlayer->getIdeology() : IDEOLOGY_CONSERVATISM;
+}

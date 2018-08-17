@@ -278,6 +278,12 @@ CvReligionInfo* CyGlobalContext::getReligionInfo(int i) const
 	return (i>=0 && i<GC.getNumReligionInfos()) ? &GC.getReligionInfo((ReligionTypes) i) : NULL;
 }
 
+// Civ4 Reimagined
+CvIdeologyInfo* CyGlobalContext::getIdeologyInfo(int i) const
+{
+	return (i>=0 && i<NUM_IDEOLOGY_TYPES) ? &GC.getIdeologyInfo((IdeologyTypes) i) : NULL;
+}
+
 
 CvCorporationInfo* CyGlobalContext::getCorporationInfo(int i) const
 {
