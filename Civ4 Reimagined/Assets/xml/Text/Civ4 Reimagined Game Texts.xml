@@ -1402,4 +1402,12 @@
 		<Tag>TXT_KEY_UNIT_AMERICAN_SUPERCARRIER</Tag>
 		<English>Supercarrier</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_ATTITUDE_SAME_IDEOLOGY</Tag>
+		<English>%D1: "We share the same Ideology."</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_ATTITUDE_DIFFERENT_IDEOLOGY</Tag>
+		<English>%D1: "We cannot agree with your Idelogy"</English>
+	</TEXT>
 </Civ4GameText>
