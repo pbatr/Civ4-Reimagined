@@ -28,7 +28,7 @@ gc = CyGlobalContext()
 Z_DEPTH = -0.3
 
 # Columns IDs
-NUM_PARTS = 25
+NUM_PARTS = 26
 (
 	ALIVE,
 	WAR,
@@ -47,6 +47,7 @@ NUM_PARTS = 25
 	BORDERS,
 	PACT,
 	RELIGION,
+	IDEOLOGY, # Civ4 Reimagined
 	ATTITUDE,
 	WONT_TALK,
 	WORST_ENEMY,
@@ -109,6 +110,7 @@ def init():
 	columns.append(Column('B', BORDERS, FIXED, smallSymbol(FontSymbols.OPEN_BORDERS_CHAR)))
 	columns.append(Column('D', PACT, FIXED, smallSymbol(FontSymbols.DEFENSIVE_PACT_CHAR)))
 	columns.append(Column('R', RELIGION, DYNAMIC))
+	columns.append(Column('Y', IDEOLOGY, DYNAMIC)) # Civ4 Reimagined
 	columns.append(Column('A', ATTITUDE, DYNAMIC))
 	columns.append(Column('!', WONT_TALK, FIXED, smallText("!"))) #K-Mod changed this from 'F'
 	columns.append(Column('H', WORST_ENEMY, FIXED, smallSymbol(FontSymbols.ANGRY_POP_CHAR)))
@@ -267,6 +269,10 @@ class Scoreboard:
 		
 	def setReligion(self, value):
 		self._set(RELIGION, smallText(value))
+
+	# Civ4 Reimagined
+	def setIdeology(self, value):
+		self._set(IDEOLOGY, smallText(value))
 		
 	def setAttitude(self, value):
 		self._set(ATTITUDE, smallText(value))

@@ -54,6 +54,9 @@ void CyGamePythonInterface()
 		.def("countKnownTechNumTeams", &CyGame::countKnownTechNumTeams, "int (int eTech)")
 		.def("getNumFreeBonuses", &CyGame::getNumFreeBonuses, "int (int eBonus)")
 
+		// Civ4 Reimagind
+		.def("areIdeologiesEnabled", &CyGame::areIdeologiesEnabled, "bool ()")
+
 		.def("countReligionLevels", &CyGame::countReligionLevels, "int (int eReligion)")
 		.def("calculateReligionPercent", &CyGame::calculateReligionPercent, "int (int eReligion)")
 		.def("countCorporationLevels", &CyGame::countCorporationLevels, "int (int eCorporation)")
