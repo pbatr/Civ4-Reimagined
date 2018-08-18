@@ -261,6 +261,12 @@ void CvGame::init(HandicapTypes eHandicap)
 		}
 	}
 
+	// Civ4 Reimagined
+	if ((int)getStartEra() >= 4)
+	{
+		enableIdeologies(true);
+	}
+
 	AI_init();
 
 	doUpdateCacheOnTurn();
