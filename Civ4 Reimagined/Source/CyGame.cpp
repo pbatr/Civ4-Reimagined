@@ -192,6 +192,12 @@ int CyGame::getNumFreeBonuses(int /*BuildingTypes*/ eBuilding)
 	return m_pGame ? m_pGame->getNumFreeBonuses((BuildingTypes) eBuilding) : -1;
 }
 
+// Civ4 Reimagined
+bool CyGame::areIdeologiesEnabled() const
+{
+	return m_pGame ? m_pGame->areIdeologiesEnabled() : false;
+}
+
 int CyGame::countReligionLevels(int /*ReligionTypes*/ eReligion)
 {
 	return m_pGame ? m_pGame->countReligionLevels((ReligionTypes) eReligion) : -1;

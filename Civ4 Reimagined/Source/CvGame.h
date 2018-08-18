@@ -128,7 +128,7 @@ public:
 	int countKnownTechNumTeams(TechTypes eTech);														// Exposed to Python
 	int getNumFreeBonuses(BuildingTypes eBuilding);													// Exposed to Python
 
-	bool areIdeologiesEnabled() const; // Civ4 Reimagined
+	bool areIdeologiesEnabled() const; // Civ4 Reimagined // Exposed to Python
 	void enableIdeologies(bool bEnable); // Civ4 Reimagined
 	
 	int countReligionLevels(ReligionTypes eReligion);							// Exposed to Python 
