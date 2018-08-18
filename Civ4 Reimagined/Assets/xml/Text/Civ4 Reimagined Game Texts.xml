@@ -1366,4 +1366,12 @@
 		<Tag>TXT_KEY_BUILDING_COMMERCE_FROM_AIRLIFT</Tag>
 		<English>[ICON_BULLET]%D1%F2_CmrcIcon from Airport present in the City</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_ATTITUDE_SAME_IDEOLOGY</Tag>
+		<English>%D1: "We share the same Ideology."</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_ATTITUDE_DIFFERENT_IDEOLOGY</Tag>
+		<English>%D1: "We cannot agree with your Idelogy"</English>
+	</TEXT>
 </Civ4GameText>
