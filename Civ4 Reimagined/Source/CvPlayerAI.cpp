@@ -6158,7 +6158,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				//iValue += 3 * (iNewCivicValue - iCurrentCivicValue);
 				// Civ4 Reimagined
 				const bool bFavorite = (eNewCivic == GC.getLeaderHeadInfo(getPersonalityType()).getFavoriteCivic());
-				const int iCivicValue = (bFavorite ? 5 : 4) * (iNewCivicValue - iCurrentCivicValue) * (bNewReligionCivic ? 3 : 1);
+				const int iCivicValue = (bFavorite ? 8 : 6) * (iNewCivicValue - iCurrentCivicValue) * (bNewReligionCivic ? 3 : 1);
 
 				if (gPlayerLogLevel > 2) logBBAI("	%S Tech Civic Value: %d", GC.getCivicInfo(eNewCivic).getDescription(0), iCivicValue);
 
@@ -8552,7 +8552,7 @@ int CvPlayerAI::AI_getSameIdeologyAttitude(PlayerTypes ePlayer) const
 		return 0;
 	}
 
-	// Conservatives do net get relation bonus for each other
+	// Conservatives do net get relation bonus towards each other
 	if (getIdeology() == IDEOLOGY_CONSERVATISM)
 	{
 		return 0;
@@ -8570,7 +8570,7 @@ int CvPlayerAI::AI_getDifferentIdeologyAttitude(PlayerTypes ePlayer) const
 		return 0;
 	}
 
-	return -2;
+	return -4;
 }
 
 
