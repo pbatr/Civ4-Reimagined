@@ -448,7 +448,7 @@
 			<iStateReligionUnitProductionModifier>0</iStateReligionUnitProductionModifier>
 			<iStateReligionBuildingProductionModifier>0</iStateReligionBuildingProductionModifier>
 			<iStateReligionFreeExperience>0</iStateReligionFreeExperience>
-			<iResearchPerCulture>15</iResearchPerCulture>
+			<iResearchPerCulture>20</iResearchPerCulture>
 			<YieldModifiers/>
 			<ExtraYields/>
 			<CapitalYieldModifiers/>
