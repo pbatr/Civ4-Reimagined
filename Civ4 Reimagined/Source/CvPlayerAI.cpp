@@ -5303,6 +5303,9 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				if (iTechYieldModifier == 0)
 					continue;
 
+				if (iCityCount == 0)
+					break;
+
 				const int iAverageYield = calculateTotalYield((YieldTypes)iJ) / iCityCount;
 
 				int iTempValue = 4 * iAverageYield * iTechYieldModifier * std::max(iCityCount/ 3, iCount);
@@ -5321,6 +5324,9 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				const int iTechCommerceModifier = kBuildingInfo.getTechCommerceModifier(eTech, (CommerceTypes)iJ);
 				if (iTechCommerceModifier == 0)
 					continue;
+
+				if (iCityCount == 0)
+					break;
 
 				const int iAverageCommerce = getCommerceRate((CommerceTypes)iJ) / iCityCount;
 

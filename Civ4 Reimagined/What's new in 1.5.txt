@@ -45,7 +45,8 @@ Interface
 *********
 Fixes
 *********
--Fixed a bug that doubled pillage gold and gold stolen by spies.
+-Fixed a bug that doubled pillage gold and gold stolen by spies
+-Fixed a crash that happened during AI building evaluation
 
 *******************************************
 Civ4 Reimagined 1.4
