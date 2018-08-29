@@ -5518,8 +5518,8 @@ void CvPlot::setTerrainType(TerrainTypes eNewValue, bool bRecalculate, bool bReb
 		// Civ4 Reimagined
 		if (GC.getGameINLINE().getGameTurn() > 0)
 		{
-			CvCity* pCity;
-			CvPlot* pLoopPlot;
+			CvCity* pCity = NULL;
+			CvPlot* pLoopPlot = NULL;
 			
 			for (int iI = -2; iI <= 2; iI++)
 			{
