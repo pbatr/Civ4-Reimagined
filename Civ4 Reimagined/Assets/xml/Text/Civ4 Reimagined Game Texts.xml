@@ -1024,6 +1024,10 @@
 		<French>[COLOR_WARNING_TEXT]Nécessite la proximité de la côte[COLOR_REVERT]</French>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_BUILDING_REQUIRES_COAST_OR_RIVER</Tag>
+		<English>[COLOR_WARNING_TEXT]Requires nearby Coast or River[COLOR_REVERT]</English>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_BUILDING_YIELD_WITH_SOMETHING</Tag>
 		<English>[SPACE]with [LINK=literal]%s1[\LINK]</English>
 		<French>[SPACE]avec [LINK=literal]%s1[\LINK]</French>
