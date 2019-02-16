@@ -35,6 +35,7 @@ Tweaks
 -The Great Harbor grants an additional +1 Commerce per water tile
 -Ancient wonder grant less great person points, later wonders grant more
 -Better starting position evaluation
+-Civilizations have the resource of the base unit of their unique unit near their starting location
 
 *********
 Interface
