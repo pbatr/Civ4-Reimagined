@@ -4903,7 +4903,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				// Civ4 Reimagined
 				if ((YieldTypes)iI == YIELD_PRODUCTION)
 				{
-					iTempValue += kBuilding.getBuildingProductionModifier() * iBaseRate / 50;
+					iTempValue += kBuilding.getBuildingProductionModifier() * iBaseRate / 40; // Civ4 Reimagined: originally 50
 				}
 				iTempValue += kBuilding.getPowerYieldModifier(iI) * iBaseRate / (bProvidesPower || isPower() ? 27 : 50);
 
@@ -4920,7 +4920,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 						// Civ4 Reimagined
 						if ((YieldTypes)iI == YIELD_PRODUCTION)
 						{
-							iTempValue += (kBuilding.getBonusBuildingProductionModifier(iJ) * iBaseRate) / 50;
+							iTempValue += (kBuilding.getBonusBuildingProductionModifier(iJ) * iBaseRate) / 40; // Civ4 Reimagined: originally 50
 						}
 					}
 				}
@@ -5809,10 +5809,12 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 			iValue /= 100;
 		}
 
+		// Civ4 Reimagined: Use AI weight also for building suggestions
+		iValue += kBuilding.getAIWeight();
+
 		// flavour factor. (original flavour code deleted)
 		if (!isHuman())
 		{
-			iValue += kBuilding.getAIWeight();
 			//if (iValue > 0)
 			if (iValue > 0 && kBuilding.getProductionCost() > 0 && !bRemove) // K-Mod. Only use flavour adjustments for constructing ordinary buildings.
 			{
