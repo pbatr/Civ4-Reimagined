@@ -36,6 +36,7 @@ Tweaks
 -Ancient wonder grant less great person points, later wonders grant more
 -Better starting position evaluation
 -Civilizations have the resource of the base unit of their unique unit near their starting location
+-Movement speed of Missionaries ships decresed from 2 to 1
 
 *********
 Interface
