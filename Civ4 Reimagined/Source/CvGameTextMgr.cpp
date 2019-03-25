@@ -11079,10 +11079,31 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 		}
 
 		// Civ4 Reimagined
-		if (kBuilding.getCommercePerCultureLevel(iI) != 0)
+		if (pCity == NULL || ePlayer == NO_PLAYER)
 		{
-			szBuffer.append(NEWLINE);
-			szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_PER_CULTURE_LEVEL", kBuilding.getCommercePerCultureLevel(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
+			if (kBuilding.getCommercePerCultureLevel(iI) != 0)
+			{
+				szBuffer.append(NEWLINE);
+				szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_PER_CULTURE_LEVEL", kBuilding.getCommercePerCultureLevel(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
+			}
+
+			if (kBuilding.getCommercePerWorldWonder(iI) != 0)
+			{
+				szBuffer.append(NEWLINE);
+				szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_PER_WORLD_WONDER", kBuilding.getCommercePerWorldWonder(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
+			}
+
+			if (kBuilding.getCommerceFromCoast(iI) != 0)
+			{
+				szBuffer.append(NEWLINE);
+				szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_FROM_COAST", kBuilding.getCommerceFromCoast(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
+			}
+
+			if (kBuilding.getCommerceFromAirlift(iI) != 0)
+			{
+				szBuffer.append(NEWLINE);
+				szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_FROM_AIRLIFT", kBuilding.getCommerceFromAirlift(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
+			}
 		}
 	}
 /************************************************************************************************/
@@ -11813,7 +11834,15 @@ void CvGameTextMgr::buildBuildingRequiresString(CvWStringBuffer& szBuffer, Build
 			}
 		}
 		// Civ4 Reimagined
-		if (kBuilding.isWater())
+		if (kBuilding.isWater() && kBuilding.isRiver())
+		{
+			if (NULL == pCity || !(pCity->plot()->isCoastalLand(1) || pCity->plot()->isRiver()))
+			{
+				szBuffer.append(NEWLINE);
+				szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_REQUIRES_COAST_OR_RIVER"));
+			}
+		}
+		else if (kBuilding.isWater())
 		{
 			if (NULL == pCity || !pCity->plot()->isCoastalLand(1))
 			{
@@ -11821,8 +11850,7 @@ void CvGameTextMgr::buildBuildingRequiresString(CvWStringBuffer& szBuffer, Build
 				szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_REQUIRES_COAST"));
 			}
 		}
-		// Civ4 Reimagined
-		if (kBuilding.isRiver())
+		else if (kBuilding.isRiver())
 		{
 			if (NULL == pCity || !pCity->plot()->isRiver())
 			{

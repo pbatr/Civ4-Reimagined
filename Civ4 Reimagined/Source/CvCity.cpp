@@ -10560,6 +10560,19 @@ int CvCity::getBuildingCommerceByBuilding(CommerceTypes eIndex, BuildingTypes eB
 				iCommerce += getBuildingCommerceChange((BuildingClassTypes)GC.getBuildingInfo(eBuilding).getBuildingClassType(), eIndex) * getNumActiveBuilding(eBuilding);
 				// Civ4 Reimagined
 				iCommerce += GC.getBuildingInfo(eBuilding).getCommercePerCultureLevel(eIndex) * getNumActiveBuilding(eBuilding) * getCultureLevel();
+				iCommerce += GC.getBuildingInfo(eBuilding).getCommercePerWorldWonder(eIndex) * getNumActiveBuilding(eBuilding) * getNumWorldWonders();
+
+				// Civ4 Reimagined
+				if (isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
+				{
+					iCommerce += GC.getBuildingInfo(eBuilding).getCommerceFromCoast(eIndex) * getNumActiveBuilding(eBuilding);
+				}
+
+                // Civ4 Reimagined
+                if (getMaxAirlift() > 0)
+                {
+                    iCommerce += GC.getBuildingInfo(eBuilding).getCommerceFromAirlift(eIndex) * getNumActiveBuilding(eBuilding);
+                }
 
 				if (GC.getBuildingInfo(eBuilding).getReligionType() != NO_RELIGION)
 				{
@@ -10697,6 +10710,20 @@ int CvCity::getAdditionalBaseCommerceRateByBuildingImpl(CommerceTypes eIndex, Bu
 		iExtraRate += getBuildingCommerceChange((BuildingClassTypes)kBuilding.getBuildingClassType(), eIndex);
 		// Civ4 Reimagind
 		iExtraRate += kBuilding.getCommercePerCultureLevel(eIndex) * getCultureLevel();
+		iExtraRate += kBuilding.getCommercePerWorldWonder(eIndex) * getNumWorldWonders();
+
+		// Civ4 Reimagind
+		if (isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
+		{
+			iExtraRate += kBuilding.getCommerceFromCoast(eIndex);
+		}
+
+        // Civ4 Reimagind
+        if (getMaxAirlift() > 0)
+        {
+            iExtraRate += kBuilding.getCommerceFromAirlift(eIndex);
+        }
+
 		if (kBuilding.getReligionType() != NO_RELIGION)
 		{
 			if (kBuilding.getReligionType() == GET_PLAYER(getOwnerINLINE()).getStateReligion())

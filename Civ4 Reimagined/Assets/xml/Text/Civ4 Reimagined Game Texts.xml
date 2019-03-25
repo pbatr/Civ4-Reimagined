@@ -1024,6 +1024,10 @@
 		<French>[COLOR_WARNING_TEXT]Nécessite la proximité de la côte[COLOR_REVERT]</French>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_BUILDING_REQUIRES_COAST_OR_RIVER</Tag>
+		<English>[COLOR_WARNING_TEXT]Requires nearby Coast or River[COLOR_REVERT]</English>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_BUILDING_YIELD_WITH_SOMETHING</Tag>
 		<English>[SPACE]with [LINK=literal]%s1[\LINK]</English>
 		<French>[SPACE]avec [LINK=literal]%s1[\LINK]</French>
@@ -1347,7 +1351,23 @@
 		<English>Sewer</English>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_BUILDING_HOTEL</Tag>
+		<English>Hotel</English>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_BUILDING_COMMERCE_PER_CULTURE_LEVEL</Tag>
-		<English>[ICON_BULLET]%D1% %F2_CmrcIcon per Culture Level</English>
+		<English>[ICON_BULLET]%D1%F2_CmrcIcon per Culture Level</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_COMMERCE_PER_WORLD_WONDER</Tag>
+		<English>[ICON_BULLET]%D1%F2_CmrcIcon per World Wonder in City</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_COMMERCE_FROM_COAST</Tag>
+		<English>[ICON_BULLET]%D1%F2_CmrcIcon from Access to Coast</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_COMMERCE_FROM_AIRLIFT</Tag>
+		<English>[ICON_BULLET]%D1%F2_CmrcIcon from Airport present in the City</English>
 	</TEXT>
 </Civ4GameText>

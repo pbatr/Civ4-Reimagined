@@ -487,7 +487,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_RUSSIAN_RESEARCH_INSTITUTE_STRATEGY</Tag>
-		<English>The [COLOR_BUILDING_TEXT]Research Institute[COLOR_REVERT] is basically two laboratories for the price for one, further improving research and spaceship production.</English>
+		<English>The [COLOR_BUILDING_TEXT]Research Institute[COLOR_REVERT] grants two free scientists and improves spaceship production.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_HIMEJI_CASTLE_STRATEGY</Tag>
@@ -759,11 +759,15 @@
 		<English>The [COLOR_UNIT_TEXT]Pirate[COLOR_REVERT] is a medieval naval unit that bears no marking of nationality. This allows you to harass your foes without need to declare war.</English>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_CIVIC_STATE_IDEOLOGY_STRATEGY</Tag>
-		<English>tbd...</English>
+		<Tag>TXT_KEY_CIVIC_STATE_ATHEISM_STRATEGY</Tag>
+		<English>Espionage Bonus and less war weariness; No state religion; No religion spread; Unhappiness for religions.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_SEWER_STRATEGY</Tag>
 		<English>The [COLOR_BUILDING_TEXT]Sewer[COLOR_REVERT] provides health in your city.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_HOTEL_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Hotel[COLOR_REVERT] increases a city's wealth for every culture level and world wonder it possesses. It also gains additional wealth from having access to coast and when an airport is present. The increased amount of tourists will cause some addtional pollution though.</English>
 	</TEXT>
 </Civ4GameText>

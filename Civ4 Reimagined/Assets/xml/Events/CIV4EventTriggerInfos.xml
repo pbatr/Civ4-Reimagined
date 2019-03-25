@@ -12696,11 +12696,11 @@
 			<OrPreReqs/>
 			<AndPreReqs/>
 			<ObsoleteTechs>
-				<ObsoleteTech>TECH_RADIO</ObsoleteTech>
-				<ObsoleteTech>TECH_REFRIGERATION</ObsoleteTech>
-				<ObsoleteTech>TECH_SATELLITES</ObsoleteTech>
-				<ObsoleteTech>TECH_ADVANCED_FLIGHT</ObsoleteTech>
-				<ObsoleteTech>TECH_ECOLOGY</ObsoleteTech>
+				<ObsoleteTech>TECH_ABSOLUTISM</ObsoleteTech>
+				<ObsoleteTech>TECH_PRINTING_PRESS</ObsoleteTech>
+				<ObsoleteTech>TECH_MILITARY_TRADITION</ObsoleteTech>
+				<ObsoleteTech>TECH_ECONOMICS</ObsoleteTech>
+				<ObsoleteTech>TECH_CHEMISTRY</ObsoleteTech>
 			</ObsoleteTechs>
 			<bRecurring>0</bRecurring>
 			<bTeam>0</bTeam>
