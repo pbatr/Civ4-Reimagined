@@ -4903,7 +4903,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				// Civ4 Reimagined
 				if ((YieldTypes)iI == YIELD_PRODUCTION)
 				{
-					iTempValue += kBuilding.getBuildingProductionModifier() * iBaseRate / 50;
+					iTempValue += kBuilding.getBuildingProductionModifier() * iBaseRate / 40; // Civ4 Reimagined: originally 50
 				}
 				iTempValue += kBuilding.getPowerYieldModifier(iI) * iBaseRate / (bProvidesPower || isPower() ? 27 : 50);
 
@@ -4920,7 +4920,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 						// Civ4 Reimagined
 						if ((YieldTypes)iI == YIELD_PRODUCTION)
 						{
-							iTempValue += (kBuilding.getBonusBuildingProductionModifier(iJ) * iBaseRate) / 50;
+							iTempValue += (kBuilding.getBonusBuildingProductionModifier(iJ) * iBaseRate) / 40; // Civ4 Reimagined: originally 50
 						}
 					}
 				}
@@ -5115,6 +5115,19 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				iTempValue += (kBuilding.getObsoleteSafeCommerceChange(iI) * 4);
 				// Civ4 Reimagind
 				iTempValue += kBuilding.getCommercePerCultureLevel(iI) * getCultureLevel() * 4;
+				iTempValue += kBuilding.getCommercePerWorldWonder(iI) * getNumWorldWonders() * 4;
+
+				// Civ4 Reimagind
+				if (isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
+				{
+					iTempValue += kBuilding.getCommerceFromCoast(iI) * 4;
+				}
+
+				// Civ4 Reimagind
+		        if (getMaxAirlift() > 0)
+		        {
+		            iTempValue += kBuilding.getCommerceFromAirlift(iI);
+		        }
 
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      03/13/10                              jdog5000        */
@@ -5551,6 +5564,19 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				iValue += (kBuilding.getObsoleteSafeCommerceChange(COMMERCE_GOLD) * 4);
 				// Civ4 Reimagined
 				iValue += (kBuilding.getCommercePerCultureLevel(COMMERCE_GOLD) * getCultureLevel() * 4);
+				iValue += (kBuilding.getCommercePerWorldWonder(COMMERCE_GOLD) * getNumWorldWonders() * 4);
+
+				// Civ4 Reimagind
+				if (isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
+				{
+					iValue += kBuilding.getCommerceFromCoast(COMMERCE_GOLD) * 4;
+				}
+
+				// Civ4 Reimagind
+		        if (getMaxAirlift() > 0)
+		        {
+		            iValue += kBuilding.getCommerceFromAirlift(COMMERCE_GOLD);
+		        }
 			}
 
 			if (iFocusFlags & BUILDINGFOCUS_RESEARCH)
@@ -5577,6 +5603,19 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				iValue += (kBuilding.getObsoleteSafeCommerceChange(COMMERCE_RESEARCH) * 4);
 				// Civ4 Reimagined
 				iValue += (kBuilding.getCommercePerCultureLevel(COMMERCE_RESEARCH) * getCultureLevel() * 4);
+				iValue += (kBuilding.getCommercePerWorldWonder(COMMERCE_RESEARCH) * getNumWorldWonders() * 4);
+
+				// Civ4 Reimagind
+				if (isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
+				{
+					iValue += kBuilding.getCommerceFromCoast(COMMERCE_RESEARCH) * 4;
+				}
+
+				// Civ4 Reimagind
+		        if (getMaxAirlift() > 0)
+		        {
+		            iValue += kBuilding.getCommerceFromAirlift(COMMERCE_RESEARCH);
+		        }
 			}
 
 			if (iFocusFlags & BUILDINGFOCUS_CULTURE)
@@ -5589,6 +5628,13 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 					iTempValue += (kBuilding.getObsoleteSafeCommerceChange(COMMERCE_ESPIONAGE) * 3);
 					// Civ4 Reimagined
 					iTempValue += (kBuilding.getCommercePerCultureLevel(COMMERCE_ESPIONAGE) * getCultureLevel() * 3);
+					iTempValue += (kBuilding.getCommercePerWorldWonder(COMMERCE_ESPIONAGE) * getNumWorldWonders() * 3);
+
+					// Civ4 Reimagind
+					if (isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
+					{
+						iValue += kBuilding.getCommerceFromCoast(COMMERCE_ESPIONAGE) * 3;
+					}
 				}
 
 				//if ((getCommerceRate(COMMERCE_CULTURE) == 0) && (AI_calculateTargetCulturePerTurn() == 1))
@@ -5699,6 +5745,20 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				iTempValue = (kBuilding.getCommerceChange(COMMERCE_ESPIONAGE) * 4);
 				iTempValue += (kBuilding.getObsoleteSafeCommerceChange(COMMERCE_ESPIONAGE) * 4);
 				iTempValue += kBuilding.getCommercePerCultureLevel(COMMERCE_ESPIONAGE) * getCultureLevel() * 4; // Civ4 Reimagined
+				iTempValue += kBuilding.getCommercePerWorldWonder(COMMERCE_ESPIONAGE) * getNumWorldWonders() * 4; // Civ4 Reimagined
+
+				// Civ4 Reimagind
+				if (isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
+				{
+					iTempValue += kBuilding.getCommerceFromCoast(COMMERCE_ESPIONAGE) * 4;
+				}
+
+				// Civ4 Reimagind
+		        if (getMaxAirlift() > 0)
+		        {
+		            iTempValue += kBuilding.getCommerceFromAirlift(COMMERCE_ESPIONAGE);
+		        }
+
 				iTempValue *= 100 + getTotalCommerceRateModifier(COMMERCE_ESPIONAGE) + kBuilding.getCommerceModifier(COMMERCE_ESPIONAGE);
 				iValue += iTempValue / 100;
 /************************************************************************************************/
@@ -5749,10 +5809,12 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 			iValue /= 100;
 		}
 
+		// Civ4 Reimagined: Use AI weight also for building suggestions
+		iValue += kBuilding.getAIWeight();
+
 		// flavour factor. (original flavour code deleted)
 		if (!isHuman())
 		{
-			iValue += kBuilding.getAIWeight();
 			//if (iValue > 0)
 			if (iValue > 0 && kBuilding.getProductionCost() > 0 && !bRemove) // K-Mod. Only use flavour adjustments for constructing ordinary buildings.
 			{

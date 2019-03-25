@@ -234,9 +234,20 @@
 	<ElementType name="CommerceChangeDoubleTimes" content="eltOnly">
 		<element type="iCommerce" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
+	<!-- Civ4 Reimagined start -->
 	<ElementType name="CommercePerCultureLevel" content="eltOnly">
 		<element type="iCommerce" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
+	<ElementType name="CommercePerWorldWonder" content="eltOnly">
+		<element type="iCommerce" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="CommerceFromCoast" content="eltOnly">
+		<element type="iCommerce" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="CommerceFromAirlift" content="eltOnly">
+		<element type="iCommerce" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	<!-- Civ4 Reimagined end -->
 	<ElementType name="CommerceModifiers" content="eltOnly">
 		<element type="iCommerce" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
@@ -620,7 +631,10 @@
 		<element type="CommerceChanges"/>
 		<element type="ObsoleteSafeCommerceChanges"/>
 		<element type="CommerceChangeDoubleTimes"/>
-		<element type="CommercePerCultureLevel" minOccurs="0"/>
+		<element type="CommercePerCultureLevel" minOccurs="0"/> <!-- Civ4 Reimagined -->
+		<element type="CommercePerWorldWonder" minOccurs="0"/> <!-- Civ4 Reimagined -->
+		<element type="CommerceFromCoast" minOccurs="0"/> <!-- Civ4 Reimagined -->
+		<element type="CommerceFromAirlift" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="CommerceModifiers"/>
 		<element type="GlobalCommerceModifiers"/>
 		<element type="SpecialistExtraCommerces"/>

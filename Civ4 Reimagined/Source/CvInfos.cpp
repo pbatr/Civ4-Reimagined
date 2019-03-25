@@ -7651,6 +7651,9 @@ m_piCommerceChange(NULL),
 m_piObsoleteSafeCommerceChange(NULL),
 m_piCommerceChangeDoubleTime(NULL),
 m_piCommercePerCultureLevel(NULL), // Civ4 Reimagined
+m_piCommercePerWorldWonder(NULL), // Civ4 Reimagined
+m_piCommerceFromCoast(NULL), // Civ4 Reimagined
+m_piCommerceFromAirlift(NULL), // Civ4 Reimagined
 m_piCommerceModifier(NULL),
 m_piGlobalCommerceModifier(NULL),
 m_piSpecialistExtraCommerce(NULL),
@@ -7723,7 +7726,10 @@ CvBuildingInfo::~CvBuildingInfo()
 	SAFE_DELETE_ARRAY(m_piCommerceChange);
 	SAFE_DELETE_ARRAY(m_piObsoleteSafeCommerceChange);
 	SAFE_DELETE_ARRAY(m_piCommerceChangeDoubleTime);
-	SAFE_DELETE_ARRAY(m_piCommercePerCultureLevel);
+	SAFE_DELETE_ARRAY(m_piCommercePerCultureLevel); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_piCommercePerWorldWonder); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_piCommerceFromCoast); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_piCommerceFromAirlift); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_piCommerceModifier);
 	SAFE_DELETE_ARRAY(m_piGlobalCommerceModifier);
 	SAFE_DELETE_ARRAY(m_piSpecialistExtraCommerce);
@@ -8697,6 +8703,48 @@ int* CvBuildingInfo::getCommercePerCultureLevelArray() const
 	return m_piCommercePerCultureLevel;
 }
 
+// Civ4 Reimagined
+int CvBuildingInfo::getCommercePerWorldWonder(int i) const			
+{
+	FAssertMsg(i < NUM_COMMERCE_TYPES, "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_piCommercePerWorldWonder ? m_piCommercePerWorldWonder[i] : -1;
+}
+
+// Civ4 Reimagined
+int* CvBuildingInfo::getCommercePerWorldWonderArray() const
+{
+	return m_piCommercePerWorldWonder;
+}
+
+// Civ4 Reimagined
+int CvBuildingInfo::getCommerceFromCoast(int i) const			
+{
+	FAssertMsg(i < NUM_COMMERCE_TYPES, "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_piCommerceFromCoast ? m_piCommerceFromCoast[i] : -1;
+}
+
+// Civ4 Reimagined
+int* CvBuildingInfo::getCommerceFromCoastArray() const
+{
+	return m_piCommerceFromCoast;
+}
+
+// Civ4 Reimagined
+int CvBuildingInfo::getCommerceFromAirlift(int i) const			
+{
+	FAssertMsg(i < NUM_COMMERCE_TYPES, "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_piCommerceFromAirlift ? m_piCommerceFromAirlift[i] : -1;
+}
+
+// Civ4 Reimagined
+int* CvBuildingInfo::getCommerceFromAirliftArray() const
+{
+	return m_piCommerceFromAirlift;
+}
+
 int CvBuildingInfo::getCommerceModifier(int i) const	
 {
 	FAssertMsg(i < NUM_COMMERCE_TYPES, "Index out of bounds");
@@ -9328,6 +9376,21 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 	m_piCommercePerCultureLevel = new int[NUM_COMMERCE_TYPES];
 	stream->Read(NUM_COMMERCE_TYPES, m_piCommercePerCultureLevel);
 
+	// Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_piCommercePerWorldWonder);
+	m_piCommercePerWorldWonder = new int[NUM_COMMERCE_TYPES];
+	stream->Read(NUM_COMMERCE_TYPES, m_piCommercePerWorldWonder);
+
+	// Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_piCommerceFromCoast);
+	m_piCommerceFromCoast = new int[NUM_COMMERCE_TYPES];
+	stream->Read(NUM_COMMERCE_TYPES, m_piCommerceFromCoast);
+
+	// Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_piCommerceFromAirlift);
+	m_piCommerceFromAirlift = new int[NUM_COMMERCE_TYPES];
+	stream->Read(NUM_COMMERCE_TYPES, m_piCommerceFromAirlift);
+
 	SAFE_DELETE_ARRAY(m_piCommerceModifier);
 	m_piCommerceModifier = new int[NUM_COMMERCE_TYPES];
 	stream->Read(NUM_COMMERCE_TYPES, m_piCommerceModifier);
@@ -9772,6 +9835,9 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 	stream->Write(NUM_COMMERCE_TYPES, m_piObsoleteSafeCommerceChange);
 	stream->Write(NUM_COMMERCE_TYPES, m_piCommerceChangeDoubleTime);
 	stream->Write(NUM_COMMERCE_TYPES, m_piCommercePerCultureLevel); // Civ4 Reimagined
+	stream->Write(NUM_COMMERCE_TYPES, m_piCommercePerWorldWonder); // Civ4 Reimagined
+	stream->Write(NUM_COMMERCE_TYPES, m_piCommerceFromCoast); // Civ4 Reimagined
+	stream->Write(NUM_COMMERCE_TYPES, m_piCommerceFromAirlift); // Civ4 Reimagined
 	stream->Write(NUM_COMMERCE_TYPES, m_piCommerceModifier);
 	stream->Write(NUM_COMMERCE_TYPES, m_piGlobalCommerceModifier);
 	stream->Write(NUM_COMMERCE_TYPES, m_piSpecialistExtraCommerce);
@@ -10259,6 +10325,39 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 	else
 	{
 		pXML->InitList(&m_piCommercePerCultureLevel, NUM_COMMERCE_TYPES);
+	}
+
+	// Civ4 Reimagined
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"CommercePerWorldWonder"))
+	{
+		pXML->SetCommerce(&m_piCommercePerWorldWonder);
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+	else
+	{
+		pXML->InitList(&m_piCommercePerWorldWonder, NUM_COMMERCE_TYPES);
+	}
+
+	// Civ4 Reimagined
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"CommerceFromCoast"))
+	{
+		pXML->SetCommerce(&m_piCommerceFromCoast);
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+	else
+	{
+		pXML->InitList(&m_piCommerceFromCoast, NUM_COMMERCE_TYPES);
+	}
+
+	// Civ4 Reimagined
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"CommerceFromAirlift"))
+	{
+		pXML->SetCommerce(&m_piCommerceFromAirlift);
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+	else
+	{
+		pXML->InitList(&m_piCommerceFromAirlift, NUM_COMMERCE_TYPES);
 	}
 
 	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"CommerceModifiers"))

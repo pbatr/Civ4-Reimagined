@@ -23816,8 +23816,8 @@ bool CvPlayer::splitEmpire(int iAreaId)
 
 	int iLoop;
 	int iWorker = 0;
-	UnitClassTypes eIndex = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_WORKER");
-	UnitTypes eWorker = (UnitTypes)GC.getCivilizationInfo(GET_PLAYER(eNewPlayer).getCivilizationType()).getCivilizationUnits(eIndex);
+	UnitClassTypes eWorkerIndex = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_WORKER");
+	UnitTypes eWorker = (UnitTypes)GC.getCivilizationInfo(GET_PLAYER(eNewPlayer).getCivilizationType()).getCivilizationUnits(eWorkerIndex);
 	UnitTypes eSettler = (UnitTypes)GC.getCivilizationInfo(GET_PLAYER(eNewPlayer).getCivilizationType()).getCivilizationUnits((UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SETTLER"));
 	for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 	{
@@ -23835,16 +23835,19 @@ bool CvPlayer::splitEmpire(int iAreaId)
 				{
 					pCity->setCultureTimes100(eNewPlayer, iCulture, false, false);
 					pCity->changePopulation(1); // Civ4 Reimagined
-					
+
 					// add settlers and worker
 					if (pCity->isCapital())
 					{
 						GET_PLAYER(eNewPlayer).initUnit(eSettler, pCity->getX_INLINE(), pCity->getY_INLINE(), UNITAI_SETTLE);
 						GET_PLAYER(eNewPlayer).initUnit(eSettler, pCity->getX_INLINE(), pCity->getY_INLINE(), UNITAI_SETTLE);
-						for (int i = 0; i < GC.getUnitClassInfo(eIndex).getMaxPlayerInstances(); i++)
-						{
-							GET_PLAYER(eNewPlayer).initUnit(eWorker, pCity->getX_INLINE(), pCity->getY_INLINE(), UNITAI_WORKER);
-						}
+						GET_PLAYER(eNewPlayer).initUnit(eWorker, pCity->getX_INLINE(), pCity->getY_INLINE(), UNITAI_WORKER);
+						GET_PLAYER(eNewPlayer).initUnit(eWorker, pCity->getX_INLINE(), pCity->getY_INLINE(), UNITAI_WORKER);
+					}
+
+					if (GET_PLAYER(eNewPlayer).getUnitClassCount(eWorkerIndex) < GC.getUnitClassInfo(eWorkerIndex).getMaxPlayerInstances())
+					{
+						GET_PLAYER(eNewPlayer).initUnit(eWorker, pCity->getX_INLINE(), pCity->getY_INLINE(), UNITAI_WORKER);
 					}
 					
 				}

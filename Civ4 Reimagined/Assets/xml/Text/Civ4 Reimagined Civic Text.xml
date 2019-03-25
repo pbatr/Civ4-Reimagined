@@ -421,7 +421,7 @@
 		<French>[ICON_BULLET]Aucune résistance dans les villes conquises</French>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_CIVIC_STATE_IDEOLOGY</Tag>
-		<English>State Ideology</English>
+		<Tag>TXT_KEY_CIVIC_STATE_ATHEISM</Tag>
+		<English>State Atheism</English>
 	</TEXT>
 </Civ4GameText>

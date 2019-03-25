@@ -1922,17 +1922,18 @@ void CvGame::normalizeAddExtras()
 		shuffleArray(aiShuffle, NUM_CITY_PLOTS, getMapRand());
 		
 		// Civ4 Reimagined
-		UnitTypes eLoopUnit, eUniqueUnit;
+		UnitTypes eUniqueUnit;
 		BonusTypes eUniqueBonus;
 		bool bHasUniqueBonus = false;
 		
 		for (int iK = 0; iK < GC.getNumUnitClassInfos(); iK++)
 		{
-			eLoopUnit = (UnitTypes)GC.getCivilizationInfo(kLoopPlayer.getCivilizationType()).getCivilizationUnits(iK);
+			const UnitTypes eLoopUnit = (UnitTypes)GC.getCivilizationInfo(kLoopPlayer.getCivilizationType()).getCivilizationUnits(iK);
+			const UnitTypes eDefaultUnit = (UnitTypes)(GC.getUnitClassInfo((UnitClassTypes)iK).getDefaultUnitIndex());
 			
-			if (eLoopUnit != ((UnitTypes)(GC.getUnitClassInfo((UnitClassTypes)iK).getDefaultUnitIndex())))
+			if (eLoopUnit != eDefaultUnit)
 			{
-				eUniqueUnit = eLoopUnit;
+				eUniqueUnit = eDefaultUnit;
 				break;
 			}
 		}
@@ -6592,7 +6593,6 @@ void CvGame::doGlobalWarming()
 	*/
 	int iGlobalWarmingRolls = getGlobalWarmingChances();
 
-	TerrainTypes eWarmingTerrain = ((TerrainTypes)(GC.getDefineINT("GLOBAL_WARMING_TERRAIN")));
 	TerrainTypes eFrozenTerrain = ((TerrainTypes)(GC.getDefineINT("FROZEN_TERRAIN")));
 	TerrainTypes eColdTerrain = ((TerrainTypes)(GC.getDefineINT("COLD_TERRAIN")));
 	TerrainTypes eTemperateTerrain = ((TerrainTypes)(GC.getDefineINT("TEMPERATE_TERRAIN")));
