@@ -8333,6 +8333,7 @@ CvRandom& CvGame::getSorenRand()
 }
 
 
+// Returns a random number between [0, iNum-1]
 int CvGame::getSorenRandNum(int iNum, const char* pszLog)
 {
 	return m_sorenRand.get(iNum, pszLog);

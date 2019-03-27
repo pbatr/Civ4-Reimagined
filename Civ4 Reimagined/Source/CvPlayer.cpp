@@ -6309,7 +6309,8 @@ void CvPlayer::receiveGoody(CvPlot* pPlot, GoodyTypes eGoody, CvUnit* pUnit)
 			tPromotion.push_back(moralePromotion);
 		}
 		
-		if (!pUnit->isHasPromotion(commandoPromotion)) 
+		if (!pUnit->isHasPromotion(commandoPromotion)
+			&& (pUnit->getUnitCombatType() != (UnitCombatTypes)GC.getInfoTypeForString("UNITCOMBAT_RECON"))) 
 		{
 			tPromotion.push_back(commandoPromotion);
 		}
@@ -6317,9 +6318,9 @@ void CvPlayer::receiveGoody(CvPlot* pPlot, GoodyTypes eGoody, CvUnit* pUnit)
 		
 		if (!tPromotion.empty()) 
 		{
-			int randomElement = GC.getGameINLINE().getSorenRandNum(tPromotion.size()-1, "Goody Special Promotion");
+			int randomElement = GC.getGameINLINE().getSorenRandNum(tPromotion.size(), "Goody Special Promotion");
 		
-			selectedPromotion = tPromotion.at(randomElement); //As vector indices start with 0, substract 1.
+			selectedPromotion = tPromotion.at(randomElement);
 			pUnit->setHasPromotion(selectedPromotion, true);
 			
 			if (selectedPromotion == tacticsPromotion) 
