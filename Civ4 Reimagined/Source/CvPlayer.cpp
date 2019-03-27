@@ -6264,6 +6264,11 @@ void CvPlayer::receiveGoody(CvPlot* pPlot, GoodyTypes eGoody, CvUnit* pUnit)
 			CvCity* pClosestCity = GC.getMapINLINE().findCity(pPlot->getX_INLINE(), pPlot->getY_INLINE(), getID(), getTeam(), false, false);
 			if (pClosestCity != NULL)
 			{
+				iProduction *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getConstructPercent();
+				iProduction /= 100;
+				
+				iProduction = (iProduction+1)/2 + GC.getGameINLINE().getSorenRandNum(iProduction, "Good hut randomization");
+				
 				pClosestCity->changeOverflowProduction(iProduction, pClosestCity->getProductionModifier());
 				//pClosestCity->changeProduction(iProduction);
 				
@@ -6277,9 +6282,15 @@ void CvPlayer::receiveGoody(CvPlot* pPlot, GoodyTypes eGoody, CvUnit* pUnit)
 	
 	if (GC.getGoodyInfo(eGoody).getGreatGeneralPoints() > 0)
 	{
-		int greatGeneralPoints = GC.getGoodyInfo(eGoody).getGreatGeneralPoints();
-		changeCombatExperience(greatGeneralPoints);
-		szBuffer += gDLL->getText("TXT_KEY_MISC_RECEIVED_GREAT_GENERAL_POINTS", greatGeneralPoints);
+		int iGreatGeneralPoints = GC.getGoodyInfo(eGoody).getGreatGeneralPoints();
+		
+		iGreatGeneralPoints *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getGreatPeoplePercent();
+		iGreatGeneralPoints /= 100;
+		
+		iGreatGeneralPoints = (iGreatGeneralPoints+1)/2 + GC.getGameINLINE().getSorenRandNum(iGreatGeneralPoints, "Good hut randomization");
+				
+		changeCombatExperience(iGreatGeneralPoints);
+		szBuffer += gDLL->getText("TXT_KEY_MISC_RECEIVED_GREAT_GENERAL_POINTS", iGreatGeneralPoints);
 	}
 	
 	if (pUnit != NULL && GC.getGoodyInfo(eGoody).isSpecialPromotion())
@@ -6357,6 +6368,11 @@ void CvPlayer::receiveGoody(CvPlot* pPlot, GoodyTypes eGoody, CvUnit* pUnit)
 			CvCity* pClosestCity = GC.getMapINLINE().findCity(pPlot->getX_INLINE(), pPlot->getY_INLINE(), getID(), getTeam(), false, false);
 			if (pClosestCity != NULL)
 			{
+				iFood *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getGrowthPercent();
+				iFood /= 100;
+				
+				iFood = (iFood+1)/2 + GC.getGameINLINE().getSorenRandNum(iFood, "Good hut randomization");
+		
 				pClosestCity->changeFood(iFood);
 				CvWString szCityName = pClosestCity->getName();
 			
@@ -6377,6 +6393,11 @@ void CvPlayer::receiveGoody(CvPlot* pPlot, GoodyTypes eGoody, CvUnit* pUnit)
 			CvCity* pClosestCity = GC.getMapINLINE().findCity(pPlot->getX_INLINE(), pPlot->getY_INLINE(), getID(), getTeam(), false, false);
 			if (pClosestCity != NULL)
 			{
+				iCulture *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getCulturePercent();
+				iCulture /= 100;
+		
+				iCulture = (iCulture+1)/2 + GC.getGameINLINE().getSorenRandNum(iCulture, "Good hut randomization");
+		
 				pClosestCity->changeCultureTimes100(getID(), 100*iCulture, true, true);
 			
 				szBuffer += gDLL->getText("TXT_KEY_MISC_RECEIVED_CULTURE", iCulture, pClosestCity->getName().GetCString());
@@ -6393,6 +6414,10 @@ void CvPlayer::receiveGoody(CvPlot* pPlot, GoodyTypes eGoody, CvUnit* pUnit)
 		
 		if (iGreatPersonPoints > 0)
 		{
+			iGreatPersonPoints *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getGreatPeoplePercent();
+			iGreatPersonPoints /= 100;
+
+			iGreatPersonPoints = (iGreatPersonPoints+1)/2 + GC.getGameINLINE().getSorenRandNum(iGreatPersonPoints, "Good hut randomization");
 			
 			CvCity* pBestCity;
 			int pBestValue = -1;
