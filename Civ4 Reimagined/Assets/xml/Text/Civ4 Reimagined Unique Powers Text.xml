@@ -3,6 +3,10 @@
 <!-- Copyright Firaxis Games 2005 -->
 <Civ4GameText xmlns="http://www.firaxis.com">
 	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWERS_TECH_PROGRESS_SETTLE</Tag>
+		<English>Our people have gathered knowledge of %s1!</English>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_ECONOMICS_ADVISOR_UNIQUE_POWERS_TAB</Tag>
 		<English>UNIQUE POWERS</English>
 	</TEXT>

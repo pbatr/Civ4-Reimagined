@@ -328,9 +328,34 @@
 		<DefineName>TARGET_POPULATION_FUTURE</DefineName>
 		<iDefineIntVal>3</iDefineIntVal>
 	</Define>
-	<!-- Not used at the moment. -->	
+	<!-- Unique Powers -->
 	<Define>
-		<DefineName>UNIQUE_POWER_CULTURE_INCOME_PERCENT_PER_CITY</DefineName>
-		<iDefineIntVal>90</iDefineIntVal>
+		<DefineName>UNIQUE_POWER_OTHER</DefineName>
+		<iDefineIntVal>2</iDefineIntVal> <!-- % commerce modifier -->
 	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_AZTEC</DefineName>
+		<iDefineIntVal>20</iDefineIntVal> <!-- % chance per level -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_BABYLON</DefineName>
+		<iDefineIntVal>5</iDefineIntVal> <!-- % commerce per population -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_BABYLON_2</DefineName>
+		<iDefineIntVal>0</iDefineIntVal> <!-- Population required -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_EGYPT</DefineName>
+		<iDefineIntVal>3</iDefineIntVal> <!-- Slavery points per population -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_GREECE</DefineName>
+		<iDefineIntVal>30</iDefineIntVal> <!-- Number of turns per civic -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_SUMERIA</DefineName>
+		<iDefineIntVal>40</iDefineIntVal> <!-- Per cent tech progress -->
+	</Define>
+
 </Civ4Defines>

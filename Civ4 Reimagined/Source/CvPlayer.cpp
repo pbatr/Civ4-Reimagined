@@ -80,6 +80,7 @@ CvPlayer::CvPlayer()
 	m_paiExtraBuildingHappiness = NULL;
 	m_paiExtraBuildingHealth = NULL;
 	m_paiBuildingProductionModifiers = NULL; // Leoreth
+	m_paiTechProgressOnSettling = NULL; // Civ4 Reimagined
 	m_paiFeatureHappiness = NULL;
 	m_paiUnitClassCount = NULL;
 	m_paiUnitClassMaking = NULL;
@@ -623,6 +624,7 @@ void CvPlayer::uninit()
 	SAFE_DELETE_ARRAY(m_paiExtraBuildingHappiness);
 	SAFE_DELETE_ARRAY(m_paiExtraBuildingHealth);
 	SAFE_DELETE_ARRAY(m_paiBuildingProductionModifiers); // Leoreth
+	SAFE_DELETE_ARRAY(m_paiTechProgressOnSettling); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiFeatureHappiness);
 	SAFE_DELETE_ARRAY(m_paiUnitClassCount);
 	SAFE_DELETE_ARRAY(m_paiUnitClassMaking);
@@ -1055,6 +1057,13 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 			m_paiBuildingProductionModifiers[iI] = 0;
 		}
 		
+		//Civ4 Reimagined
+		FAssertMsg(m_paiTechProgressOnSettling==NULL, "about to leak memory, CvPlayer::m_paiTechProgressOnSettling");
+		m_paiTechProgressOnSettling = new int[GC.getNumEraInfos()];
+		for (iI = 0; iI < GC.getNumEraInfos(); iI++)
+		{
+			m_paiTechProgressOnSettling[iI] = 0;
+		}
 		/*
 		//Civ4 Reimagined
 		for (iI = 0; iI < 500; iI++)
@@ -6807,6 +6816,57 @@ void CvPlayer::found(int iX, int iY)
 		}
 	}
 
+	// Civ4 Reimagined: Random tech progress on settling
+	for (iI = 0; iI < GC.getNumEraInfos(); iI++)
+	{
+		int techProgressPercent = getTechProgressOnSettling(static_cast<EraTypes>(iI));
+		
+		if (techProgressPercent != 0)
+		{
+			std::vector< int > availableTechs;
+			
+			for (TechTypes eTech = (TechTypes)0; eTech < GC.getNumTechInfos(); eTech=(TechTypes)(eTech+1))
+			{
+				// Tech of incorrect era?
+				if (GC.getTechInfo(eTech).getEra() != iI)
+				{
+					continue;
+				}
+				
+				// Tech already researched?
+				if (GET_TEAM(getTeam()).isHasTech(eTech))
+				{
+					continue;
+				}
+
+				// Is this researchable?
+				if (!canEverResearch(eTech))
+				{
+					continue;
+				}
+				
+				availableTechs.push_back( (int)eTech );
+			}
+
+			if (availableTechs.size() > 0)
+			{
+				int iRandElement = (GC.getGameINLINE().getSorenRandNum(availableTechs.size(), "Random tech"));
+				TechTypes eRandomTech = (TechTypes)availableTechs.at( iRandElement );
+				
+				GET_TEAM(getTeam()).changeResearchProgressPercent(eRandomTech, techProgressPercent, getID());
+				
+				CvWString szBuffer = gDLL->getText("TXT_KEY_UNIQUE_POWERS_TECH_PROGRESS_SETTLE", GC.getTechInfo(eRandomTech).getTextKeyWide());
+				gDLL->getInterfaceIFace()->addHumanMessage(getID(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_POSITIVE_DINK", MESSAGE_TYPE_MINOR_EVENT);
+			}
+			else
+			{
+				// Effect no longer needed
+				changeTechProgressOnSettling( -techProgressPercent, (EraTypes)iI );
+				notifyUniquePowersChanged(false);
+			}
+		}
+	}
+	
 	if (isHuman() && getAdvancedStartPoints() < 0)
 	{
 		pCity->chooseProduction();
@@ -19898,7 +19958,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	// Leoreth
 	pStream->Read(NUM_DOMAIN_TYPES, m_aiDomainProductionModifiers);
 	pStream->Read(NUM_DOMAIN_TYPES, m_aiDomainExperienceModifiers);
-
+	
 	pStream->Read(NUM_FEAT_TYPES, m_abFeatAccomplished);
 	pStream->Read(NUM_PLAYEROPTION_TYPES, m_abOptions);
 
@@ -19912,6 +19972,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(GC.getNumBuildingInfos(), m_paiExtraBuildingHappiness);
 	pStream->Read(GC.getNumBuildingInfos(), m_paiExtraBuildingHealth);
 	pStream->Read(GC.getNumBuildingInfos(), m_paiBuildingProductionModifiers); // Leoreth
+	pStream->Read(GC.getNumEraInfos(), m_paiTechProgressOnSettling); // Civ4 Reimagined
 	pStream->Read(GC.getNumFeatureInfos(), m_paiFeatureHappiness);
 	pStream->Read(GC.getNumUnitClassInfos(), m_paiUnitClassCount);
 	pStream->Read(GC.getNumUnitClassInfos(), m_paiUnitClassMaking);
@@ -20493,6 +20554,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumBuildingInfos(), m_paiExtraBuildingHappiness);
 	pStream->Write(GC.getNumBuildingInfos(), m_paiExtraBuildingHealth);
 	pStream->Write(GC.getNumBuildingInfos(), m_paiBuildingProductionModifiers); // Leoreth
+	pStream->Write(GC.getNumEraInfos(), m_paiTechProgressOnSettling); // Civ4 Reimagined
 	pStream->Write(GC.getNumFeatureInfos(), m_paiFeatureHappiness);
 	pStream->Write(GC.getNumUnitClassInfos(), m_paiUnitClassCount);
 	pStream->Write(GC.getNumUnitClassInfos(), m_paiUnitClassMaking);
@@ -26260,7 +26322,22 @@ void CvPlayer::changeFreePopulationInCapital(int iChange)
 	
 	FAssertMsg(getFreePopulationInCapital() >= 0, "Free Population is not supposed to be negative");
 }
-	
+
+// Civ4 Reimagined
+int CvPlayer::getTechProgressOnSettling(EraTypes eEra) const
+{
+	return m_paiTechProgressOnSettling[(int)eEra];
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeTechProgressOnSettling(int iChange, EraTypes eEra)
+{
+	if (iChange != 0)
+	{
+		m_paiTechProgressOnSettling[(int)eEra] += iChange;
+	}
+}
+
 // Civ4 Reimagined
 CivicTypes CvPlayer::getFreeCivicEnabled() const
 {
@@ -26912,7 +26989,7 @@ void CvPlayer::doUniqueAztecPromotion(CvUnit* pUnit)
 		return;
 	}
 	
-	if (GC.getGameINLINE().getSorenRandNum(100, "Aztec unique promotion") < 20 * pUnit->getLevel()) // x% chance per level o gain a promotion
+	if (GC.getGameINLINE().getSorenRandNum(100, "Aztec unique promotion") < GC.getDefineINT("UNIQUE_POWER_AZTEC") * pUnit->getLevel()) // x% chance per level to gain a promotion
 	{		
 		if (GC.getGameINLINE().getSorenRandNum(2, "Aztec unique promotion - choose promotion") == 0)
 		{
@@ -27052,7 +27129,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == 0)
 		{
 			changeNoCapitalUnhappinessCount(1);
-			setCapitalCommercePerPopulation(COMMERCE_GOLD, 5, 0);
+			setCapitalCommercePerPopulation(COMMERCE_GOLD, GC.getDefineINT("UNIQUE_POWER_BABYLON"), GC.getDefineINT("UNIQUE_POWER_BABYLON_2"));
 			notifyUniquePowersChanged(true);
 		}
 		else if (eEra == 2)
@@ -27079,12 +27156,12 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	{
 		if (eEra == 0)
 		{
-			changeSlavePointsPerPopulationSacrificed(3);
+			changeSlavePointsPerPopulationSacrificed(GC.getDefineINT("UNIQUE_POWER_EGYPT"));
 			notifyUniquePowersChanged(true);
 		}
 		else if (eEra == 1)
 		{
-			changeSlavePointsPerPopulationSacrificed(-3);
+			changeSlavePointsPerPopulationSacrificed(-GC.getDefineINT("UNIQUE_POWER_EGYPT"));
 			notifyUniquePowersChanged(false);
 		}
 	}
@@ -27104,7 +27181,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 					// Exclude starting civics
 					if (((CivicTypes)iI) != startingGovernmentCivic)
 					{
-						m_paiCivicEffect[iI] = 30;
+						m_paiCivicEffect[iI] = GC.getDefineINT("UNIQUE_POWER_GREECE");
 					}
 				}
 			}
@@ -27143,11 +27220,10 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	{
 		if (eEra == 0) 
 		{
-			changeFreePopulationInCapital(1);
+			changeTechProgressOnSettling( GC.getDefineINT("UNIQUE_POWER_SUMERIA"), (EraTypes)0 );
 			notifyUniquePowersChanged(true);
 		}
 	}
-
 	else
 	{
 		for (int iI = 0; iI < NUM_COMMERCE_TYPES; iI++)
