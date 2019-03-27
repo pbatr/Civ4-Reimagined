@@ -39,6 +39,7 @@ Tweaks
 -Movement speed of Missionaries ships decresed from 2 to 1
 -Russian Research Institut grants one additional scientist instead of research bonus
 -Distribute workers to different cities when colony is granted independence 
+-Added game speed adjustments and randomization for goodie hut events (food, production, GPP, GGP).
 
 *********
 Interface

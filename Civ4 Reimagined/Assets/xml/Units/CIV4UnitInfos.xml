@@ -1451,6 +1451,7 @@
 			<bMilitaryHappiness>0</bMilitaryHappiness>
 			<bMilitarySupport>0</bMilitarySupport>
 			<bMilitaryProduction>0</bMilitaryProduction>
+			<bNoUpkeep>1</bNoUpkeep>
 			<bPillage>0</bPillage>
 			<bSpy>0</bSpy>
 			<bSabotage>0</bSabotage>
