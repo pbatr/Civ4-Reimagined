@@ -560,6 +560,10 @@ public:
 	void changeFreePopulationInCapital(int iChange);
 
 	// Civ4 Reimagined
+	int getTechProgressOnSettling(EraTypes eEra) const;
+	void changeTechProgressOnSettling(int iProcentProgress, EraTypes eEra);
+	
+	// Civ4 Reimagined
 	CivicTypes getFreeCivicEnabled() const;
 	void setFreeCivicEnabled(CivicTypes eCivic);
 
@@ -1679,6 +1683,7 @@ protected:
 	int* m_paiBuildingProductionModifiers; // Leoreth
 	int** m_paiExtraBuildingYield;
 	int** m_paiExtraBuildingCommerce;
+	int* m_paiTechProgressOnSettling; // Civ4 Reimagined
 	int* m_paiFeatureHappiness;
 	int* m_paiUnitClassCount;
 	int* m_paiUnitClassMaking;
