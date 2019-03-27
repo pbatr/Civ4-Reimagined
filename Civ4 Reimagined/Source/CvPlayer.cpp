@@ -27181,7 +27181,12 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 					// Exclude starting civics
 					if (((CivicTypes)iI) != startingGovernmentCivic)
 					{
-						m_paiCivicEffect[iI] = GC.getDefineINT("UNIQUE_POWER_GREECE");
+						int iTurnsPerCivic = GC.getDefineINT("UNIQUE_POWER_GREECE");
+						
+						iTurnsPerCivic *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getResearchPercent();
+						iTurnsPerCivic /= 100;
+
+						m_paiCivicEffect[iI] = ;
 					}
 				}
 			}
