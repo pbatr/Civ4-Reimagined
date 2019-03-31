@@ -13041,6 +13041,7 @@ CvBuildInfo::CvBuildInfo() :
 m_iTime(0),
 m_iCost(0),
 m_iTechPrereq(NO_TECH),
+m_iTechObsolete(NO_TECH), // Civ4 Reimagined
 m_iImprovement(NO_IMPROVEMENT),
 m_iRoute(NO_ROUTE),
 m_iEntityEvent(ENTITY_EVENT_NONE),
@@ -13081,6 +13082,12 @@ int CvBuildInfo::getCost() const
 int CvBuildInfo::getTechPrereq() const	
 {
 	return m_iTechPrereq;
+}
+
+// Civ4 Reimagined
+int CvBuildInfo::getTechObsolete() const
+{
+	return m_iTechObsolete;
 }
 
 int CvBuildInfo::getImprovement() const	
@@ -13153,6 +13160,8 @@ bool CvBuildInfo::read(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(szTextVal, "PrereqTech");
 	m_iTechPrereq = pXML->FindInInfoClass(szTextVal);
+	pXML->GetChildXmlValByName(szTextVal, "TechObsolete");
+	m_iTechObsolete = pXML->FindInInfoClass(szTextVal);
 
 	pXML->GetChildXmlValByName(&m_iTime, "iTime");
 	pXML->GetChildXmlValByName(&m_iCost, "iCost");
