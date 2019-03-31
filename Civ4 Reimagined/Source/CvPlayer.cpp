@@ -7825,7 +7825,16 @@ bool CvPlayer::canBuild(const CvPlot* pPlot, BuildTypes eBuild, bool bTestEra, b
 			}
 		}
 	}
-
+	
+	// Civ4 Reimagined
+	if (GC.getBuildInfo(eBuild).getTechObsolete() != NO_TECH)
+	{
+		if ((GET_TEAM(getTeam()).isHasTech((TechTypes)GC.getBuildInfo(eBuild).getTechObsolete())))
+		{
+			return false;
+		}
+	}
+		
 	if (!bTestVisible)
 	{
 		if (pPlot->getFeatureType() != NO_FEATURE)
@@ -27186,7 +27195,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 						iTurnsPerCivic *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getResearchPercent();
 						iTurnsPerCivic /= 100;
 
-						m_paiCivicEffect[iI] = ;
+						m_paiCivicEffect[iI] = iTurnsPerCivic;
 					}
 				}
 			}
