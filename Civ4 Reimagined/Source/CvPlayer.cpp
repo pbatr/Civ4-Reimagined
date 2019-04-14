@@ -6392,10 +6392,7 @@ void CvPlayer::receiveGoody(CvPlot* pPlot, GoodyTypes eGoody, CvUnit* pUnit)
 		{
 			CvCity* pClosestCity = GC.getMapINLINE().findCity(pPlot->getX_INLINE(), pPlot->getY_INLINE(), getID(), getTeam(), false, false);
 			if (pClosestCity != NULL)
-			{
-				iCulture *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getCulturePercent();
-				iCulture /= 100;
-		
+			{		
 				iCulture = (iCulture+1)/2 + GC.getGameINLINE().getSorenRandNum(iCulture, "Good hut randomization");
 		
 				pClosestCity->changeCultureTimes100(getID(), 100*iCulture, true, true);
