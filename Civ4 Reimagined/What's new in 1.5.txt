@@ -41,6 +41,7 @@ Tweaks
 -Distribute workers to different cities when colony is granted independence 
 -Added game speed adjustments and randomization for goodie hut events (food, production, GPP, GGP)
 -Greek Hoplites bonus vs melee increased from 20 to 30 % but no bonus vs archers anymore
+-Ivory now always grants 1 food. It receives 2 commerce and 1 production with the Camp improvement
 -Civic AI improvements
 
 *********
