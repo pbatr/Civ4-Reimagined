@@ -14410,6 +14410,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	int iS = isCivic(eCivic)?-1 :1;// K-Mod, sign for whether we should be considering gaining a bonus, or losing a bonus
 
 	bool bWarPlan = (kTeam.getAnyWarPlanCount(true) > 0);
+
 	if( bWarPlan )
 	{
 		bWarPlan = false;
@@ -14735,7 +14736,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				iTempValue += (iUpgradeTime - iNewUpgradeTime) * (iCottageCount + iPotCottageCount - getImprovementCount(IMPROVEMENT_TOWN)) * iYieldChanges;
 		
 			iTempValue *= 5;
-			iTempValue /= 2;
+			iTempValue /= 4;
 
 			iTempValue /= iUpgradeTime;
 		
@@ -15769,7 +15770,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		
 		if (iCount > 0)
 		{
-			iTempValue += (iHapValue / iCount) * iCities / 12;
+			iTempValue += (iHapValue / iCount) * iCities / 20;
 		}
 		
 		if (gPlayerLogLevel > 0) logBBAI("	Civic Happiness Value: %d", iTempValue);
@@ -15833,14 +15834,19 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		// percentage of hammers spent on units is BuildUnitProb + 40 if at war
 		// experience points are worth a production boost of 8% each, multiplied by the warmonger factor, and componded with actual production multipliers
 		int iProductionShareUnits = GC.getLeaderHeadInfo(getPersonalityType()).getBuildUnitProb();
+
 		if (bWarPlan)
+		{
 			iProductionShareUnits = (100 + iProductionShareUnits)/2;
+		}
 		else if (AI_isDoStrategy(AI_STRATEGY_ECONOMY_FOCUS))
+		{
 			iProductionShareUnits /= 2;
+		}
 
 		int iProductionShareBuildings = 100 - iProductionShareUnits;
 
-		int iTempValue = iBestReligionPopulation * kCivic.getStateReligionUnitProductionModifier();
+		int iTempValue = iBestReligionPopulation * kCivic.getStateReligionUnitProductionModifier() / 100;
 
 		int iExperience = iBestReligionPopulation * kCivic.getStateReligionFreeExperience();
 		
@@ -15848,12 +15854,12 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		int iDomainDivisor;
 		for (int iI = 0; iI < NUM_DOMAIN_TYPES; iI++)
 		{
-			if (iI == DOMAIN_LAND) iDomainDivisor = 3;
-			else if (iI == DOMAIN_SEA) iDomainDivisor = (getCurrentEra() < ERA_INDUSTRIAL) ? 3 : 6;
-			else iDomainDivisor = (getCurrentEra() < ERA_INDUSTRIAL) ? 100 : 6;
+			if (iI == DOMAIN_LAND) iDomainDivisor = (getCurrentEra() < ERA_INDUSTRIAL) ? 100 : 125;
+			else if (iI == DOMAIN_SEA) iDomainDivisor = (getCurrentEra() < ERA_INDUSTRIAL) ? 300 : 600;
+			else iDomainDivisor = (getCurrentEra() < ERA_INDUSTRIAL) ? 10000 : 600;
 
-			iTempValue += (iI == DOMAIN_LAND ? 2 : 1) * ((kCivic.getMilitaryProductionModifier() + kCivic.getDomainProductionModifier(iI)) * iPopulation / iDomainDivisor);
-			iExperience += (iI == DOMAIN_LAND ? 2 : 1) * ((kCivic.getFreeExperience() + kCivic.getDomainExperienceModifier(iI)) * iPopulation / iDomainDivisor);
+			iTempValue +=  (kCivic.getMilitaryProductionModifier() + kCivic.getDomainProductionModifier(iI)) * iPopulation / iDomainDivisor;
+			iExperience += (kCivic.getFreeExperience() + kCivic.getDomainExperienceModifier(iI)) * iPopulation / iDomainDivisor;
 		}
 		
 		if (iExperience)
@@ -15869,9 +15875,9 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		iTempValue *= iProductionShareUnits;
 		iTempValue /= 100;
 
-		iTempValue += iBestReligionPopulation * kCivic.getStateReligionBuildingProductionModifier() * iProductionShareBuildings / 100;
+		iTempValue += iBestReligionPopulation * kCivic.getStateReligionBuildingProductionModifier() * iProductionShareBuildings / 10000;
 		iTempValue *= AI_yieldWeight(YIELD_PRODUCTION);
-		iTempValue /= 10000;
+		iTempValue /= 100;
 		if (iTempValue != 0 && gPlayerLogLevel > 2) logBBAI("	Civic Value of Experience and Production Modifiers: %d", iTempValue);
 		iValue += iTempValue;
 

@@ -36,10 +36,11 @@ Tweaks
 -Ancient wonder grant less great person points, later wonders grant more
 -Better starting position evaluation
 -Civilizations have the resource of the base unit of their unique unit near their starting location
--Movement speed of Missionaries ships decresed from 2 to 1
+-Movement speed of Missionaries decreased from 2 to 1
 -Russian Research Institut grants one additional scientist instead of research bonus
 -Distribute workers to different cities when colony is granted independence 
--Added game speed adjustments and randomization for goodie hut events (food, production, GPP, GGP).
+-Added game speed adjustments and randomization for goodie hut events (food, production, GPP, GGP)
+-Civic AI improvements
 
 *********
 Interface
