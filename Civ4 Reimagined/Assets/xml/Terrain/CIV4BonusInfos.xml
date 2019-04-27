@@ -1634,8 +1634,8 @@
 			<TechCityTrade>TECH_HUNTING</TechCityTrade>
 			<TechObsolete>TECH_INDUSTRIALISM</TechObsolete>
 			<YieldChanges>
-				<iYieldChange>0</iYieldChange>
 				<iYieldChange>1</iYieldChange>
+				<iYieldChange>0</iYieldChange>
 				<iYieldChange>0</iYieldChange>
 			</YieldChanges>
 			<iAITradeModifier>15</iAITradeModifier>
