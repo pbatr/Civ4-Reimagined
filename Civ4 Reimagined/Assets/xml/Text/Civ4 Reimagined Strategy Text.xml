@@ -154,7 +154,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_GREEK_PHALANX_STRATEGY</Tag>
-		<English>Compared to the [COLOR_UNIT_TEXT]Spearman[COLOR_REVERT], this unit starts has a bonus vs melee and archer units.</English>
+		<English>Compared to the [COLOR_UNIT_TEXT]Spearman[COLOR_REVERT], this unit has a bonus vs melee units.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_ZULU_IMPI_STRATEGY</Tag>
