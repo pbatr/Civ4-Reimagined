@@ -40,6 +40,7 @@ Tweaks
 -Russian Research Institut grants one additional scientist instead of research bonus
 -Distribute workers to different cities when colony is granted independence 
 -Added game speed adjustments and randomization for goodie hut events (food, production, GPP, GGP)
+-Greek Hoplites bonus vs melee increased from 20 to 30 % but no bonus vs archers anymore
 -Civic AI improvements
 
 *********
