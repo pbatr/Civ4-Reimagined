@@ -14537,7 +14537,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		
 		//Civ4 Reimagined Todo: Scale with required points for next great people
 		
-		iTempValue *= 4 * (kCivic.isNoGreatPeople() ? (-100 - getGreatPeopleRateModifier()) : kCivic.getGreatPeopleRateModifier());
+		iTempValue *= 3 * (kCivic.isNoGreatPeople() ? (-100 - getGreatPeopleRateModifier()) : kCivic.getGreatPeopleRateModifier());
 		iTempValue /= 100;
 		if (iTempValue != 0 && gPlayerLogLevel > 2) logBBAI("	Civic Value of Great People Modifier: %d", iTempValue);
 		iValue += iTempValue;
@@ -14812,6 +14812,20 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	{
 		int iLoop;
 		int iTempValue = 0;
+
+		int iBuildUnitProb = GC.getLeaderHeadInfo(getPersonalityType()).getBuildUnitProb();
+
+		if (kCivic.isMeleeMilitaryFoodProduction())
+		{
+			if (getCurrentEra() <= 3) 
+			{
+				iBuildUnitProb /= std::max(1, (int)getCurrentEra());
+			}
+			else
+			{
+				iBuildUnitProb = 0;
+			}
+		}
 		
 		for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 		{
@@ -14819,22 +14833,8 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			const int iHealth = pLoopCity->goodHealth() - pLoopCity->badHealth(false, 0);
 			const int iFoodProd = pLoopCity->foodDifference(true, true) * (kCivic.isMeleeMilitaryFoodProduction() ? 2 : 1);
 
-			int iBuildUnitProb = GC.getLeaderHeadInfo(getPersonalityType()).getBuildUnitProb();
-
-			if (kCivic.isMeleeMilitaryFoodProduction())
-			{
-				if (getCurrentEra() <= 3) 
-				{
-					iBuildUnitProb /= std::max(1, (int)getCurrentEra());
-				}
-				else
-				{
-					iBuildUnitProb = 0;
-				}
-			}
-
 			iTempValue += iFoodProd * (bWarPlan ? 2 : 1) * iBuildUnitProb;
-			iTempValue -= std::max(0, std::min(iHappyLevel, std::min(iHealth/2, iFoodProd))) * 500;
+			iTempValue -= std::max(0, std::min(iHappyLevel, std::min(iHealth/2, iFoodProd))) * 250;
 		}
 		
 		iTempValue /= 30;
@@ -15599,6 +15599,16 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			break;
 		}
 	}
+
+	// Civ4 Reimagined: Unhappiness for rivals
+	if (kCivic.getCivicPercentAnger() != 0 && GC.getGameINLINE().areIdeologiesEnabled())
+	{
+		const int iTempValue = kCivic.getCivicPercentAnger() / 7;
+
+		if (gPlayerLogLevel > 0) logBBAI("	Civic Unhappiness for Rivals Value: %d", iTempValue);
+	
+		iValue += iTempValue;
+	}
 	
 	// Civ4 Reimagined: Happiness
 	if (kCivic.getCivicPercentAnger() != 0 || kCivic.getExtraHappiness() != 0 || kCivic.getHappyPerMilitaryUnit() != 0 || kCivic.getLargestCityHappiness() != 0 || kCivic.isNoForeignCultureUnhappiness() || kCivic.getProductionPerSurplusHappiness() != 0 || kCivic.isNoCapitalUnhappiness() != 0 || kCivic.getNonStateReligionHappiness() != 0 || kCivic.getStateReligionHappiness() != 0 || bAnyCapitalCommerceModifier || (kCivic.getWarWearinessModifier() != 0 && !bNoWarWeariness))
@@ -15827,77 +15837,73 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	}
 	// K-Mod end
 
-	// K-Mod. Experience and production modifiers
+	// Civ4 Reimagined. Experience and production modifiers
 	{
-		// Roughly speaking these are the approximations used in this section:
-		// each population produces 1 hammer.
-		// percentage of hammers spent on units is BuildUnitProb + 40 if at war
-		// experience points are worth a production boost of 8% each, multiplied by the warmonger factor, and componded with actual production multipliers
 		int iProductionShareUnits = GC.getLeaderHeadInfo(getPersonalityType()).getBuildUnitProb();
 
 		if (bWarPlan)
 		{
 			iProductionShareUnits = (100 + iProductionShareUnits)/2;
 		}
-		else if (AI_isDoStrategy(AI_STRATEGY_ECONOMY_FOCUS))
+
+		const int iProductionShareBuildings = 100 - iProductionShareUnits;
+
+		int iBonusUnitProduction = 0;
+		int iBonusBuildingProduction = 0;
+		int iBonusExperience = 0;
+
+		int iLoop;
+		for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity; pLoopCity = nextCity(&iLoop))
 		{
-			iProductionShareUnits /= 2;
+			const int iCityProd = pLoopCity->getYieldRate(YIELD_PRODUCTION);
+
+			if (pLoopCity->isHasReligion(eBestReligion))
+			{
+				iBonusUnitProduction += iCityProd * kCivic.getStateReligionUnitProductionModifier() / 100;
+				iBonusBuildingProduction += iCityProd * kCivic.getStateReligionBuildingProductionModifier() / 100;
+				iBonusExperience += iCityProd * kCivic.getStateReligionFreeExperience();
+			}
+
+			for (int iI = 0; iI < NUM_DOMAIN_TYPES; iI++)
+			{
+				const int iDomainPercentage = AI_unitDomainDistribution((DomainTypes)iI, getCurrentEra());
+
+				if (iDomainPercentage <= 0)
+					continue;
+
+				iBonusUnitProduction += (kCivic.getMilitaryProductionModifier() + kCivic.getDomainProductionModifier(iI)) * iCityProd * iDomainPercentage / 100;
+				iBonusExperience += kCivic.getFreeExperience() * iCityProd * (100 + kCivic.getDomainExperienceModifier(iI)) * iDomainPercentage / 100;
+			}
 		}
 
-		int iProductionShareBuildings = 100 - iProductionShareUnits;
-
-		int iTempValue = iBestReligionPopulation * kCivic.getStateReligionUnitProductionModifier() / 100;
-
-		int iExperience = iBestReligionPopulation * kCivic.getStateReligionFreeExperience();
+		// domain divisor: we divide after all domain calculations to avoid rounding errors
+		iBonusUnitProduction /= 100;
+		iBonusExperience /= 100;
 		
-		// Civ4 Reimagined: domain production and experience
-		int iDomainDivisor;
-		for (int iI = 0; iI < NUM_DOMAIN_TYPES; iI++)
+		if (iBonusExperience)
 		{
-			if (iI == DOMAIN_LAND) iDomainDivisor = (getCurrentEra() < ERA_INDUSTRIAL) ? 100 : 125;
-			else if (iI == DOMAIN_SEA) iDomainDivisor = (getCurrentEra() < ERA_INDUSTRIAL) ? 300 : 600;
-			else iDomainDivisor = (getCurrentEra() < ERA_INDUSTRIAL) ? 10000 : 600;
+			iBonusExperience *= std::max(iWarmongerFactor, (bWarPlan ? 100 : 0));
+			iBonusExperience /= 100;
 
-			iTempValue +=  (kCivic.getMilitaryProductionModifier() + kCivic.getDomainProductionModifier(iI)) * iPopulation / iDomainDivisor;
-			iExperience += (kCivic.getFreeExperience() + kCivic.getDomainExperienceModifier(iI)) * iPopulation / iDomainDivisor;
-		}
-		
-		if (iExperience)
-		{
-			iExperience *= 15 * std::max(iWarmongerFactor, (bWarPlan ? 100 : 0));
-			iExperience /= 100;
-			iExperience *= AI_averageYieldMultiplier(YIELD_PRODUCTION);
-			iExperience /= 100;
-
-			iTempValue += iExperience;
+			iBonusExperience /= 7;
+			
+			iTempValue += iBonusExperience;
 		}
 
-		iTempValue *= iProductionShareUnits;
-		iTempValue /= 100;
+		iBonusUnitProduction *= iProductionShareUnits;
+		iBonusUnitProduction /= 100;
 
-		iTempValue += iBestReligionPopulation * kCivic.getStateReligionBuildingProductionModifier() * iProductionShareBuildings / 10000;
+		iBonusBuildingProduction *= iProductionShareBuildings;
+		iBonusBuildingProduction /= 100;
+
+		int iTempValue = iBonusUnitProduction + iBonusBuildingProduction + iBonusExperience;
+
 		iTempValue *= AI_yieldWeight(YIELD_PRODUCTION);
 		iTempValue /= 100;
+
 		if (iTempValue != 0 && gPlayerLogLevel > 2) logBBAI("	Civic Value of Experience and Production Modifiers: %d", iTempValue);
 		iValue += iTempValue;
-
-		/* old modifiers, (just for reference)
-		iValue += (kCivic.getMilitaryProductionModifier() * iCities * iWarmongerFactor) / (bWarPlan ? 300 : 500 );
-		if (kCivic.getFreeExperience() > 0)
-		{
-			// Free experience increases value of hammers spent on units, population is an okay measure of base hammer production
-			int iTempValue = (kCivic.getFreeExperience() * getTotalPopulation() * (bWarPlan ? 30 : 12))/100;
-			iTempValue *= AI_averageYieldMultiplier(YIELD_PRODUCTION);
-			iTempValue /= 100;
-			iTempValue *= iWarmongerFactor;
-			iTempValue /= 100;
-			iValue += iTempValue;
-		}
-		iValue += ((kCivic.getStateReligionUnitProductionModifier() * iBestReligionCities) / 4);
-		iValue += ((kCivic.getStateReligionBuildingProductionModifier() * iBestReligionCities) / 3);
-		iValue += (kCivic.getStateReligionFreeExperience() * iBestReligionCities * ((bWarPlan) ? 6 : 2)); */
 	}
-	// K-Mod end
 
 	if (bStateReligion)
 	{
@@ -26814,3 +26820,45 @@ void CvPlayerAI::AI_ClearConstructionValueCache()
 	}
 }
 // K-Mod end
+
+// Civ4 Reimagined
+int CvPlayerAI::AI_unitDomainDistribution(const DomainTypes domain, const EraTypes era) const
+{
+	switch(int(era))
+	{
+		case 0: //ancient
+			if (domain != DOMAIN_LAND) return 0;
+			else return 100;
+		case 1: //classical
+			if (domain == DOMAIN_LAND) return 95;
+			else if (domain == DOMAIN_SEA) return 5;
+			else return 0;
+		case 2: //medieval
+			if (domain == DOMAIN_LAND) return 90;
+			else if (domain == DOMAIN_SEA) return 10;
+			else return 0;
+		case 3: //renaissance
+			if (domain == DOMAIN_LAND) return 85;
+			else if (domain == DOMAIN_SEA) return 15;
+			else return 0;
+		case 4: //industrial
+			if (domain == DOMAIN_LAND) return 80;
+			else if (domain == DOMAIN_SEA) return 10;
+			else if (domain == DOMAIN_AIR) return 10;
+			else return 0;
+		case 5: // modern
+			if (domain == DOMAIN_LAND) return 80;
+			else if (domain == DOMAIN_SEA) return 10;
+			else if (domain == DOMAIN_AIR) return 5;
+			else if (domain == DOMAIN_IMMOBILE) return 5;
+			else return 0;
+		case 6: // future
+			if (domain == DOMAIN_LAND) return 80;
+			else if (domain == DOMAIN_SEA) return 10;
+			else if (domain == DOMAIN_AIR) return 5;
+			else if (domain == DOMAIN_IMMOBILE) return 5;
+			else return 0;
+	}
+
+	return 0;
+}
