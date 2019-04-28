@@ -556,6 +556,9 @@ protected:
 	void AI_doEnemyUnitData();
 	//void AI_invalidateCloseBordersAttitudeCache(); // disabled by K-Mod
 
+	// Civ4 Reimagined
+	int AI_unitDomainDistribution(const DomainTypes domain, const EraTypes era) const;
+
 	friend class CvGameTextMgr;
 };
 
