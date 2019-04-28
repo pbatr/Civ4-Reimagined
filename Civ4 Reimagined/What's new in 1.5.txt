@@ -27,6 +27,7 @@ Tweaks
 -Babylonian Bowman gain 2 potential first strike chances
 -Organized Religion requires Polytheism
 -Theocracy requires Monotheism
+-Theocracy upkeep cost increased from medium to high
 -Public Welfare requires Mass Media
 -Totalitarianism war weariness modifier changed from -100% to -50%
 -Standing Army upkeep cost decreased from medium to low
