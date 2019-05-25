@@ -82,7 +82,8 @@
 			<Type>BUILD_TERRACE</Type>
 			<Description>TXT_KEY_BUILD_TERRACE</Description>
 			<Help/>
-			<PrereqTech>NONE</PrereqTech>
+			<PrereqTech>TECH_CONSTRUCTION</PrereqTech>
+			<TechObsolete>TECH_BIOLOGY</TechObsolete>
 			<iTime>500</iTime>
 			<iCost>0</iCost>
 			<bKill>0</bKill>
