@@ -3814,7 +3814,12 @@ void CvCity::hurry(HurryTypes eHurry)
 	changePopulation(-(iHurryPopulation));
 	
 	changeCultureTimes100(getOwnerINLINE(), iHurryPopulation * GET_PLAYER(getOwnerINLINE()).getCulturePerPopulationSacrified(), true, true); // Civ4 Reimagined
-
+	
+	if (GET_PLAYER(getOwnerINLINE()).getSlavePointsPerPopulationSacrificed() != 0)
+	{
+		GET_PLAYER(getOwnerINLINE()).changeSlavePoints(iHurryPopulation * GET_PLAYER(getOwnerINLINE()).getSlavePointsPerPopulationSacrificed(), this); // Civ4 Reimagined
+	}
+	
 	changeHurryAngerTimer(iHurryAngerLength);
 
 /************************************************************************************************/
@@ -7373,17 +7378,6 @@ int CvCity::getMilitaryHappinessUnits() const
 
 	if (iMilitaryHappinessLimit > 0)
 	{
-		// Civ4 Reimagined: Unique Power
-		if (GET_PLAYER(getOwnerINLINE()).isFullMilitaryHappinessValueWithPantheon())
-		{
-			CivicTypes CIVIC_PANTHEON = (CivicTypes)GC.getInfoTypeForString("CIVIC_PANTHEON");
-
-			if (GET_PLAYER(getOwnerINLINE()).getCivics((CivicOptionTypes)(GC.getCivicInfo(CIVIC_PANTHEON).getCivicOptionType())) == CIVIC_PANTHEON)
-			{
-				return iMilitaryHappinessLimit;	
-			}
-		}
-		
 		return std::min(m_iMilitaryHappinessUnits, iMilitaryHappinessLimit);
 	}
 	else
@@ -9984,7 +9978,7 @@ int CvCity::totalTradeModifier(CvCity* pOtherCity) const
 
 	iModifier += getPopulationTradeModifier();
 	
-	// Civ4 Reimagined: Greek Unique Power
+	// Civ4 Reimagined: Unique Power
 	if (GET_PLAYER(getOwnerINLINE()).getCoastalTradeRouteModifier() > 0)
 	{
 		if (isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
@@ -10014,6 +10008,11 @@ int CvCity::totalTradeModifier(CvCity* pOtherCity) const
 			if (pOtherCity->getOwnerINLINE() == getOwnerINLINE())
 			{
 				bTradeThroughCapital = true;
+			}
+			
+			if (GET_PLAYER(getOwnerINLINE()).isSpecialTradeRoutePerPlayer())
+			{
+				iModifier += GC.getDefineINT("SPECIAL_TRADE_MODIFIER");
 			}
 		}
 		
@@ -11478,27 +11477,11 @@ void CvCity::setCultureTimes100(PlayerTypes eIndex, int iNewValue, bool bPlots, 
 void CvCity::changeCulture(PlayerTypes eIndex, int iChange, bool bPlots, bool bUpdatePlotGroups)
 {
 	setCultureTimes100(eIndex, (getCultureTimes100(eIndex) + 100  * iChange), bPlots, bUpdatePlotGroups);
-	
-	//Civ4 Reimagined
-	if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS))
-	{
-		if(eIndex == getOwnerINLINE() && iChange > 0)
-		{
-			GET_PLAYER(getOwnerINLINE()).changeAccumulatedCulture(iChange * 100);
-		}
-	}
 }
 
 void CvCity::changeCultureTimes100(PlayerTypes eIndex, int iChange, bool bPlots, bool bUpdatePlotGroups)
 {
 	setCultureTimes100(eIndex, (getCultureTimes100(eIndex) + iChange), bPlots, bUpdatePlotGroups);
-	
-	//Civ4 Reimagined
-	if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS))
-	{
-		if (eIndex == getOwnerINLINE() && iChange > 0)
-			GET_PLAYER(getOwnerINLINE()).changeAccumulatedCulture(iChange);
-	}
 }
 
 
@@ -14846,21 +14829,6 @@ void CvCity::doCulture()
 /*
 ** K-Mod END
 */
-
-	//Civ4 Reimagined: Substract free trait culture for unique powers
-	if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS) && !isDisorder())
-	{
-		int iFreeCityCommerce = 0;
-		for (int iI = 0; iI < GC.getNumTraitInfos(); iI++)
-		{
-			if (GET_PLAYER(getOwnerINLINE()).hasTrait((TraitTypes)iI))
-			{
-				iFreeCityCommerce += GC.getTraitInfo((TraitTypes)iI).getCommerceChange(COMMERCE_CULTURE);
-			}
-		}
-		
-		GET_PLAYER(getOwnerINLINE()).changeAccumulatedCulture(-iFreeCityCommerce * getTotalCommerceRateModifier(COMMERCE_CULTURE));
-	}
 	
 	changeCultureTimes100(getOwnerINLINE(), getCommerceRateTimes100(COMMERCE_CULTURE), false, true);
 }

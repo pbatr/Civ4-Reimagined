@@ -1875,31 +1875,6 @@ int CyPlayer::getBonusRatio()
 }
 
 // Civ4 Reimagined
-int CyPlayer::getUniquePowerLevel()
-{
-	return m_pPlayer ? m_pPlayer->getUniquePowerLevel() : -1;
-}
-
-
-// Civ4 Reimagined
-long CyPlayer::getUniquePowerRequirement(int iLevel)
-{
-	return m_pPlayer ? m_pPlayer->getUniquePowerRequirement(iLevel) : -1;
-}
-
-// Civ4 Reimagined
-long CyPlayer::getAccumulatedCulture()
-{
-	return m_pPlayer ? m_pPlayer->getAccumulatedCulture() : -1;
-}
-
-// Civ4 Reimagined
-long CyPlayer::getUniquePowerRate()
-{
-	return m_pPlayer ? m_pPlayer->getUniquePowerRate() : -1;
-}
-
-// Civ4 Reimagined
 int CyPlayer::getMayaCalendar()
 {
 	return m_pPlayer ? m_pPlayer->getMayaCalendar() : -1;
@@ -1942,11 +1917,11 @@ int CyPlayer::getSlavePoints() const
 	return -1;
 }
 
-int CyPlayer::getNewSlaveThreshold() const
+int CyPlayer::getSlaveThreshold() const
 {
 	if (m_pPlayer)
 	{
-		return m_pPlayer->getNewSlaveThreshold();
+		return m_pPlayer->getSlaveThreshold();
 	}
 	return -1;
 }

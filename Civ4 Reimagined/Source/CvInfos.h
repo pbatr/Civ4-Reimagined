@@ -2893,8 +2893,9 @@ public:
 
 	int getTime() const;				// Exposed to Python
 	int getCost() const;				// Exposed to Python
-	int getTechPrereq() const;				// Exposed to Python
-	int getImprovement() const;				// Exposed to Python
+	int getTechPrereq() const;			// Exposed to Python
+	int getTechObsolete() const;		// Exposed to Python, Civ4 Reimagined
+	int getImprovement() const;			// Exposed to Python
 	int getRoute() const;				// Exposed to Python
 	DllExport int getEntityEvent() const;				// Exposed to Python
 	DllExport int getMissionType() const;				// Exposed to Python
@@ -2906,7 +2907,7 @@ public:
 
 	int getFeatureTech(int i) const;				// Exposed to Python
 	int getFeatureTime(int i) const;				// Exposed to Python
-	int getFeatureProduction(int i) const;				// Exposed to Python
+	int getFeatureProduction(int i) const;			// Exposed to Python
 
 	bool isFeatureRemove(int i) const;				// Exposed to Python
 
@@ -2919,6 +2920,7 @@ protected:
 	int m_iTime;					
 	int m_iCost;					
 	int m_iTechPrereq;		
+	int m_iTechObsolete;
 	int m_iImprovement;	
 	int m_iRoute;				
 	int m_iEntityEvent;		

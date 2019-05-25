@@ -10,6 +10,7 @@
 	<ElementType name="FeatureType" content="textOnly"/>
 	<ElementType name="BonusType" content="textOnly"/>
 	<ElementType name="PrereqTech" content="textOnly"/>
+	<ElementType name="TechObsolete" content="textOnly"/>
 	<ElementType name="Description" content="textOnly"/>
 	<ElementType name="Civilopedia" content="textOnly"/>
 	<ElementType name="Help" content="textOnly"/>
@@ -47,6 +48,7 @@
 		<element type="Description"/>
 		<element type="Help"/>
 		<element type="PrereqTech"/>
+		<element type="TechObsolete" minOccurs="0" maxOccurs="*"/>
 		<element type="iTime"/>
 		<element type="iCost"/>
 		<element type="bKill"/>
