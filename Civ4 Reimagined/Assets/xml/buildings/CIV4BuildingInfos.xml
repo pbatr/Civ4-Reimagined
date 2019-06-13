@@ -20116,7 +20116,7 @@
 		<BuildingInfo>
 			<BuildingClass>BUILDINGCLASS_CLASSICAL_TEMPLE</BuildingClass>
 			<Type>BUILDING_SUMERIAN_ZIGGURAT</Type>
-			<SpecialBuildingType>SPECIALBUILDING_TEMPLE</SpecialBuildingType>
+			<SpecialBuildingType>NONE</SpecialBuildingType>
 			<Description>TXT_KEY_BUILDING_SUMERIAN_ZIGGURAT</Description>
 			<Civilopedia>TXT_KEY_BUILDING_SUMERIAN_ZIGGURAT_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_BUILDING_SUMERIAN_ZIGGURAT_STRATEGY</Strategy>
