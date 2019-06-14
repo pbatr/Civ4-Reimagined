@@ -47,6 +47,7 @@ Tweaks
 -Ivory now always grants 1 food. It receives 2 commerce and 1 production with the Camp improvement
 -Civic AI improvements
 -More world wonders require a state religion present in the city
+-American Mall grants 50% gold bonus up from 35%
 
 *********
 Interface
