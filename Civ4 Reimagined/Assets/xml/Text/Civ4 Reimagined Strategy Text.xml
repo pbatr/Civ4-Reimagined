@@ -680,7 +680,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_SHWEDAGON_PAYA_STRATEGY</Tag>
-		<English>The [COLOR_BUILDING_TEXT]Shwedagon Paya[COLOR_REVERT] grants its builder access to all [COLOR_HIGHLIGHT_TEXT]Religious[COLOR_REVERT] Civics and the ability to switch religion civics freely. It also grants two happiness in the city it is build in if the state religion is present. It increases the chances of a [COLOR_UNIT_TEXT]Great Prophet[COLOR_REVERT] appearing.</English>
+		<English>If you have a state religion, the [COLOR_BUILDING_TEXT]Shwedagon Paya[COLOR_REVERT] causes all of that religion's buildings to generate gold for your civilizatiion. It increases its city's chances of generating a [COLOR_UNIT_TEXT]Great Prophet[COLOR_REVERT].</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_GREAT_LIGHTHOUSE_STRATEGY</Tag>
@@ -770,4 +770,8 @@
 		<Tag>TXT_KEY_BUILDING_HOTEL_STRATEGY</Tag>
 		<English>The [COLOR_BUILDING_TEXT]Hotel[COLOR_REVERT] increases a city's wealth for every culture level and world wonder it possesses. It also gains additional wealth from having access to coast and when an airport is present. The increased amount of tourists will cause some addtional pollution though.</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_SPIRAL_MINARET_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Spiral Minaret[COLOR_REVERT] adds additional commerce to all of your priest specialists and great prophets. The [COLOR_BUILDING_TEXT]Spiral Minaret[COLOR_REVERT] increases the odds of its city generating a [COLOR_UNIT_TEXT]Great Prophet[COLOR_REVERT].</English>
+	</TEXT> 
 </Civ4GameText>
