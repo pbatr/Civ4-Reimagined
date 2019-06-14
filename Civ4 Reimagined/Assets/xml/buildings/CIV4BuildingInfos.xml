@@ -24027,7 +24027,7 @@
 			<HolyCity>NONE</HolyCity>
 			<ReligionType>NONE</ReligionType>
 			<StateReligion>NONE</StateReligion>
-			<bStateReligion>0</bStateReligion>
+			<bStateReligion>1</bStateReligion>
 			<PrereqReligion>NONE</PrereqReligion>
 			<PrereqCivics/>
 			<PrereqCorporation>NONE</PrereqCorporation>
@@ -24603,7 +24603,7 @@
 			<HolyCity>NONE</HolyCity>
 			<ReligionType>NONE</ReligionType>
 			<StateReligion>NONE</StateReligion>
-			<bStateReligion>0</bStateReligion>
+			<bStateReligion>1</bStateReligion>
 			<PrereqReligion>NONE</PrereqReligion>
 			<PrereqCivics/>
 			<PrereqCorporation>NONE</PrereqCorporation>
@@ -24796,7 +24796,7 @@
 			<HolyCity>NONE</HolyCity>
 			<ReligionType>NONE</ReligionType>
 			<StateReligion>NONE</StateReligion>
-			<bStateReligion>0</bStateReligion>
+			<bStateReligion>1</bStateReligion>
 			<PrereqReligion>NONE</PrereqReligion>
 			<PrereqCivics/>
 			<PrereqCorporation>NONE</PrereqCorporation>
@@ -25015,7 +25015,7 @@
 			<HolyCity>NONE</HolyCity>
 			<ReligionType>NONE</ReligionType>
 			<StateReligion>NONE</StateReligion>
-			<bStateReligion>0</bStateReligion>
+			<bStateReligion>1</bStateReligion>
 			<PrereqReligion>NONE</PrereqReligion>
 			<PrereqCivics/>
 			<PrereqCorporation>NONE</PrereqCorporation>
@@ -25391,7 +25391,7 @@
 			<HolyCity>NONE</HolyCity>
 			<ReligionType>NONE</ReligionType>
 			<StateReligion>NONE</StateReligion>
-			<bStateReligion>0</bStateReligion>
+			<bStateReligion>1</bStateReligion>
 			<PrereqReligion>NONE</PrereqReligion>
 			<PrereqCivics/>
 			<PrereqCorporation>NONE</PrereqCorporation>
@@ -28319,7 +28319,7 @@
 			<HolyCity>NONE</HolyCity>
 			<ReligionType>NONE</ReligionType>
 			<StateReligion>NONE</StateReligion>
-			<bStateReligion>0</bStateReligion>
+			<bStateReligion>1</bStateReligion>
 			<PrereqReligion>NONE</PrereqReligion>
 			<PrereqCivics/>
 			<PrereqCorporation>NONE</PrereqCorporation>
@@ -31437,7 +31437,7 @@
 			<HolyCity>NONE</HolyCity>
 			<ReligionType>NONE</ReligionType>
 			<StateReligion>NONE</StateReligion>
-			<bStateReligion>0</bStateReligion>
+			<bStateReligion>1</bStateReligion>
 			<PrereqReligion>NONE</PrereqReligion>
 			<PrereqCivics/>
 			<PrereqCorporation>NONE</PrereqCorporation>
