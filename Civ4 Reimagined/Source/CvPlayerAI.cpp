@@ -15857,7 +15857,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		{
 			const int iCityProd = pLoopCity->getYieldRate(YIELD_PRODUCTION);
 
-			if (pLoopCity->isHasReligion(eBestReligion))
+			if (eBestReligion != NO_RELIGION && pLoopCity->isHasReligion(eBestReligion))
 			{
 				iBonusUnitProduction += iCityProd * kCivic.getStateReligionUnitProductionModifier() / 100;
 				iBonusBuildingProduction += iCityProd * kCivic.getStateReligionBuildingProductionModifier() / 100;
@@ -15994,7 +15994,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				int iLoop;
 				for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity; pLoopCity = nextCity(&iLoop))
 				{
-					if (pLoopCity->isHasReligion(eBestReligion))
+					if (eBestReligion != NO_RELIGION && pLoopCity->isHasReligion(eBestReligion))
 						base_rates.push_back(pLoopCity->getBaseGreatPeopleRate());
 				}
 				int iGpCities = std::min((int)base_rates.size(), 3);
