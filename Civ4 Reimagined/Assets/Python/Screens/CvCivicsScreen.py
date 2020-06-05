@@ -69,6 +69,11 @@ class CvCivicsScreen:
 		self.m_paeDisplayCivics = []
 		self.m_paeOriginalCivics = []
 
+		self.m_iConservative = 0
+		self.m_iLiberal = 0
+		self.m_iCommunist = 0
+		self.m_iFascist = 0
+
 	def getScreen(self):
 		return CyGInterfaceScreen(self.SCREEN_NAME, CvScreenEnums.CIVICS_SCREEN)
 
@@ -311,10 +316,15 @@ class CvCivicsScreen:
 			szText = localText.getText("TXT_KEY_ANARCHY_TURNS", (iTurns, ))
 		else:
 			szText = CyGameTextMgr().setRevolutionHelp(self.iActivePlayer)
+
+		self.calculateIdeologyInfluence()
 			
 		# Maintenance		
 		#szText += ", " + localText.getText("TXT_KEY_CIVIC_SCREEN_UPKEEP", (activePlayer.getCivicUpkeep(self.m_paeDisplayCivics, True), ))
 		szText += ", " + localText.getText("TXT_KEY_CIVIC_SCREEN_UPKEEP", (activePlayer.getCivicUpkeep(self.m_paeDisplayCivics, True)*(100+activePlayer.getInflationRate())/100, )) # K-Mod
+
+		# Ideologies (Civ4 Reimagined)
+		szText += " (Con: " + str(self.m_iConservative) + ", Lib: " + str(self.m_iLiberal) + ", Com: " + str(self.m_iCommunist) + ", Fas: " + str(self.m_iFascist) + ")"
 		
 		screen.setLabel("CivicsRevText", "Background", u"<font=3>" + szText + u"</font>", CvUtil.FONT_CENTER_JUSTIFY, self.X_SCREEN, self.BOTTOM_LINE_TOP + self.BOTTOM_LINE_HEIGHT/4 + 0 * self.TEXT_MARGIN//2, 0, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1)
 
@@ -351,6 +361,20 @@ class CvCivicsScreen:
 	def getCivicsTextName(self, iCivic):
 		szName = self.TEXT_NAME + str(iCivic)
 		return szName
+
+	# Civ4 Reimagined
+	def calculateIdeologyInfluence(self):
+		self.m_iConservative = 0
+		self.m_iLiberal = 0
+		self.m_iCommunist = 0
+		self.m_iFascist = 0
+
+		for i in range (gc.getNumCivicOptionInfos()):
+			iCivic = self.m_paeDisplayCivics[i]
+			self.m_iConservative += gc.getCivicInfo(iCivic).getConservative()
+			self.m_iLiberal += gc.getCivicInfo(iCivic).getLiberal()
+			self.m_iCommunist += gc.getCivicInfo(iCivic).getCommunist()
+			self.m_iFascist += gc.getCivicInfo(iCivic).getFascist()
 
 	# Will handle the input for this screen...
 	def handleInput(self, inputClass):
