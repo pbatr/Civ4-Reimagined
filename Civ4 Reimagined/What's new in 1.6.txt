@@ -14,9 +14,10 @@ Changes
 *********
 Tweaks
 *********
+-Harbor gives additional 2XP for ships but costs increase from 80 to 90
+-Russian Cossack strength increased from 15 to 16 but no longer has reduced costs
 -Guided Missile air range increased from 5 to 8
 -Tactical Nuke range increased from 6 to 8
--Harbor gives additional 2XP for ships but costs increase from 80 to 90
 -Blitz promotion only requires Flanking II
 -Apollo Program costs decreased from 2000 to 1500
 -SDI costs increased from 2500 to 3000

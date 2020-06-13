@@ -262,7 +262,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_RUSSIA_COSSACK_STRATEGY</Tag>
-		<English>Compared to the [COLOR_UNIT_TEXT]Cavalry[COLOR_REVERT], this unit has +1 ST, +25% vs Mounted and costs less.</English>
+		<English>Compared to the [COLOR_UNIT_TEXT]Cavalry[COLOR_REVERT], this unit has +2 ST and +25% vs Mounted.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_NETHERLANDS_OOSTINDIEVAARDER_STRATEGY</Tag>
