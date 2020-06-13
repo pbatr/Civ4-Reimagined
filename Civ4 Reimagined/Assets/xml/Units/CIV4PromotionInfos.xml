@@ -1184,9 +1184,9 @@
 			<Sound>AS2D_IF_LEVELUP</Sound>
 			<LayerAnimationPath>NONE</LayerAnimationPath>
 			<PromotionPrereq>NONE</PromotionPrereq>
-			<PromotionPrereqOr1>PROMOTION_COMBAT3</PromotionPrereqOr1>
-			<PromotionPrereqOr2>PROMOTION_DRILL3</PromotionPrereqOr2>
-			<PromotionPrereqOr3>PROMOTION_NAVIGATION2</PromotionPrereqOr3>
+			<PromotionPrereqOr1>PROMOTION_FLANKING2</PromotionPrereqOr1>
+			<PromotionPrereqOr2>NONE</PromotionPrereqOr2>
+			<PromotionPrereqOr3>NONE</PromotionPrereqOr3>
 			<TechPrereq>TECH_HORSEBACK_RIDING</TechPrereq>
 			<StateReligionPrereq>NONE</StateReligionPrereq>
 			<bLeader>0</bLeader>
