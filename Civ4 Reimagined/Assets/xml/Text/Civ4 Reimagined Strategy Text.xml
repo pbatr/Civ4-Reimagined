@@ -773,5 +773,9 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_SPIRAL_MINARET_STRATEGY</Tag>
 		<English>The [COLOR_BUILDING_TEXT]Spiral Minaret[COLOR_REVERT] adds additional commerce to all of your priest specialists and great prophets. The [COLOR_BUILDING_TEXT]Spiral Minaret[COLOR_REVERT] increases the odds of its city generating a [COLOR_UNIT_TEXT]Great Prophet[COLOR_REVERT].</English>
-	</TEXT> 
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_HARBOR_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Harbor[COLOR_REVERT] increases that city's income from trade routes. It increases a city's health from access to [COLOR_HIGHLIGHT_TEXT]Clam[COLOR_REVERT], [COLOR_HIGHLIGHT_TEXT]Crab[COLOR_REVERT], and [COLOR_HIGHLIGHT_TEXT]Fish[COLOR_REVERT] resources. Additionaly ships start off with additional experience points.</English>
+	</TEXT>
 </Civ4GameText>

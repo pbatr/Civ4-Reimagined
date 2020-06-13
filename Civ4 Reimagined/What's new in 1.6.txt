@@ -16,6 +16,7 @@ Tweaks
 *********
 -Guided Missile air range increased from 5 to 8
 -Tactical Nuke range increased from 6 to 8
+-Harbor gives additional 2XP for ships but costs increase from 80 to 90
 
 *********
 Interface
