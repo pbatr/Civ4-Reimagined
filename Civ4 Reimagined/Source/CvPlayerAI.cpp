@@ -10787,7 +10787,7 @@ int CvPlayerAI::AI_baseBonusVal(BonusTypes eBonus, bool bAdditional) const
 					if (kLoopBuilding.getPrereqAndBonus() == eBonus)
 					{
 						//iTempValue += 30;
-						iTempValue += isWorldWonderClass((BuildingClassTypes)iI) ? 60 : 30; // Civ4 Reimagined
+						iTempValue += isWorldWonderClass((BuildingClassTypes)iI) ? 30 : 15; // Civ4 Reimagined
 					}
 
 					for (int iJ = 0; iJ < GC.getNUM_BUILDING_PREREQ_OR_BONUSES(); iJ++)
@@ -10795,13 +10795,13 @@ int CvPlayerAI::AI_baseBonusVal(BonusTypes eBonus, bool bAdditional) const
 						if (kLoopBuilding.getPrereqOrBonuses(iJ) == eBonus)
 						{
 							//iTempValue += 20;
-							iTempValue += isWorldWonderClass((BuildingClassTypes)iI) ? 40 : 20; // Civ4 Reimagined
+							iTempValue += isWorldWonderClass((BuildingClassTypes)iI) ? 20 : 10; // Civ4 Reimagined
 						}
 					}
 
 					//iTempValue += kLoopBuilding.getBonusProductionModifier(eBonus) / 10;
 					// Civ4 Reimagined
-					iTempValue += kLoopBuilding.getBonusProductionModifier(eBonus) / (isWorldWonderClass((BuildingClassTypes)iI) ? 5 : 10);
+					iTempValue += kLoopBuilding.getBonusProductionModifier(eBonus) / (isWorldWonderClass((BuildingClassTypes)iI) ? 10 : 20);
 
 					if (kLoopBuilding.getPowerBonus() == eBonus)
 					{
