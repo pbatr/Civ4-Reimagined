@@ -139,7 +139,7 @@
 	</Define>
 	<Define>
 		<DefineName>DIPLO_VOTE_SECRETARY_GENERAL_INTERVAL</DefineName>
-		<iDefineIntVal>3</iDefineIntVal> <!-- original value: 4 -->
+		<iDefineIntVal>4</iDefineIntVal> <!-- original value: 4 -->
 	</Define>
 	<Define>
 		<DefineName>VASSAL_REVOLT_OWN_LOSSES_FACTOR</DefineName>
