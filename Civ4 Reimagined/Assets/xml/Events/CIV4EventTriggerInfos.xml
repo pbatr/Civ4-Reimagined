@@ -1391,7 +1391,7 @@
 			</TriggerTexts>
 			<bSinglePlayer>1</bSinglePlayer>
 			<iPercentGamesActive>100</iPercentGamesActive>
-			<iWeight>150</iWeight>
+			<iWeight>75</iWeight>
 			<bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
 			<bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
 			<Civic>NONE</Civic>
