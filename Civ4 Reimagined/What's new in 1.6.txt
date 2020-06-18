@@ -19,6 +19,7 @@ Tweaks
 -Guided Missile air range increased from 5 to 8
 -Tactical Nuke range increased from 6 to 8
 -Blitz promotion only requires Flanking II
+-Tanks no longer have Blitz promotion per default
 -Apollo Program costs decreased from 2000 to 1500
 -SDI costs increased from 2500 to 3000
 -CERN Research Complex costs increased from 800 to 1200
