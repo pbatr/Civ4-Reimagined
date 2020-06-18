@@ -6680,6 +6680,7 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 			GET_PLAYER((PlayerTypes)iI).changeAssets(GC.getTechInfo(eTech).getAssetValue() * iChange);
 			GET_PLAYER((PlayerTypes)iI).changePower(GC.getTechInfo(eTech).getPowerValue() * iChange);
 			GET_PLAYER((PlayerTypes)iI).changeTechScore(getTechScore(eTech) * iChange);
+			GET_PLAYER((PlayerTypes)iI).updateIdeology(); // Civ4 Reimagined
 			
 			// Civ4 Reimagined
 			if (!GET_PLAYER((PlayerTypes)iI).canExploreSea())
