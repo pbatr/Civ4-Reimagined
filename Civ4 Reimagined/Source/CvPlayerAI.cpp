@@ -8547,6 +8547,11 @@ int CvPlayerAI::AI_getNeedOpenBordersAttitude(PlayerTypes ePlayer) const
 // Civ4 Reimagined
 int CvPlayerAI::AI_getSameIdeologyAttitude(PlayerTypes ePlayer) const
 {
+	if (!GC.getGameINLINE().areIdeologiesEnabled())
+	{
+		return 0;
+	}
+
 	if (getIdeology() != GET_PLAYER(ePlayer).getIdeology())
 	{
 		return 0;
@@ -8565,6 +8570,11 @@ int CvPlayerAI::AI_getSameIdeologyAttitude(PlayerTypes ePlayer) const
 // Civ4 Reimagined
 int CvPlayerAI::AI_getDifferentIdeologyAttitude(PlayerTypes ePlayer) const
 {
+	if (!GC.getGameINLINE().areIdeologiesEnabled())
+	{
+		return 0;
+	}
+
 	if (getIdeology() == GET_PLAYER(ePlayer).getIdeology())
 	{
 		return 0;
