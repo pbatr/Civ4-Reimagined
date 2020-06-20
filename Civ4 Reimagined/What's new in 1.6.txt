@@ -33,6 +33,12 @@ Interface
 *********
 Fixes
 *********
+
+
+*******************************************
+Civ4 Reimagined 1.5a
+*******************************************
+-Fix crash on custom maps and late era starts
 -AI was undervalueing Pantheon
 
 

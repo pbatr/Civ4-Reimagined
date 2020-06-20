@@ -5422,7 +5422,7 @@ void CvPlot::setPlotType(PlotTypes eNewValue, bool bRecalculate, bool bRebuildGr
 
 		
 		// Civ4 Reimagined
-		if (GC.getGameINLINE().getGameTurn() > 0)
+		if (GC.getGameINLINE().isFinalInitialized())
 		{
 			CvCity* pCity;
 			CvPlot* pLoopPlot;
@@ -5516,7 +5516,7 @@ void CvPlot::setTerrainType(TerrainTypes eNewValue, bool bRecalculate, bool bReb
 		}
 		
 		// Civ4 Reimagined
-		if (GC.getGameINLINE().getGameTurn() > 0)
+		if (GC.getGameINLINE().isFinalInitialized())
 		{
 			CvCity* pCity = NULL;
 			CvPlot* pLoopPlot = NULL;
@@ -5778,7 +5778,7 @@ void CvPlot::setBonusType(BonusTypes eNewValue)
 		}
 		
 		// Civ4 Reimagined
-		if (GC.getGameINLINE().getGameTurn() > 0)
+		if (GC.getGameINLINE().isFinalInitialized())
 		{
 			CvCity* pCity;
 			CvPlot* pLoopPlot;
