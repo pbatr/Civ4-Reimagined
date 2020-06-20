@@ -10,6 +10,7 @@ New
 Changes
 *********
 -Reassign almost all leader traits
+-Lumbermills grant 1 less production but are available with Machinery
 
 *********
 Tweaks
