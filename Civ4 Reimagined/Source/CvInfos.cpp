@@ -7687,6 +7687,7 @@ m_piYieldChange(NULL),
 m_piYieldModifier(NULL),
 m_piPowerYieldModifier(NULL),
 m_piAreaYieldModifier(NULL),
+m_piAreaTradeYieldModifier(NULL), // Civ4 Reimagined
 m_piGlobalYieldModifier(NULL),
 m_piCommerceChange(NULL),
 m_piObsoleteSafeCommerceChange(NULL),
@@ -7763,6 +7764,7 @@ CvBuildingInfo::~CvBuildingInfo()
 	SAFE_DELETE_ARRAY(m_piYieldModifier);
 	SAFE_DELETE_ARRAY(m_piPowerYieldModifier);
 	SAFE_DELETE_ARRAY(m_piAreaYieldModifier);
+	SAFE_DELETE_ARRAY(m_piAreaTradeYieldModifier); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_piGlobalYieldModifier);
 	SAFE_DELETE_ARRAY(m_piCommerceChange);
 	SAFE_DELETE_ARRAY(m_piObsoleteSafeCommerceChange);
@@ -8651,6 +8653,20 @@ int* CvBuildingInfo::getAreaYieldModifierArray() const
 	return m_piAreaYieldModifier;
 }
 
+// Civ4 Reimagined
+int CvBuildingInfo::getAreaTradeYieldModifier(int i) const	
+{
+	FAssertMsg(i < NUM_YIELD_TYPES, "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_piAreaTradeYieldModifier ? m_piAreaTradeYieldModifier[i] : -1;
+}
+
+// Civ4 Reimagined
+int* CvBuildingInfo::getAreaTradeYieldModifierArray() const
+{
+	return m_piAreaTradeYieldModifier;
+}
+
 int CvBuildingInfo::getGlobalYieldModifier(int i) const
 {
 	FAssertMsg(i < NUM_YIELD_TYPES, "Index out of bounds");
@@ -9396,6 +9412,11 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 	m_piAreaYieldModifier = new int[NUM_YIELD_TYPES];
 	stream->Read(NUM_YIELD_TYPES, m_piAreaYieldModifier);
 
+	// Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_piAreaTradeYieldModifier);
+	m_piAreaTradeYieldModifier = new int[NUM_YIELD_TYPES];
+	stream->Read(NUM_YIELD_TYPES, m_piAreaTradeYieldModifier);
+
 	SAFE_DELETE_ARRAY(m_piGlobalYieldModifier);
 	m_piGlobalYieldModifier = new int[NUM_YIELD_TYPES];
 	stream->Read(NUM_YIELD_TYPES, m_piGlobalYieldModifier);
@@ -9871,6 +9892,7 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 	stream->Write(NUM_YIELD_TYPES, m_piYieldModifier);
 	stream->Write(NUM_YIELD_TYPES, m_piPowerYieldModifier);
 	stream->Write(NUM_YIELD_TYPES, m_piAreaYieldModifier);
+	stream->Write(NUM_YIELD_TYPES, m_piAreaTradeYieldModifier); // Civ4 Reimagined
 	stream->Write(NUM_YIELD_TYPES, m_piGlobalYieldModifier);
 	stream->Write(NUM_COMMERCE_TYPES, m_piCommerceChange);
 	stream->Write(NUM_COMMERCE_TYPES, m_piObsoleteSafeCommerceChange);
@@ -10313,6 +10335,19 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 	else
 	{
 		pXML->InitList(&m_piAreaYieldModifier, NUM_YIELD_TYPES);
+	}
+
+	// Civ4 Reaimagined
+	// if we can set the current xml node to it's next sibling
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"AreaTradeYieldModifiers"))
+	{
+		// call the function that sets the yield change variable
+		pXML->SetYields(&m_piAreaTradeYieldModifier);
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+	else
+	{
+		pXML->InitList(&m_piAreaTradeYieldModifier, NUM_YIELD_TYPES);
 	}
 
 	// if we can set the current xml node to it's next sibling

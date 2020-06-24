@@ -1410,4 +1410,8 @@
 		<Tag>TXT_KEY_MISC_ATTITUDE_DIFFERENT_IDEOLOGY</Tag>
 		<English>%D1: "We cannot agree with your Idelogy"</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_FOOD_TRADE_ROUTES_THIS_CONTINENT</Tag>
+		<English>[ICON_BULLET]Trade Routes on this Continent provide Food (%d1%%)</English>
+	</TEXT>
 </Civ4GameText>

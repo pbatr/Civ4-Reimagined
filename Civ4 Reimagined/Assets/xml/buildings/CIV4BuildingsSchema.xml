@@ -224,6 +224,11 @@
 	<ElementType name="GlobalYieldModifiers" content="eltOnly">
 		<element type="iYield" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
+	<!-- Civ4 Reimagined start -->
+	<ElementType name="AreaTradeYieldModifiers" content="eltOnly">
+		<element type="iYield" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	<!-- Civ4 Reimagined end -->
 	<ElementType name="iCommerce" content="textOnly" dt:type="int"/>
 	<ElementType name="CommerceChanges" content="eltOnly">
 		<element type="iCommerce" minOccurs="0" maxOccurs="*"/>
@@ -628,6 +633,7 @@
 		<element type="PowerYieldModifiers" minOccurs="0"/>
 		<element type="AreaYieldModifiers" minOccurs="0"/>
 		<element type="GlobalYieldModifiers" minOccurs="0"/>
+		<element type="AreaTradeYieldModifiers" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="CommerceChanges"/>
 		<element type="ObsoleteSafeCommerceChanges"/>
 		<element type="CommerceChangeDoubleTimes"/>

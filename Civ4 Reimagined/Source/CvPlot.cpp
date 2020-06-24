@@ -9065,6 +9065,8 @@ void CvPlot::processArea(CvArea* pArea, int iChange)
 				for (iJ = 0; iJ < NUM_YIELD_TYPES; iJ++)
 				{
 					pArea->changeYieldRateModifier(pCity->getOwnerINLINE(), ((YieldTypes)iJ), (GC.getBuildingInfo((BuildingTypes)iI).getAreaYieldModifier(iJ) * iChange * pCity->getNumActiveBuilding((BuildingTypes)iI)));
+					// Civ4 Reimagined
+					pArea->changeTradeYieldModifier(pCity->getOwnerINLINE(), ((YieldTypes)iJ), (GC.getBuildingInfo((BuildingTypes)iI).getAreaYieldModifier(iJ) * iChange * pCity->getNumActiveBuilding((BuildingTypes)iI)));
 				}
 
 				// Civ4 Reimagined

@@ -25932,6 +25932,11 @@
 			<RiverPlotYieldChanges/>
 			<GlobalSeaPlotYieldChanges/>
 			<YieldChanges/>
+			<AreaTradeYieldModifiers>
+				<iYield>5</iYield>
+				<iYield>0</iYield>
+				<iYield>0</iYield>
+			</AreaTradeYieldModifiers>
 			<CommerceChanges/>
 			<ObsoleteSafeCommerceChanges>
 				<iCommerce>0</iCommerce>
