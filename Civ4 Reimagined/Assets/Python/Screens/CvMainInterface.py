@@ -3853,8 +3853,8 @@ class CvMainInterface:
 					screen.addTableControlGFC( "TradeRouteTable", 3, 10, 187, 238, 98, False, False, 32, 32, TableStyles.TABLE_STYLE_STANDARD )
 					screen.setStyle( "TradeRouteTable", "Table_City_Style" )
 # K-Mod: Trade culture
-					screen.setTableColumnHeader( "TradeRouteTable", 0, u"", 128 )
-					screen.setTableColumnHeader( "TradeRouteTable", 1, u"", 98 )
+					screen.setTableColumnHeader( "TradeRouteTable", 0, u"", 76 )
+					screen.setTableColumnHeader( "TradeRouteTable", 1, u"", 150 )
 # K-Mod: Trade culture end					
 					screen.setTableColumnHeader( "TradeRouteTable", 2, u"", 10 )
 					screen.setTableColumnRightJustify( "TradeRouteTable", 1 )

@@ -10054,6 +10054,7 @@ int CvCity::totalTradeModifier(CvCity* pOtherCity) const
 	
 	// Civ4 Reimagined
 	iModifier += GET_PLAYER(getOwnerINLINE()).getTradeYieldModifier(YIELD_COMMERCE);
+	iModifier += area()->getTradeYieldModifier(getOwnerINLINE(), YIELD_COMMERCE);
 
 	return iModifier;
 }
@@ -10144,10 +10145,13 @@ int CvCity::calculateTradeYield(YieldTypes eIndex, int iTradeProfit) const
 	if (eIndex == YIELD_COMMERCE) {
 		return iTradeProfit;
 	}
+
+	// Civ4 Reimagined
+	const int iTradeYieldModifier = GET_PLAYER(getOwnerINLINE()).getTradeYieldModifier(eIndex) + area()->getTradeYieldModifier(getOwnerINLINE(), eIndex);
 	
-	if ((iTradeProfit > 0) && (GET_PLAYER(getOwnerINLINE()).getTradeYieldModifier(eIndex) > 0))
+	if ((iTradeProfit > 0) && (iTradeYieldModifier > 0))
 	{
-		return ((iTradeProfit * GET_PLAYER(getOwnerINLINE()).getTradeYieldModifier(eIndex)) / 100);
+		return (iTradeProfit * iTradeYieldModifier / 100);
 	}
 	else
 	{

@@ -10481,3 +10481,20 @@ bool CvGame::pythonIsBonusIgnoreLatitudes() const
 	return false;
 }
 
+// Civ4 Reimagined
+int CvGame::getIdeologyCount(IdeologyTypes eIdeology) const
+{
+	int iCount = 0;
+
+	for (int iPlayer = 0; iPlayer < MAX_PLAYERS; ++iPlayer)
+	{
+		CvPlayer& kLoopPlayer = GET_PLAYER((PlayerTypes)iPlayer);
+
+		if (kLoopPlayer.getIdeology() == eIdeology)
+		{
+			++iCount;
+		}
+	}
+
+	return iCount;
+}
