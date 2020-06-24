@@ -11019,6 +11019,15 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 
 	setYieldChangeHelp(szBuffer, L"", L"", gDLL->getText("TXT_KEY_BUILDING_ALL_CITIES_THIS_CONTINENT").c_str(), kBuilding.getAreaYieldModifierArray(), true);
 
+	// Civ4 Reimagined
+	if (kBuilding.getAreaTradeYieldModifier(YIELD_FOOD) > 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_FOOD_TRADE_ROUTES_THIS_CONTINENT", kBuilding.getAreaTradeYieldModifier(YIELD_FOOD)));
+	} else {
+		setYieldChangeHelp(szBuffer, L"", L"", gDLL->getText("TXT_KEY_BUILDING_TRADE_ROUTES_ALL_CITIES_THIS_CONTINENT").c_str(), kBuilding.getAreaTradeYieldModifierArray(), true);
+	}
+
 	setYieldChangeHelp(szBuffer, L"", L"", gDLL->getText("TXT_KEY_BUILDING_ALL_CITIES").c_str(), kBuilding.getGlobalYieldModifierArray(), true);
 
 	// Civ4 Reimagined
@@ -18906,6 +18915,14 @@ void CvGameTextMgr::setTradeRouteHelp(CvWStringBuffer &szBuffer, int iRoute, CvC
 			{
 				szBuffer.append(NEWLINE);
 				szBuffer.append(gDLL->getText("TXT_KEY_TRADE_ROUTE_MOD_CIVIC", iNewMod));
+				iModifier += iNewMod;
+			}
+
+			iNewMod = pCity->area()->getTradeYieldModifier(pCity->getOwnerINLINE(), YIELD_COMMERCE);
+			if (0 != iNewMod)
+			{
+				szBuffer.append(NEWLINE);
+				szBuffer.append(gDLL->getText("TXT_KEY_TRADE_ROUTE_MOD_AREA", iNewMod));
 				iModifier += iNewMod;
 			}
 

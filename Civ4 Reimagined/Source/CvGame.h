@@ -542,6 +542,9 @@ public:
 
 	bool pythonIsBonusIgnoreLatitudes() const;
 
+	// Civ4 Reimagined
+	int getIdeologyCount(IdeologyTypes eIndex) const;
+
 	DllExport void getGlobeLayers(std::vector<CvGlobeLayerData>& aLayers) const;
 	DllExport void startFlyoutMenu(const CvPlot* pPlot, std::vector<CvFlyoutMenuData>& aFlyoutItems) const;
 	DllExport void applyFlyoutMenu(const CvFlyoutMenuData& kItem);

@@ -1864,6 +1864,8 @@ public:
 	int* getPowerYieldModifierArray() const;
 	int getAreaYieldModifier(int i) const;				// Exposed to Python
 	int* getAreaYieldModifierArray() const;
+	int getAreaTradeYieldModifier(int i) const; // Civ4 Reimagined
+	int* getAreaTradeYieldModifierArray() const; // Civ4 Reimagined
 	int getGlobalYieldModifier(int i) const;				// Exposed to Python
 	int* getGlobalYieldModifierArray() const;
 	int getSeaPlotYieldChange(int i) const;				// Exposed to Python
@@ -2134,6 +2136,7 @@ protected:
 	int* m_piYieldModifier;
 	int* m_piPowerYieldModifier;
 	int* m_piAreaYieldModifier;
+	int* m_piAreaTradeYieldModifier; // Civ4 Reimagined
 	int* m_piGlobalYieldModifier;
 	int* m_piCommerceChange;
 	int* m_piObsoleteSafeCommerceChange;
