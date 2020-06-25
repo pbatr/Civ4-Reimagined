@@ -19,7 +19,7 @@ Tweaks
 -Russian Cossack strength increased from 15 to 16 but no longer has reduced costs
 -Guided Missile air range increased from 5 to 8
 -Tactical Nuke range increased from 6 to 8
--Blitz promotion only requires Flanking II
+-Blitz promotion only requires Flanking II or Drill II
 -Tanks no longer have Blitz promotion per default
 -Apollo Program costs decreased from 2000 to 1500
 -SDI costs increased from 2500 to 3000
