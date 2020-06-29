@@ -1917,6 +1917,7 @@ public:
 	int getPercentPrereqNumOfBuildingClass(int i) const;				// Civ4 Reimagined // Exposed to Python
 	int getFlavorValue(int i) const;				// Exposed to Python
 	int getImprovementFreeSpecialist(int i) const;				// Exposed to Python
+	int getForeignTradeIdeologyModifier(int i) const; // Civ4 Reimagined
 
 	bool isCommerceFlexible(int i) const;				// Exposed to Python
 	bool isCommerceChangeOriginalOwner(int i) const;				// Exposed to Python
@@ -2166,6 +2167,7 @@ protected:
 	int* m_piPercentPrereqNumOfBuildingClass; // Civ4 Reimagined
 	int* m_piFlavorValue;
 	int* m_piImprovementFreeSpecialist;
+	int* m_piForeignTradeIdeologyModifier; // Civ4 Reimagined
 
 	bool* m_pbCommerceFlexible;
 	bool* m_pbCommerceChangeOriginalOwner;

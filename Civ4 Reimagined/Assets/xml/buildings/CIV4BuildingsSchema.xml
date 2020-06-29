@@ -432,6 +432,15 @@
 		<element type="CommerceModifiers"/>
 	</ElementType>
 	<ElementType name="TechType" content="textOnly"/>
+	<ElementType name="ForeignTradeIdeologyModifier" content="eltOnly">
+		<element type="IdeologyType"/>
+		<element type="iTradeModifier"/>
+	</ElementType>
+	<ElementType name="ForeignTradeIdeologyModifiers" content="eltOnly">
+		<element type="ForeignTradeIdeologyModifier" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="IdeologyType" content="textOnly"/>
+	<ElementType name="iTradeModifier" content="textOnly" dt:type="int"/>
 	<!-- Civ4 Reimagined end -->
 	<ElementType name="ImprovementFreeSpecialist" content="eltOnly">
 		<element type="ImprovementType"/>
@@ -669,6 +678,7 @@
 		<element type="BonusBuildingProductionModifiers" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="TechnologyYieldModifiers" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="TechnologyCommerceModifiers" minOccurs="0"/> <!-- Civ4 Reimagined -->
+		<element type="ForeignTradeIdeologyModifiers" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="ImprovementFreeSpecialists"/>
 		<element type="Flavors"/>
 		<element type="HotKey"/>

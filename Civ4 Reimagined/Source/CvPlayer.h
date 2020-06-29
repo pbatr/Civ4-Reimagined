@@ -1370,6 +1370,9 @@ public:
 	void changeIdeologyValue(IdeologyTypes eIdeology, int iChange);
 	IdeologyTypes getIdeology() const;
 	void updateIdeology();
+
+	int getForeignTradeIdeologyModifier(IdeologyTypes Index) const;
+	void changeForeignTradeIdeologyModifier(IdeologyTypes Index, int iChange);
 	
 	
 	// K-Mod note: Adding new virtual functions to this list seems to cause unpredictable behaviour during the initialization of the game.
@@ -1667,6 +1670,7 @@ protected:
 	int* m_aiBestUnitPower; // Civ4 Reimagined
 	int* m_paiPlayerExtraAvailableBonuses; // Civ4 Reimagined
 	int* m_aiIdeologyValue; // Civ4Reimagind
+	int* m_aiForeignTradeIdeologyModifier; // Civ4 Reimagined
 	
 	//Leoreth
 	int* m_aiDomainProductionModifiers;

@@ -4105,10 +4105,36 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 			int iGlobalTradeValue = (bForeignTrade ? 5 : 3) * (2*(kOwner.getCurrentEra()+1) + GC.getNumEraInfos()) / GC.getNumEraInfos();
 
 			iTempValue += 5 * kBuilding.getTradeRouteModifier() * getTradeYield(YIELD_COMMERCE) / std::max(1, iTotalTradeModifier);
-				
+
+			// Civ4 Reimagined
+			for (int iI = 0; iI < NUM_YIELD_TYPES; iI++)
+			{
+				int iAreaTradeYieldValue = 5 * iNumCitiesInArea * kBuilding.getAreaTradeYieldModifier((YieldTypes)iI) * getTradeYield(YIELD_COMMERCE) / std::max(1, iTotalTradeModifier) / iNumCities;
+
+				if (iAreaTradeYieldValue != 0 && (YieldTypes)iI != YIELD_COMMERCE)
+				{
+					iAreaTradeYieldValue *= kOwner.AI_yieldWeight((YieldTypes)iI);
+					iAreaTradeYieldValue /= 100;
+				}
+
+				iTempValue += iAreaTradeYieldValue;
+			}
+
 			if (bForeignTrade)
 			{
 				iTempValue += 5 * iForeignTradeRoutes * kBuilding.getForeignTradeRouteModifier() * getTradeYield(YIELD_COMMERCE) / std::max(1, iTotalTradeModifier) / iNumTradeRoutes;
+
+				// Civ4 Reimagined
+				for (IdeologyTypes eIdeology = (IdeologyTypes)0; eIdeology < GC.getNumIdeologyInfos(); eIdeology = (IdeologyTypes)(eIdeology+1))
+				{
+					if (kBuilding.getForeignTradeIdeologyModifier(eIdeology) == 0)
+					{
+						continue;
+					}
+
+					const int iIdeologyTradeRoutes = std::max(2, GC.getGameINLINE().getIdeologyCount(eIdeology)) * iCitiesTarget * 2;
+					iTempValue += 5 * iIdeologyTradeRoutes * kBuilding.getForeignTradeIdeologyModifier(eIdeology) * getTradeYield(YIELD_COMMERCE) / std::max(1, iTotalTradeModifier) / iNumTradeRoutes;
+				}
 			}
 
 			iTempValue += iTempValue += 5 * iOverseaTradeRoutes * kBuilding.getOverseaTradeRouteModifier() * getTradeYield(YIELD_COMMERCE) / std::max(1, iTotalTradeModifier) / iNumTradeRoutes;
