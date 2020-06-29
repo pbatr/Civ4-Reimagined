@@ -561,6 +561,7 @@ public:
 	CvReligionInfo& getReligionInfo(ReligionTypes eReligionNum);
 
 	// Civ4 Reimagined
+	int getNumIdeologyInfos();
 	std::vector<CvIdeologyInfo*>& getIdeologyInfo();
 	CvIdeologyInfo& getIdeologyInfo(IdeologyTypes eIdeologyNum);
 

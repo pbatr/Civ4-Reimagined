@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Sid Meier's Civilization 4 -->
+<!-- Copyright Firaxis Games 2005 -->
+<Civ4GameText xmlns="http://www.firaxis.com">
+	<TEXT>
+		<Tag>TXT_KEY_IDEOLOGY_CONSERVATIVISM</Tag>
+		<English>Conservativism</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_IDEOLOGY_LIBERALISM</Tag>
+		<English>Liberalism</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_IDEOLOGY_COMMUNISM</Tag>
+		<English>Communism</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_IDEOLOGY_FASCISM</Tag>
+		<English>Fascism</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_IDEOLOGY_CONSERVATIVISM_ADJECTIVE</Tag>
+		<English>Conservative</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_IDEOLOGY_LIBERALISM_ADJECTIVE</Tag>
+		<English>Liberal</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_IDEOLOGY_COMMUNISM_ADJECTIVE</Tag>
+		<English>Communist</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_IDEOLOGY_FASCISM_ADJECTIVE</Tag>
+		<English>Fascist</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_ATTITUDE_SAME_IDEOLOGY</Tag>
+		<English>%D1: "We share the same Ideology."</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_ATTITUDE_DIFFERENT_IDEOLOGY</Tag>
+		<English>%D1: "We cannot agree with your Idelogy"</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_FOREIGN_TRADE_ROUTE_IDEOLOGY_MOD</Tag>
+		<English>[ICON_BULLET]%D1_Mod%% Foreign Trade Route Yield with [LINK=literal]%s2[\LINK] Civilizations</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TRADE_ROUTE_MOD_IDEOLOGIES</Tag>
+		<English>%D1%%: for Shared Ideology</English>
+	</TEXT>
+</Civ4GameText>

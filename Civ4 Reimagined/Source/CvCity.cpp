@@ -10044,6 +10044,13 @@ int CvCity::totalTradeModifier(CvCity* pOtherCity) const
 		{
 			iModifier += getForeignTradeRouteModifier();
 			iModifier += getPeaceTradeModifier(pOtherCity->getTeam());
+
+			// Civ4 Reimagined
+			const IdeologyTypes eIdeology = GET_PLAYER(getOwnerINLINE()).getIdeology();
+			if (GET_PLAYER(getOwnerINLINE()).getIdeology() == eIdeology)
+			{
+				iModifier += GET_PLAYER(getOwnerINLINE()).getForeignTradeIdeologyModifier(eIdeology);
+			}
 		}
 		else
 		{
@@ -10147,7 +10154,8 @@ int CvCity::calculateTradeYield(YieldTypes eIndex, int iTradeProfit) const
 	}
 
 	// Civ4 Reimagined
-	const int iTradeYieldModifier = GET_PLAYER(getOwnerINLINE()).getTradeYieldModifier(eIndex) + area()->getTradeYieldModifier(getOwnerINLINE(), eIndex);
+	int iTradeYieldModifier = GET_PLAYER(getOwnerINLINE()).getTradeYieldModifier(eIndex);
+	iTradeYieldModifier += area()->getTradeYieldModifier(getOwnerINLINE(), eIndex);
 	
 	if ((iTradeProfit > 0) && (iTradeYieldModifier > 0))
 	{
