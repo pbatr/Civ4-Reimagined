@@ -25895,7 +25895,7 @@
 			<iNukeModifier>0</iNukeModifier>
 			<iNukeExplosionRand>0</iNukeExplosionRand>
 			<iFreeSpecialist>0</iFreeSpecialist>
-			<iAreaFreeSpecialist>1</iAreaFreeSpecialist>
+			<iAreaFreeSpecialist>0</iAreaFreeSpecialist>
 			<iGlobalFreeSpecialist>0</iGlobalFreeSpecialist>
 			<iMaintenanceModifier>0</iMaintenanceModifier>
 			<iWarWearinessModifier>0</iWarWearinessModifier>
@@ -25980,6 +25980,12 @@
 			</BuildingClassNeededs>
 			<SpecialistYieldChanges/>
 			<BonusYieldModifiers/>
+			<ForeignTradeIdeologyModifiers>
+				<ForeignTradeIdeologyModifier>
+					<IdeologyType>IDEOLOGY_LIBERALISM</IdeologyType>
+					<iTradeModifier>200</iTradeModifier>
+				</ForeignTradeIdeologyModifier>
+			</ForeignTradeIdeologyModifiers>
 			<ImprovementFreeSpecialists/>
 			<Flavors>
 				<Flavor>

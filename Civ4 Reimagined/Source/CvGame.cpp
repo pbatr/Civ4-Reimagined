@@ -10482,8 +10482,14 @@ bool CvGame::pythonIsBonusIgnoreLatitudes() const
 }
 
 // Civ4 Reimagined
+// Todo: Cache this value
 int CvGame::getIdeologyCount(IdeologyTypes eIdeology) const
 {
+	if (!areIdeologiesEnabled())
+	{
+		return 0;
+	}
+	
 	int iCount = 0;
 
 	for (int iPlayer = 0; iPlayer < MAX_PLAYERS; ++iPlayer)

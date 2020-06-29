@@ -2147,6 +2147,12 @@ CvReligionInfo& CvGlobals::getReligionInfo(ReligionTypes eReligionNum)
 }
 
 // Civ4 Reimagined
+int CvGlobals::getNumIdeologyInfos()
+{
+	return (int)m_paIdeologyInfo.size();
+}
+
+// Civ4 Reimagined
 std::vector<CvIdeologyInfo*>& CvGlobals::getIdeologyInfo()	// For Moose - XML Load Util, CvInfos
 {
 	return m_paIdeologyInfo;

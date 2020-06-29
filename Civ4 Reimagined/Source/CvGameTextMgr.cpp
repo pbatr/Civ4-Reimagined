@@ -11165,6 +11165,15 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 		}
 	}
 
+	for (iI = 0; iI < GC.getNumIdeologyInfos(); ++iI)
+	{
+		if (kBuilding.getForeignTradeIdeologyModifier(iI) != 0)
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_FOREIGN_TRADE_ROUTE_IDEOLOGY_MOD", kBuilding.getForeignTradeIdeologyModifier(iI), GC.getIdeologyInfo((IdeologyTypes) iI).getAdjectiveKey()));
+		}
+	}
+
 	for (iI = 0; iI < GC.getNumSpecialistInfos(); ++iI)
 	{
 		if (kBuilding.getSpecialistCount(iI) > 0)
@@ -18895,6 +18904,20 @@ void CvGameTextMgr::setTradeRouteHelp(CvWStringBuffer &szBuffer, int iRoute, CvC
 						szBuffer.append(NEWLINE);
 						szBuffer.append(gDLL->getText("TXT_KEY_TRADE_ROUTE_MOD_PEACE", iNewMod));
 						iModifier += iNewMod;
+					}
+
+					// Civ4 Reimagined
+					const IdeologyTypes eIdeology = GET_PLAYER(pCity->getOwnerINLINE()).getIdeology();
+					if (GET_PLAYER(pOtherCity->getOwnerINLINE()).getIdeology() == eIdeology)
+					{
+						iNewMod = GET_PLAYER(pCity->getOwnerINLINE()).getForeignTradeIdeologyModifier(eIdeology);
+
+						if (0 != iNewMod)
+						{
+							szBuffer.append(NEWLINE);
+							szBuffer.append(gDLL->getText("TXT_KEY_TRADE_ROUTE_MOD_IDEOLOGIES", iNewMod));
+							iModifier += iNewMod;
+						}
 					}
 				}
 				// Civ4 Reimagined

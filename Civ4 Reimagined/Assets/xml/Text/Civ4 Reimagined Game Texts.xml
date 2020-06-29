@@ -1412,6 +1412,6 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_FOOD_TRADE_ROUTES_THIS_CONTINENT</Tag>
-		<English>[ICON_BULLET]Trade Routes on this Continent provide Food (%d1%%)</English>
+		<English>[ICON_BULLET]Trade Routes on this Continent provide [ICON_FOOD] (%d1%% of [ICON_COMMERCE])</English>
 	</TEXT>
 </Civ4GameText>
