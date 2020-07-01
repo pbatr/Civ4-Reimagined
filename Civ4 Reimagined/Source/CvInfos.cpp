@@ -7608,7 +7608,8 @@ m_iAdvisorType(NO_ADVISOR),
 m_iHolyCity(NO_RELIGION),										
 m_iReligionType(NO_RELIGION),								
 m_iStateReligion(NO_RELIGION),								
-m_iPrereqReligion(NO_RELIGION),	
+m_iPrereqReligion(NO_RELIGION),
+m_iPrereqIdeology(NO_IDEOLOGY), // Civ4 Reimagined
 m_iPrereqCorporation(NO_CORPORATION),								
 m_iFoundsCorporation(NO_CORPORATION),								
 m_iGlobalReligionCommerce(0),
@@ -8206,6 +8207,12 @@ int CvBuildingInfo::getStateReligion() const
 int CvBuildingInfo::getPrereqReligion() const		
 {
 	return m_iPrereqReligion;
+}
+
+// Civ4 Reimagined
+int CvBuildingInfo::getPrereqIdeology() const		
+{
+	return m_iPrereqIdeology;
 }
 
 int CvBuildingInfo::getPrereqCorporation() const		
@@ -9303,6 +9310,7 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iReligionType);
 	stream->Read(&m_iStateReligion);
 	stream->Read(&m_iPrereqReligion);
+	stream->Read(&m_iPrereqIdeology); // Civ4 Reimagined
 	stream->Read(&m_iPrereqCorporation);
 	stream->Read(&m_iFoundsCorporation);
 	stream->Read(&m_iGlobalReligionCommerce);
@@ -9823,6 +9831,7 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iReligionType);
 	stream->Write(m_iStateReligion);
 	stream->Write(m_iPrereqReligion);
+	stream->Write(m_iPrereqIdeology); // Civ4 Reimagined
 	stream->Write(m_iPrereqCorporation);
 	stream->Write(m_iFoundsCorporation);
 	stream->Write(m_iGlobalReligionCommerce);
@@ -10013,6 +10022,10 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(szTextVal, "PrereqReligion");
 	m_iPrereqReligion = pXML->FindInInfoClass(szTextVal);
+
+	// Civ4 Reimagined
+	pXML->GetChildXmlValByName(szTextVal, "PrereqIdeology");
+	m_iPrereqIdeology = pXML->FindInInfoClass(szTextVal);
 	
 	pXML->GetChildXmlValByName(szTextVal, "PrereqCorporation");
 	m_iPrereqCorporation = pXML->FindInInfoClass(szTextVal);

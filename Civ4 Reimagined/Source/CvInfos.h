@@ -1776,6 +1776,7 @@ public:
 	int getReligionType() const;				// Exposed to Python
 	int getStateReligion() const;				// Exposed to Python
 	int getPrereqReligion() const;				// Exposed to Python
+	int getPrereqIdeology() const; // Civ4 Reimagined
 	int getPrereqCorporation() const;				// Exposed to Python
 	int getFoundsCorporation() const;				// Exposed to Python
 	int getGlobalReligionCommerce() const;				// Exposed to Python
@@ -2048,6 +2049,7 @@ protected:
 	int m_iReligionType;								
 	int m_iStateReligion;								
 	int m_iPrereqReligion;
+	int m_iPrereqIdeology; // Civ4 Reimagined
 	int m_iPrereqCorporation;								
 	int m_iFoundsCorporation;					
 	int m_iGlobalReligionCommerce;

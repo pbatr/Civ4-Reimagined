@@ -44,10 +44,14 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_FOREIGN_TRADE_ROUTE_IDEOLOGY_MOD</Tag>
-		<English>[ICON_BULLET]%D1_Mod%% Foreign Trade Route Yield with [LINK=literal]%s2[\LINK] Civilizations</English>
+		<English>[ICON_BULLET]%D1_Mod%% Foreign Trade Route Yield with other [LINK=literal]%s2[\LINK] Civilizations</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TRADE_ROUTE_MOD_IDEOLOGIES</Tag>
 		<English>%D1%%: for Shared Ideology</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_REQUIRES_IDEOLOGY</Tag>
+		<English>[COLOR_WARNING_TEXT]Requires [LINK=literal]%s1_Name[\LINK] Ideology[COLOR_REVERT]</English>
 	</TEXT>
 </Civ4GameText>

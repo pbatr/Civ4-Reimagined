@@ -25817,6 +25817,7 @@
 			<StateReligion>NONE</StateReligion>
 			<bStateReligion>0</bStateReligion>
 			<PrereqReligion>NONE</PrereqReligion>
+			<PrereqIdeology>IDEOLOGY_LIBERALISM</PrereqIdeology>
 			<PrereqCivics/>
 			<PrereqCorporation>NONE</PrereqCorporation>
 			<FoundsCorporation>NONE</FoundsCorporation>
@@ -25824,7 +25825,7 @@
 			<GlobalCorporationCommerce>NONE</GlobalCorporationCommerce>
 			<VictoryPrereq>NONE</VictoryPrereq>
 			<FreeStartEra>NONE</FreeStartEra>
-			<MaxStartEra>ERA_INDUSTRIAL</MaxStartEra>
+			<MaxStartEra>NONE</MaxStartEra>
 			<ObsoleteTech>NONE</ObsoleteTech>
 			<PrereqTech>TECH_DEMOCRACY</PrereqTech>
 			<TechTypes/>
