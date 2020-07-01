@@ -25901,7 +25901,7 @@
 			<iAreaHealth>0</iAreaHealth>
 			<iGlobalHealth>0</iGlobalHealth>
 			<iHappiness>0</iHappiness>
-			<iAreaHappiness>0</iAreaHappiness>
+			<iAreaHappiness>1</iAreaHappiness>
 			<iGlobalHappiness>0</iGlobalHappiness>
 			<iStateReligionHappiness>0</iStateReligionHappiness>
 			<iWorkerSpeedModifier>0</iWorkerSpeedModifier>
@@ -25928,7 +25928,7 @@
 			<GlobalSeaPlotYieldChanges/>
 			<YieldChanges/>
 			<AreaTradeYieldModifiers>
-				<iYield>5</iYield>
+				<iYield>10</iYield>
 				<iYield>0</iYield>
 				<iYield>0</iYield>
 			</AreaTradeYieldModifiers>
@@ -25978,7 +25978,7 @@
 			<ForeignTradeIdeologyModifiers>
 				<ForeignTradeIdeologyModifier>
 					<IdeologyType>IDEOLOGY_LIBERALISM</IdeologyType>
-					<iTradeModifier>200</iTradeModifier>
+					<iTradeModifier>500</iTradeModifier>
 				</ForeignTradeIdeologyModifier>
 			</ForeignTradeIdeologyModifiers>
 			<ImprovementFreeSpecialists/>
