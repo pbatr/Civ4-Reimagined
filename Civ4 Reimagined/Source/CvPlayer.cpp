@@ -7047,9 +7047,18 @@ bool CvPlayer::canConstruct(BuildingTypes eBuilding, bool bContinue, bool bTestV
 	}
 	
 	// Civ4 Reimagined
-	if (!bIgnoreCivic && isWrongCivicBuilding(eBuilding))
+	if (!bIgnoreCivic)
 	{
-		return false;
+		for (int iI = 0; iI < GC.getNumCivicInfos(); iI++)
+		{
+			if (GC.getBuildingInfo(eBuilding).isPrereqCivic(iI))
+			{
+				if (!isCivic((CivicTypes)iI))
+				{
+					return false;
+				}
+			}
+		}
 	}
 
 	if (currentTeam.isObsoleteBuilding(eBuilding))
@@ -7187,6 +7196,21 @@ bool CvPlayer::canConstruct(BuildingTypes eBuilding, bool bContinue, bool bTestV
 		if (getHighestNavalUnitLevel() < GC.getBuildingInfo(eBuilding).getNavalLevelPrereq())
 		{
 			return false;
+		}
+
+		// Civ4 Reimagined
+		if (!bIgnoreCivic)
+		{
+			for (int iI = 0; iI < GC.getNumIdeologyInfos(); iI++)
+			{
+				if (GC.getBuildingInfo(eBuilding).getPrereqIdeology() == (IdeologyTypes)iI)
+				{
+					if (getIdeology() != (IdeologyTypes)iI)
+					{
+						return false;
+					}
+				}
+			}
 		}
 		
 		for (iI = 0; iI < numBuildingClassInfos; iI++)
@@ -19569,11 +19593,19 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
 	changeUnlimitedAnimalXPCount((GC.getCivicInfo(eCivic).isUnlimitedAnimalXP()) ? iChange : 0); // Civ4 Reimagined
 
 	// Civ4 Reimagined: Ideologies
+	const IdeologyTypes eCurrentIdeology = getIdeology();
 	changeIdeologyValue(IDEOLOGY_CONSERVATISM, GC.getCivicInfo(eCivic).getConservative() * iChange);
 	changeIdeologyValue(IDEOLOGY_LIBERALISM, GC.getCivicInfo(eCivic).getLiberal() * iChange);
 	changeIdeologyValue(IDEOLOGY_COMMUNISM, GC.getCivicInfo(eCivic).getCommunist() * iChange);
 	changeIdeologyValue(IDEOLOGY_FASCISM, GC.getCivicInfo(eCivic).getFascist() * iChange);
 	updateIdeology();
+	const IdeologyTypes eNewIdeology = getIdeology();
+	const bool bIdeologyChange = eCurrentIdeology != eNewIdeology;
+
+	if (bIdeologyChange)
+	{
+		gDLL->getInterfaceIFace()->setDirty(Score_DIRTY_BIT, true);
+	}
 
 	if ( gPlayerLogLevel >= 2 )
 	{
@@ -19632,6 +19664,30 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
 						if (pLoopCity->getNumBuilding(eOurBuilding) > 0)
 						{
 							pLoopCity->processBuilding(eOurBuilding, iChange * pLoopCity->getNumBuilding(eOurBuilding), true);
+						}
+					}
+				}
+			}
+
+			// Civ4 Reimagined
+			if (bIdeologyChange && !currentTeam.isObsoleteBuilding(eOurBuilding))
+			{
+				if (GC.getBuildingInfo(eOurBuilding).getPrereqIdeology() == eCurrentIdeology)
+				{
+					for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+					{
+						if (pLoopCity->getNumBuilding(eOurBuilding) > 0)
+						{
+							pLoopCity->processBuilding(eOurBuilding, -pLoopCity->getNumBuilding(eOurBuilding), true);
+						}
+					}
+				} else if (GC.getBuildingInfo(eOurBuilding).getPrereqIdeology() == eNewIdeology)
+				{
+					for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+					{
+						if (pLoopCity->getNumBuilding(eOurBuilding) > 0)
+						{
+							pLoopCity->processBuilding(eOurBuilding, pLoopCity->getNumBuilding(eOurBuilding), true);
 						}
 					}
 				}
@@ -26297,11 +26353,22 @@ void CvPlayer::changeResearchPerCulture(int iChange)
 // Civ4 Reimagined
 bool CvPlayer::isWrongCivicBuilding(BuildingTypes eBuilding) const
 {
-	for(int iI = 0; iI < GC.getNumCivicInfos(); iI++)
+	for (int iI = 0; iI < GC.getNumCivicInfos(); iI++)
 	{
 		if (GC.getBuildingInfo(eBuilding).isPrereqCivic(iI))
 		{
 			if (!isCivic((CivicTypes)iI))
+			{
+				return true;
+			}
+		}
+	}
+
+	for (int iI = 0; iI < GC.getNumIdeologyInfos(); iI++)
+	{
+		if (GC.getBuildingInfo(eBuilding).getPrereqIdeology() == (IdeologyTypes)iI)
+		{
+			if (getIdeology() != (IdeologyTypes)iI)
 			{
 				return true;
 			}
