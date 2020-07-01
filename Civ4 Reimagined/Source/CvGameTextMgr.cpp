@@ -11954,10 +11954,19 @@ void CvGameTextMgr::buildBuildingRequiresString(CvWStringBuffer& szBuffer, Build
 				szBuffer.append(NEWLINE);
 				szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_REQUIRES_NUM_TEAMS", kBuilding.getNumTeamsPrereq()));
 			}
+
+			// Civ4 Reimagined
+			for (iI = 0; iI < GC.getNumIdeologyInfos(); iI++)
+			{
+				if (kBuilding.getPrereqIdeology() == (IdeologyTypes)iI)
+				{
+					szBuffer.append(NEWLINE);
+					szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_REQUIRES_IDEOLOGY", GC.getIdeologyInfo((IdeologyTypes)(kBuilding.getPrereqIdeology())).getAdjectiveKey()));
+				}
+			}
 		}
 		else
 		{
-			
 			// < Building Civic Prereqs Start >
 			bFirst = true;
 			for (iI = 0; iI < GC.getNumCivicInfos(); iI++)
@@ -11975,7 +11984,19 @@ void CvGameTextMgr::buildBuildingRequiresString(CvWStringBuffer& szBuffer, Build
 				}
 			}
 			// < Building Civic Prereqs End   >
-			
+
+			// Civ4 Reimagined
+			for (iI = 0; iI < GC.getNumIdeologyInfos(); iI++)
+			{
+				if (kBuilding.getPrereqIdeology() == (IdeologyTypes)iI)
+				{
+					if ((pCity == NULL) || (GET_PLAYER(ePlayer).getIdeology() != (IdeologyTypes)iI))
+					{
+						szBuffer.append(NEWLINE);
+						szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_REQUIRES_IDEOLOGY", GC.getIdeologyInfo((IdeologyTypes)(kBuilding.getPrereqIdeology())).getAdjectiveKey()));
+					}
+				}
+			}
 			
 			if (!bTechChooserText)
 			{

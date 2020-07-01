@@ -2822,6 +2822,7 @@ enum CivilopediaWidgetShowTypes
 // Civ4 Reimagind
 enum IdeologyTypes
 {
+	NO_IDEOLOGY = -1,
 	IDEOLOGY_CONSERVATISM,
 	IDEOLOGY_LIBERALISM,
 	IDEOLOGY_COMMUNISM,
