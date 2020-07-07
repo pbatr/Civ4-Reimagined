@@ -246,6 +246,18 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iBias>2</iBias>
+				</TerrainBias>
+			</TerrainBiases>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_FLOOD_PLAINS</FeatureType>
+					<iBias>1</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
