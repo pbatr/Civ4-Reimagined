@@ -6117,6 +6117,23 @@ void CvGame::makeNukesValid(bool bValid)
 	m_bNukesValid = bValid;
 }
 
+
+// Civ4 Reimagined
+void CvGame::grantTechnologyToAll(TechTypes eIndex)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumTechInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	for (int iI = 0; iI < MAX_TEAMS; iI++)
+	{
+		CvTeam& kTeam = GET_TEAM((TeamTypes)iI);
+		if (kTeam.isAlive())
+		{
+			kTeam.setHasTech(eIndex, true, NO_PLAYER, false, false);
+		}
+	}
+}
+
 bool CvGame::isInAdvancedStart() const
 {
 	for (int iPlayer = 0; iPlayer < MAX_PLAYERS; ++iPlayer)

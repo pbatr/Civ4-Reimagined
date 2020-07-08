@@ -401,6 +401,8 @@ public:
 	bool isNukesValid() const;														// Exposed to Python  
 	void makeNukesValid(bool bValid = true);													// Exposed to Python
 
+	void grantTechnologyToAll(TechTypes eIndex); // Civ4 Reimagined
+
 	bool isInAdvancedStart() const;														// Exposed to Python  
 
 	DllExport void setVoteChosen(int iSelection, int iVoteId);
