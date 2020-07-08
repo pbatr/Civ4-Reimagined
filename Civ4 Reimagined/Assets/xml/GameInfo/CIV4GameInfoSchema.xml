@@ -99,6 +99,7 @@
 	<ElementType name="Civilopedia" content="textOnly"/>
 	<ElementType name="TechPrereq" content="textOnly"/>
 	<ElementType name="TechPrereq2" content="textOnly"/>
+	<ElementType name="IdeologyPrereq" content="textOnly"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iProductionToCommerceModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="ProductionToCommerceModifiers" content="eltOnly">
 		<element type="iProductionToCommerceModifier" maxOccurs="*"/>
@@ -534,6 +535,7 @@
 	<ElementType name="iTechShare" content="textOnly" dt:type="int"/>
 	<ElementType name="EveryoneSpecialUnit" content="textOnly"/>
 	<ElementType name="EveryoneSpecialBuilding" content="textOnly"/>
+	<ElementType name="EveryoneTechnology" content="textOnly"/> <!-- Civ4 Reimagined -->
 	<ElementType name="bSpaceship" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bAllowsNukes" content="textOnly" dt:type="boolean"/>
 	<ElementType name="ProjectType" content="textOnly"/>
@@ -589,6 +591,7 @@
 		<element type="VictoryPrereq"/>
 		<element type="TechPrereq"/>
 		<element type="TechPrereq2"/>
+		<element type="IdeologyPrereq" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="AnyonePrereqProject" minOccurs="0"/>
 		<element type="iMaxGlobalInstances"/>
 		<element type="iMaxTeamInstances"/>
@@ -597,6 +600,7 @@
 		<element type="iTechShare"/>
 		<element type="EveryoneSpecialUnit"/>
 		<element type="EveryoneSpecialBuilding"/>
+		<element type="EveryoneTechnology" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="bSpaceship"/>
 		<element type="bAllowsNukes"/>
 		<element type="Button"/>

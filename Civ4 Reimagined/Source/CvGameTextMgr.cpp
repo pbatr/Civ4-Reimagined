@@ -12243,6 +12243,13 @@ void CvGameTextMgr::setProjectHelp(CvWStringBuffer &szBuffer, ProjectTypes eProj
 		szBuffer.append(gDLL->getText("TXT_KEY_PROJECT_ENABLES_SPECIAL", GC.getSpecialBuildingInfo((SpecialBuildingTypes)(kProject.getEveryoneSpecialBuilding())).getTextKeyWide()));
 	}
 
+	// Civ4 Reimagined
+	if (kProject.getEveryoneTechnology() != NO_TECH)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_PROJECT_GRANTS_TECH_TO_ALL", GC.getTechInfo((TechTypes)(kProject.getEveryoneTechnology())).getTextKeyWide()));
+	}
+
 	for (iI = 0; iI < GC.getNumVictoryInfos(); ++iI)
 	{
 		if (kProject.getVictoryThreshold(iI) > 0)
@@ -12356,6 +12363,14 @@ void CvGameTextMgr::setProjectHelp(CvWStringBuffer &szBuffer, ProjectTypes eProj
 	{
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_REQUIRES_STRING", GC.getTechInfo((TechTypes)(iTechPrereq)).getTextKeyWide()));
+	}
+
+	// Civ4 Reimagined
+	int iIdeologyPrereq = kProject.getIdeologyPrereq();
+	if (iIdeologyPrereq != NO_IDEOLOGY)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_REQUIRES_IDEOLOGY", GC.getIdeologyInfo((IdeologyTypes)(kProject.getIdeologyPrereq())).getAdjectiveKey()));
 	}
 				
 	if (!bCivilopediaText)

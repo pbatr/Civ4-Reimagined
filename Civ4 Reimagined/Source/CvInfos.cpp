@@ -17787,6 +17787,7 @@ CvProjectInfo::CvProjectInfo() :
 m_iVictoryPrereq(NO_VICTORY),
 m_iTechPrereq(NO_TECH),
 m_iTechPrereq2(NO_TECH), //Civ4 Reimagined
+m_iIdeologyPrereq(NO_IDEOLOGY), //Civ4 Reimagined
 m_iAnyoneProjectPrereq(NO_PROJECT),
 m_iMaxGlobalInstances(0),
 m_iMaxTeamInstances(0),
@@ -17795,6 +17796,7 @@ m_iNukeInterception(0),
 m_iTechShare(0),
 m_iEveryoneSpecialUnit(NO_SPECIALUNIT),
 m_iEveryoneSpecialBuilding(NO_SPECIALBUILDING),
+m_iEveryoneTechnology(NO_TECH), //Civ4 Reimagined
 m_iVictoryDelayPercent(0),
 m_iSuccessRate(0),
 m_bSpaceship(false),
@@ -17835,6 +17837,12 @@ int CvProjectInfo::getTechPrereq() const
 int CvProjectInfo::getTechPrereq2() const
 {
 	return m_iTechPrereq2; 
+}
+
+// Civ4 Reimagined
+int CvProjectInfo::getIdeologyPrereq() const
+{
+	return m_iIdeologyPrereq; 
 }
 
 int CvProjectInfo::getAnyoneProjectPrereq() const
@@ -17880,6 +17888,12 @@ int CvProjectInfo::getEveryoneSpecialUnit() const
 int CvProjectInfo::getEveryoneSpecialBuilding() const
 {
 	return m_iEveryoneSpecialBuilding;
+}
+
+// Civ4 Reimagined
+int CvProjectInfo::getEveryoneTechnology() const
+{
+	return m_iEveryoneTechnology;
 }
 
 int CvProjectInfo::getVictoryDelayPercent() const
@@ -17970,6 +17984,8 @@ bool CvProjectInfo::read(CvXMLLoadUtility* pXML)
 	//Civ4 Reimagined
 	pXML->GetChildXmlValByName(szTextVal, "TechPrereq2");
 	m_iTechPrereq2 = pXML->FindInInfoClass(szTextVal);
+	pXML->GetChildXmlValByName(szTextVal, "IdeologyPrereq");
+	m_iIdeologyPrereq = pXML->FindInInfoClass(szTextVal);
 
 	pXML->GetChildXmlValByName(&m_iMaxGlobalInstances, "iMaxGlobalInstances");
 	pXML->GetChildXmlValByName(&m_iMaxTeamInstances, "iMaxTeamInstances");
@@ -17982,6 +17998,10 @@ bool CvProjectInfo::read(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(szTextVal, "EveryoneSpecialBuilding");
 	m_iEveryoneSpecialBuilding = pXML->FindInInfoClass(szTextVal);
+
+	// Civ4 Reimagined
+	pXML->GetChildXmlValByName(szTextVal, "EveryoneTechnology");
+	m_iEveryoneTechnology = pXML->FindInInfoClass(szTextVal);
 
 	pXML->GetChildXmlValByName(&m_bSpaceship, "bSpaceship");
 	pXML->GetChildXmlValByName(&m_bAllowsNukes, "bAllowsNukes");

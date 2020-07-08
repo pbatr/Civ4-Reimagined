@@ -4831,6 +4831,12 @@ void CvTeam::changeProjectCount(ProjectTypes eIndex, int iChange)
 				GC.getGameINLINE().makeSpecialBuildingValid((SpecialBuildingTypes)(kProject.getEveryoneSpecialBuilding()));
 			}
 
+			// Civ4 Reimagined
+			if (kProject.getEveryoneTechnology() != NO_TECH)
+			{
+				GC.getGameINLINE().grantTechnologyToAll((TechTypes)(kProject.getEveryoneTechnology()));
+			}
+
 			if (kProject.isAllowsNukes())
 			{
 				GC.getGameINLINE().makeNukesValid(true);

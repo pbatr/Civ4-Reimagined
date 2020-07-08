@@ -412,5 +412,35 @@
 			<CreateSound/>
 			<MovieDefineTag/>
 		</ProjectInfo>
+		<ProjectInfo>
+			<Type>PROJECT_COMMUNIST_MANIFESTO</Type>
+			<Description>TXT_KEY_PROJECT_COMMUNIST_MANIFESTO</Description>
+			<Civilopedia>TXT_KEY_PROJECT_COMMUNIST_MANIFESTO_PEDIA</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_COMMUNIST_MANIFESTO_STRATEGY</Strategy>
+			<VictoryPrereq>NONE</VictoryPrereq>
+			<TechPrereq>TECH_UTOPIA</TechPrereq>
+			<TechPrereq2>NONE</TechPrereq2>
+			<IdeologyPrereq>IDEOLOGY_COMMUNISM</IdeologyPrereq>
+			<AnyonePrereqProject>NONE</AnyonePrereqProject>
+			<iMaxGlobalInstances>1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iCost>800</iCost>
+			<iNukeInterception>0</iNukeInterception>
+			<iTechShare>0</iTechShare>
+			<EveryoneSpecialUnit>NONE</EveryoneSpecialUnit>
+			<EveryoneSpecialBuilding>NONE</EveryoneSpecialBuilding>
+			<EveryoneTechnology>TECH_UTOPIA</EveryoneTechnology>
+			<bSpaceship>0</bSpaceship>
+			<bAllowsNukes>0</bAllowsNukes>
+			<Button>,Art/Interface/Buttons/TechTree/Communism.dds,Art/Interface/Buttons/TechTree_Atlas.dds,4,2</Button>
+			<PrereqProjects/>
+			<VictoryThresholds/>
+			<VictoryMinThresholds/>
+			<iVictoryDelayPercent>0</iVictoryDelayPercent>
+			<iSuccessRate>0</iSuccessRate>
+			<BonusProductionModifiers/>
+			<CreateSound/>
+			<MovieDefineTag/>
+		</ProjectInfo>
 	</ProjectInfos>
 </Civ4ProjectInfo>
