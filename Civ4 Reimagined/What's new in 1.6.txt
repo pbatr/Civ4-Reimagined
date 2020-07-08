@@ -5,6 +5,7 @@ Civ4 Reimagined 1.6
 *********
 New
 *********
+-Civilizations have a starting position bias for native terrain and features
 
 *********
 Changes
@@ -34,6 +35,7 @@ Interface
 *********
 Fixes
 *********
+-Low resolution for texts and icons
 
 
 *******************************************
