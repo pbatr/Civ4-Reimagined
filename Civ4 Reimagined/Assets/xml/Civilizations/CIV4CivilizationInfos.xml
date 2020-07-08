@@ -249,15 +249,13 @@
 			<TerrainBiases>
 				<TerrainBias>
 					<TerrainType>TERRAIN_DESERT</TerrainType>
-					<iBias>2</iBias>
+					<iBias>3</iBias>
+				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
-			<FeatureBiases>
-				<FeatureBias>
-					<FeatureType>FEATURE_FLOOD_PLAINS</FeatureType>
-					<iBias>1</iBias>
-				</FeatureBias>
-			</FeatureBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -375,6 +373,22 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_PEAK</TerrainType>
+					<iBias>3</iBias>
+				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>2</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -492,6 +506,22 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_FLOOD_PLAINS</FeatureType>
+					<iBias>1</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -613,6 +643,12 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -731,6 +767,16 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_COAST</TerrainType>
+					<iBias>3</iBias>
+				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -853,6 +899,18 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_GRASS</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iBias>1</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -978,6 +1036,12 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_PEAK</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -1115,6 +1179,22 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iBias>3</iBias>
+				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_FLOOD_PLAINS</FeatureType>
+					<iBias>3</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -1234,6 +1314,16 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_COAST</TerrainType>
+					<iBias>3</iBias>
+				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_GRASS</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -1357,6 +1447,12 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -1474,6 +1570,18 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_GRASS</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iBias>1</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -1612,6 +1720,18 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_GRASS</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iBias>1</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -1738,6 +1858,20 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_COAST</TerrainType>
+					<iBias>3</iBias>
+				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_PEAK</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -1865,6 +1999,18 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_GRASS</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iBias>1</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -1976,6 +2122,20 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_PEAK</TerrainType>
+					<iBias>3</iBias>
+				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_COAST</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -2150,6 +2310,12 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>1</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -2266,6 +2432,16 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_COAST</TerrainType>
+					<iBias>3</iBias>
+				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_GRASS</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -2388,6 +2564,12 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>3</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -2606,6 +2788,22 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>1</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -2727,6 +2925,22 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_PEAK</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>1</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -2837,6 +3051,12 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<iBias>3</iBias>
+				</TerrainBias>
+			</TerrainBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -2968,6 +3188,12 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iBias>1</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -3090,6 +3316,12 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_COAST</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -3203,6 +3435,12 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -3349,6 +3587,16 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -3475,6 +3723,12 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_COAST</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -3607,6 +3861,16 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_GRASS</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -3726,6 +3990,16 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<iBias>3</iBias>
+				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -3852,6 +4126,16 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_COAST</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<iBias>3</iBias>
+				</TerrainBias>
+			</TerrainBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -3966,6 +4250,12 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -4082,6 +4372,16 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_COAST</TerrainType>
+					<iBias>3</iBias>
+				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
