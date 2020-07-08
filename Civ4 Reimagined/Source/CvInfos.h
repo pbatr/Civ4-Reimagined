@@ -4285,6 +4285,7 @@ public:
 	int getVictoryPrereq() const;									// Exposed to Python
 	int getTechPrereq() const;										// Exposed to Python
 	int getTechPrereq2() const;										// Exposed to Python //Civ4 Reimagined
+	int getIdeologyPrereq() const; // Civ4 Reimagined
 	int getAnyoneProjectPrereq() const;						// Exposed to Python
 	void setAnyoneProjectPrereq(int i);
 	int getMaxGlobalInstances() const;						// Exposed to Python
@@ -4294,6 +4295,7 @@ public:
 	int getTechShare() const;											// Exposed to Python
 	int getEveryoneSpecialUnit() const;						// Exposed to Python
 	int getEveryoneSpecialBuilding() const;				// Exposed to Python
+	int getEveryoneTechnology() const; // Civ4 Reimagined
 	int getVictoryDelayPercent() const;				// Exposed to Python
 	int getSuccessRate() const;				// Exposed to Python
 
@@ -4319,7 +4321,8 @@ protected:
 
 	int m_iVictoryPrereq;
 	int m_iTechPrereq;
-	int m_iTechPrereq2;
+	int m_iTechPrereq2; // Civ4 Reimagined
+	int m_iIdeologyPrereq; // Civ4 Reimagined
 	int m_iAnyoneProjectPrereq;
 	int m_iMaxGlobalInstances;
 	int m_iMaxTeamInstances;
@@ -4328,6 +4331,7 @@ protected:
 	int m_iTechShare;
 	int m_iEveryoneSpecialUnit;
 	int m_iEveryoneSpecialBuilding;
+	int m_iEveryoneTechnology; // Civ4 Reimagined
 	int m_iVictoryDelayPercent;
 	int m_iSuccessRate;
 
