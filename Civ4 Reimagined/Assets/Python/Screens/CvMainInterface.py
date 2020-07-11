@@ -5197,14 +5197,7 @@ class CvMainInterface:
 															scores.setReligion(szTempBuffer)
 
 													if (gc.getGame().areIdeologiesEnabled()):
-														if (gc.getPlayer(ePlayer).getIdeology() == 0):
-															szTempBuffer = "CON"
-														if (gc.getPlayer(ePlayer).getIdeology() == 1):
-															szTempBuffer = "LIB"
-														if (gc.getPlayer(ePlayer).getIdeology() == 2):
-															szTempBuffer = "COM"
-														if (gc.getPlayer(ePlayer).getIdeology() == 3):
-															szTempBuffer = "FAS"
+														szTempBuffer = u"%c" %(gc.getIdeologyInfo(gc.getPlayer(ePlayer).getIdeology()).getChar())
 														szBuffer = szBuffer + szTempBuffer
 														if (bAlignIcons):
 															scores.setIdeology(szTempBuffer)
