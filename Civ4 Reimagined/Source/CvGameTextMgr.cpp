@@ -19976,13 +19976,19 @@ void CvGameTextMgr::assignFontIds(int iFirstSymbolCode, int iPadAmount)
 		} while (iCurSymbolID % iPadAmount != 0);
 	}
 
-	if(GC.getNumBonusInfos() < 2 * iPadAmount)
+	// Civ4 Reimagined
+	int ideologyBaseID = iCurSymbolID;
+
+	for (int i = 0; i < GC.getNumIdeologyInfos(); i++)
 	{
-		do 
-		{
-			++iCurSymbolID;
-		} while (iCurSymbolID % iPadAmount != 0);
+		GC.getIdeologyInfo((IdeologyTypes) i).setChar(iCurSymbolID);
+		++iCurSymbolID;
 	}
+
+	do 
+	{
+		++iCurSymbolID;
+	} while (iCurSymbolID % iPadAmount != 0);
 
 	// set extra symbols
 	for (int i=0; i < MAX_NUM_SYMBOLS; i++)
