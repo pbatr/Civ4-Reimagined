@@ -324,7 +324,12 @@ class CvCivicsScreen:
 		szText += ", " + localText.getText("TXT_KEY_CIVIC_SCREEN_UPKEEP", (activePlayer.getCivicUpkeep(self.m_paeDisplayCivics, True)*(100+activePlayer.getInflationRate())/100, )) # K-Mod
 
 		# Ideologies (Civ4 Reimagined)
-		szText += " (Con: " + str(self.m_iConservative) + ", Lib: " + str(self.m_iLiberal) + ", Com: " + str(self.m_iCommunist) + ", Fas: " + str(self.m_iFascist) + ")"
+		if (gc.getGame().areIdeologiesEnabled()):
+			szText += ", Ideology Influence: "
+			szText += u"%c" %(gc.getIdeologyInfo(0).getChar()) + str(self.m_iConservative) + ", ";
+			szText += u"%c" %(gc.getIdeologyInfo(1).getChar()) + str(self.m_iLiberal) + ", ";
+			szText += u"%c" %(gc.getIdeologyInfo(2).getChar()) + str(self.m_iCommunist) + ", ";
+			szText += u"%c" %(gc.getIdeologyInfo(3).getChar()) + str(self.m_iFascist);
 		
 		screen.setLabel("CivicsRevText", "Background", u"<font=3>" + szText + u"</font>", CvUtil.FONT_CENTER_JUSTIFY, self.X_SCREEN, self.BOTTOM_LINE_TOP + self.BOTTOM_LINE_HEIGHT/4 + 0 * self.TEXT_MARGIN//2, 0, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1)
 
