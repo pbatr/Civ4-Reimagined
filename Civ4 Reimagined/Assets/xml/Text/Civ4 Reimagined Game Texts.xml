@@ -1076,7 +1076,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_ENABLES_IDEOLOGIES</Tag>
-		<English>[ICON_BULLET]Enables [ICON_UNHAPPY] from Foreign Civics for All Players</English>
+		<English>[ICON_BULLET]Enables Ideologies for All Players</English>
 	</TEXT>	
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_COMBAT_XP_MODIFIER_POSITIVE</Tag>
