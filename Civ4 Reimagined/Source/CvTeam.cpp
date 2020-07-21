@@ -4848,6 +4848,15 @@ void CvTeam::changeProjectCount(ProjectTypes eIndex, int iChange)
 				{
 					if (GET_PLAYER((PlayerTypes)iI).getTeam() == getID())
 					{
+						// Civ4 Reimagined
+						for (iJ = 0; iJ < GC.getNumIdeologyInfos(); iJ++)
+						{
+							if (kProject.getBonusRatioIdeologyModifier(iJ) != 0)
+							{
+								GET_PLAYER((PlayerTypes)iI).changeBonusRatioModifierPerIdeologyCiv((IdeologyTypes)iJ, kProject.getBonusRatioIdeologyModifier(iJ));
+							}
+						}
+
 						if (!(GET_PLAYER((PlayerTypes)iI).isHuman()))
 						{
 							bChangeProduction = false;

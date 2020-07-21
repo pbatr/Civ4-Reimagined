@@ -540,6 +540,17 @@
 	<ElementType name="bAllowsNukes" content="textOnly" dt:type="boolean"/>
 	<ElementType name="ProjectType" content="textOnly"/>
 	<ElementType name="iNeeded" content="textOnly" dt:type="int"/>
+	<!-- Civ4 Reimagined START -->
+	<ElementType name="IdeologyType" content="textOnly"/>
+	<ElementType name="iBonusRatioModifier" content="textOnly" dt:type="int"/>
+	<ElementType name="BonusRatioIdeologyModifier" content="eltOnly">
+		<element type="IdeologyType"/>
+		<element type="iBonusRatioModifier"/>
+	</ElementType>
+	<ElementType name="BonusRatioIdeologyModifiers" content="eltOnly">
+		<element type="BonusRatioIdeologyModifier" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	<!-- Civ4 Reimagined END -->
 	<ElementType name="PrereqProject" content="eltOnly">
 		<element type="ProjectType"/>
 		<element type="iNeeded"/>
@@ -609,6 +620,7 @@
 		<element type="VictoryMinThresholds"/>
 		<element type="iVictoryDelayPercent"/>
 		<element type="iSuccessRate"/>
+		<element type="BonusRatioIdeologyModifiers" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="BonusProductionModifiers"/>
 		<element type="CreateSound"/>
 		<element type="MovieDefineTag"/>

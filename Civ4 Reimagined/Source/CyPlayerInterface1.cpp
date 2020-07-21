@@ -424,6 +424,7 @@ void CyPlayerPythonInterface1(python::class_<CyPlayer>& x)
 		.def("setCivics", &CyPlayer::setCivics, "void (int iCivicOptionType, int iCivicType) - Used to forcibly set civics with no anarchy")
 		
 		.def("getBonusValueModifier", &CyPlayer::getBonusValueModifier, "int () - ") // Civ4 Reimagined
+		.def("calculateBonusRatioModifier", &CyPlayer::calculateBonusRatioModifier, "int () - ") // Civ4 Reimagined
 		.def("getTechValue", &CyPlayer::getTechValue, "int () - ") // Civ4 Reimagined
 		.def("getBonusRatio", &CyPlayer::getBonusRatio, "int () - ") // Civ4 Reimagined
 		.def("getUniquePowerLevel", &CyPlayer::getUniquePowerLevel, "int () - Current unique power level") // Civ4 Reimagined

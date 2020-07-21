@@ -4142,7 +4142,7 @@ class CvMainInterface:
 				
 				#Civ4 Reimagined: Display resource ratio and total health/happiness
 				iBonusRatio = int(gc.getPlayer(pHeadSelectedCity.getOwner()).getTechValue() / max(1, gc.getPlayer(pHeadSelectedCity.getOwner()).getTotalPopulation()))
-				iBonusRatio *= (100 + gc.getPlayer(pHeadSelectedCity.getOwner()).getBonusValueModifier())
+				iBonusRatio *= (100 + gc.getPlayer(pHeadSelectedCity.getOwner()).calculateBonusRatioModifier())
 				iBonusRatio /= 100
 				szBuffer = u"Resource Ratio: %d.%02d" %(iBonusRatio/100, iBonusRatio%100)
 				if iBonusRatio > 100:

@@ -9009,6 +9009,7 @@ int CvBuildingInfo::getImprovementFreeSpecialist(int i) const
 	return m_piImprovementFreeSpecialist ? m_piImprovementFreeSpecialist[i] : -1;
 }
 
+// Civ4 Reimagined
 int CvBuildingInfo::getForeignTradeIdeologyModifier(int i) const
 {
 	FAssertMsg(i < GC.getNumIdeologyInfos(), "Index out of bounds");
@@ -17801,6 +17802,7 @@ m_iVictoryDelayPercent(0),
 m_iSuccessRate(0),
 m_bSpaceship(false),
 m_bAllowsNukes(false),
+m_piBonusRatioIdeologyModifier(NULL), // Civ4 Reimagined
 m_piBonusProductionModifier(NULL),
 m_piVictoryThreshold(NULL),
 m_piVictoryMinThreshold(NULL),
@@ -17817,6 +17819,7 @@ m_piProjectsNeeded(NULL)
 //------------------------------------------------------------------------------------------------------
 CvProjectInfo::~CvProjectInfo()
 {
+	SAFE_DELETE_ARRAY(m_piBonusRatioIdeologyModifier); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_piBonusProductionModifier);
 	SAFE_DELETE_ARRAY(m_piVictoryThreshold);
 	SAFE_DELETE_ARRAY(m_piVictoryMinThreshold);
@@ -17933,6 +17936,14 @@ void CvProjectInfo::setCreateSound(const TCHAR* szVal)
 
 // Arrays
 
+// Civ4 Reimagined
+int CvProjectInfo::getBonusRatioIdeologyModifier(int i) const
+{
+	FAssertMsg(i < GC.getNumIdeologyInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_piBonusRatioIdeologyModifier ? m_piBonusRatioIdeologyModifier[i] : -1;
+}
+
 int CvProjectInfo::getBonusProductionModifier(int i) const										
 {
 	FAssertMsg(i < GC.getNumBonusInfos(), "Index out of bounds");
@@ -18007,6 +18018,7 @@ bool CvProjectInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bAllowsNukes, "bAllowsNukes");
 	pXML->GetChildXmlValByName(m_szMovieArtDef, "MovieDefineTag");
 
+	pXML->SetVariableListTagPair(&m_piBonusRatioIdeologyModifier, "BonusRatioIdeologyModifiers", sizeof(GC.getIdeologyInfo((IdeologyTypes)0)), GC.getNumIdeologyInfos()); // Civ4 Reimagined
 	pXML->SetVariableListTagPair(&m_piBonusProductionModifier, "BonusProductionModifiers", sizeof(GC.getBonusInfo((BonusTypes)0)), GC.getNumBonusInfos());
 	pXML->SetVariableListTagPair(&m_piVictoryThreshold, "VictoryThresholds", sizeof(GC.getVictoryInfo((VictoryTypes)0)), GC.getNumVictoryInfos());
 	pXML->SetVariableListTagPair(&m_piVictoryMinThreshold, "VictoryMinThresholds", sizeof(GC.getVictoryInfo((VictoryTypes)0)), GC.getNumVictoryInfos());
