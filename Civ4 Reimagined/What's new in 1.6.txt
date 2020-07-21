@@ -36,6 +36,7 @@ Interface
 Fixes
 *********
 -Low resolution for texts and icons
+-Occasional crash when changing civics
 
 
 *******************************************

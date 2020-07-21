@@ -3537,6 +3537,7 @@ int CvCity::getProductionDifference(int iProductionNeeded, int iProduction, int 
 	
 	// Civ4 Reimagined: Unit specific feature production bonus
 	int iBonusProduction = 0;
+	int iFoodProduction = bFoodProduction ? std::max(0, getYieldRate(YIELD_FOOD) - foodConsumption()) : 0;
 
 	const UnitTypes eUnit = getProductionUnit();
 	if (eUnit != NO_UNIT)
@@ -3547,14 +3548,12 @@ int CvCity::getProductionDifference(int iProductionNeeded, int iProduction, int 
 			iBonusProduction = iFeatureProduction * iFeatureProductionModifier / 100;
 			iFeatureProduction += iBonusProduction;
 		}
-	}
 
-	int iFoodProduction = bFoodProduction ? std::max(0, getYieldRate(YIELD_FOOD) - foodConsumption()) : 0;
-	
-	// Civ4 Reimagined
-	if (isMeleeFoodProduction(eUnit))
-	{
-		iFoodProduction *= 2;
+		// Civ4 Reimagined
+		if (isMeleeFoodProduction(eUnit))
+		{
+			iFoodProduction *= 2;
+		}
 	}
 	
 	const int iOverflow = ((bOverflow) ? (getOverflowProduction() + iFeatureProduction) : 0);
