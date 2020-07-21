@@ -438,6 +438,12 @@
 			<VictoryMinThresholds/>
 			<iVictoryDelayPercent>0</iVictoryDelayPercent>
 			<iSuccessRate>0</iSuccessRate>
+			<BonusRatioIdeologyModifiers>
+				<BonusRatioIdeologyModifier>
+					<IdeologyType>IDEOLOGY_COMMUNISM</IdeologyType>
+					<iBonusRatioModifier>5</iBonusRatioModifier>
+				</BonusRatioIdeologyModifie>
+			</BonusRatioIdeologyModifiers>
 			<BonusProductionModifiers/>
 			<CreateSound/>
 			<MovieDefineTag/>

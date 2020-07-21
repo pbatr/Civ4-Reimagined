@@ -1863,6 +1863,12 @@ int CyPlayer::getBonusValueModifier()
 }
 
 // Civ4 Reimagined
+int CyPlayer::calculateBonusRatioModifier()
+{
+	return m_pPlayer ? m_pPlayer->calculateBonusRatioModifier() : -1;
+}
+
+// Civ4 Reimagined
 int CyPlayer::getTechValue()
 {
 	return m_pPlayer ? m_pPlayer->getTechValue() : -1;
