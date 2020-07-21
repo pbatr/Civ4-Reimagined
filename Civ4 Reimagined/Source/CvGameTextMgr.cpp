@@ -12244,6 +12244,16 @@ void CvGameTextMgr::setProjectHelp(CvWStringBuffer &szBuffer, ProjectTypes eProj
 	}
 
 	// Civ4 Reimagined
+	for (iI = 0; iI < GC.getNumIdeologyInfos(); iI++)
+	{
+		if (kProject.getBonusRatioIdeologyModifier(iI) != 0)
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_PROJECT_BONUS_RATION_IDEOLOGY_MOD", kProject.getBonusRatioIdeologyModifier(iI), GC.getIdeologyInfo((IdeologyTypes)iI).getAdjectiveKey()));
+		}
+	}
+
+	// Civ4 Reimagined
 	if (kProject.getEveryoneTechnology() != NO_TECH)
 	{
 		szBuffer.append(NEWLINE);

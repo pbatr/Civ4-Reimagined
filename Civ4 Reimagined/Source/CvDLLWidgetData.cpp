@@ -4830,7 +4830,7 @@ void CvDLLWidgetData::parseBonusRatioHelp(CvWidgetDataStruct &widgetDataStruct, 
 		szBuffer.append(gDLL->getText("TXT_KEY_MISC_BONUS_RATIO_POPULATION", iTotalPopulation));
 		
 		int iBaseRatio = iTechValue / iTotalPopulation;
-		int iBonusValueModifier = GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).getBonusValueModifier();
+		int iBonusValueModifier = GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).calculateBonusRatioModifier();
 		if (iBonusValueModifier != 0)
 		{
 			szBuffer.append(L"\n-----------------------\n");

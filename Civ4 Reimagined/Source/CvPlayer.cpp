@@ -71,6 +71,7 @@ CvPlayer::CvPlayer()
 	m_aiBestUnitPower = new int[NUM_DOMAIN_TYPES]; // Civ4 Reimagined
 	m_aiIdeologyValue = new int[NUM_IDEOLOGY_TYPES]; // Civ4 Reimagind
 	m_aiForeignTradeIdeologyModifier = new int[NUM_IDEOLOGY_TYPES]; // Civ4 Reimagind
+	m_aiBonusRatioModifierPerIdeologyCiv = new int[NUM_IDEOLOGY_TYPES]; // Civ4 Reimagind
 
 	m_abFeatAccomplished = new bool[NUM_FEAT_TYPES];
 	m_abOptions = new bool[NUM_PLAYEROPTION_TYPES];
@@ -150,6 +151,7 @@ CvPlayer::~CvPlayer()
 	SAFE_DELETE_ARRAY(m_aiBestUnitPower); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiIdeologyValue); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiForeignTradeIdeologyModifier); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_aiBonusRatioModifierPerIdeologyCiv); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_abFeatAccomplished);
 	SAFE_DELETE_ARRAY(m_abOptions);
 }
@@ -1014,6 +1016,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	for (iI = 0; iI < NUM_IDEOLOGY_TYPES; iI++)
 	{
 		m_aiForeignTradeIdeologyModifier[iI] = 0;
+		m_aiBonusRatioModifierPerIdeologyCiv[iI] = 0;
 	}
 
 	for (iI = 0; iI < NUM_FEAT_TYPES; iI++)
@@ -12756,6 +12759,9 @@ void CvPlayer::setAlive(bool bNewValue)
 			killCities();
 			killAllDeals();
 
+			// Civ4 Reimagined
+			GC.getGameINLINE().updateIdeologyCount();
+
 			setTurnActive(false);
 
 			gDLL->endMPDiplomacy();
@@ -20061,6 +20067,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(NUM_DOMAIN_TYPES, m_aiBestUnitPower); // Civ4 Reimagined
 	pStream->Read(NUM_IDEOLOGY_TYPES, m_aiIdeologyValue); // Civ4 Reimagined
 	pStream->Read(NUM_IDEOLOGY_TYPES, m_aiForeignTradeIdeologyModifier); // Civ4 Reimagined
+	pStream->Read(NUM_IDEOLOGY_TYPES, m_aiBonusRatioModifierPerIdeologyCiv); // Civ4 Reimagined
 	pStream->Read(GC.getNumBonusInfos(), m_paiPlayerExtraAvailableBonuses); // Civ4 Reimagined
 
 	//pStream->Read(GC.getNumUnitClassInfos(), m_aiUnitProductionModifier); // Civ4 Reimagined
@@ -20646,6 +20653,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(NUM_DOMAIN_TYPES, m_aiBestUnitPower); // Civ4 Reimagined
 	pStream->Write(NUM_IDEOLOGY_TYPES, m_aiIdeologyValue); // Civ4 Reimagined
 	pStream->Write(NUM_IDEOLOGY_TYPES, m_aiForeignTradeIdeologyModifier); // Civ4 Reimagined
+	pStream->Write(NUM_IDEOLOGY_TYPES, m_aiBonusRatioModifierPerIdeologyCiv); // Civ4 Reimagined
 	pStream->Write(GC.getNumBonusInfos(), m_paiPlayerExtraAvailableBonuses); // Civ4 Reimagined
 	
 	FAssertMsg((0 < GC.getNumTechInfos()), "GC.getNumTechInfos() is not greater than zero but it is expected to be in CvPlayer::write");
@@ -26292,6 +26300,20 @@ int CvPlayer::getBonusValueTimes100(int iBonusCount) const
 }
 
 // Civ4 Reimagined: Quantifiable Resource System
+int CvPlayer::calculateBonusRatioModifier() const
+{
+	int iModifier = getBonusValueModifier();
+
+	if (GC.getGameINLINE().areIdeologiesEnabled())
+	{
+		iModifier += GC.getGameINLINE().getIdeologyCount(getIdeology()) * getBonusRatioModifierPerIdeologyCiv(getIdeology());
+	}
+
+	return iModifier;
+}
+
+
+// Civ4 Reimagined: Quantifiable Resource System
 int CvPlayer::getBonusRatio() const
 {
 	return m_iBonusRatio;
@@ -26310,8 +26332,10 @@ void CvPlayer::updateBonusRatio(bool bAlwaysUpdate)
 	
 	if (iTotalPop > 0)
 	{
+		const int iModifier = 100 + calculateBonusRatioModifier();
+
 		int iValue = getTechValue() / iTotalPop;
-		iValue *= (100 + getBonusValueModifier());
+		iValue *= iModifier;
 		iValue /= 100;
 		
 		iValue = std::min(100, iValue);
@@ -26437,6 +26461,7 @@ void CvPlayer::updateIdeology()
 	if (getIdeology() != eBestIdeology)
 	{
 		m_eIdeology = eBestIdeology;
+		GC.getGameINLINE().updateIdeologyCount();
 		logBBAI("new ideology: %d", (int)eBestIdeology);
 	}
 }
@@ -26458,6 +26483,26 @@ void CvPlayer::changeForeignTradeIdeologyModifier(IdeologyTypes eIndex, int iCha
 		m_aiForeignTradeIdeologyModifier[eIndex] = (m_aiForeignTradeIdeologyModifier[eIndex] + iChange);
 
 		updateTradeRoutes();
+	}
+}
+
+int CvPlayer::getBonusRatioModifierPerIdeologyCiv(IdeologyTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumIdeologyInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_aiBonusRatioModifierPerIdeologyCiv[eIndex];
+}
+
+void CvPlayer::changeBonusRatioModifierPerIdeologyCiv(IdeologyTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumIdeologyInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	if (iChange != 0)
+	{
+		m_aiBonusRatioModifierPerIdeologyCiv[eIndex] = (m_aiBonusRatioModifierPerIdeologyCiv[eIndex] + iChange);
+
+		updateBonusRatio();
 	}
 }
 

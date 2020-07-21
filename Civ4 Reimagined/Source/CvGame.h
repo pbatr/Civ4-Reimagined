@@ -545,6 +545,7 @@ public:
 	bool pythonIsBonusIgnoreLatitudes() const;
 
 	// Civ4 Reimagined
+	void updateIdeologyCount();
 	int getIdeologyCount(IdeologyTypes eIndex) const;
 
 	DllExport void getGlobeLayers(std::vector<CvGlobeLayerData>& aLayers) const;
@@ -658,6 +659,7 @@ protected:
 	int* m_aiSecretaryGeneralTimer;
 	int* m_aiVoteTimer;
 	int* m_aiDiploVote;
+	int* m_aiIdeologyPlayerCount; // Civ4 Reimagined
 
 	bool* m_pabSpecialUnitValid;
 	bool* m_pabSpecialBuildingValid;

@@ -440,6 +440,7 @@ public:
 	void setCivics(int /*CivicOptionTypes*/ eIndex, int /*CivicTypes*/ eNewValue);
 
 	int getBonusValueModifier(); /// Civ4 Reimagined
+	int calculateBonusRatioModifier(); // Civ4 Reimagined
 	int getTechValue(); // Civ4 Reimagined
 	int getBonusRatio(); // Civ4 Reimagined
 	int getUniquePowerLevel(); // Civ4 Reimagined

@@ -4308,6 +4308,7 @@ public:
 
 	// Arrays
 
+	int getBonusRatioIdeologyModifier(int i) const; // Civ4 Reimagined
 	int getBonusProductionModifier(int i) const;	// Exposed to Python
 	int getVictoryThreshold(int i) const;					// Exposed to Python
 	int getVictoryMinThreshold(int i) const;					// Exposed to Python
@@ -4343,6 +4344,7 @@ protected:
 
 	// Arrays
 
+	int* m_piBonusRatioIdeologyModifier; // Civ4 Reimagined
 	int* m_piBonusProductionModifier;
 	int* m_piVictoryThreshold;
 	int* m_piVictoryMinThreshold;

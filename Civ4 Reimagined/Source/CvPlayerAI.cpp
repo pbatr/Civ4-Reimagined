@@ -15320,8 +15320,8 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	if (kCivic.getBonusRatioModifier() != 0 && pCapital && getTotalPopulation() > 0)
 	{
 		const int iBaseRatio    = getTechValue() / getTotalPopulation();
-		const int iCurrentRatio = range(iBaseRatio * (100 + getBonusValueModifier()) / 100, 0, 100);
-		const int iNewRatio     = range(iBaseRatio * (100 + getBonusValueModifier() + kCivic.getBonusRatioModifier()) / 100, 0, 100);
+		const int iCurrentRatio = range(iBaseRatio * (100 + calculateBonusRatioModifier()) / 100, 0, 100);
+		const int iNewRatio     = range(iBaseRatio * (100 + calculateBonusRatioModifier() + kCivic.getBonusRatioModifier()) / 100, 0, 100);
 
 		if (iCurrentRatio != iNewRatio)
 		{
