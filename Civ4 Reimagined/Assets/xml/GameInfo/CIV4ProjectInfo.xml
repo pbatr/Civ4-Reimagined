@@ -441,8 +441,8 @@
 			<BonusRatioIdeologyModifiers>
 				<BonusRatioIdeologyModifier>
 					<IdeologyType>IDEOLOGY_COMMUNISM</IdeologyType>
-					<iBonusRatioModifier>5</iBonusRatioModifier>
-				</BonusRatioIdeologyModifie>
+					<BonusRatioModifier>25</BonusRatioModifier>
+				</BonusRatioIdeologyModifier>
 			</BonusRatioIdeologyModifiers>
 			<BonusProductionModifiers/>
 			<CreateSound/>
