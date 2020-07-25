@@ -66,4 +66,8 @@
 		<Tag>TXT_KEY_PROJECT_GRANTS_TECH_TO_ALL</Tag>
 		<English>[ICON_BULLET]All Civilizations in the Game get Access to [LINK=literal]%s1_Name[\LINK] Technology</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_BONUS_RATIO_IDEOLOGY_MODIFIER</Tag>
+		<English>[ICON_BULLET]+%d1% from Civilizations with same Ideology</English>
+	</TEXT>
 </Civ4GameText>

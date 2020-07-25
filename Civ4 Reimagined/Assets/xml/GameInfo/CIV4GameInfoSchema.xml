@@ -542,10 +542,10 @@
 	<ElementType name="iNeeded" content="textOnly" dt:type="int"/>
 	<!-- Civ4 Reimagined START -->
 	<ElementType name="IdeologyType" content="textOnly"/>
-	<ElementType name="iBonusRatioModifier" content="textOnly" dt:type="int"/>
+	<ElementType name="BonusRatioModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="BonusRatioIdeologyModifier" content="eltOnly">
 		<element type="IdeologyType"/>
-		<element type="iBonusRatioModifier"/>
+		<element type="BonusRatioModifier"/>
 	</ElementType>
 	<ElementType name="BonusRatioIdeologyModifiers" content="eltOnly">
 		<element type="BonusRatioIdeologyModifier" minOccurs="0" maxOccurs="*"/>
