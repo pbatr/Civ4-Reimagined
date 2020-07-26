@@ -162,7 +162,7 @@
 			<Button>,Art/Interface/Buttons/Civics/Nationhood.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,1,2</Button>
 			<TechPrereq>TECH_MONARCHY</TechPrereq>
 			<iAnarchyLength>1</iAnarchyLength>
-			<Upkeep>UPKEEP_LOW</Upkeep>
+			<Upkeep>UPKEEP_MEDIUM</Upkeep>
 			<iAIWeight>0</iAIWeight>
 			<iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
 			<bNoGreatPeople>1</bNoGreatPeople>
@@ -440,7 +440,7 @@
 			<bNoForeignTrade>0</bNoForeignTrade>
 			<bNoCorporations>0</bNoCorporations>
 			<bNoForeignCorporations>0</bNoForeignCorporations>
-			<iCivicPercentAnger>200</iCivicPercentAnger>
+			<iCivicPercentAnger>400</iCivicPercentAnger>
 			<bStateReligion>0</bStateReligion>
 			<bNoNonStateReligionSpread>0</bNoNonStateReligionSpread>
 			<iStateReligionHappiness>0</iStateReligionHappiness>
@@ -448,7 +448,7 @@
 			<iStateReligionUnitProductionModifier>0</iStateReligionUnitProductionModifier>
 			<iStateReligionBuildingProductionModifier>0</iStateReligionBuildingProductionModifier>
 			<iStateReligionFreeExperience>0</iStateReligionFreeExperience>
-			<iResearchPerCulture>20</iResearchPerCulture>
+			<iResearchPerCulture>25</iResearchPerCulture>
 			<YieldModifiers/>
 			<ExtraYields/>
 			<CapitalYieldModifiers/>
@@ -1128,10 +1128,10 @@
 				</ImprovementYieldChange>
 			</ImprovementYieldChanges>
 			<WeLoveTheKing/>
-			<iConservative>0</iConservative>
+			<iConservative>3</iConservative>
 			<iLiberal>-8</iLiberal>
 			<iCommunist>-2</iCommunist>
-			<iFascist>0</iFascist>
+			<iFascist>2</iFascist>
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_LABOR</CivicOptionType>
@@ -1747,9 +1747,9 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
-			<iConservative>0</iConservative>
+			<iConservative>2</iConservative>
 			<iLiberal>0</iLiberal>
-			<iCommunist>0</iCommunist>
+			<iCommunist>-2</iCommunist>
 			<iFascist>0</iFascist>
 		</CivicInfo>
 		<CivicInfo>
