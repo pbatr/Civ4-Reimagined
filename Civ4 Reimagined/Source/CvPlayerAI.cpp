@@ -15317,60 +15317,13 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	}
 	
 	// Civ4 Reimagined: getBonusRatioModifier
-	if (kCivic.getBonusRatioModifier() != 0 && pCapital && getTotalPopulation() > 0)
+	if (kCivic.getBonusRatioModifier() != 0)
 	{
-		const int iBaseRatio    = getTechValue() / getTotalPopulation();
-		const int iCurrentRatio = range(iBaseRatio * (100 + calculateBonusRatioModifier()) / 100, 0, 100);
-		const int iNewRatio     = range(iBaseRatio * (100 + calculateBonusRatioModifier() + kCivic.getBonusRatioModifier()) / 100, 0, 100);
+		const int iTempValue = AI_getBonusRatioModfierValue(kCivic.getBonusRatioModifier());
 
-		if (iCurrentRatio != iNewRatio)
-		{
-			int iHappinessChange = 0;
-			int iHealthChange = 0;
-			int iProductionDifference = 0;
+		if (gPlayerLogLevel > 0 && iTempValue != 0) logBBAI("	Civic Value of Bonus Ratio Modifier: %d", iTempValue);
 
-			for (int iI = 0; iI < GC.getNumBonusInfos(); ++iI)
-			{
-				if (pCapital->hasBonus((BonusTypes)iI))
-				{
-					const int iNumBonus = pCapital->getNumBonuses((BonusTypes)iI);
-					if (GC.getBonusInfo((BonusTypes)iI).getHappiness() > 0 || GC.getBonusInfo((BonusTypes)iI).getHealth() > 0)
-					{
-						const int iCurrentBonusHappiness = GC.getBonusInfo((BonusTypes)iI).getHappiness() * iNumBonus * iCurrentRatio;
-						const int iNewBonusHappiness     = GC.getBonusInfo((BonusTypes)iI).getHappiness() * iNumBonus * iNewRatio;
-						iHappinessChange += iNewBonusHappiness - iCurrentBonusHappiness;
-
-						const int iCurrentBonusHealth = GC.getBonusInfo((BonusTypes)iI).getHealth() * iNumBonus * iCurrentRatio;
-						const int iNewBonusHealth     = GC.getBonusInfo((BonusTypes)iI).getHealth() * iNumBonus * iNewRatio;
-						iHealthChange += iNewBonusHealth - iCurrentBonusHealth;
-					} 
-					else // strategic resource... this is a bit of a stretch because we are missing some resources like ivory
-					{
-						if (kCivic.isNoMilitaryProductionMali())
-							continue;
-
-						iProductionDifference += AI_baseBonusVal((BonusTypes)iI) * (std::max(100, iNewRatio * iNumBonus) - std::max(100, iCurrentRatio * iNumBonus));
-					}
-				}
-			}
-
-			int iTempValue = 0;
-			if (iHappinessChange / 100 != 0)
-			{
-				iTempValue += 10 * iCities * AI_getHappinessWeight(iHappinessChange / 100, 1) / 100;
-			}
-
-			if (iHealthChange / 100 != 0)
-			{
-				iTempValue += 9 * iCities * AI_getHealthWeight(iHealthChange / 100, 1) / 100;
-			}
-			// this is a tough one... just a guess
-			iTempValue += iCities * iProductionDifference / 2500;
-
-			if (gPlayerLogLevel > 0) logBBAI("	Civic Value of Bonus Ratio Modifier: %d", iTempValue);
-
-			iValue += iTempValue;
-		}
+		iValue += iTempValue;
 	}
 	
 	// Civ4 Reimagined: getPopulationUnhappinessModifier
@@ -26911,4 +26864,67 @@ int CvPlayerAI::AI_unitDomainDistribution(const DomainTypes domain, const EraTyp
 	}
 
 	return 0;
+}
+
+
+// Civ4 Reimagined
+int CvPlayerAI::AI_getBonusRatioModfierValue(const int iModifier) const
+{
+	const CvCity* pCapital = getCapitalCity();
+	const int iCities = getNumCities();
+
+	if (pCapital == NULL || getTotalPopulation() == 0)
+	{
+		return 0;
+	}
+
+	const int iBaseRatio    = getTechValue() / getTotalPopulation();
+	const int iCurrentRatio = range(iBaseRatio * (100 + calculateBonusRatioModifier()) / 100, 0, 100);
+	const int iNewRatio     = range(iBaseRatio * (100 + calculateBonusRatioModifier() + iModifier) / 100, 0, 100);
+
+	if (iCurrentRatio == iNewRatio)
+	{
+		return 0;
+	}
+
+	int iHappinessChange = 0;
+	int iHealthChange = 0;
+	int iProductionDifference = 0;
+
+	for (int iI = 0; iI < GC.getNumBonusInfos(); ++iI)
+	{
+		if (pCapital->hasBonus((BonusTypes)iI))
+		{
+			const int iNumBonus = pCapital->getNumBonuses((BonusTypes)iI);
+			if (GC.getBonusInfo((BonusTypes)iI).getHappiness() > 0 || GC.getBonusInfo((BonusTypes)iI).getHealth() > 0)
+			{
+				const int iCurrentBonusHappiness = GC.getBonusInfo((BonusTypes)iI).getHappiness() * iNumBonus * iCurrentRatio;
+				const int iNewBonusHappiness     = GC.getBonusInfo((BonusTypes)iI).getHappiness() * iNumBonus * iNewRatio;
+				iHappinessChange += iNewBonusHappiness - iCurrentBonusHappiness;
+
+				const int iCurrentBonusHealth = GC.getBonusInfo((BonusTypes)iI).getHealth() * iNumBonus * iCurrentRatio;
+				const int iNewBonusHealth     = GC.getBonusInfo((BonusTypes)iI).getHealth() * iNumBonus * iNewRatio;
+				iHealthChange += iNewBonusHealth - iCurrentBonusHealth;
+			} 
+			else // strategic resource... this is a bit of a stretch because we are missing some resources like ivory
+			{
+				iProductionDifference += AI_baseBonusVal((BonusTypes)iI) * (std::max(100, iNewRatio * iNumBonus) - std::max(100, iCurrentRatio * iNumBonus));
+			}
+		}
+	}
+
+	int iTempValue = 0;
+	if (iHappinessChange / 100 != 0)
+	{
+		iTempValue += 10 * iCities * AI_getHappinessWeight(iHappinessChange / 100, 1) / 100;
+	}
+
+	if (iHealthChange / 100 != 0)
+	{
+		iTempValue += 9 * iCities * AI_getHealthWeight(iHealthChange / 100, 1) / 100;
+	}
+	// this is a tough one... just a guess
+	iTempValue += iCities * iProductionDifference / 2500;
+
+	return iTempValue;
 }

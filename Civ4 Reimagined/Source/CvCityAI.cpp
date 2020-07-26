@@ -6143,6 +6143,23 @@ int CvCityAI::AI_projectValue(ProjectTypes eProject)
 		}
 	}
 
+	// Civ4 Reimagined
+	// Communist Manifesto
+	for (int iI = 0; iI < GC.getNumIdeologyInfos(); iI++)
+	{
+		if (kProject.getBonusRatioIdeologyModifier(iI) != 0)
+		{
+			int iIdeologyCount = GC.getGameINLINE().getIdeologyCount((IdeologyTypes)iI);
+
+			if (GC.getIdeologyInfo((IdeologyTypes)iI).getTechPrereq() == kProject.getEveryoneTechnology())
+			{
+				iIdeologyCount = std::max(iIdeologyCount, GC.getGameINLINE().countCivTeamsAlive() / 3);
+			}
+
+			iValue += kOwner.AI_getBonusRatioModfierValue(kProject.getBonusRatioIdeologyModifier(iI) * iIdeologyCount);
+		}
+	}
+
 	// Space victory
 	// How am I meant to gauge the value of a direct step towards victory? It just doesn't conform to the usual metrics...
 	// this is going to be very arbitrary...  -- and it will be based on the original BtS code!
