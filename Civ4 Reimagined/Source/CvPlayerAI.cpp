@@ -6472,7 +6472,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 			if (getTechFreeUnit(eTech) != NO_UNIT)
 			{
 				// K-Mod
-				int iRoll = 2 * (100 + AI_getGreatPersonWeight((UnitClassTypes)GC.getTechInfo(eTech).getFirstFreeUnitClass()));
+				int iRoll = 10 * (100 + AI_getGreatPersonWeight((UnitClassTypes)GC.getTechInfo(eTech).getFirstFreeUnitClass()));
 				// I've diluted the weight because free great people doesn't have the negative effect of making it harder to get more great people
 				iRoll *= 200 + iRaceModifier;
 				iRoll /= 200;
@@ -18767,11 +18767,10 @@ void CvPlayerAI::AI_doCivics()
 			}
 		}
 		
-		iThreshold = (iAnarchyLength > 0) ? 5 : 0;
+		iThreshold = (iAnarchyLength > 0) ? 1 : 0;
 		
 		if (iAccumulatedValue1 - iOldAccumulatedValue1 >= iAccumulatedValue2 - iOldAccumulatedValue2)
 		{
-			iThreshold = std::max(0, iThreshold - 2*iNumCivicSwitches1);
 			if (iAccumulatedValue1 * 10 <= iOldAccumulatedValue1 * (10 + iThreshold))
 			{
 				if (gPlayerLogLevel > 0) logBBAI("Values not big enough to switch...");
@@ -18780,7 +18779,6 @@ void CvPlayerAI::AI_doCivics()
 		}
 		else
 		{
-			iThreshold = std::max(0, iThreshold - 2*iNumCivicSwitches2);
 			if (iAccumulatedValue2 * 10 <= iOldAccumulatedValue2 * (10 + iThreshold))
 			{
 				if (gPlayerLogLevel > 0) logBBAI("Values not big enough to switch...");
