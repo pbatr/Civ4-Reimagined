@@ -257,6 +257,7 @@ public:
 	// Civ4 Reimagined
 	CivicTypes AI_bestCivic(CivicOptionTypes eCivicOption, int* iBestValue = 0, bool bNoWarWeariness = false, bool bStateReligion = true, int iHappy = 1) const;
 	int AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness = false, bool bStateReligion = true, int iHappy = 1) const;
+	int AI_getBonusRatioModfierValue(const int iModifier) const;
 
 	ReligionTypes AI_bestReligion() const;
 	int AI_religionValue(ReligionTypes eReligion) const;
