@@ -5584,6 +5584,17 @@ void CvTeam::setHasTech(TechTypes eIndex, bool bNewValue, PlayerTypes ePlayer, b
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
 
+			// Civ4 Reimagined
+			bool bEnablesCivic = false;
+			for (iI = 0; iI < GC.getNumCivicInfos(); iI++)
+			{
+				if (GC.getCivicInfo((CivicTypes)iI).getTechPrereq() == eIndex)
+				{
+					bEnablesCivic = true;
+					break;
+				}
+			}
+
 			for (iI = 0; iI < MAX_PLAYERS; iI++)
 			{
 				if (GET_PLAYER((PlayerTypes)iI).getTeam() == getID())
@@ -5591,6 +5602,12 @@ void CvTeam::setHasTech(TechTypes eIndex, bool bNewValue, PlayerTypes ePlayer, b
 					if (GET_PLAYER((PlayerTypes)iI).getCurrentEra() < GC.getTechInfo(eIndex).getEra())
 					{
 						GET_PLAYER((PlayerTypes)iI).setCurrentEra((EraTypes)(GC.getTechInfo(eIndex).getEra()));
+					}
+
+					// Civ4 Reimagined
+					if (bEnablesCivic)
+					{
+						GET_PLAYER((PlayerTypes)iI).AI_setCivicTimer(0);
 					}
 				}
 			}
