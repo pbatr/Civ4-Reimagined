@@ -37,6 +37,8 @@ Fixes
 *********
 -Low resolution for texts and icons
 -Occasional crash when changing civics
+-Levy Armies did not grant free units
+-Seowon and Madrassa did not give science bonus with Scientific Method
 
 
 *******************************************
