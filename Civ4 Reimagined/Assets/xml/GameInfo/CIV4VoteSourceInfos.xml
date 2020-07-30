@@ -11,7 +11,7 @@
 			<Description>TXT_KEY_BUILDING_UNITED_NATIONS</Description>
 			<PopupText>TXT_KEY_POPUP_CHOOSE_ELECTION</PopupText>
 			<SecretaryGeneralText>TXT_KEY_SECRETARY_GENERAL</SecretaryGeneralText>
-			<iVoteInterval>5</iVoteInterval>
+			<iVoteInterval>4</iVoteInterval>
 			<FreeSpecialist>NONE</FreeSpecialist>
 			<Civic>NONE</Civic>
 			<ReligionYields/>
@@ -22,7 +22,7 @@
 			<Description>TXT_KEY_BUILDING_APOSTOLIC_PALACE</Description>
 			<PopupText>TXT_KEY_POPUP_POPE_ELECTION</PopupText>
 			<SecretaryGeneralText>TXT_KEY_APOSTOLIC_PALACE_RESIDENT</SecretaryGeneralText>
-			<iVoteInterval>9</iVoteInterval>
+			<iVoteInterval>8</iVoteInterval>
 			<FreeSpecialist>NONE</FreeSpecialist>
 			<Civic>NONE</Civic>
 			<ReligionYields>

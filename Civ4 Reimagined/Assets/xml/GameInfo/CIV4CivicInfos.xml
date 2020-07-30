@@ -1945,7 +1945,7 @@
 			<iGoldPerMilitaryUnit>0</iGoldPerMilitaryUnit>
 			<iHappyPerMilitaryUnit>0</iHappyPerMilitaryUnit>
 			<bMilitaryFoodProduction>0</bMilitaryFoodProduction>
-			<bNoMilitaryProductionMali>1</bNoMilitaryProductionMali>
+			<bNoMilitaryProductionMali>0</bNoMilitaryProductionMali>
 			<iMaxConscript>0</iMaxConscript>
 			<bNoUnhealthyPopulation>0</bNoUnhealthyPopulation>
 			<iExpInBorderModifier>0</iExpInBorderModifier>
@@ -2803,8 +2803,8 @@
 			<iWorkerSpeedModifier>0</iWorkerSpeedModifier>
 			<iImprovementUpgradeRateModifier>0</iImprovementUpgradeRateModifier>
 			<iMilitaryProductionModifier>0</iMilitaryProductionModifier>
-			<iBaseFreeUnits>0</iBaseFreeUnits>
-			<iBaseFreeMilitaryUnits>15</iBaseFreeMilitaryUnits>
+			<iBaseFreeUnits>15</iBaseFreeUnits>
+			<iBaseFreeMilitaryUnits>0</iBaseFreeMilitaryUnits>
 			<iFreeUnitsPopulationPercent>0</iFreeUnitsPopulationPercent>
 			<iFreeMilitaryUnitsPopulationPercent>0</iFreeMilitaryUnitsPopulationPercent>
 			<iGoldPerUnit>0</iGoldPerUnit>

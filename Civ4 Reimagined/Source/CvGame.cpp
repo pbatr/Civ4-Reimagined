@@ -1007,6 +1007,134 @@ void CvGame::assignStartingPlots()
 	}
 }
 
+
+// Civ4 Reimagined
+int CvGame::calculateStartingPlotBiasScore(CvPlot* pStartingPlot, CivilizationTypes eCiv) const
+{
+	int iScore = 0;
+	CvPlot* pLoopPlot = NULL;
+
+	for (int iI = 0; iI < NUM_CITY_PLOTS; iI++)
+	{
+		pLoopPlot = plotCity(pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE(), iI);
+
+		if (pLoopPlot != NULL)
+		{
+			iScore += GC.getCivilizationInfo(eCiv).getCivilizationTerrainBias(pLoopPlot->getTerrainType());
+
+			if (pLoopPlot->getFeatureType() != NO_FEATURE)
+			{
+				iScore += GC.getCivilizationInfo(eCiv).getCivilizationFeatureBias(pLoopPlot->getFeatureType());
+			}
+		}
+	}
+
+	//logBBAI("	%S on plot (%d,%d) has score %d", GC.getCivilizationInfo(eCiv).getShortDescription(), pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE(), iScore);
+
+	return iScore;
+}
+
+
+// Civ4 Reimagined
+void CvGame::assignStartingPlotLocationsWithBias()
+{
+	CvPlot* apNewStartPlots[MAX_CIV_PLAYERS];
+	int aiStartingLocs[MAX_CIV_PLAYERS];
+	bool bFoundSwap = true;
+
+	for (int iI = 0; iI < MAX_CIV_PLAYERS; iI++)
+	{
+		apNewStartPlots[iI] = NULL;
+		aiStartingLocs[iI] = iI; // each player starting in own location
+	}
+
+	while (bFoundSwap)
+	{
+		bFoundSwap = false;
+
+		// just for debugging, can be removed
+		{
+			int iOverallScore = 0;
+			for (int iI = 0; iI < MAX_CIV_PLAYERS; iI++)
+			{
+				if (GET_PLAYER((PlayerTypes)iI).isAlive())
+				{
+					CvPlot *pStartingPlot = GET_PLAYER((PlayerTypes)aiStartingLocs[iI]).getStartingPlot();
+					iOverallScore += calculateStartingPlotBiasScore(pStartingPlot, GET_PLAYER((PlayerTypes)iI).getCivilizationType());
+				}
+			}
+
+			logBBAI("overall starting plot bias score: %d", iOverallScore);
+		}
+
+		std::pair<int, int> bestSwap;
+		int iBestSwapScore = 0;
+
+		for (int iI = 0; iI < MAX_CIV_PLAYERS; iI++)
+		{
+			if (GET_PLAYER((PlayerTypes)iI).isAlive())
+			{
+				CvPlot *pFirstPlayerPlot = GET_PLAYER((PlayerTypes)aiStartingLocs[iI]).getStartingPlot();
+				const int iFirstPlayerScore = calculateStartingPlotBiasScore(pFirstPlayerPlot, GET_PLAYER((PlayerTypes)iI).getCivilizationType());
+
+				for (int iJ = 0; iJ < MAX_CIV_PLAYERS; iJ++)
+				{
+					if (iI != iJ && GET_PLAYER((PlayerTypes)iJ).isAlive())
+					{
+						CvPlot *pSecondPlayerPlot = GET_PLAYER((PlayerTypes)aiStartingLocs[iJ]).getStartingPlot();
+						const int iSecondPlayerScore = calculateStartingPlotBiasScore(pSecondPlayerPlot, GET_PLAYER((PlayerTypes)iJ).getCivilizationType());
+						const int iCurrentScore = iFirstPlayerScore + iSecondPlayerScore;
+
+						const int iNewFirstPlayerScore = calculateStartingPlotBiasScore(pSecondPlayerPlot, GET_PLAYER((PlayerTypes)iI).getCivilizationType());
+						const int iNewSecondPlayerScore = calculateStartingPlotBiasScore(pFirstPlayerPlot, GET_PLAYER((PlayerTypes)iJ).getCivilizationType());
+						const int iNewScore = iNewFirstPlayerScore + iNewSecondPlayerScore;
+
+						if (iNewScore - iCurrentScore > iBestSwapScore)
+						{
+							//logBBAI("currentScore: %d, newScore: %d, bestScore: %d (swap %d <-> %d)", iCurrentScore, iNewScore, iBestSwapScore, iI, iJ);
+							bFoundSwap = true;
+							bestSwap = std::make_pair(iI, iJ);
+							iBestSwapScore = iNewScore - iCurrentScore;
+						}
+					}
+				}
+			}
+		}
+
+		if (bFoundSwap)
+		{
+			//logBBAI("swap %d <-> %d", aiStartingLocs[bestSwap.first], aiStartingLocs[bestSwap.second]);
+			const int iTemp = aiStartingLocs[bestSwap.first];
+			aiStartingLocs[bestSwap.first] = aiStartingLocs[bestSwap.second];
+			aiStartingLocs[bestSwap.second] = iTemp;
+		}
+	}
+
+	for (iI = 0; iI < MAX_CIV_PLAYERS; iI++)
+	{
+		if (GET_PLAYER((PlayerTypes)iI).isAlive())
+		{
+			if (aiStartingLocs[iI] != iI)
+			{
+				apNewStartPlots[iI] = GET_PLAYER((PlayerTypes)aiStartingLocs[iI]).getStartingPlot();
+			}
+		}
+	}
+
+	for (iI = 0; iI < MAX_CIV_PLAYERS; iI++)
+	{
+		if (GET_PLAYER((PlayerTypes)iI).isAlive())
+		{
+			if (apNewStartPlots[iI] != NULL)
+			{
+				GET_PLAYER((PlayerTypes)iI).setStartingPlot(apNewStartPlots[iI], false);
+			}
+		}
+	}
+}
+
+
+
 // Swaps starting locations until we have reached the optimal closeness between teams
 // (caveat: this isn't quite "optimal" because we could get stuck in local minima, but it's pretty good)
 
@@ -2280,7 +2408,15 @@ void CvGame::normalizeStartingPlots()
 	{
 		if (!gDLL->getPythonIFace()->callFunction(gDLL->getPythonIFace()->getMapScriptModule(), "normalizeStartingPlotLocations", NULL)  || gDLL->getPythonIFace()->pythonUsingDefaultImpl())
 		{
-			normalizeStartingPlotLocations();
+			if (isTeamGame())
+			{
+				normalizeStartingPlotLocations();
+			}
+			else
+			{
+				// Civ4 Reimagined
+				assignStartingPlotLocationsWithBias();
+			}
 		}
 	}
 

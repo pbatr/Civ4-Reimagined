@@ -10823,7 +10823,7 @@ int CvPlayerAI::AI_baseBonusVal(BonusTypes eBonus, bool bAdditional) const
 					if (kLoopBuilding.getPrereqAndBonus() == eBonus)
 					{
 						//iTempValue += 30;
-						iTempValue += isWorldWonderClass((BuildingClassTypes)iI) ? 60 : 30; // Civ4 Reimagined
+						iTempValue += isWorldWonderClass((BuildingClassTypes)iI) ? 30 : 15; // Civ4 Reimagined
 					}
 
 					for (int iJ = 0; iJ < GC.getNUM_BUILDING_PREREQ_OR_BONUSES(); iJ++)
@@ -10831,13 +10831,13 @@ int CvPlayerAI::AI_baseBonusVal(BonusTypes eBonus, bool bAdditional) const
 						if (kLoopBuilding.getPrereqOrBonuses(iJ) == eBonus)
 						{
 							//iTempValue += 20;
-							iTempValue += isWorldWonderClass((BuildingClassTypes)iI) ? 40 : 20; // Civ4 Reimagined
+							iTempValue += isWorldWonderClass((BuildingClassTypes)iI) ? 20 : 10; // Civ4 Reimagined
 						}
 					}
 
 					//iTempValue += kLoopBuilding.getBonusProductionModifier(eBonus) / 10;
 					// Civ4 Reimagined
-					iTempValue += kLoopBuilding.getBonusProductionModifier(eBonus) / (isWorldWonderClass((BuildingClassTypes)iI) ? 5 : 10);
+					iTempValue += kLoopBuilding.getBonusProductionModifier(eBonus) / (isWorldWonderClass((BuildingClassTypes)iI) ? 10 : 20);
 
 					if (kLoopBuilding.getPowerBonus() == eBonus)
 					{
@@ -15348,8 +15348,16 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				}
 			}
 
-			int iTempValue = 10 * iCities * AI_getHappinessWeight(iHappinessChange / 100, 1) / 100;
-			iTempValue += 9 * iCities * AI_getHealthWeight(iHealthChange / 100, 1) / 100;
+			int iTempValue = 0;
+			if (iHappinessChange / 100 != 0)
+			{
+				iTempValue += 10 * iCities * AI_getHappinessWeight(iHappinessChange / 100, 1) / 100;
+			}
+
+			if (iHealthChange / 100 != 0)
+			{
+				iTempValue += 9 * iCities * AI_getHealthWeight(iHealthChange / 100, 1) / 100;
+			}
 			// this is a tough one... just a guess
 			iTempValue += iCities * iProductionDifference / 2500;
 
@@ -15658,7 +15666,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		
 		if (kCivic.getHappyPerMilitaryUnit() != 0)
 		{
-			iGlobalHappiness += kCivic.getMilitaryHappinessLimit() > 0 ? kCivic.getMilitaryHappinessLimit() : 5;
+			iGlobalHappiness += kCivic.getMilitaryHappinessLimit() > 0 ? kCivic.getMilitaryHappinessLimit() : 4;
 		}
 		
 		for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
@@ -15680,7 +15688,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				int iCurrentUnhappiness = ((iCurrentAngerPercent * pLoopCity->getPopulation()) / GC.getPERCENT_ANGER_DIVISOR());
 				
 				int iCivicPercentAnger = getCivicPercentAnger(eCivic, true);
-				iCityHappiness += (((iCurrentAngerPercent + iCivicPercentAnger) * pLoopCity->getPopulation()) / GC.getPERCENT_ANGER_DIVISOR()) - iCurrentUnhappiness;
+				iCityHappiness += std::max(1, (((iCurrentAngerPercent + iCivicPercentAnger) * pLoopCity->getPopulation()) / GC.getPERCENT_ANGER_DIVISOR()) - iCurrentUnhappiness);
 			}
 			
 			if (kCivic.getLargestCityHappiness() != 0 && pLoopCity->findPopulationRank() <= GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getTargetNumCities())
@@ -15893,7 +15901,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		{
 			const int iCityProd = pLoopCity->getYieldRate(YIELD_PRODUCTION);
 
-			if (pLoopCity->isHasReligion(eBestReligion))
+			if (eBestReligion != NO_RELIGION && pLoopCity->isHasReligion(eBestReligion))
 			{
 				iBonusUnitProduction += iCityProd * kCivic.getStateReligionUnitProductionModifier() / 100;
 				iBonusBuildingProduction += iCityProd * kCivic.getStateReligionBuildingProductionModifier() / 100;
@@ -15915,6 +15923,9 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		// domain divisor: we divide after all domain calculations to avoid rounding errors
 		iBonusUnitProduction /= 100;
 		iBonusExperience /= 100;
+
+		iBonusUnitProduction *= std::max(iWarmongerFactor, (bWarPlan ? 100 : 0));
+		iBonusUnitProduction /= 100;
 		
 		if (iBonusExperience)
 		{
@@ -16030,7 +16041,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				int iLoop;
 				for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity; pLoopCity = nextCity(&iLoop))
 				{
-					if (pLoopCity->isHasReligion(eBestReligion))
+					if (eBestReligion != NO_RELIGION && pLoopCity->isHasReligion(eBestReligion))
 						base_rates.push_back(pLoopCity->getBaseGreatPeopleRate());
 				}
 				int iGpCities = std::min((int)base_rates.size(), 3);
@@ -16156,16 +16167,13 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		
 		//iTempValue += ((kCivic.getTradeYieldModifier(iI) * iCities) / 9);
 		// (K-Mod note: that denominator is bogus, but since no civics currently have this modifier anyway, I'm just going to leave it.)
-
-		int iImprovValue = 0;
 		
 		for (int iJ = 0; iJ < GC.getNumImprovementInfos(); iJ++)
 		{
 			// Improvement yield changes
-			iImprovValue = (AI_averageYieldMultiplier((YieldTypes)iI) * (kCivic.getImprovementYieldChanges(iJ, iI) * std::max((iCities*2)/3, getImprovementCount((ImprovementTypes)iJ))));
+			int iImprovValue = (AI_averageYieldMultiplier((YieldTypes)iI) * (kCivic.getImprovementYieldChanges(iJ, iI) * std::max((iCities)/3, getImprovementCount((ImprovementTypes)iJ))));
 			if (iImprovValue != 0 && gPlayerLogLevel > 2) logBBAI("		Value of %S Bonus: %d (has %d)", GC.getImprovementInfo((ImprovementTypes)iJ).getDescription(), iImprovValue, getImprovementCount((ImprovementTypes)iJ));
 			iTempValue += iImprovValue;
-			iImprovValue = 0;
 		}
 		
 		// Leoreth: specialist extra yield

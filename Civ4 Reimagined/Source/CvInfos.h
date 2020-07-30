@@ -2439,8 +2439,10 @@ public:
 	DllExport int getCivilizationUnits(int i) const;				// Exposed to Python
 	DllExport int getCivilizationFreeUnitsClass(int i) const;				// Exposed to Python
 	DllExport int getCivilizationInitialCivics(int i) const;				// Exposed to Python
-	
-	
+
+	// Civ4 Reimagined
+	int getCivilizationTerrainBias(int i) const;
+	int getCivilizationFeatureBias(int i) const;
 
 	DllExport bool isLeaders(int i) const;				// Exposed to Python
 	DllExport bool isCivilizationFreeBuildingClass(int i) const;				// Exposed to Python
@@ -2495,6 +2497,8 @@ protected:
 	int* m_piCivilizationBuildings;
 	int* m_piCivilizationUnits;
 	int* m_piCivilizationFreeUnitsClass;
+	int* m_piCivilizationTerrainBias; // Civ4 Reimagined
+	int* m_piCivilizationFeatureBias; // Civ4 Reimagined
 	int* m_piCivilizationInitialCivics;
 
 	bool* m_pbLeaders;

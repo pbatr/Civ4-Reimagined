@@ -441,6 +441,25 @@
 	<ElementType name="DisableTechs" content="eltOnly">
 		<element type="DisableTech" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
+	<!-- starting bias START -->
+	<ElementType name="TerrainType" content="textOnly"/>
+	<ElementType name="iBias" content="textOnly" dt:type="int"/>
+	<ElementType name="TerrainBias" content="eltOnly">
+		<element type="TerrainType"/>
+		<element type="iBias"/>
+	</ElementType>
+	<ElementType name="TerrainBiases" content="eltOnly">
+		<element type="TerrainBias" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="FeatureType" content="textOnly"/>
+	<ElementType name="FeatureBias" content="eltOnly">
+		<element type="FeatureType"/>
+		<element type="iBias"/>
+	</ElementType>
+	<ElementType name="FeatureBiases" content="eltOnly">
+		<element type="FeatureBias" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	<!-- starting bias END -->
 	<ElementType name="CivicType" content="textOnly"/>
 	<ElementType name="InitialCivics" content="eltOnly">
 		<element type="CivicType" minOccurs="0" maxOccurs="*"/>
@@ -501,6 +520,8 @@
 		<element type="FreeBuildingClasses"/>
 		<element type="FreeTechs"/>
 		<element type="DisableTechs"/>
+		<element type="TerrainBiases" minOccurs="0"/>
+		<element type="FeatureBiases" minOccurs="0"/>
 		<element type="InitialCivics"/>
 		<element type="AnarchyCivics" minOccurs="0"/>
 		<element type="Leaders" minOccurs="0"/>

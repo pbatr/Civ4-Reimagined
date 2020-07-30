@@ -262,7 +262,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_RUSSIA_COSSACK_STRATEGY</Tag>
-		<English>Compared to the [COLOR_UNIT_TEXT]Cavalry[COLOR_REVERT], this unit has +1 ST, +25% vs Mounted and costs less.</English>
+		<English>Compared to the [COLOR_UNIT_TEXT]Cavalry[COLOR_REVERT], this unit has +2 ST and +25% vs Mounted.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_NETHERLANDS_OOSTINDIEVAARDER_STRATEGY</Tag>
@@ -282,7 +282,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_GREAT_HARBOR_STRATEGY</Tag>
-		<English>The [COLOR_BUILDING_TEXT]Great Harbor[COLOR_REVERT] improves the production and commerce output of water plots. Its city is more likely to generate a [COLOR_UNIT_TEXT]Great Merchant[COLOR_REVERT].</English>
+		<English>The [COLOR_BUILDING_TEXT]Great Harbor[COLOR_REVERT] improves the production output of water plots. Its city is more likely to generate a [COLOR_UNIT_TEXT]Great Merchant[COLOR_REVERT].</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_TANNERY_STRATEGY</Tag>
@@ -680,7 +680,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_SHWEDAGON_PAYA_STRATEGY</Tag>
-		<English>The [COLOR_BUILDING_TEXT]Shwedagon Paya[COLOR_REVERT] grants its builder access to all [COLOR_HIGHLIGHT_TEXT]Religious[COLOR_REVERT] Civics and the ability to switch religion civics freely. It also grants two happiness in the city it is build in if the state religion is present. It increases the chances of a [COLOR_UNIT_TEXT]Great Prophet[COLOR_REVERT] appearing.</English>
+		<English>If you have a state religion, the [COLOR_BUILDING_TEXT]Shwedagon Paya[COLOR_REVERT] causes all of that religion's buildings to generate gold for your civilizatiion. It increases its city's chances of generating a [COLOR_UNIT_TEXT]Great Prophet[COLOR_REVERT].</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_GREAT_LIGHTHOUSE_STRATEGY</Tag>
@@ -769,5 +769,13 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_HOTEL_STRATEGY</Tag>
 		<English>The [COLOR_BUILDING_TEXT]Hotel[COLOR_REVERT] increases a city's wealth for every culture level and world wonder it possesses. It also gains additional wealth from having access to coast and when an airport is present. The increased amount of tourists will cause some addtional pollution though.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_SPIRAL_MINARET_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Spiral Minaret[COLOR_REVERT] adds additional commerce to all of your priest specialists and great prophets. The [COLOR_BUILDING_TEXT]Spiral Minaret[COLOR_REVERT] increases the odds of its city generating a [COLOR_UNIT_TEXT]Great Prophet[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_HARBOR_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Harbor[COLOR_REVERT] increases that city's income from trade routes. It increases a city's health from access to [COLOR_HIGHLIGHT_TEXT]Clam[COLOR_REVERT], [COLOR_HIGHLIGHT_TEXT]Crab[COLOR_REVERT], and [COLOR_HIGHLIGHT_TEXT]Fish[COLOR_REVERT] resources. Additionaly ships start off with additional experience points.</English>
 	</TEXT>
 </Civ4GameText>

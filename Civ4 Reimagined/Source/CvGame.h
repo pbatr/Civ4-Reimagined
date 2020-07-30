@@ -715,6 +715,10 @@ protected:
 
 	void processVote(const VoteTriggeredData& kData, int iChange);
 
+	// Civ4 Reimagined
+	int calculateStartingPlotBiasScore(CvPlot* pStartingPlot, CivilizationTypes eCiv) const;
+	void assignStartingPlotLocationsWithBias();
+
 	int getTeamClosenessScore(int** aaiDistances, int* aiStartingLocs);
 	void normalizeStartingPlotLocations();
 	void normalizeAddRiver();

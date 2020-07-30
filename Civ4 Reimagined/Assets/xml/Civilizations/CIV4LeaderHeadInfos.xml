@@ -294,7 +294,7 @@
 			<FavoriteReligion>NONE</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_EXPANSIVE</TraitType>
+					<TraitType>TRAIT_PROGRESSIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
@@ -308,7 +308,7 @@
 					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
-					<FlavorType>FLAVOR_CULTURE</FlavorType>
+					<FlavorType>FLAVOR_SCIENCE</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 			</Flavors>
@@ -700,16 +700,11 @@
 			</NoWarAttitudeProbs>
 			<UnitAIWeightModifiers>
 				<UnitAIWeightModifier>
-					<UnitAIType>UNITAI_ATTACK</UnitAIType>
+					<UnitAIType>UNITAI_COUNTER</UnitAIType>
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
-			<ImprovementWeightModifiers>
-				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
-				</ImprovementWeightModifier>
-			</ImprovementWeightModifiers>
+			<ImprovementWeightModifiers/>
 			<DiplomacyIntroMusicPeace>
 				<DiploMusicPeaceEra>
 					<EraType>ERA_ANCIENT</EraType>
@@ -904,7 +899,7 @@
 			<FavoriteReligion>RELIGION_BUDDHISM</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_CREATIVE</TraitType>
+					<TraitType>TRAIT_EXPANSIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
@@ -1314,7 +1309,12 @@
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
-			<ImprovementWeightModifiers/>
+			<ImprovementWeightModifiers>
+				<ImprovementWeightModifier>
+					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
+					<iWeightModifier>40</iWeightModifier>
+				</ImprovementWeightModifier>
+			</ImprovementWeightModifiers>
 			<DiplomacyIntroMusicPeace>
 				<DiploMusicPeaceEra>
 					<EraType>ERA_ANCIENT</EraType>
@@ -1516,11 +1516,11 @@
 			<FavoriteReligion>NONE</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_ORGANIZED</TraitType>
+					<TraitType>TRAIT_PHILOSOPHICAL</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_INDUSTRIOUS</TraitType>
+					<TraitType>TRAIT_IMPERIALIST</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
@@ -1926,7 +1926,7 @@
 			</NoWarAttitudeProbs>
 			<UnitAIWeightModifiers>
 				<UnitAIWeightModifier>
-					<UnitAIType>UNITAI_ATTACK_CITY</UnitAIType>
+					<UnitAIType>UNITAI_ATTACK</UnitAIType>
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
@@ -2125,22 +2125,22 @@
 			<FavoriteReligion>RELIGION_CHRISTIANITY</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_INDUSTRIOUS</TraitType>
+					<TraitType>TRAIT_ORGANIZED</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_CHARISMATIC</TraitType>
+					<TraitType>TRAIT_PROGRESSIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
 			<Flavors>
 				<Flavor>
 					<FlavorType>FLAVOR_MILITARY</FlavorType>
-					<iFlavor>5</iFlavor>
+					<iFlavor>2</iFlavor>
 				</Flavor>
 				<Flavor>
 					<FlavorType>FLAVOR_PRODUCTION</FlavorType>
-					<iFlavor>2</iFlavor>
+					<iFlavor>5</iFlavor>
 				</Flavor>
 			</Flavors>
 			<ContactRands>
@@ -2541,7 +2541,7 @@
 			</UnitAIWeightModifiers>
 			<ImprovementWeightModifiers>
 				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
+					<ImprovementType>IMPROVEMENT_WORKSHOP</ImprovementType>
 					<iWeightModifier>40</iWeightModifier>
 				</ImprovementWeightModifier>
 			</ImprovementWeightModifiers>
@@ -2739,7 +2739,7 @@
 			<FavoriteReligion>NONE</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_CHARISMATIC</TraitType>
+					<TraitType>TRAIT_PROTECTIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
@@ -3154,10 +3154,6 @@
 					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
 					<iWeightModifier>40</iWeightModifier>
 				</ImprovementWeightModifier>
-				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_WINDMILL</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
-				</ImprovementWeightModifier>
 			</ImprovementWeightModifiers>
 			<DiplomacyIntroMusicPeace>
 				<DiploMusicPeaceEra>
@@ -3353,21 +3349,21 @@
 			<FavoriteReligion>NONE</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_AGGRESSIVE</TraitType>
+					<TraitType>TRAIT_CREATIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_PROTECTIVE</TraitType>
+					<TraitType>TRAIT_EXPANSIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_MILITARY</FlavorType>
+					<FlavorType>FLAVOR_GROWTH</FlavorType>
 					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
-					<FlavorType>FLAVOR_RELIGION</FlavorType>
+					<FlavorType>FLAVOR_MILITARY</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 			</Flavors>
@@ -3770,10 +3766,6 @@
 			<ImprovementWeightModifiers>
 				<ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
-				</ImprovementWeightModifier>
-				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_WINDMILL</ImprovementType>
 					<iWeightModifier>40</iWeightModifier>
 				</ImprovementWeightModifier>
 			</ImprovementWeightModifiers>
@@ -4381,7 +4373,12 @@
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
-			<ImprovementWeightModifiers/>
+			<ImprovementWeightModifiers>
+				<ImprovementWeightModifier>
+					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
+					<iWeightModifier>40</iWeightModifier>
+				</ImprovementWeightModifier>
+			</ImprovementWeightModifiers>
 			<DiplomacyIntroMusicPeace>
 				<DiploMusicPeaceEra>
 					<EraType>ERA_ANCIENT</EraType>
@@ -4576,7 +4573,7 @@
 			<FavoriteReligion>RELIGION_CHRISTIANITY</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_IMPERIALIST</TraitType>
+					<TraitType>TRAIT_PROTECTIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
@@ -5189,7 +5186,7 @@
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_ORGANIZED</TraitType>
+					<TraitType>TRAIT_PROTECTIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
@@ -5595,17 +5592,13 @@
 			</NoWarAttitudeProbs>
 			<UnitAIWeightModifiers>
 				<UnitAIWeightModifier>
-					<UnitAIType>UNITAI_CITY_DEFENSE</UnitAIType>
+					<UnitAIType>UNITAI_DEFENSE_AIR</UnitAIType>
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
 			<ImprovementWeightModifiers>
 				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
-				</ImprovementWeightModifier>
-				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_WINDMILL</ImprovementType>
+					<ImprovementType>IMPROVEMENT_TOWN</ImprovementType>
 					<iWeightModifier>40</iWeightModifier>
 				</ImprovementWeightModifier>
 			</ImprovementWeightModifiers>
@@ -5803,11 +5796,11 @@
 			<FavoriteReligion>NONE</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_IMPERIALIST</TraitType>
+					<TraitType>TRAIT_AGGRESSIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_ORGANIZED</TraitType>
+					<TraitType>TRAIT_EXPANSIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
@@ -6217,16 +6210,7 @@
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
-			<ImprovementWeightModifiers>
-				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
-				</ImprovementWeightModifier>
-				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_WINDMILL</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
-				</ImprovementWeightModifier>
-			</ImprovementWeightModifiers>
+			<ImprovementWeightModifiers/>
 			<DiplomacyIntroMusicPeace>
 				<DiploMusicPeaceEra>
 					<EraType>ERA_ANCIENT</EraType>
@@ -6424,21 +6408,21 @@
 			<FavoriteReligion>NONE</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_ORGANIZED</TraitType>
+					<TraitType>TRAIT_CREATIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_PROGRESSIVE</TraitType>
+					<TraitType>TRAIT_IMPERIALIST</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_GOLD</FlavorType>
+					<FlavorType>FLAVOR_GROWTH</FlavorType>
 					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
-					<FlavorType>FLAVOR_GROWTH</FlavorType>
+					<FlavorType>FLAVOR_MILITARY</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 			</Flavors>
@@ -7041,7 +7025,7 @@
 			<FavoriteReligion>RELIGION_CHRISTIANITY</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_INDUSTRIOUS</TraitType>
+					<TraitType>TRAIT_FINANCIAL</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
@@ -7055,7 +7039,7 @@
 					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
-					<FlavorType>FLAVOR_GROWTH</FlavorType>
+					<FlavorType>FLAVOR_MILITARY</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 			</Flavors>
@@ -7457,7 +7441,7 @@
 			</UnitAIWeightModifiers>
 			<ImprovementWeightModifiers>
 				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
+					<ImprovementType>IMPROVEMENT_TOWN</ImprovementType>
 					<iWeightModifier>40</iWeightModifier>
 				</ImprovementWeightModifier>
 			</ImprovementWeightModifiers>
@@ -7655,7 +7639,7 @@
 			<FavoriteReligion>RELIGION_CHRISTIANITY</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_PHILOSOPHICAL</TraitType>
+					<TraitType>TRAIT_CREATIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
@@ -8065,7 +8049,7 @@
 			</NoWarAttitudeProbs>
 			<UnitAIWeightModifiers>
 				<UnitAIWeightModifier>
-					<UnitAIType>UNITAI_EXPLORE_SEA</UnitAIType>
+					<UnitAIType>UNITAI_RESERVE_SEA</UnitAIType>
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
@@ -8277,7 +8261,7 @@
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_AGGRESSIVE</TraitType>
+					<TraitType>TRAIT_ORGANIZED</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
@@ -8287,7 +8271,7 @@
 					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
-					<FlavorType>FLAVOR_SCIENCE</FlavorType>
+					<FlavorType>FLAVOR_GROWTH</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 			</Flavors>
@@ -8689,7 +8673,7 @@
 			</UnitAIWeightModifiers>
 			<ImprovementWeightModifiers>
 				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_TOWN</ImprovementType>
+					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
 					<iWeightModifier>40</iWeightModifier>
 				</ImprovementWeightModifier>
 			</ImprovementWeightModifiers>
@@ -9261,7 +9245,7 @@
 			</UnitAIWeightModifiers>
 			<ImprovementWeightModifiers>
 				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_TOWN</ImprovementType>
+					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
 					<iWeightModifier>40</iWeightModifier>
 				</ImprovementWeightModifier>
 				<ImprovementWeightModifier>
@@ -9469,7 +9453,7 @@
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_IMPERIALIST</TraitType>
+					<TraitType>TRAIT_CHARISMATIC</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
@@ -10079,11 +10063,11 @@
 			<FavoriteReligion>NONE</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_CREATIVE</TraitType>
+					<TraitType>TRAIT_CHARISMATIC</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_ORGANIZED</TraitType>
+					<TraitType>TRAIT_PHILOSOPHICAL</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
@@ -11926,7 +11910,7 @@
 			<FavoriteReligion>RELIGION_ISLAM</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_CHARISMATIC</TraitType>
+					<TraitType>TRAIT_PHILOSOPHICAL</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
@@ -12288,7 +12272,12 @@
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
-			<ImprovementWeightModifiers/>
+			<ImprovementWeightModifiers>
+				<ImprovementWeightModifier>
+					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
+					<iWeightModifier>40</iWeightModifier>
+				</ImprovementWeightModifier>
+			</ImprovementWeightModifiers>
 			<DiplomacyIntroMusicPeace>
 				<DiploMusicPeaceEra>
 					<EraType>ERA_ANCIENT</EraType>
@@ -13105,7 +13094,7 @@
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_ORGANIZED</TraitType>
+					<TraitType>TRAIT_INDUSTRIOUS</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
@@ -13515,12 +13504,7 @@
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
-			<ImprovementWeightModifiers>
-				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_TOWN</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
-				</ImprovementWeightModifier>
-			</ImprovementWeightModifiers>
+			<ImprovementWeightModifiers/>
 			<DiplomacyIntroMusicPeace>
 				<DiploMusicPeaceEra>
 					<EraType>ERA_ANCIENT</EraType>
@@ -13717,7 +13701,7 @@
 			<FavoriteReligion>RELIGION_CHRISTIANITY</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_IMPERIALIST</TraitType>
+					<TraitType>TRAIT_PROTECTIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
@@ -14127,20 +14111,11 @@
 			</NoWarAttitudeProbs>
 			<UnitAIWeightModifiers>
 				<UnitAIWeightModifier>
-					<UnitAIType>UNITAI_ATTACK_SEA</UnitAIType>
+					<UnitAIType>UNITAI_EXPLORE_SEA</UnitAIType>
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
-			<ImprovementWeightModifiers>
-				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
-				</ImprovementWeightModifier>
-				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_WINDMILL</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
-				</ImprovementWeightModifier>
-			</ImprovementWeightModifiers>
+			<ImprovementWeightModifiers/>
 			<DiplomacyIntroMusicPeace>
 				<DiploMusicPeaceEra>
 					<EraType>ERA_ANCIENT</EraType>
@@ -14342,11 +14317,11 @@
 			<FavoriteReligion>RELIGION_CHRISTIANITY</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_IMPERIALIST</TraitType>
+					<TraitType>TRAIT_EXPANSIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_PROTECTIVE</TraitType>
+					<TraitType>TRAIT_FINANCIAL</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
@@ -14758,11 +14733,7 @@
 			</UnitAIWeightModifiers>
 			<ImprovementWeightModifiers>
 				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
-				</ImprovementWeightModifier>
-				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_WINDMILL</ImprovementType>
+					<ImprovementType>IMPROVEMENT_TOWN</ImprovementType>
 					<iWeightModifier>40</iWeightModifier>
 				</ImprovementWeightModifier>
 			</ImprovementWeightModifiers>
@@ -14960,7 +14931,7 @@
 			<FavoriteReligion>NONE</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_INDUSTRIOUS</TraitType>
+					<TraitType>TRAIT_AGGRESSIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
@@ -15370,7 +15341,7 @@
 			</NoWarAttitudeProbs>
 			<UnitAIWeightModifiers>
 				<UnitAIWeightModifier>
-					<UnitAIType>UNITAI_COUNTER</UnitAIType>
+					<UnitAIType>UNITAI_ATTACK</UnitAIType>
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
@@ -15569,11 +15540,11 @@
 			<FavoriteReligion>RELIGION_CHRISTIANITY</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_PHILOSOPHICAL</TraitType>
+					<TraitType>TRAIT_PROTECTIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_IMPERIALIST</TraitType>
+					<TraitType>TRAIT_ORGANIZED</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
@@ -16182,7 +16153,7 @@
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_CREATIVE</TraitType>
+					<TraitType>TRAIT_EXPANSIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
@@ -16796,7 +16767,7 @@
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_PROTECTIVE</TraitType>
+					<TraitType>TRAIT_PROGRESSIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
@@ -17410,11 +17381,11 @@
 			<FavoriteReligion>RELIGION_CHRISTIANITY</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_INDUSTRIOUS</TraitType>
+					<TraitType>TRAIT_CREATIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_CREATIVE</TraitType>
+					<TraitType>TRAIT_ORGANIZED</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
@@ -17820,7 +17791,12 @@
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
-			<ImprovementWeightModifiers/>
+			<ImprovementWeightModifiers>
+				<ImprovementWeightModifier>
+					<ImprovementType>IMPROVEMENT_WATERMILL</ImprovementType>
+					<iWeightModifier>40</iWeightModifier>
+				</ImprovementWeightModifier>
+			</ImprovementWeightModifiers>
 			<DiplomacyIntroMusicPeace>
 				<DiploMusicPeaceEra>
 					<EraType>ERA_ANCIENT</EraType>
@@ -18633,11 +18609,11 @@
 			<FavoriteReligion>NONE</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_EXPANSIVE</TraitType>
+					<TraitType>TRAIT_CHARISMATIC</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_PROTECTIVE</TraitType>
+					<TraitType>TRAIT_INDUSTRIOUS</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
@@ -18647,7 +18623,7 @@
 					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
-					<FlavorType>FLAVOR_GROWTH</FlavorType>
+					<FlavorType>FLAVOR_MILITARY</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 			</Flavors>
@@ -19247,7 +19223,7 @@
 			<FavoriteReligion>RELIGION_ISLAM</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_AGGRESSIVE</TraitType>
+					<TraitType>TRAIT_IMPERIALIST</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
@@ -19661,16 +19637,7 @@
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
-			<ImprovementWeightModifiers>
-				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
-				</ImprovementWeightModifier>
-				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_WINDMILL</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
-				</ImprovementWeightModifier>
-			</ImprovementWeightModifiers>
+			<ImprovementWeightModifiers/>
 			<DiplomacyIntroMusicPeace>
 				<DiploMusicPeaceEra>
 					<EraType>ERA_ANCIENT</EraType>
@@ -20225,7 +20192,12 @@
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
-			<ImprovementWeightModifiers/>
+			<ImprovementWeightModifiers>
+				<ImprovementWeightModifier>
+					<ImprovementType>IMPROVEMENT_WORKSHOP</ImprovementType>
+					<iWeightModifier>40</iWeightModifier>
+				</ImprovementWeightModifier>
+			</ImprovementWeightModifiers>
 			<DiplomacyIntroMusicPeace>
 				<DiploMusicPeaceEra>
 					<EraType>ERA_ANCIENT</EraType>
@@ -20422,11 +20394,11 @@
 			<FavoriteReligion>NONE</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_AGGRESSIVE</TraitType>
+					<TraitType>TRAIT_CHARISMATIC</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_CREATIVE</TraitType>
+					<TraitType>TRAIT_IMPERIALIST</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
@@ -20436,7 +20408,7 @@
 					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
-					<FlavorType>FLAVOR_RELIGION</FlavorType>
+					<FlavorType>FLAVOR_GOLD</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 			</Flavors>
@@ -21034,11 +21006,11 @@
 			<FavoriteReligion>RELIGION_CHRISTIANITY</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_IMPERIALIST</TraitType>
+					<TraitType>TRAIT_AGGRESSIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_CHARISMATIC</TraitType>
+					<TraitType>TRAIT_PROGRESSIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
@@ -21444,17 +21416,13 @@
 			</NoWarAttitudeProbs>
 			<UnitAIWeightModifiers>
 				<UnitAIWeightModifier>
-					<UnitAIType>UNITAI_COUNTER</UnitAIType>
+					<UnitAIType>UNITAI_ATTACK</UnitAIType>
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
 			<ImprovementWeightModifiers>
 				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
-				</ImprovementWeightModifier>
-				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_WINDMILL</ImprovementType>
+					<ImprovementType>IMPROVEMENT_TOWN</ImprovementType>
 					<iWeightModifier>40</iWeightModifier>
 				</ImprovementWeightModifier>
 			</ImprovementWeightModifiers>
@@ -21652,7 +21620,7 @@
 			<FavoriteReligion>NONE</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_EXPANSIVE</TraitType>
+					<TraitType>TRAIT_CREATIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
@@ -21662,7 +21630,7 @@
 			</Traits>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_GROWTH</FlavorType>
+					<FlavorType>FLAVOR_CULTURE</FlavorType>
 					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
@@ -22270,7 +22238,7 @@
 			<FavoriteReligion>NONE</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_CHARISMATIC</TraitType>
+					<TraitType>TRAIT_CREATIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
@@ -22684,16 +22652,7 @@
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
-			<ImprovementWeightModifiers>
-				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
-				</ImprovementWeightModifier>
-				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_WINDMILL</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
-				</ImprovementWeightModifier>
-			</ImprovementWeightModifiers>
+			<ImprovementWeightModifiers/>
 			<DiplomacyIntroMusicPeace>
 				<DiploMusicPeaceEra>
 					<EraType>ERA_ANCIENT</EraType>
@@ -22888,7 +22847,7 @@
 			<FavoriteReligion>RELIGION_CHRISTIANITY</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_PHILOSOPHICAL</TraitType>
+					<TraitType>TRAIT_ORGANIZED</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
@@ -22898,11 +22857,11 @@
 			</Traits>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_SCIENCE</FlavorType>
+					<FlavorType>FLAVOR_GROWTH</FlavorType>
 					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
-					<FlavorType>FLAVOR_MILITARY</FlavorType>
+					<FlavorType>FLAVOR_SCIENCE</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 			</Flavors>
@@ -23517,7 +23476,7 @@
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_PHILOSOPHICAL</TraitType>
+					<TraitType>TRAIT_INDUSTRIOUS</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
@@ -23923,7 +23882,12 @@
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
-			<ImprovementWeightModifiers/>
+			<ImprovementWeightModifiers>
+				<ImprovementWeightModifier>
+					<ImprovementType>IMPROVEMENT_WATERMILL</ImprovementType>
+					<iWeightModifier>40</iWeightModifier>
+				</ImprovementWeightModifier>
+			</ImprovementWeightModifiers>
 			<DiplomacyIntroMusicPeace>
 				<DiploMusicPeaceEra>
 					<EraType>ERA_ANCIENT</EraType>
@@ -25760,7 +25724,12 @@
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
-			<ImprovementWeightModifiers/>
+			<ImprovementWeightModifiers>
+				<ImprovementWeightModifier>
+					<ImprovementType>IMPROVEMENT_TOWN</ImprovementType>
+					<iWeightModifier>40</iWeightModifier>
+				</ImprovementWeightModifier>
+			</ImprovementWeightModifiers>
 			<DiplomacyIntroMusicPeace>
 				<DiploMusicPeaceEra>
 					<EraType>ERA_ANCIENT</EraType>
@@ -25955,11 +25924,11 @@
 			<FavoriteReligion>RELIGION_ISLAM</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_FINANCIAL</TraitType>
+					<TraitType>TRAIT_PHILOSOPHICAL</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_PROGRESSIVE</TraitType>
+					<TraitType>TRAIT_PROTECTIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
@@ -26369,7 +26338,12 @@
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
-			<ImprovementWeightModifiers/>
+			<ImprovementWeightModifiers>
+				<ImprovementWeightModifier>
+					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
+					<iWeightModifier>40</iWeightModifier>
+				</ImprovementWeightModifier>
+			</ImprovementWeightModifiers>
 			<DiplomacyIntroMusicPeace>
 				<DiploMusicPeaceEra>
 					<EraType>ERA_ANCIENT</EraType>
@@ -26571,11 +26545,11 @@
 			<FavoriteReligion>RELIGION_CONFUCIANISM</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_PROGRESSIVE</TraitType>
+					<TraitType>TRAIT_FINANCIAL</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_PROTECTIVE</TraitType>
+					<TraitType>TRAIT_PHILOSOPHICAL</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
@@ -27146,7 +27120,7 @@
 			<FavoriteReligion>NONE</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_AGGRESSIVE</TraitType>
+					<TraitType>TRAIT_CHARISMATIC</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
@@ -27556,12 +27530,7 @@
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
-			<ImprovementWeightModifiers>
-				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
-				</ImprovementWeightModifier>
-			</ImprovementWeightModifiers>
+			<ImprovementWeightModifiers/>
 			<DiplomacyIntroMusicPeace>
 				<DiploMusicPeaceEra>
 					<EraType>ERA_ANCIENT</EraType>
@@ -27758,11 +27727,11 @@
 			<FavoriteReligion>NONE</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_PHILOSOPHICAL</TraitType>
+					<TraitType>TRAIT_CHARISMATIC</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_PROTECTIVE</TraitType>
+					<TraitType>TRAIT_CREATIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
@@ -28367,11 +28336,11 @@
 			<FavoriteReligion>NONE</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_CHARISMATIC</TraitType>
+					<TraitType>TRAIT_INDUSTRIOUS</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_PROTECTIVE</TraitType>
+					<TraitType>TRAIT_IMPERIALIST</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
@@ -28992,22 +28961,22 @@
 			<FavoriteReligion>RELIGION_ISLAM</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_PROGRESSIVE</TraitType>
+					<TraitType>TRAIT_ORGANIZED</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_CREATIVE</TraitType>
+					<TraitType>TRAIT_IMPERIALIST</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
 			<Flavors>
 				<Flavor>
 					<FlavorType>FLAVOR_CULTURE</FlavorType>
-					<iFlavor>5</iFlavor>
+					<iFlavor>2</iFlavor>
 				</Flavor>
 				<Flavor>
 					<FlavorType>FLAVOR_MILITARY</FlavorType>
-					<iFlavor>2</iFlavor>
+					<iFlavor>5</iFlavor>
 				</Flavor>
 			</Flavors>
 			<ContactRands>
@@ -29422,16 +29391,7 @@
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
-			<ImprovementWeightModifiers>
-				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
-				</ImprovementWeightModifier>
-				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_WINDMILL</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
-				</ImprovementWeightModifier>
-			</ImprovementWeightModifiers>
+			<ImprovementWeightModifiers/>
 			<DiplomacyIntroMusicPeace>
 				<DiploMusicPeaceEra>
 					<EraType>ERA_ANCIENT</EraType>
@@ -29628,7 +29588,7 @@
 			<FavoriteReligion>RELIGION_BUDDHISM</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_EXPANSIVE</TraitType>
+					<TraitType>TRAIT_AGGRESSIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
@@ -29638,7 +29598,7 @@
 			</Traits>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_GOLD</FlavorType>
+					<FlavorType>FLAVOR_CULTURE</FlavorType>
 					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
@@ -30263,11 +30223,11 @@
 			</Traits>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_SCIENCE</FlavorType>
+					<FlavorType>FLAVOR_MILITARY</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 				<Flavor>
-					<FlavorType>FLAVOR_PRODUCTION</FlavorType>
+					<FlavorType>FLAVOR_CULTURE</FlavorType>
 					<iFlavor>5</iFlavor>
 				</Flavor>
 			</Flavors>
@@ -30884,18 +30844,18 @@
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_FINANCIAL</TraitType>
+					<TraitType>TRAIT_PROTECTIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_GOLD</FlavorType>
-					<iFlavor>5</iFlavor>
+					<FlavorType>FLAVOR_SCIENCE</FlavorType>
+					<iFlavor>2</iFlavor>
 				</Flavor>
 				<Flavor>
 					<FlavorType>FLAVOR_MILITARY</FlavorType>
-					<iFlavor>2</iFlavor>
+					<iFlavor>5</iFlavor>
 				</Flavor>
 			</Flavors>
 			<ContactRands>
@@ -31306,12 +31266,7 @@
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
-			<ImprovementWeightModifiers>
-				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_TOWN</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
-				</ImprovementWeightModifier>
-			</ImprovementWeightModifiers>
+			<ImprovementWeightModifiers/>
 			<DiplomacyIntroMusicPeace>
 				<DiploMusicPeaceEra>
 					<EraType>ERA_ANCIENT</EraType>
@@ -31510,7 +31465,7 @@
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_CHARISMATIC</TraitType>
+					<TraitType>TRAIT_AGGRESSIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
@@ -31938,7 +31893,7 @@
 			</UnitAIWeightModifiers>
 			<ImprovementWeightModifiers>
 				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_TOWN</ImprovementType>
+					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
 					<iWeightModifier>40</iWeightModifier>
 				</ImprovementWeightModifier>
 			</ImprovementWeightModifiers>
@@ -32138,11 +32093,11 @@
 			<FavoriteReligion>RELIGION_CHRISTIANITY</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_EXPANSIVE</TraitType>
+					<TraitType>TRAIT_CHARISMATIC</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_FINANCIAL</TraitType>
+					<TraitType>TRAIT_ORGANIZED</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
@@ -32568,16 +32523,7 @@
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
-			<ImprovementWeightModifiers>
-				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
-				</ImprovementWeightModifier>
-				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_WINDMILL</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
-				</ImprovementWeightModifier>
-			</ImprovementWeightModifiers>
+			<ImprovementWeightModifiers/>
 			<DiplomacyIntroMusicPeace>
 				<DiploMusicPeaceEra>
 					<EraType>ERA_ANCIENT</EraType>
@@ -32779,21 +32725,21 @@
 			<FavoriteReligion>RELIGION_CHRISTIANITY</FavoriteReligion>
 			<Traits>
 				<Trait>
-					<TraitType>TRAIT_CREATIVE</TraitType>
+					<TraitType>TRAIT_FINANCIAL</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_FINANCIAL</TraitType>
+					<TraitType>TRAIT_IMPERIALIST</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_SCIENCE</FlavorType>
+					<FlavorType>FLAVOR_GOLD</FlavorType>
 					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
-					<FlavorType>FLAVOR_PRODUCTION</FlavorType>
+					<FlavorType>FLAVOR_MILITARY</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 			</Flavors>
@@ -33417,7 +33363,7 @@
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_ORGANIZED</TraitType>
+					<TraitType>TRAIT_INDUSTRIOUS</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>

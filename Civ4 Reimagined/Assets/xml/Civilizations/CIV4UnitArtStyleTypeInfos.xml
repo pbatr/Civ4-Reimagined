@@ -10400,7 +10400,7 @@
 					<UnitMeshGroup>
 						<EarlyArtDefineTag>ART_DEF_UNIT_WORKER_MONGOLIAN</EarlyArtDefineTag>
 						<LateArtDefineTag>ART_DEF_UNIT_WORKERMODERN_ASIAN</LateArtDefineTag>
-						<MiddleArtDefineTag>ART_DEF_UNIT_WORKERMODERN_ASIAN</MiddleArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_WORKERMEDIEVAL_ASIAN</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
 

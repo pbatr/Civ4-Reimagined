@@ -1370,4 +1370,28 @@
 		<Tag>TXT_KEY_BUILDING_COMMERCE_FROM_AIRLIFT</Tag>
 		<English>[ICON_BULLET]%D1%F2_CmrcIcon from Airport present in the City</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_YOU_HURT_ENEMY_AIR</Tag>
+		<English>Your %s1_UnitName has intercepted a %s4_owner_adjective %s2_EnUName! (%d3%% HP)</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_YOU_AIR_UNIT_HURT</Tag>
+		<English>Your %s1_UnitName was intercepted by an enemy %s2_EnUName! (%d3%% HP)</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_YOU_ARE_ATTACKED_BY_AIR</Tag>
+		<English>Your %s1_UnitName was attacked by an enemy %s2_EnUName! (%d3_Damage%% HP)</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_YOU_ATTACK_BY_AIR</Tag>
+		<English>Your %s1_UnitName has attacked an enemy %s2_EnUName! (%d3_Damage%% HP)</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_YOU_DAMAGED_ENEMY_AIR</Tag>
+		<English>Your %s1_UnitName has damaged a %s4_owner_adjective %s2_EnUName (%d3%% HP)</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_YOUR_AIR_UNIT_DAMAGED</Tag>
+		<English>Your %s1_UnitName was damaged by an enemy %s2_EnUName (%d3%% HP)</English>
+	</TEXT>
 </Civ4GameText>

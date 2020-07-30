@@ -4476,7 +4476,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>80</iCost>
+			<iCost>90</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -4571,7 +4571,12 @@
 			<BonusHappinessChanges/>
 			<BonusProductionModifiers/>
 			<UnitCombatFreeExperiences/>
-			<DomainFreeExperiences/>
+			<DomainFreeExperiences>
+				<DomainFreeExperience>
+					<DomainType>DOMAIN_SEA</DomainType>
+					<iExperience>2</iExperience>
+				</DomainFreeExperience>
+			</DomainFreeExperiences>
 			<DomainProductionModifiers/>
 			<BuildingHappinessChanges/>
 			<PrereqBuildingClasses/>
@@ -4663,7 +4668,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>80</iCost>
+			<iCost>90</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -4761,7 +4766,7 @@
 			<DomainFreeExperiences>
 				<DomainFreeExperience>
 					<DomainType>DOMAIN_SEA</DomainType>
-					<iExperience>2</iExperience>
+					<iExperience>4</iExperience>
 				</DomainFreeExperience>
 			</DomainFreeExperiences>
 			<DomainProductionModifiers/>
@@ -4859,7 +4864,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>115</iCost>
+			<iCost>130</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -4954,7 +4959,12 @@
 			<BonusHappinessChanges/>
 			<BonusProductionModifiers/>
 			<UnitCombatFreeExperiences/>
-			<DomainFreeExperiences/>
+			<DomainFreeExperiences>
+				<DomainFreeExperience>
+					<DomainType>DOMAIN_SEA</DomainType>
+					<iExperience>2</iExperience>
+				</DomainFreeExperience>
+			</DomainFreeExperiences>
 			<DomainProductionModifiers/>
 			<BuildingHappinessChanges/>
 			<PrereqBuildingClasses/>
@@ -9362,6 +9372,15 @@
 			</BuildingClassNeededs>
 			<SpecialistYieldChanges/>
 			<BonusYieldModifiers/>
+			<TechnologyCommerceModifiers> <!-- Civ4 Reimagined -->
+				<TechnologyCommerceModifier>
+					<TechType>TECH_SCIENTIFIC_METHOD</TechType>
+					<CommerceModifiers>
+						<iCommerce>0</iCommerce>
+						<iCommerce>15</iCommerce>
+					</CommerceModifiers>
+				</TechnologyCommerceModifier>
+			</TechnologyCommerceModifiers>
 			<ImprovementFreeSpecialists/>
 			<Flavors>
 				<Flavor>
@@ -9557,6 +9576,15 @@
 			</BuildingClassNeededs>
 			<SpecialistYieldChanges/>
 			<BonusYieldModifiers/>
+			<TechnologyCommerceModifiers> <!-- Civ4 Reimagined -->
+				<TechnologyCommerceModifier>
+					<TechType>TECH_SCIENTIFIC_METHOD</TechType>
+					<CommerceModifiers>
+						<iCommerce>0</iCommerce>
+						<iCommerce>15</iCommerce>
+					</CommerceModifiers>
+				</TechnologyCommerceModifier>
+			</TechnologyCommerceModifiers>
 			<ImprovementFreeSpecialists/>
 			<Flavors>
 				<Flavor>
@@ -13069,7 +13097,7 @@
 			<ObsoleteSafeCommerceChanges/>
 			<CommerceChangeDoubleTimes/>
 			<CommerceModifiers>
-				<iCommerce>35</iCommerce>
+				<iCommerce>50</iCommerce>
 			</CommerceModifiers>
 			<GlobalCommerceModifiers/>
 			<SpecialistExtraCommerces/>
@@ -20116,7 +20144,7 @@
 		<BuildingInfo>
 			<BuildingClass>BUILDINGCLASS_CLASSICAL_TEMPLE</BuildingClass>
 			<Type>BUILDING_SUMERIAN_ZIGGURAT</Type>
-			<SpecialBuildingType>SPECIALBUILDING_TEMPLE</SpecialBuildingType>
+			<SpecialBuildingType>NONE</SpecialBuildingType>
 			<Description>TXT_KEY_BUILDING_SUMERIAN_ZIGGURAT</Description>
 			<Civilopedia>TXT_KEY_BUILDING_SUMERIAN_ZIGGURAT_PEDIA</Civilopedia>
 			<Strategy>TXT_KEY_BUILDING_SUMERIAN_ZIGGURAT_STRATEGY</Strategy>
@@ -24027,7 +24055,7 @@
 			<HolyCity>NONE</HolyCity>
 			<ReligionType>NONE</ReligionType>
 			<StateReligion>NONE</StateReligion>
-			<bStateReligion>0</bStateReligion>
+			<bStateReligion>1</bStateReligion>
 			<PrereqReligion>NONE</PrereqReligion>
 			<PrereqCivics/>
 			<PrereqCorporation>NONE</PrereqCorporation>
@@ -24603,7 +24631,7 @@
 			<HolyCity>NONE</HolyCity>
 			<ReligionType>NONE</ReligionType>
 			<StateReligion>NONE</StateReligion>
-			<bStateReligion>0</bStateReligion>
+			<bStateReligion>1</bStateReligion>
 			<PrereqReligion>NONE</PrereqReligion>
 			<PrereqCivics/>
 			<PrereqCorporation>NONE</PrereqCorporation>
@@ -24796,7 +24824,7 @@
 			<HolyCity>NONE</HolyCity>
 			<ReligionType>NONE</ReligionType>
 			<StateReligion>NONE</StateReligion>
-			<bStateReligion>0</bStateReligion>
+			<bStateReligion>1</bStateReligion>
 			<PrereqReligion>NONE</PrereqReligion>
 			<PrereqCivics/>
 			<PrereqCorporation>NONE</PrereqCorporation>
@@ -24927,9 +24955,7 @@
 			<CommerceModifiers/>
 			<GlobalCommerceModifiers/>
 			<SpecialistExtraCommerces/>
-			<StateReligionCommerces>
-				<iCommerce>1</iCommerce>
-			</StateReligionCommerces>
+			<StateReligionCommerces/>
 			<CommerceHappinesses/>
 			<ReligionChanges/>
 			<SpecialistCounts/>
@@ -24956,7 +24982,40 @@
 			<PrereqBuildingClasses/>
 			<PercentPrereqBuildingClasses/>
 			<BuildingClassNeededs/>
-			<SpecialistYieldChanges/>
+			<SpecialistYieldChanges>
+				<SpecialistYieldChange>
+					<SpecialistType>SPECIALIST_PRIEST</SpecialistType>
+					<YieldChanges>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+						<iYield>1</iYield>
+					</YieldChanges>
+				</SpecialistYieldChange>
+				<SpecialistYieldChange>
+					<SpecialistType>SPECIALIST_MERCHANT</SpecialistType>
+					<YieldChanges>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+						<iYield>1</iYield>
+					</YieldChanges>
+				</SpecialistYieldChange>
+				<SpecialistYieldChange>
+					<SpecialistType>SPECIALIST_GREAT_PRIEST</SpecialistType>
+					<YieldChanges>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+						<iYield>1</iYield>
+					</YieldChanges>
+				</SpecialistYieldChange>
+				<SpecialistYieldChange>
+					<SpecialistType>SPECIALIST_GREAT_MERCHANT</SpecialistType>
+					<YieldChanges>
+						<iYield>0</iYield>
+						<iYield>0</iYield>
+						<iYield>1</iYield>
+					</YieldChanges>
+				</SpecialistYieldChange>
+			</SpecialistYieldChanges>
 			<BonusYieldModifiers/>
 			<ImprovementFreeSpecialists/>
 			<Flavors>
@@ -24984,7 +25043,7 @@
 			<HolyCity>NONE</HolyCity>
 			<ReligionType>NONE</ReligionType>
 			<StateReligion>NONE</StateReligion>
-			<bStateReligion>0</bStateReligion>
+			<bStateReligion>1</bStateReligion>
 			<PrereqReligion>NONE</PrereqReligion>
 			<PrereqCivics/>
 			<PrereqCorporation>NONE</PrereqCorporation>
@@ -25360,7 +25419,7 @@
 			<HolyCity>NONE</HolyCity>
 			<ReligionType>NONE</ReligionType>
 			<StateReligion>NONE</StateReligion>
-			<bStateReligion>0</bStateReligion>
+			<bStateReligion>1</bStateReligion>
 			<PrereqReligion>NONE</PrereqReligion>
 			<PrereqCivics/>
 			<PrereqCorporation>NONE</PrereqCorporation>
@@ -27057,7 +27116,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>1000</iCost>
+			<iCost>1500</iCost>
 			<iHurryCostModifier>300</iHurryCostModifier>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -28288,7 +28347,7 @@
 			<HolyCity>NONE</HolyCity>
 			<ReligionType>NONE</ReligionType>
 			<StateReligion>NONE</StateReligion>
-			<bStateReligion>0</bStateReligion>
+			<bStateReligion>1</bStateReligion>
 			<PrereqReligion>NONE</PrereqReligion>
 			<PrereqCivics/>
 			<PrereqCorporation>NONE</PrereqCorporation>
@@ -28488,8 +28547,8 @@
 			<iNumFreeBonuses>0</iNumFreeBonuses>
 			<FreeBuilding>NONE</FreeBuilding>
 			<FreePromotion>NONE</FreePromotion>
-			<CivicOption>CIVICOPTION_RELIGION</CivicOption>
-			<NoAnarchyCivicOption>CIVICOPTION_RELIGION</NoAnarchyCivicOption>
+			<CivicOption>NONE</CivicOption>
+			<NoAnarchyCivicOption>NONE</NoAnarchyCivicOption>
 			<GreatPeopleUnitClass>UNITCLASS_PROPHET</GreatPeopleUnitClass>
 			<iGreatPeopleRateChange>2</iGreatPeopleRateChange>
 			<iHurryAngerModifier>0</iHurryAngerModifier>
@@ -28558,7 +28617,7 @@
 			<iHappiness>0</iHappiness>
 			<iAreaHappiness>0</iAreaHappiness>
 			<iGlobalHappiness>0</iGlobalHappiness>
-			<iStateReligionHappiness>2</iStateReligionHappiness>
+			<iStateReligionHappiness>0</iStateReligionHappiness>
 			<iWorkerSpeedModifier>0</iWorkerSpeedModifier>
 			<iMilitaryProductionModifier>0</iMilitaryProductionModifier>
 			<iSpaceProductionModifier>0</iSpaceProductionModifier>
@@ -28596,7 +28655,9 @@
 			<CommerceModifiers/>
 			<GlobalCommerceModifiers/>
 			<SpecialistExtraCommerces/>
-			<StateReligionCommerces/>
+			<StateReligionCommerces>
+				<iCommerce>1</iCommerce>
+			</StateReligionCommerces>
 			<CommerceHappinesses/>
 			<ReligionChanges/>
 			<SpecialistCounts/>
@@ -28662,7 +28723,7 @@
 			<FreeStartEra>NONE</FreeStartEra>
 			<MaxStartEra>NONE</MaxStartEra>
 			<ObsoleteTech>NONE</ObsoleteTech>
-			<PrereqTech>TECH_REFRIGERATION</PrereqTech>
+			<PrereqTech>TECH_GUILDS</PrereqTech>
 			<TechTypes/>
 			<Bonus>NONE</Bonus>
 			<BonusFatCross>NONE</BonusFatCross>
@@ -28704,7 +28765,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>250</iCost>
+			<iCost>125</iCost>
 			<iHurryCostModifier>100</iHurryCostModifier>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -28767,7 +28828,7 @@
 			<SeaPlotYieldChanges>
 				<iYield>0</iYield>
 				<iYield>1</iYield>
-				<iYield>1</iYield>
+				<iYield>0</iYield>
 			</SeaPlotYieldChanges>
 			<RiverPlotYieldChanges/>
 			<GlobalSeaPlotYieldChanges/>
@@ -28776,7 +28837,7 @@
 			<ObsoleteSafeCommerceChanges>
 				<iCommerce>0</iCommerce>
 				<iCommerce>0</iCommerce>
-				<iCommerce>0</iCommerce>
+				<iCommerce>3</iCommerce>
 			</ObsoleteSafeCommerceChanges>
 			<CommerceChangeDoubleTimes>
 				<iCommerce>0</iCommerce>
@@ -28800,12 +28861,7 @@
 			<ConstructSound/>
 			<BonusHealthChanges/>
 			<BonusHappinessChanges/>
-			<BonusProductionModifiers>
-				<BonusProductionModifier>
-					<BonusType>BONUS_IRON</BonusType>
-					<iProductonModifier>100</iProductonModifier>
-				</BonusProductionModifier>
-			</BonusProductionModifiers>
+			<BonusProductionModifiers/>
 			<UnitCombatFreeExperiences/>
 			<DomainFreeExperiences/>
 			<DomainProductionModifiers/>
@@ -31404,7 +31460,7 @@
 			<HolyCity>NONE</HolyCity>
 			<ReligionType>NONE</ReligionType>
 			<StateReligion>NONE</StateReligion>
-			<bStateReligion>0</bStateReligion>
+			<bStateReligion>1</bStateReligion>
 			<PrereqReligion>NONE</PrereqReligion>
 			<PrereqCivics/>
 			<PrereqCorporation>NONE</PrereqCorporation>
@@ -33147,7 +33203,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>800</iCost>
+			<iCost>1200</iCost>
 			<iHurryCostModifier>100</iHurryCostModifier>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>

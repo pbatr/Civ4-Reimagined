@@ -11239,6 +11239,8 @@ m_iUnique5(0), // Civ4 Reimagined
 m_piCivilizationBuildings(NULL),
 m_piCivilizationUnits(NULL),
 m_piCivilizationFreeUnitsClass(NULL),
+m_piCivilizationTerrainBias(NULL), // Civ4 Reimagined
+m_piCivilizationFeatureBias(NULL), // Civ4 Reimagined
 m_piCivilizationInitialCivics(NULL),
 m_pbLeaders(NULL),
 m_pbCivilizationFreeBuildingClass(NULL),
@@ -11260,6 +11262,8 @@ CvCivilizationInfo::~CvCivilizationInfo()
 	SAFE_DELETE_ARRAY(m_piCivilizationBuildings);
 	SAFE_DELETE_ARRAY(m_piCivilizationUnits);
 	SAFE_DELETE_ARRAY(m_piCivilizationFreeUnitsClass);
+	SAFE_DELETE_ARRAY(m_piCivilizationTerrainBias); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_piCivilizationFeatureBias); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_piCivilizationInitialCivics);
 	SAFE_DELETE_ARRAY(m_pbLeaders);
 	SAFE_DELETE_ARRAY(m_pbCivilizationFreeBuildingClass);
@@ -11409,6 +11413,22 @@ int CvCivilizationInfo::getCivilizationFreeUnitsClass(int i) const
 	return m_piCivilizationFreeUnitsClass ? m_piCivilizationFreeUnitsClass[i] : -1;
 }
 
+// Civ4 Reimagined
+int CvCivilizationInfo::getCivilizationTerrainBias(int i) const
+{
+	FAssertMsg(i < GC.getNumTerrainInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_piCivilizationTerrainBias ? m_piCivilizationTerrainBias[i] : -1;
+}
+
+// Civ4 Reimagined
+int CvCivilizationInfo::getCivilizationFeatureBias(int i) const
+{
+	FAssertMsg(i < GC.getNumFeatureInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_piCivilizationFeatureBias ? m_piCivilizationFeatureBias[i] : -1;
+}
+
 int CvCivilizationInfo::getCivilizationInitialCivics(int i) const
 {
 	FAssertMsg(i < GC.getNumCivicOptionInfos(), "Index out of bounds");
@@ -11520,6 +11540,16 @@ void CvCivilizationInfo::read(FDataStreamBase* stream)
 	m_piCivilizationFreeUnitsClass = new int[GC.getNumUnitClassInfos()];
 	stream->Read(GC.getNumUnitClassInfos(), m_piCivilizationFreeUnitsClass);
 
+	// Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_piCivilizationTerrainBias);
+	m_piCivilizationTerrainBias = new int[GC.getNumTerrainInfos()];
+	stream->Read(GC.getNumTerrainInfos(), m_piCivilizationTerrainBias);
+
+	// Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_piCivilizationFeatureBias);
+	m_piCivilizationFeatureBias = new int[GC.getNumFeatureInfos()];
+	stream->Read(GC.getNumFeatureInfos(), m_piCivilizationFeatureBias);
+
 	SAFE_DELETE_ARRAY(m_piCivilizationInitialCivics);
 	m_piCivilizationInitialCivics = new int[GC.getNumCivicOptionInfos()];
 	stream->Read(GC.getNumCivicOptionInfos(), m_piCivilizationInitialCivics);
@@ -11585,6 +11615,8 @@ void CvCivilizationInfo::write(FDataStreamBase* stream)
 	stream->Write(GC.getNumBuildingClassInfos(), m_piCivilizationBuildings);
 	stream->Write(GC.getNumUnitClassInfos(), m_piCivilizationUnits);
 	stream->Write(GC.getNumUnitClassInfos(), m_piCivilizationFreeUnitsClass);
+	stream->Write(GC.getNumTerrainInfos(), m_piCivilizationTerrainBias); // Civ4 Reimagined
+	stream->Write(GC.getNumFeatureInfos(), m_piCivilizationFeatureBias); // Civ4 Reimagined
 	stream->Write(GC.getNumCivicOptionInfos(), m_piCivilizationInitialCivics);
 	stream->Write(GC.getNumLeaderHeadInfos(), m_pbLeaders);
 	stream->Write(GC.getNumBuildingClassInfos(), m_pbCivilizationFreeBuildingClass);
@@ -11776,6 +11808,10 @@ bool CvCivilizationInfo::read(CvXMLLoadUtility* pXML)
 
 	pXML->SetVariableListTagPair(&m_pbCivilizationFreeTechs, "FreeTechs", sizeof(GC.getTechInfo((TechTypes)0)), GC.getNumTechInfos());
 	pXML->SetVariableListTagPair(&m_pbCivilizationDisableTechs, "DisableTechs", sizeof(GC.getTechInfo((TechTypes)0)), GC.getNumTechInfos());
+
+	// Civ4 Reimagined
+	pXML->SetVariableListTagPair(&m_piCivilizationTerrainBias, "TerrainBiases", sizeof(GC.getTerrainInfo((TerrainTypes)0)), GC.getNumTerrainInfos());
+	pXML->SetVariableListTagPair(&m_piCivilizationFeatureBias, "FeatureBiases", sizeof(GC.getFeatureInfo((FeatureTypes)0)), GC.getNumFeatureInfos());
 
 	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"InitialCivics"))
 	{

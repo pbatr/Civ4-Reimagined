@@ -2413,7 +2413,7 @@ int CvTeamAI::AI_mapTradeVal(TeamTypes eTeam) const
 
 	//iValue /= 10;
 	// Civ4 Reimagined
-	iValue /= 50;
+	iValue /= 75;
 
 	if (GET_TEAM(eTeam).isVassal(getID()))
 	{
