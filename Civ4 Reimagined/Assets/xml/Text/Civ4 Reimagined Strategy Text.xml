@@ -282,7 +282,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_GREAT_HARBOR_STRATEGY</Tag>
-		<English>The [COLOR_BUILDING_TEXT]Great Harbor[COLOR_REVERT] improves the production and commerce output of water plots. Its city is more likely to generate a [COLOR_UNIT_TEXT]Great Merchant[COLOR_REVERT].</English>
+		<English>The [COLOR_BUILDING_TEXT]Great Harbor[COLOR_REVERT] improves the production output of water plots. Its city is more likely to generate a [COLOR_UNIT_TEXT]Great Merchant[COLOR_REVERT].</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_TANNERY_STRATEGY</Tag>
