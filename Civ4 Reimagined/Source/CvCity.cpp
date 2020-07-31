@@ -15505,6 +15505,8 @@ void CvCity::doImmigration()
 	{
 		int iChance = GC.getDefineINT("UNIQUE_POWER_AMERICA_IMMIGRATION_BASE") - GC.getDefineINT("UNIQUE_POWER_AMERICA_IMMIGRATION_REDUCTION") * getImmigrants();
 		
+		iChance = (iChance * 100) / GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getGrowthPercent();
+
 		if(GC.getGameINLINE().getSorenRandNum(100, "Immigrant chance") < iChance)
 		{
 			m_iImmigrants++;
