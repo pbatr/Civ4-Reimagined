@@ -3,6 +3,18 @@
 <!-- Copyright Firaxis Games 2005 -->
 <Civ4GameText xmlns="http://www.firaxis.com">
 	<TEXT>
+		<Tag>TXT_KEY_MISC_IMMIGRANTS</Tag>
+		<English>Immigrants settled in %s1!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_COMBAT_MESSAGE_CITY_FAITH</Tag>
+		<English>(Against infidels: %D1%%)</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_COMBAT_PLOT_FAITH_MOD</Tag>
+		<English>[ICON_BULLET]%D1_Bonus%% against Infidels</English>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWERS_TECH_PROGRESS_SETTLE</Tag>
 		<English>Our people have gathered knowledge of %s1!</English>
 	</TEXT>

@@ -1189,13 +1189,18 @@ void CvCity::doTurn()
 				{
 					iCount += std::min(getPopulation(), std::max(0, (happyLevel() - unhappyLevel())) * GET_PLAYER(getOwnerINLINE()).getProductionPerSurplusHappiness() / 100);
 				}
+
+				if (getImmigrants() > 0)
+				{
+					iCount += getImmigrants();
+				}
 			}
 
 			if (iCount != getBaseYieldRate((YieldTypes)iI))
 			{
 				logBBAI("base yieldRate is invalid in %S for %d (value: %d, count: %d)", getName().GetCString(), iI, getBaseYieldRate((YieldTypes)iI), iCount);
 			}
-
+			
 			FAssert(iCount == getBaseYieldRate((YieldTypes)iI));
 		}
 
@@ -15506,9 +15511,11 @@ void CvCity::doImmigration()
 			changePopulation(1);
 			changeExtraHappiness(1); // Verfällt, wenn Stadt erobert
 			changeBaseYieldRate(YIELD_PRODUCTION, 1); // Verfällt, wenn Stadt erobert
-
+			
 			// ONEVENT - City growth
 			CvEventReporter::getInstance().cityGrowth(this, getOwnerINLINE());
+			CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_IMMIGRANTS", getNameKey());
+			gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_WELOVEKING", MESSAGE_TYPE_MINOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_HAPPY_PERSON")->getPath(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX_INLINE(), getY_INLINE(), true, true);
 		}	
 	}
 }
