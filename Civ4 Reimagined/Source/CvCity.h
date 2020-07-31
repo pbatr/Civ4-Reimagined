@@ -995,10 +995,10 @@ public:
 	CvCity* getTradeCity(int iIndex) const;																				// Exposed to Python
 	int getTradeRoutes() const;																										// Exposed to Python
 	void clearTradeRoutes();
-	void updateTradeRoutes();
+	void updateTradeRoutes();	
 	
-	// Civ4 Reimagined
-	bool spreadCorporation(CorporationTypes eCorporation, CvCity* pHeadquarters, int iNumTries = 1);
+	bool spreadCorporation(CorporationTypes eCorporation, CvCity* pHeadquarters, int iNumTries = 1); // Civ4 Reimagined
+	int getImmigrants(); // Civ4 Reimagined
 
 	void clearOrderQueue();																														// Exposed to Python
 	//void pushOrder(OrderTypes eOrder, int iData1, int iData2, bool bSave, bool bPop, bool bAppend, bool bForce = false);		// Exposed to Python
@@ -1259,6 +1259,7 @@ protected:
 	int m_iGoldForHappinessBonus; // Civ4 Reimagined
 	int m_iEspionageDefenseModifier;
 	int m_iDistance; // Civ4 Reimagined
+	int m_iImmigrants; // Civ4 Reimagined
 
 	bool m_bNeverLost;
 	bool m_bBombarded;
@@ -1382,6 +1383,7 @@ protected:
 	void doReligion();
 	void doGreatPeople();
 	void doMeltdown();
+	void doImmigration();
 
 	int getExtraProductionDifference(int iExtra, UnitTypes eUnit) const;
 	int getExtraProductionDifference(int iExtra, BuildingTypes eBuilding) const;

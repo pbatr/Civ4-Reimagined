@@ -334,12 +334,20 @@
 		<iDefineIntVal>2</iDefineIntVal> <!-- % commerce modifier -->
 	</Define>
 	<Define>
+		<DefineName>UNIQUE_POWER_AMERICA_IMMIGRATION_BASE</DefineName>
+		<iDefineIntVal>15</iDefineIntVal> <!-- Chance per turn and city to gain an immigrant -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_AMERICA_IMMIGRATION_REDUCTION</DefineName>
+		<iDefineIntVal>3</iDefineIntVal> <!-- Reduce chance per already present immigrant -->
+	</Define>
+	<Define>
 		<DefineName>UNIQUE_POWER_AZTEC</DefineName>
-		<iDefineIntVal>20</iDefineIntVal> <!-- % chance per level -->
+		<iDefineIntVal>20</iDefineIntVal> <!-- % promotion chance per level -->
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_BABYLON</DefineName>
-		<iDefineIntVal>5</iDefineIntVal> <!-- % commerce per population -->
+		<iDefineIntVal>5</iDefineIntVal> <!-- % commerce in capital per population -->
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_BABYLON_2</DefineName>
@@ -357,5 +365,5 @@
 		<DefineName>UNIQUE_POWER_SUMERIA</DefineName>
 		<iDefineIntVal>40</iDefineIntVal> <!-- Per cent tech progress -->
 	</Define>
-
+	<!-- Unique Powers end -->
 </Civ4Defines>

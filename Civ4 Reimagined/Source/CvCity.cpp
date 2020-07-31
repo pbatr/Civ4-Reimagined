@@ -537,6 +537,7 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 	m_iGoldForHappinessBonus = 0; // Civ4 Reimagined
 	m_iEspionageDefenseModifier = 0;
 	m_iDistance = 0; // Civ4 Reimagined
+	m_iImmigrants = 0; // Civ4 Reimagined
 
 	m_bNeverLost = true;
 	m_bBombarded = false;
@@ -1043,6 +1044,8 @@ void CvCity::doTurn()
 	doGreatPeople();
 
 	doMeltdown();
+
+	doImmigration();
 
 	updateEspionageVisibility(true);
 
@@ -15485,6 +15488,38 @@ void CvCity::doGreatPeople()
 	}
 }
 
+// Civ4 Reimagined
+void CvCity::doImmigration()
+{
+	if (!GET_PLAYER(getOwnerINLINE()).getImmigrants())
+	{
+		return;
+	}
+
+	if (angryPopulation() <= 0 && healthRate() <= 0)
+	{
+		int iChance = GC.getDefineINT("UNIQUE_POWER_AMERICA_IMMIGRATION_BASE") - GC.getDefineINT("UNIQUE_POWER_AMERICA_IMMIGRATION_REDUCTION") * getImmigrants();
+		
+		if(GC.getGameINLINE().getSorenRandNum(100, "Immigrant chance") < iChance)
+		{
+			m_iImmigrants++;
+			changePopulation(1);
+			changeExtraHappiness(1); // Verfällt, wenn Stadt erobert
+			changeBaseYieldRate(YIELD_PRODUCTION, 1); // Verfällt, wenn Stadt erobert
+
+			// ONEVENT - City growth
+			CvEventReporter::getInstance().cityGrowth(this, getOwnerINLINE());
+		}	
+	}
+}
+
+
+// Civ4 Reimagined
+int CvCity::getImmigrants()
+{
+	return m_iImmigrants;
+}
+
 
 void CvCity::doMeltdown()
 {
@@ -15637,6 +15672,7 @@ void CvCity::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iGoldForHappinessBonus); // Civ4 Reimagined
 	pStream->Read(&m_iEspionageDefenseModifier);
 	pStream->Read(&m_iDistance); // Civ4 Reimagined
+	pStream->Read(&m_iImmigrants); // Civ4 Reimagined
 
 	pStream->Read(&m_bNeverLost);
 	pStream->Read(&m_bBombarded);
@@ -15890,6 +15926,7 @@ void CvCity::write(FDataStreamBase* pStream)
 	pStream->Write(m_iGoldForHappinessBonus); // Civ4 Reimagined
 	pStream->Write(m_iEspionageDefenseModifier);
 	pStream->Write(m_iDistance); // Civ4 Reimagined
+	pStream->Write(m_iImmigrants); // Civ4 Reimagined
 
 	pStream->Write(m_bNeverLost);
 	pStream->Write(m_bBombarded);

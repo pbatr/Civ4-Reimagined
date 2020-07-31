@@ -581,6 +581,10 @@ public:
 	void checkMayaCalendar();
 	
 	// Civ4 Reimagined
+	void setHasImmigrants(bool bNewValue);
+	bool getImmigrants() const;
+
+	// Civ4 Reimagined
 	int getHighestNavalUnitLevel() const;
 	void setHighestNavalUnitLevel(int iNewValue);
 	
@@ -1623,6 +1627,7 @@ protected:
 	bool m_bStrike;
 	bool m_bHuman;
 	bool m_bCanExploreSea; // Civ4 Reimagined
+	bool m_bImmigrants; // Civ4 Reimagined
 
 
 	bool m_bDisableHuman;	// Set to true to disable isHuman() check

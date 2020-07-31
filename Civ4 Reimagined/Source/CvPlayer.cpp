@@ -906,6 +906,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iReligionTechModifier = 0; // Civ4 Reimagined
 	m_iFreeUnitsOnConquest = 0; // Civ4 Reimagined
 	m_iMayaCalendar = -5000; // Civ4 Reimagined
+	m_bImmigrants = false; // Civ4 Reimagined
 	m_iUniquePowerBuildingModifier = 0; // Civ4 Reimagined
 	m_iEarlyWorkerSpeedModifier = 0; // Civ4 Reimagined
 	m_iFatcrossPeakHappiness = 0; // Civ4 Reimagined
@@ -19918,6 +19919,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iReligionTechModifier); // Civ4 Reimagined
 	pStream->Read(&m_iFreeUnitsOnConquest); // Civ4 Reimagined
 	pStream->Read(&m_iMayaCalendar); // Civ4 Reimagined
+	pStream->Read(&m_bImmigrants); // Civ4 Reimagined
 	pStream->Read(&m_iUniquePowerBuildingModifier); // Civ4 Reimagined
 	pStream->Read(&m_iEarlyWorkerSpeedModifier); // Civ4 Reimagined
 	pStream->Read(&m_iFatcrossPeakHappiness); // Civ4 Reimagined
@@ -20510,6 +20512,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iReligionTechModifier); // Civ4 Reimagined	
 	pStream->Write(m_iFreeUnitsOnConquest); // Civ4 Reimagined	
 	pStream->Write(m_iMayaCalendar); // Civ4 Reimagined	
+	pStream->Write(m_bImmigrants); // Civ4 Reimagined
 	pStream->Write(m_iUniquePowerBuildingModifier); // Civ4 Reimagined
 	pStream->Write(m_iEarlyWorkerSpeedModifier); // Civ4 Reimagined
 	pStream->Write(m_iFatcrossPeakHappiness); // Civ4 Reimagined
@@ -26338,7 +26341,7 @@ bool CvPlayer::isWrongCivicBuilding(BuildingTypes eBuilding) const
 }
 
 /************************************************************************************************/
-/* Civ4 Reimagined Unique Powers                   START                                                 */
+/* Civ4 Reimagined Unique Powers                   START                                        */
 /************************************************************************************************/
 	
 // Civ4 Reimagined
@@ -26672,6 +26675,18 @@ int CvPlayer::getMayaCalendar() const
 void CvPlayer::setMayaCalendar(int iNewValue)
 {
 	m_iMayaCalendar = iNewValue;
+}
+
+// Civ4 Reimagined
+void CvPlayer::setHasImmigrants(bool bNewValue)
+{
+	m_bImmigrants = bNewValue;
+}
+
+// Civ4 Reimagined
+bool CvPlayer::getImmigrants() const
+{
+	return m_bImmigrants;
 }
 
 // Civ4 Reimagined
@@ -27112,13 +27127,20 @@ void CvPlayer::updateUniquePowers(TechTypes eTech)
 		return;
 	}
 	
-	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA")
+	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AMERICA")
+		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_LIBERALISM"))
+	{
+		setHasImmigrants(true);
+		notifyUniquePowersChanged(true);
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA")
 		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_CALENDAR"))
 	{
 		setMayaCalendar(GC.getGameINLINE().getGameTurnYear());
 		checkMayaCalendar();
 		notifyUniquePowersChanged(true);
 	}
+	
 }
 
 //Civ4 Reimagined
@@ -27223,10 +27245,13 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 					}
 				}
 			}
+			
+			notifyUniquePowersChanged(true);
 		}
 		else if (eEra == 2)
 		{
 			setHasCivicEffect(false);
+			notifyUniquePowersChanged(false);
 		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_INCA"))
@@ -27272,7 +27297,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 }
 
 /************************************************************************************************/
-/* Civ4 Reimagined Unique Powers                    END                                                  */
+/* Civ4 Reimagined Unique Powers                    END                                         */
 /************************************************************************************************/
 
 
