@@ -8463,6 +8463,7 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 		pCombatDetails->iFortifyModifier = 0;
 		pCombatDetails->iCityDefenseModifier = 0;
 		pCombatDetails->iDefenseBuildingModifier = 0; //Civ4 Reimagined
+		pCombatDetails->iFaithModifier = 0; //Civ4 Reimagined
 		pCombatDetails->iHillsAttackModifier = 0;
 		pCombatDetails->iHillsDefenseModifier = 0;
 		pCombatDetails->iFeatureAttackModifier = 0;
@@ -8735,6 +8736,26 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 				if (pCombatDetails != NULL)
 				{
 					pCombatDetails->iCityBarbarianDefenseModifier = iExtraModifier;
+				}
+			}
+
+			// Civ4 Reimagined
+			// Arabian unique power: Attacking faithful cities of heretic rulers
+			bool bFaithConquest = GET_PLAYER(pAttacker->getOwnerINLINE()).isHasFaithConquest();
+			if (bFaithConquest)
+			{
+				ReligionTypes eAttackerStateReligion = GET_PLAYER(pAttacker->getOwnerINLINE()).getStateReligion();
+				bool bCityHasStateReligion = pAttackedCity->isHasReligion(eAttackerStateReligion);
+				bool bDefenderIsInfidel = GET_PLAYER(getOwnerINLINE()).getStateReligion() != eAttackerStateReligion;
+				
+				if (bCityHasStateReligion && bDefenderIsInfidel)
+				{
+					iExtraModifier = GC.getDefineINT("UNIQUE_POWER_ARABIA");
+					iTempModifier -= iExtraModifier;
+					if (pCombatDetails != NULL)
+					{
+						pCombatDetails->iFaithModifier = -iExtraModifier;
+					}
 				}
 			}
 		}

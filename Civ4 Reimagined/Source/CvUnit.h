@@ -61,6 +61,7 @@ struct DllExport CombatDetails					// Exposed to Python
 	int iCurrHitPoints;
 	int iMaxHitPoints;
 	int iCurrCombatStr;
+	int iFaithModifier; // Civ4 Reimagined
 	PlayerTypes eOwner;
 	PlayerTypes eVisualOwner;
 	std::wstring sUnitName;

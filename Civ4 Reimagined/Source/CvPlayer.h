@@ -1372,6 +1372,8 @@ public:
 	bool isHasCivicEffect() const; // Civ4 Reimagined
 	void changeTurnsToEffectFromStayingAtCivic(CivicTypes eCivic, int iChange); // Civ4 Reimagined
 	void updateEffectFromStayingAtCivic(); // Civ4 Reimagined
+	void setFaithConquest(bool bNewValue); // Civ4 Reimagined
+	bool isHasFaithConquest() const; // Civ4 Reimagined
 	
 	// K-Mod note: Adding new virtual functions to this list seems to cause unpredictable behaviour during the initialization of the game.
 	// So beware!
@@ -1613,6 +1615,7 @@ protected:
 	//int m_iNumColonies; // Civ4 Reimagined
 	int m_iSlavePointsFromSacrificePopulation; // Civ4 Reimagined
 	bool m_bCivicEffect; // Civ4 Reimagined
+	bool m_bFaithConquest; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
 

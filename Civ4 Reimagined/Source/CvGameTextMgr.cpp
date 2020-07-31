@@ -3716,6 +3716,23 @@ bool CvGameTextMgr::setCombatPlotHelp(CvWStringBuffer &szString, CvPlot* pPlot)
 					szString.append(NEWLINE);
 					szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_CITY_MOD", -iModifier));
 				}
+
+				// Civ4 Reimagined
+				// Arabian unique power: Attacking faithful cities of heretic rulers
+				bool bFaithConquest = GET_PLAYER(pAttacker->getOwnerINLINE()).isHasFaithConquest();
+				if (bFaithConquest)
+				{
+					ReligionTypes eAttackerStateReligion = GET_PLAYER(pAttacker->getOwnerINLINE()).getStateReligion();
+					bool bCityHasStateReligion = pAttackedCity->isHasReligion(eAttackerStateReligion);
+					bool bDefenderIsInfidel = GET_PLAYER(pDefender->getOwnerINLINE()).getStateReligion() != eAttackerStateReligion;
+					
+					if (bCityHasStateReligion && bDefenderIsInfidel)
+					{
+						iModifier = GC.getDefineINT("UNIQUE_POWER_ARABIA");
+						szString.append(NEWLINE);
+						szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_FAITH_MOD", -iModifier));
+					}
+				}
 			}
 
 			if (pPlot->isHills())

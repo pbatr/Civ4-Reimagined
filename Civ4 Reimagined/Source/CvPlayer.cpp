@@ -926,6 +926,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iProductionPerSurplusHappiness = 0; // Civ4 Reimagined
 	m_bUpdateBonusRatio = true; // Civ4 Reimagined
 	m_bCivicEffect = false; // Civ4 Reimagined
+	m_bFaithConquest = false; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -2738,8 +2739,9 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 	if (bConquest)
 	{
 		iTeamCulturePercent = pNewCity->calculateTeamCulturePercent(getTeam());
+		bool bFaithConquest = isHasFaithConquest() && pNewCity->isHasReligion(getStateReligion()); // Civ4 Reimagined: Arabian unique power
 
-		if (iTeamCulturePercent < GC.getDefineINT("OCCUPATION_CULTURE_PERCENT_THRESHOLD") && !GET_TEAM(getTeam()).isNoConquestResistance() && !isNoCityResistance()) // Civ4 Reimagined
+		if (iTeamCulturePercent < GC.getDefineINT("OCCUPATION_CULTURE_PERCENT_THRESHOLD") && !GET_TEAM(getTeam()).isNoConquestResistance() && !isNoCityResistance() && !bFaithConquest) // Civ4 Reimagined
 		{
 			pNewCity->changeOccupationTimer(((GC.getDefineINT("BASE_OCCUPATION_TURNS") + ((pNewCity->getPopulation() * GC.getDefineINT("OCCUPATION_TURNS_POPULATION_PERCENT")) / 100)) * (100 - iTeamCulturePercent)) / 100);
 		}
@@ -2861,7 +2863,18 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 		}
 	}
 	
-	// Civ4 Reimagined: Unique Power for rome
+	// Civ4 Reimagined: Unique power for Arabia
+	if (isHasFaithConquest() && bConquest)
+	{
+		// Spread religion
+		ReligionTypes eOwnStateReligion = getStateReligion();
+		if (!pNewCity->isHasReligion(eOwnStateReligion))
+		{
+			pNewCity->setHasReligion(eOwnStateReligion, true, true, false);
+		}
+	}
+
+	// Civ4 Reimagined: Unique power for Rome
 	int iFreeUnitsOnConquest = getFreeUnitsOnConquest();
 	if (iFreeUnitsOnConquest > 0 && bConquest && eOldHighestCulturePlayer != NO_PLAYER && !bOldEverOwned)
 	{
@@ -19939,6 +19952,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iProductionPerSurplusHappiness); // Civ4 Reimagined
 	pStream->Read(&m_bUpdateBonusRatio); // Civ4 Reimagined
 	pStream->Read(&m_bCivicEffect); // Civ4 Reimagined
+	pStream->Read(&m_bFaithConquest); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -20532,6 +20546,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iProductionPerSurplusHappiness); // Civ4 Reimagined
 	pStream->Write(m_bUpdateBonusRatio); // Civ4 Reimagined
 	pStream->Write(m_bCivicEffect); // Civ4 Reimagined
+	pStream->Write(m_bFaithConquest); // Civ4 Reimagined
 	
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -27119,7 +27134,19 @@ void CvPlayer::changeTurnsToEffectFromStayingAtCivic(CivicTypes eIndex, int iCha
 	}
 }
 
-// Civ4 Reimagined
+//Civ4 Reimagined
+void CvPlayer::setFaithConquest(bool bNewValue)
+{
+	m_bFaithConquest = bNewValue;
+}
+
+//Civ4 Reimagined
+bool CvPlayer::isHasFaithConquest() const
+{
+	return m_bFaithConquest && (getStateReligion() != NO_RELIGION);
+}
+
+//Civ4 Reimagined
 void CvPlayer::updateUniquePowers(TechTypes eTech)
 {
 	if (getID() == NO_PLAYER)
@@ -27170,8 +27197,21 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		return;
 		
 	}
+	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ARABIA"))
+	{
+		if (eEra == 2)
+		{
+			setFaithConquest(true);
+			notifyUniquePowersChanged(true);
+		}
+		else if(eEra == 3)
+		{
+			setFaithConquest(false);
+			notifyUniquePowersChanged(false);
+		}
 
-	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AZTEC"))
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AZTEC"))
 	{
 		if (eEra == 0)
 		{

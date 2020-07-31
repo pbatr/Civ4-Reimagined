@@ -297,8 +297,8 @@
 		<DefineName>UNIT_MILITARY_HAPPINESS_ERA_OFFSET</DefineName>
 		<iDefineIntVal>2</iDefineIntVal>
 	</Define>
-	<!-- Target Populations are used for Quantifiable Resouce System. They correspond to the maximum population which can be sufficiently supplied with one resource when all techs of this
-	era are discovered. Every tech you discover improves your techValue and by that lets you supply more population with one resource. Target population adds up which means e.g. real
+	<!-- Target Populations are used by the Quantifiable Resource System. They correspond to the maximum population which can be sufficiently supplied with one resource when all techs of this
+	era are discovered. Every tech you discover improves your techValue and by that lets you supply more population with one resource. Target population adds up which means e.g. total
 	target population for classical era is: TARGET_POPULATION_ANCIENT + TARGET_POPULATION_CLASSICAL -->
 	<Define>
 		<DefineName>TARGET_POPULATION_ANCIENT</DefineName>
@@ -340,6 +340,10 @@
 	<Define>
 		<DefineName>UNIQUE_POWER_AMERICA_IMMIGRATION_REDUCTION</DefineName>
 		<iDefineIntVal>3</iDefineIntVal> <!-- Reduce chance per already present immigrant -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_ARABIA</DefineName>
+		<iDefineIntVal>20</iDefineIntVal> <!-- % combat bonus when liberating cities of faith from infidels -->
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_AZTEC</DefineName>
