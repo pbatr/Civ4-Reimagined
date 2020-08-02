@@ -1337,6 +1337,8 @@ public:
 	void changeFatcrossTerrainCulture(TerrainTypes eIndex, int iChange); // Civ4 Reimagined
 	int getCapitalCommercePerPopulation(CommerceTypes eIndex, int iPopulation) const; // Civ4 Reimagined
 	void setCapitalCommercePerPopulation(CommerceTypes eIndex, int iCommerceModifierPerPopulation, int iTargetPopulation); // Civ4 Reimagined
+	int getAdjacentFeatureCommerce(FeatureTypes eFeatureIndex, CommerceTypes eCommerceIndex) const;
+	void changeAdjacentFeatureCommerce(FeatureTypes eFeatureIndex, CommerceTypes eCommerceIndex, int iChangePercent);
 	int getFatcrossPeakHappiness() const; // Civ4 Reimagined
 	void changeFatcrossPeakHappiness(int iChange); // Civ4 Reimagined
 	int getFatcrossPeakCulture() const; // Civ4 Reimagined
@@ -1689,8 +1691,6 @@ protected:
 	int* m_paiExtraBuildingHappiness;
 	int* m_paiExtraBuildingHealth;
 	int* m_paiBuildingProductionModifiers; // Leoreth
-	int** m_paiExtraBuildingYield;
-	int** m_paiExtraBuildingCommerce;
 	int* m_paiTechProgressOnSettling; // Civ4 Reimagined
 	int* m_paiFeatureHappiness;
 	int* m_paiUnitClassCount;
@@ -1728,6 +1728,7 @@ protected:
 	int** m_ppaaiImprovementYieldChange;
 	int** m_ppaaiRadiusImprovementCommerceChange; // Civ4 Reimagined
 	int** m_ppaaiBuildingYieldChange; // Civ4 Reimagined
+	int** m_ppaiAdjacentFeatureCommerce; // Civ4 Reimagined
 
 	CLinkList<int> m_groupCycle;
 

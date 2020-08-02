@@ -1394,4 +1394,8 @@
 		<Tag>TXT_KEY_MISC_YOUR_AIR_UNIT_DAMAGED</Tag>
 		<English>Your %s1_UnitName was damaged by an enemy %s2_EnUName (%d3%% HP)</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_HELP_FEATURE_COMMERCE</Tag>
+		<English>[ICON_BULLET]%s1%F2 from Terrain Features</English>
+	</TEXT>
 </Civ4GameText>

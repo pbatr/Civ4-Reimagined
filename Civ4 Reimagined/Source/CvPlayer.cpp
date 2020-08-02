@@ -114,6 +114,7 @@ CvPlayer::CvPlayer()
 	m_ppaaiImprovementYieldChange = NULL;
 	m_ppaaiRadiusImprovementCommerceChange = NULL; // Civ4 Reimagined
 	m_ppaaiBuildingYieldChange = NULL; // Civ4 Reimagined
+	m_ppaiAdjacentFeatureCommerce = NULL; // Civ4 Reimagined
 
 	reset(NO_PLAYER, true);
 }
@@ -704,6 +705,16 @@ void CvPlayer::uninit()
 		SAFE_DELETE_ARRAY(m_ppaaiBuildingYieldChange);
 	}
 
+	// Civ4 Reimagined
+	if (m_ppaiAdjacentFeatureCommerce != NULL)
+	{
+		for (int iI = 0; iI < GC.getNumFeatureInfos(); iI++)
+		{
+			SAFE_DELETE_ARRAY(m_ppaiAdjacentFeatureCommerce[iI]);
+		}
+		SAFE_DELETE_ARRAY(m_ppaiAdjacentFeatureCommerce);
+	}
+
 	m_groupCycle.clear();
 
 	m_researchQueue.clear();
@@ -1276,6 +1287,18 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 				m_ppaaiBuildingYieldChange[iI][iJ] = 0;
 			}
 		}
+
+		// Civ4 Reimagined
+		FAssertMsg(m_ppaiAdjacentFeatureCommerce==NULL, "about to leak memory, CvPlayer::m_ppaiAdjacentFeatureCommerce");
+		m_ppaiAdjacentFeatureCommerce = new int*[GC.getNumFeatureInfos()];
+		for (iI = 0; iI < GC.getNumFeatureInfos(); iI++)
+		{
+			m_ppaiAdjacentFeatureCommerce[iI] = new int[NUM_COMMERCE_TYPES];
+			for (iJ = 0; iJ < NUM_COMMERCE_TYPES; iJ++)
+			{
+				m_ppaiAdjacentFeatureCommerce[iI][iJ] = 0;
+			}
+		}		
 
 		m_mapEventsOccured.clear();
 		m_mapEventCountdown.clear();
@@ -15615,6 +15638,37 @@ void CvPlayer::changeBuildingYieldChange(BuildingClassTypes eIndex1, YieldTypes 
 }
 
 
+// Civ4 Reimagined
+int CvPlayer::getAdjacentFeatureCommerce(FeatureTypes eFeatureIndex, CommerceTypes eCommerceIndex) const
+{
+	FAssertMsg(eFeatureIndex >= 0, "eFeatureIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eFeatureIndex < GC.getNumFeatureInfos(), "eFeatureIndex is expected to be within maximum bounds (invalid Index)");
+	FAssertMsg(eCommerceIndex >= 0, "eCommerceIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eCommerceIndex < NUM_COMMERCE_TYPES, "eCommerceIndex is expected to be within maximum bounds (invalid Index)");
+	return m_ppaiAdjacentFeatureCommerce[eFeatureIndex][eCommerceIndex];
+}
+
+
+// Civ4 Reimagined
+void CvPlayer::changeAdjacentFeatureCommerce(FeatureTypes eFeatureIndex, CommerceTypes eCommerceIndex, int iChange)
+{
+	FAssertMsg(eFeatureIndex >= 0, "eFeatureIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eFeatureIndex < GC.getNumFeatureInfos(), "eFeatureIndex is expected to be within maximum bounds (invalid Index)");
+	FAssertMsg(eCommerceIndex >= 0, "eCommerceIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eCommerceIndex < NUM_COMMERCE_TYPES, "eCommerceIndex is expected to be within maximum bounds (invalid Index)");
+
+	if (iChange != 0)
+	{
+		m_ppaiAdjacentFeatureCommerce[eFeatureIndex][eCommerceIndex] = (m_ppaiAdjacentFeatureCommerce[eFeatureIndex][eCommerceIndex] + iChange);
+		
+		int iLoop;
+		for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop) )
+		{
+			pLoopCity->updateFeatureAdjacentCommerce();
+		}
+	}	
+}
+
 // K-Mod. I've changed this function from using pUnit to using pGroup.
 // I've also rewriten most of the code, to give more natural ordering, and to be more robust and readable code.
 void CvPlayer::updateGroupCycle(CvSelectionGroup* pGroup)
@@ -17186,7 +17240,7 @@ int CvPlayer::getEspionageMissionBaseCost(EspionageMissionTypes eMission, Player
 		{
 			for (int iBuilding = 0; iBuilding < GC.getNumBuildingInfos(); ++iBuilding)
 			{
-				// Civ4 Reimagined TODO: cannot destroy obselete buildings?
+				// Civ4 Reimagined TODO: cannot destroy obsolete buildings?
 				if (NULL != pCity && pCity->getNumRealBuilding((BuildingTypes)iBuilding) > 0)
 				{
 					if (canSpyDestroyBuilding(eTargetPlayer, (BuildingTypes)iBuilding))
@@ -20080,6 +20134,12 @@ void CvPlayer::read(FDataStreamBase* pStream)
 		pStream->Read(NUM_YIELD_TYPES, m_ppaaiBuildingYieldChange[iI]);
 	}
 
+	// Civ4 Reimagined
+	for (iI=0;iI<GC.getNumFeatureInfos();iI++)
+	{
+		pStream->Read(NUM_COMMERCE_TYPES, m_ppaiAdjacentFeatureCommerce[iI]);
+	}
+
 	m_groupCycle.Read(pStream);
 	m_researchQueue.Read(pStream);
 
@@ -20661,6 +20721,12 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	for (iI=0;iI<GC.getNumBuildingClassInfos();iI++)
 	{
 		pStream->Write(NUM_YIELD_TYPES, m_ppaaiBuildingYieldChange[iI]);
+	}
+
+	// Civ4 Reimagined
+	for (iI=0;iI<GC.getNumFeatureInfos();iI++)
+	{
+		pStream->Write(NUM_COMMERCE_TYPES, m_ppaiAdjacentFeatureCommerce[iI]);
 	}
 
 	m_groupCycle.Write(pStream);
@@ -27244,6 +27310,21 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		else if (eEra == 2)
 		{
 			setSpecialTradeRoutePerPlayer(false);
+			notifyUniquePowersChanged(false);
+		}
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CELT"))
+	{
+		if (eEra == 1)
+		{
+			changeAdjacentFeatureCommerce((FeatureTypes)GC.getInfoTypeForString("FEATURE_FOREST"), COMMERCE_CULTURE, GC.getDefineINT("UNIQUE_POWER_CELT_CULTURE"));
+			changeAdjacentFeatureCommerce((FeatureTypes)GC.getInfoTypeForString("FEATURE_FOREST"), COMMERCE_RESEARCH, GC.getDefineINT("UNIQUE_POWER_CELT_RESEARCH"));
+			notifyUniquePowersChanged(true);
+		}
+		else if (eEra == 2)
+		{
+			changeAdjacentFeatureCommerce((FeatureTypes)GC.getInfoTypeForString("FEATURE_FOREST"), COMMERCE_CULTURE, GC.getDefineINT("UNIQUE_POWER_CELT_CULTURE"));
+			changeAdjacentFeatureCommerce((FeatureTypes)GC.getInfoTypeForString("FEATURE_FOREST"), COMMERCE_RESEARCH, GC.getDefineINT("UNIQUE_POWER_CELT_RESEARCH"));
 			notifyUniquePowersChanged(false);
 		}
 	}

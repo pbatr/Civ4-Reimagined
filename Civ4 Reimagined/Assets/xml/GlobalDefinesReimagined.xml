@@ -358,6 +358,14 @@
 		<iDefineIntVal>0</iDefineIntVal> <!-- Population required -->
 	</Define>
 	<Define>
+		<DefineName>UNIQUE_POWER_CELT_CULTURE</DefineName>
+		<iDefineIntVal>50</iDefineIntVal> <!-- Culture per adjacent forest -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_CELT_RESEARCH</DefineName>
+		<iDefineIntVal>50</iDefineIntVal> <!-- Research per adjacent forest -->
+	</Define>
+	<Define>
 		<DefineName>UNIQUE_POWER_EGYPT</DefineName>
 		<iDefineIntVal>3</iDefineIntVal> <!-- Slavery points per population -->
 	</Define>

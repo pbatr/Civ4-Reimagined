@@ -16938,6 +16938,16 @@ void CvGameTextMgr::setCommerceHelp(CvWStringBuffer &szBuffer, CvCity& city, Com
 		iBaseCommerceRate += iGoldForHappinessBonus;
 		bNeedSubtotal = true; // BUG - Base Commerce 
 	}
+
+	// Civ4 Reimagined: Commerce from features
+	int iCommerceForAdjacentFeatures = city.getFeatureAdjacentCommerce(eCommerceType);
+	if (0 != iCommerceForAdjacentFeatures)
+	{
+		CvWString szFeatureCommerceString = CvWString::format(L"%d.%02d", iCommerceForAdjacentFeatures/100, iCommerceForAdjacentFeatures%100);
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_FEATURE_COMMERCE", szFeatureCommerceString.GetCString(), info.getChar()));
+		szBuffer.append(NEWLINE);
+		iBaseCommerceRate += iCommerceForAdjacentFeatures;
+	}
 	
 	int iCorporationCommerce = city.getCorporationCommerce(eCommerceType);
 	if (0 != iCorporationCommerce)
