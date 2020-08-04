@@ -16943,7 +16943,10 @@ void CvGameTextMgr::setCommerceHelp(CvWStringBuffer &szBuffer, CvCity& city, Com
 	int iCommerceForAdjacentFeatures = city.getFeatureAdjacentCommerce(eCommerceType);
 	if (0 != iCommerceForAdjacentFeatures)
 	{
-		CvWString szFeatureCommerceString = CvWString::format(L"%d.%02d", iCommerceForAdjacentFeatures/100, iCommerceForAdjacentFeatures%100);
+		CvWString szFeatureCommerceString = iCommerceForAdjacentFeatures%100 > 0 ?
+				CvWString::format(L"%s%d.%02d", iCommerceForAdjacentFeatures > 0 ? "+" : "", iCommerceForAdjacentFeatures/100, iCommerceForAdjacentFeatures%100) :
+				CvWString::format(L"%s%d", iCommerceForAdjacentFeatures > 0 ? "+" : "", iCommerceForAdjacentFeatures/100);
+		
 		szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_FEATURE_COMMERCE", szFeatureCommerceString.GetCString(), info.getChar()));
 		szBuffer.append(NEWLINE);
 		iBaseCommerceRate += iCommerceForAdjacentFeatures;
