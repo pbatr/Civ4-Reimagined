@@ -908,7 +908,7 @@
 			<FeatureBiases>
 				<FeatureBias>
 					<FeatureType>FEATURE_FOREST</FeatureType>
-					<iBias>1</iBias>
+					<iBias>3</iBias>
 				</FeatureBias>
 			</FeatureBiases>
 			<InitialCivics>
