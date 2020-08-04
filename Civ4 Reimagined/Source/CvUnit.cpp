@@ -4981,12 +4981,12 @@ bool CvUnit::canPillage(const CvPlot* pPlot) const
 				return false;
 			}
 		}
-	}
 
-	// Civ4 Reimagined
-	if (GET_PLAYER(pPlot->getOwnerINLINE()).isNoPillage())
-	{
-		return false;
+		// Civ4 Reimagined
+		if (GET_PLAYER(pPlot->getOwnerINLINE()).isNoPillage())
+		{
+			return false;
+		}
 	}
 		
 	if (!(pPlot->isValidDomainForAction(*this)))
