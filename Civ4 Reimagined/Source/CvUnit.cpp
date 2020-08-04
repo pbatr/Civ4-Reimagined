@@ -4983,7 +4983,7 @@ bool CvUnit::canPillage(const CvPlot* pPlot) const
 		}
 
 		// Civ4 Reimagined
-		if (GET_PLAYER(pPlot->getOwnerINLINE()).isNoPillage())
+		if (GET_PLAYER(pPlot->getOwnerINLINE()).isNoPillage() && pPlot->getOwnerINLINE() != getOwnerINLINE())
 		{
 			return false;
 		}
