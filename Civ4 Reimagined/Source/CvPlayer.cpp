@@ -7254,12 +7254,6 @@ bool CvPlayer::canCreate(ProjectTypes eProject, bool bContinue, bool bTestVisibl
 		return false;
 	}
 
-	// Civ4 Reimagined
-	if (getIdeology() != (IdeologyTypes)GC.getProjectInfo(eProject).getIdeologyPrereq())
-	{
-		return false;
-	}
-
 	if (GC.getProjectInfo(eProject).getVictoryPrereq() != NO_VICTORY)
 	{
 		if (!(GC.getGameINLINE().isVictoryValid((VictoryTypes)(GC.getProjectInfo(eProject).getVictoryPrereq()))))
@@ -7320,6 +7314,12 @@ bool CvPlayer::canCreate(ProjectTypes eProject, bool bContinue, bool bTestVisibl
 			{
 				return false;
 			}
+		}
+
+		// Civ4 Reimagined
+		if ((IdeologyTypes)GC.getProjectInfo(eProject).getIdeologyPrereq() != NO_IDEOLOGY && getIdeology() != (IdeologyTypes)GC.getProjectInfo(eProject).getIdeologyPrereq())
+		{
+			return false;
 		}
 
 		for (iI = 0; iI < GC.getNumProjectInfos(); iI++)
