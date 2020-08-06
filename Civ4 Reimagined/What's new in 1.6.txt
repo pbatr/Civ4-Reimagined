@@ -22,6 +22,8 @@ Tweaks
 -Tactical Nuke range increased from 6 to 8
 -Blitz promotion only requires Flanking II or Drill II
 -Changed Woodsman promotions to 10% attack&defense and +10% heal for friendly/neutral/enemy territory (was: +25% defense, healing and first strike on woodsman3)
+-Removed adjacent tile healing from medic promotions (almost never used in our experience, and the implementation was computationally expensive)
+-Medic3 promotion decreased from 15% healing to 10% healing
 -Tanks no longer have Blitz promotion per default
 -Central Planning no longer enables no production mali for military units
 -Apollo Program costs decreased from 2000 to 1500
@@ -29,7 +31,6 @@ Tweaks
 -CERN Research Complex costs increased from 800 to 1200
 -Space Elevator costs increased from 1000 to 1500
 -Great Harbor moved to Guilds from Refrigeration, reduced cost from 250 to 125, removed +100% production with steel, removed +1C per water tile, +3 culture
--Removed adjacent tile healing from medic promotions (almost never used in our experience, and the implementation was computationally expensive)
 
 *********
 Interface
