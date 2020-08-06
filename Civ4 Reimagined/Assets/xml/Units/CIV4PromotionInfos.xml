@@ -1799,7 +1799,7 @@
 			<iChanceFirstStrikesChange>0</iChanceFirstStrikesChange>
 			<iEnemyHealChange>0</iEnemyHealChange>
 			<iNeutralHealChange>0</iNeutralHealChange>
-			<iFriendlyHealChange>0</iFriendlyHealChange>
+			<iFriendlyHealChange>10</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
 			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
@@ -1815,15 +1815,24 @@
 			<iExperiencePercent>0</iExperiencePercent>
 			<TerrainAttacks/>
 			<TerrainDefenses/>
-			<FeatureAttacks/>
+			<FeatureAttacks>
+				<FeatureAttack>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iFeatureDefense>10</iFeatureDefense>
+				</FeatureAttack>
+				<FeatureAttack>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iFeatureDefense>10</iFeatureDefense>
+				</FeatureAttack>
+			</FeatureAttacks>
 			<FeatureDefenses>
 				<FeatureDefense>
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
-					<iFeatureDefense>25</iFeatureDefense>
+					<iFeatureDefense>10</iFeatureDefense>
 				</FeatureDefense>
 				<FeatureDefense>
 					<FeatureType>FEATURE_FOREST</FeatureType>
-					<iFeatureDefense>25</iFeatureDefense>
+					<iFeatureDefense>10</iFeatureDefense>
 				</FeatureDefense>
 			</FeatureDefenses>
 			<UnitCombatMods/>
@@ -1883,7 +1892,7 @@
 			<iFirstStrikesChange>0</iFirstStrikesChange>
 			<iChanceFirstStrikesChange>0</iChanceFirstStrikesChange>
 			<iEnemyHealChange>0</iEnemyHealChange>
-			<iNeutralHealChange>0</iNeutralHealChange>
+			<iNeutralHealChange>10</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
 			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
@@ -1900,15 +1909,24 @@
 			<iExperiencePercent>0</iExperiencePercent>
 			<TerrainAttacks/>
 			<TerrainDefenses/>
-			<FeatureAttacks/>
+			<FeatureAttacks>
+				<FeatureAttack>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iFeatureDefense>10</iFeatureDefense>
+				</FeatureAttack>
+				<FeatureAttack>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iFeatureDefense>10</iFeatureDefense>
+				</FeatureAttack>
+			</FeatureAttacks>
 			<FeatureDefenses>
 				<FeatureDefense>
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
-					<iFeatureDefense>25</iFeatureDefense>
+					<iFeatureDefense>10</iFeatureDefense>
 				</FeatureDefense>
 				<FeatureDefense>
 					<FeatureType>FEATURE_FOREST</FeatureType>
-					<iFeatureDefense>25</iFeatureDefense>
+					<iFeatureDefense>10</iFeatureDefense>
 				</FeatureDefense>
 			</FeatureDefenses>
 			<UnitCombatMods/>
@@ -1965,12 +1983,12 @@
 			<iCargoChange>0</iCargoChange>
 			<iCollateralDamageChange>0</iCollateralDamageChange>
 			<iBombardRateChange>0</iBombardRateChange>
-			<iFirstStrikesChange>1</iFirstStrikesChange>
+			<iFirstStrikesChange>0</iFirstStrikesChange>
 			<iChanceFirstStrikesChange>0</iChanceFirstStrikesChange>
-			<iEnemyHealChange>0</iEnemyHealChange>
+			<iEnemyHealChange>10</iEnemyHealChange>
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
-			<iSameTileHealChange>10</iSameTileHealChange>
+			<iSameTileHealChange>0</iSameTileHealChange>
 			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
@@ -1988,14 +2006,23 @@
 			<FeatureAttacks>
 				<FeatureAttack>
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
-					<iFeatureAttack>25</iFeatureAttack>
+					<iFeatureDefense>10</iFeatureDefense>
 				</FeatureAttack>
 				<FeatureAttack>
 					<FeatureType>FEATURE_FOREST</FeatureType>
-					<iFeatureAttack>25</iFeatureAttack>
+					<iFeatureDefense>10</iFeatureDefense>
 				</FeatureAttack>
 			</FeatureAttacks>
-			<FeatureDefenses/>
+			<FeatureDefenses>
+				<FeatureDefense>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iFeatureDefense>10</iFeatureDefense>
+				</FeatureDefense>
+				<FeatureDefense>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iFeatureDefense>10</iFeatureDefense>
+				</FeatureDefense>
+			</FeatureDefenses>
 			<UnitCombatMods/>
 			<DomainMods/>
 			<TerrainDoubleMoves/>

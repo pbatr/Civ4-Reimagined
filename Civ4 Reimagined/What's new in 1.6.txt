@@ -21,6 +21,7 @@ Tweaks
 -Guided Missile air range increased from 5 to 8
 -Tactical Nuke range increased from 6 to 8
 -Blitz promotion only requires Flanking II or Drill II
+-Changed Woodsman promotions to 10% attack&defense and +10% heal for friendly/neutral/enemy territory (was: +25% defense, healing and first strike on woodsman3)
 -Tanks no longer have Blitz promotion per default
 -Central Planning no longer enables no production mali for military units
 -Apollo Program costs decreased from 2000 to 1500
