@@ -2772,6 +2772,102 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 		GC.getMapINLINE().verifyUnitValidPlot();
 	}
 
+	// Civ4 Reimagined: Unique power for Arabia
+	if (isHasFaithConquest() && bConquest)
+	{
+		// Spread religion
+		ReligionTypes eOwnStateReligion = getStateReligion();
+		if (!pNewCity->isHasReligion(eOwnStateReligion))
+		{
+			pNewCity->setHasReligion(eOwnStateReligion, true, true, false);
+		}
+	}
+
+	// Civ4 Reimagined: Unique power for Rome
+	int iFreeUnitsOnConquest = getFreeUnitsOnConquest();
+	if (iFreeUnitsOnConquest > 0 && bConquest && eOldHighestCulturePlayer != NO_PLAYER && !bOldEverOwned)
+	{
+		int iNumUnits = iOldCultureLevel;
+		
+		PlayerTypes eOtherPlayer = eOldHighestCulturePlayer; //pNewCity->getOriginalOwner();
+		
+		UnitClassTypes UNITCLASS_SPEARMAN = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SPEARMAN");
+		UnitClassTypes UNITCLASS_AXEMAN = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_AXEMAN");
+		UnitClassTypes UNITCLASS_ARCHER = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_ARCHER");
+		UnitClassTypes UNITCLASS_CHARIOT = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_CHARIOT");
+		UnitClassTypes UNITCLASS_HORSEMAN = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_HORSE_ARCHER");
+		UnitClassTypes UNITCLASS_SWORDSMAN = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SWORDSMAN");
+		TechTypes TECH_IRON_WORKING = (TechTypes)GC.getInfoTypeForString("TECH_IRON_WORKING");
+		TechTypes TECH_HORSEBACK_RIDING = (TechTypes)GC.getInfoTypeForString("TECH_HORSEBACK_RIDING");
+		UnitTypes eSpearman = (UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(eOtherPlayer).getCivilizationType()).getCivilizationUnits(UNITCLASS_SPEARMAN));
+		UnitTypes eAxeman = (UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(eOtherPlayer).getCivilizationType()).getCivilizationUnits(UNITCLASS_AXEMAN));
+		UnitTypes eArcher = (UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(eOtherPlayer).getCivilizationType()).getCivilizationUnits(UNITCLASS_ARCHER));
+		UnitTypes eChariot = (UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(eOtherPlayer).getCivilizationType()).getCivilizationUnits(UNITCLASS_CHARIOT));
+		UnitTypes eHorseman = (UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(eOtherPlayer).getCivilizationType()).getCivilizationUnits(UNITCLASS_HORSEMAN));
+		UnitTypes eSwordsman = (UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(eOtherPlayer).getCivilizationType()).getCivilizationUnits(UNITCLASS_SWORDSMAN));
+		
+		int iSpearmanWeight = 4;
+		int iArcherWeight = 2;
+		int iInfantryWeight = 9;
+		int iCavalryWeight = 5;
+		
+		int iTotalWeight = iSpearmanWeight + iArcherWeight + iInfantryWeight + iCavalryWeight;
+		int iOffset = 0;
+		
+		if (iTotalWeight > 0)
+		{
+			for (int i = 0; i < iNumUnits; i++)
+			{
+				int iRand = 1 + GC.getGameINLINE().getSorenRandNum(iTotalWeight, "Random unit for rome"); // Range: [1,iTotalWeight]
+				
+				if (iRand <= iSpearmanWeight)
+				{
+					initUnit(eSpearman, pNewCity->getX_INLINE(), pNewCity->getY_INLINE());
+				} else 
+				{
+					iOffset += iSpearmanWeight;
+					
+					if (iRand <= iArcherWeight + iOffset)
+					{
+						initUnit(eArcher, pNewCity->getX_INLINE(), pNewCity->getY_INLINE());
+					} else
+					{
+						iOffset += iArcherWeight;
+						
+						if (iRand <= iInfantryWeight + iOffset)
+						{
+							if (GET_TEAM(GET_PLAYER(eOtherPlayer).getTeam()).isHasTech(TECH_IRON_WORKING))
+							{
+								initUnit(eSwordsman, pNewCity->getX_INLINE(), pNewCity->getY_INLINE());
+							} else
+							{
+								initUnit(eAxeman, pNewCity->getX_INLINE(), pNewCity->getY_INLINE());
+							}
+							
+						} else
+						{
+							iOffset += iInfantryWeight;
+							
+							if (iRand <= iCavalryWeight + iOffset)
+							{
+								if (GET_TEAM(GET_PLAYER(eOtherPlayer).getTeam()).isHasTech(TECH_HORSEBACK_RIDING))
+								{
+									initUnit(eHorseman, pNewCity->getX_INLINE(), pNewCity->getY_INLINE());
+								} else
+								{
+									initUnit(eChariot, pNewCity->getX_INLINE(), pNewCity->getY_INLINE());
+								}
+							} else
+							{
+								FAssertMsg(false, "Random unit generation for rome out of bounds");
+							}
+						}
+					}
+				}		
+			}
+		}
+	}
+
 	pCityPlot->setRevealed(GET_PLAYER(eOldOwner).getTeam(), true, false, NO_TEAM, false);
 
 	pNewCity->updateEspionageVisibility(false);
@@ -2883,102 +2979,6 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 		if((triggerData.m_eOtherPlayer == eOldOwner) && (triggerData.m_iOtherPlayerCityId == iOldCityId))
 		{
 			triggerData.m_iOtherPlayerCityId = -1;
-		}
-	}
-	
-	// Civ4 Reimagined: Unique power for Arabia
-	if (isHasFaithConquest() && bConquest)
-	{
-		// Spread religion
-		ReligionTypes eOwnStateReligion = getStateReligion();
-		if (!pNewCity->isHasReligion(eOwnStateReligion))
-		{
-			pNewCity->setHasReligion(eOwnStateReligion, true, true, false);
-		}
-	}
-
-	// Civ4 Reimagined: Unique power for Rome
-	int iFreeUnitsOnConquest = getFreeUnitsOnConquest();
-	if (iFreeUnitsOnConquest > 0 && bConquest && eOldHighestCulturePlayer != NO_PLAYER && !bOldEverOwned)
-	{
-		int iNumUnits = iOldCultureLevel;
-		
-		PlayerTypes eOtherPlayer = eOldHighestCulturePlayer; //pNewCity->getOriginalOwner();
-		
-		UnitClassTypes UNITCLASS_SPEARMAN = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SPEARMAN");
-		UnitClassTypes UNITCLASS_AXEMAN = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_AXEMAN");
-		UnitClassTypes UNITCLASS_ARCHER = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_ARCHER");
-		UnitClassTypes UNITCLASS_CHARIOT = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_CHARIOT");
-		UnitClassTypes UNITCLASS_HORSEMAN = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_HORSE_ARCHER");
-		UnitClassTypes UNITCLASS_SWORDSMAN = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SWORDSMAN");
-		TechTypes TECH_IRON_WORKING = (TechTypes)GC.getInfoTypeForString("TECH_IRON_WORKING");
-		TechTypes TECH_HORSEBACK_RIDING = (TechTypes)GC.getInfoTypeForString("TECH_HORSEBACK_RIDING");
-		UnitTypes eSpearman = (UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(eOtherPlayer).getCivilizationType()).getCivilizationUnits(UNITCLASS_SPEARMAN));
-		UnitTypes eAxeman = (UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(eOtherPlayer).getCivilizationType()).getCivilizationUnits(UNITCLASS_AXEMAN));
-		UnitTypes eArcher = (UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(eOtherPlayer).getCivilizationType()).getCivilizationUnits(UNITCLASS_ARCHER));
-		UnitTypes eChariot = (UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(eOtherPlayer).getCivilizationType()).getCivilizationUnits(UNITCLASS_CHARIOT));
-		UnitTypes eHorseman = (UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(eOtherPlayer).getCivilizationType()).getCivilizationUnits(UNITCLASS_HORSEMAN));
-		UnitTypes eSwordsman = (UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(eOtherPlayer).getCivilizationType()).getCivilizationUnits(UNITCLASS_SWORDSMAN));
-		
-		int iSpearmanWeight = 4;
-		int iArcherWeight = 2;
-		int iInfantryWeight = 9;
-		int iCavalryWeight = 5;
-		
-		int iTotalWeight = iSpearmanWeight + iArcherWeight + iInfantryWeight + iCavalryWeight;
-		int iOffset = 0;
-		
-		if (iTotalWeight > 0)
-		{
-			for (int i = 0; i < iNumUnits; i++)
-			{
-				int iRand = 1 + GC.getGameINLINE().getSorenRandNum(iTotalWeight, "Random unit for rome"); // Range: [1,iTotalWeight]
-				
-				if (iRand <= iSpearmanWeight)
-				{
-					initUnit(eSpearman, pNewCity->getX_INLINE(), pNewCity->getY_INLINE());
-				} else 
-				{
-					iOffset += iSpearmanWeight;
-					
-					if (iRand <= iArcherWeight + iOffset)
-					{
-						initUnit(eArcher, pNewCity->getX_INLINE(), pNewCity->getY_INLINE());
-					} else
-					{
-						iOffset += iArcherWeight;
-						
-						if (iRand <= iInfantryWeight + iOffset)
-						{
-							if (GET_TEAM(GET_PLAYER(eOtherPlayer).getTeam()).isHasTech(TECH_IRON_WORKING))
-							{
-								initUnit(eSwordsman, pNewCity->getX_INLINE(), pNewCity->getY_INLINE());
-							} else
-							{
-								initUnit(eAxeman, pNewCity->getX_INLINE(), pNewCity->getY_INLINE());
-							}
-							
-						} else
-						{
-							iOffset += iInfantryWeight;
-							
-							if (iRand <= iCavalryWeight + iOffset)
-							{
-								if (GET_TEAM(GET_PLAYER(eOtherPlayer).getTeam()).isHasTech(TECH_HORSEBACK_RIDING))
-								{
-									initUnit(eHorseman, pNewCity->getX_INLINE(), pNewCity->getY_INLINE());
-								} else
-								{
-									initUnit(eChariot, pNewCity->getX_INLINE(), pNewCity->getY_INLINE());
-								}
-							} else
-							{
-								FAssertMsg(false, "Random unit generation for rome out of bounds");
-							}
-						}
-					}
-				}		
-			}
 		}
 	}
 }
