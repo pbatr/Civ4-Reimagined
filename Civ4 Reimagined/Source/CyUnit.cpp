@@ -1356,11 +1356,6 @@ int CyUnit::getSameTileHeal()
 	return m_pUnit ? m_pUnit->getSameTileHeal() : -1;
 }
 
-int CyUnit::getAdjacentTileHeal()
-{
-	return m_pUnit ? m_pUnit->getAdjacentTileHeal() : -1;
-}
-
 int CyUnit::getExtraCombatPercent()
 {
 	return m_pUnit ? m_pUnit->getExtraCombatPercent() : -1;

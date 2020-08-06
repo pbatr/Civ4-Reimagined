@@ -588,10 +588,7 @@ public:
 																																														
 	int getSameTileHeal() const;																										// Exposed to Python					
 	void changeSameTileHeal(int iChange);																											
-																																														
-	int getAdjacentTileHeal() const;																								// Exposed to Python					
-	void changeAdjacentTileHeal(int iChange);																									
-																																														
+																																															
 	int getExtraCombatPercent() const;																							// Exposed to Python					
 	void changeExtraCombatPercent(int iChange);
 
@@ -852,7 +849,6 @@ protected:
 	int m_iExtraNeutralHeal;
 	int m_iExtraFriendlyHeal;
 	int m_iSameTileHeal;
-	int m_iAdjacentTileHeal;
 	int m_iExtraCombatPercent;
 	int m_iExtraCityAttackPercent;
 	int m_iExtraCityDefensePercent;

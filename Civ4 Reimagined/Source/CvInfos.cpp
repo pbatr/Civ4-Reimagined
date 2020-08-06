@@ -1617,7 +1617,6 @@ m_iEnemyHealChange(0),
 m_iNeutralHealChange(0),
 m_iFriendlyHealChange(0),
 m_iSameTileHealChange(0),
-m_iAdjacentTileHealChange(0),
 m_iCombatPercent(0),
 m_iCityAttackPercent(0),
 m_iCityDefensePercent(0),
@@ -1810,11 +1809,6 @@ int CvPromotionInfo::getFriendlyHealChange() const
 int CvPromotionInfo::getSameTileHealChange() const			
 {
 	return m_iSameTileHealChange;
-}
-
-int CvPromotionInfo::getAdjacentTileHealChange() const	
-{
-	return m_iAdjacentTileHealChange;
 }
 
 int CvPromotionInfo::getCombatPercent() const
@@ -2039,8 +2033,7 @@ void CvPromotionInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iEnemyHealChange);				
 	stream->Read(&m_iNeutralHealChange);				
 	stream->Read(&m_iFriendlyHealChange);				
-	stream->Read(&m_iSameTileHealChange);			
-	stream->Read(&m_iAdjacentTileHealChange);		
+	stream->Read(&m_iSameTileHealChange);	
 	stream->Read(&m_iCombatPercent);
 	stream->Read(&m_iCityAttackPercent);
 	stream->Read(&m_iCityDefensePercent);
@@ -2136,8 +2129,7 @@ void CvPromotionInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iEnemyHealChange);				
 	stream->Write(m_iNeutralHealChange);				
 	stream->Write(m_iFriendlyHealChange);				
-	stream->Write(m_iSameTileHealChange);			
-	stream->Write(m_iAdjacentTileHealChange);		
+	stream->Write(m_iSameTileHealChange);		
 	stream->Write(m_iCombatPercent);
 	stream->Write(m_iCityAttackPercent);
 	stream->Write(m_iCityDefensePercent);
@@ -2226,7 +2218,6 @@ bool CvPromotionInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iNeutralHealChange, "iNeutralHealChange");
 	pXML->GetChildXmlValByName(&m_iFriendlyHealChange, "iFriendlyHealChange");
 	pXML->GetChildXmlValByName(&m_iSameTileHealChange, "iSameTileHealChange");
-	pXML->GetChildXmlValByName(&m_iAdjacentTileHealChange, "iAdjacentTileHealChange");
 	pXML->GetChildXmlValByName(&m_iCombatPercent, "iCombatPercent");
 	pXML->GetChildXmlValByName(&m_iCityAttackPercent, "iCityAttack");
 	pXML->GetChildXmlValByName(&m_iCityDefensePercent, "iCityDefense");

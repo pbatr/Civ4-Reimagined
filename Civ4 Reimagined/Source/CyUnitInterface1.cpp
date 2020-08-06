@@ -318,7 +318,6 @@ void CyUnitPythonInterface1(python::class_<CyUnit>& x)
 		.def("getExtraFriendlyHeal", &CyUnit::getExtraFriendlyHeal, "int ()")
 
 		.def("getSameTileHeal", &CyUnit::getSameTileHeal, "int ()")
-		.def("getAdjacentTileHeal", &CyUnit::getAdjacentTileHeal, "int ()")
 
 		.def("getExtraCombatPercent", &CyUnit::getExtraCombatPercent, "int ()")
 		.def("getExtraCityAttackPercent", &CyUnit::getExtraCityAttackPercent, "int ()")

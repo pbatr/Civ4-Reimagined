@@ -830,12 +830,6 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 				szString.append(NEWLINE);
 				szString.append(gDLL->getText("TXT_KEY_PROMOTION_HEALS_SAME_TEXT", pUnit->getSameTileHeal()) + gDLL->getText("TXT_KEY_PROMOTION_DAMAGE_TURN_TEXT"));
 			}
-
-			if (pUnit->getAdjacentTileHeal() != 0)
-			{
-				szString.append(NEWLINE);
-				szString.append(gDLL->getText("TXT_KEY_PROMOTION_HEALS_ADJACENT_TEXT", pUnit->getAdjacentTileHeal()) + gDLL->getText("TXT_KEY_PROMOTION_DAMAGE_TURN_TEXT"));
-			}
 		}
 
 		if (pUnit->currInterceptionProbability() > 0)
@@ -6937,12 +6931,6 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 	{
 		szBuffer.append(pcNewline);
 		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_HEALS_SAME_TEXT", GC.getPromotionInfo(ePromotion).getSameTileHealChange()) + gDLL->getText("TXT_KEY_PROMOTION_DAMAGE_TURN_TEXT"));
-	}
-
-	if (GC.getPromotionInfo(ePromotion).getAdjacentTileHealChange() != 0)
-	{
-		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_HEALS_ADJACENT_TEXT", GC.getPromotionInfo(ePromotion).getAdjacentTileHealChange()) + gDLL->getText("TXT_KEY_PROMOTION_DAMAGE_TURN_TEXT"));
 	}
 
 	if (GC.getPromotionInfo(ePromotion).getCombatPercent() != 0)

@@ -1216,7 +1216,7 @@ int CvUnitAI::AI_sacrificeValue(const CvPlot* pPlot) const
 			iValue *= 10; // K-Mod
 			iValue /= (10 + getExperience()); // K-Mod - moved from out of the if.
 			iValue *= 10;
-			iValue /= (10 + getSameTileHeal() + getAdjacentTileHeal());
+			iValue /= (10 + getSameTileHeal());
 		}
 
 		// Value units which can't kill units later, also combat limits mean higher survival odds
@@ -10357,23 +10357,10 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
                 iValue += (iTemp / 8);
             }
         }
-
-        iTemp = GC.getPromotionInfo(ePromotion).getAdjacentTileHealChange();
-        iExtra = getAdjacentTileHeal();
-        iTemp *= (100 + iExtra * 5);
-        iTemp /= 100;
-        if (getSameTileHeal() >= iTemp)
-        {
-            iValue += (iTemp * ((getGroup()->getNumUnits() > 9) ? 4 : 2));
-        }
-        else
-        {
-            iValue += (iTemp / 4);
-        }
     }
 
 	// try to use Warlords to create super-medic units
-	if (GC.getPromotionInfo(ePromotion).getAdjacentTileHealChange() > 0 || GC.getPromotionInfo(ePromotion).getSameTileHealChange() > 0)
+	if (GC.getPromotionInfo(ePromotion).getSameTileHealChange() > 0)
 	{
 		/* original bts code PromotionTypes eLeader = NO_PROMOTION;
 		for (iI = 0; iI < GC.getNumPromotionInfos(); iI++)
@@ -10386,7 +10373,7 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
 		
 		if (isHasPromotion(eLeader) && eLeader != NO_PROMOTION)
 		{
-			iValue += GC.getPromotionInfo(ePromotion).getAdjacentTileHealChange() + GC.getPromotionInfo(ePromotion).getSameTileHealChange();
+			iValue += GC.getPromotionInfo(ePromotion).getSameTileHealChange();
 		} */
 		// K-Mod, I've changed the way we work out if we are a leader or not.
 		// The original method would break if there was more than one "leader" promotion)
@@ -10394,7 +10381,7 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
 		{
 			if (GC.getPromotionInfo((PromotionTypes)iI).isLeader() && isHasPromotion((PromotionTypes)iI))
 			{
-				iValue += GC.getPromotionInfo(ePromotion).getAdjacentTileHealChange() + GC.getPromotionInfo(ePromotion).getSameTileHealChange();
+				iValue += GC.getPromotionInfo(ePromotion).getSameTileHealChange();
 				break;
 			}
 		}
@@ -13530,7 +13517,7 @@ bool CvUnitAI::AI_lead(std::vector<UnitAITypes>& aeUnitAITypes)
 									}
 									
 									// or the unit with the best healing ability
-									int iHealing = pLoopUnit->getSameTileHeal() + pLoopUnit->getAdjacentTileHeal();
+									int iHealing = pLoopUnit->getSameTileHeal();
 									if (iHealing > iBestHealing)
 									{
 										iBestHealing = iHealing;

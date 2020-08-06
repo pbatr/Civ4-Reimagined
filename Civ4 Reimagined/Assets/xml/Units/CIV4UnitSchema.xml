@@ -820,7 +820,6 @@
 	<ElementType name="iNeutralHealChange" content="textOnly" dt:type="int"/>
 	<ElementType name="iFriendlyHealChange" content="textOnly" dt:type="int"/>
 	<ElementType name="iSameTileHealChange" content="textOnly" dt:type="int"/>
-	<ElementType name="iAdjacentTileHealChange" content="textOnly" dt:type="int"/>
 	<ElementType name="iCombatPercent" content="textOnly" dt:type="int"/>
 	<ElementType name="iExtraUpkeep" content="textOnly" dt:type="int"/>
 	<ElementType name="bUnitCombat" content="textOnly" dt:type="boolean"/>
@@ -884,7 +883,6 @@
 		<element type="iNeutralHealChange"/>
 		<element type="iFriendlyHealChange"/>
 		<element type="iSameTileHealChange"/>
-		<element type="iAdjacentTileHealChange"/>
 		<element type="iCombatPercent"/>
 		<element type="iCityAttack"/>
 		<element type="iCityDefense"/>

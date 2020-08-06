@@ -486,7 +486,6 @@ public:
 	int getNeutralHealChange() const;				// Exposed to Python
 	int getFriendlyHealChange() const;				// Exposed to Python
 	int getSameTileHealChange() const;				// Exposed to Python
-	int getAdjacentTileHealChange() const;				// Exposed to Python
 	int getCombatPercent() const;				// Exposed to Python
 	int getCityAttackPercent() const;				// Exposed to Python
 	int getCityDefensePercent() const;				// Exposed to Python
@@ -562,8 +561,7 @@ protected:
 	int m_iEnemyHealChange;				
 	int m_iNeutralHealChange;				
 	int m_iFriendlyHealChange;				
-	int m_iSameTileHealChange;			
-	int m_iAdjacentTileHealChange;		
+	int m_iSameTileHealChange;	
 	int m_iCombatPercent;
 	int m_iCityAttackPercent;
 	int m_iCityDefensePercent;

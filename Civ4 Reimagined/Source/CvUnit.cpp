@@ -351,7 +351,6 @@ void CvUnit::reset(int iID, UnitTypes eUnit, PlayerTypes eOwner, bool bConstruct
 	m_iExtraNeutralHeal = 0;
 	m_iExtraFriendlyHeal = 0;
 	m_iSameTileHeal = 0;
-	m_iAdjacentTileHeal = 0;
 	m_iExtraCombatPercent = 0;
 	m_iExtraCityAttackPercent = 0;
 	m_iExtraCityDefensePercent = 0;
@@ -3871,11 +3870,9 @@ int CvUnit::healRate(const CvPlot* pPlot, bool bLocation, bool bUnits) const
 	CLLNode<IDInfo>* pUnitNode;
 	CvCity* pCity;
 	CvUnit* pLoopUnit;
-	CvPlot* pLoopPlot;
 	int iTotalHeal;
 	int iHeal;
 	int iBestHeal;
-	int iI;
 
 	pCity = pPlot->getPlotCity();
 
@@ -3930,35 +3927,6 @@ int CvUnit::healRate(const CvPlot* pPlot, bool bLocation, bool bUnits) const
 				if (iHeal > iBestHeal)
 				{
 					iBestHeal = iHeal;
-				}
-			}
-		}
-
-		for (iI = 0; iI < NUM_DIRECTION_TYPES; iI++)
-		{
-			pLoopPlot = plotDirection(pPlot->getX_INLINE(), pPlot->getY_INLINE(), ((DirectionTypes)iI));
-
-			if (pLoopPlot != NULL)
-			{
-				if (pLoopPlot->area() == pPlot->area())
-				{
-					pUnitNode = pLoopPlot->headUnitNode();
-
-					while (pUnitNode != NULL)
-					{
-						pLoopUnit = ::getUnit(pUnitNode->m_data);
-						pUnitNode = pLoopPlot->nextUnitNode(pUnitNode);
-
-						if (pLoopUnit->getTeam() == getTeam()) // XXX what about alliances?
-						{
-							iHeal = pLoopUnit->getAdjacentTileHeal();
-
-							if (iHeal > iBestHeal)
-							{
-								iBestHeal = iHeal;
-							}
-						}
-					}
 				}
 			}
 		}
@@ -11398,17 +11366,6 @@ void CvUnit::changeSameTileHeal(int iChange)
 	FAssert(getSameTileHeal() >= 0);
 }
 
-int CvUnit::getAdjacentTileHeal() const
-{
-	return m_iAdjacentTileHeal;
-}
-
-void CvUnit::changeAdjacentTileHeal(int iChange)
-{
-	m_iAdjacentTileHeal += iChange;
-	FAssert(getAdjacentTileHeal() >= 0);
-}
-
 int CvUnit::getExtraCombatPercent() const
 {
 	return m_iExtraCombatPercent;
@@ -12483,7 +12440,6 @@ void CvUnit::setHasPromotion(PromotionTypes eIndex, bool bNewValue)
 		changeExtraNeutralHeal(GC.getPromotionInfo(eIndex).getNeutralHealChange() * iChange);
 		changeExtraFriendlyHeal(GC.getPromotionInfo(eIndex).getFriendlyHealChange() * iChange);
 		changeSameTileHeal(GC.getPromotionInfo(eIndex).getSameTileHealChange() * iChange);
-		changeAdjacentTileHeal(GC.getPromotionInfo(eIndex).getAdjacentTileHealChange() * iChange);
 		changeExtraCombatPercent(GC.getPromotionInfo(eIndex).getCombatPercent() * iChange);
 		changeExtraCityAttackPercent(GC.getPromotionInfo(eIndex).getCityAttackPercent() * iChange);
 		changeExtraCityDefensePercent(GC.getPromotionInfo(eIndex).getCityDefensePercent() * iChange);
@@ -12637,7 +12593,6 @@ void CvUnit::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iExtraNeutralHeal);
 	pStream->Read(&m_iExtraFriendlyHeal);
 	pStream->Read(&m_iSameTileHeal);
-	pStream->Read(&m_iAdjacentTileHeal);
 	pStream->Read(&m_iExtraCombatPercent);
 	pStream->Read(&m_iExtraCityAttackPercent);
 	pStream->Read(&m_iExtraCityDefensePercent);
@@ -12743,7 +12698,6 @@ void CvUnit::write(FDataStreamBase* pStream)
 	pStream->Write(m_iExtraNeutralHeal);
 	pStream->Write(m_iExtraFriendlyHeal);
 	pStream->Write(m_iSameTileHeal);
-	pStream->Write(m_iAdjacentTileHeal);
 	pStream->Write(m_iExtraCombatPercent);
 	pStream->Write(m_iExtraCityAttackPercent);
 	pStream->Write(m_iExtraCityDefensePercent);
