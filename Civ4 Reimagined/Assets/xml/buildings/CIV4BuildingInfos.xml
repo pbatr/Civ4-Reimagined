@@ -25863,7 +25863,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>600</iCost>
+			<iCost>700</iCost>
 			<iHurryCostModifier>200</iHurryCostModifier>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -25901,7 +25901,7 @@
 			<iAreaHealth>0</iAreaHealth>
 			<iGlobalHealth>0</iGlobalHealth>
 			<iHappiness>0</iHappiness>
-			<iAreaHappiness>1</iAreaHappiness>
+			<iAreaHappiness>0</iAreaHappiness>
 			<iGlobalHappiness>0</iGlobalHappiness>
 			<iStateReligionHappiness>0</iStateReligionHappiness>
 			<iWorkerSpeedModifier>0</iWorkerSpeedModifier>
@@ -25978,7 +25978,7 @@
 			<ForeignTradeIdeologyModifiers>
 				<ForeignTradeIdeologyModifier>
 					<IdeologyType>IDEOLOGY_LIBERALISM</IdeologyType>
-					<iTradeModifier>500</iTradeModifier>
+					<iTradeModifier>300</iTradeModifier>
 				</ForeignTradeIdeologyModifier>
 			</ForeignTradeIdeologyModifiers>
 			<ImprovementFreeSpecialists/>

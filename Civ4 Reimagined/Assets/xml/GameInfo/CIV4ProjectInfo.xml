@@ -441,7 +441,7 @@
 			<BonusRatioIdeologyModifiers>
 				<BonusRatioIdeologyModifier>
 					<IdeologyType>IDEOLOGY_COMMUNISM</IdeologyType>
-					<BonusRatioModifier>25</BonusRatioModifier>
+					<BonusRatioModifier>15</BonusRatioModifier>
 				</BonusRatioIdeologyModifier>
 			</BonusRatioIdeologyModifiers>
 			<BonusProductionModifiers/>
