@@ -4133,9 +4133,17 @@ DenialTypes CvTeamAI::AI_openBordersTrade(TeamTypes eTeam) const
 }
 
 
+// Civ4 Reimagined
 int CvTeamAI::AI_defensivePactTradeVal(TeamTypes eTeam) const
 {
-	return ((getNumCities() + GET_TEAM(eTeam).getNumCities()) * 3);
+	int iValue = getPower(true) + GET_TEAM(eTeam).getPower(true) * 3;
+
+	if (GET_PLAYER(getLeaderID()).getIdeology() == GET_PLAYER(GET_TEAM(eTeam).getLeaderID()).getIdeology())
+	{
+		iValue *= 2;
+	}
+
+	return iValue / 200;
 }
 
 
