@@ -359,7 +359,7 @@
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_CELT_CULTURE</DefineName>
-		<iDefineIntVal>50</iDefineIntVal> <!-- Culture per adjacent forest -->
+		<iDefineIntVal>100</iDefineIntVal> <!-- Culture per adjacent forest -->
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_CELT_RESEARCH</DefineName>
