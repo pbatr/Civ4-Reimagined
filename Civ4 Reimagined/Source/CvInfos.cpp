@@ -6364,6 +6364,18 @@ int CvCivicInfo::getDomainExperienceModifier(int i) const
 	return m_paiDomainExperienceModifiers ? m_paiDomainExperienceModifiers[i] : -1;
 }
 
+// Civ4 Reimagined
+bool CvCivicInfo::isAnyDomainProductionModifier() const
+{
+	return m_bAnyDomainProductionModifier;
+}
+
+// Civ4 Reimagined
+bool CvCivicInfo::isAnyDomainExperienceModifier() const
+{
+	return m_bAnyDomainExperienceModifier;
+}
+
 void CvCivicInfo::read(FDataStreamBase* stream)
 {
 	CvInfoBase::read(stream);
@@ -7052,6 +7064,22 @@ bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
 	// Leoreth
 	pXML->SetVariableListTagPair(&m_paiDomainProductionModifiers, "DomainProductionModifiers", sizeof(GC.getDomainInfo((DomainTypes)0)), NUM_DOMAIN_TYPES);
 	pXML->SetVariableListTagPair(&m_paiDomainExperienceModifiers, "DomainExperienceModifiers", sizeof(GC.getDomainInfo((DomainTypes)0)), NUM_DOMAIN_TYPES);
+
+	// Civ4 Reimagined
+	m_bAnyDomainProductionModifier = false;
+	m_bAnyDomainExperienceModifier = false;
+	for (int iI = 0; iI < NUM_DOMAIN_TYPES; iI++)
+	{
+		if (m_paiDomainProductionModifiers[iI] != 0)
+		{
+			m_bAnyDomainProductionModifier = true;
+		}
+
+		if (m_paiDomainExperienceModifiers[iI] != 0)
+		{
+			m_bAnyDomainExperienceModifier = true;
+		}
+	}
 
 	// initialize the boolean list to the correct size and all the booleans to false
 	

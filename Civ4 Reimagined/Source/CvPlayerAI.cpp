@@ -2297,7 +2297,7 @@ int CvPlayerAI::AI_yieldWeight(YieldTypes eYield, const CvCity* pCity) const // 
 		break;
 	case YIELD_PRODUCTION:
 		// was 2
-		iWeight *= 235; // Civ4 Reimagined, was 270
+		iWeight *= 220; // Civ4 Reimagined, was 270
 		iWeight /= 100;
 		break;
 	case YIELD_COMMERCE:
@@ -6472,7 +6472,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 			if (getTechFreeUnit(eTech) != NO_UNIT)
 			{
 				// K-Mod
-				int iRoll = 10 * (100 + AI_getGreatPersonWeight((UnitClassTypes)GC.getTechInfo(eTech).getFirstFreeUnitClass()));
+				int iRoll = 4 * (100 + AI_getGreatPersonWeight((UnitClassTypes)GC.getTechInfo(eTech).getFirstFreeUnitClass()));
 				// I've diluted the weight because free great people doesn't have the negative effect of making it harder to get more great people
 				iRoll *= 200 + iRaceModifier;
 				iRoll /= 200;
@@ -12821,7 +12821,8 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 		}
 		if (GC.getUnitInfo(eUnit).getNumSeeInvisibleTypes() > 0)
 		{
-			iValue += 200;
+			// Civ4 Reimagined, was 200
+			iValue += 400;
 		}
 		break;
 
@@ -15841,6 +15842,8 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	// K-Mod end
 
 	// Civ4 Reimagined. Experience and production modifiers
+	if (kCivic.getStateReligionUnitProductionModifier() != 0 || kCivic.getStateReligionBuildingProductionModifier() != 0 || kCivic.getStateReligionFreeExperience() != 0 
+		|| kCivic.getMilitaryProductionModifier() != 0 || kCivic.getFreeExperience() != 0 || kCivic.isAnyDomainProductionModifier() || kCivic.isAnyDomainExperienceModifier())
 	{
 		int iProductionShareUnits = GC.getLeaderHeadInfo(getPersonalityType()).getBuildUnitProb();
 
@@ -15849,7 +15852,18 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			iProductionShareUnits = (100 + iProductionShareUnits)/2;
 		}
 
-		const int iProductionShareBuildings = 100 - iProductionShareUnits;
+		int iProductionShareBuildings = 100 - iProductionShareUnits;
+
+		bool bSpaceRaceVictory = AI_isDoVictoryStrategy(AI_VICTORY_SPACE2) || AI_isDoVictoryStrategy(AI_VICTORY_SPACE3) || AI_isDoVictoryStrategy(AI_VICTORY_SPACE4);
+		bool bMilitaryVictory = AI_isDoVictoryStrategy(AI_VICTORY_DOMINATION3) || AI_isDoVictoryStrategy(AI_VICTORY_DOMINATION4) 
+							   || AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST3) || AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST4);
+
+
+		if (bSpaceRaceVictory && !bMilitaryVictory)
+		{
+			iProductionShareUnits /= 2;
+			iProductionShareBuildings /= 2;
+		}
 
 		int iBonusUnitProduction = 0;
 		int iBonusBuildingProduction = 0;
@@ -15858,7 +15872,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		int iLoop;
 		for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity; pLoopCity = nextCity(&iLoop))
 		{
-			const int iCityProd = pLoopCity->getYieldRate(YIELD_PRODUCTION);
+			const int iCityProd = pLoopCity->getBaseYieldRate(YIELD_PRODUCTION);
 
 			if (eBestReligion != NO_RELIGION && pLoopCity->isHasReligion(eBestReligion))
 			{
@@ -15886,15 +15900,9 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		iBonusUnitProduction *= std::max(iWarmongerFactor, (bWarPlan ? 100 : 0));
 		iBonusUnitProduction /= 100;
 		
-		if (iBonusExperience)
-		{
-			iBonusExperience *= std::max(iWarmongerFactor, (bWarPlan ? 100 : 0));
-			iBonusExperience /= 100;
-
-			iBonusExperience /= 7;
-			
-			iTempValue += iBonusExperience;
-		}
+		iBonusExperience *= std::max(iWarmongerFactor, (bWarPlan ? 100 : 0));
+		iBonusExperience /= 100;
+		iBonusExperience /= 7;
 
 		iBonusUnitProduction *= iProductionShareUnits;
 		iBonusUnitProduction /= 100;
@@ -16288,22 +16296,24 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			CvCity* pLoopCity;
 			for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 			{
-				iTempValue += iRate * ((pLoopCity->getBaseCommerceRateTimes100(COMMERCE_CULTURE) * pLoopCity->getTotalCommerceRateModifier(COMMERCE_CULTURE)) / 10000);
-				iTempValue += iRate * (pLoopCity->getYieldRate(YIELD_PRODUCTION) * pLoopCity->getProductionToCommerceModifier(COMMERCE_CULTURE) / 100);	
+				int iCityResearchBonus = iRate * ((pLoopCity->getBaseCommerceRateTimes100(COMMERCE_CULTURE) * pLoopCity->getTotalCommerceRateModifier(COMMERCE_CULTURE)) / 10000);
+				iCityResearchBonus += iRate * (pLoopCity->getYieldRate(YIELD_PRODUCTION) * pLoopCity->getProductionToCommerceModifier(COMMERCE_CULTURE) / 100);
+
+				iTempValue += iCityResearchBonus * pLoopCity->getTotalCommerceRateModifier(COMMERCE_RESEARCH) / 100;
 			}
 		}
 		
 		// Civ4 Reimagined
 		if (getResearchPerCulture() > 0 && kCivic.getCommerceModifier(COMMERCE_CULTURE) != 0 && iI == COMMERCE_RESEARCH)
 		{
-			int iCommerceSum = 0;
+			int iRate = getResearchPerCulture();
 			int iLoop;
 			CvCity* pLoopCity;
 			for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 			{
-				iCommerceSum += pLoopCity->getBaseCommerceRate((CommerceTypes)iI);
+				int iCityResearchBonus = iRate * ((pLoopCity->getBaseCommerceRateTimes100(COMMERCE_CULTURE) * kCivic.getCommerceModifier(COMMERCE_CULTURE)) / 10000);
+				iTempValue += iCityResearchBonus * pLoopCity->getTotalCommerceRateModifier(COMMERCE_RESEARCH) / 100;
 			}
-			iTempValue += getResearchPerCulture() * kCivic.getCommerceModifier(COMMERCE_CULTURE) * iCommerceSum / 100;
 		}
 		
 		iTempValue /= 100;

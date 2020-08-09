@@ -1465,6 +1465,9 @@ public:
 	int getDomainProductionModifier(int i) const; // Leoreth
 	int getDomainExperienceModifier(int i) const; // Leoreth
 
+	bool isAnyDomainProductionModifier() const; // Civ4 Reimagined
+	bool isAnyDomainExperienceModifier() const; // Civ4 Reimagined
+
 	bool isHurry(int i) const;													// Exposed to Python
 	bool isSpecialBuildingNotRequired(int i) const;			// Exposed to Python
 	bool isSpecialistValid(int i) const;								// Exposed to Python
@@ -1564,6 +1567,8 @@ protected:
 	bool m_bNoCapital; //Civ4 Reimagined
 	bool m_bNoForeignCultureUnhappiness; // Civ4 Reimagined
 	bool m_bNoCityResistance; // Civ4 Reimagined
+	bool m_bAnyDomainProductionModifier; // Civ4 Reimagined
+	bool m_bAnyDomainExperienceModifier;
 	int m_iConservative; // Civ4 Reimagined
 	int m_iLiberal; // Civ4 Reimagined
 	int m_iCommunist; // Civ4 Reimagined
