@@ -122,7 +122,7 @@
 			<bRiverTrade>0</bRiverTrade>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_RELIGION</FlavorType>
+					<FlavorType>FLAVOR_RELIGION</FlavorType> <!-- For proper bulbing order: Lower than monotheism, higher than literature -->
 					<iFlavor>10</iFlavor>
 				</Flavor>
 				<Flavor>
@@ -336,7 +336,7 @@
 			<Flavors>
 				<Flavor>
 					<FlavorType>FLAVOR_RELIGION</FlavorType>
-					<iFlavor>10</iFlavor>
+					<iFlavor>11</iFlavor> <!-- Should be more than FLAVOR_RELIGION of meditation tech for proper bulb order-->
 				</Flavor>
 				<Flavor>
 					<FlavorType>FLAVOR_PRODUCTION</FlavorType>
@@ -480,8 +480,8 @@
 					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
-					<FlavorType>FLAVOR_RELIGION</FlavorType>
-					<iFlavor>10</iFlavor>
+					<FlavorType>FLAVOR_RELIGION</FlavorType> <!-- For proper bulbing order: Lower than meditation, higher than literature -->
+					<iFlavor>9</iFlavor>
 				</Flavor>
 				<Flavor>
 					<FlavorType>FLAVOR_SCIENCE</FlavorType>
