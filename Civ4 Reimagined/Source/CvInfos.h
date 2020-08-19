@@ -3151,20 +3151,20 @@ public:
 	int getImprovementUpgrade() const;				// Exposed to Python
 	void setImprovementUpgrade(int i);
 
-	bool isActsAsCity() const;				// Exposed to Python
+	bool isActsAsCity() const;					// Exposed to Python
 	bool isHillsMakesValid() const;				// Exposed to Python
-	bool isFreshWaterMakesValid() const;				// Exposed to Python
-	bool isRiverSideMakesValid() const;				// Exposed to Python
+	bool isFreshWaterMakesValid() const;		// Exposed to Python
+	bool isRiverSideMakesValid() const;			// Exposed to Python
 	bool isNoFreshWater() const;				// Exposed to Python
-	bool isRequiresFlatlands() const;				// Exposed to Python
-	DllExport bool isRequiresRiverSide() const;				// Exposed to Python
-	bool isRequiresIrrigation() const;				// Exposed to Python
-	bool isCarriesIrrigation() const;				// Exposed to Python
-	bool isRequiresCanFarmHills() const; //Civ4 Reimagined
+	bool isRequiresFlatlands() const;			// Exposed to Python
+	DllExport bool isRequiresRiverSide() const;	// Exposed to Python
+	bool isRequiresIrrigation() const;			// Exposed to Python
+	bool isCarriesIrrigation() const;			// Exposed to Python
+	bool isRequiresCanFarmHills() const;		// Exposed to Python, Civ4 Reimagined
 	bool isRequiresFeature() const;				// Exposed to Python
-	bool isWater() const;				// Exposed to Python
+	bool isWater() const;						// Exposed to Python
 	DllExport bool isGoody() const;				// Exposed to Python
-	bool isPermanent() const;				// Exposed to Python
+	bool isPermanent() const;					// Exposed to Python
 	bool isOutsideBorders() const;				// Exposed to Python
 
 	const TCHAR* getArtDefineTag() const;
