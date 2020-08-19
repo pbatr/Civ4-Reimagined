@@ -27280,6 +27280,7 @@ void CvPlayer::notifyUniquePowersChanged(bool bGained) const
 	
 }
 
+// Remember to adjust CvPlayerAI::uniquePowerAIEraValueMult and CvPlayerAI::uniquePowerAITechValueMult accordingly
 void CvPlayer::updateUniquePowers(EraTypes eEra)
 {
 	if (getID() == NO_PLAYER)
@@ -27287,7 +27288,11 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		return;
 		
 	}
-	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ARABIA"))
+	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AMERICA"))
+	{
+		// No effect, gain power elsewhere. But no compensation bonus either.
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ARABIA"))
 	{
 		// Ends with era, but starts with tech
 		if(eEra == 3)
