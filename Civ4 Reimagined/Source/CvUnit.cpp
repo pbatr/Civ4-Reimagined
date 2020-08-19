@@ -8740,15 +8740,14 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 			}
 
 			// Civ4 Reimagined
-			// Arabian unique power: Attacking faithful cities of heretic rulers
+			// Arabian unique power: Attacking cities of heretic rulers
 			bool bFaithConquest = GET_PLAYER(pAttacker->getOwnerINLINE()).isHasFaithConquest();
 			if (bFaithConquest)
 			{
 				ReligionTypes eAttackerStateReligion = GET_PLAYER(pAttacker->getOwnerINLINE()).getStateReligion();
-				bool bCityHasStateReligion = pAttackedCity->isHasReligion(eAttackerStateReligion);
 				bool bDefenderIsInfidel = GET_PLAYER(getOwnerINLINE()).getStateReligion() != eAttackerStateReligion;
 				
-				if (bCityHasStateReligion && bDefenderIsInfidel)
+				if (bDefenderIsInfidel)
 				{
 					iExtraModifier = GC.getDefineINT("UNIQUE_POWER_ARABIA");
 					iTempModifier -= iExtraModifier;

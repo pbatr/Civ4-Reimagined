@@ -343,7 +343,7 @@
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_ARABIA</DefineName>
-		<iDefineIntVal>20</iDefineIntVal> <!-- % combat bonus when liberating cities of faith from infidels -->
+		<iDefineIntVal>20</iDefineIntVal> <!-- % siege bonus against players of different religion -->
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_AZTEC</DefineName>

@@ -2762,9 +2762,8 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 	if (bConquest)
 	{
 		iTeamCulturePercent = pNewCity->calculateTeamCulturePercent(getTeam());
-		bool bFaithConquest = isHasFaithConquest() && pNewCity->isHasReligion(getStateReligion()); // Civ4 Reimagined: Arabian unique power
 
-		if (iTeamCulturePercent < GC.getDefineINT("OCCUPATION_CULTURE_PERCENT_THRESHOLD") && !GET_TEAM(getTeam()).isNoConquestResistance() && !isNoCityResistance() && !bFaithConquest) // Civ4 Reimagined
+		if (iTeamCulturePercent < GC.getDefineINT("OCCUPATION_CULTURE_PERCENT_THRESHOLD") && !GET_TEAM(getTeam()).isNoConquestResistance() && !isNoCityResistance())
 		{
 			pNewCity->changeOccupationTimer(((GC.getDefineINT("BASE_OCCUPATION_TURNS") + ((pNewCity->getPopulation() * GC.getDefineINT("OCCUPATION_TURNS_POPULATION_PERCENT")) / 100)) * (100 - iTeamCulturePercent)) / 100);
 		}
@@ -2780,6 +2779,24 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 		if (!pNewCity->isHasReligion(eOwnStateReligion))
 		{
 			pNewCity->setHasReligion(eOwnStateReligion, true, true, false);
+		}
+
+		// Build temples and monasteries
+		for (int iI = 0; iI < GC.getNumBuildingInfos(); iI++)
+		{
+			const CvBuildingInfo& kBuilding = GC.getBuildingInfo((BuildingTypes)iI);
+
+			if (kBuilding.getSpecialBuildingType() == (SpecialBuildingTypes)GC.getInfoTypeForString("SPECIALBUILDING_TEMPLE") 
+		     || kBuilding.getSpecialBuildingType() == (SpecialBuildingTypes)GC.getInfoTypeForString("SPECIALBUILDING_MONASTERY"))
+			{
+				if (kBuilding.getReligionType() == eOwnStateReligion)
+				{
+					if (pNewCity->canConstruct((BuildingTypes)iI, false, false, true))
+					{
+						pNewCity->setNumRealBuilding((BuildingTypes)iI, 1);
+					}
+				}
+			}
 		}
 	}
 
@@ -27226,6 +27243,13 @@ void CvPlayer::updateUniquePowers(TechTypes eTech)
 		setHasImmigrants(true);
 		notifyUniquePowersChanged(true);
 	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ARABIA")
+		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_DIVINE_RIGHT")
+		&& (EraTypes)getCurrentEra() < 3) // Starts with tech, but ends at era
+	{
+		setFaithConquest(true);
+		notifyUniquePowersChanged(true);
+	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA")
 		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_CALENDAR"))
 	{
@@ -27265,12 +27289,8 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	}
 	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ARABIA"))
 	{
-		if (eEra == 2)
-		{
-			setFaithConquest(true);
-			notifyUniquePowersChanged(true);
-		}
-		else if(eEra == 3)
+		// Ends with era, but starts with tech
+		if(eEra == 3)
 		{
 			setFaithConquest(false);
 			notifyUniquePowersChanged(false);
