@@ -8484,6 +8484,12 @@ void CvGameTextMgr::setTechHelp(CvWStringBuffer &szBuffer, TechTypes eTech, bool
 		bFirst = buildCivicRevealString(szBuffer, eTech, iI, bFirst, true, bPlayerContext);
 	}
 
+	// Civ4 Reimagined
+	for (iI = 0; iI < GC.getNumIdeologyInfos(); ++iI)
+	{
+		buildIdeologyRevealString(szBuffer, eTech, iI);
+	}
+
 	if (!bCivilopediaText)
 	{
 		bFirst = true;
@@ -14808,6 +14814,15 @@ bool CvGameTextMgr::buildCivicRevealString(CvWStringBuffer &szBuffer, TechTypes 
 		bFirst = false;
 	}
 	return bFirst;
+}
+
+void CvGameTextMgr::buildIdeologyRevealString(CvWStringBuffer &szBuffer, TechTypes eTech, int iIdeologyType)
+{
+	if (GC.getIdeologyInfo((IdeologyTypes) iIdeologyType).getTechPrereq() == eTech)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_ENABLES_IDEOLOGY", GC.getIdeologyInfo((IdeologyTypes) iIdeologyType).getDescription()));
+	}
 }
 
 bool CvGameTextMgr::buildProcessInfoString(CvWStringBuffer &szBuffer, TechTypes eTech, int iProcessType, bool bFirst, bool bList, bool bPlayerContext)
