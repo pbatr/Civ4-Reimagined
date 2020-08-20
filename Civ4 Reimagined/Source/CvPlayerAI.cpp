@@ -14937,6 +14937,12 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				}
 				// todo. put in something to do with how much happiness we can afford to lose.. or something like that.
 				// K-Mod end
+
+				// Civ4 Reimagined
+				if (GET_TEAM(getTeam()).isNoConscriptUnhappiness())
+				{
+					iTempValue *= 3;
+				}
 				
 				if(gPlayerLogLevel > 2) logBBAI("	Civic Value from Drafting: %d", iTempValue);
 

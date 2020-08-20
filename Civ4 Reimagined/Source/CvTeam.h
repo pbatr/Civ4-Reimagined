@@ -336,6 +336,11 @@ public:
 	int getNoConquestResistanceCount() const;
 	bool isNoConquestResistance() const;
 	void changeNoConquestResistanceCount(int iChange);
+
+	// Civ4 Reimagined
+	int getNoConscriptUnhappinessCount() const;
+	bool isNoConscriptUnhappiness() const;
+	void changeNoConscriptUnhappinessCount(int iChange);
 	
 	// Civ4 Reimagined
 	int getCanFarmHillsCount() const;
@@ -469,6 +474,7 @@ protected:
 	int m_iRiverTradeCount;
 	int m_iEspionagePointsEver;
 	int m_iNoConquestResistanceCount;
+	int m_iNoConscriptUnhappinessCount; // Civ4 Reimagined
 	int m_iCanFarmHillsCount; // Civ4 Reimagined
 
 	bool m_bMapCentering;

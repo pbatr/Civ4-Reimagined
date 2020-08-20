@@ -1414,4 +1414,12 @@
 		<Tag>TXT_KEY_BUILDING_FOOD_TRADE_ROUTES_THIS_CONTINENT</Tag>
 		<English>[ICON_BULLET]Trade Routes on this Continent provide [ICON_FOOD] (%d1%% of [ICON_COMMERCE])</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_OLYMPIASTADION</Tag>
+		<English>Olympiastadion</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_NO_CONSCRIPT_UNHAPPY</Tag>
+		<English>[ICON_BULLET]No Unhappiness from Drafting Units when Using the Conscription Civic</English>
+	</TEXT>
 </Civ4GameText>
