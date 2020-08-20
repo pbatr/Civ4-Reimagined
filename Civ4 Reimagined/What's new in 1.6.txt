@@ -20,6 +20,7 @@ Tweaks
 -Russian Cossack strength increased from 15 to 16 but no longer has reduced costs
 -Guided Missile air range increased from 5 to 8
 -Tactical Nuke range increased from 6 to 8
+-Missile Submarines cannot pillage or blockade
 -Blitz promotion only requires Flanking II or Drill II
 -Changed Woodsman promotions to 10% attack&defense and +10% heal for friendly/neutral/enemy territory (was: +25% defense, healing and first strike on woodsman3)
 -Removed adjacent tile healing from medic promotions (almost never used in our experience, and the implementation was computationally expensive)
