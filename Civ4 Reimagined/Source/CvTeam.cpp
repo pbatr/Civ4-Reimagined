@@ -224,6 +224,7 @@ void CvTeam::reset(TeamTypes eID, bool bConstructorCall)
 	m_iRiverTradeCount = 0;
 	m_iEspionagePointsEver = 0;
 	m_iNoConquestResistanceCount = 0; //Civ4 Reimagined
+	m_iNoConscriptUnhappinessCount = 0; //Civ4 Reimagined
 	m_iCanFarmHillsCount = 0; //Civ4 Reimagined
 
 	m_bMapCentering = false;
@@ -1020,10 +1021,16 @@ void CvTeam::processBuilding(BuildingTypes eBuilding, int iChange)
 		}
 	}
 	
+	// Civ4 Reimagined
 	if (GC.getBuildingInfo(eBuilding).isNoConquestResistance())
 	{
 		changeNoConquestResistanceCount(iChange);
 		if (gTeamLogLevel > 2) logBBAI("IsNoCityConquestResistance: %d", (int)isNoConquestResistance());
+	}
+
+	if (GC.getBuildingInfo(eBuilding).isNoConscriptUnhappiness())
+	{
+		changeNoConscriptUnhappinessCount(iChange);
 	}
 	
 	// Civ4 Reimagined
@@ -5243,6 +5250,28 @@ void CvTeam::changeNoConquestResistanceCount(int iChange)
 }
 
 // Civ4 Reimagined
+int CvTeam::getNoConscriptUnhappinessCount() const
+{
+	return m_iNoConscriptUnhappinessCount;
+}
+
+// Civ4 Reimagined
+bool CvTeam::isNoConscriptUnhappiness() const
+{
+	return (getNoConscriptUnhappinessCount() > 0);
+}
+
+// Civ4 Reimagined
+void CvTeam::changeNoConscriptUnhappinessCount(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iNoConscriptUnhappinessCount += iChange;
+		FAssert(getNoConscriptUnhappinessCount() >= 0);
+	}
+}
+
+// Civ4 Reimagined
 int CvTeam::getCanFarmHillsCount() const
 {
 	return m_iCanFarmHillsCount;
@@ -6938,6 +6967,7 @@ void CvTeam::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iRiverTradeCount);
 	pStream->Read(&m_iEspionagePointsEver);
 	pStream->Read(&m_iNoConquestResistanceCount); // Civ4 Reimagined
+	pStream->Read(&m_iNoConscriptUnhappinessCount); // Civ4 Reimagined
 	pStream->Read(&m_iCanFarmHillsCount); // Civ4 Reimagined
 
 	pStream->Read(&m_bMapCentering);
@@ -7053,6 +7083,7 @@ void CvTeam::write(FDataStreamBase* pStream)
 	pStream->Write(m_iRiverTradeCount);
 	pStream->Write(m_iEspionagePointsEver);
 	pStream->Write(m_iNoConquestResistanceCount); // Civ4 Reimagined
+	pStream->Write(m_iNoConscriptUnhappinessCount); // Civ4 Reimagined
 	pStream->Write(m_iCanFarmHillsCount); // Civ4 Reimagined
 
 	pStream->Write(m_bMapCentering);

@@ -111,6 +111,7 @@
 	<ElementType name="bGoldenAge" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bAllowsNukes" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bNoConquestResistance" content="textOnly" dt:type="boolean"/> <!-- Civ4 Reimagined -->
+	<ElementType name="bNoConscriptUnhappiness" content="textOnly" dt:type="boolean"/> <!-- Civ4 Reimagined -->
 	<ElementType name="bMapCentering" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bNoUnhappiness" content="textOnly" dt:type="boolean"/>
 	<ElementType name="iUnhealthyPopulationModifier" content="textOnly" dt:type="int"/>
@@ -553,6 +554,7 @@
 		<element type="bGoldenAge"/>
 		<element type="bAllowsNukes"/>
 		<element type="bNoConquestResistance"/> <!-- Civ4 Reimagined -->
+		<element type="bNoConscriptUnhappiness" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="bMapCentering"/>
 		<element type="bNoUnhappiness"/>
 		<element type="iUnhealthyPopulationModifier"/>

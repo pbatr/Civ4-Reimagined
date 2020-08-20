@@ -7704,6 +7704,7 @@ m_bNoNonStateReligionSpread(false), // Civ4 Reimagined
 m_bStateReligion(false),
 m_bAllowsNukes(false),
 m_bNoConquestResistance(false), // Civ4 Reimagined
+m_bNoConscriptUnhappiness(false), // Civ4 Reimagined
 m_bNoWarAgainstSameFaithUnhappiness(false), // Civ4 Reimagined
 m_piPrereqAndTechs(NULL),
 m_piPrereqOrBonuses(NULL),
@@ -8610,6 +8611,12 @@ bool CvBuildingInfo::isNoConquestResistance() const
 	return m_bNoConquestResistance;
 }
 
+// Civ4 Reimagined
+bool CvBuildingInfo::isNoConscriptUnhappiness() const
+{
+	return m_bNoConscriptUnhappiness;
+}
+
 const TCHAR* CvBuildingInfo::getConstructSound() const
 {
 	return m_szConstructSound;
@@ -9409,6 +9416,7 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bStateReligion);
 	stream->Read(&m_bAllowsNukes);
 	stream->Read(&m_bNoConquestResistance); // Civ4 Reimagined
+	stream->Read(&m_bNoConscriptUnhappiness); // Civ4 Reimagined
 
 	stream->ReadString(m_szConstructSound);
 	stream->ReadString(m_szArtDefineTag);
@@ -9928,6 +9936,7 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bStateReligion);
 	stream->Write(m_bAllowsNukes);
 	stream->Write(m_bNoConquestResistance); // Civ4 Reimagined
+	stream->Write(m_bNoConscriptUnhappiness); // Civ4 Reimagined
 
 	stream->WriteString(m_szConstructSound);
 	stream->WriteString(m_szArtDefineTag);
@@ -10222,6 +10231,7 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bGoldenAge, "bGoldenAge");
 	pXML->GetChildXmlValByName(&m_bAllowsNukes, "bAllowsNukes");
 	pXML->GetChildXmlValByName(&m_bNoConquestResistance, "bNoConquestResistance"); // Civ4 Reimagined
+	pXML->GetChildXmlValByName(&m_bNoConscriptUnhappiness, "bNoConscriptUnhappiness"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_bMapCentering, "bMapCentering");
 	pXML->GetChildXmlValByName(&m_bNoUnhappiness, "bNoUnhappiness");
 	//pXML->GetChildXmlValByName(&m_bNoUnhealthyPopulation, "bNoUnhealthyPopulation");

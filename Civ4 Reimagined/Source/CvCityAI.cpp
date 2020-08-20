@@ -4614,6 +4614,12 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 			{
 				iValue += bWarPlan ? 50 : 15;
 			}
+
+			// Civ4 Reimagined
+			if (kBuilding.isNoConscriptUnhappiness())
+			{
+				iValue += bWarPlan ? 50 : 25;
+			}
 			
 			// Civ4 Reimagined
 			if (kBuilding.isAllowsNukes())
@@ -8265,8 +8271,13 @@ void CvCityAI::AI_doDraft(bool bForce)
 				return;
 			}
 
-			// Large cities want a little spare happiness
-			int iHappyDiff = GC.getDefineINT("CONSCRIPT_POP_ANGER") - iConscriptPop + (bGoodValue ? 0 : getPopulation()/10);
+			// Civ4 Reimagined
+			int iHappyDiff = 0;
+
+			if (!GET_TEAM(getTeam()).isNoConscriptUnhappiness())
+			{
+				iHappyDiff = GC.getDefineINT("CONSCRIPT_POP_ANGER") - iConscriptPop + (bGoodValue ? 0 : getPopulation()/10);
+			}
 
 			if ((bGoodValue || bLandWar) && angryPopulation(iHappyDiff) == 0)
 			{

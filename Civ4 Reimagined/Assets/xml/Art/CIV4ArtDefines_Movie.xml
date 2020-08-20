@@ -259,5 +259,13 @@
 			<Type>ART_DEF_MOVIE_TRAFALGAR_SQUARE</Type>
 			<Path>Art/Movies/Wonders/TrafalgarSquare.bik</Path>
 		</MovieArtInfo>
+		<MovieArtInfo>
+			<Type>ART_DEF_MOVIE_COMMUNIST_MANIFESTO</Type>
+			<Path>Art/Movies/Wonders/communistRevolution.dds</Path>
+		</MovieArtInfo>
+		<MovieArtInfo>
+			<Type>ART_DEF_MOVIE_OLYMPIASTADION</Type>
+			<Path>Art/Movies/Wonders/olympiastadion.dds</Path>
+		</MovieArtInfo>
 	</MovieArtInfos>
 </Civ4ArtDefines>

@@ -1850,6 +1850,7 @@ public:
 	bool isStateReligion() const;				// Exposed to Python
 	bool isAllowsNukes() const;				// Exposed to Python
 	bool isNoConquestResistance() const; // Civ4 Reimagined
+	bool isNoConscriptUnhappiness() const; // Civ4 Reimagined
 	bool isNoWarAgainstSameFaithUnhappiness() const; // Civ4 Reimagined
 	int getReligionSpreadBoost() const; // Civ4 Reimagined
 
@@ -2123,6 +2124,7 @@ protected:
 	bool m_bStateReligion;
 	bool m_bAllowsNukes;
 	bool m_bNoConquestResistance; // Civ4 Reimagined
+	bool m_bNoConscriptUnhappiness; // Civ4 Reimagined
 	bool m_bNoWarAgainstSameFaithUnhappiness; // Civ4 Reimagined
 	bool m_bAnyTechYieldModifier; // Civ4 Reimagined
 	bool m_bAnyTechCommerceModifier; // Civ4 Reimagined
