@@ -16704,6 +16704,17 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		}
 	}
 	// K-Mod end
+
+	// Civ4 Reiamagined
+	if (getForeignTradeIdeologyModifier(IDEOLOGY_LIBERALISM) > 0)
+	{
+		iValue += kCivic.getLiberal() * 10;
+	}
+
+	if (getBonusRatioModifierPerIdeologyCiv(IDEOLOGY_COMMUNISM) > 0)
+	{
+		iValue += kCivic.getCommunist() * 10;
+	}
 	
 	// Civ4 Reimagined
 	bool bEnablesUnitWonder = false;
