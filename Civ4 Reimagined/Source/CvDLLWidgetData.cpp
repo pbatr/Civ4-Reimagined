@@ -1988,7 +1988,8 @@ void CvDLLWidgetData::parseConscriptHelp(CvWidgetDataStruct &widgetDataStruct, C
 
 			iConscriptAngerLength = pHeadSelectedCity->flatConscriptAngerLength();
 
-			if (iConscriptAngerLength > 0)
+			// Civ4 Reimagined
+			if (iConscriptAngerLength > 0 && !GET_TEAM(pHeadSelectedCity->getTeam()).isNoConscriptUnhappiness())
 			{
 				szBuffer.append(NEWLINE);
 				szBuffer.append(gDLL->getText("TXT_KEY_MISC_ANGER_TURNS", GC.getDefineINT("CONSCRIPT_POP_ANGER"), (iConscriptAngerLength + pHeadSelectedCity->getConscriptAngerTimer())));

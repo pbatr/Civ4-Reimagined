@@ -10513,6 +10513,13 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_NO_CONQUEST_RESISTANCE"));
 	}
 
+	// Civ4 Reimagined
+	if (kBuilding.isNoConscriptUnhappiness())
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_NO_CONSCRIPT_UNHAPPY"));
+	}
+
 	if (kBuilding.isNoUnhappiness())
 	{
 		szBuffer.append(NEWLINE);

@@ -4049,7 +4049,12 @@ void CvCity::conscript()
 	int iPopChange = -(getConscriptPopulation());
 	int iAngerLength = flatConscriptAngerLength();
 	changePopulation(iPopChange);
-	changeConscriptAngerTimer(iAngerLength);
+
+	// Civ4 Reimagined
+	if (!GET_TEAM(getTeam()).isNoConscriptUnhappiness())
+	{
+		changeConscriptAngerTimer(iAngerLength);
+	}
 
 	setDrafted(true);
 

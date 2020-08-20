@@ -446,7 +446,7 @@
 			</BonusRatioIdeologyModifiers>
 			<BonusProductionModifiers/>
 			<CreateSound/>
-			<MovieDefineTag/>
+			<MovieDefineTag>ART_DEF_MOVIE_COMMUNIST_MANIFESTO</MovieDefineTag>
 		</ProjectInfo>
 	</ProjectInfos>
 </Civ4ProjectInfo>
