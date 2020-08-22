@@ -10906,7 +10906,14 @@ void CvUnit::changeExperience(int iChange, int iMax, bool bFromCombat, bool bInB
 
 		if (bUpdateGlobal)
 		{
-			kPlayer.changeCombatExperience((iChange * iCombatExperienceMod) / 100);
+			const int iCombatExperience = (iChange * iCombatExperienceMod) / 100;
+			kPlayer.changeCombatExperience(iCombatExperience);
+
+			// Civ4 Reimagined
+			if (GC.getGameINLINE().getIdeologyCombatExperienceOwner(kPlayer.getIdeology()) != kPlayer.getID())
+			{
+				GC.getGameINLINE().changeIdeologyCombatExperience(kPlayer.getIdeology(), iCombatExperience);
+			}
 		}
 
 		if (getExperiencePercent() != 0)

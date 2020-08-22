@@ -547,6 +547,9 @@ public:
 	// Civ4 Reimagined
 	void updateIdeologyCount();
 	int getIdeologyCount(IdeologyTypes eIndex) const;
+	void changeIdeologyCombatExperience(IdeologyTypes eIdeology, int iChange);
+	void setIdeologyCombatExperienceOwner(IdeologyTypes eIdeology, PlayerTypes ePlayer);
+	PlayerTypes getIdeologyCombatExperienceOwner(IdeologyTypes eIdeology) const;
 
 	DllExport void getGlobeLayers(std::vector<CvGlobeLayerData>& aLayers) const;
 	DllExport void startFlyoutMenu(const CvPlot* pPlot, std::vector<CvFlyoutMenuData>& aFlyoutItems) const;
@@ -660,6 +663,7 @@ protected:
 	int* m_aiVoteTimer;
 	int* m_aiDiploVote;
 	int* m_aiIdeologyPlayerCount; // Civ4 Reimagined
+	PlayerTypes* m_paiIdeologyCombatExperienceOwner; // Civ4 Reimagined
 
 	bool* m_pabSpecialUnitValid;
 	bool* m_pabSpecialBuildingValid;

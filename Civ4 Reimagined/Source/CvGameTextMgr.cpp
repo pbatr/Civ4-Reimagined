@@ -11185,6 +11185,12 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 			szBuffer.append(NEWLINE);
 			szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_FOREIGN_TRADE_ROUTE_IDEOLOGY_MOD", kBuilding.getForeignTradeIdeologyModifier(iI), GC.getIdeologyInfo((IdeologyTypes) iI).getAdjectiveKey()));
 		}
+
+		if (kBuilding.getIdeologyCombatExperience(iI) != 0)
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_IDEOLOGY_COMBAT_EXPERIENCE", kBuilding.getIdeologyCombatExperience(iI), GC.getIdeologyInfo((IdeologyTypes) iI).getAdjectiveKey()));
+		}
 	}
 
 	for (iI = 0; iI < GC.getNumSpecialistInfos(); ++iI)

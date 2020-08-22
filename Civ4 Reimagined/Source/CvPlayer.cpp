@@ -72,6 +72,7 @@ CvPlayer::CvPlayer()
 	m_aiIdeologyValue = new int[NUM_IDEOLOGY_TYPES]; // Civ4 Reimagind
 	m_aiForeignTradeIdeologyModifier = new int[NUM_IDEOLOGY_TYPES]; // Civ4 Reimagind
 	m_aiBonusRatioModifierPerIdeologyCiv = new int[NUM_IDEOLOGY_TYPES]; // Civ4 Reimagind
+	m_aiIdeologyCombatExperienceModifier = new int[NUM_IDEOLOGY_TYPES]; // Civ4 Reimagined
 
 	m_abFeatAccomplished = new bool[NUM_FEAT_TYPES];
 	m_abOptions = new bool[NUM_PLAYEROPTION_TYPES];
@@ -152,6 +153,7 @@ CvPlayer::~CvPlayer()
 	SAFE_DELETE_ARRAY(m_aiIdeologyValue); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiForeignTradeIdeologyModifier); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiBonusRatioModifierPerIdeologyCiv); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_aiIdeologyCombatExperienceModifier); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_abFeatAccomplished);
 	SAFE_DELETE_ARRAY(m_abOptions);
 }
@@ -1017,6 +1019,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	{
 		m_aiForeignTradeIdeologyModifier[iI] = 0;
 		m_aiBonusRatioModifierPerIdeologyCiv[iI] = 0;
+		m_aiIdeologyCombatExperienceModifier[iI] = 0;
 	}
 
 	for (iI = 0; iI < NUM_FEAT_TYPES; iI++)
@@ -7823,6 +7826,20 @@ void CvPlayer::processBuilding(BuildingTypes eBuilding, int iChange, CvArea* pAr
 	for (iI = 0; iI < GC.getNumIdeologyInfos(); iI++)
 	{
 		changeForeignTradeIdeologyModifier((IdeologyTypes)iI, GC.getBuildingInfo(eBuilding).getForeignTradeIdeologyModifier(iI) * iChange);
+
+		if (GC.getBuildingInfo(eBuilding).getIdeologyCombatExperience(iI) > 0)
+		{
+			changeIdeologyCombatExperienceModifier((IdeologyTypes)iI, GC.getBuildingInfo(eBuilding).getIdeologyCombatExperience(iI) * iChange);
+
+			if (getIdeologyCombatExperienceModifier((IdeologyTypes)iI) > 0)
+			{
+				GC.getGameINLINE().setIdeologyCombatExperienceOwner((IdeologyTypes)iI, getID());
+			}
+			else
+			{
+				GC.getGameINLINE().setIdeologyCombatExperienceOwner((IdeologyTypes)iI, NO_PLAYER);
+			}
+		}
 	}
 }
 
@@ -20070,6 +20087,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(NUM_IDEOLOGY_TYPES, m_aiIdeologyValue); // Civ4 Reimagined
 	pStream->Read(NUM_IDEOLOGY_TYPES, m_aiForeignTradeIdeologyModifier); // Civ4 Reimagined
 	pStream->Read(NUM_IDEOLOGY_TYPES, m_aiBonusRatioModifierPerIdeologyCiv); // Civ4 Reimagined
+	pStream->Read(NUM_IDEOLOGY_TYPES, m_aiIdeologyCombatExperienceModifier); // Civ4 Reimagined
 	pStream->Read(GC.getNumBonusInfos(), m_paiPlayerExtraAvailableBonuses); // Civ4 Reimagined
 
 	//pStream->Read(GC.getNumUnitClassInfos(), m_aiUnitProductionModifier); // Civ4 Reimagined
@@ -20656,6 +20674,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(NUM_IDEOLOGY_TYPES, m_aiIdeologyValue); // Civ4 Reimagined
 	pStream->Write(NUM_IDEOLOGY_TYPES, m_aiForeignTradeIdeologyModifier); // Civ4 Reimagined
 	pStream->Write(NUM_IDEOLOGY_TYPES, m_aiBonusRatioModifierPerIdeologyCiv); // Civ4 Reimagined
+	pStream->Write(NUM_IDEOLOGY_TYPES, m_aiIdeologyCombatExperienceModifier); // Civ4 Reimagined
 	pStream->Write(GC.getNumBonusInfos(), m_paiPlayerExtraAvailableBonuses); // Civ4 Reimagined
 	
 	FAssertMsg((0 < GC.getNumTechInfos()), "GC.getNumTechInfos() is not greater than zero but it is expected to be in CvPlayer::write");
@@ -26505,6 +26524,24 @@ void CvPlayer::changeBonusRatioModifierPerIdeologyCiv(IdeologyTypes eIndex, int 
 		m_aiBonusRatioModifierPerIdeologyCiv[eIndex] = (m_aiBonusRatioModifierPerIdeologyCiv[eIndex] + iChange);
 
 		updateBonusRatio();
+	}
+}
+
+int CvPlayer::getIdeologyCombatExperienceModifier(IdeologyTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumIdeologyInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_aiIdeologyCombatExperienceModifier[eIndex];
+}
+
+void CvPlayer::changeIdeologyCombatExperienceModifier(IdeologyTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumIdeologyInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	if (iChange != 0)
+	{
+		m_aiIdeologyCombatExperienceModifier[eIndex] = (m_aiIdeologyCombatExperienceModifier[eIndex] + iChange);
 	}
 }
 
