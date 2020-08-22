@@ -4687,6 +4687,15 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				}
 			}
 
+			// Civ4 Reimagined
+			for (int iI = 0; iI < GC.getNumIdeologyInfos(); iI++)
+			{
+				if (kBuilding.getIdeologyCombatExperience(iI) > 0)
+				{
+					iValue += kBuilding.getIdeologyCombatExperience(iI);
+				}
+			}
+
 			// is this building needed to build other buildings?
 
 			// K-Mod

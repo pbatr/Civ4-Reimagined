@@ -52,6 +52,7 @@ CvGame::CvGame()
 	m_paiVoteOutcome = NULL;
 	m_paiReligionGameTurnFounded = NULL;
 	m_paiCorporationGameTurnFounded = NULL;
+	m_paiIdeologyCombatExperienceOwner = NULL; // Civ4 Reimagined
 	m_aiSecretaryGeneralTimer = NULL;
 	m_aiVoteTimer = NULL;
 	m_aiDiploVote = NULL;
@@ -411,6 +412,7 @@ void CvGame::uninit()
 	SAFE_DELETE_ARRAY(m_paiVoteOutcome);
 	SAFE_DELETE_ARRAY(m_paiReligionGameTurnFounded);
 	SAFE_DELETE_ARRAY(m_paiCorporationGameTurnFounded);
+	SAFE_DELETE_ARRAY(m_paiIdeologyCombatExperienceOwner); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiSecretaryGeneralTimer);
 	SAFE_DELETE_ARRAY(m_aiVoteTimer);
 	SAFE_DELETE_ARRAY(m_aiDiploVote);
@@ -557,6 +559,15 @@ void CvGame::reset(HandicapTypes eHandicap, bool bConstructorCall)
 		for (iI = 0; iI < GC.getNumVoteInfos(); iI++)
 		{
 			m_paiVoteOutcome[iI] = NO_PLAYER_VOTE;
+		}
+
+		// Civ4 Reimagined
+		FAssertMsg(0 < GC.getNumIdeologyInfos(), "GC.getNumIdeologyInfos() is not greater than zero in CvGame::reset");
+		FAssertMsg(m_paiIdeologyCombatExperienceOwner==NULL, "about to leak memory, CvGame::m_paiIdeologyCombatExperienceOwner");
+		m_paiIdeologyCombatExperienceOwner = new PlayerTypes[GC.getNumIdeologyInfos()];
+		for (iI = 0; iI < GC.getNumIdeologyInfos(); iI++)
+		{
+			m_paiIdeologyCombatExperienceOwner[iI] = NO_PLAYER;
 		}
 
 		FAssertMsg(0 < GC.getNumVoteSourceInfos(), "GC.getNumVoteSourceInfos() is not greater than zero in CvGame::reset");
@@ -8951,6 +8962,7 @@ void CvGame::read(FDataStreamBase* pStream)
 	pStream->Read(GC.getNumVoteInfos(), (int*)m_paiVoteOutcome);
 	pStream->Read(GC.getNumReligionInfos(), m_paiReligionGameTurnFounded);
 	pStream->Read(GC.getNumCorporationInfos(), m_paiCorporationGameTurnFounded);
+	pStream->Read(GC.getNumIdeologyInfos(), (int*)m_paiIdeologyCombatExperienceOwner); // Civ4 Reimagined
 	pStream->Read(GC.getNumVoteSourceInfos(), m_aiSecretaryGeneralTimer);
 	pStream->Read(GC.getNumVoteSourceInfos(), m_aiVoteTimer);
 	pStream->Read(GC.getNumVoteSourceInfos(), m_aiDiploVote);
@@ -9170,6 +9182,7 @@ void CvGame::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumVoteInfos(), (int*)m_paiVoteOutcome);
 	pStream->Write(GC.getNumReligionInfos(), m_paiReligionGameTurnFounded);
 	pStream->Write(GC.getNumCorporationInfos(), m_paiCorporationGameTurnFounded);
+	pStream->Write(GC.getNumIdeologyInfos(), (int*)m_paiIdeologyCombatExperienceOwner); // Civ4 Reimagined
 	pStream->Write(GC.getNumVoteSourceInfos(), m_aiSecretaryGeneralTimer);
 	pStream->Write(GC.getNumVoteSourceInfos(), m_aiVoteTimer);
 	pStream->Write(GC.getNumVoteSourceInfos(), m_aiDiploVote);
@@ -10554,4 +10567,37 @@ int CvGame::getIdeologyCount(IdeologyTypes eIdeology) const
 	FAssert(eIdeology < GC.getNumIdeologyInfos());
 
 	return m_aiIdeologyPlayerCount[(int)eIdeology];
+}
+
+// Civ4 Reimagined
+void CvGame::changeIdeologyCombatExperience(IdeologyTypes eIdeology, int iChange)
+{
+	FAssert(eIdeology >= 0);
+	FAssert(eIdeology < GC.getNumIdeologyInfos());
+
+	PlayerTypes ePlayer = getIdeologyCombatExperienceOwner(eIdeology);
+
+	if (ePlayer != NO_PLAYER)
+	{
+		const int iCombatExperience = (GET_PLAYER(ePlayer).getIdeologyCombatExperienceModifier(eIdeology) * iChange) / 100;
+		GET_PLAYER(ePlayer).changeCombatExperience(iCombatExperience);
+	}
+}
+
+// Civ4 Reimagined
+void CvGame::setIdeologyCombatExperienceOwner(IdeologyTypes eIdeology, PlayerTypes ePlayer)
+{
+	FAssert(eIdeology >= 0);
+	FAssert(eIdeology < GC.getNumIdeologyInfos());
+
+	m_paiIdeologyCombatExperienceOwner[(int)eIdeology] = ePlayer;
+}
+
+// Civ4 Reimagined
+PlayerTypes CvGame::getIdeologyCombatExperienceOwner(IdeologyTypes eIdeology) const
+{
+	FAssert(eIdeology >= 0);
+	FAssert(eIdeology < GC.getNumIdeologyInfos());
+
+	return m_paiIdeologyCombatExperienceOwner[(int)eIdeology];
 }

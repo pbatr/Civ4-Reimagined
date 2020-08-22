@@ -34649,6 +34649,12 @@
 			<BuildingClassNeededs/>
 			<SpecialistYieldChanges/>
 			<BonusYieldModifiers/>
+			<IdeologySharedCombatExperience>
+				<SharedCombatExperience>
+					<IdeologyType>IDEOLOGY_FASCISM</IdeologyType>
+					<iCombatExperienceModifier>50</iCombatExperienceModifier>
+				</SharedCombatExperience>
+			</IdeologySharedCombatExperience>
 			<ImprovementFreeSpecialists/>
 			<Flavors>
 				<Flavor>

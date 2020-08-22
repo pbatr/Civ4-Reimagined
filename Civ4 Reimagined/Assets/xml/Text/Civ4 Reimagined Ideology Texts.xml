@@ -74,4 +74,8 @@
 		<Tag>TXT_KEY_MISC_ENABLES_IDEOLOGY</Tag>
 		<English>[ICON_BULLET]Enables %s1_IdeologyName Ideology </English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_IDEOLOGY_COMBAT_EXPERIENCE</Tag>
+		<English>[ICON_BULLET]Combat Experience from Other [LINK=literal]%s2[\LINK] Civilizations Counts Towards Great General Progress (%d1_Mod%)</English>
+	</TEXT>
 </Civ4GameText>

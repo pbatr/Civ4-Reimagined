@@ -441,8 +441,16 @@
 	<ElementType name="ForeignTradeIdeologyModifiers" content="eltOnly">
 		<element type="ForeignTradeIdeologyModifier" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
+	<ElementType name="SharedCombatExperience" content="eltOnly">
+		<element type="IdeologyType"/>
+		<element type="iCombatExperienceModifier"/>
+	</ElementType>
+	<ElementType name="IdeologySharedCombatExperience" content="eltOnly">
+		<element type="SharedCombatExperience" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
 	<ElementType name="IdeologyType" content="textOnly"/>
 	<ElementType name="iTradeModifier" content="textOnly" dt:type="int"/>
+	<ElementType name="iCombatExperienceModifier" content="textOnly" dt:type="int"/>
 	<!-- Civ4 Reimagined end -->
 	<ElementType name="ImprovementFreeSpecialist" content="eltOnly">
 		<element type="ImprovementType"/>
@@ -683,6 +691,7 @@
 		<element type="TechnologyYieldModifiers" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="TechnologyCommerceModifiers" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="ForeignTradeIdeologyModifiers" minOccurs="0"/> <!-- Civ4 Reimagined -->
+		<element type="IdeologySharedCombatExperience" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="ImprovementFreeSpecialists"/>
 		<element type="Flavors"/>
 		<element type="HotKey"/>

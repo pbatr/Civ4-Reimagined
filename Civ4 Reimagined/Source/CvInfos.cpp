@@ -7748,6 +7748,7 @@ m_piPercentPrereqNumOfBuildingClass(NULL), // Civ4 Reimagined
 m_piFlavorValue(NULL),
 m_piImprovementFreeSpecialist(NULL),
 m_piForeignTradeIdeologyModifier(NULL), // Civ4 Reimagined
+m_piIdeologyCombatExperience(NULL), // Civ4 Reimagined
 m_pbCommerceFlexible(NULL),
 m_pbCommerceChangeOriginalOwner(NULL),
 m_pbBuildingClassNeededInCity(NULL),
@@ -7826,6 +7827,7 @@ CvBuildingInfo::~CvBuildingInfo()
 	SAFE_DELETE_ARRAY(m_piFlavorValue);
 	SAFE_DELETE_ARRAY(m_piImprovementFreeSpecialist);
 	SAFE_DELETE_ARRAY(m_piForeignTradeIdeologyModifier); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_piIdeologyCombatExperience); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_pbCommerceFlexible);
 	SAFE_DELETE_ARRAY(m_pbCommerceChangeOriginalOwner);
 	SAFE_DELETE_ARRAY(m_pbBuildingClassNeededInCity);
@@ -9052,6 +9054,14 @@ int CvBuildingInfo::getForeignTradeIdeologyModifier(int i) const
 	return m_piForeignTradeIdeologyModifier ? m_piForeignTradeIdeologyModifier[i] : -1;
 }
 
+// Civ4 Reimagined
+int CvBuildingInfo::getIdeologyCombatExperience(int i) const
+{
+	FAssertMsg(i < GC.getNumIdeologyInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_piIdeologyCombatExperience ? m_piIdeologyCombatExperience[i] : -1;
+}
+
 bool CvBuildingInfo::isCommerceFlexible(int i) const
 {
 	FAssertMsg(i < NUM_COMMERCE_TYPES, "Index out of bounds");
@@ -9599,6 +9609,11 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 	m_piForeignTradeIdeologyModifier = new int[GC.getNumIdeologyInfos()];
 	stream->Read(GC.getNumIdeologyInfos(), m_piForeignTradeIdeologyModifier);
 
+	// Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_piIdeologyCombatExperience);
+	m_piIdeologyCombatExperience = new int[GC.getNumIdeologyInfos()];
+	stream->Read(GC.getNumIdeologyInfos(), m_piIdeologyCombatExperience);
+
 	SAFE_DELETE_ARRAY(m_pbCommerceFlexible);
 	m_pbCommerceFlexible = new bool[NUM_COMMERCE_TYPES];
 	stream->Read(NUM_COMMERCE_TYPES, m_pbCommerceFlexible);
@@ -9984,6 +9999,7 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 	stream->Write(GC.getNumFlavorTypes(), m_piFlavorValue);
 	stream->Write(GC.getNumImprovementInfos(), m_piImprovementFreeSpecialist);
 	stream->Write(GC.getNumIdeologyInfos(), m_piForeignTradeIdeologyModifier); // Civ4 Reimagined
+	stream->Write(GC.getNumIdeologyInfos(), m_piIdeologyCombatExperience); // Civ4 Reimagined
 
 	stream->Write(NUM_COMMERCE_TYPES, m_pbCommerceFlexible);
 	stream->Write(NUM_COMMERCE_TYPES, m_pbCommerceChangeOriginalOwner);
@@ -10893,6 +10909,7 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 	pXML->SetVariableListTagPair(&m_piFlavorValue, "Flavors", GC.getFlavorTypes(), GC.getNumFlavorTypes());
 	pXML->SetVariableListTagPair(&m_piImprovementFreeSpecialist, "ImprovementFreeSpecialists", sizeof(GC.getImprovementInfo((ImprovementTypes)0)), GC.getNumImprovementInfos());
 	pXML->SetVariableListTagPair(&m_piForeignTradeIdeologyModifier, "ForeignTradeIdeologyModifiers", sizeof(GC.getIdeologyInfo((IdeologyTypes)0)), GC.getNumIdeologyInfos()); // Civ4 Reimagined
+	pXML->SetVariableListTagPair(&m_piIdeologyCombatExperience, "IdeologySharedCombatExperience", sizeof(GC.getIdeologyInfo((IdeologyTypes)0)), GC.getNumIdeologyInfos()); // Civ4 Reimagined
 
 	pXML->SetVariableListTagPair(&m_piBuildingHappinessChanges, "BuildingHappinessChanges", sizeof(GC.getBuildingClassInfo((BuildingClassTypes)0)), GC.getNumBuildingClassInfos());
 
