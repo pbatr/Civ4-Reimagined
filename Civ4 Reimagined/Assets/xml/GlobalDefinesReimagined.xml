@@ -189,11 +189,6 @@
 		<DefineName>COLONY_TRADE_MODIFIER</DefineName>
 		<iDefineIntVal>100</iDefineIntVal>
 	</Define>
-	<!-- Trade route modifier for special trade routes (unique power) -->
-	<Define>
-		<DefineName>SPECIAL_TRADE_MODIFIER</DefineName>
-		<iDefineIntVal>200</iDefineIntVal>
-	</Define>
 	<!-- Modifier for anger in colonies that triggers in industrial/modern era. -->
 	<Define>
 		<DefineName>COLONY_PERCENT_ANGER_MODIFIER</DefineName>
@@ -356,6 +351,10 @@
 	<Define>
 		<DefineName>UNIQUE_POWER_BABYLON_2</DefineName>
 		<iDefineIntVal>0</iDefineIntVal> <!-- Population required -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_CARTHARGE</DefineName> 
+		<iDefineIntVal>300</iDefineIntVal> <!-- Trade route modifier for special trade routes -->
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_CELT_CULTURE</DefineName>

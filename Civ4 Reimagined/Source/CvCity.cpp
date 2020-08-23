@@ -10070,7 +10070,7 @@ int CvCity::totalTradeModifier(CvCity* pOtherCity) const
 			
 			if (GET_PLAYER(getOwnerINLINE()).isSpecialTradeRoutePerPlayer())
 			{
-				iModifier += GC.getDefineINT("SPECIAL_TRADE_MODIFIER");
+				iModifier += GC.getDefineINT("UNIQUE_POWER_CARTHARGE");
 			}
 		}
 		

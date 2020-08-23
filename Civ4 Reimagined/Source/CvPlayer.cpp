@@ -27436,11 +27436,13 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == 1)
 		{
 			setSpecialTradeRoutePerPlayer(true);
+			changeDomainProductionModifier(DOMAIN_SEA, 50);
 			notifyUniquePowersChanged(true);
 		}
 		else if (eEra == 2)
 		{
 			setSpecialTradeRoutePerPlayer(false);
+			changeDomainProductionModifier(DOMAIN_SEA, -50);
 			notifyUniquePowersChanged(false);
 		}
 	}
