@@ -19441,6 +19441,24 @@ void CvGameTextMgr::setEspionageCostHelp(CvWStringBuffer &szBuffer, EspionageMis
 			*/
 		}
 
+		// Civ4 Reimagined
+		if (GC.getGameINLINE().areIdeologiesEnabled() && kPlayer.getIdeology() != GET_PLAYER(eTargetPlayer).getIdeology())
+		{
+			const int iIdeologyInfluence = GET_PLAYER(eTargetPlayer).getIdeologyInfluence(kPlayer.getIdeology());
+			if (iIdeologyInfluence > 0)
+			{
+				iTempModifier = iIdeologyInfluence * GC.getDefineINT("ESPIONAGE_IDEOLOGY_INFLUENCE_MOD");
+
+				if (0 != iTempModifier)
+				{
+					iModifier *= 100 + iTempModifier;
+					iModifier /= 100;
+					szBuffer.append(NEWLINE);
+					szBuffer.append(gDLL->getText("TXT_KEY_ESPIONAGE_IDEOLOGY_INFLUENCE_MOD", iTempModifier));
+				}
+			}
+		}
+
 		// Spy presence mission cost alteration
 		if (NULL != pSpyUnit)
 		{

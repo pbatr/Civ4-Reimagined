@@ -214,6 +214,11 @@
 		<DefineName>ESPIONAGE_CITY_CORPORATION_MOD</DefineName>
 		<iDefineIntVal>-25</iDefineIntVal>
 	</Define>
+	<!-- Espionage cost modifier each ideology influence point of espionage's player ideology (only when ideologies differ) -->
+	<Define>
+		<DefineName>ESPIONAGE_IDEOLOGY_INFLUENCE_MOD</DefineName>
+		<iDefineIntVal>-5</iDefineIntVal>
+	</Define>
 	<!-- Used for balancing starting positions. Higher value means on average stronger starting positions. -->
 	<Define>
 		<DefineName>MAX_STARTING_POS_VALUE</DefineName>
