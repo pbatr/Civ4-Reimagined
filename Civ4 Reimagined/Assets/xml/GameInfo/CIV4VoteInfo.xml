@@ -143,6 +143,7 @@
 				</DiploVote>
 			</DiploVotes>
 		</VoteInfo>
+		<!---
 		<VoteInfo>
 			<Type>VOTE_UNIVERSAL_SUFFRAGE</Type>
 			<Description>TXT_KEY_VOTE_UNIVERSAL_SUFFRAGE</Description>
@@ -175,7 +176,6 @@
 				</DiploVote>
 			</DiploVotes>
 		</VoteInfo>
-		<!---
 		<VoteInfo>
 			<Type>VOTE_FREE_SPEECH</Type>
 			<Description>TXT_KEY_VOTE_FREE_SPEECH</Description>
@@ -272,7 +272,6 @@
 				</DiploVote>
 			</DiploVotes>
 		</VoteInfo>
-		-->
 		<VoteInfo>
 			<Type>VOTE_FREE_RELIGION</Type>
 			<Description>TXT_KEY_VOTE_FREE_RELIGION</Description>
@@ -305,6 +304,7 @@
 				</DiploVote>
 			</DiploVotes>
 		</VoteInfo>
+		-->
 		<VoteInfo>
 			<Type>VOTE_UN_FORCE_PEACE</Type>
 			<Description>TXT_KEY_VOTE_UN_FORCE_PEACE</Description>
