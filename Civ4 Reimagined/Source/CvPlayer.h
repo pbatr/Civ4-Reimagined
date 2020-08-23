@@ -1367,8 +1367,8 @@ public:
 	void doUniqueAztecPromotion(CvUnit* pUnit); // Civ4 Reimagined
 
 	// Civ4 Reimagind Ideologies
-	int getIdeologyValue(IdeologyTypes eIdeology) const;
-	void changeIdeologyValue(IdeologyTypes eIdeology, int iChange);
+	int getIdeologyInfluence(IdeologyTypes eIdeology) const;
+	void changeIdeologyInfluence(IdeologyTypes eIdeology, int iChange);
 	IdeologyTypes getIdeology() const;
 	void updateIdeology();
 
@@ -1674,7 +1674,7 @@ protected:
 	int* m_aiMilitaryPower; // Civ4 Reimagined
 	int* m_aiBestUnitPower; // Civ4 Reimagined
 	int* m_paiPlayerExtraAvailableBonuses; // Civ4 Reimagined
-	int* m_aiIdeologyValue; // Civ4Reimagind
+	int* m_aiIdeologyInfluence; // Civ4Reimagind
 	int* m_aiForeignTradeIdeologyModifier; // Civ4 Reimagined
 	int* m_aiBonusRatioModifierPerIdeologyCiv; // Civ4 Reimagined
 	int* m_aiIdeologyCombatExperienceModifier; // Civ4 Reimagined
