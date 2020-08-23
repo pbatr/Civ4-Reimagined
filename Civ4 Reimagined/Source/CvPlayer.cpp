@@ -9452,7 +9452,7 @@ int CvPlayer::getCivicAnarchyLength(CivicTypes* paeNewCivics) const
 	{
 		iAnarchyLength += GC.getDefineINT("BASE_CIVIC_ANARCHY_LENGTH");
 
-		//iAnarchyLength += ((getNumCities() * GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getNumCitiesAnarchyPercent()) / 100); //Civ4 Reimagined: Removed increased anarchy length for number of cities
+		iAnarchyLength += ((getNumCities() * GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getNumCitiesAnarchyPercent()) / 100);
 	}
 
 	iAnarchyLength = ((iAnarchyLength * std::max(0, (getAnarchyModifier() + 100))) / 100);

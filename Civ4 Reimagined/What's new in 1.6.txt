@@ -12,6 +12,7 @@ Changes
 *********
 -Reassign almost all leader traits
 -Lumbermills grant 1 less production but are available with Machinery
+-Reintroduced longer anarchy for large empires
 
 *********
 Tweaks
@@ -32,6 +33,7 @@ Tweaks
 -CERN Research Complex costs increased from 800 to 1200
 -Space Elevator costs increased from 1000 to 1500
 -Great Harbor moved to Guilds from Refrigeration, reduced cost from 250 to 125, removed +100% production with steel, removed +1C per water tile, +3 culture
+-Can change 3 civics for one turn of anarchy on quick speed (was 4)
 
 *********
 Interface
