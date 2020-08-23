@@ -10456,7 +10456,8 @@ int CvCity::getTotalCommerceRateModifier(CommerceTypes eIndex) const
 	int iTotal = 100;
 	iTotal += getCommerceRateModifier(eIndex) + GET_PLAYER(getOwnerINLINE()).getCommerceRateModifier(eIndex);
 	iTotal += getTechCommerceRateModifier(eIndex); // Civ4 Reimagined
-	
+	iTotal += GET_PLAYER(getOwnerINLINE()).getCommerceAboveAveragePopulation(eIndex); // Civ4 Reimagined
+
 	if (isCapital() && !GET_PLAYER(getOwnerINLINE()).isNoCapital()) // Civ4 Reimagined: Excluded capital modifier if player does not gain the benefits of a capital.
 	{
 		iTotal += GET_PLAYER(getOwnerINLINE()).getCapitalCommerceRateModifier(eIndex);

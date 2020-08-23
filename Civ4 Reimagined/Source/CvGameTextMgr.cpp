@@ -17108,7 +17108,10 @@ void CvGameTextMgr::setCommerceHelp(CvWStringBuffer &szBuffer, CvCity& city, Com
 	}
 	
 	// Unique Powers
-	int iUniquePowerMod = owner.getUniquePowerCommerceModifier(eCommerceType) + (city.isCapital() ? owner.getCapitalCommercePerPopulation(eCommerceType, city.getPopulation()) : 0);
+	int iUniquePowerMod = 
+		owner.getUniquePowerCommerceModifier(eCommerceType) + 
+		owner.getCommerceAboveAveragePopulation(eCommerceType) + 
+		(city.isCapital() ? owner.getCapitalCommercePerPopulation(eCommerceType, city.getPopulation()) : 0);
 	
 	if (0 != iUniquePowerMod)
 	{
@@ -17155,7 +17158,7 @@ void CvGameTextMgr::setCommerceHelp(CvWStringBuffer &szBuffer, CvCity& city, Com
 			iModYield += iEspionageToCommerce;
 		}
 	}
-
+	
 	FAssertMsg(iModYield == city.getCommerceRateTimes100(eCommerceType), "Commerce yield does not match actual value");
 
 	CvWString szYield = CvWString::format(L"%d.%02d", iModYield/100, iModYield%100);

@@ -366,6 +366,14 @@
 		<iDefineIntVal>50</iDefineIntVal> <!-- Research per adjacent forest -->
 	</Define>
 	<Define>
+		<DefineName>UNIQUE_POWER_CHINA_MAX_POP</DefineName>
+		<iDefineIntVal>140</iDefineIntVal> <!-- Reaches max effect at X% of average population -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_CHINA_MAX_EFFECT</DefineName>
+		<iDefineIntVal>20</iDefineIntVal> <!-- Maximum +% research bonus in all cities for high population compared to world population -->
+	</Define>
+	<Define>
 		<DefineName>UNIQUE_POWER_EGYPT</DefineName>
 		<iDefineIntVal>3</iDefineIntVal> <!-- Slavery points per population -->
 	</Define>

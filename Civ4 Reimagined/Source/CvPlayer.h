@@ -1337,8 +1337,11 @@ public:
 	void changeFatcrossTerrainCulture(TerrainTypes eIndex, int iChange); // Civ4 Reimagined
 	int getCapitalCommercePerPopulation(CommerceTypes eIndex, int iPopulation) const; // Civ4 Reimagined
 	void setCapitalCommercePerPopulation(CommerceTypes eIndex, int iCommerceModifierPerPopulation, int iTargetPopulation); // Civ4 Reimagined
-	int getAdjacentFeatureCommerce(FeatureTypes eFeatureIndex, CommerceTypes eCommerceIndex) const;
-	void changeAdjacentFeatureCommerce(FeatureTypes eFeatureIndex, CommerceTypes eCommerceIndex, int iChangePercent);
+	int getCommerceAboveAveragePopulation(CommerceTypes eIndex) const; // Civ4 Reimagined
+	void setCommerceAboveAveragePopulation(CommerceTypes eIndex, int iPopulationAverageMax, int iCommerceModifierMax); // Civ4 Reimagined
+	void updateCommerceAboveAveragePopulation(); // Civ4 Reimagined
+	int getAdjacentFeatureCommerce(FeatureTypes eFeatureIndex, CommerceTypes eCommerceIndex) const; // Civ4 Reimagined
+	void changeAdjacentFeatureCommerce(FeatureTypes eFeatureIndex, CommerceTypes eCommerceIndex, int iChangePercent); // Civ4 Reimagined
 	int getFatcrossPeakHappiness() const; // Civ4 Reimagined
 	void changeFatcrossPeakHappiness(int iChange); // Civ4 Reimagined
 	int getFatcrossPeakCulture() const; // Civ4 Reimagined
@@ -1711,6 +1714,9 @@ protected:
 	int* m_paiFatcrossTerrainCulture; // Civ4 Reimagined
 	int* m_paiCapitalCommercePopulationThreshold; // Civ4 Reimagined
 	int* m_paiCapitalCommerceModifier; // Civ4 Reimagined
+	int* m_paiAveragePopCommerceModifier; // Civ4 Reimagined
+	int* m_paiAveragePopCommerceModifierMaxPop; // Civ4 Reimagined
+	int* m_paiAveragePopCommerceModifierMaxMod; // Civ4 Reimagined
 	
 	//std::vector< std::pair<int, int> > CapitalCommercePerPopulationArray; // Civ4 Reimagined
 	

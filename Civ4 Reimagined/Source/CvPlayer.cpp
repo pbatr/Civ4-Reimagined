@@ -100,6 +100,9 @@ CvPlayer::CvPlayer()
 	m_paiFatcrossTerrainCulture = NULL; // Civ4 Reimagined
 	m_paiCapitalCommercePopulationThreshold = NULL; // Civ4 Reimagined
 	m_paiCapitalCommerceModifier = NULL; // Civ4 Reimagined
+	m_paiAveragePopCommerceModifier = NULL; // Civ4 Reimagined
+	m_paiAveragePopCommerceModifierMaxPop = NULL; // Civ4 Reimagined
+	m_paiAveragePopCommerceModifierMaxMod = NULL; // Civ4 Reimagined
 	m_paiPlayerExtraAvailableBonuses = NULL; // Civ4 Reimagined
 	m_paiCivicEffect = NULL; // Civ4 Reimagined
 
@@ -645,6 +648,9 @@ void CvPlayer::uninit()
 	SAFE_DELETE_ARRAY(m_paiFatcrossTerrainCulture); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiCapitalCommercePopulationThreshold); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiCapitalCommerceModifier); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_paiAveragePopCommerceModifier); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_paiAveragePopCommerceModifierMaxPop); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_paiAveragePopCommerceModifierMaxMod); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiPlayerExtraAvailableBonuses); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiCivicEffect); // Civ4 Reimagined
 
@@ -1221,11 +1227,20 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		m_paiCapitalCommercePopulationThreshold = new int[NUM_COMMERCE_TYPES];
 		FAssertMsg(m_paiCapitalCommerceModifier==NULL, "about to leak memory, CvPlayer::m_paiCapitalCommerceModifier");
 		m_paiCapitalCommerceModifier = new int[NUM_COMMERCE_TYPES];
+		FAssertMsg(m_paiAveragePopCommerceModifier==NULL, "about to leak memory, CvPlayer::m_paiAveragePopCommerceModifier");
+		m_paiAveragePopCommerceModifier = new int[NUM_COMMERCE_TYPES];
+		FAssertMsg(m_paiAveragePopCommerceModifierMaxPop==NULL, "about to leak memory, CvPlayer::m_paiAveragePopCommerceModifierMaxPop");
+		m_paiAveragePopCommerceModifierMaxPop = new int[NUM_COMMERCE_TYPES];
+		FAssertMsg(m_paiAveragePopCommerceModifierMaxMod==NULL, "about to leak memory, CvPlayer::m_paiAveragePopCommerceModifierMaxMod");
+		m_paiAveragePopCommerceModifierMaxMod = new int[NUM_COMMERCE_TYPES];
 		
 		for (iI = 0; iI < NUM_COMMERCE_TYPES; iI++)
 		{
 			m_paiCapitalCommercePopulationThreshold[iI] = 0;
 			m_paiCapitalCommerceModifier[iI] = 0;
+			m_paiAveragePopCommerceModifier[iI] = 0;
+			m_paiAveragePopCommerceModifierMaxPop[iI] = 0;
+			m_paiAveragePopCommerceModifierMaxMod[iI] = 0;
 		}
 		
 	
@@ -20112,6 +20127,9 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(GC.getNumTerrainInfos(), m_paiFatcrossTerrainCulture); // Civ4 Reimagined
 	pStream->Read(NUM_COMMERCE_TYPES, m_paiCapitalCommercePopulationThreshold); // Civ4 Reimagined
 	pStream->Read(NUM_COMMERCE_TYPES, m_paiCapitalCommerceModifier); // Civ4 Reimagined
+	pStream->Read(NUM_COMMERCE_TYPES, m_paiAveragePopCommerceModifier); // Civ4 Reimagined
+	pStream->Read(NUM_COMMERCE_TYPES, m_paiAveragePopCommerceModifierMaxPop); // Civ4 Reimagined
+	pStream->Read(NUM_COMMERCE_TYPES, m_paiAveragePopCommerceModifierMaxMod); // Civ4 Reimagined
 	pStream->Read(NUM_DOMAIN_TYPES, m_aiMilitaryPower); // Civ4 Reimagined
 	pStream->Read(NUM_DOMAIN_TYPES, m_aiBestUnitPower); // Civ4 Reimagined
 	pStream->Read(GC.getNumBonusInfos(), m_paiPlayerExtraAvailableBonuses); // Civ4 Reimagined
@@ -20702,6 +20720,9 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumTerrainInfos(), m_paiFatcrossTerrainCulture); // Civ4 Reimagined
 	pStream->Write(NUM_COMMERCE_TYPES, m_paiCapitalCommercePopulationThreshold); // Civ4 Reimagined
 	pStream->Write(NUM_COMMERCE_TYPES, m_paiCapitalCommerceModifier); // Civ4 Reimagined
+	pStream->Write(NUM_COMMERCE_TYPES, m_paiAveragePopCommerceModifier); // Civ4 Reimagined
+	pStream->Write(NUM_COMMERCE_TYPES, m_paiAveragePopCommerceModifierMaxPop); // Civ4 Reimagined
+	pStream->Write(NUM_COMMERCE_TYPES, m_paiAveragePopCommerceModifierMaxMod); // Civ4 Reimagined
 	pStream->Write(NUM_DOMAIN_TYPES, m_aiMilitaryPower); // Civ4 Reimagined
 	pStream->Write(NUM_DOMAIN_TYPES, m_aiBestUnitPower); // Civ4 Reimagined
 	pStream->Write(GC.getNumBonusInfos(), m_paiPlayerExtraAvailableBonuses); // Civ4 Reimagined
@@ -24442,6 +24463,8 @@ void CvPlayer::invalidateCommerceRankCache(CommerceTypes eCommerce)
 
 void CvPlayer::doUpdateCacheOnTurn()
 {
+	updateCommerceAboveAveragePopulation(); // Civ4 Reimagined
+
 	// add this back, after testing without it
 	// invalidateYieldRankCache();
 }
@@ -26968,6 +26991,73 @@ int CvPlayer::getCapitalCommercePerPopulation(CommerceTypes eIndex, int iPopulat
 }
 
 // Civ4 Reimagined
+// iPopulationAverageEnd: Max effect if population reaches this % of average population
+// iCommerceModifierMax: At aveage population, the effect is 0% and scales linearly until it reaches iCommerceModifierMax at iPopulationAverageEnd.
+void CvPlayer::setCommerceAboveAveragePopulation(CommerceTypes eIndex, int iPopulationAverageMax, int iCommerceModifierMax)
+{
+	m_paiAveragePopCommerceModifierMaxPop[eIndex] = iPopulationAverageMax;
+	m_paiAveragePopCommerceModifierMaxMod[eIndex] = iCommerceModifierMax;
+	
+	// Shortcut: Check once if effect has been removed here, instead of once per turn in updateCommerceAboveAveragePopulation
+	if (iPopulationAverageMax == 0 || iCommerceModifierMax == 0)
+	{
+		m_paiAveragePopCommerceModifier[eIndex] = 0;
+		updateCommerce(eIndex);
+	}
+	else
+	{
+		updateCommerceAboveAveragePopulation();
+	}
+}
+
+// Civ4 Reimagined
+int CvPlayer::getCommerceAboveAveragePopulation(CommerceTypes eIndex) const
+{
+	return m_paiAveragePopCommerceModifier[eIndex];
+}
+
+// Civ4 Reimagined
+void CvPlayer::updateCommerceAboveAveragePopulation()
+{
+	for (int iIndex = 0; iIndex < NUM_COMMERCE_TYPES; iIndex++)
+	{
+		if (m_paiAveragePopCommerceModifierMaxMod[iIndex] > 0 && m_paiAveragePopCommerceModifierMaxPop[iIndex] > 0)
+		{
+			int iOldCommerce = m_paiAveragePopCommerceModifier[iIndex];
+			int iOwnPop = getTotalPopulation();
+
+			// Don't include self in comparison to make effect more consistent with low number of players
+			int iOthersTotalPop = GC.getGameINLINE().getTotalPopulation() - iOwnPop;
+			int iOthersNumCivs = GC.getGameINLINE().countCivPlayersEverAlive() - 1;
+			double dAveragePopOthers = std::max(1,iOthersTotalPop) * 1.0 / std::max(1,iOthersNumCivs);
+	
+			double dPopDifferencePercent = (iOwnPop * 100 / dAveragePopOthers) - 100; // e.g. 13 pop own vs 10 average => 30%
+			if (dPopDifferencePercent > 0)
+			{
+				int iPopDifferencePercentForMaxEffect = m_paiAveragePopCommerceModifierMaxPop[iIndex] - 100;
+				int iMaxEffect = m_paiAveragePopCommerceModifierMaxMod[iIndex];
+
+				// Scale down if required pop difference not reached. Example: 140% is required for max effect, but population is only 130% of average => 75% effective
+				int iResult = static_cast<int>(iMaxEffect * (dPopDifferencePercent / std::max(1,iPopDifferencePercentForMaxEffect)));
+
+				// If population is above maximum required, still only add iMaxEffect
+				m_paiAveragePopCommerceModifier[iIndex] = std::min(iResult, iMaxEffect);
+			}
+			else
+			{
+				m_paiAveragePopCommerceModifier[iIndex] = 0;
+			}
+
+			// Update all citie´s
+			if (iOldCommerce != m_paiAveragePopCommerceModifier[iIndex])
+			{
+				updateCommerce((CommerceTypes)iIndex);
+			}
+		}
+	}
+}
+
+// Civ4 Reimagined
 int CvPlayer::getNonStateReligionHappinessWithStateReligion() const
 {
 	return m_iNonStateReligionHappinessWithStateReligion;
@@ -27351,6 +27441,14 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			changeAdjacentFeatureCommerce((FeatureTypes)GC.getInfoTypeForString("FEATURE_FOREST"), COMMERCE_CULTURE, GC.getDefineINT("UNIQUE_POWER_CELT_CULTURE"));
 			changeAdjacentFeatureCommerce((FeatureTypes)GC.getInfoTypeForString("FEATURE_FOREST"), COMMERCE_RESEARCH, GC.getDefineINT("UNIQUE_POWER_CELT_RESEARCH"));
 			notifyUniquePowersChanged(false);
+		}
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CHINA"))
+	{
+		if (eEra == 0)
+		{
+			setCommerceAboveAveragePopulation(COMMERCE_RESEARCH, GC.getDefineINT("UNIQUE_POWER_CHINA_MAX_POP"), GC.getDefineINT("UNIQUE_POWER_CHINA_MAX_EFFECT"));
+			notifyUniquePowersChanged(true);
 		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_EGYPT"))
