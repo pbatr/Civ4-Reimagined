@@ -27421,13 +27421,19 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == 0)
 		{
 			changeNoCapitalUnhappinessCount(1);
-			setCapitalCommercePerPopulation(COMMERCE_GOLD, GC.getDefineINT("UNIQUE_POWER_BABYLON"), GC.getDefineINT("UNIQUE_POWER_BABYLON_2"));
+			setCapitalCommercePerPopulation(COMMERCE_GOLD,      GC.getDefineINT("UNIQUE_POWER_BABYLON"), GC.getDefineINT("UNIQUE_POWER_BABYLON_2"));
+			setCapitalCommercePerPopulation(COMMERCE_RESEARCH,  GC.getDefineINT("UNIQUE_POWER_BABYLON"), GC.getDefineINT("UNIQUE_POWER_BABYLON_2"));
+			setCapitalCommercePerPopulation(COMMERCE_CULTURE,   GC.getDefineINT("UNIQUE_POWER_BABYLON"), GC.getDefineINT("UNIQUE_POWER_BABYLON_2"));
+			setCapitalCommercePerPopulation(COMMERCE_ESPIONAGE, GC.getDefineINT("UNIQUE_POWER_BABYLON"), GC.getDefineINT("UNIQUE_POWER_BABYLON_2"));
 			notifyUniquePowersChanged(true);
 		}
 		else if (eEra == 2)
 		{
 			changeNoCapitalUnhappinessCount(-1);
 			setCapitalCommercePerPopulation(COMMERCE_GOLD, 0, 0);
+			setCapitalCommercePerPopulation(COMMERCE_RESEARCH, 0, 0);
+			setCapitalCommercePerPopulation(COMMERCE_CULTURE, 0, 0);
+			setCapitalCommercePerPopulation(COMMERCE_ESPIONAGE, 0, 0);
 			notifyUniquePowersChanged(false);
 		}
 	}
