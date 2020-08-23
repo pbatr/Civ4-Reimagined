@@ -16149,6 +16149,12 @@ void CvGameTextMgr::setProductionHelp(CvWStringBuffer &szBuffer, CvCity& city)
 {
 	FAssertMsg(NO_PLAYER != city.getOwnerINLINE(), "City must have an owner");
 	
+	// Civ4 Reimagined
+	if (city.isDisorder())
+	{
+		return;
+	}
+
 	bool bIsProcess = city.isProductionProcess();
 	int iPastOverflow = (bIsProcess ? 0 : city.getOverflowProduction());
 	if (iPastOverflow != 0)
@@ -16861,6 +16867,12 @@ void CvGameTextMgr::setCommerceHelp(CvWStringBuffer &szBuffer, CvCity& city, Com
 	}
 	CvPlayer& owner = GET_PLAYER(city.getOwnerINLINE());
 
+	// Civ4 Reimagined
+	if (city.isDisorder())
+	{
+		return;
+	}
+
 	setYieldHelp(szBuffer, city, YIELD_COMMERCE);
 
 	// Slider
@@ -17151,6 +17163,12 @@ void CvGameTextMgr::setYieldHelp(CvWStringBuffer &szBuffer, CvCity& city, YieldT
 		return;
 	}
 	CvPlayer& owner = GET_PLAYER(city.getOwnerINLINE());
+
+	// Civ4 Reimagined
+	if (city.isDisorder())
+	{
+		return;
+	}
 
 	int iBaseProduction = city.getBaseYieldRate(eYieldType);
 	szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_BASE_YIELD", info.getTextKeyWide(), iBaseProduction, info.getChar()));
