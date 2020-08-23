@@ -4143,7 +4143,7 @@ int CvTeamAI::AI_defensivePactTradeVal(TeamTypes eTeam) const
 		iValue *= 2;
 	}
 
-	return iValue / 200;
+	return iValue / 100;
 }
 
 

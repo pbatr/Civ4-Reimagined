@@ -1425,7 +1425,7 @@ public:
 	virtual int AI_totalWaterAreaUnitAIs(CvArea* pArea, UnitAITypes eUnitAI) const = 0;	// Exposed to Python
 	virtual int AI_plotTargetMissionAIs(CvPlot* pPlot, MissionAITypes eMissionAI, CvSelectionGroup* pSkipSelectionGroup = NULL, int iRange = 0) const = 0;
 	virtual int AI_unitTargetMissionAIs(CvUnit* pUnit, MissionAITypes eMissionAI, CvSelectionGroup* pSkipSelectionGroup = NULL) const = 0;
-	virtual int AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness = false, bool bStateReligion = true, int iHappy = 1) const = 0;   // Exposed to Python
+	virtual int AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness = false, bool bStateReligion = true, int iHappy = 1, IdeologyTypes eBestIdeology = NO_IDEOLOGY) const = 0;   // Exposed to Python
 	virtual int AI_getNumAIUnits(UnitAITypes eIndex) const = 0;	// Exposed to Python
 	virtual void AI_changePeacetimeTradeValue(PlayerTypes eIndex, int iChange) = 0;
 	virtual void AI_changePeacetimeGrantValue(PlayerTypes eIndex, int iChange) = 0;
