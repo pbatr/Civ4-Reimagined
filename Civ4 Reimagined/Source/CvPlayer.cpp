@@ -27480,11 +27480,13 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == 0)
 		{
 			changeSlavePointsPerPopulationSacrificed(GC.getDefineINT("UNIQUE_POWER_EGYPT"));
+			changeProductionPerPopulationModifier(25);
 			notifyUniquePowersChanged(true);
 		}
 		else if (eEra == 1)
 		{
 			changeSlavePointsPerPopulationSacrificed(-GC.getDefineINT("UNIQUE_POWER_EGYPT"));
+			changeProductionPerPopulationModifier(-25);
 			notifyUniquePowersChanged(false);
 		}
 	}
