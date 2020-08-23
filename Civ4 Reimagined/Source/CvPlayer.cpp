@@ -944,6 +944,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bUpdateBonusRatio = true; // Civ4 Reimagined
 	m_bCivicEffect = false; // Civ4 Reimagined
 	m_bFaithConquest = false; // Civ4 Reimagined
+	m_iColonyTraderouteModifier = 0; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -20039,6 +20040,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bUpdateBonusRatio); // Civ4 Reimagined
 	pStream->Read(&m_bCivicEffect); // Civ4 Reimagined
 	pStream->Read(&m_bFaithConquest); // Civ4 Reimagined
+	pStream->Read(&m_iColonyTraderouteModifier); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -20642,6 +20644,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_bUpdateBonusRatio); // Civ4 Reimagined
 	pStream->Write(m_bCivicEffect); // Civ4 Reimagined
 	pStream->Write(m_bFaithConquest); // Civ4 Reimagined
+	pStream->Write(m_iColonyTraderouteModifier); // Civ4 Reimagined
 	
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -27320,6 +27323,20 @@ bool CvPlayer::isHasFaithConquest() const
 }
 
 //Civ4 Reimagined
+void CvPlayer::changeColonyTraderouteModifier(int iChange)
+{
+	m_iColonyTraderouteModifier += iChange;
+	
+	updateTradeRoutes();
+}
+
+//Civ4 Reimagined
+int CvPlayer::getColonyTraderouteModifier() const
+{
+	return m_iColonyTraderouteModifier;
+}
+
+//Civ4 Reimagined
 void CvPlayer::updateUniquePowers(TechTypes eTech)
 {
 	if (getID() == NO_PLAYER)
@@ -27390,7 +27407,6 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			setFaithConquest(false);
 			notifyUniquePowersChanged(false);
 		}
-
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AZTEC"))
 	{
@@ -27462,6 +27478,14 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		{
 			changeSlavePointsPerPopulationSacrificed(-GC.getDefineINT("UNIQUE_POWER_EGYPT"));
 			notifyUniquePowersChanged(false);
+		}
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ENGLAND"))
+	{
+		if (eEra == 3)
+		{
+			changeColonyTraderouteModifier(GC.getDefineINT("UNIQUE_POWER_ENGLAND"));
+			notifyUniquePowersChanged(true);
 		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_GREECE"))

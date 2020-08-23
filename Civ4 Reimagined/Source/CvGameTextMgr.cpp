@@ -18813,7 +18813,7 @@ void CvGameTextMgr::setTradeRouteHelp(CvWStringBuffer &szBuffer, int iRoute, CvC
 				// Civ4 Reimagined
 				if (GET_PLAYER(pOtherCity->getOwnerINLINE()).isColony(pCity->getOwnerINLINE()))
 				{
-					iNewMod = GC.getDefineINT("COLONY_TRADE_MODIFIER");
+					iNewMod = GC.getDefineINT("COLONY_TRADE_MODIFIER") + GET_PLAYER(pCity->getOwnerINLINE()).getColonyTraderouteModifier();
 					if (0 != iNewMod)
 					{
 						szBuffer.append(NEWLINE);

@@ -184,7 +184,7 @@
 		<DefineName>CONNECTION_TO_CAPITAL_TRADE_MODIFIER</DefineName>
 		<iDefineIntVal>25</iDefineIntVal>
 	</Define>
-	<!-- Trade route modifier for colony cities. Colonies are cities on different continent from the capital. For definition of continent see below. -->
+	<!-- Trade route modifier for colony cities. Colonies are cities on different continent from the capital owned by a vassal. For definition of continent see below. -->
 	<Define>
 		<DefineName>COLONY_TRADE_MODIFIER</DefineName>
 		<iDefineIntVal>100</iDefineIntVal>
@@ -372,6 +372,10 @@
 	<Define>
 		<DefineName>UNIQUE_POWER_CHINA_MAX_EFFECT</DefineName>
 		<iDefineIntVal>20</iDefineIntVal> <!-- Maximum +% research bonus in all cities for high population compared to world population -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_ENGLAND</DefineName>
+		<iDefineIntVal>400</iDefineIntVal> <!-- Traderoute bonus for connections to oversea vassals-->
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_EGYPT</DefineName>

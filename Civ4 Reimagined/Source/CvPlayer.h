@@ -1278,7 +1278,9 @@ public:
 	void changeDomainProductionModifier(DomainTypes eDomainType, int iChange);
 	void changeDomainExperienceModifier(DomainTypes eDomainType, int iChange);
 	
+	//
 	// Civ4 Reimagined Start
+	//
 	/*
 	int getNumColonies() const; // Civ4 Reimagined
 	void changeNumColonies(int iChange); // Civ4 Reimagined
@@ -1379,6 +1381,8 @@ public:
 	void updateEffectFromStayingAtCivic(); // Civ4 Reimagined
 	void setFaithConquest(bool bNewValue); // Civ4 Reimagined
 	bool isHasFaithConquest() const; // Civ4 Reimagined
+	void changeColonyTraderouteModifier(int iChange); // Civ4 Reimagined
+	int getColonyTraderouteModifier() const; // Civ4 Reimagined
 	
 	// K-Mod note: Adding new virtual functions to this list seems to cause unpredictable behaviour during the initialization of the game.
 	// So beware!
@@ -1621,6 +1625,7 @@ protected:
 	int m_iSlavePointsFromSacrificePopulation; // Civ4 Reimagined
 	bool m_bCivicEffect; // Civ4 Reimagined
 	bool m_bFaithConquest; // Civ4 Reimagined
+	int m_iColonyTraderouteModifier; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
 

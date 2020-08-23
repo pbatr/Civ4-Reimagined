@@ -10035,9 +10035,18 @@ int CvCity::totalTradeModifier(CvCity* pOtherCity) const
 			iModifier += GET_PLAYER(getOwnerINLINE()).getCoastalTradeRouteModifier();
 		}
 	}
-
+	
 	if (NULL != pOtherCity)
 	{
+		// Civ4 Reimagined: Unique Power
+		if (GET_PLAYER(getOwnerINLINE()).getColonyTraderouteModifier() > 0)
+		{
+			if (GET_PLAYER(pOtherCity->getOwnerINLINE()).isColony(getOwnerINLINE()))
+			{
+				iModifier += GET_PLAYER(getOwnerINLINE()).getColonyTraderouteModifier();
+			}
+		}
+
 		// Civ4 Reimagined
 		if (isConnectedToCapital() && !GET_PLAYER(pOtherCity->getOwnerINLINE()).isNoCapital())
 		{
