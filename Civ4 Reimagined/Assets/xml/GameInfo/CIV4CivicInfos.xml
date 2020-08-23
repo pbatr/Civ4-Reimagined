@@ -150,7 +150,7 @@
 			<WeLoveTheKing>TXT_KEY_CIVIC_WE_LOVE_MONARCH</WeLoveTheKing>
 			<iConservative>7</iConservative>
 			<iLiberal>-5</iLiberal>
-			<iCommunist>-3</iCommunist>
+			<iCommunist>-8</iCommunist>
 			<iFascist>0</iFascist>
 		</CivicInfo>
 		<CivicInfo>
@@ -617,7 +617,7 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
-			<iConservative>0</iConservative>
+			<iConservative>3</iConservative>
 			<iLiberal>0</iLiberal>
 			<iCommunist>0</iCommunist>
 			<iFascist>0</iFascist>
@@ -880,7 +880,7 @@
 				</ImprovementYieldChange>
 			</ImprovementYieldChanges>
 			<WeLoveTheKing/>
-			<iConservative>0</iConservative>
+			<iConservative>2</iConservative>
 			<iLiberal>2</iLiberal>
 			<iCommunist>0</iCommunist>
 			<iFascist>0</iFascist>
@@ -1969,7 +1969,7 @@
 			<YieldModifiers/>
 			<ExtraYields>
 				<iYield>0</iYield>
-				<iYield>5</iYield>
+				<iYield>4</iYield>
 				<iYield>0</iYield>
 			</ExtraYields>
 			<CapitalYieldModifiers/>
