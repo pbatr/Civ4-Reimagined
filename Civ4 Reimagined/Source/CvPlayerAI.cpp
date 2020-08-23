@@ -14365,7 +14365,7 @@ int CvPlayerAI::AI_wakePlotTargetMissionAIs(CvPlot* pPlot, MissionAITypes eMissi
 }
 
 // K-Mod, I've added piBestValue, and tidied up some stuff.
-CivicTypes CvPlayerAI::AI_bestCivic(CivicOptionTypes eCivicOption, int* piBestValue, bool bNoWarWeariness, bool bStateReligion, int iHappy) const
+CivicTypes CvPlayerAI::AI_bestCivic(CivicOptionTypes eCivicOption, int* piBestValue, bool bNoWarWeariness, bool bStateReligion, int iHappy, IdeologyTypes eBestIdeology) const
 {
 	CivicTypes eBestCivic = NO_CIVIC;
 	int iBestValue = MIN_INT;
@@ -14376,7 +14376,7 @@ CivicTypes CvPlayerAI::AI_bestCivic(CivicOptionTypes eCivicOption, int* piBestVa
 		{
 			if (canDoCivics((CivicTypes)iI))
 			{
-				int iValue = AI_civicValue((CivicTypes)iI, bNoWarWeariness, bStateReligion, iHappy);
+				int iValue = AI_civicValue((CivicTypes)iI, bNoWarWeariness, bStateReligion, iHappy, eBestIdeology);
 				if (gPlayerLogLevel > 2) logBBAI("%S: %d", GC.getCivicInfo((CivicTypes)iI).getDescription(0), iValue);
 
 				if (iValue > iBestValue)
@@ -14398,7 +14398,7 @@ CivicTypes CvPlayerAI::AI_bestCivic(CivicOptionTypes eCivicOption, int* piBestVa
 // Note: the value is roughly in units of commerce per turn.
 // Also, this function could probably be made a bit more accurate and perhaps even faster if it calculated effects on a city-by-city basis,
 // rather than averaging effects across all cities. (certainly this would work better for happiness modifiers.)
-int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bStateReligion, int iHappy) const
+int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bStateReligion, int iHappy, IdeologyTypes eBestIdeology) const
 {
 	PROFILE_FUNC();
 
@@ -14941,7 +14941,8 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				// Civ4 Reimagined
 				if (GET_TEAM(getTeam()).isNoConscriptUnhappiness())
 				{
-					iTempValue *= 3;
+					iTempValue *= 10;
+					if(gPlayerLogLevel > 2) logBBAI("more value from drafting because of no conscription unhappiness");
 				}
 				
 				if(gPlayerLogLevel > 2) logBBAI("	Civic Value from Drafting: %d", iTempValue);
@@ -15613,7 +15614,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	// Civ4 Reimagined: Unhappiness for rivals
 	if (kCivic.getCivicPercentAnger() != 0 && GC.getGameINLINE().areIdeologiesEnabled())
 	{
-		const int iTempValue = kCivic.getCivicPercentAnger() / 7;
+		const int iTempValue = kCivic.getCivicPercentAnger() / 10;
 
 		if (gPlayerLogLevel > 0) logBBAI("	Civic Unhappiness for Rivals Value: %d", iTempValue);
 	
@@ -16128,7 +16129,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				// Civ4 Reimagined: SpecialistYieldChanges
 				for (int iJ = 0; iJ < GC.getNumSpecialistInfos(); iJ++)
 				{
-					iSpecialistCount = pLoopCity->getSpecialistCount((SpecialistTypes)iJ) + pLoopCity->getFreeSpecialistCount((SpecialistTypes)iJ);
+					iSpecialistCount = std::max(1, pLoopCity->getSpecialistCount((SpecialistTypes)iJ) + pLoopCity->getFreeSpecialistCount((SpecialistTypes)iJ));
 					iCityValue += iSpecialistCount * kCivic.getSpecialistYieldChanges(iJ,iI) * pLoopCity->AI_yieldMultiplier((YieldTypes)iI);
 					// Civ4 Reimagined: Small value for future specialists
 					iCityValue += kCivic.getSpecialistYieldChanges(iJ,iI) * pLoopCity->AI_yieldMultiplier((YieldTypes)iI) / (AI_isDoStrategy(AI_STRATEGY_SPECIALIST_ECONOMY) ? 2 : 4);
@@ -16144,8 +16145,9 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		for (int iJ = 0; iJ < GC.getNumImprovementInfos(); iJ++)
 		{
 			// Improvement yield changes
-			int iImprovValue = (AI_averageYieldMultiplier((YieldTypes)iI) * (kCivic.getImprovementYieldChanges(iJ, iI) * std::max((iCities)/3, getImprovementCount((ImprovementTypes)iJ))));
-			if (iImprovValue != 0 && gPlayerLogLevel > 2) logBBAI("		Value of %S Bonus: %d (has %d)", GC.getImprovementInfo((ImprovementTypes)iJ).getDescription(), iImprovValue, getImprovementCount((ImprovementTypes)iJ));
+			const int iImprovementEstimatedCount = std::max(iCities * 2/3, getImprovementCount((ImprovementTypes)iJ));
+			int iImprovValue = AI_averageYieldMultiplier((YieldTypes)iI) * (kCivic.getImprovementYieldChanges(iJ, iI) * iImprovementEstimatedCount);
+			if (iImprovValue != 0 && gPlayerLogLevel > 2) logBBAI("		Value of %S Bonus: %d (has %d, estimated: %d)", GC.getImprovementInfo((ImprovementTypes)iJ).getDescription(), iImprovValue, getImprovementCount((ImprovementTypes)iJ), iImprovementEstimatedCount);
 			iTempValue += iImprovValue;
 		}
 		
@@ -16714,12 +16716,21 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	// Civ4 Reiamagined
 	if (getForeignTradeIdeologyModifier(IDEOLOGY_LIBERALISM) > 0)
 	{
-		iValue += kCivic.getLiberal() * 10;
-	}
-
+		eBestIdeology = IDEOLOGY_LIBERALISM;
+	} 
+	
 	if (getBonusRatioModifierPerIdeologyCiv(IDEOLOGY_COMMUNISM) > 0)
 	{
-		iValue += kCivic.getCommunist() * 10;
+		eBestIdeology = IDEOLOGY_COMMUNISM;
+	}
+
+	switch(eBestIdeology)
+	{
+		case NO_IDEOLOGY: break;
+		case IDEOLOGY_CONSERVATISM: iValue += kCivic.getConservative() * 10;
+		case IDEOLOGY_LIBERALISM: iValue += kCivic.getLiberal() * 10;
+		case IDEOLOGY_COMMUNISM: iValue += kCivic.getCommunist() * 10;
+		case IDEOLOGY_FASCISM: iValue += kCivic.getFascist() * 10;
 	}
 	
 	// Civ4 Reimagined
@@ -18676,153 +18687,158 @@ void CvPlayerAI::AI_doCivics()
 		}
 	}
 
-	if (canRevolution(&aeBestCivic[0]))
+	if (!canRevolution(&aeBestCivic[0]))
 	{
-		// Civ4 Reimagined: Now switch civics iteratively. I hope to catch most correlations this way.
-		// Check Civics from left to right
-		if (gPlayerLogLevel > 0) logBBAI("*** %S iterative recheck 1 ***", getCivilizationDescription(0));
-		std::vector<CivicTypes> aeBestCivic2(GC.getNumCivicOptionInfos());
-		int iBestValue;
-		int iOldAccumulatedValue1 = 0;
-		int iOldAccumulatedValue2 = 0;
-		int iAccumulatedValue1 = 0;
-		int iAccumulatedValue2 = 0;
-		int iNumCivicSwitches1 = 0;
-		int iNumCivicSwitches2 = 0;
-		for (int iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
+		return;
+	}
+
+	IdeologyTypes eBestIdeology = AI_bestIdeology(&aeBestCivic[0]);
+
+	if (gPlayerLogLevel > 0 && eBestIdeology != NO_IDEOLOGY)
+		logBBAI("best Ideology: %S", GC.getIdeologyInfo(eBestIdeology).getDescription());
+
+	// Civ4 Reimagined: Now switch civics iteratively. I hope to catch most correlations this way.
+	// Check Civics from left to right
+	if (gPlayerLogLevel > 0) logBBAI("*** %S iterative recheck 1 ***", getCivilizationDescription(0));
+	std::vector<CivicTypes> aeBestCivic2(GC.getNumCivicOptionInfos());
+	int iBestValue;
+	int iOldAccumulatedValue1 = 0;
+	int iOldAccumulatedValue2 = 0;
+	int iAccumulatedValue1 = 0;
+	int iAccumulatedValue2 = 0;
+	int iNumCivicSwitches1 = 0;
+	int iNumCivicSwitches2 = 0;
+	for (int iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
+	{
+		processCivics(aeOldCivic[iI], -1);
+		if (gPlayerLogLevel > 0) logBBAI("    ProcessCivics: Remove %S", GC.getCivicInfo(aeOldCivic[iI]).getDescription(0));
+		iOldAccumulatedValue1 += AI_civicValue(aeOldCivic[iI], false, bStateReligion, 0, eBestIdeology);
+		aeNewCivic[iI] = AI_bestCivic((CivicOptionTypes)iI, &iBestValue, false, bStateReligion, 0, eBestIdeology);
+		iAccumulatedValue1 += iBestValue;
+		if (aeNewCivic[iI] != aeBestCivic[iI])
 		{
-			processCivics(aeOldCivic[iI], -1);
-			if (gPlayerLogLevel > 0) logBBAI("    ProcessCivics: Remove %S", GC.getCivicInfo(aeOldCivic[iI]).getDescription(0));
-			iOldAccumulatedValue1 += AI_civicValue(aeOldCivic[iI], false, bStateReligion, 0);
-			aeNewCivic[iI] = AI_bestCivic((CivicOptionTypes)iI, &iBestValue, false, bStateReligion, 0);
-			iAccumulatedValue1 += iBestValue;
-			if (aeNewCivic[iI] != aeBestCivic[iI])
+			aiCurrentValue[iI] = AI_civicValue(aeBestCivic[iI], false, bStateReligion, 0);
+			if (getCivicAnarchyLength(&aeNewCivic[0]) <= iAnarchyLength)
 			{
-				aiCurrentValue[iI] = AI_civicValue(aeBestCivic[iI], false, bStateReligion, 0);
-				if (getCivicAnarchyLength(&aeNewCivic[0]) <= iAnarchyLength)
-				{
-					if (gPlayerLogLevel > 0) logBBAI("    %S switches to %S instead of %S (value: %d vs %d)", 
+				if (gPlayerLogLevel > 0) logBBAI("    %S switches to %S instead of %S (value: %d)", 
+					getCivilizationDescription(0), 
+					GC.getCivicInfo(aeNewCivic[iI]).getDescription(0), 
+					GC.getCivicInfo(aeBestCivic[iI]).getDescription(0), 
+					iBestValue);
+				aeBestCivic[iI] = aeNewCivic[iI];
+			}
+			else
+			{
+				iAccumulatedValue1 -= iBestValue;
+				iAccumulatedValue1 += AI_civicValue(aeOldCivic[iI], false, bStateReligion, 0, eBestIdeology);
+			}
+		}
+		
+		if (aeBestCivic[iI] != aeOldCivic[iI])
+		{
+			iNumCivicSwitches1++;
+		}
+		
+		processCivics(aeBestCivic[iI], 1);
+		if (gPlayerLogLevel > 0) logBBAI("    ProcessCivics: Add %S", GC.getCivicInfo(aeBestCivic[iI]).getDescription(0));
+	}
+	
+	// Switch back to old civics to prepare for recheck 2
+	for (int iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
+	{
+		if (aeBestCivic[iI] != aeOldCivic[iI])
+		{
+			processCivics(aeBestCivic[iI], -1);
+			if (gPlayerLogLevel > 0) logBBAI("    ProcessCivics: Remove %S", GC.getCivicInfo(aeBestCivic[iI]).getDescription(0));
+			processCivics(aeOldCivic[iI], 1);
+			if (gPlayerLogLevel > 0) logBBAI("    ProcessCivics: Add %S", GC.getCivicInfo(aeOldCivic[iI]).getDescription(0));
+		}
+	}
+	
+	aeNewCivic = aeBestCivic;
+	aeBestCivic2 = aeBestCivic;
+	
+	// Check Civics from right to left
+	if (gPlayerLogLevel > 0) logBBAI("*** %S iterative recheck 2 ***", getCivilizationDescription(0));
+	for (int iI = GC.getNumCivicOptionInfos()-1; iI >= 0; iI--)
+	{
+		processCivics(aeOldCivic[iI], -1);
+		if (gPlayerLogLevel > 0) logBBAI("    ProcessCivics: Remove %S", GC.getCivicInfo(aeOldCivic[iI]).getDescription(0));
+		iOldAccumulatedValue2 += AI_civicValue(aeOldCivic[iI], false, bStateReligion, 0, eBestIdeology);
+		aeNewCivic[iI] = AI_bestCivic((CivicOptionTypes)iI, &iBestValue, false, bStateReligion, 0, eBestIdeology);
+		iAccumulatedValue2 += iBestValue;
+		if (aeNewCivic[iI] != aeBestCivic[iI])
+		{
+			aiCurrentValue[iI] = AI_civicValue(aeBestCivic[iI], false, bStateReligion, 0);
+			if (getCivicAnarchyLength(&aeNewCivic[0]) <= iAnarchyLength)
+			{
+				if (gPlayerLogLevel > 0 && aeBestCivic[iI] != aeNewCivic[iI]) logBBAI
+					("    %S switches to %S instead of %S (value: %d)", 
 						getCivilizationDescription(0), 
 						GC.getCivicInfo(aeNewCivic[iI]).getDescription(0), 
 						GC.getCivicInfo(aeBestCivic[iI]).getDescription(0), 
-						iBestValue, 
-						aiCurrentValue[iI]);
-					aeBestCivic[iI] = aeNewCivic[iI];
-				}
-				else
-				{
-					iAccumulatedValue1 -= iBestValue;
-					iAccumulatedValue1 += aiCurrentValue[iI];
-				}
+						iBestValue);
+				aeBestCivic2[iI] = aeNewCivic[iI];
 			}
-			
-			if (aeBestCivic[iI] != aeOldCivic[iI])
+			else
 			{
-				iNumCivicSwitches1++;
+				iAccumulatedValue2 -= iBestValue;
+				iAccumulatedValue2 += AI_civicValue(aeOldCivic[iI], false, bStateReligion, 0, eBestIdeology);
 			}
-			
-			processCivics(aeBestCivic[iI], 1);
-			if (gPlayerLogLevel > 0) logBBAI("    ProcessCivics: Add %S", GC.getCivicInfo(aeBestCivic[iI]).getDescription(0));
 		}
 		
-		// Switch back to old civics to prepare for recheck 2
-		for (int iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
+		if (aeBestCivic2[iI] != aeOldCivic[iI])
 		{
-			if (aeBestCivic[iI] != aeOldCivic[iI])
-			{
-				processCivics(aeBestCivic[iI], -1);
-				if (gPlayerLogLevel > 0) logBBAI("    ProcessCivics: Remove %S", GC.getCivicInfo(aeBestCivic[iI]).getDescription(0));
-				processCivics(aeOldCivic[iI], 1);
-				if (gPlayerLogLevel > 0) logBBAI("    ProcessCivics: Add %S", GC.getCivicInfo(aeOldCivic[iI]).getDescription(0));
-			}
+			iNumCivicSwitches2++;
 		}
 		
-		aeNewCivic = aeBestCivic;
-		aeBestCivic2 = aeBestCivic;
-		
-		// Check Civics from right to left
-		if (gPlayerLogLevel > 0) logBBAI("*** %S iterative recheck 2 ***", getCivilizationDescription(0));
-		for (int iI = GC.getNumCivicOptionInfos()-1; iI >= 0; iI--)
-		{
-			processCivics(aeOldCivic[iI], -1);
-			if (gPlayerLogLevel > 0) logBBAI("    ProcessCivics: Remove %S", GC.getCivicInfo(aeOldCivic[iI]).getDescription(0));
-			iOldAccumulatedValue2 += AI_civicValue(aeOldCivic[iI], false, bStateReligion, 0);
-			aeNewCivic[iI] = AI_bestCivic((CivicOptionTypes)iI, &iBestValue, false, bStateReligion, 0);
-			iAccumulatedValue2 += iBestValue;
-			if (aeNewCivic[iI] != aeBestCivic[iI])
-			{
-				aiCurrentValue[iI] = AI_civicValue(aeBestCivic[iI], false, bStateReligion, 0);
-				if (getCivicAnarchyLength(&aeNewCivic[0]) <= iAnarchyLength)
-				{
-					if (gPlayerLogLevel > 0 && aeBestCivic[iI] != aeNewCivic[iI]) logBBAI
-						("    %S switches to %S instead of %S (value: %d vs %d)", 
-							getCivilizationDescription(0), 
-							GC.getCivicInfo(aeNewCivic[iI]).getDescription(0), 
-							GC.getCivicInfo(aeBestCivic[iI]).getDescription(0), 
-							iBestValue, 
-							aiCurrentValue[iI]);
-					aeBestCivic2[iI] = aeNewCivic[iI];
-				}
-				else
-				{
-					iAccumulatedValue2 -= iBestValue;
-					iAccumulatedValue2 += aiCurrentValue[iI];
-				}
-			}
-			
-			if (aeBestCivic2[iI] != aeOldCivic[iI])
-			{
-				iNumCivicSwitches2++;
-			}
-			
-			processCivics(aeBestCivic2[iI], 1);
-			if (gPlayerLogLevel > 0) logBBAI("    ProcessCivics: Add %S", GC.getCivicInfo(aeBestCivic2[iI]).getDescription(0));
-		}
-		
-		if (gPlayerLogLevel > 0) logBBAI("Value difference of Civic Changes1: %d (new: %d, old: %d)", iAccumulatedValue1 - iOldAccumulatedValue1, iAccumulatedValue1, iOldAccumulatedValue1);
-		if (gPlayerLogLevel > 0) logBBAI("Value difference of Civic Changes2: %d (new: %d, old: %d)", iAccumulatedValue2 - iOldAccumulatedValue2, iAccumulatedValue2, iOldAccumulatedValue2);
-		
-		// Switch back to old civics to prepare for the real revolution
-		for (int iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
-		{
-			if (aeBestCivic2[iI] != aeOldCivic[iI])
-			{
-				processCivics(aeBestCivic2[iI], -1);
-				if (gPlayerLogLevel > 0) logBBAI("    ProcessCivics: Remove %S", GC.getCivicInfo(aeBestCivic2[iI]).getDescription(0));
-				processCivics(aeOldCivic[iI], 1);
-				if (gPlayerLogLevel > 0) logBBAI("    ProcessCivics: Add %S", GC.getCivicInfo(aeOldCivic[iI]).getDescription(0));
-			}
-		}
-		
-		iThreshold = (iAnarchyLength > 0) ? 1 : 0;
-		
-		if (iAccumulatedValue1 - iOldAccumulatedValue1 >= iAccumulatedValue2 - iOldAccumulatedValue2)
-		{
-			if (iAccumulatedValue1 * 10 <= iOldAccumulatedValue1 * (10 + iThreshold))
-			{
-				if (gPlayerLogLevel > 0) logBBAI("Values not big enough to switch...");
-				return;
-			}
-		}
-		else
-		{
-			if (iAccumulatedValue2 * 10 <= iOldAccumulatedValue2 * (10 + iThreshold))
-			{
-				if (gPlayerLogLevel > 0) logBBAI("Values not big enough to switch...");
-				return;
-			}
-			aeBestCivic = aeBestCivic2;
-		}
-		
-		revolution(&aeBestCivic[0]);
-		
-		if (gPlayerLogLevel > 0) logBBAI("*** %S final Civics: ***", getCivilizationDescription(0));
-		for (int iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
-		{
-			if (gPlayerLogLevel > 0) logBBAI("- %S", GC.getCivicInfo(aeBestCivic[iI]).getDescription(0));
-		}
-		AI_setCivicTimer((getMaxAnarchyTurns() == 0) ? (GC.getDefineINT("MIN_REVOLUTION_TURNS") * 2) : CIVIC_CHANGE_DELAY);
+		processCivics(aeBestCivic2[iI], 1);
+		if (gPlayerLogLevel > 0) logBBAI("    ProcessCivics: Add %S", GC.getCivicInfo(aeBestCivic2[iI]).getDescription(0));
 	}
+	
+	if (gPlayerLogLevel > 0) logBBAI("Value difference of Civic Changes1: %d (new: %d, old: %d)", iAccumulatedValue1 - iOldAccumulatedValue1, iAccumulatedValue1, iOldAccumulatedValue1);
+	if (gPlayerLogLevel > 0) logBBAI("Value difference of Civic Changes2: %d (new: %d, old: %d)", iAccumulatedValue2 - iOldAccumulatedValue2, iAccumulatedValue2, iOldAccumulatedValue2);
+	
+	// Switch back to old civics to prepare for the real revolution
+	for (int iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
+	{
+		if (aeBestCivic2[iI] != aeOldCivic[iI])
+		{
+			processCivics(aeBestCivic2[iI], -1);
+			if (gPlayerLogLevel > 0) logBBAI("    ProcessCivics: Remove %S", GC.getCivicInfo(aeBestCivic2[iI]).getDescription(0));
+			processCivics(aeOldCivic[iI], 1);
+			if (gPlayerLogLevel > 0) logBBAI("    ProcessCivics: Add %S", GC.getCivicInfo(aeOldCivic[iI]).getDescription(0));
+		}
+	}
+	
+	iThreshold = (iAnarchyLength > 0) ? 1 : 0;
+	
+	if (iAccumulatedValue1 - iOldAccumulatedValue1 >= iAccumulatedValue2 - iOldAccumulatedValue2)
+	{
+		if (iAccumulatedValue1 * 10 <= iOldAccumulatedValue1 * (10 + iThreshold))
+		{
+			if (gPlayerLogLevel > 0) logBBAI("Values not big enough to switch...");
+			return;
+		}
+	}
+	else
+	{
+		if (iAccumulatedValue2 * 10 <= iOldAccumulatedValue2 * (10 + iThreshold))
+		{
+			if (gPlayerLogLevel > 0) logBBAI("Values not big enough to switch...");
+			return;
+		}
+		aeBestCivic = aeBestCivic2;
+	}
+	
+	revolution(&aeBestCivic[0]);
+	
+	if (gPlayerLogLevel > 0) logBBAI("*** %S final Civics: ***", getCivilizationDescription(0));
+	for (int iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
+	{
+		if (gPlayerLogLevel > 0) logBBAI("- %S", GC.getCivicInfo(aeBestCivic[iI]).getDescription(0));
+	}
+	AI_setCivicTimer((getMaxAnarchyTurns() == 0) ? (GC.getDefineINT("MIN_REVOLUTION_TURNS") * 2) : CIVIC_CHANGE_DELAY);
 }
 
 
@@ -26952,4 +26968,46 @@ int CvPlayerAI::AI_getBonusRatioModfierValue(const int iModifier) const
 	iTempValue += iCities * iProductionDifference / 2500;
 
 	return iTempValue;
+}
+
+
+// Civ4 Reimagined
+IdeologyTypes CvPlayerAI::AI_bestIdeology(CivicTypes* paeCivics) const
+{
+	if (paeCivics == NULL || !GC.getGameINLINE().areIdeologiesEnabled())
+	{
+		return NO_IDEOLOGY;
+	}
+
+	int iConservative = 0;
+	int iLiberal = 0;
+	int iCommunist = 0;
+	int iFascist = 0;
+
+	for (int iI = 0; iI < GC.getNumCivicOptionInfos(); ++iI)
+	{
+		iConservative += IDEOLOGY_CONSERVATISM, GC.getCivicInfo(paeCivics[iI]).getConservative();
+		iLiberal += IDEOLOGY_LIBERALISM, GC.getCivicInfo(paeCivics[iI]).getLiberal();
+		iCommunist += IDEOLOGY_COMMUNISM, GC.getCivicInfo(paeCivics[iI]).getCommunist();
+		iFascist += IDEOLOGY_FASCISM, GC.getCivicInfo(paeCivics[iI]).getFascist();
+	}
+
+	std::vector<std::pair<int, IdeologyTypes> > ideologyInfluence;
+	ideologyInfluence.push_back(std::make_pair(iConservative, IDEOLOGY_CONSERVATISM));
+	ideologyInfluence.push_back(std::make_pair(iLiberal, IDEOLOGY_LIBERALISM));
+	ideologyInfluence.push_back(std::make_pair(iCommunist, IDEOLOGY_COMMUNISM));
+	ideologyInfluence.push_back(std::make_pair(iFascist, IDEOLOGY_FASCISM));
+
+	std::sort(ideologyInfluence.begin(), ideologyInfluence.end(), std::greater<std::pair<int, IdeologyTypes> >());
+
+	std::vector<std::pair<int, IdeologyTypes> >::iterator best_it;
+ 	for (best_it = ideologyInfluence.begin(); best_it != ideologyInfluence.end(); ++best_it)
+ 	{
+ 		if (GET_TEAM(getTeam()).isHasTech((TechTypes)(GC.getIdeologyInfo(best_it->second).getTechPrereq())))
+		{
+			return best_it->second;
+		}
+ 	}
+
+	return NO_IDEOLOGY;
 }
