@@ -945,6 +945,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bCivicEffect = false; // Civ4 Reimagined
 	m_bFaithConquest = false; // Civ4 Reimagined
 	m_iColonyTraderouteModifier = 0; // Civ4 Reimagined
+	m_iGreatGeneralGoldenAgeLength = 0; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -20041,6 +20042,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bCivicEffect); // Civ4 Reimagined
 	pStream->Read(&m_bFaithConquest); // Civ4 Reimagined
 	pStream->Read(&m_iColonyTraderouteModifier); // Civ4 Reimagined
+	pStream->Read(&m_iGreatGeneralGoldenAgeLength); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -20645,6 +20647,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_bCivicEffect); // Civ4 Reimagined
 	pStream->Write(m_bFaithConquest); // Civ4 Reimagined
 	pStream->Write(m_iColonyTraderouteModifier); // Civ4 Reimagined
+	pStream->Write(m_iGreatGeneralGoldenAgeLength); // Civ4 Reimagined
 	
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -27337,6 +27340,18 @@ int CvPlayer::getColonyTraderouteModifier() const
 }
 
 //Civ4 Reimagined
+void CvPlayer::changeGreatGeneralGoldenAgeLength(int iChange)
+{
+	m_iGreatGeneralGoldenAgeLength += iChange;
+}
+
+//Civ4 Reimagined
+int CvPlayer::getGreatGeneralGoldenAgeLength() const
+{
+	return m_iGreatGeneralGoldenAgeLength;
+}
+
+//Civ4 Reimagined
 void CvPlayer::updateUniquePowers(TechTypes eTech)
 {
 	if (getID() == NO_PLAYER)
@@ -27505,6 +27520,14 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			notifyUniquePowersChanged(true);
 		}
 	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_GERMANY"))
+	{
+		if (eEra == 4)
+		{
+			changeGreatGeneralGoldenAgeLength(GC.getDefineINT("UNIQUE_POWER_GERMANY"));
+			notifyUniquePowersChanged(true);
+		}
+	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_GREECE"))
 	{
 		if (eEra == 0)
@@ -27579,11 +27602,13 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == 0) 
 		{
 			changeTechProgressOnSettling( GC.getDefineINT("UNIQUE_POWER_SUMERIA"), (EraTypes)0 );
+			changeEarlyPriestExtraFood(1);
 			notifyUniquePowersChanged(true);
 		}
 		else if (eEra == 1)
 		{
 			changeTechProgressOnSettling( -GC.getDefineINT("UNIQUE_POWER_SUMERIA"), (EraTypes)0 );
+			changeEarlyPriestExtraFood(-1);
 			notifyUniquePowersChanged(false);
 		}
 	}

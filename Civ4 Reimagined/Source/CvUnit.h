@@ -373,6 +373,8 @@ public:
 	int getCombatXPModifier() const; // Civ4 Reimagined
 	int getBlockadeGoldModifier() const; // Civ4 Reimagined
 	int getFeatureProductionModifier() const; // Civ4 Reimagined
+	bool isGreatGeneralGoldenAge() const; // Civ4 Reimagined
+	bool greatGeneralGoldenAge(); // Civ4 Reimagined
 	
 	int firstStrikes() const;																								// Exposed to Python
 	int chanceFirstStrikes() const;																					// Exposed to Python 

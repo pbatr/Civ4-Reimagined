@@ -385,6 +385,10 @@
 		<iDefineIntVal>3</iDefineIntVal> <!-- Slavery points per population -->
 	</Define>
 	<Define>
+		<DefineName>UNIQUE_POWER_GERMANY</DefineName>
+		<iDefineIntVal>50</iDefineIntVal> <!-- Length of golden ages made with generals (only). -->
+	</Define>
+	<Define>
 		<DefineName>UNIQUE_POWER_GREECE</DefineName>
 		<iDefineIntVal>25</iDefineIntVal> <!-- Number of turns per civic -->
 	</Define>

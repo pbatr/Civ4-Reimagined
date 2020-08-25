@@ -7208,8 +7208,20 @@ bool CvUnit::isIntruding() const
 	return true;
 }
 
+bool CvUnit::isGreatGeneralGoldenAge() const
+{
+	return GET_PLAYER(getOwnerINLINE()).getGreatGeneralGoldenAgeLength() > 0 &&
+		getUnitClassType() == (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_GREAT_GENERAL");
+}
+
 bool CvUnit::canGoldenAge(const CvPlot* pPlot, bool bTestVisible) const
 {
+	// Civ4 Reimagined
+	if (isGreatGeneralGoldenAge())
+	{
+		return true;
+	}
+
 	if (!isGoldenAge())
 	{
 		return false;
@@ -7234,6 +7246,12 @@ bool CvUnit::goldenAge()
 		return false;
 	}
 
+	// Civ4 Reimagined
+	if (isGreatGeneralGoldenAge())
+	{
+		return greatGeneralGoldenAge();
+	}
+
 	GET_PLAYER(getOwnerINLINE()).killGoldenAgeUnits(this);
 
 	GET_PLAYER(getOwnerINLINE()).changeGoldenAgeTurns(GET_PLAYER(getOwnerINLINE()).getGoldenAgeLength());
@@ -7249,6 +7267,23 @@ bool CvUnit::goldenAge()
 	return true;
 }
 
+// Civ4 Reimagined: As regular golden age, but does only require one general, is modified by greatGeneralGoldenAgeLength, and does not advance golden age requirements (i.e. +1 great person for future golden ages)
+bool CvUnit::greatGeneralGoldenAge()
+{
+	int iAgeLength = GET_PLAYER(getOwnerINLINE()).getGoldenAgeLength();
+	iAgeLength *= GET_PLAYER(getOwnerINLINE()).getGreatGeneralGoldenAgeLength();
+	iAgeLength /= 100;
+	GET_PLAYER(getOwnerINLINE()).changeGoldenAgeTurns(iAgeLength);
+
+	if (plot()->isActiveVisible(false))
+	{
+		NotifyEntity(MISSION_GOLDEN_AGE);
+	}
+
+	kill(true);
+
+	return true;
+}
 
 bool CvUnit::canBuild(const CvPlot* pPlot, BuildTypes eBuild, bool bTestVisible) const
 {

@@ -1383,6 +1383,8 @@ public:
 	bool isHasFaithConquest() const; // Civ4 Reimagined
 	void changeColonyTraderouteModifier(int iChange); // Civ4 Reimagined
 	int getColonyTraderouteModifier() const; // Civ4 Reimagined
+	void changeGreatGeneralGoldenAgeLength(int iChange); // Civ4 Reimagined
+	int getGreatGeneralGoldenAgeLength() const; // Civ4 Reimagined
 	
 	// K-Mod note: Adding new virtual functions to this list seems to cause unpredictable behaviour during the initialization of the game.
 	// So beware!
@@ -1626,6 +1628,7 @@ protected:
 	bool m_bCivicEffect; // Civ4 Reimagined
 	bool m_bFaithConquest; // Civ4 Reimagined
 	int m_iColonyTraderouteModifier; // Civ4 Reimagined
+	int m_iGreatGeneralGoldenAgeLength; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
 

@@ -2575,20 +2575,23 @@ void CvDLLWidgetData::parseActionHelp(CvWidgetDataStruct &widgetDataStruct, CvWS
 			}
 			else if (GC.getActionInfo(widgetDataStruct.m_iData1).getMissionType() == MISSION_GOLDEN_AGE)
 			{
-				iUnitConsume = GET_PLAYER(pHeadSelectedUnit->getOwnerINLINE()).unitsRequiredForGoldenAge();
-				iUnitDiff = (iUnitConsume - GET_PLAYER(pHeadSelectedUnit->getOwnerINLINE()).unitsGoldenAgeReady());
-
-				if (iUnitDiff > 0)
+				if (!pHeadSelectedUnit->isGreatGeneralGoldenAge()) // Civ4 Reimagined: No requirements for great general golden ages
 				{
-					szBuffer.append(NEWLINE);
-					szBuffer.append(gDLL->getText("TXT_KEY_ACTION_MORE_GREAT_PEOPLE", iUnitDiff));
-				}
+					iUnitConsume = GET_PLAYER(pHeadSelectedUnit->getOwnerINLINE()).unitsRequiredForGoldenAge();
+					iUnitDiff = (iUnitConsume - GET_PLAYER(pHeadSelectedUnit->getOwnerINLINE()).unitsGoldenAgeReady());
 
-				if (iUnitConsume > 1)
-				{
-					szBuffer.append(NEWLINE);
-					szBuffer.append(gDLL->getText("TXT_KEY_ACTION_CONSUME_GREAT_PEOPLE", iUnitConsume));
-				}
+					if (iUnitDiff > 0)
+					{
+						szBuffer.append(NEWLINE);
+						szBuffer.append(gDLL->getText("TXT_KEY_ACTION_MORE_GREAT_PEOPLE", iUnitDiff));
+					}
+
+					if (iUnitConsume > 1)
+					{
+						szBuffer.append(NEWLINE);
+						szBuffer.append(gDLL->getText("TXT_KEY_ACTION_CONSUME_GREAT_PEOPLE", iUnitConsume));
+					}
+				}				
 			}
 			else if (GC.getActionInfo(widgetDataStruct.m_iData1).getMissionType() == MISSION_LEAD)
 			{
