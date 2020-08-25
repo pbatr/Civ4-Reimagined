@@ -2820,7 +2820,7 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 	int iFreeUnitsOnConquest = getFreeUnitsOnConquest();
 	if (iFreeUnitsOnConquest > 0 && bConquest && eOldHighestCulturePlayer != NO_PLAYER && !bOldEverOwned)
 	{
-		int iNumUnits = iOldCultureLevel;
+		int iNumUnits = iOldCultureLevel + iFreeUnitsOnConquest - 1;
 		
 		PlayerTypes eOtherPlayer = eOldHighestCulturePlayer; //pNewCity->getOriginalOwner();
 		
@@ -27413,7 +27413,14 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == 0)
 		{
 			setUniqueAztecPromotion(true);
+			changeCulturePerPopulationSacrified(5);
 			notifyUniquePowersChanged(true);
+		}
+		else if(eEra == 3)
+		{
+			setUniqueAztecPromotion(false);
+			changeCulturePerPopulationSacrified(-5);
+			notifyUniquePowersChanged(false);
 		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON"))
@@ -27442,13 +27449,13 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == 1)
 		{
 			setSpecialTradeRoutePerPlayer(true);
-			changeDomainProductionModifier(DOMAIN_SEA, 50);
+			changeDomainProductionModifier(DOMAIN_SEA, GC.getInfoTypeForString("UNIQUE_POWER_CARTHARGE_2"));
 			notifyUniquePowersChanged(true);
 		}
 		else if (eEra == 2)
 		{
 			setSpecialTradeRoutePerPlayer(false);
-			changeDomainProductionModifier(DOMAIN_SEA, -50);
+			changeDomainProductionModifier(DOMAIN_SEA, -GC.getInfoTypeForString("UNIQUE_POWER_CARTHARGE_2"));
 			notifyUniquePowersChanged(false);
 		}
 	}
@@ -27542,18 +27549,28 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA"))
 	{
-		// No effect, gain power elsewhere. But no compensation bonus either.
+		// Also gains effect with Calendar
+		if (eEra == 1) 
+		{
+			changeUniquePowerBuildingModifier(GC.getDefineINT("UNIQUE_POWER_MAYA"));
+			notifyUniquePowersChanged(true);
+		}
+		else if (eEra == 3)
+		{
+			changeUniquePowerBuildingModifier(-GC.getDefineINT("UNIQUE_POWER_MAYA"));
+			notifyUniquePowersChanged(false);
+		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME"))
 	{
 		if (eEra == 1) 
 		{
-			changeFreeUnitsOnConquest(1);
+			changeFreeUnitsOnConquest(2); // 2+Culture-Level der Stadt Einheiten
 			notifyUniquePowersChanged(true);
 		}
 		else if (eEra == 2)
 		{
-			changeFreeUnitsOnConquest(-1);
+			changeFreeUnitsOnConquest(-2);
 			notifyUniquePowersChanged(false);
 		}			
 	}
@@ -27563,6 +27580,11 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		{
 			changeTechProgressOnSettling( GC.getDefineINT("UNIQUE_POWER_SUMERIA"), (EraTypes)0 );
 			notifyUniquePowersChanged(true);
+		}
+		else if (eEra == 1)
+		{
+			changeTechProgressOnSettling( -GC.getDefineINT("UNIQUE_POWER_SUMERIA"), (EraTypes)0 );
+			notifyUniquePowersChanged(false);
 		}
 	}
 	else
