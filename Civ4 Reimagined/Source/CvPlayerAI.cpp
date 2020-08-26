@@ -6158,7 +6158,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				//iValue += 3 * (iNewCivicValue - iCurrentCivicValue);
 				// Civ4 Reimagined
 				const bool bFavorite = (eNewCivic == GC.getLeaderHeadInfo(getPersonalityType()).getFavoriteCivic());
-				const int iCivicValue = (bFavorite ? 8 : 6) * (iNewCivicValue - iCurrentCivicValue) * (bNewReligionCivic ? 3 : 1);
+				const int iCivicValue = (bFavorite ? 12 : 9) * (iNewCivicValue - iCurrentCivicValue) * (bNewReligionCivic ? 3 : 1);
 
 				if (gPlayerLogLevel > 2) logBBAI("	%S Tech Civic Value: %d", GC.getCivicInfo(eNewCivic).getDescription(0), iCivicValue);
 
@@ -15774,7 +15774,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 					iBonusCommerce /= 100;
 					iBonusCommerce *= AI_commerceWeight((CommerceTypes)iI);
 					iBonusCommerce /= 100;
-					if (gPlayerLogLevel > 0 && iBonusCommerce > 0) logBBAI("	Civic Value of Capital Commerce per surplus happiness: %d (surplus hap: %d)", iBonusCommerce, iTestHappy/100);
+					if (gPlayerLogLevel > 0 && iBonusCommerce > 0) logBBAI("	Civic Value of Capital Commerce per surplus happiness: %d (surplus hap: %d)", iBonusCommerce, std::min(pLoopCity->getPopulation(), std::max(0, iTestHappy/100)));
 					iValue += iBonusCommerce;
 				}
 			}
@@ -16716,21 +16716,26 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	// Civ4 Reiamagined
 	if (getForeignTradeIdeologyModifier(IDEOLOGY_LIBERALISM) > 0)
 	{
-		eBestIdeology = IDEOLOGY_LIBERALISM;
-	} 
+		iValue += kCivic.getLiberal() * 10;
+	}
 	
 	if (getBonusRatioModifierPerIdeologyCiv(IDEOLOGY_COMMUNISM) > 0)
 	{
-		eBestIdeology = IDEOLOGY_COMMUNISM;
+		iValue += kCivic.getCommunist() * 10;
+	}
+
+	if (getIdeologyCombatExperienceModifier(IDEOLOGY_FASCISM) > 0)
+	{
+		iValue += kCivic.getFascist() * 10;
 	}
 
 	switch(eBestIdeology)
 	{
 		case NO_IDEOLOGY: break;
-		case IDEOLOGY_CONSERVATISM: iValue += kCivic.getConservative() * 10;
-		case IDEOLOGY_LIBERALISM: iValue += kCivic.getLiberal() * 10;
-		case IDEOLOGY_COMMUNISM: iValue += kCivic.getCommunist() * 10;
-		case IDEOLOGY_FASCISM: iValue += kCivic.getFascist() * 10;
+		case IDEOLOGY_CONSERVATISM: iValue += kCivic.getConservative() * 10; break;
+		case IDEOLOGY_LIBERALISM: iValue += kCivic.getLiberal() * 10; break;
+		case IDEOLOGY_COMMUNISM: iValue += kCivic.getCommunist() * 10; break;
+		case IDEOLOGY_FASCISM: iValue += kCivic.getFascist() * 10; break;
 	}
 	
 	// Civ4 Reimagined
