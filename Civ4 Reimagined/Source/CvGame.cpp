@@ -7401,22 +7401,31 @@ void CvGame::createBarbarianUnits()
 					// Keeps barb ship count in check in early game since generation is greatly increased for BTS 3.17
 					if( pLoopArea->isWater() )
 					{
-						int iPlayerSeaUnits = 0;
-						for( int iI = 0; iI < MAX_CIV_PLAYERS; iI++ )
-						{
-							if( GET_PLAYER((PlayerTypes)iI).isAlive() )
-							{
-								iPlayerSeaUnits += GET_PLAYER((PlayerTypes)iI).AI_totalWaterAreaUnitAIs(pLoopArea,UNITAI_ATTACK_SEA);
-								iPlayerSeaUnits += GET_PLAYER((PlayerTypes)iI).AI_totalWaterAreaUnitAIs(pLoopArea,UNITAI_EXPLORE_SEA);
-								iPlayerSeaUnits += GET_PLAYER((PlayerTypes)iI).AI_totalWaterAreaUnitAIs(pLoopArea,UNITAI_ASSAULT_SEA);
-								iPlayerSeaUnits += GET_PLAYER((PlayerTypes)iI).AI_totalWaterAreaUnitAIs(pLoopArea,UNITAI_SETTLER_SEA);
-							}
-						}
-
-						if( pLoopArea->getUnitsPerPlayer(BARBARIAN_PLAYER) > (iPlayerSeaUnits/3 + 1) )
+						// Civ4 Reimagined: Only spawn barb ships in ancient, classical to avoid stacking them in New World
+						if (getCurrentEra() > 1)
 						{
 							iNeededBarbs = 0;
 						}
+						else
+						{
+							int iPlayerSeaUnits = 0;
+							for( int iI = 0; iI < MAX_CIV_PLAYERS; iI++ )
+							{
+								if( GET_PLAYER((PlayerTypes)iI).isAlive() )
+								{
+									iPlayerSeaUnits += GET_PLAYER((PlayerTypes)iI).AI_totalWaterAreaUnitAIs(pLoopArea,UNITAI_ATTACK_SEA);
+									iPlayerSeaUnits += GET_PLAYER((PlayerTypes)iI).AI_totalWaterAreaUnitAIs(pLoopArea,UNITAI_EXPLORE_SEA);
+									iPlayerSeaUnits += GET_PLAYER((PlayerTypes)iI).AI_totalWaterAreaUnitAIs(pLoopArea,UNITAI_ASSAULT_SEA);
+									iPlayerSeaUnits += GET_PLAYER((PlayerTypes)iI).AI_totalWaterAreaUnitAIs(pLoopArea,UNITAI_SETTLER_SEA);
+								}
+							}
+
+							if( pLoopArea->getUnitsPerPlayer(BARBARIAN_PLAYER) > (iPlayerSeaUnits/3 + 1) )
+							{
+								iNeededBarbs = 0;
+							}
+						}
+
 					}
 					/********************************************************************************/
 					/* 	BETTER_BTS_AI_MOD						END								*/
