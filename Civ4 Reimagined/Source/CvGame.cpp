@@ -10262,8 +10262,8 @@ void CvGame::doVoteSelection()
 				changeVoteTimer(eVoteSource, -1);
 			}
 			else
-			{	// Civ4 Reimagined: K-Mod was bugged, DIPLO_VOTE_SECRETARY_GENERAL_INTERVAL is actually the VOTE_FREQUENCY
-				setVoteTimer(eVoteSource, (GC.getDefineINT("DIPLO_VOTE_SECRETARY_GENERAL_INTERVAL") * GC.getGameSpeedInfo(getGameSpeedType()).getVictoryDelayPercent()) / 100);
+			{
+				setVoteTimer(eVoteSource, (GC.getVoteSourceInfo(eVoteSource).getVoteInterval() * GC.getGameSpeedInfo(getGameSpeedType()).getVictoryDelayPercent()) / 100);
 
 				for (int iTeam1 = 0; iTeam1 < MAX_CIV_TEAMS; ++iTeam1)
 				{
@@ -10305,7 +10305,7 @@ void CvGame::doVoteSelection()
 					else
 					{
 						// Changed by Civ4 Reimagined
-						setSecretaryGeneralTimer(eVoteSource, GC.getVoteSourceInfo(eVoteSource).getVoteInterval());
+						setSecretaryGeneralTimer(eVoteSource, GC.getDefineINT("DIPLO_VOTE_SECRETARY_GENERAL_INTERVAL"));
 
 						for (int iJ = 0; iJ < GC.getNumVoteInfos(); iJ++)
 						{
