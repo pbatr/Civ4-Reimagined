@@ -3935,6 +3935,14 @@ int CvUnit::healRate(const CvPlot* pPlot, bool bLocation, bool bUnits) const
 		// XXX
 	}
 
+	// Civ4 Reimagined
+	if (iTotalHeal > 0)
+	{
+		iTotalHeal *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getHealPercent();
+		iTotalHeal /= 100;
+		iTotalHeal = std::max(1, iTotalHeal);
+	}
+	
 	return iTotalHeal;
 }
 

@@ -2788,30 +2788,33 @@ public:
 	CvGameSpeedInfo();
 	virtual ~CvGameSpeedInfo();
 
-	int getGrowthPercent() const;						// Exposed to Python
-	int getTrainPercent() const;						// Exposed to Python
-	int getConstructPercent() const;				// Exposed to Python
-	int getCreatePercent() const;						// Exposed to Python
-	int getResearchPercent() const;					// Exposed to Python
-	int getBuildPercent() const;						// Exposed to Python
-	int getImprovementPercent() const;			// Exposed to Python
-	int getGreatPeoplePercent() const;			// Exposed to Python
-	int getAnarchyPercent() const;					// Exposed to Python
-	int getBarbPercent() const;							// Exposed to Python
+	int getGrowthPercent() const;							// Exposed to Python
+	int getTrainPercent() const;							// Exposed to Python
+	int getConstructPercent() const;						// Exposed to Python
+	int getCreatePercent() const;							// Exposed to Python
+	int getResearchPercent() const;							// Exposed to Python
+	int getBuildPercent() const;							// Exposed to Python
+	int getImprovementPercent() const;						// Exposed to Python
+	int getGreatPeoplePercent() const;						// Exposed to Python
+	int getAnarchyPercent() const;							// Exposed to Python
+	int getBarbPercent() const;								// Exposed to Python
 	int getFeatureProductionPercent() const;				// Exposed to Python
-	int getUnitDiscoverPercent() const;			// Exposed to Python
-	int getUnitHurryPercent() const;				// Exposed to Python
-	int getUnitTradePercent() const;				// Exposed to Python
-	int getUnitGreatWorkPercent() const;		// Exposed to Python
-	int getGoldenAgePercent() const;				// Exposed to Python
-	int getHurryPercent() const;						// Exposed to Python
-	int getHurryConscriptAngerPercent() const;	// Exposed to Python
-	int getInflationOffset() const;					// Exposed to Python
-	int getInflationPercent() const;				// Exposed to Python
-	int getVictoryDelayPercent() const;				// Exposed to Python
-	int getNumTurnIncrements() const;				// Exposed to Python
+	int getUnitDiscoverPercent() const;						// Exposed to Python
+	int getUnitHurryPercent() const;						// Exposed to Python
+	int getUnitTradePercent() const;						// Exposed to Python
+	int getUnitGreatWorkPercent() const;					// Exposed to Python
+	int getGoldenAgePercent() const;						// Exposed to Python
+	int getHurryPercent() const;							// Exposed to Python
+	int getHurryConscriptAngerPercent() const;				// Exposed to Python
+	int getInflationOffset() const;							// Exposed to Python
+	int getInflationPercent() const;						// Exposed to Python
+	int getVictoryDelayPercent() const;						// Exposed to Python
+	int getDealLengthPercent() const;	// Civ4 Reimagined
+	int getHealPercent() const;			// Civ4 Reimagined
+	int getOccupyLengthPercent() const; // Civ4 Reimagined
+	int getNumTurnIncrements() const;						// Exposed to Python
 
-	GameTurnInfo& getGameTurnInfo(int iIndex) const;				// Exposed to Python
+	GameTurnInfo& getGameTurnInfo(int iIndex) const;		// Exposed to Python
 	void allocateGameTurnInfos(const int iSize);
 
 	bool read(CvXMLLoadUtility* pXML);
@@ -2841,6 +2844,9 @@ protected:
 	int m_iInflationPercent;
 	int m_iVictoryDelayPercent;
 	int m_iNumTurnIncrements;
+	int m_iDealLengthPercent;
+	int m_iHealPercent;
+	int m_iOccupyLengthPercent;
 
 	CvString m_szGameSpeedName;
 	GameTurnInfo* m_pGameTurnInfo;

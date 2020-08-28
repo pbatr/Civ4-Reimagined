@@ -143,6 +143,8 @@ public:
 	bool canTrainNukes() const;																		// Exposed to Python
 	DllExport EraTypes getCurrentEra() const;											// Exposed to Python
 	double getCurrentEraAverage() const;		// Civ4 Reimagined
+
+	int getPeaceDealLength() const;
 	
 	DllExport TeamTypes getActiveTeam() const;																		// Exposed to Python
 	DllExport CivilizationTypes getActiveCivilizationType() const;								// Exposed to Python

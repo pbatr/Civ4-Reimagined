@@ -550,6 +550,9 @@
 	</ElementType>
 	<ElementType name="iVictoryDelayTurns" content="textOnly" dt:type="int"/>
 	<ElementType name="iVictoryDelayPercent" content="textOnly" dt:type="int"/>
+	<ElementType name="iHealPercent" content="textOnly" dt:type="int"/>
+	<ElementType name="iDealLengthPercent" content="textOnly" dt:type="int"/>
+	<ElementType name="iOccupyLengthPercent" content="textOnly" dt:type="int"/>
 	<ElementType name="iSuccessRate" content="textOnly" dt:type="int"/>
 	<ElementType name="PrereqBonuses" content="eltOnly">
 		<element type="BonusType" minOccurs="0" maxOccurs="*"/>
@@ -1081,6 +1084,9 @@
 		<element type="iInflationPercent"/>
 		<element type="iInflationOffset"/>
 		<element type="iVictoryDelayPercent"/>
+		<element type="iDealLengthPercent"/>
+		<element type="iHealPercent"/>
+		<element type="iOccupyLengthPercent"/>
 		<element type="GameTurnInfos"/>
 	</ElementType>
 	<ElementType name="GameSpeedInfos" content="eltOnly">
