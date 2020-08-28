@@ -35,7 +35,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>7</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -135,7 +134,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>7</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -235,7 +233,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>7</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -335,7 +332,6 @@
 			<iNeutralHealChange>10</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>7</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -435,7 +431,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>7</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -535,7 +530,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -616,7 +610,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -697,7 +690,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -786,7 +778,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -871,7 +862,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -952,7 +942,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -1037,7 +1026,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -1121,7 +1109,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -1213,7 +1200,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -1293,7 +1279,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -1379,9 +1364,8 @@
 			<iChanceFirstStrikesChange>0</iChanceFirstStrikesChange>
 			<iEnemyHealChange>0</iEnemyHealChange>
 			<iNeutralHealChange>0</iNeutralHealChange>
-			<iFriendlyHealChange>5</iFriendlyHealChange>
+			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>5</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -1473,7 +1457,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>5</iSameTileHealChange>
-			<iAdjacentTileHealChange>5</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -1565,7 +1548,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -1645,7 +1627,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -1725,7 +1706,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -1799,9 +1779,8 @@
 			<iChanceFirstStrikesChange>0</iChanceFirstStrikesChange>
 			<iEnemyHealChange>0</iEnemyHealChange>
 			<iNeutralHealChange>0</iNeutralHealChange>
-			<iFriendlyHealChange>0</iFriendlyHealChange>
+			<iFriendlyHealChange>10</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -1815,15 +1794,24 @@
 			<iExperiencePercent>0</iExperiencePercent>
 			<TerrainAttacks/>
 			<TerrainDefenses/>
-			<FeatureAttacks/>
+			<FeatureAttacks>
+				<FeatureAttack>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iFeatureAttack>10</iFeatureAttack>
+				</FeatureAttack>
+				<FeatureAttack>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iFeatureAttack>10</iFeatureAttack>
+				</FeatureAttack>
+			</FeatureAttacks>
 			<FeatureDefenses>
 				<FeatureDefense>
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
-					<iFeatureDefense>25</iFeatureDefense>
+					<iFeatureDefense>10</iFeatureDefense>
 				</FeatureDefense>
 				<FeatureDefense>
 					<FeatureType>FEATURE_FOREST</FeatureType>
-					<iFeatureDefense>25</iFeatureDefense>
+					<iFeatureDefense>10</iFeatureDefense>
 				</FeatureDefense>
 			</FeatureDefenses>
 			<UnitCombatMods/>
@@ -1883,10 +1871,9 @@
 			<iFirstStrikesChange>0</iFirstStrikesChange>
 			<iChanceFirstStrikesChange>0</iChanceFirstStrikesChange>
 			<iEnemyHealChange>0</iEnemyHealChange>
-			<iNeutralHealChange>0</iNeutralHealChange>
+			<iNeutralHealChange>10</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -1900,15 +1887,24 @@
 			<iExperiencePercent>0</iExperiencePercent>
 			<TerrainAttacks/>
 			<TerrainDefenses/>
-			<FeatureAttacks/>
+			<FeatureAttacks>
+				<FeatureAttack>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iFeatureAttack>10</iFeatureAttack>
+				</FeatureAttack>
+				<FeatureAttack>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iFeatureAttack>10</iFeatureAttack>
+				</FeatureAttack>
+			</FeatureAttacks>
 			<FeatureDefenses>
 				<FeatureDefense>
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
-					<iFeatureDefense>25</iFeatureDefense>
+					<iFeatureDefense>10</iFeatureDefense>
 				</FeatureDefense>
 				<FeatureDefense>
 					<FeatureType>FEATURE_FOREST</FeatureType>
-					<iFeatureDefense>25</iFeatureDefense>
+					<iFeatureDefense>10</iFeatureDefense>
 				</FeatureDefense>
 			</FeatureDefenses>
 			<UnitCombatMods/>
@@ -1965,13 +1961,12 @@
 			<iCargoChange>0</iCargoChange>
 			<iCollateralDamageChange>0</iCollateralDamageChange>
 			<iBombardRateChange>0</iBombardRateChange>
-			<iFirstStrikesChange>1</iFirstStrikesChange>
+			<iFirstStrikesChange>0</iFirstStrikesChange>
 			<iChanceFirstStrikesChange>0</iChanceFirstStrikesChange>
-			<iEnemyHealChange>0</iEnemyHealChange>
+			<iEnemyHealChange>10</iEnemyHealChange>
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
-			<iSameTileHealChange>10</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
+			<iSameTileHealChange>0</iSameTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -1988,14 +1983,23 @@
 			<FeatureAttacks>
 				<FeatureAttack>
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
-					<iFeatureAttack>25</iFeatureAttack>
+					<iFeatureAttack>10</iFeatureAttack>
 				</FeatureAttack>
 				<FeatureAttack>
 					<FeatureType>FEATURE_FOREST</FeatureType>
-					<iFeatureAttack>25</iFeatureAttack>
+					<iFeatureAttack>10</iFeatureAttack>
 				</FeatureAttack>
 			</FeatureAttacks>
-			<FeatureDefenses/>
+			<FeatureDefenses>
+				<FeatureDefense>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iFeatureDefense>10</iFeatureDefense>
+				</FeatureDefense>
+				<FeatureDefense>
+					<FeatureType>FEATURE_FOREST</FeatureType>
+					<iFeatureDefense>10</iFeatureDefense>
+				</FeatureDefense>
+			</FeatureDefenses>
 			<UnitCombatMods/>
 			<DomainMods/>
 			<TerrainDoubleMoves/>
@@ -2052,7 +2056,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>20</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -2124,7 +2127,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>10</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -2196,7 +2198,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>12</iCityDefense>
@@ -2268,7 +2269,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>15</iCityDefense>
@@ -2340,7 +2340,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>18</iCityDefense>
@@ -2417,7 +2416,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -2505,7 +2503,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -2593,7 +2590,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -2681,7 +2677,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -2774,7 +2769,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -2850,7 +2844,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -2931,7 +2924,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -3011,7 +3003,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -3091,7 +3082,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -3171,7 +3161,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -3243,7 +3232,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -3311,7 +3299,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -3379,7 +3366,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -3479,7 +3465,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -3579,7 +3564,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -3679,7 +3663,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>20</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -3779,7 +3762,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -3878,8 +3860,7 @@
 			<iEnemyHealChange>0</iEnemyHealChange>
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
-			<iSameTileHealChange>15</iSameTileHealChange>
-			<iAdjacentTileHealChange>15</iAdjacentTileHealChange>
+			<iSameTileHealChange>10</iSameTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -3971,7 +3952,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -4039,7 +4019,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -4107,7 +4086,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -4179,7 +4157,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -4251,7 +4228,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -4320,7 +4296,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>-10</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -4384,7 +4359,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -4448,7 +4422,6 @@
 			<iNeutralHealChange>10</iNeutralHealChange>
 			<iFriendlyHealChange>10</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>0</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>
@@ -4511,7 +4484,6 @@
 			<iNeutralHealChange>0</iNeutralHealChange>
 			<iFriendlyHealChange>0</iFriendlyHealChange>
 			<iSameTileHealChange>0</iSameTileHealChange>
-			<iAdjacentTileHealChange>0</iAdjacentTileHealChange>
 			<iCombatPercent>7</iCombatPercent>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>0</iCityDefense>

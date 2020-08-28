@@ -10608,7 +10608,7 @@ int CvPlayerAI::AI_maxGoldPerTurnTrade(PlayerTypes ePlayer) const
 
 	if (isHuman() || (GET_PLAYER(ePlayer).getTeam() == getTeam()))
 	{
-		iMaxGoldPerTurn = (calculateGoldRate() + (getGold() / GC.getDefineINT("PEACE_TREATY_LENGTH")));
+		iMaxGoldPerTurn = (calculateGoldRate() + (getGold() / GC.getGameINLINE().getPeaceDealLength())); // Civ4 Reimagined: Added gamespeed modifier
 	}
 	else
 	{
@@ -10626,7 +10626,7 @@ int CvPlayerAI::AI_maxGoldPerTurnTrade(PlayerTypes ePlayer) const
 
 int CvPlayerAI::AI_goldPerTurnTradeVal(int iGoldPerTurn) const
 {
-	int iValue = iGoldPerTurn * GC.getDefineINT("PEACE_TREATY_LENGTH");
+	int iValue = iGoldPerTurn * GC.getGameINLINE().getPeaceDealLength(); // Civ4 Reimagined: Added gamespeed modifier
 	iValue *= AI_goldTradeValuePercent();
 	iValue /= 100;
 	
@@ -11174,7 +11174,7 @@ int CvPlayerAI::AI_bonusTradeVal(BonusTypes eBonus, PlayerTypes ePlayer, int iCh
 		iValue /= 2;
 	} */
 
-	return (iValue * GC.getDefineINT("PEACE_TREATY_LENGTH"));
+	return (iValue * GC.getGameINLINE().getPeaceDealLength()); // Civ4 Reimagined: Added gamespeed modifier
 }
 
 
@@ -19010,7 +19010,7 @@ void CvPlayerAI::AI_doDiplo()
 							{
 								if (pLoopDeal->isCancelable(getID()))
 								{
-									// if ((GC.getGameINLINE().getGameTurn() - pLoopDeal->getInitialGameTurn()) >= (GC.getDefineINT("PEACE_TREATY_LENGTH") * 2)) // K-Mod disabled
+									// if ((GC.getGameINLINE().getGameTurn() - pLoopDeal->getInitialGameTurn()) >= (GC.getGameINLINE().getPeaceDealLength() * 2)) // K-Mod disabled
 									{
 										bCancelDeal = false;
 
@@ -21288,15 +21288,15 @@ int CvPlayerAI::AI_eventValue(EventTypes eEvent, const EventTriggeredData& kTrig
 			int iBonusValue = -AI_bonusVal((BonusTypes)kEvent.getBonusGift(), -1);
 			iBonusValue += (iOtherPlayerAttitudeWeight - 40) * kOtherPlayer.AI_bonusVal((BonusTypes)kEvent.getBonusGift(), +1);
 			//Positive for friends, negative for enemies.
-			iDiploValue += (iBonusValue * GC.getDefineINT("PEACE_TREATY_LENGTH")) / 60; */
+			iDiploValue += (iBonusValue * GC.getGameINLINE().getPeaceDealLength()) / 60; */
 
 			// K-Mod. The original code undervalued our loss of bonus by a factor of 100.
-			//iValue -= AI_bonusVal((BonusTypes)kEvent.getBonusGift(), -1) * GC.getDefineINT("PEACE_TREATY_LENGTH") / 4;
+			//iValue -= AI_bonusVal((BonusTypes)kEvent.getBonusGift(), -1) * GC.getGameINLINE().getPeaceDealLength() / 4;
 			//int iGiftValue = kOtherPlayer.AI_bonusVal((BonusTypes)kEvent.getBonusGift(), +1) * (iOtherPlayerAttitudeWeight - 40) / 100;
 			// Civ4 Reimagined: Value of AI_bonusVal is per city
-			iValue -= getNumCities() * AI_bonusVal((BonusTypes)kEvent.getBonusGift(), -1) * GC.getDefineINT("PEACE_TREATY_LENGTH") / 4;
+			iValue -= getNumCities() * AI_bonusVal((BonusTypes)kEvent.getBonusGift(), -1) * GC.getGameINLINE().getPeaceDealLength() / 4; // Civ4 Reimagined: Added gamespeed modifier
 			int iGiftValue = kOtherPlayer.getNumCities() * kOtherPlayer.AI_bonusVal((BonusTypes)kEvent.getBonusGift(), +1) * (iOtherPlayerAttitudeWeight - 40) / 100;
-			iDiploValue += iGiftValue * GC.getDefineINT("PEACE_TREATY_LENGTH") / 4;
+			iDiploValue += iGiftValue * GC.getGameINLINE().getPeaceDealLength() / 4; // Civ4 ReimagineD: Added gamespeed modifier
 			// K-Mod end
 		}
 		

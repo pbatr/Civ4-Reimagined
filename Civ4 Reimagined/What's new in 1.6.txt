@@ -12,6 +12,7 @@ Changes
 *********
 -Reassign almost all leader traits
 -Lumbermills grant 1 less production but are available with Machinery
+-Reintroduced longer anarchy for large empires
 
 *********
 Tweaks
@@ -20,14 +21,21 @@ Tweaks
 -Russian Cossack strength increased from 15 to 16 but no longer has reduced costs
 -Guided Missile air range increased from 5 to 8
 -Tactical Nuke range increased from 6 to 8
+-Missile Submarines cannot pillage or blockade
 -Blitz promotion only requires Flanking II or Drill II
+-Changed Woodsman promotions to 10% attack&defense and +10% heal for friendly/neutral/enemy territory (was: +25% defense, healing and first strike on woodsman3)
+-Removed adjacent tile healing from medic promotions (almost never used in our experience, and the implementation was computationally expensive)
+-Medic3 promotion decreased from 15% healing to 10% healing
 -Tanks no longer have Blitz promotion per default
 -Central Planning no longer enables no production mali for military units
 -Apollo Program costs decreased from 2000 to 1500
 -SDI costs increased from 2500 to 3000
 -CERN Research Complex costs increased from 800 to 1200
 -Space Elevator costs increased from 1000 to 1500
--Great Harbor moved to Guilds from Refrigeration, reduced cost from 250 to 125, removed +100% production with steel, removed +1C per water tile, +3 culture.
+-Great Harbor moved to Guilds from Refrigeration, reduced cost from 250 to 125, removed +100% production with steel, removed +1C per water tile, +3 culture
+-Can change 3 civics for one turn of anarchy on quick speed (was 4)
+-Barbarian ships do not spawn in Medieval and later eras
+-Longer period between Apostolic Palace votes
 
 *********
 Interface
@@ -40,6 +48,8 @@ Fixes
 -Occasional crash when changing civics
 -Levy Armies did not grant free units
 -Seowon and Madrassa did not give science bonus with Scientific Method
+-Protective players couldn't pillage their own improvements
+-French Missile Submarine had broken graphics
 
 
 *******************************************

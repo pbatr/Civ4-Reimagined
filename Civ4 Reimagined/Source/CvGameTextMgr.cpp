@@ -830,12 +830,6 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 				szString.append(NEWLINE);
 				szString.append(gDLL->getText("TXT_KEY_PROMOTION_HEALS_SAME_TEXT", pUnit->getSameTileHeal()) + gDLL->getText("TXT_KEY_PROMOTION_DAMAGE_TURN_TEXT"));
 			}
-
-			if (pUnit->getAdjacentTileHeal() != 0)
-			{
-				szString.append(NEWLINE);
-				szString.append(gDLL->getText("TXT_KEY_PROMOTION_HEALS_ADJACENT_TEXT", pUnit->getAdjacentTileHeal()) + gDLL->getText("TXT_KEY_PROMOTION_DAMAGE_TURN_TEXT"));
-			}
 		}
 
 		if (pUnit->currInterceptionProbability() > 0)
@@ -6946,12 +6940,6 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 	{
 		szBuffer.append(pcNewline);
 		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_HEALS_SAME_TEXT", GC.getPromotionInfo(ePromotion).getSameTileHealChange()) + gDLL->getText("TXT_KEY_PROMOTION_DAMAGE_TURN_TEXT"));
-	}
-
-	if (GC.getPromotionInfo(ePromotion).getAdjacentTileHealChange() != 0)
-	{
-		szBuffer.append(pcNewline);
-		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_HEALS_ADJACENT_TEXT", GC.getPromotionInfo(ePromotion).getAdjacentTileHealChange()) + gDLL->getText("TXT_KEY_PROMOTION_DAMAGE_TURN_TEXT"));
 	}
 
 	if (GC.getPromotionInfo(ePromotion).getCombatPercent() != 0)
@@ -15677,7 +15665,7 @@ void CvGameTextMgr::getTradeString(CvWStringBuffer& szBuffer, const TradeData& t
 		szBuffer.append(gDLL->getText("TXT_KEY_MISC_PERMANENT_ALLIANCE"));
 		break;
 	case TRADE_PEACE_TREATY:
-		szBuffer.append(gDLL->getText("TXT_KEY_MISC_PEACE_TREATY", GC.getDefineINT("PEACE_TREATY_LENGTH")));
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_PEACE_TREATY", GC.getGameINLINE().getPeaceDealLength())); // Civ4 Reimagined: Added gamespeed modifier
 		break;
 	case TRADE_TECHNOLOGIES:
 		szBuffer.assign(CvWString::format(L"%s", GC.getTechInfo((TechTypes)tradeData.m_iData).getDescription()));
@@ -16170,6 +16158,12 @@ void CvGameTextMgr::setProductionHelp(CvWStringBuffer &szBuffer, CvCity& city)
 {
 	FAssertMsg(NO_PLAYER != city.getOwnerINLINE(), "City must have an owner");
 	
+	// Civ4 Reimagined
+	if (city.isDisorder())
+	{
+		return;
+	}
+
 	bool bIsProcess = city.isProductionProcess();
 	int iPastOverflow = (bIsProcess ? 0 : city.getOverflowProduction());
 	if (iPastOverflow != 0)
@@ -16882,6 +16876,12 @@ void CvGameTextMgr::setCommerceHelp(CvWStringBuffer &szBuffer, CvCity& city, Com
 	}
 	CvPlayer& owner = GET_PLAYER(city.getOwnerINLINE());
 
+	// Civ4 Reimagined
+	if (city.isDisorder())
+	{
+		return;
+	}
+
 	setYieldHelp(szBuffer, city, YIELD_COMMERCE);
 
 	// Slider
@@ -17188,6 +17188,12 @@ void CvGameTextMgr::setYieldHelp(CvWStringBuffer &szBuffer, CvCity& city, YieldT
 		return;
 	}
 	CvPlayer& owner = GET_PLAYER(city.getOwnerINLINE());
+
+	// Civ4 Reimagined
+	if (city.isDisorder())
+	{
+		return;
+	}
 
 	int iBaseProduction = city.getBaseYieldRate(eYieldType);
 	szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_BASE_YIELD", info.getTextKeyWide(), iBaseProduction, info.getChar()));
@@ -19739,14 +19745,14 @@ void CvGameTextMgr::getTurnTimerText(CvWString& strText)
 				}
 			}
 
-			if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_START) && !GC.getGameINLINE().isOption(GAMEOPTION_ALWAYS_WAR) && GC.getGameINLINE().getElapsedGameTurns() <= GC.getDefineINT("PEACE_TREATY_LENGTH"))
+			if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_START) && !GC.getGameINLINE().isOption(GAMEOPTION_ALWAYS_WAR) && GC.getGameINLINE().getElapsedGameTurns() <= GC.getGameINLINE().getPeaceDealLength()) // Civ4 Reimagined: Added gamespeed modifier
 			{
 				if (!strText.empty())
 				{
 					strText += L" -- ";
 				}
 
-				strText += gDLL->getText("TXT_KEY_MISC_ADVANCED_START_PEACE_REMAINING", GC.getDefineINT("PEACE_TREATY_LENGTH") - GC.getGameINLINE().getElapsedGameTurns());
+				strText += gDLL->getText("TXT_KEY_MISC_ADVANCED_START_PEACE_REMAINING", GC.getGameINLINE().getPeaceDealLength()); // Civ4 Reimagined: Added gamespeed modifier
 			}
 			else if (iMinVictoryTurns < MAX_INT)
 			{

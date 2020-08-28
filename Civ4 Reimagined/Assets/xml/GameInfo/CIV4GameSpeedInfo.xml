@@ -33,6 +33,9 @@
 			<iInflationPercent>10</iInflationPercent>
 			<iInflationOffset>-270</iInflationOffset>
 			<iVictoryDelayPercent>300</iVictoryDelayPercent>
+			<iDealLengthPercent>300</iDealLengthPercent>
+			<iHealPercent>33</iHealPercent>
+			<iOccupyLengthPercent>300</iOccupyLengthPercent>
 			<GameTurnInfos>
 				<GameTurnInfo>
 					<iMonthIncrement>180</iMonthIncrement>
@@ -94,6 +97,9 @@
 			<iInflationPercent>20</iInflationPercent>
 			<iInflationOffset>-135</iInflationOffset>
 			<iVictoryDelayPercent>150</iVictoryDelayPercent>
+			<iDealLengthPercent>150</iDealLengthPercent>
+			<iHealPercent>66</iHealPercent>
+			<iOccupyLengthPercent>150</iOccupyLengthPercent>
 			<GameTurnInfos>
 				<GameTurnInfo>
 					<iMonthIncrement>300</iMonthIncrement>
@@ -151,6 +157,9 @@
 			<iInflationPercent>30</iInflationPercent>
 			<iInflationOffset>-90</iInflationOffset>
 			<iVictoryDelayPercent>100</iVictoryDelayPercent>
+			<iDealLengthPercent>100</iDealLengthPercent>
+			<iHealPercent>100</iHealPercent>
+			<iOccupyLengthPercent>100</iOccupyLengthPercent>
 			<GameTurnInfos>
 				<GameTurnInfo>
 					<iMonthIncrement>480</iMonthIncrement>
@@ -199,7 +208,7 @@
 			<iImprovementPercent>66</iImprovementPercent>
 			<iGreatPeoplePercent>66</iGreatPeoplePercent>
 			<iCulturePercent>66</iCulturePercent>
-			<iAnarchyPercent>66</iAnarchyPercent>
+			<iAnarchyPercent>75</iAnarchyPercent>
 			<iBarbPercent>66</iBarbPercent>
 			<iFeatureProductionPercent>66</iFeatureProductionPercent>
 			<iUnitDiscoverPercent>66</iUnitDiscoverPercent>
@@ -212,6 +221,9 @@
 			<iInflationPercent>45</iInflationPercent>
 			<iInflationOffset>-60</iInflationOffset>
 			<iVictoryDelayPercent>66</iVictoryDelayPercent>
+			<iDealLengthPercent>66</iDealLengthPercent>
+			<iHealPercent>150</iHealPercent>
+			<iOccupyLengthPercent>66</iOccupyLengthPercent>
 			<GameTurnInfos>
 				<GameTurnInfo>
 					<iMonthIncrement>720</iMonthIncrement>

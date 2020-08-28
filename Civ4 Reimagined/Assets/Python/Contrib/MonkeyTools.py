@@ -136,7 +136,6 @@ def getPromotionInfoText(pUnit):
 	iNeutralHealChange = 0
 	iFriendlyHealChange = 0
 	iSameTileHealChange = 0
-	iAdjacentTileHealChange = 0
 	iCombatPercent = 0
 	iCityAttackPercent = 0
 	iCityDefensePercent = 0
@@ -198,9 +197,6 @@ def getPromotionInfoText(pUnit):
 			iTemp = gc.getPromotionInfo(i).getSameTileHealChange()
 			if iTemp > 0:
 				iSameTileHealChange += iTemp
-			iTemp = gc.getPromotionInfo(i).getAdjacentTileHealChange()
-			if iTemp > 0:
-				iAdjacentTileHealChange += iTemp
 			iTemp = gc.getPromotionInfo(i).getCombatPercent()
 			if iTemp > 0:
 				iCombatPercent += iTemp
@@ -273,8 +269,6 @@ def getPromotionInfoText(pUnit):
 		szPromotionInfo += localText.getText("TXT_KEY_PROMOTION_HEALS_EXTRA_TEXT", (iFriendlyHealChange, )) + localText.getText("TXT_KEY_PROMOTION_FRIENDLY_LANDS_TEXT", ()) + "\n"
 	if iSameTileHealChange > 0:
 		szPromotionInfo += localText.getText("TXT_KEY_PROMOTION_HEALS_SAME_TEXT", (iSameTileHealChange, )) + localText.getText("TXT_KEY_PROMOTION_DAMAGE_TURN_TEXT", ()) + "\n"
-	if iAdjacentTileHealChange > 0:
-		szPromotionInfo += localText.getText("TXT_KEY_PROMOTION_HEALS_ADJACENT_TEXT", (iAdjacentTileHealChange, )) + localText.getText("TXT_KEY_PROMOTION_DAMAGE_TURN_TEXT", ()) + "\n"
 	if iCombatPercent > 0:
 		szPromotionInfo += localText.getText("TXT_KEY_PROMOTION_STRENGTH_TEXT", (iCombatPercent, )) + "\n"
 	if iCityAttackPercent > 0:
@@ -359,11 +353,9 @@ def getPlotHealFactor(pUnit):
 	# set/reset some variables
 	pPlot = pUnit.plot()
 	iSameTileHealFactor 		= 0
-	iAdjacentTileHealFactor 	= 0
 	iBuildingHealFactor 		= 0
 	iSelfHealFactor 			= 0
 	iPromotionHealFactor 		= 0
-	iTileHealFactor 			= 0
 	iActivePlayer 				= CyGame().getActivePlayer()
 	pActivePlayer 				= gc.getPlayer(iActivePlayer)
 	iActivePlayerTeam 			= pActivePlayer.getTeam()
@@ -372,25 +364,6 @@ def getPlotHealFactor(pUnit):
 	# a sea or air unit in a city, behaves like a land unit
 	if pPlot.isCity():
 		eDomain = DomainTypes.DOMAIN_LAND
-
-	# calculate the adjacent-tile heal-factor caused by other units (only the unit with the highest factor counts)
-	for dx in range(-1, 2):
-		for dy in range(-1, 2):
-			# ignore same tile. Adjacent-tile healing does not work on the same tile.
-			if not (dx == 0 and dy == 0):
-				pLoopPlot = CyMap().plot(pPlot.getX()+dx, pPlot.getY()+dy)
-				# loop through all units on the plot
-				for i in range(pLoopPlot.getNumUnits()):
-					pLoopUnit = pLoopPlot.getUnit(i)
-					eLoopUnitDomain = gc.getUnitInfo(pLoopUnit.getUnitType()).getDomainType()
-					# a sea or air unit in a city, behaves like a land unit
-					if pLoopPlot.isCity():
-						eLoopUnitDomain = DomainTypes.DOMAIN_LAND
-					# adjacent-tile heal does only work if the units have the same domain type
-					if (eDomain == eLoopUnitDomain):
-						if (pLoopUnit.getTeam() == iActivePlayerTeam):
-							if (pLoopUnit.getAdjacentTileHeal() > iAdjacentTileHealFactor):
-								iAdjacentTileHealFactor = pLoopUnit.getAdjacentTileHeal()
 	
 	# calculate the same-tile heal-factor caused by other or same unit (only the unit with the highest factor counts)
 	# the same-tile healing is also a kind of self-healing. Means : the promotion Medic I has also effect on the owner unit
@@ -406,9 +379,6 @@ def getPlotHealFactor(pUnit):
 				if (pLoopUnit.getSameTileHeal() > iSameTileHealFactor):
 					iSameTileHealFactor = pLoopUnit.getSameTileHeal()
 				
-	# only the highest value counts
-	iTileHealFactor = max(iAdjacentTileHealFactor, iSameTileHealFactor)
-
 	# calculate the self heal factor by the location and promotion
 	iTeam = pPlot.getTeam()
 	pTeam = gc.getTeam(iTeam)		
@@ -438,7 +408,7 @@ def getPlotHealFactor(pUnit):
 					iBuildingHealFactor += gc.getBuildingInfo(iBuilding).getHealRateChange() * pCity.getNumActiveBuilding(iBuilding)
 
 	# return the sum of all heal factors
-	return iTileHealFactor + iBuildingHealFactor + iSelfHealFactor + iPromotionHealFactor	
+	return iSameTileHealFactor + iBuildingHealFactor + iSelfHealFactor + iPromotionHealFactor	
 
 ######################################################
 ### 	calculates the upgrade price for a unit 

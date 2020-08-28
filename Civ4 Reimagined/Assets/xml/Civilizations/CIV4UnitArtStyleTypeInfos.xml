@@ -5261,9 +5261,9 @@
 				<StyleUnit>
 					<UnitType>UNIT_ATTACK_SUBMARINE</UnitType>
 					<UnitMeshGroup>
-						<EarlyArtDefineTag>ART_DEF_UNIT_SURCOUF_FRENCH</EarlyArtDefineTag>
-						<LateArtDefineTag>ART_DEF_UNIT_SURCOUF_FRENCH</LateArtDefineTag>
-						<MiddleArtDefineTag>ART_DEF_UNIT_SURCOUF_FRENCH</MiddleArtDefineTag>
+						<EarlyArtDefineTag>ART_DEF_UNIT_212A_ATTACK_SUB_ITALY</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_212A_ATTACK_SUB_ITALY</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_212A_ATTACK_SUB_ITALY</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
 

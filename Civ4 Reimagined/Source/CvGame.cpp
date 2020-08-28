@@ -5706,6 +5706,12 @@ bool CvGame::isOption(GameOptionTypes eIndex) const
 	return GC.getInitCore().getOption(eIndex);
 }
 
+// Civ4 Reimagined: Added game speedmodifier
+int CvGame::getPeaceDealLength() const
+{
+	return GC.getDefineINT("PEACE_TREATY_LENGTH") * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getDealLengthPercent() / 100;
+}
+
 
 void CvGame::setOption(GameOptionTypes eIndex, bool bEnabled)
 {
@@ -7395,22 +7401,31 @@ void CvGame::createBarbarianUnits()
 					// Keeps barb ship count in check in early game since generation is greatly increased for BTS 3.17
 					if( pLoopArea->isWater() )
 					{
-						int iPlayerSeaUnits = 0;
-						for( int iI = 0; iI < MAX_CIV_PLAYERS; iI++ )
-						{
-							if( GET_PLAYER((PlayerTypes)iI).isAlive() )
-							{
-								iPlayerSeaUnits += GET_PLAYER((PlayerTypes)iI).AI_totalWaterAreaUnitAIs(pLoopArea,UNITAI_ATTACK_SEA);
-								iPlayerSeaUnits += GET_PLAYER((PlayerTypes)iI).AI_totalWaterAreaUnitAIs(pLoopArea,UNITAI_EXPLORE_SEA);
-								iPlayerSeaUnits += GET_PLAYER((PlayerTypes)iI).AI_totalWaterAreaUnitAIs(pLoopArea,UNITAI_ASSAULT_SEA);
-								iPlayerSeaUnits += GET_PLAYER((PlayerTypes)iI).AI_totalWaterAreaUnitAIs(pLoopArea,UNITAI_SETTLER_SEA);
-							}
-						}
-
-						if( pLoopArea->getUnitsPerPlayer(BARBARIAN_PLAYER) > (iPlayerSeaUnits/3 + 1) )
+						// Civ4 Reimagined: Only spawn barb ships in ancient, classical to avoid stacking them in New World
+						if (getCurrentEra() > 1)
 						{
 							iNeededBarbs = 0;
 						}
+						else
+						{
+							int iPlayerSeaUnits = 0;
+							for( int iI = 0; iI < MAX_CIV_PLAYERS; iI++ )
+							{
+								if( GET_PLAYER((PlayerTypes)iI).isAlive() )
+								{
+									iPlayerSeaUnits += GET_PLAYER((PlayerTypes)iI).AI_totalWaterAreaUnitAIs(pLoopArea,UNITAI_ATTACK_SEA);
+									iPlayerSeaUnits += GET_PLAYER((PlayerTypes)iI).AI_totalWaterAreaUnitAIs(pLoopArea,UNITAI_EXPLORE_SEA);
+									iPlayerSeaUnits += GET_PLAYER((PlayerTypes)iI).AI_totalWaterAreaUnitAIs(pLoopArea,UNITAI_ASSAULT_SEA);
+									iPlayerSeaUnits += GET_PLAYER((PlayerTypes)iI).AI_totalWaterAreaUnitAIs(pLoopArea,UNITAI_SETTLER_SEA);
+								}
+							}
+
+							if( pLoopArea->getUnitsPerPlayer(BARBARIAN_PLAYER) > (iPlayerSeaUnits/3 + 1) )
+							{
+								iNeededBarbs = 0;
+							}
+						}
+
 					}
 					/********************************************************************************/
 					/* 	BETTER_BTS_AI_MOD						END								*/
@@ -10247,8 +10262,8 @@ void CvGame::doVoteSelection()
 				changeVoteTimer(eVoteSource, -1);
 			}
 			else
-			{	// Civ4 Reimagined: K-Mod was bugged, DIPLO_VOTE_SECRETARY_GENERAL_INTERVAL is actually the VOTE_FREQUENCY
-				setVoteTimer(eVoteSource, (GC.getDefineINT("DIPLO_VOTE_SECRETARY_GENERAL_INTERVAL") * GC.getGameSpeedInfo(getGameSpeedType()).getVictoryDelayPercent()) / 100);
+			{
+				setVoteTimer(eVoteSource, (GC.getVoteSourceInfo(eVoteSource).getVoteInterval() * GC.getGameSpeedInfo(getGameSpeedType()).getVictoryDelayPercent()) / 100);
 
 				for (int iTeam1 = 0; iTeam1 < MAX_CIV_TEAMS; ++iTeam1)
 				{
@@ -10290,7 +10305,7 @@ void CvGame::doVoteSelection()
 					else
 					{
 						// Changed by Civ4 Reimagined
-						setSecretaryGeneralTimer(eVoteSource, GC.getVoteSourceInfo(eVoteSource).getVoteInterval());
+						setSecretaryGeneralTimer(eVoteSource, GC.getDefineINT("DIPLO_VOTE_SECRETARY_GENERAL_INTERVAL"));
 
 						for (int iJ = 0; iJ < GC.getNumVoteInfos(); iJ++)
 						{

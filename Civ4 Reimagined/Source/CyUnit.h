@@ -328,7 +328,6 @@ public:
 	int getExtraFriendlyHeal();
 
 	int getSameTileHeal();
-	int getAdjacentTileHeal();
 	
 	int getExtraCombatPercent();
 	int getExtraCityAttackPercent();
