@@ -945,6 +945,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bCivicEffect = false; // Civ4 Reimagined
 	m_bFaithConquest = false; // Civ4 Reimagined
 	m_iColonyTraderouteModifier = 0; // Civ4 Reimagined
+	m_iCorporationTraderouteModifier = 0; // Civ4 Reimagined
 	m_iGreatGeneralGoldenAgeLength = 0; // Civ4 Reimagined
 	
 	m_eID = eID;
@@ -20042,6 +20043,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bCivicEffect); // Civ4 Reimagined
 	pStream->Read(&m_bFaithConquest); // Civ4 Reimagined
 	pStream->Read(&m_iColonyTraderouteModifier); // Civ4 Reimagined
+	pStream->Read(&m_iCorporationTraderouteModifier); // Civ4 Reimagined
 	pStream->Read(&m_iGreatGeneralGoldenAgeLength); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
@@ -20647,6 +20649,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_bCivicEffect); // Civ4 Reimagined
 	pStream->Write(m_bFaithConquest); // Civ4 Reimagined
 	pStream->Write(m_iColonyTraderouteModifier); // Civ4 Reimagined
+	pStream->Write(m_iCorporationTraderouteModifier); // Civ4 Reimagined
 	pStream->Write(m_iGreatGeneralGoldenAgeLength); // Civ4 Reimagined
 	
 	pStream->Write(m_bAlive);
@@ -27340,6 +27343,20 @@ int CvPlayer::getColonyTraderouteModifier() const
 }
 
 //Civ4 Reimagined
+void CvPlayer::changeCorporationTraderouteModifier(int iChange)
+{
+	m_iCorporationTraderouteModifier += iChange;
+	
+	updateTradeRoutes();
+}
+
+//Civ4 Reimagined
+int CvPlayer::getCorporationTraderouteModifier() const
+{
+	return m_iCorporationTraderouteModifier;
+}
+
+//Civ4 Reimagined
 void CvPlayer::changeGreatGeneralGoldenAgeLength(int iChange)
 {
 	m_iGreatGeneralGoldenAgeLength += iChange;
@@ -27359,13 +27376,7 @@ void CvPlayer::updateUniquePowers(TechTypes eTech)
 		return;
 	}
 	
-	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AMERICA")
-		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_LIBERALISM"))
-	{
-		setHasImmigrants(true);
-		notifyUniquePowersChanged(true);
-	}
-	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ARABIA")
+	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ARABIA")
 		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_DIVINE_RIGHT")
 		&& (EraTypes)getCurrentEra() < 3) // Starts with tech, but ends at era
 	{
@@ -27412,12 +27423,16 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	}
 	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AMERICA"))
 	{
-		// No effect, gain power elsewhere. But no compensation bonus either.
+		if (eEra == 4)
+		{
+			changeCorporationTraderouteModifier(GC.getDefineINT("UNIQUE_POWER_AMERICA"));
+			notifyUniquePowersChanged(true);
+		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ARABIA"))
 	{
 		// Ends with era, but starts with tech
-		if(eEra == 3)
+		if (eEra == 3)
 		{
 			setFaithConquest(false);
 			notifyUniquePowersChanged(false);

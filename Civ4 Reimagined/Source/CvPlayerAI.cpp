@@ -6686,7 +6686,11 @@ int CvPlayerAI::uniquePowerAIEraValueMult(EraTypes eEra) const
 {
 	FAssert(eEra >= -1);
 	
-	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ARABIA") && eEra == 3)
+	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AMERICA") && eEra >= 4)
+	{
+		return 125;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ARABIA") && eEra == 3)
 	{
 		// Only calculate effect of leaving this era
 		if(getCurrentEra() == 3)

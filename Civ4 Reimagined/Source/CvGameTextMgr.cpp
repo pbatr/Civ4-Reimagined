@@ -18823,6 +18823,29 @@ void CvGameTextMgr::setTradeRouteHelp(CvWStringBuffer &szBuffer, int iRoute, CvC
 				}
 
 				// Civ4 Reimagined
+				iNewMod = GET_PLAYER(pCity->getOwnerINLINE()).getCorporationTraderouteModifier();
+				if (iNewMod > 0)
+				{
+					if (pOtherCity->getOwnerINLINE() != pCity->getOwnerINLINE())
+					{
+						for (int iI = 0; iI < GC.getNumCorporationInfos(); iI++)
+						{
+							CorporationTypes eCorporation = (CorporationTypes)iI;
+							if (GET_PLAYER(pCity->getOwnerINLINE()).hasHeadquarters(eCorporation))
+							{
+								if (pOtherCity->isActiveCorporation((CorporationTypes)iI))
+								{
+									szBuffer.append(NEWLINE);
+									szBuffer.append(gDLL->getText("TXT_KEY_TRADE_ROUTE_MOD_UNIQUE", iNewMod));
+									iModifier += iNewMod;
+									break; // Modifier applies only once, not once per corporation
+								}
+							}
+						}
+					}
+				}
+
+				// Civ4 Reimagined
 				iNewMod =  ((pCity->isCapital() && !GET_PLAYER(pCity->getOwnerINLINE()).isNoCapital()) ? GC.getDefineINT("CAPITAL_TRADE_MODIFIER") : 0);
 
 				if (pOtherCity->isCapital() && !GET_PLAYER(pOtherCity->getOwnerINLINE()).isNoCapital())

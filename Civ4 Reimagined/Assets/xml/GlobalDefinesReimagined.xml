@@ -329,12 +329,8 @@
 		<iDefineIntVal>2</iDefineIntVal> <!-- % commerce modifier -->
 	</Define>
 	<Define>
-		<DefineName>UNIQUE_POWER_AMERICA_IMMIGRATION_BASE</DefineName>
-		<iDefineIntVal>15</iDefineIntVal> <!-- Chance per turn and city to gain an immigrant -->
-	</Define>
-	<Define>
-		<DefineName>UNIQUE_POWER_AMERICA_IMMIGRATION_REDUCTION</DefineName>
-		<iDefineIntVal>3</iDefineIntVal> <!-- Reduce chance per already present immigrant -->
+		<DefineName>UNIQUE_POWER_AMERICA</DefineName>
+		<iDefineIntVal>300</iDefineIntVal> <!-- Trade route modifier with cities that have own corporation -->
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_ARABIA</DefineName>

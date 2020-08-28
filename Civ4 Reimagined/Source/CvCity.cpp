@@ -10046,6 +10046,26 @@ int CvCity::totalTradeModifier(CvCity* pOtherCity) const
 				iModifier += GET_PLAYER(getOwnerINLINE()).getColonyTraderouteModifier();
 			}
 		}
+		
+		// Civ4 Reimagined: Unique Power
+		if (GET_PLAYER(getOwnerINLINE()).getCorporationTraderouteModifier() > 0)
+		{
+			if (pOtherCity->getOwnerINLINE() != getOwnerINLINE())
+			{
+				for (int iI = 0; iI < GC.getNumCorporationInfos(); iI++)
+				{
+					CorporationTypes eCorporation = (CorporationTypes)iI;
+					if (GET_PLAYER(getOwnerINLINE()).hasHeadquarters(eCorporation))
+					{
+						if (pOtherCity->isActiveCorporation((CorporationTypes)iI))
+						{
+							iModifier += GET_PLAYER(getOwnerINLINE()).getCorporationTraderouteModifier();
+							break; // Modifier applies only once, not once per corporation
+						}
+					}
+				}
+			}			
+		}
 
 		// Civ4 Reimagined
 		if (isConnectedToCapital() && !GET_PLAYER(pOtherCity->getOwnerINLINE()).isNoCapital())
