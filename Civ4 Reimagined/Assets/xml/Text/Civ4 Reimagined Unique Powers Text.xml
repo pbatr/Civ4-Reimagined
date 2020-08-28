@@ -99,4 +99,12 @@
 		<Tag>TXT_KEY_TRADE_ROUTE_MOD_UNIQUE</Tag>
 		<English>%D1%%: for unique power</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_HELP_REQUIRES_STATE_RELIGION</Tag>
+		<English>State Religion</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_HELP_REQUIRES_NON_STATE_RELIGION_CITY</Tag>
+		<English>Non-state Religion in City</English>
+	</TEXT>
 </Civ4GameText>

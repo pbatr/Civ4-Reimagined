@@ -1961,10 +1961,6 @@ void CvDLLWidgetData::parseConscriptHelp(CvWidgetDataStruct &widgetDataStruct, C
 {
 	CvCity* pHeadSelectedCity;
 	CvWString szTempBuffer;
-	int iConscriptPopulation;
-	int iConscriptAngerLength;
-	int iMinCityPopulation;
-	int iMinCulturePercent;
 	int iI;
 	bool bFirst;
 
@@ -1978,7 +1974,7 @@ void CvDLLWidgetData::parseConscriptHelp(CvWidgetDataStruct &widgetDataStruct, C
 			szTemp.Format(SETCOLR L"%s" ENDCOLR, TEXT_COLOR("COLOR_UNIT_TEXT"), GC.getUnitInfo(pHeadSelectedCity->getConscriptUnit()).getDescription());
 			szBuffer.assign(szTemp);
 
-			iConscriptPopulation = pHeadSelectedCity->getConscriptPopulation();
+			int iConscriptPopulation = pHeadSelectedCity->getConscriptPopulation();
 
 			if (iConscriptPopulation > 0)
 			{
@@ -1986,7 +1982,7 @@ void CvDLLWidgetData::parseConscriptHelp(CvWidgetDataStruct &widgetDataStruct, C
 				szBuffer.append(gDLL->getText("TXT_KEY_MISC_HURRY_POP", iConscriptPopulation));
 			}
 
-			iConscriptAngerLength = pHeadSelectedCity->flatConscriptAngerLength();
+			int iConscriptAngerLength = pHeadSelectedCity->flatConscriptAngerLength();
 
 			if (iConscriptAngerLength > 0)
 			{
@@ -1994,15 +1990,15 @@ void CvDLLWidgetData::parseConscriptHelp(CvWidgetDataStruct &widgetDataStruct, C
 				szBuffer.append(gDLL->getText("TXT_KEY_MISC_ANGER_TURNS", GC.getDefineINT("CONSCRIPT_POP_ANGER"), (iConscriptAngerLength + pHeadSelectedCity->getConscriptAngerTimer())));
 			}
 
-			iMinCityPopulation = pHeadSelectedCity->conscriptMinCityPopulation();
+			int iMinCityPopulation = pHeadSelectedCity->conscriptMinCityPopulation();
 
 			if (pHeadSelectedCity->getPopulation() < iMinCityPopulation)
 			{
 				szBuffer.append(NEWLINE);
 				szBuffer.append(gDLL->getText("TXT_KEY_MISC_MIN_CITY_POP", iMinCityPopulation));
 			}
-
-			iMinCulturePercent = GC.getDefineINT("CONSCRIPT_MIN_CULTURE_PERCENT");
+			
+			int iMinCulturePercent = GC.getDefineINT("CONSCRIPT_MIN_CULTURE_PERCENT");
 
 			if (pHeadSelectedCity->plot()->calculateTeamCulturePercent(pHeadSelectedCity->getTeam()) < iMinCulturePercent)
 			{
@@ -2010,7 +2006,30 @@ void CvDLLWidgetData::parseConscriptHelp(CvWidgetDataStruct &widgetDataStruct, C
 				szBuffer.append(gDLL->getText("TXT_KEY_MISC_MIN_CULTURE_PERCENT", iMinCulturePercent));
 			}
 
-			if (GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).getMaxConscript() == 0)
+			// Civ4 Reimagined: Unique power
+			if (GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).isConscriptInfidels())
+			{
+				if (GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).getStateReligion() == NO_RELIGION)
+				{
+					szTempBuffer = NEWLINE + gDLL->getText("TXT_KEY_REQUIRES");
+					bFirst = true; 
+
+					setListHelp(szBuffer, szTempBuffer, gDLL->getText("TXT_KEY_MISC_HELP_REQUIRES_STATE_RELIGION"), gDLL->getText("TXT_KEY_OR").c_str(), bFirst);
+				}
+				else
+				{
+					ReligionTypes eStateReligion = GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).getStateReligion();
+					int nonStateReligions = pHeadSelectedCity->getReligionCount() - pHeadSelectedCity->isHasReligion(eStateReligion);
+					if (nonStateReligions == 0)
+					{
+						bFirst = true; 
+						szTempBuffer = NEWLINE + gDLL->getText("TXT_KEY_REQUIRES");
+						bFirst = true; 
+						setListHelp(szBuffer, szTempBuffer, gDLL->getText("TXT_KEY_MISC_HELP_REQUIRES_NON_STATE_RELIGION_CITY"), gDLL->getText("TXT_KEY_OR").c_str(), bFirst);
+					}
+				}				
+			}
+			else if (GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).getMaxConscript() == 0)
 			{
 				bFirst = true;
 
