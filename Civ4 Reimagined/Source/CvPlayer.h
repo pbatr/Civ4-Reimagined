@@ -1387,6 +1387,8 @@ public:
 	int getCorporationTraderouteModifier() const; // Civ4 Reimagined
 	void changeGreatGeneralGoldenAgeLength(int iChange); // Civ4 Reimagined
 	int getGreatGeneralGoldenAgeLength() const; // Civ4 Reimagined
+	void setConscriptInfidels(bool bNewValue); // Civ4 Reimagnied
+	bool isConscriptInfidels() const; // Civ4 Reimagined
 	
 	// K-Mod note: Adding new virtual functions to this list seems to cause unpredictable behaviour during the initialization of the game.
 	// So beware!
@@ -1632,6 +1634,7 @@ protected:
 	int m_iColonyTraderouteModifier; // Civ4 Reimagined
 	int m_iCorporationTraderouteModifier; // Civ4 Reimagined
 	int m_iGreatGeneralGoldenAgeLength; // Civ4 Reimagined
+	bool m_bConscriptInfidels; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
 

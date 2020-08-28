@@ -393,6 +393,10 @@
 		<iDefineIntVal>25</iDefineIntVal> <!-- Production speed bonus -->
 	</Define>
 	<Define>
+		<DefineName>UNIQUE_POWER_ROME</DefineName>
+		<iDefineIntVal>2</iDefineIntVal> <!-- Extra units on city conquest -->
+	</Define>
+	<Define>
 		<DefineName>UNIQUE_POWER_SUMERIA</DefineName>
 		<iDefineIntVal>50</iDefineIntVal> <!-- Per cent tech progress -->
 	</Define>

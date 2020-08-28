@@ -6686,43 +6686,51 @@ int CvPlayerAI::uniquePowerAIEraValueMult(EraTypes eEra) const
 {
 	FAssert(eEra >= -1);
 	
-	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AMERICA") && eEra >= 4)
+	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AMERICA") && eEra >= ERA_INDUSTRIAL)
 	{
 		return 125;
 	}
-	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ARABIA") && eEra == 3)
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ARABIA") && eEra == ERA_RENAISSANCE)
 	{
 		// Only calculate effect of leaving this era
-		if(getCurrentEra() == 3)
+		if(getCurrentEra() == ERA_RENAISSANCE)
 		{
 			return 150;
 		}
 	}
-	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON") && eEra <= 1)
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON") && eEra <= ERA_CLASSICAL)
 	{
 		return 125;
 	}
-	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CARTHAGE") && eEra == 1)
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CARTHAGE") && eEra == ERA_CLASSICAL)
 	{
 		return 150;
 	}
-	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CELT") && eEra == 1)
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CELT") && eEra == ERA_CLASSICAL)
 	{
 		return 150;
 	}
-	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_EGYPT") && eEra == 0)
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_EGYPT") && eEra == ERA_ANCIENT)
 	{
 		return 150;
 	}
-	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_GERMANY") && eEra >= 4)
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_GERMANY") && eEra >= ERA_INDUSTRIAL)
 	{
 		return 125;
 	}
-	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_GREECE") && eEra <= 1)
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_GREECE") && eEra <= ERA_CLASSICAL)
 	{
 		return 125;
 	}
-	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME") && eEra == 1)
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_OTTOMAN") && eEra == ERA_INDUSTRIAL)
+	{
+		// Only calculate effect of leaving this era
+		if(getCurrentEra() == ERA_INDUSTRIAL)
+		{
+			return 140;
+		}
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME") && eEra == ERA_CLASSICAL)
 	{
 		return 150;
 	}
@@ -6744,6 +6752,11 @@ int CvPlayerAI::uniquePowerAITechValueMult(TechTypes eTech) const
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA")
 		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_CALENDAR"))
+	{
+		return 300;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_OTTOMAN")
+		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_GUNPOWDER"))
 	{
 		return 300;
 	}

@@ -3975,9 +3975,19 @@ bool CvCity::canConscript() const
 		return false;
 	}
 
-	if (GET_PLAYER(getOwnerINLINE()).getConscriptCount() >= GET_PLAYER(getOwnerINLINE()).getMaxConscript())
+	// Civ4 Reimagined: Unique power
+	bool infidelConscription = false;
+	if (GET_PLAYER(getOwnerINLINE()).isConscriptInfidels() && GET_PLAYER(getOwnerINLINE()).getStateReligion() != NO_RELIGION)
 	{
-		return false;
+		ReligionTypes eStateReligion = GET_PLAYER(getOwnerINLINE()).getStateReligion();
+		int nonStateReligions = getReligionCount() - isHasReligion(eStateReligion);
+		infidelConscription = nonStateReligions > 0;
+	}
+
+	bool regularConscription = GET_PLAYER(getOwnerINLINE()).getMaxConscript() > GET_PLAYER(getOwnerINLINE()).getConscriptCount();
+	if (!regularConscription && !infidelConscription)
+	{
+		return false;		
 	}
 
 	if (getPopulation() <= getConscriptPopulation())

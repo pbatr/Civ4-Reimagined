@@ -994,6 +994,14 @@ enum TurnTimerTypes				// Exposed to Python
 enum EraTypes							// Exposed to Python
 {
 	NO_ERA = -1,
+	// Civ4 Reimagined: For hardcoded era comparisons (unique powers)
+	ERA_ANCIENT		= 0,	
+	ERA_CLASSICAL	= 1,
+	ERA_MEDIEVAL	= 2,
+	ERA_RENAISSANCE	= 3,
+	ERA_INDUSTRIAL	= 4,
+	ERA_MODERN		= 5,
+	ERA_FUTURE		= 6,
 };
 
 enum CivilizationTypes		// Exposed to Python

@@ -947,6 +947,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iColonyTraderouteModifier = 0; // Civ4 Reimagined
 	m_iCorporationTraderouteModifier = 0; // Civ4 Reimagined
 	m_iGreatGeneralGoldenAgeLength = 0; // Civ4 Reimagined
+	m_bConscriptInfidels = false; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -20045,6 +20046,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iColonyTraderouteModifier); // Civ4 Reimagined
 	pStream->Read(&m_iCorporationTraderouteModifier); // Civ4 Reimagined
 	pStream->Read(&m_iGreatGeneralGoldenAgeLength); // Civ4 Reimagined
+	pStream->Read(&m_bConscriptInfidels); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -20651,6 +20653,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iColonyTraderouteModifier); // Civ4 Reimagined
 	pStream->Write(m_iCorporationTraderouteModifier); // Civ4 Reimagined
 	pStream->Write(m_iGreatGeneralGoldenAgeLength); // Civ4 Reimagined
+	pStream->Write(m_bConscriptInfidels); // Civ4 Reimagined
 	
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -27369,6 +27372,19 @@ int CvPlayer::getGreatGeneralGoldenAgeLength() const
 }
 
 //Civ4 Reimagined
+void CvPlayer::setConscriptInfidels(bool bNewValue)
+{
+	m_bConscriptInfidels = bNewValue;
+}
+
+//Civ4 Reimagined
+bool CvPlayer::isConscriptInfidels() const
+{
+	return m_bConscriptInfidels;
+}
+
+
+//Civ4 Reimagined
 void CvPlayer::updateUniquePowers(TechTypes eTech)
 {
 	if (getID() == NO_PLAYER)
@@ -27378,7 +27394,7 @@ void CvPlayer::updateUniquePowers(TechTypes eTech)
 	
 	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ARABIA")
 		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_DIVINE_RIGHT")
-		&& (EraTypes)getCurrentEra() < 3) // Starts with tech, but ends at era
+		&& (EraTypes)getCurrentEra() <= ERA_MEDIEVAL) // Starts with tech, but ends at era
 	{
 		setFaithConquest(true);
 		notifyUniquePowersChanged(true);
@@ -27390,7 +27406,13 @@ void CvPlayer::updateUniquePowers(TechTypes eTech)
 		checkMayaCalendar();
 		notifyUniquePowersChanged(true);
 	}
-	
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_OTTOMAN")
+		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_GUNPOWDER")
+		&& (EraTypes)getCurrentEra() <= ERA_RENAISSANCE) // Starts with tech, but ends at era
+	{
+		setConscriptInfidels(true);
+		notifyUniquePowersChanged(true);
+	}	
 }
 
 //Civ4 Reimagined
@@ -27418,12 +27440,12 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 {
 	if (getID() == NO_PLAYER)
 	{
-		return;
-		
+		return;		
 	}
+
 	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AMERICA"))
 	{
-		if (eEra == 4)
+		if (eEra == ERA_INDUSTRIAL)
 		{
 			changeCorporationTraderouteModifier(GC.getDefineINT("UNIQUE_POWER_AMERICA"));
 			notifyUniquePowersChanged(true);
@@ -27432,7 +27454,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ARABIA"))
 	{
 		// Ends with era, but starts with tech
-		if (eEra == 3)
+		if (eEra == ERA_RENAISSANCE)
 		{
 			setFaithConquest(false);
 			notifyUniquePowersChanged(false);
@@ -27440,13 +27462,13 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AZTEC"))
 	{
-		if (eEra == 0)
+		if (eEra == ERA_ANCIENT)
 		{
 			setUniqueAztecPromotion(true);
 			changeCulturePerPopulationSacrified(5);
 			notifyUniquePowersChanged(true);
 		}
-		else if(eEra == 3)
+		else if(eEra == ERA_RENAISSANCE)
 		{
 			setUniqueAztecPromotion(false);
 			changeCulturePerPopulationSacrified(-5);
@@ -27455,7 +27477,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON"))
 	{
-		if (eEra == 0)
+		if (eEra == ERA_ANCIENT)
 		{
 			changeNoCapitalUnhappinessCount(1);
 			setCapitalCommercePerPopulation(COMMERCE_GOLD,      GC.getDefineINT("UNIQUE_POWER_BABYLON"), GC.getDefineINT("UNIQUE_POWER_BABYLON_2"));
@@ -27464,7 +27486,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			setCapitalCommercePerPopulation(COMMERCE_ESPIONAGE, GC.getDefineINT("UNIQUE_POWER_BABYLON"), GC.getDefineINT("UNIQUE_POWER_BABYLON_2"));
 			notifyUniquePowersChanged(true);
 		}
-		else if (eEra == 2)
+		else if (eEra == ERA_MEDIEVAL)
 		{
 			changeNoCapitalUnhappinessCount(-1);
 			setCapitalCommercePerPopulation(COMMERCE_GOLD, 0, 0);
@@ -27476,13 +27498,13 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CARTHAGE"))
 	{
-		if (eEra == 1)
+		if (eEra == ERA_CLASSICAL)
 		{
 			setSpecialTradeRoutePerPlayer(true);
 			changeDomainProductionModifier(DOMAIN_SEA, GC.getInfoTypeForString("UNIQUE_POWER_CARTHARGE_2"));
 			notifyUniquePowersChanged(true);
 		}
-		else if (eEra == 2)
+		else if (eEra == ERA_MEDIEVAL)
 		{
 			setSpecialTradeRoutePerPlayer(false);
 			changeDomainProductionModifier(DOMAIN_SEA, -GC.getInfoTypeForString("UNIQUE_POWER_CARTHARGE_2"));
@@ -27491,13 +27513,13 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CELT"))
 	{
-		if (eEra == 1)
+		if (eEra == ERA_CLASSICAL)
 		{
 			changeAdjacentFeatureCommerce((FeatureTypes)GC.getInfoTypeForString("FEATURE_FOREST"), COMMERCE_CULTURE, GC.getDefineINT("UNIQUE_POWER_CELT_CULTURE"));
 			changeAdjacentFeatureCommerce((FeatureTypes)GC.getInfoTypeForString("FEATURE_FOREST"), COMMERCE_RESEARCH, GC.getDefineINT("UNIQUE_POWER_CELT_RESEARCH"));
 			notifyUniquePowersChanged(true);
 		}
-		else if (eEra == 2)
+		else if (eEra == ERA_MEDIEVAL)
 		{
 			changeAdjacentFeatureCommerce((FeatureTypes)GC.getInfoTypeForString("FEATURE_FOREST"), COMMERCE_CULTURE, GC.getDefineINT("UNIQUE_POWER_CELT_CULTURE"));
 			changeAdjacentFeatureCommerce((FeatureTypes)GC.getInfoTypeForString("FEATURE_FOREST"), COMMERCE_RESEARCH, GC.getDefineINT("UNIQUE_POWER_CELT_RESEARCH"));
@@ -27506,7 +27528,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CHINA"))
 	{
-		if (eEra == 0)
+		if (eEra == ERA_ANCIENT)
 		{
 			setCommerceAboveAveragePopulation(COMMERCE_RESEARCH, GC.getDefineINT("UNIQUE_POWER_CHINA_MAX_POP"), GC.getDefineINT("UNIQUE_POWER_CHINA_MAX_EFFECT"));
 			notifyUniquePowersChanged(true);
@@ -27514,13 +27536,13 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_EGYPT"))
 	{
-		if (eEra == 0)
+		if (eEra == ERA_ANCIENT)
 		{
 			changeSlavePointsPerPopulationSacrificed(GC.getDefineINT("UNIQUE_POWER_EGYPT"));
 			changeProductionPerPopulationModifier(25);
 			notifyUniquePowersChanged(true);
 		}
-		else if (eEra == 1)
+		else if (eEra == ERA_CLASSICAL)
 		{
 			changeSlavePointsPerPopulationSacrificed(-GC.getDefineINT("UNIQUE_POWER_EGYPT"));
 			changeProductionPerPopulationModifier(-25);
@@ -27529,7 +27551,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ENGLAND"))
 	{
-		if (eEra == 3)
+		if (eEra == ERA_RENAISSANCE)
 		{
 			changeColonyTraderouteModifier(GC.getDefineINT("UNIQUE_POWER_ENGLAND"));
 			notifyUniquePowersChanged(true);
@@ -27537,7 +27559,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_GERMANY"))
 	{
-		if (eEra == 4)
+		if (eEra == ERA_INDUSTRIAL)
 		{
 			changeGreatGeneralGoldenAgeLength(GC.getDefineINT("UNIQUE_POWER_GERMANY"));
 			notifyUniquePowersChanged(true);
@@ -27545,7 +27567,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_GREECE"))
 	{
-		if (eEra == 0)
+		if (eEra == ERA_ANCIENT)
 		{
 			setHasCivicEffect(true); // Activate before calling changeTurnsToEffectFromStayingAtCivic
 
@@ -27571,7 +27593,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			
 			notifyUniquePowersChanged(true);
 		}
-		else if (eEra == 2)
+		else if (eEra == ERA_MEDIEVAL)
 		{
 			setHasCivicEffect(false);
 			notifyUniquePowersChanged(false);
@@ -27579,7 +27601,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_INCA"))
 	{
-		if (eEra == 0) 
+		if (eEra == ERA_ANCIENT) 
 		{
 			changeCanFarmHillsCount(1);
 			notifyUniquePowersChanged(true);
@@ -27588,39 +27610,48 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA"))
 	{
 		// Also gains effect with Calendar
-		if (eEra == 1) 
+		if (eEra == ERA_CLASSICAL) 
 		{
 			changeUniquePowerBuildingModifier(GC.getDefineINT("UNIQUE_POWER_MAYA"));
 			notifyUniquePowersChanged(true);
 		}
-		else if (eEra == 3)
+		else if (eEra == ERA_RENAISSANCE)
 		{
 			changeUniquePowerBuildingModifier(-GC.getDefineINT("UNIQUE_POWER_MAYA"));
 			notifyUniquePowersChanged(false);
 		}
 	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_OTTOMAN"))
+	{
+		// Ends with era, but starts with tech
+		if (eEra == ERA_INDUSTRIAL)
+		{
+			setConscriptInfidels(false);
+			notifyUniquePowersChanged(false);
+		}
+	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME"))
 	{
-		if (eEra == 1) 
+		if (eEra == ERA_CLASSICAL) 
 		{
-			changeFreeUnitsOnConquest(2); // 2+Culture-Level der Stadt Einheiten
+			changeFreeUnitsOnConquest(GC.getDefineINT("UNIQUE_POWER_ROME")); // 2+Culture-Level der Stadt Einheiten
 			notifyUniquePowersChanged(true);
 		}
-		else if (eEra == 2)
+		else if (eEra == ERA_MEDIEVAL)
 		{
-			changeFreeUnitsOnConquest(-2);
+			changeFreeUnitsOnConquest(-GC.getDefineINT("UNIQUE_POWER_ROME"));
 			notifyUniquePowersChanged(false);
 		}			
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SUMERIA"))
 	{
-		if (eEra == 0) 
+		if (eEra == ERA_ANCIENT) 
 		{
 			changeTechProgressOnSettling( GC.getDefineINT("UNIQUE_POWER_SUMERIA"), (EraTypes)0 );
 			changeEarlyPriestExtraFood(1);
 			notifyUniquePowersChanged(true);
 		}
-		else if (eEra == 1)
+		else if (eEra == ERA_CLASSICAL)
 		{
 			changeTechProgressOnSettling( -GC.getDefineINT("UNIQUE_POWER_SUMERIA"), (EraTypes)0 );
 			changeEarlyPriestExtraFood(-1);
