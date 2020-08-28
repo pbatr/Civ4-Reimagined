@@ -330,7 +330,7 @@
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_AMERICA</DefineName>
-		<iDefineIntVal>300</iDefineIntVal> <!-- Trade route modifier with cities that have own corporation -->
+		<iDefineIntVal>600</iDefineIntVal> <!-- Trade route modifier with cities that have own corporation -->
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_ARABIA</DefineName>
@@ -382,7 +382,7 @@
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_GERMANY</DefineName>
-		<iDefineIntVal>50</iDefineIntVal> <!-- Length of golden ages made with generals (only). -->
+		<iDefineIntVal>67</iDefineIntVal> <!-- Length of golden ages made with generals (only). -->
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_GREECE</DefineName>
