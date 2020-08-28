@@ -715,6 +715,9 @@ bool CvDeal::startTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eT
 
 	bSave = false;
 
+	// Civ4 Reimagined: Added gamespeed modifier
+	const int iPeaceTreatyLength = GC.getGameINLINE().getPeaceDealLength();
+
 	switch (trade.m_eItemType)
 	{
 	case TRADE_TECHNOLOGIES:
@@ -921,8 +924,6 @@ bool CvDeal::startTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eT
 		// Civ4 Reimagined: no anarchy
 		GET_PLAYER(eFromPlayer).revolution(paeNewCivics, true, false);
 
-		// Civ4 Reimagined: Added gamespeed modifier
-		int iPeaceTreatyLength = GC.getGameINLINE().getPeaceDealLength();
 		if (GET_PLAYER(eFromPlayer).AI_getCivicTimer() < iPeaceTreatyLength)
 		{
 			GET_PLAYER(eFromPlayer).AI_setCivicTimer(iPeaceTreatyLength);
