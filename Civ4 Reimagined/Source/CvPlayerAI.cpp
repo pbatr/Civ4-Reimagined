@@ -6158,7 +6158,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				//iValue += 3 * (iNewCivicValue - iCurrentCivicValue);
 				// Civ4 Reimagined
 				const bool bFavorite = (eNewCivic == GC.getLeaderHeadInfo(getPersonalityType()).getFavoriteCivic());
-				const int iCivicValue = (bFavorite ? 12 : 9) * (iNewCivicValue - iCurrentCivicValue) * (bNewReligionCivic ? 3 : 1);
+				const int iCivicValue = (bFavorite ? 20 : 15) * (iNewCivicValue - iCurrentCivicValue) * (bNewReligionCivic ? 2 : 1);
 
 				if (gPlayerLogLevel > 2) logBBAI("	%S Tech Civic Value: %d", GC.getCivicInfo(eNewCivic).getDescription(0), iCivicValue);
 
