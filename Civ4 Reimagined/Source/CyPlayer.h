@@ -443,18 +443,15 @@ public:
 	int calculateBonusRatioModifier(); // Civ4 Reimagined
 	int getTechValue(); // Civ4 Reimagined
 	int getBonusRatio(); // Civ4 Reimagined
-	int getUniquePowerLevel(); // Civ4 Reimagined
-	long getUniquePowerRequirement(int iLevel); // Civ4 Reimagined
-	long getAccumulatedCulture(); // Civ4 Reimagined
-	long getUniquePowerRate(); // Civ4 Reimagined
 	int getMayaCalendar(); // Civ4 Reimagined
 	
 	int getCombatExperience() const;
 	void changeCombatExperience(int iChange);
 	void setCombatExperience(int iExperience);
 	
+	// Civ4 Reimagined
 	int getSlavePoints() const;
-	int getNewSlaveThreshold() const;
+	int getSlaveThreshold() const;
 
 	int getSpecialistExtraYield(int /*SpecialistTypes*/ eIndex1, int /*YieldTypes*/ eIndex2);
 

@@ -1340,7 +1340,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_SLAVERY_PROGRESS</Tag>
-		<English>Slave: %d1_Curr/%d2_Need Progress</English>
+		<English>Slave: %d1_Curr/%d2_Need Progress. Gain points equal to population of conquered or razed cities. Gaining Slaves by settling on oversea lands does neither require nor change this progress.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_MELEE_MILITARY_FOOD</Tag>
@@ -1393,6 +1393,10 @@
 	<TEXT>
 		<Tag>TXT_KEY_MISC_YOUR_AIR_UNIT_DAMAGED</Tag>
 		<English>Your %s1_UnitName was damaged by an enemy %s2_EnUName (%d3%% HP)</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_HELP_FEATURE_COMMERCE</Tag>
+		<English>[ICON_BULLET]%s1%F2 from Terrain Features</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_ADD_CARGO_RANGE</Tag>

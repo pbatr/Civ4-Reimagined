@@ -49,6 +49,7 @@ CvCity::CvCity()
 	m_aiBonusYieldRateModifier = new int[NUM_YIELD_TYPES];
 	m_aiTechYieldRateModifier = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
 	m_aiTechCommerceRateModifier = new int[NUM_COMMERCE_TYPES]; // Civ4 Reimagined
+	m_aiFeatureAdjacentCommerce = new int[NUM_COMMERCE_TYPES]; // Civ4 Reimagined
 	m_aiTradeYield = new int[NUM_YIELD_TYPES];
 	m_aiCorporationYield = new int[NUM_YIELD_TYPES];
 	m_aiExtraSpecialistYield = new int[NUM_YIELD_TYPES];
@@ -141,6 +142,7 @@ CvCity::~CvCity()
 	SAFE_DELETE_ARRAY(m_aiBonusYieldRateModifier);
 	SAFE_DELETE_ARRAY(m_aiTechYieldRateModifier); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiTechCommerceRateModifier); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_aiFeatureAdjacentCommerce); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiTradeYield);
 	SAFE_DELETE_ARRAY(m_aiCorporationYield);
 	SAFE_DELETE_ARRAY(m_aiExtraSpecialistYield);
@@ -339,6 +341,7 @@ void CvCity::init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, 
 	updateFreshWaterHealth();
 	updateFeatureHealth();
 	updateFeatureHappiness();
+	updateFeatureAdjacentCommerce();
 	updatePowerHealth();
 
 	GET_PLAYER(getOwnerINLINE()).updateMaintenance();
@@ -537,6 +540,7 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 	m_iGoldForHappinessBonus = 0; // Civ4 Reimagined
 	m_iEspionageDefenseModifier = 0;
 	m_iDistance = 0; // Civ4 Reimagined
+	m_iImmigrants = 0; // Civ4 Reimagined
 
 	m_bNeverLost = true;
 	m_bBombarded = false;
@@ -581,6 +585,7 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 		m_aiCommerceRateModifier[iI] = 0;
 		m_aiCommerceHappinessPer[iI] = 0;
 		m_aiTechCommerceRateModifier[iI] = 0; // Civ4 Reimagined
+		m_aiFeatureAdjacentCommerce[iI] = 0; // Civ4 Reimagined
 	}
 
 	for (iI = 0; iI < NUM_DOMAIN_TYPES; iI++)
@@ -1044,6 +1049,8 @@ void CvCity::doTurn()
 
 	doMeltdown();
 
+	doImmigration();
+
 	updateEspionageVisibility(true);
 
 	if (!isDisorder())
@@ -1186,13 +1193,18 @@ void CvCity::doTurn()
 				{
 					iCount += std::min(getPopulation(), std::max(0, (happyLevel() - unhappyLevel())) * GET_PLAYER(getOwnerINLINE()).getProductionPerSurplusHappiness() / 100);
 				}
+
+				if (getImmigrants() > 0)
+				{
+					iCount += getImmigrants();
+				}
 			}
 
 			if (iCount != getBaseYieldRate((YieldTypes)iI))
 			{
 				logBBAI("base yieldRate is invalid in %S for %d (value: %d, count: %d)", getName().GetCString(), iI, getBaseYieldRate((YieldTypes)iI), iCount);
 			}
-
+			
 			FAssert(iCount == getBaseYieldRate((YieldTypes)iI));
 		}
 
@@ -3813,7 +3825,12 @@ void CvCity::hurry(HurryTypes eHurry)
 	changePopulation(-(iHurryPopulation));
 	
 	changeCultureTimes100(getOwnerINLINE(), iHurryPopulation * GET_PLAYER(getOwnerINLINE()).getCulturePerPopulationSacrified(), true, true); // Civ4 Reimagined
-
+	
+	if (GET_PLAYER(getOwnerINLINE()).getSlavePointsPerPopulationSacrificed() != 0)
+	{
+		GET_PLAYER(getOwnerINLINE()).changeSlavePoints(iHurryPopulation * GET_PLAYER(getOwnerINLINE()).getSlavePointsPerPopulationSacrificed(), this); // Civ4 Reimagined
+	}
+	
 	changeHurryAngerTimer(iHurryAngerLength);
 
 /************************************************************************************************/
@@ -3958,9 +3975,19 @@ bool CvCity::canConscript() const
 		return false;
 	}
 
-	if (GET_PLAYER(getOwnerINLINE()).getConscriptCount() >= GET_PLAYER(getOwnerINLINE()).getMaxConscript())
+	// Civ4 Reimagined: Unique power
+	bool infidelConscription = false;
+	if (GET_PLAYER(getOwnerINLINE()).isConscriptInfidels() && GET_PLAYER(getOwnerINLINE()).getStateReligion() != NO_RELIGION)
 	{
-		return false;
+		ReligionTypes eStateReligion = GET_PLAYER(getOwnerINLINE()).getStateReligion();
+		int nonStateReligions = getReligionCount() - isHasReligion(eStateReligion);
+		infidelConscription = nonStateReligions > 0;
+	}
+
+	bool regularConscription = GET_PLAYER(getOwnerINLINE()).getMaxConscript() > GET_PLAYER(getOwnerINLINE()).getConscriptCount();
+	if (!regularConscription && !infidelConscription)
+	{
+		return false;		
 	}
 
 	if (getPopulation() <= getConscriptPopulation())
@@ -7377,17 +7404,6 @@ int CvCity::getMilitaryHappinessUnits() const
 
 	if (iMilitaryHappinessLimit > 0)
 	{
-		// Civ4 Reimagined: Unique Power
-		if (GET_PLAYER(getOwnerINLINE()).isFullMilitaryHappinessValueWithPantheon())
-		{
-			CivicTypes CIVIC_PANTHEON = (CivicTypes)GC.getInfoTypeForString("CIVIC_PANTHEON");
-
-			if (GET_PLAYER(getOwnerINLINE()).getCivics((CivicOptionTypes)(GC.getCivicInfo(CIVIC_PANTHEON).getCivicOptionType())) == CIVIC_PANTHEON)
-			{
-				return iMilitaryHappinessLimit;	
-			}
-		}
-		
 		return std::min(m_iMilitaryHappinessUnits, iMilitaryHappinessLimit);
 	}
 	else
@@ -7891,6 +7907,36 @@ int CvCity::getFeatureBadHappiness() const
 	return m_iFeatureBadHappiness;
 }
 
+// Civ4 Reimagined
+void CvCity::updateFeatureAdjacentCommerce()
+{
+	for (int iI = 0; iI < NUM_COMMERCE_TYPES; iI++)
+	{
+		int iAdjacentFeatureCommerce = 0;
+		CvPlot* pAdjacentPlot;
+
+		for (int iJ = 0; iJ < NUM_DIRECTION_TYPES; iJ++)
+		{
+			pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iJ));
+			if (pAdjacentPlot != NULL)
+			{
+				FeatureTypes eFeature = pAdjacentPlot->getFeatureType();
+				if (eFeature != NO_FEATURE)
+				{
+					int iSinglePlotCommerce = GET_PLAYER(getOwnerINLINE()).getAdjacentFeatureCommerce(eFeature, (CommerceTypes)iI);
+					iAdjacentFeatureCommerce += iSinglePlotCommerce;
+				}
+			}
+		}
+		
+		if (iAdjacentFeatureCommerce != m_aiFeatureAdjacentCommerce[iI])
+		{
+			m_aiFeatureAdjacentCommerce[iI] = iAdjacentFeatureCommerce;
+			FAssert(m_aiFeatureAdjacentCommerce[iI] >= 0);
+			updateCommerce((CommerceTypes)iI);
+		}
+	}
+}
 
 void CvCity::updateFeatureHappiness()
 {
@@ -9939,6 +9985,14 @@ void CvCity::changeTechYieldRateModifier(YieldTypes eIndex, int iChange)
 }
 
 // Civ4 Reimagined
+int CvCity::getFeatureAdjacentCommerce(CommerceTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
+	FAssertMsg(eIndex < NUM_COMMERCE_TYPES, "eIndex expected to be < NUM_COMMERCE_TYPES");
+	return m_aiFeatureAdjacentCommerce[eIndex];
+}
+
+// Civ4 Reimagined
 int CvCity::getTechCommerceRateModifier(CommerceTypes eIndex) const												
 {
 	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
@@ -9988,7 +10042,7 @@ int CvCity::totalTradeModifier(CvCity* pOtherCity) const
 
 	iModifier += getPopulationTradeModifier();
 	
-	// Civ4 Reimagined: Greek Unique Power
+	// Civ4 Reimagined: Unique Power
 	if (GET_PLAYER(getOwnerINLINE()).getCoastalTradeRouteModifier() > 0)
 	{
 		if (isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
@@ -9996,9 +10050,38 @@ int CvCity::totalTradeModifier(CvCity* pOtherCity) const
 			iModifier += GET_PLAYER(getOwnerINLINE()).getCoastalTradeRouteModifier();
 		}
 	}
-
+	
 	if (NULL != pOtherCity)
 	{
+		// Civ4 Reimagined: Unique Power
+		if (GET_PLAYER(getOwnerINLINE()).getColonyTraderouteModifier() > 0)
+		{
+			if (GET_PLAYER(pOtherCity->getOwnerINLINE()).isColony(getOwnerINLINE()))
+			{
+				iModifier += GET_PLAYER(getOwnerINLINE()).getColonyTraderouteModifier();
+			}
+		}
+		
+		// Civ4 Reimagined: Unique Power
+		if (GET_PLAYER(getOwnerINLINE()).getCorporationTraderouteModifier() > 0)
+		{
+			if (pOtherCity->getOwnerINLINE() != getOwnerINLINE())
+			{
+				for (int iI = 0; iI < GC.getNumCorporationInfos(); iI++)
+				{
+					CorporationTypes eCorporation = (CorporationTypes)iI;
+					if (GET_PLAYER(getOwnerINLINE()).hasHeadquarters(eCorporation))
+					{
+						if (pOtherCity->isActiveCorporation((CorporationTypes)iI))
+						{
+							iModifier += GET_PLAYER(getOwnerINLINE()).getCorporationTraderouteModifier();
+							break; // Modifier applies only once, not once per corporation
+						}
+					}
+				}
+			}			
+		}
+
 		// Civ4 Reimagined
 		if (isConnectedToCapital() && !GET_PLAYER(pOtherCity->getOwnerINLINE()).isNoCapital())
 		{
@@ -10018,6 +10101,11 @@ int CvCity::totalTradeModifier(CvCity* pOtherCity) const
 			if (pOtherCity->getOwnerINLINE() == getOwnerINLINE())
 			{
 				bTradeThroughCapital = true;
+			}
+			
+			if (GET_PLAYER(getOwnerINLINE()).isSpecialTradeRoutePerPlayer())
+			{
+				iModifier += GC.getDefineINT("UNIQUE_POWER_CARTHARGE");
 			}
 		}
 		
@@ -10402,6 +10490,9 @@ int CvCity::getBaseCommerceRateTimes100(CommerceTypes eIndex) const
 			iBaseCommerceRate += getGoldForHappinessBonus();
 		}
 	}
+
+	// Civ4 Reimagined: Commerce from features
+	iBaseCommerceRate += m_aiFeatureAdjacentCommerce[eIndex];
 	
 	// Civ4 Reimagined: Culture from Peaks
 	if (GET_PLAYER(getOwnerINLINE()).getFatcrossPeakCulture() > 0)
@@ -10421,7 +10512,8 @@ int CvCity::getTotalCommerceRateModifier(CommerceTypes eIndex) const
 	int iTotal = 100;
 	iTotal += getCommerceRateModifier(eIndex) + GET_PLAYER(getOwnerINLINE()).getCommerceRateModifier(eIndex);
 	iTotal += getTechCommerceRateModifier(eIndex); // Civ4 Reimagined
-	
+	iTotal += GET_PLAYER(getOwnerINLINE()).getCommerceAboveAveragePopulation(eIndex); // Civ4 Reimagined
+
 	if (isCapital() && !GET_PLAYER(getOwnerINLINE()).isNoCapital()) // Civ4 Reimagined: Excluded capital modifier if player does not gain the benefits of a capital.
 	{
 		iTotal += GET_PLAYER(getOwnerINLINE()).getCapitalCommerceRateModifier(eIndex);
@@ -11494,27 +11586,11 @@ void CvCity::setCultureTimes100(PlayerTypes eIndex, int iNewValue, bool bPlots, 
 void CvCity::changeCulture(PlayerTypes eIndex, int iChange, bool bPlots, bool bUpdatePlotGroups)
 {
 	setCultureTimes100(eIndex, (getCultureTimes100(eIndex) + 100  * iChange), bPlots, bUpdatePlotGroups);
-	
-	//Civ4 Reimagined
-	if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS))
-	{
-		if(eIndex == getOwnerINLINE() && iChange > 0)
-		{
-			GET_PLAYER(getOwnerINLINE()).changeAccumulatedCulture(iChange * 100);
-		}
-	}
 }
 
 void CvCity::changeCultureTimes100(PlayerTypes eIndex, int iChange, bool bPlots, bool bUpdatePlotGroups)
 {
 	setCultureTimes100(eIndex, (getCultureTimes100(eIndex) + iChange), bPlots, bUpdatePlotGroups);
-	
-	//Civ4 Reimagined
-	if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS))
-	{
-		if (eIndex == getOwnerINLINE() && iChange > 0)
-			GET_PLAYER(getOwnerINLINE()).changeAccumulatedCulture(iChange);
-	}
 }
 
 
@@ -14862,21 +14938,6 @@ void CvCity::doCulture()
 /*
 ** K-Mod END
 */
-
-	//Civ4 Reimagined: Substract free trait culture for unique powers
-	if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS) && !isDisorder())
-	{
-		int iFreeCityCommerce = 0;
-		for (int iI = 0; iI < GC.getNumTraitInfos(); iI++)
-		{
-			if (GET_PLAYER(getOwnerINLINE()).hasTrait((TraitTypes)iI))
-			{
-				iFreeCityCommerce += GC.getTraitInfo((TraitTypes)iI).getCommerceChange(COMMERCE_CULTURE);
-			}
-		}
-		
-		GET_PLAYER(getOwnerINLINE()).changeAccumulatedCulture(-iFreeCityCommerce * getTotalCommerceRateModifier(COMMERCE_CULTURE));
-	}
 	
 	changeCultureTimes100(getOwnerINLINE(), getCommerceRateTimes100(COMMERCE_CULTURE), false, true);
 }
@@ -15534,6 +15595,42 @@ void CvCity::doGreatPeople()
 	}
 }
 
+// Civ4 Reimagined
+void CvCity::doImmigration()
+{
+	if (!GET_PLAYER(getOwnerINLINE()).getImmigrants())
+	{
+		return;
+	}
+
+	if (angryPopulation() <= 0 && healthRate() <= 0)
+	{
+		int iChance = GC.getDefineINT("UNIQUE_POWER_AMERICA_IMMIGRATION_BASE") - GC.getDefineINT("UNIQUE_POWER_AMERICA_IMMIGRATION_REDUCTION") * getImmigrants();
+		
+		iChance = (iChance * 100) / GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getGrowthPercent();
+
+		if(GC.getGameINLINE().getSorenRandNum(100, "Immigrant chance") < iChance)
+		{
+			m_iImmigrants++;
+			changePopulation(1);
+			changeExtraHappiness(1); // Verfällt, wenn Stadt erobert
+			changeBaseYieldRate(YIELD_PRODUCTION, 1); // Verfällt, wenn Stadt erobert
+			
+			// ONEVENT - City growth
+			CvEventReporter::getInstance().cityGrowth(this, getOwnerINLINE());
+			CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_IMMIGRANTS", getNameKey());
+			gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_WELOVEKING", MESSAGE_TYPE_MINOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_HAPPY_PERSON")->getPath(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX_INLINE(), getY_INLINE(), true, true);
+		}	
+	}
+}
+
+
+// Civ4 Reimagined
+int CvCity::getImmigrants()
+{
+	return m_iImmigrants;
+}
+
 
 void CvCity::doMeltdown()
 {
@@ -15686,6 +15783,7 @@ void CvCity::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iGoldForHappinessBonus); // Civ4 Reimagined
 	pStream->Read(&m_iEspionageDefenseModifier);
 	pStream->Read(&m_iDistance); // Civ4 Reimagined
+	pStream->Read(&m_iImmigrants); // Civ4 Reimagined
 
 	pStream->Read(&m_bNeverLost);
 	pStream->Read(&m_bBombarded);
@@ -15724,6 +15822,7 @@ void CvCity::read(FDataStreamBase* pStream)
 	pStream->Read(NUM_COMMERCE_TYPES, m_aiCommerceRateModifier);
 	pStream->Read(NUM_COMMERCE_TYPES, m_aiCommerceHappinessPer);
 	pStream->Read(NUM_COMMERCE_TYPES, m_aiTechCommerceRateModifier); // Civ4 Reimagined
+	pStream->Read(NUM_COMMERCE_TYPES, m_aiFeatureAdjacentCommerce); // Civ4 Reimagined
 	pStream->Read(NUM_DOMAIN_TYPES, m_aiDomainFreeExperience);
 	pStream->Read(NUM_DOMAIN_TYPES, m_aiDomainProductionModifier);
 	pStream->Read(MAX_PLAYERS, m_aiCulture);
@@ -15939,6 +16038,7 @@ void CvCity::write(FDataStreamBase* pStream)
 	pStream->Write(m_iGoldForHappinessBonus); // Civ4 Reimagined
 	pStream->Write(m_iEspionageDefenseModifier);
 	pStream->Write(m_iDistance); // Civ4 Reimagined
+	pStream->Write(m_iImmigrants); // Civ4 Reimagined
 
 	pStream->Write(m_bNeverLost);
 	pStream->Write(m_bBombarded);
@@ -15977,6 +16077,7 @@ void CvCity::write(FDataStreamBase* pStream)
 	pStream->Write(NUM_COMMERCE_TYPES, m_aiCommerceRateModifier);
 	pStream->Write(NUM_COMMERCE_TYPES, m_aiCommerceHappinessPer);
 	pStream->Write(NUM_COMMERCE_TYPES, m_aiTechCommerceRateModifier); // Civ4 Reimagined
+	pStream->Write(NUM_COMMERCE_TYPES, m_aiFeatureAdjacentCommerce); // Civ4 Reimagined
 	pStream->Write(NUM_DOMAIN_TYPES, m_aiDomainFreeExperience);
 	pStream->Write(NUM_DOMAIN_TYPES, m_aiDomainProductionModifier);
 	pStream->Write(MAX_PLAYERS, m_aiCulture);

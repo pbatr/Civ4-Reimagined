@@ -159,6 +159,7 @@ public:
 	void changeTechYieldRateModifier(YieldTypes eIndex, int iChange); // Civ4 Reimagined
 	int getTechCommerceRateModifier(CommerceTypes eIndex) const; // Civ4 Reimagined
 	void changeTechCommerceRateModifier(CommerceTypes eIndex, int iChange); // Civ4 Reimagined
+	int getFeatureAdjacentCommerce(CommerceTypes eIndex) const; // Civ4 Reimagined
 	
 	//Civ4 Reimagined
 	void processBonus(BonusTypes eBonus, int iChange, bool bChangeValue = true, bool YieldModifier = true);
@@ -483,6 +484,7 @@ public:
 	int getFeatureGoodHappiness() const;																	// Exposed to Python
 	int getFeatureBadHappiness() const;																		// Exposed to Python
 	void updateFeatureHappiness();
+	void updateFeatureAdjacentCommerce(); // Civ4 Reimagined
 
 	int getBonusGoodHappiness() const;																		// Exposed to Python  
 	int getBonusBadHappiness() const;																			// Exposed to Python  
@@ -995,10 +997,10 @@ public:
 	CvCity* getTradeCity(int iIndex) const;																				// Exposed to Python
 	int getTradeRoutes() const;																										// Exposed to Python
 	void clearTradeRoutes();
-	void updateTradeRoutes();
+	void updateTradeRoutes();	
 	
-	// Civ4 Reimagined
-	bool spreadCorporation(CorporationTypes eCorporation, CvCity* pHeadquarters, int iNumTries = 1);
+	bool spreadCorporation(CorporationTypes eCorporation, CvCity* pHeadquarters, int iNumTries = 1); // Civ4 Reimagined
+	int getImmigrants(); // Civ4 Reimagined
 
 	void clearOrderQueue();																														// Exposed to Python
 	//void pushOrder(OrderTypes eOrder, int iData1, int iData2, bool bSave, bool bPop, bool bAppend, bool bForce = false);		// Exposed to Python
@@ -1259,6 +1261,7 @@ protected:
 	int m_iGoldForHappinessBonus; // Civ4 Reimagined
 	int m_iEspionageDefenseModifier;
 	int m_iDistance; // Civ4 Reimagined
+	int m_iImmigrants; // Civ4 Reimagined
 
 	bool m_bNeverLost;
 	bool m_bBombarded;
@@ -1286,6 +1289,7 @@ protected:
 	int* m_aiBonusYieldRateModifier;
 	int* m_aiTechYieldRateModifier; // Civ4 Reimagined
 	int* m_aiTechCommerceRateModifier; // Civ4 Reimagined
+	int* m_aiFeatureAdjacentCommerce; // Civ4 Reimagined
 	int* m_aiTradeYield;
 	int* m_aiCorporationYield;
 	int* m_aiExtraSpecialistYield;
@@ -1382,6 +1386,7 @@ protected:
 	void doReligion();
 	void doGreatPeople();
 	void doMeltdown();
+	void doImmigration();
 
 	int getExtraProductionDifference(int iExtra, UnitTypes eUnit) const;
 	int getExtraProductionDifference(int iExtra, BuildingTypes eBuilding) const;

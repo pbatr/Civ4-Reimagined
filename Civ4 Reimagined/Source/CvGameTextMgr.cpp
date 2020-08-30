@@ -3710,6 +3710,22 @@ bool CvGameTextMgr::setCombatPlotHelp(CvWStringBuffer &szString, CvPlot* pPlot)
 					szString.append(NEWLINE);
 					szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_CITY_MOD", -iModifier));
 				}
+
+				// Civ4 Reimagined
+				// Arabian unique power: Attacking cities of heretic rulers
+				bool bFaithConquest = GET_PLAYER(pAttacker->getOwnerINLINE()).isHasFaithConquest();
+				if (bFaithConquest)
+				{
+					ReligionTypes eAttackerStateReligion = GET_PLAYER(pAttacker->getOwnerINLINE()).getStateReligion();
+					bool bCityHasStateReligion = pAttackedCity->isHasReligion(eAttackerStateReligion);
+					
+					if (bCityHasStateReligion)
+					{
+						iModifier = GC.getDefineINT("UNIQUE_POWER_ARABIA");
+						szString.append(NEWLINE);
+						szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_FAITH_MOD", -iModifier));
+					}
+				}
 			}
 
 			if (pPlot->isHills())
@@ -6096,14 +6112,7 @@ void CvGameTextMgr::parseTraits(CvWStringBuffer &szHelpString, TraitTypes eTrait
 		{
 			if (GC.getTraitInfo(eTrait).getCommerceChange(iI) != 0)
 			{
-				if (iI == COMMERCE_CULTURE && !GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS)) // Civ4 Reimagined Todo
-				{
-					szHelpString.append(gDLL->getText("TXT_KEY_TRAIT_COMMERCE_CHANGES_UNIQUE_POWERS", 	GC.getTraitInfo(eTrait).getCommerceChange(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar(), "COMMERCE"));
-				}
-				else 
-				{
-					szHelpString.append(gDLL->getText("TXT_KEY_TRAIT_COMMERCE_CHANGES", 	GC.getTraitInfo(eTrait).getCommerceChange(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar(), "COMMERCE"));
-				}
+				szHelpString.append(gDLL->getText("TXT_KEY_TRAIT_COMMERCE_CHANGES", 	GC.getTraitInfo(eTrait).getCommerceChange(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar(), "COMMERCE"));
 			}
 
 			if (GC.getTraitInfo(eTrait).getCommerceModifier(iI) != 0)
@@ -17044,6 +17053,19 @@ void CvGameTextMgr::setCommerceHelp(CvWStringBuffer &szBuffer, CvCity& city, Com
 		iBaseCommerceRate += iGoldForHappinessBonus;
 		bNeedSubtotal = true; // BUG - Base Commerce 
 	}
+
+	// Civ4 Reimagined: Commerce from features
+	int iCommerceForAdjacentFeatures = city.getFeatureAdjacentCommerce(eCommerceType);
+	if (0 != iCommerceForAdjacentFeatures)
+	{
+		CvWString szFeatureCommerceString = iCommerceForAdjacentFeatures%100 > 0 ?
+				CvWString::format(L"%s%d.%02d", iCommerceForAdjacentFeatures > 0 ? "+" : "", iCommerceForAdjacentFeatures/100, iCommerceForAdjacentFeatures%100) :
+				CvWString::format(L"%s%d", iCommerceForAdjacentFeatures > 0 ? "+" : "", iCommerceForAdjacentFeatures/100);
+		
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_FEATURE_COMMERCE", szFeatureCommerceString.GetCString(), info.getChar()));
+		szBuffer.append(NEWLINE);
+		iBaseCommerceRate += iCommerceForAdjacentFeatures;
+	}
 	
 	int iCorporationCommerce = city.getCorporationCommerce(eCommerceType);
 	if (0 != iCorporationCommerce)
@@ -17202,7 +17224,10 @@ void CvGameTextMgr::setCommerceHelp(CvWStringBuffer &szBuffer, CvCity& city, Com
 	}
 	
 	// Unique Powers
-	int iUniquePowerMod = owner.getUniquePowerCommerceModifier(eCommerceType) + (city.isCapital() ? owner.getCapitalCommercePerPopulation(eCommerceType, city.getPopulation()) : 0);
+	int iUniquePowerMod = 
+		owner.getUniquePowerCommerceModifier(eCommerceType) + 
+		owner.getCommerceAboveAveragePopulation(eCommerceType) + 
+		(city.isCapital() ? owner.getCapitalCommercePerPopulation(eCommerceType, city.getPopulation()) : 0);
 	
 	if (0 != iUniquePowerMod)
 	{
@@ -17249,7 +17274,7 @@ void CvGameTextMgr::setCommerceHelp(CvWStringBuffer &szBuffer, CvCity& city, Com
 			iModYield += iEspionageToCommerce;
 		}
 	}
-
+	
 	FAssertMsg(iModYield == city.getCommerceRateTimes100(eCommerceType), "Commerce yield does not match actual value");
 
 	CvWString szYield = CvWString::format(L"%d.%02d", iModYield/100, iModYield%100);
@@ -17722,24 +17747,12 @@ bool CvGameTextMgr::setBuildingAdditionalGreatPeopleHelp(CvWStringBuffer &szBuff
 
 void CvGameTextMgr::parseGreatGeneralHelp(CvWStringBuffer &szBuffer, CvPlayer& kPlayer)
 {
-	// Civ4 Reimagined: Use unique power progress text for mouseover if unique powers are enabled.
-	if (GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS))
-	{
-		szBuffer.assign(gDLL->getText("TXT_KEY_MISC_GREAT_GENERAL", kPlayer.getCombatExperience(), kPlayer.greatPeopleThreshold(true)));
-	}
-	else
-	{
-		if (kPlayer.getUniquePowerLevel() <= 4)
-		{
-			szBuffer.assign(gDLL->getText("TXT_KEY_MISC_UNIQUE_POWER_PROGRESS", kPlayer.getAccumulatedCulture() / 100, kPlayer.getUniquePowerRequirement(kPlayer.getUniquePowerLevel() + 1) / 100));
-		}
-
-	}
+	szBuffer.assign(gDLL->getText("TXT_KEY_MISC_GREAT_GENERAL", kPlayer.getCombatExperience(), kPlayer.greatPeopleThreshold(true))); 
 }
 
 void CvGameTextMgr::parseSlaveryBarHelp(CvWStringBuffer &szBuffer, CvPlayer& kPlayer)
 {
-	szBuffer.assign(gDLL->getText("TXT_KEY_MISC_SLAVERY_PROGRESS", kPlayer.getSlavePoints(), kPlayer.getNewSlaveThreshold()));
+	szBuffer.assign(gDLL->getText("TXT_KEY_MISC_SLAVERY_PROGRESS", kPlayer.getSlavePoints(), kPlayer.getSlaveThreshold()));
 }
 
 
@@ -18922,7 +18935,7 @@ void CvGameTextMgr::setTradeRouteHelp(CvWStringBuffer &szBuffer, int iRoute, CvC
 				// Civ4 Reimagined
 				if (GET_PLAYER(pOtherCity->getOwnerINLINE()).isColony(pCity->getOwnerINLINE()))
 				{
-					iNewMod = GC.getDefineINT("COLONY_TRADE_MODIFIER");
+					iNewMod = GC.getDefineINT("COLONY_TRADE_MODIFIER") + GET_PLAYER(pCity->getOwnerINLINE()).getColonyTraderouteModifier();
 					if (0 != iNewMod)
 					{
 						szBuffer.append(NEWLINE);
@@ -18932,8 +18945,42 @@ void CvGameTextMgr::setTradeRouteHelp(CvWStringBuffer &szBuffer, int iRoute, CvC
 				}
 
 				// Civ4 Reimagined
-				iNewMod = ((pCity->isCapital() && !GET_PLAYER(pCity->getOwnerINLINE()).isNoCapital()) ? GC.getDefineINT("CAPITAL_TRADE_MODIFIER") : 0) + ((pOtherCity->isCapital() && !GET_PLAYER(pOtherCity->getOwnerINLINE()).isNoCapital()) ? GC.getDefineINT("CAPITAL_TRADE_MODIFIER") : 0);
-				
+				iNewMod = GET_PLAYER(pCity->getOwnerINLINE()).getCorporationTraderouteModifier();
+				if (iNewMod > 0)
+				{
+					if (pOtherCity->getOwnerINLINE() != pCity->getOwnerINLINE())
+					{
+						for (int iI = 0; iI < GC.getNumCorporationInfos(); iI++)
+						{
+							CorporationTypes eCorporation = (CorporationTypes)iI;
+							if (GET_PLAYER(pCity->getOwnerINLINE()).hasHeadquarters(eCorporation))
+							{
+								if (pOtherCity->isActiveCorporation((CorporationTypes)iI))
+								{
+									szBuffer.append(NEWLINE);
+									szBuffer.append(gDLL->getText("TXT_KEY_TRADE_ROUTE_MOD_UNIQUE", iNewMod));
+									iModifier += iNewMod;
+									break; // Modifier applies only once, not once per corporation
+								}
+							}
+						}
+					}
+				}
+
+				// Civ4 Reimagined
+				iNewMod =  ((pCity->isCapital() && !GET_PLAYER(pCity->getOwnerINLINE()).isNoCapital()) ? GC.getDefineINT("CAPITAL_TRADE_MODIFIER") : 0);
+
+				if (pOtherCity->isCapital() && !GET_PLAYER(pOtherCity->getOwnerINLINE()).isNoCapital())
+				{
+					iNewMod += GC.getDefineINT("CAPITAL_TRADE_MODIFIER");
+					
+					if (GET_PLAYER(pCity->getOwnerINLINE()).isSpecialTradeRoutePerPlayer())
+					{
+						szBuffer.append(NEWLINE);
+						szBuffer.append(gDLL->getText("TXT_KEY_SPECIAL_TRADE_MOD", GC.getDefineINT("UNIQUE_POWER_CARTHARGE")));
+					}
+				}
+
 				if (0 != iNewMod)
 				{
 					if (pCity->isCapital() || (pOtherCity->isCapital() && pCity->getOwnerINLINE() == pOtherCity->getOwnerINLINE()))

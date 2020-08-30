@@ -184,7 +184,7 @@
 		<DefineName>CONNECTION_TO_CAPITAL_TRADE_MODIFIER</DefineName>
 		<iDefineIntVal>25</iDefineIntVal>
 	</Define>
-	<!-- Trade route modifier for colony cities. Colonies are cities on different continent from the capital. For definition of continent see below. -->
+	<!-- Trade route modifier for colony cities. Colonies are cities on different continent from the capital owned by a vassal. For definition of continent see below. -->
 	<Define>
 		<DefineName>COLONY_TRADE_MODIFIER</DefineName>
 		<iDefineIntVal>100</iDefineIntVal>
@@ -297,8 +297,8 @@
 		<DefineName>UNIT_MILITARY_HAPPINESS_ERA_OFFSET</DefineName>
 		<iDefineIntVal>2</iDefineIntVal>
 	</Define>
-	<!-- Target Populations are used for Quantifiable Resouce System. They correspond to the maximum population which can be sufficiently supplied with one resource when all techs of this
-	era are discovered. Every tech you discover improves your techValue and by that lets you supply more population with one resource. Target population adds up which means e.g. real
+	<!-- Target Populations are used by the Quantifiable Resource System. They correspond to the maximum population which can be sufficiently supplied with one resource when all techs of this
+	era are discovered. Every tech you discover improves your techValue and by that lets you supply more population with one resource. Target population adds up which means e.g. total
 	target population for classical era is: TARGET_POPULATION_ANCIENT + TARGET_POPULATION_CLASSICAL -->
 	<Define>
 		<DefineName>TARGET_POPULATION_ANCIENT</DefineName>
@@ -328,9 +328,86 @@
 		<DefineName>TARGET_POPULATION_FUTURE</DefineName>
 		<iDefineIntVal>3</iDefineIntVal>
 	</Define>
-	<!-- Not used at the moment. -->	
+	<!-- Unique Powers -->
 	<Define>
-		<DefineName>UNIQUE_POWER_CULTURE_INCOME_PERCENT_PER_CITY</DefineName>
-		<iDefineIntVal>90</iDefineIntVal>
+		<DefineName>UNIQUE_POWER_OTHER</DefineName>
+		<iDefineIntVal>2</iDefineIntVal> <!-- % commerce modifier -->
 	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_AMERICA</DefineName>
+		<iDefineIntVal>600</iDefineIntVal> <!-- Trade route modifier with cities that have own corporation -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_ARABIA</DefineName>
+		<iDefineIntVal>25</iDefineIntVal> <!-- % siege bonus against players of different religion -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_AZTEC</DefineName>
+		<iDefineIntVal>30</iDefineIntVal> <!-- % promotion chance per level -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_BABYLON</DefineName>
+		<iDefineIntVal>3</iDefineIntVal> <!-- % commerce in capital per population -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_BABYLON_2</DefineName>
+		<iDefineIntVal>5</iDefineIntVal> <!-- Population required -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_CARTHARGE</DefineName> 
+		<iDefineIntVal>400</iDefineIntVal> <!-- Trade route modifier for special trade routes -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_CARTHARGE_2</DefineName> 
+		<iDefineIntVal>50</iDefineIntVal> <!-- Sea unit production speed bonus -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_CELT_CULTURE</DefineName>
+		<iDefineIntVal>100</iDefineIntVal> <!-- Culture per adjacent forest -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_CELT_RESEARCH</DefineName>
+		<iDefineIntVal>100</iDefineIntVal> <!-- Research per adjacent forest -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_CHINA_MAX_POP</DefineName>
+		<iDefineIntVal>140</iDefineIntVal> <!-- Reaches max effect at X% of average population -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_CHINA_MAX_EFFECT</DefineName>
+		<iDefineIntVal>20</iDefineIntVal> <!-- Maximum +% research bonus in all cities for high population compared to world population -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_ENGLAND</DefineName>
+		<iDefineIntVal>400</iDefineIntVal> <!-- Traderoute bonus for connections to oversea vassals-->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_EGYPT</DefineName>
+		<iDefineIntVal>3</iDefineIntVal> <!-- Slavery points per population -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_GERMANY</DefineName>
+		<iDefineIntVal>67</iDefineIntVal> <!-- Length of golden ages made with generals (only). -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_GREECE</DefineName>
+		<iDefineIntVal>25</iDefineIntVal> <!-- Number of turns per civic -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_JAPAN</DefineName>
+		<iDefineIntVal>50</iDefineIntVal> <!-- Research bonus for known technologies -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_MAYA</DefineName>
+		<iDefineIntVal>25</iDefineIntVal> <!-- Production speed bonus -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_ROME</DefineName>
+		<iDefineIntVal>2</iDefineIntVal> <!-- Extra units on city conquest -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_SUMERIA</DefineName>
+		<iDefineIntVal>50</iDefineIntVal> <!-- Per cent tech progress -->
+	</Define>
+	<!-- Unique Powers end -->
 </Civ4Defines>

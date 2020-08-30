@@ -2404,13 +2404,6 @@ int CvPlayerAI::AI_commerceWeight(CommerceTypes eCommerce, const CvCity* pCity) 
 				}
 			}
 			// K-Mod end
-			
-			// Civ4 Reimagined
-			if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS) && getUniquePowerLevel() < 5)
-			{
-				iWeight *= 3;
-				iWeight /= 2;
-			}
 		}
 		break;
 	case COMMERCE_ESPIONAGE:
@@ -2476,13 +2469,6 @@ void CvPlayerAI::AI_updateCommerceWeights()
 		// COMMERCE_CULTURE AIWeightPercent is set to 30% in the current xml.
 		int iWeight = GC.getCommerceInfo(COMMERCE_CULTURE).getAIWeightPercent();
 		
-		// Civ4 Reimagined
-		if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS) && getUniquePowerLevel() < 5)
-		{
-			iWeight *= 3;
-			iWeight /= 2;
-		}
-
 		int iPressureFactor = pCity->culturePressureFactor();
 		if (AI_isDoVictoryStrategy(AI_VICTORY_CULTURE2))
 			iPressureFactor = std::min(300, iPressureFactor); // don't let culture pressure dominate our decision making about where to put our culture.
@@ -6667,12 +6653,12 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 		int iEra = kTechInfo.getEra();
 		if (kTechInfo.getEra() != getCurrentEra())
 		{
-			if (checkForObsoleteUniquePowers((EraTypes)iEra))
-			{
-				iValue /= 3;
-				iValue *= 2;
-			}
+			iValue *= uniquePowerAIEraValueMult((EraTypes)iEra);
+			iValue /= uniquePowerAIEraValueMult(getCurrentEra());
 		}
+		
+		iValue *= uniquePowerAITechValueMult(eTech);
+		iValue /= 100;
 	}
 
 /***
@@ -6691,6 +6677,97 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 	return iValue;
 }
+
+
+// Civ4 Reimagined
+// Super rough calculation for unique powers. 100 is the default, powerless era.
+// Relative value is important. For example, switching from an era with value 110 (a small benefit) to an era with value 125 (a large benefit) nets a bonus of 125/110 in calculations.
+int CvPlayerAI::uniquePowerAIEraValueMult(EraTypes eEra) const
+{
+	FAssert(eEra >= -1);
+	
+	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AMERICA") && eEra >= ERA_INDUSTRIAL)
+	{
+		return 125;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ARABIA") && eEra == ERA_RENAISSANCE)
+	{
+		// Only calculate effect of leaving this era
+		if(getCurrentEra() == ERA_RENAISSANCE)
+		{
+			return 150;
+		}
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON") && eEra <= ERA_CLASSICAL)
+	{
+		return 125;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CARTHAGE") && eEra == ERA_CLASSICAL)
+	{
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CELT") && eEra == ERA_CLASSICAL)
+	{
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_EGYPT") && eEra == ERA_ANCIENT)
+	{
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_GERMANY") && eEra >= ERA_INDUSTRIAL)
+	{
+		return 125;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_GREECE") && eEra <= ERA_CLASSICAL)
+	{
+		return 125;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_JAPAN") && eEra >= ERA_INDUSTRIAL)
+	{
+		return 125;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_OTTOMAN") && eEra == ERA_INDUSTRIAL)
+	{
+		// Only calculate effect of leaving this era
+		if(getCurrentEra() == ERA_INDUSTRIAL)
+		{
+			return 140;
+		}
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME") && eEra == ERA_CLASSICAL)
+	{
+		return 150;
+	}
+
+	return 100;
+}
+
+
+// Civ4 Reimagined
+// As uniquePowerAIEraValueMult, but for single technologies
+int CvPlayerAI::uniquePowerAITechValueMult(TechTypes eTech) const
+{
+	int iTechValueMult = 100;
+	
+	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ARABIA")
+		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_DIVINE_RIGHT"))
+	{
+		return 300;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA")
+		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_CALENDAR"))
+	{
+		return 300;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_OTTOMAN")
+		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_GUNPOWDER"))
+	{
+		return 300;
+	}
+	
+	return iTechValueMult;
+}
+
 
 // K-mod. This function returns the (positive) value of the buildings we will lose by researching eTech.
 // (I think it's crazy that this stuff wasn't taken into account in original BtS)

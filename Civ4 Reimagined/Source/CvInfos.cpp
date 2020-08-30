@@ -11487,28 +11487,6 @@ bool CvCivilizationInfo::isPlayable() const
 }
 
 // Civ4 Reimagined
-int CvCivilizationInfo::getUniquePowerRequirement(int iLevel) const
-{
-	switch(iLevel)
-	{
-		case 0:
-			return 0;
-		case 1:
-			return m_iUnique1;
-		case 2:
-			return m_iUnique2;
-		case 3:
-			return m_iUnique3;
-		case 4:
-			return m_iUnique4;
-		case 5:
-			return m_iUnique5;
-		default:
-			return -1;
-	}
-}
-
-// Civ4 Reimagined
 std::string CvCivilizationInfo::getCivilizationUniquePowerText(int iLevel) const
 {
 	switch(iLevel)
@@ -13284,6 +13262,7 @@ CvBuildInfo::CvBuildInfo() :
 m_iTime(0),
 m_iCost(0),
 m_iTechPrereq(NO_TECH),
+m_iTechObsolete(NO_TECH), // Civ4 Reimagined
 m_iImprovement(NO_IMPROVEMENT),
 m_iRoute(NO_ROUTE),
 m_iEntityEvent(ENTITY_EVENT_NONE),
@@ -13324,6 +13303,12 @@ int CvBuildInfo::getCost() const
 int CvBuildInfo::getTechPrereq() const	
 {
 	return m_iTechPrereq;
+}
+
+// Civ4 Reimagined
+int CvBuildInfo::getTechObsolete() const
+{
+	return m_iTechObsolete;
 }
 
 int CvBuildInfo::getImprovement() const	
@@ -13396,6 +13381,8 @@ bool CvBuildInfo::read(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(szTextVal, "PrereqTech");
 	m_iTechPrereq = pXML->FindInInfoClass(szTextVal);
+	pXML->GetChildXmlValByName(szTextVal, "TechObsolete");
+	m_iTechObsolete = pXML->FindInInfoClass(szTextVal);
 
 	pXML->GetChildXmlValByName(&m_iTime, "iTime");
 	pXML->GetChildXmlValByName(&m_iCost, "iCost");

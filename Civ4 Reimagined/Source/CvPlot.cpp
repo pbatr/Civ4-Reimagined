@@ -5622,6 +5622,7 @@ void CvPlot::setFeatureType(FeatureTypes eNewValue, int iVariety)
 				{
 					pLoopCity->updateFeatureHealth();
 					pLoopCity->updateFeatureHappiness();
+					pLoopCity->updateFeatureAdjacentCommerce(); // Civ4 Reimagined
 				}
 			}
 		}

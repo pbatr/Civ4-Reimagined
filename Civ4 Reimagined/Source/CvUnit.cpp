@@ -7184,8 +7184,20 @@ bool CvUnit::isIntruding() const
 	return true;
 }
 
+bool CvUnit::isGreatGeneralGoldenAge() const
+{
+	return GET_PLAYER(getOwnerINLINE()).getGreatGeneralGoldenAgeLength() > 0 &&
+		getUnitClassType() == (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_GREAT_GENERAL");
+}
+
 bool CvUnit::canGoldenAge(const CvPlot* pPlot, bool bTestVisible) const
 {
+	// Civ4 Reimagined
+	if (isGreatGeneralGoldenAge())
+	{
+		return true;
+	}
+
 	if (!isGoldenAge())
 	{
 		return false;
@@ -7210,6 +7222,12 @@ bool CvUnit::goldenAge()
 		return false;
 	}
 
+	// Civ4 Reimagined
+	if (isGreatGeneralGoldenAge())
+	{
+		return greatGeneralGoldenAge();
+	}
+
 	GET_PLAYER(getOwnerINLINE()).killGoldenAgeUnits(this);
 
 	GET_PLAYER(getOwnerINLINE()).changeGoldenAgeTurns(GET_PLAYER(getOwnerINLINE()).getGoldenAgeLength());
@@ -7225,6 +7243,23 @@ bool CvUnit::goldenAge()
 	return true;
 }
 
+// Civ4 Reimagined: As regular golden age, but does only require one general, is modified by greatGeneralGoldenAgeLength, and does not advance golden age requirements (i.e. +1 great person for future golden ages)
+bool CvUnit::greatGeneralGoldenAge()
+{
+	int iAgeLength = GET_PLAYER(getOwnerINLINE()).getGoldenAgeLength();
+	iAgeLength *= GET_PLAYER(getOwnerINLINE()).getGreatGeneralGoldenAgeLength();
+	iAgeLength /= 100;
+	GET_PLAYER(getOwnerINLINE()).changeGoldenAgeTurns(iAgeLength);
+
+	if (plot()->isActiveVisible(false))
+	{
+		NotifyEntity(MISSION_GOLDEN_AGE);
+	}
+
+	kill(true);
+
+	return true;
+}
 
 bool CvUnit::canBuild(const CvPlot* pPlot, BuildTypes eBuild, bool bTestVisible) const
 {
@@ -8447,6 +8482,7 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 		pCombatDetails->iFortifyModifier = 0;
 		pCombatDetails->iCityDefenseModifier = 0;
 		pCombatDetails->iDefenseBuildingModifier = 0; //Civ4 Reimagined
+		pCombatDetails->iFaithModifier = 0; //Civ4 Reimagined
 		pCombatDetails->iHillsAttackModifier = 0;
 		pCombatDetails->iHillsDefenseModifier = 0;
 		pCombatDetails->iFeatureAttackModifier = 0;
@@ -8719,6 +8755,25 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 				if (pCombatDetails != NULL)
 				{
 					pCombatDetails->iCityBarbarianDefenseModifier = iExtraModifier;
+				}
+			}
+
+			// Civ4 Reimagined
+			// Arabian unique power: Attacking cities of heretic rulers
+			bool bFaithConquest = GET_PLAYER(pAttacker->getOwnerINLINE()).isHasFaithConquest();
+			if (bFaithConquest)
+			{
+				ReligionTypes eAttackerStateReligion = GET_PLAYER(pAttacker->getOwnerINLINE()).getStateReligion();
+				bool bDefenderIsInfidel = GET_PLAYER(getOwnerINLINE()).getStateReligion() != eAttackerStateReligion;
+				
+				if (bDefenderIsInfidel)
+				{
+					iExtraModifier = GC.getDefineINT("UNIQUE_POWER_ARABIA");
+					iTempModifier -= iExtraModifier;
+					if (pCombatDetails != NULL)
+					{
+						pCombatDetails->iFaithModifier = -iExtraModifier;
+					}
 				}
 			}
 		}

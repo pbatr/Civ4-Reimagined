@@ -2928,8 +2928,9 @@ public:
 
 	int getTime() const;				// Exposed to Python
 	int getCost() const;				// Exposed to Python
-	int getTechPrereq() const;				// Exposed to Python
-	int getImprovement() const;				// Exposed to Python
+	int getTechPrereq() const;			// Exposed to Python
+	int getTechObsolete() const;		// Exposed to Python, Civ4 Reimagined
+	int getImprovement() const;			// Exposed to Python
 	int getRoute() const;				// Exposed to Python
 	DllExport int getEntityEvent() const;				// Exposed to Python
 	DllExport int getMissionType() const;				// Exposed to Python
@@ -2941,7 +2942,7 @@ public:
 
 	int getFeatureTech(int i) const;				// Exposed to Python
 	int getFeatureTime(int i) const;				// Exposed to Python
-	int getFeatureProduction(int i) const;				// Exposed to Python
+	int getFeatureProduction(int i) const;			// Exposed to Python
 
 	bool isFeatureRemove(int i) const;				// Exposed to Python
 
@@ -2954,6 +2955,7 @@ protected:
 	int m_iTime;					
 	int m_iCost;					
 	int m_iTechPrereq;		
+	int m_iTechObsolete;
 	int m_iImprovement;	
 	int m_iRoute;				
 	int m_iEntityEvent;		
@@ -3180,20 +3182,20 @@ public:
 	int getImprovementUpgrade() const;				// Exposed to Python
 	void setImprovementUpgrade(int i);
 
-	bool isActsAsCity() const;				// Exposed to Python
+	bool isActsAsCity() const;					// Exposed to Python
 	bool isHillsMakesValid() const;				// Exposed to Python
-	bool isFreshWaterMakesValid() const;				// Exposed to Python
-	bool isRiverSideMakesValid() const;				// Exposed to Python
+	bool isFreshWaterMakesValid() const;		// Exposed to Python
+	bool isRiverSideMakesValid() const;			// Exposed to Python
 	bool isNoFreshWater() const;				// Exposed to Python
-	bool isRequiresFlatlands() const;				// Exposed to Python
-	DllExport bool isRequiresRiverSide() const;				// Exposed to Python
-	bool isRequiresIrrigation() const;				// Exposed to Python
-	bool isCarriesIrrigation() const;				// Exposed to Python
-	bool isRequiresCanFarmHills() const; //Civ4 Reimagined
+	bool isRequiresFlatlands() const;			// Exposed to Python
+	DllExport bool isRequiresRiverSide() const;	// Exposed to Python
+	bool isRequiresIrrigation() const;			// Exposed to Python
+	bool isCarriesIrrigation() const;			// Exposed to Python
+	bool isRequiresCanFarmHills() const;		// Exposed to Python, Civ4 Reimagined
 	bool isRequiresFeature() const;				// Exposed to Python
-	bool isWater() const;				// Exposed to Python
+	bool isWater() const;						// Exposed to Python
 	DllExport bool isGoody() const;				// Exposed to Python
-	bool isPermanent() const;				// Exposed to Python
+	bool isPermanent() const;					// Exposed to Python
 	bool isOutsideBorders() const;				// Exposed to Python
 
 	const TCHAR* getArtDefineTag() const;

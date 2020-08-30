@@ -315,10 +315,10 @@ void CvGame::setInitialItems()
 		{
 			kPlayer.AI_updateFoundValues();
 			
-			// Civ4 Reimagined: Quick fix to get powers working on game start. To-Do: Should happen later on when the player can already receive status messages.
+			// Civ4 Reimagined: Quick fix to get powers working on game start.
 			if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS))
 			{		
-				kPlayer.changeAccumulatedCulture(0); 
+				kPlayer.updateUniquePowers((EraTypes)0); 
 			}
 		}
 	}
@@ -5731,12 +5731,6 @@ void CvGame::setTeamScore(TeamTypes eTeam, int iScore)
 
 bool CvGame::isOption(GameOptionTypes eIndex) const
 {
-	// Civ4 Reimagined: Dirty fix to make sure, Unique Powers cannot be activated by accident (through civilizationIV.ini). Remove this when Unique Powers get incorporated again.
-	if (eIndex == GAMEOPTION_NO_UNIQUE_POWERS)
-	{
-		return true;
-	}
-	
 	return GC.getInitCore().getOption(eIndex);
 }
 
