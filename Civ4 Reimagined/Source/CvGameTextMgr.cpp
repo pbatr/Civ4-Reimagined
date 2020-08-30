@@ -8905,6 +8905,12 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
 		}
 	}
 
+	if (GC.getUnitInfo(eUnit).getAdditionalCargoRange() > 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_ADD_CARGO_RANGE", GC.getUnitInfo(eUnit).getAdditionalCargoRange()));
+	}
+
 	if (GC.getUnitInfo(eUnit).getDomainType() == DOMAIN_LAND)
 	{
 		szTempBuffer.Format(L"%s%s ", NEWLINE, gDLL->getText("TXT_KEY_UNIT_CANNOT_ENTER_WITHOUT_ROAD").GetCString());

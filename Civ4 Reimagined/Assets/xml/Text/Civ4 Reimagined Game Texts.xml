@@ -1398,4 +1398,12 @@
 		<Tag>TXT_KEY_MISC_HELP_FEATURE_COMMERCE</Tag>
 		<English>[ICON_BULLET]%s1%F2 from Terrain Features</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_ADD_CARGO_RANGE</Tag>
+		<English>[ICON_BULLET]Provides Additional %d1 Range to Cargo Units</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_AMERICAN_SUPERCARRIER</Tag>
+		<English>Supercarrier</English>
+	</TEXT>
 </Civ4GameText>

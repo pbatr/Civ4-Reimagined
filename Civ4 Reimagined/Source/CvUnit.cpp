@@ -8121,7 +8121,15 @@ bool CvUnit::hasMoved()	const
 
 int CvUnit::airRange() const
 {
-	return (m_pUnitInfo->getAirRange() + getExtraAirRange());
+	int iRange = m_pUnitInfo->getAirRange() + getExtraAirRange();
+
+	// Civ4 Reimagined
+	if (isCargo())
+	{
+		iRange += GC.getUnitInfo(getTransportUnit()->getUnitType()).getAdditionalCargoRange();
+	}
+
+	return iRange;
 }
 
 

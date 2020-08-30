@@ -98,8 +98,8 @@
 			</Buildings>
 			<Units>
 				<Unit>
-					<UnitClassType>UNITCLASS_MARINE</UnitClassType>
-					<UnitType>UNIT_AMERICAN_NAVY_SEAL</UnitType>
+					<UnitClassType>UNITCLASS_CARRIER</UnitClassType>
+					<UnitType>UNIT_AMERICAN_SUPERCARRIER</UnitType>
 				</Unit>
 			</Units>
 			<FreeUnitClasses>

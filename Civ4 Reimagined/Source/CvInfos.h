@@ -876,6 +876,7 @@ public:
 	int getDomainCargo() const;								// Exposed to Python
 
 	int getCargoSpace() const;								// Exposed to Python
+	int getAdditionalCargoRange() const; // Civ4 Reimagined
 	int getConscriptionValue() const;					// Exposed to Python
 	int getCultureGarrisonValue() const;			// Exposed to Python
 	int getExtraCost() const;									// Exposed to Python
@@ -1067,7 +1068,8 @@ protected:
 	int m_iSpecialCargo;
 
 	int m_iDomainCargo;					
-	int m_iCargoSpace;						
+	int m_iCargoSpace;	
+	int m_iAdditionalCargoRange; // Civ4 Reimagined					
 	int m_iConscriptionValue;
 	int m_iCultureGarrisonValue;
 	int m_iExtraCost;							
