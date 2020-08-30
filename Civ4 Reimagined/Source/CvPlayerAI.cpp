@@ -18692,12 +18692,12 @@ void CvPlayerAI::AI_doCivics()
 		}
 	}
 
-	if (!canRevolution(&aeBestCivic[0]))
+	if (!canRevolution(&aeNewCivic[0]))
 	{
 		return;
 	}
 
-	IdeologyTypes eBestIdeology = AI_bestIdeology(&aeBestCivic[0]);
+	IdeologyTypes eBestIdeology = AI_bestIdeology(&aeNewCivic[0]);
 
 	if (gPlayerLogLevel > 0 && eBestIdeology != NO_IDEOLOGY)
 		logBBAI("best Ideology: %S", GC.getIdeologyInfo(eBestIdeology).getDescription());
@@ -26991,10 +26991,10 @@ IdeologyTypes CvPlayerAI::AI_bestIdeology(CivicTypes* paeCivics) const
 
 	for (int iI = 0; iI < GC.getNumCivicOptionInfos(); ++iI)
 	{
-		iConservative += IDEOLOGY_CONSERVATISM, GC.getCivicInfo(paeCivics[iI]).getConservative();
-		iLiberal += IDEOLOGY_LIBERALISM, GC.getCivicInfo(paeCivics[iI]).getLiberal();
-		iCommunist += IDEOLOGY_COMMUNISM, GC.getCivicInfo(paeCivics[iI]).getCommunist();
-		iFascist += IDEOLOGY_FASCISM, GC.getCivicInfo(paeCivics[iI]).getFascist();
+		iConservative += GC.getCivicInfo(paeCivics[iI]).getConservative();
+		iLiberal += GC.getCivicInfo(paeCivics[iI]).getLiberal();
+		iCommunist += GC.getCivicInfo(paeCivics[iI]).getCommunist();
+		iFascist += GC.getCivicInfo(paeCivics[iI]).getFascist();
 	}
 
 	std::vector<std::pair<int, IdeologyTypes> > ideologyInfluence;
@@ -27008,7 +27008,7 @@ IdeologyTypes CvPlayerAI::AI_bestIdeology(CivicTypes* paeCivics) const
 	std::vector<std::pair<int, IdeologyTypes> >::iterator best_it;
  	for (best_it = ideologyInfluence.begin(); best_it != ideologyInfluence.end(); ++best_it)
  	{
- 		if (GET_TEAM(getTeam()).isHasTech((TechTypes)(GC.getIdeologyInfo(best_it->second).getTechPrereq())))
+ 		if (GET_TEAM(getTeam()).isHasTech((TechTypes)(GC.getIdeologyInfo(best_it->second).getTechPrereq())) || GC.getIdeologyInfo(best_it->second).getTechPrereq() == NO_TECH)
 		{
 			return best_it->second;
 		}
