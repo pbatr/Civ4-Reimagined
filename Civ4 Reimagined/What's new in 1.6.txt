@@ -13,6 +13,7 @@ Changes
 -Reassign almost all leader traits
 -Lumbermills grant 1 less production but are available with Machinery
 -Reintroduced longer anarchy for large empires
+-New American UU Supercarrier replaces Navy Seal
 
 *********
 Tweaks

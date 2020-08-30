@@ -476,6 +476,7 @@
 	<ElementType name="SpecialCargo" content="textOnly"/>
 	<ElementType name="DomainCargo" content="textOnly"/>
 	<ElementType name="iCargo" content="textOnly" dt:type="int"/>
+	<ElementType name="iAdditionalCargoRange" content="textOnly" dt:type="int"/>
 	<ElementType name="iConscription" content="textOnly" dt:type="int"/>
 	<ElementType name="iCultureGarrison" content="textOnly" dt:type="int"/>
 	<ElementType name="iExtraCost" content="textOnly" dt:type="int"/>
@@ -666,6 +667,7 @@
 		<element type="SpecialCargo"/>
 		<element type="DomainCargo"/>
 		<element type="iCargo"/>
+		<element type="iAdditionalCargoRange" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="iConscription"/>
 		<element type="iCultureGarrison"/>
 		<element type="iExtraCost"/>
