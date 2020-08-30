@@ -389,6 +389,10 @@
 		<iDefineIntVal>25</iDefineIntVal> <!-- Number of turns per civic -->
 	</Define>
 	<Define>
+		<DefineName>UNIQUE_POWER_JAPAN</DefineName>
+		<iDefineIntVal>50</iDefineIntVal> <!-- Research bonus for known technologies -->
+	</Define>
+	<Define>
 		<DefineName>UNIQUE_POWER_MAYA</DefineName>
 		<iDefineIntVal>25</iDefineIntVal> <!-- Production speed bonus -->
 	</Define>

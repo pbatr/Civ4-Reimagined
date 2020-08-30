@@ -948,6 +948,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iCorporationTraderouteModifier = 0; // Civ4 Reimagined
 	m_iGreatGeneralGoldenAgeLength = 0; // Civ4 Reimagined
 	m_bConscriptInfidels = false; // Civ4 Reimagined
+	m_iCatchUpTechModifier = 0; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -8576,7 +8577,7 @@ int CvPlayer::calculateResearchModifier(TechTypes eTech) const
 			iModifier += (GC.getDefineINT("TECH_COST_TOTAL_KNOWN_TEAM_MODIFIER") * iKnownCount) / iPossibleKnownCount;
 		}
 	}
-
+	
 	int iPossiblePaths = 0;
 	int iUnknownPaths = 0;
 
@@ -8606,6 +8607,28 @@ int CvPlayer::calculateResearchModifier(TechTypes eTech) const
 
 	iModifier -= GC.getTECH_COST_MODIFIER();
 	
+	
+	// Civ4 Reimagined: Unique power
+	if (getCatchUpTechModifier() > 0)
+	{
+		// Tech flows better through open borders
+		for (int iI = 0; iI < MAX_CIV_TEAMS; iI++)
+		{
+			if (GET_TEAM((TeamTypes)iI).isAlive())
+			{
+				if (GET_TEAM((TeamTypes)iI).isHasTech(eTech))
+				{
+					if (GET_TEAM(getTeam()).isHasMet((TeamTypes)iI))
+					{
+						iModifier *= 100 + getCatchUpTechModifier();
+						iModifier /= 100;
+						break;
+					}
+				}
+			}
+		}
+	}	
+
 	FAssert(iModifier > 0);
 
 	return iModifier;
@@ -20056,6 +20079,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iCorporationTraderouteModifier); // Civ4 Reimagined
 	pStream->Read(&m_iGreatGeneralGoldenAgeLength); // Civ4 Reimagined
 	pStream->Read(&m_bConscriptInfidels); // Civ4 Reimagined
+	pStream->Read(&m_iCatchUpTechModifier); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -20663,7 +20687,8 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iCorporationTraderouteModifier); // Civ4 Reimagined
 	pStream->Write(m_iGreatGeneralGoldenAgeLength); // Civ4 Reimagined
 	pStream->Write(m_bConscriptInfidels); // Civ4 Reimagined
-	
+	pStream->Write(m_iCatchUpTechModifier); // Civ4 Reimagined
+
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
 	pStream->Write(m_bTurnActive);
@@ -27392,6 +27417,18 @@ bool CvPlayer::isConscriptInfidels() const
 	return m_bConscriptInfidels;
 }
 
+//Civ4 Reimagined
+void CvPlayer::changeCatchUpTechModifier(int iChange)
+{
+	m_iCatchUpTechModifier += iChange;
+}
+
+// Civ4 Reimagined
+int CvPlayer::getCatchUpTechModifier() const
+{
+	return m_iCatchUpTechModifier;
+}
+
 
 //Civ4 Reimagined
 void CvPlayer::updateUniquePowers(TechTypes eTech)
@@ -27613,6 +27650,14 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_ANCIENT) 
 		{
 			changeCanFarmHillsCount(1);
+			notifyUniquePowersChanged(true);
+		}
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_JAPAN"))
+	{
+		if (eEra == ERA_INDUSTRIAL)
+		{
+			changeCatchUpTechModifier(GC.getDefineINT("UNIQUE_POWER_JAPAN"));
 			notifyUniquePowersChanged(true);
 		}
 	}

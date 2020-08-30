@@ -6722,6 +6722,10 @@ int CvPlayerAI::uniquePowerAIEraValueMult(EraTypes eEra) const
 	{
 		return 125;
 	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_JAPAN") && eEra >= ERA_INDUSTRIAL)
+	{
+		return 125;
+	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_OTTOMAN") && eEra == ERA_INDUSTRIAL)
 	{
 		// Only calculate effect of leaving this era
