@@ -27857,8 +27857,8 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		}
 		else if (eEra == ERA_MEDIEVAL)
 		{
-			changeAdjacentFeatureCommerce((FeatureTypes)GC.getInfoTypeForString("FEATURE_FOREST"), COMMERCE_CULTURE, GC.getDefineINT("UNIQUE_POWER_CELT_CULTURE"));
-			changeAdjacentFeatureCommerce((FeatureTypes)GC.getInfoTypeForString("FEATURE_FOREST"), COMMERCE_RESEARCH, GC.getDefineINT("UNIQUE_POWER_CELT_RESEARCH"));
+			changeAdjacentFeatureCommerce((FeatureTypes)GC.getInfoTypeForString("FEATURE_FOREST"), COMMERCE_CULTURE, -GC.getDefineINT("UNIQUE_POWER_CELT_CULTURE"));
+			changeAdjacentFeatureCommerce((FeatureTypes)GC.getInfoTypeForString("FEATURE_FOREST"), COMMERCE_RESEARCH, -GC.getDefineINT("UNIQUE_POWER_CELT_RESEARCH"));
 			notifyUniquePowersChanged(false);
 		}
 	}
