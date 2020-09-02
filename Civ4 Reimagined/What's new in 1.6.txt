@@ -6,6 +6,7 @@ Civ4 Reimagined 1.6
 New
 *********
 -Civilizations have a starting position bias for native terrain and features
+-New Leader Jayavarman VII of Khmer empire with Creative, Industrious
 
 *********
 Changes
@@ -13,6 +14,7 @@ Changes
 -Reassign almost all leader traits
 -Lumbermills grant 1 less production but are available with Machinery
 -Reintroduced longer anarchy for large empires
+-Removed Leader Brennus
 -New American UU Supercarrier replaces Navy Seal
 
 *********

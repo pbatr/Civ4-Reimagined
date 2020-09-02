@@ -454,5 +454,13 @@
 			<NoShaderNIF>Art/Leaderheads/Harun al-Rashid/julius_caesar.nif</NoShaderNIF>
 			<BackgroundKFM>Art/Leaderheads/Harun al-Rashid/julius_caesar_bg.kfm</BackgroundKFM>
 		</LeaderheadArtInfo>
+		<LeaderheadArtInfo>
+		  <Type>ART_DEF_LEADER_JAYAVARMAN</Type>
+		  <Button>Art/Leaderheads/Jayavarman/JayavarmanVII.dds</Button>
+		  <NIF>Art/Leaderheads/Jayavarman/mao_tse_tung.nif</NIF>
+		  <KFM>Art/Leaderheads/Jayavarman/mao_tse_tung.kfm</KFM>
+		  <NoShaderNIF>Art/Leaderheads/Jayavarman/mao_tse_tung.nif</NoShaderNIF>
+		  <BackgroundKFM>Art/Leaderheads/Jayavarman/mao_tse_tung_bg.kfm</BackgroundKFM>
+		</LeaderheadArtInfo>
 	</LeaderheadArtInfos>
 </Civ4ArtDefines>
