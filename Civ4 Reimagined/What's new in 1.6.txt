@@ -39,6 +39,7 @@ Tweaks
 -Can change 3 civics for one turn of anarchy on quick speed (was 4)
 -Barbarian ships do not spawn in Medieval and later eras
 -Longer period between Apostolic Palace votes
+-Factory requires Coal or Oil
 
 *********
 Interface
