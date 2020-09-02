@@ -5712,6 +5712,12 @@ bool CvGame::isOption(GameOptionTypes eIndex) const
 	return GC.getInitCore().getOption(eIndex);
 }
 
+// Civ4 Reimagined: Added game speedmodifier
+int CvGame::getPeaceDealLength() const
+{
+	return std::max(1, GC.getDefineINT("PEACE_TREATY_LENGTH") * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getDealLengthPercent() / 100);
+}
+
 
 void CvGame::setOption(GameOptionTypes eIndex, bool bEnabled)
 {

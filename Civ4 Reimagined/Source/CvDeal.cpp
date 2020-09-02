@@ -315,8 +315,8 @@ void CvDeal::doTurn()
 	{
 		if (getLengthSecondTrades() > 0)
 		{
-			iValue = (GET_PLAYER(getFirstPlayer()).AI_dealVal(getSecondPlayer(), getSecondTrades()) / GC.getDefineINT("PEACE_TREATY_LENGTH"));
-
+			iValue = (GET_PLAYER(getFirstPlayer()).AI_dealVal(getSecondPlayer(), getSecondTrades()) / GC.getGameINLINE().getPeaceDealLength()); // Civ4 Reimagined: Added game speed modifier
+			
 			if (getLengthFirstTrades() > 0)
 			{
 				GET_PLAYER(getFirstPlayer()).AI_changePeacetimeTradeValue(getSecondPlayer(), iValue);
@@ -329,7 +329,7 @@ void CvDeal::doTurn()
 
 		if (getLengthFirstTrades() > 0)
 		{
-			iValue = (GET_PLAYER(getSecondPlayer()).AI_dealVal(getFirstPlayer(), getFirstTrades()) / GC.getDefineINT("PEACE_TREATY_LENGTH"));
+			iValue = (GET_PLAYER(getSecondPlayer()).AI_dealVal(getFirstPlayer(), getFirstTrades()) / GC.getGameINLINE().getPeaceDealLength()); // Civ4 Reimagined: Added gamespeed modifier
 
 			if (getLengthSecondTrades() > 0)
 			{
@@ -715,6 +715,9 @@ bool CvDeal::startTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eT
 
 	bSave = false;
 
+	// Civ4 Reimagined: Added gamespeed modifier
+	const int iPeaceTreatyLength = GC.getGameINLINE().getPeaceDealLength();
+
 	switch (trade.m_eItemType)
 	{
 	case TRADE_TECHNOLOGIES:
@@ -921,9 +924,9 @@ bool CvDeal::startTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eT
 		// Civ4 Reimagined: no anarchy
 		GET_PLAYER(eFromPlayer).revolution(paeNewCivics, true, false);
 
-		if (GET_PLAYER(eFromPlayer).AI_getCivicTimer() < GC.getDefineINT("PEACE_TREATY_LENGTH"))
+		if (GET_PLAYER(eFromPlayer).AI_getCivicTimer() < iPeaceTreatyLength)
 		{
-			GET_PLAYER(eFromPlayer).AI_setCivicTimer(GC.getDefineINT("PEACE_TREATY_LENGTH"));
+			GET_PLAYER(eFromPlayer).AI_setCivicTimer(iPeaceTreatyLength);
 		}
 		if( gTeamLogLevel >= 2 )
 		{
@@ -936,9 +939,9 @@ bool CvDeal::startTrade(TradeData trade, PlayerTypes eFromPlayer, PlayerTypes eT
 	case TRADE_RELIGION:
 		GET_PLAYER(eFromPlayer).convert((ReligionTypes)trade.m_iData);
 
-		if (GET_PLAYER(eFromPlayer).AI_getReligionTimer() < GC.getDefineINT("PEACE_TREATY_LENGTH"))
+		if (GET_PLAYER(eFromPlayer).AI_getReligionTimer() < iPeaceTreatyLength) // Civ4 Reimagined: Added gamespeed modifier
 		{
-			GET_PLAYER(eFromPlayer).AI_setReligionTimer(GC.getDefineINT("PEACE_TREATY_LENGTH"));
+			GET_PLAYER(eFromPlayer).AI_setReligionTimer(iPeaceTreatyLength); // Civ4 Reimagined: Added gamespeed modifier
 		}
 		if( gTeamLogLevel >= 2 )
 		{
@@ -1202,7 +1205,7 @@ bool CvDeal::isCancelable(PlayerTypes eByPlayer, CvWString* pszReason)
 
 int CvDeal::turnsToCancel(PlayerTypes eByPlayer)
 {
-	return (getInitialGameTurn() + GC.getDefineINT("PEACE_TREATY_LENGTH") - GC.getGameINLINE().getGameTurn());
+	return (getInitialGameTurn() + GC.getGameINLINE().getPeaceDealLength() - GC.getGameINLINE().getGameTurn()); // Civ4 Reimagined: Added gamespeed modifier
 }
 
 // static

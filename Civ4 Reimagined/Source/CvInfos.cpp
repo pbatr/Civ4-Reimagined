@@ -3081,7 +3081,8 @@ m_iBombRate(0),
 m_iBombardRate(0),
 m_iSpecialCargo(0),
 m_iDomainCargo(0),					
-m_iCargoSpace(0),						
+m_iCargoSpace(0),
+m_iAdditionalCargoRange(0), // Civ4 Reimagined						
 m_iConscriptionValue(0),
 m_iCultureGarrisonValue(0),
 m_iExtraCost(0),							
@@ -3501,6 +3502,12 @@ int CvUnitInfo::getDomainCargo() const
 int CvUnitInfo::getCargoSpace() const
 {
 	return m_iCargoSpace;
+}
+
+// Civ4 Reimagined
+int CvUnitInfo::getAdditionalCargoRange() const
+{
+	return m_iAdditionalCargoRange;
 }
 
 int CvUnitInfo::getConscriptionValue() const
@@ -4324,6 +4331,7 @@ void CvUnitInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iSpecialCargo);
 	stream->Read(&m_iDomainCargo);
 	stream->Read(&m_iCargoSpace);
+	stream->Read(&m_iAdditionalCargoRange); // Civ4 Reimagined
 	stream->Read(&m_iConscriptionValue);
 	stream->Read(&m_iCultureGarrisonValue);
 	stream->Read(&m_iExtraCost);
@@ -4632,6 +4640,7 @@ void CvUnitInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iSpecialCargo);
 	stream->Write(m_iDomainCargo);
 	stream->Write(m_iCargoSpace);
+	stream->Write(m_iAdditionalCargoRange); // Civ4 Reimagined
 	stream->Write(m_iConscriptionValue);
 	stream->Write(m_iCultureGarrisonValue);
 	stream->Write(m_iExtraCost);
@@ -5057,6 +5066,7 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 	m_iDomainCargo = pXML->FindInInfoClass(szTextVal);
 
 	pXML->GetChildXmlValByName(&m_iCargoSpace, "iCargo");
+	pXML->GetChildXmlValByName(&m_iAdditionalCargoRange, "iAdditionalCargoRange"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iConscriptionValue, "iConscription");
 	pXML->GetChildXmlValByName(&m_iCultureGarrisonValue, "iCultureGarrison");
 	pXML->GetChildXmlValByName(&m_iExtraCost, "iExtraCost");
@@ -12810,6 +12820,9 @@ m_iInflationOffset(0),
 m_iInflationPercent(0),
 m_iVictoryDelayPercent(0),
 m_iNumTurnIncrements(0),
+m_iDealLengthPercent(0),
+m_iHealPercent(0),
+m_iOccupyLengthPercent(0),
 m_pGameTurnInfo(NULL)
 {
 }
@@ -12916,6 +12929,24 @@ int CvGameSpeedInfo::getHurryConscriptAngerPercent() const
 	return m_iHurryConscriptAngerPercent;
 }
 
+// Civ4 Reimagined
+int CvGameSpeedInfo::getDealLengthPercent() const
+{
+	return m_iDealLengthPercent;
+}
+
+// Civ4 Reimagined
+int CvGameSpeedInfo::getHealPercent() const
+{
+	return m_iHealPercent;
+}
+
+// Civ4 Reimagined
+int CvGameSpeedInfo::getOccupyLengthPercent() const
+{
+	return m_iOccupyLengthPercent;
+}
+
 int CvGameSpeedInfo::getInflationOffset() const
 {
 	return m_iInflationOffset;
@@ -12976,6 +13007,9 @@ bool CvGameSpeedInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iInflationOffset, "iInflationOffset");
 	pXML->GetChildXmlValByName(&m_iInflationPercent, "iInflationPercent");
 	pXML->GetChildXmlValByName(&m_iVictoryDelayPercent, "iVictoryDelayPercent");
+	pXML->GetChildXmlValByName(&m_iDealLengthPercent, "iDealLengthPercent");
+	pXML->GetChildXmlValByName(&m_iHealPercent, "iHealPercent");
+	pXML->GetChildXmlValByName(&m_iOccupyLengthPercent, "iOccupyLengthPercent");
 
 	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"GameTurnInfos"))
 	{

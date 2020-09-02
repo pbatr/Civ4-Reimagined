@@ -8896,6 +8896,12 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
 		}
 	}
 
+	if (GC.getUnitInfo(eUnit).getAdditionalCargoRange() > 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_ADD_CARGO_RANGE", GC.getUnitInfo(eUnit).getAdditionalCargoRange()));
+	}
+
 	if (GC.getUnitInfo(eUnit).getDomainType() == DOMAIN_LAND)
 	{
 		szTempBuffer.Format(L"%s%s ", NEWLINE, gDLL->getText("TXT_KEY_UNIT_CANNOT_ENTER_WITHOUT_ROAD").GetCString());
@@ -15656,7 +15662,7 @@ void CvGameTextMgr::getTradeString(CvWStringBuffer& szBuffer, const TradeData& t
 		szBuffer.append(gDLL->getText("TXT_KEY_MISC_PERMANENT_ALLIANCE"));
 		break;
 	case TRADE_PEACE_TREATY:
-		szBuffer.append(gDLL->getText("TXT_KEY_MISC_PEACE_TREATY", GC.getDefineINT("PEACE_TREATY_LENGTH")));
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_PEACE_TREATY", GC.getGameINLINE().getPeaceDealLength())); // Civ4 Reimagined: Added gamespeed modifier
 		break;
 	case TRADE_TECHNOLOGIES:
 		szBuffer.assign(CvWString::format(L"%s", GC.getTechInfo((TechTypes)tradeData.m_iData).getDescription()));
@@ -19698,14 +19704,14 @@ void CvGameTextMgr::getTurnTimerText(CvWString& strText)
 				}
 			}
 
-			if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_START) && !GC.getGameINLINE().isOption(GAMEOPTION_ALWAYS_WAR) && GC.getGameINLINE().getElapsedGameTurns() <= GC.getDefineINT("PEACE_TREATY_LENGTH"))
+			if (GC.getGameINLINE().isOption(GAMEOPTION_ADVANCED_START) && !GC.getGameINLINE().isOption(GAMEOPTION_ALWAYS_WAR) && GC.getGameINLINE().getElapsedGameTurns() <= GC.getGameINLINE().getPeaceDealLength()) // Civ4 Reimagined: Added gamespeed modifier
 			{
 				if (!strText.empty())
 				{
 					strText += L" -- ";
 				}
 
-				strText += gDLL->getText("TXT_KEY_MISC_ADVANCED_START_PEACE_REMAINING", GC.getDefineINT("PEACE_TREATY_LENGTH") - GC.getGameINLINE().getElapsedGameTurns());
+				strText += gDLL->getText("TXT_KEY_MISC_ADVANCED_START_PEACE_REMAINING", GC.getGameINLINE().getPeaceDealLength()); // Civ4 Reimagined: Added gamespeed modifier
 			}
 			else if (iMinVictoryTurns < MAX_INT)
 			{

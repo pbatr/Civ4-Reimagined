@@ -3935,6 +3935,14 @@ int CvUnit::healRate(const CvPlot* pPlot, bool bLocation, bool bUnits) const
 		// XXX
 	}
 
+	// Civ4 Reimagined
+	if (iTotalHeal > 0)
+	{
+		iTotalHeal *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getHealPercent();
+		iTotalHeal /= 100;
+		iTotalHeal = std::max(1, iTotalHeal);
+	}
+	
 	return iTotalHeal;
 }
 
@@ -8078,7 +8086,15 @@ bool CvUnit::hasMoved()	const
 
 int CvUnit::airRange() const
 {
-	return (m_pUnitInfo->getAirRange() + getExtraAirRange());
+	int iRange = m_pUnitInfo->getAirRange() + getExtraAirRange();
+
+	// Civ4 Reimagined
+	if (isCargo())
+	{
+		iRange += GC.getUnitInfo(getTransportUnit()->getUnitType()).getAdditionalCargoRange();
+	}
+
+	return iRange;
 }
 
 

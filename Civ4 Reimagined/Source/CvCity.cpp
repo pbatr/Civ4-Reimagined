@@ -16720,7 +16720,7 @@ void CvCity::applyEvent(EventTypes eEvent, const EventTriggeredData& kTriggeredD
 		if (kEvent.getRevoltTurns() > 0)
 		{
 			changeCultureUpdateTimer(kEvent.getRevoltTurns());
-			changeOccupationTimer(kEvent.getRevoltTurns());
+			changeOccupationTimer(std::max(1, (kEvent.getRevoltTurns() * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getOccupyLengthPercent()) / 100)); // Civ4 Reimagined: Added gamespeed modifier
 		}
 
 		if (0 != kEvent.getSpaceProductionModifier())

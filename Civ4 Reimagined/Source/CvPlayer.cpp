@@ -2714,7 +2714,10 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 
 		if (!bRecapture)
 		{
-			pNewCity->changeOccupationTimer(iOccupationTimer);
+			if (iOccupationTimer > 0)
+			{
+				pNewCity->changeOccupationTimer(std::max(1, (iOccupationTimer * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getOccupyLengthPercent()) / 100)); // Civ4 Reimagined: Added gamespeed modifier
+			}			
 		}
 	}
 	
@@ -2725,7 +2728,13 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 
 		if (iTeamCulturePercent < GC.getDefineINT("OCCUPATION_CULTURE_PERCENT_THRESHOLD") && !GET_TEAM(getTeam()).isNoConquestResistance() && !isNoCityResistance()) // Civ4 Reimagined
 		{
-			pNewCity->changeOccupationTimer(((GC.getDefineINT("BASE_OCCUPATION_TURNS") + ((pNewCity->getPopulation() * GC.getDefineINT("OCCUPATION_TURNS_POPULATION_PERCENT")) / 100)) * (100 - iTeamCulturePercent)) / 100);
+			int iOccupationTurns = ((GC.getDefineINT("BASE_OCCUPATION_TURNS") + ((pNewCity->getPopulation() * GC.getDefineINT("OCCUPATION_TURNS_POPULATION_PERCENT")) / 100)) * (100 - iTeamCulturePercent)) / 100;
+			 // Civ4 Reimagined: Added game speed modifier
+			iOccupationTurns *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getOccupyLengthPercent();
+			iOccupationTurns /= 100;
+			iOccupationTurns = std::max(1, iOccupationTurns);
+
+			pNewCity->changeOccupationTimer(iOccupationTurns);
 		}
 
 		GC.getMapINLINE().verifyUnitValidPlot();
@@ -5046,7 +5055,7 @@ void CvPlayer::handleDiploEvent(DiploEventTypes eDiploEvent, PlayerTypes ePlayer
 		if (pCity != NULL)
 		{
 			pCity->area()->setTargetCity(getID(), pCity);
-			GET_PLAYER(getID()).AI_setCityTargetTimer(GC.getDefineINT("PEACE_TREATY_LENGTH")); // K-Mod. (I'd make it a virtual function, but that causes problems.)
+			GET_PLAYER(getID()).AI_setCityTargetTimer(GC.getGameINLINE().getPeaceDealLength()); // Civ4 Reimagined: Added gamespeed modifier // K-Mod. (I'd make it a virtual function, but that causes problems.)
 		}
 		break;
 	// K-Mod
@@ -10853,6 +10862,8 @@ void CvPlayer::changeNumSlaveUnits(int iChange)
 	{
 		m_iSlavesCount = (m_iSlavesCount + iChange);
 		FAssert(m_iSlavesCount >= 0);
+
+		updateCorporation();
 	}
 }
 
@@ -25280,7 +25291,7 @@ bool CvPlayer::getItemTradeString(PlayerTypes eOtherPlayer, bool bOffer, bool bS
 		szString = gDLL->getText("TXT_KEY_TRADE_PERMANENT_ALLIANCE_STRING");
 		break;
 	case TRADE_PEACE_TREATY:
-		szString = gDLL->getText("TXT_KEY_TRADE_PEACE_TREATY_STRING", GC.getDefineINT("PEACE_TREATY_LENGTH"));
+		szString = gDLL->getText("TXT_KEY_TRADE_PEACE_TREATY_STRING", GC.getGameINLINE().getPeaceDealLength()); // Civ4 Reimagined: Added gamespeed modifier
 		break;
 	case TRADE_TECHNOLOGIES:
 		szString = GC.getTechInfo((TechTypes)zTradeData.m_iData).getDescription();

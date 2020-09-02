@@ -1394,4 +1394,12 @@
 		<Tag>TXT_KEY_MISC_YOUR_AIR_UNIT_DAMAGED</Tag>
 		<English>Your %s1_UnitName was damaged by an enemy %s2_EnUName (%d3%% HP)</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_ADD_CARGO_RANGE</Tag>
+		<English>[ICON_BULLET]Provides Additional %d1 Range to Cargo Units</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_AMERICAN_SUPERCARRIER</Tag>
+		<English>Supercarrier</English>
+	</TEXT>
 </Civ4GameText>
