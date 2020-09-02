@@ -10862,6 +10862,8 @@ void CvPlayer::changeNumSlaveUnits(int iChange)
 	{
 		m_iSlavesCount = (m_iSlavesCount + iChange);
 		FAssert(m_iSlavesCount >= 0);
+
+		updateCorporation();
 	}
 }
 

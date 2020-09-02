@@ -51,6 +51,7 @@ Fixes
 -Seowon and Madrassa did not give science bonus with Scientific Method
 -Protective players couldn't pillage their own improvements
 -French Missile Submarine had broken graphics
+-Abolish slavery would not always update corporation yields
 
 
 *******************************************
