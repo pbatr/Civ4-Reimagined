@@ -40,6 +40,9 @@ Tweaks
 -Barbarian ships do not spawn in Medieval and later eras
 -Longer period between Apostolic Palace votes
 -Factory requires Coal or Oil
+-Coal Plant requires Coal
+-Nuclear Plant requires Uranium
+-Iron Works requires Iron
 
 *********
 Interface
