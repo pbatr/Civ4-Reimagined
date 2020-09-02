@@ -1,11 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!-- K-Mod hints -->
-	<!-- Style guidelines (from CIV4GameText_Strategy.xml): -->
-	<!-- Technologies should be colored COLOR_TECH_TEXT (example: [COLOR_TECH_TEXT]Bronze Working[COLOR_REVERT]) -->
-	<!-- Unit should be colored COLOR_UNIT_TEXT (example: [COLOR_UNIT_TEXT]Archers[COLOR_REVERT]) -->
-	<!-- Buildings should be colored COLOR_BUILDING_TEXT (example: [COLOR_BUILDING_TEXT]Theatre[COLOR_REVERT]) -->
-	<!-- Projects should be colored COLOR_PROJECT_TEXT (example: [COLOR_PROJECT_TEXT]SS Engine[COLOR_REVERT]) -->
-	<!-- Anything else official (that should be capitalized) should be colored COLOR_HIGHLIGHT_TEXT (example: [COLOR_HIGHLIGHT_TEXT]Trade Mission[COLOR_HIGHLIGHT_TEXT] or [COLOR_HIGHLIGHT_TEXT]Islam[COLOR_HIGHLIGHT_TEXT]) -->
+
 <Civ4GameText xmlns="http://www.firaxis.com">	
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_1</Tag>
@@ -17,7 +11,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_3</Tag>
-		<English>The production penalty for resource shortage is only halved compared to health and happiness penalties.</English>
+		<English>The production penalty for resource shortage is halved compared to health and happiness penalties.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_4</Tag>
@@ -29,15 +23,15 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_6</Tag>
-		<English>[COLOR_UNIT_TEXT]Musketmen[COLOR_REVERT] do not ignore [COLOR_BUILDING_TEXT]Walls[COLOR_REVERT] and [COLOR_BUILDING_TEXT]Castles[COLOR_REVERT] are powerful defensive tools until cannons are invented.</English>
+		<English>Walls and Castles are powerful defensive tools until cannons are invented.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_7</Tag>
-		<English>Modern artillery, bombers and ships can all destroy buildings.</English>
+		<English>Artillery, bombers and modern ships can destroy buildings.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_8</Tag>
-		<English>The AI carefully evaluates if using nuclear weapons might result in a nuclear counter-attack, and stick to conventional warfare otherwise.</English>
+		<English>The AI carefully evaluates if using nuclear weapons is necessary or if it might result in a nuclear counter-attack.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_9</Tag>
@@ -49,11 +43,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_11</Tag>
-		<English>When a religion is driven out of your city, all [COLOR_BUILDING_TEXT]Temples[COLOR_REVERT] and [COLOR_BUILDING_TEXT]Monasteries[COLOR_REVERT] of that religion are destroyed in the process.</English>
+		<English>When a religion is driven out of your city, all Temples and Monasteries of that religion are destroyed in the process.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_12</Tag>
-		<English>If your unique unit requires [COLOR_HIGHLIGHT_TEXT]Horses[COLOR_REVERT] or [COLOR_HIGHLIGHT_TEXT]Ivory[COLOR_REVERT] you can be sure to have one near your starting position.</English>
+		<English>If your unique unit requires Horses or Ivory you can be sure to have one near your starting position.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_13</Tag>
@@ -61,11 +55,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_14</Tag>
-		<English>[COLOR_HIGHLIGHT_TEXT]Civ4 Reimagined[COLOR_REVERT] is best played with 18 players, "new world" continent, and no technology trading.</English>
+		<English>Civ4 Reimagined is best played with 18 players, "new world" continent, and no technology trading.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_15</Tag>
-		<English>Technologies that found religions are cheaper after they have been discovered by someone else.</English>
+		<English>Technologies that found religions are cheaper if the religion is already founded.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_16</Tag>
@@ -73,7 +67,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_17</Tag>
-		<English>You need [COLOR_TECH_TEXT]Sailing[COLOR_REVERT] to connect river resources without roads.</English>
+		<English>You need Sailing to connect river resources without roads.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_18</Tag>
@@ -85,19 +79,19 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_20</Tag>
-		<English>There are two ways to gain [COLOR_UNIT_TEXT]Slaves[COLOR_REVERT] with [COLOR_HIGHLIGHT_TEXT]Slavery[COLOR_REVERT]. First is to conquer enemy cities. Second is to settle on large oversea continents after discovery of [COLOR_TECH_TEXT]Astronomy[COLOR_REVERT].</English>
+		<English>There are two ways to gain Slaves with Slavery. First is to conquer enemy cities. Second is to settle on large oversea continents after discovery of Astronomy.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_21</Tag>
-		<English>[COLOR_HIGHLIGHT_TEXT]Corporations[COLOR_REVERT] spread automatically to cities with suitable resources nearby.</English>
+		<English>Corporations spread automatically to cities with suitable resources nearby.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_22</Tag>
-		<English>You can get the newest stable version at [COLOR_HIGHLIGHT_TEXT]forums.civfanatics.com[COLOR_REVERT] or the newest development version at [COLOR_HIGHLIGHT_TEXT]github.com/pbatr/Civ4-Reimagined[COLOR_REVERT]. We are always happy to hear your feedback!</English>
+		<English>You can get the newest stable version at forums.civfanatics.com or the newest development version at github.com/pbatr/Civ4-Reimagined. We are always happy to hear your feedback!</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_23</Tag>
-		<English>[COLOR_UNIT_TEXT]Slaves[COLOR_REVERT] don't count towards the worker limit. Use them to modernize a large empire.</English>
+		<English>Slaves don't count towards the worker limit. Use them to modernize a large empire.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_24</Tag>
@@ -105,19 +99,19 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_25</Tag>
-		<English>[COLOR_UNIT_TEXT]Scouts[COLOR_REVERT] are better at fighting wildlife than [COLOR_UNIT_TEXT]Warriors[COLOR_REVERT], especially [COLOR_UNIT_TEXT]Bears[COLOR_REVERT].</English>
+		<English>Scouts are better at fighting wildlife than Warriors, especially Bears.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_26</Tag>
-		<English>Recommended settings for [COLOR_HIGHLIGHT_TEXT]Civ4 Reimagined[COLOR_REVERT]: 18-20 players totestra map. Empty, colonizeable continent ("new world"). No technology trading.</English>
+		<English>Recommended settings for Civ4 Reimagined: 18-20 players totestra map. Empty, colonizeable continent ("new world"). No technology trading.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_27</Tag>
-		<English>Oversea colonies will eventually grow unhappy. There are several ways to deal with it. One of them is to release them and keep them as a vassal instead.</English>
+		<English>Oversea colonies will demand independence the further the game has progressed and the further they are away from your capital. There are several ways to deal with it. One is to release them and keep them as a vassal instead.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_28</Tag>
-		<English>Chopping forests is a lot less efficient without [COLOR_TECH_TEXT]Replacable Parts[COLOR_REVERT]. Consider keeping some of your forests until then.</English>
+		<English>Chopping forests is a lot less efficient without Replacable Parts. Consider keeping some of your forests until then.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_29</Tag>
@@ -125,15 +119,15 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_30</Tag>
-		<English>Collateral units cannot damage units below 85% hp, but that is often enough to tilt the odds in your favor.</English>
+		<English>Collateral units cannot damage units below 85% hp, but that is often enough to change the odds of a battle in your favor.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_31</Tag>
-		<English>[COLOR_UNIT_TEXT]Fighters[COLOR_REVERT] and [COLOR_UNIT_TEXT]Jet Fighters[COLOR_REVERT] can destroy units! They are especially effective against ships.</English>
+		<English>Fighters and Jet Fighters can destroy units! They are especially effective against ships.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_32</Tag>
-		<English>The number of [COLOR_UNIT_TEXT]Workers[COLOR_REVERT] is limited to give larger empires a tougher time, but if you don't like that, you can change it in the game settings before game starts.</English>
+		<English>The number of Workers is limited to give larger empires a tougher time, but if you don't like that, you can change it in the game settings before game starts.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_33</Tag>
@@ -149,11 +143,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_36</Tag>
-		<English>The profit you gain from spreading the [COLOR_HIGHLIGHT_TEXT]East India Company[COLOR_REVERT] and [COLOR_HIGHLIGHT_TEXT]Royal African Company[COLOR_REVERT] to your cities will increase with every [COLOR_UNIT_TEXT]Slave[COLOR_REVERT] in your empire.</English>
+		<English>The profit you gain from spreading the East India Company and Royal African Company to your cities will increase with every Slave in your empire.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_37</Tag>
-		<English>The [COLOR_HIGHLIGHT_TEXT]East India Company[COLOR_REVERT] and [COLOR_HIGHLIGHT_TEXT]Royal African Company[COLOR_REVERT] require coastal cities and can spread only while you maintain [COLOR_HIGHLIGHT_TEXT]Slavery[COLOR_REVERT].</English>
+		<English>The East India Company and Royal African Company require coastal cities and can spread only while you maintain Slavery.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_38</Tag>
@@ -169,10 +163,10 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_41</Tag>
-		<English>With the [COLOR_HIGHLIGHT_TEXT]Mercenaries[COLOR_REVERT], you can hire units even if you are lacking the required resources. For a price, of course...</English>
+		<English>With the Mercenaries civic, you can hire units even if you are lacking the required resources. For a price, of course...</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_42</Tag>
-		<English>If you abolish slavery, all [COLOR_UNIT_TEXT]Slaves[COLOR_REVERT] in your empire will be freed.</English>
+		<English>If you abolish slavery, all Slaves in your empire will be freed.</English>
 	</TEXT>
 </Civ4GameText>
