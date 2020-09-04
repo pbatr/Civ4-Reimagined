@@ -1414,4 +1414,8 @@
 		<Tag>TXT_KEY_BUILDING_NO_CONSCRIPT_UNHAPPY</Tag>
 		<English>[ICON_BULLET]No Unhappiness from Drafting Units when Using the [LINK=CIVIC_CONSCRIPTION]Conscription[\LINK] Civic</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_ACTION_BUILDING_HURRY</Tag>
+		<English>[COLOR_WARNING_TEXT]Can only Hurry Production of a Building or a Project.[COLOR_REVERT]</English>
+	</TEXT>
 </Civ4GameText>
