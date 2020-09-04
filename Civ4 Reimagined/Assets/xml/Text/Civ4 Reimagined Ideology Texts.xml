@@ -98,4 +98,8 @@
 		<Tag>TXT_KEY_MISC_ATTITUDE_DIFFERENT_IDEOLOGY</Tag>
 		<English>%D1: "We cannot agree with your Ideology"</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_DENIAL_IDEOLOGY</Tag>
+		<English>"Not as long your Ideology is so different..."</English>
+	</TEXT>
 </Civ4GameText>

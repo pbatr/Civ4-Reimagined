@@ -4138,12 +4138,7 @@ int CvTeamAI::AI_defensivePactTradeVal(TeamTypes eTeam) const
 {
 	int iValue = getPower(true) + GET_TEAM(eTeam).getPower(true) * 3;
 
-	if (GET_PLAYER(getLeaderID()).getIdeology() == GET_PLAYER(GET_TEAM(eTeam).getLeaderID()).getIdeology())
-	{
-		iValue *= 2;
-	}
-
-	return iValue / 100;
+	return iValue / 50;
 }
 
 
@@ -4169,6 +4164,12 @@ DenialTypes CvTeamAI::AI_defensivePactTrade(TeamTypes eTeam) const
 	if (AI_getWorstEnemy() == eTeam)
 	{
 		return DENIAL_WORST_ENEMY;
+	}
+
+	// Civ4 Reimagined
+	if (GET_PLAYER(getLeaderID()).getIdeology() != GET_PLAYER(GET_TEAM(eTeam).getLeaderID()).getIdeology())
+	{
+		return DENIAL_IDEOLOGY;
 	}
 
 	eAttitude = AI_getAttitude(eTeam);
