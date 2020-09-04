@@ -4138,6 +4138,25 @@ int CvTeamAI::AI_defensivePactTradeVal(TeamTypes eTeam) const
 {
 	int iValue = getPower(true) + GET_TEAM(eTeam).getPower(true) * 3;
 
+	if (isOpenBorders(eTeam))
+	{
+		iValue *= 2;
+	}
+
+	for (int iI = 0; iI < MAX_PLAYERS; iI++)
+	{
+		if (GET_PLAYER((PlayerTypes)iI).isAlive())
+		{
+			if (GET_PLAYER((PlayerTypes)iI).getTeam() == getID())
+			{
+				if ((GET_PLAYER((PlayerTypes)iI).getForeignTradeIdeologyModifier(IDEOLOGY_LIBERALISM) > 0) || (GET_PLAYER((PlayerTypes)iI).getBonusRatioModifierPerIdeologyCiv(IDEOLOGY_COMMUNISM) > 0))
+				{
+					iValue *=2;
+				}
+			}
+		}
+	}
+
 	return iValue / 50;
 }
 
