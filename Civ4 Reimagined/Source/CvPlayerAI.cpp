@@ -26991,6 +26991,14 @@ IdeologyTypes CvPlayerAI::AI_bestIdeology(CivicTypes* paeCivics) const
 		return NO_IDEOLOGY;
 	}
 
+	TeamTypes eMasterTeam = GET_TEAM(getTeam()).getMasterTeam();
+	bool bIsVassal = eMasterTeam != getTeam();
+
+	if (bIsVassal)
+	{
+		return GET_PLAYER(GET_TEAM(eMasterTeam).getLeaderID()).getIdeology();
+	}
+
 	int iConservative = 0;
 	int iLiberal = 0;
 	int iCommunist = 0;
