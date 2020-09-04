@@ -26473,6 +26473,11 @@ void CvPlayer::updateIdeology()
 		return;
 	}
 
+	if (!GC.getGameINLINE().areIdeologiesEnabled())
+	{
+		return;
+	}
+
 	IdeologyTypes eBestIdeology = IDEOLOGY_CONSERVATISM;
 	int iBestValue = INT_MIN;
 
