@@ -90,4 +90,12 @@
 		<Tag>TXT_KEY_ESPIONAGE_IDEOLOGY_INFLUENCE_MOD</Tag>
 		<English>%D1%%: for Ideology Influence</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_ATTITUDE_SAME_IDEOLOGY</Tag>
+		<English>%D1: "We share the same Ideology."</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_ATTITUDE_DIFFERENT_IDEOLOGY</Tag>
+		<English>%D1: "We cannot agree with your Ideology"</English>
+	</TEXT>
 </Civ4GameText>
