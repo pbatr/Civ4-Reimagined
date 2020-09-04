@@ -44,6 +44,7 @@ Tweaks
 -Nuclear Plant requires Uranium
 -Iron Works requires Iron
 -Motorized and Mechanized Infantry have 50% combat bonus vs Mounted
+-Great Engineers can hurry Projects
 
 *********
 Interface

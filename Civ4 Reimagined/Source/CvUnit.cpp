@@ -6574,7 +6574,8 @@ bool CvUnit::canHurry(const CvPlot* pPlot, bool bTestVisible) const
 
 	if (!bTestVisible)
 	{
-		if (!(pCity->isProductionBuilding()))
+		// Civ4 Reimagined: can hurry projects
+		if ((!pCity->isProductionBuilding() && !pCity->isProductionProject()))
 		{
 			return false;
 		}

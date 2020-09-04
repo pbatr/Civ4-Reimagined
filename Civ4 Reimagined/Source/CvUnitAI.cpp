@@ -5580,6 +5580,7 @@ bool CvUnitAI::AI_greatPersonMove()
 	CvPlot* pBestPlot = NULL;
 	SpecialistTypes eBestSpecialist = NO_SPECIALIST;
 	BuildingTypes eBestBuilding = NO_BUILDING;
+	ProjectTypes eBestProject = NO_PROJECT;
 	int iBestValue = 1;
 	int iBestPathTurns = MAX_INT; // just used as a tie-breaker.
 	int iMoveFlags = alwaysInvisible() ? 0 : MOVE_NO_ENEMY_TERRITORY;
@@ -5607,6 +5608,7 @@ bool CvUnitAI::AI_greatPersonMove()
 							pBestPlot = getPathEndTurnPlot();
 							eBestSpecialist = eSpecialist;
 							eBestBuilding = NO_BUILDING;
+							eBestProject = NO_PROJECT;
 						}
 					}
 				}
@@ -5630,6 +5632,7 @@ bool CvUnitAI::AI_greatPersonMove()
 								pBestPlot = getPathEndTurnPlot();
 								eBestBuilding = eBuilding;
 								eBestSpecialist = NO_SPECIALIST;
+								eBestProject = NO_PROJECT;
 							}
 						}
 						// Civ4 Reimagined To-Do: Check if we should save our great person to establish a corporation
@@ -5674,7 +5677,45 @@ bool CvUnitAI::AI_greatPersonMove()
 									iBestPathTurns = iPathTurns;
 									eBestBuilding = eBuilding;
 									eBestSpecialist = NO_SPECIALIST;
+									eBestProject = NO_PROJECT;
 								}
+							}
+						}
+					}
+				}
+
+				// Civ4 Reimagined: Hurry spaceship
+				if (bCanHurry)
+				{
+					for (iI = 0; iI < GC.getNumProjectInfos(); iI++)
+					{
+						ProjectTypes eProject = (ProjectTypes)iI;
+						if (GC.getProjectInfo(eProject).isSpaceship() && pLoopCity->getProductionProject() == eProject)
+						{
+							int iCost = pLoopCity->getProductionNeeded(eProject);
+							int iHurryProduction = getMaxHurryProduction(pLoopCity);
+							int iProgress = pLoopCity->getProjectProduction(eProject);
+							int iProductionMultiplier = pLoopCity->getProductionMultiplier();
+
+							int iProductionRate = iCost > iHurryProduction + iProgress ? pLoopCity->getProductionDifference(iCost, iProgress, pLoopCity->getProductionModifier(eProject), false, 0, iProductionMultiplier) : 0;
+							// note: currently, it is impossible for a building to be "food production".
+							// also note that iProductionRate will return 0 if the city is in disorder. This may mess up our great person's decision - but it's a non-trivial problem to fix.
+
+							iProgress += iProductionRate * iPathTurns;
+
+							FAssert(iHurryProduction > 0);
+							int iFraction = 100 * std::min(iHurryProduction, iCost-iProgress) / std::max(1, iCost);
+
+							int iValue = pLoopCity->AI_projectValue(eProject) * 25 * iFraction / 100;
+
+							if (iValue > iBestValue || (iValue == iBestValue && iPathTurns < iBestPathTurns))
+							{
+								iBestValue = iValue;
+								pBestPlot = getPathEndTurnPlot();
+								iBestPathTurns = iPathTurns;
+								eBestBuilding = NO_BUILDING;
+								eBestSpecialist = NO_SPECIALIST;
+								eBestProject = eProject;
 							}
 						}
 					}
@@ -5899,11 +5940,46 @@ bool CvUnitAI::AI_greatPersonMove()
 					}
 				}
 
+				if (eBestProject != NO_PROJECT)
+				{
+					MissionAITypes eMissionAI = MISSIONAI_HURRY;
+
+					if (gUnitLogLevel > 2) logBBAI("    %S %s 'hurry project' (%S) with their %S (value: %d, choice #%d)", GET_PLAYER(getOwnerINLINE()).getCivilizationDescription(0), getGroup()->AI_getMissionAIType() == eMissionAI?"continues" :"chooses", GC.getProjectInfo(eBestProject).getDescription(), getName(0).GetCString(), iSlowValue, iChoice);
+				}
+
+				// Civ4 Reimagined
 				if (eBestBuilding != NO_BUILDING)
 				{
 					MissionAITypes eMissionAI = canConstruct(pBestPlot, eBestBuilding) ? MISSIONAI_CONSTRUCT : MISSIONAI_HURRY;
 
 					if (gUnitLogLevel > 2) logBBAI("    %S %s 'build' (%S) with their %S (value: %d, choice #%d)", GET_PLAYER(getOwnerINLINE()).getCivilizationDescription(0), getGroup()->AI_getMissionAIType() == eMissionAI?"continues" :"chooses", GC.getBuildingInfo(eBestBuilding).getDescription(), getName(0).GetCString(), iSlowValue, iChoice);
+
+					if (atPlot(pBestPlot))
+					{
+						// switch and hurry.
+						CvCity* pCity = pBestPlot->getPlotCity();
+						FAssert(pCity);
+
+						if (pCity->getProductionProject() != eBestProject)
+							pCity->pushOrder(ORDER_CONSTRUCT, eBestProject);
+
+						if (pCity->getProductionProject() == eBestProject && canHurry(plot()))
+						{
+							getGroup()->pushMission(MISSION_HURRY);
+						}
+						else
+						{
+							FAssertMsg(false, "great person cannot hurry what it intended to hurry.");
+							return false;
+						}
+						
+						return true;
+					}
+					else
+					{
+						getGroup()->pushMission(MISSION_MOVE_TO, pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE(), iMoveFlags, false, false, eMissionAI);
+						return true;
+					}
 					if (atPlot(pBestPlot))
 					{
 						if (eMissionAI == MISSIONAI_CONSTRUCT)
