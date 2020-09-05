@@ -12908,14 +12908,13 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 		break;
 
 	case UNITAI_MISSILE_CARRIER_SEA:
-		iValue += iCombatValue * GC.getUnitInfo(eUnit).getMoves();
-		iValue += (25 + iCombatValue) * (3 + (GC.getUnitInfo(eUnit).getCargoSpace()));
-		if (GC.getUnitInfo(eUnit).getInvisibleType() != NO_INVISIBLE)
-		{
-			// Civ4 Reimagined
-			iValue *= 3;
-		}
+	{
+		// Civ4 Reimagined
+		int iMissileCarrierValue = (GC.getUnitInfo(eUnit).getInvisibleType() != NO_INVISIBLE) ? 100 : iCombatValue;
+		iValue += iMissileCarrierValue * GC.getUnitInfo(eUnit).getMoves();
+		iValue += (25 + iMissileCarrierValue) * (3 + (GC.getUnitInfo(eUnit).getCargoSpace()));
 		break;
+	}
 
 	case UNITAI_PIRATE_SEA:
 		iValue += iCombatValue;
