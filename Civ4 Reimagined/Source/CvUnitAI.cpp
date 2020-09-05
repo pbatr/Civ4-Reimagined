@@ -5706,7 +5706,7 @@ bool CvUnitAI::AI_greatPersonMove()
 							FAssert(iHurryProduction > 0);
 							int iFraction = 100 * std::min(iHurryProduction, iCost-iProgress) / std::max(1, iCost);
 
-							int iValue = pLoopCity->AI_projectValue(eProject) * 25 * iFraction / 100;
+							int iValue = pLoopCity->AI_projectValue(eProject) * 100 * iFraction / 100;
 
 							if (iValue > iBestValue || (iValue == iBestValue && iPathTurns < iBestPathTurns))
 							{
@@ -5945,14 +5945,6 @@ bool CvUnitAI::AI_greatPersonMove()
 					MissionAITypes eMissionAI = MISSIONAI_HURRY;
 
 					if (gUnitLogLevel > 2) logBBAI("    %S %s 'hurry project' (%S) with their %S (value: %d, choice #%d)", GET_PLAYER(getOwnerINLINE()).getCivilizationDescription(0), getGroup()->AI_getMissionAIType() == eMissionAI?"continues" :"chooses", GC.getProjectInfo(eBestProject).getDescription(), getName(0).GetCString(), iSlowValue, iChoice);
-				}
-
-				// Civ4 Reimagined
-				if (eBestBuilding != NO_BUILDING)
-				{
-					MissionAITypes eMissionAI = canConstruct(pBestPlot, eBestBuilding) ? MISSIONAI_CONSTRUCT : MISSIONAI_HURRY;
-
-					if (gUnitLogLevel > 2) logBBAI("    %S %s 'build' (%S) with their %S (value: %d, choice #%d)", GET_PLAYER(getOwnerINLINE()).getCivilizationDescription(0), getGroup()->AI_getMissionAIType() == eMissionAI?"continues" :"chooses", GC.getBuildingInfo(eBestBuilding).getDescription(), getName(0).GetCString(), iSlowValue, iChoice);
 
 					if (atPlot(pBestPlot))
 					{
@@ -5980,6 +5972,15 @@ bool CvUnitAI::AI_greatPersonMove()
 						getGroup()->pushMission(MISSION_MOVE_TO, pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE(), iMoveFlags, false, false, eMissionAI);
 						return true;
 					}
+				}
+
+				// Civ4 Reimagined
+				if (eBestBuilding != NO_BUILDING)
+				{
+					MissionAITypes eMissionAI = canConstruct(pBestPlot, eBestBuilding) ? MISSIONAI_CONSTRUCT : MISSIONAI_HURRY;
+
+					if (gUnitLogLevel > 2) logBBAI("    %S %s 'build' (%S) with their %S (value: %d, choice #%d)", GET_PLAYER(getOwnerINLINE()).getCivilizationDescription(0), getGroup()->AI_getMissionAIType() == eMissionAI?"continues" :"chooses", GC.getBuildingInfo(eBestBuilding).getDescription(), getName(0).GetCString(), iSlowValue, iChoice);
+
 					if (atPlot(pBestPlot))
 					{
 						if (eMissionAI == MISSIONAI_CONSTRUCT)
