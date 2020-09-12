@@ -7612,6 +7612,8 @@ void CvUnitAI::AI_exploreSeaMove()
 		}
 	}
 
+	// Civ4 Reimagined: This seems to be the wrong approach. They should stop building these units not scapping them after they are built.
+	/*
 	if (!(isHuman()) && (AI_getUnitAIType() == UNITAI_EXPLORE_SEA))
 	{
 		pWaterArea = plot()->waterArea();
@@ -7627,7 +7629,7 @@ void CvUnitAI::AI_exploreSeaMove()
 				}
 			}
 		}
-	}
+	}*/
 
 	if (AI_patrol())
 	{
