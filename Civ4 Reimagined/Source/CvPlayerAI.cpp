@@ -3397,7 +3397,7 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 				{					
 					// Civ4 Reimagined
 					int iCount = viBonusCount[eBonus];
-					int iBonusValue = AI_bonusVal(eBonus, 1, true) * 10 / (1 + iCount);
+					int iBonusValue = AI_bonusVal(eBonus, 1, true) * 12 / (1 + iCount);
 					
 					/*
 					if (gPlayerLogLevel >= 3 && kSet.bStartingLoc)
@@ -3570,7 +3570,8 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 			{
 				if (bNeutralTerritory)
 				{
-					iValue += iResourceValue > 0 ? (kSet.bSeafaring ? 600 : 400) : 100; // K-Mod
+					// Civ4 Reimagined: doubled those values for first colony
+					iValue += iResourceValue > 0 ? (kSet.bSeafaring ? 1200 : 800) : 200;
 				}
 			}
 			else
@@ -3585,7 +3586,8 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 
 					if( GET_TEAM(getTeam()).AI_isWaterAreaRelevant(pWaterArea) )
 					{
-						iSeaValue += 160 + (kSet.bSeafaring ? 160 : 0);
+						// Civ4 Reimagined: more value for coastal cities
+						iSeaValue += 320 + (kSet.bSeafaring ? 320 : 0);
 
 						if (countNumCoastalCities() < getNumCities()/4 ||
 							(pPlot->area()->getCitiesPerPlayer(getID()) > 0 && countNumCoastalCitiesByArea(pPlot->area()) == 0))
@@ -3640,6 +3642,15 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 			logBBAI("    Player %d (%S) Extra Hill Value: %d", getID(), getCivilizationDescription(0), 100 + (kSet.bDefensive ? 100 : 0));
 		}
 		*/
+	}
+
+	// Civ4 Reimagined: more values for colonies
+	if (!kSet.bStartingLoc)
+	{
+		if (pCapital && pCapital->area() != pArea && pArea->getNumTiles() >= GC.getDefineINT("MINIMUM_NUM_TILES_FOR_CONTINENT") && iResourceValue > 0 && bNeutralTerritory && getCurrentEra() > 1)
+		{
+			iValue += kSet.bSeafaring ? 500 : 250;
+		}
 	}
 	
 	if( gPlayerLogLevel >= 3 && kSet.bStartingLoc)
@@ -12861,11 +12872,22 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 					{
 						iExploreValue += (2 * iCombatValue);
 					}
+
+					// Civ4 Reimagined
+					if (AI_neededExplorers(pArea) > AI_totalWaterAreaUnitAIs(pArea, UNITAI_EXPLORE_SEA))
+					{
+						iExploreValue *= 3;
+					}
+
+					if (GC.getGameINLINE().circumnavigationAvailable() && AI_unitImpassableCount(eUnit) == 0)
+					{
+						iExploreValue *= 3;
+					}
 				}
 			}
 			iValue += (GC.getUnitInfo(eUnit).getMoves() * iExploreValue);
 			// Civ4 Reimagined
-			if (GC.getUnitInfo(eUnit).getInvisibleType() != NO_INVISIBLE)
+			if (GC.getUnitInfo(eUnit).getInvisibleType() != NO_INVISIBLE || GC.getUnitInfo(eUnit).alwaysInvisible())
 			{
 				iValue *= 2;
 			}
