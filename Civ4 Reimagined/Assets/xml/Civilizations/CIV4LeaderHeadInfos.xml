@@ -347,7 +347,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -948,7 +948,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -1569,7 +1569,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -2178,7 +2178,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -2792,7 +2792,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -3402,7 +3402,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -4016,7 +4016,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -4626,7 +4626,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -5235,7 +5235,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -5849,7 +5849,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -6461,7 +6461,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -7078,7 +7078,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -7692,7 +7692,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -8310,7 +8310,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -8922,7 +8922,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -9502,7 +9502,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -10116,7 +10116,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -10725,7 +10725,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -11343,7 +11343,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -11963,7 +11963,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -12532,7 +12532,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -13143,7 +13143,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -13754,7 +13754,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -14370,7 +14370,7 @@
 			</ContactRand>
 			<ContactRand>
 			  <ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-			  <iContactRand>80</iContactRand>
+			  <iContactRand>25</iContactRand>
 			</ContactRand>
 			<ContactRand>
 			  <ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -14923,7 +14923,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -15537,7 +15537,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -16146,7 +16146,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -16755,7 +16755,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -17369,7 +17369,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -17987,7 +17987,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -18597,7 +18597,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -19215,7 +19215,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -19829,7 +19829,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -20440,7 +20440,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -21000,7 +21000,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -21612,7 +21612,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -22226,7 +22226,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -22844,7 +22844,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -23453,7 +23453,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -24078,7 +24078,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -24688,7 +24688,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -25304,7 +25304,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -25916,7 +25916,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -26530,7 +26530,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -27151,7 +27151,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -27726,7 +27726,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -28333,7 +28333,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -28942,7 +28942,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -29567,7 +29567,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -30194,7 +30194,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -30819,7 +30819,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -31446,7 +31446,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -32067,7 +32067,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -32699,7 +32699,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -33331,7 +33331,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
@@ -33965,7 +33965,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEFENSIVE_PACT</ContactType>
-					<iContactRand>80</iContactRand>
+					<iContactRand>25</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_PERMANENT_ALLIANCE</ContactType>
