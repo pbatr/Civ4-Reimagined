@@ -12822,7 +12822,7 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 		// Civ4 Reimagined
 		iValue += ((iCombatValue * GC.getUnitInfo(eUnit).getWithdrawalProbability()) / 100);
 		iValue += iCombatValue * GC.getUnitInfo(eUnit).getCollateralDamage() * (1 + GC.getUnitInfo(eUnit).getCollateralDamageMaxUnits()) / 150;
-		if (GC.getUnitInfo(eUnit).getInvisibleType() != NO_INVISIBLE)
+		if (GC.getUnitInfo(eUnit).getInvisibleType() != NO_INVISIBLE || GC.getUnitInfo(eUnit).alwaysInvisible())
 		{
 			iValue += 100;
 		}
@@ -12852,7 +12852,7 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 /* General AI                                                                                   */
 /************************************************************************************************/
 		// Boats which can't be seen don't play defense, don't make good escorts
-		if (GC.getUnitInfo(eUnit).getInvisibleType() != NO_INVISIBLE)
+		if (GC.getUnitInfo(eUnit).getInvisibleType() != NO_INVISIBLE || GC.getUnitInfo(eUnit).alwaysInvisible())
 		{
 			iValue /= 2;
 		}
@@ -12907,7 +12907,7 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 		iValue += (GC.getUnitInfo(eUnit).getMoves() * 200);
 		iValue += (GC.getUnitInfo(eUnit).getCargoSpace() * 300);
 		//Civ4 Reimagined
-		if (GC.getUnitInfo(eUnit).getInvisibleType() != NO_INVISIBLE)
+		if (GC.getUnitInfo(eUnit).getInvisibleType() != NO_INVISIBLE || GC.getUnitInfo(eUnit).alwaysInvisible())
 		{
 			iValue *= 2;
 		}
@@ -12932,7 +12932,7 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 	case UNITAI_MISSILE_CARRIER_SEA:
 	{
 		// Civ4 Reimagined
-		int iMissileCarrierValue = (GC.getUnitInfo(eUnit).getInvisibleType() != NO_INVISIBLE) ? 100 : iCombatValue;
+		int iMissileCarrierValue = (GC.getUnitInfo(eUnit).alwaysInvisible()) ? 300 : iCombatValue;
 		iValue += iMissileCarrierValue * GC.getUnitInfo(eUnit).getMoves();
 		iValue += (25 + iMissileCarrierValue) * (3 + (GC.getUnitInfo(eUnit).getCargoSpace()));
 		break;
