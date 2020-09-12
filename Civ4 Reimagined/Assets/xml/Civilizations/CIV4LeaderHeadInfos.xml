@@ -212,7 +212,7 @@
 			<Description>TXT_KEY_LEADER_ALEXANDER</Description>
 			<Civilopedia>TXT_KEY_LEADER_ALEXANDER_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_ALEXANDER</ArtDefineTag>
-			<iWonderConstructRand>40</iWonderConstructRand>
+			<iWonderConstructRand>35</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
 			<iBasePeaceWeight>0</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
@@ -234,9 +234,9 @@
 			<iMaxWarNearbyPowerRatio>90</iMaxWarNearbyPowerRatio>
 			<iMaxWarDistantPowerRatio>70</iMaxWarDistantPowerRatio>
 			<iMaxWarMinAdjacentLandPercent>0</iMaxWarMinAdjacentLandPercent>
-			<iLimitedWarRand>40</iLimitedWarRand>
+			<iLimitedWarRand>50</iLimitedWarRand>
 			<iLimitedWarPowerRatio>130</iLimitedWarPowerRatio>
-			<iDogpileWarRand>50</iDogpileWarRand>
+			<iDogpileWarRand>60</iDogpileWarRand>
 			<iMakePeaceRand>40</iMakePeaceRand>
 			<iDeclareWarTradeRand>40</iDeclareWarTradeRand>
 			<iDemandRebukedSneakProb>40</iDemandRebukedSneakProb>
@@ -2662,7 +2662,7 @@
 			<iBasePeaceWeight>2</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
 			<iWarmongerRespect>1</iWarmongerRespect>
-			<iEspionageWeight>70</iEspionageWeight>
+			<iEspionageWeight>75</iEspionageWeight>
 			<iRefuseToTalkWarThreshold>9</iRefuseToTalkWarThreshold>
 			<iNoTechTradeThreshold>10</iNoTechTradeThreshold>
 			<iTechTradeKnownPercent>30</iTechTradeKnownPercent>
@@ -2675,13 +2675,13 @@
 			<iDominationVictoryWeight>35</iDominationVictoryWeight>
 			<iDiplomacyVictoryWeight>25</iDiplomacyVictoryWeight>
 			<!-- BBAI Victory Strategy -->
-			<iMaxWarRand>50</iMaxWarRand>
+			<iMaxWarRand>70</iMaxWarRand>
 			<iMaxWarNearbyPowerRatio>110</iMaxWarNearbyPowerRatio>
 			<iMaxWarDistantPowerRatio>80</iMaxWarDistantPowerRatio>
 			<iMaxWarMinAdjacentLandPercent>0</iMaxWarMinAdjacentLandPercent>
 			<iLimitedWarRand>80</iLimitedWarRand>
 			<iLimitedWarPowerRatio>100</iLimitedWarPowerRatio>
-			<iDogpileWarRand>50</iDogpileWarRand>
+			<iDogpileWarRand>60</iDogpileWarRand>
 			<iMakePeaceRand>30</iMakePeaceRand>
 			<iDeclareWarTradeRand>40</iDeclareWarTradeRand>
 			<iDemandRebukedSneakProb>30</iDemandRebukedSneakProb>
@@ -5100,12 +5100,12 @@
 			<Description>TXT_KEY_LEADER_CHURCHILL</Description>
 			<Civilopedia>TXT_KEY_LEADER_WINSTON_CHURCHILL_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_CHURCHILL</ArtDefineTag>
-			<iWonderConstructRand>10</iWonderConstructRand>
+			<iWonderConstructRand>20</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
-			<iBasePeaceWeight>6</iBasePeaceWeight>
+			<iBasePeaceWeight>4</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
 			<iWarmongerRespect>0</iWarmongerRespect>
-			<iEspionageWeight>120</iEspionageWeight>
+			<iEspionageWeight>115</iEspionageWeight>
 			<iRefuseToTalkWarThreshold>8</iRefuseToTalkWarThreshold>
 			<iNoTechTradeThreshold>15</iNoTechTradeThreshold>
 			<iTechTradeKnownPercent>30</iTechTradeKnownPercent>
@@ -5118,13 +5118,13 @@
 			<iDominationVictoryWeight>35</iDominationVictoryWeight>
 			<iDiplomacyVictoryWeight>35</iDiplomacyVictoryWeight>
 			<!-- BBAI Victory Strategy -->
-			<iMaxWarRand>200</iMaxWarRand>
+			<iMaxWarRand>175</iMaxWarRand>
 			<iMaxWarNearbyPowerRatio>90</iMaxWarNearbyPowerRatio>
 			<iMaxWarDistantPowerRatio>60</iMaxWarDistantPowerRatio>
 			<iMaxWarMinAdjacentLandPercent>3</iMaxWarMinAdjacentLandPercent>
-			<iLimitedWarRand>120</iLimitedWarRand>
+			<iLimitedWarRand>110</iLimitedWarRand>
 			<iLimitedWarPowerRatio>100</iLimitedWarPowerRatio>
-			<iDogpileWarRand>50</iDogpileWarRand>
+			<iDogpileWarRand>75</iDogpileWarRand>
 			<iMakePeaceRand>20</iMakePeaceRand>
 			<iDeclareWarTradeRand>40</iDeclareWarTradeRand>
 			<iDemandRebukedSneakProb>40</iDemandRebukedSneakProb>
@@ -6328,7 +6328,7 @@
 			<ArtDefineTag>ART_DEF_LEADER_DARIUS</ArtDefineTag>
 			<iWonderConstructRand>40</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
-			<iBasePeaceWeight>8</iBasePeaceWeight>
+			<iBasePeaceWeight>6</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
 			<iWarmongerRespect>0</iWarmongerRespect>
 			<iEspionageWeight>100</iEspionageWeight>
@@ -6344,11 +6344,11 @@
 			<iDominationVictoryWeight>10</iDominationVictoryWeight>
 			<iDiplomacyVictoryWeight>30</iDiplomacyVictoryWeight>
 			<!-- BBAI Victory Strategy -->
-			<iMaxWarRand>200</iMaxWarRand>
+			<iMaxWarRand>150</iMaxWarRand>
 			<iMaxWarNearbyPowerRatio>100</iMaxWarNearbyPowerRatio>
 			<iMaxWarDistantPowerRatio>60</iMaxWarDistantPowerRatio>
 			<iMaxWarMinAdjacentLandPercent>1</iMaxWarMinAdjacentLandPercent>
-			<iLimitedWarRand>160</iLimitedWarRand>
+			<iLimitedWarRand>150</iLimitedWarRand>
 			<iLimitedWarPowerRatio>100</iLimitedWarPowerRatio>
 			<iDogpileWarRand>100</iDogpileWarRand>
 			<iMakePeaceRand>20</iMakePeaceRand>
@@ -6943,12 +6943,12 @@
 			<Description>TXT_KEY_LEADER_DE_GAULLE</Description>
 			<Civilopedia>TXT_KEY_LEADER_DE_GAULLE_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_DE_GAULLE</ArtDefineTag>
-			<iWonderConstructRand>10</iWonderConstructRand>
+			<iWonderConstructRand>20</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
-			<iBasePeaceWeight>0</iBasePeaceWeight>
+			<iBasePeaceWeight>1</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
 			<iWarmongerRespect>2</iWarmongerRespect>
-			<iEspionageWeight>110</iEspionageWeight>
+			<iEspionageWeight>105</iEspionageWeight>
 			<iRefuseToTalkWarThreshold>5</iRefuseToTalkWarThreshold>
 			<iNoTechTradeThreshold>10</iNoTechTradeThreshold>
 			<iTechTradeKnownPercent>40</iTechTradeKnownPercent>
@@ -6961,13 +6961,13 @@
 			<iDominationVictoryWeight>10</iDominationVictoryWeight>
 			<iDiplomacyVictoryWeight>55</iDiplomacyVictoryWeight>
 			<!-- BBAI Victory Strategy -->
-			<iMaxWarRand>100</iMaxWarRand>
+			<iMaxWarRand>150</iMaxWarRand>
 			<iMaxWarNearbyPowerRatio>80</iMaxWarNearbyPowerRatio>
 			<iMaxWarDistantPowerRatio>50</iMaxWarDistantPowerRatio>
 			<iMaxWarMinAdjacentLandPercent>3</iMaxWarMinAdjacentLandPercent>
-			<iLimitedWarRand>60</iLimitedWarRand>
+			<iLimitedWarRand>75</iLimitedWarRand>
 			<iLimitedWarPowerRatio>100</iLimitedWarPowerRatio>
-			<iDogpileWarRand>20</iDogpileWarRand>
+			<iDogpileWarRand>50</iDogpileWarRand>
 			<iMakePeaceRand>10</iMakePeaceRand>
 			<iDeclareWarTradeRand>40</iDeclareWarTradeRand>
 			<iDemandRebukedSneakProb>10</iDemandRebukedSneakProb>
@@ -7035,12 +7035,12 @@
 			</Traits>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_PRODUCTION</FlavorType>
-					<iFlavor>5</iFlavor>
+					<FlavorType>FLAVOR_SCIENCE</FlavorType>
+					<iFlavor>2</iFlavor>
 				</Flavor>
 				<Flavor>
 					<FlavorType>FLAVOR_MILITARY</FlavorType>
-					<iFlavor>2</iFlavor>
+					<iFlavor>5</iFlavor>
 				</Flavor>
 			</Flavors>
 			<ContactRands>
@@ -8177,7 +8177,7 @@
 			<ArtDefineTag>ART_DEF_LEADER_FREDERICK</ArtDefineTag>
 			<iWonderConstructRand>20</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
-			<iBasePeaceWeight>8</iBasePeaceWeight>
+			<iBasePeaceWeight>6</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
 			<iWarmongerRespect>0</iWarmongerRespect>
 			<iEspionageWeight>90</iEspionageWeight>
@@ -8193,13 +8193,13 @@
 			<iDominationVictoryWeight>25</iDominationVictoryWeight>
 			<iDiplomacyVictoryWeight>25</iDiplomacyVictoryWeight>
 			<!-- BBAI Victory Strategy -->
-			<iMaxWarRand>200</iMaxWarRand>
+			<iMaxWarRand>150</iMaxWarRand>
 			<iMaxWarNearbyPowerRatio>100</iMaxWarNearbyPowerRatio>
 			<iMaxWarDistantPowerRatio>50</iMaxWarDistantPowerRatio>
 			<iMaxWarMinAdjacentLandPercent>2</iMaxWarMinAdjacentLandPercent>
-			<iLimitedWarRand>160</iLimitedWarRand>
+			<iLimitedWarRand>130</iLimitedWarRand>
 			<iLimitedWarPowerRatio>100</iLimitedWarPowerRatio>
-			<iDogpileWarRand>100</iDogpileWarRand>
+			<iDogpileWarRand>80</iDogpileWarRand>
 			<iMakePeaceRand>20</iMakePeaceRand>
 			<iDeclareWarTradeRand>40</iDeclareWarTradeRand>
 			<iDemandRebukedSneakProb>0</iDemandRebukedSneakProb>
@@ -8791,9 +8791,9 @@
 			<Description>TXT_KEY_LEADER_GANDHI</Description>
 			<Civilopedia>TXT_KEY_LEADER_GANDHI_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_GANDHI</ArtDefineTag>
-			<iWonderConstructRand>10</iWonderConstructRand>
+			<iWonderConstructRand>15</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
-			<iBasePeaceWeight>10</iBasePeaceWeight>
+			<iBasePeaceWeight>7</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
 			<iWarmongerRespect>0</iWarmongerRespect>
 			<iEspionageWeight>50</iEspionageWeight>
@@ -15424,9 +15424,9 @@
 			<iMaxWarNearbyPowerRatio>110</iMaxWarNearbyPowerRatio>
 			<iMaxWarDistantPowerRatio>80</iMaxWarDistantPowerRatio>
 			<iMaxWarMinAdjacentLandPercent>1</iMaxWarMinAdjacentLandPercent>
-			<iLimitedWarRand>100</iLimitedWarRand>
+			<iLimitedWarRand>90</iLimitedWarRand>
 			<iLimitedWarPowerRatio>100</iLimitedWarPowerRatio>
-			<iDogpileWarRand>50</iDogpileWarRand>
+			<iDogpileWarRand>60</iDogpileWarRand>
 			<iMakePeaceRand>40</iMakePeaceRand>
 			<iDeclareWarTradeRand>40</iDeclareWarTradeRand>
 			<iDemandRebukedSneakProb>40</iDemandRebukedSneakProb>
@@ -16654,7 +16654,7 @@
 			<iBaseAttackOddsChange>0</iBaseAttackOddsChange>
 			<iAttackOddsChangeRand>8</iAttackOddsChangeRand>
 			<iWorseRankDifferenceAttitudeChange>0</iWorseRankDifferenceAttitudeChange>
-			<iBetterRankDifferenceAttitudeChange>3</iBetterRankDifferenceAttitudeChange>
+			<iBetterRankDifferenceAttitudeChange>2</iBetterRankDifferenceAttitudeChange>
 			<iCloseBordersAttitudeChange>-3</iCloseBordersAttitudeChange>
 			<iLostWarAttitudeChange>-1</iLostWarAttitudeChange>
 			<iAtWarAttitudeDivisor>-5</iAtWarAttitudeDivisor>
@@ -18464,7 +18464,7 @@
 			<ArtDefineTag>ART_DEF_LEADER_MANSA_MUSA</ArtDefineTag>
 			<iWonderConstructRand>20</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
-			<iBasePeaceWeight>9</iBasePeaceWeight>
+			<iBasePeaceWeight>8</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
 			<iWarmongerRespect>0</iWarmongerRespect>
 			<iEspionageWeight>60</iEspionageWeight>
@@ -18480,11 +18480,11 @@
 			<iDominationVictoryWeight>0</iDominationVictoryWeight>
 			<iDiplomacyVictoryWeight>50</iDiplomacyVictoryWeight>
 			<!-- BBAI Victory Strategy -->
-			<iMaxWarRand>400</iMaxWarRand>
+			<iMaxWarRand>350</iMaxWarRand>
 			<iMaxWarNearbyPowerRatio>100</iMaxWarNearbyPowerRatio>
 			<iMaxWarDistantPowerRatio>50</iMaxWarDistantPowerRatio>
 			<iMaxWarMinAdjacentLandPercent>1</iMaxWarMinAdjacentLandPercent>
-			<iLimitedWarRand>200</iLimitedWarRand>
+			<iLimitedWarRand>175</iLimitedWarRand>
 			<iLimitedWarPowerRatio>90</iLimitedWarPowerRatio>
 			<iDogpileWarRand>50</iDogpileWarRand>
 			<iMakePeaceRand>20</iMakePeaceRand>
@@ -18496,7 +18496,7 @@
 			<iBaseAttackOddsChange>0</iBaseAttackOddsChange>
 			<iAttackOddsChangeRand>8</iAttackOddsChangeRand>
 			<iWorseRankDifferenceAttitudeChange>0</iWorseRankDifferenceAttitudeChange>
-			<iBetterRankDifferenceAttitudeChange>4</iBetterRankDifferenceAttitudeChange>
+			<iBetterRankDifferenceAttitudeChange>3</iBetterRankDifferenceAttitudeChange>
 			<iCloseBordersAttitudeChange>-2</iCloseBordersAttitudeChange>
 			<iLostWarAttitudeChange>-1</iLostWarAttitudeChange>
 			<iAtWarAttitudeDivisor>-5</iAtWarAttitudeDivisor>
@@ -20865,7 +20865,7 @@
 			<Description>TXT_KEY_LEADER_MONTEZUMA</Description>
 			<Civilopedia>TXT_KEY_LEADER_MONTEZUMA_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_MONTEZUMA</ArtDefineTag>
-			<iWonderConstructRand>0</iWonderConstructRand>
+			<iWonderConstructRand>10</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
 			<iBasePeaceWeight>0</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
@@ -20887,15 +20887,15 @@
 			<iMaxWarNearbyPowerRatio>130</iMaxWarNearbyPowerRatio>
 			<iMaxWarDistantPowerRatio>80</iMaxWarDistantPowerRatio>
 			<iMaxWarMinAdjacentLandPercent>0</iMaxWarMinAdjacentLandPercent>
-			<iLimitedWarRand>40</iLimitedWarRand>
+			<iLimitedWarRand>50</iLimitedWarRand>
 			<iLimitedWarPowerRatio>130</iLimitedWarPowerRatio>
-			<iDogpileWarRand>25</iDogpileWarRand>
+			<iDogpileWarRand>30</iDogpileWarRand>
 			<iMakePeaceRand>80</iMakePeaceRand>
 			<iDeclareWarTradeRand>40</iDeclareWarTradeRand>
 			<iDemandRebukedSneakProb>60</iDemandRebukedSneakProb>
 			<iDemandRebukedWarProb>10</iDemandRebukedWarProb>
 			<iRazeCityProb>50</iRazeCityProb>
-			<iBuildUnitProb>35</iBuildUnitProb>
+			<iBuildUnitProb>33</iBuildUnitProb>
 			<iBaseAttackOddsChange>4</iBaseAttackOddsChange>
 			<iAttackOddsChangeRand>8</iAttackOddsChangeRand>
 			<iWorseRankDifferenceAttitudeChange>-3</iWorseRankDifferenceAttitudeChange>
@@ -24555,7 +24555,7 @@
 			<ArtDefineTag>ART_DEF_LEADER_RAMESSES</ArtDefineTag>
 			<iWonderConstructRand>50</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
-			<iBasePeaceWeight>6</iBasePeaceWeight>
+			<iBasePeaceWeight>4</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
 			<iWarmongerRespect>0</iWarmongerRespect>
 			<iEspionageWeight>100</iEspionageWeight>
@@ -24571,11 +24571,11 @@
 			<iDominationVictoryWeight>35</iDominationVictoryWeight>
 			<iDiplomacyVictoryWeight>20</iDiplomacyVictoryWeight>
 			<!-- BBAI Victory Strategy -->
-			<iMaxWarRand>200</iMaxWarRand>
+			<iMaxWarRand>175</iMaxWarRand>
 			<iMaxWarNearbyPowerRatio>90</iMaxWarNearbyPowerRatio>
 			<iMaxWarDistantPowerRatio>50</iMaxWarDistantPowerRatio>
 			<iMaxWarMinAdjacentLandPercent>3</iMaxWarMinAdjacentLandPercent>
-			<iLimitedWarRand>160</iLimitedWarRand>
+			<iLimitedWarRand>140</iLimitedWarRand>
 			<iLimitedWarPowerRatio>100</iLimitedWarPowerRatio>
 			<iDogpileWarRand>100</iDogpileWarRand>
 			<iMakePeaceRand>20</iMakePeaceRand>
@@ -27615,7 +27615,7 @@
 			<iMaxWarMinAdjacentLandPercent>0</iMaxWarMinAdjacentLandPercent>
 			<iLimitedWarRand>160</iLimitedWarRand>
 			<iLimitedWarPowerRatio>100</iLimitedWarPowerRatio>
-			<iDogpileWarRand>50</iDogpileWarRand>
+			<iDogpileWarRand>60</iDogpileWarRand>
 			<iMakePeaceRand>80</iMakePeaceRand>
 			<iDeclareWarTradeRand>40</iDeclareWarTradeRand>
 			<iDemandRebukedSneakProb>40</iDemandRebukedSneakProb>
@@ -28200,10 +28200,10 @@
 			<ArtDefineTag>ART_DEF_LEADER_SITTING_BULL</ArtDefineTag>
 			<iWonderConstructRand>0</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
-			<iBasePeaceWeight>8</iBasePeaceWeight>
+			<iBasePeaceWeight>6</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
 			<iWarmongerRespect>0</iWarmongerRespect>
-			<iEspionageWeight>120</iEspionageWeight>
+			<iEspionageWeight>110</iEspionageWeight>
 			<iRefuseToTalkWarThreshold>10</iRefuseToTalkWarThreshold>
 			<iNoTechTradeThreshold>5</iNoTechTradeThreshold>
 			<iTechTradeKnownPercent>80</iTechTradeKnownPercent>
@@ -28216,19 +28216,19 @@
 			<iDominationVictoryWeight>10</iDominationVictoryWeight>
 			<iDiplomacyVictoryWeight>65</iDiplomacyVictoryWeight>
 			<!-- BBAI Victory Strategy -->
-			<iMaxWarRand>200</iMaxWarRand>
+			<iMaxWarRand>150</iMaxWarRand>
 			<iMaxWarNearbyPowerRatio>130</iMaxWarNearbyPowerRatio>
 			<iMaxWarDistantPowerRatio>0</iMaxWarDistantPowerRatio>
 			<iMaxWarMinAdjacentLandPercent>4</iMaxWarMinAdjacentLandPercent>
-			<iLimitedWarRand>200</iLimitedWarRand>
+			<iLimitedWarRand>175</iLimitedWarRand>
 			<iLimitedWarPowerRatio>100</iLimitedWarPowerRatio>
-			<iDogpileWarRand>100</iDogpileWarRand>
+			<iDogpileWarRand>80</iDogpileWarRand>
 			<iMakePeaceRand>120</iMakePeaceRand>
 			<iDeclareWarTradeRand>40</iDeclareWarTradeRand>
 			<iDemandRebukedSneakProb>20</iDemandRebukedSneakProb>
 			<iDemandRebukedWarProb>10</iDemandRebukedWarProb>
 			<iRazeCityProb>20</iRazeCityProb>
-			<iBuildUnitProb>35</iBuildUnitProb>
+			<iBuildUnitProb>30</iBuildUnitProb>
 			<iBaseAttackOddsChange>4</iBaseAttackOddsChange>
 			<iAttackOddsChangeRand>8</iAttackOddsChangeRand>
 			<iWorseRankDifferenceAttitudeChange>0</iWorseRankDifferenceAttitudeChange>
@@ -31932,12 +31932,12 @@
 			<Description>TXT_KEY_LEADER_WANGKON</Description>
 			<Civilopedia>TXT_KEY_LEADER_WANG_KON_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_WANGKON</ArtDefineTag>
-			<iWonderConstructRand>20</iWonderConstructRand>
+			<iWonderConstructRand>25</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
-			<iBasePeaceWeight>8</iBasePeaceWeight>
+			<iBasePeaceWeight>7</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
 			<iWarmongerRespect>0</iWarmongerRespect>
-			<iEspionageWeight>110</iEspionageWeight>
+			<iEspionageWeight>105</iEspionageWeight>
 			<iRefuseToTalkWarThreshold>6</iRefuseToTalkWarThreshold>
 			<iNoTechTradeThreshold>10</iNoTechTradeThreshold>
 			<iTechTradeKnownPercent>20</iTechTradeKnownPercent>
@@ -31954,10 +31954,10 @@
 			<iMaxWarNearbyPowerRatio>90</iMaxWarNearbyPowerRatio>
 			<iMaxWarDistantPowerRatio>50</iMaxWarDistantPowerRatio>
 			<iMaxWarMinAdjacentLandPercent>3</iMaxWarMinAdjacentLandPercent>
-			<iLimitedWarRand>120</iLimitedWarRand>
+			<iLimitedWarRand>115</iLimitedWarRand>
 			<iLimitedWarPowerRatio>100</iLimitedWarPowerRatio>
 			<iDogpileWarRand>100</iDogpileWarRand>
-			<iMakePeaceRand>40</iMakePeaceRand>
+			<iMakePeaceRand>35</iMakePeaceRand>
 			<iDeclareWarTradeRand>40</iDeclareWarTradeRand>
 			<iDemandRebukedSneakProb>40</iDemandRebukedSneakProb>
 			<iDemandRebukedWarProb>20</iDemandRebukedWarProb>
