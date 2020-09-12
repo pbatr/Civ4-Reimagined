@@ -91,8 +91,8 @@ def init():
 	global columns
 	
 	# Used keys:
-	# ABCDEFHIKLMNOPQRSTUVWZ*?
-	# GJXY
+	# ABCDEFHIKLMNOPQRYSTUVWZ*?
+	# GJX
 	columns.append(Column('', ALIVE))
 	columns.append(Column('S', SCORE, DYNAMIC))
 	columns.append(Column('Z', SCORE_DELTA, DYNAMIC))
@@ -373,6 +373,10 @@ class Scoreboard:
 		spacing = defaultSpacing
 		format = re.findall('(-?[0-9]+|[^0-9])', ScoreOpt.getDisplayOrder().replace(' ', '').upper())
 		format.reverse()
+
+		if ('Y' not in format):
+			format.append('Y')
+
 		for k in format:
 			if k == '-':
 				spacing = 0
