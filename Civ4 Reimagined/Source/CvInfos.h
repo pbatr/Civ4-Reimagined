@@ -1781,7 +1781,7 @@ public:
 	int getReligionType() const;				// Exposed to Python
 	int getStateReligion() const;				// Exposed to Python
 	int getPrereqReligion() const;				// Exposed to Python
-	int getPrereqIdeology() const; // Civ4 Reimagined
+	int getPrereqIdeology() const; // Exposed to Python // Civ4 Reimagined
 	int getPrereqCorporation() const;				// Exposed to Python
 	int getFoundsCorporation() const;				// Exposed to Python
 	int getGlobalReligionCommerce() const;				// Exposed to Python
@@ -4294,7 +4294,7 @@ public:
 	int getVictoryPrereq() const;									// Exposed to Python
 	int getTechPrereq() const;										// Exposed to Python
 	int getTechPrereq2() const;										// Exposed to Python //Civ4 Reimagined
-	int getIdeologyPrereq() const; // Civ4 Reimagined
+	int getIdeologyPrereq() const; // Civ4 Reimagined // Exposed to Python
 	int getAnyoneProjectPrereq() const;						// Exposed to Python
 	void setAnyoneProjectPrereq(int i);
 	int getMaxGlobalInstances() const;						// Exposed to Python

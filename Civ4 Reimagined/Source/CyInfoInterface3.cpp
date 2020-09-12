@@ -205,6 +205,7 @@ void CyInfoPythonInterface3()
 	python::class_<CvProjectInfo, python::bases<CvInfoBase> >("CvProjectInfo")
 		.def("getVictoryPrereq", &CvProjectInfo::getVictoryPrereq, "int ()")
 		.def("getTechPrereq", &CvProjectInfo::getTechPrereq, "int ()")
+		.def("getIdeologyPrereq", &CvProjectInfo::getIdeologyPrereq, "int ()") // Civ4 Reimagined
 		.def("getAnyoneProjectPrereq", &CvProjectInfo::getAnyoneProjectPrereq, "int ()")
 		.def("getMaxGlobalInstances", &CvProjectInfo::getMaxGlobalInstances, "int ()")
 		.def("getMaxTeamInstances", &CvProjectInfo::getMaxTeamInstances, "int ()")

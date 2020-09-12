@@ -252,6 +252,11 @@ class CvPediaBuilding:
 		iPrereq = gc.getBuildingInfo(self.iBuilding).getPrereqReligion()
 		if (iPrereq >= 0):
 			screen.attachImageButton( panelName, "", gc.getReligionInfo(iPrereq).getButton(), GenericButtonSizes.BUTTON_SIZE_CUSTOM, WidgetTypes.WIDGET_PEDIA_JUMP_TO_RELIGION, iPrereq, -1, False )
+
+		# add ideology button
+		iPrereq = gc.getBuildingInfo(self.iBuilding).getPrereqIdeology()
+		if (iPrereq >= 0):
+			screen.attachImageButton( panelName, "", gc.getIdeologyInfo(iPrereq).getButton(), GenericButtonSizes.BUTTON_SIZE_CUSTOM, WidgetTypes.WIDGET_PEDIA_DESCRIPTION, iPrereq, -1, False )
 		
 		# < Building Civic Prereqs Start >
 		for k in range(gc.getNumCivicInfos()):

@@ -527,6 +527,7 @@ void CyInfoPythonInterface1()
 		.def("getReligionType", &CvBuildingInfo::getReligionType, "int ()")
 		.def("getStateReligion", &CvBuildingInfo::getStateReligion, "int ()")
 		.def("getPrereqReligion", &CvBuildingInfo::getPrereqReligion, "int ()")
+		.def("getPrereqIdeology", &CvBuildingInfo::getPrereqIdeology, "int ()") // Civ4 Reimagined
 		.def("getPrereqCorporation", &CvBuildingInfo::getPrereqCorporation, "int ()")
 		.def("getFoundsCorporation", &CvBuildingInfo::getFoundsCorporation, "int ()")
 		.def("getGlobalReligionCommerce", &CvBuildingInfo::getGlobalReligionCommerce, "int ()")
