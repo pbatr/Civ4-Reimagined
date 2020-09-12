@@ -14438,6 +14438,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	bool bSpaceRaceVictory = AI_isDoVictoryStrategy(AI_VICTORY_SPACE2) || AI_isDoVictoryStrategy(AI_VICTORY_SPACE3) || AI_isDoVictoryStrategy(AI_VICTORY_SPACE4);
 	bool bMilitaryVictory = AI_isDoVictoryStrategy(AI_VICTORY_DOMINATION3) || AI_isDoVictoryStrategy(AI_VICTORY_DOMINATION4) 
 							   || AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST3) || AI_isDoVictoryStrategy(AI_VICTORY_CONQUEST4);
+	bool bCultureVictory = AI_isDoVictoryStrategy(AI_VICTORY_CULTURE2) || AI_isDoVictoryStrategy(AI_VICTORY_CULTURE3) || AI_isDoVictoryStrategy(AI_VICTORY_CULTURE4);
 	
 	int iCities = getNumCities();
 	int iPopulation = getTotalPopulation();
@@ -14607,11 +14608,11 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		
 		iTempValue *= 3 * (kCivic.isNoGreatPeople() ? (-100 - getGreatPeopleRateModifier()) : kCivic.getGreatPeopleRateModifier());
 
-		// Civ4 Reimagined: Great Engineers can hurry spaceship parts
-		if (iTempValue < 0 && bSpaceRaceVictory)
+		// Civ4 Reimagined: Great Engineers can hurry spaceship parts and culture victory wants artist birth
+		if (iTempValue < 0 && (bSpaceRaceVictory || bCultureVictory))
 		{
-			iTempValue *= 5;
-			iTempValue /= 4;
+			iTempValue *= 3;
+			iTempValue /= 2;
 		}
 
 		iTempValue /= 100;
