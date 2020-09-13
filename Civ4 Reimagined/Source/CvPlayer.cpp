@@ -17002,6 +17002,10 @@ int CvPlayer::getEspionageMissionBaseCost(EspionageMissionTypes eMission, Player
 				//iMissionCost = iBaseMissionCost + (kMission.getSwitchCivicCostFactor() * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getAnarchyPercent()) / 10000;
 				// K-Mod
 				iMissionCost = iBaseMissionCost + (kMission.getSwitchCivicCostFactor() * GET_PLAYER(eTargetPlayer).getTotalPopulation() * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getAnarchyPercent()) / 10000;
+
+				// Civ4 Reimagined
+				iMissionCost *= GET_PLAYER(eTargetPlayer).getIdeologyChangeCivicModifier(eCivic);
+				iMissionCost /= 100;
 			}
 		}
 	}
@@ -26559,6 +26563,34 @@ void CvPlayer::changeIdeologyCombatExperienceModifier(IdeologyTypes eIndex, int 
 	{
 		m_aiIdeologyCombatExperienceModifier[eIndex] = (m_aiIdeologyCombatExperienceModifier[eIndex] + iChange);
 	}
+}
+
+// Civ4 Reimagined: Modifier to adjust costs for changing this player's civic by espionage
+int CvPlayer::getIdeologyChangeCivicModifier(CivicTypes eCivic) const
+{
+	int iModifier = 100;
+
+	switch(getIdeology()) {
+		case IDEOLOGY_CONSERVATISM:
+			iModifier += (GC.getCivicInfo(eCivic).getConservative() < 0) ? -GC.getCivicInfo(eCivic).getConservative() * 10 : 0;
+			break;
+
+		case IDEOLOGY_LIBERALISM:
+			iModifier += (GC.getCivicInfo(eCivic).getLiberal() < 0) ? -GC.getCivicInfo(eCivic).getLiberal() * 10 : 0;
+			break;
+
+		case IDEOLOGY_COMMUNISM:
+			iModifier += (GC.getCivicInfo(eCivic).getCommunist() < 0) ? -GC.getCivicInfo(eCivic).getCommunist() * 10 : 0;
+			break;
+
+		case IDEOLOGY_FASCISM:
+			iModifier += (GC.getCivicInfo(eCivic).getFascist() < 0) ? -GC.getCivicInfo(eCivic).getFascist() * 10 : 0;
+			break;
+
+		default: break;
+	}
+
+	return iModifier;
 }
 
 /************************************************************************************************/
