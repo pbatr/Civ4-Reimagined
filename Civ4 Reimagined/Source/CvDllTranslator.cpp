@@ -45,6 +45,11 @@ void CvDllTranslator::initializeTags(CvWString& szTagStartIcon, CvWString& szTag
 	aIconMap[L"[ICON_PRODUCTION]"] = std::wstring(1, (wchar)GC.getYieldInfo(YIELD_PRODUCTION).getChar());
 	aIconMap[L"[ICON_COMMERCE]"] = std::wstring(1, (wchar)GC.getYieldInfo(YIELD_COMMERCE).getChar());
 
+	aIconMap[L"[ICON_CONSERVATISM]"] = std::wstring(1, (wchar)GC.getIdeologyInfo(IDEOLOGY_CONSERVATISM).getChar());
+	aIconMap[L"[ICON_LIBERALISM]"] = std::wstring(1, (wchar)GC.getIdeologyInfo(IDEOLOGY_LIBERALISM).getChar());
+	aIconMap[L"[ICON_COMMUNISM]"] = std::wstring(1, (wchar)GC.getIdeologyInfo(IDEOLOGY_COMMUNISM).getChar());
+	aIconMap[L"[ICON_FASCISM]"] = std::wstring(1, (wchar)GC.getIdeologyInfo(IDEOLOGY_FASCISM).getChar());
+
 	//create color map
 	aColorMap[L"[COLOR_REVERT]"] = CvWString(L"</color>");
 	for(int i=0; i < GC.getNumColorInfos(); i++)
