@@ -560,7 +560,7 @@
 			<iCityUnhappinessCounter>0</iCityUnhappinessCounter>
 			<iCityRevoltCounter>0</iCityRevoltCounter>
 			<iBuyTechCostFactor>0</iBuyTechCostFactor>
-			<iSwitchCivicCostFactor>1600</iSwitchCivicCostFactor>
+			<iSwitchCivicCostFactor>5000</iSwitchCivicCostFactor>
 			<iSwitchReligionCostFactor>0</iSwitchReligionCostFactor>
 			<iPlayerAnarchyCounter>0</iPlayerAnarchyCounter>
 			<iCounterespionageNumTurns>0</iCounterespionageNumTurns>

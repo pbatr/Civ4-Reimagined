@@ -1378,6 +1378,7 @@ public:
 	void changeBonusRatioModifierPerIdeologyCiv(IdeologyTypes Index, int iChange);
 	int getIdeologyCombatExperienceModifier(IdeologyTypes eIndex) const;
 	void changeIdeologyCombatExperienceModifier(IdeologyTypes eIndex, int iChange);
+	int getIdeologyChangeCivicModifier(CivicTypes eCivic) const;
 	
 	
 	// K-Mod note: Adding new virtual functions to this list seems to cause unpredictable behaviour during the initialization of the game.
