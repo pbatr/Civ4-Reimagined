@@ -66,6 +66,7 @@ Fixes
 -Protective players couldn't pillage their own improvements
 -French Missile Submarine had broken graphics
 -Abolish slavery would not always update corporation yields
+-Freed colonies would sometimes get warrior units as free defenders in later eras
 
 
 *******************************************
