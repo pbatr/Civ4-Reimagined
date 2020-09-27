@@ -319,6 +319,7 @@ public:
 	bool isFound() const;																				// Exposed to Python
 	bool isGoldenAge() const;																							// Exposed to Python
 	bool isNoUpkeep() const; // Civ4 Reimagined
+	bool isSlave() const; // Civ4 Reimagined
 	bool canCoexistWithEnemyUnit(TeamTypes eTeam) const;																				// Exposed to Python
 
 	DllExport bool isFighting() const;																		// Exposed to Python						

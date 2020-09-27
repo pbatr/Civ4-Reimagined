@@ -163,8 +163,7 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 	}
 	
 	// Civ4 Reimagined
-	const UnitClassTypes UNITCLASS_SLAVE = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SLAVE");
-	if ((UnitClassTypes)m_pUnitInfo->getUnitClassType() == UNITCLASS_SLAVE)
+	if (isSlave())
 	{
 		GET_PLAYER(getOwnerINLINE()).changeNumSlaveUnits(1);
 	}
@@ -633,8 +632,7 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer)
 	}
 	
 	// Civ4 Reimagined
-	const UnitClassTypes UNITCLASS_SLAVE = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SLAVE");
-	if ((UnitClassTypes)m_pUnitInfo->getUnitClassType() == UNITCLASS_SLAVE)
+	if (isSlave())
 	{
 		GET_PLAYER(getOwnerINLINE()).changeNumSlaveUnits(-1);
 	}
@@ -674,7 +672,7 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer)
 
 	if ((eCapturingPlayer != NO_PLAYER) && (eCaptureUnitType != NO_UNIT) && !(GET_PLAYER(eCapturingPlayer).isBarbarian()))
 	{
-		if (!((UnitClassTypes)m_pUnitInfo->getUnitClassType() == (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SLAVE")) || GET_PLAYER(eCapturingPlayer).hasSlavery())
+		if (!isSlave() || GET_PLAYER(eCapturingPlayer).hasSlavery())
 		{
 			if (GET_PLAYER(eCapturingPlayer).isHuman() || GET_PLAYER(eCapturingPlayer).AI_captureUnit(eCaptureUnitType, pPlot) || 0 == GC.getDefineINT("AI_CAN_DISBAND_UNITS"))
 			{
@@ -3316,6 +3314,12 @@ bool CvUnit::canGift(bool bTestVisible, bool bTestTransport)
 	}
 
 	if (!pPlot->isValidDomainForLocation(*this) && NULL == pTransport)
+	{
+		return false;
+	}
+
+	// Civ4 Reimagined
+	if (isSlave())
 	{
 		return false;
 	}
@@ -8319,6 +8323,13 @@ bool CvUnit::isGoldenAge() const
 bool CvUnit::isNoUpkeep() const
 {
 	return m_pUnitInfo->isNoUpkeep();
+}
+
+
+// Civ4 Reimagined
+bool CvUnit::isSlave() const
+{
+	return m_pUnitInfo->getUnitClassType() == GC.getInfoTypeForString("UNITCLASS_SLAVE");
 }
 
 
