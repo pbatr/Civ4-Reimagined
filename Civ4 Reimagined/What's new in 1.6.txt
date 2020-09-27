@@ -7,6 +7,9 @@ New
 *********
 -Civilizations have a starting position bias for native terrain and features
 -New Leader Jayavarman VII of Khmer empire with Creative, Industrious
+-After the discovery of Liberalism all Civilizations adopt an Ideology depending on their current civics. Ideologies influence diplomatic relations and allow building specific wonders.
+-New Wonder Olympiastadion (req Fascism Ideology, no Unhappiness from Conscription, other fascist civs contribute to Great General progress)
+-New Project Communist Manifesto (req Communism Ideology, grants Communism tech to all civs, better resource ratios for every communist civ in the game)
 
 *********
 Changes
@@ -16,6 +19,7 @@ Changes
 -Reintroduced longer anarchy for large empires
 -Removed Leader Brennus
 -New American UU Supercarrier replaces Navy Seal
+-Statue of Liberty now requires Liberalism Ideology, trade routes on the continent give food and trade route bonus with other liberal civilizations
 
 *********
 Tweaks
@@ -30,7 +34,7 @@ Tweaks
 -Removed adjacent tile healing from medic promotions (almost never used in our experience, and the implementation was computationally expensive)
 -Medic3 promotion decreased from 15% healing to 10% healing
 -Tanks no longer have Blitz promotion per default
--Central Planning no longer enables no production mali for military units
+-Central Planning no longer disables production mali for military units
 -Apollo Program costs decreased from 2000 to 1500
 -SDI costs increased from 2500 to 3000
 -CERN Research Complex costs increased from 800 to 1200
