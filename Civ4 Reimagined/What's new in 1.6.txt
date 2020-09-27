@@ -50,6 +50,7 @@ Tweaks
 -Iron Works requires Iron
 -Motorized and Mechanized Infantry have 50% combat bonus vs Mounted
 -Great Engineers can hurry Projects
+-AI improvements leading to faster research, better civic decisions and faster colonization
 
 *********
 Interface
