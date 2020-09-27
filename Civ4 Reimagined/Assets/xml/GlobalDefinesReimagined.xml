@@ -277,7 +277,7 @@
 		<DefineName>VASSAL_UNHAPPINESS</DefineName>
 		<iDefineIntVal>0</iDefineIntVal>
 	</Define>
-	<!-- Slaves can be acquired by conquering or razing enemy cities when having slavery as a civic. There exists a threshold of population points you have to conquer before gaining
+	<!-- Slaves can be acquired by conquering or razing enemy cities when having slavery as a civic or founding colonies. There exists a threshold of population points you have to conquer before gaining
 	a slave. The threshold increases with every slave. -->
 	<Define>
 		<DefineName>SLAVE_THRESHOLD_START</DefineName>
@@ -286,6 +286,10 @@
 	<Define>
 		<DefineName>SLAVE_THRESHOLD_INCREASE_PERCENT</DefineName>
 		<iDefineIntVal>35</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>NEW_COLONY_SLAVE_POINTS</DefineName>
+		<iDefineIntVal>9</iDefineIntVal>
 	</Define>
 	<!-- The visibility range of naval units is equal to their movement points. It is then further modified by this percentage value. -->
 	<Define>

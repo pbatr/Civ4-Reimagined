@@ -544,6 +544,7 @@ public:
 	void changeSlavePoints(int iChange);
 	int getNewSlaveThreshold() const; // Exposed to Python
 	void setSlaveThreshold(int iChange);
+	void gainSlavePoints(int iChange, CvCity* pCity);
 	void initSlave(CvCity* pCity, bool bIncreaseThreshold);
 	
 	// Civ4 Reimagined

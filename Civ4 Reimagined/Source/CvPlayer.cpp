@@ -2588,12 +2588,7 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 	// Civ4 Reimagined: Slaves on city conquest / raze
 	if (bConquest && !bOldEverOwned && hasSlavery())
 	{
-		changeSlavePoints(iPopulation);
-		
-		if (getSlavePoints() >= getNewSlaveThreshold())
-		{
-			initSlave(pOldCity, true);
-		}
+		gainSlavePoints(iPopulation, pOldCity);
 	}
 	
 	pOldCity->kill(false);
@@ -6850,7 +6845,7 @@ void CvPlayer::found(int iX, int iY)
 	{
 		if (hasSlavery() && GET_TEAM(getTeam()).isTerrainTrade((TerrainTypes)GC.getInfoTypeForString("TERRAIN_OCEAN")))
 		{
-			initSlave(pCity, false);
+			gainSlavePoints(GC.getDefineINT("NEW_COLONY_SLAVE_POINTS"), pCity);
 		}
 	}
 
@@ -10971,6 +10966,28 @@ int CvPlayer::getNewSlaveThreshold() const
 void CvPlayer::setSlaveThreshold(int iValue)
 {
 	m_iSlaveThreshold = iValue;
+}
+
+
+// Civ4 Reimagined
+void CvPlayer::gainSlavePoints(int iChange, CvCity *pCity)
+{
+	changeSlavePoints(iChange);
+
+	if (getSlavePoints() >= getNewSlaveThreshold())
+	{
+		if (pCity != NULL)
+		{
+			initSlave(pCity, true);
+		}
+		else
+		{
+			if (getCapitalCity() != NULL)
+			{
+				initSlave(getCapitalCity(), true);
+			}
+		}
+	}
 }
 
 
