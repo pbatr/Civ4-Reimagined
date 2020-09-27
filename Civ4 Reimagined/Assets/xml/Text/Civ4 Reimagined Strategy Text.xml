@@ -780,7 +780,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_STATUE_OF_LIBERTY_STRATEGY</Tag>
-		<English>The [COLOR_BUILDING_TEXT]Statue of Liberty[COLOR_REVERT] increases the happiness of all of your cities built on the same continent. It also gives additional trade route yield when trading with other liberal Civilizations. Furthermore it encourages immigration to your cities which is symbolized by additional food from trade routes. It also increases its city's chances of generating a [COLOR_UNIT_TEXT]Great Merchant[COLOR_REVERT].</English>
+		<English>The [COLOR_BUILDING_TEXT]Statue of Liberty[COLOR_REVERT] gives additional trade route yield when trading with other liberal Civilizations. Furthermore it encourages immigration to your cities which is symbolized by additional food from trade routes. It also increases its city's chances of generating a [COLOR_UNIT_TEXT]Great Merchant[COLOR_REVERT].</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_OLYMPIASTADION_STRATEGY</Tag>
