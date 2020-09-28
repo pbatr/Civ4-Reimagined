@@ -272,6 +272,11 @@
 		<DefineName>COMMERCE_CAP_FOR_SHRINES_AND_HEADQUARTERS</DefineName>
 		<iDefineIntVal>60</iDefineIntVal>
 	</Define>
+	<!-- The maximum commerce modifier that be gained from Absolutism civic. -->
+	<Define>
+		<DefineName>MAX_CAPITAL_COMMERCE_MODIFIER_FROM_SURPLUS_HAPPINESS</DefineName>
+		<iDefineIntVal>75</iDefineIntVal>
+	</Define>
 	<!-- In BtS vassals get unhappiness in cities equal to the happiness gained by the master. We introduced this value to seperate those two factors. -->
 	<Define>
 		<DefineName>VASSAL_UNHAPPINESS</DefineName>

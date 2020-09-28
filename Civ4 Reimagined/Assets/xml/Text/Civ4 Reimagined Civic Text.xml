@@ -402,8 +402,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_IN_CAPITAL_PER_SURPLUS_HAPPY</Tag>
-		<English>[SPACE]in Capital for Each Surplus [ICON_HAPPY] (Capped at City Population)</English>
-		<French>[SPACE]dans la capitale par [ICON_HAPPY] en surplus (maximum : population de la ville)</French>
+		<English>[SPACE]in Capital for Each Surplus [ICON_HAPPY] (Capped at %d1_Mod%%)</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_NO_CULTURE_FLIP</Tag>

@@ -7822,7 +7822,8 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 	}
 
 	// Civ4 Reimagined: Capital Commerce Per Surplus Happiness Modifiers
-	setCommerceChangeHelp(szHelpText, L"", L"", gDLL->getText("TXT_KEY_CIVIC_IN_CAPITAL_PER_SURPLUS_HAPPY").GetCString(), GC.getCivicInfo(eCivic).getCapitalCommerceModifierPerHappinessSurplusArray(), true, true);
+	CvWString surplusHappyText = gDLL->getText("TXT_KEY_CIVIC_IN_CAPITAL_PER_SURPLUS_HAPPY", GC.getDefineINT("MAX_CAPITAL_COMMERCE_MODIFIER_FROM_SURPLUS_HAPPINESS")).GetCString();
+	setCommerceChangeHelp(szHelpText, L"", L"", surplusHappyText, GC.getCivicInfo(eCivic).getCapitalCommerceModifierPerHappinessSurplusArray(), true, true);
 	
 	//	Trade Yield Modifiers
 	setYieldChangeHelp(szHelpText, L"", L"", gDLL->getText("TXT_KEY_CIVIC_FROM_TRADE_ROUTES").GetCString(), GC.getCivicInfo(eCivic).getTradeYieldModifierArray(), true);
@@ -17175,7 +17176,8 @@ void CvGameTextMgr::setCommerceHelp(CvWStringBuffer &szBuffer, CvCity& city, Com
 		// Civ4 Reimagined
 		if (owner.getCapitalCommerceRateModifierPerHappinessSurplus(eCommerceType) > 0)
 		{
-			iCapitalMod += std::min(city.getPopulation(), std::max(0, city.happyLevel() - city.unhappyLevel())) * owner.getCapitalCommerceRateModifierPerHappinessSurplus(eCommerceType); 
+			int iHappinessCommerceModifier = std::max(0, city.happyLevel() - city.unhappyLevel()) * owner.getCapitalCommerceRateModifierPerHappinessSurplus(eCommerceType);
+			iCapitalMod += std::min(GC.getDefineINT("MAX_CAPITAL_COMMERCE_MODIFIER_FROM_SURPLUS_HAPPINESS"), iHappinessCommerceModifier);
 		}
 	}
 	if (iCapitalMod != 0)

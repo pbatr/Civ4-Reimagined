@@ -10430,7 +10430,8 @@ int CvCity::getTotalCommerceRateModifier(CommerceTypes eIndex) const
 		// Civ4 Reimagined
 		if (GET_PLAYER(getOwnerINLINE()).getCapitalCommerceRateModifierPerHappinessSurplus(eIndex) > 0)
 		{
-			iTotal += std::min(getPopulation(), std::max(0, happyLevel() - unhappyLevel())) * GET_PLAYER(getOwnerINLINE()).getCapitalCommerceRateModifierPerHappinessSurplus(eIndex); 
+			int iHappinessCommerceModifier = std::max(0, happyLevel() - unhappyLevel()) * GET_PLAYER(getOwnerINLINE()).getCapitalCommerceRateModifierPerHappinessSurplus(eIndex); 
+			iTotal += std::min(GC.getDefineINT("MAX_CAPITAL_COMMERCE_MODIFIER_FROM_SURPLUS_HAPPINESS"), iHappinessCommerceModifier);
 		}
 	}
 	

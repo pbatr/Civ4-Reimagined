@@ -15800,10 +15800,12 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			
 			if (pLoopCity == pCapital)
 			{
-				int iBonusCommerce = 0;
 				for (int iI = 0; iI < NUM_COMMERCE_TYPES; iI++)
 				{
-					iBonusCommerce = std::min(pLoopCity->getPopulation(), std::max(0, iTestHappy/100)) * kCivic.getCapitalCommerceModifierPerHappinessSurplus(iI) * pCapital->getBaseCommerceRate((CommerceTypes)iI) / 100;
+					int iBonusCommerce = std::max(0, iTestHappy/100) * kCivic.getCapitalCommerceModifierPerHappinessSurplus(iI);
+					iBonusCommerce = std::min(GC.getDefineINT("MAX_CAPITAL_COMMERCE_MODIFIER_FROM_SURPLUS_HAPPINESS"), iBonusCommerce);
+					iBonusCommerce *= pCapital->getBaseCommerceRate((CommerceTypes)iI);
+					iBonusCommerce /= 100;
 					iBonusCommerce *= pCapital->getTotalCommerceRateModifier((CommerceTypes)iI);
 					iBonusCommerce /= 100;
 					iBonusCommerce *= AI_commerceWeight((CommerceTypes)iI);
