@@ -53,6 +53,8 @@ Tweaks
 -Great Engineers can hurry Projects
 -Slaves cannot be gifted to other civilizations
 -Absolutism commerce modifier by happiness surplus is capped at 75%
+-Cannon requires Chemisty instead of Military Tradition
+-Pinch promotion requires Military Tradition instead of Chemistry
 -AI improvements leading to faster research, better civic decisions and faster colonization
 
 *********
