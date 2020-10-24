@@ -13929,7 +13929,7 @@ bool CvCity::spreadCorporation(CorporationTypes eCorporation, CvCity* pHeadquart
 	iSpread *= bCoastal ? 4 : 1;
 	
 	// Civ4 Reimagined: Reduced spread rate because now corporations spread even without open borders.
-	iSpread /= 3;
+	iSpread /= 2;
 	
 	FAssertMsg(kCorp.getSpreadFactor() >= 0, "Corporation spread factor is expected to be a non negative value");
 	
