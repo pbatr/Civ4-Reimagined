@@ -2755,6 +2755,27 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 			pNewCity->changeOccupationTimer(iOccupationTurns);
 		}
 
+		// Civ4 Reimagined
+		if (isNoCityResistance() || GET_TEAM(getTeam()).isNoConquestResistance())
+		{
+			for (int iJ = 0; iJ < NUM_DIRECTION_TYPES; ++iJ)
+			{
+				CvPlot* pAdjacentPlot = plotDirection(pNewCity->getX_INLINE(), pNewCity->getY_INLINE(), ((DirectionTypes)iJ));
+
+				if (pAdjacentPlot != NULL)
+				{
+					for (int iK = 0; iK < MAX_PLAYERS; ++iK)
+					{
+						if (iK != getID())
+						{
+							pAdjacentPlot->setCulture((PlayerTypes)iK, 0, false, false);
+						}
+					}
+					pAdjacentPlot->updateCulture(false, false);
+				}
+			}		
+		}
+
 		GC.getMapINLINE().verifyUnitValidPlot();
 	}
 

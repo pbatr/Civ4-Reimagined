@@ -21,6 +21,7 @@ Changes
 -New American UU Supercarrier replaces Navy Seal
 -Statue of Liberty now requires Liberalism Ideology, trade routes on the continent give food and trade route bonus with other liberal civilizations
 -Founding cities on new continents after Astronomy does give slave points instead of always acquiring a new slave
+-Totalitarianism and Statue of Zeus destroy culture of adjacent tiles of conquered cities
 
 *********
 Tweaks

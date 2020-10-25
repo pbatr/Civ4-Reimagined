@@ -416,8 +416,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_NO_CITY_RESISTANCE</Tag>
-		<English>[ICON_BULLET]No City Resistance on Conquest</English>
-		<French>[ICON_BULLET]Aucune résistance dans les villes conquises</French>
+		<English>[ICON_BULLET]Conquered Cities do not Resist and Adjacent Culture is Destroyed</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_STATE_ATHEISM</Tag>
