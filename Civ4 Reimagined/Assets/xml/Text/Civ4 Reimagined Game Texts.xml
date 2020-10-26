@@ -1398,6 +1398,10 @@
 		<English>[ICON_BULLET]Provides Additional %d1 Range to Cargo Units</English>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_UNIT_FREE_UNIT</Tag>
+		<English>[ICON_BULLET]Provides a Free %s1_UnitName when Constructed</English>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_UNIT_AMERICAN_SUPERCARRIER</Tag>
 		<English>Supercarrier</English>
 	</TEXT>

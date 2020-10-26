@@ -631,6 +631,13 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 			}
 		}
 
+		// Civ4 Reimagined
+		if (pUnit->getUnitInfo().getFreeUnitClassType() != NO_UNITCLASS)
+		{
+			szString.append(NEWLINE);
+			szString.append(gDLL->getText("TXT_KEY_UNIT_FREE_UNIT", GC.getUnitInfo((UnitTypes)GC.getUnitClassInfo((UnitClassTypes)pUnit->getUnitInfo().getFreeUnitClassType()).getDefaultUnitIndex()).getTextKeyWide()));
+		}
+
 		if (pUnit->fortifyModifier() != 0)
 		{
 			szString.append(NEWLINE);
@@ -8903,11 +8910,20 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
 		}
 	}
 
+	// Civ4 Reimagined
 	if (GC.getUnitInfo(eUnit).getAdditionalCargoRange() > 0)
 	{
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_ADD_CARGO_RANGE", GC.getUnitInfo(eUnit).getAdditionalCargoRange()));
 	}
+
+	// Civ4 Reimagined
+	if (GC.getUnitInfo(eUnit).getFreeUnitClassType() != NO_UNITCLASS)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_FREE_UNIT", GC.getUnitInfo((UnitTypes)GC.getUnitClassInfo((UnitClassTypes)GC.getUnitInfo(eUnit).getFreeUnitClassType()).getDefaultUnitIndex()).getTextKeyWide()));
+	}
+
 
 	if (GC.getUnitInfo(eUnit).getDomainType() == DOMAIN_LAND)
 	{

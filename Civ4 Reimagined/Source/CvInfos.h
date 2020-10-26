@@ -907,6 +907,7 @@ public:
 	int getRangedWaveSize() const;						// Exposed to Python
 	int getNumUnitNames() const;							// Exposed to Python
 	int getCommandType() const;								// Exposed to Python
+	int getFreeUnitClassType() const; // Civ4 Reimagined
 	void setCommandType(int iNewType);
 
 	bool isAnimal() const;				// Exposed to Python
@@ -1098,6 +1099,7 @@ protected:
 	int m_iUnitRangedWaveSize;
 	int m_iNumUnitNames;
 	int m_iCommandType;
+	int m_iFreeUnitClassType; // Civ4 Reimagined
 	int m_iLeaderExperience;
 
 	bool m_bAnimal;

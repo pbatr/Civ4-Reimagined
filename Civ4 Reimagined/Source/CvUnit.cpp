@@ -250,6 +250,37 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 		} 
 	}
 
+	// Civ4 Reimagined
+	if (m_pUnitInfo->getFreeUnitClassType() != NO_UNITCLASS)
+	{
+		if (plot()->isCity(false, getTeam()))
+		{
+			CvCity* pCity = plot()->getPlotCity();
+
+			if (pCity != NULL)
+			{
+				for (UnitClassTypes eUnitClassType = (UnitClassTypes)0; (int)eUnitClassType < GC.getNumUnitClassInfos(); eUnitClassType = (UnitClassTypes)(eUnitClassType+1))
+				{
+					if (eUnitClassType == m_pUnitInfo->getFreeUnitClassType())
+					{
+						UnitTypes eFreeUnit = (UnitTypes)GC.getUnitClassInfo(eUnitClassType).getDefaultUnitIndex();
+						UnitTypes eUpgradeUnit = pCity->allUpgradesAvailable(eFreeUnit);
+
+						if (eUpgradeUnit != NO_UNIT)
+						{
+							eFreeUnit = eUpgradeUnit;
+						}
+
+						CvUnit* pFreeUnit = GET_PLAYER(getOwnerINLINE()).initUnit(eFreeUnit, iX, iY, (UnitAITypes)GC.getUnitInfo(eFreeUnit).getDefaultUnitAIType());
+						pCity->addProductionExperience(pFreeUnit, false);
+
+						break;
+					}
+				}
+			}
+		}
+	}
+
 	if (getOwnerINLINE() == GC.getGameINLINE().getActivePlayer())
 	{
 		gDLL->getInterfaceIFace()->setDirty(GameData_DIRTY_BIT, true);

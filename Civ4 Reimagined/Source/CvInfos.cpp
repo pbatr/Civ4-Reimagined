@@ -3091,6 +3091,7 @@ m_iPowerValue(0),
 m_iUnitClassType(NO_UNITCLASS),
 m_iSpecialUnitType(NO_SPECIALUNIT),
 m_iUnitCaptureClassType(NO_UNITCLASS),
+m_iFreeUnitClassType(NO_UNITCLASS), // Civ4 Reimagined
 m_iUnitCombatType(NO_UNITCOMBAT),
 m_iDomainType(NO_DOMAIN),
 m_iDefaultUnitAIType(NO_UNITAI),
@@ -3549,6 +3550,12 @@ int CvUnitInfo::getSpecialUnitType() const
 int CvUnitInfo::getUnitCaptureClassType() const
 {
 	return m_iUnitCaptureClassType;
+}
+
+// Civ4 Reimagined
+int CvUnitInfo::getFreeUnitClassType() const
+{
+	return m_iFreeUnitClassType;
 }
 
 int CvUnitInfo::getUnitCombatType() const			
@@ -4340,6 +4347,7 @@ void CvUnitInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iUnitClassType);
 	stream->Read(&m_iSpecialUnitType);
 	stream->Read(&m_iUnitCaptureClassType);
+	stream->Read(&m_iFreeUnitClassType); // Civ4 Reimagined
 	stream->Read(&m_iUnitCombatType);
 	stream->Read(&m_iDomainType);
 	stream->Read(&m_iDefaultUnitAIType);
@@ -4649,6 +4657,7 @@ void CvUnitInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iUnitClassType);
 	stream->Write(m_iSpecialUnitType);
 	stream->Write(m_iUnitCaptureClassType);
+	stream->Write(m_iFreeUnitClassType); // Civ4 Reimagined
 	stream->Write(m_iUnitCombatType);
 	stream->Write(m_iDomainType);
 	stream->Write(m_iDefaultUnitAIType);
@@ -4793,6 +4802,10 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(szTextVal, "Capture");
 	m_iUnitCaptureClassType = pXML->FindInInfoClass(szTextVal);
+
+	// Civ4 Reimagined
+	pXML->GetChildXmlValByName(szTextVal, "FreeUnitClass");
+	m_iFreeUnitClassType = pXML->FindInInfoClass(szTextVal);
 
 	pXML->GetChildXmlValByName(szTextVal, "Combat");
 	m_iUnitCombatType = pXML->FindInInfoClass(szTextVal);

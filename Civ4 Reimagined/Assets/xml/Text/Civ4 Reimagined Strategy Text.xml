@@ -786,4 +786,8 @@
 		<Tag>TXT_KEY_BUILDING_OLYMPIASTADION_STRATEGY</Tag>
 		<English>The [COLOR_BUILDING_TEXT]Olympiastadion[COLOR_REVERT] allows you to use the [LINK=CIVIC_CONSCRIPTION]Conscription[\LINK] civic without suffering from any unhappiness. Furthermore victories of other fascist civilizations will count towards your great general progress. It also increases its city's chances of generating a [COLOR_UNIT_TEXT]Great Engineer[COLOR_REVERT].</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_AMERICAN_SUPERCARRIER_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Carrier[COLOR_REVERT], this unit is faster, costs less, heals its cargo units, gives additional range to the stationed Fighters and provides a free Fighter when it is constructed.</English>
+	</TEXT>
 </Civ4GameText>

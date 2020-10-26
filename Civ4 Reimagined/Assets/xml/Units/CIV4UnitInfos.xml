@@ -22167,9 +22167,10 @@
 			<Invisible>NONE</Invisible>
 			<SeeInvisible>NONE</SeeInvisible>
 			<Description>TXT_KEY_UNIT_AMERICAN_SUPERCARRIER</Description>
-			<Civilopedia>TXT_KEY_UNIT_CARRIER_PEDIA</Civilopedia>
-			<Strategy>TXT_KEY_UNIT_CARRIER_STRATEGY</Strategy>
+			<Civilopedia>TXT_KEY_UNIT_AMERICAN_SUPERCARRIER_PEDIA</Civilopedia>
+			<Strategy>TXT_KEY_UNIT_AMERICAN_SUPERCARRIER_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
+			<FreeUnitClass>UNITCLASS_FIGHTER</FreeUnitClass>
 			<bAnimal>0</bAnimal>
 			<bFood>0</bFood>
 			<bNoBadGoodies>0</bNoBadGoodies>
