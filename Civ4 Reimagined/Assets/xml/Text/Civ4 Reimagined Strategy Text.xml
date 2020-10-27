@@ -270,7 +270,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_GERMAN_PANZER_STRATEGY</Tag>
-		<English>Compared to the [COLOR_UNIT_TEXT]Tank[COLOR_REVERT], this unit has +50% vs Tanks, four potential first strikes and gains a 20% withdrawal bonus.</English>
+		<English>Compared to the [COLOR_UNIT_TEXT]Tank[COLOR_REVERT], this unit has four potential first strikes, starts with the March promotion and gains a 20% withdrawal bonus.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_AMERICAN_NAVY_SEAL_STRATEGY</Tag>

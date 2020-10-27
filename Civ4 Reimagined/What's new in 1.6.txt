@@ -57,6 +57,7 @@ Tweaks
 -Cannon requires Chemisty instead of Military Tradition
 -Pinch promotion requires Military Tradition instead of Chemistry
 -Higher passive spread rate for corporations
+-German Panzer starts with March promotion instead of bonus vs Tanks
 -AI improvements leading to faster research, better civic decisions and faster colonization
 
 *********
