@@ -59,6 +59,7 @@ Tweaks
 -Pinch promotion requires Military Tradition instead of Chemistry
 -Higher passive spread rate for corporations
 -German Panzer starts with March promotion instead of bonus vs Tanks
+-Incan Terrace stors 60% food on growth instead of 67%
 -AI improvements leading to faster research, better civic decisions and faster colonization
 
 *********
