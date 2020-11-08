@@ -2985,8 +2985,8 @@ void CvDLLWidgetData::parseActionHelp(CvWidgetDataStruct &widgetDataStruct, CvWS
 
 					if (pSelectedUnit->getBuildType() != eBuild)
 					{
-						iNowWorkRate += pSelectedUnit->workRate(false);
-						iThenWorkRate += pSelectedUnit->workRate(true);
+						iNowWorkRate += pSelectedUnit->workRate(false, eBuild);
+						iThenWorkRate += pSelectedUnit->workRate(true, eBuild);
 					}
 
 					pSelectedUnitNode = gDLL->getInterfaceIFace()->nextSelectionListNode(pSelectedUnitNode);

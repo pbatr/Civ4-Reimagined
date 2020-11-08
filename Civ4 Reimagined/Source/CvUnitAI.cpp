@@ -25095,7 +25095,7 @@ bool CvUnitAI::AI_solveBlockageProblem(CvPlot* pDestPlot, bool bDeclareWar)
 int CvUnitAI::AI_calculatePlotWorkersNeeded(CvPlot* pPlot, BuildTypes eBuild)
 {
 	int iBuildTime = pPlot->getBuildTime(eBuild) - pPlot->getBuildProgress(eBuild);
-	int iWorkRate = workRate(true);
+	int iWorkRate = workRate(true, eBuild);
 	
 	if (iWorkRate <= 0)
 	{

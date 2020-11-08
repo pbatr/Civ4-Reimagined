@@ -8250,14 +8250,14 @@ int CvUnit::workRate(bool bMax, BuildTypes eBuild) const
 	iRate /= 100;
 
 	// Civ4 Reimagined: Quantifiable Resource System
-	RouteTypes eRoute = GC.getBuildInfo(eBuild).getRoute();
+	RouteTypes eRoute = (RouteTypes)GC.getBuildInfo(eBuild).getRoute();
 	if (eRoute != NO_ROUTE)
 	{
 		if (GC.getRouteInfo(eRoute).getPrereqBonus() != NO_BONUS)
 		{
-			int iBonusCount = plot()->getAdjacentPlotGroupConnectedBonus(ePlayer, ((BonusTypes)(GC.getRouteInfo(eRoute).getPrereqBonus())));
+			int iBonusCount = plot()->getAdjacentPlotGroupConnectedBonus(getOwnerINLINE(), ((BonusTypes)(GC.getRouteInfo(eRoute).getPrereqBonus())));
 			iRate *= GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iBonusCount);
-			iRate /= 100
+			iRate /= 100;
 		}
 		
 		int iMaxBonusCount = 0;
@@ -8268,13 +8268,13 @@ int CvUnit::workRate(bool bMax, BuildTypes eBuild) const
 			{
 				bHasPrereqOrBonusRequirement = true;
 				// Use adjacentPlotGroupConnectedBonus instead of plotGroupConnectedBonus since that's what used in CvPlot to determine if a route can be build at all
-				iMaxBonusCount = std::max(iMaxBonusCount, plot()->getAdjacentPlotGroupConnectedBonus(ePlayer, ((BonusTypes)(GC.getRouteInfo(eRoute).getPrereqOrBonus(i))));
+				iMaxBonusCount = std::max(iMaxBonusCount, plot()->getAdjacentPlotGroupConnectedBonus(getOwnerINLINE(), ((BonusTypes)(GC.getRouteInfo(eRoute).getPrereqOrBonus(i)))));
 			}
 		}
 		if (bHasPrereqOrBonusRequirement)
 		{
 			iRate *= GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iMaxBonusCount);
-			iRate /= 100
+			iRate /= 100;
 		}	
 	}
 

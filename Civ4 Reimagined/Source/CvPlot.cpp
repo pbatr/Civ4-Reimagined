@@ -1177,7 +1177,7 @@ int CvPlot::getAdjacentPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes e
 	// (The purpose of this is to allow railroads to be built the 'oil' from Standard Ethonol.)
 	CvCity* pCity = getWorkingCity();
 	if (pCity && pCity->getOwnerINLINE() == ePlayer && pCity->hasBonus(eBonus))
-		iMaxBonusCount = std::max(iMaxBonusCount, pCity->getNumBonuses());
+		iMaxBonusCount = std::max(iMaxBonusCount, pCity->getNumBonuses(eBonus));
 	// K-Mod end
 
 	for (iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
