@@ -7301,7 +7301,7 @@ bool CvUnit::build(BuildTypes eBuild)
 
 	GET_PLAYER(getOwnerINLINE()).changeGold(-(GET_PLAYER(getOwnerINLINE()).getBuildCost(plot(), eBuild)));
 
-	bFinished = plot()->changeBuildProgress(eBuild, workRate(false), getTeam());
+	bFinished = plot()->changeBuildProgress(eBuild, workRate(false, eBuild), getTeam());
 
 	finishMoves(); // needs to be at bottom because movesLeft() can affect workRate()...
 
@@ -8230,7 +8230,7 @@ BuildTypes CvUnit::getBuildType() const
 }
 
 
-int CvUnit::workRate(bool bMax) const
+int CvUnit::workRate(bool bMax, BuildTypes eBuild) const
 {
 	int iRate;
 
@@ -8249,14 +8249,41 @@ int CvUnit::workRate(bool bMax) const
 	iRate *= iRateModifier;
 	iRate /= 100;
 
+	// Civ4 Reimagined: Quantifiable Resource System
+	RouteTypes eRoute = GC.getBuildInfo(eBuild).getRoute();
+	if (eRoute != NO_ROUTE)
+	{
+		if (GC.getRouteInfo(eRoute).getPrereqBonus() != NO_BONUS)
+		{
+			int iBonusCount = plot()->getAdjacentPlotGroupConnectedBonus(ePlayer, ((BonusTypes)(GC.getRouteInfo(eRoute).getPrereqBonus())));
+			iRate *= GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iBonusCount);
+			iRate /= 100
+		}
+		
+		int iMaxBonusCount = 0;
+		bool bHasPrereqOrBonusRequirement = false;
+		for (int i = 0; i < GC.getNUM_ROUTE_PREREQ_OR_BONUSES(); ++i)
+		{
+			if (NO_BONUS != GC.getRouteInfo(eRoute).getPrereqOrBonus(i))
+			{
+				bHasPrereqOrBonusRequirement = true;
+				// Use adjacentPlotGroupConnectedBonus instead of plotGroupConnectedBonus since that's what used in CvPlot to determine if a route can be build at all
+				iMaxBonusCount = std::max(iMaxBonusCount, plot()->getAdjacentPlotGroupConnectedBonus(ePlayer, ((BonusTypes)(GC.getRouteInfo(eRoute).getPrereqOrBonus(i))));
+			}
+		}
+		if (bHasPrereqOrBonusRequirement)
+		{
+			iRate *= GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iMaxBonusCount);
+			iRate /= 100
+		}	
+	}
+
 	if (!isHuman() && !isBarbarian())
 	{
 		iRate *= std::max(0, (GC.getHandicapInfo(GC.getGameINLINE().getHandicapType()).getAIWorkRateModifier() + 100));
 		iRate /= 100;
 	}
 	
-
-
 	return iRate;
 }
 

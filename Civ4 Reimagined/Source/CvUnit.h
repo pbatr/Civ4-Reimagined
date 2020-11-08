@@ -305,7 +305,7 @@ public:
 
 	bool canBuildRoute() const;																						// Exposed to Python
 	DllExport BuildTypes getBuildType() const;														// Exposed to Python
-	int workRate(bool bMax) const;															// Exposed to Python
+	int workRate(bool bMax, BuildTypes eBuild) const;															// Exposed to Python
 
 	bool isAnimal() const;																								// Exposed to Python
 	bool isNoBadGoodies() const;																					// Exposed to Python
