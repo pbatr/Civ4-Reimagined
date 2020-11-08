@@ -8275,7 +8275,7 @@ int CvUnit::workRate(bool bMax, BuildTypes eBuild) const
 		{
 			iRate *= GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iMaxBonusCount);
 			iRate /= 100;
-		}	
+		}
 	}
 
 	if (!isHuman() && !isBarbarian())

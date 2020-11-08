@@ -1140,30 +1140,7 @@ bool CvPlot::isPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes eBonus) c
 
 bool CvPlot::isAdjacentPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes eBonus) const
 {
-	CvPlot* pAdjacentPlot;
-	int iI;
-
-	// K-Mod. Allow this plot to have whatever resources are available in the city working the plot.
-	// (The purpose of this is to allow railroads to be built the 'oil' from Standard Ethonol.)
-	CvCity* pCity = getWorkingCity();
-	if (pCity && pCity->getOwnerINLINE() == ePlayer && pCity->hasBonus(eBonus))
-		return true;
-	// K-Mod end
-
-	for (iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
-	{
-		pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
-
-		if (pAdjacentPlot != NULL)
-		{
-			if (pAdjacentPlot->isPlotGroupConnectedBonus(ePlayer, eBonus))
-			{
-				return true;
-			}
-		}
-	}
-
-	return false;
+	return (getAdjacentPlotGroupConnectedBonus(ePlayer, eBonus) > 0);
 }
 
 // Civ4 Reimagined
@@ -1186,7 +1163,7 @@ int CvPlot::getAdjacentPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes e
 
 		if (pAdjacentPlot != NULL)
 		{
-			iMaxBonusCount = std::max(iMaxBonusCount, getPlotGroupConnectedBonus(ePlayer, eBonus));
+			iMaxBonusCount = std::max(iMaxBonusCount, pAdjacentPlot->getPlotGroupConnectedBonus(ePlayer, eBonus));
 		}
 	}
 
