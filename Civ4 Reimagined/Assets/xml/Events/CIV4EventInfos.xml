@@ -11245,8 +11245,8 @@
 			<iFood>0</iFood>
 			<iFoodPercent>0</iFoodPercent>
 			<FreeSpecialistCounts/>
-			<FeatureType>NONE</FeatureType>
-			<iFeatureChange>0</iFeatureChange>
+			<FeatureType>FEATURE_FOREST</FeatureType>
+			<iFeatureChange>-1</iFeatureChange>
 			<ImprovementType>NONE</ImprovementType>
 			<iImprovementChange>0</iImprovementChange>
 			<BonusType>BONUS_DEER</BonusType>
