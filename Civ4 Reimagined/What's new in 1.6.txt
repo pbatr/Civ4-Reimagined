@@ -61,6 +61,8 @@ Tweaks
 -German Panzer starts with March promotion instead of bonus vs Tanks
 -Incan Terrace stors 60% food on growth instead of 67%
 -AI improvements leading to faster research, better civic decisions and faster colonization
+-Best Defense quest reward nerfed from +3 attitude to +1 attitude
+-Slaves are a bit harder to gain via conquest in later eras
 
 *********
 Interface
@@ -77,6 +79,7 @@ Fixes
 -French Missile Submarine had broken graphics
 -Abolish slavery would not always update corporation yields
 -Freed colonies would sometimes get warrior units as free defenders in later eras
+-Event that spawns Deer and places Camp now correctly removes forest
 
 
 *******************************************
