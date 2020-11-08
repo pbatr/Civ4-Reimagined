@@ -2588,7 +2588,8 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 	// Civ4 Reimagined: Slaves on city conquest / raze
 	if (bConquest && !bOldEverOwned && hasSlavery())
 	{
-		gainSlavePoints(iPopulation, pOldCity);
+		int iSlavePoints = std::max(0, iPopulation - getCurrentEra() * GC.getDefineINT("CONQUEST_LESS_SLAVE_POINTS_PER_ERA"));
+		gainSlavePoints(iSlavePoints, pOldCity);
 	}
 	
 	pOldCity->kill(false);

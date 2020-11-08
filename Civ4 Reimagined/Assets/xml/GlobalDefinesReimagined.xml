@@ -286,7 +286,7 @@
 	a slave. The threshold increases with every slave. -->
 	<Define>
 		<DefineName>SLAVE_THRESHOLD_START</DefineName>
-		<iDefineIntVal>5</iDefineIntVal>
+		<iDefineIntVal>4</iDefineIntVal>
 	</Define>
 	<Define>
 		<DefineName>SLAVE_THRESHOLD_INCREASE_PERCENT</DefineName>
@@ -294,7 +294,11 @@
 	</Define>
 	<Define>
 		<DefineName>NEW_COLONY_SLAVE_POINTS</DefineName>
-		<iDefineIntVal>9</iDefineIntVal>
+		<iDefineIntVal>8</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>CONQUEST_LESS_SLAVE_POINTS_PER_ERA</DefineName>
+		<iDefineIntVal>1</iDefineIntVal>
 	</Define>
 	<!-- The visibility range of naval units is equal to their movement points. It is then further modified by this percentage value. -->
 	<Define>
@@ -306,7 +310,7 @@
 		<DefineName>UNIT_MILITARY_HAPPINESS_ERA_OFFSET</DefineName>
 		<iDefineIntVal>2</iDefineIntVal>
 	</Define>
-	<!-- Target Populations are used for Quantifiable Resouce System. They correspond to the maximum population which can be sufficiently supplied with one resource when all techs of this
+	<!-- Target Populations are used for Quantifiable Resource System. They correspond to the maximum population which can be sufficiently supplied with one resource when all techs of this
 	era are discovered. Every tech you discover improves your techValue and by that lets you supply more population with one resource. Target population adds up which means e.g. real
 	target population for classical era is: TARGET_POPULATION_ANCIENT + TARGET_POPULATION_CLASSICAL -->
 	<Define>
