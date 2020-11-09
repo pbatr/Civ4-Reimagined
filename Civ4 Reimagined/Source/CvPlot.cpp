@@ -2908,8 +2908,9 @@ int CvPlot::movementCost(const CvUnit* pUnit, const CvPlot* pFromPlot) const
 		if (GC.getRouteInfo(pFromPlot->getRouteType()).getPrereqBonus() != NO_BONUS)
 		{
 			int iBonusCount = pFromPlot->getPlotGroupConnectedBonus(pUnit->getOwnerINLINE(), ((BonusTypes)(GC.getRouteInfo(pFromPlot->getRouteType()).getPrereqBonus())));
+			int iBonusValue = GET_PLAYER(pUnit->getOwnerINLINE()).getBonusValueTimes100(iBonusCount);
 			iRouteFlatCost *= 100;
-			iRouteFlatCost /= GET_PLAYER(pUnit->getOwnerINLINE()).getBonusValueTimes100(iBonusCount);
+			iRouteFlatCost /= std::max(iBonusValue, 1);
 		}
 		
 		int iMaxBonusCount = 0;
@@ -2924,8 +2925,9 @@ int CvPlot::movementCost(const CvUnit* pUnit, const CvPlot* pFromPlot) const
 		}
 		if (bHasPrereqOrBonusRequirement)
 		{
+			int iBonusValue = GET_PLAYER(pUnit->getOwnerINLINE()).getBonusValueTimes100(iMaxBonusCount);
 			iRouteFlatCost *= 100;
-			iRouteFlatCost /= GET_PLAYER(pUnit->getOwnerINLINE()).getBonusValueTimes100(iMaxBonusCount);
+			iRouteFlatCost /= std::max(iBonusValue, 1);	
 		}	
 	}
 	else
