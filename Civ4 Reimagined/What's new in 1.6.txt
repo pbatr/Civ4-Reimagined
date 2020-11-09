@@ -63,6 +63,7 @@ Tweaks
 -AI improvements leading to faster research, better civic decisions and faster colonization
 -Best Defense quest reward nerfed from +3 attitude to +1 attitude
 -Slaves are a bit harder to gain via conquest in later eras
+-Railroads are harder to build with low resource ratio in coal and oil
 
 *********
 Interface

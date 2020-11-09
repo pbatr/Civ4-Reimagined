@@ -169,4 +169,10 @@
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_42</Tag>
 		<English>If you abolish slavery, all Slaves in your empire will be freed.</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_43</Tag>
+		<English>Railroads take longer to build if your resource ratio for Coal and Oil is low.</English>
+	</TEXT>
+	
+	
 </Civ4GameText>
