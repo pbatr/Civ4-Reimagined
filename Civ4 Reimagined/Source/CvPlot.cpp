@@ -2901,6 +2901,32 @@ int CvPlot::movementCost(const CvUnit* pUnit, const CvPlot* pFromPlot) const
 			               (GC.getRouteInfo(getRouteType()).getMovementCost() + GET_TEAM(pUnit->getTeam()).getRouteChange(getRouteType())));
 		iRouteFlatCost = std::max((GC.getRouteInfo(pFromPlot->getRouteType()).getFlatMovementCost() * pUnit->baseMoves()),
 			                   (GC.getRouteInfo(getRouteType()).getFlatMovementCost() * pUnit->baseMoves()));
+		
+		// Civ4 Reimagined: Quantifiable Resource System
+		// Increase flat route cost when low on resources required to build the improvement
+		// Checks only if the starting plot is connected to the required resources, not the end plot
+		if (GC.getRouteInfo(pFromPlot->getRouteType()).getPrereqBonus() != NO_BONUS)
+		{
+			int iBonusCount = pFromPlot->getPlotGroupConnectedBonus(pUnit->getOwnerINLINE(), ((BonusTypes)(GC.getRouteInfo(pFromPlot->getRouteType()).getPrereqBonus())));
+			iRouteFlatCost *= 100;
+			iRouteFlatCost /= GET_PLAYER(pUnit->getOwnerINLINE()).getBonusValueTimes100(iBonusCount);
+		}
+		
+		int iMaxBonusCount = 0;
+		bool bHasPrereqOrBonusRequirement = false;
+		for (int i = 0; i < GC.getNUM_ROUTE_PREREQ_OR_BONUSES(); ++i)
+		{
+			if (NO_BONUS != GC.getRouteInfo(pFromPlot->getRouteType()).getPrereqOrBonus(i))
+			{
+				bHasPrereqOrBonusRequirement = true;
+				iMaxBonusCount = std::max(iMaxBonusCount, pFromPlot->getPlotGroupConnectedBonus(pUnit->getOwnerINLINE(), ((BonusTypes)(GC.getRouteInfo(pFromPlot->getRouteType()).getPrereqOrBonus(i))));
+			}
+		}
+		if (bHasPrereqOrBonusRequirement)
+		{
+			iRouteFlatCost *= 100
+			iRouteFlatCost /= GET_PLAYER(pUnit->getOwnerINLINE()).getBonusValueTimes100(iMaxBonusCount);
+		}	
 	}
 	else
 	{

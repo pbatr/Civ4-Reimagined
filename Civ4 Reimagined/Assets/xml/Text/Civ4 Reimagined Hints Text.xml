@@ -171,7 +171,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_43</Tag>
-		<English>Railroads take longer to build if your resource ratio for Coal and Oil is low.</English>
+		<English>If your resource ratio for Coal and Oil is low, Railroads take longer to construct and units can traverse less Railroad squares per turn.</English>
 	</TEXT>
 	
 	

@@ -22,6 +22,7 @@ Changes
 -Statue of Liberty now requires Liberalism Ideology, trade routes on the continent give food and trade route bonus with other liberal civilizations
 -Founding cities on new continents after Astronomy does give slave points instead of always acquiring a new slave
 -Totalitarianism and Statue of Zeus destroy culture of adjacent tiles of conquered cities
+-With a low resource ratio in coal and oil, Railroads take longer to construct and units can traverse less Railroad squares per turn
 
 *********
 Tweaks
@@ -63,7 +64,6 @@ Tweaks
 -AI improvements leading to faster research, better civic decisions and faster colonization
 -Best Defense quest reward nerfed from +3 attitude to +1 attitude
 -Slaves are a bit harder to gain via conquest in later eras
--Railroads are harder to build with low resource ratio in coal and oil
 
 *********
 Interface
