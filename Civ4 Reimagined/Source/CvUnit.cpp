@@ -8256,8 +8256,11 @@ int CvUnit::workRate(bool bMax, BuildTypes eBuild) const
 		if (GC.getRouteInfo(eRoute).getPrereqBonus() != NO_BONUS)
 		{
 			int iBonusCount = plot()->getAdjacentPlotGroupConnectedBonus(getOwnerINLINE(), ((BonusTypes)(GC.getRouteInfo(eRoute).getPrereqBonus())));
-			iRate *= GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iBonusCount);
-			iRate /= 100;
+			if (iBonusCount != 0)
+			{
+				iRate *= GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iBonusCount);
+				iRate /= 100;
+			}
 		}
 		
 		int iMaxBonusCount = 0;
@@ -8271,7 +8274,7 @@ int CvUnit::workRate(bool bMax, BuildTypes eBuild) const
 				iMaxBonusCount = std::max(iMaxBonusCount, plot()->getAdjacentPlotGroupConnectedBonus(getOwnerINLINE(), ((BonusTypes)(GC.getRouteInfo(eRoute).getPrereqOrBonus(i)))));
 			}
 		}
-		if (bHasPrereqOrBonusRequirement)
+		if (bHasPrereqOrBonusRequirement && iMaxBonusCount != 0)
 		{
 			iRate *= GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iMaxBonusCount);
 			iRate /= 100;

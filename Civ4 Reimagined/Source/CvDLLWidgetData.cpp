@@ -2919,6 +2919,41 @@ void CvDLLWidgetData::parseActionHelp(CvWidgetDataStruct &widgetDataStruct, CvWS
 					iMovementCost = GC.getRouteInfo(eRoute).getMovementCost() + GET_TEAM(pHeadSelectedUnit->getTeam()).getRouteChange(eRoute);
 					iFlatMovementCost = GC.getRouteInfo(eRoute).getFlatMovementCost();
 
+					if (iFlatMovementCost > 0 && pMissionPlot && pHeadSelectedUnit)
+					{
+						// Civ4 Reimagined: Quantifiable Resource System
+						// Increase flat route cost when low on resources required to build the improvement
+						// Checks only if the starting plot is connected to the required resources, not the end plot
+						if (GC.getRouteInfo(eRoute).getPrereqBonus() != NO_BONUS)
+						{
+							int iBonusCount = pMissionPlot->getPlotGroupConnectedBonus(pHeadSelectedUnit->getOwnerINLINE(), ((BonusTypes)(GC.getRouteInfo(eRoute).getPrereqBonus())));
+
+							if (iBonusCount != 0)
+							{
+								int iBonusValue = GET_PLAYER(pHeadSelectedUnit->getOwnerINLINE()).getBonusValueTimes100(iBonusCount);
+								iFlatMovementCost *= 100;
+								iFlatMovementCost /= std::max(iBonusValue, 1);
+							}
+						}
+
+						int iMaxBonusCount = 0;
+						bool bHasPrereqOrBonusRequirement = false;
+						for (int i = 0; i < GC.getNUM_ROUTE_PREREQ_OR_BONUSES(); ++i)
+						{
+							if (NO_BONUS != GC.getRouteInfo(eRoute).getPrereqOrBonus(i))
+							{
+								bHasPrereqOrBonusRequirement = true;
+								iMaxBonusCount = std::max(iMaxBonusCount, pMissionPlot->getPlotGroupConnectedBonus(pHeadSelectedUnit->getOwnerINLINE(), ((BonusTypes)(GC.getRouteInfo(eRoute).getPrereqOrBonus(i)))));
+							}
+						}
+						if (bHasPrereqOrBonusRequirement && iMaxBonusCount != 0)
+						{
+							int iBonusValue = GET_PLAYER(pHeadSelectedUnit->getOwnerINLINE()).getBonusValueTimes100(iMaxBonusCount);
+							iFlatMovementCost *= 100;
+							iFlatMovementCost /= std::max(iBonusValue, 1);
+						}
+					}
+
 					if (iMovementCost > 0)
 					{
 						iMoves = (GC.getMOVE_DENOMINATOR() / iMovementCost);
