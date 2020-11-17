@@ -10,6 +10,7 @@ New
 Changes
 *********
 -With a low resource ratio in coal and oil, Railroads take longer to construct and units can traverse less Railroad squares per turn
+-Friendly units stationed in your city do no longer reduce the risk of revolts
 
 *********
 Tweaks

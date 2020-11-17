@@ -5688,7 +5688,11 @@ int CvCity::cultureGarrison(PlayerTypes ePlayer) const
 		pLoopUnit = ::getUnit(pUnitNode->m_data);
 		pUnitNode = plot()->nextUnitNode(pUnitNode);
 
-		iGarrison += pLoopUnit->getUnitInfo().getCultureGarrisonValue();
+		// Civ4 Reimagined: Only own units contribute to reducing revolt risk
+		if (pLoopUnit->getOwner() == ePlayer)
+		{
+			iGarrison += pLoopUnit->getUnitInfo().getCultureGarrisonValue();
+		}
 	}
 
 	if (atWar(GET_PLAYER(ePlayer).getTeam(), getTeam()))
