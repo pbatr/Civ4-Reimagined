@@ -1,4 +1,33 @@
 *******************************************
+Civ4 Reimagined 1.7
+*******************************************
+*********
+New
+*********
+
+
+*********
+Changes
+*********
+-With a low resource ratio in coal and oil, Railroads take longer to construct and units can traverse less Railroad squares per turn
+
+*********
+Tweaks
+*********
+-Reduced Awqaq Runa costs from 30 to 25
+-Increased Vulture anti-archer bonus from 10% to 20%
+
+*********
+Interface
+*********
+
+
+*********
+Fixes
+*********
+
+
+*******************************************
 Civ4 Reimagined 1.6
 *******************************************
 
@@ -22,7 +51,6 @@ Changes
 -Statue of Liberty now requires Liberalism Ideology, trade routes on the continent give food and trade route bonus with other liberal civilizations
 -Founding cities on new continents after Astronomy does give slave points instead of always acquiring a new slave
 -Totalitarianism and Statue of Zeus destroy culture of adjacent tiles of conquered cities
--With a low resource ratio in coal and oil, Railroads take longer to construct and units can traverse less Railroad squares per turn
 
 *********
 Tweaks

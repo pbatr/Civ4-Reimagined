@@ -6759,7 +6759,7 @@
 			<ProductionTraits/>
 			<Flavors/>
 			<iAIWeight>0</iAIWeight>
-			<iCost>30</iCost>
+			<iCost>25</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -7034,7 +7034,7 @@
 			<UnitCombatMods>
 				<UnitCombatMod>
 					<UnitCombatType>UNITCOMBAT_ARCHER</UnitCombatType>
-					<iUnitCombatMod>35</iUnitCombatMod>
+					<iUnitCombatMod>45</iUnitCombatMod>
 				</UnitCombatMod>
 			</UnitCombatMods>
 			<UnitCombatCollateralImmunes/>

@@ -174,7 +174,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_INCAN_QUECHUA_STRATEGY</Tag>
-		<English>Compared to the [COLOR_UNIT_TEXT]Axeman[COLOR_REVERT], this unit gains a bonus against melee units and ignores the enemies defensive advantage of a forest or jungle.</English>
+		<English>Compared to the [COLOR_UNIT_TEXT]Axeman[COLOR_REVERT], this unit gains a bonus against melee units and ignores the enemies defensive advantage of a forest or jungle. It is slightly cheaper than the Axeman.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_SUMERIAN_VULTURE_STRATEGY</Tag>
