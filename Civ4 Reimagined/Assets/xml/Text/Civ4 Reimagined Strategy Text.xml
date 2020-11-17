@@ -475,7 +475,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_GERMAN_ASSEMBLY_PLANT_STRATEGY</Tag>
-		<English>The [COLOR_BUILDING_TEXT]Assembly Plant[COLOR_REVERT] increases production further and grants additional engineer slots. Can be build faster with access to coal.</English>
+		<English>The [COLOR_BUILDING_TEXT]Assembly Plant[COLOR_REVERT] increases production significantly with electricity at the cost of a lower starting production. It also grants additional engineer slots.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_JAPANESE_SHALE_PLANT_STRATEGY</Tag>

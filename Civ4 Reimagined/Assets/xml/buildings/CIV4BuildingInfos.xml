@@ -6872,18 +6872,15 @@
 			<SeaPlotYieldChanges/>
 			<RiverPlotYieldChanges/>
 			<GlobalSeaPlotYieldChanges/>
-			<YieldChanges>
-				<iYield>0</iYield>
-				<iYield>3</iYield>
-			</YieldChanges>
+			<YieldChanges/>
 			<YieldModifiers>
 				<iYield>0</iYield>
-				<iYield>15</iYield>
+				<iYield>0</iYield>
 				<iYield>0</iYield>
 			</YieldModifiers>
 			<PowerYieldModifiers>
 				<iYield>0</iYield>
-				<iYield>40</iYield>
+				<iYield>85</iYield>
 				<iYield>0</iYield>
 			</PowerYieldModifiers>
 			<CommerceChanges/>
@@ -6916,12 +6913,7 @@
 				</BonusHealthChange>
 			</BonusHealthChanges>
 			<BonusHappinessChanges/>
-			<BonusProductionModifiers>
-				<BonusProductionModifier>
-					<BonusType>BONUS_COAL</BonusType>
-					<iProductonModifier>50</iProductonModifier>
-				</BonusProductionModifier>
-			</BonusProductionModifiers>
+			<BonusProductionModifiers/>
 			<UnitCombatFreeExperiences/>
 			<DomainFreeExperiences/>
 			<DomainProductionModifiers/>
