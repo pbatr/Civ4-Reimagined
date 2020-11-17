@@ -190,7 +190,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_AZTEC_JAGUAR_STRATEGY</Tag>
-		<English>Compared to the [COLOR_UNIT_TEXT]Swordsman[COLOR_REVERT], this unit doesn't require Iron and starts with Woodsman I.</English>
+		<English>Compared to the [COLOR_UNIT_TEXT]Swordsman[COLOR_REVERT], this unit doesn't require Iron and gains has 25% forest/jungle combat bonus.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_CELTIC_GALLIC_WARRIOR_STRATEGY</Tag>
