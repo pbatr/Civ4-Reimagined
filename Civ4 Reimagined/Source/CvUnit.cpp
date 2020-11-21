@@ -7246,7 +7246,7 @@ bool CvUnit::goldenAge()
 // Civ4 Reimagined: As regular golden age, but does only require one general, is modified by greatGeneralGoldenAgeLength, and does not advance golden age requirements (i.e. +1 great person for future golden ages)
 bool CvUnit::greatGeneralGoldenAge()
 {
-	int iAgeLength = GET_PLAYER(getOwnerINLINE()).getGoldenAgeLength();
+	int iAgeLength = GC.getGameINLINE().goldenAgeLength();
 	iAgeLength *= GET_PLAYER(getOwnerINLINE()).getGreatGeneralGoldenAgeLength();
 	iAgeLength /= 100;
 	GET_PLAYER(getOwnerINLINE()).changeGoldenAgeTurns(iAgeLength);
