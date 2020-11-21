@@ -7653,24 +7653,34 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 		szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_BONUS_RATIO_MODIFIER"));
 	}
 	
-	/*
 	// Unit Production Modifier (Civ4 Reimagined)
 	for (iI = 0; iI < GC.getNumUnitClassInfos(); iI++)
 	{
-		if(GC.getCivicInfo(eCivic).getUnitProductionModifier(iI) > 0)
+		if(GC.getCivicInfo(eCivic).getUnitClassProductionModifier(iI) > 0)
 		{
+			
+			if (GC.getGameINLINE().getActivePlayer() != NO_PLAYER)
+			{
+				eLoopUnit = (UnitTypes)GC.getCivilizationInfo(GC.getGameINLINE().getActiveCivilizationType()).getCivilizationUnits(iI);
+			}
+			else
+			{
+				eLoopUnit = (UnitTypes)GC.getUnitClassInfo((UnitClassTypes)iI).getDefaultUnitIndex();
+			}
+			
 			CvWString szTempBuffer;
 			szTempBuffer.Format(L"\n%c", gDLL->getSymbolID(BULLET_CHAR));
-			szTempBuffer += CvWString::format(L"%s%d%s",
-			GC.getCivicInfo(eCivic).getUnitProductionModifier(iI) > 0 ? L"+" : L"",
-			GC.getCivicInfo(eCivic).getUnitProductionModifier(iI),
-			L"%");
+			szTempBuffer += CvWString::format(L"%s%d%s %s",
+			GC.getCivicInfo(eCivic).getUnitClassProductionModifier(iI) > 0 ? L"+" : L"",
+			GC.getCivicInfo(eCivic).getUnitClassProductionModifier(iI),
+			L"%",
+			GC.getUnitInfo(eLoopUnit).getDescription());
 			
 			szHelpText.append(szTempBuffer);
-			szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_PILLAGE_GAIN_MODIFIER"));
-			szHelpText.append(L"("+(UnitTypes)GC.getUnitClassInfo((UnitClassTypes)iI).getName()+")");
+			szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_UNIT_CLASS_PRODUCTION_MODIFIER"));
+			//szHelpText.append(L"("+(UnitTypes)GC.getUnitClassInfo((UnitClassTypes)iI).getName()+")");
 		}
-	}*/
+	}
 
 	// Population Unhappiness Modifier (Civ4 Reimagined)
 	if (GC.getCivicInfo(eCivic).getPopulationUnhappinessModifier() != 0)

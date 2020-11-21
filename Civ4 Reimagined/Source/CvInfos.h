@@ -1427,7 +1427,7 @@ public:
 
 	int getYieldModifier(int i) const;				// Exposed to Python
 	int* getYieldModifierArray() const;
-	int getUnitProductionModifier(int i) const; // Civ4 Reimagined
+	int getUnitClassProductionModifier(int i) const; // Civ4 Reimagined
 	int getExtraYield(int i) const; // Civ4 Reimagined				// Exposed to Python
 	int* getExtraYieldArray() const; // Civ4 Reimagined
 	int getCapitalExtraYieldFromCityPercent(int i) const; // Civ4 Reimagined
@@ -1443,8 +1443,8 @@ public:
 	int getCapitalCommerceModifierPerHappinessSurplus(int i) const; // Civ4 Reimagined
 	int* getCapitalCommerceModifierPerHappinessSurplusArray() const; // Civ4 Reimagined
 	int getExtraCommerceHappiness(int i) const;	// Civ4 Reimagined
-	int* getExtraCommerceHappinessArray() const;	// Civ4 Reimagined
-	int getStateReligionBuildingCommerce(int i) const;	// Civ4 Reimagined
+	int* getExtraCommerceHappinessArray() const; // Civ4 Reimagined
+	int getStateReligionBuildingCommerce(int i) const; // Civ4 Reimagined
 	int* getStateReligionBuildingCommerceArray() const;	// Civ4 Reimagined
 	int getSpecialistExtraCommerce(int i) const;				// Exposed to Python
 	int* getSpecialistExtraCommerceArray() const;

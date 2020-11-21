@@ -104,6 +104,7 @@ CvPlayer::CvPlayer()
 	m_paiAveragePopCommerceModifierMaxPop = NULL; // Civ4 Reimagined
 	m_paiAveragePopCommerceModifierMaxMod = NULL; // Civ4 Reimagined
 	m_paiPlayerExtraAvailableBonuses = NULL; // Civ4 Reimagined
+	m_paiUnitClassProductionModifier = NULL; // Civ4 Reimagined
 	m_paiCivicEffect = NULL; // Civ4 Reimagined
 
 	m_pabResearchingTech = NULL;
@@ -1088,13 +1089,6 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		{
 			m_paiTechProgressOnSettling[iI] = 0;
 		}
-		/*
-		//Civ4 Reimagined
-		for (iI = 0; iI < 500; iI++)
-		{
-			m_aiUnitProductionModifier[iI] = 0;
-		}
-		*/
 		
 		
 		FAssertMsg(m_paiFeatureHappiness==NULL, "about to leak memory, CvPlayer::m_paiFeatureHappiness");
@@ -1108,10 +1102,13 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		m_paiUnitClassCount = new int [GC.getNumUnitClassInfos()];
 		FAssertMsg(m_paiUnitClassMaking==NULL, "about to leak memory, CvPlayer::m_paiUnitClassMaking");
 		m_paiUnitClassMaking = new int [GC.getNumUnitClassInfos()];
+		FAssertMsg(m_paiUnitClassProductionModifier==NULL, "about to leak memory, CvPlayer::m_paiUnitClassProductionModifier");
+		m_paiUnitClassProductionModifier = new int[GC.getNumUnitClassInfos()];
 		for (iI = 0; iI < GC.getNumUnitClassInfos(); iI++)
 		{
 			m_paiUnitClassCount[iI] = 0;
 			m_paiUnitClassMaking[iI] = 0;
+			m_paiUnitClassProductionModifier[iI] = 0; // Civ4 Reimagined
 		}
 
 		FAssertMsg(m_paiBuildingClassCount==NULL, "about to leak memory, CvPlayer::m_paiBuildingClassCount");
@@ -13851,27 +13848,26 @@ void CvPlayer::changeYieldRateModifier(YieldTypes eIndex, int iChange)
 	}
 }
 
-/*
+
 // Civ4 Reimagined
-int CvPlayer::getUnitProductionModifier(UnitTypes eIndex)
+int CvPlayer::getUnitClassProductionModifier(UnitClassTypes eIndex)
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
-	FAssertMsg(eIndex < 500, "eIndex is expected to be within maximum bounds (invalid Index)");
-	return m_aiUnitProductionModifier[eIndex];
+	FAssertMsg(eIndex < GC.getNumUnitClassInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_paiUnitClassProductionModifier[eIndex];
 }
 
 // Civ4 Reimagined
-void CvPlayer::changeUnitProductionModifier(UnitTypes eIndex, int iChange)
+void CvPlayer::changeUnitClassProductionModifier(UnitClassTypes eIndex, int iChange)
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
-	FAssertMsg(eIndex < 500, "eIndex is expected to be within maximum bounds (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumUnitClassInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
 	
 	if (iChange != 0)
 	{
-		m_aiUnitProductionModifier[eIndex] = (m_aiUnitProductionModifier[eIndex] + iChange);
+		m_paiUnitClassProductionModifier[eIndex] = (m_paiUnitClassProductionModifier[eIndex] + iChange);
 	}
 }
-*/
 
 // Civ4 Reimagined
 int CvPlayer::getExtraYield(YieldTypes eIndex) const		 
@@ -19748,13 +19744,11 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
 	changeResearchPerCulture(GC.getCivicInfo(eCivic).getResearchPerCulture() * iChange); //Civ4 Reimagined
 	changeUnlimitedAnimalXPCount((GC.getCivicInfo(eCivic).isUnlimitedAnimalXP()) ? iChange : 0); // Civ4 Reimagined
 	
-	/*
 	for (iI = 0; iI < GC.getNumUnitClassInfos(); iI++)
 	{
-		changeUnitProductionModifier((UnitTypes)iI, (GC.getCivicInfo(eCivic).getUnitProductionModifier(iI) * iChange)); // Civ4 Reimagined
+		changeUnitClassProductionModifier((UnitClassTypes)iI, (GC.getCivicInfo(eCivic).getUnitClassProductionModifier(iI) * iChange)); // Civ4 Reimagined
 	}
-	*/
-	
+		
 	for (iI = 0; iI < NUM_YIELD_TYPES; iI++)
 	{
 		changeYieldRateModifier(((YieldTypes)iI), (GC.getCivicInfo(eCivic).getYieldModifier(iI) * iChange));
@@ -20174,7 +20168,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(NUM_DOMAIN_TYPES, m_aiMilitaryPower); // Civ4 Reimagined
 	pStream->Read(NUM_DOMAIN_TYPES, m_aiBestUnitPower); // Civ4 Reimagined
 	pStream->Read(GC.getNumBonusInfos(), m_paiPlayerExtraAvailableBonuses); // Civ4 Reimagined
-	//pStream->Read(GC.getNumUnitClassInfos(), m_aiUnitProductionModifier); // Civ4 Reimagined
+	pStream->Read(GC.getNumUnitClassInfos(), m_paiUnitClassProductionModifier); // Civ4 Reimagined
 	pStream->Read(GC.getNumCivicInfos(), m_paiCivicEffect); // Civ4 Reimagined
 
 	FAssertMsg((0 < GC.getNumTechInfos()), "GC.getNumTechInfos() is not greater than zero but it is expected to be in CvPlayer::read");
@@ -20772,6 +20766,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(NUM_DOMAIN_TYPES, m_aiMilitaryPower); // Civ4 Reimagined
 	pStream->Write(NUM_DOMAIN_TYPES, m_aiBestUnitPower); // Civ4 Reimagined
 	pStream->Write(GC.getNumBonusInfos(), m_paiPlayerExtraAvailableBonuses); // Civ4 Reimagined
+	pStream->Write(GC.getNumUnitClassInfos(), m_paiUnitClassProductionModifier); // Civ4 Reimagined
 	pStream->Write(GC.getNumCivicInfos(), m_paiCivicEffect); // Civ4 Reimagined
 	
 	FAssertMsg((0 < GC.getNumTechInfos()), "GC.getNumTechInfos() is not greater than zero but it is expected to be in CvPlayer::write");
@@ -27494,6 +27489,24 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_INDUSTRIAL)
 		{
 			changeCorporationTraderouteModifier(GC.getDefineINT("UNIQUE_POWER_AMERICA"));
+			
+			UnitClassTypes UNITCLASS_EXECUTIVE_4 = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_EXECUTIVE_4");
+			UnitClassTypes UNITCLASS_EXECUTIVE_5 = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_EXECUTIVE_5");
+			UnitClassTypes UNITCLASS_EXECUTIVE_6 = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_EXECUTIVE_6");
+			UnitClassTypes UNITCLASS_EXECUTIVE_7 = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_EXECUTIVE_7");
+			UnitClassTypes UNITCLASS_EXECUTIVE_8 = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_EXECUTIVE_8");
+			UnitClassTypes UNITCLASS_EXECUTIVE_9 = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_EXECUTIVE_9");
+			UnitClassTypes UNITCLASS_EXECUTIVE_10 = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_EXECUTIVE_10");
+			UnitClassTypes UNITCLASS_EXECUTIVE_11 = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_EXECUTIVE_11");
+			changeUnitClassProductionModifier(UNITCLASS_EXECUTIVE_4, 100);
+			changeUnitClassProductionModifier(UNITCLASS_EXECUTIVE_5, 100);
+			changeUnitClassProductionModifier(UNITCLASS_EXECUTIVE_6, 100);
+			changeUnitClassProductionModifier(UNITCLASS_EXECUTIVE_7, 100);
+			changeUnitClassProductionModifier(UNITCLASS_EXECUTIVE_8, 100);
+			changeUnitClassProductionModifier(UNITCLASS_EXECUTIVE_9, 100);
+			changeUnitClassProductionModifier(UNITCLASS_EXECUTIVE_10, 100);
+			changeUnitClassProductionModifier(UNITCLASS_EXECUTIVE_11, 100);
+			
 			notifyUniquePowersChanged(true);
 		}
 	}

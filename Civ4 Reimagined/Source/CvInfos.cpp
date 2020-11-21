@@ -5485,7 +5485,7 @@ m_bUnlimitedAnimalXP(false), // Civ4 Reimagined
 m_bStateReligion(false),
 m_bNoNonStateReligionSpread(false),
 m_piYieldModifier(NULL),
-m_piUnitProductionModifiers(NULL), // Civ4 Reimagined
+m_piUnitClassProductionModifiers(NULL), // Civ4 Reimagined
 m_piExtraYield(NULL), // Civ4 Reimagined
 m_piCapitalExtraYieldFromCityPercent(NULL), // Civ4 Reimagined
 m_piCapitalYieldModifier(NULL),
@@ -5530,7 +5530,7 @@ CvCivicInfo::~CvCivicInfo()
 	int iI;
 
 	SAFE_DELETE_ARRAY(m_piYieldModifier);
-	SAFE_DELETE_ARRAY(m_piUnitProductionModifiers); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_piUnitClassProductionModifiers); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_piExtraYield); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_piCapitalExtraYieldFromCityPercent); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_piCapitalYieldModifier);
@@ -6048,11 +6048,11 @@ int* CvCivicInfo::getYieldModifierArray() const
 }
 
 // Civ4 Reimagined
-int CvCivicInfo::getUnitProductionModifier(int i) const
+int CvCivicInfo::getUnitClassProductionModifier(int i) const
 {
 	FAssertMsg(i < GC.getNumUnitClassInfos(), "Index out of bounds");
 	FAssertMsg(i > -1, "Index out of bounds");
-	return m_piUnitProductionModifiers ? m_piUnitProductionModifiers[i] : 0;
+	return m_piUnitClassProductionModifiers ? m_piUnitClassProductionModifiers[i] : 0;
 }
 
 // Civ4 Reimagined
@@ -6428,9 +6428,9 @@ void CvCivicInfo::read(FDataStreamBase* stream)
 	stream->Read(NUM_YIELD_TYPES, m_piYieldModifier);
 
 	// Civ4 Reimagined
-	SAFE_DELETE_ARRAY(m_piUnitProductionModifiers);
-	m_piUnitProductionModifiers = new int[GC.getNumUnitClassInfos()];
-	stream->Read(GC.getNumUnitClassInfos(), m_piUnitProductionModifiers);
+	SAFE_DELETE_ARRAY(m_piUnitClassProductionModifiers);
+	m_piUnitClassProductionModifiers = new int[GC.getNumUnitClassInfos()];
+	stream->Read(GC.getNumUnitClassInfos(), m_piUnitClassProductionModifiers);
 	
 	// Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_piExtraYield);
@@ -6702,7 +6702,7 @@ void CvCivicInfo::write(FDataStreamBase* stream)
 	// Arrays
 
 	stream->Write(NUM_YIELD_TYPES, m_piYieldModifier);
-	stream->Write(GC.getNumUnitClassInfos(), m_piUnitProductionModifiers); // Civ4 Reimagined
+	stream->Write(GC.getNumUnitClassInfos(), m_piUnitClassProductionModifiers); // Civ4 Reimagined
 	stream->Write(NUM_YIELD_TYPES, m_piExtraYield); //Civ4 Reimagined
 	stream->Write(NUM_YIELD_TYPES, m_piCapitalExtraYieldFromCityPercent); //Civ4 Reimagined
 	stream->Write(NUM_YIELD_TYPES, m_piCapitalYieldModifier);
@@ -6992,7 +6992,7 @@ bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
 	}
 	
 	// Civ4 Reimagined
-	pXML->SetVariableListTagPair(&m_piUnitProductionModifiers, "UnitProductionModifiers", sizeof(GC.getUnitClassInfo((UnitClassTypes)0)), GC.getNumUnitClassInfos());
+	pXML->SetVariableListTagPair(&m_piUnitClassProductionModifiers, "UnitProductionModifiers", sizeof(GC.getUnitClassInfo((UnitClassTypes)0)), GC.getNumUnitClassInfos());
 	
 	pXML->SetVariableListTagPair(&m_pabHurry, "Hurrys", sizeof(GC.getHurryInfo((HurryTypes)0)), GC.getNumHurryInfos());
 	pXML->SetVariableListTagPair(&m_pabSpecialBuildingNotRequired, "SpecialBuildingNotRequireds", sizeof(GC.getSpecialBuildingInfo((SpecialBuildingTypes)0)), GC.getNumSpecialBuildingInfos());

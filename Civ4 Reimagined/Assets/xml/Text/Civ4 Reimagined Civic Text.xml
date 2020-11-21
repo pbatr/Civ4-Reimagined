@@ -424,4 +424,8 @@
 		<Tag>TXT_KEY_CIVIC_STATE_ATHEISM</Tag>
 		<English>State Atheism</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_UNIT_CLASS_PRODUCTION_MODIFIER</Tag>
+		<English>[SPACE] production</English>
+	</TEXT>
 </Civ4GameText>

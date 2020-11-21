@@ -1391,6 +1391,11 @@ public:
 	bool isConscriptInfidels() const; // Civ4 Reimagined
 	void changeCatchUpTechModifier(int iChange); // Civ4 Reimagined
 	int getCatchUpTechModifier() const; // Civ4 Reimagined
+	int getUnitClassProductionModifier(UnitClassTypes eIndex); // Civ4 Reimagined
+	void changeUnitClassProductionModifier(UnitClassTypes eIndex, int iChange); // Civ4 Reimagined
+	//
+	// Civ4 Reimagined End
+	//
 	
 	// K-Mod note: Adding new virtual functions to this list seems to cause unpredictable behaviour during the initialization of the game.
 	// So beware!

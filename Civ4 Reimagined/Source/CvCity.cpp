@@ -3453,7 +3453,7 @@ int CvCity::getProductionModifier(UnitTypes eUnit) const
 	}
 
 	// Civ4 Reimagined: Bonus from civics/player:
-	//iMultiplier += GET_PLAYER(getOwnerINLINE()).getUnitProductionModifier(eUnit);
+	iMultiplier += GET_PLAYER(getOwnerINLINE()).getUnitClassProductionModifier(GC.getUnitInfo(eUnit).getUnitClassType());
 	
 	if (GET_PLAYER(getOwnerINLINE()).getStateReligion() != NO_RELIGION)
 	{
