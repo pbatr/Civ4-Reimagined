@@ -15368,51 +15368,6 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		iValue += iTempValue;
 	}
 	
-	// Civ4 Reimagined: getPopulationUnhappinessModifier
-	if (kCivic.getPopulationUnhappinessModifier() != 0) 
-	{		
-		CvCity* pLoopCity;
-		int iLoop;
-		int iTempValue = 0;
-		
-		for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
-		{
-			int iAnger;
-			
-			//if (gPlayerLogLevel > 0) logBBAI("	City %s with pop %d", pLoopCity->getName().GetCString(), pLoopCity->getPopulation());
-
-			iAnger = pLoopCity->getPopulation();
-			
-			int iAngerDifference;
-			// Civ4 Reimagined
-			iAngerDifference = iAnger * (100 + kCivic.getPopulationUnhappinessModifier());
-			iAngerDifference /= 100;
-			iAngerDifference -= iAnger;
-			
-			//if (gPlayerLogLevel > 0) logBBAI("	City %s anger difference: %d (iHappy: %d)", pLoopCity->getName().GetCString(), iAngerDifference, iHappy);
-			//if (gPlayerLogLevel > 0) logBBAI("	City %s unhappy level: %d", pLoopCity->getName().GetCString(), pLoopCity->unhappyLevel());
-			//if (gPlayerLogLevel > 0) logBBAI("	City %s happy level: %d", pLoopCity->getName().GetCString(), pLoopCity->happyLevel());
-			int iHappyPuffer = pLoopCity->angryPopulation(-iHappy);
-			
-			//if (gPlayerLogLevel > 0) logBBAI("	City %s iHappyPuffer: %d", pLoopCity->getName().GetCString(), iHappyPuffer);
-			
-			int iAngryCitizenCount = std::max(0,iAngerDifference - iHappyPuffer);
-			int iUnhappinessWithoutAngryCitizen = iHappyPuffer - iAngryCitizenCount;
-			
-			//if (gPlayerLogLevel > 0) logBBAI("	City %s iAngryCitizenCount: %d", pLoopCity->getName().GetCString(), iAngryCitizenCount);
-			//if (gPlayerLogLevel > 0) logBBAI("	City %s iUnhappinessWithoutAngryCitizen: %d", pLoopCity->getName().GetCString(), iUnhappinessWithoutAngryCitizen);
-			
-			iTempValue -= iAngryCitizenCount * 12;
-			iTempValue -= iUnhappinessWithoutAngryCitizen * 6; //was 4
-			
-			//if (gPlayerLogLevel > 0) logBBAI("	City %s iTempValue: %d", pLoopCity->getName().GetCString(), iTempValue);
-		}
-
-		if (gPlayerLogLevel > 0) logBBAI("	Civic Value of Population Unhappiness: %d", iTempValue);
-		
-		iValue += iTempValue;
-	}
-	
 	// Corporations (K-Mod edition!)
 	if (kCivic.isNoCorporations() || kCivic.isNoForeignCorporations() || kCivic.getCorporationMaintenanceModifier() != 0)
 	{
@@ -15656,7 +15611,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	}
 	
 	// Civ4 Reimagined: Happiness
-	if (kCivic.getCivicPercentAnger() != 0 || kCivic.getExtraHappiness() != 0 || kCivic.getHappyPerMilitaryUnit() != 0 || kCivic.getLargestCityHappiness() != 0 || kCivic.isNoForeignCultureUnhappiness() || kCivic.getProductionPerSurplusHappiness() != 0 || kCivic.isNoCapitalUnhappiness() != 0 || kCivic.getNonStateReligionHappiness() != 0 || kCivic.getStateReligionHappiness() != 0 || bAnyCapitalCommerceModifier || (kCivic.getWarWearinessModifier() != 0 && !bNoWarWeariness))
+	if (kCivic.getCivicPercentAnger() != 0 || kCivic.getExtraHappiness() != 0 || kCivic.getHappyPerMilitaryUnit() != 0 || kCivic.getLargestCityHappiness() != 0 || kCivic.isNoForeignCultureUnhappiness() || kCivic.getProductionPerSurplusHappiness() != 0 || kCivic.isNoCapitalUnhappiness() != 0 || kCivic.getNonStateReligionHappiness() != 0 || kCivic.getStateReligionHappiness() != 0 || bAnyCapitalCommerceModifier || (kCivic.getWarWearinessModifier() != 0 && !bNoWarWeariness) || kCivic.getPopulationUnhappinessModifier() != 0)
 	{
 		int iLoop;
 		CvCity* pLoopCity;
@@ -15690,6 +15645,11 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				
 				int iCivicPercentAnger = getCivicPercentAnger(eCivic, true);
 				iCityHappiness += std::max(1, (((iCurrentAngerPercent + iCivicPercentAnger) * pLoopCity->getPopulation()) / GC.getPERCENT_ANGER_DIVISOR()) - iCurrentUnhappiness);
+			}
+
+			if (kCivic.getPopulationUnhappinessModifier() != 0)
+			{
+				iCityHappiness -= pLoopCity->getPopulation() * kCivic.getPopulationUnhappinessModifier() / 100;
 			}
 			
 			if (kCivic.getLargestCityHappiness() != 0 && pLoopCity->findPopulationRank() <= GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getTargetNumCities())
@@ -15856,7 +15816,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	
 	//iValue += (kCivic.getNonStateReligionHappiness() * (iTotalReligonCount - iHighestReligionCount) * 5);
 	// K-Mod
-	if (kCivic.getNonStateReligionHappiness() != 0 && iTotalReligonCount > 0)
+	if (kCivic.getNonStateReligionHappiness() != 0 && iTotalReligonCount > 0 && getCurrentEra() < ERA_INDUSTRIAL)
 	{
 		int iTempValue;
 	
