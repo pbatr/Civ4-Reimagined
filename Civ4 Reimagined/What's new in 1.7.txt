@@ -29,6 +29,7 @@ Interface
 Fixes
 *********
 -"Better coal" event triggers only with researched drydock or coal plant
+-AI would move capital too often to colonies
 
 *******************************************
 Civ4 Reimagined 1.6

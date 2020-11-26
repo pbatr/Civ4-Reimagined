@@ -1455,9 +1455,13 @@ void CvCityAI::AI_chooseProduction()
 		{
 			if( kPlayer.getCapitalCity() == NULL || area()->getPopulationPerPlayer(getOwnerINLINE()) > kPlayer.getCapitalCity()->area()->getPopulationPerPlayer(getOwnerINLINE()) )
 			{
-				if (AI_chooseBuilding(BUILDINGFOCUS_CAPITAL, 15))
+				// Civ4 Reimagined: Colonies should rather be split from the empire instead of changing capital
+				if (calculateColonyMaintenance() == 0)
 				{
-					return;
+					if (AI_chooseBuilding(BUILDINGFOCUS_CAPITAL, 15))
+					{
+						return;
+					}
 				}
 			}
 		}
