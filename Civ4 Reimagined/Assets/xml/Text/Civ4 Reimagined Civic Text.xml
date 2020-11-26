@@ -293,8 +293,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_POPULATION_UNHAPPINESS_MODIFIER</Tag>
-		<English>[SPACE][ICON_UNHAPPY] from Population</English>
-		<French>[SPACE][ICON_UNHAPPY] pour la population</French>
+		<English>[SPACE][ICON_UNHAPPY] from Overcrowded Cities</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_ORGANIZED_RELIGION_HELP</Tag>
