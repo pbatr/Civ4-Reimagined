@@ -24468,7 +24468,7 @@
 			<FreePromotion>NONE</FreePromotion>
 			<CivicOption>CIVICOPTION_GOVERNMENT</CivicOption>
 			<NoAnarchyCivicOption>CIVICOPTION_GOVERNMENT</NoAnarchyCivicOption>
-			<GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
+			<GreatPeopleUnitClass>UNITCLASS_GREAT_SPY</GreatPeopleUnitClass>
 			<iGreatPeopleRateChange>2</iGreatPeopleRateChange>
 			<iHurryAngerModifier>0</iHurryAngerModifier>
 			<bBorderObstacle>0</bBorderObstacle>
