@@ -2475,13 +2475,6 @@ void CvPlayerAI::AI_updateCommerceWeights()
 
 		// COMMERCE_CULTURE AIWeightPercent is set to 30% in the current xml.
 		int iWeight = GC.getCommerceInfo(COMMERCE_CULTURE).getAIWeightPercent();
-		
-		// Civ4 Reimagined
-		if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS) && getUniquePowerLevel() < 5)
-		{
-			iWeight *= 3;
-			iWeight /= 2;
-		}
 
 		int iPressureFactor = pCity->culturePressureFactor();
 		if (AI_isDoVictoryStrategy(AI_VICTORY_CULTURE2))
@@ -2648,11 +2641,7 @@ void CvPlayerAI::AI_updateCommerceWeights()
 				iWeight /= 2;
 			}
 			iWeight *= 2*(iEspBehindWeight+iEspAttackWeight) + 3*iTeamCount/4 + 2;
-
-			//iWeight *= isHuman() ? 100 : GC.getLeaderHeadInfo(getPersonalityType()).getEspionageWeight();
-			
 			iWeight /= (iLocalTeamCount + iTeamCount)/2 + 2;
-			iWeight /= 100;
 
 			if (AI_isDoStrategy(AI_STRATEGY_ESPIONAGE_ECONOMY) || (isHuman() && getCommercePercent(COMMERCE_ESPIONAGE) >= 60))
 			{
