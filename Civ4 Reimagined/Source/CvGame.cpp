@@ -52,6 +52,7 @@ CvGame::CvGame()
 	m_paiVoteOutcome = NULL;
 	m_paiReligionGameTurnFounded = NULL;
 	m_paiCorporationGameTurnFounded = NULL;
+	m_paiIdeologyCombatExperienceOwner = NULL; // Civ4 Reimagined
 	m_aiSecretaryGeneralTimer = NULL;
 	m_aiVoteTimer = NULL;
 	m_aiDiploVote = NULL;
@@ -67,6 +68,7 @@ CvGame::CvGame()
 
 	m_aiShrineBuilding = NULL;
 	m_aiShrineReligion = NULL;
+	m_aiIdeologyPlayerCount = NULL; // Civ4 Reimagined
 
 	reset(NO_HANDICAP, true);
 }
@@ -261,6 +263,12 @@ void CvGame::init(HandicapTypes eHandicap)
 		}
 	}
 
+	// Civ4 Reimagined
+	if ((int)getStartEra() >= 4)
+	{
+		enableIdeologies(true);
+	}
+
 	AI_init();
 
 	doUpdateCacheOnTurn();
@@ -395,6 +403,7 @@ void CvGame::uninit()
 {
 	SAFE_DELETE_ARRAY(m_aiShrineBuilding);
 	SAFE_DELETE_ARRAY(m_aiShrineReligion);
+	SAFE_DELETE_ARRAY(m_aiIdeologyPlayerCount); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiUnitCreatedCount);
 	SAFE_DELETE_ARRAY(m_paiUnitClassCreatedCount);
 	SAFE_DELETE_ARRAY(m_paiBuildingClassCreatedCount);
@@ -403,6 +412,7 @@ void CvGame::uninit()
 	SAFE_DELETE_ARRAY(m_paiVoteOutcome);
 	SAFE_DELETE_ARRAY(m_paiReligionGameTurnFounded);
 	SAFE_DELETE_ARRAY(m_paiCorporationGameTurnFounded);
+	SAFE_DELETE_ARRAY(m_paiIdeologyCombatExperienceOwner); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiSecretaryGeneralTimer);
 	SAFE_DELETE_ARRAY(m_aiVoteTimer);
 	SAFE_DELETE_ARRAY(m_aiDiploVote);
@@ -551,6 +561,15 @@ void CvGame::reset(HandicapTypes eHandicap, bool bConstructorCall)
 			m_paiVoteOutcome[iI] = NO_PLAYER_VOTE;
 		}
 
+		// Civ4 Reimagined
+		FAssertMsg(0 < GC.getNumIdeologyInfos(), "GC.getNumIdeologyInfos() is not greater than zero in CvGame::reset");
+		FAssertMsg(m_paiIdeologyCombatExperienceOwner==NULL, "about to leak memory, CvGame::m_paiIdeologyCombatExperienceOwner");
+		m_paiIdeologyCombatExperienceOwner = new PlayerTypes[GC.getNumIdeologyInfos()];
+		for (iI = 0; iI < GC.getNumIdeologyInfos(); iI++)
+		{
+			m_paiIdeologyCombatExperienceOwner[iI] = NO_PLAYER;
+		}
+
 		FAssertMsg(0 < GC.getNumVoteSourceInfos(), "GC.getNumVoteSourceInfos() is not greater than zero in CvGame::reset");
 		FAssertMsg(m_aiDiploVote==NULL, "about to leak memory, CvGame::m_aiDiploVote");
 		m_aiDiploVote = new int[GC.getNumVoteSourceInfos()];
@@ -603,6 +622,15 @@ void CvGame::reset(HandicapTypes eHandicap, bool bConstructorCall)
 		{
 			m_aiShrineBuilding[iI] = (int) NO_BUILDING;
 			m_aiShrineReligion[iI] = (int) NO_RELIGION;
+		}
+
+		// Civ4 Reimagined
+		FAssertMsg(m_aiIdeologyPlayerCount==NULL, "about to leak memory, CvGame::m_aiShrineReligion");
+		m_aiIdeologyPlayerCount = new int[GC.getNumIdeologyInfos()];
+
+		for (iI = 0; iI < GC.getNumIdeologyInfos(); iI++)
+		{
+			m_aiIdeologyPlayerCount[iI] = 0;
 		}
 
 		FAssertMsg(m_aiSecretaryGeneralTimer==NULL, "about to leak memory, CvGame::m_aiSecretaryGeneralTimer");
@@ -6105,6 +6133,23 @@ void CvGame::makeNukesValid(bool bValid)
 	m_bNukesValid = bValid;
 }
 
+
+// Civ4 Reimagined
+void CvGame::grantTechnologyToAll(TechTypes eIndex)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumTechInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	for (int iI = 0; iI < MAX_TEAMS; iI++)
+	{
+		CvTeam& kTeam = GET_TEAM((TeamTypes)iI);
+		if (kTeam.isAlive())
+		{
+			kTeam.setHasTech(eIndex, true, NO_PLAYER, false, false);
+		}
+	}
+}
+
 bool CvGame::isInAdvancedStart() const
 {
 	for (int iPlayer = 0; iPlayer < MAX_PLAYERS; ++iPlayer)
@@ -8911,6 +8956,7 @@ void CvGame::read(FDataStreamBase* pStream)
 	pStream->Read(GC.getNumVoteInfos(), (int*)m_paiVoteOutcome);
 	pStream->Read(GC.getNumReligionInfos(), m_paiReligionGameTurnFounded);
 	pStream->Read(GC.getNumCorporationInfos(), m_paiCorporationGameTurnFounded);
+	pStream->Read(GC.getNumIdeologyInfos(), (int*)m_paiIdeologyCombatExperienceOwner); // Civ4 Reimagined
 	pStream->Read(GC.getNumVoteSourceInfos(), m_aiSecretaryGeneralTimer);
 	pStream->Read(GC.getNumVoteSourceInfos(), m_aiVoteTimer);
 	pStream->Read(GC.getNumVoteSourceInfos(), m_aiDiploVote);
@@ -9056,6 +9102,7 @@ void CvGame::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iShrineBuildingCount);
 	pStream->Read(GC.getNumBuildingInfos(), m_aiShrineBuilding);
 	pStream->Read(GC.getNumBuildingInfos(), m_aiShrineReligion);
+	pStream->Read(GC.getNumIdeologyInfos(), m_aiIdeologyPlayerCount); // Civ4 Reimagined
 	pStream->Read(&m_iNumCultureVictoryCities);
 	pStream->Read(&m_eCultureVictoryCultureLevel);
 }
@@ -9129,6 +9176,7 @@ void CvGame::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumVoteInfos(), (int*)m_paiVoteOutcome);
 	pStream->Write(GC.getNumReligionInfos(), m_paiReligionGameTurnFounded);
 	pStream->Write(GC.getNumCorporationInfos(), m_paiCorporationGameTurnFounded);
+	pStream->Write(GC.getNumIdeologyInfos(), (int*)m_paiIdeologyCombatExperienceOwner); // Civ4 Reimagined
 	pStream->Write(GC.getNumVoteSourceInfos(), m_aiSecretaryGeneralTimer);
 	pStream->Write(GC.getNumVoteSourceInfos(), m_aiVoteTimer);
 	pStream->Write(GC.getNumVoteSourceInfos(), m_aiDiploVote);
@@ -9215,6 +9263,7 @@ void CvGame::write(FDataStreamBase* pStream)
 	pStream->Write(m_iShrineBuildingCount);
 	pStream->Write(GC.getNumBuildingInfos(), m_aiShrineBuilding);
 	pStream->Write(GC.getNumBuildingInfos(), m_aiShrineReligion);
+	pStream->Write(GC.getNumIdeologyInfos(), m_aiIdeologyPlayerCount); // Civ4 Reimagined
 	pStream->Write(m_iNumCultureVictoryCities);
 	pStream->Write(m_eCultureVictoryCultureLevel);
 }
@@ -10469,3 +10518,80 @@ bool CvGame::pythonIsBonusIgnoreLatitudes() const
 	return false;
 }
 
+
+// Civ4 Reimagined
+void CvGame::updateIdeologyCount()
+{
+	if (!areIdeologiesEnabled())
+	{
+		return;
+	}
+
+	for (int iI = 0; iI < GC.getNumIdeologyInfos(); ++iI)
+	{
+		m_aiIdeologyPlayerCount[iI] = 0;
+	}
+
+	for (int iPlayer = 0; iPlayer < MAX_PLAYERS; ++iPlayer)
+	{
+		CvPlayer& kLoopPlayer = GET_PLAYER((PlayerTypes)iPlayer);
+
+		if (kLoopPlayer.isAlive())
+		{
+			++m_aiIdeologyPlayerCount[(int)kLoopPlayer.getIdeology()];
+		}
+	}
+
+
+	for (int iPlayer = 0; iPlayer < MAX_PLAYERS; ++iPlayer)
+	{
+		CvPlayer& kLoopPlayer = GET_PLAYER((PlayerTypes)iPlayer);
+
+		if (kLoopPlayer.isAlive())
+		{
+			kLoopPlayer.updateBonusRatio(true);
+		}
+	}
+}
+
+// Civ4 Reimagined
+int CvGame::getIdeologyCount(IdeologyTypes eIdeology) const
+{
+	FAssert(eIdeology >= 0);
+	FAssert(eIdeology < GC.getNumIdeologyInfos());
+
+	return m_aiIdeologyPlayerCount[(int)eIdeology];
+}
+
+// Civ4 Reimagined
+void CvGame::changeIdeologyCombatExperience(IdeologyTypes eIdeology, int iChange)
+{
+	FAssert(eIdeology >= 0);
+	FAssert(eIdeology < GC.getNumIdeologyInfos());
+
+	PlayerTypes ePlayer = getIdeologyCombatExperienceOwner(eIdeology);
+
+	if (ePlayer != NO_PLAYER)
+	{
+		const int iCombatExperience = (GET_PLAYER(ePlayer).getIdeologyCombatExperienceModifier(eIdeology) * iChange) / 100;
+		GET_PLAYER(ePlayer).changeCombatExperience(iCombatExperience);
+	}
+}
+
+// Civ4 Reimagined
+void CvGame::setIdeologyCombatExperienceOwner(IdeologyTypes eIdeology, PlayerTypes ePlayer)
+{
+	FAssert(eIdeology >= 0);
+	FAssert(eIdeology < GC.getNumIdeologyInfos());
+
+	m_paiIdeologyCombatExperienceOwner[(int)eIdeology] = ePlayer;
+}
+
+// Civ4 Reimagined
+PlayerTypes CvGame::getIdeologyCombatExperienceOwner(IdeologyTypes eIdeology) const
+{
+	FAssert(eIdeology >= 0);
+	FAssert(eIdeology < GC.getNumIdeologyInfos());
+
+	return m_paiIdeologyCombatExperienceOwner[(int)eIdeology];
+}

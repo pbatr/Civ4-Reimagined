@@ -38,9 +38,11 @@ CvArea::CvArea()
 	m_aTargetCities = new IDInfo[MAX_PLAYERS];
 
 	m_aaiYieldRateModifier = new int*[MAX_PLAYERS];
+	m_aaiTradeYieldModifier = new int*[MAX_PLAYERS];
 	for (int i = 0; i < MAX_PLAYERS; i++)
 	{
 		m_aaiYieldRateModifier[i] = new int[NUM_YIELD_TYPES];
+		m_aaiTradeYieldModifier[i] = new int[NUM_YIELD_TYPES];
 	}
 	m_aaiNumTrainAIUnits = new int*[MAX_PLAYERS];
 	for (int i = 0; i < MAX_PLAYERS; i++)
@@ -91,8 +93,10 @@ CvArea::~CvArea()
 	for (int i = 0; i < MAX_PLAYERS; i++)
 	{
 		SAFE_DELETE_ARRAY(m_aaiYieldRateModifier[i]);
+		SAFE_DELETE_ARRAY(m_aaiTradeYieldModifier[i]);
 	}
 	SAFE_DELETE_ARRAY(m_aaiYieldRateModifier);
+	SAFE_DELETE_ARRAY(m_aaiTradeYieldModifier);
 	for (int i = 0; i < MAX_PLAYERS; i++)
 	{
 		SAFE_DELETE_ARRAY(m_aaiNumTrainAIUnits[i]);
@@ -192,6 +196,7 @@ void CvArea::reset(int iID, bool bWater, bool bConstructorCall)
 		for (iJ = 0; iJ < NUM_YIELD_TYPES; iJ++)
 		{
 			m_aaiYieldRateModifier[iI][iJ] = 0;
+			m_aaiTradeYieldModifier[iI][iJ] = 0;
 		}
 
 		for (iJ = 0; iJ < NUM_UNITAI_TYPES; iJ++)
@@ -917,6 +922,34 @@ void CvArea::changeYieldRateModifier(PlayerTypes eIndex1, YieldTypes eIndex2, in
 }
 
 
+// Civ4 Reimagined
+int CvArea::getTradeYieldModifier(PlayerTypes eIndex1, YieldTypes eIndex2) const
+{
+	FAssertMsg(eIndex1 >= 0, "eIndex1 is expected to be >= 0");
+	FAssertMsg(eIndex1 < MAX_PLAYERS, "eIndex1 is expected to be < MAX_PLAYERS");
+	FAssertMsg(eIndex2 >= 0, "eIndex2 is expected to be >= 0");
+	FAssertMsg(eIndex2 < NUM_YIELD_TYPES, "eIndex2 is expected to be < NUM_YIELD_TYPES");
+	return m_aaiTradeYieldModifier[eIndex1][eIndex2];
+}
+
+
+// Civ4 Reimagined
+void CvArea::changeTradeYieldModifier(PlayerTypes eIndex1, YieldTypes eIndex2, int iChange)
+{
+	FAssertMsg(eIndex1 >= 0, "eIndex1 is expected to be >= 0");
+	FAssertMsg(eIndex1 < MAX_PLAYERS, "eIndex1 is expected to be < MAX_PLAYERS");
+	FAssertMsg(eIndex2 >= 0, "eIndex2 is expected to be >= 0");
+	FAssertMsg(eIndex2 < NUM_YIELD_TYPES, "eIndex2 is expected to be < NUM_YIELD_TYPES");
+
+	if (iChange != 0)
+	{
+		m_aaiTradeYieldModifier[eIndex1][eIndex2] = (m_aaiTradeYieldModifier[eIndex1][eIndex2] + iChange);
+
+		GET_PLAYER(eIndex1).updateTradeRoutes();
+	}
+}
+
+
 int CvArea::getNumTrainAIUnits(PlayerTypes eIndex1, UnitAITypes eIndex2) const
 {
 	FAssertMsg(eIndex1 >= 0, "eIndex1 is expected to be >= 0");
@@ -1054,6 +1087,7 @@ void CvArea::read(FDataStreamBase* pStream)
 	for (iI = 0; iI < MAX_PLAYERS; iI++)
 	{
 		pStream->Read(NUM_YIELD_TYPES, m_aaiYieldRateModifier[iI]);
+		pStream->Read(NUM_YIELD_TYPES, m_aaiTradeYieldModifier[iI]);
 	}
 	for (iI = 0; iI < MAX_PLAYERS; iI++)
 	{
@@ -1119,6 +1153,7 @@ void CvArea::write(FDataStreamBase* pStream)
 	for (iI = 0; iI < MAX_PLAYERS; iI++)
 	{
 		pStream->Write(NUM_YIELD_TYPES, m_aaiYieldRateModifier[iI]);
+		pStream->Write(NUM_YIELD_TYPES, m_aaiTradeYieldModifier[iI]);
 	}
 	for (iI = 0; iI < MAX_PLAYERS; iI++)
 	{

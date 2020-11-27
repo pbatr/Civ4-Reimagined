@@ -163,8 +163,7 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 	}
 	
 	// Civ4 Reimagined
-	const UnitClassTypes UNITCLASS_SLAVE = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SLAVE");
-	if ((UnitClassTypes)m_pUnitInfo->getUnitClassType() == UNITCLASS_SLAVE)
+	if (isSlave())
 	{
 		GET_PLAYER(getOwnerINLINE()).changeNumSlaveUnits(1);
 	}
@@ -249,6 +248,37 @@ void CvUnit::init(int iID, UnitTypes eUnit, UnitAITypes eUnitAI, PlayerTypes eOw
 				GC.getGameINLINE().setBestLandUnit(getUnitType());
 			}
 		} 
+	}
+
+	// Civ4 Reimagined
+	if (m_pUnitInfo->getFreeUnitClassType() != NO_UNITCLASS)
+	{
+		if (plot()->isCity(false, getTeam()))
+		{
+			CvCity* pCity = plot()->getPlotCity();
+
+			if (pCity != NULL)
+			{
+				for (UnitClassTypes eUnitClassType = (UnitClassTypes)0; (int)eUnitClassType < GC.getNumUnitClassInfos(); eUnitClassType = (UnitClassTypes)(eUnitClassType+1))
+				{
+					if (eUnitClassType == m_pUnitInfo->getFreeUnitClassType())
+					{
+						UnitTypes eFreeUnit = (UnitTypes)GC.getUnitClassInfo(eUnitClassType).getDefaultUnitIndex();
+						UnitTypes eUpgradeUnit = pCity->allUpgradesAvailable(eFreeUnit);
+
+						if (eUpgradeUnit != NO_UNIT)
+						{
+							eFreeUnit = eUpgradeUnit;
+						}
+
+						CvUnit* pFreeUnit = GET_PLAYER(getOwnerINLINE()).initUnit(eFreeUnit, iX, iY, (UnitAITypes)GC.getUnitInfo(eFreeUnit).getDefaultUnitAIType());
+						pCity->addProductionExperience(pFreeUnit, false);
+
+						break;
+					}
+				}
+			}
+		}
 	}
 
 	if (getOwnerINLINE() == GC.getGameINLINE().getActivePlayer())
@@ -633,8 +663,7 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer)
 	}
 	
 	// Civ4 Reimagined
-	const UnitClassTypes UNITCLASS_SLAVE = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SLAVE");
-	if ((UnitClassTypes)m_pUnitInfo->getUnitClassType() == UNITCLASS_SLAVE)
+	if (isSlave())
 	{
 		GET_PLAYER(getOwnerINLINE()).changeNumSlaveUnits(-1);
 	}
@@ -674,7 +703,7 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer)
 
 	if ((eCapturingPlayer != NO_PLAYER) && (eCaptureUnitType != NO_UNIT) && !(GET_PLAYER(eCapturingPlayer).isBarbarian()))
 	{
-		if (!((UnitClassTypes)m_pUnitInfo->getUnitClassType() == (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SLAVE")) || GET_PLAYER(eCapturingPlayer).hasSlavery())
+		if (!isSlave() || GET_PLAYER(eCapturingPlayer).hasSlavery())
 		{
 			if (GET_PLAYER(eCapturingPlayer).isHuman() || GET_PLAYER(eCapturingPlayer).AI_captureUnit(eCaptureUnitType, pPlot) || 0 == GC.getDefineINT("AI_CAN_DISBAND_UNITS"))
 			{
@@ -3316,6 +3345,12 @@ bool CvUnit::canGift(bool bTestVisible, bool bTestTransport)
 	}
 
 	if (!pPlot->isValidDomainForLocation(*this) && NULL == pTransport)
+	{
+		return false;
+	}
+
+	// Civ4 Reimagined
+	if (isSlave())
 	{
 		return false;
 	}
@@ -6574,7 +6609,8 @@ bool CvUnit::canHurry(const CvPlot* pPlot, bool bTestVisible) const
 
 	if (!bTestVisible)
 	{
-		if (!(pCity->isProductionBuilding()))
+		// Civ4 Reimagined: can hurry projects
+		if ((!pCity->isProductionBuilding() && !pCity->isProductionProject()))
 		{
 			return false;
 		}
@@ -7300,7 +7336,7 @@ bool CvUnit::build(BuildTypes eBuild)
 
 	GET_PLAYER(getOwnerINLINE()).changeGold(-(GET_PLAYER(getOwnerINLINE()).getBuildCost(plot(), eBuild)));
 
-	bFinished = plot()->changeBuildProgress(eBuild, workRate(false), getTeam());
+	bFinished = plot()->changeBuildProgress(eBuild, workRate(false, eBuild), getTeam());
 
 	finishMoves(); // needs to be at bottom because movesLeft() can affect workRate()...
 
@@ -8229,7 +8265,7 @@ BuildTypes CvUnit::getBuildType() const
 }
 
 
-int CvUnit::workRate(bool bMax) const
+int CvUnit::workRate(bool bMax, BuildTypes eBuild) const
 {
 	int iRate;
 
@@ -8248,14 +8284,44 @@ int CvUnit::workRate(bool bMax) const
 	iRate *= iRateModifier;
 	iRate /= 100;
 
+	// Civ4 Reimagined: Quantifiable Resource System
+	RouteTypes eRoute = (RouteTypes)GC.getBuildInfo(eBuild).getRoute();
+	if (eRoute != NO_ROUTE)
+	{
+		if (GC.getRouteInfo(eRoute).getPrereqBonus() != NO_BONUS)
+		{
+			int iBonusCount = plot()->getAdjacentPlotGroupConnectedBonus(getOwnerINLINE(), ((BonusTypes)(GC.getRouteInfo(eRoute).getPrereqBonus())));
+			if (iBonusCount != 0)
+			{
+				iRate *= GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iBonusCount);
+				iRate /= 100;
+			}
+		}
+		
+		int iMaxBonusCount = 0;
+		bool bHasPrereqOrBonusRequirement = false;
+		for (int i = 0; i < GC.getNUM_ROUTE_PREREQ_OR_BONUSES(); ++i)
+		{
+			if (NO_BONUS != GC.getRouteInfo(eRoute).getPrereqOrBonus(i))
+			{
+				bHasPrereqOrBonusRequirement = true;
+				// Use adjacentPlotGroupConnectedBonus instead of plotGroupConnectedBonus since that's what used in CvPlot to determine if a route can be build at all
+				iMaxBonusCount = std::max(iMaxBonusCount, plot()->getAdjacentPlotGroupConnectedBonus(getOwnerINLINE(), ((BonusTypes)(GC.getRouteInfo(eRoute).getPrereqOrBonus(i)))));
+			}
+		}
+		if (bHasPrereqOrBonusRequirement && iMaxBonusCount != 0)
+		{
+			iRate *= GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iMaxBonusCount);
+			iRate /= 100;
+		}
+	}
+
 	if (!isHuman() && !isBarbarian())
 	{
 		iRate *= std::max(0, (GC.getHandicapInfo(GC.getGameINLINE().getHandicapType()).getAIWorkRateModifier() + 100));
 		iRate /= 100;
 	}
 	
-
-
 	return iRate;
 }
 
@@ -8353,6 +8419,13 @@ bool CvUnit::isGoldenAge() const
 bool CvUnit::isNoUpkeep() const
 {
 	return m_pUnitInfo->isNoUpkeep();
+}
+
+
+// Civ4 Reimagined
+bool CvUnit::isSlave() const
+{
+	return m_pUnitInfo->getUnitClassType() == GC.getInfoTypeForString("UNITCLASS_SLAVE");
 }
 
 
@@ -10961,7 +11034,14 @@ void CvUnit::changeExperience(int iChange, int iMax, bool bFromCombat, bool bInB
 
 		if (bUpdateGlobal)
 		{
-			kPlayer.changeCombatExperience((iChange * iCombatExperienceMod) / 100);
+			const int iCombatExperience = (iChange * iCombatExperienceMod) / 100;
+			kPlayer.changeCombatExperience(iCombatExperience);
+
+			// Civ4 Reimagined
+			if (GC.getGameINLINE().getIdeologyCombatExperienceOwner(kPlayer.getIdeology()) != kPlayer.getID())
+			{
+				GC.getGameINLINE().changeIdeologyCombatExperience(kPlayer.getIdeology(), iCombatExperience);
+			}
 		}
 
 		if (getExperiencePercent() != 0)

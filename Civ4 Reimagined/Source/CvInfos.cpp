@@ -3091,6 +3091,7 @@ m_iPowerValue(0),
 m_iUnitClassType(NO_UNITCLASS),
 m_iSpecialUnitType(NO_SPECIALUNIT),
 m_iUnitCaptureClassType(NO_UNITCLASS),
+m_iFreeUnitClassType(NO_UNITCLASS), // Civ4 Reimagined
 m_iUnitCombatType(NO_UNITCOMBAT),
 m_iDomainType(NO_DOMAIN),
 m_iDefaultUnitAIType(NO_UNITAI),
@@ -3549,6 +3550,12 @@ int CvUnitInfo::getSpecialUnitType() const
 int CvUnitInfo::getUnitCaptureClassType() const
 {
 	return m_iUnitCaptureClassType;
+}
+
+// Civ4 Reimagined
+int CvUnitInfo::getFreeUnitClassType() const
+{
+	return m_iFreeUnitClassType;
 }
 
 int CvUnitInfo::getUnitCombatType() const			
@@ -4340,6 +4347,7 @@ void CvUnitInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iUnitClassType);
 	stream->Read(&m_iSpecialUnitType);
 	stream->Read(&m_iUnitCaptureClassType);
+	stream->Read(&m_iFreeUnitClassType); // Civ4 Reimagined
 	stream->Read(&m_iUnitCombatType);
 	stream->Read(&m_iDomainType);
 	stream->Read(&m_iDefaultUnitAIType);
@@ -4649,6 +4657,7 @@ void CvUnitInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iUnitClassType);
 	stream->Write(m_iSpecialUnitType);
 	stream->Write(m_iUnitCaptureClassType);
+	stream->Write(m_iFreeUnitClassType); // Civ4 Reimagined
 	stream->Write(m_iUnitCombatType);
 	stream->Write(m_iDomainType);
 	stream->Write(m_iDefaultUnitAIType);
@@ -4793,6 +4802,10 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(szTextVal, "Capture");
 	m_iUnitCaptureClassType = pXML->FindInInfoClass(szTextVal);
+
+	// Civ4 Reimagined
+	pXML->GetChildXmlValByName(szTextVal, "FreeUnitClass");
+	m_iFreeUnitClassType = pXML->FindInInfoClass(szTextVal);
 
 	pXML->GetChildXmlValByName(szTextVal, "Combat");
 	m_iUnitCombatType = pXML->FindInInfoClass(szTextVal);
@@ -5484,6 +5497,10 @@ m_bNoForeignCorporations(false),
 m_bUnlimitedAnimalXP(false), // Civ4 Reimagined
 m_bStateReligion(false),
 m_bNoNonStateReligionSpread(false),
+m_iConservative(0), // Civ4 Reimagined
+m_iLiberal(0), // Civ4 Reimagined
+m_iCommunist(0), // Civ4 Reimagined
+m_iFascist(0), // Civ4 Reimagined
 m_piYieldModifier(NULL),
 m_piUnitClassProductionModifiers(NULL), // Civ4 Reimagined
 m_piExtraYield(NULL), // Civ4 Reimagined
@@ -6033,6 +6050,30 @@ int CvCivicInfo::getSpecialistExtraYieldEraThreshold() const
 	return m_iSpecialistExtraYieldEraThreshold;
 }
 
+// Civ4 Reimagind
+int CvCivicInfo::getConservative() const						
+{
+	return m_iConservative;
+}
+
+// Civ4 Reimagind
+int CvCivicInfo::getLiberal() const						
+{
+	return m_iLiberal;
+}
+
+// Civ4 Reimagind
+int CvCivicInfo::getCommunist() const						
+{
+	return m_iCommunist;
+}
+
+// Civ4 Reimagind
+int CvCivicInfo::getFascist() const						
+{
+	return m_iFascist;
+}
+
 // Arrays
 
 int CvCivicInfo::getYieldModifier(int i) const
@@ -6336,6 +6377,18 @@ int CvCivicInfo::getDomainExperienceModifier(int i) const
 	return m_paiDomainExperienceModifiers ? m_paiDomainExperienceModifiers[i] : -1;
 }
 
+// Civ4 Reimagined
+bool CvCivicInfo::isAnyDomainProductionModifier() const
+{
+	return m_bAnyDomainProductionModifier;
+}
+
+// Civ4 Reimagined
+bool CvCivicInfo::isAnyDomainExperienceModifier() const
+{
+	return m_bAnyDomainExperienceModifier;
+}
+
 void CvCivicInfo::read(FDataStreamBase* stream)
 {
 	CvInfoBase::read(stream);
@@ -6419,6 +6472,10 @@ void CvCivicInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bNoGreatPeople); //Civ4 Reimagined
 	stream->Read(&m_bNoCultureFlip); //Civ4 Reimagined
 	stream->Read(&m_bNoCapital); // Civ4 Reimagined
+	stream->Read(&m_iConservative); // Civ4 Reimagined
+	stream->Read(&m_iLiberal); // Civ4 Reimagined
+	stream->Read(&m_iCommunist); // Civ4 Reimagined
+	stream->Read(&m_iFascist); // Civ4 Reimagined
 
 
 	// Arrays
@@ -6698,6 +6755,10 @@ void CvCivicInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bNoGreatPeople); //Civ4 Reimagined
 	stream->Write(m_bNoCultureFlip); //Civ4 Reimagined
 	stream->Write(m_bNoCapital); //Civ4 Reimagined
+	stream->Write(m_iConservative); //Civ4 Reimagined
+	stream->Write(m_iLiberal); //Civ4 Reimagined
+	stream->Write(m_iCommunist); //Civ4 Reimagined
+	stream->Write(m_iFascist); //Civ4 Reimagined
 
 	// Arrays
 
@@ -6847,6 +6908,10 @@ bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iResearchPerCulture, "iResearchPerCulture"); //Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iWonderProductionBonus, "iWonderProductionBonus"); //Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iExpInBorderModifier, "iExpInBorderModifier");
+	pXML->GetChildXmlValByName(&m_iConservative, "iConservative"); // Civ4 Reimagined
+	pXML->GetChildXmlValByName(&m_iLiberal, "iLiberal"); // Civ4 Reimagined
+	pXML->GetChildXmlValByName(&m_iCommunist, "iCommunist"); // Civ4 Reimagined
+	pXML->GetChildXmlValByName(&m_iFascist, "iFascist"); // Civ4 Reimagined
 
 
 	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"YieldModifiers"))
@@ -7012,6 +7077,22 @@ bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
 	// Leoreth
 	pXML->SetVariableListTagPair(&m_paiDomainProductionModifiers, "DomainProductionModifiers", sizeof(GC.getDomainInfo((DomainTypes)0)), NUM_DOMAIN_TYPES);
 	pXML->SetVariableListTagPair(&m_paiDomainExperienceModifiers, "DomainExperienceModifiers", sizeof(GC.getDomainInfo((DomainTypes)0)), NUM_DOMAIN_TYPES);
+
+	// Civ4 Reimagined
+	m_bAnyDomainProductionModifier = false;
+	m_bAnyDomainExperienceModifier = false;
+	for (int iI = 0; iI < NUM_DOMAIN_TYPES; iI++)
+	{
+		if (m_paiDomainProductionModifiers[iI] != 0)
+		{
+			m_bAnyDomainProductionModifier = true;
+		}
+
+		if (m_paiDomainExperienceModifiers[iI] != 0)
+		{
+			m_bAnyDomainExperienceModifier = true;
+		}
+	}
 
 	// initialize the boolean list to the correct size and all the booleans to false
 	
@@ -7568,7 +7649,8 @@ m_iAdvisorType(NO_ADVISOR),
 m_iHolyCity(NO_RELIGION),										
 m_iReligionType(NO_RELIGION),								
 m_iStateReligion(NO_RELIGION),								
-m_iPrereqReligion(NO_RELIGION),	
+m_iPrereqReligion(NO_RELIGION),
+m_iPrereqIdeology(NO_IDEOLOGY), // Civ4 Reimagined
 m_iPrereqCorporation(NO_CORPORATION),								
 m_iFoundsCorporation(NO_CORPORATION),								
 m_iGlobalReligionCommerce(0),
@@ -7635,6 +7717,7 @@ m_bNoNonStateReligionSpread(false), // Civ4 Reimagined
 m_bStateReligion(false),
 m_bAllowsNukes(false),
 m_bNoConquestResistance(false), // Civ4 Reimagined
+m_bNoConscriptUnhappiness(false), // Civ4 Reimagined
 m_bNoWarAgainstSameFaithUnhappiness(false), // Civ4 Reimagined
 m_piPrereqAndTechs(NULL),
 m_piPrereqOrBonuses(NULL),
@@ -7647,6 +7730,7 @@ m_piYieldChange(NULL),
 m_piYieldModifier(NULL),
 m_piPowerYieldModifier(NULL),
 m_piAreaYieldModifier(NULL),
+m_piAreaTradeYieldModifier(NULL), // Civ4 Reimagined
 m_piGlobalYieldModifier(NULL),
 m_piCommerceChange(NULL),
 m_piObsoleteSafeCommerceChange(NULL),
@@ -7676,6 +7760,8 @@ m_piPrereqNumOfBuildingClass(NULL),
 m_piPercentPrereqNumOfBuildingClass(NULL), // Civ4 Reimagined
 m_piFlavorValue(NULL),
 m_piImprovementFreeSpecialist(NULL),
+m_piForeignTradeIdeologyModifier(NULL), // Civ4 Reimagined
+m_piIdeologyCombatExperience(NULL), // Civ4 Reimagined
 m_pbCommerceFlexible(NULL),
 m_pbCommerceChangeOriginalOwner(NULL),
 m_pbBuildingClassNeededInCity(NULL),
@@ -7723,6 +7809,7 @@ CvBuildingInfo::~CvBuildingInfo()
 	SAFE_DELETE_ARRAY(m_piYieldModifier);
 	SAFE_DELETE_ARRAY(m_piPowerYieldModifier);
 	SAFE_DELETE_ARRAY(m_piAreaYieldModifier);
+	SAFE_DELETE_ARRAY(m_piAreaTradeYieldModifier); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_piGlobalYieldModifier);
 	SAFE_DELETE_ARRAY(m_piCommerceChange);
 	SAFE_DELETE_ARRAY(m_piObsoleteSafeCommerceChange);
@@ -7752,6 +7839,8 @@ CvBuildingInfo::~CvBuildingInfo()
 	SAFE_DELETE_ARRAY(m_piPercentPrereqNumOfBuildingClass); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_piFlavorValue);
 	SAFE_DELETE_ARRAY(m_piImprovementFreeSpecialist);
+	SAFE_DELETE_ARRAY(m_piForeignTradeIdeologyModifier); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_piIdeologyCombatExperience); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_pbCommerceFlexible);
 	SAFE_DELETE_ARRAY(m_pbCommerceChangeOriginalOwner);
 	SAFE_DELETE_ARRAY(m_pbBuildingClassNeededInCity);
@@ -8164,6 +8253,12 @@ int CvBuildingInfo::getPrereqReligion() const
 	return m_iPrereqReligion;
 }
 
+// Civ4 Reimagined
+int CvBuildingInfo::getPrereqIdeology() const		
+{
+	return m_iPrereqIdeology;
+}
+
 int CvBuildingInfo::getPrereqCorporation() const		
 {
 	return m_iPrereqCorporation;
@@ -8531,6 +8626,12 @@ bool CvBuildingInfo::isNoConquestResistance() const
 	return m_bNoConquestResistance;
 }
 
+// Civ4 Reimagined
+bool CvBuildingInfo::isNoConscriptUnhappiness() const
+{
+	return m_bNoConscriptUnhappiness;
+}
+
 const TCHAR* CvBuildingInfo::getConstructSound() const
 {
 	return m_szConstructSound;
@@ -8609,6 +8710,20 @@ int CvBuildingInfo::getAreaYieldModifier(int i) const
 int* CvBuildingInfo::getAreaYieldModifierArray() const
 {
 	return m_piAreaYieldModifier;
+}
+
+// Civ4 Reimagined
+int CvBuildingInfo::getAreaTradeYieldModifier(int i) const	
+{
+	FAssertMsg(i < NUM_YIELD_TYPES, "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_piAreaTradeYieldModifier ? m_piAreaTradeYieldModifier[i] : -1;
+}
+
+// Civ4 Reimagined
+int* CvBuildingInfo::getAreaTradeYieldModifierArray() const
+{
+	return m_piAreaTradeYieldModifier;
 }
 
 int CvBuildingInfo::getGlobalYieldModifier(int i) const
@@ -8944,6 +9059,22 @@ int CvBuildingInfo::getImprovementFreeSpecialist(int i) const
 	return m_piImprovementFreeSpecialist ? m_piImprovementFreeSpecialist[i] : -1;
 }
 
+// Civ4 Reimagined
+int CvBuildingInfo::getForeignTradeIdeologyModifier(int i) const
+{
+	FAssertMsg(i < GC.getNumIdeologyInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_piForeignTradeIdeologyModifier ? m_piForeignTradeIdeologyModifier[i] : -1;
+}
+
+// Civ4 Reimagined
+int CvBuildingInfo::getIdeologyCombatExperience(int i) const
+{
+	FAssertMsg(i < GC.getNumIdeologyInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_piIdeologyCombatExperience ? m_piIdeologyCombatExperience[i] : -1;
+}
+
 bool CvBuildingInfo::isCommerceFlexible(int i) const
 {
 	FAssertMsg(i < NUM_COMMERCE_TYPES, "Index out of bounds");
@@ -9238,6 +9369,7 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iReligionType);
 	stream->Read(&m_iStateReligion);
 	stream->Read(&m_iPrereqReligion);
+	stream->Read(&m_iPrereqIdeology); // Civ4 Reimagined
 	stream->Read(&m_iPrereqCorporation);
 	stream->Read(&m_iFoundsCorporation);
 	stream->Read(&m_iGlobalReligionCommerce);
@@ -9307,6 +9439,7 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bStateReligion);
 	stream->Read(&m_bAllowsNukes);
 	stream->Read(&m_bNoConquestResistance); // Civ4 Reimagined
+	stream->Read(&m_bNoConscriptUnhappiness); // Civ4 Reimagined
 
 	stream->ReadString(m_szConstructSound);
 	stream->ReadString(m_szArtDefineTag);
@@ -9355,6 +9488,11 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 	SAFE_DELETE_ARRAY(m_piAreaYieldModifier);
 	m_piAreaYieldModifier = new int[NUM_YIELD_TYPES];
 	stream->Read(NUM_YIELD_TYPES, m_piAreaYieldModifier);
+
+	// Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_piAreaTradeYieldModifier);
+	m_piAreaTradeYieldModifier = new int[NUM_YIELD_TYPES];
+	stream->Read(NUM_YIELD_TYPES, m_piAreaTradeYieldModifier);
 
 	SAFE_DELETE_ARRAY(m_piGlobalYieldModifier);
 	m_piGlobalYieldModifier = new int[NUM_YIELD_TYPES];
@@ -9478,6 +9616,16 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 	SAFE_DELETE_ARRAY(m_piImprovementFreeSpecialist);
 	m_piImprovementFreeSpecialist = new int[GC.getNumImprovementInfos()];
 	stream->Read(GC.getNumImprovementInfos(), m_piImprovementFreeSpecialist);
+
+	// Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_piForeignTradeIdeologyModifier);
+	m_piForeignTradeIdeologyModifier = new int[GC.getNumIdeologyInfos()];
+	stream->Read(GC.getNumIdeologyInfos(), m_piForeignTradeIdeologyModifier);
+
+	// Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_piIdeologyCombatExperience);
+	m_piIdeologyCombatExperience = new int[GC.getNumIdeologyInfos()];
+	stream->Read(GC.getNumIdeologyInfos(), m_piIdeologyCombatExperience);
 
 	SAFE_DELETE_ARRAY(m_pbCommerceFlexible);
 	m_pbCommerceFlexible = new bool[NUM_COMMERCE_TYPES];
@@ -9748,6 +9896,7 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iReligionType);
 	stream->Write(m_iStateReligion);
 	stream->Write(m_iPrereqReligion);
+	stream->Write(m_iPrereqIdeology); // Civ4 Reimagined
 	stream->Write(m_iPrereqCorporation);
 	stream->Write(m_iFoundsCorporation);
 	stream->Write(m_iGlobalReligionCommerce);
@@ -9815,6 +9964,7 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bStateReligion);
 	stream->Write(m_bAllowsNukes);
 	stream->Write(m_bNoConquestResistance); // Civ4 Reimagined
+	stream->Write(m_bNoConscriptUnhappiness); // Civ4 Reimagined
 
 	stream->WriteString(m_szConstructSound);
 	stream->WriteString(m_szArtDefineTag);
@@ -9831,6 +9981,7 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 	stream->Write(NUM_YIELD_TYPES, m_piYieldModifier);
 	stream->Write(NUM_YIELD_TYPES, m_piPowerYieldModifier);
 	stream->Write(NUM_YIELD_TYPES, m_piAreaYieldModifier);
+	stream->Write(NUM_YIELD_TYPES, m_piAreaTradeYieldModifier); // Civ4 Reimagined
 	stream->Write(NUM_YIELD_TYPES, m_piGlobalYieldModifier);
 	stream->Write(NUM_COMMERCE_TYPES, m_piCommerceChange);
 	stream->Write(NUM_COMMERCE_TYPES, m_piObsoleteSafeCommerceChange);
@@ -9860,6 +10011,8 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 	stream->Write(GC.getNumBuildingClassInfos(), m_piPercentPrereqNumOfBuildingClass); // Civ4 Reimagined
 	stream->Write(GC.getNumFlavorTypes(), m_piFlavorValue);
 	stream->Write(GC.getNumImprovementInfos(), m_piImprovementFreeSpecialist);
+	stream->Write(GC.getNumIdeologyInfos(), m_piForeignTradeIdeologyModifier); // Civ4 Reimagined
+	stream->Write(GC.getNumIdeologyInfos(), m_piIdeologyCombatExperience); // Civ4 Reimagined
 
 	stream->Write(NUM_COMMERCE_TYPES, m_pbCommerceFlexible);
 	stream->Write(NUM_COMMERCE_TYPES, m_pbCommerceChangeOriginalOwner);
@@ -9936,6 +10089,10 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(szTextVal, "PrereqReligion");
 	m_iPrereqReligion = pXML->FindInInfoClass(szTextVal);
+
+	// Civ4 Reimagined
+	pXML->GetChildXmlValByName(szTextVal, "PrereqIdeology");
+	m_iPrereqIdeology = pXML->FindInInfoClass(szTextVal);
 	
 	pXML->GetChildXmlValByName(szTextVal, "PrereqCorporation");
 	m_iPrereqCorporation = pXML->FindInInfoClass(szTextVal);
@@ -10103,6 +10260,7 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bGoldenAge, "bGoldenAge");
 	pXML->GetChildXmlValByName(&m_bAllowsNukes, "bAllowsNukes");
 	pXML->GetChildXmlValByName(&m_bNoConquestResistance, "bNoConquestResistance"); // Civ4 Reimagined
+	pXML->GetChildXmlValByName(&m_bNoConscriptUnhappiness, "bNoConscriptUnhappiness"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_bMapCentering, "bMapCentering");
 	pXML->GetChildXmlValByName(&m_bNoUnhappiness, "bNoUnhappiness");
 	//pXML->GetChildXmlValByName(&m_bNoUnhealthyPopulation, "bNoUnhealthyPopulation");
@@ -10273,6 +10431,19 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 	else
 	{
 		pXML->InitList(&m_piAreaYieldModifier, NUM_YIELD_TYPES);
+	}
+
+	// Civ4 Reaimagined
+	// if we can set the current xml node to it's next sibling
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"AreaTradeYieldModifiers"))
+	{
+		// call the function that sets the yield change variable
+		pXML->SetYields(&m_piAreaTradeYieldModifier);
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+	else
+	{
+		pXML->InitList(&m_piAreaTradeYieldModifier, NUM_YIELD_TYPES);
 	}
 
 	// if we can set the current xml node to it's next sibling
@@ -10750,6 +10921,8 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 
 	pXML->SetVariableListTagPair(&m_piFlavorValue, "Flavors", GC.getFlavorTypes(), GC.getNumFlavorTypes());
 	pXML->SetVariableListTagPair(&m_piImprovementFreeSpecialist, "ImprovementFreeSpecialists", sizeof(GC.getImprovementInfo((ImprovementTypes)0)), GC.getNumImprovementInfos());
+	pXML->SetVariableListTagPair(&m_piForeignTradeIdeologyModifier, "ForeignTradeIdeologyModifiers", sizeof(GC.getIdeologyInfo((IdeologyTypes)0)), GC.getNumIdeologyInfos()); // Civ4 Reimagined
+	pXML->SetVariableListTagPair(&m_piIdeologyCombatExperience, "IdeologySharedCombatExperience", sizeof(GC.getIdeologyInfo((IdeologyTypes)0)), GC.getNumIdeologyInfos()); // Civ4 Reimagined
 
 	pXML->SetVariableListTagPair(&m_piBuildingHappinessChanges, "BuildingHappinessChanges", sizeof(GC.getBuildingClassInfo((BuildingClassTypes)0)), GC.getNumBuildingClassInfos());
 
@@ -17670,6 +17843,7 @@ CvProjectInfo::CvProjectInfo() :
 m_iVictoryPrereq(NO_VICTORY),
 m_iTechPrereq(NO_TECH),
 m_iTechPrereq2(NO_TECH), //Civ4 Reimagined
+m_iIdeologyPrereq(NO_IDEOLOGY), //Civ4 Reimagined
 m_iAnyoneProjectPrereq(NO_PROJECT),
 m_iMaxGlobalInstances(0),
 m_iMaxTeamInstances(0),
@@ -17678,10 +17852,12 @@ m_iNukeInterception(0),
 m_iTechShare(0),
 m_iEveryoneSpecialUnit(NO_SPECIALUNIT),
 m_iEveryoneSpecialBuilding(NO_SPECIALBUILDING),
+m_iEveryoneTechnology(NO_TECH), //Civ4 Reimagined
 m_iVictoryDelayPercent(0),
 m_iSuccessRate(0),
 m_bSpaceship(false),
 m_bAllowsNukes(false),
+m_piBonusRatioIdeologyModifier(NULL), // Civ4 Reimagined
 m_piBonusProductionModifier(NULL),
 m_piVictoryThreshold(NULL),
 m_piVictoryMinThreshold(NULL),
@@ -17698,6 +17874,7 @@ m_piProjectsNeeded(NULL)
 //------------------------------------------------------------------------------------------------------
 CvProjectInfo::~CvProjectInfo()
 {
+	SAFE_DELETE_ARRAY(m_piBonusRatioIdeologyModifier); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_piBonusProductionModifier);
 	SAFE_DELETE_ARRAY(m_piVictoryThreshold);
 	SAFE_DELETE_ARRAY(m_piVictoryMinThreshold);
@@ -17718,6 +17895,12 @@ int CvProjectInfo::getTechPrereq() const
 int CvProjectInfo::getTechPrereq2() const
 {
 	return m_iTechPrereq2; 
+}
+
+// Civ4 Reimagined
+int CvProjectInfo::getIdeologyPrereq() const
+{
+	return m_iIdeologyPrereq; 
 }
 
 int CvProjectInfo::getAnyoneProjectPrereq() const
@@ -17765,6 +17948,12 @@ int CvProjectInfo::getEveryoneSpecialBuilding() const
 	return m_iEveryoneSpecialBuilding;
 }
 
+// Civ4 Reimagined
+int CvProjectInfo::getEveryoneTechnology() const
+{
+	return m_iEveryoneTechnology;
+}
+
 int CvProjectInfo::getVictoryDelayPercent() const
 {
 	return m_iVictoryDelayPercent;
@@ -17801,6 +17990,14 @@ void CvProjectInfo::setCreateSound(const TCHAR* szVal)
 }
 
 // Arrays
+
+// Civ4 Reimagined
+int CvProjectInfo::getBonusRatioIdeologyModifier(int i) const
+{
+	FAssertMsg(i < GC.getNumIdeologyInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_piBonusRatioIdeologyModifier ? m_piBonusRatioIdeologyModifier[i] : -1;
+}
 
 int CvProjectInfo::getBonusProductionModifier(int i) const										
 {
@@ -17853,6 +18050,8 @@ bool CvProjectInfo::read(CvXMLLoadUtility* pXML)
 	//Civ4 Reimagined
 	pXML->GetChildXmlValByName(szTextVal, "TechPrereq2");
 	m_iTechPrereq2 = pXML->FindInInfoClass(szTextVal);
+	pXML->GetChildXmlValByName(szTextVal, "IdeologyPrereq");
+	m_iIdeologyPrereq = pXML->FindInInfoClass(szTextVal);
 
 	pXML->GetChildXmlValByName(&m_iMaxGlobalInstances, "iMaxGlobalInstances");
 	pXML->GetChildXmlValByName(&m_iMaxTeamInstances, "iMaxTeamInstances");
@@ -17866,10 +18065,15 @@ bool CvProjectInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(szTextVal, "EveryoneSpecialBuilding");
 	m_iEveryoneSpecialBuilding = pXML->FindInInfoClass(szTextVal);
 
+	// Civ4 Reimagined
+	pXML->GetChildXmlValByName(szTextVal, "EveryoneTechnology");
+	m_iEveryoneTechnology = pXML->FindInInfoClass(szTextVal);
+
 	pXML->GetChildXmlValByName(&m_bSpaceship, "bSpaceship");
 	pXML->GetChildXmlValByName(&m_bAllowsNukes, "bAllowsNukes");
 	pXML->GetChildXmlValByName(m_szMovieArtDef, "MovieDefineTag");
 
+	pXML->SetVariableListTagPair(&m_piBonusRatioIdeologyModifier, "BonusRatioIdeologyModifiers", sizeof(GC.getIdeologyInfo((IdeologyTypes)0)), GC.getNumIdeologyInfos()); // Civ4 Reimagined
 	pXML->SetVariableListTagPair(&m_piBonusProductionModifier, "BonusProductionModifiers", sizeof(GC.getBonusInfo((BonusTypes)0)), GC.getNumBonusInfos());
 	pXML->SetVariableListTagPair(&m_piVictoryThreshold, "VictoryThresholds", sizeof(GC.getVictoryInfo((VictoryTypes)0)), GC.getNumVictoryInfos());
 	pXML->SetVariableListTagPair(&m_piVictoryMinThreshold, "VictoryMinThresholds", sizeof(GC.getVictoryInfo((VictoryTypes)0)), GC.getNumVictoryInfos());
@@ -18162,6 +18366,80 @@ bool CvReligionInfo::read(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(szTextVal, "Sound");
 	setSound(szTextVal);
+
+	pXML->GetChildXmlValByName(szTextVal, "Adjective");
+	setAdjectiveKey(szTextVal);
+
+	return true;
+}
+
+//======================================================================================================
+//					CvIdeologyInfo (Civ4 Reimagined)
+//======================================================================================================
+
+//------------------------------------------------------------------------------------------------------
+//
+//  FUNCTION:   CvIdeologyInfo()
+//
+//  PURPOSE :   Default constructor
+//
+//------------------------------------------------------------------------------------------------------
+CvIdeologyInfo::CvIdeologyInfo() :
+m_iChar(0),
+m_iTechPrereq(NO_TECH)
+{
+	reset();
+}
+
+//------------------------------------------------------------------------------------------------------
+//
+//  FUNCTION:   ~CvIdeologyInfo()
+//
+//  PURPOSE :   Default destructor
+//
+//------------------------------------------------------------------------------------------------------
+CvIdeologyInfo::~CvIdeologyInfo()
+{
+}
+
+int CvIdeologyInfo::getChar() const
+{
+	return m_iChar; 
+}
+
+void CvIdeologyInfo::setChar(int i)
+{
+	m_iChar = i; 
+}
+
+int CvIdeologyInfo::getTechPrereq() const
+{
+	return m_iTechPrereq; 
+}
+
+void CvIdeologyInfo::setAdjectiveKey(const TCHAR* szVal)
+{
+	m_szAdjectiveKey = szVal;
+}
+
+const wchar* CvIdeologyInfo::getAdjectiveKey() const
+{
+	return m_szAdjectiveKey;
+}
+
+//
+// read from xml
+//
+bool CvIdeologyInfo::read(CvXMLLoadUtility* pXML)
+{
+	CvString szTextVal;
+	if (!CvHotkeyInfo::read(pXML))
+	{
+		return false;
+	}
+
+	pXML->GetChildXmlValByName(szTextVal, "TechPrereq");
+	m_iTechPrereq = pXML->FindInInfoClass(szTextVal);
 
 	pXML->GetChildXmlValByName(szTextVal, "Adjective");
 	setAdjectiveKey(szTextVal);

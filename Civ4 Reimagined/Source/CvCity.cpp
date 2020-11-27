@@ -3453,7 +3453,7 @@ int CvCity::getProductionModifier(UnitTypes eUnit) const
 	}
 
 	// Civ4 Reimagined: Bonus from civics/player:
-	iMultiplier += GET_PLAYER(getOwnerINLINE()).getUnitClassProductionModifier(GC.getUnitInfo(eUnit).getUnitClassType());
+	iMultiplier += GET_PLAYER(getOwnerINLINE()).getUnitClassProductionModifier((UnitClassTypes)GC.getUnitInfo(eUnit).getUnitClassType());
 	
 	if (GET_PLAYER(getOwnerINLINE()).getStateReligion() != NO_RELIGION)
 	{
@@ -3828,7 +3828,7 @@ void CvCity::hurry(HurryTypes eHurry)
 	
 	if (GET_PLAYER(getOwnerINLINE()).getSlavePointsPerPopulationSacrificed() != 0)
 	{
-		GET_PLAYER(getOwnerINLINE()).changeSlavePoints(iHurryPopulation * GET_PLAYER(getOwnerINLINE()).getSlavePointsPerPopulationSacrificed(), this); // Civ4 Reimagined
+		GET_PLAYER(getOwnerINLINE()).gainSlavePoints(iHurryPopulation * GET_PLAYER(getOwnerINLINE()).getSlavePointsPerPopulationSacrificed(), this); // Civ4 Reimagined
 	}
 	
 	changeHurryAngerTimer(iHurryAngerLength);
@@ -4076,7 +4076,12 @@ void CvCity::conscript()
 	int iPopChange = -(getConscriptPopulation());
 	int iAngerLength = flatConscriptAngerLength();
 	changePopulation(iPopChange);
-	changeConscriptAngerTimer(iAngerLength);
+
+	// Civ4 Reimagined
+	if (!GET_TEAM(getTeam()).isNoConscriptUnhappiness())
+	{
+		changeConscriptAngerTimer(iAngerLength);
+	}
 
 	setDrafted(true);
 
@@ -5710,7 +5715,11 @@ int CvCity::cultureGarrison(PlayerTypes ePlayer) const
 		pLoopUnit = ::getUnit(pUnitNode->m_data);
 		pUnitNode = plot()->nextUnitNode(pUnitNode);
 
-		iGarrison += pLoopUnit->getUnitInfo().getCultureGarrisonValue();
+		// Civ4 Reimagined: Only own units contribute to reducing revolt risk
+		if (pLoopUnit->getOwner() == ePlayer)
+		{
+			iGarrison += pLoopUnit->getUnitInfo().getCultureGarrisonValue();
+		}
 	}
 
 	if (atWar(GET_PLAYER(ePlayer).getTeam(), getTeam()))
@@ -10132,6 +10141,13 @@ int CvCity::totalTradeModifier(CvCity* pOtherCity) const
 		{
 			iModifier += getForeignTradeRouteModifier();
 			iModifier += getPeaceTradeModifier(pOtherCity->getTeam());
+
+			// Civ4 Reimagined
+			const IdeologyTypes eIdeology = GET_PLAYER(getOwnerINLINE()).getIdeology();
+			if (GET_PLAYER(getOwnerINLINE()).getIdeology() == eIdeology)
+			{
+				iModifier += GET_PLAYER(getOwnerINLINE()).getForeignTradeIdeologyModifier(eIdeology);
+			}
 		}
 		else
 		{
@@ -10142,6 +10158,7 @@ int CvCity::totalTradeModifier(CvCity* pOtherCity) const
 	
 	// Civ4 Reimagined
 	iModifier += GET_PLAYER(getOwnerINLINE()).getTradeYieldModifier(YIELD_COMMERCE);
+	iModifier += area()->getTradeYieldModifier(getOwnerINLINE(), YIELD_COMMERCE);
 
 	return iModifier;
 }
@@ -10232,10 +10249,14 @@ int CvCity::calculateTradeYield(YieldTypes eIndex, int iTradeProfit) const
 	if (eIndex == YIELD_COMMERCE) {
 		return iTradeProfit;
 	}
+
+	// Civ4 Reimagined
+	int iTradeYieldModifier = GET_PLAYER(getOwnerINLINE()).getTradeYieldModifier(eIndex);
+	iTradeYieldModifier += area()->getTradeYieldModifier(getOwnerINLINE(), eIndex);
 	
-	if ((iTradeProfit > 0) && (GET_PLAYER(getOwnerINLINE()).getTradeYieldModifier(eIndex) > 0))
+	if ((iTradeProfit > 0) && (iTradeYieldModifier > 0))
 	{
-		return ((iTradeProfit * GET_PLAYER(getOwnerINLINE()).getTradeYieldModifier(eIndex)) / 100);
+		return (iTradeProfit * iTradeYieldModifier / 100);
 	}
 	else
 	{
@@ -10505,7 +10526,8 @@ int CvCity::getTotalCommerceRateModifier(CommerceTypes eIndex) const
 		// Civ4 Reimagined
 		if (GET_PLAYER(getOwnerINLINE()).getCapitalCommerceRateModifierPerHappinessSurplus(eIndex) > 0)
 		{
-			iTotal += std::min(getPopulation(), std::max(0, happyLevel() - unhappyLevel())) * GET_PLAYER(getOwnerINLINE()).getCapitalCommerceRateModifierPerHappinessSurplus(eIndex); 
+			int iHappinessCommerceModifier = std::max(0, happyLevel() - unhappyLevel()) * GET_PLAYER(getOwnerINLINE()).getCapitalCommerceRateModifierPerHappinessSurplus(eIndex); 
+			iTotal += std::min(GC.getDefineINT("MAX_CAPITAL_COMMERCE_MODIFIER_FROM_SURPLUS_HAPPINESS"), iHappinessCommerceModifier);
 		}
 	}
 	
@@ -13987,7 +14009,7 @@ bool CvCity::spreadCorporation(CorporationTypes eCorporation, CvCity* pHeadquart
 	iSpread *= bCoastal ? 4 : 1;
 	
 	// Civ4 Reimagined: Reduced spread rate because now corporations spread even without open borders.
-	iSpread /= 3;
+	iSpread /= 2;
 	
 	FAssertMsg(kCorp.getSpreadFactor() >= 0, "Corporation spread factor is expected to be a non negative value");
 	
@@ -15596,8 +15618,8 @@ void CvCity::doImmigration()
 		{
 			m_iImmigrants++;
 			changePopulation(1);
-			changeExtraHappiness(1); // Verfällt, wenn Stadt erobert
-			changeBaseYieldRate(YIELD_PRODUCTION, 1); // Verfällt, wenn Stadt erobert
+			changeExtraHappiness(1); // Verf?lt, wenn Stadt erobert
+			changeBaseYieldRate(YIELD_PRODUCTION, 1); // Verf?lt, wenn Stadt erobert
 			
 			// ONEVENT - City growth
 			CvEventReporter::getInstance().cityGrowth(this, getOwnerINLINE());

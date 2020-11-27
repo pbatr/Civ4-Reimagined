@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!-- Ideology -->
+<Civ4IdeologyInfo xmlns="x-schema:CIV4GameInfoSchema.xml">
+	<IdeologyInfos>
+		<IdeologyInfo>
+			<Type>IDEOLOGY_CONSERVATIVISM</Type>
+			<Description>TXT_KEY_IDEOLOGY_CONSERVATIVISM</Description>
+			<Adjective>TXT_KEY_IDEOLOGY_CONSERVATIVISM_ADJECTIVE</Adjective>
+			<TechPrereq>NONE</TechPrereq>
+			<Button>Art/Interface/Buttons/Ideologies/Conservatism.dds</Button>
+		</IdeologyInfo>
+		<IdeologyInfo>
+			<Type>IDEOLOGY_LIBERALISM</Type>
+			<Description>TXT_KEY_IDEOLOGY_LIBERALISM</Description>
+			<Adjective>TXT_KEY_IDEOLOGY_LIBERALISM_ADJECTIVE</Adjective>
+			<TechPrereq>TECH_LIBERALISM</TechPrereq>
+			<Button>Art/Interface/Buttons/Ideologies/Liberalism.dds</Button>
+		</IdeologyInfo>
+		<IdeologyInfo>
+			<Type>IDEOLOGY_COMMUNISM</Type>
+			<Description>TXT_KEY_IDEOLOGY_COMMUNISM</Description>
+			<Adjective>TXT_KEY_IDEOLOGY_COMMUNISM_ADJECTIVE</Adjective>
+			<TechPrereq>TECH_UTOPIA</TechPrereq>
+			<Button>Art/Interface/Buttons/Ideologies/Communism.dds</Button>
+		</IdeologyInfo>
+		<IdeologyInfo>
+			<Type>IDEOLOGY_FASCISM</Type>
+			<Description>TXT_KEY_IDEOLOGY_FASCISM</Description>
+			<Adjective>TXT_KEY_IDEOLOGY_FASCISM_ADJECTIVE</Adjective>
+			<TechPrereq>TECH_FASCISM</TechPrereq>
+			<Button>Art/Interface/Buttons/Ideologies/Fascism.dds</Button>
+		</IdeologyInfo>
+	</IdeologyInfos>
+</Civ4IdeologyInfo>

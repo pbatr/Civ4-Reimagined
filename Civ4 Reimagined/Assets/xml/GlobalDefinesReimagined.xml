@@ -214,6 +214,11 @@
 		<DefineName>ESPIONAGE_CITY_CORPORATION_MOD</DefineName>
 		<iDefineIntVal>-25</iDefineIntVal>
 	</Define>
+	<!-- Espionage cost modifier each ideology influence point of espionage's player ideology (only when ideologies differ) -->
+	<Define>
+		<DefineName>ESPIONAGE_IDEOLOGY_INFLUENCE_MOD</DefineName>
+		<iDefineIntVal>-5</iDefineIntVal>
+	</Define>
 	<!-- Used for balancing starting positions. Higher value means on average stronger starting positions. -->
 	<Define>
 		<DefineName>MAX_STARTING_POS_VALUE</DefineName>
@@ -267,20 +272,33 @@
 		<DefineName>COMMERCE_CAP_FOR_SHRINES_AND_HEADQUARTERS</DefineName>
 		<iDefineIntVal>60</iDefineIntVal>
 	</Define>
+	<!-- The maximum commerce modifier that be gained from Absolutism civic. -->
+	<Define>
+		<DefineName>MAX_CAPITAL_COMMERCE_MODIFIER_FROM_SURPLUS_HAPPINESS</DefineName>
+		<iDefineIntVal>75</iDefineIntVal>
+	</Define>
 	<!-- In BtS vassals get unhappiness in cities equal to the happiness gained by the master. We introduced this value to seperate those two factors. -->
 	<Define>
 		<DefineName>VASSAL_UNHAPPINESS</DefineName>
 		<iDefineIntVal>0</iDefineIntVal>
 	</Define>
-	<!-- Slaves can be acquired by conquering or razing enemy cities when having slavery as a civic. There exists a threshold of population points you have to conquer before gaining
+	<!-- Slaves can be acquired by conquering or razing enemy cities when having slavery as a civic or founding colonies. There exists a threshold of population points you have to conquer before gaining
 	a slave. The threshold increases with every slave. -->
 	<Define>
 		<DefineName>SLAVE_THRESHOLD_START</DefineName>
-		<iDefineIntVal>5</iDefineIntVal>
+		<iDefineIntVal>4</iDefineIntVal>
 	</Define>
 	<Define>
 		<DefineName>SLAVE_THRESHOLD_INCREASE_PERCENT</DefineName>
 		<iDefineIntVal>35</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>NEW_COLONY_SLAVE_POINTS</DefineName>
+		<iDefineIntVal>8</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>CONQUEST_LESS_SLAVE_POINTS_PER_ERA</DefineName>
+		<iDefineIntVal>1</iDefineIntVal>
 	</Define>
 	<!-- The visibility range of naval units is equal to their movement points. It is then further modified by this percentage value. -->
 	<Define>
@@ -292,8 +310,8 @@
 		<DefineName>UNIT_MILITARY_HAPPINESS_ERA_OFFSET</DefineName>
 		<iDefineIntVal>2</iDefineIntVal>
 	</Define>
-	<!-- Target Populations are used by the Quantifiable Resource System. They correspond to the maximum population which can be sufficiently supplied with one resource when all techs of this
-	era are discovered. Every tech you discover improves your techValue and by that lets you supply more population with one resource. Target population adds up which means e.g. total
+	<!-- Target Populations are used for Quantifiable Resource System. They correspond to the maximum population which can be sufficiently supplied with one resource when all techs of this
+	era are discovered. Every tech you discover improves your techValue and by that lets you supply more population with one resource. Target population adds up which means e.g. real
 	target population for classical era is: TARGET_POPULATION_ANCIENT + TARGET_POPULATION_CLASSICAL -->
 	<Define>
 		<DefineName>TARGET_POPULATION_ANCIENT</DefineName>

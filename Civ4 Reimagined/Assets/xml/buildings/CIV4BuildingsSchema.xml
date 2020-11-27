@@ -51,6 +51,7 @@
 	<ElementType name="StateReligion" content="textOnly"/>
 	<ElementType name="bStateReligion" content="textOnly" dt:type="boolean"/>
 	<ElementType name="PrereqReligion" content="textOnly"/>
+	<ElementType name="PrereqIdeology" content="textOnly"/> <!-- Civ4 Reimagined -->
 	<ElementType name="PrereqCorporation" content="textOnly"/>
 	<ElementType name="FoundsCorporation" content="textOnly"/>
 	<ElementType name="GlobalReligionCommerce" content="textOnly"/>
@@ -110,6 +111,7 @@
 	<ElementType name="bGoldenAge" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bAllowsNukes" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bNoConquestResistance" content="textOnly" dt:type="boolean"/> <!-- Civ4 Reimagined -->
+	<ElementType name="bNoConscriptUnhappiness" content="textOnly" dt:type="boolean"/> <!-- Civ4 Reimagined -->
 	<ElementType name="bMapCentering" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bNoUnhappiness" content="textOnly" dt:type="boolean"/>
 	<ElementType name="iUnhealthyPopulationModifier" content="textOnly" dt:type="int"/>
@@ -224,6 +226,11 @@
 	<ElementType name="GlobalYieldModifiers" content="eltOnly">
 		<element type="iYield" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
+	<!-- Civ4 Reimagined start -->
+	<ElementType name="AreaTradeYieldModifiers" content="eltOnly">
+		<element type="iYield" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	<!-- Civ4 Reimagined end -->
 	<ElementType name="iCommerce" content="textOnly" dt:type="int"/>
 	<ElementType name="CommerceChanges" content="eltOnly">
 		<element type="iCommerce" minOccurs="0" maxOccurs="*"/>
@@ -427,6 +434,23 @@
 		<element type="CommerceModifiers"/>
 	</ElementType>
 	<ElementType name="TechType" content="textOnly"/>
+	<ElementType name="ForeignTradeIdeologyModifier" content="eltOnly">
+		<element type="IdeologyType"/>
+		<element type="iTradeModifier"/>
+	</ElementType>
+	<ElementType name="ForeignTradeIdeologyModifiers" content="eltOnly">
+		<element type="ForeignTradeIdeologyModifier" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="SharedCombatExperience" content="eltOnly">
+		<element type="IdeologyType"/>
+		<element type="iCombatExperienceModifier"/>
+	</ElementType>
+	<ElementType name="IdeologySharedCombatExperience" content="eltOnly">
+		<element type="SharedCombatExperience" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="IdeologyType" content="textOnly"/>
+	<ElementType name="iTradeModifier" content="textOnly" dt:type="int"/>
+	<ElementType name="iCombatExperienceModifier" content="textOnly" dt:type="int"/>
 	<!-- Civ4 Reimagined end -->
 	<ElementType name="ImprovementFreeSpecialist" content="eltOnly">
 		<element type="ImprovementType"/>
@@ -488,6 +512,7 @@
 		<element type="StateReligion"/>
 		<element type="bStateReligion"/>
 		<element type="PrereqReligion"/>
+		<element type="PrereqIdeology" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<!-- Building Civic Prereqs Start -->
 		<element type="PrereqCivics"/>
 		<!-- Building Civic Prereqs End   -->
@@ -537,6 +562,7 @@
 		<element type="bGoldenAge"/>
 		<element type="bAllowsNukes"/>
 		<element type="bNoConquestResistance"/> <!-- Civ4 Reimagined -->
+		<element type="bNoConscriptUnhappiness" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="bMapCentering"/>
 		<element type="bNoUnhappiness"/>
 		<element type="iUnhealthyPopulationModifier"/>
@@ -628,6 +654,7 @@
 		<element type="PowerYieldModifiers" minOccurs="0"/>
 		<element type="AreaYieldModifiers" minOccurs="0"/>
 		<element type="GlobalYieldModifiers" minOccurs="0"/>
+		<element type="AreaTradeYieldModifiers" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="CommerceChanges"/>
 		<element type="ObsoleteSafeCommerceChanges"/>
 		<element type="CommerceChangeDoubleTimes"/>
@@ -663,6 +690,8 @@
 		<element type="BonusBuildingProductionModifiers" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="TechnologyYieldModifiers" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="TechnologyCommerceModifiers" minOccurs="0"/> <!-- Civ4 Reimagined -->
+		<element type="ForeignTradeIdeologyModifiers" minOccurs="0"/> <!-- Civ4 Reimagined -->
+		<element type="IdeologySharedCombatExperience" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="ImprovementFreeSpecialists"/>
 		<element type="Flavors"/>
 		<element type="HotKey"/>

@@ -71,10 +71,10 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing>TXT_KEY_CIVIC_WE_LOVE_DESPOT</WeLoveTheKing>
-			<iMonarchist>0</iMonarchist>
-			<iLiberal>0</iLiberal>
+			<iConservative>3</iConservative>
+			<iLiberal>-9</iLiberal>
 			<iCommunist>0</iCommunist>
-			<iFascist>0</iFascist>
+			<iFascist>2</iFascist>
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_GOVERNMENT</CivicOptionType>
@@ -148,9 +148,9 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing>TXT_KEY_CIVIC_WE_LOVE_MONARCH</WeLoveTheKing>
-			<iMonarchist>0</iMonarchist>
-			<iLiberal>0</iLiberal>
-			<iCommunist>0</iCommunist>
+			<iConservative>7</iConservative>
+			<iLiberal>-5</iLiberal>
+			<iCommunist>-8</iCommunist>
 			<iFascist>0</iFascist>
 		</CivicInfo>
 		<CivicInfo>
@@ -162,7 +162,7 @@
 			<Button>,Art/Interface/Buttons/Civics/Nationhood.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,1,2</Button>
 			<TechPrereq>TECH_MONARCHY</TechPrereq>
 			<iAnarchyLength>1</iAnarchyLength>
-			<Upkeep>UPKEEP_LOW</Upkeep>
+			<Upkeep>UPKEEP_MEDIUM</Upkeep>
 			<iAIWeight>0</iAIWeight>
 			<iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
 			<bNoGreatPeople>1</bNoGreatPeople>
@@ -225,10 +225,10 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing>TXT_KEY_CIVIC_WE_LOVE_DICTATOR</WeLoveTheKing>
-			<iMonarchist>0</iMonarchist>
-			<iLiberal>0</iLiberal>
+			<iConservative>4</iConservative>
+			<iLiberal>-11</iLiberal>
 			<iCommunist>0</iCommunist>
-			<iFascist>0</iFascist>
+			<iFascist>3</iFascist>
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_GOVERNMENT</CivicOptionType>
@@ -304,10 +304,10 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing>TXT_KEY_CIVIC_WE_LOVE_CONSUL</WeLoveTheKing>
-			<iMonarchist>0</iMonarchist>
-			<iLiberal>0</iLiberal>
-			<iCommunist>0</iCommunist>
-			<iFascist>0</iFascist>
+			<iConservative>2</iConservative>
+			<iLiberal>-5</iLiberal>
+			<iCommunist>-5</iCommunist>
+			<iFascist>-5</iFascist>
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_GOVERNMENT</CivicOptionType>
@@ -393,9 +393,9 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing>TXT_KEY_CIVIC_WE_LOVE_MONARCH</WeLoveTheKing>
-			<iMonarchist>0</iMonarchist>
-			<iLiberal>0</iLiberal>
-			<iCommunist>0</iCommunist>
+			<iConservative>7</iConservative>
+			<iLiberal>-5</iLiberal>
+			<iCommunist>-8</iCommunist>
 			<iFascist>0</iFascist>
 		</CivicInfo>
 		<CivicInfo>
@@ -440,7 +440,7 @@
 			<bNoForeignTrade>0</bNoForeignTrade>
 			<bNoCorporations>0</bNoCorporations>
 			<bNoForeignCorporations>0</bNoForeignCorporations>
-			<iCivicPercentAnger>200</iCivicPercentAnger>
+			<iCivicPercentAnger>300</iCivicPercentAnger>
 			<bStateReligion>0</bStateReligion>
 			<bNoNonStateReligionSpread>0</bNoNonStateReligionSpread>
 			<iStateReligionHappiness>0</iStateReligionHappiness>
@@ -465,10 +465,10 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing>TXT_KEY_CIVIC_WE_LOVE_PRESIDENT</WeLoveTheKing>
-			<iMonarchist>0</iMonarchist>
-			<iLiberal>0</iLiberal>
-			<iCommunist>0</iCommunist>
-			<iFascist>0</iFascist>
+			<iConservative>-5</iConservative>
+			<iLiberal>5</iLiberal>
+			<iCommunist>3</iCommunist>
+			<iFascist>-3</iFascist>
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_ORGANIZATION</CivicOptionType>
@@ -545,8 +545,8 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
-			<iLiberal>0</iLiberal>
+			<iConservative>5</iConservative>
+			<iLiberal>-3</iLiberal>
 			<iCommunist>0</iCommunist>
 			<iFascist>0</iFascist>
 		</CivicInfo>
@@ -617,7 +617,7 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
+			<iConservative>3</iConservative>
 			<iLiberal>0</iLiberal>
 			<iCommunist>0</iCommunist>
 			<iFascist>0</iFascist>
@@ -714,9 +714,9 @@
 				</DomainExperienceModifier>
 			</DomainExperienceModifiers>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
-			<iLiberal>0</iLiberal>
-			<iCommunist>0</iCommunist>
+			<iConservative>3</iConservative>
+			<iLiberal>-10</iLiberal>
+			<iCommunist>-10</iCommunist>
 			<iFascist>0</iFascist>
 		</CivicInfo>
 		<CivicInfo>
@@ -797,9 +797,9 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
-			<iLiberal>0</iLiberal>
-			<iCommunist>0</iCommunist>
+			<iConservative>5</iConservative>
+			<iLiberal>-4</iLiberal>
+			<iCommunist>-3</iCommunist>
 			<iFascist>0</iFascist>
 		</CivicInfo>
 		<CivicInfo>
@@ -880,8 +880,8 @@
 				</ImprovementYieldChange>
 			</ImprovementYieldChanges>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
-			<iLiberal>0</iLiberal>
+			<iConservative>2</iConservative>
+			<iLiberal>2</iLiberal>
 			<iCommunist>0</iCommunist>
 			<iFascist>0</iFascist>
 		</CivicInfo>
@@ -965,10 +965,10 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
-			<iLiberal>0</iLiberal>
+			<iConservative>-2</iConservative>
+			<iLiberal>-15</iLiberal>
 			<iCommunist>0</iCommunist>
-			<iFascist>0</iFascist>
+			<iFascist>7</iFascist>
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_LABOR</CivicOptionType>
@@ -1041,7 +1041,7 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
+			<iConservative>0</iConservative>
 			<iLiberal>0</iLiberal>
 			<iCommunist>0</iCommunist>
 			<iFascist>0</iFascist>
@@ -1128,10 +1128,10 @@
 				</ImprovementYieldChange>
 			</ImprovementYieldChanges>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
-			<iLiberal>0</iLiberal>
-			<iCommunist>0</iCommunist>
-			<iFascist>0</iFascist>
+			<iConservative>3</iConservative>
+			<iLiberal>-8</iLiberal>
+			<iCommunist>-2</iCommunist>
+			<iFascist>2</iFascist>
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_LABOR</CivicOptionType>
@@ -1221,10 +1221,10 @@
 				</ImprovementYieldChange>
 			</ImprovementYieldChanges>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
+			<iConservative>2</iConservative>
 			<iLiberal>0</iLiberal>
 			<iCommunist>0</iCommunist>
-			<iFascist>0</iFascist>
+			<iFascist>2</iFascist>
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_LABOR</CivicOptionType>
@@ -1318,9 +1318,9 @@
 				</ImprovementYieldChange>
 			</ImprovementYieldChanges>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
-			<iLiberal>0</iLiberal>
-			<iCommunist>0</iCommunist>
+			<iConservative>0</iConservative>
+			<iLiberal>3</iLiberal>
+			<iCommunist>-15</iCommunist>
 			<iFascist>0</iFascist>
 		</CivicInfo>
 		<CivicInfo>
@@ -1420,8 +1420,8 @@
 				</ImprovementYieldChange>
 			</ImprovementYieldChanges>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
-			<iLiberal>0</iLiberal>
+			<iConservative>0</iConservative>
+			<iLiberal>-2</iLiberal>
 			<iCommunist>0</iCommunist>
 			<iFascist>0</iFascist>
 		</CivicInfo>
@@ -1509,10 +1509,10 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
-			<iLiberal>0</iLiberal>
-			<iCommunist>0</iCommunist>
-			<iFascist>0</iFascist>
+			<iConservative>-7</iConservative>
+			<iLiberal>3</iLiberal>
+			<iCommunist>1</iCommunist>
+			<iFascist>-6</iFascist>
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_ECONOMY</CivicOptionType>
@@ -1579,9 +1579,9 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
+			<iConservative>0</iConservative>
 			<iLiberal>0</iLiberal>
-			<iCommunist>0</iCommunist>
+			<iCommunist>-2</iCommunist>
 			<iFascist>0</iFascist>
 		</CivicInfo>
 		<CivicInfo>
@@ -1661,9 +1661,9 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
-			<iLiberal>0</iLiberal>
-			<iCommunist>0</iCommunist>
+			<iConservative>0</iConservative>
+			<iLiberal>-2</iLiberal>
+			<iCommunist>-2</iCommunist>
 			<iFascist>0</iFascist>
 		</CivicInfo>
 		<CivicInfo>
@@ -1747,9 +1747,9 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
+			<iConservative>1</iConservative>
 			<iLiberal>0</iLiberal>
-			<iCommunist>0</iCommunist>
+			<iCommunist>-2</iCommunist>
 			<iFascist>0</iFascist>
 		</CivicInfo>
 		<CivicInfo>
@@ -1837,8 +1837,8 @@
 				</DomainProductionModifier>
 			</DomainProductionModifiers>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
-			<iLiberal>0</iLiberal>
+			<iConservative>3</iConservative>
+			<iLiberal>-3</iLiberal>
 			<iCommunist>0</iCommunist>
 			<iFascist>0</iFascist>
 		</CivicInfo>
@@ -1908,9 +1908,9 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
-			<iLiberal>0</iLiberal>
-			<iCommunist>0</iCommunist>
+			<iConservative>1</iConservative>
+			<iLiberal>5</iLiberal>
+			<iCommunist>-7</iCommunist>
 			<iFascist>0</iFascist>
 		</CivicInfo>
 		<CivicInfo>
@@ -1969,7 +1969,7 @@
 			<YieldModifiers/>
 			<ExtraYields>
 				<iYield>0</iYield>
-				<iYield>5</iYield>
+				<iYield>4</iYield>
 				<iYield>0</iYield>
 			</ExtraYields>
 			<CapitalYieldModifiers/>
@@ -2022,10 +2022,10 @@
 			</ImprovementYieldChanges>
 			<DomainProductionModifiers/>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
-			<iLiberal>0</iLiberal>
-			<iCommunist>0</iCommunist>
-			<iFascist>0</iFascist>
+			<iConservative>-3</iConservative>
+			<iLiberal>-7</iLiberal>
+			<iCommunist>10</iCommunist>
+			<iFascist>-2</iFascist>
 		</CivicInfo>
 		<CivicInfo>
 			<CivicOptionType>CIVICOPTION_RELIGION</CivicOptionType>
@@ -2093,7 +2093,7 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
+			<iConservative>0</iConservative>
 			<iLiberal>0</iLiberal>
 			<iCommunist>0</iCommunist>
 			<iFascist>0</iFascist>
@@ -2169,7 +2169,7 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
+			<iConservative>0</iConservative>
 			<iLiberal>0</iLiberal>
 			<iCommunist>0</iCommunist>
 			<iFascist>0</iFascist>
@@ -2249,7 +2249,7 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
+			<iConservative>0</iConservative>
 			<iLiberal>0</iLiberal>
 			<iCommunist>0</iCommunist>
 			<iFascist>0</iFascist>
@@ -2319,7 +2319,7 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
+			<iConservative>0</iConservative>
 			<iLiberal>0</iLiberal>
 			<iCommunist>0</iCommunist>
 			<iFascist>0</iFascist>
@@ -2394,7 +2394,7 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
+			<iConservative>0</iConservative>
 			<iLiberal>0</iLiberal>
 			<iCommunist>0</iCommunist>
 			<iFascist>0</iFascist>
@@ -2418,6 +2418,7 @@
 			<iNumCitiesMaintenanceModifier>0</iNumCitiesMaintenanceModifier>
 			<iCorporationMaintenanceModifier>0</iCorporationMaintenanceModifier>
 			<iExtraHealth>0</iExtraHealth>
+			<iPopulationUnhappinessModifier>-10</iPopulationUnhappinessModifier>
 			<iFreeExperience>0</iFreeExperience>
 			<iWorkerSpeedModifier>0</iWorkerSpeedModifier>
 			<iImprovementUpgradeRateModifier>0</iImprovementUpgradeRateModifier>
@@ -2469,7 +2470,7 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
+			<iConservative>0</iConservative>
 			<iLiberal>0</iLiberal>
 			<iCommunist>0</iCommunist>
 			<iFascist>0</iFascist>
@@ -2545,7 +2546,7 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
+			<iConservative>0</iConservative>
 			<iLiberal>0</iLiberal>
 			<iCommunist>0</iCommunist>
 			<iFascist>0</iFascist>
@@ -2616,7 +2617,7 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
+			<iConservative>0</iConservative>
 			<iLiberal>0</iLiberal>
 			<iCommunist>0</iCommunist>
 			<iFascist>0</iFascist>
@@ -2699,7 +2700,7 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
+			<iConservative>0</iConservative>
 			<iLiberal>0</iLiberal>
 			<iCommunist>0</iCommunist>
 			<iFascist>0</iFascist>
@@ -2775,7 +2776,7 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
+			<iConservative>0</iConservative>
 			<iLiberal>0</iLiberal>
 			<iCommunist>0</iCommunist>
 			<iFascist>0</iFascist>
@@ -2852,7 +2853,7 @@
 			<FeatureHappinessChanges/>
 			<ImprovementYieldChanges/>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
+			<iConservative>0</iConservative>
 			<iLiberal>0</iLiberal>
 			<iCommunist>0</iCommunist>
 			<iFascist>0</iFascist>
@@ -2925,7 +2926,7 @@
 			<DomainProductionModifiers/>
 			<DomainExperienceModifiers/>
 			<WeLoveTheKing/>
-			<iMonarchist>0</iMonarchist>
+			<iConservative>0</iConservative>
 			<iLiberal>0</iLiberal>
 			<iCommunist>0</iCommunist>
 			<iFascist>0</iFascist>

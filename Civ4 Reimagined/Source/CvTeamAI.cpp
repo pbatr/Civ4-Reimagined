@@ -4133,9 +4133,31 @@ DenialTypes CvTeamAI::AI_openBordersTrade(TeamTypes eTeam) const
 }
 
 
+// Civ4 Reimagined
 int CvTeamAI::AI_defensivePactTradeVal(TeamTypes eTeam) const
 {
-	return ((getNumCities() + GET_TEAM(eTeam).getNumCities()) * 3);
+	int iValue = getPower(true) + GET_TEAM(eTeam).getPower(true) * 3;
+
+	if (isOpenBorders(eTeam))
+	{
+		iValue *= 2;
+	}
+
+	for (int iI = 0; iI < MAX_PLAYERS; iI++)
+	{
+		if (GET_PLAYER((PlayerTypes)iI).isAlive())
+		{
+			if (GET_PLAYER((PlayerTypes)iI).getTeam() == getID())
+			{
+				if ((GET_PLAYER((PlayerTypes)iI).getForeignTradeIdeologyModifier(IDEOLOGY_LIBERALISM) > 0) || (GET_PLAYER((PlayerTypes)iI).getBonusRatioModifierPerIdeologyCiv(IDEOLOGY_COMMUNISM) > 0))
+				{
+					iValue *=2;
+				}
+			}
+		}
+	}
+
+	return iValue / 50;
 }
 
 
@@ -4161,6 +4183,12 @@ DenialTypes CvTeamAI::AI_defensivePactTrade(TeamTypes eTeam) const
 	if (AI_getWorstEnemy() == eTeam)
 	{
 		return DENIAL_WORST_ENEMY;
+	}
+
+	// Civ4 Reimagined
+	if (GET_PLAYER(getLeaderID()).getIdeology() != GET_PLAYER(GET_TEAM(eTeam).getLeaderID()).getIdeology())
+	{
+		return DENIAL_IDEOLOGY;
 	}
 
 	eAttitude = AI_getAttitude(eTeam);

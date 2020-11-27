@@ -424,6 +424,7 @@ void CyPlayerPythonInterface1(python::class_<CyPlayer>& x)
 		.def("setCivics", &CyPlayer::setCivics, "void (int iCivicOptionType, int iCivicType) - Used to forcibly set civics with no anarchy")
 		
 		.def("getBonusValueModifier", &CyPlayer::getBonusValueModifier, "int () - ") // Civ4 Reimagined
+		.def("calculateBonusRatioModifier", &CyPlayer::calculateBonusRatioModifier, "int () - ") // Civ4 Reimagined
 		.def("getTechValue", &CyPlayer::getTechValue, "int () - ") // Civ4 Reimagined
 		.def("getBonusRatio", &CyPlayer::getBonusRatio, "int () - ") // Civ4 Reimagined
 		.def("getMayaCalendar", &CyPlayer::getMayaCalendar, "int () - return the next turn at which a great person will be generated for the Maya") // Civ4 Reimagined
@@ -433,7 +434,7 @@ void CyPlayerPythonInterface1(python::class_<CyPlayer>& x)
 		.def("setCombatExperience", &CyPlayer::setCombatExperience, "void (int) - Combat experience used to produce Warlords")
 		
 		.def("getSlavePoints", &CyPlayer::getSlavePoints, "int () - Current slave points")
-		.def("getSlaveThreshold", &CyPlayer::getSlaveThreshold, "int () - Slave points required to get next slave")
+		.def("getNewSlaveThreshold", &CyPlayer::getNewSlaveThreshold, "int () - Slave points required to get new slave")
 
 		.def("getSpecialistExtraYield", &CyPlayer::getSpecialistExtraYield, "int (int /*SpecialistTypes*/ eIndex1, int /*YieldTypes*/ eIndex2)")
 
@@ -466,5 +467,7 @@ void CyPlayerPythonInterface1(python::class_<CyPlayer>& x)
 		.def("getEventTriggered", &CyPlayer::getEventTriggered, python::return_value_policy<python::reference_existing_object>(), "EventTriggeredData* (int iID)")
 		.def("initTriggeredData", &CyPlayer::initTriggeredData, python::return_value_policy<python::reference_existing_object>(), "EventTriggeredData* (int eEventTrigger, bool bFire, int iCityId, int iPlotX, int iPlotY, PlayerTypes eOtherPlayer, int iOtherPlayerCityId, ReligionTypes eReligion, CorporationTypes eCorporation, int iUnitId, BuildingTypes eBuilding)")
 		.def("getEventTriggerWeight", &CyPlayer::getEventTriggerWeight, "int getEventTriggerWeight(int eEventTrigger)")
+		// Civ4 Reimagined
+		.def("getIdeology", &CyPlayer::getIdeology, "int ()")
 		;
 }

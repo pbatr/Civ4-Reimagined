@@ -115,6 +115,10 @@ public:
 	int getYieldRateModifier(PlayerTypes eIndex1, YieldTypes eIndex2) const;	// Exposed to Python
 	void changeYieldRateModifier(PlayerTypes eIndex1, YieldTypes eIndex2, int iChange);
 
+	// Civ4 Reimagined
+	int getTradeYieldModifier(PlayerTypes eIndex1, YieldTypes eIndex2) const;
+	void changeTradeYieldModifier(PlayerTypes eIndex1, YieldTypes eIndex2, int iChange);
+
 	int getNumTrainAIUnits(PlayerTypes eIndex1, UnitAITypes eIndex2) const;		// Exposed to Python
 	void changeNumTrainAIUnits(PlayerTypes eIndex1, UnitAITypes eIndex2, int iChange);
 
@@ -165,6 +169,7 @@ protected:
 	int** m_aaiNumTrainAIUnits;
 	int** m_aaiNumAIUnits;
 	// Civ4 Reimagined
+	int** m_aaiTradeYieldModifier;
 	int** m_aaiFreeBuilding;
 
 	int* m_paiNumBonuses;

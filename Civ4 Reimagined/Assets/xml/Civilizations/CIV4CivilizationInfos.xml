@@ -922,7 +922,7 @@
 			<Leaders>
 				<Leader>
 					<LeaderName>LEADER_BRENNUS</LeaderName>
-					<bLeaderAvailability>1</bLeaderAvailability>
+					<bLeaderAvailability>0</bLeaderAvailability>
 				</Leader>
 				<Leader>
 					<LeaderName>LEADER_BOUDICA</LeaderName>
@@ -2581,6 +2581,10 @@
 			<Leaders>
 				<Leader>
 					<LeaderName>LEADER_SURYAVARMAN</LeaderName>
+					<bLeaderAvailability>1</bLeaderAvailability>
+				</Leader>
+				<Leader>
+					<LeaderName>LEADER_JAYAVARMAN</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
 			</Leaders>

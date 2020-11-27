@@ -440,6 +440,7 @@ public:
 	void setCivics(int /*CivicOptionTypes*/ eIndex, int /*CivicTypes*/ eNewValue);
 
 	int getBonusValueModifier(); /// Civ4 Reimagined
+	int calculateBonusRatioModifier(); // Civ4 Reimagined
 	int getTechValue(); // Civ4 Reimagined
 	int getBonusRatio(); // Civ4 Reimagined
 	int getMayaCalendar(); // Civ4 Reimagined
@@ -450,7 +451,7 @@ public:
 	
 	// Civ4 Reimagined
 	int getSlavePoints() const;
-	int getSlaveThreshold() const;
+	int getNewSlaveThreshold() const;
 
 	int getSpecialistExtraYield(int /*SpecialistTypes*/ eIndex1, int /*YieldTypes*/ eIndex2);
 
@@ -529,6 +530,9 @@ public:
 	
 	// Civ4 Reimagined
 	int getBuildingYieldChange(int /*BuildingClassTypes*/ eIndex1, int /*YieldTypes*/ eIndex2) const;
+
+	// Civ4 Reimagined
+	int /*IdeologyTypes*/ getIdeology() const;
 
 private:
 	CvPlayer* m_pPlayer;

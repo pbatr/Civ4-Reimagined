@@ -388,8 +388,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_NO_CONQUEST_RESISTANCE</Tag>
-		<English>[ICON_BULLET]No City Resistance on Conquest</English>
-		<French>[ICON_BULLET]Aucune résistance des villes conquises</French>
+		<English>[ICON_BULLET]Conquered Cities do not Resist and Adjacent Culture is Destroyed</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_FIRST_FREE_TECH</Tag>
@@ -1403,7 +1402,27 @@
 		<English>[ICON_BULLET]Provides Additional %d1 Range to Cargo Units</English>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_UNIT_FREE_UNIT</Tag>
+		<English>[ICON_BULLET]Provides a Free %s1_UnitName when Constructed</English>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_UNIT_AMERICAN_SUPERCARRIER</Tag>
 		<English>Supercarrier</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_FOOD_TRADE_ROUTES_THIS_CONTINENT</Tag>
+		<English>[ICON_BULLET]Trade Routes on this Continent provide [ICON_FOOD] (%d1%% of [ICON_COMMERCE])</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_OLYMPIASTADION</Tag>
+		<English>Olympiastadion</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_NO_CONSCRIPT_UNHAPPY</Tag>
+		<English>[ICON_BULLET]No Unhappiness from Drafting Units when Using the [LINK=CIVIC_CONSCRIPTION]Conscription[\LINK] Civic</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_ACTION_BUILDING_HURRY</Tag>
+		<English>[COLOR_WARNING_TEXT]Can only Hurry Production of a Building or a Project.[COLOR_REVERT]</English>
 	</TEXT>
 </Civ4GameText>

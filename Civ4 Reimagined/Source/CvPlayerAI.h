@@ -180,6 +180,8 @@ public:
 	int AI_getColonyAttitude(PlayerTypes ePlayer) const;
 	int AI_getNeedOpenBordersAttitude(PlayerTypes ePlayer) const; // Civ4 Reimagined
 	int AI_updateAttitudeCache(PlayerTypes ePlayer) const; // Civ4 Reimagined
+	int AI_getSameIdeologyAttitude(PlayerTypes ePlayer) const; // Civ4 Reimagined
+	int AI_getDifferentIdeologyAttitude(PlayerTypes ePlayer) const; // Civ4 Reimagined
 
 	PlayerVoteTypes AI_diploVote(const VoteSelectionSubData& kVoteData, VoteSourceTypes eVoteSource, bool bPropose);
 
@@ -255,8 +257,9 @@ public:
 // BBAI end
 
 	// Civ4 Reimagined
-	CivicTypes AI_bestCivic(CivicOptionTypes eCivicOption, int* iBestValue = 0, bool bNoWarWeariness = false, bool bStateReligion = true, int iHappy = 1) const;
-	int AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness = false, bool bStateReligion = true, int iHappy = 1) const;
+	CivicTypes AI_bestCivic(CivicOptionTypes eCivicOption, int* iBestValue = 0, bool bNoWarWeariness = false, bool bStateReligion = true, int iHappy = 1, IdeologyTypes eBestIdeology = NO_IDEOLOGY) const;
+	int AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness = false, bool bStateReligion = true, int iHappy = 1, IdeologyTypes eBestIdeology = NO_IDEOLOGY) const;
+	int AI_getBonusRatioModfierValue(const int iModifier) const;
 
 	ReligionTypes AI_bestReligion() const;
 	int AI_religionValue(ReligionTypes eReligion) const;
@@ -455,6 +458,9 @@ public:
 	bool AI_isFirstTech(TechTypes eTech) const;
 
 	void AI_ClearConstructionValueCache(); // K-Mod
+
+	// Civ4 Reimagined
+	IdeologyTypes AI_bestIdeology(CivicTypes* paeCivics) const;
 
 	// for serialization
 	virtual void read(FDataStreamBase* pStream);

@@ -16207,7 +16207,7 @@
 			</TriggerTexts>
 			<bSinglePlayer>0</bSinglePlayer>
 			<iPercentGamesActive>100</iPercentGamesActive>
-			<iWeight>100</iWeight>
+			<iWeight>110</iWeight>
 			<bProbabilityUnitMultiply>0</bProbabilityUnitMultiply>
 			<bProbabilityBuildingMultiply>0</bProbabilityBuildingMultiply>
 			<Civic>NONE</Civic>
@@ -16257,7 +16257,10 @@
 			</Events>
 			<PrereqEvents/>
 			<bPrereqEventPlot>0</bPrereqEventPlot>
-			<OrPreReqs/>
+			<OrPreReqs>
+				<PrereqTech>TECH_STEEL</PrereqTech>
+				<PrereqTech>TECH_ASSEMBLY_LINE</PrereqTech>
+			</OrPreReqs>
 			<AndPreReqs/>
 			<ObsoleteTechs/>
 			<bRecurring>0</bRecurring>

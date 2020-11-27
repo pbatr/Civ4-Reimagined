@@ -118,4 +118,44 @@
 		<Tag>AI_DIPLO_DEMAND_TRIBUTE_POWER_STRONGER_LEADER_SEJONG_1</Tag>
 		<English>Our cannons are loud, our arrows are sharp, and our soldiers are strong. You would be a fool were you deny this to the [OUR_EMPIRE].</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_LEADER_JAYAVARMAN</Tag>
+		<English>Jayavarman VII</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_LEADER_JAYAVARMAN_PEDIA</Tag>
+		<English>[H1]Jayavarman VII[\H1][NEWLINE][BOLD]King of the Khmer Empire[\BOLD][NEWLINE][BOLD]Lived: [\BOLD]1125 - 1215[NEWLINE][PARAGRAPH:1] Jayavarman VII was born around 1120 or 1125, son of King Dharanindravarman II (r. 1150 - 1160) and queen Sri Jayarajacudamani. He married a very religious, strong-minded, and devote princess, Jayarajadevi, who exerted an important influence on him, both before he gained the throne and during the early years of his reign. He was one of the most forceful and productive kings of the Khmer Empire of Angkor. He expanded the empire to its greatest territorial extent and engaged in a building program that yielded numerous temple, highways, rest houses, and hospitals.[PARAGRAPH:1] Though practically nothing is known of Jayavarman's childhood and youth, it is clear that during his late 30s and early 40s he settled in the neighboring kingdom of Champa, in what is now the central region of Vietnam. When his father died, his brother or cousin - Yasovarman - appears to have claimed the throne, in which Jayavarman seems to renounce and to have gone on a voluntary exile to Champa. He left his wife and went to Champa alone. In 1166 Tribhuvanadityavarman, a court official, usurped the throne of King Yasovarman. When Prince Jayavarman received word of a palace rebellion, he hastened to return to Cambodia - perhaps to support King Yasovarman II or to assert his own rights to the throne. But his was too late. When he arrived, Yasovarman was already dead and the usurper firmly seated on the throne. Jayavarman seemed unwilling to attempt to overthrow Tribhuvanadityavarman by force; instead he decided to remain in his homeland and to await an opportunity to assert his own claim to the throne.[PARAGRAPH:1] Some 12 years later, when Jayavarman was in his late 50s, that opportunity came as a result of a Cham invasion in 1177, which brought about the demise of Tribhuvanadityavarman, the sacking of Angkor, and its subjection to foreign rule. In this situation Jayavarman organized a struggle for independence and in less than five years he succeeded in driving out the invaders and establishing his hegemony over all his Cambodian rivals. Finally in 1181, at the age of 61, he was crowned a sole king of Khmer Empire and began a brilliant reign of more than 30 years, during which he brought the empire to its zenith, both in terms of territorial expansion and of royal architecture and construction.[PARAGRAPH:1] Jayavarman VII was a warrior. The greatest military achievement of his reign - perhaps the greatest of the entire history of Cambodia - was the capture and sack of the capital of its rich and powerful neighbor, Champa, in 1190. His military activities also bringing southern Laos, portions of the Malay Peninsula and Burma under his control. But increasingly he devoted his energies and organizational capacities to the kind of religious and religio-political construction projects that had been carried on by his royal predecessors. He built a large number of awesome new temples, including the Bayon, a distinctively Mahayana Buddhist central pyramid temple designed to serve as the primary locus of the royal cult and also as his own personal mausoleum; personal funerary temples of the Mahayana type, which were dedicated to his mother and father; and a series of provincial temples, which housed reduced replicas of the Royal Buddha. He rebuilt the city of Angkor Thom and rebuilt and extended the system of highways, which radiated outward from the Bayon and the royal palace and reached far into the provinces. In addition, he constructed 121 rest houses along these roads. During his reign, the King built 102 hospitals, which he dispersed throughout his kingdom. Those hospitals were built in an attempt to improve conditions of the King's subject.[PARAGRAPH:1] Jayavarman succeeded during his lifetime in creating a legacy that few monarchs in Khmer history have been able to equal. He was more than 90 years old when he died in around 1215.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_FIRST_CONTACT_LEADER_JAYAVARMAN_1</Tag>
+		<English>Greetings. I am [OUR_NAME]. Always be pleasant, [CT_NAME], and your reputation will be fragrant and pervasive within the [OUR_EMPIRE].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_REFUSE_TO_TALK_LEADER_JAYAVARMAN_1</Tag>
+		<English>I don't wish to talk to you at the moment. Leave my presence at once!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_NO_PEACE_LEADER_JAYAVARMAN_1</Tag>
+		<English>Afraid of my capabilities, huh?! Sorry, I'm determined to defeat you and depose you from your throne</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_GREETINGS_ATT_FR_LEADER_JAYAVARMAN_1</Tag>
+		<English>Good day to you, [CT_NAME]! What is the purpose of your visit to my kingdom?</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_GREETINGS_ATT_FUR_LEADER_JAYAVARMAN_1</Tag>
+		<English>My people have suffered enough! Having you around here doesn't make them feel any better...</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_DEMAND_TRIBUTE_POWER_WEAKER_JAYAVARMAN_1</Tag>
+		<English>Could you spare this for building a new hospital for the [OUR_CIV_ADJ] people?</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_DEMAND_TRIBUTE_POWER_EQUAL_JAYAVARMAN_1</Tag>
+		<English>Sharing is caring, [CT_NAME], don't you agree?!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>AI_DIPLO_DEMAND_TRIBUTE_POWER_STRONGER_JAYAVARMAN_1</Tag>
+		<English>Hand this over or we might come and take it!</English>
+	</TEXT>
 </Civ4GameText>

@@ -205,6 +205,7 @@ void CyInfoPythonInterface3()
 	python::class_<CvProjectInfo, python::bases<CvInfoBase> >("CvProjectInfo")
 		.def("getVictoryPrereq", &CvProjectInfo::getVictoryPrereq, "int ()")
 		.def("getTechPrereq", &CvProjectInfo::getTechPrereq, "int ()")
+		.def("getIdeologyPrereq", &CvProjectInfo::getIdeologyPrereq, "int ()") // Civ4 Reimagined
 		.def("getAnyoneProjectPrereq", &CvProjectInfo::getAnyoneProjectPrereq, "int ()")
 		.def("getMaxGlobalInstances", &CvProjectInfo::getMaxGlobalInstances, "int ()")
 		.def("getMaxTeamInstances", &CvProjectInfo::getMaxTeamInstances, "int ()")
@@ -252,6 +253,14 @@ void CyInfoPythonInterface3()
 		.def("getGlobalReligionCommerce", &CvReligionInfo::getGlobalReligionCommerce, "int (int i)")
 		.def("getHolyCityCommerce", &CvReligionInfo::getHolyCityCommerce, "int (int i)")
 		.def("getStateReligionCommerce", &CvReligionInfo::getStateReligionCommerce, "int (int i)")
+		;
+
+	// Civ4 Reimagined
+	python::class_<CvIdeologyInfo, python::bases<CvInfoBase> >("CvIdeologyInfo")
+		.def("getChar", &CvIdeologyInfo::getChar, "int ()")
+		.def("getTechPrereq", &CvIdeologyInfo::getTechPrereq, "int ()")
+
+		.def("getAdjectiveKey", &CvIdeologyInfo::pyGetAdjectiveKey, "wstring ()")
 		;
 
 	python::class_<CvCorporationInfo, python::bases<CvInfoBase> >("CvCorporationInfo")

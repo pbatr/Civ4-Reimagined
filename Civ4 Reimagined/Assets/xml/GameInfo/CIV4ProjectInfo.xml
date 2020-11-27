@@ -84,7 +84,7 @@
 			<AnyonePrereqProject>NONE</AnyonePrereqProject>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
 			<iMaxTeamInstances>1</iMaxTeamInstances>
-			<iCost>1500</iCost>
+			<iCost>1400</iCost>
 			<iNukeInterception>0</iNukeInterception>
 			<iTechShare>0</iTechShare>
 			<EveryoneSpecialUnit>NONE</EveryoneSpecialUnit>
@@ -117,7 +117,7 @@
 			<AnyonePrereqProject>NONE</AnyonePrereqProject>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
 			<iMaxTeamInstances>1</iMaxTeamInstances>
-			<iCost>1500</iCost>
+			<iCost>1400</iCost>
 			<iNukeInterception>0</iNukeInterception>
 			<iTechShare>0</iTechShare>
 			<EveryoneSpecialUnit>NONE</EveryoneSpecialUnit>
@@ -160,7 +160,7 @@
 			<AnyonePrereqProject>NONE</AnyonePrereqProject>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
 			<iMaxTeamInstances>1</iMaxTeamInstances>
-			<iCost>1500</iCost>
+			<iCost>1400</iCost>
 			<iNukeInterception>0</iNukeInterception>
 			<iTechShare>0</iTechShare>
 			<EveryoneSpecialUnit>NONE</EveryoneSpecialUnit>
@@ -203,7 +203,7 @@
 			<AnyonePrereqProject>NONE</AnyonePrereqProject>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
 			<iMaxTeamInstances>1</iMaxTeamInstances>
-			<iCost>1800</iCost>
+			<iCost>1600</iCost>
 			<iNukeInterception>0</iNukeInterception>
 			<iTechShare>0</iTechShare>
 			<EveryoneSpecialUnit>NONE</EveryoneSpecialUnit>
@@ -241,7 +241,7 @@
 			<AnyonePrereqProject>NONE</AnyonePrereqProject>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
 			<iMaxTeamInstances>1</iMaxTeamInstances>
-			<iCost>2000</iCost>
+			<iCost>1800</iCost>
 			<iNukeInterception>0</iNukeInterception>
 			<iTechShare>0</iTechShare>
 			<EveryoneSpecialUnit>NONE</EveryoneSpecialUnit>
@@ -284,7 +284,7 @@
 			<AnyonePrereqProject>NONE</AnyonePrereqProject>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
 			<iMaxTeamInstances>2</iMaxTeamInstances>
-			<iCost>1200</iCost>
+			<iCost>1000</iCost>
 			<iNukeInterception>0</iNukeInterception>
 			<iTechShare>0</iTechShare>
 			<EveryoneSpecialUnit>NONE</EveryoneSpecialUnit>
@@ -327,7 +327,7 @@
 			<AnyonePrereqProject>NONE</AnyonePrereqProject>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
 			<iMaxTeamInstances>5</iMaxTeamInstances>
-			<iCost>1600</iCost>
+			<iCost>1500</iCost>
 			<iNukeInterception>0</iNukeInterception>
 			<iTechShare>0</iTechShare>
 			<EveryoneSpecialUnit>NONE</EveryoneSpecialUnit>
@@ -375,7 +375,7 @@
 			<AnyonePrereqProject>NONE</AnyonePrereqProject>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
 			<iMaxTeamInstances>5</iMaxTeamInstances>
-			<iCost>1600</iCost>
+			<iCost>1500</iCost>
 			<iNukeInterception>0</iNukeInterception>
 			<iTechShare>0</iTechShare>
 			<EveryoneSpecialUnit>NONE</EveryoneSpecialUnit>
@@ -411,6 +411,42 @@
 			</BonusProductionModifiers>
 			<CreateSound/>
 			<MovieDefineTag/>
+		</ProjectInfo>
+		<ProjectInfo>
+			<Type>PROJECT_COMMUNIST_MANIFESTO</Type>
+			<Description>TXT_KEY_PROJECT_COMMUNIST_MANIFESTO</Description>
+			<Civilopedia>TXT_KEY_PROJECT_COMMUNIST_MANIFESTO_PEDIA</Civilopedia>
+			<Strategy>TXT_KEY_PROJECT_COMMUNIST_MANIFESTO_STRATEGY</Strategy>
+			<VictoryPrereq>NONE</VictoryPrereq>
+			<TechPrereq>TECH_UTOPIA</TechPrereq>
+			<TechPrereq2>NONE</TechPrereq2>
+			<IdeologyPrereq>IDEOLOGY_COMMUNISM</IdeologyPrereq>
+			<AnyonePrereqProject>NONE</AnyonePrereqProject>
+			<iMaxGlobalInstances>1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iCost>400</iCost>
+			<iNukeInterception>0</iNukeInterception>
+			<iTechShare>0</iTechShare>
+			<EveryoneSpecialUnit>NONE</EveryoneSpecialUnit>
+			<EveryoneSpecialBuilding>NONE</EveryoneSpecialBuilding>
+			<EveryoneTechnology>TECH_UTOPIA</EveryoneTechnology>
+			<bSpaceship>0</bSpaceship>
+			<bAllowsNukes>0</bAllowsNukes>
+			<Button>Art/Interface/Buttons/Wonders/communist_manifesto.dds</Button>
+			<PrereqProjects/>
+			<VictoryThresholds/>
+			<VictoryMinThresholds/>
+			<iVictoryDelayPercent>0</iVictoryDelayPercent>
+			<iSuccessRate>0</iSuccessRate>
+			<BonusRatioIdeologyModifiers>
+				<BonusRatioIdeologyModifier>
+					<IdeologyType>IDEOLOGY_COMMUNISM</IdeologyType>
+					<BonusRatioModifier>10</BonusRatioModifier>
+				</BonusRatioIdeologyModifier>
+			</BonusRatioIdeologyModifiers>
+			<BonusProductionModifiers/>
+			<CreateSound/>
+			<MovieDefineTag>ART_DEF_MOVIE_COMMUNIST_MANIFESTO</MovieDefineTag>
 		</ProjectInfo>
 	</ProjectInfos>
 </Civ4ProjectInfo>

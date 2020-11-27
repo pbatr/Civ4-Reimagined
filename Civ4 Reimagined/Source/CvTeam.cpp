@@ -224,6 +224,7 @@ void CvTeam::reset(TeamTypes eID, bool bConstructorCall)
 	m_iRiverTradeCount = 0;
 	m_iEspionagePointsEver = 0;
 	m_iNoConquestResistanceCount = 0; //Civ4 Reimagined
+	m_iNoConscriptUnhappinessCount = 0; //Civ4 Reimagined
 	m_iCanFarmHillsCount = 0; //Civ4 Reimagined
 
 	m_bMapCentering = false;
@@ -1020,10 +1021,16 @@ void CvTeam::processBuilding(BuildingTypes eBuilding, int iChange)
 		}
 	}
 	
+	// Civ4 Reimagined
 	if (GC.getBuildingInfo(eBuilding).isNoConquestResistance())
 	{
 		changeNoConquestResistanceCount(iChange);
 		if (gTeamLogLevel > 2) logBBAI("IsNoCityConquestResistance: %d", (int)isNoConquestResistance());
+	}
+
+	if (GC.getBuildingInfo(eBuilding).isNoConscriptUnhappiness())
+	{
+		changeNoConscriptUnhappinessCount(iChange);
 	}
 	
 	// Civ4 Reimagined
@@ -4831,6 +4838,12 @@ void CvTeam::changeProjectCount(ProjectTypes eIndex, int iChange)
 				GC.getGameINLINE().makeSpecialBuildingValid((SpecialBuildingTypes)(kProject.getEveryoneSpecialBuilding()));
 			}
 
+			// Civ4 Reimagined
+			if (kProject.getEveryoneTechnology() != NO_TECH)
+			{
+				GC.getGameINLINE().grantTechnologyToAll((TechTypes)(kProject.getEveryoneTechnology()));
+			}
+
 			if (kProject.isAllowsNukes())
 			{
 				GC.getGameINLINE().makeNukesValid(true);
@@ -4842,6 +4855,15 @@ void CvTeam::changeProjectCount(ProjectTypes eIndex, int iChange)
 				{
 					if (GET_PLAYER((PlayerTypes)iI).getTeam() == getID())
 					{
+						// Civ4 Reimagined
+						for (iJ = 0; iJ < GC.getNumIdeologyInfos(); iJ++)
+						{
+							if (kProject.getBonusRatioIdeologyModifier(iJ) != 0)
+							{
+								GET_PLAYER((PlayerTypes)iI).changeBonusRatioModifierPerIdeologyCiv((IdeologyTypes)iJ, kProject.getBonusRatioIdeologyModifier(iJ));
+							}
+						}
+
 						if (!(GET_PLAYER((PlayerTypes)iI).isHuman()))
 						{
 							bChangeProduction = false;
@@ -5228,6 +5250,28 @@ void CvTeam::changeNoConquestResistanceCount(int iChange)
 }
 
 // Civ4 Reimagined
+int CvTeam::getNoConscriptUnhappinessCount() const
+{
+	return m_iNoConscriptUnhappinessCount;
+}
+
+// Civ4 Reimagined
+bool CvTeam::isNoConscriptUnhappiness() const
+{
+	return (getNoConscriptUnhappinessCount() > 0);
+}
+
+// Civ4 Reimagined
+void CvTeam::changeNoConscriptUnhappinessCount(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iNoConscriptUnhappinessCount += iChange;
+		FAssert(getNoConscriptUnhappinessCount() >= 0);
+	}
+}
+
+// Civ4 Reimagined
 int CvTeam::getCanFarmHillsCount() const
 {
 	return m_iCanFarmHillsCount;
@@ -5569,6 +5613,17 @@ void CvTeam::setHasTech(TechTypes eIndex, bool bNewValue, PlayerTypes ePlayer, b
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
 
+			// Civ4 Reimagined
+			bool bEnablesCivic = false;
+			for (iI = 0; iI < GC.getNumCivicInfos(); iI++)
+			{
+				if (GC.getCivicInfo((CivicTypes)iI).getTechPrereq() == eIndex)
+				{
+					bEnablesCivic = true;
+					break;
+				}
+			}
+
 			for (iI = 0; iI < MAX_PLAYERS; iI++)
 			{
 				if (GET_PLAYER((PlayerTypes)iI).getTeam() == getID())
@@ -5576,6 +5631,12 @@ void CvTeam::setHasTech(TechTypes eIndex, bool bNewValue, PlayerTypes ePlayer, b
 					if (GET_PLAYER((PlayerTypes)iI).getCurrentEra() < GC.getTechInfo(eIndex).getEra())
 					{
 						GET_PLAYER((PlayerTypes)iI).setCurrentEra((EraTypes)(GC.getTechInfo(eIndex).getEra()));
+					}
+
+					// Civ4 Reimagined
+					if (bEnablesCivic)
+					{
+						GET_PLAYER((PlayerTypes)iI).AI_setCivicTimer(0);
 					}
 				}
 			}
@@ -6680,6 +6741,7 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 			GET_PLAYER((PlayerTypes)iI).changeAssets(GC.getTechInfo(eTech).getAssetValue() * iChange);
 			GET_PLAYER((PlayerTypes)iI).changePower(GC.getTechInfo(eTech).getPowerValue() * iChange);
 			GET_PLAYER((PlayerTypes)iI).changeTechScore(getTechScore(eTech) * iChange);
+			GET_PLAYER((PlayerTypes)iI).updateIdeology(); // Civ4 Reimagined
 			
 			// Civ4 Reimagined
 			if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS))
@@ -6907,6 +6969,7 @@ void CvTeam::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iRiverTradeCount);
 	pStream->Read(&m_iEspionagePointsEver);
 	pStream->Read(&m_iNoConquestResistanceCount); // Civ4 Reimagined
+	pStream->Read(&m_iNoConscriptUnhappinessCount); // Civ4 Reimagined
 	pStream->Read(&m_iCanFarmHillsCount); // Civ4 Reimagined
 
 	pStream->Read(&m_bMapCentering);
@@ -7022,6 +7085,7 @@ void CvTeam::write(FDataStreamBase* pStream)
 	pStream->Write(m_iRiverTradeCount);
 	pStream->Write(m_iEspionagePointsEver);
 	pStream->Write(m_iNoConquestResistanceCount); // Civ4 Reimagined
+	pStream->Write(m_iNoConscriptUnhappinessCount); // Civ4 Reimagined
 	pStream->Write(m_iCanFarmHillsCount); // Civ4 Reimagined
 
 	pStream->Write(m_bMapCentering);

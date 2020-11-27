@@ -1140,14 +1140,21 @@ bool CvPlot::isPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes eBonus) c
 
 bool CvPlot::isAdjacentPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes eBonus) const
 {
+	return (getAdjacentPlotGroupConnectedBonus(ePlayer, eBonus) > 0);
+}
+
+// Civ4 Reimagined
+int CvPlot::getAdjacentPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes eBonus) const
+{
 	CvPlot* pAdjacentPlot;
 	int iI;
+	int iMaxBonusCount = 0;
 
 	// K-Mod. Allow this plot to have whatever resources are available in the city working the plot.
 	// (The purpose of this is to allow railroads to be built the 'oil' from Standard Ethonol.)
 	CvCity* pCity = getWorkingCity();
 	if (pCity && pCity->getOwnerINLINE() == ePlayer && pCity->hasBonus(eBonus))
-		return true;
+		iMaxBonusCount = std::max(iMaxBonusCount, pCity->getNumBonuses(eBonus));
 	// K-Mod end
 
 	for (iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
@@ -1156,14 +1163,11 @@ bool CvPlot::isAdjacentPlotGroupConnectedBonus(PlayerTypes ePlayer, BonusTypes e
 
 		if (pAdjacentPlot != NULL)
 		{
-			if (pAdjacentPlot->isPlotGroupConnectedBonus(ePlayer, eBonus))
-			{
-				return true;
-			}
+			iMaxBonusCount = std::max(iMaxBonusCount, pAdjacentPlot->getPlotGroupConnectedBonus(ePlayer, eBonus));
 		}
 	}
 
-	return false;
+	return iMaxBonusCount;
 }
 
 
@@ -2570,9 +2574,9 @@ int CvPlot::getBuildTurnsLeft(BuildTypes eBuild, int iNowExtra, int iThenExtra) 
 		{
 			if (pLoopUnit->canMove())
 			{
-				iNowBuildRate += pLoopUnit->workRate(false);
+				iNowBuildRate += pLoopUnit->workRate(false, eBuild);
 			}
-			iThenBuildRate += pLoopUnit->workRate(true);
+			iThenBuildRate += pLoopUnit->workRate(true, eBuild);
 		}
 	}
 
@@ -2897,6 +2901,34 @@ int CvPlot::movementCost(const CvUnit* pUnit, const CvPlot* pFromPlot) const
 			               (GC.getRouteInfo(getRouteType()).getMovementCost() + GET_TEAM(pUnit->getTeam()).getRouteChange(getRouteType())));
 		iRouteFlatCost = std::max((GC.getRouteInfo(pFromPlot->getRouteType()).getFlatMovementCost() * pUnit->baseMoves()),
 			                   (GC.getRouteInfo(getRouteType()).getFlatMovementCost() * pUnit->baseMoves()));
+		
+		// Civ4 Reimagined: Quantifiable Resource System
+		// Increase flat route cost when low on resources required to build the improvement
+		// Checks only if the starting plot is connected to the required resources, not the end plot
+		if (GC.getRouteInfo(pFromPlot->getRouteType()).getPrereqBonus() != NO_BONUS)
+		{
+			int iBonusCount = pFromPlot->getPlotGroupConnectedBonus(pUnit->getOwnerINLINE(), ((BonusTypes)(GC.getRouteInfo(pFromPlot->getRouteType()).getPrereqBonus())));
+			int iBonusValue = GET_PLAYER(pUnit->getOwnerINLINE()).getBonusValueTimes100(iBonusCount);
+			iRouteFlatCost *= 100;
+			iRouteFlatCost /= std::max(iBonusValue, 1);
+		}
+		
+		int iMaxBonusCount = 0;
+		bool bHasPrereqOrBonusRequirement = false;
+		for (int i = 0; i < GC.getNUM_ROUTE_PREREQ_OR_BONUSES(); ++i)
+		{
+			if (NO_BONUS != GC.getRouteInfo(pFromPlot->getRouteType()).getPrereqOrBonus(i))
+			{
+				bHasPrereqOrBonusRequirement = true;
+				iMaxBonusCount = std::max(iMaxBonusCount, pFromPlot->getPlotGroupConnectedBonus(pUnit->getOwnerINLINE(), ((BonusTypes)(GC.getRouteInfo(pFromPlot->getRouteType()).getPrereqOrBonus(i)))));
+			}
+		}
+		if (bHasPrereqOrBonusRequirement)
+		{
+			int iBonusValue = GET_PLAYER(pUnit->getOwnerINLINE()).getBonusValueTimes100(iMaxBonusCount);
+			iRouteFlatCost *= 100;
+			iRouteFlatCost /= std::max(iBonusValue, 1);	
+		}	
 	}
 	else
 	{
@@ -9066,6 +9098,8 @@ void CvPlot::processArea(CvArea* pArea, int iChange)
 				for (iJ = 0; iJ < NUM_YIELD_TYPES; iJ++)
 				{
 					pArea->changeYieldRateModifier(pCity->getOwnerINLINE(), ((YieldTypes)iJ), (GC.getBuildingInfo((BuildingTypes)iI).getAreaYieldModifier(iJ) * iChange * pCity->getNumActiveBuilding((BuildingTypes)iI)));
+					// Civ4 Reimagined
+					pArea->changeTradeYieldModifier(pCity->getOwnerINLINE(), ((YieldTypes)iJ), (GC.getBuildingInfo((BuildingTypes)iI).getAreaYieldModifier(iJ) * iChange * pCity->getNumActiveBuilding((BuildingTypes)iI)));
 				}
 
 				// Civ4 Reimagined

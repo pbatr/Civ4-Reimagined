@@ -128,7 +128,7 @@ public:
 	int countKnownTechNumTeams(TechTypes eTech);														// Exposed to Python
 	int getNumFreeBonuses(BuildingTypes eBuilding);													// Exposed to Python
 
-	bool areIdeologiesEnabled() const; // Civ4 Reimagined
+	bool areIdeologiesEnabled() const; // Civ4 Reimagined // Exposed to Python
 	void enableIdeologies(bool bEnable); // Civ4 Reimagined
 	
 	int countReligionLevels(ReligionTypes eReligion);							// Exposed to Python 
@@ -401,6 +401,8 @@ public:
 	bool isNukesValid() const;														// Exposed to Python  
 	void makeNukesValid(bool bValid = true);													// Exposed to Python
 
+	void grantTechnologyToAll(TechTypes eIndex); // Civ4 Reimagined
+
 	bool isInAdvancedStart() const;														// Exposed to Python  
 
 	DllExport void setVoteChosen(int iSelection, int iVoteId);
@@ -542,6 +544,13 @@ public:
 
 	bool pythonIsBonusIgnoreLatitudes() const;
 
+	// Civ4 Reimagined
+	void updateIdeologyCount();
+	int getIdeologyCount(IdeologyTypes eIndex) const;
+	void changeIdeologyCombatExperience(IdeologyTypes eIdeology, int iChange);
+	void setIdeologyCombatExperienceOwner(IdeologyTypes eIdeology, PlayerTypes ePlayer);
+	PlayerTypes getIdeologyCombatExperienceOwner(IdeologyTypes eIdeology) const;
+
 	DllExport void getGlobeLayers(std::vector<CvGlobeLayerData>& aLayers) const;
 	DllExport void startFlyoutMenu(const CvPlot* pPlot, std::vector<CvFlyoutMenuData>& aFlyoutItems) const;
 	DllExport void applyFlyoutMenu(const CvFlyoutMenuData& kItem);
@@ -653,6 +662,8 @@ protected:
 	int* m_aiSecretaryGeneralTimer;
 	int* m_aiVoteTimer;
 	int* m_aiDiploVote;
+	int* m_aiIdeologyPlayerCount; // Civ4 Reimagined
+	PlayerTypes* m_paiIdeologyCombatExperienceOwner; // Civ4 Reimagined
 
 	bool* m_pabSpecialUnitValid;
 	bool* m_pabSpecialBuildingValid;

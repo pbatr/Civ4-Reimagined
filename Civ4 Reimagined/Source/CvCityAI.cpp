@@ -1455,9 +1455,13 @@ void CvCityAI::AI_chooseProduction()
 		{
 			if( kPlayer.getCapitalCity() == NULL || area()->getPopulationPerPlayer(getOwnerINLINE()) > kPlayer.getCapitalCity()->area()->getPopulationPerPlayer(getOwnerINLINE()) )
 			{
-				if (AI_chooseBuilding(BUILDINGFOCUS_CAPITAL, 15))
+				// Civ4 Reimagined: Colonies should rather be split from the empire instead of changing capital
+				if (calculateColonyMaintenance() == 0)
 				{
-					return;
+					if (AI_chooseBuilding(BUILDINGFOCUS_CAPITAL, 15))
+					{
+						return;
+					}
 				}
 			}
 		}
@@ -4105,10 +4109,36 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 			int iGlobalTradeValue = (bForeignTrade ? 5 : 3) * (2*(kOwner.getCurrentEra()+1) + GC.getNumEraInfos()) / GC.getNumEraInfos();
 
 			iTempValue += 5 * kBuilding.getTradeRouteModifier() * getTradeYield(YIELD_COMMERCE) / std::max(1, iTotalTradeModifier);
-				
+
+			// Civ4 Reimagined
+			for (int iI = 0; iI < NUM_YIELD_TYPES; iI++)
+			{
+				int iAreaTradeYieldValue = 5 * iNumCitiesInArea * kBuilding.getAreaTradeYieldModifier((YieldTypes)iI) * getTradeYield(YIELD_COMMERCE) / std::max(1, iTotalTradeModifier) / iNumCities;
+
+				if (iAreaTradeYieldValue != 0 && (YieldTypes)iI != YIELD_COMMERCE)
+				{
+					iAreaTradeYieldValue *= kOwner.AI_yieldWeight((YieldTypes)iI);
+					iAreaTradeYieldValue /= 100;
+				}
+
+				iTempValue += iAreaTradeYieldValue;
+			}
+
 			if (bForeignTrade)
 			{
 				iTempValue += 5 * iForeignTradeRoutes * kBuilding.getForeignTradeRouteModifier() * getTradeYield(YIELD_COMMERCE) / std::max(1, iTotalTradeModifier) / iNumTradeRoutes;
+
+				// Civ4 Reimagined
+				for (IdeologyTypes eIdeology = (IdeologyTypes)0; eIdeology < GC.getNumIdeologyInfos(); eIdeology = (IdeologyTypes)(eIdeology+1))
+				{
+					if (kBuilding.getForeignTradeIdeologyModifier(eIdeology) == 0)
+					{
+						continue;
+					}
+
+					const int iIdeologyTradeRoutes = std::max(2, GC.getGameINLINE().getIdeologyCount(eIdeology)) * iCitiesTarget * 2;
+					iTempValue += 5 * iIdeologyTradeRoutes * kBuilding.getForeignTradeIdeologyModifier(eIdeology) * getTradeYield(YIELD_COMMERCE) / std::max(1, iTotalTradeModifier) / iNumTradeRoutes;
+				}
 			}
 
 			iTempValue += iTempValue += 5 * iOverseaTradeRoutes * kBuilding.getOverseaTradeRouteModifier() * getTradeYield(YIELD_COMMERCE) / std::max(1, iTotalTradeModifier) / iNumTradeRoutes;
@@ -4588,6 +4618,12 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 			{
 				iValue += bWarPlan ? 50 : 15;
 			}
+
+			// Civ4 Reimagined
+			if (kBuilding.isNoConscriptUnhappiness())
+			{
+				iValue += bWarPlan ? 50 : 25;
+			}
 			
 			// Civ4 Reimagined
 			if (kBuilding.isAllowsNukes())
@@ -4652,6 +4688,15 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 							iValue += (100 * (iNumCities - iReligionCount)) / (iNumCities * (iReligionCount + 1));
 						}
 					}
+				}
+			}
+
+			// Civ4 Reimagined
+			for (int iI = 0; iI < GC.getNumIdeologyInfos(); iI++)
+			{
+				if (kBuilding.getIdeologyCombatExperience(iI) > 0)
+				{
+					iValue += kBuilding.getIdeologyCombatExperience(iI);
 				}
 			}
 
@@ -6114,6 +6159,23 @@ int CvCityAI::AI_projectValue(ProjectTypes eProject)
 				iNukeValue /= 25;
 				iValue += iNukeValue;
 			}
+		}
+	}
+
+	// Civ4 Reimagined
+	// Communist Manifesto
+	for (int iI = 0; iI < GC.getNumIdeologyInfos(); iI++)
+	{
+		if (kProject.getBonusRatioIdeologyModifier(iI) != 0)
+		{
+			int iIdeologyCount = GC.getGameINLINE().getIdeologyCount((IdeologyTypes)iI);
+
+			if (GC.getIdeologyInfo((IdeologyTypes)iI).getTechPrereq() == kProject.getEveryoneTechnology())
+			{
+				iIdeologyCount = std::max(iIdeologyCount, GC.getGameINLINE().countCivTeamsAlive() / 3);
+			}
+
+			iValue += kOwner.AI_getBonusRatioModfierValue(kProject.getBonusRatioIdeologyModifier(iI) * iIdeologyCount);
 		}
 	}
 
@@ -8222,8 +8284,13 @@ void CvCityAI::AI_doDraft(bool bForce)
 				return;
 			}
 
-			// Large cities want a little spare happiness
-			int iHappyDiff = GC.getDefineINT("CONSCRIPT_POP_ANGER") - iConscriptPop + (bGoodValue ? 0 : getPopulation()/10);
+			// Civ4 Reimagined
+			int iHappyDiff = 0;
+
+			if (!GET_TEAM(getTeam()).isNoConscriptUnhappiness())
+			{
+				iHappyDiff = GC.getDefineINT("CONSCRIPT_POP_ANGER") - iConscriptPop + (bGoodValue ? 0 : getPopulation()/10);
+			}
 
 			if ((bGoodValue || bLandWar) && angryPopulation(iHappyDiff) == 0)
 			{

@@ -1984,7 +1984,8 @@ void CvDLLWidgetData::parseConscriptHelp(CvWidgetDataStruct &widgetDataStruct, C
 
 			int iConscriptAngerLength = pHeadSelectedCity->flatConscriptAngerLength();
 
-			if (iConscriptAngerLength > 0)
+			// Civ4 Reimagined
+			if (iConscriptAngerLength > 0 && !GET_TEAM(pHeadSelectedCity->getTeam()).isNoConscriptUnhappiness())
 			{
 				szBuffer.append(NEWLINE);
 				szBuffer.append(gDLL->getText("TXT_KEY_MISC_ANGER_TURNS", GC.getDefineINT("CONSCRIPT_POP_ANGER"), (iConscriptAngerLength + pHeadSelectedCity->getConscriptAngerTimer())));
@@ -2940,6 +2941,41 @@ void CvDLLWidgetData::parseActionHelp(CvWidgetDataStruct &widgetDataStruct, CvWS
 					iMovementCost = GC.getRouteInfo(eRoute).getMovementCost() + GET_TEAM(pHeadSelectedUnit->getTeam()).getRouteChange(eRoute);
 					iFlatMovementCost = GC.getRouteInfo(eRoute).getFlatMovementCost();
 
+					if (iFlatMovementCost > 0 && pMissionPlot && pHeadSelectedUnit)
+					{
+						// Civ4 Reimagined: Quantifiable Resource System
+						// Increase flat route cost when low on resources required to build the improvement
+						// Checks only if the starting plot is connected to the required resources, not the end plot
+						if (GC.getRouteInfo(eRoute).getPrereqBonus() != NO_BONUS)
+						{
+							int iBonusCount = pMissionPlot->getPlotGroupConnectedBonus(pHeadSelectedUnit->getOwnerINLINE(), ((BonusTypes)(GC.getRouteInfo(eRoute).getPrereqBonus())));
+
+							if (iBonusCount != 0)
+							{
+								int iBonusValue = GET_PLAYER(pHeadSelectedUnit->getOwnerINLINE()).getBonusValueTimes100(iBonusCount);
+								iFlatMovementCost *= 100;
+								iFlatMovementCost /= std::max(iBonusValue, 1);
+							}
+						}
+
+						int iMaxBonusCount = 0;
+						bool bHasPrereqOrBonusRequirement = false;
+						for (int i = 0; i < GC.getNUM_ROUTE_PREREQ_OR_BONUSES(); ++i)
+						{
+							if (NO_BONUS != GC.getRouteInfo(eRoute).getPrereqOrBonus(i))
+							{
+								bHasPrereqOrBonusRequirement = true;
+								iMaxBonusCount = std::max(iMaxBonusCount, pMissionPlot->getPlotGroupConnectedBonus(pHeadSelectedUnit->getOwnerINLINE(), ((BonusTypes)(GC.getRouteInfo(eRoute).getPrereqOrBonus(i)))));
+							}
+						}
+						if (bHasPrereqOrBonusRequirement && iMaxBonusCount != 0)
+						{
+							int iBonusValue = GET_PLAYER(pHeadSelectedUnit->getOwnerINLINE()).getBonusValueTimes100(iMaxBonusCount);
+							iFlatMovementCost *= 100;
+							iFlatMovementCost /= std::max(iBonusValue, 1);
+						}
+					}
+
 					if (iMovementCost > 0)
 					{
 						iMoves = (GC.getMOVE_DENOMINATOR() / iMovementCost);
@@ -3006,8 +3042,8 @@ void CvDLLWidgetData::parseActionHelp(CvWidgetDataStruct &widgetDataStruct, CvWS
 
 					if (pSelectedUnit->getBuildType() != eBuild)
 					{
-						iNowWorkRate += pSelectedUnit->workRate(false);
-						iThenWorkRate += pSelectedUnit->workRate(true);
+						iNowWorkRate += pSelectedUnit->workRate(false, eBuild);
+						iThenWorkRate += pSelectedUnit->workRate(true, eBuild);
 					}
 
 					pSelectedUnitNode = gDLL->getInterfaceIFace()->nextSelectionListNode(pSelectedUnitNode);
@@ -4866,11 +4902,23 @@ void CvDLLWidgetData::parseBonusRatioHelp(CvWidgetDataStruct &widgetDataStruct, 
 			else
 			{
 				szBuffer.append(gDLL->getText("TXT_KEY_MISC_BONUS_RATIO_MULTIPLIER_NEGATIVE", iBonusValueModifier));
+			}
+			if (GC.getGameINLINE().areIdeologiesEnabled())
+			{
+				const IdeologyTypes eIdeology = GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).getIdeology();
+				const int iIdeologyBonusModifier = GC.getGameINLINE().getIdeologyCount(eIdeology) * GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).getBonusRatioModifierPerIdeologyCiv(eIdeology);
+
+				if (iIdeologyBonusModifier != 0)
+				{
+					szBuffer.append(NEWLINE);
+					szBuffer.append(gDLL->getText("TXT_KEY_MISC_BONUS_RATIO_IDEOLOGY_MODIFIER", iIdeologyBonusModifier));
+				}
 			}			
 		}
 		
 		szBuffer.append(L"\n-----------------------\n");
-		int iTotalRatio = iBaseRatio * (100 + iBonusValueModifier);
+		const int iBonusRatioModifer = GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).calculateBonusRatioModifier();
+		int iTotalRatio = iBaseRatio * (100 + iBonusRatioModifer);
 		iTotalRatio /= 100;
 		CvWString szTotalRatioString = CvWString::format(L"%d.%02d", iTotalRatio/100, iTotalRatio%100);
 		szBuffer.append(gDLL->getText("TXT_KEY_MISC_BONUS_RATIO_TOTAL_RATIO", szTotalRatioString.GetCString()));

@@ -306,7 +306,7 @@ public:
 
 	bool canBuildRoute() const;																						// Exposed to Python
 	DllExport BuildTypes getBuildType() const;														// Exposed to Python
-	int workRate(bool bMax) const;															// Exposed to Python
+	int workRate(bool bMax, BuildTypes eBuild) const;															// Exposed to Python
 
 	bool isAnimal() const;																								// Exposed to Python
 	bool isNoBadGoodies() const;																					// Exposed to Python
@@ -320,6 +320,7 @@ public:
 	bool isFound() const;																				// Exposed to Python
 	bool isGoldenAge() const;																							// Exposed to Python
 	bool isNoUpkeep() const; // Civ4 Reimagined
+	bool isSlave() const; // Civ4 Reimagined
 	bool canCoexistWithEnemyUnit(TeamTypes eTeam) const;																				// Exposed to Python
 
 	DllExport bool isFighting() const;																		// Exposed to Python						

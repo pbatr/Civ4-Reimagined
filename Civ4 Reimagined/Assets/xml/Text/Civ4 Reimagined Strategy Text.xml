@@ -174,7 +174,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_INCAN_QUECHUA_STRATEGY</Tag>
-		<English>Compared to the [COLOR_UNIT_TEXT]Axeman[COLOR_REVERT], this unit gains a bonus against melee units and ignores the enemies defensive advantage of a forest or jungle.</English>
+		<English>Compared to the [COLOR_UNIT_TEXT]Axeman[COLOR_REVERT], this unit gains a bonus against melee units and ignores the enemies defensive advantage of a forest or jungle. It is slightly cheaper than the Axeman.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_SUMERIAN_VULTURE_STRATEGY</Tag>
@@ -190,7 +190,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_AZTEC_JAGUAR_STRATEGY</Tag>
-		<English>Compared to the [COLOR_UNIT_TEXT]Swordsman[COLOR_REVERT], this unit doesn't require Iron and starts with Woodsman I.</English>
+		<English>Compared to the [COLOR_UNIT_TEXT]Swordsman[COLOR_REVERT], this unit doesn't require Iron and gains has 25% forest/jungle combat bonus.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_CELTIC_GALLIC_WARRIOR_STRATEGY</Tag>
@@ -270,7 +270,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_GERMAN_PANZER_STRATEGY</Tag>
-		<English>Compared to the [COLOR_UNIT_TEXT]Tank[COLOR_REVERT], this unit has +50% vs Tanks, four potential first strikes and gains a 20% withdrawal bonus.</English>
+		<English>Compared to the [COLOR_UNIT_TEXT]Tank[COLOR_REVERT], this unit has four potential first strikes, starts with the March promotion and gains a 20% withdrawal bonus.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_AMERICAN_NAVY_SEAL_STRATEGY</Tag>
@@ -475,7 +475,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_GERMAN_ASSEMBLY_PLANT_STRATEGY</Tag>
-		<English>The [COLOR_BUILDING_TEXT]Assembly Plant[COLOR_REVERT] increases production further and grants additional engineer slots. Can be build faster with access to coal.</English>
+		<English>The [COLOR_BUILDING_TEXT]Assembly Plant[COLOR_REVERT] increases production significantly with electricity at the cost of a lower starting production. It also grants additional engineer slots.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_JAPANESE_SHALE_PLANT_STRATEGY</Tag>
@@ -760,7 +760,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_STATE_ATHEISM_STRATEGY</Tag>
-		<English>Espionage Bonus and less war weariness; No state religion; No religion spread; Unhappiness for religions.</English>
+		<English>Espionage Bonus and less war weariness; Less unhappiness from overcrowding; No state religion; No religion spread; Unhappiness for religions.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_SEWER_STRATEGY</Tag>
@@ -777,5 +777,17 @@
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_HARBOR_STRATEGY</Tag>
 		<English>The [COLOR_BUILDING_TEXT]Harbor[COLOR_REVERT] increases that city's income from trade routes. It increases a city's health from access to [COLOR_HIGHLIGHT_TEXT]Clam[COLOR_REVERT], [COLOR_HIGHLIGHT_TEXT]Crab[COLOR_REVERT], and [COLOR_HIGHLIGHT_TEXT]Fish[COLOR_REVERT] resources. Additionaly ships start off with additional experience points.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_STATUE_OF_LIBERTY_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Statue of Liberty[COLOR_REVERT] gives additional trade route yield when trading with other liberal Civilizations. Furthermore it encourages immigration to your cities which is symbolized by additional food from trade routes. It also increases its city's chances of generating a [COLOR_UNIT_TEXT]Great Merchant[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_OLYMPIASTADION_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Olympiastadion[COLOR_REVERT] allows you to use the [LINK=CIVIC_CONSCRIPTION]Conscription[\LINK] civic without suffering from any unhappiness. Furthermore victories of other fascist civilizations will count towards your great general progress. It also increases its city's chances of generating a [COLOR_UNIT_TEXT]Great Engineer[COLOR_REVERT].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_AMERICAN_SUPERCARRIER_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]Carrier[COLOR_REVERT], this unit is faster, costs less, heals its cargo units, gives additional range to the stationed Fighters and provides a free Fighter when it is constructed.</English>
 	</TEXT>
 </Civ4GameText>

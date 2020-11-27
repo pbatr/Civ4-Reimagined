@@ -2752,7 +2752,7 @@ def getHelpBestDefenseDone2(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 	
-	szHelp = localText.getText("TXT_KEY_EVENT_BEST_DEFENSE_DONE_HELP_2", (3, ))	
+	szHelp = localText.getText("TXT_KEY_EVENT_BEST_DEFENSE_DONE_HELP_2", (1, ))	
 
 	return szHelp
 
@@ -2765,7 +2765,7 @@ def applyBestDefenseDone2(argsList):
 		if loopPlayer.isAlive() and iPlayer != kTriggeredData.ePlayer:
 			loopTeam = gc.getTeam(loopPlayer.getTeam())
 			if loopTeam.isHasMet(gc.getPlayer(kTriggeredData.ePlayer).getTeam()):
-				loopPlayer.AI_changeAttitudeExtra(kTriggeredData.ePlayer, 3)
+				loopPlayer.AI_changeAttitudeExtra(kTriggeredData.ePlayer, 1)
 						
 
 def canApplyBestDefenseDone3(argsList):

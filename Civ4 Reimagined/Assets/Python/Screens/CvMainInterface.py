@@ -3817,8 +3817,8 @@ class CvMainInterface:
 					screen.addTableControlGFC( "TradeRouteTable", 3, 10, 187, 238, 98, False, False, 32, 32, TableStyles.TABLE_STYLE_STANDARD )
 					screen.setStyle( "TradeRouteTable", "Table_City_Style" )
 # K-Mod: Trade culture
-					screen.setTableColumnHeader( "TradeRouteTable", 0, u"", 128 )
-					screen.setTableColumnHeader( "TradeRouteTable", 1, u"", 98 )
+					screen.setTableColumnHeader( "TradeRouteTable", 0, u"", 76 )
+					screen.setTableColumnHeader( "TradeRouteTable", 1, u"", 150 )
 # K-Mod: Trade culture end					
 					screen.setTableColumnHeader( "TradeRouteTable", 2, u"", 10 )
 					screen.setTableColumnRightJustify( "TradeRouteTable", 1 )
@@ -4106,7 +4106,7 @@ class CvMainInterface:
 				
 				#Civ4 Reimagined: Display resource ratio and total health/happiness
 				iBonusRatio = int(gc.getPlayer(pHeadSelectedCity.getOwner()).getTechValue() / max(1, gc.getPlayer(pHeadSelectedCity.getOwner()).getTotalPopulation()))
-				iBonusRatio *= (100 + gc.getPlayer(pHeadSelectedCity.getOwner()).getBonusValueModifier())
+				iBonusRatio *= (100 + gc.getPlayer(pHeadSelectedCity.getOwner()).calculateBonusRatioModifier())
 				iBonusRatio /= 100
 				szBuffer = u"Resource Ratio: %d.%02d" %(iBonusRatio/100, iBonusRatio%100)
 				if iBonusRatio > 100:
@@ -5159,6 +5159,12 @@ class CvMainInterface:
 														szBuffer = szBuffer + szTempBuffer
 														if (bAlignIcons):
 															scores.setReligion(szTempBuffer)
+
+													if (gc.getGame().areIdeologiesEnabled()):
+														szTempBuffer = u"%c" %(gc.getIdeologyInfo(gc.getPlayer(ePlayer).getIdeology()).getChar())
+														szBuffer = szBuffer + szTempBuffer
+														if (bAlignIcons):
+															scores.setIdeology(szTempBuffer)
 													
 													if (bEspionage and gc.getTeam(eTeam).getEspionagePointsAgainstTeam(gc.getGame().getActiveTeam()) < gc.getTeam(gc.getGame().getActiveTeam()).getEspionagePointsAgainstTeam(eTeam)):
 														szTempBuffer = u"%c" %(gc.getCommerceInfo(CommerceTypes.COMMERCE_ESPIONAGE).getChar())

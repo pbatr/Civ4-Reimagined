@@ -907,6 +907,7 @@ public:
 	int getRangedWaveSize() const;						// Exposed to Python
 	int getNumUnitNames() const;							// Exposed to Python
 	int getCommandType() const;								// Exposed to Python
+	int getFreeUnitClassType() const; // Civ4 Reimagined
 	void setCommandType(int iNewType);
 
 	bool isAnimal() const;				// Exposed to Python
@@ -1098,6 +1099,7 @@ protected:
 	int m_iUnitRangedWaveSize;
 	int m_iNumUnitNames;
 	int m_iCommandType;
+	int m_iFreeUnitClassType; // Civ4 Reimagined
 	int m_iLeaderExperience;
 
 	bool m_bAnimal;
@@ -1419,6 +1421,11 @@ public:
 	bool isNoForeignCultureUnhappiness() const; //Civ4 Reimagined
 	bool isNoCityResistance() const; //Civ4 Reimagined
 
+	int getConservative() const; //Civ4 Reimagined
+	int getLiberal() const; //Civ4 Reimagined
+	int getCommunist() const; //Civ4 Reimagined
+	int getFascist() const; //Civ4 Reimagined
+
 	std::wstring pyGetWeLoveTheKing() { return getWeLoveTheKing(); }			// Exposed to Python
 	const wchar* getWeLoveTheKing();
 	void setWeLoveTheKingKey(const TCHAR* szVal);
@@ -1459,6 +1466,9 @@ public:
 
 	int getDomainProductionModifier(int i) const; // Leoreth
 	int getDomainExperienceModifier(int i) const; // Leoreth
+
+	bool isAnyDomainProductionModifier() const; // Civ4 Reimagined
+	bool isAnyDomainExperienceModifier() const; // Civ4 Reimagined
 
 	bool isHurry(int i) const;													// Exposed to Python
 	bool isSpecialBuildingNotRequired(int i) const;			// Exposed to Python
@@ -1559,6 +1569,12 @@ protected:
 	bool m_bNoCapital; //Civ4 Reimagined
 	bool m_bNoForeignCultureUnhappiness; // Civ4 Reimagined
 	bool m_bNoCityResistance; // Civ4 Reimagined
+	bool m_bAnyDomainProductionModifier; // Civ4 Reimagined
+	bool m_bAnyDomainExperienceModifier;
+	int m_iConservative; // Civ4 Reimagined
+	int m_iLiberal; // Civ4 Reimagined
+	int m_iCommunist; // Civ4 Reimagined
+	int m_iFascist; // Civ4 Reimagined
 
 	CvWString m_szWeLoveTheKingKey;
 
@@ -1566,6 +1582,7 @@ protected:
 
 	int* m_piYieldModifier;
 	int* m_piUnitProductionModifiers; // Civ4 Reimagined
+	int* m_piUnitClassProductionModifiers; // Civ4 Reimagined
 	int* m_piExtraYield; // Civ4 Reimagined
 	int* m_piCapitalExtraYieldFromCityPercent; // Civ4 Reimagined
 	int* m_piCapitalYieldModifier;
@@ -1767,6 +1784,7 @@ public:
 	int getReligionType() const;				// Exposed to Python
 	int getStateReligion() const;				// Exposed to Python
 	int getPrereqReligion() const;				// Exposed to Python
+	int getPrereqIdeology() const; // Exposed to Python // Civ4 Reimagined
 	int getPrereqCorporation() const;				// Exposed to Python
 	int getFoundsCorporation() const;				// Exposed to Python
 	int getGlobalReligionCommerce() const;				// Exposed to Python
@@ -1835,6 +1853,7 @@ public:
 	bool isStateReligion() const;				// Exposed to Python
 	bool isAllowsNukes() const;				// Exposed to Python
 	bool isNoConquestResistance() const; // Civ4 Reimagined
+	bool isNoConscriptUnhappiness() const; // Civ4 Reimagined
 	bool isNoWarAgainstSameFaithUnhappiness() const; // Civ4 Reimagined
 	int getReligionSpreadBoost() const; // Civ4 Reimagined
 
@@ -1855,6 +1874,8 @@ public:
 	int* getPowerYieldModifierArray() const;
 	int getAreaYieldModifier(int i) const;				// Exposed to Python
 	int* getAreaYieldModifierArray() const;
+	int getAreaTradeYieldModifier(int i) const; // Civ4 Reimagined
+	int* getAreaTradeYieldModifierArray() const; // Civ4 Reimagined
 	int getGlobalYieldModifier(int i) const;				// Exposed to Python
 	int* getGlobalYieldModifierArray() const;
 	int getSeaPlotYieldChange(int i) const;				// Exposed to Python
@@ -1906,6 +1927,8 @@ public:
 	int getPercentPrereqNumOfBuildingClass(int i) const;				// Civ4 Reimagined // Exposed to Python
 	int getFlavorValue(int i) const;				// Exposed to Python
 	int getImprovementFreeSpecialist(int i) const;				// Exposed to Python
+	int getForeignTradeIdeologyModifier(int i) const; // Civ4 Reimagined
+	int getIdeologyCombatExperience(int i) const; // Civ4 Reimagined
 
 	bool isCommerceFlexible(int i) const;				// Exposed to Python
 	bool isCommerceChangeOriginalOwner(int i) const;				// Exposed to Python
@@ -2036,6 +2059,7 @@ protected:
 	int m_iReligionType;								
 	int m_iStateReligion;								
 	int m_iPrereqReligion;
+	int m_iPrereqIdeology; // Civ4 Reimagined
 	int m_iPrereqCorporation;								
 	int m_iFoundsCorporation;					
 	int m_iGlobalReligionCommerce;
@@ -2104,6 +2128,7 @@ protected:
 	bool m_bStateReligion;
 	bool m_bAllowsNukes;
 	bool m_bNoConquestResistance; // Civ4 Reimagined
+	bool m_bNoConscriptUnhappiness; // Civ4 Reimagined
 	bool m_bNoWarAgainstSameFaithUnhappiness; // Civ4 Reimagined
 	bool m_bAnyTechYieldModifier; // Civ4 Reimagined
 	bool m_bAnyTechCommerceModifier; // Civ4 Reimagined
@@ -2125,6 +2150,7 @@ protected:
 	int* m_piYieldModifier;
 	int* m_piPowerYieldModifier;
 	int* m_piAreaYieldModifier;
+	int* m_piAreaTradeYieldModifier; // Civ4 Reimagined
 	int* m_piGlobalYieldModifier;
 	int* m_piCommerceChange;
 	int* m_piObsoleteSafeCommerceChange;
@@ -2154,6 +2180,8 @@ protected:
 	int* m_piPercentPrereqNumOfBuildingClass; // Civ4 Reimagined
 	int* m_piFlavorValue;
 	int* m_piImprovementFreeSpecialist;
+	int* m_piForeignTradeIdeologyModifier; // Civ4 Reimagined
+	int* m_piIdeologyCombatExperience; // Civ4 Reimagined
 
 	bool* m_pbCommerceFlexible;
 	bool* m_pbCommerceChangeOriginalOwner;
@@ -4271,6 +4299,7 @@ public:
 	int getVictoryPrereq() const;									// Exposed to Python
 	int getTechPrereq() const;										// Exposed to Python
 	int getTechPrereq2() const;										// Exposed to Python //Civ4 Reimagined
+	int getIdeologyPrereq() const; // Civ4 Reimagined // Exposed to Python
 	int getAnyoneProjectPrereq() const;						// Exposed to Python
 	void setAnyoneProjectPrereq(int i);
 	int getMaxGlobalInstances() const;						// Exposed to Python
@@ -4280,6 +4309,7 @@ public:
 	int getTechShare() const;											// Exposed to Python
 	int getEveryoneSpecialUnit() const;						// Exposed to Python
 	int getEveryoneSpecialBuilding() const;				// Exposed to Python
+	int getEveryoneTechnology() const; // Civ4 Reimagined
 	int getVictoryDelayPercent() const;				// Exposed to Python
 	int getSuccessRate() const;				// Exposed to Python
 
@@ -4292,6 +4322,7 @@ public:
 
 	// Arrays
 
+	int getBonusRatioIdeologyModifier(int i) const; // Civ4 Reimagined
 	int getBonusProductionModifier(int i) const;	// Exposed to Python
 	int getVictoryThreshold(int i) const;					// Exposed to Python
 	int getVictoryMinThreshold(int i) const;					// Exposed to Python
@@ -4305,7 +4336,8 @@ protected:
 
 	int m_iVictoryPrereq;
 	int m_iTechPrereq;
-	int m_iTechPrereq2;
+	int m_iTechPrereq2; // Civ4 Reimagined
+	int m_iIdeologyPrereq; // Civ4 Reimagined
 	int m_iAnyoneProjectPrereq;
 	int m_iMaxGlobalInstances;
 	int m_iMaxTeamInstances;
@@ -4314,6 +4346,7 @@ protected:
 	int m_iTechShare;
 	int m_iEveryoneSpecialUnit;
 	int m_iEveryoneSpecialBuilding;
+	int m_iEveryoneTechnology; // Civ4 Reimagined
 	int m_iVictoryDelayPercent;
 	int m_iSuccessRate;
 
@@ -4325,6 +4358,7 @@ protected:
 
 	// Arrays
 
+	int* m_piBonusRatioIdeologyModifier; // Civ4 Reimagined
 	int* m_piBonusProductionModifier;
 	int* m_piVictoryThreshold;
 	int* m_piVictoryMinThreshold;
@@ -4410,6 +4444,40 @@ protected:
 	int* m_paiHolyCityCommerce;
 	int* m_paiStateReligionCommerce;
 
+};
+
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//
+//  class : CvIdeologyInfo (Civ4 Reimagined)
+//
+//  DESC:   
+//
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+class CvIdeologyInfo : public CvHotkeyInfo
+{
+	//---------------------------------------PUBLIC INTERFACE----------------------------------------
+public:
+
+	CvIdeologyInfo();
+	virtual ~CvIdeologyInfo();
+
+	int getChar() const;
+	void setChar(int i);			
+	int getTechPrereq() const;	
+
+	void setAdjectiveKey(const TCHAR* szVal);
+	const wchar* getAdjectiveKey() const;
+	std::wstring pyGetAdjectiveKey() { return getAdjectiveKey(); }
+
+	bool read(CvXMLLoadUtility* pXML);
+
+	//---------------------------------------PROTECTED MEMBER VARIABLES---------------------------------
+protected:
+
+	int m_iChar;						
+	int m_iTechPrereq;
+
+	CvWString m_szAdjectiveKey;
 };
 
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++

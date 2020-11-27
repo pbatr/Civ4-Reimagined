@@ -1808,5 +1808,17 @@
 			<DefaultBuilding>BUILDING_HOTEL</DefaultBuilding>
 			<VictoryThresholds/>
 		</BuildingClassInfo>
+		<BuildingClassInfo>
+			<Type>BUILDINGCLASS_OLYMPIASTADION</Type>
+			<Description>TXT_KEY_BUILDING_OLYMPIASTADION</Description>
+			<iMaxGlobalInstances>1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iExtraPlayerInstances>0</iExtraPlayerInstances>
+			<bNoLimit>0</bNoLimit>
+			<bMonument>0</bMonument>
+			<DefaultBuilding>BUILDING_OLYMPIASTADION</DefaultBuilding>
+			<VictoryThresholds/>
+		</BuildingClassInfo>
 	</BuildingClassInfos>
 </Civ4BuildingClassInfos>

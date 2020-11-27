@@ -560,9 +560,9 @@ int /*BuildTypes*/ CyUnit::getBuildType()
 	return (int) m_pUnit ? m_pUnit->getBuildType() : (int) NO_BUILD;
 }
 
-int CyUnit::workRate(bool bMax)
+int CyUnit::workRate(bool bMax, BuildTypes eBuild)
 {
-	return m_pUnit ? m_pUnit->workRate(bMax) : -1;
+	return m_pUnit ? m_pUnit->workRate(bMax, eBuild) : -1;
 }
 
 bool CyUnit::isAnimal()

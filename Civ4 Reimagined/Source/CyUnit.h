@@ -155,7 +155,7 @@ public:
 
 	bool canBuildRoute();
 	int /*BuildTypes*/ getBuildType();
-	int workRate(bool bMax);
+	int workRate(bool bMax, BuildTypes eBuild);
 
 	bool isAnimal();
 	bool isNoBadGoodies();

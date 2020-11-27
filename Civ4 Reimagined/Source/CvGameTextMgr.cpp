@@ -631,6 +631,13 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 			}
 		}
 
+		// Civ4 Reimagined
+		if (pUnit->getUnitInfo().getFreeUnitClassType() != NO_UNITCLASS)
+		{
+			szString.append(NEWLINE);
+			szString.append(gDLL->getText("TXT_KEY_UNIT_FREE_UNIT", GC.getUnitInfo((UnitTypes)GC.getUnitClassInfo((UnitClassTypes)pUnit->getUnitInfo().getFreeUnitClassType()).getDefaultUnitIndex()).getTextKeyWide()));
+		}
+
 		if (pUnit->fortifyModifier() != 0)
 		{
 			szString.append(NEWLINE);
@@ -7654,11 +7661,11 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 	}
 	
 	// Unit Production Modifier (Civ4 Reimagined)
+	UnitTypes eLoopUnit = NO_UNIT;
 	for (iI = 0; iI < GC.getNumUnitClassInfos(); iI++)
 	{
 		if(GC.getCivicInfo(eCivic).getUnitClassProductionModifier(iI) > 0)
 		{
-			
 			if (GC.getGameINLINE().getActivePlayer() != NO_PLAYER)
 			{
 				eLoopUnit = (UnitTypes)GC.getCivilizationInfo(GC.getGameINLINE().getActiveCivilizationType()).getCivilizationUnits(iI);
@@ -7841,7 +7848,8 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 	}
 
 	// Civ4 Reimagined: Capital Commerce Per Surplus Happiness Modifiers
-	setCommerceChangeHelp(szHelpText, L"", L"", gDLL->getText("TXT_KEY_CIVIC_IN_CAPITAL_PER_SURPLUS_HAPPY").GetCString(), GC.getCivicInfo(eCivic).getCapitalCommerceModifierPerHappinessSurplusArray(), true, true);
+	CvWString surplusHappyText = gDLL->getText("TXT_KEY_CIVIC_IN_CAPITAL_PER_SURPLUS_HAPPY", GC.getDefineINT("MAX_CAPITAL_COMMERCE_MODIFIER_FROM_SURPLUS_HAPPINESS")).GetCString();
+	setCommerceChangeHelp(szHelpText, L"", L"", surplusHappyText, GC.getCivicInfo(eCivic).getCapitalCommerceModifierPerHappinessSurplusArray(), true, true);
 	
 	//	Trade Yield Modifiers
 	setYieldChangeHelp(szHelpText, L"", L"", gDLL->getText("TXT_KEY_CIVIC_FROM_TRADE_ROUTES").GetCString(), GC.getCivicInfo(eCivic).getTradeYieldModifierArray(), true);
@@ -8503,6 +8511,12 @@ void CvGameTextMgr::setTechHelp(CvWStringBuffer &szBuffer, TechTypes eTech, bool
 		bFirst = buildCivicRevealString(szBuffer, eTech, iI, bFirst, true, bPlayerContext);
 	}
 
+	// Civ4 Reimagined
+	for (iI = 0; iI < GC.getNumIdeologyInfos(); ++iI)
+	{
+		buildIdeologyRevealString(szBuffer, eTech, iI);
+	}
+
 	if (!bCivilopediaText)
 	{
 		bFirst = true;
@@ -8915,11 +8929,20 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
 		}
 	}
 
+	// Civ4 Reimagined
 	if (GC.getUnitInfo(eUnit).getAdditionalCargoRange() > 0)
 	{
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_ADD_CARGO_RANGE", GC.getUnitInfo(eUnit).getAdditionalCargoRange()));
 	}
+
+	// Civ4 Reimagined
+	if (GC.getUnitInfo(eUnit).getFreeUnitClassType() != NO_UNITCLASS)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_FREE_UNIT", GC.getUnitInfo((UnitTypes)GC.getUnitClassInfo((UnitClassTypes)GC.getUnitInfo(eUnit).getFreeUnitClassType()).getDefaultUnitIndex()).getTextKeyWide()));
+	}
+
 
 	if (GC.getUnitInfo(eUnit).getDomainType() == DOMAIN_LAND)
 	{
@@ -10526,6 +10549,13 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_NO_CONQUEST_RESISTANCE"));
 	}
 
+	// Civ4 Reimagined
+	if (kBuilding.isNoConscriptUnhappiness())
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_NO_CONSCRIPT_UNHAPPY"));
+	}
+
 	if (kBuilding.isNoUnhappiness())
 	{
 		szBuffer.append(NEWLINE);
@@ -11038,6 +11068,15 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 
 	setYieldChangeHelp(szBuffer, L"", L"", gDLL->getText("TXT_KEY_BUILDING_ALL_CITIES_THIS_CONTINENT").c_str(), kBuilding.getAreaYieldModifierArray(), true);
 
+	// Civ4 Reimagined
+	if (kBuilding.getAreaTradeYieldModifier(YIELD_FOOD) > 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_FOOD_TRADE_ROUTES_THIS_CONTINENT", kBuilding.getAreaTradeYieldModifier(YIELD_FOOD)));
+	} else {
+		setYieldChangeHelp(szBuffer, L"", L"", gDLL->getText("TXT_KEY_BUILDING_TRADE_ROUTES_ALL_CITIES_THIS_CONTINENT").c_str(), kBuilding.getAreaTradeYieldModifierArray(), true);
+	}
+
 	setYieldChangeHelp(szBuffer, L"", L"", gDLL->getText("TXT_KEY_BUILDING_ALL_CITIES").c_str(), kBuilding.getGlobalYieldModifierArray(), true);
 
 	// Civ4 Reimagined
@@ -11172,6 +11211,21 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 		{
 			szTempBuffer.Format(L"%s%s", NEWLINE, gDLL->getText("TXT_KEY_BUILDING_SPREADS_RELIGION", GC.getReligionInfo((ReligionTypes) iI).getChar()).c_str());
 			szBuffer.append(szTempBuffer);
+		}
+	}
+
+	for (iI = 0; iI < GC.getNumIdeologyInfos(); ++iI)
+	{
+		if (kBuilding.getForeignTradeIdeologyModifier(iI) != 0)
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_FOREIGN_TRADE_ROUTE_IDEOLOGY_MOD", kBuilding.getForeignTradeIdeologyModifier(iI), GC.getIdeologyInfo((IdeologyTypes) iI).getAdjectiveKey()));
+		}
+
+		if (kBuilding.getIdeologyCombatExperience(iI) != 0)
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_IDEOLOGY_COMBAT_EXPERIENCE", kBuilding.getIdeologyCombatExperience(iI), GC.getIdeologyInfo((IdeologyTypes) iI).getAdjectiveKey()));
 		}
 	}
 
@@ -11955,10 +12009,19 @@ void CvGameTextMgr::buildBuildingRequiresString(CvWStringBuffer& szBuffer, Build
 				szBuffer.append(NEWLINE);
 				szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_REQUIRES_NUM_TEAMS", kBuilding.getNumTeamsPrereq()));
 			}
+
+			// Civ4 Reimagined
+			for (iI = 0; iI < GC.getNumIdeologyInfos(); iI++)
+			{
+				if (kBuilding.getPrereqIdeology() == (IdeologyTypes)iI)
+				{
+					szBuffer.append(NEWLINE);
+					szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_REQUIRES_IDEOLOGY", GC.getIdeologyInfo((IdeologyTypes)(kBuilding.getPrereqIdeology())).getAdjectiveKey()));
+				}
+			}
 		}
 		else
 		{
-			
 			// < Building Civic Prereqs Start >
 			bFirst = true;
 			for (iI = 0; iI < GC.getNumCivicInfos(); iI++)
@@ -11976,7 +12039,19 @@ void CvGameTextMgr::buildBuildingRequiresString(CvWStringBuffer& szBuffer, Build
 				}
 			}
 			// < Building Civic Prereqs End   >
-			
+
+			// Civ4 Reimagined
+			for (iI = 0; iI < GC.getNumIdeologyInfos(); iI++)
+			{
+				if (kBuilding.getPrereqIdeology() == (IdeologyTypes)iI)
+				{
+					if ((pCity == NULL) || (GET_PLAYER(ePlayer).getIdeology() != (IdeologyTypes)iI))
+					{
+						szBuffer.append(NEWLINE);
+						szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_REQUIRES_IDEOLOGY", GC.getIdeologyInfo((IdeologyTypes)(kBuilding.getPrereqIdeology())).getAdjectiveKey()));
+					}
+				}
+			}
 			
 			if (!bTechChooserText)
 			{
@@ -12223,6 +12298,23 @@ void CvGameTextMgr::setProjectHelp(CvWStringBuffer &szBuffer, ProjectTypes eProj
 		szBuffer.append(gDLL->getText("TXT_KEY_PROJECT_ENABLES_SPECIAL", GC.getSpecialBuildingInfo((SpecialBuildingTypes)(kProject.getEveryoneSpecialBuilding())).getTextKeyWide()));
 	}
 
+	// Civ4 Reimagined
+	for (iI = 0; iI < GC.getNumIdeologyInfos(); iI++)
+	{
+		if (kProject.getBonusRatioIdeologyModifier(iI) != 0)
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_PROJECT_BONUS_RATION_IDEOLOGY_MOD", kProject.getBonusRatioIdeologyModifier(iI), GC.getIdeologyInfo((IdeologyTypes)iI).getAdjectiveKey()));
+		}
+	}
+
+	// Civ4 Reimagined
+	if (kProject.getEveryoneTechnology() != NO_TECH)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_PROJECT_GRANTS_TECH_TO_ALL", GC.getTechInfo((TechTypes)(kProject.getEveryoneTechnology())).getTextKeyWide()));
+	}
+
 	for (iI = 0; iI < GC.getNumVictoryInfos(); ++iI)
 	{
 		if (kProject.getVictoryThreshold(iI) > 0)
@@ -12336,6 +12428,14 @@ void CvGameTextMgr::setProjectHelp(CvWStringBuffer &szBuffer, ProjectTypes eProj
 	{
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_REQUIRES_STRING", GC.getTechInfo((TechTypes)(iTechPrereq)).getTextKeyWide()));
+	}
+
+	// Civ4 Reimagined
+	int iIdeologyPrereq = kProject.getIdeologyPrereq();
+	if (iIdeologyPrereq != NO_IDEOLOGY)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_REQUIRES_IDEOLOGY", GC.getIdeologyInfo((IdeologyTypes)(kProject.getIdeologyPrereq())).getAdjectiveKey()));
 	}
 				
 	if (!bCivilopediaText)
@@ -14765,6 +14865,15 @@ bool CvGameTextMgr::buildCivicRevealString(CvWStringBuffer &szBuffer, TechTypes 
 	return bFirst;
 }
 
+void CvGameTextMgr::buildIdeologyRevealString(CvWStringBuffer &szBuffer, TechTypes eTech, int iIdeologyType)
+{
+	if (GC.getIdeologyInfo((IdeologyTypes) iIdeologyType).getTechPrereq() == eTech)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_ENABLES_IDEOLOGY", GC.getIdeologyInfo((IdeologyTypes) iIdeologyType).getDescription()));
+	}
+}
+
 bool CvGameTextMgr::buildProcessInfoString(CvWStringBuffer &szBuffer, TechTypes eTech, int iProcessType, bool bFirst, bool bList, bool bPlayerContext)
 {
 	CvWString szTempBuffer;
@@ -15462,6 +15571,24 @@ void CvGameTextMgr::getAttitudeString(CvWStringBuffer& szBuffer, PlayerTypes ePl
 		if ((iPass == 0) ? (iAttitudeChange > 0) : (iAttitudeChange < 0))
 		{
 			szTempBuffer.Format(SETCOLR L"%s" ENDCOLR, TEXT_COLOR((iAttitudeChange > 0) ? "COLOR_POSITIVE_TEXT" : "COLOR_NEGATIVE_TEXT"), gDLL->getText("TXT_KEY_MISC_ATTITUDE_NEED_OPEN_BORDERS", iAttitudeChange).GetCString());
+			szBuffer.append(NEWLINE);
+			szBuffer.append(szTempBuffer);
+		}
+
+		// Civ4 Reimagined
+		iAttitudeChange = kPlayer.AI_getSameIdeologyAttitude(eTargetPlayer);
+		if ((iPass == 0) ? (iAttitudeChange > 0) : (iAttitudeChange < 0))
+		{
+			szTempBuffer.Format(SETCOLR L"%s" ENDCOLR, TEXT_COLOR((iAttitudeChange > 0) ? "COLOR_POSITIVE_TEXT" : "COLOR_NEGATIVE_TEXT"), gDLL->getText("TXT_KEY_MISC_ATTITUDE_SAME_IDEOLOGY", iAttitudeChange).GetCString());
+			szBuffer.append(NEWLINE);
+			szBuffer.append(szTempBuffer);
+		}
+
+		// Civ4 Reimagined
+		iAttitudeChange = kPlayer.AI_getDifferentIdeologyAttitude(eTargetPlayer);
+		if ((iPass == 0) ? (iAttitudeChange > 0) : (iAttitudeChange < 0))
+		{
+			szTempBuffer.Format(SETCOLR L"%s" ENDCOLR, TEXT_COLOR((iAttitudeChange > 0) ? "COLOR_POSITIVE_TEXT" : "COLOR_NEGATIVE_TEXT"), gDLL->getText("TXT_KEY_MISC_ATTITUDE_DIFFERENT_IDEOLOGY", iAttitudeChange).GetCString());
 			szBuffer.append(NEWLINE);
 			szBuffer.append(szTempBuffer);
 		}
@@ -17097,7 +17224,8 @@ void CvGameTextMgr::setCommerceHelp(CvWStringBuffer &szBuffer, CvCity& city, Com
 		// Civ4 Reimagined
 		if (owner.getCapitalCommerceRateModifierPerHappinessSurplus(eCommerceType) > 0)
 		{
-			iCapitalMod += std::min(city.getPopulation(), std::max(0, city.happyLevel() - city.unhappyLevel())) * owner.getCapitalCommerceRateModifierPerHappinessSurplus(eCommerceType); 
+			int iHappinessCommerceModifier = std::max(0, city.happyLevel() - city.unhappyLevel()) * owner.getCapitalCommerceRateModifierPerHappinessSurplus(eCommerceType);
+			iCapitalMod += std::min(GC.getDefineINT("MAX_CAPITAL_COMMERCE_MODIFIER_FROM_SURPLUS_HAPPINESS"), iHappinessCommerceModifier);
 		}
 	}
 	if (iCapitalMod != 0)
@@ -17652,7 +17780,7 @@ void CvGameTextMgr::parseGreatGeneralHelp(CvWStringBuffer &szBuffer, CvPlayer& k
 
 void CvGameTextMgr::parseSlaveryBarHelp(CvWStringBuffer &szBuffer, CvPlayer& kPlayer)
 {
-	szBuffer.assign(gDLL->getText("TXT_KEY_MISC_SLAVERY_PROGRESS", kPlayer.getSlavePoints(), kPlayer.getSlaveThreshold()));
+	szBuffer.assign(gDLL->getText("TXT_KEY_MISC_SLAVERY_PROGRESS", kPlayer.getSlavePoints(), kPlayer.getNewSlaveThreshold()));
 }
 
 
@@ -18926,6 +19054,20 @@ void CvGameTextMgr::setTradeRouteHelp(CvWStringBuffer &szBuffer, int iRoute, CvC
 						szBuffer.append(gDLL->getText("TXT_KEY_TRADE_ROUTE_MOD_PEACE", iNewMod));
 						iModifier += iNewMod;
 					}
+
+					// Civ4 Reimagined
+					const IdeologyTypes eIdeology = GET_PLAYER(pCity->getOwnerINLINE()).getIdeology();
+					if (GET_PLAYER(pOtherCity->getOwnerINLINE()).getIdeology() == eIdeology)
+					{
+						iNewMod = GET_PLAYER(pCity->getOwnerINLINE()).getForeignTradeIdeologyModifier(eIdeology);
+
+						if (0 != iNewMod)
+						{
+							szBuffer.append(NEWLINE);
+							szBuffer.append(gDLL->getText("TXT_KEY_TRADE_ROUTE_MOD_IDEOLOGIES", iNewMod));
+							iModifier += iNewMod;
+						}
+					}
 				}
 				// Civ4 Reimagined
 				else
@@ -18945,6 +19087,14 @@ void CvGameTextMgr::setTradeRouteHelp(CvWStringBuffer &szBuffer, int iRoute, CvC
 			{
 				szBuffer.append(NEWLINE);
 				szBuffer.append(gDLL->getText("TXT_KEY_TRADE_ROUTE_MOD_CIVIC", iNewMod));
+				iModifier += iNewMod;
+			}
+
+			iNewMod = pCity->area()->getTradeYieldModifier(pCity->getOwnerINLINE(), YIELD_COMMERCE);
+			if (0 != iNewMod)
+			{
+				szBuffer.append(NEWLINE);
+				szBuffer.append(gDLL->getText("TXT_KEY_TRADE_ROUTE_MOD_AREA", iNewMod));
 				iModifier += iNewMod;
 			}
 
@@ -19364,6 +19514,24 @@ void CvGameTextMgr::setEspionageCostHelp(CvWStringBuffer &szBuffer, EspionageMis
 				iModifier /= 100;
 			}
 			*/
+		}
+
+		// Civ4 Reimagined
+		if (GC.getGameINLINE().areIdeologiesEnabled() && kPlayer.getIdeology() != GET_PLAYER(eTargetPlayer).getIdeology())
+		{
+			const int iIdeologyInfluence = GET_PLAYER(eTargetPlayer).getIdeologyInfluence(kPlayer.getIdeology());
+			if (iIdeologyInfluence > 0)
+			{
+				iTempModifier = iIdeologyInfluence * GC.getDefineINT("ESPIONAGE_IDEOLOGY_INFLUENCE_MOD");
+
+				if (0 != iTempModifier)
+				{
+					iModifier *= 100 + iTempModifier;
+					iModifier /= 100;
+					szBuffer.append(NEWLINE);
+					szBuffer.append(gDLL->getText("TXT_KEY_ESPIONAGE_IDEOLOGY_INFLUENCE_MOD", iTempModifier));
+				}
+			}
 		}
 
 		// Spy presence mission cost alteration
@@ -19939,13 +20107,19 @@ void CvGameTextMgr::assignFontIds(int iFirstSymbolCode, int iPadAmount)
 		} while (iCurSymbolID % iPadAmount != 0);
 	}
 
-	if(GC.getNumBonusInfos() < 2 * iPadAmount)
+	// Civ4 Reimagined
+	int ideologyBaseID = iCurSymbolID;
+
+	for (int i = 0; i < GC.getNumIdeologyInfos(); i++)
 	{
-		do 
-		{
-			++iCurSymbolID;
-		} while (iCurSymbolID % iPadAmount != 0);
+		GC.getIdeologyInfo((IdeologyTypes) i).setChar(iCurSymbolID);
+		++iCurSymbolID;
 	}
+
+	do 
+	{
+		++iCurSymbolID;
+	} while (iCurSymbolID % iPadAmount != 0);
 
 	// set extra symbols
 	for (int i=0; i < MAX_NUM_SYMBOLS; i++)

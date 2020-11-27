@@ -428,6 +428,12 @@ void CyInfoPythonInterface1()
 		.def("isStateReligion", &CvCivicInfo::isStateReligion, "bool ()")
 		.def("isNoNonStateReligionSpread", &CvCivicInfo::isNoNonStateReligionSpread, "bool ()")
 
+		// Civ4 Reimagined
+		.def("getConservative", &CvCivicInfo::getConservative, "int ()")
+		.def("getLiberal", &CvCivicInfo::getLiberal, "int ()")
+		.def("getCommunist", &CvCivicInfo::getCommunist, "int ()")
+		.def("getFascist", &CvCivicInfo::getFascist, "int ()")
+
 		.def("pyGetWeLoveTheKing", &CvCivicInfo::pyGetWeLoveTheKing, "wstring ()")
 
 		// Arrays
@@ -521,6 +527,7 @@ void CyInfoPythonInterface1()
 		.def("getReligionType", &CvBuildingInfo::getReligionType, "int ()")
 		.def("getStateReligion", &CvBuildingInfo::getStateReligion, "int ()")
 		.def("getPrereqReligion", &CvBuildingInfo::getPrereqReligion, "int ()")
+		.def("getPrereqIdeology", &CvBuildingInfo::getPrereqIdeology, "int ()") // Civ4 Reimagined
 		.def("getPrereqCorporation", &CvBuildingInfo::getPrereqCorporation, "int ()")
 		.def("getFoundsCorporation", &CvBuildingInfo::getFoundsCorporation, "int ()")
 		.def("getGlobalReligionCommerce", &CvBuildingInfo::getGlobalReligionCommerce, "int ()")

@@ -99,6 +99,7 @@
 	<ElementType name="Civilopedia" content="textOnly"/>
 	<ElementType name="TechPrereq" content="textOnly"/>
 	<ElementType name="TechPrereq2" content="textOnly"/>
+	<ElementType name="IdeologyPrereq" content="textOnly"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iProductionToCommerceModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="ProductionToCommerceModifiers" content="eltOnly">
 		<element type="iProductionToCommerceModifier" maxOccurs="*"/>
@@ -235,6 +236,19 @@
 	<ElementType name="ReligionInfos" content="eltOnly">
 		<element type="ReligionInfo" maxOccurs="*"/>
 	</ElementType>
+	<!-- Civ4 Reimagined start -->
+	<ElementType name="IdeologyInfo" content="eltOnly">
+		<element type="Type"/>
+		<element type="Description"/>
+		<element type="Adjective"/>
+		<element type="TechPrereq"/>
+		<element type="Button"/>
+		<element type="iOrderPriority" minOccurs="0"/>
+	</ElementType>
+	<ElementType name="IdeologyInfos" content="eltOnly">
+		<element type="IdeologyInfo" maxOccurs="*"/>
+	</ElementType>
+	<!-- Civ4 Reimagined end -->
 	<ElementType name="CorporationInfo" content="eltOnly">
 		<element type="Type"/>
 		<element type="Description"/>
@@ -521,10 +535,22 @@
 	<ElementType name="iTechShare" content="textOnly" dt:type="int"/>
 	<ElementType name="EveryoneSpecialUnit" content="textOnly"/>
 	<ElementType name="EveryoneSpecialBuilding" content="textOnly"/>
+	<ElementType name="EveryoneTechnology" content="textOnly"/> <!-- Civ4 Reimagined -->
 	<ElementType name="bSpaceship" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bAllowsNukes" content="textOnly" dt:type="boolean"/>
 	<ElementType name="ProjectType" content="textOnly"/>
 	<ElementType name="iNeeded" content="textOnly" dt:type="int"/>
+	<!-- Civ4 Reimagined START -->
+	<ElementType name="IdeologyType" content="textOnly"/>
+	<ElementType name="BonusRatioModifier" content="textOnly" dt:type="int"/>
+	<ElementType name="BonusRatioIdeologyModifier" content="eltOnly">
+		<element type="IdeologyType"/>
+		<element type="BonusRatioModifier"/>
+	</ElementType>
+	<ElementType name="BonusRatioIdeologyModifiers" content="eltOnly">
+		<element type="BonusRatioIdeologyModifier" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	<!-- Civ4 Reimagined END -->
 	<ElementType name="PrereqProject" content="eltOnly">
 		<element type="ProjectType"/>
 		<element type="iNeeded"/>
@@ -576,6 +602,7 @@
 		<element type="VictoryPrereq"/>
 		<element type="TechPrereq"/>
 		<element type="TechPrereq2"/>
+		<element type="IdeologyPrereq" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="AnyonePrereqProject" minOccurs="0"/>
 		<element type="iMaxGlobalInstances"/>
 		<element type="iMaxTeamInstances"/>
@@ -584,6 +611,7 @@
 		<element type="iTechShare"/>
 		<element type="EveryoneSpecialUnit"/>
 		<element type="EveryoneSpecialBuilding"/>
+		<element type="EveryoneTechnology" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="bSpaceship"/>
 		<element type="bAllowsNukes"/>
 		<element type="Button"/>
@@ -592,6 +620,7 @@
 		<element type="VictoryMinThresholds"/>
 		<element type="iVictoryDelayPercent"/>
 		<element type="iSuccessRate"/>
+		<element type="BonusRatioIdeologyModifiers" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="BonusProductionModifiers"/>
 		<element type="CreateSound"/>
 		<element type="MovieDefineTag"/>
@@ -921,7 +950,7 @@
 	<!-- Leoreth end -->
 	<ElementType name="WeLoveTheKing" content="textOnly"/>
 	<!-- Civ4 Reimagined start -->
-	<ElementType name="iMonarchist" content="textOnly" dt:type="int"/>
+	<ElementType name="iConservative" content="textOnly" dt:type="int"/>
 	<ElementType name="iLiberal" content="textOnly" dt:type="int"/>
 	<ElementType name="iCommunist" content="textOnly" dt:type="int"/>
 	<ElementType name="iFascist" content="textOnly" dt:type="int"/>
@@ -1038,7 +1067,7 @@
 		<element type="DomainProductionModifiers" minOccurs="0"/> <!-- Leoreth -->
 		<element type="DomainExperienceModifiers" minOccurs="0"/> <!-- Leoreth -->
 		<element type="WeLoveTheKing"/>
-		<element type="iMonarchist"/> <!-- Civ4 Reimagined -->
+		<element type="iConservative"/> <!-- Civ4 Reimagined -->
 		<element type="iLiberal"/> <!-- Civ4 Reimagined -->
 		<element type="iCommunist"/> <!-- Civ4 Reimagined -->
 		<element type="iFascist"/> <!-- Civ4 Reimagined -->
@@ -1500,6 +1529,11 @@
 	<ElementType name="Civ4ReligionInfo" content="eltOnly">
 		<element type="ReligionInfos"/>
 	</ElementType>
+	<!-- Civ4 Reimagined start -->
+	<ElementType name="Civ4IdeologyInfo" content="eltOnly">
+		<element type="IdeologyInfos"/>
+	</ElementType>
+	<!-- Civ4 Reimagined end -->
 	<ElementType name="Civ4CorporationInfo" content="eltOnly">
 		<element type="CorporationInfos"/>
 	</ElementType>
@@ -1581,6 +1615,7 @@
 		<element type="SeaLevelInfos"/>
 		<element type="ProcessInfos"/>
 		<element type="ReligionInfos"/>
+		<element type="IdeologyInfos" minOccurs="0" maxOccurs="*"/>
 		<element type="HintInfos" minOccurs="0" maxOccurs="*"/>
 		<element type="GameTurnInfos" minOccurs="0" maxOccurs="*"/>
 		<element type="GoodyInfos" minOccurs="0" maxOccurs="*"/>

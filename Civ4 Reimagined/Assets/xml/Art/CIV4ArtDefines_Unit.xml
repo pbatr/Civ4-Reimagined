@@ -2598,7 +2598,7 @@
 		</UnitArtInfo>
 		<UnitArtInfo>
 			<Type>ART_DEF_UNIT_CARRIER</Type>
-			<Button>,Art/Interface/Buttons/Units/Carrier.dds,Art/Interface/Buttons/Unit_Resource_Atlas.dds,1,10</Button>
+			<Button>Art/Interface/Buttons/Units/nuclear_carrier.dds</Button>
 			<fScale>1.05</fScale>
 			<fInterfaceScale>0.9</fInterfaceScale>
 			<bActAsLand>0</bActAsLand>

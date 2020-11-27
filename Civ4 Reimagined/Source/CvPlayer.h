@@ -542,10 +542,11 @@ public:
 	int getNumSlaveUnits() const;
 	void changeNumSlaveUnits(int iChange);
 	int getSlavePoints() const; // Exposed to Python
-	void changeSlavePoints(int iChange, CvCity* pCity);
-	int getSlaveThreshold() const; // Exposed to Python
+	void changeSlavePoints(int iChange);
+	int getNewSlaveThreshold() const; // Exposed to Python
 	void setSlaveThreshold(int iChange);
-	void initSlave(CvCity* pCity);
+	void gainSlavePoints(int iChange, CvCity* pCity);
+	void initSlave(CvCity* pCity, bool bIncreaseThreshold);
 	
 	// Civ4 Reimagined
 	int getNoMilitaryProductionMaliCount() const;	
@@ -1303,6 +1304,7 @@ public:
 	void changeTechValue(int dChange); // Civ4 Reimagined
 	int getRealNumBonusNeededTimes100() const; // Civ4 Reimagined
 	int getBonusValueTimes100(int bonusCount) const; // Civ4 Reimagined
+	int calculateBonusRatioModifier() const; // Civ4 Reimagined // Exposed to Python
 	int getBonusRatio() const; // Civ4 Reimagined // Exposed to Python
 	void updateBonusRatio(bool bAlwaysUpdate = false); // Civ4 Reimagined
 	int getResearchPerCulture() const; // Civ4 Reimagined
@@ -1396,6 +1398,20 @@ public:
 	//
 	// Civ4 Reimagined End
 	//
+
+	// Civ4 Reimagind Ideologies
+	int getIdeologyInfluence(IdeologyTypes eIdeology) const;
+	void changeIdeologyInfluence(IdeologyTypes eIdeology, int iChange);
+	IdeologyTypes getIdeology() const;
+	void updateIdeology();
+
+	int getForeignTradeIdeologyModifier(IdeologyTypes Index) const;
+	void changeForeignTradeIdeologyModifier(IdeologyTypes Index, int iChange);
+	int getBonusRatioModifierPerIdeologyCiv(IdeologyTypes Index) const;
+	void changeBonusRatioModifierPerIdeologyCiv(IdeologyTypes Index, int iChange);
+	int getIdeologyCombatExperienceModifier(IdeologyTypes eIndex) const;
+	void changeIdeologyCombatExperienceModifier(IdeologyTypes eIndex, int iChange);
+	int getIdeologyChangeCivicModifier(CivicTypes eCivic) const;
 	
 	// K-Mod note: Adding new virtual functions to this list seems to cause unpredictable behaviour during the initialization of the game.
 	// So beware!
@@ -1442,7 +1458,7 @@ public:
 	virtual int AI_totalWaterAreaUnitAIs(CvArea* pArea, UnitAITypes eUnitAI) const = 0;	// Exposed to Python
 	virtual int AI_plotTargetMissionAIs(CvPlot* pPlot, MissionAITypes eMissionAI, CvSelectionGroup* pSkipSelectionGroup = NULL, int iRange = 0) const = 0;
 	virtual int AI_unitTargetMissionAIs(CvUnit* pUnit, MissionAITypes eMissionAI, CvSelectionGroup* pSkipSelectionGroup = NULL) const = 0;
-	virtual int AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness = false, bool bStateReligion = true, int iHappy = 1) const = 0;   // Exposed to Python
+	virtual int AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness = false, bool bStateReligion = true, int iHappy = 1, IdeologyTypes eBestIdeology = NO_IDEOLOGY) const = 0;   // Exposed to Python
 	virtual int AI_getNumAIUnits(UnitAITypes eIndex) const = 0;	// Exposed to Python
 	virtual void AI_changePeacetimeTradeValue(PlayerTypes eIndex, int iChange) = 0;
 	virtual void AI_changePeacetimeGrantValue(PlayerTypes eIndex, int iChange) = 0;
@@ -1670,6 +1686,7 @@ protected:
 	ReligionTypes m_eLastStateReligion;
 	PlayerTypes m_eParent;
 	TeamTypes m_eTeamType;
+	IdeologyTypes m_eIdeology; // Civ4 Reimagined
 
 	int* m_aiSeaPlotYield;
 	int* m_aiYieldRateModifier;
@@ -1697,6 +1714,10 @@ protected:
 	int* m_aiBestUnitPower; // Civ4 Reimagined
 	int* m_paiPlayerExtraAvailableBonuses; // Civ4 Reimagined
 	int* m_paiCivicEffect; // Civ4 Reimagined
+	int* m_aiIdeologyInfluence; // Civ4Reimagind
+	int* m_aiForeignTradeIdeologyModifier; // Civ4 Reimagined
+	int* m_aiBonusRatioModifierPerIdeologyCiv; // Civ4 Reimagined
+	int* m_aiIdeologyCombatExperienceModifier; // Civ4 Reimagined
 	
 	//Leoreth
 	int* m_aiDomainProductionModifiers;
@@ -1716,6 +1737,7 @@ protected:
 	int* m_paiExtraBuildingHappiness;
 	int* m_paiExtraBuildingHealth;
 	int* m_paiBuildingProductionModifiers; // Leoreth
+	int* m_paiUnitClassProductionModifier; // Civ4 Reimagined
 	int* m_paiTechProgressOnSettling; // Civ4 Reimagined
 	int* m_paiFeatureHappiness;
 	int* m_paiUnitClassCount;

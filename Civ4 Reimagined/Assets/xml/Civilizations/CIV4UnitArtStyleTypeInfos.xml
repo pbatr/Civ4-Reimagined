@@ -416,9 +416,9 @@
 				<StyleUnit>
 					<UnitType>UNIT_CARRIER</UnitType>
 					<UnitMeshGroup>
-						<EarlyArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</EarlyArtDefineTag>
-						<LateArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</LateArtDefineTag>
-						<MiddleArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</MiddleArtDefineTag>
+						<EarlyArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
 				
@@ -916,9 +916,9 @@
 				<StyleUnit>
 					<UnitType>UNIT_CARRIER</UnitType>
 					<UnitMeshGroup>
-						<EarlyArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</EarlyArtDefineTag>
-						<LateArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</LateArtDefineTag>
-						<MiddleArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</MiddleArtDefineTag>
+						<EarlyArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
 
@@ -3152,9 +3152,9 @@
 				<StyleUnit>
 					<UnitType>UNIT_CARRIER</UnitType>
 					<UnitMeshGroup>
-						<EarlyArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</EarlyArtDefineTag>
-						<LateArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</LateArtDefineTag>
-						<MiddleArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</MiddleArtDefineTag>
+						<EarlyArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
 
@@ -3652,9 +3652,9 @@
 				<StyleUnit>
 					<UnitType>UNIT_CARRIER</UnitType>
 					<UnitMeshGroup>
-						<EarlyArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</EarlyArtDefineTag>
-						<LateArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</LateArtDefineTag>
-						<MiddleArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</MiddleArtDefineTag>
+						<EarlyArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
 
@@ -4151,9 +4151,9 @@
 				<StyleUnit>
 					<UnitType>UNIT_CARRIER</UnitType>
 					<UnitMeshGroup>
-						<EarlyArtDefineTag>ART_DEF_UNIT_ILLUSTRIOUS_ENGLISH</EarlyArtDefineTag>
-						<LateArtDefineTag>ART_DEF_UNIT_ILLUSTRIOUS_ENGLISH</LateArtDefineTag>
-						<MiddleArtDefineTag>ART_DEF_UNIT_ILLUSTRIOUS_ENGLISH</MiddleArtDefineTag>
+						<EarlyArtDefineTag>ART_DEF_UNIT_ARK_ROYAL_CARRIER_AA</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_ARK_ROYAL_CARRIER_AA</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_ARK_ROYAL_CARRIER_AA</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
 
@@ -4827,9 +4827,9 @@
 				<StyleUnit>
 					<UnitType>UNIT_CARRIER</UnitType>
 					<UnitMeshGroup>
-						<EarlyArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</EarlyArtDefineTag>
-						<LateArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</LateArtDefineTag>
-						<MiddleArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</MiddleArtDefineTag>
+						<EarlyArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
 
@@ -5736,6 +5736,15 @@
 						<EarlyArtDefineTag>ART_DEF_UNIT_BATTLESHIP_BISMARK</EarlyArtDefineTag>
 						<LateArtDefineTag>ART_DEF_UNIT_BATTLESHIP_BISMARK</LateArtDefineTag>
 						<MiddleArtDefineTag>ART_DEF_UNIT_BATTLESHIP_BISMARK</MiddleArtDefineTag>
+					</UnitMeshGroup>
+				</StyleUnit>
+				
+				<StyleUnit>
+					<UnitType>UNIT_CARRIER</UnitType>
+					<UnitMeshGroup>
+						<EarlyArtDefineTag>ART_DEF_UNIT_GRAF_ZEPPELIN_CARRIER_AA</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_GRAF_ZEPPELIN_CARRIER_AA</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_GRAF_ZEPPELIN_CARRIER_AA</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
 
@@ -7807,6 +7816,15 @@
 				</StyleUnit>
 				
 				<StyleUnit>
+					<UnitType>UNIT_CARRIER</UnitType>
+					<UnitMeshGroup>
+						<EarlyArtDefineTag>ART_DEF_UNIT_P71_CARRIER</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_P71_CARRIER</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_P71_CARRIER</MiddleArtDefineTag>
+					</UnitMeshGroup>
+				</StyleUnit>
+				
+				<StyleUnit>
 					<UnitType>UNIT_ATTACK_SUBMARINE</UnitType>
 					<UnitMeshGroup>
 						<EarlyArtDefineTag>ART_DEF_UNIT_KILO_ATTACK_SUB</EarlyArtDefineTag>
@@ -8265,6 +8283,15 @@
 						<EarlyArtDefineTag>ART_DEF_UNIT_BATTLESHIP_YAMATO</EarlyArtDefineTag>
 						<LateArtDefineTag>ART_DEF_UNIT_BATTLESHIP_YAMATO</LateArtDefineTag>
 						<MiddleArtDefineTag>ART_DEF_UNIT_BATTLESHIP_YAMATO</MiddleArtDefineTag>
+					</UnitMeshGroup>
+				</StyleUnit>
+				
+				<StyleUnit>
+					<UnitType>UNIT_CARRIER</UnitType>
+					<UnitMeshGroup>
+						<EarlyArtDefineTag>ART_DEF_UNIT_ZUIKAKU</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_ZUIKAKU</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_ZUIKAKU</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
 
@@ -9889,9 +9916,9 @@
 				<StyleUnit>
 					<UnitType>UNIT_CARRIER</UnitType>
 					<UnitMeshGroup>
-						<EarlyArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</EarlyArtDefineTag>
-						<LateArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</LateArtDefineTag>
-						<MiddleArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</MiddleArtDefineTag>
+						<EarlyArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
 
@@ -10753,9 +10780,9 @@
 				<StyleUnit>
 					<UnitType>UNIT_CARRIER</UnitType>
 					<UnitMeshGroup>
-						<EarlyArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</EarlyArtDefineTag>
-						<LateArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</LateArtDefineTag>
-						<MiddleArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</MiddleArtDefineTag>
+						<EarlyArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
 				
@@ -12104,9 +12131,9 @@
 				<StyleUnit>
 					<UnitType>UNIT_CARRIER</UnitType>
 					<UnitMeshGroup>
-						<EarlyArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</EarlyArtDefineTag>
-						<LateArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</LateArtDefineTag>
-						<MiddleArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</MiddleArtDefineTag>
+						<EarlyArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
 				
@@ -13456,9 +13483,9 @@
 				<StyleUnit>
 					<UnitType>UNIT_CARRIER</UnitType>
 					<UnitMeshGroup>
-						<EarlyArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</EarlyArtDefineTag>
-						<LateArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</LateArtDefineTag>
-						<MiddleArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</MiddleArtDefineTag>
+						<EarlyArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
 				
@@ -15907,9 +15934,9 @@
 				<StyleUnit>
 					<UnitType>UNIT_CARRIER</UnitType>
 					<UnitMeshGroup>
-						<EarlyArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</EarlyArtDefineTag>
-						<LateArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</LateArtDefineTag>
-						<MiddleArtDefineTag>ART_DEF_UNIT_KUZNETSOV_CARRIER</MiddleArtDefineTag>
+						<EarlyArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</EarlyArtDefineTag>
+						<LateArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</LateArtDefineTag>
+						<MiddleArtDefineTag>ART_DEF_UNIT_SOVIET_CARRIER_AA</MiddleArtDefineTag>
 					</UnitMeshGroup>
 				</StyleUnit>
 

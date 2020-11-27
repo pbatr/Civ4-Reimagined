@@ -20,7 +20,7 @@
 			<Description>TXT_KEY_COMMERCE_RESEARCH</Description>
 			<iInitialPercent>100</iInitialPercent>
 			<iInitialHappiness>0</iInitialHappiness>
-			<iAIWeightPercent>115</iAIWeightPercent> <!-- was 125 -->
+			<iAIWeightPercent>120</iAIWeightPercent> <!-- was 125 -->
 			<bFlexiblePercent>1</bFlexiblePercent>
 			<Button>Art/Interface/Buttons/Process/ProcessResearch.dds</Button>
 		</CommerceInfo>
@@ -38,7 +38,7 @@
 			<Description>TXT_KEY_ESPIONAGE_CULTURE</Description>
 			<iInitialPercent>0</iInitialPercent>
 			<iInitialHappiness>0</iInitialHappiness>
-			<iAIWeightPercent>20</iAIWeightPercent> <!-- was 25 -->
+			<iAIWeightPercent>30</iAIWeightPercent> <!-- was 25 -->
 			<bFlexiblePercent>1</bFlexiblePercent>
 			<Button>Art/Interface/Buttons/Process/ProcessCulture.dds,Art/Interface/Buttons/Beyond_the_Sword_Atlas.dds,8,16</Button>
 		</CommerceInfo>
