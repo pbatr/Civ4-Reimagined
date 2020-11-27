@@ -1021,12 +1021,7 @@
 			<iStateReligionBuildingProductionModifier>0</iStateReligionBuildingProductionModifier>
 			<iStateReligionFreeExperience>0</iStateReligionFreeExperience>
 			<YieldModifiers/>
-			<UnitProductionModifiers>
-				<UnitProductionModifier>
-					<UnitClass>UNITCLASS_SETTLER</UnitClass>
-					<iUnitProductionModifier>100</iUnitProductionModifier>
-				</UnitProductionModifier>
-			</UnitProductionModifiers>
+			<UnitProductionModifiers/>
 			<ExtraYields/>
 			<CapitalYieldModifiers/>
 			<TradeYieldModifiers/>
