@@ -22,6 +22,8 @@ Tweaks
 -Senate grants Great Spy points
 -Pikemen require Corporation instead of Banking
 -Colossus obsoletes with Astronomy
+-Shwedagon Paya requires Meditation instead of Philosophy
+-National Epic requires Philosophy instead of Literature
 
 *********
 Interface
