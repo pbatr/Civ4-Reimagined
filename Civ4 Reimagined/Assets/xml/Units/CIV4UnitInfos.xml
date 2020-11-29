@@ -8368,7 +8368,7 @@
 			<PrereqCorporation>NONE</PrereqCorporation>
 			<PrereqBuilding>NONE</PrereqBuilding>
             <PrereqCivic>NONE</PrereqCivic>
-			<PrereqTech>TECH_BANKING</PrereqTech>
+			<PrereqTech>TECH_CORPORATION</PrereqTech>
 			<TechTypes>
 				<PrereqTech>TECH_FEUDALISM</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
@@ -8558,7 +8558,7 @@
 			<PrereqCorporation>NONE</PrereqCorporation>
 			<PrereqBuilding>NONE</PrereqBuilding>
             <PrereqCivic>NONE</PrereqCivic>
-			<PrereqTech>TECH_BANKING</PrereqTech>
+			<PrereqTech>TECH_CORPORATION</PrereqTech>
 			<TechTypes>
 				<PrereqTech>TECH_FEUDALISM</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
