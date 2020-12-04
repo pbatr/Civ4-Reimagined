@@ -2404,13 +2404,6 @@ int CvPlayerAI::AI_commerceWeight(CommerceTypes eCommerce, const CvCity* pCity) 
 				}
 			}
 			// K-Mod end
-			
-			// Civ4 Reimagined
-			if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS) && getUniquePowerLevel() < 5)
-			{
-				iWeight *= 3;
-				iWeight /= 2;
-			}
 		}
 		break;
 	case COMMERCE_ESPIONAGE:
