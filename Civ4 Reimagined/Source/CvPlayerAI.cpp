@@ -2291,16 +2291,20 @@ int CvPlayerAI::AI_yieldWeight(YieldTypes eYield, const CvCity* pCity) const // 
 		else
 		{
 			// was 2.5
-			iWeight *= 300;
+			iWeight *= 295 + AI_getFlavorValue(FLAVOR_GROWTH); // Civ4 Reimagined, was 300
 			iWeight /= 100;
 		}
 		break;
 	case YIELD_PRODUCTION:
 		// was 2
-		iWeight *= 220; // Civ4 Reimagined, was 270
+		iWeight *= 225 + AI_getFlavorValue(FLAVOR_PRODUCTION); // Civ4 Reimagined, was 270
 		iWeight /= 100;
 		break;
 	case YIELD_COMMERCE:
+		// Civ4 Reimagined
+		iWeight *= 100 + (AI_getFlavorValue(FLAVOR_SCIENCE) + AI_getFlavorValue(FLAVOR_GOLD))/2;
+		iWeight /= 100;
+
 		if (AI_isFinancialTrouble())
 		{
 			iWeight *= 2;
@@ -2323,6 +2327,9 @@ int CvPlayerAI::AI_commerceWeight(CommerceTypes eCommerce, const CvCity* pCity) 
 	switch (eCommerce)
 	{
 	case COMMERCE_RESEARCH:
+		// Civ4 Reimagined
+		iWeight *= 100 + AI_getFlavorValue(FLAVOR_SCIENCE);
+		iWeight /= 100;
 		if (AI_avoidScience())
 		{
 			if (isNoResearchAvailable())
@@ -2336,6 +2343,9 @@ int CvPlayerAI::AI_commerceWeight(CommerceTypes eCommerce, const CvCity* pCity) 
 		}
 		break;
 	case COMMERCE_GOLD:
+		// Civ4 Reimagined
+		iWeight *= 100 + AI_getFlavorValue(FLAVOR_GOLD);
+		iWeight /= 100;
 		if (getCommercePercent(COMMERCE_GOLD) > 80) // originally == 100
 		{
 			//avoid strikes
@@ -2374,6 +2384,9 @@ int CvPlayerAI::AI_commerceWeight(CommerceTypes eCommerce, const CvCity* pCity) 
 		}
 		else
 		{
+			// Civ4 Reimagined
+			iWeight *= 100 + AI_getFlavorValue(FLAVOR_CULTURE);
+			iWeight /= 100;
 			// weight multipliers changed for K-Mod
 			if (AI_isDoVictoryStrategy(AI_VICTORY_CULTURE3) || getCommercePercent(COMMERCE_CULTURE) >= 90)
 			{
@@ -2648,6 +2661,7 @@ void CvPlayerAI::AI_updateCommerceWeights()
 				iWeight /= 300 - getCurrentEra() * 40;
 			}
 		}
+
 		AI_setEspionageWeight(iWeight);
 	} // end espionage
 }
