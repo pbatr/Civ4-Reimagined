@@ -5984,7 +5984,9 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 	/* ------------------ Building Value  ------------------ */
 	bool bEnablesWonder;
-	iValue += AI_techBuildingValue(eTech, bAsync, bEnablesWonder); // changed by K-Mod
+	int iTechBuildingValue = AI_techBuildingValue(eTech, bAsync, bEnablesWonder); // changed by K-Mod
+	logBBAI("	AI_techBuildingValue: %d", iTechBuildingValue);
+	iValue += iTechBuildingValue;
 	iValue -= AI_obsoleteBuildingPenalty(eTech, bAsync); // K-Mod!
 
 	// K-Mod. Scale the random wonder bonus based on leader personality.
@@ -6165,7 +6167,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				//iValue += 3 * (iNewCivicValue - iCurrentCivicValue);
 				// Civ4 Reimagined
 				const bool bFavorite = (eNewCivic == GC.getLeaderHeadInfo(getPersonalityType()).getFavoriteCivic());
-				const int iCivicValue = (bFavorite ? 20 : 15) * (iNewCivicValue - iCurrentCivicValue) * (bNewReligionCivic ? 2 : 1);
+				const int iCivicValue = (bFavorite ? 40 : 30) * (iNewCivicValue - iCurrentCivicValue) * (bNewReligionCivic ? 2 : 1);
 
 				if (gPlayerLogLevel > 2) logBBAI("	%S Tech Civic Value: %d", GC.getCivicInfo(eNewCivic).getDescription(0), iCivicValue);
 
@@ -6539,10 +6541,15 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 		
 		if (bAnyWarPlans)
 		{
+			if (gPlayerLogLevel > 2)
+			{
+				logBBAI("	Bigger value for war tech (previously: %d)", iValue);
+			}
+
 			iValue += kTechInfo.getFlavorValue(FLAVOR_MILITARY) * iValue * (bTotalWar ? 20 : 4) / 100;
 			if (gPlayerLogLevel > 2)
 			{
-				logBBAI("Bigger value for war tech");
+				logBBAI("	Bigger value for war tech (afterwards: %d)", iValue);
 			}
 		}
 	}
@@ -15896,7 +15903,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		
 		iBonusExperience *= std::max(iWarmongerFactor, (bWarPlan ? 100 : 0));
 		iBonusExperience /= 100;
-		iBonusExperience /= 7;
+		iBonusExperience /= 14;
 
 		iBonusUnitProduction *= iProductionShareUnits;
 		iBonusUnitProduction /= 100;
