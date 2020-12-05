@@ -1421,4 +1421,8 @@
 		<Tag>TXT_KEY_ACTION_BUILDING_HURRY</Tag>
 		<English>[COLOR_WARNING_TEXT]Can only Hurry Production of a Building or a Project.[COLOR_REVERT]</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILD_VILLAGE</Tag>
+		<English>Build a [LINK=IMPROVEMENT_VILLAGE]Village[\LINK]</English>
+	</TEXT>
 </Civ4GameText>
