@@ -1965,7 +1965,7 @@
 			<iStateReligionUnitProductionModifier>0</iStateReligionUnitProductionModifier>
 			<iStateReligionBuildingProductionModifier>0</iStateReligionBuildingProductionModifier>
 			<iStateReligionFreeExperience>0</iStateReligionFreeExperience>
-			<iBonusRatioModifier>-10</iBonusRatioModifier>
+			<iBonusRatioModifier>0</iBonusRatioModifier>
 			<YieldModifiers/>
 			<ExtraYields>
 				<iYield>0</iYield>
