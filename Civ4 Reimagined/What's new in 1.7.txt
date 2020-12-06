@@ -27,6 +27,7 @@ Tweaks
 -Colossus obsoletes with Astronomy
 -Shwedagon Paya requires Meditation instead of Philosophy
 -National Epic requires Philosophy instead of Literature
+-Statue of Liberty trade with liberal Civs bonus reduced from 300% to 200%
 
 *********
 Interface
