@@ -19,6 +19,7 @@ Tweaks
 -Reduced Awqaq Runa costs from 30 to 25
 -Increased Vulture anti-archer bonus from 10% to 20%
 -Increased Assembly Plant production with electricity from +40% to +85%, but it starts off with 15% less production compared to other factories and loses its former +3 production and +50% building with coal bonus.
+-Industrialism production bonus increased from 15% to 20%
 -Central Planning no longer reduces bonus ratios
 -State Atheism reduces overcrowding unhappiness by 10%
 -Senate grants Great Spy points

@@ -1375,7 +1375,7 @@
 			<iStateReligionFreeExperience>0</iStateReligionFreeExperience>
 			<YieldModifiers>
 				<iYield>0</iYield>
-				<iYield>15</iYield>
+				<iYield>20</iYield>
 				<iYield>0</iYield>
 			</YieldModifiers>
 			<ExtraYields/>
