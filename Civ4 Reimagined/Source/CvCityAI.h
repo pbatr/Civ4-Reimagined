@@ -44,7 +44,7 @@ public:
 	int AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags = 0, int iThreshold = 0, bool bConstCache = false, bool bAllowRecursion = true) const;
 
 	ProjectTypes AI_bestProject(int* piBestValue = 0);
-	int AI_projectValue(ProjectTypes eProject);
+	int AI_projectValue(ProjectTypes eProject) const;
 
 	// K-Mod note, I've deleted the single-argument version of the following two functions. They were completely superfluous.
 	ProcessTypes AI_bestProcess(CommerceTypes eCommerceType = NO_COMMERCE) const;

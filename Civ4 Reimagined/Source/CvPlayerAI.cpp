@@ -6023,12 +6023,17 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 	/* ------------------ Project Value  ------------------ */
 	bool bEnablesProjectWonder = false;
+	int iTechProjectValue = AI_techProjectValue(eTech, bEnablesWonder); // changed by K-Mod
+	logBBAI("	AI_techProjectValue: %d", iTechProjectValue);
+	iValue += iTechProjectValue;
+
 	for (int iJ = 0; iJ < GC.getNumProjectInfos(); iJ++)
 	{
 		const CvProjectInfo& kProjectInfo = GC.getProjectInfo((ProjectTypes)iJ); // K-Mod
 
 		//if (kProjectInfo.getTechPrereq() == eTech)
 		// Civ4 Reimagined
+		/*
 		if (kProjectInfo.getTechPrereq() == eTech || kProjectInfo.getTechPrereq2() == eTech)
 		{
 			iValue += 280;
@@ -6059,6 +6064,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 					}
 				}
 			}
+			*/
 
 			if (iPathLength <= 1)
 			{
@@ -6078,7 +6084,6 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 					}
 				}
 			}
-		}
 	}
 	if (bEnablesProjectWonder)
 	{
@@ -6851,18 +6856,14 @@ int CvPlayerAI::AI_techBuildingValue(TechTypes eTech, bool bConstCache, bool& bE
 		int iBuildingValue = 0;
 		for (size_t i = 0; i < relevant_cities.size(); i++)
 		{
-			if (relevant_cities[i]->canConstruct(eLoopBuilding, false, false, true, true) ||
-				isNationalWonderClass(eClass)) // (ad-hoc). National wonders often require something which is unlocked by the same tech. So I'll disregard the construction requirements.
-			{
-				if (bLimitedBuilding) // TODO: don't assume 'limited' means 'only one'.
-					iBuildingValue = std::max(iBuildingValue, relevant_cities[i]->AI_buildingValue(eLoopBuilding, 0, 0, bConstCache));
-				else
-					iBuildingValue += relevant_cities[i]->AI_buildingValue(eLoopBuilding, 0, 0, bConstCache);
-			}
+			if (bLimitedBuilding) // TODO: don't assume 'limited' means 'only one'.
+				iBuildingValue = std::max(iBuildingValue, relevant_cities[i]->AI_buildingValue(eLoopBuilding, 0, 0, bConstCache));
+			else
+				iBuildingValue += relevant_cities[i]->AI_buildingValue(eLoopBuilding, 0, 0, bConstCache);
 		}
 		if (iBuildingValue > 0)
 		{
-			if (gPlayerLogLevel > 2)
+			if (gPlayerLogLevel > 0)
 			{
 				logBBAI("	%S Tech Building Value before scaling: %d", kLoopBuilding.getDescription(0), iBuildingValue);
 			}
@@ -6924,7 +6925,7 @@ int CvPlayerAI::AI_techBuildingValue(TechTypes eTech, bool bConstCache, bool& bE
 			//
 			iTotalValue += iBuildingValue;
 			
-			if (gPlayerLogLevel > 2)
+			if (gPlayerLogLevel > 0)
 			{
 				logBBAI("	%S Tech Building Value after scaling: %d", kLoopBuilding.getDescription(0), iBuildingValue);
 			}
@@ -6948,6 +6949,137 @@ int CvPlayerAI::AI_techBuildingValue(TechTypes eTech, bool bConstCache, bool& bE
 	return (int)iTotalValue;
 }
 // K-Mod end
+
+
+// Civ4 Reimagined
+int CvPlayerAI::AI_techProjectValue(TechTypes eTech, bool& bEnablesWonder) const
+{
+	PROFILE_FUNC();
+	FAssertMsg(!isAnarchy(), "AI_techProjectValue should not be used while in anarchy. Results will be inaccurate.");
+
+	long iTotalValue = 0;
+	std::vector<const CvCity*> relevant_cities; // (this will be populated when we find a building that needs to be evaluated)
+	const CvTeamAI& kTeam = GET_TEAM(getTeam()); // Civ4 Reimagined
+
+	for (ProjectTypes eLoopProject = (ProjectTypes)0; eLoopProject < GC.getNumProjectInfos(); eLoopProject=(ProjectTypes)(eLoopProject+1))
+	{
+		if (eLoopProject == NO_PROJECT || !isTechRequiredForProject(eTech, eLoopProject))
+			continue; // this project is not relevent
+
+		const CvProjectInfo& kLoopProject = GC.getProjectInfo(eLoopProject);
+
+		if (isWorldProject(eLoopProject))
+		{
+			if (GC.getGameINLINE().isProjectMaxedOut(eLoopProject))
+				continue;
+
+			bEnablesWonder = true;
+		}
+
+		bool bLimitedProject = isLimitedProject(eLoopProject);
+
+		// Populate the relevant_cities list if we haven't done so already.
+		if (relevant_cities.empty())
+		{
+			int iEarliestTurn = INT_MAX;
+
+			int iLoop;
+			for (const CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+			{
+				iEarliestTurn = std::min(iEarliestTurn, pLoopCity->getGameTurnAcquired());
+			}
+
+			int iCutoffTurn = (GC.getGameINLINE().getGameTurn() + iEarliestTurn) / 2 + GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getVictoryDelayPercent() * 30 / 100;
+			// iCutoffTurn corresponds 50% of the time since our first city was aquired, with a 30 turn (scaled) buffer.
+
+			for (const CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+			{
+				if (pLoopCity->getGameTurnAcquired() < iCutoffTurn || pLoopCity->isCapital())
+					relevant_cities.push_back(pLoopCity);
+			}
+
+			if (relevant_cities.empty())
+			{
+				FAssertMsg(isBarbarian(), "No revelent cities in AI_techBuildingValue");
+				return 0;
+			}
+		}
+		//
+
+		// Perform the evaluation.
+		int iProjectValue = 0;
+		for (size_t i = 0; i < relevant_cities.size(); i++)
+		{
+			if (bLimitedProject) // TODO: don't assume 'limited' means 'only one'.
+				iProjectValue = std::max(iProjectValue, relevant_cities[i]->AI_projectValue(eLoopProject));
+			else
+				iProjectValue += relevant_cities[i]->AI_projectValue(eLoopProject);
+		}
+		
+		if (iProjectValue > 0)
+		{
+			if (gPlayerLogLevel > 0)
+			{
+				logBBAI("	%S Tech Project Value before scaling: %d", kLoopProject.getDescription(0), iProjectValue);
+			}
+
+			if (kLoopProject.getProductionCost() > 0)
+			{
+				int iMultiplier = 0;
+
+				for (BonusTypes i = (BonusTypes)0; i < GC.getNumBonusInfos(); i=(BonusTypes)(i+1))
+				{
+					if (hasBonus(i))
+					{
+						iMultiplier += kLoopProject.getBonusProductionModifier(i);
+					}
+				}
+				//int iScale = 15 * (3 + getCurrentEra()); // hammers (ideally this would be based on the average city yield or something like that.)
+				// Civ4 Reimagined
+				int iScale = 5 * (3 + getCurrentEra());
+				iScale += AI_isCapitalAreaAlone() ? 30 : 0; // can afford to spend more on infrastructure if we are alone.
+				// decrease when at war
+				if (GET_TEAM(getTeam()).getAnyWarPlanCount(true) > 0)
+					iScale = iScale * 2/3;
+				// increase scale for limited wonders, because they don't need to be built in every city.
+				if (isLimitedProject(eLoopProject))
+					iScale *= std::min((int)relevant_cities.size(), GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getTargetNumCities());
+
+				// adjust for game speed
+				iScale = iScale * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getBuildPercent() / 100;
+				// use the multiplier we calculated earlier
+				iScale = iScale * (100 + iMultiplier) / 100;
+
+				iProjectValue *= 100;
+				iProjectValue /= std::max(33, 100 * kLoopProject.getProductionCost() / std::max(1, iScale));
+			}
+			//
+			iTotalValue += iProjectValue;
+			
+			if (gPlayerLogLevel > 0)
+			{
+				logBBAI("	%S Tech Project Value after scaling: %d", kLoopProject.getDescription(0), iProjectValue);
+			}
+		}
+	}
+	int iScale = AI_isDoStrategy(AI_STRATEGY_ECONOMY_FOCUS) ? 180 : 100;
+
+	if (getNumCities() == 1 && getCurrentEra() == GC.getGameINLINE().getStartEra())
+		iScale /= 2; // I expect we'll want to be building mostly units until we get a second city.
+
+	iTotalValue *= iScale;
+	iTotalValue /= 120;
+	
+	FAssert(iTotalValue <= MAX_INT);
+	
+	if (iTotalValue > MAX_INT && gPlayerLogLevel > 2)
+	{
+		logBBAI("TechProjectValue Overflow!");
+	}
+
+	return (int)iTotalValue;
+}
+
 
 // This function has been mostly rewriten for K-Mod
 // Heavily edited by Civ4 Reimagined

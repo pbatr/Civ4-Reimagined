@@ -6017,7 +6017,7 @@ ProjectTypes CvCityAI::AI_bestProject(int* piBestValue)
 // This function has been completely rewriten for K-Mod
 // The return value is roughly in units of 4 * commerce per turn, to match AI_buildingValue.
 // However, note that most projects don't actually give commerce per turn - so the evaluation is quite rough.
-int CvCityAI::AI_projectValue(ProjectTypes eProject)
+int CvCityAI::AI_projectValue(ProjectTypes eProject) const
 {
 	const CvPlayerAI& kOwner = GET_PLAYER(getOwnerINLINE());
 	const CvTeam& kTeam = GET_TEAM(kOwner.getTeam());

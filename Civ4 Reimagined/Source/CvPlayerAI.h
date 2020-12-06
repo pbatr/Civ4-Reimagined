@@ -133,6 +133,7 @@ public:
 	int AI_techValue(TechTypes eTech, int iPathLength, bool bIgnoreCost, bool bAsync, const std::vector<int>& viBonusClassRevealed, const std::vector<int>& viBonusClassUnrevealed, const std::vector<int>& viBonusClassHave) const;
 	int AI_obsoleteBuildingPenalty(TechTypes eTech, bool bConstCache) const; // K-Mod
 	int AI_techBuildingValue(TechTypes eTech, bool bConstCache, bool& bEnablesWonder) const; // Rewritten for K-Mod
+	int AI_techProjectValue(TechTypes eTech, bool& bEnablesWonder) const; // Civ4 Reimagined
 	int AI_techUnitValue( TechTypes eTech, int iPathLength, bool &bEnablesUnitWonder, CivicTypes eCivic ) const; //Civ4 Reimagined
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
