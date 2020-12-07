@@ -39,6 +39,7 @@ Fixes
 *********
 -"Better coal" event triggers only with researched drydock or coal plant
 -AI would move capital too often to colonies
+-Corporation could sometimes drive out competing headquarter from a city
 
 *******************************************
 Civ4 Reimagined 1.6

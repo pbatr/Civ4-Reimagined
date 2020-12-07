@@ -13919,12 +13919,16 @@ bool CvCity::spreadCorporation(CorporationTypes eCorporation, CvCity* pHeadquart
 			if (isHasCorporation((CorporationTypes)iCorp) && GC.getGameINLINE().isCompetingCorporation((CorporationTypes)iCorp, eCorporation))
 			{
 				if( gCityLogLevel >= 2 ) logBBAI("Competing Corporation %S in city", GC.getCorporationInfo((CorporationTypes)iCorp).getDescription());
-				eCompetingCorp = (CorporationTypes)iCorp;
-				if (isHeadquarters(eCompetingCorp))
+
+				if (isHeadquarters((CorporationTypes)iCorp))
 				{
 					return false;
 				}
-				break;
+
+				if (eCompetingCorp == NO_CORPORATION || GC.getCorporationInfo(eCompetingCorp).getSpreadFactor() < GC.getCorporationInfo((CorporationTypes)iCorp).getSpreadFactor())
+				{
+					eCompetingCorp = (CorporationTypes)iCorp;
+				}
 			}
 		}
 	}
