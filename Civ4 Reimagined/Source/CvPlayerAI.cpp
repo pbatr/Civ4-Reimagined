@@ -6863,6 +6863,12 @@ int CvPlayerAI::AI_techBuildingValue(TechTypes eTech, bool bConstCache, bool& bE
 		}
 		if (iBuildingValue > 0)
 		{
+			// Civ4 Reimagined: Unique Building
+			if ((GC.getBuildingClassInfo(eClass).getDefaultBuildingIndex()) != eLoopBuilding)
+			{
+				iBuildingValue *= 3;
+			}
+
 			if (gPlayerLogLevel > 0)
 			{
 				logBBAI("	%S Tech Building Value before scaling: %d", kLoopBuilding.getDescription(0), iBuildingValue);
@@ -7140,8 +7146,8 @@ int CvPlayerAI::AI_techUnitValue(TechTypes eTech, int iPathLength, bool& bEnable
 		if (GC.getUnitClassInfo(eLoopClass).getDefaultUnitIndex() != GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits(eLoopClass))
 		{
 			//UU
-			// Civ4 Reimagined: Increased from 600 to 900
-			iTotalUnitValue += 900;
+			// Civ4 Reimagined: Increased from 600 to 2000
+			iTotalUnitValue += 2000;
 		}
 
 		if (eTech == NO_TECH || kLoopUnit.getPrereqAndTech() == eTech || kTeam.isHasTech((TechTypes)kLoopUnit.getPrereqAndTech()) || canResearch((TechTypes)kLoopUnit.getPrereqAndTech()))
