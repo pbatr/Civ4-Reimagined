@@ -2074,7 +2074,7 @@ bool CvCity::canTrain(UnitCombatTypes eUnitCombat) const
 }
 
 
-bool CvCity::canConstruct(BuildingTypes eBuilding, bool bContinue, bool bTestVisible, bool bIgnoreCost, bool bIgnoreTech, bool bIgnoreCivic) const
+bool CvCity::canConstruct(BuildingTypes eBuilding, bool bContinue, bool bTestVisible, bool bIgnoreCost, bool bIgnoreTech, bool bIgnoreCivic, bool bIgnoreBuilding) const
 {
 	BuildingTypes ePrereqBuilding;
 	bool bRequiresBonus;
@@ -2356,17 +2356,20 @@ bool CvCity::canConstruct(BuildingTypes eBuilding, bool bContinue, bool bTestVis
 			return false;
 		}
 
-		for (iI = 0; iI < GC.getNumBuildingClassInfos(); iI++)
+		if (!bIgnoreBuilding)
 		{
-			if (GC.getBuildingInfo(eBuilding).isBuildingClassNeededInCity(iI))
+			for (iI = 0; iI < GC.getNumBuildingClassInfos(); iI++)
 			{
-				ePrereqBuilding = ((BuildingTypes)(GC.getCivilizationInfo(getCivilizationType()).getCivilizationBuildings(iI)));
-
-				if (ePrereqBuilding != NO_BUILDING)
+				if (GC.getBuildingInfo(eBuilding).isBuildingClassNeededInCity(iI))
 				{
-					if (0 == getNumBuilding(ePrereqBuilding) /* && (bContinue || (getFirstBuildingOrder(ePrereqBuilding) == -1))*/)
+					ePrereqBuilding = ((BuildingTypes)(GC.getCivilizationInfo(getCivilizationType()).getCivilizationBuildings(iI)));
+
+					if (ePrereqBuilding != NO_BUILDING)
 					{
-						return false;
+						if (0 == getNumBuilding(ePrereqBuilding) /* && (bContinue || (getFirstBuildingOrder(ePrereqBuilding) == -1))*/)
+						{
+							return false;
+						}
 					}
 				}
 			}

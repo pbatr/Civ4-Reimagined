@@ -1603,25 +1603,6 @@ void CvCityAI::AI_chooseProduction()
 		}
 	}
 
-	// Civ4 Reimagined: Compare pirate power with power of strongest ships of neighboring civs
-	if ((pWaterArea != NULL) && bWaterAreaRelevant && !bLandWar && !bAssault && !bFinancialTrouble && !bUnitExempt)
-	{
-		const int iPirateCount = kPlayer.AI_totalWaterAreaUnitAIs(pWaterArea, UNITAI_PIRATE_SEA);
-		int iNeededPirates = kPlayer.countNumCoastalCitiesByArea(pArea);
-
-		if (iPirateCount < iNeededPirates)
-		{
-			if (AI_pirateValue() > 49)
-			{
-				if (AI_chooseUnit(UNITAI_PIRATE_SEA))
-				{
-					if( gCityLogLevel >= 2 ) logBBAI("      City %S uses choose pirate (needed Pirates: %d)", getName().GetCString(), iNeededPirates);
-					return;
-				}
-			}
-		}
-	}
-
 	// don't build frivolous things if this is an important city unless we at war
 	// Civ4 Reimagined: Explore first
     if (!bImportantCity || bLandWar || bAssault)
@@ -1774,6 +1755,25 @@ void CvCityAI::AI_chooseProduction()
 				return;
 			}
 			// K-Mod end
+		}
+	}
+
+	// Civ4 Reimagined: Compare pirate power with power of strongest ships of neighboring civs
+	if ((pWaterArea != NULL) && bWaterAreaRelevant && !bLandWar && !bAssault && !bFinancialTrouble && !bUnitExempt)
+	{
+		const int iPirateCount = kPlayer.AI_totalWaterAreaUnitAIs(pWaterArea, UNITAI_PIRATE_SEA);
+		int iNeededPirates = kPlayer.countNumCoastalCitiesByArea(pArea);
+
+		if (iPirateCount < iNeededPirates)
+		{
+			if (AI_pirateValue() > 49)
+			{
+				if (AI_chooseUnit(UNITAI_PIRATE_SEA))
+				{
+					if( gCityLogLevel >= 2 ) logBBAI("      City %S uses choose pirate (needed Pirates: %d)", getName().GetCString(), iNeededPirates);
+					return;
+				}
+			}
 		}
 	}
 
@@ -4178,7 +4178,8 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 					// Firstly, we don't know how many golden ages we are going to have; but that's a relatively minor problem. We can just guess that.
 					// A bigger problem is that the value of a golden age can change a lot depending on the state of the civilzation.
 					// The upshot is that the value here is going to be rough...
-					iGoldenPercent += 3 * kBuilding.getGoldenAgeModifier() * (GC.getNumEraInfos() - kOwner.getCurrentEra()) / (GC.getNumEraInfos() + 1);
+					// Civ4 Reimagined: doubled the value
+					iGoldenPercent += 6 * kBuilding.getGoldenAgeModifier() * (GC.getNumEraInfos() - kOwner.getCurrentEra()) / (GC.getNumEraInfos() + 1);
 				}
 				if (iGoldenPercent > 0)
 				{
@@ -4351,7 +4352,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 			}
 
 			if (!kOwner.isNoGreatPeople()) //Civ4 Reimagined
-				iValue += ((kBuilding.getGlobalGreatPeopleRateModifier() * iNumCities) / (kOwner.AI_isDoStrategy(AI_STRATEGY_SPECIALIST_ECONOMY) ? 5 : 8));
+				iValue += ((kBuilding.getGlobalGreatPeopleRateModifier() * iNumCities) / (kOwner.AI_isDoStrategy(AI_STRATEGY_SPECIALIST_ECONOMY) ? 2 : 4));
 
 			// Civ4 Reimagined
 			if (GET_PLAYER(getOwnerINLINE()).getMaxAnarchyTurns() > 0)
@@ -4604,8 +4605,8 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				{
 					int iTechValue =  ((iTotalTechValue / iTechCount) + iMaxTechValue)/2;
 
-					// It's hard to measure an instant boost with units of commerce per turn... So I'm just going to divide it by 10.
-					iValue += iTechValue * 10 / GC.getGameSpeedInfo(GC.getGame().getGameSpeedType()).getResearchPercent();
+					// Civ4 Reimagined: more value
+					iValue += iTechValue * 20 / GC.getGameSpeedInfo(GC.getGame().getGameSpeedType()).getResearchPercent();
 				}
 				// else: If there is nothing to research, a free tech is worthless.
 			}

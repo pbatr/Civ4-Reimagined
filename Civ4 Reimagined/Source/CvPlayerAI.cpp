@@ -6172,7 +6172,8 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				//iValue += 3 * (iNewCivicValue - iCurrentCivicValue);
 				// Civ4 Reimagined
 				const bool bFavorite = (eNewCivic == GC.getLeaderHeadInfo(getPersonalityType()).getFavoriteCivic());
-				const int iCivicValue = (bFavorite ? 40 : 30) * (iNewCivicValue - iCurrentCivicValue) * (bNewReligionCivic ? 2 : 1);
+				const int iCivicFactor = bNewReligionCivic ? 60 : ((getCurrentEra() + 1) * (bFavorite ? 8 : 6));
+				const int iCivicValue = iCivicFactor * (iNewCivicValue - iCurrentCivicValue);
 
 				if (gPlayerLogLevel > 2) logBBAI("	%S Tech Civic Value: %d", GC.getCivicInfo(eNewCivic).getDescription(0), iCivicValue);
 
@@ -6856,6 +6857,12 @@ int CvPlayerAI::AI_techBuildingValue(TechTypes eTech, bool bConstCache, bool& bE
 		int iBuildingValue = 0;
 		for (size_t i = 0; i < relevant_cities.size(); i++)
 		{
+			if (!relevant_cities[i]->canConstruct(eLoopBuilding, false, false, true, true, true, true) &&
+				!isNationalWonderClass(eClass)) // (ad-hoc). National wonders often require something which is unlocked by the same tech. So I'll disregard the construction requirements.)
+			{
+				continue;
+			}
+
 			if (bLimitedBuilding) // TODO: don't assume 'limited' means 'only one'.
 				iBuildingValue = std::max(iBuildingValue, relevant_cities[i]->AI_buildingValue(eLoopBuilding, 0, 0, bConstCache));
 			else
