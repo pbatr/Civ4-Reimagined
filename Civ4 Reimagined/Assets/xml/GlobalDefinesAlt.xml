@@ -82,7 +82,7 @@
 	<!-- global warming threshold is # land plots * resistance. -->
 	<Define>
 		<DefineName>GLOBAL_WARMING_RESISTANCE</DefineName>
-		<iDefineIntVal>8</iDefineIntVal> <!-- Civ4 Reimagined, was 9 -->
+		<iDefineIntVal>7</iDefineIntVal> <!-- Civ4 Reimagined, was 9 -->
 	</Define>
 	<!-- global warming index above the threshold is decreased by a percentage given by the restoration rate -->
 	<Define>
