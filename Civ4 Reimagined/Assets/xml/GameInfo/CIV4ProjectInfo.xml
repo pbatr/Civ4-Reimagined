@@ -117,7 +117,7 @@
 			<AnyonePrereqProject>NONE</AnyonePrereqProject>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
 			<iMaxTeamInstances>1</iMaxTeamInstances>
-			<iCost>1400</iCost>
+			<iCost>2000</iCost>
 			<iNukeInterception>0</iNukeInterception>
 			<iTechShare>0</iTechShare>
 			<EveryoneSpecialUnit>NONE</EveryoneSpecialUnit>
@@ -160,7 +160,7 @@
 			<AnyonePrereqProject>NONE</AnyonePrereqProject>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
 			<iMaxTeamInstances>1</iMaxTeamInstances>
-			<iCost>1400</iCost>
+			<iCost>2000</iCost>
 			<iNukeInterception>0</iNukeInterception>
 			<iTechShare>0</iTechShare>
 			<EveryoneSpecialUnit>NONE</EveryoneSpecialUnit>
@@ -203,7 +203,7 @@
 			<AnyonePrereqProject>NONE</AnyonePrereqProject>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
 			<iMaxTeamInstances>1</iMaxTeamInstances>
-			<iCost>1600</iCost>
+			<iCost>2200</iCost>
 			<iNukeInterception>0</iNukeInterception>
 			<iTechShare>0</iTechShare>
 			<EveryoneSpecialUnit>NONE</EveryoneSpecialUnit>
@@ -241,7 +241,7 @@
 			<AnyonePrereqProject>NONE</AnyonePrereqProject>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
 			<iMaxTeamInstances>1</iMaxTeamInstances>
-			<iCost>1800</iCost>
+			<iCost>2500</iCost>
 			<iNukeInterception>0</iNukeInterception>
 			<iTechShare>0</iTechShare>
 			<EveryoneSpecialUnit>NONE</EveryoneSpecialUnit>
@@ -284,7 +284,7 @@
 			<AnyonePrereqProject>NONE</AnyonePrereqProject>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
 			<iMaxTeamInstances>2</iMaxTeamInstances>
-			<iCost>1000</iCost>
+			<iCost>1500</iCost>
 			<iNukeInterception>0</iNukeInterception>
 			<iTechShare>0</iTechShare>
 			<EveryoneSpecialUnit>NONE</EveryoneSpecialUnit>
@@ -301,7 +301,7 @@
 			<VictoryThresholds>
 				<VictoryThreshold>
 					<VictoryType>VICTORY_SPACE_RACE</VictoryType>
-					<iThreshold>2</iThreshold>
+					<iThreshold>3</iThreshold>
 				</VictoryThreshold>
 			</VictoryThresholds>
 			<VictoryMinThresholds>
@@ -310,7 +310,7 @@
 					<iThreshold>1</iThreshold>
 				</VictoryMinThreshold>
 			</VictoryMinThresholds>
-			<iVictoryDelayPercent>50</iVictoryDelayPercent>
+			<iVictoryDelayPercent>33</iVictoryDelayPercent>
 			<iSuccessRate>0</iSuccessRate>
 			<BonusProductionModifiers/>
 			<CreateSound/>
@@ -344,7 +344,7 @@
 			<VictoryThresholds>
 				<VictoryThreshold>
 					<VictoryType>VICTORY_SPACE_RACE</VictoryType>
-					<iThreshold>5</iThreshold>
+					<iThreshold>10</iThreshold>
 				</VictoryThreshold>
 			</VictoryThresholds>
 			<VictoryMinThresholds>
@@ -354,7 +354,7 @@
 				</VictoryMinThreshold>
 			</VictoryMinThresholds>
 			<iVictoryDelayPercent>0</iVictoryDelayPercent>
-			<iSuccessRate>20</iSuccessRate>
+			<iSuccessRate>10</iSuccessRate>
 			<BonusProductionModifiers>
 				<BonusProductionModifier>
 					<BonusType>BONUS_ALUMINUM</BonusType>
@@ -375,7 +375,7 @@
 			<AnyonePrereqProject>NONE</AnyonePrereqProject>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
 			<iMaxTeamInstances>5</iMaxTeamInstances>
-			<iCost>1500</iCost>
+			<iCost>2000</iCost>
 			<iNukeInterception>0</iNukeInterception>
 			<iTechShare>0</iTechShare>
 			<EveryoneSpecialUnit>NONE</EveryoneSpecialUnit>
