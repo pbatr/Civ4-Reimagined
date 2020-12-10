@@ -8921,7 +8921,7 @@ void CvPlot::doCulture()
 // K-Mod end (1 / 2)
 					{
 						iCityStrength = pCity->cultureStrength(eCulturalOwner);
-						iGarrison = pCity->cultureGarrison(eCulturalOwner);
+						iGarrison = pCity->cultureGarrison(getOwnerINLINE());
 
 						/* original bts code
 						if ((GC.getGameINLINE().getSorenRandNum(iCityStrength, "Revolt #2") > iGarrison) || pCity->isBarbarian())*/
