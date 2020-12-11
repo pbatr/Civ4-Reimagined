@@ -2297,7 +2297,7 @@ int CvPlayerAI::AI_yieldWeight(YieldTypes eYield, const CvCity* pCity) const // 
 		break;
 	case YIELD_PRODUCTION:
 		// was 2
-		iWeight *= 225 + AI_getFlavorValue(FLAVOR_PRODUCTION); // Civ4 Reimagined, was 270
+		iWeight *= 205 + AI_getFlavorValue(FLAVOR_PRODUCTION) * 2 + AI_getFlavorValue(FLAVOR_MILITARY)/2; // Civ4 Reimagined, was 270
 		iWeight /= 100;
 		break;
 	case YIELD_COMMERCE:
@@ -14757,10 +14757,14 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		iTempValue *= 3 * (kCivic.isNoGreatPeople() ? (-100 - getGreatPeopleRateModifier()) : kCivic.getGreatPeopleRateModifier());
 
 		// Civ4 Reimagined: Great Engineers can hurry spaceship parts and culture victory wants artist birth
-		if (iTempValue < 0 && (bSpaceRaceVictory || bCultureVictory))
+		if (iTempValue < 0 && bSpaceRaceVictory)
 		{
 			iTempValue *= 3;
 			iTempValue /= 2;
+		}
+		if (iTempValue < 0 && bCultureVictory)
+		{
+			iTempValue *= 3;
 		}
 
 		iTempValue /= 100;
@@ -16283,10 +16287,20 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		
 		for (int iJ = 0; iJ < GC.getNumImprovementInfos(); iJ++)
 		{
+			const ImprovementTypes eLoopImprovement = (ImprovementTypes)iJ;
+			const ImprovementTypes eUpgradedImprovement = (ImprovementTypes)GC.getImprovementInfo(eLoopImprovement).getImprovementUpgrade();
 			// Improvement yield changes
-			const int iImprovementEstimatedCount = std::max(iCities * 2/3, getImprovementCount((ImprovementTypes)iJ));
+			const int iImprovementEstimatedCount = std::max(iCities * 2/3, getImprovementCount(eLoopImprovement));
+
 			int iImprovValue = AI_averageYieldMultiplier((YieldTypes)iI) * (kCivic.getImprovementYieldChanges(iJ, iI) * iImprovementEstimatedCount);
-			if (iImprovValue != 0 && gPlayerLogLevel > 2) logBBAI("		Value of %S Bonus: %d (has %d, estimated: %d)", GC.getImprovementInfo((ImprovementTypes)iJ).getDescription(), iImprovValue, getImprovementCount((ImprovementTypes)iJ), iImprovementEstimatedCount);
+
+			if (eUpgradedImprovement != NO_IMPROVEMENT && eLoopImprovement != eUpgradedImprovement)
+			{
+				const int iUpgradedImprovementEstimatedCount = getImprovementCount(eLoopImprovement)/2;
+				iImprovValue += AI_averageYieldMultiplier((YieldTypes)iI) * (kCivic.getImprovementYieldChanges((int)eUpgradedImprovement, iI) * iUpgradedImprovementEstimatedCount);
+			} 
+
+			if (iImprovValue != 0 && gPlayerLogLevel > 2) logBBAI("		Value of %S Bonus: %d (has %d, estimated: %d)", GC.getImprovementInfo(eLoopImprovement).getDescription(), iImprovValue, getImprovementCount(eLoopImprovement), iImprovementEstimatedCount);
 			iTempValue += iImprovValue;
 		}
 		

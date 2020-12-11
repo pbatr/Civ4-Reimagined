@@ -3531,7 +3531,7 @@ BuildingTypes CvCityAI::AI_bestBuildingThreshold(int iFocusFlags, int iMaxTurns,
 				}
 				
 				// Civ4 Reimagined
-				iTempValue *= 2;
+				iTempValue *= 3;
 				if (kOwner.AI_isDoStrategy(AI_STRATEGY_SPECIALIST_ECONOMY))
 				{
 					iTempValue *= 3;
@@ -4660,33 +4660,36 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				}
 			}
 
-			for (int iI = 0; iI < GC.getNumUnitInfos(); iI++)
+			if (! GET_PLAYER(getOwnerINLINE()).isSpecialBuildingNotRequired((SpecialBuildingTypes)kBuilding.getSpecialBuildingType())) // Civ4 Reimagined
 			{
-				if (GC.getUnitInfo((UnitTypes)iI).getPrereqBuilding() == eBuilding)
+				for (int iI = 0; iI < GC.getNumUnitInfos(); iI++)
 				{
-					iValue += GET_PLAYER(getOwnerINLINE()).AI_unitValue((UnitTypes)iI, (UnitAITypes)GC.getUnitInfo((UnitTypes)iI).getDefaultUnitAIType(), area()) / 7;
-
-					if (kOwner.AI_totalAreaUnitAIs(area(), ((UnitAITypes)(GC.getUnitInfo((UnitTypes)iI).getDefaultUnitAIType()))) == 0)
+					if (GC.getUnitInfo((UnitTypes)iI).getPrereqBuilding() == eBuilding)
 					{
-						iValue *= 2;
-					}
+						iValue += GET_PLAYER(getOwnerINLINE()).AI_unitValue((UnitTypes)iI, (UnitAITypes)GC.getUnitInfo((UnitTypes)iI).getDefaultUnitAIType(), area()) / 7;
 
-					ReligionTypes eReligion = (ReligionTypes)(GC.getUnitInfo((UnitTypes)iI).getPrereqReligion());
-					if (eReligion != NO_RELIGION)
-					{
-						//encouragement to get some minimal ability to train special units
-						if (bCulturalVictory1 || isHolyCity(eReligion) || isCapital())
+						if (kOwner.AI_totalAreaUnitAIs(area(), ((UnitAITypes)(GC.getUnitInfo((UnitTypes)iI).getDefaultUnitAIType()))) == 0)
 						{
-							iValue += (2 + iNumCitiesInArea);
+							iValue *= 2;
 						}
 
-						if (bCulturalVictory2 && GC.getUnitInfo((UnitTypes)iI).getReligionSpreads(eReligion))
+						ReligionTypes eReligion = (ReligionTypes)(GC.getUnitInfo((UnitTypes)iI).getPrereqReligion());
+						if (eReligion != NO_RELIGION)
 						{
-							//this gives a very large extra value if the religion is (nearly) unique
-							//to no extra value for a fully spread religion.
-							//I'm torn between huge boost and enough to bias towards the best monastery type.
-							int iReligionCount = GET_PLAYER(getOwnerINLINE()).getHasReligionCount(eReligion);
-							iValue += (100 * (iNumCities - iReligionCount)) / (iNumCities * (iReligionCount + 1));
+							//encouragement to get some minimal ability to train special units
+							if (bCulturalVictory1 || isHolyCity(eReligion) || isCapital())
+							{
+								iValue += (2 + iNumCitiesInArea);
+							}
+
+							if (bCulturalVictory2 && GC.getUnitInfo((UnitTypes)iI).getReligionSpreads(eReligion))
+							{
+								//this gives a very large extra value if the religion is (nearly) unique
+								//to no extra value for a fully spread religion.
+								//I'm torn between huge boost and enough to bias towards the best monastery type.
+								int iReligionCount = GET_PLAYER(getOwnerINLINE()).getHasReligionCount(eReligion);
+								iValue += (100 * (iNumCities - iReligionCount)) / (iNumCities * (iReligionCount + 1));
+							}
 						}
 					}
 				}
@@ -7025,15 +7028,7 @@ int CvCityAI::AI_clearFeatureValue(int iIndex)
 	// K-Mod end
 	
 	if (iValue > 0)
-	{
-		if (pPlot->getImprovementType() != NO_IMPROVEMENT)
-		{
-			if (GC.getImprovementInfo(pPlot->getImprovementType()).isRequiresFeature())
-			{
-				iValue += 500;
-			}
-		}
-		
+	{	
 		if (GET_PLAYER(getOwnerINLINE()).getAdvancedStartPoints() >= 0)
 		{
 			iValue += 400;
@@ -7300,7 +7295,7 @@ void CvCityAI::AI_getYieldMultipliers(int &iFoodMultiplier, int &iProductionMult
 
 	iCommerceMultiplier *= 100;
 	iCommerceMultiplier /= iProductionAdvantage;
-	
+
 	// Civ4 Reimagined
 	if (bFinancial)
 	{
@@ -7365,6 +7360,18 @@ void CvCityAI::AI_getYieldMultipliers(int &iFoodMultiplier, int &iProductionMult
 		if (kPlayer.AI_getFlavorValue(FLAVOR_PRODUCTION) > 0)
 		{
 			iProductionMultiplier += 5 + 2*kPlayer.AI_getFlavorValue(FLAVOR_PRODUCTION);
+		}
+
+		// Civ4 Reimagined
+		if (kPlayer.AI_getFlavorValue(FLAVOR_SCIENCE) > 0)
+		{
+			iCommerceMultiplier += 5 + kPlayer.AI_getFlavorValue(FLAVOR_SCIENCE);
+		}
+
+		// Civ4 Reimagined
+		if (kPlayer.AI_getFlavorValue(FLAVOR_GOLD) > 0)
+		{
+			iCommerceMultiplier += 5 + 2*kPlayer.AI_getFlavorValue(FLAVOR_GOLD);
 		}
 
 		if (kPlayer.AI_isDoStrategy(AI_STRATEGY_ECONOMY_FOCUS))
@@ -10326,6 +10333,13 @@ int CvCityAI::AI_yieldValue(short* piYields, short* piCommerceYields, bool bRemo
 			iProductionValue /= kOwner.AI_averageYieldMultiplier(YIELD_PRODUCTION);
 		}
 
+		// Civ4 Reimagined
+		if (!isHuman())
+		{
+			iProductionValue *= 100 + 2 * kOwner.AI_getFlavorValue(FLAVOR_PRODUCTION) + kOwner.AI_getFlavorValue(FLAVOR_MILITARY);
+			iProductionValue /= 100;
+		}
+
 		iValue += std::max(1,iProductionValue);
 	}
 
@@ -10333,6 +10347,14 @@ int CvCityAI::AI_yieldValue(short* piYields, short* piCommerceYields, bool bRemo
 	{
 		iCommerceValue *= (100 + (bWorkerOptimization ? 0 : AI_specialYieldMultiplier(YIELD_COMMERCE)));
 		iCommerceValue /= kOwner.AI_averageYieldMultiplier(YIELD_COMMERCE);
+
+		// Civ4 Reimagined
+		if (!isHuman())
+		{
+			iCommerceValue *= 100 + 2 * kOwner.AI_getFlavorValue(FLAVOR_GOLD) + kOwner.AI_getFlavorValue(FLAVOR_SCIENCE);
+			iCommerceValue /= 100;
+		}
+
 		iValue += std::max(1, iCommerceValue);
 	}
 
@@ -10340,6 +10362,14 @@ int CvCityAI::AI_yieldValue(short* piYields, short* piCommerceYields, bool bRemo
 	{
 		iFoodValue *= 100;
 		iFoodValue /= kOwner.AI_averageYieldMultiplier(YIELD_FOOD);
+
+		// Civ4 Reimagined
+		if (!isHuman())
+		{
+			iFoodValue *= 100 + 2 * kOwner.AI_getFlavorValue(FLAVOR_GROWTH);
+			iFoodValue /= 100;
+		}
+
 		iValue += std::max(1, iFoodValue);
 	}
 
