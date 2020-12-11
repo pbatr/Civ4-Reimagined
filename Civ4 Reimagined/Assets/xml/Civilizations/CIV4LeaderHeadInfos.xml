@@ -817,7 +817,7 @@
 			<Description>TXT_KEY_LEADER_ASOKA</Description>
 			<Civilopedia>TXT_KEY_LEADER_ASOKA_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_ASOKA</ArtDefineTag>
-			<iWonderConstructRand>50</iWonderConstructRand>
+			<iWonderConstructRand>60</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
 			<iBasePeaceWeight>8</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
@@ -910,7 +910,11 @@
 			<Flavors>
 				<Flavor>
 					<FlavorType>FLAVOR_RELIGION</FlavorType>
-					<iFlavor>10</iFlavor>
+					<iFlavor>5</iFlavor>
+				</Flavor>
+				<Flavor>
+					<FlavorType>FLAVOR_PRODUCTION</FlavorType>
+					<iFlavor>2</iFlavor>
 				</Flavor>
 			</Flavors>
 			<ContactRands>
@@ -2043,7 +2047,7 @@
 			<Description>TXT_KEY_LEADER_BISMARCK</Description>
 			<Civilopedia>TXT_KEY_LEADER_BISMARCK_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_BISMARCK</ArtDefineTag>
-			<iWonderConstructRand>45</iWonderConstructRand>
+			<iWonderConstructRand>35</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
 			<iBasePeaceWeight>6</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
@@ -2136,11 +2140,11 @@
 			<Flavors>
 				<Flavor>
 					<FlavorType>FLAVOR_MILITARY</FlavorType>
-					<iFlavor>2</iFlavor>
+					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
 					<FlavorType>FLAVOR_PRODUCTION</FlavorType>
-					<iFlavor>5</iFlavor>
+					<iFlavor>2</iFlavor>
 				</Flavor>
 			</Flavors>
 			<ContactRands>
@@ -3881,7 +3885,7 @@
 			<Description>TXT_KEY_LEADER_CATHERINE</Description>
 			<Civilopedia>TXT_KEY_LEADER_CATHERINE_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_CATHERINE</ArtDefineTag>
-			<iWonderConstructRand>45</iWonderConstructRand>
+			<iWonderConstructRand>40</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
 			<iBasePeaceWeight>2</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
@@ -3977,7 +3981,7 @@
 					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
-					<FlavorType>FLAVOR_MILITARY</FlavorType>
+					<FlavorType>FLAVOR_GROWTH</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 			</Flavors>
@@ -5714,7 +5718,7 @@
 			<Description>TXT_KEY_LEADER_CYRUS</Description>
 			<Civilopedia>TXT_KEY_LEADER_CYRUS_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_CYRUS</ArtDefineTag>
-			<iWonderConstructRand>60</iWonderConstructRand>
+			<iWonderConstructRand>50</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
 			<iBasePeaceWeight>3</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
@@ -6326,7 +6330,7 @@
 			<Description>TXT_KEY_LEADER_DARIUS</Description>
 			<Civilopedia>TXT_KEY_LEADER_DARIUS_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_DARIUS</ArtDefineTag>
-			<iWonderConstructRand>60</iWonderConstructRand>
+			<iWonderConstructRand>50</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
 			<iBasePeaceWeight>6</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
@@ -6418,11 +6422,11 @@
 			</Traits>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_GROWTH</FlavorType>
+					<FlavorType>FLAVOR_CULTURE</FlavorType>
 					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
-					<FlavorType>FLAVOR_MILITARY</FlavorType>
+					<FlavorType>FLAVOR_PRODUCTION</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 			</Flavors>
@@ -6943,7 +6947,7 @@
 			<Description>TXT_KEY_LEADER_DE_GAULLE</Description>
 			<Civilopedia>TXT_KEY_LEADER_DE_GAULLE_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_DE_GAULLE</ArtDefineTag>
-			<iWonderConstructRand>30</iWonderConstructRand>
+			<iWonderConstructRand>25</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
 			<iBasePeaceWeight>1</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
@@ -8267,11 +8271,11 @@
 			</Traits>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_PRODUCTION</FlavorType>
+					<FlavorType>FLAVOR_SCIENCE</FlavorType>
 					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
-					<FlavorType>FLAVOR_GROWTH</FlavorType>
+					<FlavorType>FLAVOR_PRODUCTION</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 			</Flavors>
@@ -8791,7 +8795,7 @@
 			<Description>TXT_KEY_LEADER_GANDHI</Description>
 			<Civilopedia>TXT_KEY_LEADER_GANDHI_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_GANDHI</ArtDefineTag>
-			<iWonderConstructRand>35</iWonderConstructRand>
+			<iWonderConstructRand>50</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
 			<iBasePeaceWeight>7</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
@@ -10590,7 +10594,7 @@
 			<Description>TXT_KEY_LEADER_HAMMURABI</Description>
 			<Civilopedia>TXT_KEY_LEADER_HAMMURABI_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_HAMMURABI</ArtDefineTag>
-			<iWonderConstructRand>75</iWonderConstructRand>
+			<iWonderConstructRand>60</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
 			<iBasePeaceWeight>8</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
@@ -11828,7 +11832,7 @@
 			<Description>TXT_KEY_LEADER_HARUN</Description>
 			<Civilopedia>TXT_KEY_LEADER_HARUN_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_HARUN</ArtDefineTag>
-			<iWonderConstructRand>60</iWonderConstructRand>
+			<iWonderConstructRand>45</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
 			<iBasePeaceWeight>8</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
@@ -12397,7 +12401,7 @@
 			<Description>TXT_KEY_LEADER_HATSHEPSUT</Description>
 			<Civilopedia>TXT_KEY_LEADER_HATSHEPSUT_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_HATSHEPSUT</ArtDefineTag>
-			<iWonderConstructRand>75</iWonderConstructRand>
+			<iWonderConstructRand>70</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
 			<iBasePeaceWeight>9</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
@@ -12489,12 +12493,12 @@
 			</Traits>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_PRODUCTION</FlavorType>
-					<iFlavor>2</iFlavor>
-				</Flavor>
-				<Flavor>
 					<FlavorType>FLAVOR_CULTURE</FlavorType>
 					<iFlavor>5</iFlavor>
+				</Flavor>
+				<Flavor>
+					<FlavorType>FLAVOR_PRODUCTION</FlavorType>
+					<iFlavor>2</iFlavor>
 				</Flavor>
 			</Flavors>
 			<ContactRands>
@@ -13008,7 +13012,7 @@
 			<Description>TXT_KEY_LEADER_HUAYNA_CAPAC</Description>
 			<Civilopedia>TXT_KEY_LEADER_HUAYNA_CAPAC_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_HUAYNA_CAPAC</ArtDefineTag>
-			<iWonderConstructRand>50</iWonderConstructRand>
+			<iWonderConstructRand>45</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
 			<iBasePeaceWeight>2</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
@@ -13100,7 +13104,7 @@
 			</Traits>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_GOLD</FlavorType>
+					<FlavorType>FLAVOR_PRODUCTION</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 				<Flavor>
@@ -13712,11 +13716,11 @@
 			<Flavors>
 				<Flavor>
 					<FlavorType>FLAVOR_RELIGION</FlavorType>
-					<iFlavor>2</iFlavor>
+					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
-					<FlavorType>FLAVOR_MILITARY</FlavorType>
-					<iFlavor>5</iFlavor>
+					<FlavorType>FLAVOR_GOLD</FlavorType>
+					<iFlavor>2</iFlavor>
 				</Flavor>
 			</Flavors>
 			<ContactRands>
@@ -14331,7 +14335,7 @@
 			  <iFlavor>5</iFlavor>
 			</Flavor>
 			<Flavor>
-			  <FlavorType>FLAVOR_MILITARY</FlavorType>
+			  <FlavorType>FLAVOR_PRODUCTION</FlavorType>
 			  <iFlavor>2</iFlavor>
 			</Flavor>
 		  </Flavors>
@@ -15402,7 +15406,7 @@
 			<Description>TXT_KEY_LEADER_JULIUS_CAESAR</Description>
 			<Civilopedia>TXT_KEY_LEADER_JULIUS_CAESAR_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_JULIUS_CAESAR</ArtDefineTag>
-			<iWonderConstructRand>30</iWonderConstructRand>
+			<iWonderConstructRand>35</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
 			<iBasePeaceWeight>4</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
@@ -15495,11 +15499,7 @@
 			<Flavors>
 				<Flavor>
 					<FlavorType>FLAVOR_MILITARY</FlavorType>
-					<iFlavor>5</iFlavor>
-				</Flavor>
-				<Flavor>
-					<FlavorType>FLAVOR_PRODUCTION</FlavorType>
-					<iFlavor>2</iFlavor>
+					<iFlavor>10</iFlavor>
 				</Flavor>
 			</Flavors>
 			<ContactRands>
@@ -16103,7 +16103,7 @@
 			</Traits>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_MILITARY</FlavorType>
+					<FlavorType>FLAVOR_GOLD</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 				<Flavor>
@@ -16716,7 +16716,7 @@
 					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
-					<FlavorType>FLAVOR_CULTURE</FlavorType>
+					<FlavorType>FLAVOR_PRODUCTION</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 			</Flavors>
@@ -17852,7 +17852,7 @@
 			<Description>TXT_KEY_LEADER_LOUISXIV</Description>
 			<Civilopedia>TXT_KEY_LEADER_LOUISXIV_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_LOUIS_XIV</ArtDefineTag>
-			<iWonderConstructRand>50</iWonderConstructRand>
+			<iWonderConstructRand>45</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
 			<iBasePeaceWeight>1</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
@@ -17944,7 +17944,7 @@
 			</Traits>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_MILITARY</FlavorType>
+					<FlavorType>FLAVOR_GOLD</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 				<Flavor>
@@ -18554,12 +18554,8 @@
 			</Traits>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_PRODUCTION</FlavorType>
-					<iFlavor>2</iFlavor>
-				</Flavor>
-				<Flavor>
 					<FlavorType>FLAVOR_GOLD</FlavorType>
-					<iFlavor>5</iFlavor>
+					<iFlavor>10</iFlavor>
 				</Flavor>
 			</Flavors>
 			<ContactRands>
@@ -19080,7 +19076,7 @@
 			<Description>TXT_KEY_LEADER_CHINESE_LEADER</Description>
 			<Civilopedia>TXT_KEY_LEADER_CHINESE_LEADER_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_CHINESE_LEADER</ArtDefineTag>
-			<iWonderConstructRand>15</iWonderConstructRand>
+			<iWonderConstructRand>30</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
 			<iBasePeaceWeight>1</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
@@ -19172,7 +19168,7 @@
 			</Traits>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_GROWTH</FlavorType>
+					<FlavorType>FLAVOR_MILITARY</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 				<Flavor>
@@ -19786,12 +19782,12 @@
 			</Traits>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_MILITARY</FlavorType>
-					<iFlavor>5</iFlavor>
+					<FlavorType>FLAVOR_SCIENCE</FlavorType>
+					<iFlavor>2</iFlavor>
 				</Flavor>
 				<Flavor>
 					<FlavorType>FLAVOR_RELIGION</FlavorType>
-					<iFlavor>2</iFlavor>
+					<iFlavor>5</iFlavor>
 				</Flavor>
 			</Flavors>
 			<ContactRands>
@@ -21573,7 +21569,7 @@
 					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
-					<FlavorType>FLAVOR_GROWTH</FlavorType>
+					<FlavorType>FLAVOR_SCIENCE</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 			</Flavors>
@@ -22091,7 +22087,7 @@
 			<Description>TXT_KEY_LEADER_PACAL</Description>
 			<Civilopedia>TXT_KEY_LEADER_PACAL_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_PACAL</ArtDefineTag>
-			<iWonderConstructRand>50</iWonderConstructRand>
+			<iWonderConstructRand>45</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
 			<iBasePeaceWeight>2</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
@@ -22187,7 +22183,7 @@
 					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
-					<FlavorType>FLAVOR_MILITARY</FlavorType>
+					<FlavorType>FLAVOR_GROWTH</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 			</Flavors>
@@ -22709,7 +22705,7 @@
 			<Description>TXT_KEY_LEADER_PERICLES</Description>
 			<Civilopedia>TXT_KEY_LEADER_PERICLES_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_PERICLES</ArtDefineTag>
-			<iWonderConstructRand>75</iWonderConstructRand>
+			<iWonderConstructRand>80</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
 			<iBasePeaceWeight>6</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
@@ -23414,7 +23410,7 @@
 					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
-					<FlavorType>FLAVOR_SCIENCE</FlavorType>
+					<FlavorType>FLAVOR_PRODUCTION</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 			</Flavors>
@@ -23943,7 +23939,7 @@
 			<Description>TXT_KEY_LEADER_QIN_SHI_HUANG</Description>
 			<Civilopedia>TXT_KEY_LEADER_QIN_SHI_HUANG_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_QIN_SHI_HUANG</ArtDefineTag>
-			<iWonderConstructRand>50</iWonderConstructRand>
+			<iWonderConstructRand>70</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
 			<iBasePeaceWeight>2</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
@@ -24553,7 +24549,7 @@
 			<Description>TXT_KEY_LEADER_RAMESSES</Description>
 			<Civilopedia>TXT_KEY_LEADER_RAMESSES_II_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_RAMESSES</ArtDefineTag>
-			<iWonderConstructRand>75</iWonderConstructRand>
+			<iWonderConstructRand>70</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
 			<iBasePeaceWeight>4</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
@@ -24649,7 +24645,7 @@
 					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
-					<FlavorType>FLAVOR_PRODUCTION</FlavorType>
+					<FlavorType>FLAVOR_MILITARY</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 			</Flavors>
@@ -25261,11 +25257,11 @@
 			</Traits>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_MILITARY</FlavorType>
+					<FlavorType>FLAVOR_GOLD</FlavorType>
 					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
-					<FlavorType>FLAVOR_SCIENCE</FlavorType>
+					<FlavorType>FLAVOR_MILITARY</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 			</Flavors>
@@ -25873,7 +25869,7 @@
 			</Traits>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_PRODUCTION</FlavorType>
+					<FlavorType>FLAVOR_MILITARY</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 				<Flavor>
@@ -26395,7 +26391,7 @@
 			<Description>TXT_KEY_LEADER_SALADIN</Description>
 			<Civilopedia>TXT_KEY_LEADER_SALADIN_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_SALADIN</ArtDefineTag>
-			<iWonderConstructRand>15</iWonderConstructRand>
+			<iWonderConstructRand>20</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
 			<iBasePeaceWeight>4</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
@@ -30059,7 +30055,7 @@
 			<Description>TXT_KEY_LEADER_SURYAVARMAN</Description>
 			<Civilopedia>TXT_KEY_LEADER_SURYAVARMAN_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_SURYAVARMAN</ArtDefineTag>
-			<iWonderConstructRand>60</iWonderConstructRand>
+			<iWonderConstructRand>50</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
 			<iBasePeaceWeight>1</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
@@ -30776,7 +30772,7 @@
 			</Traits>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_MILITARY</FlavorType>
+					<FlavorType>FLAVOR_SCIENCE</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 				<Flavor>
@@ -31404,11 +31400,11 @@
 			<Flavors>
 				<Flavor>
 					<FlavorType>FLAVOR_SCIENCE</FlavorType>
-					<iFlavor>2</iFlavor>
+					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
 					<FlavorType>FLAVOR_MILITARY</FlavorType>
-					<iFlavor>5</iFlavor>
+					<iFlavor>2</iFlavor>
 				</Flavor>
 			</Flavors>
 			<ContactRands>
@@ -32656,11 +32652,11 @@
 			</Traits>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_MILITARY</FlavorType>
+					<FlavorType>FLAVOR_SCIENCE</FlavorType>
 					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
-					<FlavorType>FLAVOR_GOLD</FlavorType>
+					<FlavorType>FLAVOR_GROWTH</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 			</Flavors>
@@ -33289,11 +33285,7 @@
 			<Flavors>
 				<Flavor>
 					<FlavorType>FLAVOR_GOLD</FlavorType>
-					<iFlavor>5</iFlavor>
-				</Flavor>
-				<Flavor>
-					<FlavorType>FLAVOR_MILITARY</FlavorType>
-					<iFlavor>2</iFlavor>
+					<iFlavor>10</iFlavor>
 				</Flavor>
 			</Flavors>
 			<ContactRands>
@@ -33922,11 +33914,11 @@
 			</Traits>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_MILITARY</FlavorType>
+					<FlavorType>FLAVOR_RELIGION</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 				<Flavor>
-					<FlavorType>FLAVOR_CULTURE</FlavorType>
+					<FlavorType>FLAVOR_PRODUCTION</FlavorType>
 					<iFlavor>5</iFlavor>
 				</Flavor>
 			</Flavors>
