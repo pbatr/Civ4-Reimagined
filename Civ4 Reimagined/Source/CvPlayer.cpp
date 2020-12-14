@@ -27802,8 +27802,7 @@ void CvPlayer::updateUniquePowers(TechTypes eTech)
 	}
 	
 	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ARABIA")
-		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_DIVINE_RIGHT")
-		&& (EraTypes)getCurrentEra() <= ERA_MEDIEVAL) // Starts with tech, but ends at era
+		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_DIVINE_RIGHT"))
 	{
 		setFaithConquest(true);
 		notifyUniquePowersChanged(true);
@@ -27876,15 +27875,6 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			changeUnitClassProductionModifier(UNITCLASS_EXECUTIVE_11, 100);
 			
 			notifyUniquePowersChanged(true);
-		}
-	}
-	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ARABIA"))
-	{
-		// Ends with era, but starts with tech
-		if (eEra == ERA_RENAISSANCE)
-		{
-			setFaithConquest(false);
-			notifyUniquePowersChanged(false);
 		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AZTEC"))

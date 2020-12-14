@@ -352,7 +352,7 @@
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_ARABIA</DefineName>
-		<iDefineIntVal>25</iDefineIntVal> <!-- % siege bonus against players of different religion -->
+		<iDefineIntVal>20</iDefineIntVal> <!-- % siege bonus against players of different religion -->
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_AZTEC</DefineName>
