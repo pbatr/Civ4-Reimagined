@@ -27922,14 +27922,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_CLASSICAL)
 		{
 			setSpecialTradeRoutePerPlayer(true);
-			changeDomainProductionModifier(DOMAIN_SEA, GC.getInfoTypeForString("UNIQUE_POWER_CARTHARGE_2"));
 			notifyUniquePowersChanged(true);
-		}
-		else if (eEra == ERA_MEDIEVAL)
-		{
-			setSpecialTradeRoutePerPlayer(false);
-			changeDomainProductionModifier(DOMAIN_SEA, -GC.getInfoTypeForString("UNIQUE_POWER_CARTHARGE_2"));
-			notifyUniquePowersChanged(false);
 		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CELT"))

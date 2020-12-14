@@ -368,11 +368,7 @@
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_CARTHARGE</DefineName> 
-		<iDefineIntVal>400</iDefineIntVal> <!-- Trade route modifier for special trade routes -->
-	</Define>
-	<Define>
-		<DefineName>UNIQUE_POWER_CARTHARGE_2</DefineName> 
-		<iDefineIntVal>50</iDefineIntVal> <!-- Sea unit production speed bonus -->
+		<iDefineIntVal>200</iDefineIntVal> <!-- Trade route modifier for special trade routes -->
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_CELT_CULTURE</DefineName>
