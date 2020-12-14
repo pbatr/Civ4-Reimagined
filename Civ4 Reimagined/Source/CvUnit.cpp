@@ -8837,7 +8837,7 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 			if (bFaithConquest)
 			{
 				ReligionTypes eAttackerStateReligion = GET_PLAYER(pAttacker->getOwnerINLINE()).getStateReligion();
-				bool bDefenderIsInfidel = GET_PLAYER(getOwnerINLINE()).getStateReligion() != eAttackerStateReligion;
+				bool bDefenderIsInfidel = GET_PLAYER(getOwnerINLINE()).getStateReligion() != NO_RELIGION && GET_PLAYER(getOwnerINLINE()).getStateReligion() != eAttackerStateReligion;
 				
 				if (bDefenderIsInfidel)
 				{

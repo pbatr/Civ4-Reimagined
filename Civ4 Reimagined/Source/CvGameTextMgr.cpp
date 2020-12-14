@@ -3724,9 +3724,9 @@ bool CvGameTextMgr::setCombatPlotHelp(CvWStringBuffer &szString, CvPlot* pPlot)
 				if (bFaithConquest)
 				{
 					ReligionTypes eAttackerStateReligion = GET_PLAYER(pAttacker->getOwnerINLINE()).getStateReligion();
-					bool bCityHasStateReligion = pAttackedCity->isHasReligion(eAttackerStateReligion);
+					bool bDefenderIsInfidel = GET_PLAYER(pAttackedCity->getOwnerINLINE()).getStateReligion() != NO_RELIGION && GET_PLAYER(pAttackedCity->getOwnerINLINE()).getStateReligion() != eAttackerStateReligion;
 					
-					if (bCityHasStateReligion)
+					if (bDefenderIsInfidel)
 					{
 						iModifier = GC.getDefineINT("UNIQUE_POWER_ARABIA");
 						szString.append(NEWLINE);
