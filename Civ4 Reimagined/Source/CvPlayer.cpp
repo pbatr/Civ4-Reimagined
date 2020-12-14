@@ -2873,7 +2873,7 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 
 	// Civ4 Reimagined: Unique power for Rome
 	int iFreeUnitsOnConquest = getFreeUnitsOnConquest();
-	if (iFreeUnitsOnConquest > 0 && bConquest && eOldHighestCulturePlayer != NO_PLAYER && !bOldEverOwned)
+	if (iFreeUnitsOnConquest > 0 && bConquest && eOldHighestCulturePlayer != NO_PLAYER && !bOldEverOwned && GET_PLAYER(eOldHighestCulturePlayer).getCurrentEra() < ERA_MEDIEVAL)
 	{
 		int iNumUnits = iOldCultureLevel + iFreeUnitsOnConquest - 1;
 		
@@ -28036,11 +28036,6 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		{
 			changeFreeUnitsOnConquest(GC.getDefineINT("UNIQUE_POWER_ROME")); // 2+Culture-Level der Stadt Einheiten
 			notifyUniquePowersChanged(true);
-		}
-		else if (eEra == ERA_MEDIEVAL)
-		{
-			changeFreeUnitsOnConquest(-GC.getDefineINT("UNIQUE_POWER_ROME"));
-			notifyUniquePowersChanged(false);
 		}			
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SUMERIA"))
