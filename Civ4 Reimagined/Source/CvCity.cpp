@@ -7925,7 +7925,7 @@ void CvCity::updateFeatureAdjacentCommerce()
 			if (pAdjacentPlot != NULL)
 			{
 				FeatureTypes eFeature = pAdjacentPlot->getFeatureType();
-				if (eFeature != NO_FEATURE)
+				if (eFeature != NO_FEATURE && pAdjacentPlot->getImprovementType() == NO_IMPROVEMENT)
 				{
 					int iSinglePlotCommerce = GET_PLAYER(getOwnerINLINE()).getAdjacentFeatureCommerce(eFeature, (CommerceTypes)iI);
 					iAdjacentFeatureCommerce += iSinglePlotCommerce;

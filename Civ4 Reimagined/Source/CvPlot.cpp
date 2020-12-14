@@ -5918,6 +5918,7 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 				if (pLoopCity != NULL)
 				{
 					pLoopCity->updateFeatureHappiness();
+					pLoopCity->updateFeatureAdjacentCommerce(); // Civ4 Reimagined
 				}
 			}
 		}
