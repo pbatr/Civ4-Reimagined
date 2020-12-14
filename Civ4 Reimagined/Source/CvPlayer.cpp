@@ -27895,12 +27895,6 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			changeCulturePerPopulationSacrified(5);
 			notifyUniquePowersChanged(true);
 		}
-		else if(eEra == ERA_RENAISSANCE)
-		{
-			setUniqueAztecPromotion(false);
-			changeCulturePerPopulationSacrified(-5);
-			notifyUniquePowersChanged(false);
-		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BABYLON"))
 	{
