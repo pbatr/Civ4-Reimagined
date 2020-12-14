@@ -924,7 +924,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iEarlyPriestExtraFood = 0; // Civ4 Reimagined
 	m_iUniquePowerWorldWonderCapitalModifier = 0; // Civ4 Reimagined
 	m_iProductionNearRiver = 0; // Civ4 Reimagined
-	m_iProductionPerPopulationModifier = 100; // Civ4 Reimagined
+	m_iProductionPerPopulation = 0; // Civ4 Reimagined
 	m_iHurryWithGreatPriestsRatio = 0; // Civ4 Reimagined
 	m_iCoastalTradeRouteModifier = 0; // Civ4 Reimagined
 	m_iUniquePowerGreatPeopleModifier = 0; // Civ4 Reimagined
@@ -20218,7 +20218,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iEarlyPriestExtraFood); // Civ4 Reimagined
 	pStream->Read(&m_iUniquePowerWorldWonderCapitalModifier); // Civ4 Reimagined
 	pStream->Read(&m_iProductionNearRiver); // Civ4 Reimagined
-	pStream->Read(&m_iProductionPerPopulationModifier); // Civ4 Reimagined
+	pStream->Read(&m_iProductionPerPopulation); // Civ4 Reimagined
 	pStream->Read(&m_iHurryWithGreatPriestsRatio); // Civ4 Reimagined
 	pStream->Read(&m_iCoastalTradeRouteModifier); // Civ4 Reimagined
 	pStream->Read(&m_iUniquePowerGreatPeopleModifier); // Civ4 Reimagined
@@ -20831,7 +20831,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iEarlyPriestExtraFood); // Civ4 Reimagined
 	pStream->Write(m_iUniquePowerWorldWonderCapitalModifier); // Civ4 Reimagined
 	pStream->Write(m_iProductionNearRiver); // Civ4 Reimagined
-	pStream->Write(m_iProductionPerPopulationModifier); // Civ4 Reimagined
+	pStream->Write(m_iProductionPerPopulation); // Civ4 Reimagined
 	pStream->Write(m_iHurryWithGreatPriestsRatio); // Civ4 Reimagined
 	pStream->Write(m_iCoastalTradeRouteModifier); // Civ4 Reimagined
 	pStream->Write(m_iUniquePowerGreatPeopleModifier); // Civ4 Reimagined
@@ -26997,17 +26997,17 @@ void CvPlayer::changeProductionNearRiver(int iChange)
 }
 
 // Civ4 Reimagined
-int CvPlayer::getProductionPerPopulationModifier() const
+int CvPlayer::getProductionPerPopulation() const
 {
-	return m_iProductionPerPopulationModifier;
+	return m_iProductionPerPopulation;
 }
 
 // Civ4 Reimagined
-void CvPlayer::changeProductionPerPopulationModifier(int iChange)
+void CvPlayer::changeProductionPerPopulation(int iChange)
 {
 	if (iChange != 0)
 	{
-		m_iProductionPerPopulationModifier = m_iProductionPerPopulationModifier + iChange;
+		m_iProductionPerPopulation = m_iProductionPerPopulation + iChange;
 	}
 }
 
@@ -27960,14 +27960,8 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_ANCIENT)
 		{
 			changeSlavePointsPerPopulationSacrificed(GC.getDefineINT("UNIQUE_POWER_EGYPT"));
-			changeProductionPerPopulationModifier(25);
+			changeProductionPerPopulation(5);
 			notifyUniquePowersChanged(true);
-		}
-		else if (eEra == ERA_CLASSICAL)
-		{
-			changeSlavePointsPerPopulationSacrificed(-GC.getDefineINT("UNIQUE_POWER_EGYPT"));
-			changeProductionPerPopulationModifier(-25);
-			notifyUniquePowersChanged(false);
 		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ENGLAND"))

@@ -5536,9 +5536,8 @@ int CvCity::getHurryPopulation(HurryTypes eHurry, int iHurryCost) const
 
 	int iProduction = GC.getGameINLINE().getProductionPerPopulation(eHurry);
 	
-	// Civ4 Reimagined
-	iProduction *= GET_PLAYER(getOwnerINLINE()).getProductionPerPopulationModifier();
-	iProduction /= 100;
+	// Civ4 Reimagined: Egypt UP
+	iProduction += GET_PLAYER(getOwnerINLINE()).getProductionPerPopulation() * 100 / std::max(1, GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getHurryPercent());
 	
 	int iPopulation = (iHurryCost - 1) / iProduction;
 
@@ -5551,7 +5550,11 @@ int CvCity::hurryProduction(HurryTypes eHurry) const
 
 	if (GC.getHurryInfo(eHurry).getProductionPerPopulation() > 0)
 	{
-		iProduction = (GET_PLAYER(getOwnerINLINE()).getProductionPerPopulationModifier() * getExtraProductionDifference(hurryPopulation(eHurry) * GC.getGameINLINE().getProductionPerPopulation(eHurry))) / std::max(1, getHurryCostModifier()); // Civ4 Reimagined: Added UP modifier
+		// Civ4 Reimagined: Egypt UP
+		int iProductionPerPop = GC.getGameINLINE().getProductionPerPopulation(eHurry);
+		iProductionPerPop += GET_PLAYER(getOwnerINLINE()).getProductionPerPopulation() * 100 / std::max(1, GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getHurryPercent());
+
+		iProduction = (getExtraProductionDifference(hurryPopulation(eHurry) * iProductionPerPop)) / std::max(1, getHurryCostModifier());
 		FAssert(iProduction >= productionLeft());
 	}
 	else

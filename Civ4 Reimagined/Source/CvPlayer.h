@@ -1316,8 +1316,8 @@ public:
 	void changeUniquePowerWorldWonderCapitalModifier(int iChange); // Civ4 Reimagined
 	int getProductionNearRiver() const; // Civ4 Reimagined
 	void changeProductionNearRiver(int iChange); // Civ4 Reimagined
-	int getProductionPerPopulationModifier() const; // Civ4 Reimagined
-	void changeProductionPerPopulationModifier(int iChange); // Civ4 Reimagined
+	int getProductionPerPopulation() const; // Civ4 Reimagined
+	void changeProductionPerPopulation(int iChange); // Civ4 Reimagined
 	int getHurryWithGreatPriestsRatio() const; // Civ4 Reimagined
 	void changeHurryWithGreatPriestsRatio(int iChange);
 	void placeBonusAtCapitalFatCross(BonusTypes eBonus); // Civ4 Reimagined
@@ -1626,7 +1626,7 @@ protected:
 	int m_iEarlyPriestExtraFood; // Civ4 Reimagined
 	int m_iUniquePowerWorldWonderCapitalModifier; // Civ4 Reimagined
 	int m_iProductionNearRiver; // Civ4 Reimagined
-	int m_iProductionPerPopulationModifier; // Civ4 Reimagined
+	int m_iProductionPerPopulation; // Civ4 Reimagined
 	int m_iHurryWithGreatPriestsRatio; // Civ4 Reimagined
 	int m_iCoastalTradeRouteModifier; // Civ4 Reimagined
 	int m_iUniquePowerGreatPeopleModifier; // Civ4 Reimagined
