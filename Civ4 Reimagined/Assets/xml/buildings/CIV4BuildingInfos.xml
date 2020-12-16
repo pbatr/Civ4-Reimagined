@@ -31998,12 +31998,7 @@
 			<DomainProductionModifiers/>
 			<BuildingHappinessChanges/>
 			<PrereqBuildingClasses/>
-			<PercentPrereqBuildingClasses>
-				<PrereqBuildingClass>
-					<BuildingClassType>BUILDINGCLASS_NATIONAL_SECURITY</BuildingClassType>
-					<iNumBuildingNeeded>66</iNumBuildingNeeded>
-				</PrereqBuildingClass>
-			</PercentPrereqBuildingClasses>
+			<PercentPrereqBuildingClasses/>
 			<BuildingClassNeededs>
 				<BuildingClassNeeded>
 					<BuildingClassType>BUILDINGCLASS_NATIONAL_SECURITY</BuildingClassType>
