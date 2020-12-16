@@ -256,6 +256,12 @@
 					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<BonusBiases>
+				<BonusBias>
+					<BonusType>BONUS_OIL</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -389,6 +395,12 @@
 					<iBias>2</iBias>
 				</FeatureBias>
 			</FeatureBiases>
+			<BonusBiases>
+				<BonusBias>
+					<BonusType>BONUS_CORN</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -649,6 +661,12 @@
 					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<BonusBiases>
+				<BonusBias>
+					<BonusType>BONUS_HORSE</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -777,6 +795,12 @@
 					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<BonusBiases>
+				<BonusBias>
+					<BonusType>BONUS_HORSE</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -1042,6 +1066,12 @@
 					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<BonusBiases>
+				<BonusBias>
+					<BonusType>BONUS_RICE</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -1195,6 +1225,12 @@
 					<iBias>3</iBias>
 				</FeatureBias>
 			</FeatureBiases>
+			<BonusBiases>
+				<BonusBias>
+					<BonusType>BONUS_STONE</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -1582,6 +1618,12 @@
 					<iBias>1</iBias>
 				</FeatureBias>
 			</FeatureBiases>
+			<BonusBiases>
+				<BonusBias>
+					<BonusType>BONUS_WINE</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -1732,6 +1774,12 @@
 					<iBias>1</iBias>
 				</FeatureBias>
 			</FeatureBiases>
+			<BonusBiases>
+				<BonusBias>
+					<BonusType>BONUS_COAL</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -1872,6 +1920,12 @@
 					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<BonusBiases>
+				<BonusBias>
+					<BonusType>BONUS_MARBLE</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -2316,6 +2370,12 @@
 					<iBias>1</iBias>
 				</FeatureBias>
 			</FeatureBiases>
+			<BonusBiases>
+				<BonusBias>
+					<BonusType>BONUS_DYE</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -2442,6 +2502,12 @@
 					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<BonusBiases>
+				<BonusBias>
+					<BonusType>BONUS_WHALE</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -2570,6 +2636,12 @@
 					<iBias>3</iBias>
 				</FeatureBias>
 			</FeatureBiases>
+			<BonusBiases>
+				<BonusBias>
+					<BonusType>BONUS_IVORY</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -2681,6 +2753,12 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<BonusBiases>
+				<BonusBias>
+					<BonusType>BONUS_RICE</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -2808,6 +2886,12 @@
 					<iBias>1</iBias>
 				</FeatureBias>
 			</FeatureBiases>
+			<BonusBiases>
+				<BonusBias>
+					<BonusType>BONUS_GOLD</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -3061,6 +3145,12 @@
 					<iBias>3</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<BonusBiases>
+				<BonusBias>
+					<BonusType>BONUS_HORSE</BonusType>
+					<iBias>10</iBias>
+				</BonusBias>
+			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -3601,6 +3691,12 @@
 					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<BonusBiases>
+				<BonusBias>
+					<BonusType>BONUS_HORSE</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -3875,6 +3971,12 @@
 					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<BonusBiases>
+				<BonusBias>
+					<BonusType>BONUS_WINE</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -4004,6 +4106,12 @@
 					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<BonusBiases>
+				<BonusBias>
+					<BonusType>BONUS_HORSE</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -4140,6 +4248,12 @@
 					<iBias>3</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<BonusBiases>
+				<BonusBias>
+					<BonusType>BONUS_HORSE</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>

@@ -459,6 +459,14 @@
 	<ElementType name="FeatureBiases" content="eltOnly">
 		<element type="FeatureBias" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
+	<ElementType name="BonusType" content="textOnly"/>
+	<ElementType name="BonusBias" content="eltOnly">
+		<element type="BonusType"/>
+		<element type="iBias"/>
+	</ElementType>
+	<ElementType name="BonusBiases" content="eltOnly">
+		<element type="BonusBias" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
 	<!-- starting bias END -->
 	<ElementType name="CivicType" content="textOnly"/>
 	<ElementType name="InitialCivics" content="eltOnly">
@@ -522,6 +530,7 @@
 		<element type="DisableTechs"/>
 		<element type="TerrainBiases" minOccurs="0"/>
 		<element type="FeatureBiases" minOccurs="0"/>
+		<element type="BonusBiases" minOccurs="0"/>
 		<element type="InitialCivics"/>
 		<element type="AnarchyCivics" minOccurs="0"/>
 		<element type="Leaders" minOccurs="0"/>
