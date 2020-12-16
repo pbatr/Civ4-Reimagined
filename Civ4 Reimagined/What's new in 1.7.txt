@@ -29,6 +29,7 @@ Tweaks
 -National Epic requires Philosophy instead of Literature
 -Statue of Liberty trade with liberal Civs bonus reduced from 300% to 200%
 -Small adjustments to Renaissance tech tree
+-Cavalry require Replaceable Parts tech
 
 *********
 Interface
