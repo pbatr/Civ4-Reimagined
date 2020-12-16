@@ -30,6 +30,7 @@ Tweaks
 -Statue of Liberty trade with liberal Civs bonus reduced from 300% to 200%
 -Small adjustments to Renaissance tech tree
 -Cavalry require Replaceable Parts tech
+-Increase great person modifier of Cristo Redentor from 25% to 100%
 
 *********
 Interface
