@@ -1395,6 +1395,10 @@ public:
 	int getCatchUpTechModifier() const; // Civ4 Reimagined
 	int getUnitClassProductionModifier(UnitClassTypes eIndex); // Civ4 Reimagined
 	void changeUnitClassProductionModifier(UnitClassTypes eIndex, int iChange); // Civ4 Reimagined
+	void changeReligiousUnitClassProductionModifier(UnitClassTypes eIndex, int iChange); // Civ4 Reimagined
+	int getReligiousUnitClassProductionModifier(UnitClassTypes eIndex) const; // Civ4 Reimagined
+	void changeReligiousColonyMaintenanceModifier(int iChange); // Civ4 Reimagined
+	int getReligiousColonyMaintenanceModifier() const; // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1659,6 +1663,7 @@ protected:
 	int m_iGreatGeneralGoldenAgeLength; // Civ4 Reimagined
 	bool m_bConscriptInfidels; // Civ4 Reimagined
 	int m_iCatchUpTechModifier; // Civ4 Reimagined
+	int m_iReligiousColonyMaintenanceModifier; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
 
@@ -1738,6 +1743,7 @@ protected:
 	int* m_paiExtraBuildingHealth;
 	int* m_paiBuildingProductionModifiers; // Leoreth
 	int* m_paiUnitClassProductionModifier; // Civ4 Reimagined
+	int* m_paiReligiousUnitClassProductionModifier; // Civ4 Reimagined
 	int* m_paiTechProgressOnSettling; // Civ4 Reimagined
 	int* m_paiFeatureHappiness;
 	int* m_paiUnitClassCount;

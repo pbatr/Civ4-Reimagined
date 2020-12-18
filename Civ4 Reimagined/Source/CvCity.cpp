@@ -3460,6 +3460,8 @@ int CvCity::getProductionModifier(UnitTypes eUnit) const
 		if (isHasReligion(GET_PLAYER(getOwnerINLINE()).getStateReligion()))
 		{
 			iMultiplier += GET_PLAYER(getOwnerINLINE()).getStateReligionUnitProductionModifier();
+			// Civ4 Reimagined
+			iMultiplier += GET_PLAYER(getOwnerINLINE()).getReligiousUnitClassProductionModifier((UnitClassTypes)GC.getUnitInfo(eUnit).getUnitClassType());
 		}
 	}
 
@@ -6790,6 +6792,12 @@ int CvCity::calculateColonyMaintenanceTimes100(bool bIgnorePlayerMod) const
 	{
 		iMaintenance *= 100 + GET_PLAYER(getOwnerINLINE()).getColonyMaintenanceModifier();
 		iMaintenance /= 100;
+
+		if (GET_PLAYER(getOwnerINLINE()).getStateReligion() != NO_RELIGION && isHasReligion(GET_PLAYER(getOwnerINLINE()).getStateReligion()))
+		{
+			iMaintenance *= 100 + GET_PLAYER(getOwnerINLINE()).getReligiousColonyMaintenanceModifier();
+			iMaintenance /= 100;
+		}
 	}
 	
 	// Civ4 Reimagined: Reduce Colony Maintenaince for small islands

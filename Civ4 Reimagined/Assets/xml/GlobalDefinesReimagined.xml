@@ -415,6 +415,14 @@
 		<iDefineIntVal>2</iDefineIntVal> <!-- Extra units on city conquest -->
 	</Define>
 	<Define>
+		<DefineName>UNIQUE_POWER_SPAIN_RELIGIOUS_SETTLER</DefineName>
+		<iDefineIntVal>100</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_SPAIN_RELIGIOUS_MAINTENANCE</DefineName>
+		<iDefineIntVal>-50</iDefineIntVal>
+	</Define>
+	<Define>
 		<DefineName>UNIQUE_POWER_SUMERIA</DefineName>
 		<iDefineIntVal>50</iDefineIntVal> <!-- Per cent tech progress -->
 	</Define>

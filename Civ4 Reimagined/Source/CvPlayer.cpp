@@ -109,6 +109,7 @@ CvPlayer::CvPlayer()
 	m_paiAveragePopCommerceModifierMaxMod = NULL; // Civ4 Reimagined
 	m_paiPlayerExtraAvailableBonuses = NULL; // Civ4 Reimagined
 	m_paiUnitClassProductionModifier = NULL; // Civ4 Reimagined
+	m_paiReligiousUnitClassProductionModifier = NULL; // Civ4 Reimagined
 	m_paiCivicEffect = NULL; // Civ4 Reimagined
 
 	m_pabResearchingTech = NULL;
@@ -958,6 +959,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iGreatGeneralGoldenAgeLength = 0; // Civ4 Reimagined
 	m_bConscriptInfidels = false; // Civ4 Reimagined
 	m_iCatchUpTechModifier = 0; // Civ4 Reimagined
+	m_iReligiousColonyMaintenanceModifier = 0; // Civ4 Reimagined
 	m_eIdeology = IDEOLOGY_CONSERVATISM; // Civ4 Reimagind
 	
 	m_eID = eID;
@@ -1127,11 +1129,14 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		m_paiUnitClassMaking = new int [GC.getNumUnitClassInfos()];
 		FAssertMsg(m_paiUnitClassProductionModifier==NULL, "about to leak memory, CvPlayer::m_paiUnitClassProductionModifier");
 		m_paiUnitClassProductionModifier = new int[GC.getNumUnitClassInfos()];
+		FAssertMsg(m_paiReligiousUnitClassProductionModifier==NULL, "about to leak memory, CvPlayer::m_paiReligiousUnitClassProductionModifier");
+		m_paiReligiousUnitClassProductionModifier = new int[GC.getNumUnitClassInfos()];
 		for (iI = 0; iI < GC.getNumUnitClassInfos(); iI++)
 		{
 			m_paiUnitClassCount[iI] = 0;
 			m_paiUnitClassMaking[iI] = 0;
 			m_paiUnitClassProductionModifier[iI] = 0; // Civ4 Reimagined
+			m_paiReligiousUnitClassProductionModifier[iI] = 0; // Civ4 Reimagined
 		}
 
 		FAssertMsg(m_paiBuildingClassCount==NULL, "about to leak memory, CvPlayer::m_paiBuildingClassCount");
@@ -13988,6 +13993,26 @@ void CvPlayer::changeUnitClassProductionModifier(UnitClassTypes eIndex, int iCha
 }
 
 // Civ4 Reimagined
+int CvPlayer::getReligiousUnitClassProductionModifier(UnitClassTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumUnitClassInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_paiReligiousUnitClassProductionModifier[eIndex];
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeReligiousUnitClassProductionModifier(UnitClassTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumUnitClassInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+	
+	if (iChange != 0)
+	{
+		m_paiReligiousUnitClassProductionModifier[eIndex] = (m_paiReligiousUnitClassProductionModifier[eIndex] + iChange);
+	}
+}
+
+// Civ4 Reimagined
 int CvPlayer::getExtraYield(YieldTypes eIndex) const		 
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
@@ -20252,6 +20277,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iGreatGeneralGoldenAgeLength); // Civ4 Reimagined
 	pStream->Read(&m_bConscriptInfidels); // Civ4 Reimagined
 	pStream->Read(&m_iCatchUpTechModifier); // Civ4 Reimagined
+	pStream->Read(&m_iReligiousColonyMaintenanceModifier); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -20352,6 +20378,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(NUM_IDEOLOGY_TYPES, m_aiIdeologyCombatExperienceModifier); // Civ4 Reimagined
 	pStream->Read(GC.getNumBonusInfos(), m_paiPlayerExtraAvailableBonuses); // Civ4 Reimagined
 	pStream->Read(GC.getNumUnitClassInfos(), m_paiUnitClassProductionModifier); // Civ4 Reimagined
+	pStream->Read(GC.getNumUnitClassInfos(), m_paiReligiousUnitClassProductionModifier); // Civ4 Reimagined
 	pStream->Read(GC.getNumCivicInfos(), m_paiCivicEffect); // Civ4 Reimagined
 
 	FAssertMsg((0 < GC.getNumTechInfos()), "GC.getNumTechInfos() is not greater than zero but it is expected to be in CvPlayer::read");
@@ -20865,6 +20892,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iGreatGeneralGoldenAgeLength); // Civ4 Reimagined
 	pStream->Write(m_bConscriptInfidels); // Civ4 Reimagined
 	pStream->Write(m_iCatchUpTechModifier); // Civ4 Reimagined
+	pStream->Write(m_iReligiousColonyMaintenanceModifier); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -20955,6 +20983,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(NUM_IDEOLOGY_TYPES, m_aiIdeologyCombatExperienceModifier); // Civ4 Reimagined
 	pStream->Write(GC.getNumBonusInfos(), m_paiPlayerExtraAvailableBonuses); // Civ4 Reimagined
 	pStream->Write(GC.getNumUnitClassInfos(), m_paiUnitClassProductionModifier); // Civ4 Reimagined
+	pStream->Write(GC.getNumUnitClassInfos(), m_paiReligiousUnitClassProductionModifier); // Civ4 Reimagined
 	pStream->Write(GC.getNumCivicInfos(), m_paiCivicEffect); // Civ4 Reimagined
 	
 	FAssertMsg((0 < GC.getNumTechInfos()), "GC.getNumTechInfos() is not greater than zero but it is expected to be in CvPlayer::write");
@@ -27792,6 +27821,18 @@ int CvPlayer::getCatchUpTechModifier() const
 	return m_iCatchUpTechModifier;
 }
 
+//Civ4 Reimagined
+void CvPlayer::changeReligiousColonyMaintenanceModifier(int iChange)
+{
+	m_iReligiousColonyMaintenanceModifier += iChange;
+}
+
+// Civ4 Reimagined
+int CvPlayer::getReligiousColonyMaintenanceModifier() const
+{
+	return m_iReligiousColonyMaintenanceModifier;
+}
+
 
 //Civ4 Reimagined
 void CvPlayer::updateUniquePowers(TechTypes eTech)
@@ -27937,6 +27978,16 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		{
 			changeSlavePointsPerPopulationSacrificed(GC.getDefineINT("UNIQUE_POWER_EGYPT"));
 			changeProductionPerPopulation(5);
+			notifyUniquePowersChanged(true);
+		}
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SPAIN"))
+	{
+		if (eEra == ERA_MEDIEVAL)
+		{
+			UnitClassTypes UNITCLASS_SETTLER = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SETTLER");
+			changeReligiousUnitClassProductionModifier(UNITCLASS_SETTLER, GC.getDefineINT("UNIQUE_POWER_SPAIN_RELIGIOUS_SETTLER"));
+			changeReligiousColonyMaintenanceModifier(GC.getDefineINT("UNIQUE_POWER_SPAIN_RELIGIOUS_MAINTENANCE"));
 			notifyUniquePowersChanged(true);
 		}
 	}
