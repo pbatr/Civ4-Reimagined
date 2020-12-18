@@ -2001,36 +2001,22 @@ void CvDLLWidgetData::parseConscriptHelp(CvWidgetDataStruct &widgetDataStruct, C
 			
 			int iMinCulturePercent = GC.getDefineINT("CONSCRIPT_MIN_CULTURE_PERCENT");
 
+			// Civ4 Reimagined: Unique power
+			if (GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).isConscriptInfidels())
+			{
+				if (pHeadSelectedCity->plot()->calculateTeamCulturePercent(pHeadSelectedCity->getTeam()) < iMinCulturePercent)
+				{
+					return;
+				}		
+			}
+
 			if (pHeadSelectedCity->plot()->calculateTeamCulturePercent(pHeadSelectedCity->getTeam()) < iMinCulturePercent)
 			{
 				szBuffer.append(NEWLINE);
 				szBuffer.append(gDLL->getText("TXT_KEY_MISC_MIN_CULTURE_PERCENT", iMinCulturePercent));
 			}
-
-			// Civ4 Reimagined: Unique power
-			if (GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).isConscriptInfidels())
-			{
-				if (GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).getStateReligion() == NO_RELIGION)
-				{
-					szTempBuffer = NEWLINE + gDLL->getText("TXT_KEY_REQUIRES");
-					bFirst = true; 
-
-					setListHelp(szBuffer, szTempBuffer, gDLL->getText("TXT_KEY_MISC_HELP_REQUIRES_STATE_RELIGION"), gDLL->getText("TXT_KEY_OR").c_str(), bFirst);
-				}
-				else
-				{
-					ReligionTypes eStateReligion = GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).getStateReligion();
-					int nonStateReligions = pHeadSelectedCity->getReligionCount() - pHeadSelectedCity->isHasReligion(eStateReligion);
-					if (nonStateReligions == 0)
-					{
-						bFirst = true; 
-						szTempBuffer = NEWLINE + gDLL->getText("TXT_KEY_REQUIRES");
-						bFirst = true; 
-						setListHelp(szBuffer, szTempBuffer, gDLL->getText("TXT_KEY_MISC_HELP_REQUIRES_NON_STATE_RELIGION_CITY"), gDLL->getText("TXT_KEY_OR").c_str(), bFirst);
-					}
-				}				
-			}
-			else if (GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).getMaxConscript() == 0)
+			
+			if (GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).getMaxConscript() == 0)
 			{
 				bFirst = true;
 

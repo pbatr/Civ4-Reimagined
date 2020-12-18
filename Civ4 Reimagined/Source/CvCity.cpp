@@ -3975,24 +3975,28 @@ bool CvCity::canConscript() const
 		return false;
 	}
 
-	// Civ4 Reimagined: Unique power
-	bool infidelConscription = false;
-	if (GET_PLAYER(getOwnerINLINE()).isConscriptInfidels() && GET_PLAYER(getOwnerINLINE()).getStateReligion() != NO_RELIGION)
+	if (getConscriptUnit() == NO_UNIT)
 	{
-		ReligionTypes eStateReligion = GET_PLAYER(getOwnerINLINE()).getStateReligion();
-		int nonStateReligions = getReligionCount() - isHasReligion(eStateReligion);
-		infidelConscription = nonStateReligions > 0;
-	}
-
-	bool regularConscription = GET_PLAYER(getOwnerINLINE()).getMaxConscript() > GET_PLAYER(getOwnerINLINE()).getConscriptCount();
-	if (!regularConscription && !infidelConscription)
-	{
-		return false;		
+		return false;
 	}
 
 	if (getPopulation() <= getConscriptPopulation())
 	{
 		return false;
+	}
+
+	// Civ4 Reimagined: Unique power
+	if (GET_PLAYER(getOwnerINLINE()).isConscriptInfidels())
+	{
+		if (plot()->calculateTeamCulturePercent(getTeam()) < GC.getDefineINT("CONSCRIPT_MIN_CULTURE_PERCENT"))
+		{
+			return true;
+		}
+	}
+
+	if (GET_PLAYER(getOwnerINLINE()).getMaxConscript() <= GET_PLAYER(getOwnerINLINE()).getConscriptCount())
+	{
+		return false;		
 	}
 
 	if (getPopulation() < conscriptMinCityPopulation())
@@ -4001,11 +4005,6 @@ bool CvCity::canConscript() const
 	}
 
 	if (plot()->calculateTeamCulturePercent(getTeam()) < GC.getDefineINT("CONSCRIPT_MIN_CULTURE_PERCENT"))
-	{
-		return false;
-	}
-
-	if (getConscriptUnit() == NO_UNIT)
 	{
 		return false;
 	}
@@ -4049,7 +4048,9 @@ CvUnit* CvCity::initConscriptedUnit()
 
 	if (NULL != pUnit)
 	{
-		addProductionExperience(pUnit, true);
+		// Civ4 Reimagined: Ottoman Unique Power
+		bool bNoXP = !GET_PLAYER(getOwnerINLINE()).isConscriptInfidels();
+		addProductionExperience(pUnit, bNoXP);
 
 		pUnit->setMoves(0);
 // K-Mod, karadoc, 26/Jun/2011: Conscription counts as building the unit
@@ -4080,7 +4081,11 @@ void CvCity::conscript()
 	// Civ4 Reimagined
 	if (!GET_TEAM(getTeam()).isNoConscriptUnhappiness())
 	{
-		changeConscriptAngerTimer(iAngerLength);
+		// Civ4 Reimagined: Unique power
+		if (!GET_PLAYER(getOwnerINLINE()).isConscriptInfidels() || plot()->calculateTeamCulturePercent(getTeam()) >= GC.getDefineINT("CONSCRIPT_MIN_CULTURE_PERCENT"))
+		{
+			changeConscriptAngerTimer(iAngerLength);
+		}
 	}
 
 	setDrafted(true);

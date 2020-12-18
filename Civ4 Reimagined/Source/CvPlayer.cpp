@@ -2807,7 +2807,7 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 	{
 		iTeamCulturePercent = pNewCity->calculateTeamCulturePercent(getTeam());
 
-		if (iTeamCulturePercent < GC.getDefineINT("OCCUPATION_CULTURE_PERCENT_THRESHOLD") && !GET_TEAM(getTeam()).isNoConquestResistance() && !isNoCityResistance())
+		if (iTeamCulturePercent < GC.getDefineINT("OCCUPATION_CULTURE_PERCENT_THRESHOLD") && !GET_TEAM(getTeam()).isNoConquestResistance() && !isNoCityResistance() && !isConscriptInfidels())
 		{
 			int iOccupationTurns = ((GC.getDefineINT("BASE_OCCUPATION_TURNS") + ((pNewCity->getPopulation() * GC.getDefineINT("OCCUPATION_TURNS_POPULATION_PERCENT")) / 100)) * (100 - iTeamCulturePercent)) / 100;
 			 // Civ4 Reimagined: Added game speed modifier
@@ -27815,8 +27815,7 @@ void CvPlayer::updateUniquePowers(TechTypes eTech)
 		notifyUniquePowersChanged(true);
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_OTTOMAN")
-		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_GUNPOWDER")
-		&& (EraTypes)getCurrentEra() <= ERA_RENAISSANCE) // Starts with tech, but ends at era
+		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_GUNPOWDER"))
 	{
 		setConscriptInfidels(true);
 		notifyUniquePowersChanged(true);
@@ -28018,15 +28017,6 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		else if (eEra == ERA_RENAISSANCE)
 		{
 			changeUniquePowerBuildingModifier(-GC.getDefineINT("UNIQUE_POWER_MAYA"));
-			notifyUniquePowersChanged(false);
-		}
-	}
-	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_OTTOMAN"))
-	{
-		// Ends with era, but starts with tech
-		if (eEra == ERA_INDUSTRIAL)
-		{
-			setConscriptInfidels(false);
 			notifyUniquePowersChanged(false);
 		}
 	}
