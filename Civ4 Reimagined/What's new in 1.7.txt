@@ -28,7 +28,7 @@ Tweaks
 -Colossus obsoletes with Astronomy
 -Shwedagon Paya requires Meditation instead of Philosophy
 -National Epic requires Philosophy instead of Literature
--Statue of Liberty trade with liberal Civs bonus reduced from 300% to 200%
+-Statue of Liberty trade with liberal Civs bonus reduced from 300% to 200% and food from trade routes reduced from 5% to 4%
 -Small adjustments to Renaissance tech tree
 -Cavalry require Replaceable Parts tech
 -Increase great person modifier of Cristo Redentor from 25% to 100%
