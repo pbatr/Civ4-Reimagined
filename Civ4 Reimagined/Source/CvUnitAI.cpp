@@ -5760,7 +5760,9 @@ bool CvUnitAI::AI_greatPersonMove()
 			iDiscoverValue /= 3;
 		}
 
-		iDiscoverValue *= (75 + kPlayer.AI_getStrategyRand(3) % 51);
+		// iDiscoverValue *= (75 + kPlayer.AI_getStrategyRand(3) % 51);
+		// Civ4 Reimagined
+		iDiscoverValue *= (50 + kPlayer.AI_getStrategyRand(3) % 51);
 		
 		iDiscoverValue /= 100;
 		missions.push_back(std::pair<int, int>(iDiscoverValue, GP_DISCOVER));

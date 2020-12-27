@@ -4136,7 +4136,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 						continue;
 					}
 
-					const int iIdeologyTradeRoutes = std::max(2, GC.getGameINLINE().getIdeologyCount(eIdeology)) * iCitiesTarget * 2;
+					const int iIdeologyTradeRoutes = std::max(2, GC.getGameINLINE().getIdeologyCount(eIdeology) - 1) * iCitiesTarget * 2;
 					iTempValue += 5 * iIdeologyTradeRoutes * kBuilding.getForeignTradeIdeologyModifier(eIdeology) * getTradeYield(YIELD_COMMERCE) / std::max(1, iTotalTradeModifier) / iNumTradeRoutes;
 				}
 			}
@@ -4219,6 +4219,12 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 			if (kBuilding.getDomesticGreatGeneralRateModifier() != 0)
 			{
 				iValue += (kBuilding.getDomesticGreatGeneralRateModifier() / 10);
+			}
+
+			// Civ4 Reimagined
+			if (kBuilding.getGreatGeneralRateModifier() != 0)
+			{
+				iValue += (kBuilding.getDomesticGreatGeneralRateModifier() / (bWarPlan ? 2 : 5));
 			}
 
 			if (kBuilding.isAreaBorderObstacle() && !(area()->isBorderObstacle(getTeam())))
@@ -4629,7 +4635,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 			// Civ4 Reimagined
 			if (kBuilding.isAllowsNukes())
 			{
-				iValue += 200;
+				iValue += 2000;
 			}
 
 			for (int iI = 0; iI < GC.getNumSpecialistInfos(); iI++)

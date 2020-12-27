@@ -5539,19 +5539,19 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 	{
 		for (int iK = 0; iK < NUM_YIELD_TYPES; iK++)
 		{
+			// Improvement yield changes
 			int iTempValue = 0;
 
-			/* original code
-			iTempValue += (GC.getImprovementInfo((ImprovementTypes)iJ).getTechYieldChanges(eTech, iK) * getImprovementCount((ImprovementTypes)iJ) * 50); */
-			// Often, an improvment only becomes viable after it gets the tech bonus.
-			// So it's silly to score the bonus proportionally to how many of the improvements we already have.
-
-			//iTempValue += GC.getImprovementInfo((ImprovementTypes)iJ).getTechYieldChanges(eTech, iK)
-			//	* std::max(getImprovementCount((ImprovementTypes)iJ), 3*getNumCities()/2) * 4;
 			// Civ4 Reimagined
-			iTempValue += GC.getImprovementInfo((ImprovementTypes)iJ).getTechYieldChanges(eTech, iK)
-				* std::max(getImprovementCount((ImprovementTypes)iJ), 2*getNumCities()) * 4;
-			// This new version is still bork, but at least it won't be worthless.
+			const ImprovementTypes eLoopImprovement = (ImprovementTypes)iJ;
+			const ImprovementTypes eUpgradedImprovement = (ImprovementTypes)GC.getImprovementInfo(eLoopImprovement).getImprovementUpgrade();
+			iTempValue += GC.getImprovementInfo(eLoopImprovement).getTechYieldChanges(eTech, iK) * std::max(getImprovementCount(eLoopImprovement), 2*getNumCities()) * 4;
+
+			if (eUpgradedImprovement != NO_IMPROVEMENT && eLoopImprovement != eUpgradedImprovement)
+			{
+				iTempValue += GC.getImprovementInfo(eUpgradedImprovement).getTechYieldChanges(eTech, iK) * getImprovementCount(eLoopImprovement)/2 * 4;
+			}
+
 			iTempValue *= AI_averageYieldMultiplier((YieldTypes)iK);
 			iTempValue /= 100;
 
@@ -6172,7 +6172,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				//iValue += 3 * (iNewCivicValue - iCurrentCivicValue);
 				// Civ4 Reimagined
 				const bool bFavorite = (eNewCivic == GC.getLeaderHeadInfo(getPersonalityType()).getFavoriteCivic());
-				const int iCivicFactor = bNewReligionCivic ? 60 : ((getCurrentEra() + 1) * (bFavorite ? 8 : 6));
+				const int iCivicFactor = bNewReligionCivic ? 60 : ((getCurrentEra() + 1) * (bFavorite ? 6 : 4));
 				const int iCivicValue = iCivicFactor * (iNewCivicValue - iCurrentCivicValue);
 
 				if (gPlayerLogLevel > 2) logBBAI("	%S Tech Civic Value: %d", GC.getCivicInfo(eNewCivic).getDescription(0), iCivicValue);
@@ -6396,7 +6396,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				else
 				{
 					//iReligionValue /= (1 + countHolyCities() + ((iPotentialReligions > 0) ? 1 : 0));
-					iReligionValue /= (1 + countHolyCities() * 2 + ((iPotentialReligions > 0) ? 1 : 0)); //Civ4 Reimagined
+					iReligionValue /= (1 + countHolyCities() * 3 + ((iPotentialReligions > 0) ? 1 : 0)); //Civ4 Reimagined
 				}
 
 				// Civ4 Reimagined
@@ -6567,9 +6567,10 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 		int iFlavorValue = 0;
 		for (int iJ = 0; iJ < GC.getNumFlavorTypes(); iJ++)
 		{
-			iFlavorValue += AI_getFlavorValue((FlavorTypes)iJ) * kTechInfo.getFlavorValue(iJ) * 5;
+			iFlavorValue += AI_getFlavorValue((FlavorTypes)iJ) * kTechInfo.getFlavorValue(iJ);
 		}
-		iValue += iFlavorValue * std::min(iCityCount, iCityTarget) / std::max(1, iCityTarget);
+		iValue *= 100 + iFlavorValue;
+		iValue /= 100;
 	}
 
 	if (kTechInfo.isRepeat())
@@ -15272,16 +15273,21 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		// Our civ can have 1 connection to each foreign city.
 
 		int iTempValue = 0;
+		// Gold flavored civs are optimisitc that other civs will liberate their trade policy later
 		int iConnectedForeignCities = AI_countPotentialForeignTradeCities(true, AI_getFlavorValue(FLAVOR_GOLD) == 0);
 
 		//int iTotalTradeRoutes = iCities * pCapital->getTradeRoutes(); // Civ4 Reimagined
 		int iTotalTradeRoutes = 0;
+		int iAverageTradeModifier = 0;
 
 		int iLoop;
 		for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 		{
 			iTotalTradeRoutes += pLoopCity->getTradeRoutes();
+			iAverageTradeModifier += 100 + pLoopCity->getTradeRouteModifier();
 		}
+
+		iAverageTradeModifier /= iCities;
 		
 		// Civ4 Reimagined
 		CivicTypes eCurrentCivic = getCivics((CivicOptionTypes)kCivic.getCivicOptionType());
@@ -15294,7 +15300,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		{
 			// We should attempt the block one-way trade which other civs might be getting from us.
 			// count how many foreign trade cities we are not connected to...
-			int iDisconnectedForeignTrade = AI_countPotentialForeignTradeCities(false, AI_getFlavorValue(FLAVOR_GOLD) == 0) - iConnectedForeignCities;
+			int iDisconnectedForeignTrade = AI_countPotentialForeignTradeCities(true, true);
 			FAssert(iDisconnectedForeignTrade >= 0);
 			// and estimate the value of blocking foreign trade to these cities. (we don't get anything from this, but we're denying our potential rivals.)
 			iTempValue += std::min(iDisconnectedForeignTrade, iCities); // just 1 point per city
@@ -15312,17 +15318,11 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 					if (gPlayerLogLevel > 0 && GET_TEAM(i).isVassal(getTeam())) logBBAI("		We have a Vassal");
 				}
 			}
-			
-			iSafeOverseasTrade = std::min(iSafeOverseasTrade, iConnectedForeignCities);
-			if (gPlayerLogLevel > 0) logBBAI("		Safe Oversea Traderoutes: %d", iSafeOverseasTrade);
 
-			// only reduce by 1.5 rather than 2, because it is good to deny our rivals the trade.
-			// old code:
-			//iTempValue -= std::min(iConnectedForeignCities - iSafeOverseasTrade, iTotalTradeRoutes) * 7/4; 
+			if (gPlayerLogLevel > 0) logBBAI("		Safe Oversea Traderoutes: %d", iSafeOverseasTrade);
 			
-			iTempValue -= std::max(0, std::min(iConnectedForeignCities, iTotalTradeRoutes) - iSafeOverseasTrade) * 3 / 2;
+			iTempValue -= std::max(0, std::min(iConnectedForeignCities, iTotalTradeRoutes) - iSafeOverseasTrade) * GC.getDefineINT("FOREIGN_TRADE_MODIFIER") / 100;
 			if (gPlayerLogLevel > 0) logBBAI("		TempValue of no foreign trades: %d", iTempValue);
-			iConnectedForeignCities = iSafeOverseasTrade;
 		}
 
 		// Unfortunately, it's not easy to tell whether or not we'll foreign trade when we switch to this civic.
@@ -15332,17 +15332,16 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		// Civ4 Reimagined
 		if (kCivic.getDomesticTradeModifier() != 0)
 		{
-			int iTradeValue = std::max(0, std::max(iCities, iCities * getCurrentEra()) - iConnectedForeignCities);
+			int iTradeValue = iTotalTradeRoutes;
+			// when there is foreign trade, not all trade routes are domestic
+			if (!isNoForeignTrade() && !kCivic.isNoForeignTrade())
+			{
+				iTradeValue = std::max(0, iTotalTradeRoutes - iConnectedForeignCities);
+			}
 			iTradeValue *= 3 * std::max(2, getCurrentEra()+1);
 			iTradeValue /= GC.getNumEraInfos()+1;
 			if (gPlayerLogLevel > 0) logBBAI("	Civic Value of Domestic Trade Bonus: %d", (iTradeValue * kCivic.getDomesticTradeModifier() * AI_averageYieldMultiplier(YIELD_COMMERCE) / 10000));
 			iValue += iTradeValue * kCivic.getDomesticTradeModifier() * AI_averageYieldMultiplier(YIELD_COMMERCE) / 10000;
-		}
-		
-		if (pCapital)
-		{
-			// add an estimate of our own overseas cities (even though they are not really "foreign".
-			iConnectedForeignCities += iCities - pCapital->area()->getCitiesPerPlayer(getID());
 		}
 		
 		// Civ4 Reimagined
@@ -15362,7 +15361,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			int iTradeValue = pCapital->getTradeRoutes() * 3 * (getCurrentEra()+1);
 			if (kCivic.isNoForeignTrade())
 			{
-				iTradeValue += iCities * 3 * (getCurrentEra()+1);
+				iTradeValue += (iCities-1) * 3 * (getCurrentEra()+1);
 			}
 			iTradeValue /= GC.getNumEraInfos()+1;
 			iTradeValue *= kCivic.getCapitalTradeModifier() * AI_averageYieldMultiplier(YIELD_COMMERCE);
@@ -15373,7 +15372,11 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 
 		// Civ4 Reimagined: This should now correspond to the sum of base values of all additional trade routes
 		if (kCivic.getTradeRoutes() != 0)
-			iTempValue += (std::max(std::min(kCivic.getTradeRoutes() * iCities, std::max(0, iConnectedForeignCities - iTotalTradeRoutes)) * 2, iCities) * 5) /2;
+		{
+			const int iNewTradeRoutes = kCivic.getTradeRoutes() * iCities;
+			const int iNewForeignTradeRoutes = std::min(iNewTradeRoutes, std::max(0, iConnectedForeignCities - iTotalTradeRoutes));
+			iTempValue += iNewForeignTradeRoutes * 2 + (iNewTradeRoutes - iNewForeignTradeRoutes);
+		}
 		
 		if (iTempValue != 0)
 		{
@@ -15381,9 +15384,12 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			// Trade routes increase in value as cities grow, and build trade multipliers
 			iTempValue *= 3*(getCurrentEra()+1);
 			iTempValue /= GC.getNumEraInfos()+1;
+
+			iTempValue *= getTradeYieldModifier(YIELD_COMMERCE) + iAverageTradeModifier;
+			iTempValue /= 100;
+
 			// commerce multipliers
 			iTempValue *= AI_averageYieldMultiplier(YIELD_COMMERCE);
-			// Civ4 Reimagined
 			iTempValue /= 100;
 			if (gPlayerLogLevel > 0) logBBAI("	Civic Value of Traderoutes: %d", iTempValue);
 			iValue += iTempValue;
@@ -16392,15 +16398,15 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			{
 				if (kCivic.getGoldPerHappinessBonus() != 0)
 				{
-					int iGoldPerHap = 0;
+					int iHappyResCount = 0;
 					for (int iJ = 0; iJ < GC.getNumBonusInfos(); iJ++)
 					{
-						if (GC.getBonusInfo((BonusTypes)iJ).getHappiness() > 0)
+						if (GC.getBonusInfo((BonusTypes)iJ).getHappiness() > 0 && pCapital->hasBonus((BonusTypes)iJ))
 						{
-							iGoldPerHap ++;
+							iHappyResCount ++;
 						}
 					}
-					iGoldPerHap *= kCivic.getGoldPerHappinessBonus();
+					iTempValue += iHappyResCount * kCivic.getGoldPerHappinessBonus() * pCapital->getTotalCommerceRateModifier(COMMERCE_GOLD) / 100;
 				}
 			}
 		}
