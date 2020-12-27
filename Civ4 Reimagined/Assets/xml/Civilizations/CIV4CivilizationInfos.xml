@@ -4500,6 +4500,12 @@
 					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<BonusBiases>
+				<BonusBias>
+					<BonusType>BONUS_FISH</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
