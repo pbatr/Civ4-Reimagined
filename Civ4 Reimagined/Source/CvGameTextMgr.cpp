@@ -16440,6 +16440,10 @@ void CvGameTextMgr::setProductionHelp(CvWStringBuffer &szBuffer, CvCity& city)
 			if (city.isHasReligion(GET_PLAYER(city.getOwnerINLINE()).getStateReligion()))
 			{
 				int iReligionMod = GET_PLAYER(city.getOwnerINLINE()).getStateReligionUnitProductionModifier();
+
+				// Civ4 Reimagined: Spain UP
+				iReligionMod += GET_PLAYER(city.getOwnerINLINE()).getReligiousUnitClassProductionModifier((UnitClassTypes)unit.getUnitClassType());
+
 				if (0 != iReligionMod)
 				{
 					szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_PROD_RELIGION", iReligionMod, GC.getReligionInfo(GET_PLAYER(city.getOwnerINLINE()).getStateReligion()).getTextKeyWide()));
