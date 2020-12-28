@@ -24162,7 +24162,7 @@
 			<iForeignTradeRouteModifier>0</iForeignTradeRouteModifier>
 			<iGlobalPopulationChange>0</iGlobalPopulationChange>
 			<iFreeTechs>0</iFreeTechs>
-			<iDefense>10</iDefense>
+			<iDefense>0</iDefense>
 			<iBombardDefense>0</iBombardDefense>
 			<iTargetAirStrike>0</iTargetAirStrike>
 			<iAllCityDefense>0</iAllCityDefense>
