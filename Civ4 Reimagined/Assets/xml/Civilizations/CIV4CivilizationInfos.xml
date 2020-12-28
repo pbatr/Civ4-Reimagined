@@ -259,7 +259,7 @@
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_OIL</BonusType>
-					<iBias>3</iBias>
+					<iBias>10</iBias>
 				</BonusBias>
 			</BonusBiases>
 			<InitialCivics>
@@ -385,6 +385,10 @@
 					<iBias>3</iBias>
 				</TerrainBias>
 				<TerrainBias>
+					<TerrainType>TERRAIN_HILL</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+				<TerrainBias>
 					<TerrainType>TERRAIN_PLAINS</TerrainType>
 					<iBias>1</iBias>
 				</TerrainBias>
@@ -398,7 +402,7 @@
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_CORN</BonusType>
-					<iBias>3</iBias>
+					<iBias>5</iBias>
 				</BonusBias>
 			</BonusBiases>
 			<InitialCivics>
@@ -1065,11 +1069,15 @@
 					<TerrainType>TERRAIN_PEAK</TerrainType>
 					<iBias>1</iBias>
 				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_GRASS</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
 			</TerrainBiases>
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_RICE</BonusType>
-					<iBias>3</iBias>
+					<iBias>10</iBias>
 				</BonusBias>
 			</BonusBiases>
 			<InitialCivics>
@@ -1228,7 +1236,7 @@
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_STONE</BonusType>
-					<iBias>3</iBias>
+					<iBias>10</iBias>
 				</BonusBias>
 			</BonusBiases>
 			<InitialCivics>
@@ -1487,6 +1495,14 @@
 				<TerrainBias>
 					<TerrainType>TERRAIN_PLAINS</TerrainType>
 					<iBias>1</iBias>
+				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_HILL</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_PEAK</TerrainType>
+					<iBias>3</iBias>
 				</TerrainBias>
 			</TerrainBiases>
 			<InitialCivics>
@@ -1777,7 +1793,7 @@
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_COAL</BonusType>
-					<iBias>3</iBias>
+					<iBias>10</iBias>
 				</BonusBias>
 			</BonusBiases>
 			<InitialCivics>
@@ -1923,7 +1939,7 @@
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_MARBLE</BonusType>
-					<iBias>3</iBias>
+					<iBias>10</iBias>
 				</BonusBias>
 			</BonusBiases>
 			<InitialCivics>
@@ -2186,6 +2202,10 @@
 					<iBias>1</iBias>
 				</TerrainBias>
 				<TerrainBias>
+					<TerrainType>TERRAIN_HILL</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+				<TerrainBias>
 					<TerrainType>TERRAIN_COAST</TerrainType>
 					<iBias>1</iBias>
 				</TerrainBias>
@@ -2373,7 +2393,11 @@
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_DYE</BonusType>
-					<iBias>3</iBias>
+					<iBias>5</iBias>
+				</BonusBias>
+				<BonusBias>
+					<BonusType>BONUS_IVORY</BonusType>
+					<iBias>5</iBias>
 				</BonusBias>
 			</BonusBiases>
 			<InitialCivics>
@@ -2505,7 +2529,7 @@
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_WHALE</BonusType>
-					<iBias>3</iBias>
+					<iBias>10</iBias>
 				</BonusBias>
 			</BonusBiases>
 			<InitialCivics>
@@ -2756,7 +2780,7 @@
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_RICE</BonusType>
-					<iBias>3</iBias>
+					<iBias>5</iBias>
 				</BonusBias>
 			</BonusBiases>
 			<InitialCivics>
@@ -2873,23 +2897,18 @@
 			<TerrainBiases>
 				<TerrainBias>
 					<TerrainType>TERRAIN_DESERT</TerrainType>
-					<iBias>1</iBias>
+					<iBias>3</iBias>
 				</TerrainBias>
 				<TerrainBias>
 					<TerrainType>TERRAIN_PLAINS</TerrainType>
 					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
-			<FeatureBiases>
-				<FeatureBias>
-					<FeatureType>FEATURE_JUNGLE</FeatureType>
-					<iBias>1</iBias>
-				</FeatureBias>
-			</FeatureBiases>
+			<FeatureBiases/>
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_GOLD</BonusType>
-					<iBias>3</iBias>
+					<iBias>10</iBias>
 				</BonusBias>
 			</BonusBiases>
 			<InitialCivics>
@@ -3016,6 +3035,10 @@
 			<TerrainBiases>
 				<TerrainBias>
 					<TerrainType>TERRAIN_PEAK</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_HILL</TerrainType>
 					<iBias>1</iBias>
 				</TerrainBias>
 				<TerrainBias>
@@ -4099,7 +4122,7 @@
 			<TerrainBiases>
 				<TerrainBias>
 					<TerrainType>TERRAIN_TUNDRA</TerrainType>
-					<iBias>3</iBias>
+					<iBias>1</iBias>
 				</TerrainBias>
 				<TerrainBias>
 					<TerrainType>TERRAIN_PLAINS</TerrainType>
@@ -4241,11 +4264,11 @@
 			<TerrainBiases>
 				<TerrainBias>
 					<TerrainType>TERRAIN_COAST</TerrainType>
-					<iBias>1</iBias>
+					<iBias>3</iBias>
 				</TerrainBias>
 				<TerrainBias>
 					<TerrainType>TERRAIN_PLAINS</TerrainType>
-					<iBias>3</iBias>
+					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
 			<BonusBiases>
@@ -4369,11 +4392,21 @@
 			</FreeTechs>
 			<DisableTechs/>
 			<TerrainBiases>
-				<TerrainBias>
+			<TerrainBias>
 					<TerrainType>TERRAIN_PLAINS</TerrainType>
 					<iBias>1</iBias>
 				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
+					<iBias>2</iBias>
+				</TerrainBias>
 			</TerrainBiases>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_FLOOD_PLAINS</FeatureType>
+					<iBias>2</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -4497,7 +4530,7 @@
 				</TerrainBias>
 				<TerrainBias>
 					<TerrainType>TERRAIN_TUNDRA</TerrainType>
-					<iBias>1</iBias>
+					<iBias>3</iBias>
 				</TerrainBias>
 			</TerrainBiases>
 			<BonusBiases>
