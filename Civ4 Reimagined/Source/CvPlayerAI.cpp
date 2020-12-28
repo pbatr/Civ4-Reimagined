@@ -2297,7 +2297,7 @@ int CvPlayerAI::AI_yieldWeight(YieldTypes eYield, const CvCity* pCity) const // 
 		break;
 	case YIELD_PRODUCTION:
 		// was 2
-		iWeight *= 205 + AI_getFlavorValue(FLAVOR_PRODUCTION) * 2 + AI_getFlavorValue(FLAVOR_MILITARY)/2; // Civ4 Reimagined, was 270
+		iWeight *= 204 + AI_getFlavorValue(FLAVOR_PRODUCTION) * 2 + AI_getFlavorValue(FLAVOR_MILITARY)/2; // Civ4 Reimagined, was 270
 		iWeight /= 100;
 		break;
 	case YIELD_COMMERCE:
@@ -5313,7 +5313,14 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				if (iCityCount == 0)
 					break;
 
-				const int iAverageYield = calculateTotalYield((YieldTypes)iJ) / iCityCount;
+				int iAverageYield = 0;
+				int iLoop = 0;
+				for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+				{
+					iAverageYield += pLoopCity->getBaseYieldRate((YieldTypes)iJ);
+				}
+
+				iAverageYield /= iCityCount;
 
 				int iTempValue = 4 * iAverageYield * iTechYieldModifier * std::max(iCityCount/ 3, iCount);
 				iTempValue /= 100;
@@ -5733,7 +5740,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				if (getBestRoute() == NO_ROUTE)
 					iRouteValue *= 4;
 				else if (GC.getRouteInfo(getBestRoute()).getValue() < GC.getRouteInfo(eRoute).getValue())
-					iRouteValue *= 2;
+					iRouteValue *= 3;
 
 				for (int iK = 0; iK < NUM_YIELD_TYPES; iK++)
 				{
@@ -6786,38 +6793,36 @@ int CvPlayerAI::AI_techBuildingValue(TechTypes eTech, bool bConstCache, bool& bE
 		if (GET_TEAM(getTeam()).isObsoleteBuilding(eLoopBuilding))
 			continue; // already obsolete
 
+		// Civ4 Reimagined
+		bool bNeedsMoreTech = false;
+		for (int iJ = 0; iJ < GC.getNUM_BUILDING_AND_TECH_PREREQS(); iJ++)
+		{
+			TechTypes eAdditionalTech = (TechTypes)kLoopBuilding.getPrereqAndTechs(iJ);
+			if (eAdditionalTech != NO_TECH && eAdditionalTech != eTech)
+			{
+				if (!kTeam.isHasTech(eAdditionalTech))
+				{
+					bNeedsMoreTech = true;
+				}
+			}
+		}
+
 		if (isWorldWonderClass(eClass))
 		{
 			if (GC.getGameINLINE().isBuildingClassMaxedOut(eClass) || kLoopBuilding.getProductionCost() < 0)
 				continue; // either maxed out, or it's a special building that we don't want to evaluate here.
 
 			// Civ4 Reimagined
-			if (kLoopBuilding.getPrereqAndTech() == eTech)
+			if (!bNeedsMoreTech)
 			{
-				TechTypes eAdditionalTech;
-				bool bNeedsMoreTech = false;
-				for (int iJ = 0; iJ < 3; iJ++)
+				for (BonusTypes i = (BonusTypes)0; i < GC.getNumBonusInfos(); i=(BonusTypes)(i+1))
 				{
-					eAdditionalTech = (TechTypes)kLoopBuilding.getPrereqAndTechs(iJ);
-					if (eAdditionalTech != NO_TECH && eAdditionalTech != eTech)
+					if (hasBonus(i))
 					{
-						if (!kTeam.isHasTech(eAdditionalTech))
+						if (kLoopBuilding.getPrereqAndBonus() == (BonusTypes)i || kLoopBuilding.getBonusFatCross() == (BonusTypes)i)
 						{
-							bNeedsMoreTech = true;
-						}
-					}
-				}
-				if (!bNeedsMoreTech)
-				{
-					for (BonusTypes i = (BonusTypes)0; i < GC.getNumBonusInfos(); i=(BonusTypes)(i+1))
-					{
-						if (hasBonus(i))
-						{
-							if (kLoopBuilding.getPrereqAndBonus() == (BonusTypes)i || kLoopBuilding.getBonusFatCross() == (BonusTypes)i)
-							{
-								bEnablesWonder = true; // a buildable world wonder
-								break;
-							}
+							bEnablesWonder = true; // a buildable world wonder
+							break;
 						}
 					}
 				}
@@ -6877,6 +6882,12 @@ int CvPlayerAI::AI_techBuildingValue(TechTypes eTech, bool bConstCache, bool& bE
 				iBuildingValue *= 3;
 			}
 
+			// Civ4 Reimagined
+			if (bNeedsMoreTech)
+			{
+				iBuildingValue /= 2;
+			}
+
 			if (gPlayerLogLevel > 0)
 			{
 				logBBAI("	%S Tech Building Value before scaling: %d", kLoopBuilding.getDescription(0), iBuildingValue);
@@ -6919,7 +6930,7 @@ int CvPlayerAI::AI_techBuildingValue(TechTypes eTech, bool bConstCache, bool& bE
 				}
 				//int iScale = 15 * (3 + getCurrentEra()); // hammers (ideally this would be based on the average city yield or something like that.)
 				// Civ4 Reimagined
-				int iScale = 5 * (3 + getCurrentEra());
+				int iScale = 10 * (3 + getCurrentEra());
 				iScale += AI_isCapitalAreaAlone() ? 30 : 0; // can afford to spend more on infrastructure if we are alone.
 				// decrease when at war
 				if (GET_TEAM(getTeam()).getAnyWarPlanCount(true) > 0)

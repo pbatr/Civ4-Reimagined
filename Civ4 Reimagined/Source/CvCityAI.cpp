@@ -3395,6 +3395,9 @@ BuildingTypes CvCityAI::AI_bestBuildingThreshold(int iFocusFlags, int iMaxTurns,
 				continue;
 			if (iFocusFlags != 0 && !(iFocusFlags & BUILDINGFOCUS_WONDEROK))
 				continue;
+			// Civ4 Reimagined
+			if (iProductionRank > std::max(3, kOwner.getNumCities()/2))
+				continue;
 		}
 
 		const CvBuildingInfo& kBuilding = GC.getBuildingInfo(eLoopBuilding);
@@ -4121,7 +4124,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 					iAreaTradeYieldValue /= 100;
 				}
 
-				iTempValue += iAreaTradeYieldValue;
+				iValue += iAreaTradeYieldValue;
 			}
 
 			if (bForeignTrade)
@@ -4136,7 +4139,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 						continue;
 					}
 
-					const int iIdeologyTradeRoutes = std::max(2, GC.getGameINLINE().getIdeologyCount(eIdeology) - 1) * iCitiesTarget * 2;
+					const int iIdeologyTradeRoutes = std::max(2, GC.getGameINLINE().getIdeologyCount(eIdeology) - 1) * iCitiesTarget;
 					iTempValue += 5 * iIdeologyTradeRoutes * kBuilding.getForeignTradeIdeologyModifier(eIdeology) * getTradeYield(YIELD_COMMERCE) / std::max(1, iTotalTradeModifier) / iNumTradeRoutes;
 				}
 			}
