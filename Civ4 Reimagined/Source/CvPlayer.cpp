@@ -28094,13 +28094,6 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			notifyUniquePowersChanged(false);
 		}
 	}
-	else
-	{
-		for (int iI = 0; iI < NUM_COMMERCE_TYPES; iI++)
-		{
-			changeUniquePowerCommerceModifier(((CommerceTypes)iI), 2);
-		}
-	}
 }
 
 /************************************************************************************************/
