@@ -1054,6 +1054,11 @@ int CvGame::calculateStartingPlotBiasScore(CvPlot* pStartingPlot, CivilizationTy
 			{
 				iScore += GC.getCivilizationInfo(eCiv).getCivilizationFeatureBias(pLoopPlot->getFeatureType());
 			}
+
+			if (pLoopPlot->getBonusType() != NO_BONUS)
+			{
+				iScore += GC.getCivilizationInfo(eCiv).getCivilizationBonusBias(pLoopPlot->getBonusType());
+			}
 		}
 	}
 

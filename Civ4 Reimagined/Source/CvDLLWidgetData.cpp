@@ -4982,7 +4982,7 @@ void CvDLLWidgetData::parseNationalityHelp(CvWidgetDataStruct &widgetDataStruct,
 			if (GET_PLAYER(eCulturalOwner).getTeam() != pHeadSelectedCity->getTeam() && !GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).isNoCultureFlip())
 			{
 				iCityStrength = pHeadSelectedCity->cultureStrength(eCulturalOwner);
-				iGarrison = pHeadSelectedCity->cultureGarrison(eCulturalOwner);
+				iGarrison = pHeadSelectedCity->cultureGarrison(pHeadSelectedCity->plot()->getOwnerINLINE());
 
 				if (iCityStrength > iGarrison)
 				{

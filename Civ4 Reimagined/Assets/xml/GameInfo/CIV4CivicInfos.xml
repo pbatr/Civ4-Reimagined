@@ -1370,7 +1370,7 @@
 			<iStateReligionFreeExperience>0</iStateReligionFreeExperience>
 			<YieldModifiers>
 				<iYield>0</iYield>
-				<iYield>15</iYield>
+				<iYield>20</iYield>
 				<iYield>0</iYield>
 			</YieldModifiers>
 			<ExtraYields/>
@@ -1960,7 +1960,7 @@
 			<iStateReligionUnitProductionModifier>0</iStateReligionUnitProductionModifier>
 			<iStateReligionBuildingProductionModifier>0</iStateReligionBuildingProductionModifier>
 			<iStateReligionFreeExperience>0</iStateReligionFreeExperience>
-			<iBonusRatioModifier>-10</iBonusRatioModifier>
+			<iBonusRatioModifier>0</iBonusRatioModifier>
 			<YieldModifiers/>
 			<ExtraYields>
 				<iYield>0</iYield>

@@ -81,7 +81,7 @@ public:
 
 	bool canTrain(UnitTypes eUnit, bool bContinue = false, bool bTestVisible = false, bool bIgnoreCost = false, bool bIgnoreUpgrades = false) const;					// Exposed to Python 
 	bool canTrain(UnitCombatTypes eUnitCombat) const;
-	bool canConstruct(BuildingTypes eBuilding, bool bContinue = false, bool bTestVisible = false, bool bIgnoreCost = false, bool bIgnoreTech = false, bool bIgnoreCivic = false) const; // Exposed to Python, K-Mod added bIgnoreTech
+	bool canConstruct(BuildingTypes eBuilding, bool bContinue = false, bool bTestVisible = false, bool bIgnoreCost = false, bool bIgnoreTech = false, bool bIgnoreCivic = false, bool bIgnoreBuilding = false) const; // Exposed to Python, K-Mod added bIgnoreTech
 	bool canCreate(ProjectTypes eProject, bool bContinue = false, bool bTestVisible = false) const;		// Exposed to Python 
 	bool canMaintain(ProcessTypes eProcess, bool bContinue = false) const;														// Exposed to Python  
 	bool canJoin() const;																													// Exposed to Python
@@ -1100,7 +1100,7 @@ public:
 	virtual BuildingTypes AI_bestBuilding(int iFocusFlags = 0, int iMaxTurns = MAX_INT, bool bAsync = false, AdvisorTypes eIgnoreAdvisor = NO_ADVISOR) = 0;
 	//virtual int AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags = 0) const = 0;
 	virtual int AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags = 0, int iThreshold = 0, bool bConstCache = false, bool bAllowRecursion = true) const = 0; // K-Mod
-	virtual int AI_projectValue(ProjectTypes eProject) = 0;
+	virtual int AI_projectValue(ProjectTypes eProject) const = 0;
 	virtual int AI_neededSeaWorkers() = 0;
 	virtual bool AI_isDefended(int iExtra = 0) = 0;
 /********************************************************************************/

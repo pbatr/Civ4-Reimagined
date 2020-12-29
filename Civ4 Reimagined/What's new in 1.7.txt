@@ -10,7 +10,9 @@ New
 Changes
 *********
 -With a low resource ratio in coal and oil, Railroads take longer to construct and units can traverse less Railroad squares per turn
--Friendly units stationed in your city do no longer reduce the risk of revolts
+-Friendly units from another civilization stationed in your city do no longer reduce the risk of revolts
+-Worker can build Villages with Medicine Tech
+-Civilizations have a starting bias for native resources
 
 *********
 Tweaks
@@ -18,8 +20,20 @@ Tweaks
 -Reduced Awqaq Runa costs from 30 to 25
 -Increased Vulture anti-archer bonus from 10% to 20%
 -Increased Assembly Plant production with electricity from +40% to +85%, but it starts off with 15% less production compared to other factories and loses its former +3 production and +50% building with coal bonus.
+-Industrialism production bonus increased from 15% to 20%
+-Central Planning no longer reduces bonus ratios
 -State Atheism reduces overcrowding unhappiness by 10%
 -Senate grants Great Spy points
+-Pikemen require Corporation instead of Banking
+-Colossus obsoletes with Astronomy
+-Shwedagon Paya requires Meditation instead of Philosophy
+-National Epic requires Philosophy instead of Literature
+-Statue of Liberty trade with liberal Civs bonus reduced from 300% to 200% and food from trade routes reduced from 5% to 4%
+-Small adjustments to Renaissance tech tree
+-Cavalry require Replaceable Parts tech
+-Increase great person modifier of Cristo Redentor from 25% to 100%
+-Lubyanka only requires one National Security building in city
+-Angkor Wat gives no defense bonus anymore
 
 *********
 Interface
@@ -31,6 +45,7 @@ Fixes
 *********
 -"Better coal" event triggers only with researched drydock or coal plant
 -AI would move capital too often to colonies
+-Corporation could sometimes drive out competing headquarter from a city
 
 *******************************************
 Civ4 Reimagined 1.6

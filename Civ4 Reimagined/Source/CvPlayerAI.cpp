@@ -2291,16 +2291,20 @@ int CvPlayerAI::AI_yieldWeight(YieldTypes eYield, const CvCity* pCity) const // 
 		else
 		{
 			// was 2.5
-			iWeight *= 300;
+			iWeight *= 295 + AI_getFlavorValue(FLAVOR_GROWTH); // Civ4 Reimagined, was 300
 			iWeight /= 100;
 		}
 		break;
 	case YIELD_PRODUCTION:
 		// was 2
-		iWeight *= 220; // Civ4 Reimagined, was 270
+		iWeight *= 204 + AI_getFlavorValue(FLAVOR_PRODUCTION) * 2 + AI_getFlavorValue(FLAVOR_MILITARY)/2; // Civ4 Reimagined, was 270
 		iWeight /= 100;
 		break;
 	case YIELD_COMMERCE:
+		// Civ4 Reimagined
+		iWeight *= 100 + (AI_getFlavorValue(FLAVOR_SCIENCE) + AI_getFlavorValue(FLAVOR_GOLD))/2;
+		iWeight /= 100;
+
 		if (AI_isFinancialTrouble())
 		{
 			iWeight *= 2;
@@ -2323,6 +2327,9 @@ int CvPlayerAI::AI_commerceWeight(CommerceTypes eCommerce, const CvCity* pCity) 
 	switch (eCommerce)
 	{
 	case COMMERCE_RESEARCH:
+		// Civ4 Reimagined
+		iWeight *= 100 + AI_getFlavorValue(FLAVOR_SCIENCE);
+		iWeight /= 100;
 		if (AI_avoidScience())
 		{
 			if (isNoResearchAvailable())
@@ -2336,6 +2343,9 @@ int CvPlayerAI::AI_commerceWeight(CommerceTypes eCommerce, const CvCity* pCity) 
 		}
 		break;
 	case COMMERCE_GOLD:
+		// Civ4 Reimagined
+		iWeight *= 100 + AI_getFlavorValue(FLAVOR_GOLD);
+		iWeight /= 100;
 		if (getCommercePercent(COMMERCE_GOLD) > 80) // originally == 100
 		{
 			//avoid strikes
@@ -2374,6 +2384,9 @@ int CvPlayerAI::AI_commerceWeight(CommerceTypes eCommerce, const CvCity* pCity) 
 		}
 		else
 		{
+			// Civ4 Reimagined
+			iWeight *= 100 + AI_getFlavorValue(FLAVOR_CULTURE);
+			iWeight /= 100;
 			// weight multipliers changed for K-Mod
 			if (AI_isDoVictoryStrategy(AI_VICTORY_CULTURE3) || getCommercePercent(COMMERCE_CULTURE) >= 90)
 			{
@@ -2647,6 +2660,7 @@ void CvPlayerAI::AI_updateCommerceWeights()
 				iWeight /= 300 - getCurrentEra() * 40;
 			}
 		}
+
 		AI_setEspionageWeight(iWeight);
 	} // end espionage
 }
@@ -5298,7 +5312,14 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				if (iCityCount == 0)
 					break;
 
-				const int iAverageYield = calculateTotalYield((YieldTypes)iJ) / iCityCount;
+				int iAverageYield = 0;
+				int iLoop = 0;
+				for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+				{
+					iAverageYield += pLoopCity->getBaseYieldRate((YieldTypes)iJ);
+				}
+
+				iAverageYield /= iCityCount;
 
 				int iTempValue = 4 * iAverageYield * iTechYieldModifier * std::max(iCityCount/ 3, iCount);
 				iTempValue /= 100;
@@ -5524,19 +5545,19 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 	{
 		for (int iK = 0; iK < NUM_YIELD_TYPES; iK++)
 		{
+			// Improvement yield changes
 			int iTempValue = 0;
 
-			/* original code
-			iTempValue += (GC.getImprovementInfo((ImprovementTypes)iJ).getTechYieldChanges(eTech, iK) * getImprovementCount((ImprovementTypes)iJ) * 50); */
-			// Often, an improvment only becomes viable after it gets the tech bonus.
-			// So it's silly to score the bonus proportionally to how many of the improvements we already have.
-
-			//iTempValue += GC.getImprovementInfo((ImprovementTypes)iJ).getTechYieldChanges(eTech, iK)
-			//	* std::max(getImprovementCount((ImprovementTypes)iJ), 3*getNumCities()/2) * 4;
 			// Civ4 Reimagined
-			iTempValue += GC.getImprovementInfo((ImprovementTypes)iJ).getTechYieldChanges(eTech, iK)
-				* std::max(getImprovementCount((ImprovementTypes)iJ), 2*getNumCities()) * 4;
-			// This new version is still bork, but at least it won't be worthless.
+			const ImprovementTypes eLoopImprovement = (ImprovementTypes)iJ;
+			const ImprovementTypes eUpgradedImprovement = (ImprovementTypes)GC.getImprovementInfo(eLoopImprovement).getImprovementUpgrade();
+			iTempValue += GC.getImprovementInfo(eLoopImprovement).getTechYieldChanges(eTech, iK) * std::max(getImprovementCount(eLoopImprovement), 2*getNumCities()) * 4;
+
+			if (eUpgradedImprovement != NO_IMPROVEMENT && eLoopImprovement != eUpgradedImprovement)
+			{
+				iTempValue += GC.getImprovementInfo(eUpgradedImprovement).getTechYieldChanges(eTech, iK) * getImprovementCount(eLoopImprovement)/2 * 4;
+			}
+
 			iTempValue *= AI_averageYieldMultiplier((YieldTypes)iK);
 			iTempValue /= 100;
 
@@ -5718,7 +5739,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				if (getBestRoute() == NO_ROUTE)
 					iRouteValue *= 4;
 				else if (GC.getRouteInfo(getBestRoute()).getValue() < GC.getRouteInfo(eRoute).getValue())
-					iRouteValue *= 2;
+					iRouteValue *= 3;
 
 				for (int iK = 0; iK < NUM_YIELD_TYPES; iK++)
 				{
@@ -5969,7 +5990,9 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 	/* ------------------ Building Value  ------------------ */
 	bool bEnablesWonder;
-	iValue += AI_techBuildingValue(eTech, bAsync, bEnablesWonder); // changed by K-Mod
+	int iTechBuildingValue = AI_techBuildingValue(eTech, bAsync, bEnablesWonder); // changed by K-Mod
+	logBBAI("	AI_techBuildingValue: %d", iTechBuildingValue);
+	iValue += iTechBuildingValue;
 	iValue -= AI_obsoleteBuildingPenalty(eTech, bAsync); // K-Mod!
 
 	// K-Mod. Scale the random wonder bonus based on leader personality.
@@ -6006,12 +6029,17 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 	/* ------------------ Project Value  ------------------ */
 	bool bEnablesProjectWonder = false;
+	int iTechProjectValue = AI_techProjectValue(eTech, bEnablesWonder); // changed by K-Mod
+	logBBAI("	AI_techProjectValue: %d", iTechProjectValue);
+	iValue += iTechProjectValue;
+
 	for (int iJ = 0; iJ < GC.getNumProjectInfos(); iJ++)
 	{
 		const CvProjectInfo& kProjectInfo = GC.getProjectInfo((ProjectTypes)iJ); // K-Mod
 
 		//if (kProjectInfo.getTechPrereq() == eTech)
 		// Civ4 Reimagined
+		/*
 		if (kProjectInfo.getTechPrereq() == eTech || kProjectInfo.getTechPrereq2() == eTech)
 		{
 			iValue += 280;
@@ -6042,6 +6070,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 					}
 				}
 			}
+			*/
 
 			if (iPathLength <= 1)
 			{
@@ -6061,7 +6090,6 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 					}
 				}
 			}
-		}
 	}
 	if (bEnablesProjectWonder)
 	{
@@ -6150,7 +6178,8 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				//iValue += 3 * (iNewCivicValue - iCurrentCivicValue);
 				// Civ4 Reimagined
 				const bool bFavorite = (eNewCivic == GC.getLeaderHeadInfo(getPersonalityType()).getFavoriteCivic());
-				const int iCivicValue = (bFavorite ? 20 : 15) * (iNewCivicValue - iCurrentCivicValue) * (bNewReligionCivic ? 2 : 1);
+				const int iCivicFactor = bNewReligionCivic ? 60 : ((getCurrentEra() + 1) * (bFavorite ? 6 : 4));
+				const int iCivicValue = iCivicFactor * (iNewCivicValue - iCurrentCivicValue);
 
 				if (gPlayerLogLevel > 2) logBBAI("	%S Tech Civic Value: %d", GC.getCivicInfo(eNewCivic).getDescription(0), iCivicValue);
 
@@ -6373,7 +6402,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				else
 				{
 					//iReligionValue /= (1 + countHolyCities() + ((iPotentialReligions > 0) ? 1 : 0));
-					iReligionValue /= (1 + countHolyCities() * 2 + ((iPotentialReligions > 0) ? 1 : 0)); //Civ4 Reimagined
+					iReligionValue /= (1 + countHolyCities() * 3 + ((iPotentialReligions > 0) ? 1 : 0)); //Civ4 Reimagined
 				}
 
 				// Civ4 Reimagined
@@ -6524,10 +6553,15 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 		
 		if (bAnyWarPlans)
 		{
+			if (gPlayerLogLevel > 2)
+			{
+				logBBAI("	Bigger value for war tech (previously: %d)", iValue);
+			}
+
 			iValue += kTechInfo.getFlavorValue(FLAVOR_MILITARY) * iValue * (bTotalWar ? 20 : 4) / 100;
 			if (gPlayerLogLevel > 2)
 			{
-				logBBAI("Bigger value for war tech");
+				logBBAI("	Bigger value for war tech (afterwards: %d)", iValue);
 			}
 		}
 	}
@@ -6539,9 +6573,10 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 		int iFlavorValue = 0;
 		for (int iJ = 0; iJ < GC.getNumFlavorTypes(); iJ++)
 		{
-			iFlavorValue += AI_getFlavorValue((FlavorTypes)iJ) * kTechInfo.getFlavorValue(iJ) * 5;
+			iFlavorValue += AI_getFlavorValue((FlavorTypes)iJ) * kTechInfo.getFlavorValue(iJ);
 		}
-		iValue += iFlavorValue * std::min(iCityCount, iCityTarget) / std::max(1, iCityTarget);
+		iValue *= 100 + iFlavorValue;
+		iValue /= 100;
 	}
 
 	if (kTechInfo.isRepeat())
@@ -6848,38 +6883,36 @@ int CvPlayerAI::AI_techBuildingValue(TechTypes eTech, bool bConstCache, bool& bE
 		if (GET_TEAM(getTeam()).isObsoleteBuilding(eLoopBuilding))
 			continue; // already obsolete
 
+		// Civ4 Reimagined
+		bool bNeedsMoreTech = false;
+		for (int iJ = 0; iJ < GC.getNUM_BUILDING_AND_TECH_PREREQS(); iJ++)
+		{
+			TechTypes eAdditionalTech = (TechTypes)kLoopBuilding.getPrereqAndTechs(iJ);
+			if (eAdditionalTech != NO_TECH && eAdditionalTech != eTech)
+			{
+				if (!kTeam.isHasTech(eAdditionalTech))
+				{
+					bNeedsMoreTech = true;
+				}
+			}
+		}
+
 		if (isWorldWonderClass(eClass))
 		{
 			if (GC.getGameINLINE().isBuildingClassMaxedOut(eClass) || kLoopBuilding.getProductionCost() < 0)
 				continue; // either maxed out, or it's a special building that we don't want to evaluate here.
 
 			// Civ4 Reimagined
-			if (kLoopBuilding.getPrereqAndTech() == eTech)
+			if (!bNeedsMoreTech)
 			{
-				TechTypes eAdditionalTech;
-				bool bNeedsMoreTech = false;
-				for (int iJ = 0; iJ < 3; iJ++)
+				for (BonusTypes i = (BonusTypes)0; i < GC.getNumBonusInfos(); i=(BonusTypes)(i+1))
 				{
-					eAdditionalTech = (TechTypes)kLoopBuilding.getPrereqAndTechs(iJ);
-					if (eAdditionalTech != NO_TECH && eAdditionalTech != eTech)
+					if (hasBonus(i))
 					{
-						if (!kTeam.isHasTech(eAdditionalTech))
+						if (kLoopBuilding.getPrereqAndBonus() == (BonusTypes)i || kLoopBuilding.getBonusFatCross() == (BonusTypes)i)
 						{
-							bNeedsMoreTech = true;
-						}
-					}
-				}
-				if (!bNeedsMoreTech)
-				{
-					for (BonusTypes i = (BonusTypes)0; i < GC.getNumBonusInfos(); i=(BonusTypes)(i+1))
-					{
-						if (hasBonus(i))
-						{
-							if (kLoopBuilding.getPrereqAndBonus() == (BonusTypes)i || kLoopBuilding.getBonusFatCross() == (BonusTypes)i)
-							{
-								bEnablesWonder = true; // a buildable world wonder
-								break;
-							}
+							bEnablesWonder = true; // a buildable world wonder
+							break;
 						}
 					}
 				}
@@ -6920,18 +6953,32 @@ int CvPlayerAI::AI_techBuildingValue(TechTypes eTech, bool bConstCache, bool& bE
 		int iBuildingValue = 0;
 		for (size_t i = 0; i < relevant_cities.size(); i++)
 		{
-			if (relevant_cities[i]->canConstruct(eLoopBuilding, false, false, true, true) ||
-				isNationalWonderClass(eClass)) // (ad-hoc). National wonders often require something which is unlocked by the same tech. So I'll disregard the construction requirements.
+			if (!relevant_cities[i]->canConstruct(eLoopBuilding, false, false, true, true, true, true) &&
+				!isNationalWonderClass(eClass)) // (ad-hoc). National wonders often require something which is unlocked by the same tech. So I'll disregard the construction requirements.)
 			{
-				if (bLimitedBuilding) // TODO: don't assume 'limited' means 'only one'.
-					iBuildingValue = std::max(iBuildingValue, relevant_cities[i]->AI_buildingValue(eLoopBuilding, 0, 0, bConstCache));
-				else
-					iBuildingValue += relevant_cities[i]->AI_buildingValue(eLoopBuilding, 0, 0, bConstCache);
+				continue;
 			}
+
+			if (bLimitedBuilding) // TODO: don't assume 'limited' means 'only one'.
+				iBuildingValue = std::max(iBuildingValue, relevant_cities[i]->AI_buildingValue(eLoopBuilding, 0, 0, bConstCache));
+			else
+				iBuildingValue += relevant_cities[i]->AI_buildingValue(eLoopBuilding, 0, 0, bConstCache);
 		}
 		if (iBuildingValue > 0)
 		{
-			if (gPlayerLogLevel > 2)
+			// Civ4 Reimagined: Unique Building
+			if ((GC.getBuildingClassInfo(eClass).getDefaultBuildingIndex()) != eLoopBuilding)
+			{
+				iBuildingValue *= 3;
+			}
+
+			// Civ4 Reimagined
+			if (bNeedsMoreTech)
+			{
+				iBuildingValue /= 2;
+			}
+
+			if (gPlayerLogLevel > 0)
 			{
 				logBBAI("	%S Tech Building Value before scaling: %d", kLoopBuilding.getDescription(0), iBuildingValue);
 			}
@@ -6973,7 +7020,7 @@ int CvPlayerAI::AI_techBuildingValue(TechTypes eTech, bool bConstCache, bool& bE
 				}
 				//int iScale = 15 * (3 + getCurrentEra()); // hammers (ideally this would be based on the average city yield or something like that.)
 				// Civ4 Reimagined
-				int iScale = 5 * (3 + getCurrentEra());
+				int iScale = 10 * (3 + getCurrentEra());
 				iScale += AI_isCapitalAreaAlone() ? 30 : 0; // can afford to spend more on infrastructure if we are alone.
 				// decrease when at war
 				if (GET_TEAM(getTeam()).getAnyWarPlanCount(true) > 0)
@@ -6993,7 +7040,7 @@ int CvPlayerAI::AI_techBuildingValue(TechTypes eTech, bool bConstCache, bool& bE
 			//
 			iTotalValue += iBuildingValue;
 			
-			if (gPlayerLogLevel > 2)
+			if (gPlayerLogLevel > 0)
 			{
 				logBBAI("	%S Tech Building Value after scaling: %d", kLoopBuilding.getDescription(0), iBuildingValue);
 			}
@@ -7017,6 +7064,137 @@ int CvPlayerAI::AI_techBuildingValue(TechTypes eTech, bool bConstCache, bool& bE
 	return (int)iTotalValue;
 }
 // K-Mod end
+
+
+// Civ4 Reimagined
+int CvPlayerAI::AI_techProjectValue(TechTypes eTech, bool& bEnablesWonder) const
+{
+	PROFILE_FUNC();
+	FAssertMsg(!isAnarchy(), "AI_techProjectValue should not be used while in anarchy. Results will be inaccurate.");
+
+	long iTotalValue = 0;
+	std::vector<const CvCity*> relevant_cities; // (this will be populated when we find a building that needs to be evaluated)
+	const CvTeamAI& kTeam = GET_TEAM(getTeam()); // Civ4 Reimagined
+
+	for (ProjectTypes eLoopProject = (ProjectTypes)0; eLoopProject < GC.getNumProjectInfos(); eLoopProject=(ProjectTypes)(eLoopProject+1))
+	{
+		if (eLoopProject == NO_PROJECT || !isTechRequiredForProject(eTech, eLoopProject))
+			continue; // this project is not relevent
+
+		const CvProjectInfo& kLoopProject = GC.getProjectInfo(eLoopProject);
+
+		if (isWorldProject(eLoopProject))
+		{
+			if (GC.getGameINLINE().isProjectMaxedOut(eLoopProject))
+				continue;
+
+			bEnablesWonder = true;
+		}
+
+		bool bLimitedProject = isLimitedProject(eLoopProject);
+
+		// Populate the relevant_cities list if we haven't done so already.
+		if (relevant_cities.empty())
+		{
+			int iEarliestTurn = INT_MAX;
+
+			int iLoop;
+			for (const CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+			{
+				iEarliestTurn = std::min(iEarliestTurn, pLoopCity->getGameTurnAcquired());
+			}
+
+			int iCutoffTurn = (GC.getGameINLINE().getGameTurn() + iEarliestTurn) / 2 + GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getVictoryDelayPercent() * 30 / 100;
+			// iCutoffTurn corresponds 50% of the time since our first city was aquired, with a 30 turn (scaled) buffer.
+
+			for (const CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+			{
+				if (pLoopCity->getGameTurnAcquired() < iCutoffTurn || pLoopCity->isCapital())
+					relevant_cities.push_back(pLoopCity);
+			}
+
+			if (relevant_cities.empty())
+			{
+				FAssertMsg(isBarbarian(), "No revelent cities in AI_techBuildingValue");
+				return 0;
+			}
+		}
+		//
+
+		// Perform the evaluation.
+		int iProjectValue = 0;
+		for (size_t i = 0; i < relevant_cities.size(); i++)
+		{
+			if (bLimitedProject) // TODO: don't assume 'limited' means 'only one'.
+				iProjectValue = std::max(iProjectValue, relevant_cities[i]->AI_projectValue(eLoopProject));
+			else
+				iProjectValue += relevant_cities[i]->AI_projectValue(eLoopProject);
+		}
+		
+		if (iProjectValue > 0)
+		{
+			if (gPlayerLogLevel > 0)
+			{
+				logBBAI("	%S Tech Project Value before scaling: %d", kLoopProject.getDescription(0), iProjectValue);
+			}
+
+			if (kLoopProject.getProductionCost() > 0)
+			{
+				int iMultiplier = 0;
+
+				for (BonusTypes i = (BonusTypes)0; i < GC.getNumBonusInfos(); i=(BonusTypes)(i+1))
+				{
+					if (hasBonus(i))
+					{
+						iMultiplier += kLoopProject.getBonusProductionModifier(i);
+					}
+				}
+				//int iScale = 15 * (3 + getCurrentEra()); // hammers (ideally this would be based on the average city yield or something like that.)
+				// Civ4 Reimagined
+				int iScale = 5 * (3 + getCurrentEra());
+				iScale += AI_isCapitalAreaAlone() ? 30 : 0; // can afford to spend more on infrastructure if we are alone.
+				// decrease when at war
+				if (GET_TEAM(getTeam()).getAnyWarPlanCount(true) > 0)
+					iScale = iScale * 2/3;
+				// increase scale for limited wonders, because they don't need to be built in every city.
+				if (isLimitedProject(eLoopProject))
+					iScale *= std::min((int)relevant_cities.size(), GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getTargetNumCities());
+
+				// adjust for game speed
+				iScale = iScale * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getBuildPercent() / 100;
+				// use the multiplier we calculated earlier
+				iScale = iScale * (100 + iMultiplier) / 100;
+
+				iProjectValue *= 100;
+				iProjectValue /= std::max(33, 100 * kLoopProject.getProductionCost() / std::max(1, iScale));
+			}
+			//
+			iTotalValue += iProjectValue;
+			
+			if (gPlayerLogLevel > 0)
+			{
+				logBBAI("	%S Tech Project Value after scaling: %d", kLoopProject.getDescription(0), iProjectValue);
+			}
+		}
+	}
+	int iScale = AI_isDoStrategy(AI_STRATEGY_ECONOMY_FOCUS) ? 180 : 100;
+
+	if (getNumCities() == 1 && getCurrentEra() == GC.getGameINLINE().getStartEra())
+		iScale /= 2; // I expect we'll want to be building mostly units until we get a second city.
+
+	iTotalValue *= iScale;
+	iTotalValue /= 120;
+	
+	FAssert(iTotalValue <= MAX_INT);
+	
+	if (iTotalValue > MAX_INT && gPlayerLogLevel > 2)
+	{
+		logBBAI("TechProjectValue Overflow!");
+	}
+
+	return (int)iTotalValue;
+}
+
 
 // This function has been mostly rewriten for K-Mod
 // Heavily edited by Civ4 Reimagined
@@ -7077,8 +7255,8 @@ int CvPlayerAI::AI_techUnitValue(TechTypes eTech, int iPathLength, bool& bEnable
 		if (GC.getUnitClassInfo(eLoopClass).getDefaultUnitIndex() != GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits(eLoopClass))
 		{
 			//UU
-			// Civ4 Reimagined: Increased from 600 to 900
-			iTotalUnitValue += 900;
+			// Civ4 Reimagined: Increased from 600 to 2000
+			iTotalUnitValue += 2000;
 		}
 
 		if (eTech == NO_TECH || kLoopUnit.getPrereqAndTech() == eTech || kTeam.isHasTech((TechTypes)kLoopUnit.getPrereqAndTech()) || canResearch((TechTypes)kLoopUnit.getPrereqAndTech()))
@@ -14681,10 +14859,14 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		iTempValue *= 3 * (kCivic.isNoGreatPeople() ? (-100 - getGreatPeopleRateModifier()) : kCivic.getGreatPeopleRateModifier());
 
 		// Civ4 Reimagined: Great Engineers can hurry spaceship parts and culture victory wants artist birth
-		if (iTempValue < 0 && (bSpaceRaceVictory || bCultureVictory))
+		if (iTempValue < 0 && bSpaceRaceVictory)
 		{
 			iTempValue *= 3;
 			iTempValue /= 2;
+		}
+		if (iTempValue < 0 && bCultureVictory)
+		{
+			iTempValue *= 3;
 		}
 
 		iTempValue /= 100;
@@ -15192,16 +15374,21 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		// Our civ can have 1 connection to each foreign city.
 
 		int iTempValue = 0;
+		// Gold flavored civs are optimisitc that other civs will liberate their trade policy later
 		int iConnectedForeignCities = AI_countPotentialForeignTradeCities(true, AI_getFlavorValue(FLAVOR_GOLD) == 0);
 
 		//int iTotalTradeRoutes = iCities * pCapital->getTradeRoutes(); // Civ4 Reimagined
 		int iTotalTradeRoutes = 0;
+		int iAverageTradeModifier = 0;
 
 		int iLoop;
 		for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 		{
 			iTotalTradeRoutes += pLoopCity->getTradeRoutes();
+			iAverageTradeModifier += 100 + pLoopCity->getTradeRouteModifier();
 		}
+
+		iAverageTradeModifier /= iCities;
 		
 		// Civ4 Reimagined
 		CivicTypes eCurrentCivic = getCivics((CivicOptionTypes)kCivic.getCivicOptionType());
@@ -15214,7 +15401,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		{
 			// We should attempt the block one-way trade which other civs might be getting from us.
 			// count how many foreign trade cities we are not connected to...
-			int iDisconnectedForeignTrade = AI_countPotentialForeignTradeCities(false, AI_getFlavorValue(FLAVOR_GOLD) == 0) - iConnectedForeignCities;
+			int iDisconnectedForeignTrade = AI_countPotentialForeignTradeCities(true, true);
 			FAssert(iDisconnectedForeignTrade >= 0);
 			// and estimate the value of blocking foreign trade to these cities. (we don't get anything from this, but we're denying our potential rivals.)
 			iTempValue += std::min(iDisconnectedForeignTrade, iCities); // just 1 point per city
@@ -15232,17 +15419,11 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 					if (gPlayerLogLevel > 0 && GET_TEAM(i).isVassal(getTeam())) logBBAI("		We have a Vassal");
 				}
 			}
-			
-			iSafeOverseasTrade = std::min(iSafeOverseasTrade, iConnectedForeignCities);
-			if (gPlayerLogLevel > 0) logBBAI("		Safe Oversea Traderoutes: %d", iSafeOverseasTrade);
 
-			// only reduce by 1.5 rather than 2, because it is good to deny our rivals the trade.
-			// old code:
-			//iTempValue -= std::min(iConnectedForeignCities - iSafeOverseasTrade, iTotalTradeRoutes) * 7/4; 
+			if (gPlayerLogLevel > 0) logBBAI("		Safe Oversea Traderoutes: %d", iSafeOverseasTrade);
 			
-			iTempValue -= std::max(0, std::min(iConnectedForeignCities, iTotalTradeRoutes) - iSafeOverseasTrade) * 3 / 2;
+			iTempValue -= std::max(0, std::min(iConnectedForeignCities, iTotalTradeRoutes) - iSafeOverseasTrade) * GC.getDefineINT("FOREIGN_TRADE_MODIFIER") / 100;
 			if (gPlayerLogLevel > 0) logBBAI("		TempValue of no foreign trades: %d", iTempValue);
-			iConnectedForeignCities = iSafeOverseasTrade;
 		}
 
 		// Unfortunately, it's not easy to tell whether or not we'll foreign trade when we switch to this civic.
@@ -15252,17 +15433,16 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		// Civ4 Reimagined
 		if (kCivic.getDomesticTradeModifier() != 0)
 		{
-			int iTradeValue = std::max(0, std::max(iCities, iCities * getCurrentEra()) - iConnectedForeignCities);
+			int iTradeValue = iTotalTradeRoutes;
+			// when there is foreign trade, not all trade routes are domestic
+			if (!isNoForeignTrade() && !kCivic.isNoForeignTrade())
+			{
+				iTradeValue = std::max(0, iTotalTradeRoutes - iConnectedForeignCities);
+			}
 			iTradeValue *= 3 * std::max(2, getCurrentEra()+1);
 			iTradeValue /= GC.getNumEraInfos()+1;
 			if (gPlayerLogLevel > 0) logBBAI("	Civic Value of Domestic Trade Bonus: %d", (iTradeValue * kCivic.getDomesticTradeModifier() * AI_averageYieldMultiplier(YIELD_COMMERCE) / 10000));
 			iValue += iTradeValue * kCivic.getDomesticTradeModifier() * AI_averageYieldMultiplier(YIELD_COMMERCE) / 10000;
-		}
-		
-		if (pCapital)
-		{
-			// add an estimate of our own overseas cities (even though they are not really "foreign".
-			iConnectedForeignCities += iCities - pCapital->area()->getCitiesPerPlayer(getID());
 		}
 		
 		// Civ4 Reimagined
@@ -15282,7 +15462,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			int iTradeValue = pCapital->getTradeRoutes() * 3 * (getCurrentEra()+1);
 			if (kCivic.isNoForeignTrade())
 			{
-				iTradeValue += iCities * 3 * (getCurrentEra()+1);
+				iTradeValue += (iCities-1) * 3 * (getCurrentEra()+1);
 			}
 			iTradeValue /= GC.getNumEraInfos()+1;
 			iTradeValue *= kCivic.getCapitalTradeModifier() * AI_averageYieldMultiplier(YIELD_COMMERCE);
@@ -15293,7 +15473,11 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 
 		// Civ4 Reimagined: This should now correspond to the sum of base values of all additional trade routes
 		if (kCivic.getTradeRoutes() != 0)
-			iTempValue += (std::max(std::min(kCivic.getTradeRoutes() * iCities, std::max(0, iConnectedForeignCities - iTotalTradeRoutes)) * 2, iCities) * 5) /2;
+		{
+			const int iNewTradeRoutes = kCivic.getTradeRoutes() * iCities;
+			const int iNewForeignTradeRoutes = std::min(iNewTradeRoutes, std::max(0, iConnectedForeignCities - iTotalTradeRoutes));
+			iTempValue += iNewForeignTradeRoutes * 2 + (iNewTradeRoutes - iNewForeignTradeRoutes);
+		}
 		
 		if (iTempValue != 0)
 		{
@@ -15301,9 +15485,12 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			// Trade routes increase in value as cities grow, and build trade multipliers
 			iTempValue *= 3*(getCurrentEra()+1);
 			iTempValue /= GC.getNumEraInfos()+1;
+
+			iTempValue *= getTradeYieldModifier(YIELD_COMMERCE) + iAverageTradeModifier;
+			iTempValue /= 100;
+
 			// commerce multipliers
 			iTempValue *= AI_averageYieldMultiplier(YIELD_COMMERCE);
-			// Civ4 Reimagined
 			iTempValue /= 100;
 			if (gPlayerLogLevel > 0) logBBAI("	Civic Value of Traderoutes: %d", iTempValue);
 			iValue += iTempValue;
@@ -15972,7 +16159,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		
 		iBonusExperience *= std::max(iWarmongerFactor, (bWarPlan ? 100 : 0));
 		iBonusExperience /= 100;
-		iBonusExperience /= 7;
+		iBonusExperience /= 14;
 
 		iBonusUnitProduction *= iProductionShareUnits;
 		iBonusUnitProduction /= 100;
@@ -16207,10 +16394,20 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		
 		for (int iJ = 0; iJ < GC.getNumImprovementInfos(); iJ++)
 		{
+			const ImprovementTypes eLoopImprovement = (ImprovementTypes)iJ;
+			const ImprovementTypes eUpgradedImprovement = (ImprovementTypes)GC.getImprovementInfo(eLoopImprovement).getImprovementUpgrade();
 			// Improvement yield changes
-			const int iImprovementEstimatedCount = std::max(iCities * 2/3, getImprovementCount((ImprovementTypes)iJ));
+			const int iImprovementEstimatedCount = std::max(iCities * 2/3, getImprovementCount(eLoopImprovement));
+
 			int iImprovValue = AI_averageYieldMultiplier((YieldTypes)iI) * (kCivic.getImprovementYieldChanges(iJ, iI) * iImprovementEstimatedCount);
-			if (iImprovValue != 0 && gPlayerLogLevel > 2) logBBAI("		Value of %S Bonus: %d (has %d, estimated: %d)", GC.getImprovementInfo((ImprovementTypes)iJ).getDescription(), iImprovValue, getImprovementCount((ImprovementTypes)iJ), iImprovementEstimatedCount);
+
+			if (eUpgradedImprovement != NO_IMPROVEMENT && eLoopImprovement != eUpgradedImprovement)
+			{
+				const int iUpgradedImprovementEstimatedCount = getImprovementCount(eLoopImprovement)/2;
+				iImprovValue += AI_averageYieldMultiplier((YieldTypes)iI) * (kCivic.getImprovementYieldChanges((int)eUpgradedImprovement, iI) * iUpgradedImprovementEstimatedCount);
+			} 
+
+			if (iImprovValue != 0 && gPlayerLogLevel > 2) logBBAI("		Value of %S Bonus: %d (has %d, estimated: %d)", GC.getImprovementInfo(eLoopImprovement).getDescription(), iImprovValue, getImprovementCount(eLoopImprovement), iImprovementEstimatedCount);
 			iTempValue += iImprovValue;
 		}
 		
@@ -16302,15 +16499,15 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			{
 				if (kCivic.getGoldPerHappinessBonus() != 0)
 				{
-					int iGoldPerHap = 0;
+					int iHappyResCount = 0;
 					for (int iJ = 0; iJ < GC.getNumBonusInfos(); iJ++)
 					{
-						if (GC.getBonusInfo((BonusTypes)iJ).getHappiness() > 0)
+						if (GC.getBonusInfo((BonusTypes)iJ).getHappiness() > 0 && pCapital->hasBonus((BonusTypes)iJ))
 						{
-							iGoldPerHap ++;
+							iHappyResCount ++;
 						}
 					}
-					iGoldPerHap *= kCivic.getGoldPerHappinessBonus();
+					iTempValue += iHappyResCount * kCivic.getGoldPerHappinessBonus() * pCapital->getTotalCommerceRateModifier(COMMERCE_GOLD) / 100;
 				}
 			}
 		}

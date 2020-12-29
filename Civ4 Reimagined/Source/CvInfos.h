@@ -2471,6 +2471,7 @@ public:
 	// Civ4 Reimagined
 	int getCivilizationTerrainBias(int i) const;
 	int getCivilizationFeatureBias(int i) const;
+	int getCivilizationBonusBias(int i) const;
 
 	DllExport bool isLeaders(int i) const;				// Exposed to Python
 	DllExport bool isCivilizationFreeBuildingClass(int i) const;				// Exposed to Python
@@ -2527,6 +2528,7 @@ protected:
 	int* m_piCivilizationFreeUnitsClass;
 	int* m_piCivilizationTerrainBias; // Civ4 Reimagined
 	int* m_piCivilizationFeatureBias; // Civ4 Reimagined
+	int* m_piCivilizationBonusBias; // Civ4 Reimagined
 	int* m_piCivilizationInitialCivics;
 
 	bool* m_pbLeaders;

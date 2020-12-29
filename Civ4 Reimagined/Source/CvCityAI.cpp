@@ -1603,25 +1603,6 @@ void CvCityAI::AI_chooseProduction()
 		}
 	}
 
-	// Civ4 Reimagined: Compare pirate power with power of strongest ships of neighboring civs
-	if ((pWaterArea != NULL) && bWaterAreaRelevant && !bLandWar && !bAssault && !bFinancialTrouble && !bUnitExempt)
-	{
-		const int iPirateCount = kPlayer.AI_totalWaterAreaUnitAIs(pWaterArea, UNITAI_PIRATE_SEA);
-		int iNeededPirates = kPlayer.countNumCoastalCitiesByArea(pArea);
-
-		if (iPirateCount < iNeededPirates)
-		{
-			if (AI_pirateValue() > 49)
-			{
-				if (AI_chooseUnit(UNITAI_PIRATE_SEA))
-				{
-					if( gCityLogLevel >= 2 ) logBBAI("      City %S uses choose pirate (needed Pirates: %d)", getName().GetCString(), iNeededPirates);
-					return;
-				}
-			}
-		}
-	}
-
 	// don't build frivolous things if this is an important city unless we at war
 	// Civ4 Reimagined: Explore first
     if (!bImportantCity || bLandWar || bAssault)
@@ -1774,6 +1755,25 @@ void CvCityAI::AI_chooseProduction()
 				return;
 			}
 			// K-Mod end
+		}
+	}
+
+	// Civ4 Reimagined: Compare pirate power with power of strongest ships of neighboring civs
+	if ((pWaterArea != NULL) && bWaterAreaRelevant && !bLandWar && !bAssault && !bFinancialTrouble && !bUnitExempt)
+	{
+		const int iPirateCount = kPlayer.AI_totalWaterAreaUnitAIs(pWaterArea, UNITAI_PIRATE_SEA);
+		int iNeededPirates = kPlayer.countNumCoastalCitiesByArea(pArea);
+
+		if (iPirateCount < iNeededPirates)
+		{
+			if (AI_pirateValue() > 49)
+			{
+				if (AI_chooseUnit(UNITAI_PIRATE_SEA))
+				{
+					if( gCityLogLevel >= 2 ) logBBAI("      City %S uses choose pirate (needed Pirates: %d)", getName().GetCString(), iNeededPirates);
+					return;
+				}
+			}
 		}
 	}
 
@@ -3395,6 +3395,9 @@ BuildingTypes CvCityAI::AI_bestBuildingThreshold(int iFocusFlags, int iMaxTurns,
 				continue;
 			if (iFocusFlags != 0 && !(iFocusFlags & BUILDINGFOCUS_WONDEROK))
 				continue;
+			// Civ4 Reimagined
+			if (iProductionRank > std::max(3, kOwner.getNumCities()/2))
+				continue;
 		}
 
 		const CvBuildingInfo& kBuilding = GC.getBuildingInfo(eLoopBuilding);
@@ -3531,7 +3534,7 @@ BuildingTypes CvCityAI::AI_bestBuildingThreshold(int iFocusFlags, int iMaxTurns,
 				}
 				
 				// Civ4 Reimagined
-				iTempValue *= 2;
+				iTempValue *= 3;
 				if (kOwner.AI_isDoStrategy(AI_STRATEGY_SPECIALIST_ECONOMY))
 				{
 					iTempValue *= 3;
@@ -4121,7 +4124,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 					iAreaTradeYieldValue /= 100;
 				}
 
-				iTempValue += iAreaTradeYieldValue;
+				iValue += iAreaTradeYieldValue;
 			}
 
 			if (bForeignTrade)
@@ -4136,7 +4139,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 						continue;
 					}
 
-					const int iIdeologyTradeRoutes = std::max(2, GC.getGameINLINE().getIdeologyCount(eIdeology)) * iCitiesTarget * 2;
+					const int iIdeologyTradeRoutes = std::max(2, GC.getGameINLINE().getIdeologyCount(eIdeology) - 1) * iCitiesTarget;
 					iTempValue += 5 * iIdeologyTradeRoutes * kBuilding.getForeignTradeIdeologyModifier(eIdeology) * getTradeYield(YIELD_COMMERCE) / std::max(1, iTotalTradeModifier) / iNumTradeRoutes;
 				}
 			}
@@ -4178,7 +4181,8 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 					// Firstly, we don't know how many golden ages we are going to have; but that's a relatively minor problem. We can just guess that.
 					// A bigger problem is that the value of a golden age can change a lot depending on the state of the civilzation.
 					// The upshot is that the value here is going to be rough...
-					iGoldenPercent += 3 * kBuilding.getGoldenAgeModifier() * (GC.getNumEraInfos() - kOwner.getCurrentEra()) / (GC.getNumEraInfos() + 1);
+					// Civ4 Reimagined: doubled the value
+					iGoldenPercent += 6 * kBuilding.getGoldenAgeModifier() * (GC.getNumEraInfos() - kOwner.getCurrentEra()) / (GC.getNumEraInfos() + 1);
 				}
 				if (iGoldenPercent > 0)
 				{
@@ -4218,6 +4222,12 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 			if (kBuilding.getDomesticGreatGeneralRateModifier() != 0)
 			{
 				iValue += (kBuilding.getDomesticGreatGeneralRateModifier() / 10);
+			}
+
+			// Civ4 Reimagined
+			if (kBuilding.getGreatGeneralRateModifier() != 0)
+			{
+				iValue += (kBuilding.getDomesticGreatGeneralRateModifier() / (bWarPlan ? 2 : 5));
 			}
 
 			if (kBuilding.isAreaBorderObstacle() && !(area()->isBorderObstacle(getTeam())))
@@ -4351,7 +4361,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 			}
 
 			if (!kOwner.isNoGreatPeople()) //Civ4 Reimagined
-				iValue += ((kBuilding.getGlobalGreatPeopleRateModifier() * iNumCities) / (kOwner.AI_isDoStrategy(AI_STRATEGY_SPECIALIST_ECONOMY) ? 5 : 8));
+				iValue += ((kBuilding.getGlobalGreatPeopleRateModifier() * iNumCities) / (kOwner.AI_isDoStrategy(AI_STRATEGY_SPECIALIST_ECONOMY) ? 2 : 4));
 
 			// Civ4 Reimagined
 			if (GET_PLAYER(getOwnerINLINE()).getMaxAnarchyTurns() > 0)
@@ -4604,8 +4614,8 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				{
 					int iTechValue =  ((iTotalTechValue / iTechCount) + iMaxTechValue)/2;
 
-					// It's hard to measure an instant boost with units of commerce per turn... So I'm just going to divide it by 10.
-					iValue += iTechValue * 10 / GC.getGameSpeedInfo(GC.getGame().getGameSpeedType()).getResearchPercent();
+					// Civ4 Reimagined: more value
+					iValue += iTechValue * 20 / GC.getGameSpeedInfo(GC.getGame().getGameSpeedType()).getResearchPercent();
 				}
 				// else: If there is nothing to research, a free tech is worthless.
 			}
@@ -4628,7 +4638,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 			// Civ4 Reimagined
 			if (kBuilding.isAllowsNukes())
 			{
-				iValue += 200;
+				iValue += 2000;
 			}
 
 			for (int iI = 0; iI < GC.getNumSpecialistInfos(); iI++)
@@ -4659,33 +4669,36 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				}
 			}
 
-			for (int iI = 0; iI < GC.getNumUnitInfos(); iI++)
+			if (! GET_PLAYER(getOwnerINLINE()).isSpecialBuildingNotRequired((SpecialBuildingTypes)kBuilding.getSpecialBuildingType())) // Civ4 Reimagined
 			{
-				if (GC.getUnitInfo((UnitTypes)iI).getPrereqBuilding() == eBuilding)
+				for (int iI = 0; iI < GC.getNumUnitInfos(); iI++)
 				{
-					iValue += GET_PLAYER(getOwnerINLINE()).AI_unitValue((UnitTypes)iI, (UnitAITypes)GC.getUnitInfo((UnitTypes)iI).getDefaultUnitAIType(), area()) / 7;
-
-					if (kOwner.AI_totalAreaUnitAIs(area(), ((UnitAITypes)(GC.getUnitInfo((UnitTypes)iI).getDefaultUnitAIType()))) == 0)
+					if (GC.getUnitInfo((UnitTypes)iI).getPrereqBuilding() == eBuilding)
 					{
-						iValue *= 2;
-					}
+						iValue += GET_PLAYER(getOwnerINLINE()).AI_unitValue((UnitTypes)iI, (UnitAITypes)GC.getUnitInfo((UnitTypes)iI).getDefaultUnitAIType(), area()) / 7;
 
-					ReligionTypes eReligion = (ReligionTypes)(GC.getUnitInfo((UnitTypes)iI).getPrereqReligion());
-					if (eReligion != NO_RELIGION)
-					{
-						//encouragement to get some minimal ability to train special units
-						if (bCulturalVictory1 || isHolyCity(eReligion) || isCapital())
+						if (kOwner.AI_totalAreaUnitAIs(area(), ((UnitAITypes)(GC.getUnitInfo((UnitTypes)iI).getDefaultUnitAIType()))) == 0)
 						{
-							iValue += (2 + iNumCitiesInArea);
+							iValue *= 2;
 						}
 
-						if (bCulturalVictory2 && GC.getUnitInfo((UnitTypes)iI).getReligionSpreads(eReligion))
+						ReligionTypes eReligion = (ReligionTypes)(GC.getUnitInfo((UnitTypes)iI).getPrereqReligion());
+						if (eReligion != NO_RELIGION)
 						{
-							//this gives a very large extra value if the religion is (nearly) unique
-							//to no extra value for a fully spread religion.
-							//I'm torn between huge boost and enough to bias towards the best monastery type.
-							int iReligionCount = GET_PLAYER(getOwnerINLINE()).getHasReligionCount(eReligion);
-							iValue += (100 * (iNumCities - iReligionCount)) / (iNumCities * (iReligionCount + 1));
+							//encouragement to get some minimal ability to train special units
+							if (bCulturalVictory1 || isHolyCity(eReligion) || isCapital())
+							{
+								iValue += (2 + iNumCitiesInArea);
+							}
+
+							if (bCulturalVictory2 && GC.getUnitInfo((UnitTypes)iI).getReligionSpreads(eReligion))
+							{
+								//this gives a very large extra value if the religion is (nearly) unique
+								//to no extra value for a fully spread religion.
+								//I'm torn between huge boost and enough to bias towards the best monastery type.
+								int iReligionCount = GET_PLAYER(getOwnerINLINE()).getHasReligionCount(eReligion);
+								iValue += (100 * (iNumCities - iReligionCount)) / (iNumCities * (iReligionCount + 1));
+							}
 						}
 					}
 				}
@@ -6017,7 +6030,7 @@ ProjectTypes CvCityAI::AI_bestProject(int* piBestValue)
 // This function has been completely rewriten for K-Mod
 // The return value is roughly in units of 4 * commerce per turn, to match AI_buildingValue.
 // However, note that most projects don't actually give commerce per turn - so the evaluation is quite rough.
-int CvCityAI::AI_projectValue(ProjectTypes eProject)
+int CvCityAI::AI_projectValue(ProjectTypes eProject) const
 {
 	const CvPlayerAI& kOwner = GET_PLAYER(getOwnerINLINE());
 	const CvTeam& kTeam = GET_TEAM(kOwner.getTeam());
@@ -7024,15 +7037,7 @@ int CvCityAI::AI_clearFeatureValue(int iIndex)
 	// K-Mod end
 	
 	if (iValue > 0)
-	{
-		if (pPlot->getImprovementType() != NO_IMPROVEMENT)
-		{
-			if (GC.getImprovementInfo(pPlot->getImprovementType()).isRequiresFeature())
-			{
-				iValue += 500;
-			}
-		}
-		
+	{	
 		if (GET_PLAYER(getOwnerINLINE()).getAdvancedStartPoints() >= 0)
 		{
 			iValue += 400;
@@ -7299,7 +7304,7 @@ void CvCityAI::AI_getYieldMultipliers(int &iFoodMultiplier, int &iProductionMult
 
 	iCommerceMultiplier *= 100;
 	iCommerceMultiplier /= iProductionAdvantage;
-	
+
 	// Civ4 Reimagined
 	if (bFinancial)
 	{
@@ -7364,6 +7369,18 @@ void CvCityAI::AI_getYieldMultipliers(int &iFoodMultiplier, int &iProductionMult
 		if (kPlayer.AI_getFlavorValue(FLAVOR_PRODUCTION) > 0)
 		{
 			iProductionMultiplier += 5 + 2*kPlayer.AI_getFlavorValue(FLAVOR_PRODUCTION);
+		}
+
+		// Civ4 Reimagined
+		if (kPlayer.AI_getFlavorValue(FLAVOR_SCIENCE) > 0)
+		{
+			iCommerceMultiplier += 5 + kPlayer.AI_getFlavorValue(FLAVOR_SCIENCE);
+		}
+
+		// Civ4 Reimagined
+		if (kPlayer.AI_getFlavorValue(FLAVOR_GOLD) > 0)
+		{
+			iCommerceMultiplier += 5 + 2*kPlayer.AI_getFlavorValue(FLAVOR_GOLD);
 		}
 
 		if (kPlayer.AI_isDoStrategy(AI_STRATEGY_ECONOMY_FOCUS))
@@ -10325,6 +10342,13 @@ int CvCityAI::AI_yieldValue(short* piYields, short* piCommerceYields, bool bRemo
 			iProductionValue /= kOwner.AI_averageYieldMultiplier(YIELD_PRODUCTION);
 		}
 
+		// Civ4 Reimagined
+		if (!isHuman())
+		{
+			iProductionValue *= 100 + 2 * kOwner.AI_getFlavorValue(FLAVOR_PRODUCTION) + kOwner.AI_getFlavorValue(FLAVOR_MILITARY);
+			iProductionValue /= 100;
+		}
+
 		iValue += std::max(1,iProductionValue);
 	}
 
@@ -10332,6 +10356,14 @@ int CvCityAI::AI_yieldValue(short* piYields, short* piCommerceYields, bool bRemo
 	{
 		iCommerceValue *= (100 + (bWorkerOptimization ? 0 : AI_specialYieldMultiplier(YIELD_COMMERCE)));
 		iCommerceValue /= kOwner.AI_averageYieldMultiplier(YIELD_COMMERCE);
+
+		// Civ4 Reimagined
+		if (!isHuman())
+		{
+			iCommerceValue *= 100 + 2 * kOwner.AI_getFlavorValue(FLAVOR_GOLD) + kOwner.AI_getFlavorValue(FLAVOR_SCIENCE);
+			iCommerceValue /= 100;
+		}
+
 		iValue += std::max(1, iCommerceValue);
 	}
 
@@ -10339,6 +10371,14 @@ int CvCityAI::AI_yieldValue(short* piYields, short* piCommerceYields, bool bRemo
 	{
 		iFoodValue *= 100;
 		iFoodValue /= kOwner.AI_averageYieldMultiplier(YIELD_FOOD);
+
+		// Civ4 Reimagined
+		if (!isHuman())
+		{
+			iFoodValue *= 100 + 2 * kOwner.AI_getFlavorValue(FLAVOR_GROWTH);
+			iFoodValue /= 100;
+		}
+
 		iValue += std::max(1, iFoodValue);
 	}
 
