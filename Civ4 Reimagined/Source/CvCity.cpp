@@ -5564,7 +5564,7 @@ int CvCity::hurryProduction(HurryTypes eHurry) const
 		int iProductionPerPop = GC.getGameINLINE().getProductionPerPopulation(eHurry);
 		iProductionPerPop += GET_PLAYER(getOwnerINLINE()).getProductionPerPopulation() * 100 / std::max(1, GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getHurryPercent());
 
-		iProduction = (getExtraProductionDifference(hurryPopulation(eHurry) * iProductionPerPop)) / std::max(1, getHurryCostModifier());
+		iProduction = (100 * getExtraProductionDifference(hurryPopulation(eHurry) * iProductionPerPop)) / std::max(1, getHurryCostModifier());
 		FAssert(iProduction >= productionLeft());
 	}
 	else
