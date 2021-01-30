@@ -467,7 +467,7 @@
 			<WeLoveTheKing>TXT_KEY_CIVIC_WE_LOVE_PRESIDENT</WeLoveTheKing>
 			<iConservative>-5</iConservative>
 			<iLiberal>5</iLiberal>
-			<iCommunist>3</iCommunist>
+			<iCommunist>2</iCommunist>
 			<iFascist>-3</iFascist>
 		</CivicInfo>
 		<CivicInfo>
@@ -1416,7 +1416,7 @@
 			</ImprovementYieldChanges>
 			<WeLoveTheKing/>
 			<iConservative>0</iConservative>
-			<iLiberal>-2</iLiberal>
+			<iLiberal>-1</iLiberal>
 			<iCommunist>0</iCommunist>
 			<iFascist>0</iFascist>
 		</CivicInfo>
