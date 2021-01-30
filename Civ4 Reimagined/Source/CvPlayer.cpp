@@ -9259,6 +9259,9 @@ void CvPlayer::convert(ReligionTypes eReligion)
 	setLastStateReligion(eReligion);
 
 	setConversionTimer(std::max(1, ((100 + getAnarchyModifier()) * GC.getDefineINT("MIN_CONVERSION_TURNS")) / 100) + iAnarchyLength);
+
+	updateCommerce();
+	GC.getGameINLINE().AI_makeAssignWorkDirty();
 }
 
 
