@@ -2297,7 +2297,7 @@ int CvPlayerAI::AI_yieldWeight(YieldTypes eYield, const CvCity* pCity) const // 
 		break;
 	case YIELD_PRODUCTION:
 		// was 2
-		iWeight *= 204 + AI_getFlavorValue(FLAVOR_PRODUCTION) * 2 + AI_getFlavorValue(FLAVOR_MILITARY)/2; // Civ4 Reimagined, was 270
+		iWeight *= 203 + AI_getFlavorValue(FLAVOR_PRODUCTION) * 2 + AI_getFlavorValue(FLAVOR_MILITARY)/2; // Civ4 Reimagined, was 270
 		iWeight /= 100;
 		break;
 	case YIELD_COMMERCE:
@@ -6569,6 +6569,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 	iValue += kTechInfo.getAIWeight();
 
+	// Civ4 Reimagined
 	if (!isHuman())
 	{
 		int iFlavorValue = 0;
@@ -6576,7 +6577,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 		{
 			iFlavorValue += AI_getFlavorValue((FlavorTypes)iJ) * kTechInfo.getFlavorValue(iJ);
 		}
-		iValue *= 100 + iFlavorValue;
+		iValue *= 100 + iFlavorValue/2;
 		iValue /= 100;
 	}
 
