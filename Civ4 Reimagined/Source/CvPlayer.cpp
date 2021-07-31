@@ -2344,7 +2344,6 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 	int iI;
 	int iOldCultureLevel = (int)(pOldCity->getCultureLevel());
 	CLinkList<IDInfo> oldUnits;
-	std::vector<int> aeFreeSpecialists;
 
 	pCityPlot = pOldCity->plot();
 
@@ -2505,11 +2504,6 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 	int iOldCityId = pOldCity->getID();
 
 	bool bOldCapitalBonus = false;
-	
-	for (iI = 0; iI < GC.getNumSpecialistInfos(); ++iI)
-	{
-		aeFreeSpecialists.push_back(pOldCity->getAddedFreeSpecialistCount((SpecialistTypes)iI));
-	}
 
 	for (iI = 0; iI < MAX_PLAYERS; iI++)
 	{
@@ -2689,11 +2683,6 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 	for (BuildingChangeArray::iterator it = aBuildingHealthChange.begin(); it != aBuildingHealthChange.end(); ++it)
 	{
 		pNewCity->setBuildingHealthChange((*it).first, (*it).second);
-	}
-
-	for (iI = 0; iI < GC.getNumSpecialistInfos(); ++iI)
-	{
-		pNewCity->changeFreeSpecialistCount((SpecialistTypes)iI, aeFreeSpecialists[iI]);
 	}
 
 	for (iI = 0; iI < GC.getNumReligionInfos(); iI++)
