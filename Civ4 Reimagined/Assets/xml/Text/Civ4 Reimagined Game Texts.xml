@@ -100,6 +100,11 @@
 		<French>[ICON_BULLET]%D1_Change%F2_Icon grâce à[SPACE]</French>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_CIVIC_SPECIALIST_COMMERCE_CHANGE</Tag>
+		<English>[ICON_BULLET]%D1_Change%F2_Icon from[SPACE]</English>
+		<French>[ICON_BULLET]%D1_Change%F2_Icon grâce à[SPACE]</French>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_VOTE_NO_NUKES</Tag>
 		<English>U.N. Resolution #1284 (Nuclear Non-Proliferation Treaty - Cannot Build Nuclear Research Centers)</English>
 		<French>Résolution #1284 des Nations Unies (Traité de non-prolifération nucléaire - Construction de centres de recherche nucléaire impossible)</French>

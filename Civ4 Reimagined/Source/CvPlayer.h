@@ -1061,6 +1061,10 @@ public:
 
 	int getSpecialistExtraYield(SpecialistTypes eIndex1, YieldTypes eIndex2) const;	// Exposed to Python
 	void changeSpecialistExtraYield(SpecialistTypes eIndex1, YieldTypes eIndex2, int iChange);
+
+	// Civ4 Reimaigned
+	int getSpecialistCommerceChange(SpecialistTypes eIndex1, CommerceTypes eIndex2) const;	// Exposed to Python
+	void changeSpecialistCommerceChange(SpecialistTypes eIndex1, CommerceTypes eIndex2, int iChange);
 	
 	// Leoreth
 	int getSpecialistThresholdExtraYield(SpecialistTypes eIndex1, YieldTypes eIndex2) const;
@@ -1669,7 +1673,6 @@ protected:
 	int* m_aiCommerceHappiness; //Civ4 Reimagined
 	int* m_aiStateReligionBuildingCommerce;
 	int* m_aiSpecialistExtraCommerce;
-	int* m_aiSpecialistExtraYield; //Leoreth
 	int* m_aiCommerceFlexibleCount;
 	int* m_aiGoldPerTurnByPlayer;
 	int* m_aiEspionageSpendingWeightAgainstTeam;
@@ -1733,6 +1736,7 @@ protected:
 	CivicTypes* m_paeCivics;
 
 	int** m_ppaaiSpecialistExtraYield;
+	int** m_ppaaiSpecialistCommerceChanges; // Civ4 Reimagined
 	int** m_ppaaiSpecialistThresholdExtraYield; //Leoreth
 	int** m_ppaaiImprovementYieldChange;
 	int** m_ppaaiRadiusImprovementCommerceChange; // Civ4 Reimagined

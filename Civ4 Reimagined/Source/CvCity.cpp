@@ -10392,6 +10392,12 @@ int CvCity::getBaseCommerceRateTimes100(CommerceTypes eIndex) const
 
 	iBaseCommerceRate += 100 * ((getSpecialistPopulation() + getNumGreatPeople()) * GET_PLAYER(getOwnerINLINE()).getSpecialistExtraCommerce(eIndex));
 	iBaseCommerceRate += 100 * (getBuildingCommerce(eIndex) + getSpecialistCommerce(eIndex) + getReligionCommerce(eIndex) + getCorporationCommerce(eIndex) + GET_PLAYER(getOwnerINLINE()).getFreeCityCommerce(eIndex));
+
+	// Civ4 Reimagined
+	for (int iI = 0; iI < GC.getNumSpecialistInfos(); iI++)
+	{
+		iBaseCommerceRate += 100 * (getSpecialistCount((SpecialistTypes)iI) * GET_PLAYER(getOwnerINLINE()).getSpecialistCommerceChange((SpecialistTypes)iI, eIndex));
+	}
 	
 	// Civ4 Reimagined: Research per culture
 	if (eIndex == COMMERCE_RESEARCH)
