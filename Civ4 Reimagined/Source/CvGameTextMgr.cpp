@@ -7931,6 +7931,21 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 			szHelpText.append(NEWLINE);
 			szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_COMMERCE_HAPPINESS", GC.getCivicInfo(eCivic).getExtraCommerceHappiness((CommerceTypes)iI) / 10, ((GC.getCivicInfo(eCivic).getExtraCommerceHappiness((CommerceTypes)iI) > 0) ? gDLL->getSymbolID(HAPPY_CHAR) : gDLL->getSymbolID(UNHAPPY_CHAR)), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
 		}
+
+		iLast = 0;
+
+		// Civ4 Reimagined: Specialist Commerce Changes
+		for (iJ = 0; iJ < GC.getNumSpecialistInfos(); iJ++)
+		{
+			if (GC.getCivicInfo(eCivic).getSpecialistCommerceChanges(iJ, iI) != 0)
+			{
+				szFirstBuffer.Format(L"%s%s", NEWLINE, gDLL->getText("TXT_KEY_CIVIC_SPECIALIST_COMMERCE_CHANGE", GC.getCivicInfo(eCivic).getSpecialistCommerceChanges(iJ, iI), GC.getCommerceInfo((CommerceTypes)iI).getChar()).c_str());
+				CvWString szSpecialist;
+				szSpecialist.Format(L"<link=literal>%s</link>", GC.getSpecialistInfo((SpecialistTypes)iJ).getDescription());
+				setListHelp(szHelpText, szFirstBuffer, szSpecialist, L", ", (GC.getCivicInfo(eCivic).getSpecialistCommerceChanges(iJ, iI) != iLast));
+				iLast = GC.getCivicInfo(eCivic).getSpecialistCommerceChanges(iJ, iI);
+			}
+		}
 	}
 	
 	// Leoreth: Specialist Threshold Yield
@@ -17040,6 +17055,13 @@ void CvGameTextMgr::setCommerceHelp(CvWStringBuffer &szBuffer, CvCity& city, Com
 	bool bNeedSubtotal = false; // BUG - Base Commerce 
 
 	int iSpecialistCommerce = city.getSpecialistCommerce(eCommerceType) + (city.getSpecialistPopulation() + city.getNumGreatPeople()) * owner.getSpecialistExtraCommerce(eCommerceType);
+
+	// Civ4 Reimagined
+	for (int iI = 0; iI < GC.getNumSpecialistInfos(); iI++)
+	{
+		iSpecialistCommerce += city.getSpecialistCount((SpecialistTypes)iI) * owner.getSpecialistCommerceChange((SpecialistTypes)iI, eCommerceType);
+	}
+
 	if (0 != iSpecialistCommerce)
 	{
 		szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_SPECIALIST_COMMERCE", iSpecialistCommerce, info.getChar(), L"TXT_KEY_CONCEPT_SPECIALISTS"));

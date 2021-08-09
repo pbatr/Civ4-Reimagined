@@ -6793,6 +6793,7 @@ void CvCivicInfo::write(FDataStreamBase* stream)
 	for(i=0;i<GC.getNumSpecialistInfos();i++)
 	{
 		stream->Write(NUM_YIELD_TYPES, m_ppiSpecialistYieldChanges[i]);
+		stream->Write(NUM_COMMERCE_TYPES, m_ppiSpecialistCommerceChanges[i]);
 	}
 	
 	for(i=0;i<GC.getNumImprovementInfos();i++)
@@ -7127,6 +7128,54 @@ bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
 							else
 							{
 								pXML->InitList(&m_ppiSpecialistYieldChanges[iIndex], NUM_YIELD_TYPES);
+							}
+						}
+
+						if (!gDLL->getXMLIFace()->NextSibling(pXML->GetXML()))
+						{
+							break;
+						}
+					}
+				}
+
+				gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+			}
+		}
+
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+
+	// Civ4 Reimagined
+	FAssertMsg((GC.getNumSpecialistInfos() > 0) && (NUM_COMMERCE_TYPES) > 0,"either the number of specialist infos is zero or less or the number of commerce types is zero or less");
+	pXML->Init2DIntList(&m_ppiSpecialistCommerceChanges, GC.getNumSpecialistInfos(), NUM_COMMERCE_TYPES);
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"SpecialistCommerceChanges"))
+	{
+		if (pXML->SkipToNextVal())
+		{
+			iNumSibs = gDLL->getXMLIFace()->GetNumChildren(pXML->GetXML());
+			if (gDLL->getXMLIFace()->SetToChild(pXML->GetXML()))
+			{
+				if (0 < iNumSibs)
+				{
+					for (j=0;j<iNumSibs;j++)
+					{
+						pXML->GetChildXmlValByName(szTextVal, "SpecialistType");
+						iIndex = pXML->FindInInfoClass(szTextVal);
+
+						if (iIndex > -1)
+						{
+							// delete the array since it will be reallocated
+							SAFE_DELETE_ARRAY(m_ppiSpecialistCommerceChanges[iIndex]);
+							// if we can set the current xml node to it's next sibling
+							if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"SpecialistCommerce"))
+							{
+								// call the function that sets the commerce change variable
+								pXML->SetCommerce(&m_ppiSpecialistCommerceChanges[iIndex]);
+								gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+							}
+							else
+							{
+								pXML->InitList(&m_ppiSpecialistCommerceChanges[iIndex], NUM_COMMERCE_TYPES);
 							}
 						}
 

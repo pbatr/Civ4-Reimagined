@@ -6683,6 +6683,13 @@ int CvCity::calculateDistanceMaintenanceTimes100() const
 
 		iTempMaintenance /= GC.getMapINLINE().maxPlotDistance();
 
+		// Civ4 Reimagined: Spanish UP
+		if (isColony() && GET_PLAYER(getOwnerINLINE()).getStateReligion() != NO_RELIGION && isHasReligion(GET_PLAYER(getOwnerINLINE()).getStateReligion()))
+		{
+			iTempMaintenance *= 100 + GET_PLAYER(getOwnerINLINE()).getReligiousColonyMaintenanceModifier();
+			iTempMaintenance /= 100;
+		}
+
 	/* original bts code
 		iWorstCityMaintenance = std::max(iWorstCityMaintenance, iTempMaintenance);
 
@@ -6795,12 +6802,6 @@ int CvCity::calculateColonyMaintenanceTimes100(bool bIgnorePlayerMod) const
 	{
 		iMaintenance *= 100 + GET_PLAYER(getOwnerINLINE()).getColonyMaintenanceModifier();
 		iMaintenance /= 100;
-
-		if (GET_PLAYER(getOwnerINLINE()).getStateReligion() != NO_RELIGION && isHasReligion(GET_PLAYER(getOwnerINLINE()).getStateReligion()))
-		{
-			iMaintenance *= 100 + GET_PLAYER(getOwnerINLINE()).getReligiousColonyMaintenanceModifier();
-			iMaintenance /= 100;
-		}
 	}
 	
 	// Civ4 Reimagined: Reduce Colony Maintenaince for small islands
@@ -10496,6 +10497,12 @@ int CvCity::getBaseCommerceRateTimes100(CommerceTypes eIndex) const
 
 	iBaseCommerceRate += 100 * ((getSpecialistPopulation() + getNumGreatPeople()) * GET_PLAYER(getOwnerINLINE()).getSpecialistExtraCommerce(eIndex));
 	iBaseCommerceRate += 100 * (getBuildingCommerce(eIndex) + getSpecialistCommerce(eIndex) + getReligionCommerce(eIndex) + getCorporationCommerce(eIndex) + GET_PLAYER(getOwnerINLINE()).getFreeCityCommerce(eIndex));
+
+	// Civ4 Reimagined
+	for (int iI = 0; iI < GC.getNumSpecialistInfos(); iI++)
+	{
+		iBaseCommerceRate += 100 * (getSpecialistCount((SpecialistTypes)iI) * GET_PLAYER(getOwnerINLINE()).getSpecialistCommerceChange((SpecialistTypes)iI, eIndex));
+	}
 	
 	// Civ4 Reimagined: Research per culture
 	if (eIndex == COMMERCE_RESEARCH)

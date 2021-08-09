@@ -58,7 +58,6 @@ CvPlayer::CvPlayer()
 	m_aiCapitalCommerceRateModifierPerHappinessSurplus = new int[NUM_COMMERCE_TYPES]; // Civ4 Reimagined
 	m_aiCommerceHappiness = new int[NUM_COMMERCE_TYPES]; // Civ4 Reimagined
 	m_aiStateReligionBuildingCommerce = new int[NUM_COMMERCE_TYPES];
-	m_aiSpecialistExtraYield = new int[NUM_YIELD_TYPES]; //Leoreth
 	m_aiSpecialistExtraCommerce = new int[NUM_COMMERCE_TYPES];
 	m_aiCommerceFlexibleCount = new int[NUM_COMMERCE_TYPES];
 	m_aiGoldPerTurnByPlayer = new int[MAX_PLAYERS];
@@ -119,6 +118,7 @@ CvPlayer::CvPlayer()
 	
 
 	m_ppaaiSpecialistExtraYield = NULL;
+	m_ppaaiSpecialistCommerceChanges = NULL; // Civ4 Reimagined
 	m_ppaaiSpecialistThresholdExtraYield = NULL; //Leoreth
 	m_ppaaiImprovementYieldChange = NULL;
 	m_ppaaiRadiusImprovementCommerceChange = NULL; // Civ4 Reimagined
@@ -151,7 +151,6 @@ CvPlayer::~CvPlayer()
 	SAFE_DELETE_ARRAY(m_aiCommerceHappiness); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiStateReligionBuildingCommerce);
 	SAFE_DELETE_ARRAY(m_aiSpecialistExtraCommerce);
-	SAFE_DELETE_ARRAY(m_aiSpecialistExtraYield); //Leoreth
 	SAFE_DELETE_ARRAY(m_aiCommerceFlexibleCount);
 	SAFE_DELETE_ARRAY(m_aiGoldPerTurnByPlayer);
 	SAFE_DELETE_ARRAY(m_aiEspionageSpendingWeightAgainstTeam);
@@ -681,6 +680,16 @@ void CvPlayer::uninit()
 		}
 		SAFE_DELETE_ARRAY(m_ppaaiSpecialistExtraYield);
 	}
+
+	// Civ4 Reimagined
+	if (m_ppaaiSpecialistCommerceChanges != NULL)
+	{
+		for (int iI = 0; iI < GC.getNumSpecialistInfos(); iI++)
+		{
+			SAFE_DELETE_ARRAY(m_ppaaiSpecialistCommerceChanges[iI]);
+		}
+		SAFE_DELETE_ARRAY(m_ppaaiSpecialistCommerceChanges);
+	}
 	
 	//Leoreth
 	if (m_ppaaiSpecialistThresholdExtraYield != NULL)
@@ -987,7 +996,6 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		m_aiCapitalYieldRateModifier[iI] = 0;
 		m_aiExtraYieldThreshold[iI] = 0;
 		m_aiTradeYieldModifier[iI] = 0;
-		m_aiSpecialistExtraYield[iI] = 0; //Leoreth
 	}
 
 	for (iI = 0; iI < NUM_COMMERCE_TYPES; iI++)
@@ -1283,6 +1291,18 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 			for (iJ = 0; iJ < NUM_YIELD_TYPES; iJ++)
 			{
 				m_ppaaiSpecialistExtraYield[iI][iJ] = 0;
+			}
+		}
+
+		// Civ4 Reimagined
+		FAssertMsg(m_ppaaiSpecialistCommerceChanges==NULL, "about to leak memory, CvPlayer::m_ppaaiSpecialistCommerceChanges");
+		m_ppaaiSpecialistCommerceChanges = new int*[GC.getNumSpecialistInfos()];
+		for (iI = 0; iI < GC.getNumSpecialistInfos(); iI++)
+		{
+			m_ppaaiSpecialistCommerceChanges[iI] = new int[NUM_COMMERCE_TYPES];
+			for (iJ = 0; iJ < NUM_COMMERCE_TYPES; iJ++)
+			{
+				m_ppaaiSpecialistCommerceChanges[iI][iJ] = 0;
 			}
 		}
 		
@@ -2411,7 +2431,6 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 	int iI;
 	int iOldCultureLevel = (int)(pOldCity->getCultureLevel());
 	CLinkList<IDInfo> oldUnits;
-	std::vector<int> aeFreeSpecialists;
 
 	pCityPlot = pOldCity->plot();
 
@@ -2572,11 +2591,6 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 	int iOldCityId = pOldCity->getID();
 
 	bool bOldCapitalBonus = false;
-	
-	for (iI = 0; iI < GC.getNumSpecialistInfos(); ++iI)
-	{
-		aeFreeSpecialists.push_back(pOldCity->getAddedFreeSpecialistCount((SpecialistTypes)iI));
-	}
 
 	for (iI = 0; iI < MAX_PLAYERS; iI++)
 	{
@@ -2756,11 +2770,6 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 	for (BuildingChangeArray::iterator it = aBuildingHealthChange.begin(); it != aBuildingHealthChange.end(); ++it)
 	{
 		pNewCity->setBuildingHealthChange((*it).first, (*it).second);
-	}
-
-	for (iI = 0; iI < GC.getNumSpecialistInfos(); ++iI)
-	{
-		pNewCity->changeFreeSpecialistCount((SpecialistTypes)iI, aeFreeSpecialists[iI]);
 	}
 
 	for (iI = 0; iI < GC.getNumReligionInfos(); iI++)
@@ -9431,6 +9440,15 @@ void CvPlayer::convert(ReligionTypes eReligion)
 	setLastStateReligion(eReligion);
 
 	setConversionTimer(std::max(1, ((100 + getAnarchyModifier()) * GC.getDefineINT("MIN_CONVERSION_TURNS")) / 100) + iAnarchyLength);
+
+	// Civ4 Reimagined
+	updateCommerce();
+	AI_makeAssignWorkDirty();
+
+	if (getTeam() == GC.getGameINLINE().getActiveTeam())
+	{
+		gDLL->getInterfaceIFace()->setDirty(CityInfo_DIRTY_BIT, true);
+	}
 }
 
 
@@ -9948,6 +9966,9 @@ int CvPlayer::specialistCommerce(SpecialistTypes eSpecialist, CommerceTypes eCom
 	int specialistCommerce = 0; 
 	specialistCommerce += GC.getSpecialistInfo(eSpecialist).getCommerceChange(eCommerce);
 	specialistCommerce += getSpecialistExtraCommerce(eCommerce);
+
+	// Civ4 Reimagined
+	specialistCommerce += getSpecialistCommerceChange(eSpecialist, eCommerce);
 	
 	// Civ4 Reimagined
 	if (eCommerce == COMMERCE_RESEARCH)
@@ -15721,6 +15742,35 @@ void CvPlayer::changeSpecialistExtraYield(SpecialistTypes eIndex1, YieldTypes eI
 	}
 }
 
+// Civ4 Reimagined
+int CvPlayer::getSpecialistCommerceChange(SpecialistTypes eIndex1, CommerceTypes eIndex2) const
+{
+	FAssertMsg(eIndex1 >= 0, "eIndex1 expected to be >= 0");
+	FAssertMsg(eIndex1 < GC.getNumSpecialistInfos(), "eIndex1 expected to be < GC.getNumSpecialistInfos()");
+	FAssertMsg(eIndex2 >= 0, "eIndex2 expected to be >= 0");
+	FAssertMsg(eIndex2 < NUM_COMMERCE_TYPES, "eIndex2 expected to be < NUM_COMMERCE_TYPES");
+	return m_ppaaiSpecialistCommerceChanges[eIndex1][eIndex2];
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeSpecialistCommerceChange(SpecialistTypes eIndex1, CommerceTypes eIndex2, int iChange)
+{
+	FAssertMsg(eIndex1 >= 0, "eIndex1 expected to be >= 0");
+	FAssertMsg(eIndex1 < GC.getNumSpecialistInfos(), "eIndex1 expected to be < GC.getNumSpecialistInfos()");
+	FAssertMsg(eIndex2 >= 0, "eIndex2 expected to be >= 0");
+	FAssertMsg(eIndex2 < NUM_COMMERCE_TYPES, "eIndex2 expected to be < NUM_COMMERCE_TYPES");
+
+	if (iChange != 0)
+	{
+		m_ppaaiSpecialistCommerceChanges[eIndex1][eIndex2] = (m_ppaaiSpecialistCommerceChanges[eIndex1][eIndex2] + iChange);
+		FAssert(getSpecialistCommerceChange(eIndex1, eIndex2) >= 0);
+
+		updateCommerce();
+
+		AI_makeAssignWorkDirty();
+	}
+}
+
 //Leoreth
 int CvPlayer::getSpecialistThresholdExtraYield(SpecialistTypes eIndex1, YieldTypes eIndex2) const
 {
@@ -19950,6 +20000,10 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
 		changeSpecialistExtraCommerce(((CommerceTypes)iI), (GC.getCivicInfo(eCivic).getSpecialistExtraCommerce(iI) * iChange));
 		changeStateReligionBuildingCommerce(((CommerceTypes)iI), (GC.getCivicInfo(eCivic).getStateReligionBuildingCommerce(iI) * iChange)); //Civ4 Reimagined
 		changeCommerceHappiness(((CommerceTypes)iI), (GC.getCivicInfo(eCivic).getExtraCommerceHappiness(iI) * iChange)); //Civ4 Reimagined
+		for (iJ = 0; iJ < GC.getNumSpecialistInfos(); iJ++)
+		{
+			changeSpecialistCommerceChange(((SpecialistTypes)iJ), ((CommerceTypes)iI), (GC.getCivicInfo(eCivic).getSpecialistCommerceChanges(iJ, iI) * iChange)); //Civ4 Reimagined
+		}
 	}
 
 	for (iI = 0; iI < GC.getNumBuildingClassInfos(); iI++)
@@ -20395,6 +20449,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	{
 		pStream->Read(NUM_YIELD_TYPES, m_ppaaiSpecialistExtraYield[iI]);
 		pStream->Read(NUM_YIELD_TYPES, m_ppaaiSpecialistThresholdExtraYield[iI]); //Leoreth
+		pStream->Read(NUM_COMMERCE_TYPES, m_ppaaiSpecialistCommerceChanges[iI]); // Civ4 Reimagined
 	}
 
 	for (iI=0;iI<GC.getNumImprovementInfos();iI++)
@@ -21000,6 +21055,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	{
 		pStream->Write(NUM_YIELD_TYPES, m_ppaaiSpecialistExtraYield[iI]);
 		pStream->Write(NUM_YIELD_TYPES, m_ppaaiSpecialistThresholdExtraYield[iI]); //Leoreth
+		pStream->Write(NUM_COMMERCE_TYPES, m_ppaaiSpecialistCommerceChanges[iI]); // Civ4 Reimagined
 	}
 
 	for (iI=0;iI<GC.getNumImprovementInfos();iI++)

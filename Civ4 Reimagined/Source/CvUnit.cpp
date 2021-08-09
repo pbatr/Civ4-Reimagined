@@ -6080,6 +6080,21 @@ bool CvUnit::spread(ReligionTypes eReligion)
 			bSuccess = false;
 		}
 
+		if (bSuccess)
+		{
+			// Civ4 Reimagined: Spanish UP
+			if (GET_PLAYER(getOwnerINLINE()).getReligiousColonyMaintenanceModifier() != 0 && pCity->getOwnerINLINE() == getOwnerINLINE() && pCity->isColony() && GET_PLAYER(getOwnerINLINE()).getStateReligion() == eReligion)
+			{
+				const UnitTypes UNIT_CONQUISTADOR = (UnitTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits(GC.getInfoTypeForString("UNITCLASS_CUIRASSIER"));
+
+				if (GET_TEAM(getTeam()).isHasTech((TechTypes)GC.getUnitInfo(UNIT_CONQUISTADOR).getPrereqAndTech()))
+				{
+					GET_PLAYER(getOwnerINLINE()).initUnit(UNIT_CONQUISTADOR, pCity->getX_INLINE(), pCity->getY_INLINE(), UNITAI_ATTACK);
+					gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MISC_CONQUISTADOR_RECEIVED", pCity->getNameKey()).GetCString(), "AS2D_UNIT_BUILD_UNIT", MESSAGE_TYPE_MINOR_EVENT);
+				}
+			}
+		}
+
 		// Python Event
 		CvEventReporter::getInstance().unitSpreadReligionAttempt(this, eReligion, bSuccess);
 	}

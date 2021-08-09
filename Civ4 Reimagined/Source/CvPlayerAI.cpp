@@ -2297,7 +2297,7 @@ int CvPlayerAI::AI_yieldWeight(YieldTypes eYield, const CvCity* pCity) const // 
 		break;
 	case YIELD_PRODUCTION:
 		// was 2
-		iWeight *= 204 + AI_getFlavorValue(FLAVOR_PRODUCTION) * 2 + AI_getFlavorValue(FLAVOR_MILITARY)/2; // Civ4 Reimagined, was 270
+		iWeight *= 203 + AI_getFlavorValue(FLAVOR_PRODUCTION) * 2 + AI_getFlavorValue(FLAVOR_MILITARY)/2; // Civ4 Reimagined, was 270
 		iWeight /= 100;
 		break;
 	case YIELD_COMMERCE:
@@ -6568,6 +6568,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 	iValue += kTechInfo.getAIWeight();
 
+	// Civ4 Reimagined
 	if (!isHuman())
 	{
 		int iFlavorValue = 0;
@@ -6575,7 +6576,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 		{
 			iFlavorValue += AI_getFlavorValue((FlavorTypes)iJ) * kTechInfo.getFlavorValue(iJ);
 		}
-		iValue *= 100 + iFlavorValue;
+		iValue *= 100 + iFlavorValue/2;
 		iValue /= 100;
 	}
 
@@ -16555,6 +16556,30 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			iTempValue += iSpecialistsValue;
 		}
 		// K-Mod end
+
+		// Civ4 Reimagined
+		for (int iJ = 0; iJ < GC.getNumSpecialistInfos(); iJ++)
+		{
+			if (kCivic.getSpecialistCommerceChanges(iJ, iI) != 0)
+			{
+				int iSpecialistsValue = 0;
+
+				int iLoop;
+				CvCity* pLoopCity;
+				for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+				{
+					iSpecialistsValue += std::max(1, pLoopCity->getSpecialistCount((SpecialistTypes)iJ)) * kCivic.getSpecialistCommerceChanges(iJ, iI) * pLoopCity->getTotalCommerceRateModifier((CommerceTypes)iI);
+				}
+
+				if (AI_isDoStrategy(AI_STRATEGY_SPECIALIST_ECONOMY))
+				{
+					iSpecialistsValue *= 5;
+					iSpecialistsValue /= 4;
+				}
+				
+				iTempValue += iSpecialistsValue;
+			}
+		}
 		
 		// Civ4 Reimagined: ResearchPerCulture
 		if (kCivic.getResearchPerCulture() != 0 && iI == COMMERCE_RESEARCH)

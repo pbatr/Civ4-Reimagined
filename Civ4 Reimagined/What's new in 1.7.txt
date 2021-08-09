@@ -21,7 +21,8 @@ Tweaks
 -Increased Vulture anti-archer bonus from 10% to 20%
 -Increased Assembly Plant production with electricity from +40% to +85%, but it starts off with 15% less production compared to other factories and loses its former +3 production and +50% building with coal bonus.
 -Industrialism production bonus increased from 15% to 20%
--Central Planning no longer reduces bonus ratios
+-Free Market grants 1 additional gold per merchant specialist
+-Central Planning bonus ratio modifier decreased from -10% to -25%
 -State Atheism reduces overcrowding unhappiness by 10%
 -Senate grants Great Spy points
 -Pikemen require Corporation instead of Banking
@@ -34,6 +35,7 @@ Tweaks
 -Increase great person modifier of Cristo Redentor from 25% to 100%
 -Lubyanka only requires one National Security building in city
 -Angkor Wat gives no defense bonus anymore
+-Higher tech speed on lower difficulties
 
 *********
 Interface
@@ -46,6 +48,8 @@ Fixes
 -"Better coal" event triggers only with researched drydock or coal plant
 -AI would move capital too often to colonies
 -Corporation could sometimes drive out competing headquarter from a city
+-Religion switches did not update commerce during player's turn
+-Acquired cities from a civ running Totalitarianism no longer keep the free Spy specialists
 
 *******************************************
 Civ4 Reimagined 1.6
