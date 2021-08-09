@@ -22,6 +22,7 @@ Tweaks
 -Increased Assembly Plant production with electricity from +40% to +85%, but it starts off with 15% less production compared to other factories and loses its former +3 production and +50% building with coal bonus.
 -Industrialism production bonus increased from 15% to 20%
 -Free Market grants 1 additional gold per merchant specialist
+-Central Planning bonus ratio modifier decreased from -10% to -25%
 -State Atheism reduces overcrowding unhappiness by 10%
 -Senate grants Great Spy points
 -Pikemen require Corporation instead of Banking
