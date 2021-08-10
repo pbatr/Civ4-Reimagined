@@ -443,7 +443,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_SPANISH_CITADEL_STRATEGY</Tag>
-		<English>The [COLOR_BUILDING_TEXT]Citadel[COLOR_REVERT] improves defenses further, adds military unit production and gives all land and water units experience.</English>
+		<English>The [COLOR_BUILDING_TEXT]Citadel[COLOR_REVERT] improves defenses further, adds military unit production, gives all land and water units experience and gets obsolete later.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_PERSIAN_APOTHECARY_STRATEGY</Tag>

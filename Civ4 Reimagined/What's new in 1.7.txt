@@ -35,6 +35,7 @@ Tweaks
 -Increase great person modifier of Cristo Redentor from 25% to 100%
 -Lubyanka only requires one National Security building in city
 -Angkor Wat gives no defense bonus anymore
+-Spanish Citadel gets obsolete with Liberalism instead of Corporation
 -Higher tech speed on lower difficulties
 
 *********
