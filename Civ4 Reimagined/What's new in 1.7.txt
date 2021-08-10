@@ -36,6 +36,7 @@ Tweaks
 -Lubyanka only requires one National Security building in city
 -Angkor Wat gives no defense bonus anymore
 -Spanish Citadel gets obsolete with Liberalism instead of Corporation
+-Great Wall costs reduced from 300 to 250
 -Higher tech speed on lower difficulties
 
 *********
