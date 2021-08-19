@@ -27916,6 +27916,12 @@ void CvPlayer::updateUniquePowers(TechTypes eTech)
 	{
 		setConscriptInfidels(true);
 		notifyUniquePowersChanged(true);
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_NETHERLANDS")
+	    && eTech == (TechTypes)GC.getInfoTypeForString("TECH_CORPORATION"))
+	{
+		GET_TEAM(getTeam()).setAdditionalPlantationBonus(1);
+		notifyUniquePowersChanged(true);
 	}	
 }
 

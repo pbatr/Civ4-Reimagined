@@ -1227,7 +1227,9 @@ void CvPlot::updatePlotGroupBonus(bool bAdd)
 		BonusTypes eBonus = getNonObsoleteBonusType(getTeam(), true);
 		if (eBonus != NO_BONUS && pPlotGroup && isBonusNetwork(getTeam()))
 		{
-			pPlotGroup->changeNumBonuses(eBonus, bAdd ? 1 : -1);
+			// Civ4 Reimagined: Dutch UP
+			const int iBonusCount = GET_TEAM(getTeam()).getAdditionalBonus(eBonus) + 1;
+			pPlotGroup->changeNumBonuses(eBonus, bAdd ? iBonusCount : -iBonusCount);
 		}
 		// K-Mod end
 	}

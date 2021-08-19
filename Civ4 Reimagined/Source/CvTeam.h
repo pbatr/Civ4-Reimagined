@@ -372,6 +372,10 @@ public:
 	int getBuildingYieldChange(BuildingClassTypes eIndex1, YieldTypes eIndex2) const;								// Exposed to Python
 	void changeBuildingYieldChange(BuildingClassTypes eIndex1, YieldTypes eIndex2, int iChange);
 
+	// Civ4 Reimagined
+	void setAdditionalPlantationBonus(int iCount);
+	int getAdditionalBonus(BonusTypes eIndex) const;
+
 	bool doesImprovementConnectBonus(ImprovementTypes eImprovement, BonusTypes eBonus) const; // K-Mod
 
 	bool isFriendlyTerritory(TeamTypes eTeam) const;
@@ -511,6 +515,7 @@ protected:
 	int* m_paiResearchProgress;
 	int* m_paiTechCount;
 	int* m_paiTerrainTradeCount;
+	int* m_paiAdditionalBonus; // Civ4 Reimagined
 	int* m_aiVictoryCountdown;
 
 	int* m_aiEspionagePointsAgainstTeam;
