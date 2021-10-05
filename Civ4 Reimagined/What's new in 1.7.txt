@@ -4,7 +4,7 @@ Civ4 Reimagined 1.7
 *********
 New
 *********
-
+- New faster gamespeed: Online (2x as fast as normal)
 
 *********
 Changes
