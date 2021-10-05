@@ -12384,6 +12384,12 @@ int CvCity::getGreatPeopleUnitRate(UnitTypes eIndex) const
 {
 	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
 	FAssertMsg(eIndex < GC.getNumUnitInfos(), "eIndex expected to be < GC.getNumUnitInfos()");
+
+	if (GET_PLAYER(getOwnerINLINE()).isNoGreatPeople())
+	{
+		return 0;
+	}
+	
 	return m_paiGreatPeopleUnitRate[eIndex];
 }
 

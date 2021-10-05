@@ -17601,11 +17601,8 @@ void CvGameTextMgr::parseGreatPeopleHelp(CvWStringBuffer &szBuffer, CvCity& city
 		}
 	}
 
-	//if (city.getGreatPeopleRate() == 0)
-// BUG - Building Additional Great People - start
 	bool bBuildingAdditionalGreatPeople = getBugOptionBOOL("MiscHover__BuildingAdditionalGreatPeople", false, "BUG_BUILDING_ADDITIONAL_GREAT_PEOPLE_HOVER");
-	if (city.getGreatPeopleRate() == 0 && !bBuildingAdditionalGreatPeople)
-// BUG - Building Additional Great People - end
+	if (city.getGreatPeopleRate() == 0)
 	{
 		return;
 	}

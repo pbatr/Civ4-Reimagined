@@ -52,6 +52,7 @@ Fixes
 -Corporation could sometimes drive out competing headquarter from a city
 -Religion switches did not update commerce during player's turn
 -Acquired cities from a civ running Totalitarianism no longer keep the free Spy specialists
+-Great people probabilities kept changing even when running Autocracy
 
 *******************************************
 Civ4 Reimagined 1.6
