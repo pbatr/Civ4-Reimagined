@@ -1430,4 +1430,12 @@
 		<Tag>TXT_KEY_BUILD_VILLAGE</Tag>
 		<English>Build a [LINK=IMPROVEMENT_VILLAGE]Village[\LINK]</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAMESPEED_ONLINE</Tag>
+		<English>Online</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GAMESPEED_ONLINE_HELP</Tag>
+		<English>Choose this for a game where everything happens much quicker.  The game will be faster but is balanced to still feel like a normal game.</English>
+	</TEXT>
 </Civ4GameText>

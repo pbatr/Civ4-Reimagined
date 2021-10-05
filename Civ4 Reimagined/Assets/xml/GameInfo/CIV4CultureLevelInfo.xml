@@ -27,6 +27,10 @@
 					<GameSpeedType>GAMESPEED_QUICK</GameSpeedType>
 					<iThreshold>0</iThreshold>
 				</SpeedThreshold>
+				<SpeedThreshold>
+					<GameSpeedType>GAMESPEED_ONLINE</GameSpeedType>
+					<iThreshold>0</iThreshold>
+				</SpeedThreshold>
 			</SpeedThresholds>
 		</CultureLevelInfo>
 		<CultureLevelInfo>
@@ -48,6 +52,10 @@
 				</SpeedThreshold>
 				<SpeedThreshold>
 					<GameSpeedType>GAMESPEED_QUICK</GameSpeedType>
+					<iThreshold>0</iThreshold>
+				</SpeedThreshold>
+				<SpeedThreshold>
+					<GameSpeedType>GAMESPEED_ONLINE</GameSpeedType>
 					<iThreshold>0</iThreshold>
 				</SpeedThreshold>
 			</SpeedThresholds>
@@ -73,6 +81,10 @@
 					<GameSpeedType>GAMESPEED_QUICK</GameSpeedType>
 					<iThreshold>5</iThreshold>
 				</SpeedThreshold>
+				<SpeedThreshold>
+					<GameSpeedType>GAMESPEED_ONLINE</GameSpeedType>
+					<iThreshold>5</iThreshold>
+				</SpeedThreshold>
 			</SpeedThresholds>
 		</CultureLevelInfo>
 		<CultureLevelInfo>
@@ -94,6 +106,10 @@
 				</SpeedThreshold>
 				<SpeedThreshold>
 					<GameSpeedType>GAMESPEED_QUICK</GameSpeedType>
+					<iThreshold>50</iThreshold>
+				</SpeedThreshold>
+				<SpeedThreshold>
+					<GameSpeedType>GAMESPEED_ONLINE</GameSpeedType>
 					<iThreshold>50</iThreshold>
 				</SpeedThreshold>
 			</SpeedThresholds>
@@ -119,6 +135,10 @@
 					<GameSpeedType>GAMESPEED_QUICK</GameSpeedType>
 					<iThreshold>250</iThreshold>
 				</SpeedThreshold>
+				<SpeedThreshold>
+					<GameSpeedType>GAMESPEED_ONLINE</GameSpeedType>
+					<iThreshold>250</iThreshold>
+				</SpeedThreshold>
 			</SpeedThresholds>
 		</CultureLevelInfo>
 		<CultureLevelInfo>
@@ -140,6 +160,10 @@
 				</SpeedThreshold>
 				<SpeedThreshold>
 					<GameSpeedType>GAMESPEED_QUICK</GameSpeedType>
+					<iThreshold>2500</iThreshold>
+				</SpeedThreshold>
+				<SpeedThreshold>
+					<GameSpeedType>GAMESPEED_ONLINE</GameSpeedType>
 					<iThreshold>2500</iThreshold>
 				</SpeedThreshold>
 			</SpeedThresholds>
@@ -164,6 +188,10 @@
 				<SpeedThreshold>
 					<GameSpeedType>GAMESPEED_QUICK</GameSpeedType>
 					<iThreshold>45000</iThreshold>
+				</SpeedThreshold>
+				<SpeedThreshold>
+					<GameSpeedType>GAMESPEED_ONLINE</GameSpeedType>
+					<iThreshold>42500</iThreshold>
 				</SpeedThreshold>
 			</SpeedThresholds>
 		</CultureLevelInfo>
