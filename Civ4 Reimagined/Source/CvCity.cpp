@@ -6273,7 +6273,10 @@ int CvCity::getGreatPeopleRate() const
 		return 0;
 	}
 
-	return std::max(0, ((getBaseGreatPeopleRate() * getTotalGreatPeopleRateModifier()) / 100));
+	// Civ4 Reimagined: Dutch UP
+	int iGreatPeopleRate = getBaseGreatPeopleRate() + GET_PLAYER(getOwnerINLINE()).getGreatMerchantPointsPerTrade() * getTradeYield(YIELD_COMMERCE) / 100;
+
+	return std::max(0, ((iGreatPeopleRate * getTotalGreatPeopleRateModifier()) / 100));
 }
 
 
@@ -12477,7 +12480,27 @@ int CvCity::getGreatPeopleUnitRate(UnitTypes eIndex) const
 {
 	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
 	FAssertMsg(eIndex < GC.getNumUnitInfos(), "eIndex expected to be < GC.getNumUnitInfos()");
-	return m_paiGreatPeopleUnitRate[eIndex];
+
+	if (GET_PLAYER(getOwnerINLINE()).isNoGreatPeople())
+	{
+		return 0;
+	}
+
+	int iGreatPeopleUnitRate = m_paiGreatPeopleUnitRate[eIndex];
+
+	// Civ4 Reimagined: Dutch UP
+	if (GET_PLAYER(getOwnerINLINE()).getGreatMerchantPointsPerTrade() != 0)
+	{
+		const UnitClassTypes UNITCLASS_MERCHANT = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_MERCHANT");
+		const UnitTypes UNIT_MERCHANT = (UnitTypes)GC.getUnitClassInfo(UNITCLASS_MERCHANT).getDefaultUnitIndex();
+
+		if (eIndex == UNIT_MERCHANT)
+		{
+			iGreatPeopleUnitRate += GET_PLAYER(getOwnerINLINE()).getGreatMerchantPointsPerTrade() * getTradeYield(YIELD_COMMERCE) / 100;
+		}
+	}
+
+	return iGreatPeopleUnitRate;
 }
 
 

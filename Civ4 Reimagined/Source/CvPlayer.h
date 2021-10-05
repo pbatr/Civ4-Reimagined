@@ -1403,6 +1403,8 @@ public:
 	int getReligiousUnitClassProductionModifier(UnitClassTypes eIndex) const; // Civ4 Reimagined
 	void changeReligiousColonyMaintenanceModifier(int iChange); // Civ4 Reimagined
 	int getReligiousColonyMaintenanceModifier() const; // Civ4 Reimagined
+	void changeGreatMerchantPointsPerTrade(int iChange); // Civ4 Reimagined
+	int getGreatMerchantPointsPerTrade() const; // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1668,6 +1670,7 @@ protected:
 	bool m_bConscriptInfidels; // Civ4 Reimagined
 	int m_iCatchUpTechModifier; // Civ4 Reimagined
 	int m_iReligiousColonyMaintenanceModifier; // Civ4 Reimagined
+	int m_iGreatMerchantPointsPerTrade; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
 

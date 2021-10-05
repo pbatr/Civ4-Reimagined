@@ -969,6 +969,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bConscriptInfidels = false; // Civ4 Reimagined
 	m_iCatchUpTechModifier = 0; // Civ4 Reimagined
 	m_iReligiousColonyMaintenanceModifier = 0; // Civ4 Reimagined
+	m_iGreatMerchantPointsPerTrade = 0; // Civ4 Reimagined
 	m_eIdeology = IDEOLOGY_CONSERVATISM; // Civ4 Reimagind
 	
 	m_eID = eID;
@@ -14034,6 +14035,21 @@ void CvPlayer::changeReligiousUnitClassProductionModifier(UnitClassTypes eIndex,
 }
 
 // Civ4 Reimagined
+int CvPlayer::getGreatMerchantPointsPerTrade() const
+{
+	return m_iGreatMerchantPointsPerTrade;
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeGreatMerchantPointsPerTrade(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iGreatMerchantPointsPerTrade += iChange;
+	}
+}
+
+// Civ4 Reimagined
 int CvPlayer::getExtraYield(YieldTypes eIndex) const		 
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
@@ -20332,6 +20348,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bConscriptInfidels); // Civ4 Reimagined
 	pStream->Read(&m_iCatchUpTechModifier); // Civ4 Reimagined
 	pStream->Read(&m_iReligiousColonyMaintenanceModifier); // Civ4 Reimagined
+	pStream->Read(&m_iGreatMerchantPointsPerTrade); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -20948,6 +20965,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_bConscriptInfidels); // Civ4 Reimagined
 	pStream->Write(m_iCatchUpTechModifier); // Civ4 Reimagined
 	pStream->Write(m_iReligiousColonyMaintenanceModifier); // Civ4 Reimagined
+	pStream->Write(m_iGreatMerchantPointsPerTrade); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -27921,6 +27939,7 @@ void CvPlayer::updateUniquePowers(TechTypes eTech)
 	    && eTech == (TechTypes)GC.getInfoTypeForString("TECH_CORPORATION"))
 	{
 		GET_TEAM(getTeam()).setAdditionalPlantationBonus(1);
+		changeGreatMerchantPointsPerTrade(25);
 		notifyUniquePowersChanged(true);
 	}	
 }

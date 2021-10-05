@@ -17640,11 +17640,8 @@ void CvGameTextMgr::parseGreatPeopleHelp(CvWStringBuffer &szBuffer, CvCity& city
 		}
 	}
 
-	//if (city.getGreatPeopleRate() == 0)
-// BUG - Building Additional Great People - start
 	bool bBuildingAdditionalGreatPeople = getBugOptionBOOL("MiscHover__BuildingAdditionalGreatPeople", false, "BUG_BUILDING_ADDITIONAL_GREAT_PEOPLE_HOVER");
-	if (city.getGreatPeopleRate() == 0 && !bBuildingAdditionalGreatPeople)
-// BUG - Building Additional Great People - end
+	if (city.getGreatPeopleRate() == 0)
 	{
 		return;
 	}
@@ -17653,6 +17650,14 @@ void CvGameTextMgr::parseGreatPeopleHelp(CvWStringBuffer &szBuffer, CvCity& city
 	szBuffer.append(NEWLINE);
 	szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_GREATPEOPLE_BASE_RATE", city.getBaseGreatPeopleRate()));
 	szBuffer.append(NEWLINE);
+
+	// Civ4 Reimagined: Dutch UP
+	const int iBonusMerchantPoints = owner.getGreatMerchantPointsPerTrade() * city.getTradeYield(YIELD_COMMERCE) / 100;
+	if (iBonusMerchantPoints != 0)
+	{
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_GREATPEOPLE_DUTCH_UP_BONUS_RATE", iBonusMerchantPoints));
+		szBuffer.append(NEWLINE);
+	}
 
 	int iModifier = 100;
 
@@ -17753,7 +17758,9 @@ void CvGameTextMgr::parseGreatPeopleHelp(CvWStringBuffer &szBuffer, CvCity& city
 		}
 	}
 
-	int iModGreatPeople = (iModifier * city.getBaseGreatPeopleRate()) / 100;
+	// Civ4 Reimagined: Dutch UP
+	int iGreatPeopleRate = city.getBaseGreatPeopleRate() + owner.getGreatMerchantPointsPerTrade() * city.getTradeYield(YIELD_COMMERCE) / 100;
+	int iModGreatPeople = (iModifier * iGreatPeopleRate) / 100;
 
 	FAssertMsg(iModGreatPeople == city.getGreatPeopleRate(), "Great person rate does not match actual value");
 
