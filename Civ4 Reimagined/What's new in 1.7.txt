@@ -38,6 +38,8 @@ Tweaks
 -Spanish Citadel gets obsolete with Liberalism instead of Corporation
 -Great Wall costs reduced from 300 to 250
 -Higher tech speed on lower difficulties
+-Incan unique building Terrace changed to Qullqa (replaces Granery, -20% city maintenance & units heal 10% faster)
+-Incan unique unit Awqaq Runa now has reduced cost (15 instead of 30) and combat bonus on hills but no longer bonus vs melee
 
 *********
 Interface

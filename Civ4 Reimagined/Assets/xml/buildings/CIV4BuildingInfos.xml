@@ -2474,11 +2474,11 @@
 		</BuildingInfo>
 		<BuildingInfo>
 			<BuildingClass>BUILDINGCLASS_GRANARY</BuildingClass>
-			<Type>BUILDING_INCAN_TERRACE</Type>
+			<Type>BUILDING_INCAN_QULLQA</Type>
 			<SpecialBuildingType>NONE</SpecialBuildingType>
-			<Description>TXT_KEY_BUILDING_INCAN_TERRACE</Description>
-			<Civilopedia>TXT_KEY_BUILDING_INCAN_TERRACE_PEDIA</Civilopedia>
-			<Strategy>TXT_KEY_BUILDING_INCAN_TERRACE_STRATEGY</Strategy>
+			<Description>TXT_KEY_BUILDING_INCAN_QULLQA</Description>
+			<Civilopedia>TXT_KEY_BUILDING_INCAN_QULLQA_PEDIA</Civilopedia>
+			<Strategy>TXT_KEY_BUILDING_INCAN_QULLQA_STRATEGY</Strategy>
 			<Advisor>ADVISOR_GROWTH</Advisor>
 			<ArtDefineTag>ART_DEF_BUILDING_INCAN_TERRACE</ArtDefineTag>
 			<MovieDefineTag>NONE</MovieDefineTag>
@@ -2543,7 +2543,7 @@
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>0</bCenterInCity>
 			<iAIWeight>0</iAIWeight>
-			<iCost>60</iCost>
+			<iCost>50</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
@@ -2563,7 +2563,7 @@
 			<iGlobalHurryModifier>0</iGlobalHurryModifier>
 			<iExperience>0</iExperience>
 			<iGlobalExperience>0</iGlobalExperience>
-			<iFoodKept>60</iFoodKept>
+			<iFoodKept>50</iFoodKept>
 			<iAirlift>0</iAirlift>
 			<iAirModifier>0</iAirModifier>
 			<iAirUnitCapacity>0</iAirUnitCapacity>
@@ -2572,11 +2572,11 @@
 			<iFreeSpecialist>0</iFreeSpecialist>
 			<iAreaFreeSpecialist>0</iAreaFreeSpecialist>
 			<iGlobalFreeSpecialist>0</iGlobalFreeSpecialist>
-			<iMaintenanceModifier>0</iMaintenanceModifier>
+			<iMaintenanceModifier>-20</iMaintenanceModifier>
 			<iWarWearinessModifier>0</iWarWearinessModifier>
 			<iGlobalWarWearinessModifier>0</iGlobalWarWearinessModifier>
 			<iEnemyWarWearinessModifier>0</iEnemyWarWearinessModifier>
-			<iHealRateChange>0</iHealRateChange>
+			<iHealRateChange>10</iHealRateChange>
 			<iHealth>0</iHealth>
 			<iAreaHealth>0</iAreaHealth>
 			<iGlobalHealth>0</iGlobalHealth>

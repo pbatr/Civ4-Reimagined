@@ -174,7 +174,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_INCAN_QUECHUA_STRATEGY</Tag>
-		<English>Compared to the [COLOR_UNIT_TEXT]Axeman[COLOR_REVERT], this unit gains a bonus against melee units and ignores the enemies defensive advantage of a forest or jungle. It is slightly cheaper than the Axeman.</English>
+		<English>Compared to the [COLOR_UNIT_TEXT]Axeman[COLOR_REVERT], this unit gains a bonus when fighting on hills. It is a lot cheaper than the Axeman and can be upgraded for free from Warriors.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_SUMERIAN_VULTURE_STRATEGY</Tag>
@@ -382,8 +382,8 @@
 		<English>The [COLOR_BUILDING_TEXT]Ger[COLOR_REVERT] provides your mounted units with additional experiences.</English>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_BUILDING_INCAN_TERRACE_STRATEGY</Tag>
-		<English>The [COLOR_BUILDING_TEXT]Terrace[COLOR_REVERT] stores more food.</English>
+		<Tag>TXT_KEY_BUILDING_INCAN_QULLQA_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Qullqa[COLOR_REVERT] reduces maintenance by 20% and units heal faster in this city.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_MALI_MINT_STRATEGY</Tag>
