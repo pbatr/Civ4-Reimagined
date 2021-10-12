@@ -4,7 +4,7 @@ Civ4 Reimagined 1.7
 *********
 New
 *********
-
+- New faster gamespeed: Online (2x as fast as normal)
 
 *********
 Changes
@@ -35,7 +35,11 @@ Tweaks
 -Increase great person modifier of Cristo Redentor from 25% to 100%
 -Lubyanka only requires one National Security building in city
 -Angkor Wat gives no defense bonus anymore
+-Spanish Citadel gets obsolete with Liberalism instead of Corporation
+-Great Wall costs reduced from 300 to 250
 -Higher tech speed on lower difficulties
+-Incan unique building Terrace changed to Qullqa (replaces Granery, -20% city maintenance & units heal 10% faster)
+-Incan unique unit Awqaq Runa now has reduced cost (15 instead of 30) and combat bonus on hills but no longer bonus vs melee
 
 *********
 Interface
@@ -50,6 +54,7 @@ Fixes
 -Corporation could sometimes drive out competing headquarter from a city
 -Religion switches did not update commerce during player's turn
 -Acquired cities from a civ running Totalitarianism no longer keep the free Spy specialists
+-Great people probabilities kept changing even when running Autocracy
 
 *******************************************
 Civ4 Reimagined 1.6

@@ -1042,6 +1042,9 @@ int CvGame::calculateStartingPlotBiasScore(CvPlot* pStartingPlot, CivilizationTy
 	int iScore = 0;
 	CvPlot* pLoopPlot = NULL;
 
+	const TerrainTypes TERRAIN_HILL = (TerrainTypes)GC.getInfoTypeForString("TERRAIN_HILL");
+	const TerrainTypes TERRAIN_PEAK = (TerrainTypes)GC.getInfoTypeForString("TERRAIN_PEAK");
+
 	for (int iI = 0; iI < NUM_CITY_PLOTS; iI++)
 	{
 		pLoopPlot = plotCity(pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE(), iI);
@@ -1049,6 +1052,16 @@ int CvGame::calculateStartingPlotBiasScore(CvPlot* pStartingPlot, CivilizationTy
 		if (pLoopPlot != NULL)
 		{
 			iScore += GC.getCivilizationInfo(eCiv).getCivilizationTerrainBias(pLoopPlot->getTerrainType());
+
+			if (pLoopPlot->isHills())
+			{
+				iScore += GC.getCivilizationInfo(eCiv).getCivilizationTerrainBias(TERRAIN_HILL);
+			}
+
+			if (pLoopPlot->isPeak())
+			{
+				iScore += GC.getCivilizationInfo(eCiv).getCivilizationTerrainBias(TERRAIN_PEAK);
+			}
 
 			if (pLoopPlot->getFeatureType() != NO_FEATURE)
 			{

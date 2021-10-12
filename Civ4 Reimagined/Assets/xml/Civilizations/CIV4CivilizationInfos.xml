@@ -381,10 +381,6 @@
 			<DisableTechs/>
 			<TerrainBiases>
 				<TerrainBias>
-					<TerrainType>TERRAIN_PEAK</TerrainType>
-					<iBias>3</iBias>
-				</TerrainBias>
-				<TerrainBias>
 					<TerrainType>TERRAIN_HILL</TerrainType>
 					<iBias>1</iBias>
 				</TerrainBias>
@@ -538,6 +534,12 @@
 					<iBias>1</iBias>
 				</FeatureBias>
 			</FeatureBiases>
+			<BonusBiases>
+				<BonusBias>
+					<BonusType>BONUS_INCENSE</BonusType>
+					<iBias>2</iBias>
+				</BonusBias>
+			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -662,6 +664,10 @@
 			<TerrainBiases>
 				<TerrainBias>
 					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_HILL</TerrainType>
 					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
@@ -801,7 +807,7 @@
 			</TerrainBiases>
 			<BonusBiases>
 				<BonusBias>
-					<BonusType>BONUS_HORSE</BonusType>
+					<BonusType>BONUS_IVORY</BonusType>
 					<iBias>3</iBias>
 				</BonusBias>
 			</BonusBiases>
@@ -1064,20 +1070,18 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
-			<TerrainBiases>
-				<TerrainBias>
-					<TerrainType>TERRAIN_PEAK</TerrainType>
-					<iBias>1</iBias>
-				</TerrainBias>
-				<TerrainBias>
-					<TerrainType>TERRAIN_GRASS</TerrainType>
-					<iBias>1</iBias>
-				</TerrainBias>
-			</TerrainBiases>
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_RICE</BonusType>
 					<iBias>10</iBias>
+				</BonusBias>
+				<BonusBias>
+					<BonusType>BONUS_SILK</BonusType>
+					<iBias>5</iBias>
+				</BonusBias>
+				<BonusBias>
+					<BonusType>BONUS_INCENSE</BonusType>
+					<iBias>2</iBias>
 				</BonusBias>
 			</BonusBiases>
 			<InitialCivics>
@@ -1505,6 +1509,12 @@
 					<iBias>3</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<BonusBiases>
+				<BonusBias>
+					<BonusType>BONUS_GEMS</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -1933,7 +1943,7 @@
 				</TerrainBias>
 				<TerrainBias>
 					<TerrainType>TERRAIN_PEAK</TerrainType>
-					<iBias>1</iBias>
+					<iBias>3</iBias>
 				</TerrainBias>
 			</TerrainBiases>
 			<BonusBiases>
@@ -2160,7 +2170,7 @@
 			<Buildings>
 				<Building>
 					<BuildingClassType>BUILDINGCLASS_GRANARY</BuildingClassType>
-					<BuildingType>BUILDING_INCAN_TERRACE</BuildingType>
+					<BuildingType>BUILDING_INCAN_QULLQA</BuildingType>
 				</Building>
 			</Buildings>
 			<Units>
@@ -2195,18 +2205,18 @@
 			<TerrainBiases>
 				<TerrainBias>
 					<TerrainType>TERRAIN_PEAK</TerrainType>
-					<iBias>3</iBias>
+					<iBias>5</iBias>
+				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_HILL</TerrainType>
+					<iBias>2</iBias>
 				</TerrainBias>
 				<TerrainBias>
 					<TerrainType>TERRAIN_PLAINS</TerrainType>
 					<iBias>1</iBias>
 				</TerrainBias>
 				<TerrainBias>
-					<TerrainType>TERRAIN_HILL</TerrainType>
-					<iBias>1</iBias>
-				</TerrainBias>
-				<TerrainBias>
-					<TerrainType>TERRAIN_COAST</TerrainType>
+					<TerrainType>TERRAIN_DESERT</TerrainType>
 					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
@@ -2399,6 +2409,10 @@
 					<BonusType>BONUS_IVORY</BonusType>
 					<iBias>5</iBias>
 				</BonusBias>
+				<BonusBias>
+					<BonusType>BONUS_INCENSE</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
 			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
@@ -2530,6 +2544,14 @@
 				<BonusBias>
 					<BonusType>BONUS_WHALE</BonusType>
 					<iBias>10</iBias>
+				</BonusBias>
+				<BonusBias>
+					<BonusType>BONUS_INCENSE</BonusType>
+					<iBias>2</iBias>
+				</BonusBias>
+				<BonusBias>
+					<BonusType>BONUS_RICE</BonusType>
+					<iBias>2</iBias>
 				</BonusBias>
 			</BonusBiases>
 			<InitialCivics>
@@ -2777,6 +2799,12 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_COAST</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_RICE</BonusType>
@@ -3043,15 +3071,9 @@
 				</TerrainBias>
 				<TerrainBias>
 					<TerrainType>TERRAIN_PLAINS</TerrainType>
-					<iBias>1</iBias>
+					<iBias>2</iBias>
 				</TerrainBias>
 			</TerrainBiases>
-			<FeatureBiases>
-				<FeatureBias>
-					<FeatureType>FEATURE_JUNGLE</FeatureType>
-					<iBias>1</iBias>
-				</FeatureBias>
-			</FeatureBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -3311,6 +3333,12 @@
 					<iBias>1</iBias>
 				</FeatureBias>
 			</FeatureBiases>
+			<BonusBiases>
+				<BonusBias>
+					<BonusType>BONUS_FUR</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -3719,6 +3747,14 @@
 					<BonusType>BONUS_HORSE</BonusType>
 					<iBias>3</iBias>
 				</BonusBias>
+				<BonusBias>
+					<BonusType>BONUS_SPICES</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+				<BonusBias>
+					<BonusType>BONUS_IVORY</BonusType>
+					<iBias>2</iBias>
+				</BonusBias>
 			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
@@ -3984,19 +4020,17 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
-			<TerrainBiases>
-				<TerrainBias>
-					<TerrainType>TERRAIN_PLAINS</TerrainType>
-					<iBias>1</iBias>
-				</TerrainBias>
-				<TerrainBias>
-					<TerrainType>TERRAIN_GRASS</TerrainType>
-					<iBias>1</iBias>
-				</TerrainBias>
-			</TerrainBiases>
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_WINE</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+				<BonusBias>
+					<BonusType>BONUS_MARBLE</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+				<BonusBias>
+					<BonusType>BONUS_IRON</BonusType>
 					<iBias>3</iBias>
 				</BonusBias>
 			</BonusBiases>
@@ -4132,6 +4166,10 @@
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_HORSE</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+				<BonusBias>
+					<BonusType>BONUS_DEER</BonusType>
 					<iBias>3</iBias>
 				</BonusBias>
 			</BonusBiases>
@@ -4274,6 +4312,10 @@
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_HORSE</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+				<BonusBias>
+					<BonusType>BONUS_WINE</BonusType>
 					<iBias>3</iBias>
 				</BonusBias>
 			</BonusBiases>
@@ -4533,12 +4575,6 @@
 					<iBias>3</iBias>
 				</TerrainBias>
 			</TerrainBiases>
-			<BonusBiases>
-				<BonusBias>
-					<BonusType>BONUS_FISH</BonusType>
-					<iBias>3</iBias>
-				</BonusBias>
-			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -4652,6 +4688,12 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<BonusBiases>
+				<BonusBias>
+					<BonusType>BONUS_GEMS</BonusType>
+					<iBias>3</iBias>
+				</BonusBias>
+			</BonusBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
