@@ -8325,6 +8325,7 @@ void CvPlayerAI::AI_updateAttitudeCache(PlayerTypes ePlayer)
 	iAttitude += AI_getNeedOpenBordersAttitude(ePlayer); // Civ4 Reimagined
 	iAttitude += AI_getSameIdeologyAttitude(ePlayer); // Civ4 Reimagined
 	iAttitude += AI_getDifferentIdeologyAttitude(ePlayer); // Civ4 Reimagined
+	iAttitude += AI_getCapitalCultureAttitude(ePlayer); // Civ4 Reimagined
 
 	for (int iI = 0; iI < NUM_MEMORY_TYPES; iI++)
 	{
@@ -8843,6 +8844,23 @@ int CvPlayerAI::AI_getDifferentIdeologyAttitude(PlayerTypes ePlayer) const
 	}
 
 	return -4;
+}
+
+// Civ4 Reimagined
+int CvPlayerAI::AI_getCapitalCultureAttitude(PlayerTypes ePlayer) const
+{
+	if (GET_PLAYER(ePlayer).getCapitalCultureAttitudeBonus() != 0)
+	{
+		CvCity* pCapital = getCapitalCity();
+		CvCity* pOtherCapital = GET_PLAYER(ePlayer).getCapitalCity();
+
+		if (pCapital && pOtherCapital && pOtherCapital->countTotalCultureTimes100() > pCapital->countTotalCultureTimes100())
+		{
+			return GET_PLAYER(ePlayer).getCapitalCultureAttitudeBonus();
+		}
+	}
+
+	return 0;
 }
 
 

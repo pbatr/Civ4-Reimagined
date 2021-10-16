@@ -1405,6 +1405,8 @@ public:
 	int getReligiousColonyMaintenanceModifier() const; // Civ4 Reimagined
 	void changeGreatMerchantPointsPerTrade(int iChange); // Civ4 Reimagined
 	int getGreatMerchantPointsPerTrade() const; // Civ4 Reimagined
+	void changeCapitalCultureAttitudeBonus(int iChange); // Civ4 Reimagined
+	int getCapitalCultureAttitudeBonus() const; // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1671,6 +1673,7 @@ protected:
 	int m_iCatchUpTechModifier; // Civ4 Reimagined
 	int m_iReligiousColonyMaintenanceModifier; // Civ4 Reimagined
 	int m_iGreatMerchantPointsPerTrade; // Civ4 Reimagined
+	int m_iCapitalCultureAttitudeBonus; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
 

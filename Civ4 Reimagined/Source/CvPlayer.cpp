@@ -970,6 +970,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iCatchUpTechModifier = 0; // Civ4 Reimagined
 	m_iReligiousColonyMaintenanceModifier = 0; // Civ4 Reimagined
 	m_iGreatMerchantPointsPerTrade = 0; // Civ4 Reimagined
+	m_iCapitalCultureAttitudeBonus = 0; // Civ4 Reimagined
 	m_eIdeology = IDEOLOGY_CONSERVATISM; // Civ4 Reimagind
 	
 	m_eID = eID;
@@ -14050,6 +14051,21 @@ void CvPlayer::changeGreatMerchantPointsPerTrade(int iChange)
 }
 
 // Civ4 Reimagined
+int CvPlayer::getCapitalCultureAttitudeBonus() const
+{
+	return m_iCapitalCultureAttitudeBonus;
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeCapitalCultureAttitudeBonus(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iCapitalCultureAttitudeBonus += iChange;
+	}
+}
+
+// Civ4 Reimagined
 int CvPlayer::getExtraYield(YieldTypes eIndex) const		 
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
@@ -20349,6 +20365,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iCatchUpTechModifier); // Civ4 Reimagined
 	pStream->Read(&m_iReligiousColonyMaintenanceModifier); // Civ4 Reimagined
 	pStream->Read(&m_iGreatMerchantPointsPerTrade); // Civ4 Reimagined
+	pStream->Read(&m_iCapitalCultureAttitudeBonus); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -20966,6 +20983,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iCatchUpTechModifier); // Civ4 Reimagined
 	pStream->Write(m_iReligiousColonyMaintenanceModifier); // Civ4 Reimagined
 	pStream->Write(m_iGreatMerchantPointsPerTrade); // Civ4 Reimagined
+	pStream->Write(m_iCapitalCultureAttitudeBonus); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -28173,6 +28191,15 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			changeTechProgressOnSettling( -GC.getDefineINT("UNIQUE_POWER_SUMERIA"), (EraTypes)0 );
 			changeEarlyPriestExtraFood(-1);
 			notifyUniquePowersChanged(false);
+		}
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BYZANTIUM"))
+	{
+		if (eEra == ERA_MEDIEVAL)
+		{
+			changeCapitalCultureAttitudeBonus(2);
+			changeStateReligionBuildingCommerce(COMMERCE_ESPIONAGE, 2);
+			notifyUniquePowersChanged(true);
 		}
 	}
 }

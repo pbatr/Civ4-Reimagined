@@ -183,6 +183,7 @@ public:
 	int AI_updateAttitudeCache(PlayerTypes ePlayer) const; // Civ4 Reimagined
 	int AI_getSameIdeologyAttitude(PlayerTypes ePlayer) const; // Civ4 Reimagined
 	int AI_getDifferentIdeologyAttitude(PlayerTypes ePlayer) const; // Civ4 Reimagined
+	int AI_getCapitalCultureAttitude(PlayerTypes ePlayer) const; // Civ4 Reimagined
 
 	PlayerVoteTypes AI_diploVote(const VoteSelectionSubData& kVoteData, VoteSourceTypes eVoteSource, bool bPropose);
 

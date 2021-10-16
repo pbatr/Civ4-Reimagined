@@ -111,4 +111,8 @@
 		<Tag>TXT_KEY_MISC_HELP_GREATPEOPLE_DUTCH_UP_BONUS_RATE</Tag>
 		<English>Unique Power = %D1[ICON_GREATPEOPLE]</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_ATTITUDE_CAPITAL_CULTURE</Tag>
+		<English>%D1: "We admire your glorious capital"</English>
+	</TEXT>
 </Civ4GameText>
