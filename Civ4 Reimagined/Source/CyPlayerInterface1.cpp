@@ -427,7 +427,6 @@ void CyPlayerPythonInterface1(python::class_<CyPlayer>& x)
 		.def("calculateBonusRatioModifier", &CyPlayer::calculateBonusRatioModifier, "int () - ") // Civ4 Reimagined
 		.def("getTechValue", &CyPlayer::getTechValue, "int () - ") // Civ4 Reimagined
 		.def("getBonusRatio", &CyPlayer::getBonusRatio, "int () - ") // Civ4 Reimagined
-		.def("getMayaCalendar", &CyPlayer::getMayaCalendar, "int () - return the next turn at which a great person will be generated for the Maya") // Civ4 Reimagined
 		
 		.def("getCombatExperience", &CyPlayer::getCombatExperience, "int () - Combat experience used to produce Warlords")
 		.def("changeCombatExperience", &CyPlayer::changeCombatExperience, "void (int) - Combat experience used to produce Warlords")

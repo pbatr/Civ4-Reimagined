@@ -7051,7 +7051,8 @@ void CvCity::updateFreshWaterHealth()
 	iNewGoodHealth = 0;
 	iNewBadHealth = 0;
 
-	if (plot()->isFreshWater())
+	// Civ4 Reimagind: Maya unique power
+	if (plot()->isFreshWater() || GET_PLAYER(getOwnerINLINE()).isAlwaysFreshWater())
 	{
 		if (GC.getDefineINT("FRESH_WATER_HEALTH_CHANGE") > 0)
 		{

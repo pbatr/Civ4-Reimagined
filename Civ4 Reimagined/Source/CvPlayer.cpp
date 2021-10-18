@@ -941,7 +941,6 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iUniqueUnitFreeExperience = 0; // Civ4 Reimagined
 	m_iReligionTechModifier = 0; // Civ4 Reimagined
 	m_iFreeUnitsOnConquest = 0; // Civ4 Reimagined
-	m_iMayaCalendar = -5000; // Civ4 Reimagined
 	m_bImmigrants = false; // Civ4 Reimagined
 	m_iUniquePowerBuildingModifier = 0; // Civ4 Reimagined
 	m_iEarlyWorkerSpeedModifier = 0; // Civ4 Reimagined
@@ -972,6 +971,8 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iGreatMerchantPointsPerTrade = 0; // Civ4 Reimagined
 	m_iCapitalCultureAttitudeBonus = 0; // Civ4 Reimagined
 	m_eIdeology = IDEOLOGY_CONSERVATISM; // Civ4 Reimagind
+	m_bAlwaysFreshWater = false; // Civ4 Reimagined
+	m_bCanRemoveFeatures = false; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -3974,8 +3975,6 @@ void CvPlayer::doTurn()
 	updateCultureHistory(GC.getGameINLINE().getGameTurn(), countTotalCulture());
 	updateEspionageHistory(GC.getGameINLINE().getGameTurn(), GET_TEAM(getTeam()).getEspionagePointsEver());
 	expireMessages();  // turn log
-	
-	checkMayaCalendar(); // Civ4 Reimagined
 	
 	updateEffectFromStayingAtCivic(); // Civ4 Reimagined
 	
@@ -8055,7 +8054,7 @@ bool CvPlayer::canBuild(const CvPlot* pPlot, BuildTypes eBuild, bool bTestEra, b
 		if (pPlot->getFeatureType() != NO_FEATURE)
 		{
 			// Civ4 Reimagined: Can remove Features without tech when there is a visible Bonus
-			if (!(GET_TEAM(getTeam()).isHasTech((TechTypes)GC.getBuildInfo(eBuild).getFeatureTech(pPlot->getFeatureType()))))
+			if (!isCanRemoveFeatures() && !(GET_TEAM(getTeam()).isHasTech((TechTypes)GC.getBuildInfo(eBuild).getFeatureTech(pPlot->getFeatureType()))))
 			{
 				BonusTypes eBonus = pPlot->getBonusType();
 				if (eBonus == NO_BONUS || (GC.getBonusInfo(eBonus).getTechReveal() > -1 && !(GET_TEAM(getTeam()).isHasTech((TechTypes)GC.getBonusInfo(eBonus).getTechReveal()))))
@@ -20336,7 +20335,6 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iUniqueUnitFreeExperience); // Civ4 Reimagined
 	pStream->Read(&m_iReligionTechModifier); // Civ4 Reimagined
 	pStream->Read(&m_iFreeUnitsOnConquest); // Civ4 Reimagined
-	pStream->Read(&m_iMayaCalendar); // Civ4 Reimagined
 	pStream->Read(&m_bImmigrants); // Civ4 Reimagined
 	pStream->Read(&m_iUniquePowerBuildingModifier); // Civ4 Reimagined
 	pStream->Read(&m_iEarlyWorkerSpeedModifier); // Civ4 Reimagined
@@ -20366,6 +20364,8 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iReligiousColonyMaintenanceModifier); // Civ4 Reimagined
 	pStream->Read(&m_iGreatMerchantPointsPerTrade); // Civ4 Reimagined
 	pStream->Read(&m_iCapitalCultureAttitudeBonus); // Civ4 Reimagined
+	pStream->Read(&m_bAlwaysFreshWater); // Civ4 Reimagined
+	pStream->Read(&m_bCanRemoveFeatures); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -20954,7 +20954,6 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iUniqueUnitFreeExperience); // Civ4 Reimagined	
 	pStream->Write(m_iReligionTechModifier); // Civ4 Reimagined	
 	pStream->Write(m_iFreeUnitsOnConquest); // Civ4 Reimagined	
-	pStream->Write(m_iMayaCalendar); // Civ4 Reimagined	
 	pStream->Write(m_bImmigrants); // Civ4 Reimagined
 	pStream->Write(m_iUniquePowerBuildingModifier); // Civ4 Reimagined
 	pStream->Write(m_iEarlyWorkerSpeedModifier); // Civ4 Reimagined
@@ -20984,6 +20983,8 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iReligiousColonyMaintenanceModifier); // Civ4 Reimagined
 	pStream->Write(m_iGreatMerchantPointsPerTrade); // Civ4 Reimagined
 	pStream->Write(m_iCapitalCultureAttitudeBonus); // Civ4 Reimagined
+	pStream->Write(m_bAlwaysFreshWater); // Civ4 Reimagined
+	pStream->Write(m_bCanRemoveFeatures); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -27317,18 +27318,6 @@ void CvPlayer::changeReligionTechModifier(int iChange)
 }
 
 // Civ4 Reimagined
-int CvPlayer::getMayaCalendar() const
-{
-	return m_iMayaCalendar;
-}
-
-// Civ4 Reimagined
-void CvPlayer::setMayaCalendar(int iNewValue)
-{
-	m_iMayaCalendar = iNewValue;
-}
-
-// Civ4 Reimagined
 void CvPlayer::setHasImmigrants(bool bNewValue)
 {
 	m_bImmigrants = bNewValue;
@@ -27338,57 +27327,6 @@ void CvPlayer::setHasImmigrants(bool bNewValue)
 bool CvPlayer::getImmigrants() const
 {
 	return m_bImmigrants;
-}
-
-// Civ4 Reimagined
-void CvPlayer::checkMayaCalendar()
-{
-	if (getMayaCalendar() > -5000)
-	{
-		if (getMayaCalendar() <= GC.getGameINLINE().getTurnYear(GC.getGameINLINE().getGameTurn() + 1))
-		{
-			setMayaCalendar(getMayaCalendar() + 394);
-			
-			UnitTypes eUnit;
-			
-			int iRand = GC.getGameINLINE().getSorenRandNum(7, "Maya Calendar SpecialistTypes"); // Range: 0,6
-			CvCity* pCapitalCity = getCapitalCity();
-						
-			switch (iRand)
-			{
-			case 0:
-				eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_PROPHET");
-				break;
-			case 1:
-				eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_ARTIST");
-				break;
-			case 2:
-				eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_SCIENTIST");
-				break;
-			case 3:
-				eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_MERCHANT");
-				break;
-			case 4:
-				eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_ENGINEER");
-				break;
-			case 5:
-				eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_GREAT_GENERAL");
-				break;
-			case 6:
-				eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_GREAT_SPY");
-				break;
-			default:
-				FAssertMsg(false, "Maya specialist randomization failed");
-				break;
-			}		
-			
-			if (eUnit != NO_UNIT && pCapitalCity != NULL)
-			{
-				pCapitalCity->createGreatPeople(eUnit, false, false);
-			}
-
-		}
-	}
 }	
 
 // Civ4 Reimagined
@@ -27925,6 +27863,38 @@ int CvPlayer::getReligiousColonyMaintenanceModifier() const
 	return m_iReligiousColonyMaintenanceModifier;
 }
 
+//Civ4 Reimagined
+void CvPlayer::setAlwaysFreshWater(bool bNewValue)
+{
+	CvCity* pLoopCity;
+	int iLoop = 0;
+
+	m_bAlwaysFreshWater = bNewValue;
+
+	for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+	{
+		pLoopCity->updateFreshWaterHealth();
+	}
+}
+
+//Civ4 Reimagined
+bool CvPlayer::isAlwaysFreshWater() const
+{
+	return m_bAlwaysFreshWater;
+}
+
+//Civ4 Reimagined
+void CvPlayer::setCanRemoveFeatures(bool bNewValue)
+{
+	m_bCanRemoveFeatures = bNewValue;
+}
+
+//Civ4 Reimagined
+bool CvPlayer::isCanRemoveFeatures() const
+{
+	return m_bCanRemoveFeatures;
+}
+
 
 //Civ4 Reimagined
 void CvPlayer::updateUniquePowers(TechTypes eTech)
@@ -27938,13 +27908,6 @@ void CvPlayer::updateUniquePowers(TechTypes eTech)
 		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_DIVINE_RIGHT"))
 	{
 		setFaithConquest(true);
-		notifyUniquePowersChanged(true);
-	}
-	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA")
-		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_CALENDAR"))
-	{
-		setMayaCalendar(GC.getGameINLINE().getGameTurnYear());
-		checkMayaCalendar();
 		notifyUniquePowersChanged(true);
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_OTTOMAN")
@@ -28046,6 +28009,15 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			notifyUniquePowersChanged(false);
 		}
 	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BYZANTIUM"))
+	{
+		if (eEra == ERA_MEDIEVAL)
+		{
+			changeCapitalCultureAttitudeBonus(2);
+			changeStateReligionBuildingCommerce(COMMERCE_ESPIONAGE, 2);
+			notifyUniquePowersChanged(true);
+		}
+	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CARTHAGE"))
 	{
 		if (eEra == ERA_CLASSICAL)
@@ -28077,16 +28049,6 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		{
 			changeSlavePointsPerPopulationSacrificed(GC.getDefineINT("UNIQUE_POWER_EGYPT"));
 			changeProductionPerPopulation(5);
-			notifyUniquePowersChanged(true);
-		}
-	}
-	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SPAIN"))
-	{
-		if (eEra == ERA_MEDIEVAL)
-		{
-			UnitClassTypes UNITCLASS_SETTLER = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SETTLER");
-			changeReligiousUnitClassProductionModifier(UNITCLASS_SETTLER, GC.getDefineINT("UNIQUE_POWER_SPAIN_RELIGIOUS_SETTLER"));
-			changeReligiousColonyMaintenanceModifier(GC.getDefineINT("UNIQUE_POWER_SPAIN_RELIGIOUS_MAINTENANCE"));
 			notifyUniquePowersChanged(true);
 		}
 	}
@@ -28158,16 +28120,14 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA"))
 	{
-		// Also gains effect with Calendar
-		if (eEra == ERA_CLASSICAL) 
+		if (eEra == ERA_ANCIENT) 
 		{
 			changeUniquePowerBuildingModifier(GC.getDefineINT("UNIQUE_POWER_MAYA"));
+			GET_TEAM(getTeam()).changeIrrigationCount(1);
+			GET_TEAM(getTeam()).changeIgnoreIrrigationCount(1);
+			setAlwaysFreshWater(true);
+			setCanRemoveFeatures(true);
 			notifyUniquePowersChanged(true);
-		}
-		else if (eEra == ERA_RENAISSANCE)
-		{
-			changeUniquePowerBuildingModifier(-GC.getDefineINT("UNIQUE_POWER_MAYA"));
-			notifyUniquePowersChanged(false);
 		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME"))
@@ -28177,6 +28137,16 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			changeFreeUnitsOnConquest(GC.getDefineINT("UNIQUE_POWER_ROME")); // 2+Culture-Level der Stadt Einheiten
 			notifyUniquePowersChanged(true);
 		}			
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SPAIN"))
+	{
+		if (eEra == ERA_MEDIEVAL)
+		{
+			UnitClassTypes UNITCLASS_SETTLER = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SETTLER");
+			changeReligiousUnitClassProductionModifier(UNITCLASS_SETTLER, GC.getDefineINT("UNIQUE_POWER_SPAIN_RELIGIOUS_SETTLER"));
+			changeReligiousColonyMaintenanceModifier(GC.getDefineINT("UNIQUE_POWER_SPAIN_RELIGIOUS_MAINTENANCE"));
+			notifyUniquePowersChanged(true);
+		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SUMERIA"))
 	{
@@ -28191,15 +28161,6 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			changeTechProgressOnSettling( -GC.getDefineINT("UNIQUE_POWER_SUMERIA"), (EraTypes)0 );
 			changeEarlyPriestExtraFood(-1);
 			notifyUniquePowersChanged(false);
-		}
-	}
-	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BYZANTIUM"))
-	{
-		if (eEra == ERA_MEDIEVAL)
-		{
-			changeCapitalCultureAttitudeBonus(2);
-			changeStateReligionBuildingCommerce(COMMERCE_ESPIONAGE, 2);
-			notifyUniquePowersChanged(true);
 		}
 	}
 }

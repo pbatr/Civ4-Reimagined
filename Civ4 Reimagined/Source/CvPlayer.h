@@ -575,11 +575,6 @@ public:
 	// Civ4 Reimagined
 	int getEarlyPriestExtraFood() const;
 	void changeEarlyPriestExtraFood(int iChange);
-
-	// Civ4 Reimagined
-	int getMayaCalendar() const; // Exposed to Python
-	void setMayaCalendar(int iNewValue);
-	void checkMayaCalendar();
 	
 	// Civ4 Reimagined
 	void setHasImmigrants(bool bNewValue);
@@ -1407,6 +1402,10 @@ public:
 	int getGreatMerchantPointsPerTrade() const; // Civ4 Reimagined
 	void changeCapitalCultureAttitudeBonus(int iChange); // Civ4 Reimagined
 	int getCapitalCultureAttitudeBonus() const; // Civ4 Reimagined
+	void setAlwaysFreshWater(bool bNewValue); // Civ4 Reimagnied
+	bool isAlwaysFreshWater() const; // Civ4 Reimagined
+	void setCanRemoveFeatures(bool bNewValue); // Civ4 Reimagnied
+	bool isCanRemoveFeatures() const; // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1645,7 +1644,6 @@ protected:
 	int m_iUniqueUnitFreeExperience; // Civ4 Reimagined
 	int m_iFreeUnitsOnConquest; // Civ4 Reimagined
 	int m_iReligionTechModifier; // Civ4 Reimagined
-	int m_iMayaCalendar; // Civ4 Reimagined
 	int m_iUniquePowerBuildingModifier; // Civ4 Reimagined
 	int m_iEarlyWorkerSpeedModifier; // Civ4 Reimagined
 	int m_iFatcrossPeakHappiness; // Civ4 Reimagined
@@ -1674,6 +1672,8 @@ protected:
 	int m_iReligiousColonyMaintenanceModifier; // Civ4 Reimagined
 	int m_iGreatMerchantPointsPerTrade; // Civ4 Reimagined
 	int m_iCapitalCultureAttitudeBonus; // Civ4 Reimagined
+	bool m_bAlwaysFreshWater; // Civ4 Reimagined
+	bool m_bCanRemoveFeatures; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
 

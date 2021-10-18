@@ -1490,6 +1490,12 @@ void CvGame::normalizeRemoveBadFeatures()
 
 	for (iI = 0; iI < MAX_CIV_PLAYERS; iI++)
 	{
+		// Civ4 Reimagined: Maya can start in Jungle with their UP
+		if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS) && GET_PLAYER((PlayerTypes)iI).getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA"))
+		{
+			continue;
+		}
+
 		if (GET_PLAYER((PlayerTypes)iI).isAlive())
 		{
 			pStartingPlot = GET_PLAYER((PlayerTypes)iI).getStartingPlot();

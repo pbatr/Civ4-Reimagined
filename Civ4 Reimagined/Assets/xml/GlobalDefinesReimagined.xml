@@ -408,7 +408,7 @@
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_MAYA</DefineName>
-		<iDefineIntVal>25</iDefineIntVal> <!-- Production speed bonus -->
+		<iDefineIntVal>10</iDefineIntVal> <!-- Production speed bonus -->
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_ROME</DefineName>

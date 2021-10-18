@@ -3195,38 +3195,8 @@ class CvMainInterface:
 
 				self.updateGreatPersonBar(screen)
 				self.updateGreatGeneralBar(screen)
-				self.updateUniquePowerBar(screen)
 					
 		return 0
-	
-	
-	def updateUniquePowerBar(self, screen):
-		if (not CyInterface().isCityScreenUp() and not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_UNIQUE_POWERS)):
-		
-			pPlayer = gc.getActivePlayer()
-			iMayaCalendar = pPlayer.getMayaCalendar()
-			szText = u"<font=2>%d</font>" %(iMayaCalendar)
-			
-			if (iMayaCalendar > -5000):
-				if (iMayaCalendar >= 0):
-					szText = u"<font=2>Next: %d AD</font>" %(iMayaCalendar)
-				else:
-					szText = u"<font=2>Next: %d BC</font>" %(-iMayaCalendar)
-			else:
-				return
-			
-			xResolution = screen.getXResolution()
-			szUniquePowerBar = "UniquePowerBar"
-			if (xResolution >= 1440):
-				xCoord = 268 + (xResolution - 1440) / 2 + 84 / 2 - 50 / 2
-				yCoord = 5 + 25
-			else:
-				xCoord = 268 + (xResolution - 1024) / 2 + 100 / 2 - 50 / 2 + 50
-				yCoord = 32
-			
-			screen.setLabel( "UniquePowerBarText", "Background", szText, CvUtil.FONT_CENTER_JUSTIFY, xCoord, yCoord, -0.4, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
-			screen.show( "UniquePowerBarText" )
-			screen.show( szUniquePowerBar )
 	
 	def updateGreatPersonBar(self, screen):
 		if (not CyInterface().isCityScreenUp() and MainOpt.isShowGPProgressBar()):

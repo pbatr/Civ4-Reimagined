@@ -443,7 +443,6 @@ public:
 	int calculateBonusRatioModifier(); // Civ4 Reimagined
 	int getTechValue(); // Civ4 Reimagined
 	int getBonusRatio(); // Civ4 Reimagined
-	int getMayaCalendar(); // Civ4 Reimagined
 	
 	int getCombatExperience() const;
 	void changeCombatExperience(int iChange);

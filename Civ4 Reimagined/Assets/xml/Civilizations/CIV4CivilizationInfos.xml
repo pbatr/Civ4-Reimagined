@@ -3051,7 +3051,7 @@
 			</FreeBuildingClasses>
 			<FreeTechs>
 				<FreeTech>
-					<TechType>TECH_MINING</TechType>
+					<TechType>TECH_AGRICULTURE</TechType>
 					<bFreeTech>1</bFreeTech>
 				</FreeTech>
 				<FreeTech>
@@ -3060,20 +3060,13 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
-			<TerrainBiases>
-				<TerrainBias>
-					<TerrainType>TERRAIN_PEAK</TerrainType>
-					<iBias>1</iBias>
-				</TerrainBias>
-				<TerrainBias>
-					<TerrainType>TERRAIN_HILL</TerrainType>
-					<iBias>1</iBias>
-				</TerrainBias>
-				<TerrainBias>
-					<TerrainType>TERRAIN_PLAINS</TerrainType>
-					<iBias>2</iBias>
-				</TerrainBias>
-			</TerrainBiases>
+			<TerrainBiases/>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>3</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>

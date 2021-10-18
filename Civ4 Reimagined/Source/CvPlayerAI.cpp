@@ -6796,11 +6796,6 @@ int CvPlayerAI::uniquePowerAITechValueMult(TechTypes eTech) const
 	{
 		return 300;
 	}
-	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA")
-		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_CALENDAR"))
-	{
-		return 300;
-	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_OTTOMAN")
 		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_GUNPOWDER"))
 	{

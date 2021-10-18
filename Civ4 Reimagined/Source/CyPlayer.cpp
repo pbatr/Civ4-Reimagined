@@ -1880,12 +1880,6 @@ int CyPlayer::getBonusRatio()
 	return m_pPlayer ? m_pPlayer->getBonusRatio() : -1;
 }
 
-// Civ4 Reimagined
-int CyPlayer::getMayaCalendar()
-{
-	return m_pPlayer ? m_pPlayer->getMayaCalendar() : -1;
-}
-
 
 int CyPlayer::getCombatExperience() const
 {
