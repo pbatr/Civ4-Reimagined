@@ -3263,6 +3263,7 @@
 			<bNukeImmune>0</bNukeImmune>
 			<bPrereqReligion>0</bPrereqReligion>
 			<bCenterInCity>1</bCenterInCity>
+			<iFarmAdjacencyBonus>4</iFarmAdjacencyBonus>
 			<iAIWeight>0</iAIWeight>
 			<iCost>80</iCost>
 			<iHurryCostModifier>0</iHurryCostModifier>
@@ -3327,11 +3328,7 @@
 			<SeaPlotYieldChanges/>
 			<RiverPlotYieldChanges/>
 			<GlobalSeaPlotYieldChanges/>
-			<YieldChanges>
-				<iYield>2</iYield>
-				<iYield>0</iYield>
-				<iYield>0</iYield>
-			</YieldChanges>
+			<YieldChanges/>
 			<CommerceChanges/>
 			<ObsoleteSafeCommerceChanges/>
 			<CommerceChangeDoubleTimes/>

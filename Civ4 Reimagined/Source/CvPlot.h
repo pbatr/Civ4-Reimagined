@@ -392,6 +392,8 @@ public:
 	// int calculateMaxYield(YieldTypes eYield) const; // disabled by K-Mod
 	int getYieldWithBuild(BuildTypes eBuild, YieldTypes eYield, bool bWithUpgrade) const;
 
+	int calculateAdjacencyBonus(YieldTypes eYield, ImprovementTypes eImprovement, int iNeededAdjacentImprovements) const; // Civ4 Reimagined
+
 	int getCulture(PlayerTypes eIndex) const;																									// Exposed to Python
 	int countTotalCulture() const;																														// Exposed to Python
 	int countFriendlyCulture(TeamTypes eTeam) const;

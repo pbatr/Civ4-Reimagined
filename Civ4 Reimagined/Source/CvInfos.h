@@ -1856,6 +1856,7 @@ public:
 	bool isNoConscriptUnhappiness() const; // Civ4 Reimagined
 	bool isNoWarAgainstSameFaithUnhappiness() const; // Civ4 Reimagined
 	int getReligionSpreadBoost() const; // Civ4 Reimagined
+	int getFarmAdjacencyBonus() const; // Civ4 Reimagined
 
 	const TCHAR* getConstructSound() const;				// Exposed to Python
 	void setConstructSound(const TCHAR* szVal);
@@ -2116,6 +2117,7 @@ protected:
 	//bool m_bNoUnhealthyPopulation; // ...
 	int m_iUnhealthyPopulationModifier; // K-Mod
 	int m_iReligionSpreadBoost; // Civ4 Reimagined
+	int m_iFarmAdjacencyBonus; // Civ4 Reimagined
 	bool m_bBuildingOnlyHealthy;			
 	bool m_bNeverCapture;					
 	bool m_bNukeImmune;					

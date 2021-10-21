@@ -48,6 +48,7 @@ CvCity::CvCity()
 	m_aiPowerYieldRateModifier = new int[NUM_YIELD_TYPES];
 	m_aiBonusYieldRateModifier = new int[NUM_YIELD_TYPES];
 	m_aiTechYieldRateModifier = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
+	m_aiFarmAdjacencyBonus = new int[NUM_YIELD_TYPES];; // Civ4 Reimagined
 	m_aiTechCommerceRateModifier = new int[NUM_COMMERCE_TYPES]; // Civ4 Reimagined
 	m_aiFeatureAdjacentCommerce = new int[NUM_COMMERCE_TYPES]; // Civ4 Reimagined
 	m_aiTradeYield = new int[NUM_YIELD_TYPES];
@@ -141,6 +142,7 @@ CvCity::~CvCity()
 	SAFE_DELETE_ARRAY(m_aiPowerYieldRateModifier);
 	SAFE_DELETE_ARRAY(m_aiBonusYieldRateModifier);
 	SAFE_DELETE_ARRAY(m_aiTechYieldRateModifier); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_aiFarmAdjacencyBonus); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiTechCommerceRateModifier); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiFeatureAdjacentCommerce); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiTradeYield);
@@ -569,6 +571,7 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 		m_aiPowerYieldRateModifier[iI] = 0;
 		m_aiBonusYieldRateModifier[iI] = 0;
 		m_aiTechYieldRateModifier[iI] = 0; // Civ4 Reimagined
+		m_aiFarmAdjacencyBonus[iI] = 0; // Civ4 Reimagined
 		m_aiTradeYield[iI] = 0;
 		m_aiCorporationYield[iI] = 0;
 		m_aiExtraSpecialistYield[iI] = 0;
@@ -4471,6 +4474,12 @@ void CvCity::processBuilding(BuildingTypes eBuilding, int iChange, bool bObsolet
 					}
 				}
 			}
+		}
+
+		// Civ4 Reimagined
+		if (GC.getBuildingInfo(eBuilding).getFarmAdjacencyBonus() > 0)
+		{
+			changeFarmAdjacencyBonus(YIELD_FOOD, GC.getBuildingInfo(eBuilding).getFarmAdjacencyBonus() * iChange);
 		}
 
 		// Civ4 Reimagined
@@ -9993,6 +10002,56 @@ void CvCity::changeTechYieldRateModifier(YieldTypes eIndex, int iChange)
 	if (iChange != 0)
 	{
 		m_aiTechYieldRateModifier[eIndex] = (m_aiTechYieldRateModifier[eIndex] + iChange);
+		FAssert(getYieldRate(eIndex) >= 0);
+
+		GET_PLAYER(getOwnerINLINE()).invalidateYieldRankCache(eIndex);
+
+		if (eIndex == YIELD_COMMERCE)
+		{
+			updateCommerce();
+		}
+
+		AI_setAssignWorkDirty(true);
+
+		if (getTeam() == GC.getGameINLINE().getActiveTeam())
+		{
+			setInfoDirty(true);
+		}
+	}
+	
+}
+
+// Civ4 Reimagined
+int CvCity::getFarmAdjacencyBonus(YieldTypes eIndex) const												
+{
+	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
+	FAssertMsg(eIndex < NUM_YIELD_TYPES, "eIndex expected to be < NUM_YIELD_TYPES");
+	return m_aiFarmAdjacencyBonus[eIndex];
+}
+
+// Civ4 Reimagined
+void CvCity::changeFarmAdjacencyBonus(YieldTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
+	FAssertMsg(eIndex < NUM_YIELD_TYPES, "eIndex expected to be < NUM_YIELD_TYPES");
+	
+	if (iChange != 0)
+	{
+		m_aiFarmAdjacencyBonus[eIndex] = (m_aiFarmAdjacencyBonus[eIndex] + iChange);
+
+		for (int iI = 0; iI < NUM_CITY_PLOTS; iI++)
+		{
+			CvPlot* pLoopPlot = getCityIndexPlot(iI);
+
+			if (pLoopPlot != NULL)
+			{
+				if (pLoopPlot->getWorkingCity() == this)
+				{
+					pLoopPlot->updateYield();
+				}
+			}
+		}
+
 		FAssert(getYieldRate(eIndex) >= 0);
 
 		GET_PLAYER(getOwnerINLINE()).invalidateYieldRankCache(eIndex);
@@ -15869,6 +15928,7 @@ void CvCity::read(FDataStreamBase* pStream)
 	pStream->Read(NUM_YIELD_TYPES, m_aiPowerYieldRateModifier);
 	pStream->Read(NUM_YIELD_TYPES, m_aiBonusYieldRateModifier);
 	pStream->Read(NUM_YIELD_TYPES, m_aiTechYieldRateModifier); // Civ4 Reimagined
+	pStream->Read(NUM_YIELD_TYPES, m_aiFarmAdjacencyBonus); // Civ4 Reimagined
 	pStream->Read(NUM_YIELD_TYPES, m_aiTradeYield);
 	pStream->Read(NUM_YIELD_TYPES, m_aiCorporationYield);
 	pStream->Read(NUM_YIELD_TYPES, m_aiExtraSpecialistYield);
@@ -16124,6 +16184,7 @@ void CvCity::write(FDataStreamBase* pStream)
 	pStream->Write(NUM_YIELD_TYPES, m_aiPowerYieldRateModifier);
 	pStream->Write(NUM_YIELD_TYPES, m_aiBonusYieldRateModifier);
 	pStream->Write(NUM_YIELD_TYPES, m_aiTechYieldRateModifier); // Civ4 Reimagined
+	pStream->Write(NUM_YIELD_TYPES, m_aiFarmAdjacencyBonus); // Civ4 Reimagined
 	pStream->Write(NUM_YIELD_TYPES, m_aiTradeYield);
 	pStream->Write(NUM_YIELD_TYPES, m_aiCorporationYield);
 	pStream->Write(NUM_YIELD_TYPES, m_aiExtraSpecialistYield);

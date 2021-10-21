@@ -2676,6 +2676,12 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_COAST</TerrainType>
+					<iBias>-1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
 			<FeatureBiases>
 				<FeatureBias>
 					<FeatureType>FEATURE_JUNGLE</FeatureType>

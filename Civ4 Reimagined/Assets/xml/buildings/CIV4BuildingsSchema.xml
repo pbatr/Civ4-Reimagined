@@ -126,6 +126,7 @@
 	<ElementType name="bCanFarmHills" content="textOnly" dt:type="boolean"/> <!-- Civ4 Reimagined -->
 	<ElementType name="bNoWarAgainstSameFaithUnhappiness" content="textOnly" dt:type="boolean"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iReligionSpreadBoost" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
+	<ElementType name="iFarmAdjacencyBonus" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iLootingModifier" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iStateReligionFreeExperience" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iNavalLevelPrereq" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
@@ -577,6 +578,7 @@
 		<element type="bCanFarmHills" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="bNoWarAgainstSameFaithUnhappiness" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="iReligionSpreadBoost" minOccurs="0"/> <!-- Civ4 Reimagined -->
+		<element type="iFarmAdjacencyBonus" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="iLootingModifier" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="iStateReligionFreeExperience" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="iNavalLevelPrereq" minOccurs="0"/> <!-- Civ4 Reimagined -->

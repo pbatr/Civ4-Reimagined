@@ -399,7 +399,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_KHMER_BARAY_STRATEGY</Tag>
-		<English>The [COLOR_BUILDING_TEXT]Baray[COLOR_REVERT] gives the city food.</English>
+		<English>The [COLOR_BUILDING_TEXT]Baray[COLOR_REVERT] grants additional health for the city. It also gives the city additional food from farms that are adjacent to other farms.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_OTTOMAN_HAMMAM_STRATEGY</Tag>

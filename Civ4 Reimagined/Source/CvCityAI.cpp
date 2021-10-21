@@ -5036,6 +5036,11 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				{
 					iRawYieldValue += (kBuilding.getRiverPlotYieldChange(iI) * countNumRiverPlots() * 3); // was 4
 				}
+				// Civ4 Reimagined
+				if (kBuilding.getFarmAdjacencyBonus() > 0 && iI == YIELD_FOOD)
+				{
+					iRawYieldValue += std::max(1, 2 * countNumImprovedPlots((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FARM"), false) / kBuilding.getFarmAdjacencyBonus()) * 4;
+				}
 				iRawYieldValue += (kBuilding.getYieldChange(iI) * 4); // was 6
 
 				iRawYieldValue *= AI_yieldMultiplier((YieldTypes)iI);

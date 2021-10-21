@@ -7732,6 +7732,7 @@ m_iNavalLevelPrereq(0), // Civ4 Reimagined
 m_iAllCityDefenseModifier(0),
 m_iEspionageDefenseModifier(0),
 m_iReligionSpreadBoost(0), // Civ4 Reimagined
+m_iFarmAdjacencyBonus(0), // Civ4 Reimagined
 m_iMissionType(NO_MISSION),
 m_iVoteSourceType(NO_VOTESOURCE),
 m_fVisibilityPriority(0.0f),
@@ -8636,6 +8637,12 @@ int CvBuildingInfo::getReligionSpreadBoost() const
 }
 
 // Civ4 Reimagined
+int CvBuildingInfo::getFarmAdjacencyBonus() const
+{
+	return m_iFarmAdjacencyBonus;
+}
+
+// Civ4 Reimagined
 bool CvBuildingInfo::isNoNonStateReligionSpread() const
 {
 	return m_bNoNonStateReligionSpread;
@@ -9481,6 +9488,7 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bCanFarmHills); // Civ4 Reimagined
 	stream->Read(&m_bNoWarAgainstSameFaithUnhappiness); // Civ4 Reimagined
 	stream->Read(&m_iReligionSpreadBoost); // Civ4 Reimagined
+	stream->Read(&m_iFarmAdjacencyBonus); // Civ4 Reimagined
 	stream->Read(&m_bNoNonStateReligionSpread); // Civ4 Reimagined
 	stream->Read(&m_iLootingModifier); // Civ4 Reimagined
 	stream->Read(&m_iStateReligionFreeExperience); // Civ4 Reimagined
@@ -10006,6 +10014,7 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bCanFarmHills); // Civ4 Reimagined
 	stream->Write(m_bNoWarAgainstSameFaithUnhappiness); // Civ4 Reimagined
 	stream->Write(m_iReligionSpreadBoost); // Civ4 Reimagined
+	stream->Write(m_iFarmAdjacencyBonus); // Civ4 Reimagined
 	stream->Write(m_bNoNonStateReligionSpread); // Civ4 Reimagined
 	stream->Write(m_iLootingModifier); // Civ4 Reimagined
 	stream->Write(m_iStateReligionFreeExperience); // Civ4 Reimagined
@@ -10324,6 +10333,7 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bCanFarmHills, "bCanFarmHills"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_bNoWarAgainstSameFaithUnhappiness, "bNoWarAgainstSameFaithUnhappiness"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iReligionSpreadBoost, "iReligionSpreadBoost"); // Civ4 Reimagined
+	pXML->GetChildXmlValByName(&m_iFarmAdjacencyBonus, "iFarmAdjacencyBonus"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_bNoNonStateReligionSpread, "bNoNonStateReligionSpread"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iLootingModifier, "iLootingModifier"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iStateReligionFreeExperience, "iStateReligionFreeExperience"); // Civ4 Reimagined

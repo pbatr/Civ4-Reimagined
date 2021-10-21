@@ -157,6 +157,8 @@ public:
 	
 	int getTechYieldRateModifier(YieldTypes eIndex) const; // Civ4 Reimagined
 	void changeTechYieldRateModifier(YieldTypes eIndex, int iChange); // Civ4 Reimagined
+	int getFarmAdjacencyBonus(YieldTypes eIndex) const; // Civ4 Reimagined
+	void changeFarmAdjacencyBonus(YieldTypes eIndex, int iChange); // Civ4 Reimagined
 	int getTechCommerceRateModifier(CommerceTypes eIndex) const; // Civ4 Reimagined
 	void changeTechCommerceRateModifier(CommerceTypes eIndex, int iChange); // Civ4 Reimagined
 	int getFeatureAdjacentCommerce(CommerceTypes eIndex) const; // Civ4 Reimagined
@@ -1290,6 +1292,7 @@ protected:
 	int* m_aiTechYieldRateModifier; // Civ4 Reimagined
 	int* m_aiTechCommerceRateModifier; // Civ4 Reimagined
 	int* m_aiFeatureAdjacentCommerce; // Civ4 Reimagined
+	int* m_aiFarmAdjacencyBonus; // Civ4 Reimagined
 	int* m_aiTradeYield;
 	int* m_aiCorporationYield;
 	int* m_aiExtraSpecialistYield;

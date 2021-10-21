@@ -5909,6 +5909,17 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 		updateIrrigated();
 		updateYield();
 
+		// Civ4 Reimagined: Update adjacent plots
+		for (iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
+		{
+			CvPlot* pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
+
+			if ((pAdjacentPlot != NULL) && pAdjacentPlot->getOwnerINLINE() == getOwnerINLINE())
+			{
+				pAdjacentPlot->updateYield();
+			}
+		}
+
 		for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
 		{
 			CvPlot* pLoopPlot = plotCity(getX_INLINE(), getY_INLINE(), iI);
@@ -6564,7 +6575,23 @@ int CvPlot::calculateYield(YieldTypes eYield, bool bDisplay) const
 				{
 					iYield += ((pCity->getPopulation() + GC.getYieldInfo(eYield).getPopulationChangeOffset()) / GC.getYieldInfo(eYield).getPopulationChangeDivisor());
 				}
+
 				bCity = true;
+			}
+		}
+
+		// Civ4 Reimagined
+		if (isFlatlands())
+		{
+			pWorkingCity = getWorkingCity();
+
+			if (pWorkingCity != NULL)
+			{
+				if (pWorkingCity->getFarmAdjacencyBonus(eYield) > 0 && eImprovement == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FARM") 
+					&& !GET_TEAM(getTeam()).isHasTech((TechTypes)GC.getInfoTypeForString("TECH_BIOLOGY")))
+				{
+					iYield += calculateAdjacencyBonus(eYield, eImprovement, pWorkingCity->getFarmAdjacencyBonus(eYield));
+				}
 			}
 		}
 
@@ -6695,6 +6722,24 @@ void CvPlot::updateYield()
 	{
 		updateSymbols();
 	}
+}
+
+
+// Civ4 Reimagined
+int CvPlot::calculateAdjacencyBonus(YieldTypes eYield, ImprovementTypes eImprovement, int iNeededAdjacentImprovements) const
+{
+	int iCountAdjacentImprovemnts = 0;
+	for (int iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
+	{
+		CvPlot* pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
+
+		if ((pAdjacentPlot != NULL) && pAdjacentPlot->getOwner() == getOwner() && pAdjacentPlot->getImprovementType() == eImprovement)
+		{
+			iCountAdjacentImprovemnts++;
+		}
+	}
+
+	return iCountAdjacentImprovemnts / iNeededAdjacentImprovements;
 }
 
 

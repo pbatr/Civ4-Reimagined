@@ -115,4 +115,8 @@
 		<Tag>TXT_KEY_MISC_ATTITUDE_CAPITAL_CULTURE</Tag>
 		<English>%D1: "We admire your glorious capital"</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_FARM_ADJACENCY_BONUS</Tag>
+		<English>[ICON_BULLET]Farms in City Proximity (Fat Cross) Give an Additional [ICON_FOOD] Per %d1 Adjacent Farms Before the Discovery Of Biology</English>
+	</TEXT>
 </Civ4GameText>

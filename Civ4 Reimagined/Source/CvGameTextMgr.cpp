@@ -11049,6 +11049,13 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_RELIGION_BOOST"));
 	}
+
+	// Civ4 Reimagined
+	if (kBuilding.getFarmAdjacencyBonus() > 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_FARM_ADJACENCY_BONUS", kBuilding.getFarmAdjacencyBonus()));
+	}
 	
 	// Civ4 Reimagined
 	if (kBuilding.getLootingModifier() != 0)

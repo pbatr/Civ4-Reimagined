@@ -14335,7 +14335,7 @@
 			  <iFlavor>5</iFlavor>
 			</Flavor>
 			<Flavor>
-			  <FlavorType>FLAVOR_PRODUCTION</FlavorType>
+			  <FlavorType>FLAVOR_RELIGION</FlavorType>
 			  <iFlavor>2</iFlavor>
 			</Flavor>
 		  </Flavors>
@@ -14679,7 +14679,12 @@
 			  <iWeightModifier>100</iWeightModifier>
 			</UnitAIWeightModifier>
 		  </UnitAIWeightModifiers>
-		  <ImprovementWeightModifiers/>
+		  <ImprovementWeightModifiers>
+				<ImprovementWeightModifier>
+					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
+					<iWeightModifier>100</iWeightModifier>
+				</ImprovementWeightModifier>
+		  </ImprovementWeightModifiers>
 		  <DiplomacyIntroMusicPeace>
 			<DiploMusicPeaceEra>
 			  <EraType>ERA_ANCIENT</EraType>
@@ -30147,7 +30152,7 @@
 			</Traits>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_CULTURE</FlavorType>
+					<FlavorType>FLAVOR_GROWTH</FlavorType>
 					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
@@ -30567,7 +30572,12 @@
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
-			<ImprovementWeightModifiers/>
+			<ImprovementWeightModifiers>
+				<ImprovementWeightModifier>
+					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
+					<iWeightModifier>100</iWeightModifier>
+				</ImprovementWeightModifier>
+			</ImprovementWeightModifiers>
 			<DiplomacyIntroMusicPeace>
 				<DiploMusicPeaceEra>
 					<EraType>ERA_ANCIENT</EraType>
