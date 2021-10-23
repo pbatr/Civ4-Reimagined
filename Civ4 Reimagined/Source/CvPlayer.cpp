@@ -58,6 +58,7 @@ CvPlayer::CvPlayer()
 	m_aiCapitalCommerceRateModifierPerHappinessSurplus = new int[NUM_COMMERCE_TYPES]; // Civ4 Reimagined
 	m_aiCommerceHappiness = new int[NUM_COMMERCE_TYPES]; // Civ4 Reimagined
 	m_aiStateReligionBuildingCommerce = new int[NUM_COMMERCE_TYPES];
+	m_aiStateReligionCommercePerPopulationOverThreshold = new int[NUM_COMMERCE_TYPES]; // Civ4 Reimagined
 	m_aiSpecialistExtraCommerce = new int[NUM_COMMERCE_TYPES];
 	m_aiCommerceFlexibleCount = new int[NUM_COMMERCE_TYPES];
 	m_aiGoldPerTurnByPlayer = new int[MAX_PLAYERS];
@@ -150,6 +151,7 @@ CvPlayer::~CvPlayer()
 	SAFE_DELETE_ARRAY(m_aiCapitalCommerceRateModifierPerHappinessSurplus); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiCommerceHappiness); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiStateReligionBuildingCommerce);
+	SAFE_DELETE_ARRAY(m_aiStateReligionCommercePerPopulationOverThreshold); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiSpecialistExtraCommerce);
 	SAFE_DELETE_ARRAY(m_aiCommerceFlexibleCount);
 	SAFE_DELETE_ARRAY(m_aiGoldPerTurnByPlayer);
@@ -1011,6 +1013,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		m_aiCapitalCommerceRateModifierPerHappinessSurplus[iI] = 0; // Civ4 Reimagined
 		m_aiCommerceHappiness[iI] = 0; // Civ4 Reimagined
 		m_aiStateReligionBuildingCommerce[iI] = 0;
+		m_aiStateReligionCommercePerPopulationOverThreshold[iI] = 0; // Civ4 Reimagined
 		m_aiSpecialistExtraCommerce[iI] = 0;
 		m_aiCommerceFlexibleCount[iI] = 0;
 		m_aiInitCityCommerce[iI] = 0; // Civ4 Reimagined
@@ -14621,6 +14624,31 @@ void CvPlayer::changeStateReligionBuildingCommerce(CommerceTypes eIndex, int iCh
 }
 
 
+// Civ4 Reimagined
+int CvPlayer::getStateReligionCommercePerPopulationOverThreshold(CommerceTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < NUM_COMMERCE_TYPES, "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_aiStateReligionCommercePerPopulationOverThreshold[eIndex];
+}
+
+
+// Civ4 Reimagined
+void CvPlayer::changeStateReligionCommercePerPopulationOverThreshold(CommerceTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < NUM_COMMERCE_TYPES, "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	if (iChange != 0)
+	{
+		m_aiStateReligionCommercePerPopulationOverThreshold[eIndex] = (m_aiStateReligionCommercePerPopulationOverThreshold[eIndex] + iChange);
+		FAssert(getStateReligionCommercePerPopulationOverThreshold(eIndex) >= 0);
+
+		updateCommerce(eIndex);
+	}
+}
+
+
 int CvPlayer::getSpecialistExtraCommerce(CommerceTypes eIndex) const
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
@@ -20413,6 +20441,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(NUM_COMMERCE_TYPES, m_aiCapitalCommerceRateModifierPerHappinessSurplus); // Civ4 Reimagined
 	pStream->Read(NUM_COMMERCE_TYPES, m_aiCommerceHappiness); // Civ4 Reimagined
 	pStream->Read(NUM_COMMERCE_TYPES, m_aiStateReligionBuildingCommerce);
+	pStream->Read(NUM_COMMERCE_TYPES, m_aiStateReligionCommercePerPopulationOverThreshold); // Civ4 Reimagined
 	pStream->Read(NUM_COMMERCE_TYPES, m_aiSpecialistExtraCommerce);
 	pStream->Read(NUM_COMMERCE_TYPES, m_aiCommerceFlexibleCount);
 	pStream->Read(MAX_PLAYERS, m_aiGoldPerTurnByPlayer);
@@ -21022,6 +21051,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(NUM_COMMERCE_TYPES, m_aiCapitalCommerceRateModifierPerHappinessSurplus); // Civ4 Reimagined
 	pStream->Write(NUM_COMMERCE_TYPES, m_aiCommerceHappiness); // Civ4 Reimagined
 	pStream->Write(NUM_COMMERCE_TYPES, m_aiStateReligionBuildingCommerce);
+	pStream->Write(NUM_COMMERCE_TYPES, m_aiStateReligionCommercePerPopulationOverThreshold); // Civ4 Reimagined
 	pStream->Write(NUM_COMMERCE_TYPES, m_aiSpecialistExtraCommerce);
 	pStream->Write(NUM_COMMERCE_TYPES, m_aiCommerceFlexibleCount);
 	pStream->Write(MAX_PLAYERS, m_aiGoldPerTurnByPlayer);
@@ -28115,6 +28145,14 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_INDUSTRIAL)
 		{
 			changeCatchUpTechModifier(GC.getDefineINT("UNIQUE_POWER_JAPAN"));
+			notifyUniquePowersChanged(true);
+		}
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_KHMER"))
+	{
+		if (eEra == ERA_ANCIENT)
+		{
+			changeStateReligionCommercePerPopulationOverThreshold(COMMERCE_GOLD, GC.getDefineINT("UNIQUE_POWER_KHMER"));
 			notifyUniquePowersChanged(true);
 		}
 	}

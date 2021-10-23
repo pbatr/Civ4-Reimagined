@@ -17133,7 +17133,23 @@ void CvGameTextMgr::setCommerceHelp(CvWStringBuffer &szBuffer, CvCity& city, Com
 		
 		szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_FEATURE_COMMERCE", szFeatureCommerceString.GetCString(), info.getChar()));
 		szBuffer.append(NEWLINE);
+
 		iBaseCommerceRate += iCommerceForAdjacentFeatures;
+		bNeedSubtotal = true; // BUG - Base Commerce 
+	}
+
+	// Civ4 Reimagined: Khmer UP
+	int iPopulationGold = city.getStateReligionCommercePerPopulationOverThreshold(eCommerceType);
+	if (iPopulationGold != 0)
+	{
+		CvWString szPopulationGoldString = iPopulationGold%100 > 0 ?
+				CvWString::format(L"%s%d.%02d", iPopulationGold > 0 ? "+" : "", iPopulationGold/100, iPopulationGold%100) :
+				CvWString::format(L"%s%d", iPopulationGold > 0 ? "+" : "", iPopulationGold/100);
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_GOLD_FOR_RELIGIOUS_POPULATION", szPopulationGoldString.GetCString(), info.getChar()));
+		szBuffer.append(NEWLINE);
+		
+		iBaseCommerceRate += iPopulationGold;
+		bNeedSubtotal = true; // BUG - Base Commerce 
 	}
 	
 	int iCorporationCommerce = city.getCorporationCommerce(eCommerceType);

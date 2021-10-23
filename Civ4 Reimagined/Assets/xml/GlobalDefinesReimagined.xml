@@ -407,6 +407,14 @@
 		<iDefineIntVal>50</iDefineIntVal> <!-- Research bonus for known technologies -->
 	</Define>
 	<Define>
+		<DefineName>UNIQUE_POWER_KHMER</DefineName>
+		<iDefineIntVal>100</iDefineIntVal> <!-- State Religion Commerce times 100 for population over threshold -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_KHMER_THRESHOLD</DefineName>
+		<iDefineIntVal>5</iDefineIntVal> <!-- State Religion Commerce for population over threshold -->
+	</Define>
+	<Define>
 		<DefineName>UNIQUE_POWER_MAYA</DefineName>
 		<iDefineIntVal>10</iDefineIntVal> <!-- Production speed bonus -->
 	</Define>

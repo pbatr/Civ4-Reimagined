@@ -119,4 +119,8 @@
 		<Tag>TXT_KEY_FARM_ADJACENCY_BONUS</Tag>
 		<English>[ICON_BULLET]Farms in City Proximity (Fat Cross) Give an Additional [ICON_FOOD] Per %d1 Adjacent Farms Before the Discovery Of Biology</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_HELP_GOLD_FOR_RELIGIOUS_POPULATION</Tag>
+		<English>[ICON_BULLET]%s1%F2 from Unique Power</English>
+	</TEXT>
 </Civ4GameText>

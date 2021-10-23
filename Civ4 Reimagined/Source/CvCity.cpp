@@ -10596,6 +10596,12 @@ int CvCity::getBaseCommerceRateTimes100(CommerceTypes eIndex) const
 		}
 	}
 
+	// Civ4 Reimagined: Khmer UP
+	if (GET_PLAYER(getOwnerINLINE()).getStateReligionCommercePerPopulationOverThreshold(eIndex) > 0)
+	{
+		iBaseCommerceRate += getStateReligionCommercePerPopulationOverThreshold(eIndex);
+	}
+
 	return iBaseCommerceRate;
 }
 
@@ -18329,5 +18335,18 @@ bool CvCity::convertClassicalTemples(ReligionTypes eReligion)
 	}
 
 	return false;
+}
+
+
+// Civ4 Reimagined
+int CvCity::getStateReligionCommercePerPopulationOverThreshold(CommerceTypes eIndex) const
+{
+	if (GET_PLAYER(getOwnerINLINE()).getStateReligion() != NO_RELIGION && isHasReligion(GET_PLAYER(getOwnerINLINE()).getStateReligion()))
+	{
+		const int iStateReligionCommerce = GET_PLAYER(getOwnerINLINE()).getStateReligionCommercePerPopulationOverThreshold(eIndex);
+		return iStateReligionCommerce * std::max(0, getPopulation() - GC.getDefineINT("UNIQUE_POWER_KHMER_THRESHOLD"));
+	}
+
+	return 0;
 }
 

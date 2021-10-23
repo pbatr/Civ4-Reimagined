@@ -948,6 +948,10 @@ public:
 	int getStateReligionBuildingCommerce(CommerceTypes eIndex) const;	// Exposed to Python
 	void changeStateReligionBuildingCommerce(CommerceTypes eIndex, int iChange);
 
+	// Civ4 Reimagined
+	int getStateReligionCommercePerPopulationOverThreshold(CommerceTypes eIndex) const;
+	void changeStateReligionCommercePerPopulationOverThreshold(CommerceTypes eIndex, int iChange);
+
 	int getSpecialistExtraCommerce(CommerceTypes eIndex) const;	// Exposed to Python
 	void changeSpecialistExtraCommerce(CommerceTypes eIndex, int iChange);
 
@@ -1720,6 +1724,7 @@ protected:
 	int* m_aiCapitalCommerceRateModifierPerHappinessSurplus; //Civ4 Reimagined
 	int* m_aiCommerceHappiness; //Civ4 Reimagined
 	int* m_aiStateReligionBuildingCommerce;
+	int* m_aiStateReligionCommercePerPopulationOverThreshold; // Civ4 Reimagined
 	int* m_aiSpecialistExtraCommerce;
 	int* m_aiCommerceFlexibleCount;
 	int* m_aiGoldPerTurnByPlayer;

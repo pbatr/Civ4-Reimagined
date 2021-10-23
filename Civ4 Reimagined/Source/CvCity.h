@@ -1083,6 +1083,7 @@ public:
 	int getBuildingProductionMultiplier(BuildingTypes eBuilding) const;
 	void destroyReligiousBuildings(ReligionTypes eReligion, ReligionTypes eNewReligion);
 	bool convertClassicalTemples(ReligionTypes eReligion);
+	int getStateReligionCommercePerPopulationOverThreshold(CommerceTypes eIndex) const;
 
 	void read(FDataStreamBase* pStream);
 	void write(FDataStreamBase* pStream);
