@@ -84,7 +84,6 @@ CvPlayer::CvPlayer()
 	m_paiExtraBuildingHappiness = NULL;
 	m_paiExtraBuildingHealth = NULL;
 	m_paiBuildingProductionModifiers = NULL; // Leoreth
-	m_paiTechProgressOnSettling = NULL; // Civ4 Reimagined
 	m_paiFeatureHappiness = NULL;
 	m_paiUnitClassCount = NULL;
 	m_paiUnitClassMaking = NULL;
@@ -639,7 +638,6 @@ void CvPlayer::uninit()
 	SAFE_DELETE_ARRAY(m_paiExtraBuildingHappiness);
 	SAFE_DELETE_ARRAY(m_paiExtraBuildingHealth);
 	SAFE_DELETE_ARRAY(m_paiBuildingProductionModifiers); // Leoreth
-	SAFE_DELETE_ARRAY(m_paiTechProgressOnSettling); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiFeatureHappiness);
 	SAFE_DELETE_ARRAY(m_paiUnitClassCount);
 	SAFE_DELETE_ARRAY(m_paiUnitClassMaking);
@@ -972,6 +970,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iReligiousColonyMaintenanceModifier = 0; // Civ4 Reimagined
 	m_iGreatMerchantPointsPerTrade = 0; // Civ4 Reimagined
 	m_iCapitalCultureAttitudeBonus = 0; // Civ4 Reimagined
+	m_iTechProgressNewCity = 0; // Civ4 Reimagined
 	m_eIdeology = IDEOLOGY_CONSERVATISM; // Civ4 Reimagind
 	m_bAlwaysFreshWater = false; // Civ4 Reimagined
 	m_bCanRemoveFeatures = false; // Civ4 Reimagined
@@ -1120,15 +1119,6 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 			m_paiExtraBuildingHealth[iI] = 0;
 			m_paiBuildingProductionModifiers[iI] = 0;
 		}
-		
-		//Civ4 Reimagined
-		FAssertMsg(m_paiTechProgressOnSettling==NULL, "about to leak memory, CvPlayer::m_paiTechProgressOnSettling");
-		m_paiTechProgressOnSettling = new int[GC.getNumEraInfos()];
-		for (iI = 0; iI < GC.getNumEraInfos(); iI++)
-		{
-			m_paiTechProgressOnSettling[iI] = 0;
-		}
-		
 		
 		FAssertMsg(m_paiFeatureHappiness==NULL, "about to leak memory, CvPlayer::m_paiFeatureHappiness");
 		m_paiFeatureHappiness = new int [GC.getNumFeatureInfos()];
@@ -2390,6 +2380,13 @@ CvCity* CvPlayer::initCity(int iX, int iY, bool bBumpUnits, bool bUpdatePlotGrou
 	FAssertMsg(!(GC.getMapINLINE().plotINLINE(iX, iY)->isCity()), "No city is expected at this plot when initializing new city");
 
 	pCity->init(pCity->getID(), getID(), iX, iY, bBumpUnits, bUpdatePlotGroups);
+
+	// Civ4 Reimagined: Sumer UP
+	if (getTechProgressNewCity() > 0 && getNumCities() > 1)
+	{
+		const int iTechProgress = getTechProgressNewCity() * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getResearchPercent() / 100;
+		GET_TEAM(getTeam()).changeResearchProgress(getCurrentResearch(), iTechProgress, getID());
+	}
 
 	return pCity;
 }
@@ -6979,57 +6976,6 @@ void CvPlayer::found(int iX, int iY)
 		if (hasSlavery() && GET_TEAM(getTeam()).isTerrainTrade((TerrainTypes)GC.getInfoTypeForString("TERRAIN_OCEAN")))
 		{
 			gainSlavePoints(GC.getDefineINT("NEW_COLONY_SLAVE_POINTS"), pCity);
-		}
-	}
-
-	// Civ4 Reimagined: Random tech progress on settling
-	for (iI = 0; iI < GC.getNumEraInfos(); iI++)
-	{
-		int techProgressPercent = getTechProgressOnSettling(static_cast<EraTypes>(iI));
-		
-		if (techProgressPercent != 0)
-		{
-			std::vector< int > availableTechs;
-			
-			for (TechTypes eTech = (TechTypes)0; eTech < GC.getNumTechInfos(); eTech=(TechTypes)(eTech+1))
-			{
-				// Tech of incorrect era?
-				if (GC.getTechInfo(eTech).getEra() != iI)
-				{
-					continue;
-				}
-				
-				// Tech already researched?
-				if (GET_TEAM(getTeam()).isHasTech(eTech))
-				{
-					continue;
-				}
-
-				// Is this researchable?
-				if (!canEverResearch(eTech))
-				{
-					continue;
-				}
-				
-				availableTechs.push_back( (int)eTech );
-			}
-
-			if (availableTechs.size() > 0)
-			{
-				int iRandElement = (GC.getGameINLINE().getSorenRandNum(availableTechs.size(), "Random tech"));
-				TechTypes eRandomTech = (TechTypes)availableTechs.at( iRandElement );
-				
-				GET_TEAM(getTeam()).changeResearchProgressPercent(eRandomTech, techProgressPercent, getID());
-				
-				CvWString szBuffer = gDLL->getText("TXT_KEY_UNIQUE_POWERS_TECH_PROGRESS_SETTLE", GC.getTechInfo(eRandomTech).getTextKeyWide());
-				gDLL->getInterfaceIFace()->addHumanMessage(getID(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_POSITIVE_DINK", MESSAGE_TYPE_MINOR_EVENT);
-			}
-			else
-			{
-				// Effect no longer needed
-				changeTechProgressOnSettling( -techProgressPercent, (EraTypes)iI );
-				notifyUniquePowersChanged(false);
-			}
 		}
 	}
 	
@@ -20392,6 +20338,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iReligiousColonyMaintenanceModifier); // Civ4 Reimagined
 	pStream->Read(&m_iGreatMerchantPointsPerTrade); // Civ4 Reimagined
 	pStream->Read(&m_iCapitalCultureAttitudeBonus); // Civ4 Reimagined
+	pStream->Read(&m_iTechProgressNewCity); // Civ4 Reimagined
 	pStream->Read(&m_bAlwaysFreshWater); // Civ4 Reimagined
 	pStream->Read(&m_bCanRemoveFeatures); // Civ4 Reimagined
 	
@@ -20464,7 +20411,6 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(GC.getNumBuildingInfos(), m_paiExtraBuildingHappiness);
 	pStream->Read(GC.getNumBuildingInfos(), m_paiExtraBuildingHealth);
 	pStream->Read(GC.getNumBuildingInfos(), m_paiBuildingProductionModifiers); // Leoreth
-	pStream->Read(GC.getNumEraInfos(), m_paiTechProgressOnSettling); // Civ4 Reimagined
 	pStream->Read(GC.getNumFeatureInfos(), m_paiFeatureHappiness);
 	pStream->Read(GC.getNumUnitClassInfos(), m_paiUnitClassCount);
 	pStream->Read(GC.getNumUnitClassInfos(), m_paiUnitClassMaking);
@@ -21012,6 +20958,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iReligiousColonyMaintenanceModifier); // Civ4 Reimagined
 	pStream->Write(m_iGreatMerchantPointsPerTrade); // Civ4 Reimagined
 	pStream->Write(m_iCapitalCultureAttitudeBonus); // Civ4 Reimagined
+	pStream->Write(m_iTechProgressNewCity); // Civ4 Reimagined
 	pStream->Write(m_bAlwaysFreshWater); // Civ4 Reimagined
 	pStream->Write(m_bCanRemoveFeatures); // Civ4 Reimagined
 
@@ -21074,7 +21021,6 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumBuildingInfos(), m_paiExtraBuildingHappiness);
 	pStream->Write(GC.getNumBuildingInfos(), m_paiExtraBuildingHealth);
 	pStream->Write(GC.getNumBuildingInfos(), m_paiBuildingProductionModifiers); // Leoreth
-	pStream->Write(GC.getNumEraInfos(), m_paiTechProgressOnSettling); // Civ4 Reimagined
 	pStream->Write(GC.getNumFeatureInfos(), m_paiFeatureHappiness);
 	pStream->Write(GC.getNumUnitClassInfos(), m_paiUnitClassCount);
 	pStream->Write(GC.getNumUnitClassInfos(), m_paiUnitClassMaking);
@@ -27042,17 +26988,17 @@ void CvPlayer::changeFreePopulationInCapital(int iChange)
 }
 
 // Civ4 Reimagined
-int CvPlayer::getTechProgressOnSettling(EraTypes eEra) const
+int CvPlayer::getTechProgressNewCity() const
 {
-	return m_paiTechProgressOnSettling[(int)eEra];
+	return m_iTechProgressNewCity;
 }
 
 // Civ4 Reimagined
-void CvPlayer::changeTechProgressOnSettling(int iChange, EraTypes eEra)
+void CvPlayer::changeTechProgressNewCity(int iChange)
 {
 	if (iChange != 0)
 	{
-		m_paiTechProgressOnSettling[(int)eEra] += iChange;
+		m_iTechProgressNewCity += iChange;
 	}
 }
 
@@ -28190,15 +28136,8 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	{
 		if (eEra == ERA_ANCIENT) 
 		{
-			changeTechProgressOnSettling( GC.getDefineINT("UNIQUE_POWER_SUMERIA"), (EraTypes)0 );
-			changeEarlyPriestExtraFood(1);
+			changeTechProgressNewCity( GC.getDefineINT("UNIQUE_POWER_SUMERIA"));
 			notifyUniquePowersChanged(true);
-		}
-		else if (eEra == ERA_CLASSICAL)
-		{
-			changeTechProgressOnSettling( -GC.getDefineINT("UNIQUE_POWER_SUMERIA"), (EraTypes)0 );
-			changeEarlyPriestExtraFood(-1);
-			notifyUniquePowersChanged(false);
 		}
 	}
 }

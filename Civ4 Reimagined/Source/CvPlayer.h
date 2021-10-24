@@ -561,8 +561,8 @@ public:
 	void changeFreePopulationInCapital(int iChange);
 
 	// Civ4 Reimagined
-	int getTechProgressOnSettling(EraTypes eEra) const;
-	void changeTechProgressOnSettling(int iProcentProgress, EraTypes eEra);
+	int getTechProgressNewCity() const;
+	void changeTechProgressNewCity(int iChange);
 	
 	// Civ4 Reimagined
 	CivicTypes getFreeCivicEnabled() const;
@@ -1676,6 +1676,7 @@ protected:
 	int m_iReligiousColonyMaintenanceModifier; // Civ4 Reimagined
 	int m_iGreatMerchantPointsPerTrade; // Civ4 Reimagined
 	int m_iCapitalCultureAttitudeBonus; // Civ4 Reimagined
+	int m_iTechProgressNewCity; // Civ4 Reimagined
 	bool m_bAlwaysFreshWater; // Civ4 Reimagined
 	bool m_bCanRemoveFeatures; // Civ4 Reimagined
 	
@@ -1758,7 +1759,6 @@ protected:
 	int* m_paiBuildingProductionModifiers; // Leoreth
 	int* m_paiUnitClassProductionModifier; // Civ4 Reimagined
 	int* m_paiReligiousUnitClassProductionModifier; // Civ4 Reimagined
-	int* m_paiTechProgressOnSettling; // Civ4 Reimagined
 	int* m_paiFeatureHappiness;
 	int* m_paiUnitClassCount;
 	int* m_paiUnitClassMaking;

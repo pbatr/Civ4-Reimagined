@@ -432,7 +432,7 @@
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_SUMERIA</DefineName>
-		<iDefineIntVal>50</iDefineIntVal> <!-- Per cent tech progress -->
+		<iDefineIntVal>80</iDefineIntVal> <!-- Tech progress per new city -->
 	</Define>
 	<!-- Unique Powers end -->
 </Civ4Defines>
