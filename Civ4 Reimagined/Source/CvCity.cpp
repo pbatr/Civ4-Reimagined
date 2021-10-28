@@ -4515,6 +4515,13 @@ void CvCity::processBuilding(BuildingTypes eBuilding, int iChange, bool bObsolet
 	updateBuildingCommerce();
 
 	setLayoutDirty(true);
+
+	// Civ4 Reimagined
+	if (iChange > 0)
+	{
+		// Civ4 Reimagined
+		GET_PLAYER(getOwnerINLINE()).checkBuildingEurekas();
+	}
 }
 
 
@@ -6142,6 +6149,22 @@ void CvCity::setPopulation(int iNewValue)
 			gDLL->getInterfaceIFace()->setDirty(CityScreen_DIRTY_BIT, true);
 		}
 
+		// Civ4 Reimagined
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_POLYTHEISM")))
+		{
+			if (getPopulation() > 1)
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_POLYTHEISM"), getOwnerINLINE(), true);
+			}
+		}
+
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MONARCHY")))
+		{
+			if (getPopulation() > 5)
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MONARCHY"), getOwnerINLINE(), true);
+			}
+		}
 		//updateGenericBuildings();
 	}
 }
@@ -6410,6 +6433,15 @@ void CvCity::changeNumWorldWonders(int iChange)
 {
 	m_iNumWorldWonders = (m_iNumWorldWonders + iChange);
 	FAssert(getNumWorldWonders() >= 0);
+
+	// CIv4 Reimagined
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PHILOSOPHY")))
+	{
+		if (iChange > 0)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PHILOSOPHY"), getOwnerINLINE(), true);
+		}
+	}
 }
 
 
@@ -9292,6 +9324,9 @@ void CvCity::setCultureLevel(CultureLevelTypes eNewValue, bool bUpdatePlotGroups
 	{
 		m_eCultureLevel = eNewValue;
 
+		// Civ4 Reimagined
+		checkCultureLevelEurekas();
+
 		if (eOldValue != NO_CULTURELEVEL)
 		{
 			for (iDX = -eOldValue; iDX <= eOldValue; iDX++)
@@ -9373,6 +9408,8 @@ void CvCity::setCultureLevel(CultureLevelTypes eNewValue, bool bUpdatePlotGroups
 
 				// ONEVENT - Culture growth
 				CvEventReporter::getInstance().cultureExpansion(this, getOwnerINLINE());
+
+
 				
 				//Stop Build Culture
 				/* original BTS code
@@ -13882,6 +13919,14 @@ void CvCity::updateTradeRoutes()
 
 			// Civ4 Reimagined
 			iTradeProfit += calculateTradeProfitTimes100(pLoopCity);
+
+			if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CURRENCY")))
+			{
+				if (pLoopCity->getOwnerINLINE() != getOwnerINLINE())
+				{
+					GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CURRENCY"), getOwnerINLINE(), true);
+				}
+			}
 		}
 	}
 
@@ -18132,5 +18177,18 @@ bool CvCity::convertClassicalTemples(ReligionTypes eReligion)
 	}
 
 	return false;
+}
+
+
+// Civ4 Reimagined
+void CvCity::checkCultureLevelEurekas()
+{
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_AESTHETICS")))
+	{
+		if (getCultureLevel() >= (CultureLevelTypes)GC.getInfoTypeForString("CULTURELEVEL_REFINED"))
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_AESTHETICS"), getOwnerINLINE(), true);
+		}
+	}
 }
 

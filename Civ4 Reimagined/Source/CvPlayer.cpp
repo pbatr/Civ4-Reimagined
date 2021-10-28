@@ -2318,6 +2318,15 @@ CvCity* CvPlayer::initCity(int iX, int iY, bool bBumpUnits, bool bUpdatePlotGrou
 
 	pCity->init(pCity->getID(), getID(), iX, iY, bBumpUnits, bUpdatePlotGroups);
 
+	// Civ4 Reimagined
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CALENDAR")))
+	{
+		if (pCity->plot()->isAdjacentToPeak())
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CALENDAR"), getID(), true);
+		}
+	}
+
 	return pCity;
 }
 
@@ -6891,6 +6900,12 @@ void CvPlayer::found(int iX, int iY)
 
 	CvEventReporter::getInstance().cityBuilt(pCity);
 
+	// Civ4 Reimagined
+	if (pCity->isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN())) 
+	{
+		GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_SAILING"), getID(), true);
+	}
+
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      10/02/09                                jdog5000      */
 /*                                                                                              */
@@ -9887,6 +9902,15 @@ void CvPlayer::changeTotalPopulation(int iChange)
 	changePopScore(getPopulationScore(getTotalPopulation()));
 	// Civ4 Reimagined
 	updateBonusRatio();
+
+	// Civ4 Reimagined
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CODE_OF_LAWS")))
+	{
+		if (getTotalPopulation() > 9)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CODE_OF_LAWS"), getID(), true);
+		}
+	}
 }
 
 
@@ -9962,6 +9986,15 @@ void CvPlayer::setGold(int iNewValue)
 			gDLL->getInterfaceIFace()->setDirty(MiscButtons_DIRTY_BIT, true);
 			gDLL->getInterfaceIFace()->setDirty(SelectionButtons_DIRTY_BIT, true);
 			gDLL->getInterfaceIFace()->setDirty(GameData_DIRTY_BIT, true);
+		}
+
+		// Civ4 Reimagined
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_BANKING")))
+		{
+			if (getGold() >= 300)
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_BANKING"), getID(), true);
+			}
 		}
 	}
 }
@@ -10791,6 +10824,24 @@ void CvPlayer::changeNumMilitaryUnits(int iChange)
 		if (getID() == GC.getGameINLINE().getActivePlayer())
 		{
 			gDLL->getInterfaceIFace()->setDirty(GameData_DIRTY_BIT, true);
+		}
+
+		// Civ4 Reimagined
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_HORSEBACK_RIDING")))
+		{
+			if (getUnitClassCount((UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_CHARIOT")) > 0)
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_HORSEBACK_RIDING"), getID(), true);
+			}
+		}
+
+		// Civ4 Reimagined
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_COMPASS")))
+		{
+			if (getUnitClassCount((UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_GALLEY")) > 1)
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_COMPASS"), getID(), true);
+			}
 		}
 	}
 }
@@ -13599,6 +13650,15 @@ void CvPlayer::setLastStateReligion(ReligionTypes eNewValue)
 
 		gDLL->getInterfaceIFace()->setDirty(Score_DIRTY_BIT, true);
 
+		// Civ4 Reimagined
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MUSIC")))
+		{
+			if (getLastStateReligion() != NO_RELIGION)
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MUSIC"), getID(), true);
+			}
+		}
+
 		if (GC.getGameINLINE().isFinalInitialized())
 		{
 			if (gDLL->isDiplomacy() && (gDLL->getDiplomacyPlayer() == getID()))
@@ -14627,6 +14687,8 @@ void CvPlayer::changeImprovementCount(ImprovementTypes eIndex, int iChange)
 	FAssertMsg(eIndex < GC.getNumImprovementInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
 	m_paiImprovementCount[eIndex] = (m_paiImprovementCount[eIndex] + iChange);
 	FAssert(getImprovementCount(eIndex) >= 0);
+
+	checkImprovementEurekas();
 }
 
 
@@ -15196,6 +15258,15 @@ void CvPlayer::changeHasReligionCount(ReligionTypes eIndex, int iChange)
 		GC.getGameINLINE().updateBuildingCommerce();
 
 		GC.getGameINLINE().AI_makeAssignWorkDirty();
+
+		// Civ4 Reimagined
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_THEOLOGY")))
+		{
+			if (iChange > 0)
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_THEOLOGY"), getID(), true);
+			}
+		}
 	}
 }
 
@@ -17043,6 +17114,13 @@ int CvPlayer::getEspionageMissionBaseCost(EspionageMissionTypes eMission, Player
 					// Civ4 Reimagined: Apply research modifier to tech stealing
 					iCost *= 100;
 					iCost /= calculateResearchModifier((TechTypes)iTech);
+
+					if (!CvWString(GC.getTechInfo(eTech).getHelp()).empty())
+					{
+						iCost *= 100 - GC.getDefineINT("EUREKA_TECH_BOOST_PERCENTAGE");
+						iCost /= 100;
+					}
+
 					if (iCost < iProdCost)
 					{
 						iProdCost = iCost;
@@ -17057,6 +17135,12 @@ int CvPlayer::getEspionageMissionBaseCost(EspionageMissionTypes eMission, Player
 			// Civ4 Reimagined: Apply research modifier to tech stealing
 			iProdCost *= 100;
 			iProdCost /= calculateResearchModifier(eTech);
+
+			if (!CvWString(GC.getTechInfo(eTech).getHelp()).empty())
+			{
+				iProdCost *= 100 - GC.getDefineINT("EUREKA_TECH_BOOST_PERCENTAGE");
+				iProdCost /= 100;
+			}
 		}
 
 		if (NO_TECH != eTech)
@@ -21122,22 +21206,32 @@ void CvPlayer::createGreatPeople(UnitTypes eGreatPersonUnit, bool bIncrementThre
 	// Civ4 Reimagined: Messages for the owner itself only
 	gDLL->getInterfaceIFace()->addHumanMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szReplayMessage, "AS2D_UNIT_GREATPEOPLE", MESSAGE_TYPE_MAJOR_EVENT, pGreatPeopleUnit->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_UNIT_TEXT"), iX, iY, true, true);
 
-	/* Civ4 Reimagined: This code still works, but the notifications were deemed as annoying.
-	for (int iI = 0; iI < MAX_PLAYERS; iI++)
+	// Civ4 Reimagined
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MATHEMATICS")))
 	{
-		if (GET_PLAYER((PlayerTypes)iI).isAlive())
+		if (eGreatPersonUnit == (UnitTypes)GC.getInfoTypeForString("UNIT_SCIENTIST"))
 		{
-			if (pPlot->isRevealed(GET_PLAYER((PlayerTypes)iI).getTeam(), false))
-			{
-				gDLL->getInterfaceIFace()->addHumanMessage(((PlayerTypes)iI), false, GC.getEVENT_MESSAGE_TIME(), szReplayMessage, "AS2D_UNIT_GREATPEOPLE", MESSAGE_TYPE_MAJOR_EVENT, pGreatPeopleUnit->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_UNIT_TEXT"), iX, iY, true, true);
-			}
-			else
-			{
-				CvWString szMessage = gDLL->getText("TXT_KEY_MISC_GP_BORN_SOMEWHERE", pGreatPeopleUnit->getName().GetCString());
-				gDLL->getInterfaceIFace()->addHumanMessage(((PlayerTypes)iI), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_UNIT_GREATPEOPLE", MESSAGE_TYPE_MAJOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_UNIT_TEXT"));
-			}
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MATHEMATICS"), getID(), true);
 		}
-	}*/
+	}
+
+	// Civ4 Reimagined
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MEDITATION")))
+	{
+		if (eGreatPersonUnit == (UnitTypes)GC.getInfoTypeForString("UNIT_PROPHET"))
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MEDITATION"), getID(), true);
+		}
+	}
+
+	// Civ4 Reimagined
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PAPER")))
+	{
+		if (getPlayerRecord()->getNumUnitsBuilt((UnitTypes)GC.getInfoTypeForString("UNIT_SCIENTIST")) > 1)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PAPER"), getID(), true);
+		}
+	}
 
 	// Python Event
 	if (pCity)
@@ -26686,6 +26780,119 @@ int CvPlayer::getIdeologyChangeCivicModifier(CivicTypes eCivic) const
 	}
 
 	return iModifier;
+}
+
+
+// Civ4 Reimagined
+void CvPlayer::checkImprovementEurekas()
+{
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_POTTERY")))
+	{
+		if (getImprovementCount((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FARM")) > 0)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_POTTERY"), getID(), true);
+		}
+	}
+
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_LEATHER_WORKING")))
+	{
+		if (getImprovementCount((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_CAMP")) > 0)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_LEATHER_WORKING"), getID(), true);
+		}
+	}
+
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_METAL_CASTING")))
+	{
+		if (getImprovementCount((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_MINE")) > 5)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_METAL_CASTING"), getID(), true);
+		}
+	}
+
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CROP_ROTATION")))
+	{
+		if (getImprovementCount((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FARM")) > 9)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CROP_ROTATION"), getID(), true);
+		}
+	}
+
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ENGINEERING")))
+	{
+		if (getImprovementCount((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_WATERMILL")) > 1)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ENGINEERING"), getID(), true);
+		}
+	}
+
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_FEUDALISM")))
+	{
+		if (getImprovementCount((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FORT")) > 1)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_FEUDALISM"), getID(), true);
+		}
+	}
+}
+
+// Civ4 Reimagined
+void CvPlayer::checkBuildingEurekas()
+{
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PRIESTHOOD")))
+	{
+		if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_MONUMENT")) > 1)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PRIESTHOOD"), getID(), true);
+		}
+	}
+
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MONOTHEISM")))
+	{
+		if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_CLASSICAL_TEMPLE")) > 2)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MONOTHEISM"), getID(), true);
+		}
+	}
+
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_LITERATURE")))
+	{
+		if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_LIBRARY")) > 2)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_LITERATURE"), getID(), true);
+		}
+	}
+
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CONSTRUCTION")))
+	{
+		if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_WALLS")) > 1)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CONSTRUCTION"), getID(), true);
+		}
+	}
+
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MACHINERY")))
+	{
+		if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_FORGE")) > 0)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MACHINERY"), getID(), true);
+		}
+	}
+
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_GUILDS")))
+	{
+		if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_HARBOR")) > 2)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_GUILDS"), getID(), true);
+		}
+	}
+
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CIVIL_SERVICE")))
+	{
+		if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_COURTHOUSE")) > 3)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CIVIL_SERVICE"), getID(), true);
+		}
+	}
 }
 
 /************************************************************************************************/

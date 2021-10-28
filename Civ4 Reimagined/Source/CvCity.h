@@ -1079,6 +1079,7 @@ public:
 	int getBuildingProductionMultiplier(BuildingTypes eBuilding) const;
 	void destroyReligiousBuildings(ReligionTypes eReligion, ReligionTypes eNewReligion);
 	bool convertClassicalTemples(ReligionTypes eReligion);
+	void checkCultureLevelEurekas();
 
 	void read(FDataStreamBase* pStream);
 	void write(FDataStreamBase* pStream);

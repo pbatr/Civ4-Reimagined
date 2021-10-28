@@ -1371,6 +1371,9 @@ public:
 	void setUniqueAztecPromotion(bool bNewValue); // Civ4 Reimagined
 	void doUniqueAztecPromotion(CvUnit* pUnit); // Civ4 Reimagined
 
+	void checkImprovementEurekas(); // Civ4 Reimagined
+	void checkBuildingEurekas(); // Civ4 Reimagined
+
 	// Civ4 Reimagind Ideologies
 	int getIdeologyInfluence(IdeologyTypes eIdeology) const;
 	void changeIdeologyInfluence(IdeologyTypes eIdeology, int iChange);

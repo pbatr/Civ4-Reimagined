@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Sid Meier's Civilization 4 -->
+<!-- Copyright Firaxis Games 2005 -->
+<Civ4GameText xmlns="http://www.firaxis.com">
+	<TEXT>
+		<Tag>TXT_KEY_MISC_TECH_BOOSTED</Tag>
+		<English>%s1_TechName has been boosted!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_EUREKA_TO_BOOST</Tag>
+		<English>[ICON_BULLET]To Boost:</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_EUREKA_BOOSTED</Tag>
+		<English>[ICON_BULLET]Boosted:</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_SAILING_EUREKA</Tag>
+		<English>Settle on Coast</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_POTTERY_EUREKA</Tag>
+		<English>Own a Farm</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ANIMAL_HUSBANDRY_EUREKA</Tag>
+		<English>Defeat an Animal</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_LEATHER_WORKING_EUREKA</Tag>
+		<English>Own a Camp</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_POLYTHEISM_EUREKA</Tag>
+		<English>Have a City with 2 Population</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_MASONRY_EUREKA</Tag>
+		<English>Have Either Stone or Marble in Your Empire</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_WRITING_EUREKA</Tag>
+		<English>Meet Another Civilization</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_HORSEBACK_RIDING_EUREKA</Tag>
+		<English>Own a Chariot</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_PRIESTHOOD_EUREKA</Tag>
+		<English>Own 2 Monuments</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_MONARCHY_EUREKA</Tag>
+		<English>Have a City with 6 Population</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_BRONZE_WORKING_EUREKA</Tag>
+		<English>Build a Copper Mine</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_AESTHETICS_EUREKA</Tag>
+		<English>Have a City with Refined Culture</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_MATHEMATICS_EUREKA</Tag>
+		<English>Earn a Great Scientist</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_MEDITATION_EUREKA</Tag>
+		<English>Earn a Great Prophet</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_MONOTHEISM_EUREKA</Tag>
+		<English>Own 3 Classical Temples</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_METAL_CASTING_EUREKA</Tag>
+		<English>Own 6 Mines</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_IRON_WORKING_EUREKA</Tag>
+		<English>Kill a Unit with an Axeman</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_LITERATURE_EUREKA</Tag>
+		<English>Own 3 Libraries</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_CONSTRUCTION_EUREKA</Tag>
+		<English>Own 2 Walls</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_CURRENCY_EUREKA</Tag>
+		<English>Establish a Trade Route to a Foreign City</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_CALENDAR_EUREKA</Tag>
+		<English>Have a City adjacent to a Peak</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_CODE_OF_LAWS_EUREKA</Tag>
+		<English>Have a Total Population of 10 in Your Empire</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_MACHINERY_EUREKA</Tag>
+		<English>Own a Forge</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_NAVIGATION_EUREKA</Tag>
+		<English>Own 2 Galleys</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_DRAMA_EUREKA</Tag>
+		<English>Lose a Unit in Battle</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_GUILDS_EUREKA</Tag>
+		<English>Own 3 Harbors</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_CROP_ROTATION_EUREKA</Tag>
+		<English>Own 10 Farms</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_CIVIL_SERVICE_EUREKA</Tag>
+		<English>Own 4 Courthouses</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ENGINEERING_EUREKA</Tag>
+		<English>Own 2 Water Mills</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_THEOLOGY_EUREKA</Tag>
+		<English>Have a Religion in One of Your Cities</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_PHILOSOPHY_EUREKA</Tag>
+		<English>Own a World Wonder</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_FEUDALISM_EUREKA</Tag>
+		<English>Own 2 Forts</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ALCHEMY_EUREKA</Tag>
+		<English>Earn 2 Great Scientists</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_BANKING_EUREKA</Tag>
+		<English>Have 300 Gold</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_OPTICS_EUREKA</Tag>
+		<English>Own a Naval Unit with a Navigation Promotion</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_MUSIC_EUREKA</Tag>
+		<English>Adopt a State Religion</English>
+	</TEXT>
+</Civ4GameText>

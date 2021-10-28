@@ -341,6 +341,10 @@
 		<DefineName>TARGET_POPULATION_FUTURE</DefineName>
 		<iDefineIntVal>3</iDefineIntVal>
 	</Define>
+	<Define>
+		<DefineName>EUREKA_TECH_BOOST_PERCENTAGE</DefineName>
+		<iDefineIntVal>40</iDefineIntVal>
+	</Define>
 	<!-- Not used at the moment. -->	
 	<Define>
 		<DefineName>UNIQUE_POWER_CULTURE_INCOME_PERCENT_PER_CITY</DefineName>

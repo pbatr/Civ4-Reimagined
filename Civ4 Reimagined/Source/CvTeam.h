@@ -365,6 +365,10 @@ public:
 	bool isNoTradeTech(TechTypes eIndex) const;																														// Exposed to Python
 	void setNoTradeTech(TechTypes eIndex, bool bNewValue);																					// Exposed to Python
 
+	// Civ4 Reimagined
+	bool isTechBoosted(TechTypes eIndex) const;
+	void setTechBoosted(TechTypes eIndex, PlayerTypes ePlayer, bool iNewValue);
+
 	int getImprovementYieldChange(ImprovementTypes eIndex1, YieldTypes eIndex2) const;										// Exposed to Python 
 	void changeImprovementYieldChange(ImprovementTypes eIndex1, YieldTypes eIndex2, int iChange);		// Exposed to Python 
 	
@@ -519,6 +523,7 @@ protected:
 
 	bool* m_pabHasTech;
 	bool* m_pabNoTradeTech;
+	bool* m_pabTechBoosted; // Civ4 Reimagined
 
 	int** m_ppaaiImprovementYieldChange;
 	int** m_ppaaiBuildingYieldChange; // Civ4 Reimagined

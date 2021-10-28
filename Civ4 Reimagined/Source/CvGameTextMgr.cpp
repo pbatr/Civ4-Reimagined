@@ -8660,9 +8660,19 @@ void CvGameTextMgr::setTechHelp(CvWStringBuffer &szBuffer, TechTypes eTech, bool
 		buildSingleLineTechTreeString(szBuffer, eTech, bPlayerContext);
 	}
 
+	// Civ4 Reimagined
 	if (!CvWString(GC.getTechInfo(eTech).getHelp()).empty())
 	{
-		szBuffer.append(CvWString::format(L"%s%s", NEWLINE, GC.getTechInfo(eTech).getHelp()).c_str());
+		if (GC.getGameINLINE().getActivePlayer() == NO_PLAYER || !GET_TEAM(GC.getGameINLINE().getActiveTeam()).isTechBoosted(eTech))
+		{
+			szTempBuffer.Format( SETCOLR L"%s%s %s" ENDCOLR, TEXT_COLOR("COLOR_HIGHLIGHT_TEXT"), NEWLINE, gDLL->getText("TXT_KEY_MISC_EUREKA_TO_BOOST").GetCString(), GC.getTechInfo(eTech).getHelp());
+			szBuffer.append(szTempBuffer);
+		}
+		else
+		{
+			szTempBuffer.Format( SETCOLR L"%s%s %s" ENDCOLR , TEXT_COLOR("COLOR_TECH_TEXT"), NEWLINE, gDLL->getText("TXT_KEY_MISC_EUREKA_BOOSTED").GetCString(), GC.getTechInfo(eTech).getHelp());
+			szBuffer.append(szTempBuffer);
+		}
 	}
 
 	if (!bCivilopediaText)
