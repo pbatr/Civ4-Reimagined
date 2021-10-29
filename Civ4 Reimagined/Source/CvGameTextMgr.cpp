@@ -8661,7 +8661,7 @@ void CvGameTextMgr::setTechHelp(CvWStringBuffer &szBuffer, TechTypes eTech, bool
 	}
 
 	// Civ4 Reimagined
-	if (!CvWString(GC.getTechInfo(eTech).getHelp()).empty() &&  GC.getDefineINT("EUREKA_TECH_BOOST_PERCENTAGE") > 0)
+	if (!CvWString(GC.getTechInfo(eTech).getHelp()).empty() && GC.getDefineINT("EUREKA_TECH_BOOST_PERCENTAGE") > 0)
 	{
 		if (GC.getGameINLINE().getActivePlayer() == NO_PLAYER || !GET_TEAM(GC.getGameINLINE().getActiveTeam()).isTechBoosted(eTech))
 		{

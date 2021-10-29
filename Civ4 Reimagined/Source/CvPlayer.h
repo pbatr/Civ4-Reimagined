@@ -1373,6 +1373,7 @@ public:
 
 	void checkImprovementEurekas(); // Civ4 Reimagined
 	void checkBuildingEurekas(); // Civ4 Reimagined
+	void checkWarPeaceEurekas(); // Civ4 Reimagined
 
 	// Civ4 Reimagind Ideologies
 	int getIdeologyInfluence(IdeologyTypes eIdeology) const;

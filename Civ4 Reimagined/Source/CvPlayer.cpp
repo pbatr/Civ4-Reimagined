@@ -2327,6 +2327,15 @@ CvCity* CvPlayer::initCity(int iX, int iY, bool bBumpUnits, bool bUpdatePlotGrou
 		}
 	}
 
+	// Civ4 Reimagined
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ASTRONOMY")))
+	{
+		if (pCity->plot()->countAdjacentPeaks() > 2)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ASTRONOMY"), getID(), true);
+		}
+	}
+
 	return pCity;
 }
 
@@ -10843,6 +10852,15 @@ void CvPlayer::changeNumMilitaryUnits(int iChange)
 				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_COMPASS"), getID(), true);
 			}
 		}
+
+		// Civ4 Reimagined
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_GUNPOWDER")))
+		{
+			if (getUnitClassCount((UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_MUSKETMAN")) > 5)
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_GUNPOWDER"), getID(), true);
+			}
+		}
 	}
 }
 
@@ -11005,6 +11023,12 @@ void CvPlayer::changeEnableSlavesCount(int iChange)
 				}
 				
 				gDLL->getInterfaceIFace()->addHumanMessage(getID(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MISC_SLAVES_LOST").GetCString(), "AS2D_UNITDISBANDED", MESSAGE_TYPE_MINOR_EVENT);
+			}
+
+			// Civ4 Reimagined
+			if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_LIBERALISM")))
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_LIBERALISM"), getID(), true);
 			}
 		}
 	}
@@ -13674,6 +13698,9 @@ void CvPlayer::setLastStateReligion(ReligionTypes eNewValue)
 					{
 						if (GET_PLAYER((PlayerTypes)iI).isAlive())
 						{
+							// Civ4 Reimagined
+							GET_PLAYER((PlayerTypes)iI).checkWarPeaceEurekas();
+
 							if (GET_TEAM(getTeam()).isHasMet(GET_PLAYER((PlayerTypes)iI).getTeam()))
 							{
 								szBuffer = gDLL->getText("TXT_KEY_MISC_PLAYER_CONVERT_RELIGION", getNameKey(), GC.getReligionInfo(getLastStateReligion()).getTextKeyWide());
@@ -21233,6 +21260,24 @@ void CvPlayer::createGreatPeople(UnitTypes eGreatPersonUnit, bool bIncrementThre
 		}
 	}
 
+	// Civ4 Reimagined
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CORPORATION")))
+	{
+		if (eGreatPersonUnit == (UnitTypes)GC.getInfoTypeForString("UNIT_MERCHANT"))
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CORPORATION"), getID(), true);
+		}
+	}
+
+	// Civ4 Reimagined
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MILITARY_TRADITION")))
+	{
+		if (getPlayerRecord()->getNumUnitsBuilt((UnitTypes)GC.getInfoTypeForString("UNIT_GREAT_GENERAL")) > 1)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MILITARY_TRADITION"), getID(), true);
+		}
+	}
+
 	// Python Event
 	if (pCity)
 	{
@@ -26786,6 +26831,11 @@ int CvPlayer::getIdeologyChangeCivicModifier(CivicTypes eCivic) const
 // Civ4 Reimagined
 void CvPlayer::checkImprovementEurekas()
 {
+	if (GC.getDefineINT("EUREKA_TECH_BOOST_PERCENTAGE") <= 0)
+	{
+		return;
+	}
+
 	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_POTTERY")))
 	{
 		if (getImprovementCount((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FARM")) > 0)
@@ -26833,11 +26883,32 @@ void CvPlayer::checkImprovementEurekas()
 			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_FEUDALISM"), getID(), true);
 		}
 	}
+
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_LIBERALISM")))
+	{
+		if (getImprovementCount((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_TOWN")) > 9)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_LIBERALISM"), getID(), true);
+		}
+	}
+
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_REPLACEABLE_PARTS")))
+	{
+		if (getImprovementCount((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_WORKSHOP")) > 3)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_REPLACEABLE_PARTS"), getID(), true);
+		}
+	}
 }
 
 // Civ4 Reimagined
 void CvPlayer::checkBuildingEurekas()
 {
+	if (GC.getDefineINT("EUREKA_TECH_BOOST_PERCENTAGE") <= 0)
+	{
+		return;
+	}
+
 	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PRIESTHOOD")))
 	{
 		if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_MONUMENT")) > 1)
@@ -26891,6 +26962,76 @@ void CvPlayer::checkBuildingEurekas()
 		if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_COURTHOUSE")) > 3)
 		{
 			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CIVIL_SERVICE"), getID(), true);
+		}
+	}
+
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_EDUCATION")))
+	{
+		if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_ACADEMY")) > 0)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_EDUCATION"), getID(), true);
+		}
+	}
+
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_SCIENTIFIC_METHOD")))
+	{
+		if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_OXFORD_UNIVERSITY")) > 0)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_SCIENTIFIC_METHOD"), getID(), true);
+		}
+	}
+
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ECONOMICS")))
+	{
+		if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_BANK")) > 5)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ECONOMICS"), getID(), true);
+		}
+	}
+
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PRINTING_PRESS")))
+	{
+		int iCount = 0;
+
+		for (int iI = 0; iI < GC.getNumBuildingClassInfos(); iI++)
+		{
+			BuildingTypes eBuilding = (BuildingTypes)(GC.getCivilizationInfo(getCivilizationType()).getCivilizationBuildings((BuildingClassTypes)iI));
+			if (GC.getBuildingInfo(eBuilding).getSpecialBuildingType() == (SpecialBuildingTypes)GC.getInfoTypeForString("SPECIALBUILDING_MONASTERY"))
+			{
+				iCount += getBuildingClassCount((BuildingClassTypes)iI);
+			}
+		}
+
+		if (iCount > 5)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PRINTING_PRESS"), getID(), true);
+		}
+	}
+}
+
+
+void CvPlayer::checkWarPeaceEurekas()
+{
+	if (GC.getDefineINT("EUREKA_TECH_BOOST_PERCENTAGE") <= 0)
+	{
+		return;
+	}
+
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_DIVINE_RIGHT")))
+	{
+		const ReligionTypes ourStateReligion = getStateReligion();
+		for (int iI = 0; iI < MAX_PLAYERS; iI++)
+		{
+			if (GET_TEAM(getTeam()).isAtWar(GET_PLAYER((PlayerTypes)iI).getTeam()))
+			{
+				ReligionTypes theirStateReligion = GET_PLAYER((PlayerTypes)iI).getStateReligion();
+
+				if (ourStateReligion != NO_RELIGION && theirStateReligion != NO_RELIGION && ourStateReligion != theirStateReligion)
+				{
+					GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_DIVINE_RIGHT"), getID(), true);
+					break;
+				}
+			}
 		}
 	}
 }

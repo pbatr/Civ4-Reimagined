@@ -240,6 +240,7 @@ void CvTeam::reset(TeamTypes eID, bool bConstructorCall)
 	m_iNoConquestResistanceCount = 0; //Civ4 Reimagined
 	m_iNoConscriptUnhappinessCount = 0; //Civ4 Reimagined
 	m_iCanFarmHillsCount = 0; //Civ4 Reimagined
+	m_iNumRevealedContinents = 0; //Civ4 Reimagined
 
 	m_bMapCentering = false;
 	m_bCapitulated = false;
@@ -1388,6 +1389,9 @@ void CvTeam::declareWar(TeamTypes eTeam, bool bNewDiplo, WarPlanTypes eWarPlan, 
 		if ((GET_PLAYER((PlayerTypes)iI).getTeam() == getID()) || (GET_PLAYER((PlayerTypes)iI).getTeam() == eTeam))
 		{
 			GET_PLAYER((PlayerTypes)iI).updatePlunder(1, false);
+
+			// Civ4 Reimagined
+			GET_PLAYER((PlayerTypes)iI).checkWarPeaceEurekas();
 		}
 	}
 
@@ -4049,7 +4053,7 @@ void CvTeam::makeHasMet(TeamTypes eIndex, bool bNewDiplo)
 		CvEventReporter::getInstance().firstContact(getID(), eIndex);
 
 		// Civ4 Reimagined
-		if (!GET_TEAM(eIndex).isBarbarian() && eIndex != getID())
+		if (! isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_WRITING")) && !GET_TEAM(eIndex).isBarbarian() && eIndex != getID())
 		{
 			setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_WRITING"), getLeaderID(), true);
 		}
@@ -7027,6 +7031,7 @@ void CvTeam::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iNoConquestResistanceCount); // Civ4 Reimagined
 	pStream->Read(&m_iNoConscriptUnhappinessCount); // Civ4 Reimagined
 	pStream->Read(&m_iCanFarmHillsCount); // Civ4 Reimagined
+	pStream->Read(&m_iNumRevealedContinents); // Civ4 Reimagined
 
 	pStream->Read(&m_bMapCentering);
 	pStream->Read(&m_bCapitulated);
@@ -7144,6 +7149,7 @@ void CvTeam::write(FDataStreamBase* pStream)
 	pStream->Write(m_iNoConquestResistanceCount); // Civ4 Reimagined
 	pStream->Write(m_iNoConscriptUnhappinessCount); // Civ4 Reimagined
 	pStream->Write(m_iCanFarmHillsCount); // Civ4 Reimagined
+	pStream->Write(m_iNumRevealedContinents); // Civ4 Reimagined
 
 	pStream->Write(m_bMapCentering);
 	pStream->Write(m_bCapitulated);
@@ -7300,6 +7306,27 @@ void CvTeam::announceFirstDiscoveredTech(TechTypes eTech, PlayerTypes ePlayer) c
 			}
 			gDLL->getInterfaceIFace()->addHumanMessage(((PlayerTypes)iI), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_FIRSTTOTECH", MESSAGE_TYPE_MAJOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_HIGHLIGHT_TEXT"));
 			GC.getGameINLINE().addReplayMessage(REPLAY_MESSAGE_MAJOR_EVENT, ePlayer, szBuffer, -1, -1, (ColorTypes)GC.getInfoTypeForString("COLOR_HIGHLIGHT_TEXT"));
+		}
+	}
+}
+
+// Civ4 Reimagined
+int CvTeam::getNumRevealedContinents() const
+{
+	return m_iNumRevealedContinents;
+}
+
+// Civ4 Reimagined
+void CvTeam::changeNumRevealedContinents(int iChange)
+{
+	m_iNumRevealedContinents += iChange;
+
+	// Civ4 Reimagined
+	if (! isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ASTRONOMY")))
+	{
+		if (getNumRevealedContinents() > 1)
+		{
+			setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ASTRONOMY"), getLeaderID(), true);
 		}
 	}
 }

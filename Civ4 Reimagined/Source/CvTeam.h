@@ -418,6 +418,10 @@ public:
 	//Civ4 Reimagined
 	DllExport bool hasNukes() const;
 
+	// Civ4 Reimagined
+	int getNumRevealedContinents() const;
+	void changeNumRevealedContinents(int iChange);
+
 	virtual void AI_init() = 0;
 	virtual void AI_reset(bool bConstructor) = 0;
 	virtual void AI_doTurnPre() = 0;
@@ -480,6 +484,7 @@ protected:
 	int m_iNoConquestResistanceCount;
 	int m_iNoConscriptUnhappinessCount; // Civ4 Reimagined
 	int m_iCanFarmHillsCount; // Civ4 Reimagined
+	int m_iNumRevealedContinents; // Civ4 Reimagined
 
 	bool m_bMapCentering;
 	bool m_bCapitulated;

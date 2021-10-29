@@ -1467,6 +1467,17 @@ void CvUnit::updateCombat(bool bQuick)
 		return;
 	}
 
+	// Civ4 Reimagined
+	CvCity* pDefenderCity = pDefender->plot()->getPlotCity();
+
+	if (pDefenderCity != NULL && ! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CHEMISTRY")))
+	{
+		if (pDefenderCity->getNumRealBuilding((BuildingTypes)GC.getInfoTypeForString("BUILDING_CASTLE")) + pDefenderCity->getNumRealBuilding((BuildingTypes)GC.getInfoTypeForString("BUILDING_SPANISH_CITADEL")) > 0)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CHEMISTRY"), getOwnerINLINE(), true);
+		}
+	}
+
 	//check if quick combat
 	if (!bQuick)
 	{
@@ -1620,7 +1631,7 @@ void CvUnit::updateCombat(bool bQuick)
 			// Civ4 Reimagined
 			if (! GET_TEAM(pDefender->getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_IRON_WORKING")))
 			{
-				if (pDefender->getUnitClassType() == (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_AXEMAN"))
+				if (pDefender->getUnitClassType() == (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_AXEMAN") || pDefender->getUnitClassType() == (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SPEARMAN"))
 				{
 					GET_TEAM(pDefender->getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_IRON_WORKING"), pDefender->getOwnerINLINE(), true);
 				}
@@ -1630,6 +1641,15 @@ void CvUnit::updateCombat(bool bQuick)
 			if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_DRAMA")))
 			{
 				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_DRAMA"), getOwnerINLINE(), true);
+			}
+
+			// Civ4 Reimagined
+			if (! GET_TEAM(pDefender->getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_RIFLING")))
+			{
+				if (pDefender->getUnitClassType() == (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_MUSKETMAN"))
+				{
+					GET_TEAM(pDefender->getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_RIFLING"), pDefender->getOwnerINLINE(), true);
+				}
 			}
 
 			if (!m_pUnitInfo->isHiddenNationality() && !pDefender->getUnitInfo().isHiddenNationality())
@@ -1670,7 +1690,7 @@ void CvUnit::updateCombat(bool bQuick)
 			// Civ4 Reimagined
 			if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_IRON_WORKING")))
 			{
-				if (getUnitClassType() == (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_AXEMAN"))
+				if (getUnitClassType() == (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_AXEMAN") || getUnitClassType() == (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SPEARMAN"))
 				{
 					GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_IRON_WORKING"), getOwnerINLINE(), true);
 				}
@@ -1680,6 +1700,15 @@ void CvUnit::updateCombat(bool bQuick)
 			if (! GET_TEAM(pDefender->getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_DRAMA")))
 			{
 				GET_TEAM(pDefender->getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_DRAMA"), pDefender->getOwnerINLINE(), true);
+			}
+
+			// Civ4 Reimagined
+			if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_RIFLING")))
+			{
+				if (getUnitClassType() == (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_MUSKETMAN"))
+				{
+					GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_RIFLING"), getOwnerINLINE(), true);
+				}
 			}
 
 			if (!m_pUnitInfo->isHiddenNationality() && !pDefender->getUnitInfo().isHiddenNationality())

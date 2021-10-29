@@ -80,7 +80,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_IRON_WORKING_EUREKA</Tag>
-		<English>Kill a Unit with an Axeman</English>
+		<English>Kill a Unit with an Axeman or Spearman</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_LITERATURE_EUREKA</Tag>
@@ -157,5 +157,61 @@
 	<TEXT>
 		<Tag>TXT_KEY_TECH_MUSIC_EUREKA</Tag>
 		<English>Adopt a State Religion</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_EXCLUSIVISM_EUREKA</Tag>
+		<English>Be at War with a Civilization Following another State Religion</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_EDUCATION_EUREKA</Tag>
+		<English>Build an Academy</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_GUNPOWDER_EUREKA</Tag>
+		<English>Own 6 Crossbowmen</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_CORPORATION_EUREKA</Tag>
+		<English>Earn a Great Merchant</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ASTRONOMY_EUREKA</Tag>
+		<English>Discover another Continent or Settle a City Next to 3 Peaks</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_DIVINE_RIGHT_EUREKA</Tag>
+		<English>Have a City with Influential Culture</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_PRINTING_PRESS_EUREKA</Tag>
+		<English>Own 6 Monasteries</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_MILITARY_TRADITION_EUREKA</Tag>
+		<English>Earn 2 Great Generals</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_CHEMISTRY_EUREKA</Tag>
+		<English>Attack a City Protected By a Castle</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_LIBERALISM_EUREKA</Tag>
+		<English>Abandon Slavery or Own 10 Towns</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_REPLACEABLE_PARTS_EUREKA</Tag>
+		<English>Own 4 Workshops</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_RIFLING_EUREKA</Tag>
+		<English>Kill a Unit with a Musketman</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_SCIENTIFIC_METHOD_EUREKA</Tag>
+		<English>Build a Great University</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ECONOMICS_EUREKA</Tag>
+		<English>Own 6 Banks</English>
 	</TEXT>
 </Civ4GameText>

@@ -1323,6 +1323,31 @@ bool CvPlot::isAdjacentToLand() const
 
 
 // Civ4 Reimagined
+int CvPlot::countAdjacentPeaks() const
+{
+	PROFILE_FUNC();
+
+	CvPlot* pAdjacentPlot;
+	int iI;
+	int iCount = 0;
+
+	for (iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
+	{
+		pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
+
+		if (pAdjacentPlot != NULL)
+		{
+			if (pAdjacentPlot->isPeak())
+			{
+				++iCount;
+			}
+		}
+	}
+
+	return iCount;
+}
+
+// Civ4 Reimagined
 bool CvPlot::isAdjacentToPeak() const
 {
 	PROFILE_FUNC();

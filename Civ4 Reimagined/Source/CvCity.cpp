@@ -18190,5 +18190,13 @@ void CvCity::checkCultureLevelEurekas()
 			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_AESTHETICS"), getOwnerINLINE(), true);
 		}
 	}
+
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ABSOLUTISM")))
+	{
+		if (getCultureLevel() >= (CultureLevelTypes)GC.getInfoTypeForString("CULTURELEVEL_INFLUENTIAL"))
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ABSOLUTISM"), getOwnerINLINE(), true);
+		}
+	}
 }
 
