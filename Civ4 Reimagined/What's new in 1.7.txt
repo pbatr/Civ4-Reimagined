@@ -13,7 +13,6 @@ Changes
 -Friendly units from another civilization stationed in your city do no longer reduce the risk of revolts
 -Worker can build Villages with Medicine Tech
 -Civilizations have a starting bias for native resources
--Chopping Jungle grants production
 
 *********
 Tweaks
