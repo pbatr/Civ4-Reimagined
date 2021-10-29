@@ -343,7 +343,7 @@
 	</Define>
 	<Define>
 		<DefineName>EUREKA_TECH_BOOST_PERCENTAGE</DefineName>
-		<iDefineIntVal>40</iDefineIntVal>
+		<iDefineIntVal>0</iDefineIntVal>
 	</Define>
 	<!-- Not used at the moment. -->	
 	<Define>
