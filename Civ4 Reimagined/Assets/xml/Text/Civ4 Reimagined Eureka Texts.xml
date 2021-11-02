@@ -214,4 +214,80 @@
 		<Tag>TXT_KEY_TECH_ECONOMICS_EUREKA</Tag>
 		<English>Own 6 Banks</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_CONSTITUTION_EUREKA</Tag>
+		<English>Adopt Secularism</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_NATIONALISM_EUREKA</Tag>
+		<English>Research Steam Power</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_STEAM_POWER_EUREKA</Tag>
+		<English>Join a Great Engineer with a City</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_BIOLOGY_EUREKA</Tag>
+		<English>Own an Explorer with the Sentry Promotion</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ELECTRICITY_EUREKA</Tag>
+		<English>Earn 4 Great Scientists</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_DEMOCRACY_EUREKA</Tag>
+		<English>Trigger 2 Golden Ages</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_STEEL_EUREKA</Tag>
+		<English>Own a Factory</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_RAILROAD_EUREKA</Tag>
+		<English>Have Access to 2 Coal in Your Capital</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ASSEMBLY_LINE_EUREKA</Tag>
+		<English>Buy a Building with Gold</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_MEDICINE_EUREKA</Tag>
+		<English>Have a City With 20 Population</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_COMBUSTION_EUREKA</Tag>
+		<English>Own 3 Ironclads</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ARTILLERY_EUREKA</Tag>
+		<English>Own 3 Machine Guns</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_FASCISM_EUREKA</Tag>
+		<English>Be at War with a Civilization Following Another Ideology</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_UTOPIA_EUREKA</Tag>
+		<English>Build a Factory in a City With at least 6 Farms</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_PHYSICS_EUREKA</Tag>
+		<English>Use a Great Scientist's Discover Ability</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_REFRIGERATION_EUREKA</Tag>
+		<English>Have a Powered City</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_FLIGHT_EUREKA</Tag>
+		<English>Own 3 Airships</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_MODERN_COMBAT_EUREKA</Tag>
+		<English>Own 5 Tanks</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_INDUSTRIALISM_EUREKA</Tag>
+		<English>Adopt Industrialism</English>
+	</TEXT>
 </Civ4GameText>

@@ -10856,9 +10856,45 @@ void CvPlayer::changeNumMilitaryUnits(int iChange)
 		// Civ4 Reimagined
 		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_GUNPOWDER")))
 		{
-			if (getUnitClassCount((UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_MUSKETMAN")) > 5)
+			if (getUnitClassCount((UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_CROSSBOWMAN")) > 5)
 			{
 				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_GUNPOWDER"), getID(), true);
+			}
+		}
+
+		// Civ4 Reimagined
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_COMBUSTION")))
+		{
+			if (getUnitClassCount((UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_IRONCLAD")) > 2)
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_COMBUSTION"), getID(), true);
+			}
+		}
+
+		// Civ4 Reimagined
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ARTILLERY")))
+		{
+			if (getUnitClassCount((UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_MACHINE_GUN")) > 2)
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ARTILLERY"), getID(), true);
+			}
+		}
+
+		// Civ4 Reimagined
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_FLIGHT")))
+		{
+			if (getUnitClassCount((UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_AIRSHIP")) > 2)
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_FLIGHT"), getID(), true);
+			}
+		}
+
+		// Civ4 Reimagined
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PLASTICS")))
+		{
+			if (getUnitClassCount((UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_TANK")) > 4)
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PLASTICS"), getID(), true);
 			}
 		}
 	}
@@ -15557,6 +15593,24 @@ void CvPlayer::setCivics(CivicOptionTypes eIndex, CivicTypes eNewValue)
 		if (getCivics(eIndex) != NO_CIVIC)
 		{
 			processCivics(getCivics(eIndex), 1);
+
+			// Civ4 Reimagined
+			if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CONSTITUTION")))
+			{
+				if (getCivics(eIndex) == (CivicTypes)GC.getInfoTypeForString("CIVIC_SECULARISM"))
+				{
+					GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CONSTITUTION"), getID(), true);
+				}
+			}
+
+			// Civ4 Reimagined
+			if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_INDUSTRIALISM")))
+			{
+				if (getCivics(eIndex) == (CivicTypes)GC.getInfoTypeForString("CIVIC_INDUSTRIALISM"))
+				{
+					GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_INDUSTRIALISM"), getID(), true);
+				}
+			}
 		}
 
 		GC.getGameINLINE().updateSecretaryGeneral();
@@ -21278,6 +21332,15 @@ void CvPlayer::createGreatPeople(UnitTypes eGreatPersonUnit, bool bIncrementThre
 		}
 	}
 
+	// Civ4 Reimagined
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ELECTRICITY")))
+	{
+		if (getPlayerRecord()->getNumUnitsBuilt((UnitTypes)GC.getInfoTypeForString("UNIT_SCIENTIST")) > 3)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ELECTRICITY"), getID(), true);
+		}
+	}
+
 	// Python Event
 	if (pCity)
 	{
@@ -26989,6 +27052,14 @@ void CvPlayer::checkBuildingEurekas()
 		}
 	}
 
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_STEEL")))
+	{
+		if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_FACTORY")) > 0)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_STEEL"), getID(), true);
+		}
+	}
+
 	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PRINTING_PRESS")))
 	{
 		int iCount = 0;
@@ -27029,6 +27100,24 @@ void CvPlayer::checkWarPeaceEurekas()
 				if (ourStateReligion != NO_RELIGION && theirStateReligion != NO_RELIGION && ourStateReligion != theirStateReligion)
 				{
 					GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_DIVINE_RIGHT"), getID(), true);
+					break;
+				}
+			}
+		}
+	}
+
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_FASCISM")))
+	{
+		const IdeologyTypes ourIdeology = getIdeology();
+		for (int iI = 0; iI < MAX_PLAYERS; iI++)
+		{
+			if (GET_TEAM(getTeam()).isAtWar(GET_PLAYER((PlayerTypes)iI).getTeam()))
+			{
+				IdeologyTypes theirIdeology = GET_PLAYER((PlayerTypes)iI).getIdeology();
+
+				if (ourIdeology != theirIdeology)
+				{
+					GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_FASCISM"), getID(), true);
 					break;
 				}
 			}

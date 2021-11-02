@@ -6766,6 +6766,15 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 		changeRiverTradeCount(iChange);
 	}
 
+	// Civ4 Reimagined
+	if (!isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_NATIONALISM")))
+	{
+		if (iChange > 0 && eTech == (TechTypes)GC.getInfoTypeForString("TECH_STEAM_POWER"))
+		{
+			setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_NATIONALISM"), getLeaderID(), true);
+		}
+	}
+
 	for (iI = 0; iI < GC.getNumBuildingInfos(); iI++)
 	{
 		if (GC.getBuildingInfo((BuildingTypes) iI).getObsoleteTech() == eTech)

@@ -6389,6 +6389,14 @@ bool CvUnit::join(SpecialistTypes eSpecialist)
 	if (pCity != NULL)
 	{
 		pCity->changeFreeSpecialistCount(eSpecialist, 1);
+
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_STEAM_POWER")))
+		{
+			if (eSpecialist == (SpecialistTypes)GC.getInfoTypeForString("SPECIALIST_GREAT_ENGINEER"))
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_STEAM_POWER"), getOwnerINLINE(), true);
+			}
+		}
 	}
 
 	if (plot()->isActiveVisible(false))
@@ -6605,6 +6613,15 @@ bool CvUnit::discover()
 	if (plot()->isActiveVisible(false))
 	{
 		NotifyEntity(MISSION_DISCOVER);
+	}
+
+	// Civ4 Reimagined
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PHYSICS")))
+	{
+		if (getUnitClassType() == (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SCIENTIST"))
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PHYSICS"), getOwnerINLINE(), true);
+		}
 	}
 
 	kill(true);
@@ -7332,6 +7349,15 @@ bool CvUnit::goldenAge()
 		NotifyEntity(MISSION_GOLDEN_AGE);
 	}
 
+	// Civ4 Reimagined
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_DEMOCRACY")))
+	{
+		if (GET_PLAYER(getOwnerINLINE()).getPlayerRecord()->getNumGoldenAges() > 1)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_DEMOCRACY"), getOwnerINLINE(), true);
+		}
+	}
+
 	kill(true);
 
 	return true;
@@ -7492,6 +7518,15 @@ void CvUnit::promote(PromotionTypes ePromotion, int iLeaderUnitId)
 	setHasPromotion(ePromotion, true);
 
 	testPromotionReady();
+
+	// Civ4 Reimagined
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_BIOLOGY")))
+	{
+		if (ePromotion == (PromotionTypes)GC.getInfoTypeForString("PROMOTION_SENTRY") && getUnitClassType() == (UnitClassTypes)GC.getInfoTypeForString("UNTCLASS_EXPLORER"))
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_BIOLOGY"), getOwnerINLINE(), true);
+		}
+	}
 
 	CvSelectionGroup::path_finder.Reset(); // K-Mod. (This currently isn't important, because the AI doesn't use promotions mid-turn anyway.)
 

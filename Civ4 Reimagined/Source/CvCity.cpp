@@ -3819,6 +3819,15 @@ void CvCity::hurry(HurryTypes eHurry)
 
 	changeHurryAngerTimer(iHurryAngerLength);
 
+	// Civ4 Reimagined
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ASSEMBLY_LINE")))
+	{
+		if (iHurryGold > 0 && isProductionBuilding())
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ASSEMBLY_LINE"), getOwnerINLINE(), true);
+		}
+	}
+
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      10/02/09                                jdog5000      */
 /*                                                                                              */
@@ -4174,6 +4183,15 @@ void CvCity::processBonus(BonusTypes eBonus, int iChange, bool bChangeValue, boo
 	{
 		//logBBAI("%S process Bonus %S (old:%d, new:%d, change:%d, signum:%d)", getName().GetCString(), GC.getBonusInfo(eBonus).getDescription(), iOldCount, iNewCount, iChange, iSignum);
 	}
+
+	// Civ4 Reimagined
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_RAILROAD")))
+	{
+		if (eBonus == GC.getInfoTypeForString("BONUS_COAL") && iNewCount > 1)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_RAILROAD"), getOwnerINLINE(), true);
+		}
+	}
 	
 	if (bChangeValue)
 	{
@@ -4521,6 +4539,14 @@ void CvCity::processBuilding(BuildingTypes eBuilding, int iChange, bool bObsolet
 	{
 		// Civ4 Reimagined
 		GET_PLAYER(getOwnerINLINE()).checkBuildingEurekas();
+
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_UTOPIA")))
+		{
+			if (kBuilding == (BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_FACTORY") && countNumImprovedPlots((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FARM")) > 5)
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_UTOPIA"), getOwnerINLINE(), true);
+			}
+		}
 	}
 }
 
@@ -6165,6 +6191,15 @@ void CvCity::setPopulation(int iNewValue)
 				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MONARCHY"), getOwnerINLINE(), true);
 			}
 		}
+
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MEDICINE")))
+		{
+			if (getPopulation() > 19)
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MEDICINE"), getOwnerINLINE(), true);
+			}
+		}
+
 		//updateGenericBuildings();
 	}
 }
@@ -8858,6 +8893,14 @@ void CvCity::changePowerCount(int iChange, bool bDirty)
 		if (bOldDirtyPower != isDirtyPower() || bOldPower != isPower())
 		{
 			updatePowerHealth();
+		}
+
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_REFRIGERATION")))
+		{
+			if (isPower())
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_REFRIGERATION"), getOwnerINLINE(), true);
+			}
 		}
 	}
 }

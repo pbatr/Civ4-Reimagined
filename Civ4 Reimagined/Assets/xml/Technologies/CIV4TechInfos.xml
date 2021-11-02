@@ -1140,7 +1140,7 @@
 			<Type>TECH_NATIONALISM</Type>
 			<Description>TXT_KEY_TECH_NATIONALISM</Description>
 			<Civilopedia>TXT_KEY_TECH_NATIONALISM_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_NATIONALISM_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_NATIONALISM_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -1270,7 +1270,7 @@
 			<Type>TECH_CONSTITUTION</Type>
 			<Description>TXT_KEY_TECH_CONSTITUTION</Description>
 			<Civilopedia>TXT_KEY_TECH_CONSTITUTION_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_CONSTITUTION_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_CONSTITUTION_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -1406,7 +1406,7 @@
 			<Type>TECH_DEMOCRACY</Type>
 			<Description>TXT_KEY_TECH_DEMOCRACY</Description>
 			<Civilopedia>TXT_KEY_TECH_DEMOCRACY_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_DEMOCRACY_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_DEMOCRACY_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -1552,7 +1552,7 @@
 			<Type>TECH_FASCISM</Type>
 			<Description>TXT_KEY_TECH_FASCISM</Description>
 			<Civilopedia>TXT_KEY_TECH_FASCISM_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_FASCISM_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_FASCISM_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -1619,7 +1619,7 @@
 			<Type>TECH_UTOPIA</Type>
 			<Description>TXT_KEY_TECH_UTOPIA</Description>
 			<Civilopedia>TXT_KEY_TECH_UTOPIA_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_UTOPIA_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_UTOPIA_STRATEGY</Strategy>
 			<Advisor>ADVISOR_GROWTH</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -3272,7 +3272,7 @@
 			<Type>TECH_PHYSICS</Type>
 			<Description>TXT_KEY_TECH_PHYSICS</Description>
 			<Civilopedia>TXT_KEY_TECH_PHYSICS_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_PHYSICS_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_PHYSICS_STRATEGY</Strategy>
 			<Advisor>ADVISOR_SCIENCE</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -3339,7 +3339,7 @@
 			<Type>TECH_BIOLOGY</Type>
 			<Description>TXT_KEY_TECH_BIOLOGY</Description>
 			<Civilopedia>TXT_KEY_TECH_BIOLOGY_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_BIOLOGY_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_BIOLOGY_STRATEGY</Strategy>
 			<Advisor>ADVISOR_SCIENCE</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -3407,7 +3407,7 @@
 			<Type>TECH_MEDICINE</Type>
 			<Description>TXT_KEY_TECH_MEDICINE</Description>
 			<Civilopedia>TXT_KEY_TECH_MEDICINE_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_MEDICINE_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_MEDICINE_STRATEGY</Strategy>
 			<Advisor>ADVISOR_GROWTH</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -3476,7 +3476,7 @@
 			<Type>TECH_ELECTRICITY</Type>
 			<Description>TXT_KEY_TECH_ELECTRICITY</Description>
 			<Civilopedia>TXT_KEY_TECH_ELECTRICITY_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_ELECTRICITY_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_ELECTRICITY_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -3543,7 +3543,7 @@
 			<Type>TECH_COMBUSTION</Type>
 			<Description>TXT_KEY_TECH_COMBUSTION</Description>
 			<Civilopedia>TXT_KEY_TECH_COMBUSTION_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_COMBUSTION_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_COMBUSTION_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -3689,7 +3689,7 @@
 			<Type>TECH_FLIGHT</Type>
 			<Description>TXT_KEY_TECH_FLIGHT</Description>
 			<Civilopedia>TXT_KEY_TECH_FLIGHT_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_FLIGHT_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_FLIGHT_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -3839,7 +3839,7 @@
 			<Type>TECH_PLASTICS</Type>
 			<Description>TXT_KEY_TECH_PLASTICS</Description>
 			<Civilopedia>TXT_KEY_TECH_MODERN_COMBAT_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_MODERN_COMBAT_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_MODERN_COMBAT_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -5480,7 +5480,7 @@
 			<Type>TECH_STEAM_POWER</Type>
 			<Description>TXT_KEY_TECH_STEAM_POWER</Description>
 			<Civilopedia>TXT_KEY_TECH_STEAM_POWER_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_STEAM_POWER_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_STEAM_POWER_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -5559,7 +5559,7 @@
 			<Type>TECH_STEEL</Type>
 			<Description>TXT_KEY_TECH_STEEL</Description>
 			<Civilopedia>TXT_KEY_TECH_STEEL_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_STEEL_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_STEEL_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -5634,7 +5634,7 @@
 			<Type>TECH_ASSEMBLY_LINE</Type>
 			<Description>TXT_KEY_TECH_ASSEMBLY_LINE</Description>
 			<Civilopedia>TXT_KEY_TECH_ASSEMBLY_LINE_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_ASSEMBLY_LINE_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_ASSEMBLY_LINE_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -5705,7 +5705,7 @@
 			<Type>TECH_RAILROAD</Type>
 			<Description>TXT_KEY_TECH_RAILROAD</Description>
 			<Civilopedia>TXT_KEY_TECH_RAILROAD_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_RAILROAD_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_RAILROAD_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -5782,7 +5782,7 @@
 			<Type>TECH_ARTILLERY</Type>
 			<Description>TXT_KEY_TECH_ARTILLERY</Description>
 			<Civilopedia>TXT_KEY_TECH_ARTILLERY_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_ARTILLERY_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_ARTILLERY_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -5850,7 +5850,7 @@
 			<Type>TECH_INDUSTRIALISM</Type>
 			<Description>TXT_KEY_TECH_INDUSTRIALISM</Description>
 			<Civilopedia>TXT_KEY_TECH_INDUSTRIALISM_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_INDUSTRIALISM_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_INDUSTRIALISM_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -5993,7 +5993,7 @@
 			<Type>TECH_REFRIGERATION</Type>
 			<Description>TXT_KEY_TECH_REFRIGERATION</Description>
 			<Civilopedia>TXT_KEY_TECH_REFRIGERATION_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_REFRIGERATION_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_REFRIGERATION_STRATEGY</Strategy>
 			<Advisor>ADVISOR_GROWTH</Advisor>
 			<iAIWeight>0</iAIWeight>
