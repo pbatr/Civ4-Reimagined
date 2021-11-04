@@ -4192,6 +4192,15 @@ void CvCity::processBonus(BonusTypes eBonus, int iChange, bool bChangeValue, boo
 			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_RAILROAD"), getOwnerINLINE(), true);
 		}
 	}
+
+	// Civ4 Reimagined
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_COMPOSITES")))
+	{
+		if (eBonus == GC.getInfoTypeForString("BONUS_ALUMINIUM") && iNewCount > 2)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_COMPOSITES"), getOwnerINLINE(), true);
+		}
+	}
 	
 	if (bChangeValue)
 	{

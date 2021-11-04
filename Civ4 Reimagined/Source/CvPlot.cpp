@@ -5249,6 +5249,15 @@ void CvPlot::setOwner(PlayerTypes eNewValue, bool bCheckUnits, bool bUpdatePlotG
 				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MASONRY"), getOwnerINLINE(), true);
 			}
 		}
+
+		// Civ4 Reimagined
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_FISSION")))
+		{
+			if (getBonusType() == (BonusTypes)GC.getInfoTypeForString("BONUS_URANIUM") && GET_TEAM(getTeam()).isHasTech((TechTypes)GC.getInfoTypeForString("PHYSICS")))
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_FISSION"), getOwnerINLINE(), true);
+			}
+		}
 	}
 }
 

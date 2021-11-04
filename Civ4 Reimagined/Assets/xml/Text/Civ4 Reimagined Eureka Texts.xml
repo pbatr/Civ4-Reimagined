@@ -290,4 +290,72 @@
 		<Tag>TXT_KEY_TECH_INDUSTRIALISM_EUREKA</Tag>
 		<English>Adopt Industrialism</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_FISSION_EUREKA</Tag>
+		<English>Have Uranium in Your Empire</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_RADIO_EUREKA</Tag>
+		<English>Own 5 Cruisers</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ROCKETRY_EUREKA</Tag>
+		<English>Bombard a City by Air</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ROCKETRY_EUREKA</Tag>
+		<English>Bombard a City by Air</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_LASER_EUREKA</Tag>
+		<English>Earn 6 Great Scientists</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_COMPUTERS_EUREKA</Tag>
+		<English>Earn 3 Great Spies</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_MASS_MEDIA_EUREKA</Tag>
+		<English>Have Broadcast Towers in All Cities</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_SUPERCONDUCTORS_EUREKA</Tag>
+		<English>Earn 5 Great Engineers</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_SATELLITES_EUREKA</Tag>
+		<English>Build 5 Guided Missiles</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ADVANCED_FLIGHT_EUREKA</Tag>
+		<English>Kill a Unit with an Air Unit</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_FIBER_OPTICS_EUREKA</Tag>
+		<English>Steal a Modern Technology by Espionage</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ROBOTICS_EUREKA</Tag>
+		<English>Own 4 Industrial Parks</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ECOLOGY_EUREKA</Tag>
+		<English>Global Warming Severity Rating is High</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_STEALTH_EUREKA</Tag>
+		<English>Own a Unit with an Ace Promotion</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_FUSION_EUREKA</Tag>
+		<English>Own 4 Nuclear Plants</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_COMPOSITES_EUREKA</Tag>
+		<English>Have Access to 3 Aluminium in Your Capital</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_GENETICS_EUREKA</Tag>
+		<English>Have Hospitals in All Cities</English>
+	</TEXT>
 </Civ4GameText>

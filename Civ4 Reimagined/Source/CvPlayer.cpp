@@ -10897,6 +10897,24 @@ void CvPlayer::changeNumMilitaryUnits(int iChange)
 				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PLASTICS"), getID(), true);
 			}
 		}
+
+		// Civ4 Reimagined
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_RADIO")))
+		{
+			if (getUnitClassCount((UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_CRUISER")) > 4)
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_RADIO"), getID(), true);
+			}
+		}
+
+		// Civ4 Reimagined
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_SATELLITES")))
+		{
+			if (getPlayerRecord()->getNumUnitsBuilt((UnitTypes)GC.getInfoTypeForString("UNIT_GUIDED_MISSILE")) > 4)
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_SATELLITES"), getID(), true);
+			}
+		}
 	}
 }
 
@@ -18084,6 +18102,15 @@ bool CvPlayer::doEspionageMission(EspionageMissionTypes eMission, PlayerTypes eT
 		if (gPlayerLogLevel > 2)
 			logBBAI("Spy from player %d (%S) stole tech %S", getID(), getCivilizationDescription(0), GC.getTechInfo((TechTypes) iTech).getDescription());
 
+		// Civ4 Reimagined
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_FIBER_OPTICS")))
+		{
+			if (GC.getTechInfo((TechTypes)iTech).getEra() == (EraTypes)GC.getInfoTypeForString("ERA_MODERN"))
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_FIBER_OPTICS"), getID(), true);
+			}
+		}
+
 		bSomethingHappened = true;
 	}
 
@@ -21338,6 +21365,33 @@ void CvPlayer::createGreatPeople(UnitTypes eGreatPersonUnit, bool bIncrementThre
 		if (getPlayerRecord()->getNumUnitsBuilt((UnitTypes)GC.getInfoTypeForString("UNIT_SCIENTIST")) > 3)
 		{
 			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ELECTRICITY"), getID(), true);
+		}
+	}
+
+	// Civ4 Reimagined
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_LASER")))
+	{
+		if (getPlayerRecord()->getNumUnitsBuilt((UnitTypes)GC.getInfoTypeForString("UNIT_SCIENTIST")) > 5)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_LASER"), getID(), true);
+		}
+	}
+
+	// Civ4 Reimagined
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_COMPUTERS")))
+	{
+		if (getPlayerRecord()->getNumUnitsBuilt((UnitTypes)GC.getInfoTypeForString("UNIT_GREAT_SPY")) > 2)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_COMPUTERS"), getID(), true);
+		}
+	}
+
+	// Civ4 Reimagined
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_SUPERCONDUCTORS")))
+	{
+		if (getPlayerRecord()->getNumUnitsBuilt((UnitTypes)GC.getInfoTypeForString("UNIT_ENGINEER")) > 4)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_SUPERCONDUCTORS"), getID(), true);
 		}
 	}
 
@@ -27057,6 +27111,38 @@ void CvPlayer::checkBuildingEurekas()
 		if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_FACTORY")) > 0)
 		{
 			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_STEEL"), getID(), true);
+		}
+	}
+
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MASS_MEDIA")))
+	{
+		if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_BROADCAST_TOWER")) >= getNumCities())
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MASS_MEDIA"), getID(), true);
+		}
+	}
+
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ROBOTICS")))
+	{
+		if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_INDUSTRIAL_PARK")) > 3)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ROBOTICS"), getID(), true);
+		}
+	}
+
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_FUSION")))
+	{
+		if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_NUCLEAR_PLANT")) > 3)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_FUSION"), getID(), true);
+		}
+	}
+
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_GENETICS")))
+	{
+		if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_HOSPITAL")) >= getNumCities())
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_GENETICS"), getID(), true);
 		}
 	}
 

@@ -2825,6 +2825,15 @@ void CvGame::updateGwPercentAnger()
 
 			iAngerPercent = GC.getDefineINT("GLOBAL_WARMING_BASE_ANGER_PERCENT") * iGwSeverityRating * iResponsibilityFactor;
 			iAngerPercent = ROUND_DIVIDE(iAngerPercent, 10000);// div, 100 * 100
+
+			// Civ4 Reimagined
+			if (! GET_TEAM(kPlayer.getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ECOLOGY")))
+			{
+				if (iGwSeverityRating >= 75)
+				{
+					GET_TEAM(kPlayer.getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ECOLOGY"), (PlayerTypes)iI, true);
+				}
+			}
 		}
 		kPlayer.setGwPercentAnger(iAngerPercent);
 	}

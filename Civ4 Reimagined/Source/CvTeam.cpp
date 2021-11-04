@@ -6874,6 +6874,18 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 					}
 				}
 			}
+
+			// Civ4 Reimagined
+			if (! isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_FISSION")))
+			{
+				if (iChange > 0 && eTech == (TechTypes)GC.getInfoTypeForString("TECH_PHYSICS"))
+				{
+					if (GET_PLAYER((PlayerTypes)iI).countOwnedBonuses((BonusTypes)GC.getInfoTypeForString("BONUS_URANIUM")) > 0)
+					{
+						setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_FISSION"), (PlayerTypes)iI, true);
+					}
+				}
+			}
 				
 			// Civ4 Reimagined: Quantifiable Resource System
 			//
