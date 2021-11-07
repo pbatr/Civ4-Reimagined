@@ -4,7 +4,8 @@ Civ4 Reimagined 1.7
 *********
 New
 *********
-- New faster gamespeed: Online (2x as fast as normal)
+-New faster gamespeed: Online (2x as fast as normal)
+-Eurekas boosts for all technologies in game (instantly gain 40% of the science needed to discover the technology)
 
 *********
 Changes
@@ -13,7 +14,7 @@ Changes
 -Friendly units from another civilization stationed in your city do no longer reduce the risk of revolts
 -Worker can build Villages with Medicine Tech
 -Civilizations have a starting bias for native resources
--Chopping Jungle grants production
+-Cannot hurry units with Slavery
 
 *********
 Tweaks

@@ -78,7 +78,7 @@
 			<Type>TECH_MEDITATION</Type>
 			<Description>TXT_KEY_TECH_MEDITATION</Description>
 			<Civilopedia>TXT_KEY_TECH_MEDITATION_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_MEDITATION_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_MEDITATION_STRATEGY</Strategy>
 			<Advisor>ADVISOR_RELIGION</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -149,7 +149,7 @@
 			<Type>TECH_POLYTHEISM</Type>
 			<Description>TXT_KEY_TECH_POLYTHEISM</Description>
 			<Civilopedia>TXT_KEY_TECH_POLYTHEISM_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_POLYTHEISM_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_POLYTHEISM_STRATEGY</Strategy>
 			<Advisor>ADVISOR_RELIGION</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -218,7 +218,7 @@
 			<Type>TECH_PRIESTHOOD</Type>
 			<Description>TXT_KEY_TECH_PRIESTHOOD</Description>
 			<Civilopedia>TXT_KEY_TECH_PRIESTHOOD_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_PRIESTHOOD_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_PRIESTHOOD_STRATEGY</Strategy>
 			<Advisor>ADVISOR_RELIGION</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -291,7 +291,7 @@
 			<Type>TECH_MONOTHEISM</Type>
 			<Description>TXT_KEY_TECH_MONOTHEISM</Description>
 			<Civilopedia>TXT_KEY_TECH_MONOTHEISM_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_MONOTHEISM_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_MONOTHEISM_STRATEGY</Strategy>
 			<Advisor>ADVISOR_RELIGION</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -363,7 +363,7 @@
 			<Type>TECH_MONARCHY</Type>
 			<Description>TXT_KEY_TECH_MONARCHY</Description>
 			<Civilopedia>TXT_KEY_TECH_MONARCHY_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_MONARCHY_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_MONARCHY_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -432,7 +432,7 @@
 			<Type>TECH_LITERATURE</Type>
 			<Description>TXT_KEY_TECH_LITERATURE</Description>
 			<Civilopedia>TXT_KEY_TECH_LITERATURE_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_LITERATURE_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_LITERATURE_STRATEGY</Strategy>
 			<Advisor>ADVISOR_CULTURE</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -503,7 +503,7 @@
 			<Type>TECH_CODE_OF_LAWS</Type>
 			<Description>TXT_KEY_TECH_CODE_OF_LAWS</Description>
 			<Civilopedia>TXT_KEY_TECH_CODE_OF_LAWS_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_CODE_OF_LAWS_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_CODE_OF_LAWS_STRATEGY</Strategy>
 			<Advisor>ADVISOR_RELIGION</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -574,7 +574,7 @@
 			<Type>TECH_CIVIL_SERVICE</Type>
 			<Description>TXT_KEY_TECH_CIVIL_SERVICE</Description>
 			<Civilopedia>TXT_KEY_TECH_CIVIL_SERVICE_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_CIVIL_SERVICE_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_CIVIL_SERVICE_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -641,7 +641,7 @@
 			<Type>TECH_DRAMA</Type>
 			<Description>TXT_KEY_TECH_DRAMA</Description>
 			<Civilopedia>TXT_KEY_TECH_DRAMA_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_DRAMA_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_DRAMA_STRATEGY</Strategy>
 			<Advisor>ADVISOR_CULTURE</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -710,7 +710,7 @@
 			<Type>TECH_FEUDALISM</Type>
 			<Description>TXT_KEY_TECH_FEUDALISM</Description>
 			<Civilopedia>TXT_KEY_TECH_FEUDALISM_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_FEUDALISM_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_FEUDALISM_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -779,7 +779,7 @@
 			<Type>TECH_THEOLOGY</Type>
 			<Description>TXT_KEY_TECH_THEOLOGY</Description>
 			<Civilopedia>TXT_KEY_TECH_THEOLOGY_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_THEOLOGY_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_THEOLOGY_STRATEGY</Strategy>
 			<Advisor>ADVISOR_RELIGION</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -846,7 +846,7 @@
 			<Type>TECH_MUSIC</Type>
 			<Description>TXT_KEY_TECH_MUSIC</Description>
 			<Civilopedia>TXT_KEY_TECH_MUSIC_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_MUSIC_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_MUSIC_STRATEGY</Strategy>
 			<Advisor>ADVISOR_CULTURE</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -922,7 +922,7 @@
 			<Type>TECH_GUILDS</Type>
 			<Description>TXT_KEY_TECH_GUILDS</Description>
 			<Civilopedia>TXT_KEY_TECH_GUILDS_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_GUILDS_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_GUILDS_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -993,7 +993,7 @@
 			<Type>TECH_DIVINE_RIGHT</Type>
 			<Description>TXT_KEY_TECH_EXCLUSIVISM</Description>
 			<Civilopedia>TXT_KEY_TECH_EXCLUSIVISM_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_EXCLUSIVISM_EUREKA</Help>
 			<Strategy>TXT_KEY_LOREM_IPSUM</Strategy>
 			<Advisor>ADVISOR_RELIGION</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -1060,7 +1060,7 @@
 			<Type>TECH_ABSOLUTISM</Type>
 			<Description>TXT_KEY_TECH_DIVINE_RIGHT</Description>
 			<Civilopedia>TXT_KEY_TECH_ABSOLUTISM_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_DIVINE_RIGHT_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_DIVINE_RIGHT_STRATEGY</Strategy>
 			<Advisor>ADVISOR_CULTURE</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -1140,7 +1140,7 @@
 			<Type>TECH_NATIONALISM</Type>
 			<Description>TXT_KEY_TECH_NATIONALISM</Description>
 			<Civilopedia>TXT_KEY_TECH_NATIONALISM_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_NATIONALISM_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_NATIONALISM_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -1207,7 +1207,7 @@
 			<Type>TECH_MILITARY_TRADITION</Type>
 			<Description>TXT_KEY_TECH_MILITARY_TRADITION</Description>
 			<Civilopedia>TXT_KEY_TECH_MILITARY_TRADITION_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_MILITARY_TRADITION_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_MILITARY_TRADITION_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -1270,7 +1270,7 @@
 			<Type>TECH_CONSTITUTION</Type>
 			<Description>TXT_KEY_TECH_CONSTITUTION</Description>
 			<Civilopedia>TXT_KEY_TECH_CONSTITUTION_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_CONSTITUTION_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_CONSTITUTION_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -1337,7 +1337,7 @@
 			<Type>TECH_LIBERALISM</Type>
 			<Description>TXT_KEY_TECH_LIBERALISM</Description>
 			<Civilopedia>TXT_KEY_TECH_LIBERALISM_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_LIBERALISM_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_LIBERALISM_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -1406,7 +1406,7 @@
 			<Type>TECH_DEMOCRACY</Type>
 			<Description>TXT_KEY_TECH_DEMOCRACY</Description>
 			<Civilopedia>TXT_KEY_TECH_DEMOCRACY_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_DEMOCRACY_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_DEMOCRACY_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -1477,7 +1477,7 @@
 			<Type>TECH_CORPORATION</Type>
 			<Description>TXT_KEY_TECH_CORPORATION</Description>
 			<Civilopedia>TXT_KEY_TECH_CORPORATION_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_CORPORATION_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_CORPORATION_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -1552,7 +1552,7 @@
 			<Type>TECH_FASCISM</Type>
 			<Description>TXT_KEY_TECH_FASCISM</Description>
 			<Civilopedia>TXT_KEY_TECH_FASCISM_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_FASCISM_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_FASCISM_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -1619,7 +1619,7 @@
 			<Type>TECH_UTOPIA</Type>
 			<Description>TXT_KEY_TECH_UTOPIA</Description>
 			<Civilopedia>TXT_KEY_TECH_UTOPIA_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_UTOPIA_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_UTOPIA_STRATEGY</Strategy>
 			<Advisor>ADVISOR_GROWTH</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -1694,7 +1694,7 @@
 			<Type>TECH_MASS_MEDIA</Type>
 			<Description>TXT_KEY_TECH_MASS_MEDIA</Description>
 			<Civilopedia>TXT_KEY_TECH_MASS_MEDIA_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_MASS_MEDIA_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_MASS_MEDIA_STRATEGY</Strategy>
 			<Advisor>ADVISOR_CULTURE</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -1765,7 +1765,7 @@
 			<Type>TECH_ECOLOGY</Type>
 			<Description>TXT_KEY_TECH_ECOLOGY</Description>
 			<Civilopedia>TXT_KEY_TECH_ECOLOGY_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_ECOLOGY_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_ECOLOGY_STRATEGY</Strategy>
 			<Advisor>ADVISOR_GROWTH</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -2038,7 +2038,7 @@
 			<Type>TECH_POTTERY</Type>
 			<Description>TXT_KEY_TECH_POTTERY</Description>
 			<Civilopedia>TXT_KEY_TECH_POTTERY_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_POTTERY_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_POTTERY_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -2114,7 +2114,7 @@
 			<Type>TECH_AESTHETICS</Type>
 			<Description>TXT_KEY_TECH_AESTHETICS</Description>
 			<Civilopedia>TXT_KEY_TECH_AESTHETICS_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_AESTHETICS_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_AESTHETICS_STRATEGY</Strategy>
 			<Advisor>ADVISOR_CULTURE</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -2189,7 +2189,7 @@
 			<Type>TECH_SAILING</Type>
 			<Description>TXT_KEY_TECH_SAILING</Description>
 			<Civilopedia>TXT_KEY_TECH_SAILING_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_SAILING_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_SAILING_STRATEGY</Strategy>
 			<Advisor>ADVISOR_GROWTH</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -2268,7 +2268,7 @@
 			<Type>TECH_WRITING</Type>
 			<Description>TXT_KEY_TECH_WRITING</Description>
 			<Civilopedia>TXT_KEY_TECH_WRITING_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_WRITING_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_WRITING_STRATEGY</Strategy>
 			<Advisor>ADVISOR_SCIENCE</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -2346,7 +2346,7 @@
 			<Type>TECH_MATHEMATICS</Type>
 			<Description>TXT_KEY_TECH_MATHEMATICS</Description>
 			<Civilopedia>TXT_KEY_TECH_MATHEMATICS_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_MATHEMATICS_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_MATHEMATICS_STRATEGY</Strategy>
 			<Advisor>ADVISOR_SCIENCE</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -2419,7 +2419,7 @@
 			<Type>TECH_CALENDAR</Type>
 			<Description>TXT_KEY_TECH_CALENDAR</Description>
 			<Civilopedia>TXT_KEY_TECH_CALENDAR_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_CALENDAR_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_CALENDAR_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -2490,7 +2490,7 @@
 			<Type>TECH_CROP_ROTATION</Type>
 			<Description>TXT_KEY_TECH_CROP_ROTATION</Description>
 			<Civilopedia>TXT_KEY_TECH_CROP_ROTATION_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_CROP_ROTATION_EUREKA</Help>
 			<Strategy/>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -2561,7 +2561,7 @@
 			<Type>TECH_CURRENCY</Type>
 			<Description>TXT_KEY_TECH_CURRENCY</Description>
 			<Civilopedia>TXT_KEY_TECH_CURRENCY_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_CURRENCY_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_CURRENCY_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>200</iAIWeight>
@@ -2632,7 +2632,7 @@
 			<Type>TECH_PHILOSOPHY</Type>
 			<Description>TXT_KEY_TECH_PHILOSOPHY</Description>
 			<Civilopedia>TXT_KEY_TECH_PHILOSOPHY_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_PHILOSOPHY_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_PHILOSOPHY_STRATEGY</Strategy>
 			<Advisor>ADVISOR_RELIGION</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -2704,7 +2704,7 @@
 			<Type>TECH_PAPER</Type>
 			<Description>TXT_KEY_TECH_ALCHEMY</Description>
 			<Civilopedia>TXT_KEY_TECH_ALCHEMY_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_ALCHEMY_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_PAPER_STRATEGY</Strategy>
 			<Advisor>ADVISOR_SCIENCE</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -2781,7 +2781,7 @@
 			<Type>TECH_BANKING</Type>
 			<Description>TXT_KEY_TECH_BANKING</Description>
 			<Civilopedia>TXT_KEY_TECH_BANKING_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_BANKING_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_BANKING_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -2848,7 +2848,7 @@
 			<Type>TECH_EDUCATION</Type>
 			<Description>TXT_KEY_TECH_EDUCATION</Description>
 			<Civilopedia>TXT_KEY_TECH_EDUCATION_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_EDUCATION_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_EDUCATION_STRATEGY</Strategy>
 			<Advisor>ADVISOR_SCIENCE</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -2921,7 +2921,7 @@
 			<Type>TECH_PRINTING_PRESS</Type>
 			<Description>TXT_KEY_TECH_PRINTING_PRESS</Description>
 			<Civilopedia>TXT_KEY_TECH_PRINTING_PRESS_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_PRINTING_PRESS_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_PRINTING_PRESS_STRATEGY</Strategy>
 			<Advisor>ADVISOR_SCIENCE</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -2996,7 +2996,7 @@
 			<Type>TECH_ECONOMICS</Type>
 			<Description>TXT_KEY_TECH_ECONOMICS</Description>
 			<Civilopedia>TXT_KEY_TECH_ECONOMICS_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_ECONOMICS_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_ECONOMICS_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -3064,7 +3064,7 @@
 			<Type>TECH_ASTRONOMY</Type>
 			<Description>TXT_KEY_TECH_ASTRONOMY</Description>
 			<Civilopedia>TXT_KEY_TECH_ASTRONOMY_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_ASTRONOMY_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_ASTRONOMY_STRATEGY</Strategy>
 			<Advisor>ADVISOR_GROWTH</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -3140,7 +3140,7 @@
 			<Type>TECH_CHEMISTRY</Type>
 			<Description>TXT_KEY_TECH_CHEMISTRY</Description>
 			<Civilopedia>TXT_KEY_TECH_CHEMISTRY_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_CHEMISTRY_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_CHEMISTRY_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -3209,7 +3209,7 @@
 			<Type>TECH_SCIENTIFIC_METHOD</Type>
 			<Description>TXT_KEY_TECH_SCIENTIFIC_METHOD</Description>
 			<Civilopedia>TXT_KEY_TECH_SCIENTIFIC_METHOD_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_SCIENTIFIC_METHOD_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_SCIENTIFIC_METHOD_STRATEGY</Strategy>
 			<Advisor>ADVISOR_SCIENCE</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -3272,7 +3272,7 @@
 			<Type>TECH_PHYSICS</Type>
 			<Description>TXT_KEY_TECH_PHYSICS</Description>
 			<Civilopedia>TXT_KEY_TECH_PHYSICS_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_PHYSICS_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_PHYSICS_STRATEGY</Strategy>
 			<Advisor>ADVISOR_SCIENCE</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -3339,7 +3339,7 @@
 			<Type>TECH_BIOLOGY</Type>
 			<Description>TXT_KEY_TECH_BIOLOGY</Description>
 			<Civilopedia>TXT_KEY_TECH_BIOLOGY_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_BIOLOGY_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_BIOLOGY_STRATEGY</Strategy>
 			<Advisor>ADVISOR_SCIENCE</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -3407,7 +3407,7 @@
 			<Type>TECH_MEDICINE</Type>
 			<Description>TXT_KEY_TECH_MEDICINE</Description>
 			<Civilopedia>TXT_KEY_TECH_MEDICINE_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_MEDICINE_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_MEDICINE_STRATEGY</Strategy>
 			<Advisor>ADVISOR_GROWTH</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -3476,7 +3476,7 @@
 			<Type>TECH_ELECTRICITY</Type>
 			<Description>TXT_KEY_TECH_ELECTRICITY</Description>
 			<Civilopedia>TXT_KEY_TECH_ELECTRICITY_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_ELECTRICITY_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_ELECTRICITY_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -3543,7 +3543,7 @@
 			<Type>TECH_COMBUSTION</Type>
 			<Description>TXT_KEY_TECH_COMBUSTION</Description>
 			<Civilopedia>TXT_KEY_TECH_COMBUSTION_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_COMBUSTION_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_COMBUSTION_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -3618,7 +3618,7 @@
 			<Type>TECH_FISSION</Type>
 			<Description>TXT_KEY_TECH_FISSION</Description>
 			<Civilopedia>TXT_KEY_TECH_FISSION_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_FISSION_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_FISSION_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -3689,7 +3689,7 @@
 			<Type>TECH_FLIGHT</Type>
 			<Description>TXT_KEY_TECH_FLIGHT</Description>
 			<Civilopedia>TXT_KEY_TECH_FLIGHT_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_FLIGHT_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_FLIGHT_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -3768,7 +3768,7 @@
 			<Type>TECH_ADVANCED_FLIGHT</Type>
 			<Description>TXT_KEY_TECH_ADVANCED_FLIGHT</Description>
 			<Civilopedia>TXT_KEY_TECH_ADVANCED_FLIGHT_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_ADVANCED_FLIGHT_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_ADVANCED_FLIGHT_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -3839,7 +3839,7 @@
 			<Type>TECH_PLASTICS</Type>
 			<Description>TXT_KEY_TECH_PLASTICS</Description>
 			<Civilopedia>TXT_KEY_TECH_MODERN_COMBAT_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_MODERN_COMBAT_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_MODERN_COMBAT_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -3902,7 +3902,7 @@
 			<Type>TECH_COMPOSITES</Type>
 			<Description>TXT_KEY_TECH_COMPOSITES</Description>
 			<Civilopedia>TXT_KEY_TECH_COMPOSITES_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_COMPOSITES_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_COMPOSITES_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -3977,7 +3977,7 @@
 			<Type>TECH_STEALTH</Type>
 			<Description>TXT_KEY_TECH_STEALTH</Description>
 			<Civilopedia>TXT_KEY_TECH_STEALTH_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_STEALTH_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_STEALTH_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -4040,7 +4040,7 @@
 			<Type>TECH_GENETICS</Type>
 			<Description>TXT_KEY_TECH_GENETICS</Description>
 			<Civilopedia>TXT_KEY_TECH_GENETICS_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_GENETICS_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_GENETICS_STRATEGY</Strategy>
 			<Advisor>ADVISOR_GROWTH</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -4107,7 +4107,7 @@
 			<Type>TECH_FIBER_OPTICS</Type>
 			<Description>TXT_KEY_TECH_FIBER_OPTICS</Description>
 			<Civilopedia>TXT_KEY_TECH_FIBER_OPTICS_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_FIBER_OPTICS_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_FIBER_OPTICS_STRATEGY</Strategy>
 			<Advisor>ADVISOR_SCIENCE</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -4174,7 +4174,7 @@
 			<Type>TECH_FUSION</Type>
 			<Description>TXT_KEY_TECH_FUSION</Description>
 			<Civilopedia>TXT_KEY_TECH_FUSION_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_FUSION_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_FUSION_STRATEGY</Strategy>
 			<Advisor>ADVISOR_SCIENCE</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -4380,7 +4380,7 @@
 			<Type>TECH_LEATHER_WORKING</Type>
 			<Description>TXT_KEY_TECH_LEATHER_WORKING</Description>
 			<Civilopedia>TXT_KEY_TECH_LEATHER_WORKING_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_LEATHER_WORKING_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_LEATHER_WORKING_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -4449,7 +4449,7 @@
 			<Type>TECH_MASONRY</Type>
 			<Description>TXT_KEY_TECH_MASONRY</Description>
 			<Civilopedia>TXT_KEY_TECH_MASONRY_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_MASONRY_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_MASONRY_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -4519,7 +4519,7 @@
 			<Type>TECH_ANIMAL_HUSBANDRY</Type>
 			<Description>TXT_KEY_TECH_ANIMAL_HUSBANDRY</Description>
 			<Civilopedia>TXT_KEY_TECH_ANIMAL_HUSBANDRY_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_ANIMAL_HUSBANDRY_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_ANIMAL_HUSBANDRY_STRATEGY</Strategy>
 			<Advisor>ADVISOR_GROWTH</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -4597,7 +4597,7 @@
 			<Type>TECH_BRONZE_WORKING</Type>
 			<Description>TXT_KEY_TECH_BRONZE_WORKING</Description>
 			<Civilopedia>TXT_KEY_TECH_BRONZE_WORKING_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_BRONZE_WORKING_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_BRONZE_WORKING_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -4674,7 +4674,7 @@
 			<Type>TECH_HORSEBACK_RIDING</Type>
 			<Description>TXT_KEY_TECH_HORSEBACK_RIDING</Description>
 			<Civilopedia>TXT_KEY_TECH_HORSEBACK_RIDING_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_HORSEBACK_RIDING_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_HORSEBACK_RIDING_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -4741,7 +4741,7 @@
 			<Type>TECH_IRON_WORKING</Type>
 			<Description>TXT_KEY_TECH_IRON_WORKING</Description>
 			<Civilopedia>TXT_KEY_TECH_IRON_WORKING_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_IRON_WORKING_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_IRON_WORKING_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -4816,7 +4816,7 @@
 			<Type>TECH_METAL_CASTING</Type>
 			<Description>TXT_KEY_TECH_METAL_CASTING</Description>
 			<Civilopedia>TXT_KEY_TECH_METAL_CASTING_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_METAL_CASTING_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_METAL_CASTING_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -4887,7 +4887,7 @@
 			<Type>TECH_COMPASS</Type>
 			<Description>TXT_KEY_TECH_NAVIGATION</Description>
 			<Civilopedia>TXT_KEY_TECH_NAVIGATION_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_NAVIGATION_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_COMPASS_STRATEGY</Strategy>
 			<Advisor>ADVISOR_GROWTH</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -4962,7 +4962,7 @@
 			<Type>TECH_CONSTRUCTION</Type>
 			<Description>TXT_KEY_TECH_CONSTRUCTION</Description>
 			<Civilopedia>TXT_KEY_TECH_CONSTRUCTION_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_CONSTRUCTION_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_CONSTRUCTION_STRATEGY</Strategy>
 			<Advisor>ADVISOR_GROWTH</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -5041,7 +5041,7 @@
 			<Type>TECH_MACHINERY</Type>
 			<Description>TXT_KEY_TECH_MACHINERY</Description>
 			<Civilopedia>TXT_KEY_TECH_MACHINERY_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_MACHINERY_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_MACHINERY_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -5116,7 +5116,7 @@
 			<Type>TECH_ENGINEERING</Type>
 			<Description>TXT_KEY_TECH_ENGINEERING</Description>
 			<Civilopedia>TXT_KEY_TECH_ENGINEERING_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_ENGINEERING_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_ENGINEERING_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -5191,7 +5191,7 @@
 			<Type>TECH_OPTICS</Type>
 			<Description>TXT_KEY_TECH_OPTICS</Description>
 			<Civilopedia>TXT_KEY_TECH_OPTICS_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_OPTICS_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_OPTICS_STRATEGY</Strategy>
 			<Advisor>ADVISOR_GROWTH</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -5266,7 +5266,7 @@
 			<Type>TECH_GUNPOWDER</Type>
 			<Description>TXT_KEY_TECH_GUNPOWDER</Description>
 			<Civilopedia>TXT_KEY_TECH_GUNPOWDER_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_GUNPOWDER_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_GUNPOWDER_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -5337,7 +5337,7 @@
 			<Type>TECH_REPLACEABLE_PARTS</Type>
 			<Description>TXT_KEY_TECH_REPLACEABLE_PARTS</Description>
 			<Civilopedia>TXT_KEY_TECH_REPLACEABLE_PARTS_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_REPLACEABLE_PARTS_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_REPLACEABLE_PARTS_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -5409,7 +5409,7 @@
 			<Type>TECH_RIFLING</Type>
 			<Description>TXT_KEY_TECH_RIFLING</Description>
 			<Civilopedia>TXT_KEY_TECH_RIFLING_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_RIFLING_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_RIFLING_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -5480,7 +5480,7 @@
 			<Type>TECH_STEAM_POWER</Type>
 			<Description>TXT_KEY_TECH_STEAM_POWER</Description>
 			<Civilopedia>TXT_KEY_TECH_STEAM_POWER_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_STEAM_POWER_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_STEAM_POWER_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -5559,7 +5559,7 @@
 			<Type>TECH_STEEL</Type>
 			<Description>TXT_KEY_TECH_STEEL</Description>
 			<Civilopedia>TXT_KEY_TECH_STEEL_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_STEEL_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_STEEL_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -5634,7 +5634,7 @@
 			<Type>TECH_ASSEMBLY_LINE</Type>
 			<Description>TXT_KEY_TECH_ASSEMBLY_LINE</Description>
 			<Civilopedia>TXT_KEY_TECH_ASSEMBLY_LINE_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_ASSEMBLY_LINE_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_ASSEMBLY_LINE_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -5705,7 +5705,7 @@
 			<Type>TECH_RAILROAD</Type>
 			<Description>TXT_KEY_TECH_RAILROAD</Description>
 			<Civilopedia>TXT_KEY_TECH_RAILROAD_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_RAILROAD_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_RAILROAD_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -5782,7 +5782,7 @@
 			<Type>TECH_ARTILLERY</Type>
 			<Description>TXT_KEY_TECH_ARTILLERY</Description>
 			<Civilopedia>TXT_KEY_TECH_ARTILLERY_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_ARTILLERY_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_ARTILLERY_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -5850,7 +5850,7 @@
 			<Type>TECH_INDUSTRIALISM</Type>
 			<Description>TXT_KEY_TECH_INDUSTRIALISM</Description>
 			<Civilopedia>TXT_KEY_TECH_INDUSTRIALISM_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_INDUSTRIALISM_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_INDUSTRIALISM_STRATEGY</Strategy>
 			<Advisor>ADVISOR_ECONOMY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -5922,7 +5922,7 @@
 			<Type>TECH_RADIO</Type>
 			<Description>TXT_KEY_TECH_RADIO</Description>
 			<Civilopedia>TXT_KEY_TECH_RADIO_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_RADIO_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_RADIO_STRATEGY</Strategy>
 			<Advisor>ADVISOR_CULTURE</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -5993,7 +5993,7 @@
 			<Type>TECH_REFRIGERATION</Type>
 			<Description>TXT_KEY_TECH_REFRIGERATION</Description>
 			<Civilopedia>TXT_KEY_TECH_REFRIGERATION_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_REFRIGERATION_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_REFRIGERATION_STRATEGY</Strategy>
 			<Advisor>ADVISOR_GROWTH</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -6073,7 +6073,7 @@
 			<Type>TECH_SUPERCONDUCTORS</Type>
 			<Description>TXT_KEY_TECH_SUPERCONDUCTORS</Description>
 			<Civilopedia>TXT_KEY_TECH_SUPERCONDUCTORS_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_SUPERCONDUCTORS_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_SUPERCONDUCTORS_STRATEGY</Strategy>
 			<Advisor>ADVISOR_GROWTH</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -6141,7 +6141,7 @@
 			<Type>TECH_COMPUTERS</Type>
 			<Description>TXT_KEY_TECH_COMPUTERS</Description>
 			<Civilopedia>TXT_KEY_TECH_COMPUTERS_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_COMPUTERS_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_COMPUTERS_STRATEGY</Strategy>
 			<Advisor>ADVISOR_SCIENCE</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -6213,7 +6213,7 @@
 			<Type>TECH_LASER</Type>
 			<Description>TXT_KEY_TECH_LASER</Description>
 			<Civilopedia>TXT_KEY_TECH_LASER_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_LASER_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_LASER_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -6280,7 +6280,7 @@
 			<Type>TECH_ROCKETRY</Type>
 			<Description>TXT_KEY_TECH_ROCKETRY</Description>
 			<Civilopedia>TXT_KEY_TECH_ROCKETRY_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_ROCKETRY_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_ROCKETRY_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -6348,7 +6348,7 @@
 			<Type>TECH_SATELLITES</Type>
 			<Description>TXT_KEY_TECH_SATELLITES</Description>
 			<Civilopedia>TXT_KEY_TECH_SATELLITES_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_SATELLITES_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_SATELLITES_STRATEGY</Strategy>
 			<Advisor>ADVISOR_MILITARY</Advisor>
 			<iAIWeight>0</iAIWeight>
@@ -6415,7 +6415,7 @@
 			<Type>TECH_ROBOTICS</Type>
 			<Description>TXT_KEY_TECH_ROBOTICS</Description>
 			<Civilopedia>TXT_KEY_TECH_ROBOTICS_PEDIA</Civilopedia>
-			<Help/>
+			<Help>TXT_KEY_TECH_ROBOTICS_EUREKA</Help>
 			<Strategy>TXT_KEY_TECH_ROBOTICS_STRATEGY</Strategy>
 			<Advisor>ADVISOR_SCIENCE</Advisor>
 			<iAIWeight>0</iAIWeight>

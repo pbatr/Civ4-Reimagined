@@ -365,6 +365,10 @@ public:
 	bool isNoTradeTech(TechTypes eIndex) const;																														// Exposed to Python
 	void setNoTradeTech(TechTypes eIndex, bool bNewValue);																					// Exposed to Python
 
+	// Civ4 Reimagined
+	bool isTechBoosted(TechTypes eIndex) const;
+	void setTechBoosted(TechTypes eIndex, PlayerTypes ePlayer, bool iNewValue);
+
 	int getImprovementYieldChange(ImprovementTypes eIndex1, YieldTypes eIndex2) const;										// Exposed to Python 
 	void changeImprovementYieldChange(ImprovementTypes eIndex1, YieldTypes eIndex2, int iChange);		// Exposed to Python 
 	
@@ -417,6 +421,10 @@ public:
 	
 	//Civ4 Reimagined
 	DllExport bool hasNukes() const;
+
+	// Civ4 Reimagined
+	int getNumRevealedContinents() const;
+	void changeNumRevealedContinents(int iChange);
 
 	virtual void AI_init() = 0;
 	virtual void AI_reset(bool bConstructor) = 0;
@@ -480,6 +488,7 @@ protected:
 	int m_iNoConquestResistanceCount;
 	int m_iNoConscriptUnhappinessCount; // Civ4 Reimagined
 	int m_iCanFarmHillsCount; // Civ4 Reimagined
+	int m_iNumRevealedContinents; // Civ4 Reimagined
 
 	bool m_bMapCentering;
 	bool m_bCapitulated;
@@ -524,6 +533,7 @@ protected:
 
 	bool* m_pabHasTech;
 	bool* m_pabNoTradeTech;
+	bool* m_pabTechBoosted; // Civ4 Reimagined
 
 	int** m_ppaaiImprovementYieldChange;
 	int** m_ppaaiBuildingYieldChange; // Civ4 Reimagined

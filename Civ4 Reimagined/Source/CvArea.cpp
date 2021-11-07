@@ -769,7 +769,14 @@ int CvArea::getNumUnrevealedTiles(TeamTypes eIndex) const
 void CvArea::changeNumRevealedTiles(TeamTypes eIndex, int iChange)
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be >= 0");
-	FAssertMsg(eIndex < MAX_PLAYERS, "eIndex is expected to be < MAX_PLAYERS");
+	FAssertMsg(eIndex < MAX_TEAMS, "eIndex is expected to be < MAX_TEAMS");
+
+	// Civ4 Reimagined
+	if (m_aiNumRevealedTiles[eIndex] == 0 && iChange > 0 && !isWater() && getNumTiles() >= GC.getDefineINT("MINIMUM_NUM_TILES_FOR_CONTINENT"))
+	{
+		GET_TEAM(eIndex).changeNumRevealedContinents(1);
+	}
+
 	m_aiNumRevealedTiles[eIndex] = (m_aiNumRevealedTiles[eIndex] + iChange);
 	FAssert(getNumRevealedTiles(eIndex) >= 0);
 }

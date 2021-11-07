@@ -3841,6 +3841,15 @@ void CvCity::hurry(HurryTypes eHurry)
 	
 	changeHurryAngerTimer(iHurryAngerLength);
 
+	// Civ4 Reimagined
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ASSEMBLY_LINE")))
+	{
+		if (iHurryGold > 0 && isProductionBuilding())
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ASSEMBLY_LINE"), getOwnerINLINE(), true);
+		}
+	}
+
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      10/02/09                                jdog5000      */
 /*                                                                                              */
@@ -4211,6 +4220,24 @@ void CvCity::processBonus(BonusTypes eBonus, int iChange, bool bChangeValue, boo
 	{
 		//logBBAI("%S process Bonus %S (old:%d, new:%d, change:%d, signum:%d)", getName().GetCString(), GC.getBonusInfo(eBonus).getDescription(), iOldCount, iNewCount, iChange, iSignum);
 	}
+
+	// Civ4 Reimagined
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_RAILROAD")))
+	{
+		if (eBonus == GC.getInfoTypeForString("BONUS_COAL") && iNewCount > 1)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_RAILROAD"), getOwnerINLINE(), true);
+		}
+	}
+
+	// Civ4 Reimagined
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_COMPOSITES")))
+	{
+		if (eBonus == GC.getInfoTypeForString("BONUS_ALUMINIUM") && iNewCount > 2)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_COMPOSITES"), getOwnerINLINE(), true);
+		}
+	}
 	
 	if (bChangeValue)
 	{
@@ -4558,6 +4585,21 @@ void CvCity::processBuilding(BuildingTypes eBuilding, int iChange, bool bObsolet
 	updateBuildingCommerce();
 
 	setLayoutDirty(true);
+
+	// Civ4 Reimagined
+	if (iChange > 0)
+	{
+		// Civ4 Reimagined
+		GET_PLAYER(getOwnerINLINE()).checkBuildingEurekas();
+
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_UTOPIA")))
+		{
+			if (kBuilding == (BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_FACTORY") && countNumImprovedPlots((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FARM")) > 5)
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_UTOPIA"), getOwnerINLINE(), true);
+			}
+		}
+	}
 }
 
 
@@ -6188,6 +6230,31 @@ void CvCity::setPopulation(int iNewValue)
 			gDLL->getInterfaceIFace()->setDirty(CityScreen_DIRTY_BIT, true);
 		}
 
+		// Civ4 Reimagined
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_POLYTHEISM")))
+		{
+			if (getPopulation() > 1)
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_POLYTHEISM"), getOwnerINLINE(), true);
+			}
+		}
+
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MONARCHY")))
+		{
+			if (getPopulation() > 5)
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MONARCHY"), getOwnerINLINE(), true);
+			}
+		}
+
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MEDICINE")))
+		{
+			if (getPopulation() > 19)
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MEDICINE"), getOwnerINLINE(), true);
+			}
+		}
+
 		//updateGenericBuildings();
 	}
 }
@@ -6459,6 +6526,15 @@ void CvCity::changeNumWorldWonders(int iChange)
 {
 	m_iNumWorldWonders = (m_iNumWorldWonders + iChange);
 	FAssert(getNumWorldWonders() >= 0);
+
+	// CIv4 Reimagined
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PHILOSOPHY")))
+	{
+		if (iChange > 0)
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PHILOSOPHY"), getOwnerINLINE(), true);
+		}
+	}
 }
 
 
@@ -8903,6 +8979,14 @@ void CvCity::changePowerCount(int iChange, bool bDirty)
 		{
 			updatePowerHealth();
 		}
+
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_REFRIGERATION")))
+		{
+			if (isPower())
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_REFRIGERATION"), getOwnerINLINE(), true);
+			}
+		}
 	}
 }
 
@@ -9368,6 +9452,9 @@ void CvCity::setCultureLevel(CultureLevelTypes eNewValue, bool bUpdatePlotGroups
 	{
 		m_eCultureLevel = eNewValue;
 
+		// Civ4 Reimagined
+		checkCultureLevelEurekas();
+
 		if (eOldValue != NO_CULTURELEVEL)
 		{
 			for (iDX = -eOldValue; iDX <= eOldValue; iDX++)
@@ -9449,6 +9536,8 @@ void CvCity::setCultureLevel(CultureLevelTypes eNewValue, bool bUpdatePlotGroups
 
 				// ONEVENT - Culture growth
 				CvEventReporter::getInstance().cultureExpansion(this, getOwnerINLINE());
+
+
 				
 				//Stop Build Culture
 				/* original BTS code
@@ -14058,6 +14147,14 @@ void CvCity::updateTradeRoutes()
 
 			// Civ4 Reimagined
 			iTradeProfit += calculateTradeProfitTimes100(pLoopCity);
+
+			if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CURRENCY")))
+			{
+				if (pLoopCity->getOwnerINLINE() != getOwnerINLINE())
+				{
+					GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CURRENCY"), getOwnerINLINE(), true);
+				}
+			}
 		}
 	}
 
@@ -18348,5 +18445,26 @@ int CvCity::getStateReligionCommercePerPopulationOverThreshold(CommerceTypes eIn
 	}
 
 	return 0;
+}
+
+
+// Civ4 Reimagined
+void CvCity::checkCultureLevelEurekas()
+{
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_AESTHETICS")))
+	{
+		if (getCultureLevel() >= (CultureLevelTypes)GC.getInfoTypeForString("CULTURELEVEL_REFINED"))
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_AESTHETICS"), getOwnerINLINE(), true);
+		}
+	}
+
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ABSOLUTISM")))
+	{
+		if (getCultureLevel() >= (CultureLevelTypes)GC.getInfoTypeForString("CULTURELEVEL_INFLUENTIAL"))
+		{
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ABSOLUTISM"), getOwnerINLINE(), true);
+		}
+	}
 }
 

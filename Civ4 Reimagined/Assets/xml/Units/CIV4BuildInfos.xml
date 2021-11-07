@@ -60,7 +60,7 @@
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
 					<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 					<iTime>400</iTime>
-					<iProduction>15</iProduction>
+					<iProduction>0</iProduction>
 					<bRemove>1</bRemove>
 				</FeatureStruct>
 				<FeatureStruct>
@@ -95,7 +95,7 @@
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
 					<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 					<iTime>400</iTime>
-					<iProduction>15</iProduction>
+					<iProduction>0</iProduction>
 					<bRemove>1</bRemove>
 				</FeatureStruct>
 				<FeatureStruct>
@@ -167,7 +167,7 @@
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
 					<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 					<iTime>400</iTime>
-					<iProduction>15</iProduction>
+					<iProduction>0</iProduction>
 					<bRemove>1</bRemove>
 				</FeatureStruct>
 				<FeatureStruct>
@@ -201,7 +201,7 @@
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
 					<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 					<iTime>400</iTime>
-					<iProduction>15</iProduction>
+					<iProduction>0</iProduction>
 					<bRemove>1</bRemove>
 				</FeatureStruct>
 				<FeatureStruct>
@@ -254,7 +254,7 @@
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
 					<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 					<iTime>400</iTime>
-					<iProduction>15</iProduction>
+					<iProduction>0</iProduction>
 					<bRemove>1</bRemove>
 				</FeatureStruct>
 				<FeatureStruct>
@@ -288,7 +288,7 @@
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
 					<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 					<iTime>400</iTime>
-					<iProduction>15</iProduction>
+					<iProduction>0</iProduction>
 					<bRemove>1</bRemove>
 				</FeatureStruct>
 				<FeatureStruct>
@@ -322,7 +322,7 @@
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
 					<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 					<iTime>400</iTime>
-					<iProduction>15</iProduction>
+					<iProduction>0</iProduction>
 					<bRemove>1</bRemove>
 				</FeatureStruct>
 				<FeatureStruct>
@@ -356,7 +356,7 @@
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
 					<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 					<iTime>400</iTime>
-					<iProduction>15</iProduction>
+					<iProduction>0</iProduction>
 					<bRemove>1</bRemove>
 				</FeatureStruct>
 				<FeatureStruct>
@@ -390,7 +390,7 @@
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
 					<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 					<iTime>400</iTime>
-					<iProduction>15</iProduction>
+					<iProduction>0</iProduction>
 					<bRemove>1</bRemove>
 				</FeatureStruct>
 				<FeatureStruct>
@@ -424,7 +424,7 @@
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
 					<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 					<iTime>400</iTime>
-					<iProduction>15</iProduction>
+					<iProduction>0</iProduction>
 					<bRemove>1</bRemove>
 				</FeatureStruct>
 				<FeatureStruct>
@@ -458,7 +458,7 @@
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
 					<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 					<iTime>400</iTime>
-					<iProduction>15</iProduction>
+					<iProduction>0</iProduction>
 					<bRemove>1</bRemove>
 				</FeatureStruct>
 				<FeatureStruct>
@@ -511,7 +511,7 @@
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
 					<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 					<iTime>400</iTime>
-					<iProduction>15</iProduction>
+					<iProduction>0</iProduction>
 					<bRemove>1</bRemove>
 				</FeatureStruct>
 				<FeatureStruct>
@@ -545,7 +545,7 @@
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
 					<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 					<iTime>400</iTime>
-					<iProduction>15</iProduction>
+					<iProduction>0</iProduction>
 					<bRemove>1</bRemove>
 				</FeatureStruct>
 				<FeatureStruct>
@@ -579,7 +579,7 @@
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
 					<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 					<iTime>400</iTime>
-					<iProduction>15</iProduction>
+					<iProduction>0</iProduction>
 					<bRemove>1</bRemove>
 				</FeatureStruct>
 				<FeatureStruct>
@@ -613,7 +613,7 @@
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
 					<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 					<iTime>400</iTime>
-					<iProduction>15</iProduction>
+					<iProduction>0</iProduction>
 					<bRemove>1</bRemove>
 				</FeatureStruct>
 				<FeatureStruct>
@@ -647,7 +647,7 @@
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
 					<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 					<iTime>400</iTime>
-					<iProduction>15</iProduction>
+					<iProduction>0</iProduction>
 					<bRemove>1</bRemove>
 				</FeatureStruct>
 			</FeatureStructs>

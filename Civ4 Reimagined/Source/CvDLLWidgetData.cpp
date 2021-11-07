@@ -1946,12 +1946,14 @@ void CvDLLWidgetData::parseHurryHelp(CvWidgetDataStruct &widgetDataStruct, CvWSt
 					setListHelp(szBuffer, szTempBuffer, GC.getCivicInfo((CivicTypes)iI).getDescription(), gDLL->getText("TXT_KEY_OR").c_str(), bFirst);
 					bFirst = false;
 				}
+			}
+
+			if (bFirst)
+			{
+				szTempBuffer = NEWLINE + gDLL->getText("TXT_KEY_NO_HURRY");
 			}		
 
-			if (!bFirst)
-			{
-				szBuffer.append(ENDCOLR);
-			}
+			szBuffer.append(ENDCOLR);
 		}
 	}
 }

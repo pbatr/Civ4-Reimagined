@@ -1324,6 +1324,56 @@ bool CvPlot::isAdjacentToLand() const
 }
 
 
+// Civ4 Reimagined
+int CvPlot::countAdjacentPeaks() const
+{
+	PROFILE_FUNC();
+
+	CvPlot* pAdjacentPlot;
+	int iI;
+	int iCount = 0;
+
+	for (iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
+	{
+		pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
+
+		if (pAdjacentPlot != NULL)
+		{
+			if (pAdjacentPlot->isPeak())
+			{
+				++iCount;
+			}
+		}
+	}
+
+	return iCount;
+}
+
+// Civ4 Reimagined
+bool CvPlot::isAdjacentToPeak() const
+{
+	PROFILE_FUNC();
+
+	CvPlot* pAdjacentPlot;
+	int iI;
+
+	for (iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
+	{
+		pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
+
+		if (pAdjacentPlot != NULL)
+		{
+			if (pAdjacentPlot->isPeak())
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+
 bool CvPlot::isCoastalLand(int iMinWaterSize) const
 {
 	PROFILE_FUNC();
@@ -5192,6 +5242,24 @@ void CvPlot::setOwner(PlayerTypes eNewValue, bool bCheckUnits, bool bUpdatePlotG
 		invalidateBorderDangerCache(); // K-Mod. (based on BBAI)
 
 		updateSymbols();
+
+		// Civ4 Reimagined
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MASONRY")))
+		{
+			if (getBonusType() == (BonusTypes)GC.getInfoTypeForString("BONUS_STONE") || getBonusType() == (BonusTypes)GC.getInfoTypeForString("BONUS_MARBLE"))
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MASONRY"), getOwnerINLINE(), true);
+			}
+		}
+
+		// Civ4 Reimagined
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_FISSION")))
+		{
+			if (getBonusType() == (BonusTypes)GC.getInfoTypeForString("BONUS_URANIUM") && GET_TEAM(getTeam()).isHasTech((TechTypes)GC.getInfoTypeForString("PHYSICS")))
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_FISSION"), getOwnerINLINE(), true);
+			}
+		}
 	}
 }
 

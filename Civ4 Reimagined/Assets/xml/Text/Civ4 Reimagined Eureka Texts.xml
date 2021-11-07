@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- Sid Meier's Civilization 4 -->
+<!-- Copyright Firaxis Games 2005 -->
+<Civ4GameText xmlns="http://www.firaxis.com">
+	<TEXT>
+		<Tag>TXT_KEY_MISC_TECH_BOOSTED</Tag>
+		<English>%s1_TechName has been boosted!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_EUREKA_TO_BOOST</Tag>
+		<English>[ICON_BULLET]To Boost:</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_EUREKA_BOOSTED</Tag>
+		<English>[ICON_BULLET]Boosted:</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_SAILING_EUREKA</Tag>
+		<English>Settle on Coast</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_POTTERY_EUREKA</Tag>
+		<English>Own a Farm</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ANIMAL_HUSBANDRY_EUREKA</Tag>
+		<English>Defeat an Animal</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_LEATHER_WORKING_EUREKA</Tag>
+		<English>Own a Camp</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_POLYTHEISM_EUREKA</Tag>
+		<English>Have a City with 2 Population</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_MASONRY_EUREKA</Tag>
+		<English>Have Either Stone or Marble in Your Empire</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_WRITING_EUREKA</Tag>
+		<English>Meet Another Civilization</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_HORSEBACK_RIDING_EUREKA</Tag>
+		<English>Own a Chariot</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_PRIESTHOOD_EUREKA</Tag>
+		<English>Own 2 Monuments</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_MONARCHY_EUREKA</Tag>
+		<English>Have a City with 6 Population</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_BRONZE_WORKING_EUREKA</Tag>
+		<English>Build a Copper Mine</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_AESTHETICS_EUREKA</Tag>
+		<English>Have a City with Refined Culture</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_MATHEMATICS_EUREKA</Tag>
+		<English>Earn a Great Scientist</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_MEDITATION_EUREKA</Tag>
+		<English>Earn a Great Prophet</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_MONOTHEISM_EUREKA</Tag>
+		<English>Own 3 Classical Temples</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_METAL_CASTING_EUREKA</Tag>
+		<English>Own 6 Mines</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_IRON_WORKING_EUREKA</Tag>
+		<English>Kill a Unit with an Axeman or Spearman</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_LITERATURE_EUREKA</Tag>
+		<English>Own 3 Libraries</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_CONSTRUCTION_EUREKA</Tag>
+		<English>Own 2 Walls</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_CURRENCY_EUREKA</Tag>
+		<English>Establish a Trade Route to a Foreign City</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_CALENDAR_EUREKA</Tag>
+		<English>Have a City adjacent to a Peak</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_CODE_OF_LAWS_EUREKA</Tag>
+		<English>Have a Total Population of 10 in Your Empire</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_MACHINERY_EUREKA</Tag>
+		<English>Own a Forge</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_NAVIGATION_EUREKA</Tag>
+		<English>Own 2 Galleys</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_DRAMA_EUREKA</Tag>
+		<English>Lose a Unit in Battle</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_GUILDS_EUREKA</Tag>
+		<English>Own 3 Harbors</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_CROP_ROTATION_EUREKA</Tag>
+		<English>Own 10 Farms</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_CIVIL_SERVICE_EUREKA</Tag>
+		<English>Own 4 Courthouses</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ENGINEERING_EUREKA</Tag>
+		<English>Own 2 Water Mills</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_THEOLOGY_EUREKA</Tag>
+		<English>Have a Religion in One of Your Cities</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_PHILOSOPHY_EUREKA</Tag>
+		<English>Own a World Wonder</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_FEUDALISM_EUREKA</Tag>
+		<English>Own 2 Forts</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ALCHEMY_EUREKA</Tag>
+		<English>Earn 2 Great Scientists</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_BANKING_EUREKA</Tag>
+		<English>Have 300 Gold</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_OPTICS_EUREKA</Tag>
+		<English>Own a Naval Unit with a Navigation Promotion</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_MUSIC_EUREKA</Tag>
+		<English>Adopt a State Religion</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_EXCLUSIVISM_EUREKA</Tag>
+		<English>Be at War with a Civilization Following another State Religion</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_EDUCATION_EUREKA</Tag>
+		<English>Build an Academy</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_GUNPOWDER_EUREKA</Tag>
+		<English>Own 6 Crossbowmen</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_CORPORATION_EUREKA</Tag>
+		<English>Earn a Great Merchant</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ASTRONOMY_EUREKA</Tag>
+		<English>Discover another Continent or Settle a City Next to 3 Peaks</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_DIVINE_RIGHT_EUREKA</Tag>
+		<English>Have a City with Influential Culture</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_PRINTING_PRESS_EUREKA</Tag>
+		<English>Own 6 Monasteries</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_MILITARY_TRADITION_EUREKA</Tag>
+		<English>Earn 2 Great Generals</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_CHEMISTRY_EUREKA</Tag>
+		<English>Attack a City Protected By a Castle</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_LIBERALISM_EUREKA</Tag>
+		<English>Abandon Slavery or Own 10 Towns</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_REPLACEABLE_PARTS_EUREKA</Tag>
+		<English>Own 4 Workshops</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_RIFLING_EUREKA</Tag>
+		<English>Kill a Unit with a Musketman</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_SCIENTIFIC_METHOD_EUREKA</Tag>
+		<English>Build a Great University</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ECONOMICS_EUREKA</Tag>
+		<English>Own 6 Banks</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_CONSTITUTION_EUREKA</Tag>
+		<English>Adopt Secularism</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_NATIONALISM_EUREKA</Tag>
+		<English>Research Steam Power</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_STEAM_POWER_EUREKA</Tag>
+		<English>Join a Great Engineer with a City</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_BIOLOGY_EUREKA</Tag>
+		<English>Own an Explorer with the Sentry Promotion</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ELECTRICITY_EUREKA</Tag>
+		<English>Earn 4 Great Scientists</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_DEMOCRACY_EUREKA</Tag>
+		<English>Trigger 2 Golden Ages</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_STEEL_EUREKA</Tag>
+		<English>Own a Factory</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_RAILROAD_EUREKA</Tag>
+		<English>Have Access to 2 Coal in Your Capital</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ASSEMBLY_LINE_EUREKA</Tag>
+		<English>Buy a Building with Gold</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_MEDICINE_EUREKA</Tag>
+		<English>Have a City With 20 Population</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_COMBUSTION_EUREKA</Tag>
+		<English>Own 3 Ironclads</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ARTILLERY_EUREKA</Tag>
+		<English>Own 3 Machine Guns</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_FASCISM_EUREKA</Tag>
+		<English>Be at War with a Civilization Following Another Ideology</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_UTOPIA_EUREKA</Tag>
+		<English>Build a Factory in a City With at least 6 Farms</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_PHYSICS_EUREKA</Tag>
+		<English>Use a Great Scientist's Discover Ability</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_REFRIGERATION_EUREKA</Tag>
+		<English>Have a Powered City</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_FLIGHT_EUREKA</Tag>
+		<English>Own 3 Airships</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_MODERN_COMBAT_EUREKA</Tag>
+		<English>Own 5 Tanks</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_INDUSTRIALISM_EUREKA</Tag>
+		<English>Adopt Industrialism</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_FISSION_EUREKA</Tag>
+		<English>Have Uranium in Your Empire</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_RADIO_EUREKA</Tag>
+		<English>Own 5 Cruisers</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ROCKETRY_EUREKA</Tag>
+		<English>Bombard a City by Air</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ROCKETRY_EUREKA</Tag>
+		<English>Bombard a City by Air</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_LASER_EUREKA</Tag>
+		<English>Earn 6 Great Scientists</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_COMPUTERS_EUREKA</Tag>
+		<English>Earn 3 Great Spies</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_MASS_MEDIA_EUREKA</Tag>
+		<English>Have Broadcast Towers in All Cities</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_SUPERCONDUCTORS_EUREKA</Tag>
+		<English>Earn 5 Great Engineers</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_SATELLITES_EUREKA</Tag>
+		<English>Build 5 Guided Missiles</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ADVANCED_FLIGHT_EUREKA</Tag>
+		<English>Kill a Unit with an Air Unit</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_FIBER_OPTICS_EUREKA</Tag>
+		<English>Steal a Modern Technology by Espionage</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ROBOTICS_EUREKA</Tag>
+		<English>Own 4 Industrial Parks</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_ECOLOGY_EUREKA</Tag>
+		<English>Global Warming Severity Rating is High</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_STEALTH_EUREKA</Tag>
+		<English>Own a Unit with an Ace Promotion</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_FUSION_EUREKA</Tag>
+		<English>Own 4 Nuclear Plants</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_COMPOSITES_EUREKA</Tag>
+		<English>Have Access to 3 Aluminium in Your Capital</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_TECH_GENETICS_EUREKA</Tag>
+		<English>Have Hospitals in All Cities</English>
+	</TEXT>
+</Civ4GameText>

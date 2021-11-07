@@ -73,6 +73,7 @@ CvTeam::CvTeam()
 
 	m_pabHasTech = NULL;
 	m_pabNoTradeTech = NULL;
+	m_pabTechBoosted = NULL; // Civ4 Reimagined
 
 	m_ppaaiImprovementYieldChange = NULL;
 	m_ppaaiBuildingYieldChange = NULL; // Civ4 Reimagined
@@ -139,6 +140,18 @@ void CvTeam::init(TeamTypes eID)
 				}
 			}
 		}
+
+		// Civ4 Reimagined
+		if (!isHuman())
+		{
+			for (iI = 0; iI < GC.getNumTechInfos(); iI++)
+			{
+				if (!CvWString(GC.getTechInfo((TechTypes)iI).getHelp()).empty())
+				{
+					m_pabTechBoosted[iI] = true;
+				}
+			}
+		}
 	}
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
@@ -169,6 +182,7 @@ void CvTeam::uninit()
 
 	SAFE_DELETE_ARRAY(m_pabHasTech);
 	SAFE_DELETE_ARRAY(m_pabNoTradeTech);
+	SAFE_DELETE_ARRAY(m_pabTechBoosted); // Civ4 Reimagined
 
 	if (m_ppaaiImprovementYieldChange != NULL)
 	{
@@ -228,6 +242,7 @@ void CvTeam::reset(TeamTypes eID, bool bConstructorCall)
 	m_iNoConquestResistanceCount = 0; //Civ4 Reimagined
 	m_iNoConscriptUnhappinessCount = 0; //Civ4 Reimagined
 	m_iCanFarmHillsCount = 0; //Civ4 Reimagined
+	m_iNumRevealedContinents = 0; //Civ4 Reimagined
 
 	m_bMapCentering = false;
 	m_bCapitulated = false;
@@ -371,10 +386,13 @@ void CvTeam::reset(TeamTypes eID, bool bConstructorCall)
 		m_pabHasTech = new bool[GC.getNumTechInfos()];
 		FAssertMsg(m_pabNoTradeTech==NULL, "about to leak memory, CvTeam::m_pabNoTradeTech");
 		m_pabNoTradeTech = new bool[GC.getNumTechInfos()];
+		FAssertMsg(m_pabTechBoosted==NULL, "about to leak memory, CvTeam::m_pabTechBoosted");
+		m_pabTechBoosted = new bool[GC.getNumTechInfos()];
 		for (iI = 0; iI < GC.getNumTechInfos(); iI++)
 		{
 			m_pabHasTech[iI] = false;
 			m_pabNoTradeTech[iI] = false;
+			m_pabTechBoosted[iI] = false;
 		}
 
 		FAssertMsg(m_ppaaiImprovementYieldChange==NULL, "about to leak memory, CvTeam::m_ppaaiImprovementYieldChange");
@@ -1381,6 +1399,9 @@ void CvTeam::declareWar(TeamTypes eTeam, bool bNewDiplo, WarPlanTypes eWarPlan, 
 		if ((GET_PLAYER((PlayerTypes)iI).getTeam() == getID()) || (GET_PLAYER((PlayerTypes)iI).getTeam() == eTeam))
 		{
 			GET_PLAYER((PlayerTypes)iI).updatePlunder(1, false);
+
+			// Civ4 Reimagined
+			GET_PLAYER((PlayerTypes)iI).checkWarPeaceEurekas();
 		}
 	}
 
@@ -2981,6 +3002,12 @@ int CvTeam::getResearchCost(TechTypes eTech, bool bGlobalModifiers, bool bTeamSi
 		iCost /= 100;
 	}
 
+	// Civ4 Reimagined: Higher costs because of Eureka boosts
+	if (!CvWString(GC.getTechInfo(eTech).getHelp()).empty())
+	{
+		iCost *= 100;
+		iCost /= 100 - GC.getDefineINT("EUREKA_TECH_BOOST_PERCENTAGE");
+	}
 
 	return std::max(1, iCost);
 }
@@ -4034,6 +4061,12 @@ void CvTeam::makeHasMet(TeamTypes eIndex, bool bNewDiplo)
 
 		// report event to Python, along with some other key state
 		CvEventReporter::getInstance().firstContact(getID(), eIndex);
+
+		// Civ4 Reimagined
+		if (! isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_WRITING")) && !GET_TEAM(eIndex).isBarbarian() && eIndex != getID())
+		{
+			setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_WRITING"), getLeaderID(), true);
+		}
 	}
 }
 
@@ -6037,6 +6070,35 @@ void CvTeam::setNoTradeTech(TechTypes eIndex, bool bNewValue)
 }
 
 
+// Civ4 Reimagined
+bool CvTeam::isTechBoosted(TechTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumTechInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_pabTechBoosted[eIndex];
+}
+
+
+// Civ4 Reimagined
+void CvTeam::setTechBoosted(TechTypes eIndex, PlayerTypes ePlayer, bool bNewValue)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumTechInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	if (GC.getDefineINT("EUREKA_TECH_BOOST_PERCENTAGE") > 0)
+	{
+		if (bNewValue && bNewValue != m_pabTechBoosted[eIndex] && !isHasTech(eIndex))
+		{
+			changeResearchProgressPercent(eIndex, GC.getDefineINT("EUREKA_TECH_BOOST_PERCENTAGE"), ePlayer);
+			CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_TECH_BOOSTED", GC.getTechInfo(eIndex).getTextKeyWide());
+			gDLL->getInterfaceIFace()->addHumanMessage(ePlayer, false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_NEW_ERA", MESSAGE_TYPE_MAJOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_HIGHLIGHT_TEXT"));
+		}
+	}
+
+	m_pabTechBoosted[eIndex] = bNewValue;
+}
+
+
 int CvTeam::getImprovementYieldChange(ImprovementTypes eIndex1, YieldTypes eIndex2) const
 {
 	FAssertMsg(eIndex1 >= 0, "eIndex1 is expected to be non-negative (invalid Index)");
@@ -6765,6 +6827,15 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 		changeRiverTradeCount(iChange);
 	}
 
+	// Civ4 Reimagined
+	if (!isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_NATIONALISM")))
+	{
+		if (iChange > 0 && eTech == (TechTypes)GC.getInfoTypeForString("TECH_STEAM_POWER"))
+		{
+			setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_NATIONALISM"), getLeaderID(), true);
+		}
+	}
+
 	for (iI = 0; iI < GC.getNumBuildingInfos(); iI++)
 	{
 		if (GC.getBuildingInfo((BuildingTypes) iI).getObsoleteTech() == eTech)
@@ -6863,6 +6934,18 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 								pLoopCity->changeTechCommerceRateModifier(((CommerceTypes)iK), (iTechCommerceModifier * iNumBuildings * iChange));
 							}
 						}
+					}
+				}
+			}
+
+			// Civ4 Reimagined
+			if (! isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_FISSION")))
+			{
+				if (iChange > 0 && eTech == (TechTypes)GC.getInfoTypeForString("TECH_PHYSICS"))
+				{
+					if (GET_PLAYER((PlayerTypes)iI).countOwnedBonuses((BonusTypes)GC.getInfoTypeForString("BONUS_URANIUM")) > 0)
+					{
+						setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_FISSION"), (PlayerTypes)iI, true);
 					}
 				}
 			}
@@ -7032,6 +7115,7 @@ void CvTeam::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iNoConquestResistanceCount); // Civ4 Reimagined
 	pStream->Read(&m_iNoConscriptUnhappinessCount); // Civ4 Reimagined
 	pStream->Read(&m_iCanFarmHillsCount); // Civ4 Reimagined
+	pStream->Read(&m_iNumRevealedContinents); // Civ4 Reimagined
 
 	pStream->Read(&m_bMapCentering);
 	pStream->Read(&m_bCapitulated);
@@ -7091,6 +7175,7 @@ void CvTeam::read(FDataStreamBase* pStream)
 
 	pStream->Read(GC.getNumTechInfos(), m_pabHasTech);
 	pStream->Read(GC.getNumTechInfos(), m_pabNoTradeTech);
+	pStream->Read(GC.getNumTechInfos(), m_pabTechBoosted); // Civ4 Reimagined
 
 	for (int i = 0; i < GC.getNumImprovementInfos(); ++i)
 	{
@@ -7149,6 +7234,7 @@ void CvTeam::write(FDataStreamBase* pStream)
 	pStream->Write(m_iNoConquestResistanceCount); // Civ4 Reimagined
 	pStream->Write(m_iNoConscriptUnhappinessCount); // Civ4 Reimagined
 	pStream->Write(m_iCanFarmHillsCount); // Civ4 Reimagined
+	pStream->Write(m_iNumRevealedContinents); // Civ4 Reimagined
 
 	pStream->Write(m_bMapCentering);
 	pStream->Write(m_bCapitulated);
@@ -7199,6 +7285,7 @@ void CvTeam::write(FDataStreamBase* pStream)
 
 	pStream->Write(GC.getNumTechInfos(), m_pabHasTech);
 	pStream->Write(GC.getNumTechInfos(), m_pabNoTradeTech);
+	pStream->Write(GC.getNumTechInfos(), m_pabTechBoosted); // Civ4 Reimagined
 
 	for (iI=0;iI<GC.getNumImprovementInfos();iI++)
 	{
@@ -7305,6 +7392,27 @@ void CvTeam::announceFirstDiscoveredTech(TechTypes eTech, PlayerTypes ePlayer) c
 			}
 			gDLL->getInterfaceIFace()->addHumanMessage(((PlayerTypes)iI), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_FIRSTTOTECH", MESSAGE_TYPE_MAJOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_HIGHLIGHT_TEXT"));
 			GC.getGameINLINE().addReplayMessage(REPLAY_MESSAGE_MAJOR_EVENT, ePlayer, szBuffer, -1, -1, (ColorTypes)GC.getInfoTypeForString("COLOR_HIGHLIGHT_TEXT"));
+		}
+	}
+}
+
+// Civ4 Reimagined
+int CvTeam::getNumRevealedContinents() const
+{
+	return m_iNumRevealedContinents;
+}
+
+// Civ4 Reimagined
+void CvTeam::changeNumRevealedContinents(int iChange)
+{
+	m_iNumRevealedContinents += iChange;
+
+	// Civ4 Reimagined
+	if (! isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ASTRONOMY")))
+	{
+		if (getNumRevealedContinents() > 1)
+		{
+			setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ASTRONOMY"), getLeaderID(), true);
 		}
 	}
 }
