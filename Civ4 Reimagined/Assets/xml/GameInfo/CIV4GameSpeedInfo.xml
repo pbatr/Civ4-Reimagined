@@ -279,14 +279,14 @@
 			<iUnitHurryPercent>50</iUnitHurryPercent>
 			<iUnitTradePercent>50</iUnitTradePercent>
 			<iUnitGreatWorkPercent>50</iUnitGreatWorkPercent>
-			<iGoldenAgePercent>50</iGoldenAgePercent>
+			<iGoldenAgePercent>66</iGoldenAgePercent>
 			<iHurryPercent>200</iHurryPercent>
 			<iHurryConscriptAngerPercent>50</iHurryConscriptAngerPercent>
 			<iInflationPercent>60</iInflationPercent>
 			<iInflationOffset>-45</iInflationOffset>
 			<iVictoryDelayPercent>50</iVictoryDelayPercent>
 			<iDealLengthPercent>50</iDealLengthPercent>
-			<iHealPercent>50</iHealPercent>
+			<iHealPercent>200</iHealPercent>
 			<iOccupyLengthPercent>50</iOccupyLengthPercent>
 			<GameTurnInfos>
 				<GameTurnInfo>
