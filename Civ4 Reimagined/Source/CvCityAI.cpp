@@ -10008,7 +10008,13 @@ int CvCityAI::AI_yieldValue(short* piYields, short* piCommerceYields, bool bRemo
 				// don't worry about minimum production if there is any hurry type available for us. If we need the productivity, we can just buy it.
 				bool bAnyHurry = false;
 				for (HurryTypes i = (HurryTypes)0; !bAnyHurry && i < GC.getNumHurryInfos(); i=(HurryTypes)(i+1))
-					bAnyHurry = kOwner.canHurry(i);
+				{
+					// Civ4 Reimagined: Only if we can hurry buildings
+					if (kOwner.canHurry(i) && GC.getHurryInfo(i).isBuildings())
+					{
+						bAnyHurry = true;
+					}
+				}
 
 				if (!bAnyHurry && foodDifference(false)-(bRemove ? iFoodYield : 0) >= GC.getFOOD_CONSUMPTION_PER_POPULATION())
 				{
@@ -10230,7 +10236,8 @@ int CvCityAI::AI_yieldValue(short* piYields, short* piCommerceYields, bool bRemo
 
 				//Slavery evaluation
 				// K-Mod. Rescaled values and conditions.
-				if (!bWorkerOptimization && isProduction() && kOwner.canPopRush() && getHurryAngerTimer() <= std::min(3,getPopulation()/2)+2*iHappinessLevel) // K-Mod
+				// Civ4 Reimagined: only if production building
+				if (!bWorkerOptimization && isProductionBuilding() && kOwner.canPopRush() && getHurryAngerTimer() <= std::min(3,getPopulation()/2)+2*iHappinessLevel) // K-Mod
 				{
 					//iSlaveryValue = 30 * 14 * std::max(0, aiYields[YIELD_FOOD] - ((iHealthLevel < 0) ? 1 : 0));
 					int iProductionPerPop = 0;

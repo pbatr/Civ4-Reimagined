@@ -16707,7 +16707,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			{
 				// if we had easy access to averages for getMaxFoodKeptPercent and getHurryAngerModifier, then I'd use them. - but I don't want to calculate them here.
 				//iTempValue += (bWarPlan ? 8 : 5) * iCities * kGame.getProductionPerPopulation(i) / std::max(1, getGrowthThreshold(getAveragePopulation()));
-				iTempValue += (bWarPlan ? 6 : 3) * iCities * kGame.getProductionPerPopulation(i) / std::max(1, getGrowthThreshold(getAveragePopulation())); // Civ4 Reimagined
+				iTempValue += 3 * iCities * kGame.getProductionPerPopulation(i) / std::max(1, getGrowthThreshold(getAveragePopulation())); // Civ4 Reimagined
 			}
 
 			if (iTempValue > 0)

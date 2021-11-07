@@ -1441,4 +1441,12 @@
 		<Tag>TXT_KEY_BUILDING_INCAN_QULLQA</Tag>
 		<English>Qullqa</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_HURRY_POPULATION</Tag>
+		<English>Can Sacrifice Population to Finish Production of a Building in a City</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_NO_HURRY</Tag>
+		<English>Cannot be Hurried</English>
+	</TEXT>
 </Civ4GameText>
