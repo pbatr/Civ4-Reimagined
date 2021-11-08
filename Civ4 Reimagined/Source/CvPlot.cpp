@@ -5227,6 +5227,24 @@ void CvPlot::setOwner(PlayerTypes eNewValue, bool bCheckUnits, bool bUpdatePlotG
 						}
 					}
 				}
+
+				// Civ4 Reimagined
+				if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MASONRY")))
+				{
+					if (getBonusType() == (BonusTypes)GC.getInfoTypeForString("BONUS_STONE") || getBonusType() == (BonusTypes)GC.getInfoTypeForString("BONUS_MARBLE"))
+					{
+						GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MASONRY"), getOwnerINLINE(), true);
+					}
+				}
+
+				// Civ4 Reimagined
+				if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_FISSION")))
+				{
+					if (getBonusType() == (BonusTypes)GC.getInfoTypeForString("BONUS_URANIUM") && GET_TEAM(getTeam()).isHasTech((TechTypes)GC.getInfoTypeForString("PHYSICS")))
+					{
+						GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_FISSION"), getOwnerINLINE(), true);
+					}
+				}
 			}
 
 			if (GC.getGameINLINE().isDebugMode())
@@ -5242,24 +5260,6 @@ void CvPlot::setOwner(PlayerTypes eNewValue, bool bCheckUnits, bool bUpdatePlotG
 		invalidateBorderDangerCache(); // K-Mod. (based on BBAI)
 
 		updateSymbols();
-
-		// Civ4 Reimagined
-		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MASONRY")))
-		{
-			if (getBonusType() == (BonusTypes)GC.getInfoTypeForString("BONUS_STONE") || getBonusType() == (BonusTypes)GC.getInfoTypeForString("BONUS_MARBLE"))
-			{
-				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MASONRY"), getOwnerINLINE(), true);
-			}
-		}
-
-		// Civ4 Reimagined
-		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_FISSION")))
-		{
-			if (getBonusType() == (BonusTypes)GC.getInfoTypeForString("BONUS_URANIUM") && GET_TEAM(getTeam()).isHasTech((TechTypes)GC.getInfoTypeForString("PHYSICS")))
-			{
-				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_FISSION"), getOwnerINLINE(), true);
-			}
-		}
 	}
 }
 
