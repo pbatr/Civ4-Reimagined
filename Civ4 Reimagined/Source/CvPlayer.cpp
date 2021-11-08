@@ -27304,7 +27304,7 @@ void CvPlayer::checkBuildingEurekas()
 
 	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PRIESTHOOD")))
 	{
-		if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_MONUMENT")) > 1)
+		if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_OBELISK")) > 1)
 		{
 			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PRIESTHOOD"), getID(), true);
 		}
