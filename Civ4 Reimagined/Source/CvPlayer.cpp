@@ -27429,7 +27429,7 @@ void CvPlayer::checkBuildingEurekas()
 		for (int iI = 0; iI < GC.getNumBuildingClassInfos(); iI++)
 		{
 			BuildingTypes eBuilding = (BuildingTypes)(GC.getCivilizationInfo(getCivilizationType()).getCivilizationBuildings((BuildingClassTypes)iI));
-			if (GC.getBuildingInfo(eBuilding).getSpecialBuildingType() == (SpecialBuildingTypes)GC.getInfoTypeForString("SPECIALBUILDING_MONASTERY"))
+			if (eBuilding != NO_BUILDING && GC.getBuildingInfo(eBuilding).getSpecialBuildingType() == (SpecialBuildingTypes)GC.getInfoTypeForString("SPECIALBUILDING_MONASTERY"))
 			{
 				iCount += getBuildingClassCount((BuildingClassTypes)iI);
 			}
