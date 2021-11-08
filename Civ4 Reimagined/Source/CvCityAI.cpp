@@ -4669,7 +4669,8 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				}
 			}
 
-			if (! GET_PLAYER(getOwnerINLINE()).isSpecialBuildingNotRequired((SpecialBuildingTypes)kBuilding.getSpecialBuildingType())) // Civ4 Reimagined
+			const SpecialBuildingTypes eSpecialBuilding = (SpecialBuildingTypes)kBuilding.getSpecialBuildingType();
+			if (eSpecialBuilding == NO_SPECIALBUILDING || ! GET_PLAYER(getOwnerINLINE()).isSpecialBuildingNotRequired(eSpecialBuilding)) // Civ4 Reimagined
 			{
 				for (int iI = 0; iI < GC.getNumUnitInfos(); iI++)
 				{
