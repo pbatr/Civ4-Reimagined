@@ -9915,7 +9915,7 @@ void CvPlayer::changeTotalPopulation(int iChange)
 	// Civ4 Reimagined
 	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CODE_OF_LAWS")))
 	{
-		if (getTotalPopulation() > 9)
+		if (getTotalPopulation() > 14)
 		{
 			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CODE_OF_LAWS"), getID(), true);
 		}
