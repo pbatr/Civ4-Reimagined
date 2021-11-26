@@ -42,6 +42,7 @@ Tweaks
 -Higher tech speed on lower difficulties
 -Incan unique building Terrace changed to Qullqa (replaces Granery, -20% city maintenance & units heal 10% faster)
 -Incan unique unit Awqaq Runa now has reduced cost (15 instead of 30) and combat bonus on hills but no longer bonus vs melee
+-Quests which require training a number of units are easier to fullfil
 
 *********
 Interface
