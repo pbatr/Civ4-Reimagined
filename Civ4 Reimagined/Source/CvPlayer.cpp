@@ -10037,7 +10037,7 @@ void CvPlayer::changeTotalPopulation(int iChange)
 	// Civ4 Reimagined
 	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CODE_OF_LAWS")))
 	{
-		if (getTotalPopulation() > 9)
+		if (getTotalPopulation() > 14)
 		{
 			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CODE_OF_LAWS"), getID(), true);
 		}
@@ -17444,7 +17444,7 @@ int CvPlayer::getEspionageMissionBaseCost(EspionageMissionTypes eMission, Player
 					iCost *= 100;
 					iCost /= calculateResearchModifier((TechTypes)iTech);
 
-					if (!CvWString(GC.getTechInfo(eTech).getHelp()).empty())
+					if (!CvWString(GC.getTechInfo((TechTypes)iTech).getHelp()).empty())
 					{
 						iCost *= 100 - GC.getDefineINT("EUREKA_TECH_BOOST_PERCENTAGE");
 						iCost /= 100;

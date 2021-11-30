@@ -3359,7 +3359,7 @@ def canTriggerWarChariots(argsList):
 	kActualTriggeredDataObject.eReligion = ReligionTypes(player.getStateReligion())
 	
 	# Civ4 Reimagined: Can only trigger with less than 50% quest progress at start
-	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 5
+	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 1
 	iUnitClassType = CvUtil.findInfoTypeNum(gc.getUnitClassInfo, gc.getNumUnitClassInfos(), 'UNITCLASS_CHARIOT')
 	
 	if player.getUnitClassCount(iUnitClassType) > (iNumUnits / 2):
@@ -3371,7 +3371,7 @@ def getHelpWarChariots1(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 		
-	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 5
+	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 1
 	szHelp = localText.getText("TXT_KEY_EVENT_WAR_CHARIOTS_HELP_1", (iNumUnits, ))
 
 	return szHelp
@@ -3381,7 +3381,7 @@ def canTriggerWarChariotsDone(argsList):
 	trigger = gc.getEventTriggerInfo(kTriggeredData.eTrigger)
 	player = gc.getPlayer(kTriggeredData.ePlayer)
 	
-	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 5
+	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 1
 	iUnitClassType = CvUtil.findInfoTypeNum(gc.getUnitClassInfo, gc.getNumUnitClassInfos(), 'UNITCLASS_CHARIOT')
 	if player.getUnitClassCount(iUnitClassType) < iNumUnits:
 		return false
@@ -3399,7 +3399,7 @@ def canTriggerEliteSwords(argsList):
 	
 	# Civ4 Reimagined: Can only trigger with less than 50% quest progress at start
 	player = gc.getPlayer(kTriggeredData.ePlayer)
-	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 10
+	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 3
 	iUnitClassType = CvUtil.findInfoTypeNum(gc.getUnitClassInfo, gc.getNumUnitClassInfos(), 'UNITCLASS_SWORDSMAN')
 	
 	if player.getUnitClassCount(iUnitClassType) > (iNumUnits / 2):
@@ -3411,7 +3411,7 @@ def getHelpEliteSwords1(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 		
-	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 10
+	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 3
 	szHelp = localText.getText("TXT_KEY_EVENT_ELITE_SWORDS_HELP_1", (iNumUnits, ))
 
 	return szHelp
@@ -3420,7 +3420,7 @@ def canTriggerEliteSwordsDone(argsList):
 	kTriggeredData = argsList[0]
 	player = gc.getPlayer(kTriggeredData.ePlayer)
 	
-	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 10
+	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 3
 	iUnitClassType = CvUtil.findInfoTypeNum(gc.getUnitClassInfo, gc.getNumUnitClassInfos(), 'UNITCLASS_SWORDSMAN')
 	if player.getUnitClassCount(iUnitClassType) < iNumUnits:
 		return false
@@ -3447,7 +3447,7 @@ def canTriggerWarships(argsList):
 	
 	# Civ4 Reimagined: Can only trigger with less than 50% quest progress at start
 	player = gc.getPlayer(kTriggeredData.ePlayer)
-	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 2
+	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 1
 	iUnitClassType = CvUtil.findInfoTypeNum(gc.getUnitClassInfo, gc.getNumUnitClassInfos(), 'UNITCLASS_TRIREME')
 	
 	if player.getUnitClassCount(iUnitClassType) > (iNumUnits / 2):
@@ -3471,7 +3471,7 @@ def getHelpWarships1(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 		
-	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 2
+	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 1
 	
 	iBuilding = CvUtil.findInfoTypeNum(gc.getBuildingInfo, gc.getNumBuildingInfos(), 'BUILDING_GREAT_LIGHTHOUSE')
 	szHelp = localText.getText("TXT_KEY_EVENT_WARSHIPS_HELP_1", (iNumUnits, gc.getBuildingInfo(iBuilding).getTextKey()))
@@ -3482,7 +3482,7 @@ def canTriggerWarshipsDone(argsList):
 	kTriggeredData = argsList[0]
 	player = gc.getPlayer(kTriggeredData.ePlayer)
 	
-	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 2
+	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 1
 	iUnitClassType = CvUtil.findInfoTypeNum(gc.getUnitClassInfo, gc.getNumUnitClassInfos(), 'UNITCLASS_TRIREME')
 
 	if player.getUnitClassCount(iUnitClassType) < iNumUnits:
@@ -3510,7 +3510,7 @@ def canTriggerGunsButter(argsList):
 	
 	# Civ4 Reimagined: Can only trigger with less than 50% quest progress at start
 	player = gc.getPlayer(kTriggeredData.ePlayer)
-	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 20
+	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 10
 	iUnitClassType = CvUtil.findInfoTypeNum(gc.getUnitClassInfo, gc.getNumUnitClassInfos(), 'UNITCLASS_MUSKETMAN')
 	
 	if player.getUnitClassCount(iUnitClassType) > (iNumUnits / 2):
@@ -3522,7 +3522,7 @@ def getHelpGunsButter1(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 		
-	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 20
+	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 10
 	iBuilding = CvUtil.findInfoTypeNum(gc.getBuildingInfo, gc.getNumBuildingInfos(), 'BUILDING_TAJ_MAHAL')
 	
 	szHelp = localText.getText("TXT_KEY_EVENT_GUNS_BUTTER_HELP_1", (iNumUnits, gc.getBuildingInfo(iBuilding).getTextKey()))
@@ -3533,7 +3533,7 @@ def canTriggerGunsButterDone(argsList):
 	kTriggeredData = argsList[0]
 	player = gc.getPlayer(kTriggeredData.ePlayer)
 	
-	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 20
+	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 10
 	iUnitClassType = CvUtil.findInfoTypeNum(gc.getUnitClassInfo, gc.getNumUnitClassInfos(), 'UNITCLASS_MUSKETMAN')
 
 	if player.getUnitClassCount(iUnitClassType) < iNumUnits:
@@ -3575,7 +3575,7 @@ def canTriggerNobleKnights(argsList):
 	kActualTriggeredDataObject.eReligion = ReligionTypes(player.getStateReligion())
 	
 	# Civ4 Reimagined: Can only trigger if has only 50% quest progress at start
-	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 12
+	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 6
 	iUnitClassType = CvUtil.findInfoTypeNum(gc.getUnitClassInfo, gc.getNumUnitClassInfos(), 'UNITCLASS_KNIGHT')
 	
 	if player.getUnitClassCount(iUnitClassType) > (iNumUnits / 2):
@@ -3587,7 +3587,7 @@ def getHelpNobleKnights1(argsList):
 	iEvent = argsList[0]
 	kTriggeredData = argsList[1]
 		
-	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 12
+	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 6
 	iBuilding = CvUtil.findInfoTypeNum(gc.getBuildingInfo, gc.getNumBuildingInfos(), 'BUILDING_ORACLE')
 	
 	szHelp = localText.getText("TXT_KEY_EVENT_NOBLE_KNIGHTS_HELP_1", (iNumUnits, gc.getBuildingInfo(iBuilding).getTextKey()))
@@ -3598,7 +3598,7 @@ def canTriggerNobleKnightsDone(argsList):
 	kTriggeredData = argsList[0]
 	player = gc.getPlayer(kTriggeredData.ePlayer)
 	
-	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 12
+	iNumUnits = gc.getWorldInfo(gc.getMap().getWorldSize()).getTargetNumCities() + 6
 	iUnitClassType = CvUtil.findInfoTypeNum(gc.getUnitClassInfo, gc.getNumUnitClassInfos(), 'UNITCLASS_KNIGHT')
 
 	if player.getUnitClassCount(iUnitClassType) < iNumUnits:
