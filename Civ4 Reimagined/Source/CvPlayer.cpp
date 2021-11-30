@@ -17214,7 +17214,7 @@ int CvPlayer::getEspionageMissionBaseCost(EspionageMissionTypes eMission, Player
 					iCost *= 100;
 					iCost /= calculateResearchModifier((TechTypes)iTech);
 
-					if (!CvWString(GC.getTechInfo(eTech).getHelp()).empty())
+					if (!CvWString(GC.getTechInfo((TechTypes)iTech).getHelp()).empty())
 					{
 						iCost *= 100 - GC.getDefineINT("EUREKA_TECH_BOOST_PERCENTAGE");
 						iCost /= 100;
