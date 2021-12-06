@@ -21314,6 +21314,12 @@ void CvPlayer::createGreatPeople(UnitTypes eGreatPersonUnit, bool bIncrementThre
 	// Civ4 Reimagined: Messages for the owner itself only
 	gDLL->getInterfaceIFace()->addHumanMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szReplayMessage, "AS2D_UNIT_GREATPEOPLE", MESSAGE_TYPE_MAJOR_EVENT, pGreatPeopleUnit->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_UNIT_TEXT"), iX, iY, true, true);
 
+	// Python Event
+	if (pCity)
+	{
+		CvEventReporter::getInstance().greatPersonBorn(pGreatPeopleUnit, getID(), pCity);
+	}
+
 	// Civ4 Reimagined
 	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MATHEMATICS")))
 	{
@@ -21393,12 +21399,6 @@ void CvPlayer::createGreatPeople(UnitTypes eGreatPersonUnit, bool bIncrementThre
 		{
 			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_SUPERCONDUCTORS"), getID(), true);
 		}
-	}
-
-	// Python Event
-	if (pCity)
-	{
-		CvEventReporter::getInstance().greatPersonBorn(pGreatPeopleUnit, getID(), pCity);
 	}
 
 }
