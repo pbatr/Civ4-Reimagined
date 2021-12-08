@@ -148,7 +148,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_BANKING_EUREKA</Tag>
-		<English>Have 300 Gold</English>
+		<English>Have 500 Gold</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_OPTICS_EUREKA</Tag>
@@ -232,7 +232,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_ELECTRICITY_EUREKA</Tag>
-		<English>Earn 4 Great Scientists</English>
+		<English>Earn a Great Engineer in Renaissance or Later Era</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_DEMOCRACY_EUREKA</Tag>
@@ -272,7 +272,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_PHYSICS_EUREKA</Tag>
-		<English>Use a Great Scientist's Discover Ability</English>
+		<English>Use a Great Scientist's Discover Ability on a Technology from Renaissance or Later Era</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_REFRIGERATION_EUREKA</Tag>
@@ -308,7 +308,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_LASER_EUREKA</Tag>
-		<English>Earn 6 Great Scientists</English>
+		<English>Have Arms Industry Corporation in One of Your Cities</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_COMPUTERS_EUREKA</Tag>
@@ -320,7 +320,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_SUPERCONDUCTORS_EUREKA</Tag>
-		<English>Earn 5 Great Engineers</English>
+		<English>Earn a Great Scientist in Modern or Later Era</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_SATELLITES_EUREKA</Tag>
