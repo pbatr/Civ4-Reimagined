@@ -10000,7 +10000,7 @@ void CvPlayer::setGold(int iNewValue)
 		// Civ4 Reimagined
 		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_BANKING")))
 		{
-			if (getGold() >= 300)
+			if (getGold() >= 500)
 			{
 				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_BANKING"), getID(), true);
 			}
@@ -11077,12 +11077,12 @@ void CvPlayer::changeEnableSlavesCount(int iChange)
 				}
 				
 				gDLL->getInterfaceIFace()->addHumanMessage(getID(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MISC_SLAVES_LOST").GetCString(), "AS2D_UNITDISBANDED", MESSAGE_TYPE_MINOR_EVENT);
-			}
 
-			// Civ4 Reimagined
-			if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_LIBERALISM")))
-			{
-				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_LIBERALISM"), getID(), true);
+				// Civ4 Reimagined
+				if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_LIBERALISM")))
+				{
+					GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_LIBERALISM"), getID(), true);
+				}
 			}
 		}
 	}
@@ -21368,7 +21368,7 @@ void CvPlayer::createGreatPeople(UnitTypes eGreatPersonUnit, bool bIncrementThre
 	// Civ4 Reimagined
 	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ELECTRICITY")))
 	{
-		if (getPlayerRecord()->getNumUnitsBuilt((UnitTypes)GC.getInfoTypeForString("UNIT_SCIENTIST")) > 3)
+		if (eGreatPersonUnit == (UnitTypes)GC.getInfoTypeForString("UNIT_ENGINEER") && getCurrentEra() >= (EraTypes)GC.getInfoTypeForString("ERA_RENAISSANCE"))
 		{
 			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ELECTRICITY"), getID(), true);
 		}
@@ -21377,7 +21377,7 @@ void CvPlayer::createGreatPeople(UnitTypes eGreatPersonUnit, bool bIncrementThre
 	// Civ4 Reimagined
 	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_LASER")))
 	{
-		if (getPlayerRecord()->getNumUnitsBuilt((UnitTypes)GC.getInfoTypeForString("UNIT_SCIENTIST")) > 5)
+		if (eGreatPersonUnit == (UnitTypes)GC.getInfoTypeForString("UNIT_SCIENTIST") && getCurrentEra() >= (EraTypes)GC.getInfoTypeForString("ERA_INDUSTRIAL"))
 		{
 			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_LASER"), getID(), true);
 		}
@@ -21395,7 +21395,7 @@ void CvPlayer::createGreatPeople(UnitTypes eGreatPersonUnit, bool bIncrementThre
 	// Civ4 Reimagined
 	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_SUPERCONDUCTORS")))
 	{
-		if (getPlayerRecord()->getNumUnitsBuilt((UnitTypes)GC.getInfoTypeForString("UNIT_ENGINEER")) > 4)
+		if (eGreatPersonUnit == (UnitTypes)GC.getInfoTypeForString("UNIT_SCIENTIST") && getCurrentEra() >= (EraTypes)GC.getInfoTypeForString("ERA_MODERN"))
 		{
 			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_SUPERCONDUCTORS"), getID(), true);
 		}

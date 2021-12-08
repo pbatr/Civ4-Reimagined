@@ -6607,7 +6607,17 @@ bool CvUnit::discover()
 			int researchLeft = GET_TEAM(getTeam()).getResearchLeft(eDiscoveryTech);
 			GET_TEAM(getTeam()).changeResearchProgress(eDiscoveryTech, std::min(researchLeft, discoverResearchPoints), getOwnerINLINE());
 			discoverResearchPoints -= researchLeft;
-		} else
+
+			// Civ4 Reimagined
+			if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PHYSICS")))
+			{
+				if (getUnitClassType() == (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SCIENTIST") && GC.getTechInfo(eDiscoveryTech).getEra() >= (EraTypes)GC.getInfoTypeForString("ERA_RENAISSANCE"))
+				{
+					GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PHYSICS"), getOwnerINLINE(), true);
+				}
+			}
+		}
+		else
 		{
 			break;
 		}
@@ -6625,15 +6635,6 @@ bool CvUnit::discover()
 	if (plot()->isActiveVisible(false))
 	{
 		NotifyEntity(MISSION_DISCOVER);
-	}
-
-	// Civ4 Reimagined
-	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PHYSICS")))
-	{
-		if (getUnitClassType() == (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SCIENTIST"))
-		{
-			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PHYSICS"), getOwnerINLINE(), true);
-		}
 	}
 
 	kill(true);
