@@ -28663,6 +28663,14 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			notifyUniquePowersChanged(true);
 		}
 	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ZULU"))
+	{
+		if (eEra == ERA_ANCIENT) 
+		{
+			changeHurryCount((HurryTypes)GC.getInfoTypeForString("HURRY_POPULATION_UNITS"), 1);
+			notifyUniquePowersChanged(true);
+		}
+	}
 }
 
 /************************************************************************************************/

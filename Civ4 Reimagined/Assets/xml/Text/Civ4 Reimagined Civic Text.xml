@@ -168,6 +168,14 @@
 		<French>[ICON_BULLET]Emplacements doublés pour[SPACE]</French>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_HURRY_POPULATION_BUILDINGS</Tag>
+		<English>Can Sacrifice Population to Finish Building Production</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_HURRY_POPULATION_UNITS</Tag>
+		<English>Can Sacrifice Population to Finish Military Unit Production</English>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_HURRY_GOLD_BUILDINGS</Tag>
 		<English>Can Spend Gold to Finish Building Production in a City</English>
 		<French>Peut dépenser de l'or pour achever la production d'un bâtiment dans une ville</French>

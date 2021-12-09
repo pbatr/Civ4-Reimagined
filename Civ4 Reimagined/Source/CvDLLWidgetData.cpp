@@ -1950,7 +1950,8 @@ void CvDLLWidgetData::parseHurryHelp(CvWidgetDataStruct &widgetDataStruct, CvWSt
 
 			if (bFirst)
 			{
-				szTempBuffer = NEWLINE + gDLL->getText("TXT_KEY_NO_HURRY");
+				szBuffer.append(NEWLINE);
+				szBuffer.append(gDLL->getText("TXT_KEY_NO_HURRY"));
 			}		
 
 			szBuffer.append(ENDCOLR);

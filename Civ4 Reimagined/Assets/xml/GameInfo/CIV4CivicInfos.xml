@@ -1103,7 +1103,7 @@
 			<SpecialistExtraCommerces/>
 			<Hurrys>
 				<Hurry>
-					<HurryType>HURRY_POPULATION</HurryType>
+					<HurryType>HURRY_POPULATION_BUILDINGS</HurryType>
 					<bHurry>1</bHurry>
 				</Hurry>
 			</Hurrys>

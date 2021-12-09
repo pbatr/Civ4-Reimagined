@@ -10242,8 +10242,7 @@ int CvCityAI::AI_yieldValue(short* piYields, short* piCommerceYields, bool bRemo
 
 				//Slavery evaluation
 				// K-Mod. Rescaled values and conditions.
-				// Civ4 Reimagined: only if production building
-				if (!bWorkerOptimization && isProductionBuilding() && kOwner.canPopRush() && getHurryAngerTimer() <= std::min(3,getPopulation()/2)+2*iHappinessLevel) // K-Mod
+				if (!bWorkerOptimization && kOwner.canPopRush() && getHurryAngerTimer() <= std::min(3,getPopulation()/2)+2*iHappinessLevel) // K-Mod
 				{
 					//iSlaveryValue = 30 * 14 * std::max(0, aiYields[YIELD_FOOD] - ((iHealthLevel < 0) ? 1 : 0));
 					int iProductionPerPop = 0;

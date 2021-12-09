@@ -790,4 +790,8 @@
 		<Tag>TXT_KEY_UNIT_AMERICAN_SUPERCARRIER_STRATEGY</Tag>
 		<English>Compared to the [COLOR_UNIT_TEXT]Carrier[COLOR_REVERT], this unit is faster, costs less, heals its cargo units, gives additional range to the stationed Fighters and provides a free Fighter when it is constructed.</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_ZULU_IKHANDA_STRATEGY</Tag>
+		<English>[COLOR_BUILDING_TEXT]Ikhandas[COLOR_REVERT], the Zulu replacements for [COLOR_BUILDING_TEXT]Baracks[COLOR_REVERT], grant experience points to troops built in their cities, and progress towards a Great General.</English>
+	</TEXT>
 </Civ4GameText>

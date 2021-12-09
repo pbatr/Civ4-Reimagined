@@ -3654,7 +3654,6 @@ bool CvCity::canHurry(HurryTypes eHurry, bool bTestVisible) const
 			return false;
 		}*/
 
-		// Leoreth: hurry gold now split into buildings and units
 		if (isProductionUnit() && !GC.getHurryInfo(eHurry).isUnits())
 		{
 			return false;
@@ -3665,10 +3664,10 @@ bool CvCity::canHurry(HurryTypes eHurry, bool bTestVisible) const
 			return false;
 		}
 
-		// non-military units cannot be hurried
 		if (isProductionUnit())
 		{
-			if (!GC.getUnitInfo(getProductionUnit()).isMilitaryProduction() && hurryGold(eHurry) > 0)
+			// non-military units cannot be hurried
+			if (!GC.getUnitInfo(getProductionUnit()).isMilitaryProduction())
 			{
 				return false;
 			}
