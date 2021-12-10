@@ -364,7 +364,7 @@
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_BABYLON</DefineName>
-		<iDefineIntVal>3</iDefineIntVal> <!-- % commerce in capital per population -->
+		<iDefineIntVal>100</iDefineIntVal> <!-- commerce times 100 in capital per population -->
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_BABYLON_2</DefineName>

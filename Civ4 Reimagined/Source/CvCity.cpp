@@ -10640,6 +10640,12 @@ int CvCity::getBaseCommerceRateTimes100(CommerceTypes eIndex) const
 	iBaseCommerceRate += 100 * ((getSpecialistPopulation() + getNumGreatPeople()) * GET_PLAYER(getOwnerINLINE()).getSpecialistExtraCommerce(eIndex));
 	iBaseCommerceRate += 100 * (getBuildingCommerce(eIndex) + getSpecialistCommerce(eIndex) + getReligionCommerce(eIndex) + getCorporationCommerce(eIndex) + GET_PLAYER(getOwnerINLINE()).getFreeCityCommerce(eIndex));
 
+	// Civ4 Reimagined: Babylon UP
+	if (isCapital())
+	{
+		iBaseCommerceRate += GET_PLAYER(getOwnerINLINE()).getCapitalCommercePerPopulation(eIndex, getPopulation()); // Civ4 Reimagined
+	}
+
 	// Civ4 Reimagined
 	for (int iI = 0; iI < GC.getNumSpecialistInfos(); iI++)
 	{
@@ -10695,7 +10701,6 @@ int CvCity::getTotalCommerceRateModifier(CommerceTypes eIndex) const
 	if (isCapital() && !GET_PLAYER(getOwnerINLINE()).isNoCapital()) // Civ4 Reimagined: Excluded capital modifier if player does not gain the benefits of a capital.
 	{
 		iTotal += GET_PLAYER(getOwnerINLINE()).getCapitalCommerceRateModifier(eIndex);
-		iTotal += GET_PLAYER(getOwnerINLINE()).getCapitalCommercePerPopulation(eIndex, getPopulation()); // Civ4 Reimagined
 		
 		// Civ4 Reimagined
 		if (GET_PLAYER(getOwnerINLINE()).getCapitalCommerceRateModifierPerHappinessSurplus(eIndex) > 0)

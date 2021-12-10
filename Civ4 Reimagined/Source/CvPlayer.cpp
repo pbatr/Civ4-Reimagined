@@ -28522,15 +28522,6 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			setCapitalCommercePerPopulation(COMMERCE_ESPIONAGE, GC.getDefineINT("UNIQUE_POWER_BABYLON"), GC.getDefineINT("UNIQUE_POWER_BABYLON_2"));
 			notifyUniquePowersChanged(true);
 		}
-		else if (eEra == ERA_MEDIEVAL)
-		{
-			changeNoCapitalUnhappinessCount(-1);
-			setCapitalCommercePerPopulation(COMMERCE_GOLD, 0, 0);
-			setCapitalCommercePerPopulation(COMMERCE_RESEARCH, 0, 0);
-			setCapitalCommercePerPopulation(COMMERCE_CULTURE, 0, 0);
-			setCapitalCommercePerPopulation(COMMERCE_ESPIONAGE, 0, 0);
-			notifyUniquePowersChanged(false);
-		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BYZANTIUM"))
 	{

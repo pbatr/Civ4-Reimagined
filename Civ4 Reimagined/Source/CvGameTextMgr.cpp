@@ -17155,10 +17155,24 @@ void CvGameTextMgr::setCommerceHelp(CvWStringBuffer &szBuffer, CvCity& city, Com
 		CvWString szPopulationGoldString = iPopulationGold%100 > 0 ?
 				CvWString::format(L"%s%d.%02d", iPopulationGold > 0 ? "+" : "", iPopulationGold/100, iPopulationGold%100) :
 				CvWString::format(L"%s%d", iPopulationGold > 0 ? "+" : "", iPopulationGold/100);
-		szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_GOLD_FOR_RELIGIOUS_POPULATION", szPopulationGoldString.GetCString(), info.getChar()));
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_COMMERCE_FROM_UNIQUE_POWER", szPopulationGoldString.GetCString(), info.getChar()));
 		szBuffer.append(NEWLINE);
 		
 		iBaseCommerceRate += iPopulationGold;
+		bNeedSubtotal = true; // BUG - Base Commerce 
+	}
+
+	// Civ4 Reimagined: Babylon UP
+	int iCapitalCommerce = city.isCapital() ? owner.getCapitalCommercePerPopulation(eCommerceType, city.getPopulation()) : 0;
+	if (iCapitalCommerce != 0)
+	{
+		CvWString szCapitalCommerceString = iCapitalCommerce%100 > 0 ?
+				CvWString::format(L"%s%d.%02d", iCapitalCommerce > 0 ? "+" : "", iCapitalCommerce/100, iCapitalCommerce%100) :
+				CvWString::format(L"%s%d", iCapitalCommerce > 0 ? "+" : "", iCapitalCommerce/100);
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_COMMERCE_FROM_UNIQUE_POWER", szCapitalCommerceString.GetCString(), info.getChar()));
+		szBuffer.append(NEWLINE);
+		
+		iBaseCommerceRate += iCapitalCommerce;
 		bNeedSubtotal = true; // BUG - Base Commerce 
 	}
 	
@@ -17320,10 +17334,7 @@ void CvGameTextMgr::setCommerceHelp(CvWStringBuffer &szBuffer, CvCity& city, Com
 	}
 	
 	// Unique Powers
-	int iUniquePowerMod = 
-		owner.getUniquePowerCommerceModifier(eCommerceType) + 
-		owner.getCommerceAboveAveragePopulation(eCommerceType) + 
-		(city.isCapital() ? owner.getCapitalCommercePerPopulation(eCommerceType, city.getPopulation()) : 0);
+	int iUniquePowerMod = owner.getUniquePowerCommerceModifier(eCommerceType) + owner.getCommerceAboveAveragePopulation(eCommerceType);
 	
 	if (0 != iUniquePowerMod)
 	{
