@@ -66,6 +66,7 @@ public:
 protected:
 
 	void uninit();
+	void setupEurekas(); // Civ4 Reimagined
 
 public:
 

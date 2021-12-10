@@ -349,6 +349,9 @@ void CvPlayer::init(PlayerTypes eID)
 		}
 	}
 
+	// Civ4 Reimagined
+	setupEurekas();
+
 	AI_init();
 }
 
@@ -597,7 +600,35 @@ void CvPlayer::initInGame(PlayerTypes eID)
 
 	resetPlotAndCityData();
 
+	// Civ4 Reimagined
+	setupEurekas();
+
 	AI_init();
+}
+
+void CvPlayer::setupEurekas()
+{
+	// Civ4 Reimagined
+	if (!isHuman())
+	{
+		for (int iI = 0; iI < GC.getNumTechInfos(); iI++)
+		{
+			if (!CvWString(GC.getTechInfo((TechTypes)iI).getHelp()).empty())
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)iI, getID(), true);
+			}
+		}
+	}
+
+	// Civ4 Reimagined
+	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_INDIA"))
+	{
+		GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_POLYTHEISM"), getID(), true);
+	}
+	else
+	{
+		GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_POLYTHEISM"), getID(), false);
+	}
 }
 
 //

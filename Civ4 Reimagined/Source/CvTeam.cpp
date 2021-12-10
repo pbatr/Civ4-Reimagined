@@ -140,18 +140,6 @@ void CvTeam::init(TeamTypes eID)
 				}
 			}
 		}
-
-		// Civ4 Reimagined
-		if (!isHuman())
-		{
-			for (iI = 0; iI < GC.getNumTechInfos(); iI++)
-			{
-				if (!CvWString(GC.getTechInfo((TechTypes)iI).getHelp()).empty())
-				{
-					m_pabTechBoosted[iI] = true;
-				}
-			}
-		}
 	}
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
