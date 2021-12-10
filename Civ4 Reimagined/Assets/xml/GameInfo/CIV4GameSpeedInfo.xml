@@ -283,7 +283,7 @@
 			<iHurryPercent>200</iHurryPercent>
 			<iHurryConscriptAngerPercent>50</iHurryConscriptAngerPercent>
 			<iInflationPercent>60</iInflationPercent>
-			<iInflationOffset>-45</iInflationOffset>
+			<iInflationOffset>-30</iInflationOffset>
 			<iVictoryDelayPercent>50</iVictoryDelayPercent>
 			<iDealLengthPercent>50</iDealLengthPercent>
 			<iHealPercent>200</iHealPercent>
