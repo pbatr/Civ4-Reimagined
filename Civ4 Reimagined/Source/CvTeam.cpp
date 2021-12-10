@@ -6077,7 +6077,14 @@ void CvTeam::setTechBoosted(TechTypes eIndex, PlayerTypes ePlayer, bool bNewValu
 	{
 		if (bNewValue && bNewValue != m_pabTechBoosted[eIndex] && !isHasTech(eIndex))
 		{
-			changeResearchProgressPercent(eIndex, GC.getDefineINT("EUREKA_TECH_BOOST_PERCENTAGE"), ePlayer);
+			int iTechBoost = GC.getDefineINT("EUREKA_TECH_BOOST_PERCENTAGE");
+
+			if (GC.getTechInfo(eIndex).getEra() <= GC.getDefineINT("ERA_ANCIENT"))
+			{
+				iTechBoost += GET_PLAYER(ePlayer).getAdditionalAncientEurekaBoost();
+			}
+
+			changeResearchProgressPercent(eIndex, iTechBoost, ePlayer);
 			CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_TECH_BOOSTED", GC.getTechInfo(eIndex).getTextKeyWide());
 			gDLL->getInterfaceIFace()->addHumanMessage(ePlayer, false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_NEW_ERA", MESSAGE_TYPE_MAJOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_HIGHLIGHT_TEXT"));
 		}

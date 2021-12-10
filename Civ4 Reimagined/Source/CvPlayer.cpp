@@ -1001,8 +1001,8 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iReligiousColonyMaintenanceModifier = 0; // Civ4 Reimagined
 	m_iGreatMerchantPointsPerTrade = 0; // Civ4 Reimagined
 	m_iCapitalCultureAttitudeBonus = 0; // Civ4 Reimagined
-	m_iTechProgressNewCity = 0; // Civ4 Reimagined
-	m_eIdeology = IDEOLOGY_CONSERVATISM; // Civ4 Reimagind
+	m_iAdditionalAncientEurekaBoost = 0; // Civ4 Reimagined
+	m_eIdeology = IDEOLOGY_CONSERVATISM; // Civ4 Reimagined
 	m_bAlwaysFreshWater = false; // Civ4 Reimagined
 	m_bCanRemoveFeatures = false; // Civ4 Reimagined
 	
@@ -2411,13 +2411,6 @@ CvCity* CvPlayer::initCity(int iX, int iY, bool bBumpUnits, bool bUpdatePlotGrou
 	FAssertMsg(!(GC.getMapINLINE().plotINLINE(iX, iY)->isCity()), "No city is expected at this plot when initializing new city");
 
 	pCity->init(pCity->getID(), getID(), iX, iY, bBumpUnits, bUpdatePlotGroups);
-
-	// Civ4 Reimagined: Sumer UP
-	if (getTechProgressNewCity() > 0 && getNumCities() > 1)
-	{
-		const int iTechProgress = getTechProgressNewCity() * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getResearchPercent() / 100;
-		GET_TEAM(getTeam()).changeResearchProgress(getCurrentResearch(), iTechProgress, getID());
-	}
 
 	// Civ4 Reimagined
 	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CALENDAR")))
@@ -20561,7 +20554,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iReligiousColonyMaintenanceModifier); // Civ4 Reimagined
 	pStream->Read(&m_iGreatMerchantPointsPerTrade); // Civ4 Reimagined
 	pStream->Read(&m_iCapitalCultureAttitudeBonus); // Civ4 Reimagined
-	pStream->Read(&m_iTechProgressNewCity); // Civ4 Reimagined
+	pStream->Read(&m_iAdditionalAncientEurekaBoost); // Civ4 Reimagined
 	pStream->Read(&m_bAlwaysFreshWater); // Civ4 Reimagined
 	pStream->Read(&m_bCanRemoveFeatures); // Civ4 Reimagined
 	
@@ -21181,7 +21174,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iReligiousColonyMaintenanceModifier); // Civ4 Reimagined
 	pStream->Write(m_iGreatMerchantPointsPerTrade); // Civ4 Reimagined
 	pStream->Write(m_iCapitalCultureAttitudeBonus); // Civ4 Reimagined
-	pStream->Write(m_iTechProgressNewCity); // Civ4 Reimagined
+	pStream->Write(m_iAdditionalAncientEurekaBoost); // Civ4 Reimagined
 	pStream->Write(m_bAlwaysFreshWater); // Civ4 Reimagined
 	pStream->Write(m_bCanRemoveFeatures); // Civ4 Reimagined
 
@@ -27542,17 +27535,17 @@ void CvPlayer::changeFreePopulationInCapital(int iChange)
 }
 
 // Civ4 Reimagined
-int CvPlayer::getTechProgressNewCity() const
+int CvPlayer::getAdditionalAncientEurekaBoost() const
 {
-	return m_iTechProgressNewCity;
+	return m_iAdditionalAncientEurekaBoost;
 }
 
 // Civ4 Reimagined
-void CvPlayer::changeTechProgressNewCity(int iChange)
+void CvPlayer::changeAdditionalAncientEurekaBoost(int iChange)
 {
 	if (iChange != 0)
 	{
-		m_iTechProgressNewCity += iChange;
+		m_iAdditionalAncientEurekaBoost += iChange;
 	}
 }
 
@@ -28690,7 +28683,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	{
 		if (eEra == ERA_ANCIENT) 
 		{
-			changeTechProgressNewCity( GC.getDefineINT("UNIQUE_POWER_SUMERIA"));
+			changeAdditionalAncientEurekaBoost(GC.getDefineINT("UNIQUE_POWER_SUMERIA"));
 			notifyUniquePowersChanged(true);
 		}
 	}

@@ -436,7 +436,7 @@
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_SUMERIA</DefineName>
-		<iDefineIntVal>80</iDefineIntVal> <!-- Tech progress per new city -->
+		<iDefineIntVal>30</iDefineIntVal> <!-- Additional Eureka boost for ancient, classical techs -->
 	</Define>
 	<!-- Unique Powers end -->
 </Civ4Defines>
