@@ -28289,10 +28289,36 @@ void CvPlayer::changeTurnsToEffectFromStayingAtCivic(CivicTypes eIndex, int iCha
 	// Trigger effect when the player stayed on that civic for the specified number of turns
 	if(iChange < 0 && m_paiCivicEffect[eIndex] == 0)
 	{
-		UnitTypes eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_SCIENTIST");
+		UnitTypes eUnit = NO_UNIT;
+
+		if (eIndex == (CivicTypes)GC.getInfoTypeForString("CIVIC_AUTOCRACY"))
+		{
+			eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_GREAT_GENERAL");
+		} 
+		else if (eIndex == (CivicTypes)GC.getInfoTypeForString("CIVIC_CITY_STATES"))
+		{
+			eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_MERCHANT");
+		} 
+		else if (eIndex == (CivicTypes)GC.getInfoTypeForString("CIVIC_DYNASTICISM"))
+		{
+			eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_ENGINEER");
+		} 
+		else if (eIndex == (CivicTypes)GC.getInfoTypeForString("CIVIC_THEOCRACY"))
+		{
+			eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_ARTIST");
+		} 
+		else if (eIndex == (CivicTypes)GC.getInfoTypeForString("CIVIC_REPUBLIC"))
+		{
+			eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_SCIENTIST");
+		}
+
 		CvCity* pCapitalCity = getCapitalCity();
 		if (eUnit != NO_UNIT && pCapitalCity != NULL)
 		{
+			CvWString szMessage = gDLL->getText("TXT_KEY_GREEK_GREAT_PERSON_BORN", GC.getCivicInfo(eIndex).getTextKeyWide(), GC.getUnitInfo(eUnit).getTextKeyWide());
+
+			gDLL->getInterfaceIFace()->addHumanMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_UNIT_GREATPEOPLE", MESSAGE_TYPE_MAJOR_EVENT, GC.getUnitInfo(eUnit).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_UNIT_TEXT"), pCapitalCity->getX_INLINE(), pCapitalCity->getY_INLINE(), true, true);
+
 			pCapitalCity->createGreatPeople(eUnit, false, false);
 		}
 	}

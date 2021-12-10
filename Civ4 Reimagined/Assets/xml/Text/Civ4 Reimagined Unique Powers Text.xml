@@ -123,4 +123,8 @@
 		<Tag>TXT_KEY_MISC_HELP_COMMERCE_FROM_UNIQUE_POWER</Tag>
 		<English>[ICON_BULLET]%s1%F2 from Unique Power</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_GREEK_GREAT_PERSON_BORN</Tag>
+		<English>After years of following the [COLOR_HIGHLIGHT_TEXT]%s1_CivicName[COLOR_REVERT] civic, a [COLOR_HIGHLIGHT_TEXT]%s2_UnitName[COLOR_REVERT] has been born</English>
+	</TEXT>
 </Civ4GameText>
