@@ -28588,7 +28588,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_ANCIENT)
 		{
 			changeSlavePointsPerPopulationSacrificed(GC.getDefineINT("UNIQUE_POWER_EGYPT"));
-			changeProductionPerPopulation(5);
+			changeProductionPerPopulation(6);
 			notifyUniquePowersChanged(true);
 		}
 	}
