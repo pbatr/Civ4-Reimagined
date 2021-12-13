@@ -18402,7 +18402,6 @@ void CvCity::destroyReligiousBuildings(ReligionTypes eReligion, ReligionTypes eN
 bool CvCity::convertClassicalTemples(ReligionTypes eReligion)
 {
 	BuildingTypes eClassicalTemple = NO_BUILDING;
-	SpecialBuildingTypes eGenericTemple = NO_SPECIALBUILDING;
 
 	for (int iI = 0; iI < GC.getNumBuildingInfos(); iI++)
 	{
@@ -18412,19 +18411,18 @@ bool CvCity::convertClassicalTemples(ReligionTypes eReligion)
 			getNumRealBuilding((BuildingTypes)iI) > 0)
 		{
 			eClassicalTemple = (BuildingTypes)iI;
-			eGenericTemple = (SpecialBuildingTypes)kBuilding.getSpecialBuildingType();
 			break;
 		}
 	}
 
-	if (eClassicalTemple == NO_BUILDING || eGenericTemple == NO_SPECIALBUILDING)
+	if (eClassicalTemple == NO_BUILDING)
 		return false;;
 
 	for (int iI = 0; iI < GC.getNumBuildingInfos(); iI++)
 	{
 		const CvBuildingInfo& kBuilding = GC.getBuildingInfo((BuildingTypes)iI);
 
-		if (kBuilding.getSpecialBuildingType() == eGenericTemple && kBuilding.getReligionType() == eReligion)
+		if (kBuilding.getSpecialBuildingType() == (SpecialBuildingTypes)GC.getInfoTypeForString("SPECIALBUILDING_TEMPLE") && kBuilding.getReligionType() == eReligion)
 		{
 			if (getNumRealBuilding(BuildingTypes(iI)) > 0)
 				break;
