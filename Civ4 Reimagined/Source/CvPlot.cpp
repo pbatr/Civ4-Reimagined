@@ -1562,6 +1562,12 @@ bool CvPlot::isIrrigationAvailable(bool bIgnoreSelf) const
 		return true;
 	}
 
+	// Civ4 Reimagined
+	if (GET_PLAYER(getOwnerINLINE()).isAlwaysFreshWater())
+	{
+		return true;
+	}
+
 	for (iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
 	{
 		pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
