@@ -162,7 +162,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_HOLKAN_STRATEGY</Tag>
-		<English>Compared to the [COLOR_UNIT_TEXT]Spearman[COLOR_REVERT], this unit doesn't need copper or iron and targets mounted units first in combat outside of cities.</English>
+		<English>Compared to the [COLOR_UNIT_TEXT]Spearman[COLOR_REVERT], this unit doesn't need copper or iron, is available with Masonry and targets mounted units first in combat outside of cities.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_MALI_SKIRMISHER_STRATEGY</Tag>
