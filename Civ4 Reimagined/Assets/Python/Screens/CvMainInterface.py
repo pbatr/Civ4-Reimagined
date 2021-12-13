@@ -2258,16 +2258,19 @@ class CvMainInterface:
 				iBtnW = 32
 				iBtnH = 28
 				
-				# Hurry Buttons		
-				screen.setButtonGFC( "Hurry0", "", "", iBtnX, iBtnY, iBtnW, iBtnH, WidgetTypes.WIDGET_HURRY, 0, -1, ButtonStyles.BUTTON_STYLE_STANDARD )
+				# Hurry Buttons	
+				# Civ4 Reimagined
+				i = 1
+				if pHeadSelectedCity.isProductionUnit(): i = 0	
+				screen.setButtonGFC( "Hurry0", "", "", iBtnX, iBtnY, iBtnW, iBtnH, WidgetTypes.WIDGET_HURRY, i, -1, ButtonStyles.BUTTON_STYLE_STANDARD )
 				screen.setStyle( "Hurry0", "Button_CityC1_Style" )
 				screen.hide( "Hurry0" )
 
 				iBtnX += iBtnW
 
 				#Leoreth
-				i = 2
-				if pHeadSelectedCity.isProductionUnit(): i = 1
+				i = 3
+				if pHeadSelectedCity.isProductionUnit(): i = 2
 				screen.setButtonGFC( "Hurry1", "", "", iBtnX, iBtnY, iBtnW, iBtnH, WidgetTypes.WIDGET_HURRY, i, -1, ButtonStyles.BUTTON_STYLE_STANDARD )
 				screen.setStyle( "Hurry1", "Button_CityC2_Style" )
 				screen.hide( "Hurry1" )
@@ -2362,17 +2365,19 @@ class CvMainInterface:
 				#	screen.show( szButtonID )
 				#	screen.enable( szButtonID, pHeadSelectedCity.canHurry(i, False) )
 
-				# Leoreth
+				# Civ 4 Reimagined
 				# Slavery button
 				szButtonID = "Hurry0"
 				screen.show(szButtonID)
-				screen.enable(szButtonID, pHeadSelectedCity.canHurry(0, False))
+				i = 1
+				if pHeadSelectedCity.isProductionUnit(): i = 0
+				screen.enable(szButtonID, pHeadSelectedCity.canHurry(i, False))
 				
 				# Mercenary/Public Welfare button
 				szButtonID = "Hurry1"
 				screen.show(szButtonID)
-				i = 2
-				if pHeadSelectedCity.isProductionUnit(): i = 1
+				i = 3
+				if pHeadSelectedCity.isProductionUnit(): i = 2
 				screen.enable(szButtonID, pHeadSelectedCity.canHurry(i, False))
 				
 				# Conscript Button Show
@@ -3631,7 +3636,7 @@ class CvMainInterface:
 						szBuffer = pHeadSelectedCity.getProductionName()
 # BUG - Whip Assist - start
 					else:
-						HURRY_WHIP = gc.getInfoTypeForString("HURRY_POPULATION")
+						HURRY_WHIP = gc.getInfoTypeForString("HURRY_POPULATION_BUILDINGS")
 						HURRY_BUY_UNIT = gc.getInfoTypeForString("HURRY_GOLD_UNITS") #Leoreth
 						HURRY_BUY_BUILDING = gc.getInfoTypeForString("HURRY_GOLD_BUILDINGS") #Leoreth
 						if (CityScreenOpt.isShowWhipAssist() and pHeadSelectedCity.canHurry(HURRY_WHIP, False)):
@@ -3738,7 +3743,7 @@ class CvMainInterface:
 							iRate = pHeadSelectedCity.getCurrentProductionDifference(True, False)
 						self.pBarProductionBar.drawTickMarks(screen, pHeadSelectedCity.getProduction(), pHeadSelectedCity.getProductionNeeded(), iFirst, iRate, False)
 
-						HURRY_WHIP = gc.getInfoTypeForString("HURRY_POPULATION")
+						HURRY_WHIP = gc.getInfoTypeForString("HURRY_POPULATION_BUILDINGS")
 						if pHeadSelectedCity.canHurry(HURRY_WHIP, True): # K-Mod, changed from False to True
 							iRate = pHeadSelectedCity.hurryProduction(HURRY_WHIP) / pHeadSelectedCity.hurryPopulation(HURRY_WHIP)
 							self.pBarProductionBar_Whip.drawTickMarks(screen, pHeadSelectedCity.getProduction(), pHeadSelectedCity.getProductionNeeded(), iFirst, iRate, True)
