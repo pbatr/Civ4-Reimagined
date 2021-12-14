@@ -701,6 +701,12 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer)
 
 	GET_PLAYER(getOwnerINLINE()).deleteUnit(getID());
 
+	// Civ4 Reimagined
+	if (eCapturingPlayer != NO_PLAYER && GET_PLAYER(eCapturingPlayer).isCaptureSlaves() && GET_PLAYER(eCapturingPlayer).hasSlavery())
+	{
+		eCaptureUnitType = (UnitTypes)GC.getCivilizationInfo(GET_PLAYER(eCapturingPlayer).getCivilizationType()).getCivilizationUnits((UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SLAVE"));
+	}
+
 	if ((eCapturingPlayer != NO_PLAYER) && (eCaptureUnitType != NO_UNIT) && !(GET_PLAYER(eCapturingPlayer).isBarbarian()))
 	{
 		if (!isSlave() || GET_PLAYER(eCapturingPlayer).hasSlavery())
@@ -6912,7 +6918,7 @@ int CvUnit::getGreatWorkCulture(const CvPlot* pPlot) const
 	/* original bts code
 	iCulture = m_pUnitInfo->getGreatWorkCulture();
 	*/
-	iCulture = m_pUnitInfo->getGreatWorkCulture() * (GET_PLAYER(getOwnerINLINE()).getCurrentEra());
+	iCulture = m_pUnitInfo->getGreatWorkCulture() * std::max(1, (int)(GET_PLAYER(getOwnerINLINE()).getCurrentEra()));
 /**
 *** K-Mod end
 **/
@@ -6946,6 +6952,15 @@ bool CvUnit::canGreatWork(const CvPlot* pPlot) const
 	if (getGreatWorkCulture(pPlot) == 0)
 	{
 		return false;
+	}
+
+	// Civ4 Reimagined
+	if (getUnitType() == (UnitTypes)GC.getInfoTypeForString("UNIT_AZTEC_CAPTIVE"))
+	{
+		if (pCity->getNumBuilding((BuildingTypes)GC.getInfoTypeForString("BUILDING_AZTEC_SACRIFICIAL_ALTAR")) < 1)
+		{
+			return false;
+		}
 	}
 
 	return true;
@@ -8192,6 +8207,7 @@ SpecialUnitTypes CvUnit::getSpecialUnitType() const
 UnitTypes CvUnit::getCaptureUnitType(CivilizationTypes eCivilization) const
 {
 	FAssert(eCivilization != NO_CIVILIZATION);
+
 	return ((m_pUnitInfo->getUnitCaptureClassType() == NO_UNITCLASS) ? NO_UNIT : (UnitTypes)GC.getCivilizationInfo(eCivilization).getCivilizationUnits(m_pUnitInfo->getUnitCaptureClassType()));
 }
 

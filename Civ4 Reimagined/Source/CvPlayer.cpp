@@ -973,6 +973,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iReligionTechModifier = 0; // Civ4 Reimagined
 	m_iFreeUnitsOnConquest = 0; // Civ4 Reimagined
 	m_bImmigrants = false; // Civ4 Reimagined
+	m_bCaptureSlaves = false; // Civ4 Reimagined
 	m_iUniquePowerBuildingModifier = 0; // Civ4 Reimagined
 	m_iEarlyWorkerSpeedModifier = 0; // Civ4 Reimagined
 	m_iFatcrossPeakHappiness = 0; // Civ4 Reimagined
@@ -11314,9 +11315,9 @@ void CvPlayer::gainSlavePoints(int iChange, CvCity *pCity)
 void CvPlayer::initSlave(CvCity* pCity, bool bIncreaseThreshold)
 {
 	const UnitClassTypes UNITCLASS_SLAVE = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SLAVE");
-	const UnitTypes UNIT_SLAVE = (UnitTypes)GC.getUnitClassInfo(UNITCLASS_SLAVE).getDefaultUnitIndex();
+	const UnitTypes eSlave = (UnitTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits(UNITCLASS_SLAVE);
 
-	initUnit(UNIT_SLAVE, pCity->getX_INLINE(), pCity->getY_INLINE(), UNITAI_WORKER);
+	initUnit(eSlave, pCity->getX_INLINE(), pCity->getY_INLINE(), UNITAI_WORKER);
 	gDLL->getInterfaceIFace()->addHumanMessage(getID(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MISC_SLAVE_STARTED_WORKING", pCity->getNameKey()).GetCString(), "AS2D_UNIT_BUILD_UNIT", MESSAGE_TYPE_MINOR_EVENT);
 	if (gPlayerLogLevel > 0) logBBAI("Slave starts working in %S", pCity->getName(0).GetCString());
 	
@@ -20527,6 +20528,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iReligionTechModifier); // Civ4 Reimagined
 	pStream->Read(&m_iFreeUnitsOnConquest); // Civ4 Reimagined
 	pStream->Read(&m_bImmigrants); // Civ4 Reimagined
+	pStream->Read(&m_bCaptureSlaves); // Civ4 Reimagined
 	pStream->Read(&m_iUniquePowerBuildingModifier); // Civ4 Reimagined
 	pStream->Read(&m_iEarlyWorkerSpeedModifier); // Civ4 Reimagined
 	pStream->Read(&m_iFatcrossPeakHappiness); // Civ4 Reimagined
@@ -21148,6 +21150,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iReligionTechModifier); // Civ4 Reimagined	
 	pStream->Write(m_iFreeUnitsOnConquest); // Civ4 Reimagined	
 	pStream->Write(m_bImmigrants); // Civ4 Reimagined
+	pStream->Write(m_bCaptureSlaves); // Civ4 Reimagined
 	pStream->Write(m_iUniquePowerBuildingModifier); // Civ4 Reimagined
 	pStream->Write(m_iEarlyWorkerSpeedModifier); // Civ4 Reimagined
 	pStream->Write(m_iFatcrossPeakHappiness); // Civ4 Reimagined
@@ -27868,6 +27871,18 @@ void CvPlayer::setHasImmigrants(bool bNewValue)
 bool CvPlayer::getImmigrants() const
 {
 	return m_bImmigrants;
+}
+
+// Civ4 Reimagined
+void CvPlayer::setIsCaptureSlaves(bool bNewValue)
+{
+	m_bCaptureSlaves = bNewValue;
+}
+
+// Civ4 Reimagined
+bool CvPlayer::isCaptureSlaves() const
+{
+	return m_bCaptureSlaves;
 }	
 
 // Civ4 Reimagined
@@ -28550,7 +28565,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	{
 		if (eEra == ERA_ANCIENT)
 		{
-			setUniqueAztecPromotion(true);
+			setIsCaptureSlaves(true);
 			changeCulturePerPopulationSacrified(5);
 			notifyUniquePowersChanged(true);
 		}

@@ -747,6 +747,10 @@
 		<English>Slaves are less efficient than workers, but they do not affect your worker limit. Use Slaves to modernize a large and distributed empire.[PARAGRAPH:1]There are two ways to gain slaves with slavery. First to conquer enemy cities. Second to settle on large oversea continents after discovering Astronomy. But beware, if you abolish slavery all slaves will be lost.</English>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_UNIT_AZTEC_CAPTIVE_STRATEGY</Tag>
+		<English>Aztec slaves can be sacrificed in cities with a Sacrificial Altar to gain additional culture.[PARAGRAPH:1]There are three ways to gain slaves as Aztec. First to conquer enemy cities. Second to settle on large oversea continents after discovering Astronomy. Third defeating a unit with a melee unit. But beware, if you abolish slavery all slaves will be lost.</English>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_BUILDING_NATIVE_AMERICA_TANNERY_STRATEGY</Tag>
 		<English>The [COLOR_BUILDING_TEXT]Brain Tannery[COLOR_REVERT] grants two artist slots. It produces no unhealthiness and costs less.</English>
 	</TEXT>

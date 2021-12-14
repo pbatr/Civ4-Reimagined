@@ -127,4 +127,8 @@
 		<Tag>TXT_KEY_GREEK_GREAT_PERSON_BORN</Tag>
 		<English>After years of following the [COLOR_HIGHLIGHT_TEXT]%s1_CivicName[COLOR_REVERT] civic, a [COLOR_HIGHLIGHT_TEXT]%s2_UnitName[COLOR_REVERT] has been born</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_SACRIFICE_SLAVE</Tag>
+		<English>[ICON_BULLET]Can Sacrifice this Unit in a City with Sacrificial Altar (%D1_Change[ICON_CULTURE])</English>
+	</TEXT>
 </Civ4GameText>

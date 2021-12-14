@@ -586,6 +586,10 @@ public:
 	bool getImmigrants() const;
 
 	// Civ4 Reimagined
+	void setIsCaptureSlaves(bool bNewValue);
+	bool isCaptureSlaves() const;
+
+	// Civ4 Reimagined
 	int getHighestNavalUnitLevel() const;
 	void setHighestNavalUnitLevel(int iNewValue);
 	
@@ -1704,6 +1708,7 @@ protected:
 	bool m_bHuman;
 	bool m_bCanExploreSea; // Civ4 Reimagined
 	bool m_bImmigrants; // Civ4 Reimagined
+	bool m_bCaptureSlaves; // Civ4 Reimagined
 
 
 	bool m_bDisableHuman;	// Set to true to disable isHuman() check

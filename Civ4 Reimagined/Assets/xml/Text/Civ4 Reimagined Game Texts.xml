@@ -757,6 +757,10 @@
 		<French>Esclave</French>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_UNIT_AZTEC_CAPTIVE</Tag>
+		<English>Aztec Slave</English>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_UNIT_BOMBARD_RATE</Tag>
 		<English>[ICON_BULLET]Can Bombard Cities (Bombard Strength: %d1_Mod)</English>
 		<French>[ICON_BULLET]Peut bombarder des villes (puissance de bombardement : %d1_Mod)</French>

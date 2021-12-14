@@ -8879,8 +8879,17 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
 			iCulture /= 100;
 		}
 
-		szBuffer.append(NEWLINE);
-		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_GREAT_WORK", iCulture));
+		// Civ4 Reimagined
+		if (eUnit == (UnitTypes)GC.getInfoTypeForString("UNIT_AZTEC_CAPTIVE"))
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_UNIT_SACRIFICE_SLAVE", iCulture));
+		}
+		else
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_UNIT_GREAT_WORK", iCulture));
+		}
 	}
 
 	if (GC.getUnitInfo(eUnit).getEspionagePoints() > 0)
