@@ -5615,6 +5615,13 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 										for (int k = 0; k < NUM_YIELD_TYPES; k++)
 										{
 											int iYieldChange = kImprovementInfo.getImprovementBonusYield(eBonus, k) + kImprovementInfo.getYieldChange(k);
+
+											// Civ4 Reimagined: Chinese UP
+											if (GC.getBuildInfo((BuildTypes) iI).getImprovement() == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FARM") && k == YIELD_FOOD)
+											{
+												iYieldChange += GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getAdditionalFarmBonusYield();
+											}
+
 											if (iYieldChange != 0)
 											{
 												if (iYieldChange > 0)

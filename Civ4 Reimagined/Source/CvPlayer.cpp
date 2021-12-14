@@ -1002,6 +1002,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iGreatMerchantPointsPerTrade = 0; // Civ4 Reimagined
 	m_iCapitalCultureAttitudeBonus = 0; // Civ4 Reimagined
 	m_iAdditionalAncientEurekaBoost = 0; // Civ4 Reimagined
+	m_iAdditionalFarmBonusYield = 0; // Civ4 Reimagined
 	m_eIdeology = IDEOLOGY_CONSERVATISM; // Civ4 Reimagined
 	m_bAlwaysFreshWater = false; // Civ4 Reimagined
 	m_bCanRemoveFeatures = false; // Civ4 Reimagined
@@ -20555,6 +20556,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iGreatMerchantPointsPerTrade); // Civ4 Reimagined
 	pStream->Read(&m_iCapitalCultureAttitudeBonus); // Civ4 Reimagined
 	pStream->Read(&m_iAdditionalAncientEurekaBoost); // Civ4 Reimagined
+	pStream->Read(&m_iAdditionalFarmBonusYield); // Civ4 Reimagined
 	pStream->Read(&m_bAlwaysFreshWater); // Civ4 Reimagined
 	pStream->Read(&m_bCanRemoveFeatures); // Civ4 Reimagined
 	
@@ -21175,6 +21177,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iGreatMerchantPointsPerTrade); // Civ4 Reimagined
 	pStream->Write(m_iCapitalCultureAttitudeBonus); // Civ4 Reimagined
 	pStream->Write(m_iAdditionalAncientEurekaBoost); // Civ4 Reimagined
+	pStream->Write(m_iAdditionalFarmBonusYield); // Civ4 Reimagined
 	pStream->Write(m_bAlwaysFreshWater); // Civ4 Reimagined
 	pStream->Write(m_bCanRemoveFeatures); // Civ4 Reimagined
 
@@ -27550,6 +27553,21 @@ void CvPlayer::changeAdditionalAncientEurekaBoost(int iChange)
 }
 
 // Civ4 Reimagined
+int CvPlayer::getAdditionalFarmBonusYield() const
+{
+	return m_iAdditionalFarmBonusYield;
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeAdditionalFarmBonusYield(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iAdditionalFarmBonusYield += iChange;
+	}
+}
+
+// Civ4 Reimagined
 CivicTypes CvPlayer::getFreeCivicEnabled() const
 {
 	return m_iFreeCivicEnabled;
@@ -28580,6 +28598,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_ANCIENT)
 		{
 			setCommerceAboveAveragePopulation(COMMERCE_RESEARCH, GC.getDefineINT("UNIQUE_POWER_CHINA_MAX_POP"), GC.getDefineINT("UNIQUE_POWER_CHINA_MAX_EFFECT"));
+			changeAdditionalFarmBonusYield(2);
 			notifyUniquePowersChanged(true);
 		}
 	}

@@ -564,6 +564,10 @@ public:
 	// Civ4 Reimagined
 	int getAdditionalAncientEurekaBoost() const;
 	void changeAdditionalAncientEurekaBoost(int iChange);
+
+	// Civ4 Reimagined
+	int getAdditionalFarmBonusYield() const;
+	void changeAdditionalFarmBonusYield(int iChange);
 	
 	// Civ4 Reimagined
 	CivicTypes getFreeCivicEnabled() const;
@@ -1684,6 +1688,7 @@ protected:
 	int m_iAdditionalAncientEurekaBoost; // Civ4 Reimagined
 	bool m_bAlwaysFreshWater; // Civ4 Reimagined
 	bool m_bCanRemoveFeatures; // Civ4 Reimagined
+	int m_iAdditionalFarmBonusYield; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
 
