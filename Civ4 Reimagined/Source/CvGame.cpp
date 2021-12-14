@@ -1955,6 +1955,8 @@ void CvGame::normalizeAddExtras()
 		if (!kLoopPlayer.isAlive())
 			continue;
 
+		const CivilizationTypes eCiv = GET_PLAYER((PlayerTypes)iI).getCivilizationType();
+
 		CvPlot* pStartingPlot = kLoopPlayer.getStartingPlot();
 
 		if (pStartingPlot == NULL)
@@ -2148,7 +2150,8 @@ void CvGame::normalizeAddExtras()
 
 					if ((pLoopPlot != NULL) && (pLoopPlot != pStartingPlot) && pLoopPlot->getBonusType() != NO_BONUS)
 					{
-						if (pLoopPlot->getBonusType() != BONUS_IRON && pLoopPlot->getBonusType() != BONUS_COPPER && pLoopPlot->getBonusType() != BONUS_OIL && pLoopPlot->getBonusType() != eUniqueBonus)
+						if (pLoopPlot->getBonusType() != BONUS_IRON && pLoopPlot->getBonusType() != BONUS_COPPER && pLoopPlot->getBonusType() != BONUS_OIL && pLoopPlot->getBonusType() != eUniqueBonus
+							&& GC.getCivilizationInfo(eCiv).getCivilizationBonusBias(pLoopPlot->getBonusType()) <= 0)
 						{
 							if (gMapLogLevel > 0)
 								logBBAI("    Removing %S for player %d.", GC.getBonusInfo(pLoopPlot->getBonusType()).getDescription(), iI);
@@ -2297,7 +2300,8 @@ void CvGame::normalizeAddExtras()
 
 						if ((pLoopPlot != NULL) && (pLoopPlot != pStartingPlot) && pLoopPlot->getBonusType() != NO_BONUS)
 						{
-							if ((iPass > 0 || GC.getBonusInfo(pLoopPlot->getBonusType()).getHealth() <= 0) && pLoopPlot->getBonusType() != BONUS_IRON && pLoopPlot->getBonusType() != BONUS_COPPER && pLoopPlot->getBonusType() != BONUS_OIL)
+							if ((iPass > 0 || GC.getBonusInfo(pLoopPlot->getBonusType()).getHealth() <= 0) && pLoopPlot->getBonusType() != BONUS_IRON && pLoopPlot->getBonusType() != BONUS_COPPER && pLoopPlot->getBonusType() != BONUS_OIL
+								&& GC.getCivilizationInfo(eCiv).getCivilizationBonusBias(pLoopPlot->getBonusType()) <= 0)
 							{
 								if (gMapLogLevel > 0)
 									logBBAI("    Removing %S for player %d, so we can add bonus for unique unit.", GC.getBonusInfo(pLoopPlot->getBonusType()).getDescription(), iI);
