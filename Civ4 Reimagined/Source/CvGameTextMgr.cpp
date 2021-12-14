@@ -17141,17 +17141,17 @@ void CvGameTextMgr::setCommerceHelp(CvWStringBuffer &szBuffer, CvCity& city, Com
 	}
 
 	// Civ4 Reimagined: Commerce from features
-	int iCommerceForAdjacentFeatures = city.getFeatureAdjacentCommerce(eCommerceType);
-	if (0 != iCommerceForAdjacentFeatures)
+	int iCommerceForFeatures = city.getFeatureCommerce(eCommerceType);
+	if (0 != iCommerceForFeatures)
 	{
-		CvWString szFeatureCommerceString = iCommerceForAdjacentFeatures%100 > 0 ?
-				CvWString::format(L"%s%d.%02d", iCommerceForAdjacentFeatures > 0 ? "+" : "", iCommerceForAdjacentFeatures/100, iCommerceForAdjacentFeatures%100) :
-				CvWString::format(L"%s%d", iCommerceForAdjacentFeatures > 0 ? "+" : "", iCommerceForAdjacentFeatures/100);
+		CvWString szFeatureCommerceString = iCommerceForFeatures%100 > 0 ?
+				CvWString::format(L"%s%d.%02d", iCommerceForFeatures > 0 ? "+" : "", iCommerceForFeatures/100, iCommerceForFeatures%100) :
+				CvWString::format(L"%s%d", iCommerceForFeatures > 0 ? "+" : "", iCommerceForFeatures/100);
 		
 		szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_FEATURE_COMMERCE", szFeatureCommerceString.GetCString(), info.getChar()));
 		szBuffer.append(NEWLINE);
 
-		iBaseCommerceRate += iCommerceForAdjacentFeatures;
+		iBaseCommerceRate += iCommerceForFeatures;
 		bNeedSubtotal = true; // BUG - Base Commerce 
 	}
 

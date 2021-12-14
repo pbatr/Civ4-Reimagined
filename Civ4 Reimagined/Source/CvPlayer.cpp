@@ -123,7 +123,7 @@ CvPlayer::CvPlayer()
 	m_ppaaiImprovementYieldChange = NULL;
 	m_ppaaiRadiusImprovementCommerceChange = NULL; // Civ4 Reimagined
 	m_ppaaiBuildingYieldChange = NULL; // Civ4 Reimagined
-	m_ppaiAdjacentFeatureCommerce = NULL; // Civ4 Reimagined
+	m_ppaiFeatureCommerce = NULL; // Civ4 Reimagined
 
 	reset(NO_PLAYER, true);
 }
@@ -762,13 +762,13 @@ void CvPlayer::uninit()
 	}
 
 	// Civ4 Reimagined
-	if (m_ppaiAdjacentFeatureCommerce != NULL)
+	if (m_ppaiFeatureCommerce != NULL)
 	{
 		for (int iI = 0; iI < GC.getNumFeatureInfos(); iI++)
 		{
-			SAFE_DELETE_ARRAY(m_ppaiAdjacentFeatureCommerce[iI]);
+			SAFE_DELETE_ARRAY(m_ppaiFeatureCommerce[iI]);
 		}
-		SAFE_DELETE_ARRAY(m_ppaiAdjacentFeatureCommerce);
+		SAFE_DELETE_ARRAY(m_ppaiFeatureCommerce);
 	}
 
 	m_groupCycle.clear();
@@ -1382,14 +1382,14 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		}
 
 		// Civ4 Reimagined
-		FAssertMsg(m_ppaiAdjacentFeatureCommerce==NULL, "about to leak memory, CvPlayer::m_ppaiAdjacentFeatureCommerce");
-		m_ppaiAdjacentFeatureCommerce = new int*[GC.getNumFeatureInfos()];
+		FAssertMsg(m_ppaiFeatureCommerce==NULL, "about to leak memory, CvPlayer::m_ppaiFeatureCommerce");
+		m_ppaiFeatureCommerce = new int*[GC.getNumFeatureInfos()];
 		for (iI = 0; iI < GC.getNumFeatureInfos(); iI++)
 		{
-			m_ppaiAdjacentFeatureCommerce[iI] = new int[NUM_COMMERCE_TYPES];
+			m_ppaiFeatureCommerce[iI] = new int[NUM_COMMERCE_TYPES];
 			for (iJ = 0; iJ < NUM_COMMERCE_TYPES; iJ++)
 			{
-				m_ppaiAdjacentFeatureCommerce[iI][iJ] = 0;
+				m_ppaiFeatureCommerce[iI][iJ] = 0;
 			}
 		}		
 
@@ -16096,18 +16096,18 @@ void CvPlayer::changeBuildingYieldChange(BuildingClassTypes eIndex1, YieldTypes 
 
 
 // Civ4 Reimagined
-int CvPlayer::getAdjacentFeatureCommerce(FeatureTypes eFeatureIndex, CommerceTypes eCommerceIndex) const
+int CvPlayer::getFeatureCommerce(FeatureTypes eFeatureIndex, CommerceTypes eCommerceIndex) const
 {
 	FAssertMsg(eFeatureIndex >= 0, "eFeatureIndex is expected to be non-negative (invalid Index)");
 	FAssertMsg(eFeatureIndex < GC.getNumFeatureInfos(), "eFeatureIndex is expected to be within maximum bounds (invalid Index)");
 	FAssertMsg(eCommerceIndex >= 0, "eCommerceIndex is expected to be non-negative (invalid Index)");
 	FAssertMsg(eCommerceIndex < NUM_COMMERCE_TYPES, "eCommerceIndex is expected to be within maximum bounds (invalid Index)");
-	return m_ppaiAdjacentFeatureCommerce[eFeatureIndex][eCommerceIndex];
+	return m_ppaiFeatureCommerce[eFeatureIndex][eCommerceIndex];
 }
 
 
 // Civ4 Reimagined
-void CvPlayer::changeAdjacentFeatureCommerce(FeatureTypes eFeatureIndex, CommerceTypes eCommerceIndex, int iChange)
+void CvPlayer::changeFeatureCommerce(FeatureTypes eFeatureIndex, CommerceTypes eCommerceIndex, int iChange)
 {
 	FAssertMsg(eFeatureIndex >= 0, "eFeatureIndex is expected to be non-negative (invalid Index)");
 	FAssertMsg(eFeatureIndex < GC.getNumFeatureInfos(), "eFeatureIndex is expected to be within maximum bounds (invalid Index)");
@@ -16116,12 +16116,12 @@ void CvPlayer::changeAdjacentFeatureCommerce(FeatureTypes eFeatureIndex, Commerc
 
 	if (iChange != 0)
 	{
-		m_ppaiAdjacentFeatureCommerce[eFeatureIndex][eCommerceIndex] = (m_ppaiAdjacentFeatureCommerce[eFeatureIndex][eCommerceIndex] + iChange);
+		m_ppaiFeatureCommerce[eFeatureIndex][eCommerceIndex] = (m_ppaiFeatureCommerce[eFeatureIndex][eCommerceIndex] + iChange);
 		
 		int iLoop;
 		for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop) )
 		{
-			pLoopCity->updateFeatureAdjacentCommerce();
+			pLoopCity->updateFeatureCommerce();
 		}
 	}	
 }
@@ -20699,7 +20699,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	// Civ4 Reimagined
 	for (iI=0;iI<GC.getNumFeatureInfos();iI++)
 	{
-		pStream->Read(NUM_COMMERCE_TYPES, m_ppaiAdjacentFeatureCommerce[iI]);
+		pStream->Read(NUM_COMMERCE_TYPES, m_ppaiFeatureCommerce[iI]);
 	}
 
 	m_groupCycle.Read(pStream);
@@ -21310,7 +21310,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	// Civ4 Reimagined
 	for (iI=0;iI<GC.getNumFeatureInfos();iI++)
 	{
-		pStream->Write(NUM_COMMERCE_TYPES, m_ppaiAdjacentFeatureCommerce[iI]);
+		pStream->Write(NUM_COMMERCE_TYPES, m_ppaiFeatureCommerce[iI]);
 	}
 
 	m_groupCycle.Write(pStream);
@@ -28588,8 +28588,8 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	{
 		if (eEra == ERA_CLASSICAL)
 		{
-			changeAdjacentFeatureCommerce((FeatureTypes)GC.getInfoTypeForString("FEATURE_FOREST"), COMMERCE_CULTURE, GC.getDefineINT("UNIQUE_POWER_CELT_CULTURE"));
-			changeAdjacentFeatureCommerce((FeatureTypes)GC.getInfoTypeForString("FEATURE_FOREST"), COMMERCE_RESEARCH, GC.getDefineINT("UNIQUE_POWER_CELT_RESEARCH"));
+			changeFeatureCommerce((FeatureTypes)GC.getInfoTypeForString("FEATURE_FOREST"), COMMERCE_CULTURE, GC.getDefineINT("UNIQUE_POWER_CELT_CULTURE"));
+			changeFeatureCommerce((FeatureTypes)GC.getInfoTypeForString("FEATURE_FOREST"), COMMERCE_RESEARCH, GC.getDefineINT("UNIQUE_POWER_CELT_RESEARCH"));
 			notifyUniquePowersChanged(true);
 		}
 	}

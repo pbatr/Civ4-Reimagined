@@ -161,7 +161,7 @@ public:
 	void changeFarmAdjacencyBonus(YieldTypes eIndex, int iChange); // Civ4 Reimagined
 	int getTechCommerceRateModifier(CommerceTypes eIndex) const; // Civ4 Reimagined
 	void changeTechCommerceRateModifier(CommerceTypes eIndex, int iChange); // Civ4 Reimagined
-	int getFeatureAdjacentCommerce(CommerceTypes eIndex) const; // Civ4 Reimagined
+	int getFeatureCommerce(CommerceTypes eIndex) const; // Civ4 Reimagined
 	
 	//Civ4 Reimagined
 	void processBonus(BonusTypes eBonus, int iChange, bool bChangeValue = true, bool YieldModifier = true);
@@ -486,7 +486,7 @@ public:
 	int getFeatureGoodHappiness() const;																	// Exposed to Python
 	int getFeatureBadHappiness() const;																		// Exposed to Python
 	void updateFeatureHappiness();
-	void updateFeatureAdjacentCommerce(); // Civ4 Reimagined
+	void updateFeatureCommerce(); // Civ4 Reimagined
 
 	int getBonusGoodHappiness() const;																		// Exposed to Python  
 	int getBonusBadHappiness() const;																			// Exposed to Python  
@@ -1293,7 +1293,7 @@ protected:
 	int* m_aiBonusYieldRateModifier;
 	int* m_aiTechYieldRateModifier; // Civ4 Reimagined
 	int* m_aiTechCommerceRateModifier; // Civ4 Reimagined
-	int* m_aiFeatureAdjacentCommerce; // Civ4 Reimagined
+	int* m_aiFeatureCommerce; // Civ4 Reimagined
 	int* m_aiFarmAdjacencyBonus; // Civ4 Reimagined
 	int* m_aiTradeYield;
 	int* m_aiCorporationYield;

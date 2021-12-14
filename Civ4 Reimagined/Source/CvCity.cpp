@@ -50,7 +50,7 @@ CvCity::CvCity()
 	m_aiTechYieldRateModifier = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
 	m_aiFarmAdjacencyBonus = new int[NUM_YIELD_TYPES];; // Civ4 Reimagined
 	m_aiTechCommerceRateModifier = new int[NUM_COMMERCE_TYPES]; // Civ4 Reimagined
-	m_aiFeatureAdjacentCommerce = new int[NUM_COMMERCE_TYPES]; // Civ4 Reimagined
+	m_aiFeatureCommerce = new int[NUM_COMMERCE_TYPES]; // Civ4 Reimagined
 	m_aiTradeYield = new int[NUM_YIELD_TYPES];
 	m_aiCorporationYield = new int[NUM_YIELD_TYPES];
 	m_aiExtraSpecialistYield = new int[NUM_YIELD_TYPES];
@@ -144,7 +144,7 @@ CvCity::~CvCity()
 	SAFE_DELETE_ARRAY(m_aiTechYieldRateModifier); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiFarmAdjacencyBonus); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiTechCommerceRateModifier); // Civ4 Reimagined
-	SAFE_DELETE_ARRAY(m_aiFeatureAdjacentCommerce); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_aiFeatureCommerce); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiTradeYield);
 	SAFE_DELETE_ARRAY(m_aiCorporationYield);
 	SAFE_DELETE_ARRAY(m_aiExtraSpecialistYield);
@@ -343,7 +343,7 @@ void CvCity::init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, 
 	updateFreshWaterHealth();
 	updateFeatureHealth();
 	updateFeatureHappiness();
-	updateFeatureAdjacentCommerce();
+	updateFeatureCommerce();
 	updatePowerHealth();
 
 	GET_PLAYER(getOwnerINLINE()).updateMaintenance();
@@ -588,7 +588,7 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 		m_aiCommerceRateModifier[iI] = 0;
 		m_aiCommerceHappinessPer[iI] = 0;
 		m_aiTechCommerceRateModifier[iI] = 0; // Civ4 Reimagined
-		m_aiFeatureAdjacentCommerce[iI] = 0; // Civ4 Reimagined
+		m_aiFeatureCommerce[iI] = 0; // Civ4 Reimagined
 	}
 
 	for (iI = 0; iI < NUM_DOMAIN_TYPES; iI++)
@@ -8011,31 +8011,31 @@ int CvCity::getFeatureBadHappiness() const
 }
 
 // Civ4 Reimagined
-void CvCity::updateFeatureAdjacentCommerce()
+void CvCity::updateFeatureCommerce()
 {
 	for (int iI = 0; iI < NUM_COMMERCE_TYPES; iI++)
 	{
-		int iAdjacentFeatureCommerce = 0;
-		CvPlot* pAdjacentPlot;
+		int iFeatureCommerce = 0;
 
-		for (int iJ = 0; iJ < NUM_DIRECTION_TYPES; iJ++)
+		for (int iJ = 0; iJ < NUM_CITY_PLOTS; iJ++)
 		{
-			pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iJ));
-			if (pAdjacentPlot != NULL)
+			CvPlot* pLoopPlot = getCityIndexPlot(iJ);
+
+			if (pLoopPlot != NULL)
 			{
-				FeatureTypes eFeature = pAdjacentPlot->getFeatureType();
-				if (eFeature != NO_FEATURE && pAdjacentPlot->getImprovementType() == NO_IMPROVEMENT)
+				FeatureTypes eFeature = pLoopPlot->getFeatureType();
+				if (eFeature != NO_FEATURE && pLoopPlot->getImprovementType() == NO_IMPROVEMENT)
 				{
-					int iSinglePlotCommerce = GET_PLAYER(getOwnerINLINE()).getAdjacentFeatureCommerce(eFeature, (CommerceTypes)iI);
-					iAdjacentFeatureCommerce += iSinglePlotCommerce;
+					int iSinglePlotCommerce = GET_PLAYER(getOwnerINLINE()).getFeatureCommerce(eFeature, (CommerceTypes)iI);
+					iFeatureCommerce += iSinglePlotCommerce;
 				}
 			}
 		}
 		
-		if (iAdjacentFeatureCommerce != m_aiFeatureAdjacentCommerce[iI])
+		if (iFeatureCommerce != m_aiFeatureCommerce[iI])
 		{
-			m_aiFeatureAdjacentCommerce[iI] = iAdjacentFeatureCommerce;
-			FAssert(m_aiFeatureAdjacentCommerce[iI] >= 0);
+			m_aiFeatureCommerce[iI] = iFeatureCommerce;
+			FAssert(m_aiFeatureCommerce[iI] >= 0);
 			updateCommerce((CommerceTypes)iI);
 		}
 	}
@@ -10151,11 +10151,11 @@ void CvCity::changeFarmAdjacencyBonus(YieldTypes eIndex, int iChange)
 }
 
 // Civ4 Reimagined
-int CvCity::getFeatureAdjacentCommerce(CommerceTypes eIndex) const
+int CvCity::getFeatureCommerce(CommerceTypes eIndex) const
 {
 	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
 	FAssertMsg(eIndex < NUM_COMMERCE_TYPES, "eIndex expected to be < NUM_COMMERCE_TYPES");
-	return m_aiFeatureAdjacentCommerce[eIndex];
+	return m_aiFeatureCommerce[eIndex];
 }
 
 // Civ4 Reimagined
@@ -10670,7 +10670,7 @@ int CvCity::getBaseCommerceRateTimes100(CommerceTypes eIndex) const
 	}
 
 	// Civ4 Reimagined: Commerce from features
-	iBaseCommerceRate += m_aiFeatureAdjacentCommerce[eIndex];
+	iBaseCommerceRate += m_aiFeatureCommerce[eIndex];
 	
 	// Civ4 Reimagined: Culture from Peaks
 	if (GET_PLAYER(getOwnerINLINE()).getFatcrossPeakCulture() > 0)
@@ -16048,7 +16048,7 @@ void CvCity::read(FDataStreamBase* pStream)
 	pStream->Read(NUM_COMMERCE_TYPES, m_aiCommerceRateModifier);
 	pStream->Read(NUM_COMMERCE_TYPES, m_aiCommerceHappinessPer);
 	pStream->Read(NUM_COMMERCE_TYPES, m_aiTechCommerceRateModifier); // Civ4 Reimagined
-	pStream->Read(NUM_COMMERCE_TYPES, m_aiFeatureAdjacentCommerce); // Civ4 Reimagined
+	pStream->Read(NUM_COMMERCE_TYPES, m_aiFeatureCommerce); // Civ4 Reimagined
 	pStream->Read(NUM_DOMAIN_TYPES, m_aiDomainFreeExperience);
 	pStream->Read(NUM_DOMAIN_TYPES, m_aiDomainProductionModifier);
 	pStream->Read(MAX_PLAYERS, m_aiCulture);
@@ -16304,7 +16304,7 @@ void CvCity::write(FDataStreamBase* pStream)
 	pStream->Write(NUM_COMMERCE_TYPES, m_aiCommerceRateModifier);
 	pStream->Write(NUM_COMMERCE_TYPES, m_aiCommerceHappinessPer);
 	pStream->Write(NUM_COMMERCE_TYPES, m_aiTechCommerceRateModifier); // Civ4 Reimagined
-	pStream->Write(NUM_COMMERCE_TYPES, m_aiFeatureAdjacentCommerce); // Civ4 Reimagined
+	pStream->Write(NUM_COMMERCE_TYPES, m_aiFeatureCommerce); // Civ4 Reimagined
 	pStream->Write(NUM_DOMAIN_TYPES, m_aiDomainFreeExperience);
 	pStream->Write(NUM_DOMAIN_TYPES, m_aiDomainProductionModifier);
 	pStream->Write(MAX_PLAYERS, m_aiCulture);

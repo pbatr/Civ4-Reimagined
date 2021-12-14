@@ -5730,7 +5730,7 @@ void CvPlot::setFeatureType(FeatureTypes eNewValue, int iVariety)
 				{
 					pLoopCity->updateFeatureHealth();
 					pLoopCity->updateFeatureHappiness();
-					pLoopCity->updateFeatureAdjacentCommerce(); // Civ4 Reimagined
+					pLoopCity->updateFeatureCommerce(); // Civ4 Reimagined
 				}
 			}
 		}
@@ -6005,7 +6005,7 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 				if (pLoopCity != NULL)
 				{
 					pLoopCity->updateFeatureHappiness();
-					pLoopCity->updateFeatureAdjacentCommerce(); // Civ4 Reimagined
+					pLoopCity->updateFeatureCommerce(); // Civ4 Reimagined
 				}
 			}
 		}

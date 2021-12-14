@@ -1352,8 +1352,8 @@ public:
 	int getCommerceAboveAveragePopulation(CommerceTypes eIndex) const; // Civ4 Reimagined
 	void setCommerceAboveAveragePopulation(CommerceTypes eIndex, int iPopulationAverageMax, int iCommerceModifierMax); // Civ4 Reimagined
 	void updateCommerceAboveAveragePopulation(); // Civ4 Reimagined
-	int getAdjacentFeatureCommerce(FeatureTypes eFeatureIndex, CommerceTypes eCommerceIndex) const; // Civ4 Reimagined
-	void changeAdjacentFeatureCommerce(FeatureTypes eFeatureIndex, CommerceTypes eCommerceIndex, int iChangePercent); // Civ4 Reimagined
+	int getFeatureCommerce(FeatureTypes eFeatureIndex, CommerceTypes eCommerceIndex) const; // Civ4 Reimagined
+	void changeFeatureCommerce(FeatureTypes eFeatureIndex, CommerceTypes eCommerceIndex, int iChangePercent); // Civ4 Reimagined
 	int getFatcrossPeakHappiness() const; // Civ4 Reimagined
 	void changeFatcrossPeakHappiness(int iChange); // Civ4 Reimagined
 	int getFatcrossPeakCulture() const; // Civ4 Reimagined
@@ -1809,7 +1809,7 @@ protected:
 	int** m_ppaaiImprovementYieldChange;
 	int** m_ppaaiRadiusImprovementCommerceChange; // Civ4 Reimagined
 	int** m_ppaaiBuildingYieldChange; // Civ4 Reimagined
-	int** m_ppaiAdjacentFeatureCommerce; // Civ4 Reimagined
+	int** m_ppaiFeatureCommerce; // Civ4 Reimagined
 
 	CLinkList<int> m_groupCycle;
 
