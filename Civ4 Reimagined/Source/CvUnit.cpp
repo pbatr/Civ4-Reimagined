@@ -6980,6 +6980,12 @@ bool CvUnit::greatWork()
 		pCity->setCultureUpdateTimer(0);
 		pCity->setOccupationTimer(0);
 
+		// Civ4 Reimagined
+		if (getUnitType() == (UnitTypes)GC.getInfoTypeForString("UNIT_AZTEC_CAPTIVE"))
+		{
+			pCity->changeHappinessTimer(20 * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getUnitGreatWorkPercent() / 100);
+		}
+
 		int iCultureToAdd = 100 * getGreatWorkCulture(plot());
 /**
 *** K-Mod, 6/dec/10, Karadoc
