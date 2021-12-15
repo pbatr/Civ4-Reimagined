@@ -308,6 +308,15 @@ bool isPromotionValid(PromotionTypes ePromotion, UnitTypes eUnit, bool bLeader)
 	CvUnitInfo& kUnit = GC.getUnitInfo(eUnit);
 	CvPromotionInfo& kPromotion = GC.getPromotionInfo(ePromotion);
 
+	// Civ4 Reimagined
+	if (eUnit == (UnitTypes)GC.getInfoTypeForString("UNIT_AZTEC_JAGUAR"))
+	{
+		if (ePromotion == (PromotionTypes)GC.getInfoTypeForString("PROMOTION_JAGUAR_WARRIOR") || ePromotion == (PromotionTypes)GC.getInfoTypeForString("PROMOTION_EAGLE_WARRIOR"))
+		{
+			return true;
+		}
+	}
+
 	if (kUnit.getFreePromotions(ePromotion))
 	{
 		return true;

@@ -190,7 +190,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_AZTEC_JAGUAR_STRATEGY</Tag>
-		<English>Compared to the [COLOR_UNIT_TEXT]Swordsman[COLOR_REVERT], this unit doesn't require Iron and gains has 25% forest/jungle combat bonus.</English>
+		<English>Compared to the [COLOR_UNIT_TEXT]Swordsman[COLOR_REVERT], this unit doesn't require Iron. It can gain the [LINK=PROMOTION_JAGUAR_WARRIOR]Jaguar[\LINK] and [LINK=literal]Eagle[\LINK] promotions.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_CELTIC_GALLIC_WARRIOR_STRATEGY</Tag>

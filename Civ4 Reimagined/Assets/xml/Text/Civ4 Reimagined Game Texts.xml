@@ -738,12 +738,12 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_PROMOTION_JAGUAR_WARRIOR</Tag>
-		<English>Jaguar Warrior</English>
+		<English>Jaguar</English>
 		<French>Guerrier Jaguar</French>
 	</TEXT>	
 	<TEXT>
 		<Tag>TXT_KEY_PROMOTION_EAGLE_WARRIOR</Tag>
-		<English>Eagle Warrior</English>
+		<English>Eagle</English>
 		<French>Guerrier Aigle</French>
 	</TEXT>
 	<TEXT>
@@ -1456,5 +1456,9 @@
 	<TEXT>
 		<Tag>TXT_KEY_NO_HURRY</Tag>
 		<English>Cannot be Hurried</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_JAGUAR_PROMOTIONS</Tag>
+		<English>[ICON_BULLET]Can gain the [LINK=PROMOTION_JAGUAR_WARRIOR]Jaguar[\LINK] and [LINK=PROMOTION_EAGLE_WARRIOR]Eagle[\LINK] Promotions</English>
 	</TEXT>
 </Civ4GameText>

@@ -986,7 +986,6 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bSpecialTradeRoutePerPlayer = false; // Civ4 Reimagined
 	m_bExtraAvailableBonuses = false; // Civ4 Reimagined
 	m_iCulturePerPopulationSacrified = 0; // Civ4 Reimagined
-	m_bUniqueAztecPromotion = false; // Civ4 Reimagined
 	m_bCanExploreSea = false; // Civ4 Reimagined
 	m_iNoForeignCultureUnhappinessCount = 0; // Civ4 Reimagined
 	m_iNoCityResistanceCount = 0; // Civ4 Reimagined
@@ -20541,7 +20540,6 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bSpecialTradeRoutePerPlayer); // Civ4 Reimagined
 	pStream->Read(&m_bExtraAvailableBonuses); // Civ4 Reimagined
 	pStream->Read(&m_iCulturePerPopulationSacrified); // Civ4 Reimagined
-	pStream->Read(&m_bUniqueAztecPromotion); // Civ4 Reimagined
 	pStream->Read(&m_bCanExploreSea); // Civ4 Reimagined
 	pStream->Read(&m_iNoForeignCultureUnhappinessCount); // Civ4 Reimagined
 	pStream->Read(&m_iNoCityResistanceCount); // Civ4 Reimagined
@@ -21163,7 +21161,6 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_bSpecialTradeRoutePerPlayer); // Civ4 Reimagined
 	pStream->Write(m_bExtraAvailableBonuses); // Civ4 Reimagined
 	pStream->Write(m_iCulturePerPopulationSacrified); // Civ4 Reimagined
-	pStream->Write(m_bUniqueAztecPromotion); // Civ4 Reimagined
 	pStream->Write(m_bCanExploreSea); // Civ4 Reimagined
 	pStream->Write(m_iNoForeignCultureUnhappinessCount); // Civ4 Reimagined
 	pStream->Write(m_iNoCityResistanceCount); // Civ4 Reimagined
@@ -28219,50 +28216,6 @@ void CvPlayer::changeCulturePerPopulationSacrified(int iChange)
 }
 
 // Civ4 Reimagined
-bool CvPlayer::isHasUniqueAztecPromotion() const
-{
-	return m_bUniqueAztecPromotion;
-}
-
-// Civ4 Reimagined
-void CvPlayer::setUniqueAztecPromotion(bool bNewValue)
-{
-	m_bUniqueAztecPromotion = bNewValue;
-}
-
-// Civ4 Reimagined
-void CvPlayer::doUniqueAztecPromotion(CvUnit* pUnit)
-{
-	if (!isHasUniqueAztecPromotion())
-	{
-		return;
-	}
-	
-	if (pUnit->getUnitCombatType() != (UnitCombatTypes)GC.getInfoTypeForString("UNITCOMBAT_MELEE"))
-	{
-		return;
-	}
-	
-	if (pUnit->isHasPromotion((PromotionTypes)GC.getInfoTypeForString("PROMOTION_JAGUAR_WARRIOR")) ||
-		pUnit->isHasPromotion((PromotionTypes)GC.getInfoTypeForString("PROMOTION_EAGLE_WARRIOR")))
-	{
-		return;
-	}
-	
-	if (GC.getGameINLINE().getSorenRandNum(100, "Aztec unique promotion") < GC.getDefineINT("UNIQUE_POWER_AZTEC") * pUnit->getLevel()) // x% chance per level to gain a promotion
-	{		
-		if (GC.getGameINLINE().getSorenRandNum(2, "Aztec unique promotion - choose promotion") == 0)
-		{
-			pUnit->setHasPromotion((PromotionTypes)GC.getInfoTypeForString("PROMOTION_JAGUAR_WARRIOR"), true);
-		}
-		else
-		{
-			pUnit->setHasPromotion((PromotionTypes)GC.getInfoTypeForString("PROMOTION_EAGLE_WARRIOR"), true);
-		}
-	}
-}
-
-// Civ4 Reimagined
 void CvPlayer::changeSlavePointsPerPopulationSacrificed(int iChange)
 {
 	if (iChange != 0)
@@ -28566,7 +28519,6 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_ANCIENT)
 		{
 			setIsCaptureSlaves(true);
-			changeCulturePerPopulationSacrified(5);
 			notifyUniquePowersChanged(true);
 		}
 	}

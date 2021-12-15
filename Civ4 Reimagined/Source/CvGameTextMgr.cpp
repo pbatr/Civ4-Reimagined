@@ -8984,6 +8984,12 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
 		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_FREE_UNIT", GC.getUnitInfo((UnitTypes)GC.getUnitClassInfo((UnitClassTypes)GC.getUnitInfo(eUnit).getFreeUnitClassType()).getDefaultUnitIndex()).getTextKeyWide()));
 	}
 
+	// Civ4 Reimagined
+	if (eUnit == (UnitTypes)GC.getInfoTypeForString("UNIT_AZTEC_JAGUAR"))
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_JAGUAR_PROMOTIONS"));
+	}
 
 	if (GC.getUnitInfo(eUnit).getDomainType() == DOMAIN_LAND)
 	{

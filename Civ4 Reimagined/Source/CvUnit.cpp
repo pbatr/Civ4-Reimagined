@@ -1373,7 +1373,6 @@ void CvUnit::resolveCombat(CvUnit* pDefender, CvPlot* pPlot, bool bVisible)
 				iExperience = ((iExperience * iDefenderStrength) / iAttackerStrength);
 				iExperience = range(iExperience, GC.getDefineINT("MIN_EXPERIENCE_PER_COMBAT"), GC.getDefineINT("MAX_EXPERIENCE_PER_COMBAT"));
 				changeExperience(iExperience, pDefender->maxXPValue(getOwnerINLINE()), true, pPlot->getOwnerINLINE() == getOwnerINLINE(), !pDefender->isBarbarian() || GET_PLAYER(getOwnerINLINE()).isBarbarianGreatGeneral()); // Civ4 Reimagined: Added great general experience from barbarians
-				GET_PLAYER(getOwnerINLINE()).doUniqueAztecPromotion(this); // Civ4 Reimagined: Unique power
 			}
 
 			break;

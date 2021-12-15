@@ -1384,9 +1384,6 @@ public:
 	void setHasExtraAvailableBonuses(bool bNewValue); // Civ4 Reimagined
 	int getCulturePerPopulationSacrified() const; // Civ4 Reimagined
 	void changeCulturePerPopulationSacrified(int iChange); // Civ4 Reimagined
-	bool isHasUniqueAztecPromotion() const; // Civ4 Reimagined
-	void setUniqueAztecPromotion(bool bNewValue); // Civ4 Reimagined
-	void doUniqueAztecPromotion(CvUnit* pUnit); // Civ4 Reimagined
 	void changeSlavePointsPerPopulationSacrificed(int iChange); // Civ4 Reimagined
 	int getSlavePointsPerPopulationSacrificed() const; // Civ4 Reimagined
 	void setHasCivicEffect(bool bEnabled); // Civ4 Reimagined
@@ -1675,7 +1672,6 @@ protected:
 	int m_iCulturePerPopulationSacrified; // Civ4 Reimagined
 	int m_iNoForeignCultureUnhappinessCount; // Civ4 Reimagined
 	int m_iNoCityResistanceCount; // Civ4 Reimagined
-	bool m_bUniqueAztecPromotion; // Civ4 Reimagined
 	bool m_bUpdateBonusRatio; // Civ4 Reimagined
 	//int m_iNumColonies; // Civ4 Reimagined
 	int m_iSlavePointsFromSacrificePopulation; // Civ4 Reimagined
