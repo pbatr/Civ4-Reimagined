@@ -28564,7 +28564,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	{
 		if (eEra == ERA_ANCIENT)
 		{
-			setCommerceAboveAveragePopulation(COMMERCE_RESEARCH, GC.getDefineINT("UNIQUE_POWER_CHINA_MAX_POP"), GC.getDefineINT("UNIQUE_POWER_CHINA_MAX_EFFECT"));
+			changeUnhealthyPopulationModifier(-25);
 			changeAdditionalFarmBonusYield(2);
 			notifyUniquePowersChanged(true);
 		}
