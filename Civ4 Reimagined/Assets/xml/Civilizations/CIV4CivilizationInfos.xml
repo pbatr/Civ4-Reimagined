@@ -3070,7 +3070,12 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
-			<TerrainBiases/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_PLAINS</TerrainType>
+					<iBias>1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
 			<FeatureBiases>
 				<FeatureBias>
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
