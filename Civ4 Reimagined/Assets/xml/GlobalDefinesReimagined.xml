@@ -380,7 +380,7 @@
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_CELT_RESEARCH</DefineName>
-		<iDefineIntVal>25</iDefineIntVal> <!-- Research per unimproved forest -->
+		<iDefineIntVal>50</iDefineIntVal> <!-- Research per unimproved forest -->
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_CHINA_MAX_POP</DefineName>

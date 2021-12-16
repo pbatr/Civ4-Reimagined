@@ -2124,6 +2124,12 @@ void CvGame::normalizeAddExtras()
 		{
 			eUniqueBonus = (BonusTypes)GC.getUnitInfo(eUniqueUnit).getPrereqAndBonus();
 		}
+
+		// Civ4 Reimagined
+		if (kLoopPlayer.getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CHINA"))
+		{
+			eUniqueBonus = (BonusTypes)GC.getInfoTypeForString("BONUS_RICE");
+		}
 		
 		for (int iJ = 0; iJ < NUM_CITY_PLOTS; iJ++)
 		{
@@ -2137,7 +2143,7 @@ void CvGame::normalizeAddExtras()
 		}
 		
 		if (!bHasUniqueBonus && gMapLogLevel > 0)
-			logBBAI("    Player %d needs %S for unique unit.", iI, GC.getBonusInfo(eUniqueBonus).getDescription());
+			logBBAI("    Player %d needs %S for unique unit / unique power.", iI, GC.getBonusInfo(eUniqueBonus).getDescription());
 
 		// Civ4 Reimagined
 		for (int iTry = 0; iTry < 2; iTry++)

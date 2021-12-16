@@ -1077,7 +1077,7 @@
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_RICE</BonusType>
-					<iBias>10</iBias>
+					<iBias>25</iBias>
 				</BonusBias>
 				<BonusBias>
 					<BonusType>BONUS_SILK</BonusType>
