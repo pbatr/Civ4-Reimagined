@@ -165,6 +165,14 @@
 		<DefineName>COLONY_NUM_FREE_DEFENDERS</DefineName>
 		<iDefineIntVal>3</iDefineIntVal> <!-- original value: 2 -->
 	</Define>
+	<Define>
+		<DefineName>MIN_REVOLUTION_TURNS</DefineName>
+		<iDefineIntVal>4</iDefineIntVal> <!-- original value: 5 -->
+	</Define>
+	<Define>
+		<DefineName>MIN_CONVERSION_TURNS</DefineName>
+		<iDefineIntVal>4</iDefineIntVal> <!-- original value: 5 -->
+	</Define>
 	<!-- Unchanged value but changed semantics, i.e. modifier for every trade route with a capital. If both the actual city and the trading city are capitals the bonus is doubled. 
 	The old modifier was renamed to CONNECTION_TO_CAPITAL_TRADE_MODIFIER (see below) -->
 	<Define>
