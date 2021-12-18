@@ -702,7 +702,7 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer)
 	GET_PLAYER(getOwnerINLINE()).deleteUnit(getID());
 
 	// Civ4 Reimagined
-	if (eCapturingPlayer != NO_PLAYER && GET_PLAYER(eCapturingPlayer).isCaptureSlaves() && GET_PLAYER(eCapturingPlayer).hasSlavery())
+	if (eCapturingPlayer != NO_PLAYER && GET_PLAYER(eCapturingPlayer).isCaptureSlaves() && GET_PLAYER(eCapturingPlayer).hasSlavery() && !isAnimal())
 	{
 		eCaptureUnitType = (UnitTypes)GC.getCivilizationInfo(GET_PLAYER(eCapturingPlayer).getCivilizationType()).getCivilizationUnits((UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SLAVE"));
 	}
