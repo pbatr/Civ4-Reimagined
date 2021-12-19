@@ -6569,13 +6569,15 @@ int CvPlot::calculateImprovementYieldChange(ImprovementTypes eImprovement, Yield
 
 		if (eBonus != NO_BONUS)
 		{
-			iYield += GC.getImprovementInfo(eImprovement).getImprovementBonusYield(eBonus, eYield);
+			int iBonusYield = GC.getImprovementInfo(eImprovement).getImprovementBonusYield(eBonus, eYield);
 
 			// Civ4 Reimagined: Chinese UP
-			if (eImprovement == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FARM") &&  eYield == YIELD_FOOD)
+			if (iBonusYield > 0 && eImprovement == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FARM") && eYield == YIELD_FOOD)
 			{
-				iYield += GET_PLAYER(ePlayer).getAdditionalFarmBonusYield();
+				iBonusYield += GET_PLAYER(ePlayer).getAdditionalFarmBonusYield();
 			}
+
+			iYield += iBonusYield;
 		}
 	}
 
