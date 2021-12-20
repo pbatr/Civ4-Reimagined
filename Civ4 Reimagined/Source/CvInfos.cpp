@@ -13051,6 +13051,8 @@ m_iDealLengthPercent(0),
 m_iHealPercent(0),
 m_iOccupyLengthPercent(0),
 m_iMemoryDecayPercent(0),
+m_iEventDelayTurns(0),
+m_iEventProbabilityModifier(0),
 m_pGameTurnInfo(NULL)
 {
 }
@@ -13181,6 +13183,18 @@ int CvGameSpeedInfo::getMemoryDecayPercent() const
 	return m_iMemoryDecayPercent;
 }
 
+// Civ4 Reimagined
+int CvGameSpeedInfo::getEventDelayTurns() const
+{
+	return m_iEventDelayTurns;
+}
+
+// Civ4 Reimagined
+int CvGameSpeedInfo::getEventProbabilityModifier() const
+{
+	return m_iEventProbabilityModifier;
+}
+
 int CvGameSpeedInfo::getInflationOffset() const
 {
 	return m_iInflationOffset;
@@ -13245,6 +13259,8 @@ bool CvGameSpeedInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iHealPercent, "iHealPercent");
 	pXML->GetChildXmlValByName(&m_iOccupyLengthPercent, "iOccupyLengthPercent");
 	pXML->GetChildXmlValByName(&m_iMemoryDecayPercent, "iMemoryDecayPercent");
+	pXML->GetChildXmlValByName(&m_iEventDelayTurns, "iEventDelayTurns");
+	pXML->GetChildXmlValByName(&m_iEventProbabilityModifier, "iEventProbabilityModifier");
 
 	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"GameTurnInfos"))
 	{

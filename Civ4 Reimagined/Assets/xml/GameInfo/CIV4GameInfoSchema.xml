@@ -576,10 +576,14 @@
 	</ElementType>
 	<ElementType name="iVictoryDelayTurns" content="textOnly" dt:type="int"/>
 	<ElementType name="iVictoryDelayPercent" content="textOnly" dt:type="int"/>
+	<!-- Civ4 Reimagined START -->
 	<ElementType name="iHealPercent" content="textOnly" dt:type="int"/>
 	<ElementType name="iDealLengthPercent" content="textOnly" dt:type="int"/>
 	<ElementType name="iOccupyLengthPercent" content="textOnly" dt:type="int"/>
-	<ElementType name="iMemoryDecayPercent" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
+	<ElementType name="iMemoryDecayPercent" content="textOnly" dt:type="int"/>
+	<ElementType name="iEventDelayTurns" content="textOnly" dt:type="int"/>
+	<ElementType name="iEventProbabilityModifier" content="textOnly" dt:type="int"/>
+	<!-- Civ4 Reimagined END -->
 	<ElementType name="iSuccessRate" content="textOnly" dt:type="int"/>
 	<ElementType name="PrereqBonuses" content="eltOnly">
 		<element type="BonusType" minOccurs="0" maxOccurs="*"/>
@@ -1117,7 +1121,9 @@
 		<element type="iDealLengthPercent"/>
 		<element type="iHealPercent"/>
 		<element type="iOccupyLengthPercent"/>
-		<element type="iMemoryDecayPercent"/> <!-- Civ4 Reimagined -->
+		<element type="iMemoryDecayPercent"/>
+		<element type="iEventDelayTurns"/>
+		<element type="iEventProbabilityModifier"/>
 		<element type="GameTurnInfos"/>
 	</ElementType>
 	<ElementType name="GameSpeedInfos" content="eltOnly">

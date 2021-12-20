@@ -23664,14 +23664,17 @@ void CvPlayer::doEvents()
 	}
 
 	bool bNewEventEligible = true;
-	if (GC.getGameINLINE().getElapsedGameTurns() < GC.getDefineINT("FIRST_EVENT_DELAY_TURNS"))
+	// Civ4 Reimagined: Adjust to game speed
+	if (GC.getGameINLINE().getElapsedGameTurns() < GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getEventDelayTurns())
 	{
 		bNewEventEligible = false;
 	}
 
 	if (bNewEventEligible)
 	{
-		if (GC.getGameINLINE().getSorenRandNum(GC.getDefineINT("EVENT_PROBABILITY_ROLL_SIDES"), "Global event check") >= GC.getEraInfo(getCurrentEra()).getEventChancePerTurn())
+		// Civ4 Reimagined: Adjust to game speed
+		const int iEventChance = GC.getEraInfo(getCurrentEra()).getEventChancePerTurn() * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getEventProbabilityModifier() / 100;
+		if (GC.getGameINLINE().getSorenRandNum(GC.getDefineINT("EVENT_PROBABILITY_ROLL_SIDES"), "Global event check") >= iEventChance)
 		{
 			bNewEventEligible = false;
 		}

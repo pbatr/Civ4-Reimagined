@@ -37,6 +37,8 @@
 			<iHealPercent>33</iHealPercent>
 			<iOccupyLengthPercent>300</iOccupyLengthPercent>
 			<iMemoryDecayPercent>300</iMemoryDecayPercent>
+			<iEventDelayTurns>75</iEventDelayTurns>
+			<iEventProbabilityModifier>50</iEventProbabilityModifier>
 			<GameTurnInfos>
 				<GameTurnInfo>
 					<iMonthIncrement>180</iMonthIncrement>
@@ -102,6 +104,8 @@
 			<iHealPercent>66</iHealPercent>
 			<iOccupyLengthPercent>150</iOccupyLengthPercent>
 			<iMemoryDecayPercent>150</iMemoryDecayPercent>
+			<iEventDelayTurns>37</iEventDelayTurns>
+			<iEventProbabilityModifier>75</iEventProbabilityModifier>
 			<GameTurnInfos>
 				<GameTurnInfo>
 					<iMonthIncrement>300</iMonthIncrement>
@@ -163,6 +167,8 @@
 			<iHealPercent>100</iHealPercent>
 			<iOccupyLengthPercent>100</iOccupyLengthPercent>
 			<iMemoryDecayPercent>100</iMemoryDecayPercent>
+			<iEventDelayTurns>25</iEventDelayTurns>
+			<iEventProbabilityModifier>100</iEventProbabilityModifier>
 			<GameTurnInfos>
 				<GameTurnInfo>
 					<iMonthIncrement>480</iMonthIncrement>
@@ -228,6 +234,8 @@
 			<iHealPercent>150</iHealPercent>
 			<iOccupyLengthPercent>66</iOccupyLengthPercent>
 			<iMemoryDecayPercent>66</iMemoryDecayPercent>
+			<iEventDelayTurns>16</iEventDelayTurns>
+			<iEventProbabilityModifier>125</iEventProbabilityModifier>
 			<GameTurnInfos>
 				<GameTurnInfo>
 					<iMonthIncrement>720</iMonthIncrement>
@@ -293,6 +301,8 @@
 			<iHealPercent>200</iHealPercent>
 			<iOccupyLengthPercent>50</iOccupyLengthPercent>
 			<iMemoryDecayPercent>50</iMemoryDecayPercent>
+			<iEventDelayTurns>12</iEventDelayTurns>
+			<iEventProbabilityModifier>150</iEventProbabilityModifier>
 			<GameTurnInfos>
 				<GameTurnInfo>
 					<iMonthIncrement>960</iMonthIncrement>

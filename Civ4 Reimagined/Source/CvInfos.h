@@ -2847,6 +2847,8 @@ public:
 	int getHealPercent() const;			// Civ4 Reimagined
 	int getOccupyLengthPercent() const; // Civ4 Reimagined
 	int getMemoryDecayPercent() const; // Civ4 Reimagined
+	int getEventDelayTurns() const; // Civ4 Reimagined
+	int getEventProbabilityModifier() const; // Civ4 Reimagined
 	int getNumTurnIncrements() const;						// Exposed to Python
 
 	GameTurnInfo& getGameTurnInfo(int iIndex) const;		// Exposed to Python
@@ -2883,6 +2885,8 @@ protected:
 	int m_iHealPercent;
 	int m_iOccupyLengthPercent;
 	int m_iMemoryDecayPercent;
+	int m_iEventDelayTurns;
+	int m_iEventProbabilityModifier;
 
 	CvString m_szGameSpeedName;
 	GameTurnInfo* m_pGameTurnInfo;

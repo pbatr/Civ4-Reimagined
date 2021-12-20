@@ -158,10 +158,6 @@
 		<iDefineIntVal>-10</iDefineIntVal> <!-- original value: -15 -->
 	</Define>
 	<Define>
-		<DefineName>FIRST_EVENT_DELAY_TURNS</DefineName>
-		<iDefineIntVal>25</iDefineIntVal> <!-- original value: 20 -->
-	</Define>
-	<Define>
 		<DefineName>COLONY_NUM_FREE_DEFENDERS</DefineName>
 		<iDefineIntVal>3</iDefineIntVal> <!-- original value: 2 -->
 	</Define>
