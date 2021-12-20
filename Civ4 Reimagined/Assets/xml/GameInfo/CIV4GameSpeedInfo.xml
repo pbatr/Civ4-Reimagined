@@ -36,6 +36,7 @@
 			<iDealLengthPercent>300</iDealLengthPercent>
 			<iHealPercent>33</iHealPercent>
 			<iOccupyLengthPercent>300</iOccupyLengthPercent>
+			<iMemoryDecayPercent>300</iMemoryDecayPercent>
 			<GameTurnInfos>
 				<GameTurnInfo>
 					<iMonthIncrement>180</iMonthIncrement>
@@ -100,6 +101,7 @@
 			<iDealLengthPercent>150</iDealLengthPercent>
 			<iHealPercent>66</iHealPercent>
 			<iOccupyLengthPercent>150</iOccupyLengthPercent>
+			<iMemoryDecayPercent>150</iMemoryDecayPercent>
 			<GameTurnInfos>
 				<GameTurnInfo>
 					<iMonthIncrement>300</iMonthIncrement>
@@ -160,6 +162,7 @@
 			<iDealLengthPercent>100</iDealLengthPercent>
 			<iHealPercent>100</iHealPercent>
 			<iOccupyLengthPercent>100</iOccupyLengthPercent>
+			<iMemoryDecayPercent>100</iMemoryDecayPercent>
 			<GameTurnInfos>
 				<GameTurnInfo>
 					<iMonthIncrement>480</iMonthIncrement>
@@ -224,6 +227,7 @@
 			<iDealLengthPercent>66</iDealLengthPercent>
 			<iHealPercent>150</iHealPercent>
 			<iOccupyLengthPercent>66</iOccupyLengthPercent>
+			<iMemoryDecayPercent>66</iMemoryDecayPercent>
 			<GameTurnInfos>
 				<GameTurnInfo>
 					<iMonthIncrement>720</iMonthIncrement>
@@ -288,6 +292,7 @@
 			<iDealLengthPercent>50</iDealLengthPercent>
 			<iHealPercent>200</iHealPercent>
 			<iOccupyLengthPercent>50</iOccupyLengthPercent>
+			<iMemoryDecayPercent>50</iMemoryDecayPercent>
 			<GameTurnInfos>
 				<GameTurnInfo>
 					<iMonthIncrement>960</iMonthIncrement>

@@ -13050,6 +13050,7 @@ m_iNumTurnIncrements(0),
 m_iDealLengthPercent(0),
 m_iHealPercent(0),
 m_iOccupyLengthPercent(0),
+m_iMemoryDecayPercent(0),
 m_pGameTurnInfo(NULL)
 {
 }
@@ -13174,6 +13175,12 @@ int CvGameSpeedInfo::getOccupyLengthPercent() const
 	return m_iOccupyLengthPercent;
 }
 
+// Civ4 Reimagined
+int CvGameSpeedInfo::getMemoryDecayPercent() const
+{
+	return m_iMemoryDecayPercent;
+}
+
 int CvGameSpeedInfo::getInflationOffset() const
 {
 	return m_iInflationOffset;
@@ -13237,6 +13244,7 @@ bool CvGameSpeedInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iDealLengthPercent, "iDealLengthPercent");
 	pXML->GetChildXmlValByName(&m_iHealPercent, "iHealPercent");
 	pXML->GetChildXmlValByName(&m_iOccupyLengthPercent, "iOccupyLengthPercent");
+	pXML->GetChildXmlValByName(&m_iMemoryDecayPercent, "iMemoryDecayPercent");
 
 	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"GameTurnInfos"))
 	{

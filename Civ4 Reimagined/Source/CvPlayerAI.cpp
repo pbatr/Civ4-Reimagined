@@ -18134,9 +18134,11 @@ void CvPlayerAI::AI_doCounter()
 			{
 				if (AI_getMemoryCount(((PlayerTypes)iI), ((MemoryTypes)iJ)) > 0)
 				{
-					if (GC.getLeaderHeadInfo(getPersonalityType()).getMemoryDecayRand(iJ) > 0)
+					// Civ4 Reimagined: Memory decay adjusts with game speed
+					const int iMemoryDecayRand = GC.getLeaderHeadInfo(getPersonalityType()).getMemoryDecayRand(iJ) * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getMemoryDecayPercent() / 100;
+					if (iMemoryDecayRand > 0)
 					{
-						if (GC.getGameINLINE().getSorenRandNum(GC.getLeaderHeadInfo(getPersonalityType()).getMemoryDecayRand(iJ), "Memory Decay") == 0)
+						if (GC.getGameINLINE().getSorenRandNum(iMemoryDecayRand, "Memory Decay") == 0)
 						{
 							AI_changeMemoryCount(((PlayerTypes)iI), ((MemoryTypes)iJ), -1);
 						}
