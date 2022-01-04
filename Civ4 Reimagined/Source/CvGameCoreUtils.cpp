@@ -2736,6 +2736,7 @@ void getMissionTypeString(CvWString& szString, MissionTypes eMissionType)
 	case MISSION_HURRY: szString = L"MISSION_HURRY"; break;
 	case MISSION_TRADE: szString = L"MISSION_TRADE"; break;
 	case MISSION_GREAT_WORK: szString = L"MISSION_GREAT_WORK"; break;
+	case MISSION_SACRIFICE: szString = L"MISSION_SACRIFICE"; break; // Civ4 Reimagined
 	case MISSION_INFILTRATE: szString = L"MISSION_INFILTRATE"; break;
 	case MISSION_GOLDEN_AGE: szString = L"MISSION_GOLDEN_AGE"; break;
 	case MISSION_BUILD: szString = L"MISSION_BUILD"; break;

@@ -2553,6 +2553,31 @@ void CvDLLWidgetData::parseActionHelp(CvWidgetDataStruct &widgetDataStruct, CvWS
 					pSelectedUnitNode = gDLL->getInterfaceIFace()->nextSelectionListNode(pSelectedUnitNode);
 				}
 			}
+			// Civ4 Reimagined
+			else if (GC.getActionInfo(widgetDataStruct.m_iData1).getMissionType() == MISSION_SACRIFICE)
+			{
+				pSelectedUnitNode = gDLL->getInterfaceIFace()->headSelectionListNode();
+
+				while (pSelectedUnitNode != NULL)
+				{
+					pSelectedUnit = ::getUnit(pSelectedUnitNode->m_data);
+
+					if (pSelectedUnit->canSacrifice(pMissionPlot))
+					{
+						szTempBuffer.Format(L"%s+%d%c, +%d%c", NEWLINE, pSelectedUnit->getGreatWorkCulture(pMissionPlot), GC.getCommerceInfo(COMMERCE_CULTURE).getChar(), GC.getDefineINT("UNIQUE_POWER_AZTEC"), GC.getCommerceInfo(COMMERCE_GOLD).getChar());
+						szBuffer.append(szTempBuffer);
+
+						if (pMissionCity->getHappinessTimer() == 0)
+						{
+							szTempBuffer.Format(L", +1%c", gDLL->getSymbolID(HAPPY_CHAR));
+							szBuffer.append(szTempBuffer);
+						}
+						break;
+					}
+
+					pSelectedUnitNode = gDLL->getInterfaceIFace()->nextSelectionListNode(pSelectedUnitNode);
+				}
+			}
 			else if (GC.getActionInfo(widgetDataStruct.m_iData1).getMissionType() == MISSION_INFILTRATE)
 			{
 				if (pMissionCity != NULL)

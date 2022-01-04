@@ -364,7 +364,7 @@
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_AZTEC</DefineName>
-		<iDefineIntVal>30</iDefineIntVal> <!-- % promotion chance per level -->
+		<iDefineIntVal>50</iDefineIntVal> <!-- gold per sacrifice -->
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_BABYLON</DefineName>

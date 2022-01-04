@@ -240,6 +240,10 @@ public:
 	bool canGreatWork(const CvPlot* pPlot) const;																									// Exposed to Python
 	bool greatWork();
 
+	// Civ4 Reimagined
+	bool canSacrifice(const CvPlot* pPlot) const;
+	bool sacrifice();
+
 	int getEspionagePoints(const CvPlot* pPlot) const;																									// Exposed to Python
 	bool canInfiltrate(const CvPlot* pPlot, bool bTestVisible = false) const;													// Exposed to Python
 	bool infiltrate();

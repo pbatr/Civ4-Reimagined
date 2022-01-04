@@ -651,6 +651,7 @@ CvPlot* CvSelectionGroup::lastMissionPlot()
 		case MISSION_HURRY:
 		case MISSION_TRADE:
 		case MISSION_GREAT_WORK:
+		case MISSION_SACRIFICE:
 		case MISSION_INFILTRATE:
 		case MISSION_GOLDEN_AGE:
 		case MISSION_BUILD:
@@ -828,6 +829,7 @@ void CvSelectionGroup::startMission()
 		case MISSION_HURRY:
 		case MISSION_TRADE:
 		case MISSION_GREAT_WORK:
+		case MISSION_SACRIFICE: // Civ4 Reimagined
 		case MISSION_INFILTRATE:
 		case MISSION_GOLDEN_AGE:
 			break;
@@ -1112,6 +1114,14 @@ void CvSelectionGroup::startMission()
 
 				case MISSION_GREAT_WORK:
 					if (pLoopUnit->greatWork())
+					{
+						bAction = true;
+					}
+					break;
+
+				// Civ4 Reimagined
+				case MISSION_SACRIFICE:
+					if (pLoopUnit->sacrifice())
 					{
 						bAction = true;
 					}
@@ -1443,6 +1453,7 @@ bool CvSelectionGroup::continueMission_bulk(int iSteps)
 				case MISSION_HURRY:
 				case MISSION_TRADE:
 				case MISSION_GREAT_WORK:
+				case MISSION_SACRIFICE: // Civ4 Reimagined
 				case MISSION_INFILTRATE:
 				case MISSION_GOLDEN_AGE:
 				case MISSION_LEAD:
@@ -1530,6 +1541,7 @@ bool CvSelectionGroup::continueMission_bulk(int iSteps)
 			case MISSION_HURRY:
 			case MISSION_TRADE:
 			case MISSION_GREAT_WORK:
+			case MISSION_SACRIFICE: // Civ4 Reimagined
 			case MISSION_INFILTRATE:
 			case MISSION_GOLDEN_AGE:
 			case MISSION_LEAD:
@@ -3983,6 +3995,12 @@ bool CvSelectionGroup::canDoMission(int iMission, int iData1, int iData2, CvPlot
 
 		case MISSION_GREAT_WORK:
 			if (pLoopUnit->canGreatWork(pPlot) && (!bCheckMoves || pLoopUnit->canMove()))
+				return true;
+			break;
+
+		// Civ4 Reimagined
+		case MISSION_SACRIFICE:
+			if (pLoopUnit->canSacrifice(pPlot) && (!bCheckMoves || pLoopUnit->canMove()))
 				return true;
 			break;
 

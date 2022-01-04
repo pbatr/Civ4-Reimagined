@@ -6931,6 +6931,12 @@ int CvUnit::getGreatWorkCulture(const CvPlot* pPlot) const
 
 bool CvUnit::canGreatWork(const CvPlot* pPlot) const
 {
+	// Civ4 Reimagined
+	if (getUnitType() == (UnitTypes)GC.getInfoTypeForString("UNIT_AZTEC_CAPTIVE"))
+	{
+		return false;
+	}
+
 	if (isDelayedDeath())
 	{
 		return false;
@@ -6951,15 +6957,6 @@ bool CvUnit::canGreatWork(const CvPlot* pPlot) const
 	if (getGreatWorkCulture(pPlot) == 0)
 	{
 		return false;
-	}
-
-	// Civ4 Reimagined
-	if (getUnitType() == (UnitTypes)GC.getInfoTypeForString("UNIT_AZTEC_CAPTIVE"))
-	{
-		if (pCity->getNumBuilding((BuildingTypes)GC.getInfoTypeForString("BUILDING_AZTEC_SACRIFICIAL_ALTAR")) < 1)
-		{
-			return false;
-		}
 	}
 
 	return true;
@@ -7014,6 +7011,78 @@ bool CvUnit::greatWork()
 	if (plot()->isActiveVisible(false))
 	{
 		NotifyEntity(MISSION_GREAT_WORK);
+	}
+
+	kill(true);
+
+	return true;
+}
+
+
+// Civ4 Reimagined
+bool CvUnit::canSacrifice(const CvPlot* pPlot) const
+{
+	if (isDelayedDeath())
+	{
+		return false;
+	}
+
+	CvCity* pCity = pPlot->getPlotCity();
+
+	if (pCity == NULL)
+	{
+		return false;
+	}
+
+	if (pCity->getOwnerINLINE() != getOwnerINLINE())
+	{
+		return false;
+	}
+
+	if (getGreatWorkCulture(pPlot) == 0)
+	{
+		return false;
+	}
+
+	// Civ4 Reimagined
+	if (getUnitType() == (UnitTypes)GC.getInfoTypeForString("UNIT_AZTEC_CAPTIVE"))
+	{
+		if (pCity->getNumBuilding((BuildingTypes)GC.getInfoTypeForString("BUILDING_AZTEC_SACRIFICIAL_ALTAR")) < 1)
+		{
+			return false;
+		}
+	}
+
+	return true;
+}
+
+
+// Civ4 Reimagined
+bool CvUnit::sacrifice()
+{
+	if (!canSacrifice(plot()))
+	{
+		return false;
+	}
+
+	CvCity* pCity = plot()->getPlotCity();
+
+	if (pCity != NULL)
+	{
+		pCity->setCultureUpdateTimer(0);
+		pCity->setOccupationTimer(0);
+
+		pCity->changeHappinessTimer(20 * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getUnitGreatWorkPercent() / 100);
+
+		int iCultureToAdd = 100 * getGreatWorkCulture(plot());
+		pCity->changeCultureTimes100(getOwnerINLINE(), iCultureToAdd, true, true);
+		GET_PLAYER(getOwnerINLINE()).changeGold(GC.getDefineINT("UNIQUE_POWER_AZTEC"));
+		GET_PLAYER(getOwnerINLINE()).AI_updateCommerceWeights(); // significant culture change may cause signficant weight changes.
+	}
+
+	if (plot()->isActiveVisible(false))
+	{
+		NotifyEntity(MISSION_SACRIFICE);
 	}
 
 	kill(true);
@@ -8413,6 +8482,7 @@ BuildTypes CvUnit::getBuildType() const
 		case MISSION_HURRY:
 		case MISSION_TRADE:
 		case MISSION_GREAT_WORK:
+		case MISSION_SACRIFICE: // Civ4 Reimagined
 		case MISSION_INFILTRATE:
 		case MISSION_GOLDEN_AGE:
 		case MISSION_LEAD:

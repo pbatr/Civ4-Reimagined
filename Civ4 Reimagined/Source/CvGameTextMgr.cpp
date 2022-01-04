@@ -8883,7 +8883,7 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
 		if (eUnit == (UnitTypes)GC.getInfoTypeForString("UNIT_AZTEC_CAPTIVE"))
 		{
 			szBuffer.append(NEWLINE);
-			szBuffer.append(gDLL->getText("TXT_KEY_UNIT_SACRIFICE_SLAVE", iCulture));
+			szBuffer.append(gDLL->getText("TXT_KEY_UNIT_SACRIFICE_SLAVE", iCulture, GC.getDefineINT("UNIQUE_POWER_AZTEC")));
 		}
 		else
 		{
