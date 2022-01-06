@@ -419,7 +419,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_BYZANTINE_HIPPODROME_STRATEGY</Tag>
-		<English>The [COLOR_BUILDING_TEXT]Hippodrome[COLOR_REVERT] gives more happiness, especially when the culture slider is used. It also boost gold income. Happiness is provided with Horse instead of Dye, and no artist slots are added.</English>
+		<English>The [COLOR_BUILDING_TEXT]Hippodrome[COLOR_REVERT] boosts gold income and grants additional experience to mounted units.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_CHINESE_PAVILLION_STRATEGY</Tag>
