@@ -578,29 +578,6 @@
 			<Button>,Art/Interface/Buttons/Actions/GreatWork.dds,Art/Interface/Buttons/Actions_Builds_LeaderHeads_Specialists_Atlas.dds,4,3</Button>
 		</MissionInfo>
 		<MissionInfo>
-			<Type>MISSION_SACRIFICE</Type>
-			<Description>TXT_KEY_MISSION_SACRIFICE</Description>
-			<Help>TXT_KEY_MISSION_SACRIFICE_HELP</Help>
-			<Waypoint>NONE</Waypoint>
-			<EntityEventType>ENTITY_EVENT_GREAT_EVENT</EntityEventType>
-			<iTime>18</iTime>
-			<bTarget>0</bTarget>
-			<bBuild>0</bBuild>
-			<bSound>0</bSound>
-			<HotKey/>
-			<bAltDown>0</bAltDown>
-			<bShiftDown>0</bShiftDown>
-			<bCtrlDown>0</bCtrlDown>
-			<iHotKeyPriority>0</iHotKeyPriority>
-			<HotKeyAlt/>
-			<bAltDownAlt>0</bAltDownAlt>
-			<bShiftDownAlt>0</bShiftDownAlt>
-			<bCtrlDownAlt>0</bCtrlDownAlt>
-			<iHotKeyPriorityAlt>0</iHotKeyPriorityAlt>
-			<bVisible>1</bVisible>
-			<Button>,Art/Interface/Buttons/Buildings/Courthouse.dds,Art/Interface/Buttons/Warlords_Atlas_1.dds,2,2</Button>
-		</MissionInfo>
-		<MissionInfo>
 			<Type>MISSION_INFILTRATE</Type>
 			<Description>TXT_KEY_MISSION_INFILTRATE</Description>
 			<Help>TXT_KEY_MISSION_INFILTRATE_HELP</Help>
@@ -835,6 +812,29 @@
 			<bTarget>0</bTarget>
 			<bBuild>0</bBuild>
 			<bSound>0</bSound>
+		</MissionInfo>
+		<MissionInfo>
+			<Type>MISSION_SACRIFICE</Type>
+			<Description>TXT_KEY_MISSION_SACRIFICE</Description>
+			<Help>TXT_KEY_MISSION_SACRIFICE_HELP</Help>
+			<Waypoint>NONE</Waypoint>
+			<EntityEventType>ENTITY_EVENT_GREAT_EVENT</EntityEventType>
+			<iTime>18</iTime>
+			<bTarget>0</bTarget>
+			<bBuild>0</bBuild>
+			<bSound>0</bSound>
+			<HotKey/>
+			<bAltDown>0</bAltDown>
+			<bShiftDown>0</bShiftDown>
+			<bCtrlDown>0</bCtrlDown>
+			<iHotKeyPriority>0</iHotKeyPriority>
+			<HotKeyAlt/>
+			<bAltDownAlt>0</bAltDownAlt>
+			<bShiftDownAlt>0</bShiftDownAlt>
+			<bCtrlDownAlt>0</bCtrlDownAlt>
+			<iHotKeyPriorityAlt>0</iHotKeyPriorityAlt>
+			<bVisible>1</bVisible>
+			<Button>,Art/Interface/Buttons/Buildings/Courthouse.dds,Art/Interface/Buttons/Warlords_Atlas_1.dds,2,2</Button>
 		</MissionInfo>
 	</MissionInfos>
 </Civ4MissionInfos>
