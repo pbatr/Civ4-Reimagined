@@ -981,7 +981,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iNonStateReligionHappinessWithStateReligion = 0; // Civ4 Reimagined
 	m_bExploreRivalSea = false; // Civ4 Reimagined
 	m_bEnableFinancial = false; // Civ4 Reimagined
-	m_iHurryGoldCostModifier = 0; // Civ4 Reimagined
+	m_iMercenaryCostModifier = 0; // Civ4 Reimagined
 	m_iCanFarmHillsCount = 0; // Civ4 Reimagined
 	m_bSpecialTradeRoutePerPlayer = false; // Civ4 Reimagined
 	m_bExtraAvailableBonuses = false; // Civ4 Reimagined
@@ -20535,7 +20535,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iNonStateReligionHappinessWithStateReligion); // Civ4 Reimagined
 	pStream->Read(&m_bExploreRivalSea); // Civ4 Reimagined
 	pStream->Read(&m_bEnableFinancial); // Civ4 Reimagined
-	pStream->Read(&m_iHurryGoldCostModifier); // Civ4 Reimagined
+	pStream->Read(&m_iMercenaryCostModifier); // Civ4 Reimagined
 	pStream->Read(&m_iCanFarmHillsCount); // Civ4 Reimagined
 	pStream->Read(&m_bSpecialTradeRoutePerPlayer); // Civ4 Reimagined
 	pStream->Read(&m_bExtraAvailableBonuses); // Civ4 Reimagined
@@ -21156,7 +21156,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iNonStateReligionHappinessWithStateReligion); // Civ4 Reimagined
 	pStream->Write(m_bExploreRivalSea); // Civ4 Reimagined
 	pStream->Write(m_bEnableFinancial); // Civ4 Reimagined
-	pStream->Write(m_iHurryGoldCostModifier); // Civ4 Reimagined
+	pStream->Write(m_iMercenaryCostModifier); // Civ4 Reimagined
 	pStream->Write(m_iCanFarmHillsCount); // Civ4 Reimagined
 	pStream->Write(m_bSpecialTradeRoutePerPlayer); // Civ4 Reimagined
 	pStream->Write(m_bExtraAvailableBonuses); // Civ4 Reimagined
@@ -28122,17 +28122,17 @@ void CvPlayer::setEnableFinancial(bool bNewValue)
 }
 
 // Civ4 Reimagined
-int CvPlayer::getHurryGoldCostModifier() const
+int CvPlayer::getMercenaryCostModifier() const
 {
-	return m_iHurryGoldCostModifier;
+	return m_iMercenaryCostModifier;
 }
 
 // Civ4 Reimagined
-void CvPlayer::changeHurryGoldCostModifier(int iChange)
+void CvPlayer::changeMercenaryCostModifier(int iChange)
 {
 	if (iChange != 0)
 	{
-		m_iHurryGoldCostModifier += iChange;
+		m_iMercenaryCostModifier += iChange;
 	}
 }
 
@@ -28554,6 +28554,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_CLASSICAL)
 		{
 			setSpecialTradeRoutePerPlayer(true);
+			changeMercenaryCostModifier(-50);
 			notifyUniquePowersChanged(true);
 		}
 	}

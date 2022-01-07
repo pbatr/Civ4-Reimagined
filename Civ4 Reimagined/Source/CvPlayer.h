@@ -1371,8 +1371,8 @@ public:
 	void setExploreRivalSea(bool bNewValue); // Civ4 Reimagined
 	bool isEnableFinancial() const; // Civ4 Reimagined
 	void setEnableFinancial(bool bNewValue); // Civ4 Reimagined
-	int getHurryGoldCostModifier() const; // Civ4 Reimagined
-	void changeHurryGoldCostModifier(int iChange); // Civ4 Reimagined
+	int getMercenaryCostModifier() const; // Civ4 Reimagined
+	void changeMercenaryCostModifier(int iChange); // Civ4 Reimagined
 	int getCanFarmHillsCount() const; // Civ4 Reimagined
 	void changeCanFarmHillsCount(int iChange); // Civ4 Reimagined
 	bool isCanFarmHills() const; // Civ4 Reimagined
@@ -1665,7 +1665,7 @@ protected:
 	int m_iNonStateReligionHappinessWithStateReligion; // Civ4 Reimagined
 	bool m_bExploreRivalSea; // Civ4 Reimagined
 	bool m_bEnableFinancial; // Civ4 Reimagined
-	int m_iHurryGoldCostModifier; // Civ4 Reimagined
+	int m_iMercenaryCostModifier; // Civ4 Reimagined
 	int m_iCanFarmHillsCount; // Civ4 Reimagined
 	bool m_bSpecialTradeRoutePerPlayer; // Civ4 Reimagined
 	bool m_bExtraAvailableBonuses; // Civ4 Reimagined

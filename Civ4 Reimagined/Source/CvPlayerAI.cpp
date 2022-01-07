@@ -16762,7 +16762,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				// Modified by Civ4 Reimagined
 				iTempValue = AI_averageCommerceMultiplier(COMMERCE_GOLD) * (AI_avoidScience() ? 400 : 200) * iCities / kHurryInfo.getGoldPerProduction();
 				bool bFinancialTrouble = AI_isFinancialTrouble();
-				iTempValue /= std::max(1, (getHurryModifier() + getHurryGoldCostModifier() + 100) * AI_commerceWeight(COMMERCE_GOLD)) * (bFinancialTrouble ? 5 : 1); //Civ4 Reimagined
+				iTempValue /= std::max(1, (getHurryModifier() + getMercenaryCostModifier() + 100) * AI_commerceWeight(COMMERCE_GOLD)) * (bFinancialTrouble ? 5 : 1); //Civ4 Reimagined
 				
 				// Civ4 Reimagined
 				if (kHurryInfo.isUnits() && kHurryInfo.isBuildings())

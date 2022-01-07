@@ -5575,8 +5575,11 @@ int CvCity::getHurryGold(HurryTypes eHurry, int iHurryCost) const
 	iGold = (iHurryCost * GC.getHurryInfo(eHurry).getGoldPerProduction());
 	
 	// Civ4 Reimagined
-	iGold *= std::max(0, 100 + (GET_PLAYER(getOwnerINLINE())).getHurryGoldCostModifier());
-	iGold /= 100;
+	if (GC.getHurryInfo(eHurry).isUnits())
+	{
+		iGold *= std::max(0, 100 + (GET_PLAYER(getOwnerINLINE())).getMercenaryCostModifier());
+		iGold /= 100;
+	}
 	
 	return std::max(1, iGold);
 }
