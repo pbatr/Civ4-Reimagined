@@ -28662,7 +28662,6 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	{
 		if (eEra == ERA_ANCIENT) 
 		{
-			changeUniquePowerBuildingModifier(GC.getDefineINT("UNIQUE_POWER_MAYA"));
 			GET_TEAM(getTeam()).changeIrrigationCount(1);
 			GET_TEAM(getTeam()).changeIgnoreIrrigationCount(1);
 			setAlwaysFreshWater(true);

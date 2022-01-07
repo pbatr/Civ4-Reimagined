@@ -2685,7 +2685,15 @@ int CvPlot::getFeatureProduction(BuildTypes eBuild, TeamTypes eTeam, CvCity** pp
 		return 0;
 	}
 
-	iProduction = (GC.getBuildInfo(eBuild).getFeatureProduction(getFeatureType()) - (std::max(0, (plotDistance(getX_INLINE(), getY_INLINE(), (*ppCity)->getX_INLINE(), (*ppCity)->getY_INLINE()) - 2)) * 5));
+	int iFeatureProduction = GC.getBuildInfo(eBuild).getFeatureProduction(getFeatureType());
+
+	// Civ4 Reimagined: Maya UP
+	if (GET_PLAYER((*ppCity)->getOwnerINLINE()).isCanRemoveFeatures() && getFeatureType() == (FeatureTypes)GC.getInfoTypeForString("FEATURE_JUNGLE"))
+	{
+		iFeatureProduction = GC.getDefineINT("UNIQUE_POWER_MAYA");
+	}
+
+	iProduction = iFeatureProduction - (std::max(0, (plotDistance(getX_INLINE(), getY_INLINE(), (*ppCity)->getX_INLINE(), (*ppCity)->getY_INLINE()) - 2)) * 5);
 
 	iProduction *= std::max(0, (GET_PLAYER((*ppCity)->getOwnerINLINE()).getFeatureProductionModifier() + 100));
 	iProduction /= 100;

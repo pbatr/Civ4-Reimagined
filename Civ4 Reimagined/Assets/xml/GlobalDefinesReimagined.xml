@@ -424,7 +424,7 @@
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_MAYA</DefineName>
-		<iDefineIntVal>10</iDefineIntVal> <!-- Production speed bonus -->
+		<iDefineIntVal>15</iDefineIntVal> <!-- Production from chopping jungle -->
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_ROME</DefineName>
