@@ -28539,11 +28539,14 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BYZANTIUM"))
 	{
-		if (eEra == ERA_MEDIEVAL)
+		if (eEra == ERA_ANCIENT)
 		{
 			changeCapitalCultureAttitudeBonus(2);
-			changeStateReligionBuildingCommerce(COMMERCE_ESPIONAGE, 2);
 			notifyUniquePowersChanged(true);
+		}
+		else if (eEra == ERA_MEDIEVAL)
+		{
+			changeStateReligionBuildingCommerce(COMMERCE_ESPIONAGE, 2);
 		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CARTHAGE"))
