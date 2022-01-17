@@ -54,6 +54,7 @@ public:
 	void doTurn();
 
 	void doImprovement();
+	void discoverBonus(BonusTypes eBonus); // Civ4 Reimagined
 
 	void updateCulture(bool bBumpUnits, bool bUpdatePlotGroups);
 
@@ -87,6 +88,7 @@ public:
 	bool isAdjacentToLand() const;																															// Exposed to Python 
 	int countAdjacentPeaks() const; // Civ4 Reimagined
 	bool isAdjacentToPeak() const; // Civ4 Reimagined
+	bool isAdjacentToBonus(BonusTypes eIndex) const; // Civ4 Reimagined
 	bool isCoastalLand(int iMinWaterSize = -1) const;																																	// Exposed to Python
 
 	bool isVisibleWorked() const;

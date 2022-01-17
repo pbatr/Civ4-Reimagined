@@ -463,8 +463,6 @@ void CvPlot::doImprovement()
 {
 	PROFILE_FUNC();
 
-	CvCity* pCity;
-	CvWString szBuffer;
 	int iI;
 
 	FAssert(isBeingWorked() && isOwned());
@@ -496,20 +494,18 @@ void CvPlot::doImprovement()
 						iOdds *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getVictoryDelayPercent();
 						iOdds /= 100;
 
+						// Civ4 Reimagined
+						if (GET_PLAYER(getOwnerINLINE()).isDesertGold() && iI == GC.getInfoTypeForString("BONUS_GOLD"))
+						{
+							iOdds *= 2;
+						}
+
 						if( GC.getGameINLINE().getSorenRandNum(iOdds, "Bonus Discovery") == 0)
 						{
 /************************************************************************************************/
 /* UNOFFICIAL_PATCH                        END                                                  */
 /************************************************************************************************/
-							setBonusType((BonusTypes)iI);
-
-							pCity = GC.getMapINLINE().findCity(getX_INLINE(), getY_INLINE(), getOwnerINLINE(), NO_TEAM, false);
-
-							if (pCity != NULL)
-							{
-								szBuffer = gDLL->getText("TXT_KEY_MISC_DISCOVERED_NEW_RESOURCE", GC.getBonusInfo((BonusTypes) iI).getTextKeyWide(), pCity->getNameKey());
-								gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MINOR_EVENT, GC.getBonusInfo((BonusTypes) iI).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"), getX_INLINE(), getY_INLINE(), true, true);
-							}
+							discoverBonus((BonusTypes)iI);
 
 							break;
 						}
@@ -520,6 +516,20 @@ void CvPlot::doImprovement()
 	}
 
 	doImprovementUpgrade();
+}
+
+// Civ4 Reimagined
+void CvPlot::discoverBonus(BonusTypes eBonus)
+{
+	setBonusType(eBonus);
+
+	CvCity* pCity = GC.getMapINLINE().findCity(getX_INLINE(), getY_INLINE(), getOwnerINLINE(), NO_TEAM, false);
+
+	if (pCity != NULL)
+	{
+		CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_DISCOVERED_NEW_RESOURCE", GC.getBonusInfo(eBonus).getTextKeyWide(), pCity->getNameKey());
+		gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MINOR_EVENT, GC.getBonusInfo(eBonus).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"), getX_INLINE(), getY_INLINE(), true, true);
+	}
 }
 
 void CvPlot::doImprovementUpgrade()
@@ -1374,6 +1384,31 @@ bool CvPlot::isAdjacentToPeak() const
 }
 
 
+// Civ4 Reimagined
+bool CvPlot::isAdjacentToBonus(BonusTypes eIndex) const
+{
+	PROFILE_FUNC();
+
+	CvPlot* pAdjacentPlot;
+	int iI;
+
+	for (iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
+	{
+		pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
+
+		if (pAdjacentPlot != NULL)
+		{
+			if (pAdjacentPlot->getBonusType() == eIndex)
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+
 bool CvPlot::isCoastalLand(int iMinWaterSize) const
 {
 	PROFILE_FUNC();
@@ -1563,7 +1598,7 @@ bool CvPlot::isIrrigationAvailable(bool bIgnoreSelf) const
 	}
 
 	// Civ4 Reimagined
-	if (GET_PLAYER(getOwnerINLINE()).isAlwaysFreshWater())
+	if (getOwnerINLINE() != NO_PLAYER && GET_PLAYER(getOwnerINLINE()).isAlwaysFreshWater())
 	{
 		return true;
 	}
@@ -5985,6 +6020,15 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 			if (isOwned())
 			{
 				GET_PLAYER(getOwnerINLINE()).changeImprovementCount(getImprovementType(), 1);
+
+				// Civ4 Reimagined: Mali UP
+				if (GET_PLAYER(getOwnerINLINE()).isDesertGold() && getTerrainType() == (TerrainTypes)GC.getInfoTypeForString("TERRAIN_DESERT"))
+				{
+					if (getBonusType() == NO_BONUS && !isAdjacentToBonus((BonusTypes)GC.getInfoTypeForString("BONUS_GOLD")))
+					{
+						discoverBonus((BonusTypes)GC.getInfoTypeForString("BONUS_GOLD"));
+					}
+				}
 			}
 		}
 
@@ -6654,6 +6698,12 @@ int CvPlot::calculateYield(YieldTypes eYield, bool bDisplay) const
 
 	if (ePlayer != NO_PLAYER)
 	{
+		// Civ4 Reimagined
+		if (getFeatureType() != NO_FEATURE)
+		{
+			iYield += GET_PLAYER(ePlayer).getFeatureExtraYield(getFeatureType(), eYield);
+		}
+
 		pCity = getPlotCity();
 
 		if (pCity != NULL)

@@ -590,6 +590,10 @@ public:
 	bool isCaptureSlaves() const;
 
 	// Civ4 Reimagined
+	void setIsDesertGold(bool bNewValue);
+	bool isDesertGold() const;
+
+	// Civ4 Reimagined
 	int getHighestNavalUnitLevel() const;
 	void setHighestNavalUnitLevel(int iNewValue);
 	
@@ -1358,6 +1362,8 @@ public:
 	void updateCommerceAboveAveragePopulation(); // Civ4 Reimagined
 	int getFeatureCommerce(FeatureTypes eFeatureIndex, CommerceTypes eCommerceIndex) const; // Civ4 Reimagined
 	void changeFeatureCommerce(FeatureTypes eFeatureIndex, CommerceTypes eCommerceIndex, int iChangePercent); // Civ4 Reimagined
+	int getFeatureExtraYield(FeatureTypes eFeatureIndex, YieldTypes eYieldIndex) const; // Civ4 Reimagined
+	void changeFeatureExtraYield(FeatureTypes eFeatureIndex, YieldTypes eYieldIndex, int iChange); // Civ4 Reimagined
 	int getFatcrossPeakHappiness() const; // Civ4 Reimagined
 	void changeFatcrossPeakHappiness(int iChange); // Civ4 Reimagined
 	int getFatcrossPeakCulture() const; // Civ4 Reimagined
@@ -1705,6 +1711,7 @@ protected:
 	bool m_bCanExploreSea; // Civ4 Reimagined
 	bool m_bImmigrants; // Civ4 Reimagined
 	bool m_bCaptureSlaves; // Civ4 Reimagined
+	bool m_bDesertGold; // Civ4 Reimagined
 
 
 	bool m_bDisableHuman;	// Set to true to disable isHuman() check
@@ -1811,6 +1818,7 @@ protected:
 	int** m_ppaaiRadiusImprovementCommerceChange; // Civ4 Reimagined
 	int** m_ppaaiBuildingYieldChange; // Civ4 Reimagined
 	int** m_ppaiFeatureCommerce; // Civ4 Reimagined
+	int** m_ppaiFeatureExtraYield; // Civ4 Reimagined
 
 	CLinkList<int> m_groupCycle;
 

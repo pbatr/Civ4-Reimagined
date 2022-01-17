@@ -2946,7 +2946,7 @@
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_GOLD</BonusType>
-					<iBias>10</iBias>
+					<iBias>3</iBias>
 				</BonusBias>
 			</BonusBiases>
 			<InitialCivics>

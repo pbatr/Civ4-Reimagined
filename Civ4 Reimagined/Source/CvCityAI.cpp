@@ -6997,9 +6997,9 @@ int CvCityAI::AI_clearFeatureValue(int iIndex)
 	BonusTypes eBonus = pPlot->getNonObsoleteBonusType(getTeam());
 	if (eBonus != NO_BONUS && !GET_TEAM(getTeam()).isHasTech((TechTypes)GC.getBonusInfo(eBonus).getTechCityTrade()))
 	{
-		iValue += kFeatureInfo.getYieldChange(YIELD_FOOD) * 100;
-		iValue += kFeatureInfo.getYieldChange(YIELD_PRODUCTION) * 80; // was 60
-		iValue += kFeatureInfo.getYieldChange(YIELD_COMMERCE) * 40;
+		iValue += (kFeatureInfo.getYieldChange(YIELD_FOOD) + GET_PLAYER(getOwnerINLINE()).getFeatureExtraYield(eFeature, YIELD_FOOD)) * 100;
+		iValue += (kFeatureInfo.getYieldChange(YIELD_PRODUCTION) + GET_PLAYER(getOwnerINLINE()).getFeatureExtraYield(eFeature, YIELD_PRODUCTION)) * 80; // was 60
+		iValue += (kFeatureInfo.getYieldChange(YIELD_COMMERCE) + GET_PLAYER(getOwnerINLINE()).getFeatureExtraYield(eFeature, YIELD_COMMERCE)) * 40;
 		iValue *= 2;
 		// that should be enough incentive to keep good features until we have the tech to decide on the best improvement.
 	}
@@ -10962,9 +10962,9 @@ void CvCityAI::AI_bestPlotBuild(CvPlot* pPlot, long* piBestValue, BuildTypes* pe
 
 		const CvFeatureInfo& kFeatureInfo = GC.getFeatureInfo(pPlot->getFeatureType());
 		iClearValue_wYield = iClearFeatureValue;
-		iClearValue_wYield -= kFeatureInfo.getYieldChange(YIELD_FOOD) * 100 * iFoodPriority / 100;
-		iClearValue_wYield -= kFeatureInfo.getYieldChange(YIELD_PRODUCTION) * 60 * iProductionPriority / 100;
-		iClearValue_wYield -= kFeatureInfo.getYieldChange(YIELD_COMMERCE) * 40 * iCommercePriority / 100;
+		iClearValue_wYield -= (kFeatureInfo.getYieldChange(YIELD_FOOD) + GET_PLAYER(getOwnerINLINE()).getFeatureExtraYield(pPlot->getFeatureType(), YIELD_FOOD)) * 100 * iFoodPriority / 100;
+		iClearValue_wYield -= (kFeatureInfo.getYieldChange(YIELD_PRODUCTION) + GET_PLAYER(getOwnerINLINE()).getFeatureExtraYield(pPlot->getFeatureType(), YIELD_PRODUCTION)) * 60 * iProductionPriority / 100;
+		iClearValue_wYield -= (kFeatureInfo.getYieldChange(YIELD_COMMERCE) + GET_PLAYER(getOwnerINLINE()).getFeatureExtraYield(pPlot->getFeatureType(), YIELD_COMMERCE)) * 40 * iCommercePriority / 100;
 	}
 
 	if (!bHasBonusImprovement)

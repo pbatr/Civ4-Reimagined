@@ -124,6 +124,7 @@ CvPlayer::CvPlayer()
 	m_ppaaiRadiusImprovementCommerceChange = NULL; // Civ4 Reimagined
 	m_ppaaiBuildingYieldChange = NULL; // Civ4 Reimagined
 	m_ppaiFeatureCommerce = NULL; // Civ4 Reimagined
+	m_ppaiFeatureExtraYield = NULL; // Civ4 Reimagined
 
 	reset(NO_PLAYER, true);
 }
@@ -771,6 +772,16 @@ void CvPlayer::uninit()
 		SAFE_DELETE_ARRAY(m_ppaiFeatureCommerce);
 	}
 
+	// Civ4 Reimagined
+	if (m_ppaiFeatureExtraYield != NULL)
+	{
+		for (int iI = 0; iI < GC.getNumFeatureInfos(); iI++)
+		{
+			SAFE_DELETE_ARRAY(m_ppaiFeatureExtraYield[iI]);
+		}
+		SAFE_DELETE_ARRAY(m_ppaiFeatureExtraYield);
+	}
+
 	m_groupCycle.clear();
 
 	m_researchQueue.clear();
@@ -974,6 +985,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iFreeUnitsOnConquest = 0; // Civ4 Reimagined
 	m_bImmigrants = false; // Civ4 Reimagined
 	m_bCaptureSlaves = false; // Civ4 Reimagined
+	m_bDesertGold = false; // Civ4 Reimagined
 	m_iUniquePowerBuildingModifier = 0; // Civ4 Reimagined
 	m_iEarlyWorkerSpeedModifier = 0; // Civ4 Reimagined
 	m_iFatcrossPeakHappiness = 0; // Civ4 Reimagined
@@ -1390,6 +1402,18 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 			for (iJ = 0; iJ < NUM_COMMERCE_TYPES; iJ++)
 			{
 				m_ppaiFeatureCommerce[iI][iJ] = 0;
+			}
+		}
+
+		// Civ4 Reimagined
+		FAssertMsg(m_ppaiFeatureExtraYield==NULL, "about to leak memory, CvPlayer::m_ppaiFeatureExtraYield");
+		m_ppaiFeatureExtraYield = new int*[GC.getNumFeatureInfos()];
+		for (iI = 0; iI < GC.getNumFeatureInfos(); iI++)
+		{
+			m_ppaiFeatureExtraYield[iI] = new int[NUM_COMMERCE_TYPES];
+			for (iJ = 0; iJ < NUM_COMMERCE_TYPES; iJ++)
+			{
+				m_ppaiFeatureExtraYield[iI][iJ] = 0;
 			}
 		}		
 
@@ -16126,6 +16150,35 @@ void CvPlayer::changeFeatureCommerce(FeatureTypes eFeatureIndex, CommerceTypes e
 	}	
 }
 
+
+// Civ4 Reimagined
+int CvPlayer::getFeatureExtraYield(FeatureTypes eFeatureIndex, YieldTypes eYieldIndex) const
+{
+	FAssertMsg(eFeatureIndex >= 0, "eFeatureIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eFeatureIndex < GC.getNumFeatureInfos(), "eFeatureIndex is expected to be within maximum bounds (invalid Index)");
+	FAssertMsg(eYieldIndex >= 0, "eYieldIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eYieldIndex < NUM_YIELD_TYPES, "eYieldIndex is expected to be within maximum bounds (invalid Index)");
+	return m_ppaiFeatureExtraYield[eFeatureIndex][eYieldIndex];
+}
+
+
+// Civ4 Reimagined
+void CvPlayer::changeFeatureExtraYield(FeatureTypes eFeatureIndex, YieldTypes eYieldIndex, int iChange)
+{
+	FAssertMsg(eFeatureIndex >= 0, "eFeatureIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eFeatureIndex < GC.getNumFeatureInfos(), "eFeatureIndex is expected to be within maximum bounds (invalid Index)");
+	FAssertMsg(eYieldIndex >= 0, "eCommerceIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eYieldIndex < NUM_YIELD_TYPES, "eYieldIndex is expected to be within maximum bounds (invalid Index)");
+
+	if (iChange != 0)
+	{
+		m_ppaiFeatureExtraYield[eFeatureIndex][eYieldIndex] = (m_ppaiFeatureExtraYield[eFeatureIndex][eYieldIndex] + iChange);
+		
+		updateYield();
+	}	
+}
+
+
 // K-Mod. I've changed this function from using pUnit to using pGroup.
 // I've also rewriten most of the code, to give more natural ordering, and to be more robust and readable code.
 void CvPlayer::updateGroupCycle(CvSelectionGroup* pGroup)
@@ -20528,6 +20581,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iFreeUnitsOnConquest); // Civ4 Reimagined
 	pStream->Read(&m_bImmigrants); // Civ4 Reimagined
 	pStream->Read(&m_bCaptureSlaves); // Civ4 Reimagined
+	pStream->Read(&m_bDesertGold); // Civ4 Reimagined
 	pStream->Read(&m_iUniquePowerBuildingModifier); // Civ4 Reimagined
 	pStream->Read(&m_iEarlyWorkerSpeedModifier); // Civ4 Reimagined
 	pStream->Read(&m_iFatcrossPeakHappiness); // Civ4 Reimagined
@@ -20700,6 +20754,12 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	for (iI=0;iI<GC.getNumFeatureInfos();iI++)
 	{
 		pStream->Read(NUM_COMMERCE_TYPES, m_ppaiFeatureCommerce[iI]);
+	}
+
+	// Civ4 Reimagined
+	for (iI=0;iI<GC.getNumFeatureInfos();iI++)
+	{
+		pStream->Read(NUM_YIELD_TYPES, m_ppaiFeatureExtraYield[iI]);
 	}
 
 	m_groupCycle.Read(pStream);
@@ -21149,6 +21209,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iFreeUnitsOnConquest); // Civ4 Reimagined	
 	pStream->Write(m_bImmigrants); // Civ4 Reimagined
 	pStream->Write(m_bCaptureSlaves); // Civ4 Reimagined
+	pStream->Write(m_bDesertGold); // Civ4 Reimagined
 	pStream->Write(m_iUniquePowerBuildingModifier); // Civ4 Reimagined
 	pStream->Write(m_iEarlyWorkerSpeedModifier); // Civ4 Reimagined
 	pStream->Write(m_iFatcrossPeakHappiness); // Civ4 Reimagined
@@ -21311,6 +21372,12 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	for (iI=0;iI<GC.getNumFeatureInfos();iI++)
 	{
 		pStream->Write(NUM_COMMERCE_TYPES, m_ppaiFeatureCommerce[iI]);
+	}
+
+	// Civ4 Reimagined
+	for (iI=0;iI<GC.getNumFeatureInfos();iI++)
+	{
+		pStream->Write(NUM_YIELD_TYPES, m_ppaiFeatureExtraYield[iI]);
 	}
 
 	m_groupCycle.Write(pStream);
@@ -27883,6 +27950,18 @@ void CvPlayer::setIsCaptureSlaves(bool bNewValue)
 bool CvPlayer::isCaptureSlaves() const
 {
 	return m_bCaptureSlaves;
+}
+
+// Civ4 Reimagined
+void CvPlayer::setIsDesertGold(bool bNewValue)
+{
+	m_bDesertGold = bNewValue;
+}
+
+// Civ4 Reimagined
+bool CvPlayer::isDesertGold() const
+{
+	return m_bDesertGold;
 }	
 
 // Civ4 Reimagined
@@ -28669,6 +28748,16 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			setCanRemoveFeatures(true);
 			notifyUniquePowersChanged(true);
 		}
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MALI"))
+	{
+		if (eEra == ERA_CLASSICAL) 
+		{
+			changeSpecialistExtraYield((SpecialistTypes)GC.getInfoTypeForString("SPECIALIST_MERCHANT"), YIELD_FOOD, 1);
+			changeFeatureExtraYield((FeatureTypes)GC.getInfoTypeForString("FEATURE_OASIS"), YIELD_FOOD, 2);
+			setIsDesertGold(true);
+			notifyUniquePowersChanged(true);
+		}			
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME"))
 	{
