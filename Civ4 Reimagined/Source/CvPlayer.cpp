@@ -670,6 +670,8 @@ void CvPlayer::uninit()
 	SAFE_DELETE_ARRAY(m_paiExtraBuildingHappiness);
 	SAFE_DELETE_ARRAY(m_paiExtraBuildingHealth);
 	SAFE_DELETE_ARRAY(m_paiBuildingProductionModifiers); // Leoreth
+	SAFE_DELETE_ARRAY(m_paiUnitClassProductionModifier); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_paiReligiousUnitClassProductionModifier); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiFeatureHappiness);
 	SAFE_DELETE_ARRAY(m_paiUnitClassCount);
 	SAFE_DELETE_ARRAY(m_paiUnitClassMaking);

@@ -2677,7 +2677,12 @@ void CvDLLWidgetData::parseActionHelp(CvWidgetDataStruct &widgetDataStruct, CvWS
 					{
 						if (GC.getBuildInfo(eBuild).isFeatureRemove(pMissionPlot->getFeatureType()))
 						{
-							iYield -= GC.getFeatureInfo(pMissionPlot->getFeatureType()).getYieldChange(iI) + GET_PLAYER(pMissionPlot->getOwnerINLINE()).getFeatureExtraYield(pMissionPlot->getFeatureType(), (YieldTypes)iI);
+							iYield -= GC.getFeatureInfo(pMissionPlot->getFeatureType()).getYieldChange(iI);
+
+							if (pMissionPlot->getOwnerINLINE() != NO_PLAYER)
+							{
+								iYield -= GET_PLAYER(pMissionPlot->getOwnerINLINE()).getFeatureExtraYield(pMissionPlot->getFeatureType(), (YieldTypes)iI);
+							}
 						}
 					}
 
