@@ -18312,6 +18312,12 @@ bool CvPlayer::doEspionageMission(EspionageMissionTypes eMission, PlayerTypes eT
 				szBuffer = gDLL->getText("TXT_KEY_ESPIONAGE_TARGET_CITY_POISONED", pCity->getNameKey()).GetCString();
 				pCity->changeEspionageHealthCounter(kMission.getCityPoisonWaterCounter());
 
+				// Civ4 Reimagined
+				if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PAPER")))
+				{
+					GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PAPER"), getID(), true);
+				}
+
 				bShowExplosion = true;
 				bSomethingHappened = true;
 			}
@@ -18392,6 +18398,12 @@ bool CvPlayer::doEspionageMission(EspionageMissionTypes eMission, PlayerTypes eT
 			if (NO_PLAYER != eTargetPlayer)
 			{
 				GET_PLAYER(eTargetPlayer).changeGold(-iNumTotalGold);
+
+				// Civ4 Reimagined
+				if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_GUILDS")))
+				{
+					GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_GUILDS"), getID(), true);
+				}
 			}
 			
 			bSomethingHappened = true;
@@ -21705,15 +21717,6 @@ void CvPlayer::createGreatPeople(UnitTypes eGreatPersonUnit, bool bIncrementThre
 		if (eGreatPersonUnit == (UnitTypes)GC.getInfoTypeForString("UNIT_PROPHET"))
 		{
 			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MEDITATION"), getID(), true);
-		}
-	}
-
-	// Civ4 Reimagined
-	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PAPER")))
-	{
-		if (getPlayerRecord()->getNumUnitsBuilt((UnitTypes)GC.getInfoTypeForString("UNIT_SCIENTIST")) > 1)
-		{
-			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PAPER"), getID(), true);
 		}
 	}
 
@@ -27438,14 +27441,6 @@ void CvPlayer::checkBuildingEurekas()
 		if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_FORGE")) > 0)
 		{
 			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MACHINERY"), getID(), true);
-		}
-	}
-
-	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_GUILDS")))
-	{
-		if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_HARBOR")) > 2)
-		{
-			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_GUILDS"), getID(), true);
 		}
 	}
 

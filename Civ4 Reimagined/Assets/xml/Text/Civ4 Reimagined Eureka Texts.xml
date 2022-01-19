@@ -116,7 +116,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_GUILDS_EUREKA</Tag>
-		<English>Own 3 Harbors</English>
+		<English>Use Steal Treasury espionage mission</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_CROP_ROTATION_EUREKA</Tag>
@@ -144,7 +144,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_ALCHEMY_EUREKA</Tag>
-		<English>Earn 2 Great Scientists</English>
+		<English>Use Poison Water Supply espionage mission</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_BANKING_EUREKA</Tag>
@@ -196,7 +196,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_LIBERALISM_EUREKA</Tag>
-		<English>Abandon Slavery or Own 10 Towns</English>
+		<English>Free at least 1 Slave by abandoning Slavery or Own 10 Towns</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_REPLACEABLE_PARTS_EUREKA</Tag>

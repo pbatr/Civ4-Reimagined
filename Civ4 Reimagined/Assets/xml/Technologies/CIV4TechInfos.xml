@@ -2909,8 +2909,8 @@
 				<PrereqTech>TECH_PAPER</PrereqTech>
 			</OrPreReqs>
 			<AndPreReqs>
+				<PrereqTech>TECH_GUILDS</PrereqTech>
 				<PrereqTech>TECH_OPTICS</PrereqTech>
-				<PrereqTech>TECH_LITERATURE</PrereqTech>
 			</AndPreReqs>
 			<Quote>TXT_KEY_TECH_EDUCATION_QUOTE</Quote>
 			<Sound>AS2D_TECH_EDUCATION</Sound>
