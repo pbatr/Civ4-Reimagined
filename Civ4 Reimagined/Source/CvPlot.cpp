@@ -6022,7 +6022,7 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 				GET_PLAYER(getOwnerINLINE()).changeImprovementCount(getImprovementType(), 1);
 
 				// Civ4 Reimagined: Mali UP
-				if (GET_PLAYER(getOwnerINLINE()).isDesertGold() && getTerrainType() == (TerrainTypes)GC.getInfoTypeForString("TERRAIN_DESERT"))
+				if (GET_PLAYER(getOwnerINLINE()).isDesertGold() && getTerrainType() == (TerrainTypes)GC.getInfoTypeForString("TERRAIN_DESERT") && getImprovementType() == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_MINE"))
 				{
 					if (getBonusType() == NO_BONUS && !isAdjacentToBonus((BonusTypes)GC.getInfoTypeForString("BONUS_GOLD")))
 					{
