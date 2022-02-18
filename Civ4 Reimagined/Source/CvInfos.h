@@ -2447,8 +2447,8 @@ public:
 	DllExport bool isAIPlayable() const;				// Expose to Python
 	DllExport bool isPlayable() const;				// Expose to Python
 
-	DllExport int getUniquePowerRequirement(int iLevel) const; // Civ4 Reimagined
-	DllExport std::string getCivilizationUniquePowerText(int i) const; // Civ4 Reimagined - Exposed to Python
+	CvWString getCivilizationUniquePowerText() const; // Civ4 Reimagined
+	void setCivilizationUniquePowerText(const TCHAR* szVal); // Civ4 Reimagined
 
 	std::wstring pyGetShortDescription(uint uiForm) { return getShortDescription(uiForm); }				// Exposed to Python
 	DllExport const wchar* getShortDescription(uint uiForm = 0);
@@ -2509,16 +2509,7 @@ protected:
 	bool m_bAIPlayable;			
 	bool m_bPlayable;
 
-	int m_iUnique1; // Civ4 Reimagined
-	int m_iUnique2; // Civ4 Reimagined
-	int m_iUnique3; // Civ4 Reimagined
-	int m_iUnique4; // Civ4 Reimagined
-	int m_iUnique5; // Civ4 Reimagined
-	std::string m_szUnique1; // Civ4 Reimagined
-	std::string m_szUnique2; // Civ4 Reimagined
-	std::string m_szUnique3; // Civ4 Reimagined
-	std::string m_szUnique4; // Civ4 Reimagined
-	std::string m_szUnique5; // Civ4 Reimagined
+	CvString m_szUniquePower; // Civ4 Reimagined
 
 	CvString m_szArtDefineTag;
 	CvWString m_szShortDescriptionKey;

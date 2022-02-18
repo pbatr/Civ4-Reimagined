@@ -3,6 +3,14 @@
 <!-- Copyright Firaxis Games 2005 -->
 <Civ4GameText xmlns="http://www.firaxis.com">
 	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER</Tag>
+		<English>Unique Power</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_NO_UNIQUE_POWERS</Tag>
+		<English>Coming soon...</English>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_MISC_IMMIGRANTS</Tag>
 		<English>Immigrants settled in %s1!</English>
 	</TEXT>
@@ -142,5 +150,97 @@
 	<TEXT>
 		<Tag>TXT_KEY_SACRIFICE_SLAVE</Tag>
 		<English>A Slave was sacrificed in %s1_city.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_SUMERIA</Tag>
+		<English>Double Eureka boost for ancient technologies.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_EGYPT</Tag>
+		<English>+6[ICON_PRODUCTION] for sacrificing population with slavery. Gain slavery points for sacrificing population.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_BABYLON</Tag>
+		<English>1 commerce of each type in capital per population over 5. No unhappiness in capital.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_GREECE</Tag>
+		<English>After playing with one non-starting government civic for 25 consequtive turns (on normal speed) before entering the Middle Ages, gain a great person. Applies once per civic. The great person depends on the civic: Autocracy -> Great General, City States -> Great Merchant, Dynasticism -> Great Engineer, Theocracy -> Great Artist, Republic -> Great Scientist.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_AZTEC</Tag>
+		<English>Killing a unit and advancing to its plot gives an Aztec Slave while playing Slavery.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_CHINA</Tag>
+		<English>+2[ICON_FOOD] from farm improved food resources like Rice, Wheat, Corn. 75% unhealthiness from population.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_MAYA</Tag>
+		<English>Farms are always irrigated even without fresh water and can be build without fresh water. Can remove Forest/Jungle from the start. Chopping Jungle gives production. Cities always have access to fresh water.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_KHMER</Tag>
+		<English>Cities with state religion receive 1[ICON_COMMERCE] per population over 5.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_ZULU</Tag>
+		<English>Can hurry military units with population.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_CARTHAGE</Tag>
+		<English>After entering the Classical Era: Can trade with every known capital as long as not being at war with that player. Those traderoutes give +200%[ICON_COMMERCE]. Costs for hiring mercenaries are at 50%.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_ROME</Tag>
+		<English>After entering the Classical Era: When conquering a city of a civilization that has not yet entered the medieval era, receive (cities culture level+1) military land units of that conquered civilization.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_CELTS</Tag>
+		<English>After entering the Classical Era: Cities gain +0.25[ICON_RESEARCH] and +0.25[ICON_Culture] per unimproved Forest in their territory.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_MALI</Tag>
+		<English>After entering the Classical Era: Merchants +1[ICON_FOOD], Oasis +2[ICON_FOOD]. Building a Mine on a desert hill instantly discovers Gold if there is no adjacent Gold resource already. Double chance of discovering Gold with Mine improvements.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_INCA</Tag>
+		<English>Unlocks unique [LINK=literal]Terrace[\LINK] improvement after discovery of Construction.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_ARABIA</Tag>
+		<English>After the discovery of Exclusivism: Gain +20% strength for attacking cities of players with a different state religion (not secular states). State religion spreads to conquered cities and temples and monasteries are build automatically on conquest.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_SPAIN</Tag>
+		<English>After entering the Medieval Era: Colonies with state religion pay 50% distance maintenance. +100% settler production for cities with state religion. After the discovery of Gundpowder: Gain a Conquistador when spreading state religion to a colony.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_OTTOMAN</Tag>
+		<English>After the discovery of Gunpowder: Can conscript units without Conscription Civic and unhappiness in cities with less than 10% own culture. Conscripted units start with experience. Cities do not revolt when captured.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_NETHERLANDS</Tag>
+		<English>After the discovery of Corporation: Gain an additional resource from plantations. Trade routes contribute to Great Merchant birth (25% of trade income).</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_BYZANTIUM</Tag>
+		<English>Other civilizations have +2 Attitude when Byzantine capital is more cultural advanced. After entering the Medieval Era: +2[ICON_ESPIONAGE] from state religion buildings.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_ENGLAND</Tag>
+		<English>After entering the Renaissance Era: +400%[ICON_COMMERCE] trade route income from oversea vassals.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_AMERICA</Tag>
+		<English>After entering the Industrial Era: Trade routes with other players cities which have one or more corporations owned by America are at +600%[ICON_COMMERCE]. Double production for Corporation Executives.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_GERMANY</Tag>
+		<English>After entering the Industrial Era: Can sacrifice a Great General to start a mini golden age that is 67% as long as a regular golden age. Does not require sacrificing other great persons and does not advance golden age requirements.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_JAPAN</Tag>
+		<English>After entering the Industrial Era: +50%[ICON_RESEARCH] for techs that have been discovered by someone else.</English>
 	</TEXT>
 </Civ4GameText>

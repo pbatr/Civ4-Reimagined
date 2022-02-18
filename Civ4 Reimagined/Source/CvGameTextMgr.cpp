@@ -6584,6 +6584,25 @@ void CvGameTextMgr::parseCivInfos(CvWStringBuffer &szInfoText, CivilizationTypes
 			}
 			szInfoText.append(szTempString);
 		}
+
+		// Civ4 Reimagined: Unique Power
+		szText = gDLL->getText("TXT_KEY_UNIQUE_POWER");
+		if (bDawnOfMan)
+		{
+			if (bFound)
+			{
+				szInfoText.append(NEWLINE);
+			}
+			szTempString.Format(L"%s: ", szText.GetCString());
+		}
+		else
+		{
+			szTempString.Format(NEWLINE SETCOLR L"%s" ENDCOLR , TEXT_COLOR("COLOR_ALT_HIGHLIGHT_TEXT"), szText.GetCString());
+		}
+		szInfoText.append(szTempString);
+		szInfoText.append(NEWLINE);
+		szBuffer.Format(L"%s", GC.getCivilizationInfo(eCivilization).getCivilizationUniquePowerText().GetCString());
+		szInfoText.append(szBuffer);
 	}
 	else
 	{
@@ -8875,7 +8894,7 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
 		int iCulture = GC.getUnitInfo(eUnit).getGreatWorkCulture();
 		if (NO_GAMESPEED != GC.getGameINLINE().getGameSpeedType())
 		{
-			iCulture *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getUnitGreatWorkPercent() / 2;
+			iCulture *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getUnitGreatWorkPercent();
 			iCulture /= 100;
 		}
 

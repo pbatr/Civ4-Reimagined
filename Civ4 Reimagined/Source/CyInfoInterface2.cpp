@@ -48,8 +48,6 @@ void CyInfoPythonInterface2()
 
 		.def("isAIPlayable", &CvCivilizationInfo::isAIPlayable, "bool ()")
 		.def("isPlayable", &CvCivilizationInfo::isPlayable, "bool ()")
-
-		.def("getCivilizationUniquePowerText", &CvCivilizationInfo::getCivilizationUniquePowerText, "string ()")
 		
 		.def("getShortDescription", &CvCivilizationInfo::pyGetShortDescription, "wstring ()")
 		.def("getShortDescriptionKey", &CvCivilizationInfo::pyGetShortDescriptionKey, "wstring ()")

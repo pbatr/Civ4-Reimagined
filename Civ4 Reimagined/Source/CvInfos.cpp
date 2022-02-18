@@ -11464,11 +11464,6 @@ m_iActionSoundScriptId(0),
 m_iDerivativeCiv(NO_CIVILIZATION),
 m_bPlayable(false),
 m_bAIPlayable(false),
-m_iUnique1(0), // Civ4 Reimagined
-m_iUnique2(0), // Civ4 Reimagined
-m_iUnique3(0), // Civ4 Reimagined
-m_iUnique4(0), // Civ4 Reimagined
-m_iUnique5(0), // Civ4 Reimagined
 m_piCivilizationBuildings(NULL),
 m_piCivilizationUnits(NULL),
 m_piCivilizationFreeUnitsClass(NULL),
@@ -11561,23 +11556,14 @@ bool CvCivilizationInfo::isPlayable() const
 }
 
 // Civ4 Reimagined
-std::string CvCivilizationInfo::getCivilizationUniquePowerText(int iLevel) const
+CvWString CvCivilizationInfo::getCivilizationUniquePowerText() const
 {
-	switch(iLevel)
-	{
-		case 1:
-			return m_szUnique1;
-		case 2:
-			return m_szUnique2;
-		case 3:
-			return m_szUnique3;
-		case 4:
-			return m_szUnique4;
-		case 5:
-			return m_szUnique5;
-		default:
-			return "";
-	}
+	return gDLL->getText(m_szUniquePower);
+}
+
+void CvCivilizationInfo::setCivilizationUniquePowerText(const TCHAR* szVal)
+{
+	m_szUniquePower = szVal;
 }
 
 const wchar* CvCivilizationInfo::getShortDescription(uint uiForm)
@@ -11753,17 +11739,8 @@ void CvCivilizationInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bAIPlayable);
 	stream->Read(&m_bPlayable);
 	
-	// Civ4 Reimagined
-	stream->Read(&m_iUnique1); 
-	stream->Read(&m_iUnique2); 
-	stream->Read(&m_iUnique3); 
-	stream->Read(&m_iUnique4); 
-	stream->Read(&m_iUnique5); 
-	stream->ReadString(m_szUnique1); 
-	stream->ReadString(m_szUnique2); 
-	stream->ReadString(m_szUnique3); 
-	stream->ReadString(m_szUnique4); 
-	stream->ReadString(m_szUnique5); 
+	// Civ4 Reimagined 
+	stream->ReadString(m_szUniquePower); 
 
 	stream->ReadString(m_szArtDefineTag);
 	stream->ReadString(m_szShortDescriptionKey);
@@ -11843,16 +11820,7 @@ void CvCivilizationInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bPlayable);
 	
 	// Civ4 Reimagined
-	stream->Write(&m_iUnique1); 
-	stream->Write(&m_iUnique2); 
-	stream->Write(&m_iUnique3); 
-	stream->Write(&m_iUnique4); 
-	stream->Write(&m_iUnique5); 
-	stream->WriteString(m_szUnique1); 
-	stream->WriteString(m_szUnique2); 
-	stream->WriteString(m_szUnique3); 
-	stream->WriteString(m_szUnique4); 
-	stream->WriteString(m_szUnique5); 
+	stream->WriteString(m_szUniquePower); 
 
 	stream->WriteString(m_szArtDefineTag);
 	stream->WriteString(m_szShortDescriptionKey);
@@ -11914,16 +11882,8 @@ bool CvCivilizationInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bAIPlayable, "bAIPlayable");
 	
 	// Civ4 Reimagined
-	pXML->GetChildXmlValByName(&m_iUnique1, "iUnique1");
-	pXML->GetChildXmlValByName(&m_iUnique2, "iUnique2");
-	pXML->GetChildXmlValByName(&m_iUnique3, "iUnique3");
-	pXML->GetChildXmlValByName(&m_iUnique4, "iUnique4");
-	pXML->GetChildXmlValByName(&m_iUnique5, "iUnique5");
-	pXML->GetChildXmlValByName(m_szUnique1, "DescriptionUnique1");
-	pXML->GetChildXmlValByName(m_szUnique2, "DescriptionUnique2");
-	pXML->GetChildXmlValByName(m_szUnique3, "DescriptionUnique3");
-	pXML->GetChildXmlValByName(m_szUnique4, "DescriptionUnique4");
-	pXML->GetChildXmlValByName(m_szUnique5, "DescriptionUnique5");
+	pXML->GetChildXmlValByName(szTextVal, "DescriptionUniquePower");
+	setCivilizationUniquePowerText(szTextVal);
 
 	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"Cities"))
 	{
