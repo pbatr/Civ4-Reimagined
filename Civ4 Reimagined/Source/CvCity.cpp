@@ -8373,6 +8373,18 @@ void CvCity::changeHappinessTimer(int iChange)
 }
 
 
+void CvCity::setHappinessTimer(int iValue)
+{
+	m_iHappinessTimer = iValue;
+	FAssert(getHappinessTimer() >= 0);
+
+	// Civ4 Reimagined
+	updateHappinessCommerce();
+
+	AI_setAssignWorkDirty(true);
+}
+
+
 int CvCity::getNoUnhappinessCount() const
 {
 	return m_iNoUnhappinessCount;

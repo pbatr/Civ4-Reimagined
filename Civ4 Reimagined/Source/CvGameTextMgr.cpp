@@ -8875,7 +8875,7 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
 		int iCulture = GC.getUnitInfo(eUnit).getGreatWorkCulture();
 		if (NO_GAMESPEED != GC.getGameINLINE().getGameSpeedType())
 		{
-			iCulture *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getUnitGreatWorkPercent();
+			iCulture *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getUnitGreatWorkPercent() / 2;
 			iCulture /= 100;
 		}
 

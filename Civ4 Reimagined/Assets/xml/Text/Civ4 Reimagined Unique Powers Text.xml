@@ -129,7 +129,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_SACRIFICE_SLAVE</Tag>
-		<English>[ICON_BULLET]Can Sacrifice this Unit in a City with Sacrificial Altar for %D1_Change[ICON_CULTURE], %D2_Change[ICON_GOLD] and Temporary Happiness in the City (Does Not Stack).</English>
+		<English>[ICON_BULLET]Can Sacrifice this Unit in a City with Sacrificial Altar for %D1_Change[ICON_CULTURE] per Era, %D2_Change[ICON_GOLD] and Temporary Happiness in the City (Does Not Stack).</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISSION_SACRIFICE</Tag>
@@ -138,5 +138,9 @@
 	<TEXT>
 		<Tag>TXT_KEY_MISSION_SACRIFICE_HELP</Tag>
 		<English>This order will sacrifice the Slave in the city they are currently in. It kills the Slave.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SACRIFICE_SLAVE</Tag>
+		<English>A Slave was sacrificed in %s1_city.</English>
 	</TEXT>
 </Civ4GameText>

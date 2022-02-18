@@ -6977,12 +6977,6 @@ bool CvUnit::greatWork()
 		pCity->setCultureUpdateTimer(0);
 		pCity->setOccupationTimer(0);
 
-		// Civ4 Reimagined
-		if (getUnitType() == (UnitTypes)GC.getInfoTypeForString("UNIT_AZTEC_CAPTIVE"))
-		{
-			pCity->changeHappinessTimer(20 * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getUnitGreatWorkPercent() / 100);
-		}
-
 		int iCultureToAdd = 100 * getGreatWorkCulture(plot());
 /**
 *** K-Mod, 6/dec/10, Karadoc
@@ -7072,12 +7066,15 @@ bool CvUnit::sacrifice()
 		pCity->setCultureUpdateTimer(0);
 		pCity->setOccupationTimer(0);
 
-		pCity->changeHappinessTimer(20 * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getUnitGreatWorkPercent() / 100);
+		pCity->setHappinessTimer(std::max(pCity->getHappinessTimer(), 20 * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getUnitGreatWorkPercent() / 100));
 
 		int iCultureToAdd = 100 * getGreatWorkCulture(plot());
 		pCity->changeCultureTimes100(getOwnerINLINE(), iCultureToAdd, true, true);
 		GET_PLAYER(getOwnerINLINE()).changeGold(GC.getDefineINT("UNIQUE_POWER_AZTEC"));
 		GET_PLAYER(getOwnerINLINE()).AI_updateCommerceWeights(); // significant culture change may cause signficant weight changes.
+
+		CvWString szBuffer = gDLL->getText("TXT_KEY_SACRIFICE_SLAVE", pCity->getNameKey());
+		gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNIT_BUILD_AZTEC_JAGUAR", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"), pCity->getX_INLINE(), pCity->getY_INLINE(), true, true);
 	}
 
 	if (plot()->isActiveVisible(false))

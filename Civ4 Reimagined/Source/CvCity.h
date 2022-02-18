@@ -518,7 +518,8 @@ public:
 	int flatDefyResolutionAngerLength() const;																				// Exposed to Python
 
 	int getHappinessTimer() const;																				// Exposed to Python
-	void changeHappinessTimer(int iChange);												// Exposed to Python
+	void changeHappinessTimer(int iChange);
+	void setHappinessTimer(int iValue); // Civ4 Reimagined
 
 	int getNoUnhappinessCount() const;
 	bool isNoUnhappiness() const;																					// Exposed to Python
