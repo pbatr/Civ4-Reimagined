@@ -1608,7 +1608,7 @@
 			<FreePromotion>NONE</FreePromotion>
 			<CivicOption>NONE</CivicOption>
 			<GreatPeopleUnitClass>UNITCLASS_GREAT_GENERAL</GreatPeopleUnitClass>
-			<iGreatPeopleRateChange>3</iGreatPeopleRateChange>
+			<iGreatPeopleRateChange>4</iGreatPeopleRateChange>
 			<iHurryAngerModifier>0</iHurryAngerModifier>
 			<bBorderObstacle>0</bBorderObstacle>
 			<bTeamShare>0</bTeamShare>

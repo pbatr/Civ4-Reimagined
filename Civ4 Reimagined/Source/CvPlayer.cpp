@@ -99,6 +99,7 @@ CvPlayer::CvPlayer()
 	m_paiUpkeepCount = NULL;
 	m_paiSpecialistValidCount = NULL;
 	m_paiExtraSpecialists = NULL; // Civ4 Reimagined
+	m_paiExtraSpecialistExperience = NULL; // Civ4 Reimagined
 	m_paiFatcrossTerrainHappiness = NULL; // Civ4 Reimagined
 	m_paiFatcrossTerrainCulture = NULL; // Civ4 Reimagined
 	m_paiCapitalCommercePopulationThreshold = NULL; // Civ4 Reimagined
@@ -687,6 +688,7 @@ void CvPlayer::uninit()
 	SAFE_DELETE_ARRAY(m_paiUpkeepCount);
 	SAFE_DELETE_ARRAY(m_paiSpecialistValidCount);
 	SAFE_DELETE_ARRAY(m_paiExtraSpecialists); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_paiExtraSpecialistExperience); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiFatcrossTerrainHappiness); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiFatcrossTerrainCulture); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiCapitalCommercePopulationThreshold); // Civ4 Reimagined
@@ -1288,6 +1290,12 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		for (iI = 0; iI < GC.getNumSpecialistInfos(); iI++)
 		{
 			m_paiExtraSpecialists[iI] = 0;
+		}
+		FAssertMsg(m_paiExtraSpecialistExperience==NULL, "about to leak memory, CvPlayer::m_paiExtraSpecialistExperience");
+		m_paiExtraSpecialistExperience = new int[GC.getNumSpecialistInfos()];
+		for (iI = 0; iI < GC.getNumSpecialistInfos(); iI++)
+		{
+			m_paiExtraSpecialistExperience[iI] = 0;
 		}
 		
 		// Civ4 Reimagined
@@ -15711,6 +15719,31 @@ void CvPlayer::changeExtraSpecialists(SpecialistTypes eIndex, int iChange)
 }
 
 
+// Civ4 Reimagined
+int CvPlayer::getExtraSpecialistExperience(SpecialistTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumSpecialistInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+	FAssertMsg(m_paiExtraSpecialistExperience != NULL, "m_paiExtraSpecialistExperience is not expected to be equal with NULL");
+	return m_paiExtraSpecialistExperience[eIndex];
+}
+
+
+// Civ4 Reimagined
+void CvPlayer::changeExtraSpecialistExperience(SpecialistTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumSpecialistInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	if (iChange != 0)
+	{
+		FAssertMsg(m_paiExtraSpecialistExperience != NULL, "m_paiExtraSpecialistExperience is not expected to be equal with NULL");
+		m_paiExtraSpecialistExperience[eIndex] = (m_paiExtraSpecialistExperience[eIndex] + iChange);
+		FAssertMsg(m_paiExtraSpecialistExperience[eIndex] >= 0, "m_paiExtraSpecialistExperience(eIndex) is expected to be non-negative (invalid Index)");
+	}
+}
+
+
 bool CvPlayer::isResearchingTech(TechTypes eIndex) const	
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
@@ -20712,6 +20745,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(GC.getNumUpkeepInfos(), m_paiUpkeepCount);
 	pStream->Read(GC.getNumSpecialistInfos(), m_paiSpecialistValidCount);
 	pStream->Read(GC.getNumSpecialistInfos(), m_paiExtraSpecialists); // Civ4 Reimagined
+	pStream->Read(GC.getNumSpecialistInfos(), m_paiExtraSpecialistExperience); // Civ4 Reimagined
 	pStream->Read(GC.getNumTerrainInfos(), m_paiFatcrossTerrainHappiness); // Civ4 Reimagined
 	pStream->Read(GC.getNumTerrainInfos(), m_paiFatcrossTerrainCulture); // Civ4 Reimagined
 	pStream->Read(NUM_COMMERCE_TYPES, m_paiCapitalCommercePopulationThreshold); // Civ4 Reimagined
@@ -21330,6 +21364,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumUpkeepInfos(), m_paiUpkeepCount);
 	pStream->Write(GC.getNumSpecialistInfos(), m_paiSpecialistValidCount);
 	pStream->Write(GC.getNumSpecialistInfos(), m_paiExtraSpecialists); // Civ4 Reimagined
+	pStream->Write(GC.getNumSpecialistInfos(), m_paiExtraSpecialistExperience); // Civ4 Reimagined
 	pStream->Write(GC.getNumTerrainInfos(), m_paiFatcrossTerrainHappiness); // Civ4 Reimagined
 	pStream->Write(GC.getNumTerrainInfos(), m_paiFatcrossTerrainCulture); // Civ4 Reimagined
 	pStream->Write(NUM_COMMERCE_TYPES, m_paiCapitalCommercePopulationThreshold); // Civ4 Reimagined
@@ -28787,6 +28822,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_ANCIENT) 
 		{
 			changeHurryCount((HurryTypes)GC.getInfoTypeForString("HURRY_POPULATION_UNITS"), 1);
+			changeExtraSpecialistExperience((SpecialistTypes)GC.getInfoTypeForString("SPECIALIST_GREAT_GENERAL"), 2);
 			notifyUniquePowersChanged(true);
 		}
 	}

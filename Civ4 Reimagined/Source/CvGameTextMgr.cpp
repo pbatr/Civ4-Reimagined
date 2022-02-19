@@ -6671,8 +6671,11 @@ void CvGameTextMgr::parseSpecialistHelp(CvWStringBuffer &szHelpString, Specialis
 
 		if (kInfo.getExperience() > 0)
 		{
+			// Civ4 Reimagined
+			const int iExperience = kInfo.getExperience() + GET_PLAYER((pCity != NULL) ? pCity->getOwnerINLINE() : GC.getGameINLINE().getActivePlayer()).getExtraSpecialistExperience(eSpecialist);
+
 			szHelpString.append(NEWLINE);
-			szHelpString.append(gDLL->getText("TXT_KEY_SPECIALIST_EXPERIENCE", kInfo.getExperience()));
+			szHelpString.append(gDLL->getText("TXT_KEY_SPECIALIST_EXPERIENCE", iExperience));
 		}
 
 		if (kInfo.getGreatPeopleRateChange() != 0)
@@ -6768,13 +6771,15 @@ void CvGameTextMgr::parseFreeSpecialistHelp(CvWStringBuffer &szHelpString, const
 			}
 			szHelpString.append(szCommerceString);
 
-			if (GC.getSpecialistInfo(eSpecialist).getExperience() > 0)
+			// Civ4 Reimagined
+			const int iExperience = GC.getSpecialistInfo(eSpecialist).getExperience() + GET_PLAYER(kCity.getOwnerINLINE()).getExtraSpecialistExperience(eSpecialist);
+			if (iExperience > 0)
 			{
 				if (!szYield.isEmpty() || !szCommerceString.isEmpty())
 				{
 					szHelpString.append(L", ");
 				}
-				szHelpString.append(gDLL->getText("TXT_KEY_SPECIALIST_EXPERIENCE_SHORT", iNumSpecialists * GC.getSpecialistInfo(eSpecialist).getExperience()));
+				szHelpString.append(gDLL->getText("TXT_KEY_SPECIALIST_EXPERIENCE_SHORT", iNumSpecialists * iExperience));
 			}
 		}
 	}

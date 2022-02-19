@@ -1072,6 +1072,9 @@ public:
 	int getExtraSpecialists(SpecialistTypes eIndex) const;
 	void changeExtraSpecialists(SpecialistTypes eIndex, int iChange);
 
+	int getExtraSpecialistExperience(SpecialistTypes eIndex) const;
+	void changeExtraSpecialistExperience(SpecialistTypes eIndex, int iChange);
+
 	DllExport bool isResearchingTech(TechTypes eIndex) const;	// Exposed to Python	
 	void setResearchingTech(TechTypes eIndex, bool bNewValue);
 
@@ -1792,6 +1795,7 @@ protected:
 	int* m_paiUpkeepCount;
 	int* m_paiSpecialistValidCount;
 	int* m_paiExtraSpecialists; // Civ4 Reimagined
+	int* m_paiExtraSpecialistExperience; // Civ4 Reimagined
 	int* m_paiFatcrossTerrainHappiness; // Civ4 Reimagined
 	int* m_paiFatcrossTerrainCulture; // Civ4 Reimagined
 	int* m_paiCapitalCommercePopulationThreshold; // Civ4 Reimagined
