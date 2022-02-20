@@ -6917,7 +6917,7 @@ int CvUnit::getGreatWorkCulture(const CvPlot* pPlot) const
 	/* original bts code
 	iCulture = m_pUnitInfo->getGreatWorkCulture();
 	*/
-	iCulture = m_pUnitInfo->getGreatWorkCulture() * std::max(1, (int)(GET_PLAYER(getOwnerINLINE()).getCurrentEra()));
+	iCulture = m_pUnitInfo->getGreatWorkCulture() * ((int)GET_PLAYER(getOwnerINLINE()).getCurrentEra() + 1);
 /**
 *** K-Mod end
 **/

@@ -1790,7 +1790,7 @@
 			<iHurryMultiplier>0</iHurryMultiplier>
 			<iBaseTrade>0</iBaseTrade>
 			<iTradeMultiplier>0</iTradeMultiplier>
-			<iGreatWorkCulture>100</iGreatWorkCulture>
+			<iGreatWorkCulture>80</iGreatWorkCulture>
 			<iEspionagePoints>0</iEspionagePoints>
 			<TerrainImpassables/>
 			<FeatureImpassables/>
@@ -24299,7 +24299,7 @@
 			<iHurryMultiplier>0</iHurryMultiplier>
 			<iBaseTrade>0</iBaseTrade>
 			<iTradeMultiplier>0</iTradeMultiplier>
-			<iGreatWorkCulture>800</iGreatWorkCulture>
+			<iGreatWorkCulture>650</iGreatWorkCulture>
 			<iEspionagePoints>0</iEspionagePoints>
 			<TerrainImpassables/>
 			<FeatureImpassables/>
