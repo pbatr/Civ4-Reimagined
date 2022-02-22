@@ -7016,6 +7016,11 @@ bool CvUnit::greatWork()
 // Civ4 Reimagined
 bool CvUnit::canSacrifice(const CvPlot* pPlot) const
 {
+	if (getUnitType() != (UnitTypes)GC.getInfoTypeForString("UNIT_AZTEC_CAPTIVE"))
+	{
+		return false;
+	}
+
 	if (isDelayedDeath())
 	{
 		return false;
@@ -7038,13 +7043,9 @@ bool CvUnit::canSacrifice(const CvPlot* pPlot) const
 		return false;
 	}
 
-	// Civ4 Reimagined
-	if (getUnitType() == (UnitTypes)GC.getInfoTypeForString("UNIT_AZTEC_CAPTIVE"))
+	if (pCity->getNumBuilding((BuildingTypes)GC.getInfoTypeForString("BUILDING_AZTEC_SACRIFICIAL_ALTAR")) < 1)
 	{
-		if (pCity->getNumBuilding((BuildingTypes)GC.getInfoTypeForString("BUILDING_AZTEC_SACRIFICIAL_ALTAR")) < 1)
-		{
-			return false;
-		}
+		return false;
 	}
 
 	return true;
