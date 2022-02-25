@@ -2752,8 +2752,17 @@
 					<TerrainType>TERRAIN_PLAINS</TerrainType>
 					<iBias>1</iBias>
 				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<iBias>-3</iBias>
+				</TerrainBias>
 			</TerrainBiases>
-			<FeatureBiases/>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_OASIS</FeatureType>
+					<iBias>5</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_GOLD</BonusType>

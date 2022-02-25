@@ -350,7 +350,7 @@ class MapConstants :
         
         #The percent chance that an oasis may appear in desert. A tile must be desert and
         #surrounded on all sides by desert.
-        self.OasisChance = .06
+        self.OasisChance = .12
 
         #This sets the amount of heat lost at the highest altitude. 1.0 loses all heat
         #0.0 loses no heat.
