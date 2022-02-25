@@ -7672,7 +7672,7 @@ void CvUnit::promote(PromotionTypes ePromotion, int iLeaderUnitId)
 	// Civ4 Reimagined
 	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_BIOLOGY")))
 	{
-		if (ePromotion == (PromotionTypes)GC.getInfoTypeForString("PROMOTION_SENTRY") && getUnitClassType() == (UnitClassTypes)GC.getInfoTypeForString("UNTCLASS_EXPLORER"))
+		if (ePromotion == (PromotionTypes)GC.getInfoTypeForString("PROMOTION_WOODSMAN3") && getUnitClassType() == (UnitClassTypes)GC.getInfoTypeForString("UNTCLASS_EXPLORER"))
 		{
 			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_BIOLOGY"), getOwnerINLINE(), true);
 		}
@@ -14743,12 +14743,6 @@ void CvUnit::bombardCity(CvCity* pCity, int bombardRate)
 		}
 	}
 
-	// Civ4 Reimagined
-	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ROCKETRY")))
-	{
-		GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ROCKETRY"), getOwnerINLINE(), true);
-	}
-
 	CvWString szBuffer;
 	
 	if (buildingList.getLength() > 0)
@@ -14771,6 +14765,12 @@ void CvUnit::bombardCity(CvCity* pCity, int bombardRate)
 		
 		if (bombChance <= bombardRate * (defenseBuilding ? 6 : 3))
 		{
+			// Civ4 Reimagined
+			if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ROCKETRY")) && getDomainType() == DOMAIN_AIR)
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ROCKETRY"), getOwnerINLINE(), true);
+			}
+
 			pCity->setNumRealBuilding(eBuilding, pCity->getNumRealBuilding(eBuilding) - 1);
 			szBuffer = gDLL->getText("TXT_KEY_MISC_ENEMY_AIRBOMBSUCCESS", GC.getBuildingInfo(eBuilding).getTextKeyWide(), pCity->getNameKey());
 			gDLL->getInterfaceIFace()->addMessage(pCity->getOwnerINLINE(), false, GC.getDefineINT("EVENT_MESSAGE_TIME"), szBuffer, "AS2D_BOMBARDED", MESSAGE_TYPE_INFO, 
