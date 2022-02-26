@@ -814,19 +814,6 @@ class CvMainInterface:
 		screen.setStackedBarColors( "GreatGeneralBar-w", InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_EMPTY") )
 		screen.setStackedBarColors( "GreatGeneralBar-w", InfoBarTypes.INFOBAR_EMPTY, gc.getInfoTypeForString("COLOR_EMPTY") )
 		screen.hide( "GreatGeneralBar-w" )
-	
-		xCoordUnique = xCoord
-		yCoordUnique = 2
-		if (screen.getXResolution() >= 1440):
-			yCoordUnique += 20
-		else:
-			xCoordUnique += 50
-		screen.addStackedBarGFC( "UniquePowerBar", xCoordUnique - 50, yCoordUnique, 84 + 50, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_GENERAL, -1, -1 )
-		screen.setStackedBarColors( "UniquePowerBar", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_NEGATIVE_RATE") )
-		screen.setStackedBarColors( "UniquePowerBar", InfoBarTypes.INFOBAR_RATE, gc.getInfoTypeForString("COLOR_EMPTY") )
-		screen.setStackedBarColors( "UniquePowerBar", InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_EMPTY") )
-		screen.setStackedBarColors( "UniquePowerBar", InfoBarTypes.INFOBAR_EMPTY, gc.getInfoTypeForString("COLOR_EMPTY") )
-		screen.hide( "UniquePowerBar" )
 
 		xCoord += 6 + 84
 		screen.addStackedBarGFC( "ResearchBar-w", xCoord, 2, 487, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_RESEARCH, -1, -1 )
@@ -3029,8 +3016,6 @@ class CvMainInterface:
 		screen.hide( "GreatPersonBarText" )
 		screen.hide( "GreatGeneralBar" )
 		screen.hide( "GreatGeneralBarText" )
-		screen.hide( "UniquePowerBar" )
-		screen.hide( "UniquePowerBarText" )
 
 		screen.hide( "GreatGeneralBar-w" )
 		screen.hide( "ResearchBar-w" )
