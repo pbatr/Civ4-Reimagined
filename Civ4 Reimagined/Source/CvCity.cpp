@@ -4643,7 +4643,7 @@ void CvCity::processSpecialist(SpecialistTypes eSpecialist, int iChange)
 	updateExtraSpecialistYield();
 
 	// Civ4 Reimagined: Zulu UP
-	changeSpecialistFreeExperience(GC.getSpecialistInfo(eSpecialist).getExperience() + GET_PLAYER(getOwnerINLINE()).getExtraSpecialistExperience(eSpecialist) * iChange);
+	changeSpecialistFreeExperience((GC.getSpecialistInfo(eSpecialist).getExperience() + GET_PLAYER(getOwnerINLINE()).getExtraSpecialistExperience(eSpecialist)) * iChange);
 }
 
 
