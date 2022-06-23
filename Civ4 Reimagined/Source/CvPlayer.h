@@ -824,6 +824,8 @@ public:
 	void changeMilitaryPower(DomainTypes eDomain, int iChange);
 	int getBestUnitPower(DomainTypes eDomain) const;
 	void setBestUnitPower(DomainTypes eDomain, int iPower);
+	int getExtraMovesInGoldenAge(DomainTypes eIndex) const; // Civ4 Reimagined
+	void changeExtraMovesInGoldenAge(DomainTypes eIndex, int iChange); // Civ4 Reimagined
 
 	DllExport int getPopScore(bool bCheckVassal = true) const;	// Exposed to Python
 	void changePopScore(int iChange);	// Exposed to Python  
@@ -1753,6 +1755,7 @@ protected:
 	int* m_aiEspionageSpendingWeightAgainstTeam;
 	int* m_aiMilitaryPower; // Civ4 Reimagined
 	int* m_aiBestUnitPower; // Civ4 Reimagined
+	int* m_aiExtraMovesInGoldenAge; // Civ4 Reimagined
 	int* m_paiPlayerExtraAvailableBonuses; // Civ4 Reimagined
 	int* m_paiCivicEffect; // Civ4 Reimagined
 	int* m_aiIdeologyInfluence; // Civ4Reimagind

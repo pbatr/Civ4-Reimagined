@@ -8348,7 +8348,16 @@ int CvUnit::baseMoves() const
 	{
 		return (m_pUnitInfo->getMoves() + getExtraMoves());
 	}
-	return (m_pUnitInfo->getMoves() + getExtraMoves() + GET_TEAM(getTeam()).getExtraMoves(getDomainType()));
+	
+	int iMoves = m_pUnitInfo->getMoves() + getExtraMoves() + GET_TEAM(getTeam()).getExtraMoves(getDomainType());
+
+	// Civ4 Reimagined: Persia UP
+	if (GET_PLAYER(getOwnerINLINE()).getExtraMovesInGoldenAge(getDomainType()) > 0 && GET_PLAYER(getOwnerINLINE()).isGoldenAge())
+	{
+		iMoves += GET_PLAYER(getOwnerINLINE()).getExtraMovesInGoldenAge(getDomainType());
+	}
+
+	return iMoves;
 }
 
 

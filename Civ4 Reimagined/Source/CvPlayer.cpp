@@ -69,6 +69,7 @@ CvPlayer::CvPlayer()
 
 	m_aiMilitaryPower = new int[NUM_DOMAIN_TYPES]; // Civ4 Reimagined
 	m_aiBestUnitPower = new int[NUM_DOMAIN_TYPES]; // Civ4 Reimagined
+	m_aiExtraMovesInGoldenAge = new int[NUM_DOMAIN_TYPES]; // Civ4 Reimagined
 	m_aiIdeologyInfluence = new int[NUM_IDEOLOGY_TYPES]; // Civ4 Reimagind
 	m_aiForeignTradeIdeologyModifier = new int[NUM_IDEOLOGY_TYPES]; // Civ4 Reimagind
 	m_aiBonusRatioModifierPerIdeologyCiv = new int[NUM_IDEOLOGY_TYPES]; // Civ4 Reimagind
@@ -161,6 +162,7 @@ CvPlayer::~CvPlayer()
 	SAFE_DELETE_ARRAY(m_aiDomainExperienceModifiers); // Leoreth
 	SAFE_DELETE_ARRAY(m_aiMilitaryPower); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiBestUnitPower); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_aiExtraMovesInGoldenAge); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiIdeologyInfluence); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiForeignTradeIdeologyModifier); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiBonusRatioModifierPerIdeologyCiv); // Civ4 Reimagined
@@ -1074,6 +1076,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		m_aiDomainExperienceModifiers[iI] = 0;
 		m_aiMilitaryPower[iI] = 0; // Civ4 Reimagined
 		m_aiBestUnitPower[iI] = 0; // Civ4 Reimagined
+		m_aiExtraMovesInGoldenAge[iI] = 0; // Civ4 Reimagined
 	}
 	
 	for (iI = 0; iI < MAX_PLAYERS; iI++)
@@ -12830,6 +12833,19 @@ void CvPlayer::setBestUnitPower(DomainTypes eDomain, int iPower)
 }
 
 
+int CvPlayer::getExtraMovesInGoldenAge(DomainTypes eDomain) const
+{
+	return m_aiExtraMovesInGoldenAge[eDomain];
+}
+
+
+void CvPlayer::changeExtraMovesInGoldenAge(DomainTypes eDomain, int iChange)
+{
+	m_aiExtraMovesInGoldenAge[eDomain] = (m_aiExtraMovesInGoldenAge[eDomain] + iChange);
+	FAssert(getExtraMovesInGoldenAge(eDomain) >= 0);
+}
+
+
 int CvPlayer::getPopScore(bool bCheckVassal) const		 
 {
 	if (bCheckVassal && GET_TEAM(getTeam()).isAVassal())
@@ -20755,6 +20771,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(NUM_COMMERCE_TYPES, m_paiAveragePopCommerceModifierMaxMod); // Civ4 Reimagined
 	pStream->Read(NUM_DOMAIN_TYPES, m_aiMilitaryPower); // Civ4 Reimagined
 	pStream->Read(NUM_DOMAIN_TYPES, m_aiBestUnitPower); // Civ4 Reimagined
+	pStream->Read(NUM_DOMAIN_TYPES, m_aiExtraMovesInGoldenAge); // Civ4 Reimagined
 	pStream->Read(NUM_IDEOLOGY_TYPES, m_aiIdeologyInfluence); // Civ4 Reimagined
 	pStream->Read(NUM_IDEOLOGY_TYPES, m_aiForeignTradeIdeologyModifier); // Civ4 Reimagined
 	pStream->Read(NUM_IDEOLOGY_TYPES, m_aiBonusRatioModifierPerIdeologyCiv); // Civ4 Reimagined
@@ -21374,6 +21391,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(NUM_COMMERCE_TYPES, m_paiAveragePopCommerceModifierMaxMod); // Civ4 Reimagined
 	pStream->Write(NUM_DOMAIN_TYPES, m_aiMilitaryPower); // Civ4 Reimagined
 	pStream->Write(NUM_DOMAIN_TYPES, m_aiBestUnitPower); // Civ4 Reimagined
+	pStream->Write(NUM_DOMAIN_TYPES, m_aiExtraMovesInGoldenAge); // Civ4 Reimagined
 	pStream->Write(NUM_IDEOLOGY_TYPES, m_aiIdeologyInfluence); // Civ4 Reimagined
 	pStream->Write(NUM_IDEOLOGY_TYPES, m_aiForeignTradeIdeologyModifier); // Civ4 Reimagined
 	pStream->Write(NUM_IDEOLOGY_TYPES, m_aiBonusRatioModifierPerIdeologyCiv); // Civ4 Reimagined
@@ -28790,6 +28808,14 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			setIsDesertGold(true);
 			notifyUniquePowersChanged(true);
 		}			
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_PERSIA"))
+	{
+		if (eEra == ERA_ANCIENT)
+		{
+			changeExtraMovesInGoldenAge(DOMAIN_LAND, 1);
+			changeGoldenAgeModifier(40);
+		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME"))
 	{
