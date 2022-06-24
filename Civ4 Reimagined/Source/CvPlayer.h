@@ -1423,6 +1423,8 @@ public:
 	int getGreatMerchantPointsPerTrade() const; // Civ4 Reimagined
 	void changeCapitalCultureAttitudeBonus(int iChange); // Civ4 Reimagined
 	int getCapitalCultureAttitudeBonus() const; // Civ4 Reimagined
+	void changePillageHeal(int iChange); // Civ4 Reimagined
+	int getPillageHeal() const; // Civ4 Reimagined
 	void setAlwaysFreshWater(bool bNewValue); // Civ4 Reimagnied
 	bool isAlwaysFreshWater() const; // Civ4 Reimagined
 	void setCanRemoveFeatures(bool bNewValue); // Civ4 Reimagnied
@@ -1696,6 +1698,7 @@ protected:
 	int m_iReligiousColonyMaintenanceModifier; // Civ4 Reimagined
 	int m_iGreatMerchantPointsPerTrade; // Civ4 Reimagined
 	int m_iCapitalCultureAttitudeBonus; // Civ4 Reimagined
+	int m_iPillageHeal; // Civ4 Reimagined
 	int m_iAdditionalAncientEurekaBoost; // Civ4 Reimagined
 	bool m_bAlwaysFreshWater; // Civ4 Reimagined
 	bool m_bCanRemoveFeatures; // Civ4 Reimagined

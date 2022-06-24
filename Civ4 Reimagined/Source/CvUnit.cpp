@@ -5210,6 +5210,16 @@ bool CvUnit::pillage()
 			{
 				GET_PLAYER(getOwnerINLINE()).changeGold(iPillageGold);
 
+				// Civ4 Reimagined: Mongol UP
+				if (GET_PLAYER(getOwnerINLINE()).getPillageHeal() > 0)
+				{
+					int iHeal = GET_PLAYER(getOwnerINLINE()).getPillageHeal();
+					iHeal *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getHealPercent();
+					iHeal /= 100;
+					iHeal = std::max(1, iHeal);
+					changeDamage(-iHeal);
+				}
+
 				szBuffer = gDLL->getText("TXT_KEY_MISC_PLUNDERED_GOLD_FROM_IMP", iPillageGold, GC.getImprovementInfo(pPlot->getImprovementType()).getTextKeyWide());
 				gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_PILLAGE", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
 

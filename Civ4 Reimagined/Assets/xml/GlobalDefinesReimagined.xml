@@ -439,8 +439,8 @@
 		<iDefineIntVal>-50</iDefineIntVal>
 	</Define>
 	<Define>
-		<DefineName>UNIQUE_POWER_SUMERIA</DefineName>
-		<iDefineIntVal>40</iDefineIntVal> <!-- Additional Eureka boost for ancient, classical techs -->
+		<DefineName>UNIQUE_POWER_MONGOL_PILLAGE_HEAL</DefineName>
+		<iDefineIntVal>40</iDefineIntVal>
 	</Define>
 	<!-- Unique Powers end -->
 </Civ4Defines>

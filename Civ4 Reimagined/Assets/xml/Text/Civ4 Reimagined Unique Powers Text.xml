@@ -247,4 +247,8 @@
 		<Tag>TXT_KEY_UNIQUE_POWER_PERSIA</Tag>
 		<English>Golden Ages last 40% longer. Land units have one additional movement during a Golden Age.</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_MONGOL</Tag>
+		<English>Units heal by pillaging enemy tiles.</English>
+	</TEXT>
 </Civ4GameText>

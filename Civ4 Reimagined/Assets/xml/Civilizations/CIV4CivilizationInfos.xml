@@ -2923,7 +2923,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_MONGOL</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<DescriptionUniquePower>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUniquePower>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_MONGOL</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_KARAKORUM</City>
 				<City>TXT_KEY_CITY_NAME_BESHBALIK</City>
