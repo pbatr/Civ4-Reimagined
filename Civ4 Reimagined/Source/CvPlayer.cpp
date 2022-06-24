@@ -1025,6 +1025,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_eIdeology = IDEOLOGY_CONSERVATISM; // Civ4 Reimagined
 	m_bAlwaysFreshWater = false; // Civ4 Reimagined
 	m_bCanRemoveFeatures = false; // Civ4 Reimagined
+	m_bCityRevoltOnKill = false; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -20678,6 +20679,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iPillageHeal); // Civ4 Reimagined
 	pStream->Read(&m_bAlwaysFreshWater); // Civ4 Reimagined
 	pStream->Read(&m_bCanRemoveFeatures); // Civ4 Reimagined
+	pStream->Read(&m_bCityRevoltOnKill); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -21309,6 +21311,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iPillageHeal); // Civ4 Reimagined
 	pStream->Write(m_bAlwaysFreshWater); // Civ4 Reimagined
 	pStream->Write(m_bCanRemoveFeatures); // Civ4 Reimagined
+	pStream->Write(m_bCityRevoltOnKill); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -28582,6 +28585,19 @@ bool CvPlayer::isCanRemoveFeatures() const
 
 
 //Civ4 Reimagined
+void CvPlayer::setCityRevoltOnKill(bool bNewValue)
+{
+	m_bCityRevoltOnKill = bNewValue;
+}
+
+//Civ4 Reimagined
+bool CvPlayer::isCityRevoltOnKill() const
+{
+	return m_bCityRevoltOnKill;
+}
+
+
+//Civ4 Reimagined
 void CvPlayer::updateUniquePowers(TechTypes eTech)
 {
 	if (getID() == NO_PLAYER)
@@ -28832,6 +28848,10 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_ANCIENT)
 		{
 			changePillageHeal(GC.getDefineINT("UNIQUE_POWER_MONGOL_PILLAGE_HEAL"));
+		}
+		else if (eEra == ERA_MEDIEVAL)
+		{
+			setCityRevoltOnKill(true);
 		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_PERSIA"))

@@ -1735,6 +1735,16 @@ void CvUnit::updateCombat(bool bQuick)
 				GET_TEAM(getTeam()).AI_changeWarSuccess(pDefender->getTeam(), GC.getDefineINT("WAR_SUCCESS_ATTACKING"));
 			}
 
+			// Civ4 Reimagined: Mongol UP
+			if (GET_PLAYER(getOwnerINLINE()).isCityRevoltOnKill() && pDefenderCity != NULL)
+			{
+				if (pDefenderCity->getCultureLevel() < (CultureLevelTypes)5 && pDefenderCity->getOccupationTimer() == 0)
+				{
+					pDefenderCity->changeCultureUpdateTimer(1);
+					pDefenderCity->changeOccupationTimer(1);
+				}
+			}
+
 			szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_UNIT_DESTROYED_ENEMY", getNameKey(), pDefender->getNameKey());
 			//gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, GC.getEraInfo(GC.getGameINLINE().getCurrentEra()).getAudioUnitVictoryScript(), MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
 			// Civ4 Reimagined

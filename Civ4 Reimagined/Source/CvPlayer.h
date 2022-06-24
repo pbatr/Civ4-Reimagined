@@ -1429,6 +1429,8 @@ public:
 	bool isAlwaysFreshWater() const; // Civ4 Reimagined
 	void setCanRemoveFeatures(bool bNewValue); // Civ4 Reimagnied
 	bool isCanRemoveFeatures() const; // Civ4 Reimagined
+	void setCityRevoltOnKill(bool bNewValue); // Civ4 Reimagnied
+	bool isCityRevoltOnKill() const; // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1702,6 +1704,7 @@ protected:
 	int m_iAdditionalAncientEurekaBoost; // Civ4 Reimagined
 	bool m_bAlwaysFreshWater; // Civ4 Reimagined
 	bool m_bCanRemoveFeatures; // Civ4 Reimagined
+	bool m_bCityRevoltOnKill; // Civ4 Reimagined
 	int m_iAdditionalFarmBonusYield; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
