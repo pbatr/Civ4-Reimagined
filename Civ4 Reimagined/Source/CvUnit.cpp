@@ -11290,7 +11290,8 @@ void CvUnit::changeExperience(int iChange, int iMax, bool bFromCombat, bool bInB
 	{
 		CvPlayer& kPlayer = GET_PLAYER(getOwnerINLINE());
 
-		int iCombatExperienceMod = 100 + kPlayer.getGreatGeneralRateModifier();
+		// Civ4 Reimagined: English UP
+		int iCombatExperienceMod = 100 + kPlayer.getGreatGeneralRateModifier() + kPlayer.getDomainGreatGeneralRateModifier(getDomainType());
 
 		if (bInBorders)
 		{
