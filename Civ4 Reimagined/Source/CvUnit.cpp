@@ -6177,7 +6177,7 @@ bool CvUnit::spread(ReligionTypes eReligion)
 			std::partial_sort(rankedReligions.begin(), rankedReligions.begin()+1, rankedReligions.end());
 			ReligionTypes eFailedReligion = rankedReligions[0].second;
 			
-			if (eFailedReligion != eReligion)
+			if (eFailedReligion != eReligion && !GET_PLAYER(getOwnerINLINE()).isNoReligionRemoval())
 			{
 				pCity->setHasReligion(eFailedReligion, false, true, false);
 				pCity->destroyReligiousBuildings(eFailedReligion, eReligion); // Civ4 Reimagined

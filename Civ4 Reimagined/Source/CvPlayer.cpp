@@ -612,28 +612,23 @@ void CvPlayer::initInGame(PlayerTypes eID)
 	AI_init();
 }
 
+// Civ4 Reimagined
 void CvPlayer::setupEurekas()
 {
-	// Civ4 Reimagined
 	if (!isHuman())
 	{
 		for (int iI = 0; iI < GC.getNumTechInfos(); iI++)
 		{
-			if (!CvWString(GC.getTechInfo((TechTypes)iI).getHelp()).empty())
+			if (!CvWString(GC.getTechInfo((TechTypes)iI).getHelp()).empty() && (TechTypes)iI != (TechTypes)GC.getInfoTypeForString("TECH_POLYTHEISM"))
 			{
 				GET_TEAM(getTeam()).setTechBoosted((TechTypes)iI, getID(), true);
 			}
 		}
 	}
 
-	// Civ4 Reimagined
 	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_INDIA"))
 	{
 		GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_POLYTHEISM"), getID(), true);
-	}
-	else
-	{
-		GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_POLYTHEISM"), getID(), false);
 	}
 }
 
@@ -1029,6 +1024,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bAlwaysFreshWater = false; // Civ4 Reimagined
 	m_bCanRemoveFeatures = false; // Civ4 Reimagined
 	m_bCityRevoltOnKill = false; // Civ4 Reimagined
+	m_bNoReligionRemoval = false; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -20699,6 +20695,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bAlwaysFreshWater); // Civ4 Reimagined
 	pStream->Read(&m_bCanRemoveFeatures); // Civ4 Reimagined
 	pStream->Read(&m_bCityRevoltOnKill); // Civ4 Reimagined
+	pStream->Read(&m_bNoReligionRemoval); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -21333,6 +21330,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_bAlwaysFreshWater); // Civ4 Reimagined
 	pStream->Write(m_bCanRemoveFeatures); // Civ4 Reimagined
 	pStream->Write(m_bCityRevoltOnKill); // Civ4 Reimagined
+	pStream->Write(m_bNoReligionRemoval); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -28635,6 +28633,19 @@ bool CvPlayer::isCityRevoltOnKill() const
 
 
 //Civ4 Reimagined
+void CvPlayer::setNoReligionRemoval(bool bNewValue)
+{
+	m_bNoReligionRemoval = bNewValue;
+}
+
+//Civ4 Reimagined
+bool CvPlayer::isNoReligionRemoval() const
+{
+	return m_bNoReligionRemoval;
+}
+
+
+//Civ4 Reimagined
 void CvPlayer::updateUniquePowers(TechTypes eTech)
 {
 	if (getID() == NO_PLAYER)
@@ -28844,6 +28855,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_ANCIENT) 
 		{
 			changeGreatPeopleRatePerReligionModifier(25);
+			setNoReligionRemoval(true);
 			notifyUniquePowersChanged(true);
 		}
 	}
