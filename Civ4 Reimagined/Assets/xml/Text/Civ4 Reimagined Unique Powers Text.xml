@@ -169,7 +169,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_AZTEC</Tag>
-		<English>Killing a unit and advancing to its plot gives an Aztec Slave while playing Slavery.</English>
+		<English>Killing a land unit and advancing to its plot gives an Aztec Slave while playing Slavery.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_CHINA</Tag>
@@ -250,5 +250,9 @@
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_MONGOL</Tag>
 		<English>Units can heal by pillaging enemy tiles. After entering the Medieval Era: Enemy cities with less than Influential culture start revolting when a defender is killed by Mongols.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_INDIA</Tag>
+		<English>+25% Great People birth for each Religion in a city.</English>
 	</TEXT>
 </Civ4GameText>

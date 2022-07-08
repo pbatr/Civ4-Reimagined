@@ -17828,6 +17828,15 @@ void CvGameTextMgr::parseGreatPeopleHelp(CvWStringBuffer &szBuffer, CvCity& city
 		szBuffer.append(NEWLINE);
 		iModifier += iUniquePowerMod;
 	}
+
+	// Civ4 Reimagined: India UP
+	const int iReligionUniquePowerMod = owner.getGreatPeopleRatePerReligionModifier() * city.getReligionCount();
+	if (iReligionUniquePowerMod != 0)
+	{
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_GREATPEOPLE_UNIQUE_POWER", iReligionUniquePowerMod));
+		szBuffer.append(NEWLINE);
+		iModifier += iReligionUniquePowerMod;
+	}
 	
 	// Trait
 	for (int i = 0; i < GC.getNumTraitInfos(); i++)

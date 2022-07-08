@@ -1433,6 +1433,8 @@ public:
 	bool isCanRemoveFeatures() const; // Civ4 Reimagined
 	void setCityRevoltOnKill(bool bNewValue); // Civ4 Reimagnied
 	bool isCityRevoltOnKill() const; // Civ4 Reimagined
+	int getGreatPeopleRatePerReligionModifier() const;	// Civ4 Reimagined
+	void changeGreatPeopleRatePerReligionModifier(int iChange); // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1708,6 +1710,7 @@ protected:
 	bool m_bCanRemoveFeatures; // Civ4 Reimagined
 	bool m_bCityRevoltOnKill; // Civ4 Reimagined
 	int m_iAdditionalFarmBonusYield; // Civ4 Reimagined
+	int m_iGreatPeopleRatePerReligionModifier; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
 

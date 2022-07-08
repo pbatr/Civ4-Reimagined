@@ -6357,6 +6357,8 @@ int CvCity::getTotalGreatPeopleRateModifier() const
 	iModifier = getGreatPeopleRateModifier();
 
 	iModifier += GET_PLAYER(getOwnerINLINE()).getGreatPeopleRateModifier();
+	// Civ4 Reimagined: India UP
+	iModifier += GET_PLAYER(getOwnerINLINE()).getGreatPeopleRatePerReligionModifier() * getReligionCount();
 
 	if (GET_PLAYER(getOwnerINLINE()).getStateReligion() != NO_RELIGION)
 	{
