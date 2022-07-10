@@ -922,6 +922,10 @@ public:
 	// Civ4 Reimagined
 	int getPeakAdjacencyExtraYield(YieldTypes eIndex) const;
 	void changePeakAdjacencyExtraYield(YieldTypes eIndex, int iChange);
+
+	// Civ4 Reimagined
+	int getCityOnHillsExtraYield(YieldTypes eIndex) const;
+	void changeCityOnHillsExtraYield(YieldTypes eIndex, int iChange);
 	
 	// Civ4 Reimagined
 	int getCapitalExtraYieldFromCityPercent(YieldTypes eIndex) const;
@@ -1753,6 +1757,7 @@ protected:
 	int* m_aiYieldRateModifier;
 	int* m_aiExtraYield; // Civ4 Reimagined
 	int* m_aiPeakAdjacencyExtraYield; // Civ4 Reimagined
+	int* m_aiCityOnHillsExtraYield; // Civ4 Reimagined
 	int* m_aiCapitalExtraYieldFromCityPercent; // Civ4 Reimagined
 	int* m_aiCapitalYieldRateModifier;
 	int* m_aiExtraYieldThreshold;

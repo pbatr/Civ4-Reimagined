@@ -257,6 +257,6 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_ETHIOPIA</Tag>
-		<English>Land tiles adjacent to Peaks have +1[ICON_COMMERCE].</English>
+		<English>Land tiles adjacent to Peaks have +1[ICON_COMMERCE]. Cities founded on hills have +1[ICON_FOOD].</English>
 	</TEXT>
 </Civ4GameText>

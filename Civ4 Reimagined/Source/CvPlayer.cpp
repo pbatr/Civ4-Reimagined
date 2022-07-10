@@ -45,6 +45,7 @@ CvPlayer::CvPlayer()
 	m_aiYieldRateModifier = new int[NUM_YIELD_TYPES];
 	m_aiExtraYield = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
 	m_aiPeakAdjacencyExtraYield = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
+	m_aiCityOnHillsExtraYield = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
 	m_aiCapitalExtraYieldFromCityPercent = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
 	m_aiCapitalYieldRateModifier = new int[NUM_YIELD_TYPES];
 	m_aiExtraYieldThreshold = new int[NUM_YIELD_TYPES];
@@ -142,6 +143,7 @@ CvPlayer::~CvPlayer()
 	SAFE_DELETE_ARRAY(m_aiYieldRateModifier);
 	SAFE_DELETE_ARRAY(m_aiExtraYield); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiPeakAdjacencyExtraYield); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_aiCityOnHillsExtraYield); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiCapitalExtraYieldFromCityPercent); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiCapitalYieldRateModifier);
 	SAFE_DELETE_ARRAY(m_aiExtraYieldThreshold);
@@ -1050,6 +1052,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		m_aiYieldRateModifier[iI] = 0;
 		m_aiExtraYield[iI] = 0; // Civ4 Reimagined
 		m_aiPeakAdjacencyExtraYield[iI] = 0; // Civ4 Reimagined
+		m_aiCityOnHillsExtraYield[iI] = 0; // Civ4 Reimagined
 		m_aiCapitalExtraYieldFromCityPercent[iI] = 0; // Civ4 Reimagined
 		m_aiCapitalYieldRateModifier[iI] = 0;
 		m_aiExtraYieldThreshold[iI] = 0;
@@ -14352,6 +14355,57 @@ void CvPlayer::changePeakAdjacencyExtraYield(YieldTypes eIndex, int iChange)
 
 
 // Civ4 Reimagined
+int CvPlayer::getCityOnHillsExtraYield(YieldTypes eIndex) const		 
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < NUM_YIELD_TYPES, "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_aiCityOnHillsExtraYield[eIndex];
+}
+
+
+// Civ4 Reimagined
+void CvPlayer::changeCityOnHillsExtraYield(YieldTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < NUM_YIELD_TYPES, "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	if (iChange != 0)
+	{
+		m_aiCityOnHillsExtraYield[eIndex] = (m_aiCityOnHillsExtraYield[eIndex] + iChange);
+
+		invalidateYieldRankCache(eIndex);
+		
+		if (eIndex == YIELD_COMMERCE)
+		{
+			updateCommerce();
+		}
+		// Civ4 Reimagined
+		else if (eIndex == YIELD_PRODUCTION)
+		{
+			int iLoop;
+			for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+			{
+				for (int iCommerce = 0; iCommerce < NUM_COMMERCE_TYPES; ++iCommerce)
+				{
+					if (pLoopCity->getProductionToCommerceModifier((CommerceTypes)iCommerce) > 0)
+					{
+						pLoopCity->updateCommerce((CommerceTypes)iCommerce);
+					}
+				}
+			}
+		}
+
+		AI_makeAssignWorkDirty();
+
+		if (getTeam() == GC.getGameINLINE().getActiveTeam())
+		{
+			gDLL->getInterfaceIFace()->setDirty(CityInfo_DIRTY_BIT, true);
+		}
+	}
+}
+
+
+// Civ4 Reimagined
 int CvPlayer::getCapitalExtraYieldFromCityPercent(YieldTypes eIndex) const		 
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
@@ -20785,6 +20839,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(NUM_YIELD_TYPES, m_aiYieldRateModifier);
 	pStream->Read(NUM_YIELD_TYPES, m_aiExtraYield); // Civ4 Reimagined
 	pStream->Read(NUM_YIELD_TYPES, m_aiPeakAdjacencyExtraYield); // Civ4 Reimagined
+	pStream->Read(NUM_YIELD_TYPES, m_aiCityOnHillsExtraYield); // Civ4 Reimagined
 	pStream->Read(NUM_YIELD_TYPES, m_aiCapitalExtraYieldFromCityPercent); // Civ4 Reimagined
 	pStream->Read(NUM_YIELD_TYPES, m_aiCapitalYieldRateModifier);
 	pStream->Read(NUM_YIELD_TYPES, m_aiExtraYieldThreshold);
@@ -21411,6 +21466,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(NUM_YIELD_TYPES, m_aiYieldRateModifier);
 	pStream->Write(NUM_YIELD_TYPES, m_aiExtraYield); // Civ4 Reimagined
 	pStream->Write(NUM_YIELD_TYPES, m_aiPeakAdjacencyExtraYield); // Civ4 Reimagined
+	pStream->Write(NUM_YIELD_TYPES, m_aiCityOnHillsExtraYield); // Civ4 Reimagined
 	pStream->Write(NUM_YIELD_TYPES, m_aiCapitalExtraYieldFromCityPercent); // Civ4 Reimagined
 	pStream->Write(NUM_YIELD_TYPES, m_aiCapitalYieldRateModifier);
 	pStream->Write(NUM_YIELD_TYPES, m_aiExtraYieldThreshold);
@@ -28870,6 +28926,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_ANCIENT)
 		{
 			changePeakAdjacencyExtraYield(YIELD_COMMERCE, 1);
+			changeCityOnHillsExtraYield(YIELD_FOOD, 1);
 			notifyUniquePowersChanged(true);
 		}
 	}

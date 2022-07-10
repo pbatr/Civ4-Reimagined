@@ -6785,6 +6785,12 @@ int CvPlot::calculateYield(YieldTypes eYield, bool bDisplay) const
 	if (bCity)
 	{
 		iYield = std::max(iYield, GC.getYieldInfo(eYield).getMinCity());
+
+		// Civ4 Reimagined
+		if (isHills())
+		{
+			iYield += GET_PLAYER(ePlayer).getCityOnHillsExtraYield(eYield);
+		}
 	}
 
 	iYield += GC.getGameINLINE().getPlotExtraYield(m_iX, m_iY, eYield);
