@@ -6735,6 +6735,18 @@ int CvPlot::calculateYield(YieldTypes eYield, bool bDisplay) const
 			}
 		}
 
+		// Civ4 Reimagined
+		if (GET_PLAYER(ePlayer).getPeakAdjacencyExtraYield(eYield) != 0)
+		{
+			if (isFlatlands() || isHills())
+			{
+				if (isAdjacentToPeak())
+				{
+					iYield += GET_PLAYER(ePlayer).getPeakAdjacencyExtraYield(eYield);
+				}
+			}
+		}
+
 		if (isWater())
 		{
 			if (!isImpassable())
