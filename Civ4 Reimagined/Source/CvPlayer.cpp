@@ -7157,7 +7157,8 @@ bool CvPlayer::canTrain(UnitTypes eUnit, bool bContinue, bool bTestVisible, bool
 		}
 	}
 
-	if (GC.getGameINLINE().isUnitClassMaxedOut(eUnitClass))
+	// Civ4 Reimagined
+	if (GC.getGameINLINE().isUnitClassMaxedOut(eUnitClass) && !GC.getUnitInfo(eUnit).isIgnoreMaxInstances())
 	{
 		return false;
 	}
@@ -7186,17 +7187,17 @@ bool CvPlayer::canTrain(UnitTypes eUnit, bool bContinue, bool bTestVisible, bool
 
 	if (!bTestVisible)
 	{
-		if (GC.getGameINLINE().isUnitClassMaxedOut(eUnitClass, (GET_TEAM(getTeam()).getUnitClassMaking(eUnitClass) + ((bContinue) ? -1 : 0))))
+		if (GC.getGameINLINE().isUnitClassMaxedOut(eUnitClass, (GET_TEAM(getTeam()).getUnitClassMaking(eUnitClass) + ((bContinue) ? -1 : 0))) && !GC.getUnitInfo(eUnit).isIgnoreMaxInstances())
 		{
 			return false;
 		}
 
-		if (GET_TEAM(getTeam()).isUnitClassMaxedOut(eUnitClass, (GET_TEAM(getTeam()).getUnitClassMaking(eUnitClass) + ((bContinue) ? -1 : 0))))
+		if (GET_TEAM(getTeam()).isUnitClassMaxedOut(eUnitClass, (GET_TEAM(getTeam()).getUnitClassMaking(eUnitClass) + ((bContinue) ? -1 : 0))) && !GC.getUnitInfo(eUnit).isIgnoreMaxInstances())
 		{
 			return false;
 		}
 
-		if (isUnitClassMaxedOut(eUnitClass, (getUnitClassMaking(eUnitClass) + ((bContinue) ? -1 : 0))))
+		if (isUnitClassMaxedOut(eUnitClass, (getUnitClassMaking(eUnitClass) + ((bContinue) ? -1 : 0))) && !GC.getUnitInfo(eUnit).isIgnoreMaxInstances())
 		{
 			return false;
 		}

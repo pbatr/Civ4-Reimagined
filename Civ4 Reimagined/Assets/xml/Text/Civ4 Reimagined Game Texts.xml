@@ -1461,4 +1461,8 @@
 		<Tag>TXT_KEY_UNIT_JAGUAR_PROMOTIONS</Tag>
 		<English>[ICON_BULLET]Can gain the [LINK=PROMOTION_JAGUAR_WARRIOR]Jaguar[\LINK] and [LINK=PROMOTION_EAGLE_WARRIOR]Eagle[\LINK] Promotions</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_INDIAN_VARU</Tag>
+		<English>Varu</English>
+	</TEXT>
 </Civ4GameText>

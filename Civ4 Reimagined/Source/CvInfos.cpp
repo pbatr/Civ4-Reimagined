@@ -3152,6 +3152,7 @@ m_bSuicide(false),
 m_bLineOfSight(false),
 m_bHiddenNationality(false),
 m_bAlwaysHostile(false),
+m_bIgnoreMaxInstances(false), // Civ4 Reimagined
 m_bNoRevealMap(false),
 m_iLeaderPromotion(NO_PROMOTION),
 m_fUnitMaxSpeed(0.0f),
@@ -3868,6 +3869,12 @@ bool CvUnitInfo::isAlwaysHostile() const
 	return m_bAlwaysHostile;
 }
 
+// Civ4 Reimagined
+bool CvUnitInfo::isIgnoreMaxInstances() const
+{
+	return m_bIgnoreMaxInstances;
+}
+
 bool CvUnitInfo::isNoRevealMap() const		
 {
 	return m_bNoRevealMap;
@@ -4419,6 +4426,7 @@ void CvUnitInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bLineOfSight);
 	stream->Read(&m_bHiddenNationality);
 	stream->Read(&m_bAlwaysHostile);
+	stream->Read(&m_bIgnoreMaxInstances); // Civ4 Reimagined
 	stream->Read(&m_bNoRevealMap);
 
 	stream->Read(&m_fUnitMaxSpeed);
@@ -4725,6 +4733,7 @@ void CvUnitInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bLineOfSight);
 	stream->Write(m_bHiddenNationality);
 	stream->Write(m_bAlwaysHostile);
+	stream->Write(m_bIgnoreMaxInstances); // Civ4 Reimagined
 	stream->Write(m_bNoRevealMap);
 
 	stream->Write(m_fUnitMaxSpeed);
@@ -4873,6 +4882,7 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bLineOfSight,"bLineOfSight",false);
 	pXML->GetChildXmlValByName(&m_bHiddenNationality,"bHiddenNationality",false);
 	pXML->GetChildXmlValByName(&m_bAlwaysHostile,"bAlwaysHostile",false);
+	pXML->GetChildXmlValByName(&m_bIgnoreMaxInstances,"bIgnoreMaxInstances",false); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_bNoRevealMap,"bNoRevealMap",false);
 
 	pXML->SetVariableListTagPair(&m_pbUpgradeUnitClass, "UnitClassUpgrades", sizeof(GC.getUnitClassInfo((UnitClassTypes)0)), GC.getNumUnitClassInfos());

@@ -2218,8 +2218,8 @@
 			</Buildings>
 			<Units>
 				<Unit>
-					<UnitClassType>UNITCLASS_WORKER</UnitClassType>
-					<UnitType>UNIT_INDIAN_FAST_WORKER</UnitType>
+					<UnitClassType>UNITCLASS_WAR_ELEPHANT</UnitClassType>
+					<UnitType>UNIT_INDIAN_VARU</UnitType>
 				</Unit>
 			</Units>
 			<FreeUnitClasses>

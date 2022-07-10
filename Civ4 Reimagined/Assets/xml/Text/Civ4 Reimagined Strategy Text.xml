@@ -798,4 +798,8 @@
 		<Tag>TXT_KEY_BUILDING_ZULU_IKHANDA_STRATEGY</Tag>
 		<English>[COLOR_BUILDING_TEXT]Ikhandas[COLOR_REVERT], the Zulu replacements for [COLOR_BUILDING_TEXT]Baracks[COLOR_REVERT], grant experience points to troops built in their cities, and progress towards a Great General.</English>
 	</TEXT>
+	<TEXT>	
+		<Tag>TXT_KEY_UNIT_INDIAN_VARU_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]War Elephant[COLOR_REVERT], this unit costs less and it has no national limit.</English>
+	</TEXT>
 </Civ4GameText>

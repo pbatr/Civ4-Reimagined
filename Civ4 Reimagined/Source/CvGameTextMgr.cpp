@@ -9748,7 +9748,7 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit, bool
 	if (isNationalUnitClass(eUnitClass))
 	{
 		// Civ4 Reimagined
-		if (!(GC.getGameINLINE().isOption(GAMEOPTION_UNLIMITED_WORKERS) && GC.getUnitClassInfo(eUnitClass).isUnlimitedWorkerGameOption()))
+		if (!(GC.getGameINLINE().isOption(GAMEOPTION_UNLIMITED_WORKERS) && GC.getUnitClassInfo(eUnitClass).isUnlimitedWorkerGameOption()) && !GC.getUnitInfo(eUnit).isIgnoreMaxInstances())
 		{
 			if (pCity == NULL)
 			{
