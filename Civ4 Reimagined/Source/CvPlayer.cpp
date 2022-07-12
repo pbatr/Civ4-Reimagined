@@ -1029,6 +1029,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bCanRemoveFeatures = false; // Civ4 Reimagined
 	m_bCityRevoltOnKill = false; // Civ4 Reimagined
 	m_bNoReligionRemoval = false; // Civ4 Reimagined
+	m_bCoastalRaid = false; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -20805,6 +20806,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bCanRemoveFeatures); // Civ4 Reimagined
 	pStream->Read(&m_bCityRevoltOnKill); // Civ4 Reimagined
 	pStream->Read(&m_bNoReligionRemoval); // Civ4 Reimagined
+	pStream->Read(&m_bCoastalRaid); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -21442,6 +21444,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_bCanRemoveFeatures); // Civ4 Reimagined
 	pStream->Write(m_bCityRevoltOnKill); // Civ4 Reimagined
 	pStream->Write(m_bNoReligionRemoval); // Civ4 Reimagined
+	pStream->Write(m_bCoastalRaid); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -28759,6 +28762,19 @@ bool CvPlayer::isNoReligionRemoval() const
 
 
 //Civ4 Reimagined
+void CvPlayer::setCanCoastalRaid(bool bNewValue)
+{
+	m_bCoastalRaid = bNewValue;
+}
+
+//Civ4 Reimagined
+bool CvPlayer::canCoastalRaid() const
+{
+	return m_bCoastalRaid;
+}
+
+
+//Civ4 Reimagined
 void CvPlayer::updateUniquePowers(TechTypes eTech)
 {
 	if (getID() == NO_PLAYER)
@@ -29068,6 +29084,14 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_ANCIENT) 
 		{
 			changeAdditionalAncientEurekaBoost(GC.getDefineINT("UNIQUE_POWER_SUMERIA"));
+			notifyUniquePowersChanged(true);
+		}
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_VIKING"))
+	{
+		if (eEra == ERA_ANCIENT) 
+		{
+			setCanCoastalRaid(true);
 			notifyUniquePowersChanged(true);
 		}
 	}

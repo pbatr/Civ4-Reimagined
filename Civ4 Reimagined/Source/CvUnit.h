@@ -745,6 +745,11 @@ public:
 	bool canRangeStrikeAt(const CvPlot* pPlot, int iX, int iY) const;
 	bool rangeStrike(int iX, int iY);
 
+	// Civ4 Reimagined
+	bool canCoastalRaid() const;
+	bool canCoastalRaidAt(const CvPlot* pPlot, int iX, int iY) const;
+	bool coastalRaid(int iX, int iY);
+
 	int getTriggerValue(EventTriggerTypes eTrigger, const CvPlot* pPlot, bool bCheckPlot) const;
 	bool canApplyEvent(EventTypes eEvent) const;
 	void applyEvent(EventTypes eEvent);

@@ -259,4 +259,24 @@
 		<Tag>TXT_KEY_UNIQUE_POWER_ETHIOPIA</Tag>
 		<English>Land tiles adjacent to Peaks have +1[ICON_COMMERCE]. Cities founded on hills have +1[ICON_FOOD].</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_VIKING</Tag>
+		<English>Ships with hidden nationality can pillage adjacent land tiles.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_INTERFACEMODE_COASTAL_RAID</Tag>
+		<English>Coastal Raid</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_INTERFACEMODE_COASTAL_RAID_HELP</Tag>
+		<English>Order the unit to pillage the selected land tile (counts as attack)</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISSION_COASTAL_RAID</Tag>
+		<English>Coastal Raid</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISSION_COASTAL_RAID_HELP</Tag>
+		<English>This order will pillage the improvement of target land tile (counts as attack).</English>
+	</TEXT>
 </Civ4GameText>

@@ -8510,6 +8510,7 @@ BuildTypes CvUnit::getBuildType() const
 		case MISSION_TRADE:
 		case MISSION_GREAT_WORK:
 		case MISSION_SACRIFICE: // Civ4 Reimagined
+		case MISSION_COASTAL_RAID: // Civ4 Reimagined
 		case MISSION_INFILTRATE:
 		case MISSION_GOLDEN_AGE:
 		case MISSION_LEAD:
@@ -13692,6 +13693,225 @@ bool CvUnit::rangeStrike(int iX, int iY)
 /************************************************************************************************/
 /* UNOFFICIAL_PATCH                        END                                                  */
 /************************************************************************************************/
+	}
+
+	return true;
+}
+
+
+// Civ4 Reimagined
+bool CvUnit::canCoastalRaid() const
+{
+	if (!GET_PLAYER(getOwnerINLINE()).canCoastalRaid())
+	{
+		return false;
+	}
+
+	if (getDomainType() != DOMAIN_SEA)
+	{
+		return false;
+	}
+
+	if (!m_pUnitInfo->isHiddenNationality())
+	{
+		return false;
+	}
+
+	if (!canFight())
+	{
+		return false;
+	}
+
+	if (isMadeAttack() && !isBlitz())
+	{
+		return false;
+	}
+
+	if (!canMove() && getMoves() > 0)
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool CvUnit::canCoastalRaidAt(const CvPlot* pPlot, int iX, int iY) const
+{
+	if (!canCoastalRaid())
+	{
+		return false;
+	}
+
+	CvPlot* pTargetPlot = GC.getMapINLINE().plotINLINE(iX, iY);
+
+	if (NULL == pTargetPlot)
+	{
+		return false;
+	}
+
+	if (!pPlot->isVisible(getTeam(), false))
+	{
+		return false;
+	}
+
+	if (!pTargetPlot->isVisible(getTeam(), false))
+	{
+		return false;
+	}
+
+	if (pTargetPlot->isWater())
+	{
+		return false;
+	}
+
+	if (plotDistance(pPlot->getX_INLINE(), pPlot->getY_INLINE(), pTargetPlot->getX_INLINE(), pTargetPlot->getY_INLINE()) > 1)
+	{
+		return false;
+	}
+
+	if (!pPlot->canSeePlot(pTargetPlot, getTeam(), airRange(), getFacingDirection(true)))
+	{
+		return false;
+	}
+
+	if (pTargetPlot->isCity())
+	{
+		return false;
+	}
+
+	if (pTargetPlot->getImprovementType() == NO_IMPROVEMENT)
+	{
+		if (!(pTargetPlot->isRoute()))
+		{
+			return false;
+		}
+	}
+	else
+	{
+		if (GC.getImprovementInfo(pTargetPlot->getImprovementType()).isPermanent())
+		{
+			return false;
+		}
+	}
+
+	if (pTargetPlot->isOwned())
+	{
+		if (pTargetPlot->getOwnerINLINE() == getOwnerINLINE())
+		{
+			return false;
+		}
+
+		if (GET_PLAYER(pPlot->getOwnerINLINE()).isNoPillage())
+		{
+			return false;
+		}
+	}
+	
+	return true;
+}
+
+
+bool CvUnit::coastalRaid(int iX, int iY)
+{
+	CvWString szBuffer;
+	int iPillageGold;
+	long lPillageGold;
+	ImprovementTypes eTempImprovement = NO_IMPROVEMENT;
+	RouteTypes eTempRoute = NO_ROUTE;
+
+	CvPlot* pPlot = GC.getMapINLINE().plot(iX, iY);
+	if (NULL == pPlot)
+	{
+		return false;
+	}
+
+	if (!canCoastalRaidAt(plot(), iX, iY))
+	{
+		return false;
+	}
+
+	if (pPlot->getImprovementType() != NO_IMPROVEMENT)
+	{
+		eTempImprovement = pPlot->getImprovementType();
+
+		if (pPlot->getTeam() != getTeam())
+		{
+			lPillageGold = -1;
+
+			if (GC.getUSE_DO_PILLAGE_GOLD_CALLBACK()) // K-Mod. I've writen C to replace the python callback.
+			{
+				CyPlot* pyPlot = new CyPlot(pPlot);
+				CyUnit* pyUnit = new CyUnit(this);
+
+				CyArgsList argsList;
+				argsList.add(gDLL->getPythonIFace()->makePythonObject(pyPlot));	// pass in plot class
+				argsList.add(gDLL->getPythonIFace()->makePythonObject(pyUnit));	// pass in unit class
+
+				gDLL->getPythonIFace()->callFunction(PYGameModule, "doPillageGold", argsList.makeFunctionArgs(),&lPillageGold);
+
+				delete pyPlot;	// python fxn must not hold on to this pointer 
+				delete pyUnit;	// python fxn must not hold on to this pointer 
+
+				iPillageGold = (int)lPillageGold;
+			}
+			// K-Mod. C version of the original python code
+			if (lPillageGold < 0)
+			{
+				int iPillageBase = GC.getImprovementInfo((ImprovementTypes)pPlot->getImprovementType()).getPillageGold();
+				iPillageGold = 0;
+				iPillageGold += GC.getGameINLINE().getSorenRandNum(iPillageBase + 1, "Pillage Gold 1"); // Civ4 Reimagined: Added +1 in both instances to make the sum yield iPillageBase on average.
+				iPillageGold += GC.getGameINLINE().getSorenRandNum(iPillageBase + 1, "Pillage Gold 2");
+				iPillageGold += getPillageChange() * iPillageGold / 100;
+				
+				// Civ4 Reimagined
+				iPillageGold *= 100 + GET_PLAYER(getOwnerINLINE()).getLootingModifier() + GET_PLAYER(getOwnerINLINE()).getPillageGainModifier();
+				if (iPillageGold > 0)
+					iPillageGold /= 100;
+			}
+			// K-Mod end
+
+			if (iPillageGold > 0)
+			{
+				GET_PLAYER(getOwnerINLINE()).changeGold(iPillageGold);
+
+				szBuffer = gDLL->getText("TXT_KEY_MISC_PLUNDERED_GOLD_FROM_IMP", iPillageGold, GC.getImprovementInfo(pPlot->getImprovementType()).getTextKeyWide());
+				gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_PILLAGE", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
+
+				if (pPlot->isOwned())
+				{
+					szBuffer = gDLL->getText("TXT_KEY_MISC_IMP_DESTROYED", GC.getImprovementInfo(pPlot->getImprovementType()).getTextKeyWide(), getNameKey(), getVisualCivAdjective(pPlot->getTeam()));
+					gDLL->getInterfaceIFace()->addHumanMessage(pPlot->getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_PILLAGED", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pPlot->getX_INLINE(), pPlot->getY_INLINE(), true, true);
+				}
+			}
+		}
+
+		pPlot->setImprovementType((ImprovementTypes)(GC.getImprovementInfo(pPlot->getImprovementType()).getImprovementPillage()));
+	}
+	else if (pPlot->isRoute())
+	{
+		eTempRoute = pPlot->getRouteType();
+		pPlot->setRouteType(NO_ROUTE, true); // XXX downgrade rail???
+	}
+
+	setMadeAttack(true);
+
+	changeMoves(GC.getMOVE_DENOMINATOR());
+
+	if (pPlot->isActiveVisible(false))
+	{
+		// Coastal raid entity mission
+		CvMissionDefinition kDefiniton;
+		kDefiniton.setMissionTime(GC.getMissionInfo(MISSION_COASTAL_RAID).getTime() * gDLL->getSecsPerTurn());
+		kDefiniton.setMissionType(MISSION_COASTAL_RAID);
+		kDefiniton.setPlot(pPlot);
+		kDefiniton.setUnit(BATTLE_UNIT_ATTACKER, this);
+		kDefiniton.setUnit(BATTLE_UNIT_DEFENDER, NULL);
+		gDLL->getEntityIFace()->AddMission(&kDefiniton);
+	}
+
+	if (eTempImprovement != NO_IMPROVEMENT || eTempRoute != NO_ROUTE)
+	{
+		CvEventReporter::getInstance().unitPillage(this, eTempImprovement, eTempRoute, getOwnerINLINE());
 	}
 
 	return true;
