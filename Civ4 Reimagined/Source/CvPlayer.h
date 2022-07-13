@@ -1108,6 +1108,10 @@ public:
 
 	int getImprovementYieldChange(ImprovementTypes eIndex1, YieldTypes eIndex2) const;	// Exposed to Python
 	void changeImprovementYieldChange(ImprovementTypes eIndex1, YieldTypes eIndex2, int iChange);
+
+	// Civ4 Reimagined
+	int getTerrainYieldChange(TerrainTypes eIndex1, YieldTypes eIndex2) const;
+	void changeTerrainYieldChange(TerrainTypes eIndex1, YieldTypes eIndex2, int iChange);
 	
 	// Civ4 Reimagined
 	int getRadiusImprovementCommerceChange(ImprovementTypes eIndex1, CommerceTypes eIndex2) const;
@@ -1850,6 +1854,7 @@ protected:
 	int** m_ppaaiSpecialistCommerceChanges; // Civ4 Reimagined
 	int** m_ppaaiSpecialistThresholdExtraYield; //Leoreth
 	int** m_ppaaiImprovementYieldChange;
+	int** m_ppaaiTerrainYieldChange; // Civ4 Reimagined
 	int** m_ppaaiRadiusImprovementCommerceChange; // Civ4 Reimagined
 	int** m_ppaaiBuildingYieldChange; // Civ4 Reimagined
 	int** m_ppaiFeatureCommerce; // Civ4 Reimagined

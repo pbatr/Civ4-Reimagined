@@ -6699,6 +6699,12 @@ int CvPlot::calculateYield(YieldTypes eYield, bool bDisplay) const
 	if (ePlayer != NO_PLAYER)
 	{
 		// Civ4 Reimagined
+		if (!isImpassable())
+		{
+			iYield += GET_PLAYER(ePlayer).getTerrainYieldChange(getTerrainType(), eYield);
+		}
+
+		// Civ4 Reimagined
 		if (getFeatureType() != NO_FEATURE)
 		{
 			iYield += GET_PLAYER(ePlayer).getFeatureExtraYield(getFeatureType(), eYield);
