@@ -46,6 +46,7 @@ CvPlayer::CvPlayer()
 	m_aiExtraYield = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
 	m_aiPeakAdjacencyExtraYield = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
 	m_aiCityOnHillsExtraYield = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
+	m_aiTownAdjacencyBonus = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
 	m_aiCapitalExtraYieldFromCityPercent = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
 	m_aiCapitalYieldRateModifier = new int[NUM_YIELD_TYPES];
 	m_aiExtraYieldThreshold = new int[NUM_YIELD_TYPES];
@@ -145,6 +146,7 @@ CvPlayer::~CvPlayer()
 	SAFE_DELETE_ARRAY(m_aiExtraYield); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiPeakAdjacencyExtraYield); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiCityOnHillsExtraYield); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_aiTownAdjacencyBonus); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiCapitalExtraYieldFromCityPercent); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiCapitalYieldRateModifier);
 	SAFE_DELETE_ARRAY(m_aiExtraYieldThreshold);
@@ -1042,6 +1044,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bNoReligionRemoval = false; // Civ4 Reimagined
 	m_bCoastalRaid = false; // Civ4 Reimagined
 	m_iTradeGoldModifierPerForeignResource = 0; // Civ4 Reimagined
+	m_bGainGreatWorkGoldWithHitBonuses = false; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -1066,6 +1069,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		m_aiExtraYield[iI] = 0; // Civ4 Reimagined
 		m_aiPeakAdjacencyExtraYield[iI] = 0; // Civ4 Reimagined
 		m_aiCityOnHillsExtraYield[iI] = 0; // Civ4 Reimagined
+		m_aiTownAdjacencyBonus[iI] = 0; // Civ4 Reimagined
 		m_aiCapitalExtraYieldFromCityPercent[iI] = 0; // Civ4 Reimagined
 		m_aiCapitalYieldRateModifier[iI] = 0;
 		m_aiExtraYieldThreshold[iI] = 0;
@@ -14431,6 +14435,57 @@ void CvPlayer::changeCityOnHillsExtraYield(YieldTypes eIndex, int iChange)
 
 
 // Civ4 Reimagined
+int CvPlayer::getTownAdjacencyBonus(YieldTypes eIndex) const		 
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < NUM_YIELD_TYPES, "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_aiTownAdjacencyBonus[eIndex];
+}
+
+
+// Civ4 Reimagined
+void CvPlayer::changeTownAdjacencyBonus(YieldTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < NUM_YIELD_TYPES, "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	if (iChange != 0)
+	{
+		m_aiTownAdjacencyBonus[eIndex] = (m_aiTownAdjacencyBonus[eIndex] + iChange);
+
+		invalidateYieldRankCache(eIndex);
+		
+		if (eIndex == YIELD_COMMERCE)
+		{
+			updateCommerce();
+		}
+		// Civ4 Reimagined
+		else if (eIndex == YIELD_PRODUCTION)
+		{
+			int iLoop;
+			for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+			{
+				for (int iCommerce = 0; iCommerce < NUM_COMMERCE_TYPES; ++iCommerce)
+				{
+					if (pLoopCity->getProductionToCommerceModifier((CommerceTypes)iCommerce) > 0)
+					{
+						pLoopCity->updateCommerce((CommerceTypes)iCommerce);
+					}
+				}
+			}
+		}
+
+		AI_makeAssignWorkDirty();
+
+		if (getTeam() == GC.getGameINLINE().getActiveTeam())
+		{
+			gDLL->getInterfaceIFace()->setDirty(CityInfo_DIRTY_BIT, true);
+		}
+	}
+}
+
+
+// Civ4 Reimagined
 int CvPlayer::getCapitalExtraYieldFromCityPercent(YieldTypes eIndex) const		 
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
@@ -20860,6 +20915,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bNoReligionRemoval); // Civ4 Reimagined
 	pStream->Read(&m_bCoastalRaid); // Civ4 Reimagined
 	pStream->Read(&m_iTradeGoldModifierPerForeignResource); // Civ4 Reimagined
+	pStream->Read(&m_bGainGreatWorkGoldWithHitBonuses); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -20895,6 +20951,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(NUM_YIELD_TYPES, m_aiExtraYield); // Civ4 Reimagined
 	pStream->Read(NUM_YIELD_TYPES, m_aiPeakAdjacencyExtraYield); // Civ4 Reimagined
 	pStream->Read(NUM_YIELD_TYPES, m_aiCityOnHillsExtraYield); // Civ4 Reimagined
+	pStream->Read(NUM_YIELD_TYPES, m_aiTownAdjacencyBonus); // Civ4 Reimagined
 	pStream->Read(NUM_YIELD_TYPES, m_aiCapitalExtraYieldFromCityPercent); // Civ4 Reimagined
 	pStream->Read(NUM_YIELD_TYPES, m_aiCapitalYieldRateModifier);
 	pStream->Read(NUM_YIELD_TYPES, m_aiExtraYieldThreshold);
@@ -21495,6 +21552,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_bNoReligionRemoval); // Civ4 Reimagined
 	pStream->Write(m_bCoastalRaid); // Civ4 Reimagined
 	pStream->Write(m_iTradeGoldModifierPerForeignResource); // Civ4 Reimagined
+	pStream->Write(m_bGainGreatWorkGoldWithHitBonuses); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -21520,6 +21578,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(NUM_YIELD_TYPES, m_aiExtraYield); // Civ4 Reimagined
 	pStream->Write(NUM_YIELD_TYPES, m_aiPeakAdjacencyExtraYield); // Civ4 Reimagined
 	pStream->Write(NUM_YIELD_TYPES, m_aiCityOnHillsExtraYield); // Civ4 Reimagined
+	pStream->Write(NUM_YIELD_TYPES, m_aiTownAdjacencyBonus); // Civ4 Reimagined
 	pStream->Write(NUM_YIELD_TYPES, m_aiCapitalExtraYieldFromCityPercent); // Civ4 Reimagined
 	pStream->Write(NUM_YIELD_TYPES, m_aiCapitalYieldRateModifier);
 	pStream->Write(NUM_YIELD_TYPES, m_aiExtraYieldThreshold);
@@ -28836,6 +28895,19 @@ bool CvPlayer::canCoastalRaid() const
 
 
 //Civ4 Reimagined
+void CvPlayer::setGainGreatWorkGoldWithHitBonuses(bool bNewValue)
+{
+	m_bGainGreatWorkGoldWithHitBonuses = bNewValue;
+}
+
+//Civ4 Reimagined
+bool CvPlayer::isGainGreatWorkGoldWithHitBonuses() const
+{
+	return m_bGainGreatWorkGoldWithHitBonuses;
+}
+
+
+//Civ4 Reimagined
 void CvPlayer::updateUniquePowers(TechTypes eTech)
 {
 	if (getID() == NO_PLAYER)
@@ -29079,6 +29151,15 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_ANCIENT)
 		{
 			changeStateReligionCommercePerPopulationOverThreshold(COMMERCE_GOLD, GC.getDefineINT("UNIQUE_POWER_KHMER"));
+			notifyUniquePowersChanged(true);
+		}
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_KOREA"))
+	{
+		if (eEra == ERA_INDUSTRIAL)
+		{
+			changeTownAdjacencyBonus(YIELD_COMMERCE, 3);
+			setGainGreatWorkGoldWithHitBonuses(true);
 			notifyUniquePowersChanged(true);
 		}
 	}

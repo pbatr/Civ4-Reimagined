@@ -6739,6 +6739,11 @@ int CvPlot::calculateYield(YieldTypes eYield, bool bDisplay) const
 					iYield += calculateAdjacencyBonus(eYield, eImprovement, pWorkingCity->getFarmAdjacencyBonus(eYield));
 				}
 			}
+
+			if (GET_PLAYER(ePlayer).getTownAdjacencyBonus(eYield) > 0 && eImprovement == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_TOWN"))
+			{
+				iYield += calculateAdjacencyBonus(eYield, eImprovement, GET_PLAYER(ePlayer).getTownAdjacencyBonus(eYield));
+			}
 		}
 
 		// Civ4 Reimagined

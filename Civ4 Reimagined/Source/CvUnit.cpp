@@ -6978,6 +6978,37 @@ int CvUnit::getGreatWorkCulture(const CvPlot* pPlot) const
 }
 
 
+// Civ4 Reimagined
+int CvUnit::getGreatWorkGold(const CvPlot* pPlot) const
+{
+	if (!GET_PLAYER(getOwnerINLINE()).isGainGreatWorkGoldWithHitBonuses())
+	{
+		return 0;
+	}
+
+	CvCity* pCity = pPlot->getPlotCity();
+
+	if (pCity == NULL)
+	{
+		return 0;
+	}
+
+	int iGold = getGreatPersonBulbScaling();
+
+	int iModifier = 0;
+	iModifier += GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(pCity->getNumBonuses((BonusTypes)GC.getInfoTypeForString("BONUS_MUSIC"))) / 2;
+	iModifier += GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(pCity->getNumBonuses((BonusTypes)GC.getInfoTypeForString("BONUS_MOVIES"))) / 2;
+
+	iGold *= iModifier;
+	iGold /= 100;
+
+	iGold *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getUnitTradePercent();
+	iGold /= 100;
+
+	return iGold;
+}
+
+
 bool CvUnit::canGreatWork(const CvPlot* pPlot) const
 {
 	// Civ4 Reimagined
@@ -7027,28 +7058,14 @@ bool CvUnit::greatWork()
 		pCity->setOccupationTimer(0);
 
 		int iCultureToAdd = 100 * getGreatWorkCulture(plot());
-/**
-*** K-Mod, 6/dec/10, Karadoc
-*** apply culture in one hit. We don't need fake 'free city culture' anymore.
-**/
-		/* original bts code
-		int iNumTurnsApplied = (GC.getDefineINT("GREAT_WORKS_CULTURE_TURNS") * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getUnitGreatWorkPercent()) / 100;
-
-		for (int i = 0; i < iNumTurnsApplied; ++i)
-		{
-			pCity->changeCultureTimes100(getOwnerINLINE(), iCultureToAdd / iNumTurnsApplied, true, true);
-		}
-
-		if (iNumTurnsApplied > 0)
-		{
-			pCity->changeCultureTimes100(getOwnerINLINE(), iCultureToAdd % iNumTurnsApplied, false, true);
-		}
-		*/
 		pCity->changeCultureTimes100(getOwnerINLINE(), iCultureToAdd, true, true);
 		GET_PLAYER(getOwnerINLINE()).AI_updateCommerceWeights(); // significant culture change may cause signficant weight changes.
-/**
-*** K-Mod end
-**/
+
+		// Civ4 Reimagined: Korea UP
+		if (getGreatWorkGold(plot()) > 0)
+		{
+			GET_PLAYER(getOwnerINLINE()).changeGold(getGreatWorkGold(plot()));
+		}
 	}
 
 	if (plot()->isActiveVisible(false))

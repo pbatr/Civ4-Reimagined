@@ -2545,8 +2545,16 @@ void CvDLLWidgetData::parseActionHelp(CvWidgetDataStruct &widgetDataStruct, CvWS
 
 					if (pSelectedUnit->canGreatWork(pMissionPlot))
 					{
-						szTempBuffer.Format(L"%s+%d%c", NEWLINE, pSelectedUnit->getGreatWorkCulture(pMissionPlot), GC.getCommerceInfo(COMMERCE_CULTURE).getChar());
-						szBuffer.append(szTempBuffer);
+						if (pSelectedUnit->getGreatWorkGold(pMissionPlot) > 0)
+						{
+							szTempBuffer.Format(L"%s+%d%c, +%d%c", NEWLINE, pSelectedUnit->getGreatWorkCulture(pMissionPlot), GC.getCommerceInfo(COMMERCE_CULTURE).getChar(), pSelectedUnit->getGreatWorkGold(pMissionPlot), GC.getCommerceInfo(COMMERCE_GOLD).getChar());
+							szBuffer.append(szTempBuffer);
+						}
+						else
+						{
+							szTempBuffer.Format(L"%s+%d%c", NEWLINE, pSelectedUnit->getGreatWorkCulture(pMissionPlot), GC.getCommerceInfo(COMMERCE_CULTURE).getChar());
+							szBuffer.append(szTempBuffer);
+						}
 						break;
 					}
 

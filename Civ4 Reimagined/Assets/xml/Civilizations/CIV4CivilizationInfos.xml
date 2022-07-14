@@ -2561,7 +2561,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_KOREAN</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<DescriptionUniquePower>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUniquePower>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_KOREA</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_SEOUL</City>
 				<City>TXT_KEY_CITY_NAME_PYONGYANG</City>

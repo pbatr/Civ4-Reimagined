@@ -926,6 +926,10 @@ public:
 	// Civ4 Reimagined
 	int getCityOnHillsExtraYield(YieldTypes eIndex) const;
 	void changeCityOnHillsExtraYield(YieldTypes eIndex, int iChange);
+
+	// Civ4 Reimagined
+	int getTownAdjacencyBonus(YieldTypes eIndex) const; // Civ4 Reimagined
+	void changeTownAdjacencyBonus(YieldTypes eIndex, int iChange); // Civ4 Reimagined
 	
 	// Civ4 Reimagined
 	int getCapitalExtraYieldFromCityPercent(YieldTypes eIndex) const;
@@ -1453,6 +1457,8 @@ public:
 	bool canCoastalRaid() const; // Civ4 Reimagined
 	void changeTradeGoldModifierPerForeignResource(int iChange); // Civ4 Reimagined
 	int getTradeGoldModifierPerForeignResource() const; // Civ4 Reimagined
+	void setGainGreatWorkGoldWithHitBonuses(bool bNewValue); // Civ4 Reimagined
+	bool isGainGreatWorkGoldWithHitBonuses() const; // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1732,6 +1738,7 @@ protected:
 	bool m_bNoReligionRemoval; // Civ4 Reimagined
 	bool m_bCoastalRaid; // Civ4 Reimagined
 	int m_iTradeGoldModifierPerForeignResource; // Civ4 Reimagined
+	bool m_bGainGreatWorkGoldWithHitBonuses; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
 
@@ -1768,6 +1775,7 @@ protected:
 	int* m_aiExtraYield; // Civ4 Reimagined
 	int* m_aiPeakAdjacencyExtraYield; // Civ4 Reimagined
 	int* m_aiCityOnHillsExtraYield; // Civ4 Reimagined
+	int* m_aiTownAdjacencyBonus; // Civ4 Reimagined
 	int* m_aiCapitalExtraYieldFromCityPercent; // Civ4 Reimagined
 	int* m_aiCapitalYieldRateModifier;
 	int* m_aiExtraYieldThreshold;
