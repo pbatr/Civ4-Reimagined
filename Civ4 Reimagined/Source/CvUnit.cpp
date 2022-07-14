@@ -6792,6 +6792,33 @@ bool CvUnit::hurry()
 	return true;
 }
 
+
+// Civ4 Reimagined: Portugal UP
+int CvUnit::getTradeGoldHappinessBonusModifier(const CvCity* pCity) const
+{
+	if (GET_PLAYER(getOwnerINLINE()).getTradeGoldModifierPerForeignResource() == 0)
+	{
+		return 0;
+	}
+
+	int iNumForeignBonuses = 0;
+	for (int iI = 0; iI < GC.getNumBonusInfos(); ++iI)
+	{
+		if (GC.getBonusInfo((BonusTypes)iI).getHappiness() < 1)
+		{
+			continue;
+		}
+
+		if (GET_PLAYER(getOwnerINLINE()).getNumTradeableBonuses((BonusTypes)iI) == 0)
+		{
+			iNumForeignBonuses += pCity->getNumBonusesInFatCross((BonusTypes)iI);
+		}
+	}
+
+	return iNumForeignBonuses * GET_PLAYER(getOwnerINLINE()).getTradeGoldModifierPerForeignResource();
+}
+
+
 // Civ4 Reimagined: Rewrittten
 int CvUnit::getTradeGold(const CvPlot* pPlot) const
 {
@@ -6855,8 +6882,10 @@ int CvUnit::getTradeGold(const CvPlot* pPlot) const
 		int iDistanceModifier = 130 * plotDistance(getX_INLINE(), getY_INLINE(), pCity->getX_INLINE(), pCity->getY_INLINE());
 		iDistanceModifier /= GC.getMapINLINE().maxPlotDistance();
 		iDistanceModifier = std::min(65, iDistanceModifier);
+
+		const iBonusModifier = getTradeGoldHappinessBonusModifier(pCity);
 		
-		iGold *= 100 + iPopulationModifier + iDistanceModifier;
+		iGold *= 100 + iPopulationModifier + iDistanceModifier + iBonusModifier;
 		iGold /= 100;
 	}
 		

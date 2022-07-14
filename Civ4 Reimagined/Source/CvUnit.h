@@ -232,6 +232,7 @@ public:
 	bool canHurry(const CvPlot* pPlot, bool bTestVisible = false) const;													// Exposed to Python
 	bool hurry();
 
+	int getTradeGoldHappinessBonusModifier(const CvCity* pCity) const; // Civ4 Reimagined
 	int getTradeGold(const CvPlot* pPlot) const;																									// Exposed to Python
 	bool canTrade(const CvPlot* pPlot, bool bTestVisible = false) const;													// Exposed to Python
 	bool trade();

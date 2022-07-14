@@ -442,5 +442,9 @@
 		<DefineName>UNIQUE_POWER_MONGOL_PILLAGE_HEAL</DefineName>
 		<iDefineIntVal>30</iDefineIntVal>
 	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_PORTUGAL</DefineName>
+		<iDefineIntVal>50</iDefineIntVal> <!-- Trade gold modifier per foreign happiness bonus in city fatcross -->
+	</Define>
 	<!-- Unique Powers end -->
 </Civ4Defines>

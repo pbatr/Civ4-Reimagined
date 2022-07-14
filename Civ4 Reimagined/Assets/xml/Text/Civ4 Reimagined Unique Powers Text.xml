@@ -279,4 +279,8 @@
 		<Tag>TXT_KEY_MISSION_COASTAL_RAID_HELP</Tag>
 		<English>This order will pillage the improvement of target land tile (counts as attack).</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_PORTUGAL</Tag>
+		<English>After entering the Medieval Era: +100%[ICON_COMMERCE] from oversea trade routes. Trade missions grant 50% more gold for each instance of a happiness resource in trading city's fatcross that Portugal does not have access to without import trading.</English>
+	</TEXT>
 </Civ4GameText>

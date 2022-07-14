@@ -1041,6 +1041,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bCityRevoltOnKill = false; // Civ4 Reimagined
 	m_bNoReligionRemoval = false; // Civ4 Reimagined
 	m_bCoastalRaid = false; // Civ4 Reimagined
+	m_iTradeGoldModifierPerForeignResource = 0; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -20858,6 +20859,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bCityRevoltOnKill); // Civ4 Reimagined
 	pStream->Read(&m_bNoReligionRemoval); // Civ4 Reimagined
 	pStream->Read(&m_bCoastalRaid); // Civ4 Reimagined
+	pStream->Read(&m_iTradeGoldModifierPerForeignResource); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -21492,6 +21494,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_bCityRevoltOnKill); // Civ4 Reimagined
 	pStream->Write(m_bNoReligionRemoval); // Civ4 Reimagined
 	pStream->Write(m_bCoastalRaid); // Civ4 Reimagined
+	pStream->Write(m_iTradeGoldModifierPerForeignResource); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -27903,6 +27906,21 @@ void CvPlayer::changeGreatPeopleRatePerReligionModifier(int iChange)
 }
 
 // Civ4 Reimagined
+int CvPlayer::getTradeGoldModifierPerForeignResource() const
+{
+	return m_iTradeGoldModifierPerForeignResource;
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeTradeGoldModifierPerForeignResource(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iTradeGoldModifierPerForeignResource += iChange;
+	}
+}
+
+// Civ4 Reimagined
 CivicTypes CvPlayer::getFreeCivicEnabled() const
 {
 	return m_iFreeCivicEnabled;
@@ -29090,6 +29108,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_ANCIENT)
 		{
 			changePillageHeal(GC.getDefineINT("UNIQUE_POWER_MONGOL_PILLAGE_HEAL"));
+			notifyUniquePowersChanged(true);
 		}
 		else if (eEra == ERA_MEDIEVAL)
 		{
@@ -29102,6 +29121,16 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		{
 			changeExtraMovesInGoldenAge(DOMAIN_LAND, 1);
 			changeGoldenAgeModifier(40);
+			notifyUniquePowersChanged(true);
+		}
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_PORTUGAL"))
+	{
+		if (eEra == ERA_MEDIEVAL)
+		{
+			changeTradeGoldModifierPerForeignResource(GC.getDefineINT("UNIQUE_POWER_PORTUGAL"));
+			changeCoastalTradeRouteModifier(100);
+			notifyUniquePowersChanged(true);
 		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME"))

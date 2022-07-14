@@ -19146,7 +19146,7 @@ void CvGameTextMgr::setTradeRouteHelp(CvWStringBuffer &szBuffer, int iRoute, CvC
 					if (GET_PLAYER(pCity->getOwnerINLINE()).isSpecialTradeRoutePerPlayer())
 					{
 						szBuffer.append(NEWLINE);
-						szBuffer.append(gDLL->getText("TXT_KEY_SPECIAL_TRADE_MOD", GC.getDefineINT("UNIQUE_POWER_CARTHARGE")));
+						szBuffer.append(gDLL->getText("TXT_KEY_TRADE_ROUTE_MOD_UNIQUE", GC.getDefineINT("UNIQUE_POWER_CARTHARGE")));
 					}
 				}
 
