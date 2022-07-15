@@ -5456,6 +5456,7 @@ m_iFreeExperience(0),
 m_iWorkerSpeedModifier(0),
 m_iImprovementUpgradeRateModifier(0),
 m_iMilitaryProductionModifier(0),
+m_iFreeWorkers(0), // Civ4 Reimagined
 m_iBaseFreeUnits(0),
 m_iBaseFreeMilitaryUnits(0),
 m_iFreeUnitsPopulationPercent(0),
@@ -5742,6 +5743,12 @@ int CvCivicInfo::getImprovementUpgradeRateModifier() const
 int CvCivicInfo::getMilitaryProductionModifier() const
 {
 	return m_iMilitaryProductionModifier;
+}
+
+// Civ4 Reimagined
+int CvCivicInfo::getFreeWorkers() const
+{
+	return m_iFreeWorkers;
 }
 
 int CvCivicInfo::getBaseFreeUnits() const
@@ -6439,6 +6446,7 @@ void CvCivicInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iWorkerSpeedModifier);
 	stream->Read(&m_iImprovementUpgradeRateModifier);
 	stream->Read(&m_iMilitaryProductionModifier);
+	stream->Read(&m_iFreeWorkers); // Civ4 Reimagined
 	stream->Read(&m_iBaseFreeUnits);
 	stream->Read(&m_iBaseFreeMilitaryUnits);
 	stream->Read(&m_iFreeUnitsPopulationPercent);
@@ -6727,6 +6735,7 @@ void CvCivicInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iWorkerSpeedModifier);
 	stream->Write(m_iImprovementUpgradeRateModifier);
 	stream->Write(m_iMilitaryProductionModifier);
+	stream->Write(m_iFreeWorkers); // Civ4 Reimagined
 	stream->Write(m_iBaseFreeUnits);
 	stream->Write(m_iBaseFreeMilitaryUnits);
 	stream->Write(m_iFreeUnitsPopulationPercent);
@@ -6888,6 +6897,7 @@ bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iWorkerSpeedModifier, "iWorkerSpeedModifier");
 	pXML->GetChildXmlValByName(&m_iImprovementUpgradeRateModifier, "iImprovementUpgradeRateModifier");
 	pXML->GetChildXmlValByName(&m_iMilitaryProductionModifier, "iMilitaryProductionModifier");
+	pXML->GetChildXmlValByName(&m_iFreeWorkers, "iFreeWorkers");
 	pXML->GetChildXmlValByName(&m_iBaseFreeUnits, "iBaseFreeUnits");
 	pXML->GetChildXmlValByName(&m_iBaseFreeMilitaryUnits, "iBaseFreeMilitaryUnits");
 	pXML->GetChildXmlValByName(&m_iFreeUnitsPopulationPercent, "iFreeUnitsPopulationPercent");

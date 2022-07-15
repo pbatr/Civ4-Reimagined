@@ -1365,6 +1365,7 @@ public:
 	int getWorkerSpeedModifier() const;				// Exposed to Python
 	int getImprovementUpgradeRateModifier() const;				// Exposed to Python
 	int getMilitaryProductionModifier() const;				// Exposed to Python
+	int getFreeWorkers() const; // Civ4 Reimagined
 	int getBaseFreeUnits() const;				// Exposed to Python
 	int getBaseFreeMilitaryUnits() const;				// Exposed to Python
 	int getFreeUnitsPopulationPercent() const;				// Exposed to Python
@@ -1516,6 +1517,7 @@ protected:
 	int m_iWorkerSpeedModifier;
 	int m_iImprovementUpgradeRateModifier;
 	int m_iMilitaryProductionModifier;
+	int m_iFreeWorkers; // Civ4 Reimagined
 	int m_iBaseFreeUnits;
 	int m_iBaseFreeMilitaryUnits;
 	int m_iFreeUnitsPopulationPercent;

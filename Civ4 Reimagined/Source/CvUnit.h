@@ -327,7 +327,11 @@ public:
 	bool isGoldenAge() const;																							// Exposed to Python
 	bool isNoUpkeep() const; // Civ4 Reimagined
 	bool isSlave() const; // Civ4 Reimagined
-	bool canCoexistWithEnemyUnit(TeamTypes eTeam) const;																				// Exposed to Python
+	bool canCoexistWithEnemyUnit(TeamTypes eTeam) const;
+
+	// Civ4 Reimagined
+	void setIsFreeWorker(bool bNewValue);
+	bool isFreeWorker() const;																				// Exposed to Python
 
 	DllExport bool isFighting() const;																		// Exposed to Python						
 	DllExport bool isAttacking() const;																		// Exposed to Python						
@@ -888,6 +892,7 @@ protected:
 	bool m_bInfoBarDirty;
 	bool m_bBlockading;
 	bool m_bAirCombat;
+	bool m_bFreeWorker; // Civ4 Reimagined
 
 	PlayerTypes m_eOwner;
 	PlayerTypes m_eCapturingPlayer;

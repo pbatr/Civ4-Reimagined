@@ -488,6 +488,11 @@ public:
 	int getNumOutsideUnits() const;	// Exposed to Python
 	void changeNumOutsideUnits(int iChange);
 
+	// Civ4 Reimagined
+	int getFreeWorkers() const;
+	void changeFreeWorkers(int iChange);
+	void initFreeWorkers(int iChange);
+
 	int getBaseFreeUnits() const;	// Exposed to Python
 	void changeBaseFreeUnits(int iChange);
 
@@ -1594,6 +1599,7 @@ protected:
 	int m_iCityDefenseModifier;
 	int m_iNumNukeUnits;
 	int m_iNumOutsideUnits;
+	int m_iFreeWorkers; // Civ4 Reimagined
 	int m_iBaseFreeUnits;
 	int m_iBaseFreeMilitaryUnits;
 	int m_iFreeUnitsPopulationPercent;

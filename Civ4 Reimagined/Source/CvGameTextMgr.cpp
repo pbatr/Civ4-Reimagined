@@ -7397,6 +7397,13 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 		}
 	}
 
+	// Civ4 Reimagined
+	if (GC.getCivicInfo(eCivic).getFreeWorkers() != 0)
+	{
+		szHelpText.append(NEWLINE);
+		szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_FREE_WORKERS", GC.getCivicInfo(eCivic).getFreeWorkers(), GC.getCivicInfo(eCivic).getFreeWorkers()));
+	}
+
 	//	Free units population percent
 	if ((GC.getCivicInfo(eCivic).getBaseFreeUnits() != 0) || (GC.getCivicInfo(eCivic).getFreeUnitsPopulationPercent() != 0))
 	{
@@ -9762,16 +9769,23 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit, bool
 		// Civ4 Reimagined
 		if (!(GC.getGameINLINE().isOption(GAMEOPTION_UNLIMITED_WORKERS) && GC.getUnitClassInfo(eUnitClass).isUnlimitedWorkerGameOption()) && !GC.getUnitInfo(eUnit).isIgnoreMaxInstances())
 		{
+			int iMaxInstances = GC.getUnitClassInfo(eUnitClass).getMaxPlayerInstances();
+
+			if (ePlayer != NO_PLAYER && GC.getUnitClassInfo(eUnitClass).isUnlimitedWorkerGameOption())
+			{
+				iMaxInstances += GET_PLAYER(ePlayer).getFreeWorkers();
+			}
+
 			if (pCity == NULL)
 			{
 				szBuffer.append(NEWLINE);
-				szBuffer.append(gDLL->getText("TXT_KEY_UNIT_NATIONAL_UNIT_ALLOWED", GC.getUnitClassInfo(eUnitClass).getMaxPlayerInstances()));
+				szBuffer.append(gDLL->getText("TXT_KEY_UNIT_NATIONAL_UNIT_ALLOWED", iMaxInstances));
 			}
 			else
 			{
 				//szBuffer.append(gDLL->getText("TXT_KEY_UNIT_NATIONAL_UNIT_LEFT", (GC.getUnitClassInfo(eUnitClass).getMaxPlayerInstances() - (ePlayer != NO_PLAYER ? GET_PLAYER(ePlayer).getUnitClassCountPlusMaking(eUnitClass) : 0))));
 				// K-Mod
-				int iRemaining = std::max(0, GC.getUnitClassInfo(eUnitClass).getMaxPlayerInstances() - (ePlayer != NO_PLAYER ? GET_PLAYER(ePlayer).getUnitClassCountPlusMaking(eUnitClass) : 0));
+				int iRemaining = std::max(0, iMaxInstances - (ePlayer != NO_PLAYER ? GET_PLAYER(ePlayer).getUnitClassCountPlusMaking(eUnitClass) : 0));
 				szBuffer.append(NEWLINE);
 
 				if (iRemaining <= 0)

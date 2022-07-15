@@ -879,6 +879,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iCityDefenseModifier = 0;
 	m_iNumNukeUnits = 0; 
 	m_iNumOutsideUnits = 0; 
+	m_iFreeWorkers = 0; // Civ4 Reimagined
 	m_iBaseFreeUnits = 0;
 	m_iBaseFreeMilitaryUnits = 0;
 	m_iFreeUnitsPopulationPercent = 0;
@@ -3375,6 +3376,24 @@ CvUnit* CvPlayer::initUnit(UnitTypes eUnit, int iX, int iY, UnitAITypes eUnitAI,
 	}
 
 	return pUnit;
+}
+
+
+void CvPlayer::initFreeWorkers(int iChange)
+{
+	CvCity* pCapitalCity = getCapitalCity();
+	UnitTypes eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_WORKER");
+
+	if (!pCapitalCity)
+	{
+		return;
+	}
+
+	for (int iI = 0; iI < iChange; ++iI)
+	{
+		CvUnit* pUnit = initUnit(eUnit, pCapitalCity->getX_INLINE(), pCapitalCity->getY_INLINE());
+		pUnit->setIsFreeWorker(true);
+	}
 }
 
 
@@ -10854,6 +10873,44 @@ void CvPlayer::changeNumOutsideUnits(int iChange)
 }
 
 
+int CvPlayer::getFreeWorkers() const																		
+{
+	return m_iFreeWorkers;
+}
+
+
+void CvPlayer::changeFreeWorkers(int iChange)														
+{
+	if (iChange != 0)
+	{
+		m_iFreeWorkers = (m_iFreeWorkers + iChange);
+
+		if (iChange > 0)
+		{
+			initFreeWorkers(iChange);
+		}
+		else
+		{
+			int iLoop;
+			int iKilledUnits = 0;
+			for(CvUnit* pLoopUnit = firstUnit(&iLoop); pLoopUnit != NULL && iKilledUnits < -iChange; pLoopUnit = nextUnit(&iLoop))
+			{
+				if (pLoopUnit->isFreeWorker())
+				{
+					pLoopUnit->kill(false, getID());
+					iKilledUnits++;
+				}
+			}
+			
+			if (iKilledUnits > 0)
+			{
+				gDLL->getInterfaceIFace()->addHumanMessage(getID(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MISC_FREE_WORKERS_LOST").GetCString(), "AS2D_UNITDISBANDED", MESSAGE_TYPE_MINOR_EVENT);
+			}
+		}
+	}
+}
+
+
 int CvPlayer::getBaseFreeUnits() const																		
 {
 	return m_iBaseFreeUnits;
@@ -15491,9 +15548,18 @@ bool CvPlayer::isUnitClassMaxedOut(UnitClassTypes eIndex, int iExtra) const
 		return false;
 	}
 
-	FAssertMsg(getUnitClassCount(eIndex) <= GC.getUnitClassInfo(eIndex).getMaxPlayerInstances(), "getUnitClassCount is expected to be less than maximum bound of MaxPlayerInstances (invalid index)");
+	int iMaxInstances = GC.getUnitClassInfo(eIndex).getMaxPlayerInstances();
 
-	return ((getUnitClassCount(eIndex) + iExtra) >= GC.getUnitClassInfo(eIndex).getMaxPlayerInstances());
+	// Civ4 Reimagined
+	if (GC.getUnitClassInfo(eIndex).isUnlimitedWorkerGameOption())
+	{
+		iMaxInstances += getFreeWorkers();
+	}
+
+
+	FAssertMsg(getUnitClassCount(eIndex) <= iMaxInstances, "getUnitClassCount is expected to be less than maximum bound of MaxPlayerInstances (invalid index)");
+
+	return ((getUnitClassCount(eIndex) + iExtra) >= iMaxInstances);
 }
 
 
@@ -20552,6 +20618,7 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
 	changeBonusValueModifier(GC.getCivicInfo(eCivic).getBonusRatioModifier() * iChange); //Civ4 Reimagined
 	changeResearchPerCulture(GC.getCivicInfo(eCivic).getResearchPerCulture() * iChange); //Civ4 Reimagined
 	changeUnlimitedAnimalXPCount((GC.getCivicInfo(eCivic).isUnlimitedAnimalXP()) ? iChange : 0); // Civ4 Reimagined
+	changeFreeWorkers(GC.getCivicInfo(eCivic).getFreeWorkers() * iChange); //Civ4 Reimagined
 
 	// Civ4 Reimagined: Ideologies
 	const IdeologyTypes eCurrentIdeology = getIdeology();
@@ -20792,6 +20859,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iCityDefenseModifier);
 	pStream->Read(&m_iNumNukeUnits);
 	pStream->Read(&m_iNumOutsideUnits);
+	pStream->Read(&m_iFreeWorkers); // Civ4 Reimagined
 	pStream->Read(&m_iBaseFreeUnits);
 	pStream->Read(&m_iBaseFreeMilitaryUnits);
 	pStream->Read(&m_iFreeUnitsPopulationPercent);
@@ -21437,6 +21505,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iCityDefenseModifier);
 	pStream->Write(m_iNumNukeUnits);
 	pStream->Write(m_iNumOutsideUnits);
+	pStream->Write(m_iFreeWorkers); // Civ4 Reimagined
 	pStream->Write(m_iBaseFreeUnits);
 	pStream->Write(m_iBaseFreeMilitaryUnits);
 	pStream->Write(m_iFreeUnitsPopulationPercent);

@@ -710,6 +710,7 @@
 	<ElementType name="iWorkerSpeedModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="iImprovementUpgradeRateModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="iMilitaryProductionModifier" content="textOnly" dt:type="int"/>
+	<ElementType name="iFreeWorkers" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iBaseFreeUnits" content="textOnly" dt:type="int"/>
 	<ElementType name="iBaseFreeMilitaryUnits" content="textOnly" dt:type="int"/>
 	<ElementType name="iFreeUnitsPopulationPercent" content="textOnly" dt:type="int"/>
@@ -1001,6 +1002,7 @@
 		<element type="iWorkerSpeedModifier"/>
 		<element type="iImprovementUpgradeRateModifier"/>
 		<element type="iMilitaryProductionModifier"/>
+		<element type="iFreeWorkers" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="iBaseFreeUnits"/>
 		<element type="iBaseFreeMilitaryUnits"/>
 		<element type="iFreeUnitsPopulationPercent"/>

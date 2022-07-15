@@ -14971,9 +14971,9 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	iValue += -(kCivic.getGoldPerUnit() * getNumUnits());
 	iValue += -(kCivic.getGoldPerMilitaryUnit() * getNumMilitaryUnits() * iWarmongerPercent) / 200; */
 	// K-Mod, just a bunch of minor accuracy improvements to these approximations.
-	if (kCivic.getWorkerSpeedModifier() != 0)
+	if (kCivic.getWorkerSpeedModifier() != 0 || kCivic.getFreeWorkers() != 0)
 	{
-		int iWorkers = 0;
+		int iNeededWorkers = 0;
 		// Civ4 Reimagined
 		int iTempValue = kCivic.getWorkerSpeedModifier() * AI_getNumAIUnits(UNITAI_WORKER);
 		if (iTempValue != 0)
@@ -14983,14 +14983,15 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		int iLoop;
 		for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 		{
-			iWorkers += 2 * pLoopCity->AI_getWorkersNeeded();
+			iNeededWorkers += 2 * pLoopCity->AI_getWorkersNeeded();
 		}
-		iWorkers -= AI_getNumAIUnits(UNITAI_WORKER);
-		if (iWorkers > 0)
+		iNeededWorkers -= AI_getNumAIUnits(UNITAI_WORKER);
+		if (iNeededWorkers > 0)
 		{
-			iTempValue += kCivic.getWorkerSpeedModifier() * iWorkers / 30;
+			iTempValue += kCivic.getWorkerSpeedModifier() * iNeededWorkers / 30;  
 		}
-		if (gPlayerLogLevel > 2) logBBAI("	Civic Value of Workerspeed modifier: %d", iTempValue);
+		iTempValue += kCivic.getFreeWorkers() * (iNeededWorkers + 1) * 2;
+		if (gPlayerLogLevel > 2) logBBAI("	Civic Value of free workers / workerspeedmodifier: %d", iTempValue);
 		iValue += iTempValue;
 	}
 	

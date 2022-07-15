@@ -404,6 +404,7 @@ void CvUnit::reset(int iID, UnitTypes eUnit, PlayerTypes eOwner, bool bConstruct
 	m_bInfoBarDirty = false;
 	m_bBlockading = false;
 	m_bAirCombat = false;
+	m_bFreeWorker = false; // Civ4 Reimagined
 
 	m_eOwner = eOwner;
 	m_eCapturingPlayer = NO_PLAYER;
@@ -11477,6 +11478,19 @@ bool CvUnit::isAirCombat() const
 	return m_bAirCombat;
 }
 
+void CvUnit::setIsFreeWorker(bool bNewValue)
+{
+	m_bFreeWorker = bNewValue;
+
+	CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_FREE_WORKER");
+	setName(szBuffer);
+}
+
+bool CvUnit::isFreeWorker() const
+{
+	return m_bFreeWorker;
+}
+
 int CvUnit::getCombatTimer() const
 {
 	return m_iCombatTimer;
@@ -13105,6 +13119,7 @@ void CvUnit::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bCombatFocus);
 	// m_bInfoBarDirty not saved...
 	pStream->Read(&m_bBlockading);
+	pStream->Read(&m_bFreeWorker); // Civ4 Reimagined
 	if (uiFlag > 0)
 	{
 		pStream->Read(&m_bAirCombat);
@@ -13210,6 +13225,7 @@ void CvUnit::write(FDataStreamBase* pStream)
 	pStream->Write(m_bCombatFocus);
 	// m_bInfoBarDirty not saved...
 	pStream->Write(m_bBlockading);
+	pStream->Write(m_bFreeWorker); // Civ4 Reimagined
 	pStream->Write(m_bAirCombat);
 
 	pStream->Write(m_eOwner);
