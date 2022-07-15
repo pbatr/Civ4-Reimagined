@@ -622,7 +622,7 @@ void CvPlayer::initInGame(PlayerTypes eID)
 // Civ4 Reimagined
 void CvPlayer::setupEurekas()
 {
-	if (!isHuman())
+	if (!isHuman() || isHumanDisabled())
 	{
 		for (int iI = 0; iI < GC.getNumTechInfos(); iI++)
 		{

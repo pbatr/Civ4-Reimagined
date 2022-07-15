@@ -66,7 +66,6 @@ public:
 protected:
 
 	void uninit();
-	void setupEurekas(); // Civ4 Reimagined
 
 public:
 
@@ -109,7 +108,8 @@ public:
 /************************************************************************************************/
 	DllExport bool isHuman() const;	// Exposed to Python	
 	DllExport void updateHuman();
-	DllExport bool isBarbarian() const;	// Exposed to Python	
+	DllExport bool isBarbarian() const;	// Exposed to Python
+	void setupEurekas(); // Civ4 Reimagined	
 
 	// K-Mod note: I've changed getName, getCivilizationDescription, and getCivilizationShortDescription to only give accurate information if the active player has met this player.
 	// The "key" versions of those functions are unchanged. This is important because getNameKey and so on are used to create messages for the replay.
