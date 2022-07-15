@@ -5058,6 +5058,7 @@ void CvPlot::setOwner(PlayerTypes eNewValue, bool bCheckUnits, bool bUpdatePlotG
 	CLLNode<IDInfo>* pUnitNode;
 	CvCity* pOldCity;
 	CvCity* pNewCity;
+	CvCity* pWorkingCity;
 	CvUnit* pLoopUnit;
 	CvWString szBuffer;
 	UnitTypes eBestUnit;
@@ -5165,7 +5166,11 @@ void CvPlot::setOwner(PlayerTypes eNewValue, bool bCheckUnits, bool bUpdatePlotG
 				updatePlotGroupBonus(false);
 
 				// Civ4 Reimagined
-				getWorkingCity()->updateFeatureHappiness();
+				pWorkingCity = getWorkingCity();
+				if (pWorkingCity != NULL)
+				{
+					getWorkingCity()->updateFeatureHappiness();
+				}
 			}
 
 			pUnitNode = headUnitNode();
@@ -5225,7 +5230,11 @@ void CvPlot::setOwner(PlayerTypes eNewValue, bool bCheckUnits, bool bUpdatePlotG
 				updatePlotGroupBonus(true);
 
 				// Civ4 Reimagined
-				getWorkingCity()->updateFeatureHappiness();
+				pWorkingCity = getWorkingCity();
+				if (pWorkingCity != NULL)
+				{
+					getWorkingCity()->updateFeatureHappiness();
+				}
 			}
 
 			pUnitNode = headUnitNode();
