@@ -15852,12 +15852,23 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	
 	// Civ4 Reimagined
 	bool bAnyCapitalCommerceModifier = false;
+	bool bAnyRadiusImprovementHappiness = false;
 	
 	for (int iI = 0; iI < NUM_COMMERCE_TYPES; iI++)
 	{
 		if (kCivic.getCapitalCommerceModifierPerHappinessSurplus(iI) != 0)
 		{
 			bAnyCapitalCommerceModifier = true;
+			break;
+		}
+	}
+
+	// Civ4 Reimagined
+	for (int iI = 0; iI < GC.getNumImprovementInfos(); iI++)
+	{
+		if (kCivic.getRadiusImprovementHappinessChanges(iI) != 0)
+		{
+			bAnyRadiusImprovementHappiness = true;
 			break;
 		}
 	}
@@ -15873,7 +15884,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	}
 	
 	// Civ4 Reimagined: Happiness
-	if (kCivic.getCivicPercentAnger() != 0 || kCivic.getExtraHappiness() != 0 || kCivic.getHappyPerMilitaryUnit() != 0 || kCivic.getLargestCityHappiness() != 0 || kCivic.isNoForeignCultureUnhappiness() || kCivic.getProductionPerSurplusHappiness() != 0 || kCivic.isNoCapitalUnhappiness() != 0 || kCivic.getNonStateReligionHappiness() != 0 || kCivic.getStateReligionHappiness() != 0 || bAnyCapitalCommerceModifier || (kCivic.getWarWearinessModifier() != 0 && !bNoWarWeariness) || kCivic.getPopulationUnhappinessModifier() != 0)
+	if (kCivic.getCivicPercentAnger() != 0 || kCivic.getExtraHappiness() != 0 || kCivic.getHappyPerMilitaryUnit() != 0 || kCivic.getLargestCityHappiness() != 0 || kCivic.isNoForeignCultureUnhappiness() || kCivic.getProductionPerSurplusHappiness() != 0 || kCivic.isNoCapitalUnhappiness() != 0 || kCivic.getNonStateReligionHappiness() != 0 || kCivic.getStateReligionHappiness() != 0 || bAnyCapitalCommerceModifier || bAnyRadiusImprovementHappiness || (kCivic.getWarWearinessModifier() != 0 && !bNoWarWeariness) || kCivic.getPopulationUnhappinessModifier() != 0)
 	{
 		int iLoop;
 		CvCity* pLoopCity;
@@ -15885,6 +15896,18 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		if (kCivic.getHappyPerMilitaryUnit() != 0)
 		{
 			iGlobalHappiness += kCivic.getMilitaryHappinessLimit() > 0 ? kCivic.getMilitaryHappinessLimit() : 4;
+		}
+
+		// Civ4 Reimagined
+		if (bAnyRadiusImprovementHappiness)
+		{
+			for (int iI = 0; iI < GC.getNumImprovementInfos(); iI++)
+			{
+				if (kCivic.getRadiusImprovementHappinessChanges(iI) != 0 && getImprovementCount((ImprovementTypes)iI) > 0)
+				{
+					iGlobalHappiness += kCivic.getRadiusImprovementHappinessChanges(iI);
+				}
+			}	
 		}
 		
 		for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))

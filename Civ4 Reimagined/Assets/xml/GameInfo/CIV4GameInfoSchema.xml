@@ -924,6 +924,13 @@
 		<element type="ImprovementYieldChange" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
 	<!-- Civ4 Reimagined start -->
+	<ElementType name="RadiusImprovementHappinessChange" content="eltOnly">
+		<element type="ImprovementType"/>
+		<element type="iHappinessChange"/>
+	</ElementType>
+	<ElementType name="RadiusImprovementHappinessChanges" content="eltOnly">
+		<element type="RadiusImprovementHappinessChange" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
 	<ElementType name="ImprovementCommerce" content="eltOnly">
 		<element type="iCommerce" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
@@ -1067,6 +1074,7 @@
 		<element type="BuildingProductionModifiers" minOccurs="0"/> <!-- Leoreth -->
 		<element type="BuildingYieldChanges" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="FeatureHappinessChanges"/>
+		<element type="RadiusImprovementHappinessChanges" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="ImprovementYieldChanges"/>
 		<element type="RadiusImprovementCommerceChanges" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="DomainProductionModifiers" minOccurs="0"/> <!-- Leoreth -->

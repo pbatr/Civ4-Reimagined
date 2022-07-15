@@ -1120,6 +1120,10 @@ public:
 	// Civ4 Reimagined
 	int getRadiusImprovementCommerceChange(ImprovementTypes eIndex1, CommerceTypes eIndex2) const;
 	void changeRadiusImrovementCommerceChange(ImprovementTypes eIndex1, CommerceTypes eIndex2, int iChange);
+
+	// Civ4 Reimagined
+	int getRadiusImprovementHappiness(ImprovementTypes eIndex) const;	// Exposed to Python
+	void changeRadiusImprovementHappiness(ImprovementTypes eIndex, int iChange);
 	
 	// Civ4 Reimagined
 	int getBuildingYieldChange(BuildingClassTypes eIndex1, YieldTypes eIndex2) const;	// Exposed to Python
@@ -1820,6 +1824,7 @@ protected:
 	int* m_paiBonusExport;
 	int* m_paiBonusImport;
 	int* m_paiImprovementCount;
+	int* m_paiRadiusImprovementHappiness; // Civ4 Reimagined
 	int* m_paiFreeBuildingCount;
 	int* m_paiExtraBuildingHappiness;
 	int* m_paiExtraBuildingHealth;

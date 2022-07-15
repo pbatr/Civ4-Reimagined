@@ -1465,4 +1465,12 @@
 		<Tag>TXT_KEY_UNIT_INDIAN_VARU</Tag>
 		<English>Varu</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_IMPROVEMENT_RADIUS_HAPPINESS</Tag>
+		<English>[ICON_BULLET]%D1_Change%F2_HappOrUnhapp in Cities with a %s3_ImprovementName in City Radius</English>
+	</TEXT>	
+	<TEXT>
+		<Tag>TXT_KEY_HAPPY_FEATURES</Tag>
+		<English>+%d1_Change[ICON_HAPPY]: "The surrounding landscape and structures make us happy!"</English>
+	</TEXT>
 </Civ4GameText>

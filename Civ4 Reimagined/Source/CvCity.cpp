@@ -8051,12 +8051,14 @@ void CvCity::updateFeatureHappiness()
 {
 	int iNewFeatureGoodHappiness = 0;
 	int iNewFeatureBadHappiness = 0;
+	std::set<ImprovementTypes> aImprovementsInFatcross;
 
 	for (int iI = 0; iI < NUM_CITY_PLOTS; iI++)
 	{
 		CvPlot* pLoopPlot = getCityIndexPlot(iI);
 
-		if (pLoopPlot != NULL)
+		// Civ4 Reimagined: Only count plots in our empire
+		if (pLoopPlot != NULL && pLoopPlot->getOwnerINLINE() == getOwnerINLINE())
 		{
 			FeatureTypes eFeature = pLoopPlot->getFeatureType();
 
@@ -8077,6 +8079,7 @@ void CvCity::updateFeatureHappiness()
 
 			if (NO_IMPROVEMENT != eImprovement)
 			{
+				aImprovementsInFatcross.insert(eImprovement);
 				int iHappy = GC.getImprovementInfo(eImprovement).getHappiness();
 				if (iHappy > 0)
 				{
@@ -8087,6 +8090,20 @@ void CvCity::updateFeatureHappiness()
 					iNewFeatureBadHappiness += iHappy;
 				}
 			}
+		}
+	}
+
+	// Civ4 Reimagined
+	for (std::set<ImprovementTypes>::iterator it = aImprovementsInFatcross.begin(); it != aImprovementsInFatcross.end(); ++it)
+	{
+		const int iHappy = GET_PLAYER(getOwnerINLINE()).getRadiusImprovementHappiness(*it);
+		if (iHappy > 0)
+		{
+			iNewFeatureGoodHappiness += iHappy;
+		}
+		else if (iHappy < 0)
+		{
+			iNewFeatureBadHappiness += iHappy;
 		}
 	}
 
@@ -17586,67 +17603,7 @@ int CvCity::getBuildingHappyChange(BuildingClassTypes eBuildingClass) const
 	return 0;
 }
 
-/************************************************************************************************/
-/* UNOFFICIAL_PATCH                       10/22/09                                jdog5000      */
-/*                                                                                              */
-/* Bugfix                                                                                       */
-/************************************************************************************************/
-/* orginal bts code
-void CvCity::setBuildingHealthChange(BuildingClassTypes eBuildingClass, int iChange)
-{
-	for (BuildingChangeArray::iterator it = m_aBuildingHealthChange.begin(); it != m_aBuildingHealthChange.end(); ++it)
-	{
-		if ((*it).first == eBuildingClass)
-		{
-			if ((*it).second != iChange)
-			{
-				if ((*it).second > 0)
-				{
-					changeBuildingGoodHealth(-(*it).second);
-				}
-				else if ((*it).second < 0)
-				{
-					changeBuildingBadHealth((*it).second);
-				}
 
-				if (iChange == 0)
-				{
-					m_aBuildingHealthChange.erase(it);
-				}
-				else
-				{
-					(*it).second = iChange;
-				}
-
-				if (iChange > 0)
-				{
-					changeBuildingGoodHealth(iChange);
-				}
-				else if (iChange < 0)
-				{
-					changeBuildingBadHealth(-iChange);
-				}
-			}
-
-			return;
-		}
-	}
-
-	if (0 != iChange)
-	{
-		m_aBuildingHealthChange.push_back(std::make_pair(eBuildingClass, iChange));
-
-		if (iChange > 0)
-		{
-			changeBuildingGoodHappiness(iChange);
-		}
-		else if (iChange < 0)
-		{
-			changeBuildingGoodHappiness(-iChange);
-		}
-	}
-}
-*/
 void CvCity::setBuildingHealthChange(BuildingClassTypes eBuildingClass, int iChange)
 {
 	for (BuildingChangeArray::iterator it = m_aBuildingHealthChange.begin(); it != m_aBuildingHealthChange.end(); ++it)

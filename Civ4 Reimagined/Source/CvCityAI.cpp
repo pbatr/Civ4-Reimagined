@@ -7745,6 +7745,16 @@ int CvCityAI::AI_getImprovementValue(CvPlot* pPlot, ImprovementTypes eImprovemen
 		}
 
 		int iHappiness = GC.getImprovementInfo(eFinalImprovement).getHappiness();
+
+		// Civ4 Reimagined
+		if (kOwner.getRadiusImprovementHappiness(eFinalImprovement) != 0)
+		{
+			if (eImprovement == pPlot->getImprovementType() || countNumImprovedPlots(eImprovement) == 0)
+			{
+				iHappiness += kOwner.getRadiusImprovementHappiness(eFinalImprovement);
+			}
+		}
+
 		if ((iHappiness != 0) && !(kOwner.getAdvancedStartPoints() >= 0))
 		{
 			//int iHappyLevel = iHappyAdjust + (happyLevel() - unhappyLevel(0));

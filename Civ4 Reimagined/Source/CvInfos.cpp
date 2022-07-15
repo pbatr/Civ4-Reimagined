@@ -5529,6 +5529,7 @@ m_paiBuildingHappinessChanges(NULL),
 m_paiBuildingHealthChanges(NULL),
 m_paiBuildingProductionModifiers(NULL), //Leoreth
 m_paiFeatureHappinessChanges(NULL),
+m_paiRadiusImprovementHappinessChanges(NULL), // Civ4 Reimagined
 m_paiDomainProductionModifiers(NULL), // Leoreth
 m_paiDomainExperienceModifiers(NULL), // Leoreth
 //m_paiHostileCivics(NULL), // Civ4 Reimagined
@@ -5574,6 +5575,7 @@ CvCivicInfo::~CvCivicInfo()
 	SAFE_DELETE_ARRAY(m_paiBuildingHealthChanges);
 	SAFE_DELETE_ARRAY(m_paiBuildingProductionModifiers); //Leoreth
 	SAFE_DELETE_ARRAY(m_paiFeatureHappinessChanges);
+	SAFE_DELETE_ARRAY(m_paiRadiusImprovementHappinessChanges); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiDomainProductionModifiers); // Leoreth
 	SAFE_DELETE_ARRAY(m_paiDomainExperienceModifiers); // Leoreth
 	SAFE_DELETE_ARRAY(m_pabHurry);
@@ -6257,6 +6259,14 @@ int CvCivicInfo::getFeatureHappinessChanges(int i) const
 	return m_paiFeatureHappinessChanges ? m_paiFeatureHappinessChanges[i] : -1;
 }
 
+// Civ4 Reimagined
+int CvCivicInfo::getRadiusImprovementHappinessChanges(int i) const
+{
+	FAssertMsg(i < GC.getNumImprovementInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_paiRadiusImprovementHappinessChanges ? m_paiRadiusImprovementHappinessChanges[i] : -1;
+}
+
 bool CvCivicInfo::isHurry(int i) const							
 {
 	FAssertMsg(i < GC.getNumHurryInfos(), "Index out of bounds");
@@ -6571,6 +6581,11 @@ void CvCivicInfo::read(FDataStreamBase* stream)
 	m_paiFeatureHappinessChanges = new int[GC.getNumFeatureInfos()];
 	stream->Read(GC.getNumFeatureInfos(), m_paiFeatureHappinessChanges);
 
+	// Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_paiRadiusImprovementHappinessChanges);
+	m_paiRadiusImprovementHappinessChanges = new int[GC.getNumImprovementInfos()];
+	stream->Read(GC.getNumImprovementInfos(), m_paiRadiusImprovementHappinessChanges);
+
 	// Leoreth
 	SAFE_DELETE_ARRAY(m_paiDomainProductionModifiers);
 	m_paiDomainProductionModifiers = new int[NUM_DOMAIN_TYPES];
@@ -6790,6 +6805,7 @@ void CvCivicInfo::write(FDataStreamBase* stream)
 	stream->Write(GC.getNumBuildingClassInfos(), m_paiBuildingHealthChanges);
 	stream->Write(GC.getNumBuildingClassInfos(), m_paiBuildingProductionModifiers); //Leoreth
 	stream->Write(GC.getNumFeatureInfos(), m_paiFeatureHappinessChanges);
+	stream->Write(GC.getNumImprovementInfos(), m_paiRadiusImprovementHappinessChanges); // Civ4 Reimagined
 	stream->Write(NUM_DOMAIN_TYPES, m_paiDomainProductionModifiers); // Leoreth
 	stream->Write(NUM_DOMAIN_TYPES, m_paiDomainExperienceModifiers); // Leoreth
 	stream->Write(GC.getNumHurryInfos(), m_pabHurry);
@@ -7084,6 +7100,9 @@ bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
 	pXML->SetVariableListTagPair(&m_paiBuildingProductionModifiers, "BuildingProductionModifiers", sizeof(GC.getBuildingClassInfo((BuildingClassTypes)0)), GC.getNumBuildingClassInfos());
 
 	pXML->SetVariableListTagPair(&m_paiFeatureHappinessChanges, "FeatureHappinessChanges", sizeof(GC.getFeatureInfo((FeatureTypes)0)), GC.getNumFeatureInfos());
+
+	// Civ4 Reimagined
+	pXML->SetVariableListTagPair(&m_paiRadiusImprovementHappinessChanges, "RadiusImprovementHappinessChanges", sizeof(GC.getImprovementInfo((ImprovementTypes)0)), GC.getNumImprovementInfos());
 
 	// Leoreth
 	pXML->SetVariableListTagPair(&m_paiDomainProductionModifiers, "DomainProductionModifiers", sizeof(GC.getDomainInfo((DomainTypes)0)), NUM_DOMAIN_TYPES);

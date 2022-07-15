@@ -5163,6 +5163,9 @@ void CvPlot::setOwner(PlayerTypes eNewValue, bool bCheckUnits, bool bUpdatePlotG
 				}
 
 				updatePlotGroupBonus(false);
+
+				// Civ4 Reimagined
+				getWorkingCity()->updateFeatureHappiness();
 			}
 
 			pUnitNode = headUnitNode();
@@ -5220,6 +5223,9 @@ void CvPlot::setOwner(PlayerTypes eNewValue, bool bCheckUnits, bool bUpdatePlotG
 				}
 
 				updatePlotGroupBonus(true);
+
+				// Civ4 Reimagined
+				getWorkingCity()->updateFeatureHappiness();
 			}
 
 			pUnitNode = headUnitNode();

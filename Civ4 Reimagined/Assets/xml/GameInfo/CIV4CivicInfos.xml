@@ -696,6 +696,12 @@
 				</BuildingYieldChange>
 			</BuildingYieldChanges>
 			<FeatureHappinessChanges/>
+			<RadiusImprovementHappinessChanges>
+				<RadiusImprovementHappinessChange>
+					<ImprovementType>IMPROVEMENT_FORT</ImprovementType>
+					<iHappinessChange>1</iHappinessChange>
+				</RadiusImprovementHappinessChange>
+			</RadiusImprovementHappinessChanges>
 			<ImprovementYieldChanges/>
 			<RadiusImprovementCommerceChanges>
 				<RadiusImprovementCommerceChange>

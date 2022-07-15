@@ -85,6 +85,7 @@ CvPlayer::CvPlayer()
 	m_paiBonusExport = NULL;
 	m_paiBonusImport = NULL;
 	m_paiImprovementCount = NULL;
+	m_paiRadiusImprovementHappiness = NULL; // Civ4 Reimagined
 	m_paiFreeBuildingCount = NULL;
 	m_paiExtraBuildingHappiness = NULL;
 	m_paiExtraBuildingHealth = NULL;
@@ -673,6 +674,7 @@ void CvPlayer::uninit()
 	SAFE_DELETE_ARRAY(m_paiBonusExport);
 	SAFE_DELETE_ARRAY(m_paiBonusImport);
 	SAFE_DELETE_ARRAY(m_paiImprovementCount);
+	SAFE_DELETE_ARRAY(m_paiRadiusImprovementHappiness); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiFreeBuildingCount);
 	SAFE_DELETE_ARRAY(m_paiExtraBuildingHappiness);
 	SAFE_DELETE_ARRAY(m_paiExtraBuildingHealth);
@@ -1174,9 +1176,12 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		FAssertMsg(0 < GC.getNumImprovementInfos(), "GC.getNumImprovementInfos() is not greater than zero but it is used to allocate memory in CvPlayer::reset");
 		FAssertMsg(m_paiImprovementCount==NULL, "about to leak memory, CvPlayer::m_paiImprovementCount");
 		m_paiImprovementCount = new int [GC.getNumImprovementInfos()];
+		FAssertMsg(m_paiRadiusImprovementHappiness==NULL, "about to leak memory, CvPlayer::m_paiRadiusImprovementHappiness");
+		m_paiRadiusImprovementHappiness = new int [GC.getNumImprovementInfos()];
 		for (iI = 0; iI < GC.getNumImprovementInfos(); iI++)
 		{
 			m_paiImprovementCount[iI] = 0;
+			m_paiRadiusImprovementHappiness[iI] = 0;
 		}
 
 		FAssertMsg(m_paiFreeBuildingCount==NULL, "about to leak memory, CvPlayer::m_paiFreeBuildingCount");
@@ -15252,6 +15257,31 @@ void CvPlayer::changeImprovementCount(ImprovementTypes eIndex, int iChange)
 }
 
 
+int CvPlayer::getRadiusImprovementHappiness(ImprovementTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumImprovementInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_paiRadiusImprovementHappiness[eIndex];
+}
+
+
+void CvPlayer::changeRadiusImprovementHappiness(ImprovementTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumImprovementInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+	m_paiRadiusImprovementHappiness[eIndex] = (m_paiRadiusImprovementHappiness[eIndex] + iChange);
+
+	int iLoop;
+	if (iChange != 0)
+	{
+		for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+		{
+			pLoopCity->updateFeatureHappiness();
+		}
+	}
+}
+
+
 int CvPlayer::getFreeBuildingCount(BuildingTypes eIndex) const
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
@@ -20658,6 +20688,9 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
 
 	for (iI = 0; iI < GC.getNumImprovementInfos(); iI++)
 	{
+		// Civ4 Reimagined
+		changeRadiusImprovementHappiness((ImprovementTypes)iI, (GC.getCivicInfo(eCivic).getRadiusImprovementHappinessChanges(iI) * iChange));
+
 		for (iJ = 0; iJ < NUM_YIELD_TYPES; iJ++)
 		{
 			changeImprovementYieldChange(((ImprovementTypes)iI), ((YieldTypes)iJ), (GC.getCivicInfo(eCivic).getImprovementYieldChanges(iI, iJ) * iChange));
@@ -20985,6 +21018,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(GC.getNumBonusInfos(), m_paiBonusExport);
 	pStream->Read(GC.getNumBonusInfos(), m_paiBonusImport);
 	pStream->Read(GC.getNumImprovementInfos(), m_paiImprovementCount);
+	pStream->Read(GC.getNumImprovementInfos(), m_paiRadiusImprovementHappiness); // Civ4 Reimagined
 	pStream->Read(GC.getNumBuildingInfos(), m_paiFreeBuildingCount);
 	pStream->Read(GC.getNumBuildingInfos(), m_paiExtraBuildingHappiness);
 	pStream->Read(GC.getNumBuildingInfos(), m_paiExtraBuildingHealth);
@@ -21612,6 +21646,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumBonusInfos(), m_paiBonusExport);
 	pStream->Write(GC.getNumBonusInfos(), m_paiBonusImport);
 	pStream->Write(GC.getNumImprovementInfos(), m_paiImprovementCount);
+	pStream->Write(GC.getNumImprovementInfos(), m_paiRadiusImprovementHappiness); // Civ4 Reimagined
 	pStream->Write(GC.getNumBuildingInfos(), m_paiFreeBuildingCount);
 	pStream->Write(GC.getNumBuildingInfos(), m_paiExtraBuildingHappiness);
 	pStream->Write(GC.getNumBuildingInfos(), m_paiExtraBuildingHealth);

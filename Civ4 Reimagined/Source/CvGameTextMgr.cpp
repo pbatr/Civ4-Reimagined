@@ -8239,10 +8239,6 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 	{
 		if (GC.getCivicInfo(eCivic).getFeatureHappinessChanges(iI) != 0)
 		{
-
-/* original bts code
-			szFirstBuffer.Format(L"%s%s", NEWLINE, gDLL->getText("TXT_KEY_CIVIC_FEATURE_HAPPINESS", GC.getCivicInfo(eCivic).getFeatureHappinessChanges(iI), ((GC.getCivicInfo(eCivic).getFeatureHappinessChanges(iI) > 0) ? gDLL->getSymbolID(HAPPY_CHAR) : gDLL->getSymbolID(UNHAPPY_CHAR))).c_str());
-*/
 			// Use absolute value with unhappy face
 			szFirstBuffer.Format(L"%s%s", NEWLINE, gDLL->getText("TXT_KEY_CIVIC_FEATURE_HAPPINESS", abs(GC.getCivicInfo(eCivic).getFeatureHappinessChanges(iI)), ((GC.getCivicInfo(eCivic).getFeatureHappinessChanges(iI) > 0) ? gDLL->getSymbolID(HAPPY_CHAR) : gDLL->getSymbolID(UNHAPPY_CHAR))).c_str());
 			
@@ -8250,6 +8246,22 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 			szFeature.Format(L"<link=literal>%s</link>", GC.getFeatureInfo((FeatureTypes)iI).getDescription());
 			setListHelp(szHelpText, szFirstBuffer, szFeature, L", ", (GC.getCivicInfo(eCivic).getFeatureHappinessChanges(iI) != iLast));
 			iLast = GC.getCivicInfo(eCivic).getFeatureHappinessChanges(iI);
+		}
+	}
+
+	// Civ4 Reimagined: Improvement in radius happiness
+	iLast = 0;
+
+	for (iI = 0; iI < GC.getNumImprovementInfos(); ++iI)
+	{
+		if (GC.getCivicInfo(eCivic).getRadiusImprovementHappinessChanges(iI) != 0)
+		{
+			// Use absolute value with unhappy face
+			szFirstBuffer.Format(L"%s%s", NEWLINE, gDLL->getText("TXT_KEY_CIVIC_IMPROVEMENT_RADIUS_HAPPINESS", abs(GC.getCivicInfo(eCivic).getRadiusImprovementHappinessChanges(iI)), ((GC.getCivicInfo(eCivic).getRadiusImprovementHappinessChanges(iI) > 0) ? gDLL->getSymbolID(HAPPY_CHAR) : gDLL->getSymbolID(UNHAPPY_CHAR))).c_str(), GC.getImprovementInfo((ImprovementTypes)iI).getDescription());
+			
+			CvWString szFeature;
+			setListHelp(szHelpText, szFirstBuffer, szFeature, L", ", (GC.getCivicInfo(eCivic).getRadiusImprovementHappinessChanges(iI) != iLast));
+			iLast = GC.getCivicInfo(eCivic).getRadiusImprovementHappinessChanges(iI);
 		}
 	}
 
