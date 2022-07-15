@@ -4635,30 +4635,8 @@ void CvGame::setAIAutoPlay(int iNewValue)
 	if (iOldValue != iNewValue)
 	{
 		m_iAIAutoPlay = std::max(0, iNewValue);
-
-/************************************************************************************************/
-/* AI_AUTO_PLAY_MOD                           07/09/08                            jdog5000      */
-/*                                                                                              */
-/*                                                                                              */
-/************************************************************************************************/
-// Multiplayer compatibility idea from Jeckel
-/* original code
-		if ((iOldValue == 0) && (getAIAutoPlay() > 0))
-		{
-			GET_PLAYER(getActivePlayer()).killUnits();
-			GET_PLAYER(getActivePlayer()).killCities();
-		}
-*/
-		for( int iI = 0; iI < MAX_CIV_PLAYERS; iI++ )
-		{
-			if( GET_PLAYER((PlayerTypes)iI).isHuman() || GET_PLAYER((PlayerTypes)iI).isHumanDisabled() )
-			{
-				GET_PLAYER(getActivePlayer()).setHumanDisabled((getAIAutoPlay() != 0));
-			}
-		}
-/************************************************************************************************/
-/* AI_AUTO_PLAY_MOD                            END                                              */
-/************************************************************************************************/
+		
+		GET_PLAYER(getActivePlayer()).setHumanDisabled((getAIAutoPlay() != 0));
 		// Civ4 Reimagined
 		GET_PLAYER(getActivePlayer()).setupEurekas();
 	}
