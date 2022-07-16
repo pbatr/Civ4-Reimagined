@@ -13950,10 +13950,7 @@ void CvPlayer::setCurrentEra(EraTypes eNewValue)
 		m_eCurrentEra = eNewValue;
 
 		// Civ4 Reimagined
-		if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS))
-		{
-			updateUniquePowers((EraTypes)getCurrentEra());
-		}
+		updateUniquePowers((EraTypes)getCurrentEra());
 		
 		if (GC.getGameINLINE().getActiveTeam() != NO_TEAM)
 		{

@@ -6690,7 +6690,6 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 	}
 
 	// Civ4 Reimagined
-	if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS))
 	{
 		int iEra = kTechInfo.getEra();
 		if (kTechInfo.getEra() != getCurrentEra())

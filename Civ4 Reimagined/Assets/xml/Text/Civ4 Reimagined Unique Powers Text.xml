@@ -35,10 +35,6 @@
 		<English>Level %d1</English>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_NO_UNIQUE_POWERS</Tag>
-		<English>+5% commerce modifier for all commerce types (placeholder for all unfinished levels)</English>
-	</TEXT>
-	<TEXT>
 		<Tag>TXT_KEY_ECONOMICS_ADVISOR_UNIQUE_POWERS_REQUIREMENT</Tag>
 		<English>%d1</English>
 	</TEXT>
@@ -66,14 +62,6 @@
 		<Tag>TXT_KEY_TRAIT_COMMERCE_CHANGES_UNIQUE_POWERS</Tag>
 		<English>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%F2_commerce/City (Does not count towards unique powers)</English>
 		<German>[NEWLINE][SPACE][SPACE][ICON_BULLET]%D1%F2_commerce/Stadt (Zählt nicht für unique powers)</German>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_GAME_OPTION_NO_UNIQUE_POWERS</Tag>
-		<English>No Unique Powers</English>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_GAME_OPTION_NO_UNIQUE_POWERS_HELP</Tag>
-		<English>Disables unique powers for all civilizations (recommended). Playing with unique powers is possible, but right now many civilizations receive generic powers instead of unique ones.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_HELP_YIELD_UNIQUE_POWER</Tag>
