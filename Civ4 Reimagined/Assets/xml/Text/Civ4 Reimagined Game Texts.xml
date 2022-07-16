@@ -971,14 +971,6 @@
 		<French>Suite à l'abolition de l'esclavage, tous vos esclaves sont maintenant libres !</French>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_MISC_FREE_WORKERS_LOST</Tag>
-		<English>Your additional Workers from running Bureaucracy retired!</English>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_MISC_FREE_WORKER</Tag>
-		<English>Bureaucrat</English>
-	</TEXT>
-	<TEXT>
 		<Tag>TXT_KEY_MISC_SLAVE_STARTED_WORKING</Tag>
 		<English>A slave started working in %s1.</English>
 		<French>Un esclave a commencé à travailler à %s1.</French>
@@ -1483,6 +1475,14 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_FREE_WORKERS</Tag>
-		<English>[ICON_BULLET]Increases the Worker Limit by %d1_Change and instantly grants %d2_Change Free Workers in Capital</English>
+		<English>[ICON_BULLET]Increased Worker Limit by %d1_Change. Instantly receive %d2_Change Free Workers in Capital</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_FREE_WORKERS_LOST</Tag>
+		<English>Your additional Workers from running Bureaucracy retired!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_FREE_WORKER</Tag>
+		<English>Bureaucrat</English>
 	</TEXT>
 </Civ4GameText>

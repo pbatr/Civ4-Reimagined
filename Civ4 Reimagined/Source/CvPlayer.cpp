@@ -10881,6 +10881,8 @@ int CvPlayer::getFreeWorkers() const
 
 void CvPlayer::changeFreeWorkers(int iChange)														
 {
+	const UnitClassTypes eWorkerClass = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_WORKER");
+
 	if (iChange != 0)
 	{
 		m_iFreeWorkers = (m_iFreeWorkers + iChange);
@@ -10899,6 +10901,18 @@ void CvPlayer::changeFreeWorkers(int iChange)
 				{
 					pLoopUnit->kill(false, getID());
 					iKilledUnits++;
+				}
+			}
+
+			if (isUnitClassMaxedOut(eWorkerClass, -1))
+			{
+				for(CvUnit* pLoopUnit = firstUnit(&iLoop); pLoopUnit != NULL && isUnitClassMaxedOut(eWorkerClass, -1); pLoopUnit = nextUnit(&iLoop))
+				{
+					if (pLoopUnit->getUnitClassType() == eWorkerClass)
+					{
+						pLoopUnit->kill(false, getID());
+						iKilledUnits++;
+					}
 				}
 			}
 			
