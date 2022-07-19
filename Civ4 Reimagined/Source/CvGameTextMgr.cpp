@@ -14035,6 +14035,16 @@ void CvGameTextMgr::setReligionHelpCity(CvWStringBuffer &szBuffer, ReligionTypes
 		}
 
 		iProductionModifier = GET_PLAYER(pCity->getOwnerINLINE()).getStateReligionUnitProductionModifier();
+
+		// Civ4 Reimagined
+		if (pCity->getVoteSourceStateReligionUnitProductionModifier() != 0)
+		{
+			if (GET_PLAYER(pCity->getOwnerINLINE()).hasGoodRelationsWithPope())
+			{
+				iProductionModifier += pCity->getVoteSourceStateReligionUnitProductionModifier();
+			}
+		}
+
 		if (iProductionModifier != 0)
 		{
 			if (bHandled)
@@ -16553,6 +16563,15 @@ void CvGameTextMgr::setProductionHelp(CvWStringBuffer &szBuffer, CvCity& city)
 			if (city.isHasReligion(GET_PLAYER(city.getOwnerINLINE()).getStateReligion()))
 			{
 				int iReligionMod = GET_PLAYER(city.getOwnerINLINE()).getStateReligionUnitProductionModifier();
+
+				// Civ4 Reimagined
+				if (city.getVoteSourceStateReligionUnitProductionModifier() != 0)
+				{
+					if (GET_PLAYER(city.getOwnerINLINE()).hasGoodRelationsWithPope())
+					{
+						iReligionMod += city.getVoteSourceStateReligionUnitProductionModifier();
+					}
+				}
 
 				// Civ4 Reimagined: Spain UP
 				iReligionMod += GET_PLAYER(city.getOwnerINLINE()).getReligiousUnitClassProductionModifier((UnitClassTypes)unit.getUnitClassType());

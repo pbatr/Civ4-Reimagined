@@ -975,6 +975,10 @@ public:
 	int getEspionageDefenseModifier() const;										// Exposed to Python
 	void changeEspionageDefenseModifier(int iChange);
 
+	// Civ4 Reimagined
+	int getVoteSourceStateReligionUnitProductionModifier() const;
+	void changeVoteSourceStateReligionUnitProductionModifier(int iChange);
+
 	bool isWorkingPlot(int iIndex) const;													// Exposed to Python
 	bool isWorkingPlot(const CvPlot* pPlot) const;													// Exposed to Python
 	void setWorkingPlot(int iIndex, bool bNewValue);
@@ -1267,6 +1271,7 @@ protected:
 	int m_iEspionageDefenseModifier;
 	int m_iDistance; // Civ4 Reimagined
 	int m_iImmigrants; // Civ4 Reimagined
+	int m_iVoteSourceStateReligionUnitProductionModifier; // Civ4 Reimagined
 
 	bool m_bNeverLost;
 	bool m_bBombarded;

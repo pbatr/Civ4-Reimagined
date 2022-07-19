@@ -953,6 +953,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iStateReligionHappiness = 0;
 	m_iNonStateReligionHappiness = 0;
 	m_iStateReligionUnitProductionModifier = 0;
+	m_iVoteSourceStateReligionUnitProductionModifier = 0; // Civ4 Reimagined
 	m_iStateReligionBuildingProductionModifier = 0;
 	m_iStateReligionFreeExperience = 0;
 	m_iSpecialistExtraYieldBaseThreshold = 0; //Leoreth
@@ -1048,6 +1049,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bCoastalRaid = false; // Civ4 Reimagined
 	m_iTradeGoldModifierPerForeignResource = 0; // Civ4 Reimagined
 	m_bGainGreatWorkGoldWithHitBonuses = false; // Civ4 Reimagined
+	m_iReligiousVoteModifier = 0; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -12717,6 +12719,45 @@ void CvPlayer::changeStateReligionUnitProductionModifier(int iChange)
 }
 
 
+// Civ4 Reimagined
+int CvPlayer::getVoteSourceStateReligionUnitProductionModifier() const	 
+{
+	return m_iVoteSourceStateReligionUnitProductionModifier;
+}
+
+
+// Civ4 Reimagined
+void CvPlayer::changeVoteSourceStateReligionUnitProductionModifier(int iChange)
+{
+	if (iChange != 0)
+	{
+		int iLoop;
+		for (CvCity* pCity = firstCity(&iLoop); NULL != pCity; pCity = nextCity(&iLoop))
+		{
+			for (int iVoteSource = 0; iVoteSource < GC.getNumVoteSourceInfos(); ++iVoteSource)
+			{
+				processVoteSourceBonus((VoteSourceTypes)iVoteSource, false);
+			}
+		}
+
+		m_iVoteSourceStateReligionUnitProductionModifier = (m_iVoteSourceStateReligionUnitProductionModifier + iChange);
+
+		for (CvCity* pCity = firstCity(&iLoop); NULL != pCity; pCity = nextCity(&iLoop))
+		{
+			for (int iVoteSource = 0; iVoteSource < GC.getNumVoteSourceInfos(); ++iVoteSource)
+			{
+				processVoteSourceBonus((VoteSourceTypes)iVoteSource, true);
+			}
+		}
+
+		if (getTeam() == GC.getGameINLINE().getActiveTeam())
+		{
+			gDLL->getInterfaceIFace()->setDirty(CityInfo_DIRTY_BIT, true);
+		}
+	}
+}
+
+
 int CvPlayer::getStateReligionBuildingProductionModifier() const
 {
 	return m_iStateReligionBuildingProductionModifier;
@@ -20951,6 +20992,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iStateReligionHappiness);
 	pStream->Read(&m_iNonStateReligionHappiness);
 	pStream->Read(&m_iStateReligionUnitProductionModifier);
+	pStream->Read(&m_iVoteSourceStateReligionUnitProductionModifier); // Civ4 Reimagined
 	pStream->Read(&m_iStateReligionBuildingProductionModifier);
 	pStream->Read(&m_iStateReligionFreeExperience);
 	pStream->Read(&m_iSpecialistExtraYieldBaseThreshold); //Leoreth
@@ -21028,6 +21070,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bCoastalRaid); // Civ4 Reimagined
 	pStream->Read(&m_iTradeGoldModifierPerForeignResource); // Civ4 Reimagined
 	pStream->Read(&m_bGainGreatWorkGoldWithHitBonuses); // Civ4 Reimagined
+	pStream->Read(&m_iReligiousVoteModifier); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -21590,6 +21633,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iStateReligionHappiness);
 	pStream->Write(m_iNonStateReligionHappiness);
 	pStream->Write(m_iStateReligionUnitProductionModifier);
+	pStream->Write(m_iVoteSourceStateReligionUnitProductionModifier); // Civ4 Reimagined
 	pStream->Write(m_iStateReligionBuildingProductionModifier);
 	pStream->Write(m_iStateReligionFreeExperience);
 	pStream->Write(m_iSpecialistExtraYieldBaseThreshold); //Leoreth
@@ -21667,6 +21711,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_bCoastalRaid); // Civ4 Reimagined
 	pStream->Write(m_iTradeGoldModifierPerForeignResource); // Civ4 Reimagined
 	pStream->Write(m_bGainGreatWorkGoldWithHitBonuses); // Civ4 Reimagined
+	pStream->Write(m_iReligiousVoteModifier); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -25636,6 +25681,13 @@ int CvPlayer::getVotes(VoteTypes eVote, VoteSourceTypes eVoteSource) const
 		{
 			iVotes *= (100 + GC.getVoteInfo(eVote).getStateReligionVotePercent());
 			iVotes /= 100;
+
+			// Civ4 Reimagined
+			if (hasGoodRelationsWithPope())
+			{
+				iVotes *= (100 + getReligiousVoteModifier());
+				iVotes /= 100;
+			}
 		}
 	}
 
@@ -28095,6 +28147,21 @@ void CvPlayer::changeTradeGoldModifierPerForeignResource(int iChange)
 }
 
 // Civ4 Reimagined
+int CvPlayer::getReligiousVoteModifier() const
+{
+	return m_iReligiousVoteModifier;
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeReligiousVoteModifier(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iReligiousVoteModifier += iChange;
+	}
+}
+
+// Civ4 Reimagined
 CivicTypes CvPlayer::getFreeCivicEnabled() const
 {
 	return m_iFreeCivicEnabled;
@@ -29022,6 +29089,31 @@ bool CvPlayer::isGainGreatWorkGoldWithHitBonuses() const
 }
 
 
+// Civ4 Reimagined
+bool CvPlayer::hasGoodRelationsWithPope() const
+{
+	for (int iI = 0; iI < GC.getNumVoteSourceInfos(); ++iI)
+	{
+		if (GC.getGameINLINE().getVoteSourceReligion((VoteSourceTypes)iI) != NO_RELIGION)
+		{
+			const TeamTypes eTeam = GC.getGameINLINE().getSecretaryGeneral((VoteSourceTypes)iI);
+
+			if (eTeam != NO_TEAM)
+			{
+				const PlayerTypes ePope = GET_TEAM(eTeam).getSecretaryID();
+				if (ePope != NO_PLAYER && ePope != getID() && GET_PLAYER(ePope).AI_getAttitude(getID()) >= ATTITUDE_PLEASED)
+				{
+					return true;
+				}
+				break;
+			}
+		}
+	}
+
+	return false;
+}
+
+
 //Civ4 Reimagined
 void CvPlayer::updateUniquePowers(TechTypes eTech)
 {
@@ -29234,6 +29326,15 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		{
 			setHasCivicEffect(false);
 			notifyUniquePowersChanged(false);
+		}
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_HOLY_ROMAN"))
+	{
+		if (eEra == ERA_MEDIEVAL) 
+		{
+			changeReligiousVoteModifier(100);
+			changeVoteSourceStateReligionUnitProductionModifier(50);
+			notifyUniquePowersChanged(true);
 		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_INDIA"))

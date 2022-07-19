@@ -275,4 +275,8 @@
 		<Tag>TXT_KEY_UNIQUE_POWER_KOREA</Tag>
 		<English>After entering the Industrial Era: Towns provide +1[ICON_COMMERCE] for each three adjacent Towns. Great works give additional [ICON_COMMERCE] if target city has access to Hit Singles or Hit Movies (insufficient resources decrease [ICON_COMMERCE] bonus).</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_HOLY_ROMAN</Tag>
+		<English>After entering the Medieval Era: If Pope has good relations (pleased or friendly) to Holy Romans: Double vote count in Apostolic Palace and +50% unit production in cities with Apostolic Palace religion if it is also state religion.</English>
+	</TEXT>
 </Civ4GameText>

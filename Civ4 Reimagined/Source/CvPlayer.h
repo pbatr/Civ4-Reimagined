@@ -795,6 +795,10 @@ public:
 	int getStateReligionUnitProductionModifier() const;	// Exposed to Python 
 	void changeStateReligionUnitProductionModifier(int iChange);
 
+	// Civ4 Reimagined
+	int getVoteSourceStateReligionUnitProductionModifier() const; 
+	void changeVoteSourceStateReligionUnitProductionModifier(int iChange);
+
 	int getStateReligionBuildingProductionModifier() const;	// Exposed to Python
 	void changeStateReligionBuildingProductionModifier(int iChange);	// Exposed to Python
 
@@ -1468,6 +1472,9 @@ public:
 	int getTradeGoldModifierPerForeignResource() const; // Civ4 Reimagined
 	void setGainGreatWorkGoldWithHitBonuses(bool bNewValue); // Civ4 Reimagined
 	bool isGainGreatWorkGoldWithHitBonuses() const; // Civ4 Reimagined
+	void changeReligiousVoteModifier(int iChange); // Civ4 Reimagined
+	int getReligiousVoteModifier() const; // Civ4 Reimagined
+	bool hasGoodRelationsWithPope() const; // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1671,6 +1678,7 @@ protected:
 	int m_iStateReligionHappiness;
 	int m_iNonStateReligionHappiness;
 	int m_iStateReligionUnitProductionModifier;
+	int m_iVoteSourceStateReligionUnitProductionModifier; // Civ4 Reimagined
 	int m_iStateReligionBuildingProductionModifier;
 	int m_iStateReligionFreeExperience;
 	int m_iSpecialistExtraYieldBaseThreshold; //Leoreth
@@ -1749,6 +1757,7 @@ protected:
 	bool m_bCoastalRaid; // Civ4 Reimagined
 	int m_iTradeGoldModifierPerForeignResource; // Civ4 Reimagined
 	bool m_bGainGreatWorkGoldWithHitBonuses; // Civ4 Reimagined
+	int m_iReligiousVoteModifier; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
 

@@ -543,6 +543,7 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 	m_iEspionageDefenseModifier = 0;
 	m_iDistance = 0; // Civ4 Reimagined
 	m_iImmigrants = 0; // Civ4 Reimagined
+	m_iVoteSourceStateReligionUnitProductionModifier = 0; // Civ4 Reimagined
 
 	m_bNeverLost = true;
 	m_bBombarded = false;
@@ -3460,14 +3461,25 @@ int CvCity::getProductionModifier(UnitTypes eUnit) const
 
 	// Civ4 Reimagined: Bonus from civics/player:
 	iMultiplier += GET_PLAYER(getOwnerINLINE()).getUnitClassProductionModifier((UnitClassTypes)GC.getUnitInfo(eUnit).getUnitClassType());
+
+	const ReligionTypes eStateReligion = GET_PLAYER(getOwnerINLINE()).getStateReligion();
 	
-	if (GET_PLAYER(getOwnerINLINE()).getStateReligion() != NO_RELIGION)
+	if (eStateReligion != NO_RELIGION)
 	{
-		if (isHasReligion(GET_PLAYER(getOwnerINLINE()).getStateReligion()))
+		if (isHasReligion(eStateReligion))
 		{
 			iMultiplier += GET_PLAYER(getOwnerINLINE()).getStateReligionUnitProductionModifier();
 			// Civ4 Reimagined
 			iMultiplier += GET_PLAYER(getOwnerINLINE()).getReligiousUnitClassProductionModifier((UnitClassTypes)GC.getUnitInfo(eUnit).getUnitClassType());
+
+			// Civ4 Reimagined
+			if (getVoteSourceStateReligionUnitProductionModifier() != 0)
+			{
+				if (GET_PLAYER(getOwnerINLINE()).hasGoodRelationsWithPope())
+				{
+					iMultiplier += getVoteSourceStateReligionUnitProductionModifier();
+				}
+			}
 		}
 	}
 
@@ -13137,6 +13149,21 @@ void CvCity::changeEspionageDefenseModifier(int iChange)
 	}
 }
 
+// Civ4 Reimagined
+int CvCity::getVoteSourceStateReligionUnitProductionModifier() const
+{
+	return m_iVoteSourceStateReligionUnitProductionModifier;
+}
+
+// Civ4 Reimagined
+void CvCity::changeVoteSourceStateReligionUnitProductionModifier(int iChange)
+{
+	if (0 != iChange)
+	{
+		m_iVoteSourceStateReligionUnitProductionModifier += iChange;
+	}
+}
+
 bool CvCity::isWorkingPlot(int iIndex) const
 {
 	FAssertMsg(iIndex >= 0, "iIndex expected to be >= 0");
@@ -13815,6 +13842,7 @@ int CvCity::getReligionGrip(ReligionTypes eReligion) const
 
 void CvCity::processVoteSourceBonus(VoteSourceTypes eVoteSource, bool bActive)
 {
+
 	if (!GET_PLAYER(getOwnerINLINE()).isLoyalMember(eVoteSource))
 	{
 		return;
@@ -13874,6 +13902,9 @@ void CvCity::processVoteSourceBonus(VoteSourceTypes eVoteSource, bool bActive)
 					}
 				}
 			}
+
+			// Civ4 Reimagined
+			changeVoteSourceStateReligionUnitProductionModifier(GET_PLAYER(getOwnerINLINE()).getVoteSourceStateReligionUnitProductionModifier() * (bActive ? 1 : -1));
 		}
 	}
 }
@@ -16044,6 +16075,7 @@ void CvCity::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iEspionageDefenseModifier);
 	pStream->Read(&m_iDistance); // Civ4 Reimagined
 	pStream->Read(&m_iImmigrants); // Civ4 Reimagined
+	pStream->Read(&m_iVoteSourceStateReligionUnitProductionModifier); // Civ4 Reimagined
 
 	pStream->Read(&m_bNeverLost);
 	pStream->Read(&m_bBombarded);
@@ -16300,6 +16332,7 @@ void CvCity::write(FDataStreamBase* pStream)
 	pStream->Write(m_iEspionageDefenseModifier);
 	pStream->Write(m_iDistance); // Civ4 Reimagined
 	pStream->Write(m_iImmigrants); // Civ4 Reimagined
+	pStream->Write(m_iVoteSourceStateReligionUnitProductionModifier); // Civ4 Reimagined
 
 	pStream->Write(m_bNeverLost);
 	pStream->Write(m_bBombarded);
