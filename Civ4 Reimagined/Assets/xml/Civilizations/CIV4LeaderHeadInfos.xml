@@ -4581,7 +4581,7 @@
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_PROGRESSIVE</TraitType>
+					<TraitType>TRAIT_ORGANIZED</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
@@ -25868,7 +25868,7 @@
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_ORGANIZED</TraitType>
+					<TraitType>TRAIT_PROGRESSIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
