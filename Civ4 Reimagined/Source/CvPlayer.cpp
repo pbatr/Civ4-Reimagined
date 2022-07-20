@@ -86,6 +86,7 @@ CvPlayer::CvPlayer()
 	m_paiBonusImport = NULL;
 	m_paiImprovementCount = NULL;
 	m_paiRadiusImprovementHappiness = NULL; // Civ4 Reimagined
+	m_paiGreatSpyPointsFromImprovementInRadius = NULL; // Civ4 Reimagined
 	m_paiFreeBuildingCount = NULL;
 	m_paiExtraBuildingHappiness = NULL;
 	m_paiExtraBuildingHealth = NULL;
@@ -675,6 +676,7 @@ void CvPlayer::uninit()
 	SAFE_DELETE_ARRAY(m_paiBonusImport);
 	SAFE_DELETE_ARRAY(m_paiImprovementCount);
 	SAFE_DELETE_ARRAY(m_paiRadiusImprovementHappiness); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_paiGreatSpyPointsFromImprovementInRadius); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiFreeBuildingCount);
 	SAFE_DELETE_ARRAY(m_paiExtraBuildingHappiness);
 	SAFE_DELETE_ARRAY(m_paiExtraBuildingHealth);
@@ -1181,10 +1183,13 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		m_paiImprovementCount = new int [GC.getNumImprovementInfos()];
 		FAssertMsg(m_paiRadiusImprovementHappiness==NULL, "about to leak memory, CvPlayer::m_paiRadiusImprovementHappiness");
 		m_paiRadiusImprovementHappiness = new int [GC.getNumImprovementInfos()];
+		FAssertMsg(m_paiGreatSpyPointsFromImprovementInRadius==NULL, "about to leak memory, CvPlayer::m_paiGreatSpyPointsFromImprovementInRadius");
+		m_paiGreatSpyPointsFromImprovementInRadius = new int [GC.getNumImprovementInfos()];
 		for (iI = 0; iI < GC.getNumImprovementInfos(); iI++)
 		{
 			m_paiImprovementCount[iI] = 0;
 			m_paiRadiusImprovementHappiness[iI] = 0;
+			m_paiGreatSpyPointsFromImprovementInRadius[iI] = 0;
 		}
 
 		FAssertMsg(m_paiFreeBuildingCount==NULL, "about to leak memory, CvPlayer::m_paiFreeBuildingCount");
@@ -15391,6 +15396,24 @@ void CvPlayer::changeRadiusImprovementHappiness(ImprovementTypes eIndex, int iCh
 }
 
 
+// Civ4 Reimagined
+int CvPlayer::getGreatSpyPointsFromImprovementInRadius(ImprovementTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumImprovementInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_paiGreatSpyPointsFromImprovementInRadius[eIndex];
+}
+
+
+// Civ4 Reimagined
+void CvPlayer::changeGreatSpyPointsFromImprovementInRadius(ImprovementTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumImprovementInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+	m_paiGreatSpyPointsFromImprovementInRadius[eIndex] = (m_paiGreatSpyPointsFromImprovementInRadius[eIndex] + iChange);
+}
+
+
 int CvPlayer::getFreeBuildingCount(BuildingTypes eIndex) const
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
@@ -21141,6 +21164,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(GC.getNumBonusInfos(), m_paiBonusImport);
 	pStream->Read(GC.getNumImprovementInfos(), m_paiImprovementCount);
 	pStream->Read(GC.getNumImprovementInfos(), m_paiRadiusImprovementHappiness); // Civ4 Reimagined
+	pStream->Read(GC.getNumImprovementInfos(), m_paiGreatSpyPointsFromImprovementInRadius); // Civ4 Reimagined
 	pStream->Read(GC.getNumBuildingInfos(), m_paiFreeBuildingCount);
 	pStream->Read(GC.getNumBuildingInfos(), m_paiExtraBuildingHappiness);
 	pStream->Read(GC.getNumBuildingInfos(), m_paiExtraBuildingHealth);
@@ -21772,6 +21796,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumBonusInfos(), m_paiBonusImport);
 	pStream->Write(GC.getNumImprovementInfos(), m_paiImprovementCount);
 	pStream->Write(GC.getNumImprovementInfos(), m_paiRadiusImprovementHappiness); // Civ4 Reimagined
+	pStream->Write(GC.getNumImprovementInfos(), m_paiGreatSpyPointsFromImprovementInRadius); // Civ4 Reimagined
 	pStream->Write(GC.getNumBuildingInfos(), m_paiFreeBuildingCount);
 	pStream->Write(GC.getNumBuildingInfos(), m_paiExtraBuildingHappiness);
 	pStream->Write(GC.getNumBuildingInfos(), m_paiExtraBuildingHealth);
@@ -29334,6 +29359,8 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		{
 			changeReligiousVoteModifier(100);
 			changeVoteSourceStateReligionUnitProductionModifier(50);
+			changeGreatSpyPointsFromImprovementInRadius((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FORT"), 6);
+			changeAnarchyModifier(100);
 			notifyUniquePowersChanged(true);
 		}
 	}

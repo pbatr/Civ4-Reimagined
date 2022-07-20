@@ -345,6 +345,8 @@ void CvCity::init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, 
 	updateFeatureHappiness();
 	updateFeatureCommerce();
 	updatePowerHealth();
+	// Civ4 Reiamgined
+	updateImprovementsInRadius();
 
 	GET_PLAYER(getOwnerINLINE()).updateMaintenance();
 
@@ -782,6 +784,7 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 		m_aBuildingCommerceChange.clear();
 		m_aBuildingHappyChange.clear();
 		m_aBuildingHealthChange.clear();
+		m_aImprovementsInRadius.clear();
 	}
 
 	if (!bConstructorCall)
@@ -6358,6 +6361,12 @@ int CvCity::getGreatPeopleRate() const
 	// Civ4 Reimagined: Dutch UP
 	int iGreatPeopleRate = getBaseGreatPeopleRate() + GET_PLAYER(getOwnerINLINE()).getGreatMerchantPointsPerTrade() * getTradeYield(YIELD_COMMERCE) / 100;
 
+	// Civ4 Reimagined: HRE UP
+	for (std::set<ImprovementTypes>::const_iterator it = m_aImprovementsInRadius.begin(); it != m_aImprovementsInRadius.end(); ++it)
+	{
+		iGreatPeopleRate += GET_PLAYER(getOwnerINLINE()).getGreatSpyPointsFromImprovementInRadius((ImprovementTypes)*it);
+	}
+
 	return std::max(0, ((iGreatPeopleRate * getTotalGreatPeopleRateModifier()) / 100));
 }
 
@@ -8063,7 +8072,6 @@ void CvCity::updateFeatureHappiness()
 {
 	int iNewFeatureGoodHappiness = 0;
 	int iNewFeatureBadHappiness = 0;
-	std::set<ImprovementTypes> aImprovementsInFatcross;
 
 	for (int iI = 0; iI < NUM_CITY_PLOTS; iI++)
 	{
@@ -8091,7 +8099,6 @@ void CvCity::updateFeatureHappiness()
 
 			if (NO_IMPROVEMENT != eImprovement)
 			{
-				aImprovementsInFatcross.insert(eImprovement);
 				int iHappy = GC.getImprovementInfo(eImprovement).getHappiness();
 				if (iHappy > 0)
 				{
@@ -8106,7 +8113,7 @@ void CvCity::updateFeatureHappiness()
 	}
 
 	// Civ4 Reimagined
-	for (std::set<ImprovementTypes>::iterator it = aImprovementsInFatcross.begin(); it != aImprovementsInFatcross.end(); ++it)
+	for (std::set<ImprovementTypes>::iterator it = m_aImprovementsInRadius.begin(); it != m_aImprovementsInRadius.end(); ++it)
 	{
 		const int iHappy = GET_PLAYER(getOwnerINLINE()).getRadiusImprovementHappiness(*it);
 		if (iHappy > 0)
@@ -12697,6 +12704,18 @@ int CvCity::getGreatPeopleUnitRate(UnitTypes eIndex) const
 		}
 	}
 
+	// Civ4 Reimagined: HRE UP
+	const UnitClassTypes UNITCLASS_GREAT_SPY = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_GREAT_SPY");
+	const UnitTypes UNIT_GREAT_SPY = (UnitTypes)GC.getUnitClassInfo(UNITCLASS_GREAT_SPY).getDefaultUnitIndex();
+
+	if (eIndex == UNIT_GREAT_SPY)
+	{
+		for (std::set<ImprovementTypes>::const_iterator it = m_aImprovementsInRadius.begin(); it != m_aImprovementsInRadius.end(); ++it)
+		{
+			iGreatPeopleUnitRate += GET_PLAYER(getOwnerINLINE()).getGreatSpyPointsFromImprovementInRadius((ImprovementTypes)*it);
+		}
+	}
+
 	return iGreatPeopleUnitRate;
 }
 
@@ -16190,6 +16209,16 @@ void CvCity::read(FDataStreamBase* pStream)
 		m_aEventsOccured.push_back(eEvent);
 	}
 
+	// Civ4 Reimagined
+	pStream->Read(&iNumElts);
+	m_aImprovementsInRadius.clear();
+	for (int i = 0; i < iNumElts; ++i)
+	{
+		ImprovementTypes eImprovement;
+		pStream->Read((int*)&eImprovement);
+		m_aImprovementsInRadius.insert(eImprovement);
+	}
+
 	pStream->Read(&iNumElts);
 	m_aBuildingYieldChange.clear();
 	for (int i = 0; i < iNumElts; ++i)
@@ -16440,6 +16469,13 @@ void CvCity::write(FDataStreamBase* pStream)
 
 	pStream->Write(m_aEventsOccured.size());
 	for (std::vector<EventTypes>::iterator it = m_aEventsOccured.begin(); it != m_aEventsOccured.end(); ++it)
+	{
+		pStream->Write(*it);
+	}
+
+	// Civ4 Reimagined
+	pStream->Write(m_aImprovementsInRadius.size());
+	for (std::set<ImprovementTypes>::iterator it = m_aImprovementsInRadius.begin(); it != m_aImprovementsInRadius.end(); ++it)
 	{
 		pStream->Write(*it);
 	}
@@ -17301,6 +17337,39 @@ void CvCity::setEventOccured(EventTypes eEvent, bool bOccured)
 	{
 		m_aEventsOccured.push_back(eEvent);
 	}
+}
+
+bool CvCity::hasImprovementInRadius(ImprovementTypes eImprovement) const
+{
+	return m_aImprovementsInRadius.count(eImprovement) > 0;
+}
+
+// Civ4 Reimagined
+void CvCity::updateImprovementsInRadius()
+{
+	std::set<ImprovementTypes> aImprovementsInFatcross;
+
+	for (int iI = 0; iI < NUM_CITY_PLOTS; iI++)
+	{
+		CvPlot* pLoopPlot = getCityIndexPlot(iI);
+
+		if (pLoopPlot != NULL && pLoopPlot->getOwnerINLINE() == getOwnerINLINE())
+		{
+			ImprovementTypes eImprovement = pLoopPlot->getImprovementType();
+
+			if (NO_IMPROVEMENT != eImprovement)
+			{
+				aImprovementsInFatcross.insert(eImprovement);
+			}
+		}
+	}
+
+	m_aImprovementsInRadius = aImprovementsInFatcross;
+}
+
+std::set<ImprovementTypes> CvCity::getImprovementsInRadius() const
+{
+	return m_aImprovementsInRadius;
 }
 
 // CACHE: cache frequently used values

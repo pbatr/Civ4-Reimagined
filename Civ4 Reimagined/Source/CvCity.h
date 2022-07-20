@@ -1051,6 +1051,9 @@ public:
 	void setEventOccured(EventTypes eEvent, bool bOccured);
 
 	// Civ4 Reimagined
+	bool hasImprovementInRadius(ImprovementTypes eImprovement) const;
+	std::set<ImprovementTypes> getImprovementsInRadius() const;
+	void updateImprovementsInRadius();
 	int getBuildingYieldChange(BuildingClassTypes eBuildingClass, YieldTypes eYield) const;           // Exposed to Python
 	void setBuildingYieldChange(BuildingClassTypes eBuildingClass, YieldTypes eYield, int iChange);          // Exposed to Python
 	void changeBuildingYieldChange(BuildingClassTypes eBuildingClass, YieldTypes eYield, int iChange);
@@ -1369,6 +1372,7 @@ protected:
 	std::vector<EventTypes> m_aEventsOccured;
 	std::vector<BuildingYieldChange> m_aBuildingYieldChange;
 	std::vector<BuildingCommerceChange> m_aBuildingCommerceChange;
+	std::set<ImprovementTypes> m_aImprovementsInRadius; // Civ4 Reimagined
 	BuildingChangeArray m_aBuildingHappyChange;
 	BuildingChangeArray m_aBuildingHealthChange;
 

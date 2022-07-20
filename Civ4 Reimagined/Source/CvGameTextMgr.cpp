@@ -17796,10 +17796,18 @@ void CvGameTextMgr::parseGreatPeopleHelp(CvWStringBuffer &szBuffer, CvCity& city
 	szBuffer.append(NEWLINE);
 
 	// Civ4 Reimagined: Dutch UP
-	const int iBonusMerchantPoints = owner.getGreatMerchantPointsPerTrade() * city.getTradeYield(YIELD_COMMERCE) / 100;
-	if (iBonusMerchantPoints != 0)
+	int iBonusGPPoints = owner.getGreatMerchantPointsPerTrade() * city.getTradeYield(YIELD_COMMERCE) / 100;
+
+	// Civ4 Reimagined: HRE UP
+	const std::set<ImprovementTypes> aiImprovementsInRadius = city.getImprovementsInRadius();
+	for (std::set<ImprovementTypes>::const_iterator it = aiImprovementsInRadius.begin(); it != aiImprovementsInRadius.end(); ++it)
 	{
-		szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_GREATPEOPLE_DUTCH_UP_BONUS_RATE", iBonusMerchantPoints));
+		iBonusGPPoints += owner.getGreatSpyPointsFromImprovementInRadius(*it);
+	}
+
+	if (iBonusGPPoints != 0)
+	{
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_GREATPEOPLE_UP_BONUS_RATE", iBonusGPPoints));
 		szBuffer.append(NEWLINE);
 	}
 
@@ -17913,6 +17921,13 @@ void CvGameTextMgr::parseGreatPeopleHelp(CvWStringBuffer &szBuffer, CvCity& city
 
 	// Civ4 Reimagined: Dutch UP
 	int iGreatPeopleRate = city.getBaseGreatPeopleRate() + owner.getGreatMerchantPointsPerTrade() * city.getTradeYield(YIELD_COMMERCE) / 100;
+
+	// Civ4 Reimagined: HRE UP
+	for (std::set<ImprovementTypes>::const_iterator it = aiImprovementsInRadius.begin(); it != aiImprovementsInRadius.end(); ++it)
+	{
+		iGreatPeopleRate += owner.getGreatSpyPointsFromImprovementInRadius(*it);
+	}
+
 	int iModGreatPeople = (iModifier * iGreatPeopleRate) / 100;
 
 	FAssertMsg(iModGreatPeople == city.getGreatPeopleRate(), "Great person rate does not match actual value");
