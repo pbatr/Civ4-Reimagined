@@ -3452,7 +3452,7 @@ int CvCity::getProductionModifier(UnitTypes eUnit) const
 			if (hasBonus((BonusTypes)iI))
 			{
 				// Civ4 Reimagined
-				int iBonusMultiplier = GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(getNumBonuses((BonusTypes)iI)); // Civ4 Reimagined
+				int iBonusMultiplier = getBonusValueTimes100(getNumBonuses((BonusTypes)iI)); // Civ4 Reimagined
 				iMultiplier += GC.getUnitInfo(eUnit).getBonusProductionModifier(iI) * std::max(0, iBonusMultiplier) / 100; // Civ4 Reimagined: Added iBonusMultiplier / 100
 				if (GC.getUnitInfo(eUnit).isMilitaryProduction())
 				{
@@ -3515,7 +3515,7 @@ int CvCity::getProductionModifier(BuildingTypes eBuilding) const
 		{
 			// Civ4 Reimagined
 			iMultiplier += getBonusBuildingProductionModifier((BonusTypes)iI);
-			int iBonusMultiplier = GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(getNumBonuses((BonusTypes)iI)); // Civ4 Reimagined
+			int iBonusMultiplier = getBonusValueTimes100(getNumBonuses((BonusTypes)iI)); // Civ4 Reimagined
 			iMultiplier += GC.getBuildingInfo(eBuilding).getBonusProductionModifier(iI) * std::max(0, iBonusMultiplier) / 100; // Civ4 Reimagined: Added iBonusMultiplier / 100
 		}
 	}
@@ -3550,7 +3550,7 @@ int CvCity::getProductionModifier(ProjectTypes eProject) const
 	{
 		if (hasBonus((BonusTypes)iI))
 		{
-			int iBonusMultiplier = GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(getNumBonuses((BonusTypes)iI)); // Civ4 Reimagined
+			int iBonusMultiplier = getBonusValueTimes100(getNumBonuses((BonusTypes)iI)); // Civ4 Reimagined
 			iMultiplier += GC.getProjectInfo(eProject).getBonusProductionModifier(iI) * std::max(0, iBonusMultiplier) / 100; // Civ4 Reimagined: Added iBonusMultiplier / 100
 		}
 	}
@@ -4149,7 +4149,7 @@ int CvCity::getBonusHealth(BonusTypes eBonus) const
 	int iHealth;
 	int iI;
 
-	iHealth = GC.getBonusInfo(eBonus).getHealth() * GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(getNumBonuses(eBonus));
+	iHealth = GC.getBonusInfo(eBonus).getHealth() * getBonusValueTimes100(getNumBonuses(eBonus));
 
 	for (iI = 0; iI < GC.getNumBuildingInfos(); iI++)
 	{
@@ -4166,7 +4166,7 @@ int CvCity::getBonusHappiness(BonusTypes eBonus) const
 	int iHappiness;
 	int iI;
 
-	iHappiness = GC.getBonusInfo(eBonus).getHappiness() * GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(getNumBonuses(eBonus));
+	iHappiness = GC.getBonusInfo(eBonus).getHappiness() * getBonusValueTimes100(getNumBonuses(eBonus));
 
 	for (iI = 0; iI < GC.getNumBuildingInfos(); iI++)
 	{
@@ -4260,8 +4260,8 @@ void CvCity::processBonus(BonusTypes eBonus, int iChange, bool bChangeValue, boo
 		double dGoodHappiness = 0.;
 		double dBadHappiness = 0.;
 
-		const int iOldHealth = GC.getBonusInfo(eBonus).getHealth() * GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iOldCount);
-		const int iNewHealth = GC.getBonusInfo(eBonus).getHealth() * GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iNewCount);
+		const int iOldHealth = GC.getBonusInfo(eBonus).getHealth() * getBonusValueTimes100(iOldCount);
+		const int iNewHealth = GC.getBonusInfo(eBonus).getHealth() * getBonusValueTimes100(iNewCount);
 		const double dHealthDifference = (double)(iNewHealth - iOldHealth) / 100.0;
 		
 		if (iNewHealth >= 0 && iOldHealth >= 0)
@@ -4273,8 +4273,8 @@ void CvCity::processBonus(BonusTypes eBonus, int iChange, bool bChangeValue, boo
 			dBadHealth = dHealthDifference;
 		}
 		
-		const int iOldHappiness = GC.getBonusInfo(eBonus).getHappiness() * GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iOldCount);
-		const int iNewHappiness = GC.getBonusInfo(eBonus).getHappiness() * GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iNewCount);
+		const int iOldHappiness = GC.getBonusInfo(eBonus).getHappiness() * getBonusValueTimes100(iOldCount);
+		const int iNewHappiness = GC.getBonusInfo(eBonus).getHappiness() * getBonusValueTimes100(iNewCount);
 		const double dHappinessDifference = (double)(iNewHappiness - iOldHappiness) / 100.0;
 
 		if (iNewHappiness >= 0 && iOldHappiness >= 0)
@@ -18167,12 +18167,12 @@ void CvCity::updateResources()
 		iBonusCount = getNumBonuses((BonusTypes)iI);
 		if (iBonusCount > 0)
 		{
-			iValue = GC.getBonusInfo((BonusTypes)iI).getHealth() * GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iBonusCount);
+			iValue = GC.getBonusInfo((BonusTypes)iI).getHealth() * getBonusValueTimes100(iBonusCount);
 
 			dGoodHealth += std::max(0.0, (double)(iValue) / 100.0);
 			dBadHealth += std::min(0.0, (double)(iValue) / 100.0);
 			
-			iValue = GC.getBonusInfo((BonusTypes)iI).getHappiness() * GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iBonusCount);
+			iValue = GC.getBonusInfo((BonusTypes)iI).getHappiness() * getBonusValueTimes100(iBonusCount);
 
 			dGoodHappiness += std::max(0.0, (double)(iValue) / 100.0);
 			dBadHappiness += std::min(0.0, (double)(iValue) / 100.0);
@@ -18347,7 +18347,7 @@ int CvCity::getUnitProductionMultiplier(UnitTypes eUnit) const
 		{
 			if (hasBonus(ePrereqBonus))
 			{
-				iAndBonusMultiplier = std::min(iAndBonusMultiplier, GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(getNumBonuses(ePrereqBonus)));
+				iAndBonusMultiplier = std::min(iAndBonusMultiplier, getBonusValueTimes100(getNumBonuses(ePrereqBonus)));
 			}
 			else
 			{
@@ -18366,7 +18366,7 @@ int CvCity::getUnitProductionMultiplier(UnitTypes eUnit) const
 				if (hasBonus(ePrereqOrBonus))
 				{
 					bNeedsBonus = false;
-					iOrBonusMultiplier = std::max(iOrBonusMultiplier, GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(getNumBonuses(ePrereqOrBonus)));
+					iOrBonusMultiplier = std::max(iOrBonusMultiplier, getBonusValueTimes100(getNumBonuses(ePrereqOrBonus)));
 				}
 			}
 		}
@@ -18419,7 +18419,7 @@ int CvCity::getBuildingProductionMultiplier(BuildingTypes eBuilding) const
 		{
 			if (hasBonus(ePrereqBonus))
 			{
-				iAndBonusMultiplier = std::min(iAndBonusMultiplier, GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(getNumBonuses(ePrereqBonus)));
+				iAndBonusMultiplier = std::min(iAndBonusMultiplier, getBonusValueTimes100(getNumBonuses(ePrereqBonus)));
 			}
 			else
 			{	
@@ -18438,7 +18438,7 @@ int CvCity::getBuildingProductionMultiplier(BuildingTypes eBuilding) const
 				if (hasBonus(ePrereqOrBonus))
 				{
 					bNeedsBonus = false;
-					iOrBonusMultiplier = std::max(iOrBonusMultiplier, GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(getNumBonuses(ePrereqOrBonus)));
+					iOrBonusMultiplier = std::max(iOrBonusMultiplier, getBonusValueTimes100(getNumBonuses(ePrereqOrBonus)));
 				}
 			}
 		}
@@ -18547,3 +18547,19 @@ void CvCity::checkCultureLevelEurekas()
 	}
 }
 
+
+// Civ4 Reimagined
+int CvCity::getBonusValueTimes100(int iBonusCount) const
+{
+	if (iBonusCount <= 0)
+	{
+		return 0;
+	}
+
+	if (isCapital() && GET_PLAYER(getOwnerINLINE()).isCapitalAlwaysPerfectBonusValue())
+	{
+		return 100;
+	}
+
+	return GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iBonusCount);
+}

@@ -1052,6 +1052,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iTradeGoldModifierPerForeignResource = 0; // Civ4 Reimagined
 	m_bGainGreatWorkGoldWithHitBonuses = false; // Civ4 Reimagined
 	m_iReligiousVoteModifier = 0; // Civ4 Reimagined
+	m_bCapitalAlwaysPerfectBonusValue = false; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -21094,6 +21095,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iTradeGoldModifierPerForeignResource); // Civ4 Reimagined
 	pStream->Read(&m_bGainGreatWorkGoldWithHitBonuses); // Civ4 Reimagined
 	pStream->Read(&m_iReligiousVoteModifier); // Civ4 Reimagined
+	pStream->Read(&m_bCapitalAlwaysPerfectBonusValue); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -21736,6 +21738,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iTradeGoldModifierPerForeignResource); // Civ4 Reimagined
 	pStream->Write(m_bGainGreatWorkGoldWithHitBonuses); // Civ4 Reimagined
 	pStream->Write(m_iReligiousVoteModifier); // Civ4 Reimagined
+	pStream->Write(m_bCapitalAlwaysPerfectBonusValue); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -29114,6 +29117,26 @@ bool CvPlayer::isGainGreatWorkGoldWithHitBonuses() const
 }
 
 
+//Civ4 Reimagined
+void CvPlayer::setCapitalAlwaysPerfectBonusValue(bool bNewValue)
+{
+	m_bCapitalAlwaysPerfectBonusValue = bNewValue;
+
+	CvCity* pCapital = getCapitalCity();
+
+	if (pCapital != NULL)
+	{
+		pCapital->updateResources();
+	}
+}
+
+//Civ4 Reimagined
+bool CvPlayer::isCapitalAlwaysPerfectBonusValue() const
+{
+	return m_bCapitalAlwaysPerfectBonusValue;
+}
+
+
 // Civ4 Reimagined
 bool CvPlayer::hasGoodRelationsWithPope() const
 {
@@ -29308,6 +29331,14 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		{
 			changePeakAdjacencyExtraYield(YIELD_COMMERCE, 1);
 			changeCityOnHillsExtraYield(YIELD_FOOD, 1);
+			notifyUniquePowersChanged(true);
+		}
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_FRANCE"))
+	{
+		if (eEra == ERA_MEDIEVAL)
+		{
+			setCapitalAlwaysPerfectBonusValue(true);
 			notifyUniquePowersChanged(true);
 		}
 	}

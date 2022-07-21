@@ -1093,6 +1093,7 @@ public:
 	bool convertClassicalTemples(ReligionTypes eReligion);
 	int getStateReligionCommercePerPopulationOverThreshold(CommerceTypes eIndex) const;
 	void checkCultureLevelEurekas();
+	int getBonusValueTimes100(int iBonusCount) const; // Civ4 Reimagined
 
 	void read(FDataStreamBase* pStream);
 	void write(FDataStreamBase* pStream);

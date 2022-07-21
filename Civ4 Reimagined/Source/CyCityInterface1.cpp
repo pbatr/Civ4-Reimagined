@@ -468,6 +468,7 @@ void CyCityPythonInterface1(python::class_<CyCity>& x)
 		.def("setBuildingHappyChange", &CyCity::setBuildingHappyChange, "void (int /*BuildingClassTypes*/ eBuildingClass, int iChange)")
 		.def("getBuildingHealthChange", &CyCity::getBuildingHealthChange, "int (int /*BuildingClassTypes*/ eBuildingClass)")
 		.def("setBuildingHealthChange", &CyCity::setBuildingHealthChange, "void (int /*BuildingClassTypes*/ eBuildingClass, int iChange)")
+		.def("getBonusValueTimes100", &CyCity::getBonusValueTimes100, "int (int iBonusCount)") // Civ4 Reimagined
 
 		.def("getLiberationPlayer", &CyCity::getLiberationPlayer, "int ()")
 		.def("liberate", &CyCity::liberate, "void ()")

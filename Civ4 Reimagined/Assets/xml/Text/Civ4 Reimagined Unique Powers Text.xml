@@ -279,4 +279,8 @@
 		<Tag>TXT_KEY_UNIQUE_POWER_HOLY_ROMAN</Tag>
 		<English>After entering the Medieval Era: Additional progress (+6) to Great Spy in cities with a Fort in City radius. Double Anarchy length. If Pope has good relations (pleased or friendly) to Holy Romans: Double vote count in Apostolic Palace and +50% unit production in cities with Apostolic Palace religion if it is also state religion.</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_FRANCE</Tag>
+		<English>After entering the Medieval Era: No resource shortage malus in capital.</English>
+	</TEXT>
 </Civ4GameText>

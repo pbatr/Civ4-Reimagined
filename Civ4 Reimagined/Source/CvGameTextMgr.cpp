@@ -16496,7 +16496,7 @@ void CvGameTextMgr::setProductionHelp(CvWStringBuffer &szBuffer, CvCity& city)
 		{
 			if (city.hasBonus((BonusTypes)iI))
 			{
-				int iBonusMultiplier = GET_PLAYER(city.getOwnerINLINE()).getBonusValueTimes100(city.getNumBonuses((BonusTypes)iI)); // Civ4 Reimagined
+				int iBonusMultiplier = city.getBonusValueTimes100(city.getNumBonuses((BonusTypes)iI)); // Civ4 Reimagined
 				int iBonusMod = unit.getBonusProductionModifier(iI) * std::max(0, iBonusMultiplier) / 100;
 				// Civ4 Reimagined
 				if (GC.getUnitInfo(eUnit).isMilitaryProduction())
@@ -16607,7 +16607,7 @@ void CvGameTextMgr::setProductionHelp(CvWStringBuffer &szBuffer, CvCity& city)
 		{
 			if (city.hasBonus((BonusTypes)i))
 			{
-				int iBonusMultiplier = GET_PLAYER(city.getOwnerINLINE()).getBonusValueTimes100(city.getNumBonuses((BonusTypes)i)); // Civ4 Reimagined
+				int iBonusMultiplier = city.getBonusValueTimes100(city.getNumBonuses((BonusTypes)i)); // Civ4 Reimagined
 				int iBonusMod = building.getBonusProductionModifier(i) * std::max(0, iBonusMultiplier) / 100;
 				iBonusMod += city.getBonusBuildingProductionModifier((BonusTypes)i); // Civ4 Reimagined
 				if (0 != iBonusMod)
@@ -16770,7 +16770,7 @@ void CvGameTextMgr::setProductionHelp(CvWStringBuffer &szBuffer, CvCity& city)
 		{
 			if (city.hasBonus((BonusTypes)i))
 			{
-				int iBonusMultiplier = GET_PLAYER(city.getOwnerINLINE()).getBonusValueTimes100(city.getNumBonuses((BonusTypes)i)); // Civ4 Reimagined
+				int iBonusMultiplier = city.getBonusValueTimes100(city.getNumBonuses((BonusTypes)i)); // Civ4 Reimagined
 				int iBonusMod = project.getBonusProductionModifier(i) * std::max(0, iBonusMultiplier) / 100; // Civ4 Reimagined
 				if (0 != iBonusMod)
 				{
