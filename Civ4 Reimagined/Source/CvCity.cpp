@@ -6367,6 +6367,9 @@ int CvCity::getGreatPeopleRate() const
 		iGreatPeopleRate += GET_PLAYER(getOwnerINLINE()).getGreatSpyPointsFromImprovementInRadius((ImprovementTypes)*it);
 	}
 
+	// Civ4 Reimagined: France UP
+	iGreatPeopleRate += getGreatEngineerPointsFromCathedrals();
+
 	return std::max(0, ((iGreatPeopleRate * getTotalGreatPeopleRateModifier()) / 100));
 }
 
@@ -6450,6 +6453,15 @@ int CvCity::getAdditionalBaseGreatPeopleRateByBuilding(BuildingTypes eBuilding) 
 	int iExtraRate = 0;
 
 	iExtraRate += kBuilding.getGreatPeopleRateChange();
+
+	// Civ4 Reimagined: France UP
+	if (kBuilding.getReligionType() != NO_RELIGION && kBuilding.getStateReligion() != NO_RELIGION && !isWorldWonderClass(((BuildingClassTypes)kBuilding.getBuildingClassType())))
+	{
+		if (isHasReligion((ReligionTypes)kBuilding.getReligionType()))
+		{
+			iExtraRate += GET_PLAYER(getOwnerINLINE()).getGreatEngineerPointsFromCathedrals();
+		}
+	}
 
 	// Specialists
 	if (!bObsolete)
@@ -12716,6 +12728,15 @@ int CvCity::getGreatPeopleUnitRate(UnitTypes eIndex) const
 		}
 	}
 
+	// Civ4 Reimagined: France UP
+	const UnitClassTypes UNITCLASS_GREAT_ENGINEER = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_ENGINEER");
+	const UnitTypes UNIT_GREAT_ENGINEER = (UnitTypes)GC.getUnitClassInfo(UNITCLASS_GREAT_ENGINEER).getDefaultUnitIndex();
+
+	if (eIndex == UNIT_GREAT_ENGINEER)
+	{
+		iGreatPeopleUnitRate += getGreatEngineerPointsFromCathedrals();
+	}
+
 	return iGreatPeopleUnitRate;
 }
 
@@ -18462,10 +18483,11 @@ void CvCity::destroyReligiousBuildings(ReligionTypes eReligion, ReligionTypes eN
 {
 	for (int iI = 0; iI < GC.getNumBuildingInfos(); iI++)
 	{
+		const CvBuildingInfo& kBuilding = GC.getBuildingInfo((BuildingTypes)iI);
 		if (getNumRealBuilding((BuildingTypes)iI) > 0)
 		{
-			// don't destroy cathedrals
-			if (GC.getBuildingInfo((BuildingTypes)iI).getReligionType() == eReligion && GC.getBuildingInfo((BuildingTypes)iI).getStateReligion() == NO_RELIGION)
+			// don't destroy cathedrals, shrines
+			if (kBuilding.getReligionType() == eReligion && kBuilding.getStateReligion() == NO_RELIGION && !isWorldWonderClass((BuildingClassTypes)kBuilding.getBuildingClassType()))
 			{
 				setNumRealBuilding(((BuildingTypes)iI), 0);
 				CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_RELIGIOUS_BUILDING_DESTROYED", GC.getReligionInfo(eNewReligion).getChar(), getNameKey(), GC.getBuildingInfo((BuildingTypes)iI).getTextKeyWide());
@@ -18562,4 +18584,38 @@ int CvCity::getBonusValueTimes100(int iBonusCount) const
 	}
 
 	return GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iBonusCount);
+}
+
+
+// Civ4 Reimagined: France UP
+int CvCity::getGreatEngineerPointsFromCathedrals() const
+{
+	if (GET_PLAYER(getOwnerINLINE()).getGreatEngineerPointsFromCathedrals() == 0)
+	{
+		return 0;
+	}
+
+	const BuildingTypes aiCathedrals[] = {
+		(BuildingTypes)GC.getInfoTypeForString("BUILDING_JEWISH_CATHEDRAL"),
+		(BuildingTypes)GC.getInfoTypeForString("BUILDING_CHRISTIAN_CATHEDRAL"),
+		(BuildingTypes)GC.getInfoTypeForString("BUILDING_ISLAMIC_CATHEDRAL"),
+		(BuildingTypes)GC.getInfoTypeForString("BUILDING_HINDU_CATHEDRAL"),
+		(BuildingTypes)GC.getInfoTypeForString("BUILDING_BUDDHIST_CATHEDRAL"),
+		(BuildingTypes)GC.getInfoTypeForString("BUILDING_CONFUCIAN_CATHEDRAL"),
+		(BuildingTypes)GC.getInfoTypeForString("BUILDING_TAOIST_CATHEDRAL")
+	};
+
+	for (int iI = 0; iI < 7; iI++)
+	{
+		if (getNumBuilding(aiCathedrals[iI]) > 0)
+		{
+			const ReligionTypes eReligion = (ReligionTypes)GC.getBuildingInfo(aiCathedrals[iI]).getReligionType();
+			if (isHasReligion(eReligion) && GET_PLAYER(getOwnerINLINE()).getStateReligion() == eReligion)
+			{
+				return GET_PLAYER(getOwnerINLINE()).getGreatEngineerPointsFromCathedrals();
+			}
+		}
+	}
+
+	return 0;
 }

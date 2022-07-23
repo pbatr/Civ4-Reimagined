@@ -1481,6 +1481,8 @@ public:
 	bool hasGoodRelationsWithPope() const; // Civ4 Reimagined
 	void setCapitalAlwaysPerfectBonusValue(bool bNewValue); // Civ4 Reimagined
 	bool isCapitalAlwaysPerfectBonusValue() const; // Civ4 Reimagined
+	void changeGreatEngineerPointsFromCathedrals(int iChange); // Civ4 Reimagined
+	int getGreatEngineerPointsFromCathedrals() const; // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1765,6 +1767,7 @@ protected:
 	bool m_bGainGreatWorkGoldWithHitBonuses; // Civ4 Reimagined
 	int m_iReligiousVoteModifier; // Civ4 Reimagined
 	bool m_bCapitalAlwaysPerfectBonusValue; // Civ4 Reimagined
+	int m_iGreatEngineerPointsFromCathedrals; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
 

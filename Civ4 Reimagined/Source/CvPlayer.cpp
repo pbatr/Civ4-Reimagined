@@ -1053,6 +1053,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bGainGreatWorkGoldWithHitBonuses = false; // Civ4 Reimagined
 	m_iReligiousVoteModifier = 0; // Civ4 Reimagined
 	m_bCapitalAlwaysPerfectBonusValue = false; // Civ4 Reimagined
+	m_iGreatEngineerPointsFromCathedrals = 0; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -21096,6 +21097,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bGainGreatWorkGoldWithHitBonuses); // Civ4 Reimagined
 	pStream->Read(&m_iReligiousVoteModifier); // Civ4 Reimagined
 	pStream->Read(&m_bCapitalAlwaysPerfectBonusValue); // Civ4 Reimagined
+	pStream->Read(&m_iGreatEngineerPointsFromCathedrals); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -21739,6 +21741,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_bGainGreatWorkGoldWithHitBonuses); // Civ4 Reimagined
 	pStream->Write(m_iReligiousVoteModifier); // Civ4 Reimagined
 	pStream->Write(m_bCapitalAlwaysPerfectBonusValue); // Civ4 Reimagined
+	pStream->Write(m_iGreatEngineerPointsFromCathedrals); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -28190,6 +28193,21 @@ void CvPlayer::changeReligiousVoteModifier(int iChange)
 }
 
 // Civ4 Reimagined
+int CvPlayer::getGreatEngineerPointsFromCathedrals() const
+{
+	return m_iGreatEngineerPointsFromCathedrals;
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeGreatEngineerPointsFromCathedrals(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iGreatEngineerPointsFromCathedrals += iChange;
+	}
+}
+
+// Civ4 Reimagined
 CivicTypes CvPlayer::getFreeCivicEnabled() const
 {
 	return m_iFreeCivicEnabled;
@@ -29339,6 +29357,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_MEDIEVAL)
 		{
 			setCapitalAlwaysPerfectBonusValue(true);
+			changeGreatEngineerPointsFromCathedrals(6);
 			notifyUniquePowersChanged(true);
 		}
 	}

@@ -1094,6 +1094,7 @@ public:
 	int getStateReligionCommercePerPopulationOverThreshold(CommerceTypes eIndex) const;
 	void checkCultureLevelEurekas();
 	int getBonusValueTimes100(int iBonusCount) const; // Civ4 Reimagined
+	int getGreatEngineerPointsFromCathedrals() const;
 
 	void read(FDataStreamBase* pStream);
 	void write(FDataStreamBase* pStream);

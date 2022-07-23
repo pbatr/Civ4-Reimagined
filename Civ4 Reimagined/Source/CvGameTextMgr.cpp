@@ -17805,6 +17805,9 @@ void CvGameTextMgr::parseGreatPeopleHelp(CvWStringBuffer &szBuffer, CvCity& city
 		iBonusGPPoints += owner.getGreatSpyPointsFromImprovementInRadius(*it);
 	}
 
+	// Civ4 Reimagined: France UP
+	iBonusGPPoints += city.getGreatEngineerPointsFromCathedrals();
+
 	if (iBonusGPPoints != 0)
 	{
 		szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_GREATPEOPLE_UP_BONUS_RATE", iBonusGPPoints));
@@ -17927,6 +17930,9 @@ void CvGameTextMgr::parseGreatPeopleHelp(CvWStringBuffer &szBuffer, CvCity& city
 	{
 		iGreatPeopleRate += owner.getGreatSpyPointsFromImprovementInRadius(*it);
 	}
+
+	// Civ4 Reimagined: France UP
+	iGreatPeopleRate += city.getGreatEngineerPointsFromCathedrals();
 
 	int iModGreatPeople = (iModifier * iGreatPeopleRate) / 100;
 
