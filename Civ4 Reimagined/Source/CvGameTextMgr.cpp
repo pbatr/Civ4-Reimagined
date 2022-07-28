@@ -6664,6 +6664,12 @@ void CvGameTextMgr::parseSpecialistHelp(CvWStringBuffer &szHelpString, Specialis
 			else
 			{
 				aiCommerces[iI] = GET_PLAYER((pCity != NULL) ? pCity->getOwnerINLINE() : GC.getGameINLINE().getActivePlayer()).specialistCommerce(((SpecialistTypes)eSpecialist), ((CommerceTypes)iI));
+
+				// Civ4 Reimagined: France UP
+				if (pCity != NULL && pCity->isCapital() && !kInfo.isVisible())
+				{
+					aiCommerces[iI] += GET_PLAYER(pCity->getOwnerINLINE()).getGreatPeopleExtraCommerceInCapital((CommerceTypes)iI);
+				}
 			}
 		}
 
@@ -17172,6 +17178,12 @@ void CvGameTextMgr::setCommerceHelp(CvWStringBuffer &szBuffer, CvCity& city, Com
 	bool bNeedSubtotal = false; // BUG - Base Commerce 
 
 	int iSpecialistCommerce = city.getSpecialistCommerce(eCommerceType) + (city.getSpecialistPopulation() + city.getNumGreatPeople()) * owner.getSpecialistExtraCommerce(eCommerceType);
+
+	// Civ4 Reimagined: France UP
+	if (city.isCapital())
+	{
+		iSpecialistCommerce += city.getNumGreatPeople() * owner.getGreatPeopleExtraCommerceInCapital(eCommerceType);
+	}
 
 	// Civ4 Reimagined
 	for (int iI = 0; iI < GC.getNumSpecialistInfos(); iI++)

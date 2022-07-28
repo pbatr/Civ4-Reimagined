@@ -10706,10 +10706,11 @@ int CvCity::getBaseCommerceRateTimes100(CommerceTypes eIndex) const
 	iBaseCommerceRate += 100 * ((getSpecialistPopulation() + getNumGreatPeople()) * GET_PLAYER(getOwnerINLINE()).getSpecialistExtraCommerce(eIndex));
 	iBaseCommerceRate += 100 * (getBuildingCommerce(eIndex) + getSpecialistCommerce(eIndex) + getReligionCommerce(eIndex) + getCorporationCommerce(eIndex) + GET_PLAYER(getOwnerINLINE()).getFreeCityCommerce(eIndex));
 
-	// Civ4 Reimagined: Babylon UP
+	// Civ4 Reimagined
 	if (isCapital())
 	{
-		iBaseCommerceRate += GET_PLAYER(getOwnerINLINE()).getCapitalCommercePerPopulation(eIndex, getPopulation()); // Civ4 Reimagined
+		iBaseCommerceRate += 100 * getNumGreatPeople() * GET_PLAYER(getOwnerINLINE()).getGreatPeopleExtraCommerceInCapital(eIndex);
+		iBaseCommerceRate += GET_PLAYER(getOwnerINLINE()).getCapitalCommercePerPopulation(eIndex, getPopulation());
 	}
 
 	// Civ4 Reimagined
@@ -11261,6 +11262,7 @@ int CvCity::getAdditionalBaseCommerceRateBySpecialistImpl(CommerceTypes eIndex, 
 	FAssertMsg(eSpecialist < GC.getNumSpecialistInfos(), "eSpecialist expected to be < GC.getNumSpecialistInfos()");
 
 	CvSpecialistInfo& kSpecialist = GC.getSpecialistInfo(eSpecialist);
+
 	return iChange * (kSpecialist.getCommerceChange(eIndex) + GET_PLAYER(getOwnerINLINE()).getSpecialistExtraCommerce(eIndex));
 }
 // BUG - Specialist Additional Commerce - end

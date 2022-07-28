@@ -63,6 +63,7 @@ CvPlayer::CvPlayer()
 	m_aiStateReligionBuildingCommerce = new int[NUM_COMMERCE_TYPES];
 	m_aiStateReligionCommercePerPopulationOverThreshold = new int[NUM_COMMERCE_TYPES]; // Civ4 Reimagined
 	m_aiSpecialistExtraCommerce = new int[NUM_COMMERCE_TYPES];
+	m_aiGreatPeopleExtraCommerceInCapital = new int[NUM_COMMERCE_TYPES]; // Civ4 Reimagined
 	m_aiCommerceFlexibleCount = new int[NUM_COMMERCE_TYPES];
 	m_aiGoldPerTurnByPlayer = new int[MAX_PLAYERS];
 	m_aiEspionageSpendingWeightAgainstTeam = new int[MAX_TEAMS];
@@ -165,6 +166,7 @@ CvPlayer::~CvPlayer()
 	SAFE_DELETE_ARRAY(m_aiStateReligionBuildingCommerce);
 	SAFE_DELETE_ARRAY(m_aiStateReligionCommercePerPopulationOverThreshold); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiSpecialistExtraCommerce);
+	SAFE_DELETE_ARRAY(m_aiGreatPeopleExtraCommerceInCapital); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiCommerceFlexibleCount);
 	SAFE_DELETE_ARRAY(m_aiGoldPerTurnByPlayer);
 	SAFE_DELETE_ARRAY(m_aiEspionageSpendingWeightAgainstTeam);
@@ -1097,6 +1099,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		m_aiStateReligionBuildingCommerce[iI] = 0;
 		m_aiStateReligionCommercePerPopulationOverThreshold[iI] = 0; // Civ4 Reimagined
 		m_aiSpecialistExtraCommerce[iI] = 0;
+		m_aiGreatPeopleExtraCommerceInCapital[iI] = 0; // Civ4 Reimagined
 		m_aiCommerceFlexibleCount[iI] = 0;
 		m_aiInitCityCommerce[iI] = 0; // Civ4 Reimagined
 		m_aiUniquePowerCommerceModifier[iI] = 0; // Civ4 Reimagined
@@ -15162,6 +15165,33 @@ void CvPlayer::changeSpecialistExtraCommerce(CommerceTypes eIndex, int iChange)
 }
 
 
+// Civ4 Reimagined
+int CvPlayer::getGreatPeopleExtraCommerceInCapital(CommerceTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < NUM_COMMERCE_TYPES, "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_aiGreatPeopleExtraCommerceInCapital[eIndex];
+}
+
+
+// Civ4 Reimagined
+void CvPlayer::changeGreatPeopleExtraCommerceInCapital(CommerceTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < NUM_COMMERCE_TYPES, "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	if (iChange != 0)
+	{
+		m_aiGreatPeopleExtraCommerceInCapital[eIndex] = (m_aiGreatPeopleExtraCommerceInCapital[eIndex] + iChange);
+		FAssert(getGreatPeopleExtraCommerceInCapital(eIndex) >= 0);
+
+		updateCommerce(eIndex);
+
+		AI_makeAssignWorkDirty();
+	}
+}
+
+
 int CvPlayer::getCommerceFlexibleCount(CommerceTypes eIndex) const
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
@@ -21150,6 +21180,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(NUM_COMMERCE_TYPES, m_aiStateReligionBuildingCommerce);
 	pStream->Read(NUM_COMMERCE_TYPES, m_aiStateReligionCommercePerPopulationOverThreshold); // Civ4 Reimagined
 	pStream->Read(NUM_COMMERCE_TYPES, m_aiSpecialistExtraCommerce);
+	pStream->Read(NUM_COMMERCE_TYPES, m_aiGreatPeopleExtraCommerceInCapital); // Civ4 Reimagined
 	pStream->Read(NUM_COMMERCE_TYPES, m_aiCommerceFlexibleCount);
 	pStream->Read(MAX_PLAYERS, m_aiGoldPerTurnByPlayer);
 	pStream->Read(MAX_TEAMS, m_aiEspionageSpendingWeightAgainstTeam);
@@ -21784,6 +21815,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(NUM_COMMERCE_TYPES, m_aiStateReligionBuildingCommerce);
 	pStream->Write(NUM_COMMERCE_TYPES, m_aiStateReligionCommercePerPopulationOverThreshold); // Civ4 Reimagined
 	pStream->Write(NUM_COMMERCE_TYPES, m_aiSpecialistExtraCommerce);
+	pStream->Write(NUM_COMMERCE_TYPES, m_aiGreatPeopleExtraCommerceInCapital); // Civ4 Reimagined
 	pStream->Write(NUM_COMMERCE_TYPES, m_aiCommerceFlexibleCount);
 	pStream->Write(MAX_PLAYERS, m_aiGoldPerTurnByPlayer);
 	pStream->Write(MAX_TEAMS, m_aiEspionageSpendingWeightAgainstTeam);
@@ -29358,6 +29390,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		{
 			setCapitalAlwaysPerfectBonusValue(true);
 			changeGreatEngineerPointsFromCathedrals(6);
+			changeGreatPeopleExtraCommerceInCapital(COMMERCE_GOLD, 3);
 			notifyUniquePowersChanged(true);
 		}
 	}

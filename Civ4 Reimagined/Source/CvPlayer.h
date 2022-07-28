@@ -993,6 +993,10 @@ public:
 	int getSpecialistExtraCommerce(CommerceTypes eIndex) const;	// Exposed to Python
 	void changeSpecialistExtraCommerce(CommerceTypes eIndex, int iChange);
 
+	// Civ4 Reimagined
+	int getGreatPeopleExtraCommerceInCapital(CommerceTypes eIndex) const;
+	void changeGreatPeopleExtraCommerceInCapital(CommerceTypes eIndex, int iChange);
+
 	int getCommerceFlexibleCount(CommerceTypes eIndex) const;
 	bool isCommerceFlexible(CommerceTypes eIndex) const;	// Exposed to Python
 	void changeCommerceFlexibleCount(CommerceTypes eIndex, int iChange);
@@ -1821,6 +1825,7 @@ protected:
 	int* m_aiStateReligionBuildingCommerce;
 	int* m_aiStateReligionCommercePerPopulationOverThreshold; // Civ4 Reimagined
 	int* m_aiSpecialistExtraCommerce;
+	int* m_aiGreatPeopleExtraCommerceInCapital; // Civ4 Reimagined
 	int* m_aiCommerceFlexibleCount;
 	int* m_aiGoldPerTurnByPlayer;
 	int* m_aiEspionageSpendingWeightAgainstTeam;
