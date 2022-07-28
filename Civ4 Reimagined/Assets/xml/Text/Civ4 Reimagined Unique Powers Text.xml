@@ -293,6 +293,6 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_RUSSIA</Tag>
-		<English>After entering the Medieval Era: Tundra tiles +1[ICON_PRODUCTION]. On their home continent: 10% combat bonus for all units inside own borders.</English>
+		<English>After entering the Medieval Era: Tundra tiles +1[ICON_PRODUCTION]. On their home continent: 10% combat bonus for all units inside own borders, +100% yields for improvements on strategic resources.</English>
 	</TEXT>
 </Civ4GameText>

@@ -5648,6 +5648,17 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 												iYieldChange += GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getAdditionalFarmBonusYield();
 											}
 
+											// Civ4 Reimagined: Russia UP
+											if (kImprovementInfo.getImprovementBonusYield(eBonus, k) > 0 && GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getStrategicBonusYieldModifier() != 0)
+											{
+												CvBonusInfo& kBonusInfo = GC.getBonusInfo(eBonus);
+												if (kBonusInfo.getHappiness() == 0 && kBonusInfo.getHealth() == 0)
+												{
+													iYieldChange *= 100 + GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getStrategicBonusYieldModifier();
+													iYieldChange /= 100;
+												}
+											}
+
 											if (iYieldChange != 0)
 											{
 												if (iYieldChange > 0)

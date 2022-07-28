@@ -6647,6 +6647,17 @@ int CvPlot::calculateImprovementYieldChange(ImprovementTypes eImprovement, Yield
 				iBonusYield += GET_PLAYER(ePlayer).getAdditionalFarmBonusYield();
 			}
 
+			// Civ4 Reimagined: Russia UP
+			if (iBonusYield > 0 && GET_PLAYER(ePlayer).getStrategicBonusYieldModifier() != 0)
+			{
+				CvBonusInfo& kBonusInfo = GC.getBonusInfo(eBonus);
+				if (kBonusInfo.getHappiness() == 0 && kBonusInfo.getHealth() == 0)
+				{
+					iBonusYield *= 100 + GET_PLAYER(ePlayer).getStrategicBonusYieldModifier();
+					iBonusYield /= 100;
+				}
+			}
+
 			iYield += iBonusYield;
 		}
 	}
