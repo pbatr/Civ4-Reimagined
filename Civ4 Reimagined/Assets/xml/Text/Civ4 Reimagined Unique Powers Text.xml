@@ -19,8 +19,16 @@
 		<English>(Against infidels: %D1%%)</English>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_COMBAT_MESSAGE_HOME_AREA</Tag>
+		<English>(Inside own borders on home continent: %D1%%)</English>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_COMBAT_PLOT_FAITH_MOD</Tag>
 		<English>[ICON_BULLET]%D1_Bonus%% against Infidels</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_COMBAT_PLOT_HOME_AREA</Tag>
+		<English>[ICON_BULLET]%D1_Bonus%% Fighting in Russian Territory</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWERS_TECH_PROGRESS_SETTLE</Tag>
@@ -282,5 +290,9 @@
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_FRANCE</Tag>
 		<English>After entering the Medieval Era: No resource shortage malus in capital. State religion Cathedrals give additional progress to Great Engineers (+6[ICON_GREATPEOPLE]). Great People in Capital provide +3[ICON_GOLD].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_RUSSIA</Tag>
+		<English>After entering the Medieval Era: Tundra tiles +1[ICON_PRODUCTION]. On their home continent: 10% combat bonus for all units inside own borders.</English>
 	</TEXT>
 </Civ4GameText>

@@ -40,6 +40,7 @@ struct DllExport CombatDetails					// Exposed to Python
 	int iFeatureDefenseModifier;
 	int iTerrainAttackModifier;
 	int iTerrainDefenseModifier;
+	int iHomeAreaOwnBordersModifier; // Civ4 Reimagined
 	int iCityAttackModifier;
 	int iDomainDefenseModifier;
 	int iCityBarbarianDefenseModifier;

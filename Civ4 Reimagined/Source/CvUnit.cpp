@@ -8876,6 +8876,7 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 		pCombatDetails->iFeatureDefenseModifier = 0;
 		pCombatDetails->iTerrainAttackModifier = 0;
 		pCombatDetails->iTerrainDefenseModifier = 0;
+		pCombatDetails->iHomeAreaOwnBordersModifier = 0; // Civ4 Reimagined
 		pCombatDetails->iCityAttackModifier = 0;
 		pCombatDetails->iDomainDefenseModifier = 0;
 		pCombatDetails->iCityBarbarianDefenseModifier = 0;
@@ -9090,6 +9091,21 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 				pCombatDetails->iTerrainDefenseModifier = iExtraModifier;
 			}
 		}
+
+		// Civ4 Reimagined: Russia UP
+		if (GET_PLAYER(getOwnerINLINE()).getCombatBonusOnHomeArea() > 0)
+		{
+			CvCity* pCapital = GET_PLAYER(getOwnerINLINE()).getCapitalCity();
+			if (pCapital && pPlot->getArea() == pCapital->getArea() && pPlot->getOwnerINLINE() == getOwnerINLINE())
+			{
+				iExtraModifier = GET_PLAYER(getOwnerINLINE()).getCombatBonusOnHomeArea();
+				iModifier += iExtraModifier;
+				if (pCombatDetails != NULL)
+				{
+					pCombatDetails->iHomeAreaOwnBordersModifier = iExtraModifier;
+				}
+			}
+		}
 	}
 
 	// if we are attacking to an plot with an unknown defender, the calc the modifier in reverse
@@ -9191,6 +9207,21 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 			if (pCombatDetails != NULL)
 			{
 				pCombatDetails->iTerrainAttackModifier = iExtraModifier;
+			}
+		}
+
+		// Civ4 Reimagined: Russia UP
+		if (GET_PLAYER(pAttacker->getOwnerINLINE()).getCombatBonusOnHomeArea() > 0)
+		{
+			CvCity* pCapital = GET_PLAYER(pAttacker->getOwnerINLINE()).getCapitalCity();
+			if (pCapital && pAttackedPlot->getArea() == pCapital->getArea() && pAttackedPlot->getOwnerINLINE() == pAttacker->getOwnerINLINE())
+			{
+				iExtraModifier = -GET_PLAYER(pAttacker->getOwnerINLINE()).getCombatBonusOnHomeArea();
+				iTempModifier += iExtraModifier;
+				if (pCombatDetails != NULL)
+				{
+					pCombatDetails->iHomeAreaOwnBordersModifier = iExtraModifier;
+				}
 			}
 		}
 

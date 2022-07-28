@@ -1056,6 +1056,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iReligiousVoteModifier = 0; // Civ4 Reimagined
 	m_bCapitalAlwaysPerfectBonusValue = false; // Civ4 Reimagined
 	m_iGreatEngineerPointsFromCathedrals = 0; // Civ4 Reimagined
+	m_iCombatBonusOnHomeArea = 0; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -21128,6 +21129,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iReligiousVoteModifier); // Civ4 Reimagined
 	pStream->Read(&m_bCapitalAlwaysPerfectBonusValue); // Civ4 Reimagined
 	pStream->Read(&m_iGreatEngineerPointsFromCathedrals); // Civ4 Reimagined
+	pStream->Read(&m_iCombatBonusOnHomeArea); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -21773,6 +21775,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iReligiousVoteModifier); // Civ4 Reimagined
 	pStream->Write(m_bCapitalAlwaysPerfectBonusValue); // Civ4 Reimagined
 	pStream->Write(m_iGreatEngineerPointsFromCathedrals); // Civ4 Reimagined
+	pStream->Write(m_iCombatBonusOnHomeArea); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -28240,6 +28243,21 @@ void CvPlayer::changeGreatEngineerPointsFromCathedrals(int iChange)
 }
 
 // Civ4 Reimagined
+int CvPlayer::getCombatBonusOnHomeArea() const
+{
+	return m_iCombatBonusOnHomeArea;
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeCombatBonusOnHomeArea(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iCombatBonusOnHomeArea += iChange;
+	}
+}
+
+// Civ4 Reimagined
 CivicTypes CvPlayer::getFreeCivicEnabled() const
 {
 	return m_iFreeCivicEnabled;
@@ -29547,6 +29565,15 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			changeFreeUnitsOnConquest(GC.getDefineINT("UNIQUE_POWER_ROME")); // 2+Culture-Level der Stadt Einheiten
 			notifyUniquePowersChanged(true);
 		}			
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_RUSSIA"))
+	{
+		if (eEra == ERA_MEDIEVAL) 
+		{
+			changeTerrainYieldChange((TerrainTypes)GC.getInfoTypeForString("TERRAIN_TUNDRA"), YIELD_PRODUCTION, 1);
+			changeCombatBonusOnHomeArea(10);
+			notifyUniquePowersChanged(true);
+		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SPAIN"))
 	{

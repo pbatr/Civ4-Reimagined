@@ -3735,6 +3735,32 @@ bool CvGameTextMgr::setCombatPlotHelp(CvWStringBuffer &szString, CvPlot* pPlot)
 				}
 			}
 
+			// Civ4 Reimagined: Russia UP
+			if (GET_PLAYER(pAttacker->getOwnerINLINE()).getCombatBonusOnHomeArea() > 0)
+			{
+				CvCity* pCapital = GET_PLAYER(pAttacker->getOwnerINLINE()).getCapitalCity();
+				if (pCapital && pPlot->getArea() == pCapital->getArea() && pPlot->getOwnerINLINE() == pAttacker->getOwnerINLINE())
+				{
+					iModifier = GET_PLAYER(pAttacker->getOwnerINLINE()).getCombatBonusOnHomeArea();
+
+					if (iModifier != 0)
+					{
+						szString.append(NEWLINE);
+						szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_HOME_AREA", -iModifier));
+					}
+				}
+			}
+			if (pPlot->isHills())
+			{
+				iModifier = pAttacker->hillsAttackModifier();
+
+				if (iModifier != 0)
+				{
+					szString.append(NEWLINE);
+					szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_HILLS_MOD", -iModifier));
+				}
+			}
+
 			if (pPlot->isHills())
 			{
 				iModifier = pAttacker->hillsAttackModifier();
