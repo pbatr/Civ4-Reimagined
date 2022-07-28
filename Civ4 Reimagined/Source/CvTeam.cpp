@@ -6988,6 +6988,18 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 			{
 				pLoopPlot->updateYield();
 				pLoopPlot->setLayoutDirty(true);
+
+				// Civ4 Reimagined
+				for (int iJ = 0; iI < NUM_DIRECTION_TYPES; ++iJ)
+				{
+					CvPlot* pAdjacentPlot = plotDirection(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), ((DirectionTypes)iJ));
+
+					if (pAdjacentPlot != NULL)
+					{
+						pAdjacentPlot->updateYield();
+						pAdjacentPlot->setLayoutDirty(true);
+					}
+				}
 			}
 		}
 	}

@@ -1409,6 +1409,37 @@ bool CvPlot::isAdjacentToBonus(BonusTypes eIndex) const
 }
 
 
+// Civ4 Reimagined
+bool CvPlot::isAdjacentToStrategicBonus(TeamTypes eTeam) const
+{
+	PROFILE_FUNC();
+
+	CvPlot* pAdjacentPlot;
+	int iI;
+
+	for (iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
+	{
+		pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
+
+		if (pAdjacentPlot != NULL)
+		{
+			const BonusTypes eBonus = pAdjacentPlot->getBonusType(eTeam);
+
+			if (eBonus != NO_BONUS)
+			{
+				CvBonusInfo& kBonusInfo = GC.getBonusInfo(eBonus);
+				if (kBonusInfo.getHappiness() == 0 && kBonusInfo.getHealth() == 0)
+				{
+					return true;
+				}
+			}
+		}
+	}
+
+	return false;
+}
+
+
 bool CvPlot::isCoastalLand(int iMinWaterSize) const
 {
 	PROFILE_FUNC();
@@ -6635,6 +6666,16 @@ int CvPlot::calculateImprovementYieldChange(ImprovementTypes eImprovement, Yield
 
 	if (ePlayer != NO_PLAYER)
 	{
+		// Cvi4 Reimagined: Russia UP
+		if (GET_PLAYER(ePlayer).getImprovementYieldChangeAdjacentToStrategicBonus(eImprovement, eYield) != 0)
+		{
+			CvCity* pCapitalCity = GET_PLAYER(ePlayer).getCapitalCity();
+			if (pCapitalCity!= NULL && getArea() == pCapitalCity->getArea() && isAdjacentToStrategicBonus(getTeam()))
+			{
+				iYield += GET_PLAYER(ePlayer).getImprovementYieldChangeAdjacentToStrategicBonus(eImprovement, eYield);
+			}
+		}
+
 		eBonus = getBonusType(GET_PLAYER(ePlayer).getTeam());
 
 		if (eBonus != NO_BONUS)

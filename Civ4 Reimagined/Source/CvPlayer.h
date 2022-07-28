@@ -1127,6 +1127,10 @@ public:
 	void changeImprovementYieldChange(ImprovementTypes eIndex1, YieldTypes eIndex2, int iChange);
 
 	// Civ4 Reimagined
+	int getImprovementYieldChangeAdjacentToStrategicBonus(ImprovementTypes eIndex1, YieldTypes eIndex2) const;
+	void changeImprovementYieldChangeAdjacentToStrategicBonus(ImprovementTypes eIndex1, YieldTypes eIndex2, int iChange);
+
+	// Civ4 Reimagined
 	int getTerrainYieldChange(TerrainTypes eIndex1, YieldTypes eIndex2) const;
 	void changeTerrainYieldChange(TerrainTypes eIndex1, YieldTypes eIndex2, int iChange);
 	
@@ -1907,6 +1911,7 @@ protected:
 	int** m_ppaaiSpecialistCommerceChanges; // Civ4 Reimagined
 	int** m_ppaaiSpecialistThresholdExtraYield; //Leoreth
 	int** m_ppaaiImprovementYieldChange;
+	int** m_ppaaiImprovementYieldChangeAdjacentToStrategicBonus; // Civ4 Reimagined
 	int** m_ppaaiTerrainYieldChange; // Civ4 Reimagined
 	int** m_ppaaiRadiusImprovementCommerceChange; // Civ4 Reimagined
 	int** m_ppaaiBuildingYieldChange; // Civ4 Reimagined

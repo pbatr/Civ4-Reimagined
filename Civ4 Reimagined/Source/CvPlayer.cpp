@@ -130,6 +130,7 @@ CvPlayer::CvPlayer()
 	m_ppaaiSpecialistCommerceChanges = NULL; // Civ4 Reimagined
 	m_ppaaiSpecialistThresholdExtraYield = NULL; //Leoreth
 	m_ppaaiImprovementYieldChange = NULL;
+	m_ppaaiImprovementYieldChangeAdjacentToStrategicBonus = NULL;
 	m_ppaaiTerrainYieldChange = NULL; // Civ4 Reimagined
 	m_ppaaiRadiusImprovementCommerceChange = NULL; // Civ4 Reimagined
 	m_ppaaiBuildingYieldChange = NULL; // Civ4 Reimagined
@@ -756,6 +757,16 @@ void CvPlayer::uninit()
 			SAFE_DELETE_ARRAY(m_ppaaiImprovementYieldChange[iI]);
 		}
 		SAFE_DELETE_ARRAY(m_ppaaiImprovementYieldChange);
+	}
+
+	// Civ4 Reimagined
+	if (m_ppaaiImprovementYieldChangeAdjacentToStrategicBonus != NULL)
+	{
+		for (int iI = 0; iI < GC.getNumImprovementInfos(); iI++)
+		{
+			SAFE_DELETE_ARRAY(m_ppaaiImprovementYieldChangeAdjacentToStrategicBonus[iI]);
+		}
+		SAFE_DELETE_ARRAY(m_ppaaiImprovementYieldChangeAdjacentToStrategicBonus);
 	}
 
 	// Civ4 Reimagined
@@ -1418,13 +1429,19 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		}
 
 		FAssertMsg(m_ppaaiImprovementYieldChange==NULL, "about to leak memory, CvPlayer::m_ppaaiImprovementYieldChange");
+		FAssertMsg(m_ppaaiImprovementYieldChangeAdjacentToStrategicBonus==NULL, "about to leak memory, CvPlayer::m_ppaaiImprovementYieldChangeAdjacentToStrategicBonus");
 		m_ppaaiImprovementYieldChange = new int*[GC.getNumImprovementInfos()];
+		m_ppaaiImprovementYieldChangeAdjacentToStrategicBonus = new int*[GC.getNumImprovementInfos()];
 		for (iI = 0; iI < GC.getNumImprovementInfos(); iI++)
 		{
 			m_ppaaiImprovementYieldChange[iI] = new int[NUM_YIELD_TYPES];
+			// Civ4 Reimagined
+			m_ppaaiImprovementYieldChangeAdjacentToStrategicBonus[iI] = new int[NUM_YIELD_TYPES];
 			for (iJ = 0; iJ < NUM_YIELD_TYPES; iJ++)
 			{
 				m_ppaaiImprovementYieldChange[iI][iJ] = 0;
+				// Civ4 Reimagined
+				m_ppaaiImprovementYieldChangeAdjacentToStrategicBonus[iI][iJ] = 0;
 			}
 		}
 
@@ -16514,6 +16531,34 @@ void CvPlayer::changeImprovementYieldChange(ImprovementTypes eIndex1, YieldTypes
 
 
 // Civ4 Reimagined
+int CvPlayer::getImprovementYieldChangeAdjacentToStrategicBonus(ImprovementTypes eIndex1, YieldTypes eIndex2) const
+{
+	FAssertMsg(eIndex1 >= 0, "eIndex1 is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex1 < GC.getNumImprovementInfos(), "eIndex1 is expected to be within maximum bounds (invalid Index)");
+	FAssertMsg(eIndex2 >= 0, "eIndex2 is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex2 < NUM_YIELD_TYPES, "eIndex2 is expected to be within maximum bounds (invalid Index)");
+	return m_ppaaiImprovementYieldChangeAdjacentToStrategicBonus[eIndex1][eIndex2];
+}
+
+
+// Civ4 Reimagined
+void CvPlayer::changeImprovementYieldChangeAdjacentToStrategicBonus(ImprovementTypes eIndex1, YieldTypes eIndex2, int iChange)
+{
+	FAssertMsg(eIndex1 >= 0, "eIndex1 is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex1 < GC.getNumImprovementInfos(), "eIndex1 is expected to be within maximum bounds (invalid Index)");
+	FAssertMsg(eIndex2 >= 0, "eIndex2 is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex2 < NUM_YIELD_TYPES, "eIndex2 is expected to be within maximum bounds (invalid Index)");
+
+	if (iChange != 0)
+	{
+		m_ppaaiImprovementYieldChangeAdjacentToStrategicBonus[eIndex1][eIndex2] = (m_ppaaiImprovementYieldChangeAdjacentToStrategicBonus[eIndex1][eIndex2] + iChange);
+
+		updateYield();
+	}
+}
+
+
+// Civ4 Reimagined
 int CvPlayer::getTerrainYieldChange(TerrainTypes eIndex1, YieldTypes eIndex2) const
 {
 	FAssertMsg(eIndex1 >= 0, "eIndex1 is expected to be non-negative (invalid Index)");
@@ -21264,6 +21309,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	for (iI=0;iI<GC.getNumImprovementInfos();iI++)
 	{
 		pStream->Read(NUM_YIELD_TYPES, m_ppaaiImprovementYieldChange[iI]);
+		pStream->Read(NUM_YIELD_TYPES, m_ppaaiImprovementYieldChangeAdjacentToStrategicBonus[iI]); // Civ4 Reimagined
 		pStream->Read(NUM_COMMERCE_TYPES, m_ppaaiRadiusImprovementCommerceChange[iI]);
 	}
 
@@ -21901,6 +21947,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	for (iI=0;iI<GC.getNumImprovementInfos();iI++)
 	{
 		pStream->Write(NUM_YIELD_TYPES, m_ppaaiImprovementYieldChange[iI]);
+		pStream->Write(NUM_YIELD_TYPES, m_ppaaiImprovementYieldChangeAdjacentToStrategicBonus[iI]); // Civ4 Reimagined
 		pStream->Write(NUM_COMMERCE_TYPES, m_ppaaiRadiusImprovementCommerceChange[iI]);
 	}
 
@@ -29591,6 +29638,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			changeTerrainYieldChange((TerrainTypes)GC.getInfoTypeForString("TERRAIN_TUNDRA"), YIELD_PRODUCTION, 1);
 			changeCombatBonusOnHomeArea(10);
 			changeStrategicBonusYieldModifier(100);
+			changeImprovementYieldChangeAdjacentToStrategicBonus((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_WORKSHOP"), YIELD_COMMERCE, 1);
 			notifyUniquePowersChanged(true);
 		}
 	}

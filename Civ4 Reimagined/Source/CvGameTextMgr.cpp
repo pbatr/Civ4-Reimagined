@@ -5659,6 +5659,16 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 												}
 											}
 
+											// Civ4 Reimagined: Russia UP
+											if (GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getImprovementYieldChangeAdjacentToStrategicBonus((ImprovementTypes)GC.getBuildInfo((BuildTypes) iI).getImprovement(), (YieldTypes)k) != 0)
+											{
+												CvCity* pCapitalCity = GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getCapitalCity();
+												if (pCapitalCity!= NULL && pPlot->getArea() == pCapitalCity->getArea() && pPlot->isAdjacentToStrategicBonus(GC.getGameINLINE().getActiveTeam()))
+												{
+													iYieldChange += GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getImprovementYieldChangeAdjacentToStrategicBonus((ImprovementTypes)GC.getBuildInfo((BuildTypes) iI).getImprovement(), (YieldTypes)k);
+												}
+											}
+
 											if (iYieldChange != 0)
 											{
 												if (iYieldChange > 0)
