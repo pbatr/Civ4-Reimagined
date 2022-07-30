@@ -82,6 +82,7 @@ CvPlayer::CvPlayer()
 
 	m_abFeatAccomplished = new bool[NUM_FEAT_TYPES];
 	m_abOptions = new bool[NUM_PLAYEROPTION_TYPES];
+	m_abNativeAmericanBonus = new bool[NUM_NATIVEBONUS_TYPES]; // Civ4 Reimagined
 
 	m_paiBonusExport = NULL;
 	m_paiBonusImport = NULL;
@@ -183,6 +184,7 @@ CvPlayer::~CvPlayer()
 	SAFE_DELETE_ARRAY(m_aiIdeologyCombatExperienceModifier); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_abFeatAccomplished);
 	SAFE_DELETE_ARRAY(m_abOptions);
+	SAFE_DELETE_ARRAY(m_abNativeAmericanBonus); // Civ4 Reimagined
 }
 
 
@@ -1057,6 +1059,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iPillageHeal = 0; // Civ4 Reimagined
 	m_iGreatPeopleRatePerReligionModifier = 0; // Civ4 Reimagined
 	m_eIdeology = IDEOLOGY_CONSERVATISM; // Civ4 Reimagined
+	m_eUniquePowerBuilding = NO_BUILDING; // Civ4 Reimagined
 	m_bAlwaysFreshWater = false; // Civ4 Reimagined
 	m_bCanRemoveFeatures = false; // Civ4 Reimagined
 	m_bCityRevoltOnKill = false; // Civ4 Reimagined
@@ -1176,6 +1179,12 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	for (iI = 0; iI < NUM_PLAYEROPTION_TYPES; iI++)
 	{
 		m_abOptions[iI] = false;
+	}
+
+	// Civ4 Reimagined
+	for (iI = 0; iI < NUM_NATIVEBONUS_TYPES; iI++)
+	{
+		m_abNativeAmericanBonus[iI] = false;
 	}
 
 	m_szScriptData = "";
@@ -7070,6 +7079,8 @@ void CvPlayer::found(int iX, int iY)
 		return;
 	}
 
+	// Civ4 Reimagined
+	applyNativeAmericanBonus(iX, iY);
 
 	pCity = initCity(iX, iY, true, true);
 	FAssertMsg(pCity != NULL, "City is not assigned a valid value");
@@ -7163,7 +7174,7 @@ void CvPlayer::found(int iX, int iY)
 	CvEventReporter::getInstance().cityBuilt(pCity);
 
 	// Civ4 Reimagined
-	if (pCity->isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN())) 
+	if (pCity->isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
 	{
 		GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_SAILING"), getID(), true);
 	}
@@ -7325,6 +7336,12 @@ bool CvPlayer::canConstruct(BuildingTypes eBuilding, bool bContinue, bool bTestV
 
 	//FAssert(GC.getCivilizationInfo(getCivilizationType()).getCivilizationBuildings(eBuildingClass) == eBuilding);
 	if (GC.getCivilizationInfo(getCivilizationType()).getCivilizationBuildings(eBuildingClass) != eBuilding)
+	{
+		return false;
+	}
+
+	// Civ4 Reimagined
+	if (GC.getBuildingInfo(eBuilding).isUniquePower() && getUniquePowerBuilding() != eBuilding)
 	{
 		return false;
 	}
@@ -15334,6 +15351,22 @@ void CvPlayer::setOption(PlayerOptionTypes eIndex, bool bNewValue)
 	m_abOptions[eIndex] = bNewValue;
 }
 
+// Civ4 Reimagined
+bool CvPlayer::isNativeAmericanBonus(NativeBonusTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < NUM_NATIVEBONUS_TYPES, "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_abNativeAmericanBonus[eIndex];
+}
+
+// Civ4 Reimagined
+void CvPlayer::setNativeAmericanBonus(NativeBonusTypes eIndex, bool bNewValue)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < NUM_NATIVEBONUS_TYPES, "eIndex is expected to be within maximum bounds (invalid Index)");
+	m_abNativeAmericanBonus[eIndex] = bNewValue;
+}
+
 bool CvPlayer::isPlayable() const
 {
 	return GC.getInitCore().getPlayableCiv(getID());
@@ -21210,6 +21243,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read((int*)&m_eLastStateReligion);
 	pStream->Read((int*)&m_eParent);
 	pStream->Read((int*)&m_eIdeology); // Civ4 Reimagined
+	pStream->Read((int*)&m_eUniquePowerBuilding); // Civ4 Reimagined
 	updateTeamType(); //m_eTeamType not saved
 	updateHuman();
 
@@ -21246,6 +21280,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	
 	pStream->Read(NUM_FEAT_TYPES, m_abFeatAccomplished);
 	pStream->Read(NUM_PLAYEROPTION_TYPES, m_abOptions);
+	pStream->Read(NUM_NATIVEBONUS_TYPES, m_abNativeAmericanBonus); // Civ4 Reimagined
 
 	pStream->ReadString(m_szScriptData);
 
@@ -21849,6 +21884,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_eLastStateReligion);
 	pStream->Write(m_eParent);
 	pStream->Write(m_eIdeology); // Civ4 Reimagined
+	pStream->Write(m_eUniquePowerBuilding); // Civ4 Reimagined
 	//m_eTeamType not saved
 
 	pStream->Write(NUM_YIELD_TYPES, m_aiSeaPlotYield);
@@ -21884,6 +21920,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 
 	pStream->Write(NUM_FEAT_TYPES, m_abFeatAccomplished);
 	pStream->Write(NUM_PLAYEROPTION_TYPES, m_abOptions);
+	pStream->Write(NUM_NATIVEBONUS_TYPES, m_abNativeAmericanBonus); // Civ4 Reimagined
 
 	pStream->WriteString(m_szScriptData);
 
@@ -27825,6 +27862,18 @@ void CvPlayer::updateIdeology()
 	}
 }
 
+BuildingTypes CvPlayer::getUniquePowerBuilding() const
+{
+	return m_eUniquePowerBuilding;
+}
+
+void CvPlayer::setUniquePowerBuilding(BuildingTypes eIndex)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumBuildingInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+	m_eUniquePowerBuilding = eIndex;
+}
+
 int CvPlayer::getForeignTradeIdeologyModifier(IdeologyTypes eIndex) const
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
@@ -28653,7 +28702,7 @@ void CvPlayer::setIsDesertGold(bool bNewValue)
 bool CvPlayer::isDesertGold() const
 {
 	return m_bDesertGold;
-}	
+}
 
 // Civ4 Reimagined
 int CvPlayer::getUniquePowerBuildingModifier() const
@@ -29301,6 +29350,102 @@ bool CvPlayer::hasGoodRelationsWithPope() const
 }
 
 
+// Civ4 Reimagined
+void CvPlayer::applyNativeAmericanBonus(int iX, int iY)
+{
+	CvPlot* pPlot = GC.getMapINLINE().plotINLINE(iX, iY);
+
+	if (pPlot == NULL)
+	{
+		return;
+	}
+
+	if (isNativeAmericanBonus(NATIVEBONUS_LAKE) && pPlot->isAdjacentToLake())
+	{
+		changeDistanceMaintenanceModifier(-25);
+		setNativeAmericanBonus(NATIVEBONUS_LAKE, false);
+		notifyNativeAmericanBonus(NATIVEBONUS_LAKE);
+	}
+
+	if (isNativeAmericanBonus(NATIVEBONUS_TUNDRA) && pPlot->getTerrainType() == (TerrainTypes)GC.getInfoTypeForString("TERRAIN_TUNDRA"))
+	{
+		changeImprovementYieldChange((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FISHING_BOATS"), YIELD_FOOD, 1);
+		setNativeAmericanBonus(NATIVEBONUS_TUNDRA, false);
+		notifyNativeAmericanBonus(NATIVEBONUS_TUNDRA);
+	}
+
+	if (isNativeAmericanBonus(NATIVEBONUS_DESERT) && pPlot->getTerrainType() == (TerrainTypes)GC.getInfoTypeForString("TERRAIN_DESERT"))
+	{
+		changeSpecialistCommerceChange((SpecialistTypes)GC.getInfoTypeForString("SPECIALIST_ARTIST"), COMMERCE_CULTURE, 1);
+		setNativeAmericanBonus(NATIVEBONUS_DESERT, false);
+		notifyNativeAmericanBonus(NATIVEBONUS_DESERT);
+	}
+
+	BonusTypes eBonus = pPlot->getBonusType();
+
+	if (isNativeAmericanBonus(NATIVEBONUS_HUNTING) && eBonus == (BonusTypes)GC.getInfoTypeForString("BONUS_DEER") || eBonus == (BonusTypes)GC.getInfoTypeForString("BONUS_HORSE") || eBonus == (BonusTypes)GC.getInfoTypeForString("BONUS_IVORY"))
+	{
+		changeFreeExperience(2);
+		setNativeAmericanBonus(NATIVEBONUS_HUNTING, false);
+		notifyNativeAmericanBonus(NATIVEBONUS_HUNTING);
+	}
+
+	FeatureTypes eFeature = pPlot->getFeatureType();
+
+	if (isNativeAmericanBonus(NATIVEBONUS_FOREST) && eFeature == (FeatureTypes)GC.getInfoTypeForString("FEATURE_FOREST"))
+	{
+		setUniquePowerBuilding((BuildingTypes)GC.getInfoTypeForString("BUILDING_NATIVE_AMERICA_TOTEM"));
+		setNativeAmericanBonus(NATIVEBONUS_FOREST, false);
+		notifyNativeAmericanBonus(NATIVEBONUS_FOREST);
+	}
+
+	if (isNativeAmericanBonus(NATIVEBONUS_JUNGLE) && eFeature == (FeatureTypes)GC.getInfoTypeForString("FEATURE_JUNGLE"))
+	{
+		changeCityDefenseModifier(5);
+		setNativeAmericanBonus(NATIVEBONUS_JUNGLE, false);
+		notifyNativeAmericanBonus(NATIVEBONUS_JUNGLE);
+	}
+}
+
+
+// Civ4 Raimagined
+void CvPlayer::notifyNativeAmericanBonus(NativeBonusTypes eNativeBonus)
+{
+	if (!isHuman())
+	{
+		return;
+	}
+
+	CvWString szBuffer;
+
+	switch(eNativeBonus)
+	{
+		case NATIVEBONUS_LAKE:
+			szBuffer = gDLL->getText("TXT_KEY_MISC_NATIVE_BONUS_LAKE");
+			break;
+		case NATIVEBONUS_TUNDRA: 
+			szBuffer = gDLL->getText("TXT_KEY_MISC_NATIVE_BONUS_TUNDRA");
+			break;
+		case NATIVEBONUS_DESERT: 
+			szBuffer = gDLL->getText("TXT_KEY_MISC_NATIVE_BONUS_DESERT");
+			break;
+		case NATIVEBONUS_HUNTING: 
+			szBuffer = gDLL->getText("TXT_KEY_MISC_NATIVE_BONUS_HUNTING");
+			break;
+		case NATIVEBONUS_FOREST: 
+			szBuffer = gDLL->getText("TXT_KEY_MISC_NATIVE_BONUS_FOREST");
+			break;
+		case NATIVEBONUS_JUNGLE: 
+			szBuffer = gDLL->getText("TXT_KEY_MISC_NATIVE_BONUS_JUNGLE");
+			break;
+		default:
+			return;
+	}
+	
+	gDLL->getInterfaceIFace()->addHumanMessage(getID(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_GOLDAGESTART", MESSAGE_TYPE_MAJOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"));
+}
+
+
 //Civ4 Reimagined
 void CvPlayer::updateUniquePowers(TechTypes eTech)
 {
@@ -29609,6 +29754,17 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		else if (eEra == ERA_MEDIEVAL)
 		{
 			setCityRevoltOnKill(true);
+		}
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_NATIVE_AMERICA"))
+	{
+		if (eEra == ERA_ANCIENT)
+		{
+			for (int iI = 0; iI < NUM_NATIVEBONUS_TYPES; iI++)
+			{
+				setNativeAmericanBonus((NativeBonusTypes)iI, true);
+			}
+			notifyUniquePowersChanged(true);
 		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_PERSIA"))

@@ -1857,6 +1857,7 @@ public:
 	int getStateReligionFreeExperience() const; // Civ4 Reimagined
 	int getNavalLevelPrereq() const; // Civ4 Reimagined
 	bool isStateReligion() const;				// Exposed to Python
+	bool isUniquePower() const; // Civ4 Reimagined
 	bool isAllowsNukes() const;				// Exposed to Python
 	bool isNoConquestResistance() const; // Civ4 Reimagined
 	bool isNoConscriptUnhappiness() const; // Civ4 Reimagined
@@ -2134,6 +2135,7 @@ protected:
 	bool m_bCanFarmHills; // Civ4 Reimagined
 	bool m_bNoNonStateReligionSpread; // Civ4 Reimagined
 	bool m_bStateReligion;
+	bool m_bUniquePower; // Civ4 Reimagined
 	bool m_bAllowsNukes;
 	bool m_bNoConquestResistance; // Civ4 Reimagined
 	bool m_bNoConscriptUnhappiness; // Civ4 Reimagined

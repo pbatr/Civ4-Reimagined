@@ -1383,6 +1383,29 @@ bool CvPlot::isAdjacentToPeak() const
 	return false;
 }
 
+// Civ4 Reimagined
+bool CvPlot::isAdjacentToLake() const
+{
+	PROFILE_FUNC();
+
+	CvPlot* pAdjacentPlot;
+	int iI;
+
+	for (iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
+	{
+		pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
+
+		if (pAdjacentPlot != NULL)
+		{
+			if (pAdjacentPlot->isLake())
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
 
 // Civ4 Reimagined
 bool CvPlot::isAdjacentToBonus(BonusTypes eIndex) const

@@ -802,4 +802,8 @@
 		<Tag>TXT_KEY_UNIT_INDIAN_VARU_STRATEGY</Tag>
 		<English>Compared to the [COLOR_UNIT_TEXT]War Elephant[COLOR_REVERT], this unit costs less and it has no national limit.</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_TOTEM_POLE_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Totem Pole[COLOR_REVERT] is a unique building of Native Americans and can only be built when they have access to their unique power. It grants an additional artist slot and give happiness and culture. The culture does not increase over time.</English>
+	</TEXT>
 </Civ4GameText>

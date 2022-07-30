@@ -7804,6 +7804,7 @@ m_bUnlimitedBarbXP(false), // Civ4 Reimagined
 m_bBarbarianGreatGeneral(false), // Civ4 Reimagined
 m_bNoNonStateReligionSpread(false), // Civ4 Reimagined
 m_bStateReligion(false),
+m_bUniquePower(false), // Civ4 Reimagined
 m_bAllowsNukes(false),
 m_bNoConquestResistance(false), // Civ4 Reimagined
 m_bNoConscriptUnhappiness(false), // Civ4 Reimagined
@@ -8710,6 +8711,12 @@ bool CvBuildingInfo::isStateReligion() const
 	return m_bStateReligion;
 }
 
+// Civ4 Reimagined
+bool CvBuildingInfo::isUniquePower() const
+{
+	return m_bUniquePower;
+}
+
 bool CvBuildingInfo::isAllowsNukes() const
 {
 	return m_bAllowsNukes;
@@ -9533,6 +9540,7 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iStateReligionFreeExperience); // Civ4 Reimagined
 	stream->Read(&m_iNavalLevelPrereq); // Civ4 Reimagined
 	stream->Read(&m_bStateReligion);
+	stream->Read(&m_bUniquePower); // Civ4 Reimagined
 	stream->Read(&m_bAllowsNukes);
 	stream->Read(&m_bNoConquestResistance); // Civ4 Reimagined
 	stream->Read(&m_bNoConscriptUnhappiness); // Civ4 Reimagined
@@ -10059,6 +10067,7 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iStateReligionFreeExperience); // Civ4 Reimagined
 	stream->Write(m_iNavalLevelPrereq); // Civ4 Reimagined
 	stream->Write(m_bStateReligion);
+	stream->Write(m_bUniquePower); // Civ4 Reimagined
 	stream->Write(m_bAllowsNukes);
 	stream->Write(m_bNoConquestResistance); // Civ4 Reimagined
 	stream->Write(m_bNoConscriptUnhappiness); // Civ4 Reimagined
@@ -10378,6 +10387,7 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iStateReligionFreeExperience, "iStateReligionFreeExperience"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iNavalLevelPrereq, "iNavalLevelPrereq"); // Civ4 Reimagined	
 	pXML->GetChildXmlValByName(&m_bStateReligion, "bStateReligion");
+	pXML->GetChildXmlValByName(&m_bUniquePower, "bUniquePower"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iAIWeight, "iAIWeight");
 	pXML->GetChildXmlValByName(&m_iProductionCost, "iCost");
 	pXML->GetChildXmlValByName(&m_iHurryCostModifier, "iHurryCostModifier");

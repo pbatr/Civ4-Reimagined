@@ -295,4 +295,32 @@
 		<Tag>TXT_KEY_UNIQUE_POWER_RUSSIA</Tag>
 		<English>After entering the Medieval Era: Tundra tiles +1[ICON_PRODUCTION]. On their home continent: 10% combat bonus for all units inside own borders, +100% yields for improvements on strategic resources, +1[ICON_COMMERCE] for Workshops adjacent to strategic resources.</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIQUE_POWER_NATIVE_AMERICA</Tag>
+		<English>Founding a city next to a lake: -25% distance maintenance in all cities. Founding a city on Tundra: Fishing Boats +1[ICON_FOOD]. Founding a city on Desert: Artists +1[ICON_CULTURE]. Founding a city on Deer, Horses or Ivory: +2 unit experience points in all cities. Founding a city on Forest: Can construct Totem Pole in all cities. Founding a city on Jungle: +5% defense in all cities.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_NATIVE_BONUS_LAKE</Tag>
+		<English>Unique Power unlocked: -25% distance maintenance in all cities.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_NATIVE_BONUS_TUNDRA</Tag>
+		<English>Unique Power unlocked: Fishing Boats +1[ICON_FOOD].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_NATIVE_BONUS_DESERT</Tag>
+		<English>Unique Power unlocked: Artists +1[ICON_CULTURE].</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_NATIVE_BONUS_HUNTING</Tag>
+		<English>Unique Power unlocked: +2 unit experience points in all cities.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_NATIVE_BONUS_FOREST</Tag>
+		<English>Unique Power unlocked: Can construct Totem Pole.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_NATIVE_BONUS_JUNGLE</Tag>
+		<English>Unique Power unlocked: +5% defense in all cities.</English>
+	</TEXT>
 </Civ4GameText>

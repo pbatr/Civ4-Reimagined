@@ -825,6 +825,23 @@ enum PlayerOptionTypes			// Exposed to Python
 #endif
 };
 
+// Civ4 Reimagined
+enum NativeBonusTypes
+{
+	NO_NATIVEBONUS = -1,
+
+	NATIVEBONUS_LAKE,
+	NATIVEBONUS_TUNDRA,
+	NATIVEBONUS_DESERT,
+	NATIVEBONUS_HUNTING,
+	NATIVEBONUS_FOREST,
+	NATIVEBONUS_JUNGLE,
+
+#ifdef _USRDLL
+	NUM_NATIVEBONUS_TYPES
+#endif
+};
+
 enum GraphicOptionTypes			// Exposed to Python
 {
 	NO_GRAPHICOPTION = -1,

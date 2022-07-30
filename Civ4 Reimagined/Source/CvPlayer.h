@@ -1495,6 +1495,11 @@ public:
 	int getCombatBonusOnHomeArea() const; // Civ4 Reimagined
 	void changeStrategicBonusYieldModifier(int iChange); // Civ4 Reimagined
 	int getStrategicBonusYieldModifier() const; // Civ4 Reimagined
+	void setNativeAmericanBonus(NativeBonusTypes eIndex, bool bNewValue); // Civ4 Reimagined
+	bool isNativeAmericanBonus(NativeBonusTypes eIndex) const; // Civ4 Reimagined
+	void applyNativeAmericanBonus(int iX, int iY); // Civ4 Reimagined
+	BuildingTypes getUniquePowerBuilding() const; // Civ4 Reimagined
+	void setUniquePowerBuilding(BuildingTypes eBuilding); // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1812,6 +1817,7 @@ protected:
 	PlayerTypes m_eParent;
 	TeamTypes m_eTeamType;
 	IdeologyTypes m_eIdeology; // Civ4 Reimagined
+	BuildingTypes m_eUniquePowerBuilding; // Civ4 Reimagined
 
 	int* m_aiSeaPlotYield;
 	int* m_aiYieldRateModifier;
@@ -1858,6 +1864,7 @@ protected:
 
 	bool* m_abFeatAccomplished;
 	bool* m_abOptions;
+	bool* m_abNativeAmericanBonus; // Civ4 Reimagined
 
 	CvString m_szScriptData;
 
@@ -1966,6 +1973,7 @@ protected:
 	CvCity* pickTriggerCity(EventTriggerTypes eTrigger) const;
 	CvUnit* pickTriggerUnit(EventTriggerTypes eTrigger, CvPlot* pPlot, bool bPickPlot) const;
 	bool isValidEventTech(TechTypes eTech, EventTypes eEvent, PlayerTypes eOtherPlayer) const;
+	void notifyNativeAmericanBonus(NativeBonusTypes eNativeBonus); // Civ4 Reimagined
 
 	void verifyGoldCommercePercent();
 

@@ -3040,7 +3040,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_NATIVE_AMERICAN</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<DescriptionUniquePower>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUniquePower>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_NATIVE_AMERICA</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_CAHOKIA</City>
 				<City>TXT_KEY_CITY_NAME_POVERTY_POINT</City>
