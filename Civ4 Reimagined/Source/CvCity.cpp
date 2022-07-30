@@ -12771,7 +12771,7 @@ void CvCity::setGreatPeopleUnitRate(UnitTypes eIndex, int iNewValue)
 
 void CvCity::changeGreatPeopleUnitRate(UnitTypes eIndex, int iChange)									 
 {
-	setGreatPeopleUnitRate(eIndex, (getGreatPeopleUnitRate(eIndex) + iChange));
+	setGreatPeopleUnitRate(eIndex, (m_paiGreatPeopleUnitRate[eIndex] + iChange));
 }
 
 
