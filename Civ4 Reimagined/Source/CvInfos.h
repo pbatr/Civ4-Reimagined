@@ -2455,6 +2455,7 @@ public:
 	DllExport bool isAIPlayable() const;				// Expose to Python
 	DllExport bool isPlayable() const;				// Expose to Python
 
+	std::wstring pyGetCivilizationUniquePowerText() { return getCivilizationUniquePowerText(); }	
 	CvWString getCivilizationUniquePowerText() const; // Civ4 Reimagined
 	void setCivilizationUniquePowerText(const TCHAR* szVal); // Civ4 Reimagined
 

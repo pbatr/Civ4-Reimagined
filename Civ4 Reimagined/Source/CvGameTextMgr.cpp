@@ -6647,7 +6647,10 @@ void CvGameTextMgr::parseCivInfos(CvWStringBuffer &szInfoText, CivilizationTypes
 			szTempString.Format(NEWLINE SETCOLR L"%s" ENDCOLR , TEXT_COLOR("COLOR_ALT_HIGHLIGHT_TEXT"), szText.GetCString());
 		}
 		szInfoText.append(szTempString);
-		szInfoText.append(NEWLINE);
+		if (!bDawnOfMan)
+		{
+			szInfoText.append(NEWLINE);
+		}
 		szBuffer.Format(L"%s", GC.getCivilizationInfo(eCivilization).getCivilizationUniquePowerText().GetCString());
 		szInfoText.append(szBuffer);
 	}

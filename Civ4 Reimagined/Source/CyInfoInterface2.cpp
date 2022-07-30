@@ -49,6 +49,7 @@ void CyInfoPythonInterface2()
 		.def("isAIPlayable", &CvCivilizationInfo::isAIPlayable, "bool ()")
 		.def("isPlayable", &CvCivilizationInfo::isPlayable, "bool ()")
 		
+		.def("getCivilizationUniquePowerText", &CvCivilizationInfo::pyGetCivilizationUniquePowerText, "wstring ()") // Civ4 Reimagined
 		.def("getShortDescription", &CvCivilizationInfo::pyGetShortDescription, "wstring ()")
 		.def("getShortDescriptionKey", &CvCivilizationInfo::pyGetShortDescriptionKey, "wstring ()")
 		.def("getAdjective", &CvCivilizationInfo::pyGetAdjective, "wstring ()")
