@@ -1072,6 +1072,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iGreatEngineerPointsFromCathedrals = 0; // Civ4 Reimagined
 	m_iCombatBonusOnHomeArea = 0; // Civ4 Reimagined
 	m_iStrategicBonusYieldModifier = 0; // Civ4 Reimagined
+	m_iBuildingProductionModifierFromCapital = 0; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -21216,6 +21217,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iGreatEngineerPointsFromCathedrals); // Civ4 Reimagined
 	pStream->Read(&m_iCombatBonusOnHomeArea); // Civ4 Reimagined
 	pStream->Read(&m_iStrategicBonusYieldModifier); // Civ4 Reimagined
+	pStream->Read(&m_iBuildingProductionModifierFromCapital); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -21866,6 +21868,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iGreatEngineerPointsFromCathedrals); // Civ4 Reimagined
 	pStream->Write(m_iCombatBonusOnHomeArea); // Civ4 Reimagined
 	pStream->Write(m_iStrategicBonusYieldModifier); // Civ4 Reimagined
+	pStream->Write(m_iBuildingProductionModifierFromCapital); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -28378,6 +28381,24 @@ void CvPlayer::changeStrategicBonusYieldModifier(int iChange)
 }
 
 // Civ4 Reimagined
+int CvPlayer::getBuildingProductionModifierFromCapital() const
+{
+	return m_iBuildingProductionModifierFromCapital;
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeBuildingProductionModifierFromCapital(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iBuildingProductionModifierFromCapital = m_iBuildingProductionModifierFromCapital + iChange;
+		FAssert(m_iBuildingProductionModifierFromCapital >= 0);
+		
+		updateYield();
+	}
+}
+
+// Civ4 Reimagined
 CivicTypes CvPlayer::getFreeCivicEnabled() const
 {
 	return m_iFreeCivicEnabled;
@@ -29790,6 +29811,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_CLASSICAL) 
 		{
 			changeFreeUnitsOnConquest(GC.getDefineINT("UNIQUE_POWER_ROME")); // 2+Culture-Level der Stadt Einheiten
+			changeBuildingProductionModifierFromCapital(25);
 			notifyUniquePowersChanged(true);
 		}			
 	}

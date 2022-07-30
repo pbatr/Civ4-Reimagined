@@ -3508,6 +3508,18 @@ int CvCity::getProductionModifier(BuildingTypes eBuilding) const
 			iMultiplier += GET_PLAYER(getOwnerINLINE()).getUniquePowerWorldWonderCapitalModifier();
 		}
 	}
+
+	// Civ4 Reimagined
+	const int iProductionModifierFromCapital = GET_PLAYER(getOwnerINLINE()).getBuildingProductionModifierFromCapital();
+	if (!isCapital() && iProductionModifierFromCapital != 0)
+	{
+		CvCity* pCapital = GET_PLAYER(getOwnerINLINE()).getCapitalCity();
+
+		if (pCapital != NULL && getArea() == pCapital->getArea() && pCapital->getNumBuilding(eBuilding) > 0)
+		{
+			iMultiplier += iProductionModifierFromCapital;
+		}
+	}
 	
 	for (int iI = 0; iI < GC.getNumBonusInfos(); iI++)
 	{

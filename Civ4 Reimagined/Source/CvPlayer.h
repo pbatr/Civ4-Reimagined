@@ -1500,6 +1500,8 @@ public:
 	void applyNativeAmericanBonus(int iX, int iY); // Civ4 Reimagined
 	BuildingTypes getUniquePowerBuilding() const; // Civ4 Reimagined
 	void setUniquePowerBuilding(BuildingTypes eBuilding); // Civ4 Reimagined
+	void changeBuildingProductionModifierFromCapital(int iChange); // Civ4 Reimagined
+	int getBuildingProductionModifierFromCapital() const; // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1787,6 +1789,7 @@ protected:
 	int m_iGreatEngineerPointsFromCathedrals; // Civ4 Reimagined
 	int m_iCombatBonusOnHomeArea; // Civ4 Reimagined
 	int m_iStrategicBonusYieldModifier; // Civ4 Reimagined
+	int m_iBuildingProductionModifierFromCapital; // Civ4 Reimagind
 	
 	uint m_uiStartTime;  // XXX save these?
 

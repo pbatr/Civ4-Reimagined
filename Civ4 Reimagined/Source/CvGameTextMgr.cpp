@@ -16798,6 +16798,23 @@ void CvGameTextMgr::setProductionHelp(CvWStringBuffer &szBuffer, CvCity& city)
 			szBuffer.append(NEWLINE);
 			iBaseModifier += iUniquePowerMod;
 		}
+
+		// Building already existing in capital Unique Power Civ4 Reimagined
+		int iFromCapitalMod = GET_PLAYER(city.getOwnerINLINE()).getBuildingProductionModifierFromCapital();
+		if (iFromCapitalMod != 0)
+		{
+			if (!city.isCapital() && iFromCapitalMod != 0)
+			{
+				CvCity* pCapital = GET_PLAYER(city.getOwnerINLINE()).getCapitalCity();
+
+				if (pCapital != NULL && city.getArea() == pCapital->getArea() && pCapital->getNumBuilding(eBuilding) > 0)
+				{
+					szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_PROD_UNIQUE_POWER", iFromCapitalMod));
+					szBuffer.append(NEWLINE);
+					iBaseModifier += iFromCapitalMod;
+				}
+			}
+		}
 	}
 
 	ProjectTypes eProject = city.getProductionProject();
