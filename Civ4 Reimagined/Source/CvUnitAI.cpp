@@ -6024,7 +6024,7 @@ bool CvUnitAI::AI_greatPersonMove()
 		}
 		iChoice++;
 	}
-	FAssert(iScoreThreshold > 0);
+	FAssert(iScoreThreshold >= 0);
 	if (gUnitLogLevel > 2) logBBAI("    %S chooses 'wait' with their %S (value: %d, dead time: %d)", GET_PLAYER(getOwnerINLINE()).getCivilizationDescription(0), getName(0).GetCString(), iScoreThreshold, GC.getGameINLINE().getGameTurn() - getGameTurnCreated());
 	return false;
 }
