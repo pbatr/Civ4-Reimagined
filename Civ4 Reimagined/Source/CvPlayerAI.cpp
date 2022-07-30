@@ -16658,6 +16658,12 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		iTempProduction = kCivic.getBuildingProductionModifier(iI);
 		
 		BuildingTypes eBuilding = (BuildingTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationBuildings(iI);
+
+		if (eBuilding == NO_BUILDING)
+		{
+			continue;
+		}
+
 		const CvBuildingInfo& kBuildingInfo = GC.getBuildingInfo(eBuilding);
 		/* original bts code
 		if (iTempValue != 0)

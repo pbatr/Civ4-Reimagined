@@ -9395,7 +9395,11 @@ void CvPlot::processArea(CvArea* pArea, int iChange)
 				if (GC.getBuildingInfo((BuildingTypes) iI).getAreaFreeBuildingClass() != NO_BUILDINGCLASS)
 				{
 					BuildingTypes eFreeBuilding = (BuildingTypes)GC.getCivilizationInfo(GET_PLAYER(getOwnerINLINE()).getCivilizationType()).getCivilizationBuildings(GC.getBuildingInfo((BuildingTypes) iI).getAreaFreeBuildingClass());
-					pArea->changeFreeBuildingCount(pCity->getOwnerINLINE(), eFreeBuilding, iChange * pCity->getNumActiveBuilding((BuildingTypes)iI));
+
+					if (eFreeBuilding != NO_BUILDING)
+					{
+						pArea->changeFreeBuildingCount(pCity->getOwnerINLINE(), eFreeBuilding, iChange * pCity->getNumActiveBuilding((BuildingTypes)iI));
+					}
 				}
 			}
 		}

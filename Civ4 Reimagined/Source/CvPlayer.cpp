@@ -8028,14 +8028,20 @@ void CvPlayer::processBuilding(BuildingTypes eBuilding, int iChange, CvArea* pAr
 	if (GC.getBuildingInfo(eBuilding).getFreeBuildingClass() != NO_BUILDINGCLASS)
 	{
 		BuildingTypes eFreeBuilding = (BuildingTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationBuildings(GC.getBuildingInfo(eBuilding).getFreeBuildingClass());
-		changeFreeBuildingCount(eFreeBuilding, iChange);
+		if (eFreeBuilding != NO_BUILDING)
+		{
+			changeFreeBuildingCount(eFreeBuilding, iChange);
+		}
 	}
 
 	// Civ4 Reimagined
 	if (GC.getBuildingInfo(eBuilding).getAreaFreeBuildingClass() != NO_BUILDINGCLASS)
 	{
 		BuildingTypes eFreeBuilding = (BuildingTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationBuildings(GC.getBuildingInfo(eBuilding).getAreaFreeBuildingClass());
-		pArea->changeFreeBuildingCount(getID(), eFreeBuilding, iChange);
+		if (eFreeBuilding != NO_BUILDING)
+		{
+			pArea->changeFreeBuildingCount(getID(), eFreeBuilding, iChange);
+		}
 	}
 
 	if (GC.getBuildingInfo(eBuilding).getCivicOption() != NO_CIVICOPTION)
@@ -16639,7 +16645,7 @@ void CvPlayer::changeBuildingYieldChange(BuildingClassTypes eIndex1, YieldTypes 
 		
 		BuildingTypes eOurBuilding = (BuildingTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationBuildings(eIndex1);
 		
-		if (!currentTeam.isObsoleteBuilding(eOurBuilding)) 
+		if (eOurBuilding != NO_BUILDING && !currentTeam.isObsoleteBuilding(eOurBuilding)) 
 		{
 			int iLoop;
 
