@@ -1408,6 +1408,30 @@ bool CvPlot::isAdjacentToLake() const
 }
 
 // Civ4 Reimagined
+bool CvPlot::isAdjacentToImprovement(ImprovementTypes eIndex) const
+{
+	PROFILE_FUNC();
+
+	CvPlot* pAdjacentPlot;
+	int iI;
+
+	for (iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
+	{
+		pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
+
+		if (pAdjacentPlot != NULL)
+		{
+			if (pAdjacentPlot->getImprovementType() == eIndex)
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+// Civ4 Reimagined
 bool CvPlot::isAdjacentToBonus(BonusTypes eIndex) const
 {
 	PROFILE_FUNC();
@@ -6795,6 +6819,17 @@ int CvPlot::calculateYield(YieldTypes eYield, bool bDisplay) const
 		if (!isImpassable())
 		{
 			iYield += GET_PLAYER(ePlayer).getTerrainYieldChange(getTerrainType(), eYield);
+		}
+
+		// Civ4 Reimagined: Inca UP
+		if (isPeak())
+		{
+			iYield += GET_PLAYER(ePlayer).getPeakYield(eYield);
+
+			if (GET_PLAYER(ePlayer).getPeakYieldChangeAdjacentToTerrace(eYield) != 0 && isAdjacentToImprovement((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_TERRACE")))
+			{
+				iYield += GET_PLAYER(ePlayer).getPeakYieldChangeAdjacentToTerrace(eYield);
+			}
 		}
 
 		// Civ4 Reimagined

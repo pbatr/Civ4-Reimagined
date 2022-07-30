@@ -89,6 +89,7 @@ public:
 	int countAdjacentPeaks() const; // Civ4 Reimagined
 	bool isAdjacentToPeak() const; // Civ4 Reimagined
 	bool isAdjacentToLake() const; // Civ4 Reimagined
+	bool isAdjacentToImprovement(ImprovementTypes eIndex) const; // Civ4 Reimagined
 	bool isAdjacentToBonus(BonusTypes eIndex) const; // Civ4 Reimagined
 	bool isAdjacentToStrategicBonus(TeamTypes eTeam = NO_TEAM) const; // Civ4 Reimagined
 	bool isCoastalLand(int iMinWaterSize = -1) const;																																	// Exposed to Python

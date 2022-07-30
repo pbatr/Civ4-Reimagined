@@ -921,6 +921,12 @@ public:
 	int getSeaPlotYield(YieldTypes eIndex) const;	// Exposed to Python
 	void changeSeaPlotYield(YieldTypes eIndex, int iChange);
 
+	int getPeakYield(YieldTypes eIndex) const;	// Civ4 Reimagined
+	void changePeakYield(YieldTypes eIndex, int iChange); // Civ4 Reimagined
+
+	int getPeakYieldChangeAdjacentToTerrace(YieldTypes eIndex) const;	// Civ4 Reimagined
+	void changePeakYieldChangeAdjacentToTerrace(YieldTypes eIndex, int iChange); // Civ4 Reimagined
+
 	int getYieldRateModifier(YieldTypes eIndex) const;	// Exposed to Python
 	void changeYieldRateModifier(YieldTypes eIndex, int iChange);
 	
@@ -1823,6 +1829,8 @@ protected:
 	BuildingTypes m_eUniquePowerBuilding; // Civ4 Reimagined
 
 	int* m_aiSeaPlotYield;
+	int* m_aiPeakYield; // Civ4 Reimagined
+	int* m_aiPeakYieldChangeAdjacentToTerrace; // Civ4 Reimagined
 	int* m_aiYieldRateModifier;
 	int* m_aiExtraYield; // Civ4 Reimagined
 	int* m_aiPeakAdjacencyExtraYield; // Civ4 Reimagined

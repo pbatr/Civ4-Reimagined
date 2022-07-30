@@ -42,6 +42,8 @@
 CvPlayer::CvPlayer()
 {
 	m_aiSeaPlotYield = new int[NUM_YIELD_TYPES];
+	m_aiPeakYield = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
+	m_aiPeakYieldChangeAdjacentToTerrace = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
 	m_aiYieldRateModifier = new int[NUM_YIELD_TYPES];
 	m_aiExtraYield = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
 	m_aiPeakAdjacencyExtraYield = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
@@ -147,6 +149,8 @@ CvPlayer::~CvPlayer()
 	uninit();
 
 	SAFE_DELETE_ARRAY(m_aiSeaPlotYield);
+	SAFE_DELETE_ARRAY(m_aiPeakYield); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_aiPeakYieldChangeAdjacentToTerrace); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiYieldRateModifier);
 	SAFE_DELETE_ARRAY(m_aiExtraYield); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiPeakAdjacencyExtraYield); // Civ4 Reimagined
@@ -1093,6 +1097,8 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	for (iI = 0; iI < NUM_YIELD_TYPES; iI++)
 	{
 		m_aiSeaPlotYield[iI] = 0;
+		m_aiPeakYield[iI] = 0; // Civ4 Reimagined
+		m_aiPeakYieldChangeAdjacentToTerrace[iI] = 0; // Civ4 Reimagined
 		m_aiYieldRateModifier[iI] = 0;
 		m_aiExtraYield[iI] = 0; // Civ4 Reimagined
 		m_aiPeakAdjacencyExtraYield[iI] = 0; // Civ4 Reimagined
@@ -14344,6 +14350,52 @@ void CvPlayer::changeSeaPlotYield(YieldTypes eIndex, int iChange)
 }
 
 
+int CvPlayer::getPeakYield(YieldTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < NUM_YIELD_TYPES, "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_aiPeakYield[eIndex];
+}
+
+
+void CvPlayer::changePeakYield(YieldTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < NUM_YIELD_TYPES, "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	if (iChange != 0)
+	{
+		m_aiPeakYield[eIndex] = (m_aiPeakYield[eIndex] + iChange);
+
+		updateYield();
+	}
+}
+
+
+// Civ4 Reimagined
+int CvPlayer::getPeakYieldChangeAdjacentToTerrace(YieldTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < NUM_YIELD_TYPES, "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_aiPeakYieldChangeAdjacentToTerrace[eIndex];
+}
+
+
+// Civ4 Reimagined
+void CvPlayer::changePeakYieldChangeAdjacentToTerrace(YieldTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < NUM_YIELD_TYPES, "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	if (iChange != 0)
+	{
+		m_aiPeakYieldChangeAdjacentToTerrace[eIndex] = (m_aiPeakYieldChangeAdjacentToTerrace[eIndex] + iChange);
+
+		updateYield();
+	}
+}
+
+
 int CvPlayer::getYieldRateModifier(YieldTypes eIndex) const		 
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
@@ -21250,6 +21302,8 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	updateHuman();
 
 	pStream->Read(NUM_YIELD_TYPES, m_aiSeaPlotYield);
+	pStream->Read(NUM_YIELD_TYPES, m_aiPeakYield); // Civ4 Reimagined
+	pStream->Read(NUM_YIELD_TYPES, m_aiPeakYieldChangeAdjacentToTerrace); // Civ4 Reimagined
 	pStream->Read(NUM_YIELD_TYPES, m_aiYieldRateModifier);
 	pStream->Read(NUM_YIELD_TYPES, m_aiExtraYield); // Civ4 Reimagined
 	pStream->Read(NUM_YIELD_TYPES, m_aiPeakAdjacencyExtraYield); // Civ4 Reimagined
@@ -21891,6 +21945,8 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	//m_eTeamType not saved
 
 	pStream->Write(NUM_YIELD_TYPES, m_aiSeaPlotYield);
+	pStream->Write(NUM_YIELD_TYPES, m_aiPeakYield); // Civ4 Reimagined
+	pStream->Write(NUM_YIELD_TYPES, m_aiPeakYieldChangeAdjacentToTerrace); // Civ4 Reimagined
 	pStream->Write(NUM_YIELD_TYPES, m_aiYieldRateModifier);
 	pStream->Write(NUM_YIELD_TYPES, m_aiExtraYield); // Civ4 Reimagined
 	pStream->Write(NUM_YIELD_TYPES, m_aiPeakAdjacencyExtraYield); // Civ4 Reimagined
@@ -29716,6 +29772,9 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_ANCIENT) 
 		{
 			changeCanFarmHillsCount(1);
+			changePeakYield(YIELD_PRODUCTION, 3);
+			changePeakYield(YIELD_COMMERCE, 1);
+			changePeakYieldChangeAdjacentToTerrace(YIELD_FOOD, 1);
 			notifyUniquePowersChanged(true);
 		}
 	}

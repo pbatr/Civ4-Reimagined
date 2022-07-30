@@ -201,7 +201,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_INCA</Tag>
-		<English>Unlocks unique [LINK=literal]Terrace[\LINK] improvement after discovery of Construction.</English>
+		<English>Unlocks unique [LINK=literal]Terrace[\LINK] improvement after discovery of Construction. Peak tiles can be worked with base yields 3[ICON_PRODUCTION]1[ICON_COMMERCE] and +1[ICON_FOOD] if adjacent to Terrace.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_ARABIA</Tag>
