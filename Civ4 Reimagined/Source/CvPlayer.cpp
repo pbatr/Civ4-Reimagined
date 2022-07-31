@@ -29762,7 +29762,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	{
 		if (eEra == ERA_ANCIENT) 
 		{
-			changeGreatPeopleRatePerReligionModifier(25);
+			changeGreatPeopleRatePerReligionModifier(50);
 			setNoReligionRemoval(true);
 			notifyUniquePowersChanged(true);
 		}
