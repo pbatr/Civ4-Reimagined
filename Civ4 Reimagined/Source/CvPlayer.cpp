@@ -2148,6 +2148,21 @@ void CvPlayer::initFreeUnits()
 		{
 			addFreeUnitAI(UNITAI_EXPLORE, iFreeCount);
 		}
+
+		// Civ4 Reimagined Starting visibility
+		CvPlot* pStartingPlot = getStartingPlot();
+		if (NULL != pStartingPlot)
+		{
+			for (int iPlotLoop = 0; iPlotLoop < GC.getMapINLINE().numPlots(); ++iPlotLoop)
+			{
+				CvPlot* pPlot = GC.getMapINLINE().plotByIndex(iPlotLoop);
+
+				if (plotDistance(pPlot->getX_INLINE(), pPlot->getY_INLINE(), pStartingPlot->getX_INLINE(), pStartingPlot->getY_INLINE()) <= GC.getDefineINT("START_SIGHT_RANGE"))
+				{
+					pPlot->setRevealed(getTeam(), true, false, NO_TEAM, false);
+				}
+			}
+		}
 	}
 }
 

@@ -349,6 +349,10 @@
 		<DefineName>EUREKA_TECH_BOOST_PERCENTAGE</DefineName>
 		<iDefineIntVal>40</iDefineIntVal>
 	</Define>
+	<Define>
+		<DefineName>START_SIGHT_RANGE</DefineName>
+		<iDefineIntVal>2</iDefineIntVal>
+	</Define>
 	<!-- Unique Powers -->
 	<Define>
 		<DefineName>UNIQUE_POWER_OTHER</DefineName>
