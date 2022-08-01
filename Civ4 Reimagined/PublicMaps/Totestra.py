@@ -5146,9 +5146,9 @@ class StartingArea :
         gc = CyGlobalContext()
         gameMap = CyMap()
         
-        hrangelimit = mc.height - 4
-        h = range(hrangelimit)
-        for y in [i+4 for i in h]:
+        hrangelimit = mc.height - 3 # Civ4 Reimagined: Don't start at the edge of the map
+        h = range(4, hrangelimit)
+        for y in [i for i in h]:
             for x in range(mc.width):
                 plot = gameMap.plot(x,y)
                 if plot.getArea() == self.areaID:
