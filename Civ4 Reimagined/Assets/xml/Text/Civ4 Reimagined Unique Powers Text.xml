@@ -297,7 +297,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_NATIVE_AMERICA</Tag>
-		<English>Founding a city next to a lake: -25% distance maintenance in all cities. Founding a city on Tundra: Fishing Boats +1[ICON_FOOD]. Founding a city on Desert: Artists +1[ICON_CULTURE]. Founding a city on Deer, Horses or Ivory: +2 unit experience points in all cities. Founding a city on Forest: Can construct Totem Pole in all cities. Founding a city on Jungle: +5% defense in all cities.</English>
+		<English>Founding a city next to a lake: -25% distance maintenance in all cities. Founding a city on Tundra: Fishing Boats +1[ICON_FOOD]. Founding a city on Desert: Artists +1[ICON_CULTURE]. Founding a city on Deer, Horses or Ivory: Land units gain 50% more experience points from combat. Founding a city on Forest: Can construct Totem Pole in all cities. Founding a city on Jungle: +5% defense in all cities.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_NATIVE_BONUS_LAKE</Tag>
@@ -313,7 +313,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_NATIVE_BONUS_HUNTING</Tag>
-		<English>Unique Power unlocked: +2 unit experience points in all cities.</English>
+		<English>Unique Power unlocked: Land units gain 50% more experience points from combat</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_NATIVE_BONUS_FOREST</Tag>

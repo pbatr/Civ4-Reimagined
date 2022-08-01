@@ -29462,7 +29462,7 @@ void CvPlayer::applyNativeAmericanBonus(int iX, int iY)
 
 	if (isNativeAmericanBonus(NATIVEBONUS_HUNTING) && eBonus == (BonusTypes)GC.getInfoTypeForString("BONUS_DEER") || eBonus == (BonusTypes)GC.getInfoTypeForString("BONUS_HORSE") || eBonus == (BonusTypes)GC.getInfoTypeForString("BONUS_IVORY"))
 	{
-		changeFreeExperience(2);
+		changeDomainExperienceModifier(DOMAIN_LAND, 50);
 		setNativeAmericanBonus(NATIVEBONUS_HUNTING, false);
 		notifyNativeAmericanBonus(NATIVEBONUS_HUNTING);
 	}
