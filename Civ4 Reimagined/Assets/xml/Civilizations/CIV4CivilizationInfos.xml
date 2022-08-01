@@ -3903,7 +3903,7 @@
 			<TerrainBiases>
 				<TerrainBias>
 					<TerrainType>TERRAIN_TUNDRA</TerrainType>
-					<iBias>1</iBias>
+					<iBias>2</iBias>
 				</TerrainBias>
 				<TerrainBias>
 					<TerrainType>TERRAIN_PLAINS</TerrainType>
@@ -4292,7 +4292,7 @@
 				</TerrainBias>
 				<TerrainBias>
 					<TerrainType>TERRAIN_TUNDRA</TerrainType>
-					<iBias>3</iBias>
+					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
 			<InitialCivics>
