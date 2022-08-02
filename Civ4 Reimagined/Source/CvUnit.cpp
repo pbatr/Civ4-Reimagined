@@ -7938,7 +7938,15 @@ int CvUnit::upgradePrice(UnitTypes eUnit) const
 		return 0;
 	}
 
-	iPrice = GC.getDefineINT("BASE_UNIT_UPGRADE_COST");
+	// Civ4 Reimagined: Revisit this
+	if (eUnit == (UnitTypes)GC.getInfoTypeForString("UNIT_INCAN_QUECHUA"))
+	{
+		iPrice = 0;
+	}
+	else
+	{
+		iPrice = GC.getDefineINT("BASE_UNIT_UPGRADE_COST");
+	}
 
 	iPrice += (std::max(0, (GET_PLAYER(getOwnerINLINE()).getProductionNeeded(eUnit) - GET_PLAYER(getOwnerINLINE()).getProductionNeeded(getUnitType()))) * GC.getDefineINT("UNIT_UPGRADE_COST_PER_PRODUCTION"));
 
