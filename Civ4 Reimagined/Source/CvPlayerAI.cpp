@@ -3287,8 +3287,8 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 						if (bEventuallyRemoveableFeature && !bRemoveableFeature && kFeature.getYieldChange(eYield) <= 0)
 						{
 							// Civ4 Reimagined
-							iPlotValue += 40 * kFeature.getYieldChange(eYield);
-							iPlotValue -= 3;
+							iPlotValue += 30 * kFeature.getYieldChange(eYield);
+							iPlotValue -= 6;
 						}
 					}
 				}
