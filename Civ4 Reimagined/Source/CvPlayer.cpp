@@ -5568,7 +5568,8 @@ bool CvPlayer::canTradeItem(PlayerTypes eWhoTo, TradeData item, bool bTestDenial
 			{
 				if (0 == GC.getGameINLINE().getMaxCityElimination())
 				{
-					if (!GET_TEAM(getTeam()).isAVassal() && !GET_TEAM(GET_PLAYER(eWhoTo).getTeam()).isVassal(getTeam()))
+					// Civ4 Reimagined: Can only trade cities when at war
+					if (!GET_TEAM(getTeam()).isAVassal() && !GET_TEAM(GET_PLAYER(eWhoTo).getTeam()).isVassal(getTeam()) && GET_TEAM(getTeam()).isAtWar(GET_PLAYER(eWhoTo).getTeam()))
 					{
 						pOurCapitalCity = getCapitalCity();
 						if (pOurCapitalCity != NULL)
