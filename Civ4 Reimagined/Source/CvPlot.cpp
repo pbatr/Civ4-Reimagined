@@ -1649,7 +1649,7 @@ bool CvPlot::canHavePotentialIrrigation() const
 	{
 		if (GC.getImprovementInfo((ImprovementTypes)iI).isCarriesIrrigation())
 		{
-			if (canHaveImprovement(((ImprovementTypes)iI), NO_TEAM, true))
+			if (canHaveImprovement(((ImprovementTypes)iI), NO_PLAYER, true))
 			{
 				return true;
 			}
@@ -2396,11 +2396,18 @@ bool CvPlot::canHaveBonus(BonusTypes eBonus, bool bIgnoreLatitude) const
 }
 
 
-bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, bool bPotential) const
+bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, PlayerTypes ePlayer, bool bPotential) const
 {
 	CvPlot* pLoopPlot;
 	bool bValid;
 	int iI;
+
+	TeamTypes eTeam = NO_TEAM;
+
+	if (ePlayer != NO_PLAYER)
+	{
+		eTeam = GET_PLAYER(ePlayer).getTeam();
+	}
 
 /*
 ** K-Mod, 21/dec/10, karadoc
@@ -2454,7 +2461,7 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, 
 		return false;
 	}
 	
-	// Civ4 Reimagined
+	// Civ4 Reimagined: Inca UP
 	if (GC.getImprovementInfo(eImprovement).isRequiresCanFarmHills()) 
 	{
 		if ((eTeam == -1 || !(GET_TEAM(eTeam).isCanFarmHills())
@@ -2492,6 +2499,15 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, 
 	if ((getFeatureType() != NO_FEATURE) && GC.getImprovementInfo(eImprovement).getFeatureMakesValid(getFeatureType()))
 	{
 		bValid = true;
+	}
+
+	// Civ4 Reimagined: Dutch UP
+	if (eImprovement == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_WINDMILL") && isCoastalLand(GC.getMIN_WATER_SIZE_FOR_OCEAN())) 
+	{
+		if (ePlayer != NO_PLAYER && GET_PLAYER(ePlayer).canBuildWindmillsOnCoast())
+		{
+			bValid = true;
+		}
 	}
 
 	if (!bValid)
@@ -2583,7 +2599,7 @@ bool CvPlot::canBuild(BuildTypes eBuild, PlayerTypes ePlayer, bool bTestVisible)
 
 	if (eImprovement != NO_IMPROVEMENT)
 	{
-		if (!canHaveImprovement(eImprovement, GET_PLAYER(ePlayer).getTeam(), bTestVisible))
+		if (!canHaveImprovement(eImprovement, ePlayer, bTestVisible))
 		{
 			return false;
 		}
@@ -10475,7 +10491,7 @@ bool CvPlot::canApplyEvent(EventTypes eEvent) const
 	{
 		if (NO_IMPROVEMENT != kEvent.getImprovement())
 		{
-			if (!canHaveImprovement((ImprovementTypes)kEvent.getImprovement(), getTeam()))
+			if (!canHaveImprovement((ImprovementTypes)kEvent.getImprovement(), getOwnerINLINE()))
 			{
 				return false;
 			}

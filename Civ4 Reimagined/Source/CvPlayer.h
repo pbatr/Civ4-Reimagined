@@ -1508,6 +1508,8 @@ public:
 	void setUniquePowerBuilding(BuildingTypes eBuilding); // Civ4 Reimagined
 	void changeBuildingProductionModifierFromCapital(int iChange); // Civ4 Reimagined
 	int getBuildingProductionModifierFromCapital() const; // Civ4 Reimagined
+	void setCanBuildWindmillsOnCoast(bool bNewValue); // Civ4 Reimagined
+	bool canBuildWindmillsOnCoast() const; // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1813,6 +1815,7 @@ protected:
 	bool m_bImmigrants; // Civ4 Reimagined
 	bool m_bCaptureSlaves; // Civ4 Reimagined
 	bool m_bDesertGold; // Civ4 Reimagined
+	bool m_bCanBuildWindmillsOnCoast; // Civ4 Reimagined
 
 
 	bool m_bDisableHuman;	// Set to true to disable isHuman() check

@@ -1073,6 +1073,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bGainGreatWorkGoldWithHitBonuses = false; // Civ4 Reimagined
 	m_iReligiousVoteModifier = 0; // Civ4 Reimagined
 	m_bCapitalAlwaysPerfectBonusValue = false; // Civ4 Reimagined
+	m_bCanBuildWindmillsOnCoast = false; // Civ4 Reimagined
 	m_iGreatEngineerPointsFromCathedrals = 0; // Civ4 Reimagined
 	m_iCombatBonusOnHomeArea = 0; // Civ4 Reimagined
 	m_iStrategicBonusYieldModifier = 0; // Civ4 Reimagined
@@ -20412,7 +20413,7 @@ int CvPlayer::getAdvancedStartImprovementCost(ImprovementTypes eImprovement, boo
 		if (bAdd)
 		{
 			// Valid Plot
-			if (!pPlot->canHaveImprovement(eImprovement, getTeam(), false))
+			if (!pPlot->canHaveImprovement(eImprovement, getID(), false))
 			{
 				return -1;
 			}
@@ -21281,6 +21282,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bGainGreatWorkGoldWithHitBonuses); // Civ4 Reimagined
 	pStream->Read(&m_iReligiousVoteModifier); // Civ4 Reimagined
 	pStream->Read(&m_bCapitalAlwaysPerfectBonusValue); // Civ4 Reimagined
+	pStream->Read(&m_bCanBuildWindmillsOnCoast); // Civ4 Reimagined
 	pStream->Read(&m_iGreatEngineerPointsFromCathedrals); // Civ4 Reimagined
 	pStream->Read(&m_iCombatBonusOnHomeArea); // Civ4 Reimagined
 	pStream->Read(&m_iStrategicBonusYieldModifier); // Civ4 Reimagined
@@ -21934,6 +21936,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_bGainGreatWorkGoldWithHitBonuses); // Civ4 Reimagined
 	pStream->Write(m_iReligiousVoteModifier); // Civ4 Reimagined
 	pStream->Write(m_bCapitalAlwaysPerfectBonusValue); // Civ4 Reimagined
+	pStream->Write(m_bCanBuildWindmillsOnCoast); // Civ4 Reimagined
 	pStream->Write(m_iGreatEngineerPointsFromCathedrals); // Civ4 Reimagined
 	pStream->Write(m_iCombatBonusOnHomeArea); // Civ4 Reimagined
 	pStream->Write(m_iStrategicBonusYieldModifier); // Civ4 Reimagined
@@ -29417,6 +29420,19 @@ bool CvPlayer::isCapitalAlwaysPerfectBonusValue() const
 }
 
 
+//Civ4 Reimagined
+void CvPlayer::setCanBuildWindmillsOnCoast(bool bNewValue)
+{
+	m_bCanBuildWindmillsOnCoast = bNewValue;
+}
+
+//Civ4 Reimagined
+bool CvPlayer::canBuildWindmillsOnCoast() const
+{
+	return m_bCanBuildWindmillsOnCoast;
+}
+
+
 // Civ4 Reimagined
 bool CvPlayer::hasGoodRelationsWithPope() const
 {
@@ -29562,7 +29578,7 @@ void CvPlayer::updateUniquePowers(TechTypes eTech)
 	    && eTech == (TechTypes)GC.getInfoTypeForString("TECH_CORPORATION"))
 	{
 		GET_TEAM(getTeam()).setAdditionalPlantationBonus(1);
-		changeGreatMerchantPointsPerTrade(25);
+		changeGreatMerchantPointsPerTrade(20);
 		notifyUniquePowersChanged(true);
 	}	
 }
@@ -29651,6 +29667,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		else if (eEra == ERA_MEDIEVAL)
 		{
 			changeStateReligionBuildingCommerce(COMMERCE_ESPIONAGE, 2);
+			notifyUniquePowersChanged(true);
 		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CARTHAGE"))
@@ -29699,6 +29716,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		else if (eEra == ERA_RENAISSANCE)
 		{
 			changeColonyTraderouteModifier(GC.getDefineINT("UNIQUE_POWER_ENGLAND"));
+			notifyUniquePowersChanged(true);
 		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ETHIOPIA"))
@@ -29849,6 +29867,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		else if (eEra == ERA_MEDIEVAL)
 		{
 			setCityRevoltOnKill(true);
+			notifyUniquePowersChanged(true);
 		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_NATIVE_AMERICA"))
@@ -29861,6 +29880,14 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			}
 			notifyUniquePowersChanged(true);
 		}
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_NETHERLANDS"))
+	{
+		if (eEra == ERA_ANCIENT) 
+		{
+			setCanBuildWindmillsOnCoast(true);
+			notifyUniquePowersChanged(true);
+		}			
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_PERSIA"))
 	{

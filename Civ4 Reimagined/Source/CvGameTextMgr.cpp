@@ -4765,7 +4765,7 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 
 			for (iI = 0; iI < GC.getNumImprovementInfos(); iI++)
 			{
-				if( pPlot->canHaveImprovement((ImprovementTypes)iI, pWorkingCity->getTeam()) )
+				if( pPlot->canHaveImprovement((ImprovementTypes)iI, pWorkingCity->getOwnerINLINE()) )
 				{
 					int iOtherBuildValue = pWorkingCity->AI_getImprovementValue( pPlot, (ImprovementTypes)iI, iFoodMultiplier, iProductionMultiplier, iCommerceMultiplier, iDesiredFoodChange, iClearFeatureValue);
 					
@@ -5625,7 +5625,7 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 								CvImprovementInfo& kImprovementInfo = GC.getImprovementInfo((ImprovementTypes) GC.getBuildInfo((BuildTypes) iI).getImprovement());
 								if (kImprovementInfo.isImprovementBonusTrade(eBonus))
 								{
-									if (pPlot->canHaveImprovement(((ImprovementTypes)(GC.getBuildInfo((BuildTypes) iI).getImprovement())), GC.getGameINLINE().getActiveTeam(), true))
+									if (pPlot->canHaveImprovement(((ImprovementTypes)(GC.getBuildInfo((BuildTypes) iI).getImprovement())), GC.getGameINLINE().getActivePlayer(), true))
 									{
 										if (GET_TEAM(GC.getGameINLINE().getActiveTeam()).isHasTech((TechTypes)GC.getBuildInfo((BuildTypes) iI).getTechPrereq()))
 										{

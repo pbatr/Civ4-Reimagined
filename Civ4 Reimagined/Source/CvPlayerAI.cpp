@@ -3209,15 +3209,15 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 			}
 			
 			// Civ4 Reimagined
-			if (eImprovement == NO_IMPROVEMENT && pLoopPlot->canHaveImprovement(IMPROVEMENT_MINE, getTeam(), true))
+			if (eImprovement == NO_IMPROVEMENT && pLoopPlot->canHaveImprovement(IMPROVEMENT_MINE, getID(), true))
 			{
 				eImprovement = (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_MINE");
 			}
-			if (eImprovement == NO_IMPROVEMENT && pLoopPlot->isFreshWater() && pLoopPlot->canHaveImprovement(IMPROVEMENT_FARM, getTeam(), true))
+			if (eImprovement == NO_IMPROVEMENT && pLoopPlot->isFreshWater() && pLoopPlot->canHaveImprovement(IMPROVEMENT_FARM, getID(), true))
 			{
 				eImprovement = (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FARM");
 			}
-			if (eImprovement == NO_IMPROVEMENT && eBonus == NO_BONUS && pLoopPlot->canHaveImprovement(IMPROVEMENT_HAMLET, getTeam(), true))
+			if (eImprovement == NO_IMPROVEMENT && eBonus == NO_BONUS && pLoopPlot->canHaveImprovement(IMPROVEMENT_HAMLET, getID(), true))
 			{
 				eImprovement = (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_HAMLET");
 			}
@@ -3320,7 +3320,7 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 					iAdditionalFood += aiYield[YIELD_FOOD] - GC.getFOOD_CONSUMPTION_PER_POPULATION();
 				}
 				else if (pLoopPlot->calculateNatureYield(YIELD_FOOD, getTeam(), bEventuallyRemoveableFeature) == GC.getFOOD_CONSUMPTION_PER_POPULATION()
-						&& pLoopPlot->canHaveImprovement(IMPROVEMENT_FARM, getTeam(), true))
+						&& pLoopPlot->canHaveImprovement(IMPROVEMENT_FARM, getID(), true))
 				{
 					iAdditionalFood++;
 				}

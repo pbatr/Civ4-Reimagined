@@ -123,7 +123,7 @@ public:
 	void updateSeeFromSight(bool bIncrement, bool bUpdatePlotGroups);
 
 	bool canHaveBonus(BonusTypes eBonus, bool bIgnoreLatitude = false) const;																						// Exposed to Python
-	bool canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam = NO_TEAM, bool bPotential = false) const;		// Exposed to Python
+	bool canHaveImprovement(ImprovementTypes eImprovement, PlayerTypes ePlayer = NO_PLAYER, bool bPotential = false) const;		// Exposed to Python
 
 	bool canBuild(BuildTypes eBuild, PlayerTypes ePlayer = NO_PLAYER, bool bTestVisible = false) const;														// Exposed to Python
 	int getBuildTime(BuildTypes eBuild) const;																																										// Exposed to Python

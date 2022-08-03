@@ -55,7 +55,7 @@ public:
 	CyPlot* getNearestLandPlot();
 	int seeThroughLevel();
 	bool canHaveBonus(int /*BonusTypes*/ eBonus, bool bIgnoreLatitude);
-	bool canHaveImprovement(int /* ImprovementTypes */ eImprovement, int /*TeamTypes*/ eTeam, bool bPotential);
+	bool canHaveImprovement(int /* ImprovementTypes */ eImprovement, int /*PlayerTypes*/ ePlayer, bool bPotential);
 	bool canBuild(int /*BuildTypes*/ eBuild, int /*PlayerTypes*/ ePlayer, bool bTestVisible);
 	int getBuildTime(int /*BuildTypes*/ eBuild);
 	int getBuildTurnsLeft(int /*BuildTypes*/ eBuild, int iNowExtra, int iThenExtra);
