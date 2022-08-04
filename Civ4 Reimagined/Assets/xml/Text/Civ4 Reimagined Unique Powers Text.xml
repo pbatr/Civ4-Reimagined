@@ -233,7 +233,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_GERMANY</Tag>
-		<English>After entering the Industrial Era: Can sacrifice a Great General to start a mini golden age that is 67% as long as a regular golden age. Does not require sacrificing other great persons and does not advance golden age requirements.</English>
+		<English>After entering the Industrial Era: +1[ICON_PRODUCTION] from Mines. Can sacrifice a Great General to start a mini golden age that is 67% as long as a regular golden age. Does not require sacrificing other great persons and does not advance golden age requirements.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_JAPAN</Tag>

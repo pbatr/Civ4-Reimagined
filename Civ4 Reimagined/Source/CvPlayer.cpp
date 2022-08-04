@@ -29832,6 +29832,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_INDUSTRIAL)
 		{
 			changeGreatGeneralGoldenAgeLength(GC.getDefineINT("UNIQUE_POWER_GERMANY"));
+			changeImprovementYieldChange((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_MINE"), YIELD_PRODUCTION, 1);
 			notifyUniquePowersChanged(true);
 		}
 	}
