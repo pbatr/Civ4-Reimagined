@@ -1474,6 +1474,8 @@ public:
 	int getReligiousColonyMaintenanceModifier() const; // Civ4 Reimagined
 	void changeGreatMerchantPointsPerTrade(int iChange); // Civ4 Reimagined
 	int getGreatMerchantPointsPerTrade() const; // Civ4 Reimagined
+	void changeGreatPeoplePointsPerTrade(int iChange); // Civ4 Reimagined
+	int getGreatPeoplePointsPerTrade() const; // Civ4 Reimagined
 	void changeCapitalCultureAttitudeBonus(int iChange); // Civ4 Reimagined
 	int getCapitalCultureAttitudeBonus() const; // Civ4 Reimagined
 	void changePillageHeal(int iChange); // Civ4 Reimagined
@@ -1786,6 +1788,7 @@ protected:
 	int m_iCatchUpTechModifier; // Civ4 Reimagined
 	int m_iReligiousColonyMaintenanceModifier; // Civ4 Reimagined
 	int m_iGreatMerchantPointsPerTrade; // Civ4 Reimagined
+	int m_iGreatPeoplePointsPerTrade; // Civ4 Reimagined
 	int m_iCapitalCultureAttitudeBonus; // Civ4 Reimagined
 	int m_iPillageHeal; // Civ4 Reimagined
 	int m_iAdditionalAncientEurekaBoost; // Civ4 Reimagined

@@ -1068,6 +1068,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iCatchUpTechModifier = 0; // Civ4 Reimagined
 	m_iReligiousColonyMaintenanceModifier = 0; // Civ4 Reimagined
 	m_iGreatMerchantPointsPerTrade = 0; // Civ4 Reimagined
+	m_iGreatPeoplePointsPerTrade = 0; // Civ4 Reimagined
 	m_iCapitalCultureAttitudeBonus = 0; // Civ4 Reimagined
 	m_iAdditionalAncientEurekaBoost = 0; // Civ4 Reimagined
 	m_iAdditionalFarmBonusYield = 0; // Civ4 Reimagined
@@ -14527,6 +14528,21 @@ void CvPlayer::changeGreatMerchantPointsPerTrade(int iChange)
 }
 
 // Civ4 Reimagined
+int CvPlayer::getGreatPeoplePointsPerTrade() const
+{
+	return m_iGreatPeoplePointsPerTrade;
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeGreatPeoplePointsPerTrade(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iGreatPeoplePointsPerTrade += iChange;
+	}
+}
+
+// Civ4 Reimagined
 int CvPlayer::getCapitalCultureAttitudeBonus() const
 {
 	return m_iCapitalCultureAttitudeBonus;
@@ -21326,6 +21342,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iCatchUpTechModifier); // Civ4 Reimagined
 	pStream->Read(&m_iReligiousColonyMaintenanceModifier); // Civ4 Reimagined
 	pStream->Read(&m_iGreatMerchantPointsPerTrade); // Civ4 Reimagined
+	pStream->Read(&m_iGreatPeoplePointsPerTrade); // Civ4 Reimagined
 	pStream->Read(&m_iCapitalCultureAttitudeBonus); // Civ4 Reimagined
 	pStream->Read(&m_iAdditionalAncientEurekaBoost); // Civ4 Reimagined
 	pStream->Read(&m_iAdditionalFarmBonusYield); // Civ4 Reimagined
@@ -21987,6 +22004,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iCatchUpTechModifier); // Civ4 Reimagined
 	pStream->Write(m_iReligiousColonyMaintenanceModifier); // Civ4 Reimagined
 	pStream->Write(m_iGreatMerchantPointsPerTrade); // Civ4 Reimagined
+	pStream->Write(m_iGreatPeoplePointsPerTrade); // Civ4 Reimagined
 	pStream->Write(m_iCapitalCultureAttitudeBonus); // Civ4 Reimagined
 	pStream->Write(m_iAdditionalAncientEurekaBoost); // Civ4 Reimagined
 	pStream->Write(m_iAdditionalFarmBonusYield); // Civ4 Reimagined
@@ -29705,6 +29723,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_INDUSTRIAL)
 		{
 			changeCorporationTraderouteModifier(GC.getDefineINT("UNIQUE_POWER_AMERICA"));
+			changeGreatPeoplePointsPerTrade(40);
 			
 			UnitClassTypes UNITCLASS_EXECUTIVE_4 = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_EXECUTIVE_4");
 			UnitClassTypes UNITCLASS_EXECUTIVE_5 = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_EXECUTIVE_5");

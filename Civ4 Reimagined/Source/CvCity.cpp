@@ -6381,6 +6381,9 @@ int CvCity::getGreatPeopleRate() const
 	// Civ4 Reimagined: Dutch UP
 	int iGreatPeopleRate = getBaseGreatPeopleRate() + GET_PLAYER(getOwnerINLINE()).getGreatMerchantPointsPerTrade() * getTradeYield(YIELD_COMMERCE) / 100;
 
+	// Civ4 Reimagined: American UP
+	iGreatPeopleRate += GET_PLAYER(getOwnerINLINE()).getGreatPeoplePointsPerTrade() * getTradeYield(YIELD_COMMERCE) / 100;
+
 	// Civ4 Reimagined: HRE UP
 	for (std::set<ImprovementTypes>::const_iterator it = m_aImprovementsInRadius.begin(); it != m_aImprovementsInRadius.end(); ++it)
 	{
@@ -15930,7 +15933,11 @@ void CvCity::doGreatPeople()
 
 		int iGreatPeopleUnitRand = GC.getGameINLINE().getSorenRandNum(iTotalGreatPeopleUnitProgress, "Great Person");
 
-		UnitTypes eGreatPeopleUnit = NO_UNIT;
+		// Civ4 Reimagined: default great person
+		const UnitClassTypes UNITCLASS_GREAT_SCIENTIST = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SCIENTIST");
+		const UnitTypes UNIT_GREAT_SCIENTIST = (UnitTypes)GC.getUnitClassInfo(UNITCLASS_GREAT_SCIENTIST).getDefaultUnitIndex();
+
+		UnitTypes eGreatPeopleUnit = UNIT_GREAT_SCIENTIST;
 		for (int iI = 0; iI < GC.getNumUnitInfos(); iI++)
 		{
 			if (iGreatPeopleUnitRand < getGreatPeopleUnitProgress((UnitTypes)iI))
@@ -18238,7 +18245,7 @@ void CvCity::updateResources()
 					// Civ4 Reimagined: Japan UP
 					int iBuildingHealth = GC.getBuildingInfo((BuildingTypes) iJ).getBonusHealthChanges((BonusTypes)iI);
 					iBuildingHealth += GET_PLAYER(getOwnerINLINE()).getBonusHealthFromBuilding((BuildingTypes) iJ, (BonusTypes)iI);
-					
+
 					iValue = iBuildingHealth * iNumBuildings;
 
 					if (iValue >= 0)

@@ -17891,6 +17891,9 @@ void CvGameTextMgr::parseGreatPeopleHelp(CvWStringBuffer &szBuffer, CvCity& city
 	// Civ4 Reimagined: Dutch UP
 	int iBonusGPPoints = owner.getGreatMerchantPointsPerTrade() * city.getTradeYield(YIELD_COMMERCE) / 100;
 
+	// Civ4 Reimagined: American UP
+	iBonusGPPoints += owner.getGreatPeoplePointsPerTrade() * city.getTradeYield(YIELD_COMMERCE) / 100;
+
 	// Civ4 Reimagined: HRE UP
 	const std::set<ImprovementTypes> aiImprovementsInRadius = city.getImprovementsInRadius();
 	for (std::set<ImprovementTypes>::const_iterator it = aiImprovementsInRadius.begin(); it != aiImprovementsInRadius.end(); ++it)
@@ -18017,6 +18020,9 @@ void CvGameTextMgr::parseGreatPeopleHelp(CvWStringBuffer &szBuffer, CvCity& city
 
 	// Civ4 Reimagined: Dutch UP
 	int iGreatPeopleRate = city.getBaseGreatPeopleRate() + owner.getGreatMerchantPointsPerTrade() * city.getTradeYield(YIELD_COMMERCE) / 100;
+
+	// Civ4 Reimagined: American UP
+	iGreatPeopleRate += owner.getGreatPeoplePointsPerTrade() * city.getTradeYield(YIELD_COMMERCE) / 100;
 
 	// Civ4 Reimagined: HRE UP
 	for (std::set<ImprovementTypes>::const_iterator it = aiImprovementsInRadius.begin(); it != aiImprovementsInRadius.end(); ++it)
