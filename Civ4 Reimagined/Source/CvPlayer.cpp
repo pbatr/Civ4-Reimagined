@@ -131,6 +131,7 @@ CvPlayer::CvPlayer()
 
 	m_ppaaiSpecialistExtraYield = NULL;
 	m_ppaaiSpecialistCommerceChanges = NULL; // Civ4 Reimagined
+	m_ppaaiBonusHealthFromBuilding = NULL; // Civ4 Reimagined
 	m_ppaaiSpecialistThresholdExtraYield = NULL; //Leoreth
 	m_ppaaiImprovementYieldChange = NULL;
 	m_ppaaiImprovementYieldChangeAdjacentToStrategicBonus = NULL;
@@ -744,6 +745,16 @@ void CvPlayer::uninit()
 			SAFE_DELETE_ARRAY(m_ppaaiSpecialistCommerceChanges[iI]);
 		}
 		SAFE_DELETE_ARRAY(m_ppaaiSpecialistCommerceChanges);
+	}
+
+	// Civ4 Reimagined
+	if (m_ppaaiBonusHealthFromBuilding != NULL)
+	{
+		for (int iI = 0; iI < GC.getNumBuildingInfos(); iI++)
+		{
+			SAFE_DELETE_ARRAY(m_ppaaiBonusHealthFromBuilding[iI]);
+		}
+		SAFE_DELETE_ARRAY(m_ppaaiBonusHealthFromBuilding);
 	}
 	
 	//Leoreth
@@ -1430,6 +1441,18 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 			for (iJ = 0; iJ < NUM_COMMERCE_TYPES; iJ++)
 			{
 				m_ppaaiSpecialistCommerceChanges[iI][iJ] = 0;
+			}
+		}
+
+		// Civ4 Reimagined
+		FAssertMsg(m_ppaaiBonusHealthFromBuilding==NULL, "about to leak memory, CvPlayer::m_ppaaiBonusHealthFromBuilding");
+		m_ppaaiBonusHealthFromBuilding = new int*[GC.getNumBuildingInfos()];
+		for (iI = 0; iI < GC.getNumBuildingInfos(); iI++)
+		{
+			m_ppaaiBonusHealthFromBuilding[iI] = new int[GC.getNumBonusInfos()];
+			for (iJ = 0; iJ < GC.getNumBonusInfos(); iJ++)
+			{
+				m_ppaaiBonusHealthFromBuilding[iI][iJ] = 0;
 			}
 		}
 		
@@ -16583,6 +16606,39 @@ void CvPlayer::changeSpecialistCommerceChange(SpecialistTypes eIndex1, CommerceT
 	}
 }
 
+// Civ4 Reimagined
+int CvPlayer::getBonusHealthFromBuilding(BuildingTypes eIndex1, BonusTypes eIndex2) const
+{
+	FAssertMsg(eIndex1 >= 0, "eIndex1 expected to be >= 0");
+	FAssertMsg(eIndex1 < GC.getNumBuildingInfos(), "eIndex1 expected to be < GC.getNumBuildingInfos()");
+	FAssertMsg(eIndex2 >= 0, "eIndex2 expected to be >= 0");
+	FAssertMsg(eIndex2 < GC.getNumBonusInfos(), "eIndex2 expected to be < GC.getNumBonusInfos()");
+	return m_ppaaiBonusHealthFromBuilding[eIndex1][eIndex2];
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeBonusHealthFromBuilding(BuildingTypes eIndex1, BonusTypes eIndex2, int iChange)
+{
+	FAssertMsg(eIndex1 >= 0, "eIndex1 expected to be >= 0");
+	FAssertMsg(eIndex1 < GC.getNumBuildingInfos(), "eIndex1 expected to be < GC.getNumBuildingInfos()");
+	FAssertMsg(eIndex2 >= 0, "eIndex2 expected to be >= 0");
+	FAssertMsg(eIndex2 < GC.getNumBonusInfos(), "eIndex2 expected to be < GC.getNumBonusInfos()");
+
+	if (iChange != 0)
+	{
+		m_ppaaiBonusHealthFromBuilding[eIndex1][eIndex2] = (m_ppaaiBonusHealthFromBuilding[eIndex1][eIndex2] + iChange);
+		FAssert(getBonusHealthFromBuilding(eIndex1, eIndex2) >= 0);
+
+		int iLoop;
+		for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+		{
+			pLoopCity->updateResources();
+		}
+
+		AI_makeAssignWorkDirty();
+	}
+}
+
 //Leoreth
 int CvPlayer::getSpecialistThresholdExtraYield(SpecialistTypes eIndex1, YieldTypes eIndex2) const
 {
@@ -21443,6 +21499,12 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	}
 
 	// Civ4 Reimagined
+	for (iI=0;iI<GC.getNumBuildingInfos();iI++)
+	{
+		pStream->Read(GC.getNumBonusInfos(), m_ppaaiBonusHealthFromBuilding[iI]);
+	}
+
+	// Civ4 Reimagined
 	for (iI=0;iI<GC.getNumFeatureInfos();iI++)
 	{
 		pStream->Read(NUM_COMMERCE_TYPES, m_ppaiFeatureCommerce[iI]);
@@ -22085,6 +22147,12 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	for (iI=0;iI<GC.getNumBuildingClassInfos();iI++)
 	{
 		pStream->Write(NUM_YIELD_TYPES, m_ppaaiBuildingYieldChange[iI]);
+	}
+
+	// Civ4 Reimagined
+	for (iI=0;iI<GC.getNumBuildingInfos();iI++)
+	{
+		pStream->Write(GC.getNumBonusInfos(), m_ppaaiBonusHealthFromBuilding[iI]);
 	}
 
 	// Civ4 Reimagined
@@ -29836,7 +29904,11 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	{
 		if (eEra == ERA_ANCIENT)
 		{
+			BuildingTypes eHarbor = (BuildingTypes)GC.getInfoTypeForString("BUILDING_HARBOR");
 			changeCultureResistanceModifier(75);
+			changeBonusHealthFromBuilding(eHarbor, (BonusTypes)GC.getInfoTypeForString("BONUS_CLAM"), 1);
+			changeBonusHealthFromBuilding(eHarbor, (BonusTypes)GC.getInfoTypeForString("BONUS_CRAB"), 1);
+			changeBonusHealthFromBuilding(eHarbor, (BonusTypes)GC.getInfoTypeForString("BONUS_FISH"), 1);
 			notifyUniquePowersChanged(true);
 		}
 		else if (eEra == ERA_INDUSTRIAL)

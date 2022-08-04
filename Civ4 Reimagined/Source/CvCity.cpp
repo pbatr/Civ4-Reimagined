@@ -4166,6 +4166,8 @@ int CvCity::getBonusHealth(BonusTypes eBonus) const
 	for (iI = 0; iI < GC.getNumBuildingInfos(); iI++)
 	{
 		iHealth += 100 * (getNumActiveBuilding((BuildingTypes)iI) * GC.getBuildingInfo((BuildingTypes) iI).getBonusHealthChanges(eBonus));
+		// Japan UP
+		iHealth += 100 * (getNumActiveBuilding((BuildingTypes)iI) * GET_PLAYER(getOwnerINLINE()).getBonusHealthFromBuilding((BuildingTypes) iI, eBonus));
 	}
 
 	return iHealth;
@@ -4308,7 +4310,9 @@ void CvCity::processBonus(BonusTypes eBonus, int iChange, bool bChangeValue, boo
 				const int iNumBuildings = getNumActiveBuilding((BuildingTypes)iI);
 				if (iNumBuildings > 0)
 				{
-					const int iBuildingHealth = GC.getBuildingInfo((BuildingTypes) iI).getBonusHealthChanges(eBonus) * iNumBuildings;
+					int iBuildingHealth = GC.getBuildingInfo((BuildingTypes) iI).getBonusHealthChanges(eBonus) * iNumBuildings;
+					// Civ4 Reimagined: Japan UP
+					iBuildingHealth += GET_PLAYER(getOwnerINLINE()).getBonusHealthFromBuilding((BuildingTypes) iI, eBonus) * iNumBuildings;
 					
 					if (iBuildingHealth >= 0)
 					{
@@ -4485,13 +4489,17 @@ void CvCity::processBuilding(BuildingTypes eBuilding, int iChange, bool bObsolet
 			
 			if (hasBonus((BonusTypes)iI))
 			{
+				int iBuildingHealth = GC.getBuildingInfo(eBuilding).getBonusHealthChanges(iI);
+				// Civ4 Reimagined: Japan UP
+				iBuildingHealth += GET_PLAYER(getOwnerINLINE()).getBonusHealthFromBuilding(eBuilding, (BonusTypes)iI);
+
 				if (GC.getBuildingInfo(eBuilding).getBonusHealthChanges(iI) > 0)
 				{
-					changeBonusGoodHealth((double)(GC.getBuildingInfo(eBuilding).getBonusHealthChanges(iI) * iChange));
+					changeBonusGoodHealth((double)(iBuildingHealth * iChange));
 				}
 				else
 				{
-					changeBonusBadHealth((double)(GC.getBuildingInfo(eBuilding).getBonusHealthChanges(iI) * iChange));
+					changeBonusBadHealth((double)(iBuildingHealth * iChange));
 				}
 				if (GC.getBuildingInfo(eBuilding).getBonusHappinessChanges(iI) > 0)
 				{
@@ -7909,7 +7917,10 @@ int CvCity::getAdditionalHealthByBuilding(BuildingTypes eBuilding, int& iGood, i
 	{
 		if ((hasBonus((BonusTypes)iI) || kBuilding.getFreeBonus() == iI) && kBuilding.getNoBonus() != iI)
 		{
-			addGoodOrBad(kBuilding.getBonusHealthChanges(iI), iGood, iBad);
+			// Civ4 Reimagined: Japan UP
+			int iBuildingHealth = kBuilding.getBonusHealthChanges(iI);
+			iBuildingHealth += GET_PLAYER(getOwnerINLINE()).getBonusHealthFromBuilding(eBuilding, (BonusTypes)iI);
+			addGoodOrBad(iBuildingHealth, iGood, iBad);
 		}
 	}
 
@@ -18224,7 +18235,11 @@ void CvCity::updateResources()
 				int iNumBuildings = getNumActiveBuilding((BuildingTypes)iJ);
 				if (iNumBuildings > 0)
 				{
-					iValue = GC.getBuildingInfo((BuildingTypes) iJ).getBonusHealthChanges((BonusTypes)iI) * iNumBuildings;
+					// Civ4 Reimagined: Japan UP
+					int iBuildingHealth = GC.getBuildingInfo((BuildingTypes) iJ).getBonusHealthChanges((BonusTypes)iI);
+					iBuildingHealth += GET_PLAYER(getOwnerINLINE()).getBonusHealthFromBuilding((BuildingTypes) iJ, (BonusTypes)iI);
+					
+					iValue = iBuildingHealth * iNumBuildings;
 
 					if (iValue >= 0)
 					{

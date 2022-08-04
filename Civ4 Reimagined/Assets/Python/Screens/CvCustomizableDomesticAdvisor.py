@@ -1664,6 +1664,8 @@ class CvCustomizableDomesticAdvisor:
 				for i in range(gc.getNumBonusInfos()):
 					if city.hasBonus(i):
 						iHealth += info.getBonusHealthChanges(i)
+						# Civ4 Reimagined: Japan UP
+						iHealth += gc.getPlayer(city.getOwner()).getBonusHealthFromBuilding(buildingNumber, i)
 						iHappiness += info.getBonusHappinessChanges(i)
 
 				if iHealth > 0:
@@ -1946,6 +1948,8 @@ class CvCustomizableDomesticAdvisor:
 						for j in range(gc.getNumBonusInfos()):
 							if city.hasBonus(j):
 								iHealth += info.getBonusHealthChanges(j)
+								# Civ4 Reimagined: Japan UP
+								iHealth += gc.getPlayer(city.getOwner()).getBonusHealthFromBuilding(bldg, j)
 						value = iHealth / float(info.getProductionCost())
 						if(value > bestData):
 							bestOrder = bldg

@@ -2384,12 +2384,16 @@
 			</TerrainBiases>
 			<BonusBiases>
 				<BonusBias>
-					<BonusType>BONUS_WHALE</BonusType>
-					<iBias>10</iBias>
+					<BonusType>BONUS_CLAM</BonusType>
+					<iBias>5</iBias>
 				</BonusBias>
 				<BonusBias>
-					<BonusType>BONUS_INCENSE</BonusType>
-					<iBias>2</iBias>
+					<BonusType>BONUS_CRAB</BonusType>
+					<iBias>5</iBias>
+				</BonusBias>
+				<BonusBias>
+					<BonusType>BONUS_FISH</BonusType>
+					<iBias>5</iBias>
 				</BonusBias>
 				<BonusBias>
 					<BonusType>BONUS_RICE</BonusType>

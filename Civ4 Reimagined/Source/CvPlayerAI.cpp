@@ -11125,7 +11125,7 @@ int CvPlayerAI::AI_baseBonusVal(BonusTypes eBonus, bool bAdditional) const
 					// Civ4 Reimagined
 					if (kLoopBuilding.getBonusHealthChanges(eBonus) != 0)
 					{
-						int iHealth = kLoopBuilding.getBonusHealthChanges(eBonus);
+						int iHealth = kLoopBuilding.getBonusHealthChanges(eBonus) + getBonusHealthFromBuilding(eLoopBuilding, eBonus);
 						//iTempValue += kLoopBuilding.getBonusHealthChanges(eBonus) * (kLoopBuilding.getSpecialBuildingType() != NO_SPECIALBUILDING ? 5 : 34);
 						iTempValue += (100 * iHealth + 2 * AI_getHealthWeight(iHealth, 1)) * (kLoopBuilding.getSpecialBuildingType() != NO_SPECIALBUILDING ? 5 : 34) / 200;
 					}

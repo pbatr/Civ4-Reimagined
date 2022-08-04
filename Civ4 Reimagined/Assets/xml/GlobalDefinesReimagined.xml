@@ -416,7 +416,7 @@
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_JAPAN</DefineName>
-		<iDefineIntVal>50</iDefineIntVal> <!-- Research bonus for known technologies -->
+		<iDefineIntVal>40</iDefineIntVal> <!-- Research bonus for known technologies -->
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_KHMER</DefineName>

@@ -11431,10 +11431,17 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 	{
 		if (kBuilding.getBonusHealthChanges(iI) != 0)
 		{
-			szFirstBuffer.Format(L"%s%s", NEWLINE, gDLL->getText("TXT_KEY_BUILDING_HEALTH_HAPPINESS_CHANGE", abs(kBuilding.getBonusHealthChanges(iI)), ((kBuilding.getBonusHealthChanges(iI) > 0) ? gDLL->getSymbolID(HEALTHY_CHAR): gDLL->getSymbolID(UNHEALTHY_CHAR))).c_str());
+			// Civ4 Reimagined: Japan UP
+			int iHealth = kBuilding.getBonusHealthChanges(iI);
+			if (ePlayer != NO_PLAYER)
+			{
+				iHealth += GET_PLAYER(ePlayer).getBonusHealthFromBuilding(eBuilding, (BonusTypes)iI);
+			}
+
+			szFirstBuffer.Format(L"%s%s", NEWLINE, gDLL->getText("TXT_KEY_BUILDING_HEALTH_HAPPINESS_CHANGE", abs(iHealth), ((iHealth > 0) ? gDLL->getSymbolID(HEALTHY_CHAR): gDLL->getSymbolID(UNHEALTHY_CHAR))).c_str());
 			szTempBuffer.Format(L"<link=literal>%s</link>", GC.getBonusInfo((BonusTypes)iI).getDescription());
-			setListHelp(szBuffer, szFirstBuffer, szTempBuffer, L", ", (kBuilding.getBonusHealthChanges(iI) != iLast));
-			iLast = kBuilding.getBonusHealthChanges(iI);
+			setListHelp(szBuffer, szFirstBuffer, szTempBuffer, L", ", (iHealth != iLast));
+			iLast = iHealth;
 		}
 	}
 
@@ -13909,7 +13916,14 @@ void CvGameTextMgr::setBonusHelp(CvWStringBuffer &szBuffer, BonusTypes eBonus, b
 
 				if (kBuilding.getBonusHealthChanges(eBonus) != 0)
 				{
-					szBuffer.append(CvWString::format(L"\n%s", gDLL->getText("TXT_KEY_BUILDING_CIVIC_HEALTH_HAPPINESS_CHANGE", abs(kBuilding.getBonusHealthChanges(eBonus)),
+					// Civ4 Reimagined: Japan UP
+					int iHealth = kBuilding.getBonusHealthChanges(eBonus);
+					if (GC.getGameINLINE().getActivePlayer() != NO_PLAYER)
+					{
+						iHealth += GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getBonusHealthFromBuilding(eLoopBuilding, eBonus);
+					}
+
+					szBuffer.append(CvWString::format(L"\n%s", gDLL->getText("TXT_KEY_BUILDING_CIVIC_HEALTH_HAPPINESS_CHANGE", abs(iHealth),
 					kBuilding.getBonusHealthChanges(eBonus) > 0 ? gDLL->getSymbolID(HEALTHY_CHAR) : gDLL->getSymbolID(UNHEALTHY_CHAR)).c_str()));
 					szBuffer.append(CvWString::format(L"<link=literal>%s</link>", kBuilding.getDescription()));
 				}

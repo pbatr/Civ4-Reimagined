@@ -452,6 +452,10 @@ public:
 	int getSlavePoints() const;
 	int getNewSlaveThreshold() const;
 
+	// Civ4 Reimagined
+	int getBonusHealthFromBuilding(int /*BuildingTypes*/ eIndex1, int /*BonusTypes*/ eIndex2) const;
+	void changeBonusHealthFromBuilding(int /*BuildingTypes*/ eIndex1, int /*BonusTypes*/ eIndex2, int iChange);
+
 	int getSpecialistExtraYield(int /*SpecialistTypes*/ eIndex1, int /*YieldTypes*/ eIndex2);
 
 	int findPathLength(int /*TechTypes*/ eTech, bool bCost);

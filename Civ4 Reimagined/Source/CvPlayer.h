@@ -1124,6 +1124,10 @@ public:
 	// Civ4 Reimaigned
 	int getSpecialistCommerceChange(SpecialistTypes eIndex1, CommerceTypes eIndex2) const;	// Exposed to Python
 	void changeSpecialistCommerceChange(SpecialistTypes eIndex1, CommerceTypes eIndex2, int iChange);
+
+	// Civ4 Reimaigned
+	int getBonusHealthFromBuilding(BuildingTypes eIndex1, BonusTypes eIndex2) const;	// Exposed to Python
+	void changeBonusHealthFromBuilding(BuildingTypes eIndex1, BonusTypes eIndex2, int iChange);
 	
 	// Leoreth
 	int getSpecialistThresholdExtraYield(SpecialistTypes eIndex1, YieldTypes eIndex2) const;
@@ -1933,6 +1937,7 @@ protected:
 
 	int** m_ppaaiSpecialistExtraYield;
 	int** m_ppaaiSpecialistCommerceChanges; // Civ4 Reimagined
+	int** m_ppaaiBonusHealthFromBuilding; // Civ4 Reimagined
 	int** m_ppaaiSpecialistThresholdExtraYield; //Leoreth
 	int** m_ppaaiImprovementYieldChange;
 	int** m_ppaaiImprovementYieldChangeAdjacentToStrategicBonus; // Civ4 Reimagined

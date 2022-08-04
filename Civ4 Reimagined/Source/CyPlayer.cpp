@@ -1881,6 +1881,20 @@ int CyPlayer::getBonusRatio()
 }
 
 
+// Civ4 Reimagined
+int CyPlayer::getBonusHealthFromBuilding(int /*BuildingTypes*/ eIndex1, int /*BonusTypes*/ eIndex2) const
+{
+	return m_pPlayer ? m_pPlayer->getBonusHealthFromBuilding((BuildingTypes)eIndex1, (BonusTypes)eIndex2) : -1;
+}
+
+// Civ4 Reimagined
+void CyPlayer::changeBonusHealthFromBuilding(int /*BuildingTypes*/ eIndex1, int /*BonusTypes*/ eIndex2, int iChange)
+{
+	if (m_pPlayer)
+		m_pPlayer->changeBonusHealthFromBuilding((BuildingTypes)eIndex1, (BonusTypes)eIndex2, iChange);
+}
+
+
 int CyPlayer::getCombatExperience() const
 {
 	if (m_pPlayer)
