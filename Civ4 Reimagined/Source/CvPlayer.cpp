@@ -1078,6 +1078,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iCombatBonusOnHomeArea = 0; // Civ4 Reimagined
 	m_iStrategicBonusYieldModifier = 0; // Civ4 Reimagined
 	m_iBuildingProductionModifierFromCapital = 0; // Civ4 Reimagined
+	m_iCultureResistanceModifier = 0; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -21288,6 +21289,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iCombatBonusOnHomeArea); // Civ4 Reimagined
 	pStream->Read(&m_iStrategicBonusYieldModifier); // Civ4 Reimagined
 	pStream->Read(&m_iBuildingProductionModifierFromCapital); // Civ4 Reimagined
+	pStream->Read(&m_iCultureResistanceModifier); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -21942,6 +21944,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iCombatBonusOnHomeArea); // Civ4 Reimagined
 	pStream->Write(m_iStrategicBonusYieldModifier); // Civ4 Reimagined
 	pStream->Write(m_iBuildingProductionModifierFromCapital); // Civ4 Reimagined
+	pStream->Write(m_iCultureResistanceModifier); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -27765,6 +27768,7 @@ int CvPlayer::getBonusValueTimes100(int iBonusCount) const
 	{
 		return 0;
 	}
+
 	return std::min(100, getBonusRatio() * iBonusCount);
 }
 
@@ -28470,6 +28474,22 @@ void CvPlayer::changeBuildingProductionModifierFromCapital(int iChange)
 		FAssert(m_iBuildingProductionModifierFromCapital >= 0);
 		
 		updateYield();
+	}
+}
+
+// Civ4 Reimagined
+int CvPlayer::getCultureResistanceModifier() const
+{
+	return m_iCultureResistanceModifier;
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeCultureResistanceModifier(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iCultureResistanceModifier = m_iCultureResistanceModifier + iChange;
+		FAssert(m_iCultureResistanceModifier >= 0);
 	}
 }
 
@@ -29814,7 +29834,12 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_JAPAN"))
 	{
-		if (eEra == ERA_INDUSTRIAL)
+		if (eEra == ERA_ANCIENT)
+		{
+			changeCultureResistanceModifier(75);
+			notifyUniquePowersChanged(true);
+		}
+		else if (eEra == ERA_INDUSTRIAL)
 		{
 			changeCatchUpTechModifier(GC.getDefineINT("UNIQUE_POWER_JAPAN"));
 			notifyUniquePowersChanged(true);

@@ -1510,6 +1510,8 @@ public:
 	int getBuildingProductionModifierFromCapital() const; // Civ4 Reimagined
 	void setCanBuildWindmillsOnCoast(bool bNewValue); // Civ4 Reimagined
 	bool canBuildWindmillsOnCoast() const; // Civ4 Reimagined
+	void changeCultureResistanceModifier(int iChange); // Civ4 Reimagined
+	int getCultureResistanceModifier() const; // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1798,6 +1800,7 @@ protected:
 	int m_iCombatBonusOnHomeArea; // Civ4 Reimagined
 	int m_iStrategicBonusYieldModifier; // Civ4 Reimagined
 	int m_iBuildingProductionModifierFromCapital; // Civ4 Reimagind
+	int m_iCultureResistanceModifier; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
 

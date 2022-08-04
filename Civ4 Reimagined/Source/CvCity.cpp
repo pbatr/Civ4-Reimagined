@@ -15373,6 +15373,13 @@ void CvCity::doPlotCultureTimes100(bool bUpdate, PlayerTypes ePlayer, int iCultu
 							int iCultureToAdd =
 								iCultureRateTimes100*((iScale-1)*(iDistance-iCultureRange)*(iDistance-iCultureRange) + iCultureRange*iCultureRange)/(100*iCultureRange*iCultureRange);
 
+							// Civ4 Reimagined: Japan UP
+							if (pLoopPlot->getOwnerINLINE() != getOwnerINLINE() && GET_PLAYER(pLoopPlot->getOwnerINLINE()).getCultureResistanceModifier() != 0)
+							{
+								iCultureToAdd *= 100 - GET_PLAYER(pLoopPlot->getOwnerINLINE()).getCultureResistanceModifier();
+								iCultureToAdd /= 100;
+							}
+
 							pLoopPlot->changeCulture(ePlayer, iCultureToAdd, (bUpdate || !(pLoopPlot->isOwned())));
 						}
 					}
