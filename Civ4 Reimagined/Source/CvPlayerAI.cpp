@@ -5441,13 +5441,19 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 		int iAddedCommerce = 3*(iCityCount+2)*kTechInfo.getTradeRoutes() + 3*range(iConnectedForeignCities-iTradeRoutesPerCity*iCityCount, 0, iCityCount*kTechInfo.getTradeRoutes());
 
 		// Civ4 Reimagined
+		int iTempValue = iAddedCommerce * (getGreatPeoplePointsPerTrade() + getGreatMerchantPointsPerTrade()) / 100;
+
+		// Civ4 Reimagined
 		iAddedCommerce *= 8; // usually 1 commerce ~ 4 value points, higher value here because AI always underestimates trade routes
 		iAddedCommerce *= AI_averageYieldMultiplier(YIELD_COMMERCE);
 		iAddedCommerce /= 100;
 		iAddedCommerce *= AI_yieldWeight(YIELD_COMMERCE);
 		iAddedCommerce /= 100;
-		if (gPlayerLogLevel >= 2) logBBAI("Value for trade routes: %d", iAddedCommerce);
-		iValue += iAddedCommerce;
+
+		iTempValue += iAddedCommerce;
+
+		if (gPlayerLogLevel >= 2) logBBAI("Value for trade routes: %d", iTempValue);
+		iValue += iTempValue;
 	}
 	// K-Mod end
 	
@@ -7354,6 +7360,14 @@ int CvPlayerAI::AI_techUnitValue(TechTypes eTech, int iPathLength, bool& bEnable
 							{
 								iUtilityValue = 2 * std::max(iWeight, 200) / std::max(countHeadquarters(), 1);
 								iUtilityValue /= std::max(1, getCurrentEra() - 1);
+
+								// Civ4 Reimagined: American UP
+								if (getCorporationTraderouteModifier() > 0)
+								{
+									iUtilityValue *= 100 + getCorporationTraderouteModifier();
+									iUtilityValue /= 100;
+								}
+
 								if (gPlayerLogLevel > 0) logBBAI("		%S Utility Value: %d", GC.getUnitInfo(eLoopUnit).getDescription(0), iUtilityValue);
 							}
 						}
@@ -11619,7 +11633,15 @@ int CvPlayerAI::AI_cityTradeVal(CvCity* pCity) const
 		for (CorporationTypes i = (CorporationTypes)0; i < GC.getNumCorporationInfos(); i=(CorporationTypes)(i+1))
 		{
 			if (pCity->isHeadquarters(i))
+			{
 				iCityValue += std::max(0, 2 * GC.getGameINLINE().countCorporationLevels(i) - 4);
+
+				// Civ4 Reimagined: American UP
+				if (getCorporationTraderouteModifier() != 0)
+				{
+					iCityValue += getCorporationTraderouteModifier() / 100;
+				}
+			}
 		}
 
 		// wonders
@@ -12944,6 +12966,13 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 					// Civ4 Reimagined
 					iValue *= GC.getCorporationInfo((CorporationTypes)iI).getSpreadFactor();
 					iValue /= 35;
+
+					// Civ4 Reimagined: American UP
+					if (getCorporationTraderouteModifier() != 0)
+					{
+						iValue *= 100 + getCorporationTraderouteModifier();
+						iValue /= 100;
+					}
 					
 /************************************************************************************************/
 /* UNOFFICIAL_PATCH                       06/03/09                                jdog5000      */
@@ -13506,7 +13535,11 @@ int CvPlayerAI::AI_neededExecutives(CvArea* pArea, CorporationTypes eCorporation
 	int iCount = ((pArea->getCitiesPerPlayer(getID()) - pArea->countHasCorporation(eCorporation, getID())) * 2);
 	iCount += (pArea->getNumCities() - pArea->countHasCorporation(eCorporation));
 
-	iCount /= 3;
+	// Civ4 Reimagined: American UP
+	if (getCorporationTraderouteModifier() <= 0)
+	{
+		iCount /= 3;
+	}
 
 	if (AI_isPrimaryArea(pArea))
 	{
@@ -13976,6 +14009,13 @@ int CvPlayerAI::AI_executiveValue(CvArea* pArea, CorporationTypes eCorporation, 
 				iHqValue += kCorp.getHeadquarterCommerce(i) * kHqCity->getTotalCommerceRateModifier(i) * AI_commerceWeight(i)/100;
 		}
 
+		// Civ4 Reimagined: American UP
+		if (getCorporationTraderouteModifier() != 0)
+		{
+			iHqValue *= 100 + getCorporationTraderouteModifier();
+			iHqValue /= 100;
+		}
+
 		iSpreadExternalValue += iHqValue;
 	}
 
@@ -14144,6 +14184,13 @@ int CvPlayerAI::AI_corporationValue(CorporationTypes eCorporation, const CvCity*
 
 			iValue += iTempValue;
 		}
+	}
+
+	// Civ4 Reimagined: American UP
+	if (getCorporationTraderouteModifier() > 0)
+	{
+		iValue *= 100 + getCorporationTraderouteModifier();
+		iValue /= 100;
 	}
 
 	// maintenance cost
@@ -15489,12 +15536,17 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			iTempValue *= 3*(getCurrentEra()+1);
 			iTempValue /= GC.getNumEraInfos()+1;
 
+			// Civ4 Reimagined
+			const int iGPValue = (getGreatPeoplePointsPerTrade() + getGreatMerchantPointsPerTrade()) * iTempValue / 100;
+
 			iTempValue *= getTradeYieldModifier(YIELD_COMMERCE) + iAverageTradeModifier;
 			iTempValue /= 100;
 
 			// commerce multipliers
 			iTempValue *= AI_averageYieldMultiplier(YIELD_COMMERCE);
 			iTempValue /= 100;
+
+			iTempValue += iGPValue;
 			if (gPlayerLogLevel > 0) logBBAI("	Civic Value of Traderoutes: %d", iTempValue);
 			iValue += iTempValue;
 		}
@@ -15810,6 +15862,13 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				}
 			}
 
+			// Civ4 Reimagined: American UP
+			if (getCorporationTraderouteModifier() != 0)
+			{
+				iCorpValue *= 100 + getCorporationTraderouteModifier();
+				iCorpValue /= 100;
+			}
+
 			// loss of maintenance cost (money saved)
 			int iTempValue = kCorpInfo.getMaintenance() * iBonuses * iCorpCities;
 			iTempValue *= GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getCorporationMaintenancePercent();
@@ -15829,11 +15888,18 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			}
 			else
 			{
-				iCorpValue += (-kCivic.getCorporationMaintenanceModifier() * iTempValue)/100;
+				int iMaintenanceSafing = (-kCivic.getCorporationMaintenanceModifier() * iTempValue)/100;
+
+				if (iMaintenanceSafing != 0)
+				{
+					logBBAI("	Corporation maintenance value: %d", iMaintenanceSafing);
+				}
+
+				iValue += iMaintenanceSafing;
 			}
 
 			FAssert(iSpeculation == 0 || (!kGame.isCorporationFounded(eCorp) && kCivic.isNoCorporations()));
-			iCorpValue;
+
 			if (iSpeculation == 0)
 				iValue += iCorpValue;
 			else
@@ -15844,6 +15910,11 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				if (iCorpValue < iPotentialCorpValue)
 					iPotentialCorpValue = iCorpValue;
 			}
+		}
+
+		if (iPotentialCorpValue != 0)
+		{
+			logBBAI("	Missing out on corporations value: %d", iPotentialCorpValue);
 		}
 		FAssert(iPotentialCorpValue <= 0);
 		iValue += iPotentialCorpValue;
