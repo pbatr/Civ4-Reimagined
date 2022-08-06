@@ -15435,7 +15435,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 		{
 			iTotalTradeRoutes += pLoopCity->getTradeRoutes();
-			iAverageTradeModifier += 100 + pLoopCity->getTradeRouteModifier();
+			iAverageTradeModifier += 100 + pLoopCity->totalTradeModifier();
 		}
 
 		iAverageTradeModifier /= iCities;
@@ -16861,8 +16861,8 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			{
 				// Modified by Civ4 Reimagined
 				iTempValue = AI_averageCommerceMultiplier(COMMERCE_GOLD) * (AI_avoidScience() ? 400 : 200) * iCities / kHurryInfo.getGoldPerProduction();
-				bool bFinancialTrouble = AI_isFinancialTrouble();
-				iTempValue /= std::max(1, (getHurryModifier() + getMercenaryCostModifier() + 100) * AI_commerceWeight(COMMERCE_GOLD)) * (bFinancialTrouble ? 5 : 1); //Civ4 Reimagined
+				int iHurryModifiers = getHurryModifier() + kHurryInfo.isUnits() ? getMercenaryCostModifier() : 0;
+				iTempValue /= std::max(1, (iHurryModifiers + 100) * AI_commerceWeight(COMMERCE_GOLD)) * (AI_isFinancialTrouble() ? 5 : 1);
 				
 				// Civ4 Reimagined
 				if (kHurryInfo.isUnits() && kHurryInfo.isBuildings())
@@ -16871,7 +16871,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				}
 				
 				// Civ4 Reimagined: Value for strategic boni we don't have
-				if (pCapital)
+				if (kHurryInfo.isUnits() && pCapital)
 				{
 					int iBonusValue = 0;
 					const BonusClassTypes BONUSCLASS_WONDER = (BonusClassTypes)GC.getInfoTypeForString("BONUSCLASS_WONDER");
