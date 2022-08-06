@@ -14682,7 +14682,7 @@
 		  <ImprovementWeightModifiers>
 				<ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
-					<iWeightModifier>100</iWeightModifier>
+					<iWeightModifier>200</iWeightModifier>
 				</ImprovementWeightModifier>
 		  </ImprovementWeightModifiers>
 		  <DiplomacyIntroMusicPeace>
@@ -30575,7 +30575,7 @@
 			<ImprovementWeightModifiers>
 				<ImprovementWeightModifier>
 					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
-					<iWeightModifier>100</iWeightModifier>
+					<iWeightModifier>200</iWeightModifier>
 				</ImprovementWeightModifier>
 			</ImprovementWeightModifiers>
 			<DiplomacyIntroMusicPeace>

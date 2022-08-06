@@ -424,7 +424,7 @@
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_KHMER_THRESHOLD</DefineName>
-		<iDefineIntVal>5</iDefineIntVal> <!-- State Religion Commerce for population over threshold -->
+		<iDefineIntVal>6</iDefineIntVal> <!-- State Religion Commerce for population over threshold -->
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_MAYA</DefineName>

@@ -1095,6 +1095,8 @@ public:
 	void checkCultureLevelEurekas();
 	int getBonusValueTimes100(int iBonusCount) const; // Civ4 Reimagined
 	int getGreatEngineerPointsFromCathedrals() const;
+	bool hasStateReligionTemple() const;
+	void updateStateReligionTempleCache();
 
 	void read(FDataStreamBase* pStream);
 	void write(FDataStreamBase* pStream);
@@ -1290,6 +1292,7 @@ protected:
 	bool m_bLayoutDirty;
 	bool m_bPlundered;
 	bool m_bColony; //Civ4 Reimagined
+	bool m_bStateReligionTemple; // Civ4 Reimagined
 
 	PlayerTypes m_eOwner;
 	PlayerTypes m_ePreviousOwner;

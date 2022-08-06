@@ -559,6 +559,7 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 	m_bLayoutDirty = false;
 	m_bPlundered = false;
 	m_bColony = false; // Civ4 Reimagined
+	m_bStateReligionTemple = false; // Civ4 Reimagined
 
 	m_eOwner = eOwner;
 	m_ePreviousOwner = NO_PLAYER;
@@ -4616,6 +4617,12 @@ void CvCity::processBuilding(BuildingTypes eBuilding, int iChange, bool bObsolet
 		GET_PLAYER(getOwnerINLINE()).changeWondersScore(getWonderScore((BuildingClassTypes)(GC.getBuildingInfo(eBuilding).getBuildingClassType())) * iChange);
 	}
 
+	// Civ4 Reimagined
+	if (GC.getBuildingInfo(eBuilding).getSpecialBuildingType() == (SpecialBuildingTypes)GC.getInfoTypeForString("SPECIALBUILDING_TEMPLE"))
+	{
+		updateStateReligionTempleCache();
+	}
+
 	updateBuildingCommerce();
 
 	setLayoutDirty(true);
@@ -6693,6 +6700,39 @@ void CvCity::updateColonialStatus()
 }
 
 
+// Civ4 Reimagined
+bool CvCity::hasStateReligionTemple() const
+{
+	return m_bStateReligionTemple;
+}
+
+
+// Civ4 Reimagined
+void CvCity::updateStateReligionTempleCache()
+{
+	ReligionTypes eStateReligion = GET_PLAYER(getOwnerINLINE()).getStateReligion();
+
+	if (eStateReligion != NO_RELIGION)
+	{
+		for (int iI = 0; iI < GC.getNumBuildingInfos(); iI++)
+		{
+			CvBuildingInfo& kBuilding = GC.getBuildingInfo((BuildingTypes)iI);
+
+			if (kBuilding.getSpecialBuildingType() == (SpecialBuildingTypes)GC.getInfoTypeForString("SPECIALBUILDING_TEMPLE"))
+			{
+				if (getNumActiveBuilding((BuildingTypes)iI) > 0 && kBuilding.getReligionType() == eStateReligion)
+				{
+					m_bStateReligionTemple = true;
+					return;
+				}
+			}
+		}
+	}
+
+	m_bStateReligionTemple = false;
+}
+
+
 // BUG - Building Saved Maintenance - start
 /*
  * Returns the total additional gold from saved maintenance times 100 that adding one of the given buildings will provide.
@@ -7191,13 +7231,17 @@ void CvCity::updateFreshWaterHealth()
 	// Civ4 Reimagind: Maya unique power
 	if (plot()->isFreshWater() || GET_PLAYER(getOwnerINLINE()).isAlwaysFreshWater())
 	{
-		if (GC.getDefineINT("FRESH_WATER_HEALTH_CHANGE") > 0)
+		int iFreshWaterHealth = GC.getDefineINT("FRESH_WATER_HEALTH_CHANGE");
+		iFreshWaterHealth *= 100 + GET_PLAYER(getOwnerINLINE()).getFreshWaterHealthModifier();
+		iFreshWaterHealth /= 100;
+
+		if (iFreshWaterHealth > 0)
 		{
-			iNewGoodHealth += GC.getDefineINT("FRESH_WATER_HEALTH_CHANGE");
+			iNewGoodHealth += iFreshWaterHealth;
 		}
 		else
 		{
-			iNewBadHealth += GC.getDefineINT("FRESH_WATER_HEALTH_CHANGE");
+			iNewBadHealth += iFreshWaterHealth;
 		}
 	}
 
@@ -12945,6 +12989,12 @@ int CvCity::getMaxSpecialistCount(SpecialistTypes eIndex) const
 	FAssertMsg(eIndex < GC.getNumSpecialistInfos(), "eIndex expected to be < GC.getNumSpecialistInfos()");
 	
 	int iMaxSpecialistCount = m_paiMaxSpecialistCount[eIndex];
+
+	// Civ4 Reimagined
+	if (GET_PLAYER(getOwnerINLINE()).isUnlimitedSpecialistsWithTemple(eIndex) && hasStateReligionTemple())
+	{
+		return MAX_INT;
+	}
 	
 	// Leoreth: unlimited specialist effects now only double available specialists
 	if (GET_PLAYER(getOwnerINLINE()).isSpecialistValid(eIndex))
@@ -12958,6 +13008,12 @@ int CvCity::getMaxSpecialistCount(SpecialistTypes eIndex) const
 
 bool CvCity::isSpecialistValid(SpecialistTypes eIndex, int iExtra) const
 {
+	// Civ4 Reimagined
+	if (GET_PLAYER(getOwnerINLINE()).isUnlimitedSpecialistsWithTemple(eIndex) && hasStateReligionTemple())
+	{
+		return true;
+	}
+
 	// Leoreth
 	return (((getSpecialistCount(eIndex) + iExtra) <= getMaxSpecialistCount(eIndex)) || (eIndex == GC.getDefineINT("DEFAULT_SPECIALIST")));
 }

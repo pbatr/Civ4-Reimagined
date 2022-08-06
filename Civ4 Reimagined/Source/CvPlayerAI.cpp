@@ -3540,15 +3540,13 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 	
 	if (pPlot->isFreshWater())
 	{
-		iHealth += GC.getDefineINT("FRESH_WATER_HEALTH_CHANGE") * 100;
-		iValue += GC.getDefineINT("FRESH_WATER_HEALTH_CHANGE") * 500; // Civ4 Reimagined
-		/*
-		if( gPlayerLogLevel >= 3 && kSet.bStartingLoc)
-		{
-			logBBAI("    Player %d (%S) River Value: %d", getID(), getCivilizationDescription(0), GC.getDefineINT("FRESH_WATER_HEALTH_CHANGE") * 300);
+		int iFreshWaterHealth = GC.getDefineINT("FRESH_WATER_HEALTH_CHANGE");
+		iFreshWaterHealth *= 100 + getFreshWaterHealthModifier();
+		iFreshWaterHealth /= 100;
 
-		}
-		*/
+		iHealth += iFreshWaterHealth * 100;
+		iValue += iFreshWaterHealth * 500; // Civ4 Reimagined
+
 		if (!kSet.bStartingLoc && pPlot->isRiver())
 		{
 			iValue += getProductionNearRiver() * 450;

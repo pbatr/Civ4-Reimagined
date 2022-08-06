@@ -125,6 +125,7 @@ CvPlayer::CvPlayer()
 
 	m_pabResearchingTech = NULL;
 	m_pabLoyalMember = NULL;
+	m_pabUnlimitedSpecialistsWithTemple = NULL; // Civ4 Reimagined
 
 	m_paeCivics = NULL;
 	
@@ -721,6 +722,7 @@ void CvPlayer::uninit()
 
 	SAFE_DELETE_ARRAY(m_pabResearchingTech);
 	SAFE_DELETE_ARRAY(m_pabLoyalMember);
+	SAFE_DELETE_ARRAY(m_pabUnlimitedSpecialistsWithTemple); // Civ4 Reimagined
 
 	SAFE_DELETE_ARRAY(m_paeCivics);
 	
@@ -1091,6 +1093,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iStrategicBonusYieldModifier = 0; // Civ4 Reimagined
 	m_iBuildingProductionModifierFromCapital = 0; // Civ4 Reimagined
 	m_iCultureResistanceModifier = 0; // Civ4 Reimagined
+	m_iFreshWaterHealthModifier = 0; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -1354,6 +1357,14 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		for (iI = 0; iI < GC.getNumVoteSourceInfos(); iI++)
 		{
 			m_pabLoyalMember[iI] = true;
+		}
+
+		// Civ4 Reimagined
+		FAssertMsg(m_pabUnlimitedSpecialistsWithTemple==NULL, "about to leak memory, CvPlayer::m_pabUnlimitedSpecialistsWithTemple");
+		m_pabUnlimitedSpecialistsWithTemple = new bool[GC.getNumSpecialistInfos()];
+		for (iI = 0; iI < GC.getNumSpecialistInfos(); iI++)
+		{
+			m_pabUnlimitedSpecialistsWithTemple[iI] = false;
 		}
 
 		FAssertMsg(0 < GC.getNumUpkeepInfos(), "GC.getNumUpkeepInfos() is not greater than zero but it is used to allocate memory in CvPlayer::reset");
@@ -4430,6 +4441,19 @@ void CvPlayer::updateReligionHappiness()
 	for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 	{
 		pLoopCity->updateReligionHappiness();
+	}
+}
+
+
+// Civ4 Reimagined
+void CvPlayer::updateStateReligionTempleCache()
+{
+	CvCity* pLoopCity;
+	int iLoop;
+
+	for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+	{
+		pLoopCity->updateStateReligionTempleCache();
 	}
 }
 
@@ -12739,6 +12763,7 @@ void CvPlayer::changeStateReligionCount(int iChange)
 		updateMaintenance();
 		updateReligionHappiness();
 		updateReligionCommerce();
+		updateStateReligionTempleCache();
 
 		GC.getGameINLINE().AI_makeAssignWorkDirty();
 
@@ -16380,6 +16405,23 @@ void CvPlayer::setLoyalMember(VoteSourceTypes eVoteSource, bool bNewValue)
 
 		GC.getGameINLINE().updateSecretaryGeneral();
 	}
+}
+
+// Civ4 Reimagined
+bool CvPlayer::isUnlimitedSpecialistsWithTemple(SpecialistTypes eSpecialist) const
+{
+	FAssertMsg(eSpecialist >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eSpecialist < GC.getNumSpecialistInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_pabUnlimitedSpecialistsWithTemple[eSpecialist];
+}
+
+// Civ4 Reimagined
+void CvPlayer::setUnlimitedSpecialistsWithTemple(SpecialistTypes eSpecialist, bool bNewValue)
+{
+	FAssertMsg(eSpecialist >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eSpecialist < GC.getNumSpecialistInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	m_pabUnlimitedSpecialistsWithTemple[eSpecialist] = bNewValue;
 }
 
 CivicTypes CvPlayer::getCivics(CivicOptionTypes eIndex) const
@@ -21363,6 +21405,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iStrategicBonusYieldModifier); // Civ4 Reimagined
 	pStream->Read(&m_iBuildingProductionModifierFromCapital); // Civ4 Reimagined
 	pStream->Read(&m_iCultureResistanceModifier); // Civ4 Reimagined
+	pStream->Read(&m_iFreshWaterHealthModifier); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -22024,7 +22067,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iCombatBonusOnHomeArea); // Civ4 Reimagined
 	pStream->Write(m_iStrategicBonusYieldModifier); // Civ4 Reimagined
 	pStream->Write(m_iBuildingProductionModifierFromCapital); // Civ4 Reimagined
-	pStream->Write(m_iCultureResistanceModifier); // Civ4 Reimagined
+	pStream->Write(m_iFreshWaterHealthModifier); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -28580,6 +28623,28 @@ void CvPlayer::changeCultureResistanceModifier(int iChange)
 }
 
 // Civ4 Reimagined
+int CvPlayer::getFreshWaterHealthModifier() const
+{
+	return m_iFreshWaterHealthModifier;
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeFreshWaterHealthModifier(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iFreshWaterHealthModifier = m_iFreshWaterHealthModifier + iChange;
+		FAssert(m_iFreshWaterHealthModifier >= 0);
+
+		int iLoop;
+		for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+		{
+			pLoopCity->updateFreshWaterHealth();
+		}
+	}
+}
+
+// Civ4 Reimagined
 CivicTypes CvPlayer::getFreeCivicEnabled() const
 {
 	return m_iFreeCivicEnabled;
@@ -29941,7 +30006,14 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	{
 		if (eEra == ERA_ANCIENT)
 		{
+			changeFreshWaterHealthModifier(100);
+			notifyUniquePowersChanged(true);
+		}
+		else if (eEra == ERA_CLASSICAL)
+		{
 			changeStateReligionCommercePerPopulationOverThreshold(COMMERCE_GOLD, GC.getDefineINT("UNIQUE_POWER_KHMER"));
+			changeSpecialistCommerceChange((SpecialistTypes)GC.getInfoTypeForString("SPECIALIST_PRIEST"), COMMERCE_GOLD, 1);
+			setUnlimitedSpecialistsWithTemple((SpecialistTypes)GC.getInfoTypeForString("SPECIALIST_PRIEST"), true);
 			notifyUniquePowersChanged(true);
 		}
 	}

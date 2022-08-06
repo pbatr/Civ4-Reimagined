@@ -1107,6 +1107,10 @@ public:
 	int getExtraSpecialists(SpecialistTypes eIndex) const;
 	void changeExtraSpecialists(SpecialistTypes eIndex, int iChange);
 
+	// Civ4 Reimagined
+	bool isUnlimitedSpecialistsWithTemple(SpecialistTypes eIndex) const;
+	void setUnlimitedSpecialistsWithTemple(SpecialistTypes eIndex, bool bNewValue);
+
 	int getExtraSpecialistExperience(SpecialistTypes eIndex) const;
 	void changeExtraSpecialistExperience(SpecialistTypes eIndex, int iChange);
 
@@ -1518,6 +1522,9 @@ public:
 	bool canBuildWindmillsOnCoast() const; // Civ4 Reimagined
 	void changeCultureResistanceModifier(int iChange); // Civ4 Reimagined
 	int getCultureResistanceModifier() const; // Civ4 Reimagined
+	void changeFreshWaterHealthModifier(int iChange); // Civ4 Reimagined
+	int getFreshWaterHealthModifier() const; // Civ4 Reimagined
+	void updateStateReligionTempleCache(); // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1808,6 +1815,7 @@ protected:
 	int m_iStrategicBonusYieldModifier; // Civ4 Reimagined
 	int m_iBuildingProductionModifierFromCapital; // Civ4 Reimagind
 	int m_iCultureResistanceModifier; // Civ4 Reimagined
+	int m_iFreshWaterHealthModifier; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
 
@@ -1933,6 +1941,7 @@ protected:
 	
 	bool* m_pabResearchingTech;
 	bool* m_pabLoyalMember;
+	bool* m_pabUnlimitedSpecialistsWithTemple; // Civ4 Reimagined
 
 	std::vector<EventTriggerTypes> m_triggersFired;
 

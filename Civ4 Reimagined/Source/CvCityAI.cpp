@@ -7837,6 +7837,16 @@ int CvCityAI::AI_getImprovementValue(CvPlot* pPlot, ImprovementTypes eImprovemen
 			iValue += iHappyValue * iHappiness;
 		}
 
+		// Civ4 Reimagined
+		if (getFarmAdjacencyBonus(YIELD_FOOD) > 0)
+		{
+			if (eImprovement == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FARM"))
+			{
+				iValue *= 9;
+				iValue /= getFarmAdjacencyBonus(YIELD_FOOD);
+			}
+		}
+
 		if (!isHuman())
 		{
 			// Changed by Civ4 Reimagined

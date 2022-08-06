@@ -177,7 +177,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_KHMER</Tag>
-		<English>Cities with state religion receive 1[ICON_COMMERCE] per population over 5.</English>
+		<English>Double health bonus from access to fresh water. After entering the Classical Era: Cities with state religion receive 1[ICON_GOLD] per population over 6. Can assign unlimited Priests in cities with a state religion temple. Priests +1[ICON_GOLD].</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_ZULU</Tag>
