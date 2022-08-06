@@ -2765,6 +2765,20 @@ CvPlayerAI::CvFoundSettings::CvFoundSettings(const CvPlayerAI& kPlayer, bool bSt
 				}
 			}
 		}
+		// Unique powers
+		if (!bSeafaring)
+		{
+			if (kPlayer.getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_JAPAN"))
+			{
+				bSeafaring = true;
+			}
+
+			if (kPlayer.getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SPAIN"))
+			{
+				bSeafaring = true;
+			}
+		}
+
 		// culture building process
 		if (!bEasyCulture)
 		{
@@ -3561,12 +3575,21 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 			{
 				iValue += getCoastalTradeRouteModifier() * 3;
 			}
+
+			if (pArea != getCapitalCity()->area())
+			{
+				if (bNeutralTerritory)
+				{
+					iValue += getColonyTraderouteModifier() * 3;
+				}
+			}
+
 			if (pArea->getCitiesPerPlayer(getID()) == 0)
 			{
 				if (bNeutralTerritory)
 				{
 					// Civ4 Reimagined: doubled those values for first colony
-					iValue += iResourceValue > 0 ? (kSet.bSeafaring ? 1200 : 800) : 200;
+					iValue += iResourceValue > 0 ? (kSet.bSeafaring ? 2000 : 1000) : 200;
 				}
 			}
 			else
