@@ -13381,7 +13381,7 @@ int CvPlayerAI::AI_neededExplorers(CvArea* pArea) const
 	else
 	{
 		// Changed by Civ4 Reimagined
-		iNeeded = std::min(iNeeded + (pArea->getNumUnrevealedTiles(getTeam()) / 150), ((getNumCities() + AI_totalAreaUnitAIs(pArea, UNITAI_SETTLE)) > 1 ? 3 : 2));
+		iNeeded = std::min((pArea->getNumUnrevealedTiles(getTeam()) / 250), ((getNumCities() + AI_totalAreaUnitAIs(pArea, UNITAI_SETTLE)) > 1 ? 1 : 0));
 	}
 
 	if (0 == iNeeded)
