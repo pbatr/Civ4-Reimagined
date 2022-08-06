@@ -16994,7 +16994,18 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			iSlaveValue /= std::max(1, std::max(iCities/2, iCoastalCities));
 		}
 		
-		iSlaveValue += iCities * getNumSlaveUnits();
+		iSlaveValue += iCities * (getNumSlaveUnits() + bWarPlan ? 2 : 0);
+
+		// Civ4 Reimagined: Aztec UP
+		if (isCaptureSlaves())
+		{
+			int iSlaveGold = GC.getDefineINT("UNIQUE_POWER_AZTEC");
+
+			iSlaveGold *= AI_commerceWeight(COMMERCE_GOLD);
+			iSlaveGold /= 100;
+
+			iTempValue += iSlaveGold / 2;
+		}
 		
 		if (iSlaveValue > 0 && gPlayerLogLevel > 2) logBBAI("	Civic Value of Slaves: %d (has %d)", iSlaveValue, getNumSlaveUnits());
 		if (iCorpValue > 0 && gPlayerLogLevel > 2) logBBAI("	Civic Value of Corporations: %d", iCorpValue);
@@ -26612,6 +26623,10 @@ int CvPlayerAI::AI_disbandValue(const CvUnit* pUnit, bool bMilitaryOnly) const
 				{
 					iValue += 500 * getHasCorporationCount((CorporationTypes)iI);
 				}
+			}
+
+			if (isCaptureSlaves()) {
+				iValue += GC.getDefineINT("UNIQUE_POWER_AZTEC") * 4;
 			}
 		}
 		break;

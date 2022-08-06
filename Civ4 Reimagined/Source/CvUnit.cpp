@@ -712,43 +712,28 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer)
 	{
 		if (!isSlave() || GET_PLAYER(eCapturingPlayer).hasSlavery())
 		{
-			if (GET_PLAYER(eCapturingPlayer).isHuman() || GET_PLAYER(eCapturingPlayer).AI_captureUnit(eCaptureUnitType, pPlot) || 0 == GC.getDefineINT("AI_CAN_DISBAND_UNITS"))
+			CvUnit* pkCapturedUnit = GET_PLAYER(eCapturingPlayer).initUnit(eCaptureUnitType, pPlot->getX_INLINE(), pPlot->getY_INLINE());
+
+			if (pkCapturedUnit != NULL)
 			{
-				CvUnit* pkCapturedUnit = GET_PLAYER(eCapturingPlayer).initUnit(eCaptureUnitType, pPlot->getX_INLINE(), pPlot->getY_INLINE());
+				CvWString szBuffer;
+				szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_CAPTURED_UNIT", GC.getUnitInfo(eCaptureUnitType).getTextKeyWide());
+				gDLL->getInterfaceIFace()->addHumanMessage(eCapturingPlayer, true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNITCAPTURE", MESSAGE_TYPE_INFO, pkCapturedUnit->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
+				logBBAI("Aztec Slave has been captured at (%d, %d)", pPlot->getX_INLINE(), pPlot->getY_INLINE());
 
-				if (pkCapturedUnit != NULL)
+				// Add a captured mission
+				if (pPlot->isActiveVisible(false)) // K-Mod
 				{
-					CvWString szBuffer;
-					szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_CAPTURED_UNIT", GC.getUnitInfo(eCaptureUnitType).getTextKeyWide());
-					gDLL->getInterfaceIFace()->addHumanMessage(eCapturingPlayer, true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNITCAPTURE", MESSAGE_TYPE_INFO, pkCapturedUnit->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
-
-					// Add a captured mission
-					if (pPlot->isActiveVisible(false)) // K-Mod
-					{
-						CvMissionDefinition kMission;
-						kMission.setMissionTime(GC.getMissionInfo(MISSION_CAPTURED).getTime() * gDLL->getSecsPerTurn());
-						kMission.setUnit(BATTLE_UNIT_ATTACKER, pkCapturedUnit);
-						kMission.setUnit(BATTLE_UNIT_DEFENDER, NULL);
-						kMission.setPlot(pPlot);
-						kMission.setMissionType(MISSION_CAPTURED);
-						gDLL->getEntityIFace()->AddMission(&kMission);
-					}
-
-					pkCapturedUnit->finishMoves();
-
-					if (!GET_PLAYER(eCapturingPlayer).isHuman())
-					{
-						CvPlot* pPlot = pkCapturedUnit->plot();
-						if (pPlot && !pPlot->isCity(false))
-						{
-							if (GET_PLAYER(eCapturingPlayer).AI_getPlotDanger(pPlot) && GC.getDefineINT("AI_CAN_DISBAND_UNITS"))
-							{
-								//pkCapturedUnit->kill(false);
-								pkCapturedUnit->scrap(); // K-Mod. roughly the same thing, but this is more appropriate.
-							}
-						}
-					}
+					CvMissionDefinition kMission;
+					kMission.setMissionTime(GC.getMissionInfo(MISSION_CAPTURED).getTime() * gDLL->getSecsPerTurn());
+					kMission.setUnit(BATTLE_UNIT_ATTACKER, pkCapturedUnit);
+					kMission.setUnit(BATTLE_UNIT_DEFENDER, NULL);
+					kMission.setPlot(pPlot);
+					kMission.setMissionType(MISSION_CAPTURED);
+					gDLL->getEntityIFace()->AddMission(&kMission);
 				}
+
+				pkCapturedUnit->finishMoves();
 			}
 		}
 	}

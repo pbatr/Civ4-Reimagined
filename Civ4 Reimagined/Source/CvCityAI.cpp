@@ -4144,6 +4144,12 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				}
 			}
 
+			// Civ4 Reimagined: Aztec UP
+			if (eBuilding == (BuildingTypes)GC.getInfoTypeForString("BUILDING_AZTEC_SACRIFICIAL_ALTAR"))
+			{
+				iTempValue += GC.getDefineINT("UNIQUE_POWER_AZTEC");
+			}
+
 			iTempValue += iTempValue += 5 * iOverseaTradeRoutes * kBuilding.getOverseaTradeRouteModifier() * getTradeYield(YIELD_COMMERCE) / std::max(1, iTotalTradeModifier) / iNumTradeRoutes;
 
 			iTempValue *= AI_yieldMultiplier(YIELD_COMMERCE);

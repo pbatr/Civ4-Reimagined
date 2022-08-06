@@ -22878,9 +22878,21 @@ int CvUnitAI::AI_greatWorkValue(CvPlot*& pBestPlot, int iThreshold)
 			// victory part is based on current culture rather than turns to legendary.
 			// Also, it doesn't take into account the possibility of flipping enemy cities.
 			// ... But it's a good start.
+
+			// Civ4 Reimagined: Aztec UP
+			if (getUnitType() == (UnitTypes)GC.getInfoTypeForString("UNIT_AZTEC_CAPTIVE"))
+			{
+				iValue += GC.getDefineINT("UNIQUE_POWER_AZTEC") * kOwner.AI_commerceWeight(COMMERCE_GOLD, pLoopCity) / 100;
+
+				if (pLoopCity->getHappinessTimer() == 0)
+				{
+					iValue += 10;
+				}
+			}
+
 			int iPathTurns;
 
-			if (iValue >= iThreshold && canGreatWork(pLoopCity->plot()))
+			if (iValue >= iThreshold && (canGreatWork(pLoopCity->plot()) || canSacrifice(pLoopCity->plot())))
 			{
 				if (generatePath(pLoopCity->plot(), MOVE_NO_ENEMY_TERRITORY, true, &iPathTurns))
 				{
@@ -22906,10 +22918,15 @@ bool CvUnitAI::AI_doGreatWork(CvPlot* pCulturePlot)
 	{
 		if (atPlot(pCulturePlot))
 		{
-			FAssert(canGreatWork(pCulturePlot));
 			if (canGreatWork(pCulturePlot))
 			{
 				getGroup()->pushMission(MISSION_GREAT_WORK);
+				return true;
+			}
+
+			if (canSacrifice(pCulturePlot))
+			{
+				getGroup()->pushMission(MISSION_SACRIFICE);
 				return true;
 			}
 		}
