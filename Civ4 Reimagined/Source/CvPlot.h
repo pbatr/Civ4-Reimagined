@@ -381,9 +381,9 @@ public:
 
 	short* getYield();
 	DllExport int getYield(YieldTypes eIndex) const;																										// Exposed to Python
-	int calculateNatureYield(YieldTypes eIndex, TeamTypes eTeam, bool bIgnoreFeature = false) const;		// Exposed to Python
-	int calculateBestNatureYield(YieldTypes eIndex, TeamTypes eTeam) const;															// Exposed to Python
-	int calculateTotalBestNatureYield(TeamTypes eTeam) const;																						// Exposed to Python
+	int calculateNatureYield(YieldTypes eIndex, PlayerTypes ePlayer, bool bIgnoreFeature = false, bool bIgnoreUniquePower = false) const;		// Exposed to Python
+	int calculateBestNatureYield(YieldTypes eIndex, PlayerTypes ePlayer, bool bIgnoreUniquePower = false) const;															// Exposed to Python
+	int calculateTotalBestNatureYield(PlayerTypes ePlayer, bool bIgnoreUniquePower = false) const;																						// Exposed to Python
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      10/06/09                                jdog5000      */
 /*                                                                                              */

@@ -3018,11 +3018,11 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 			}
 			// K-Mod (original code deleted)
 			else if (!pLoopPlot->isFreshWater() && !pLoopPlot->isHills() &&
-				(pLoopPlot->calculateBestNatureYield(YIELD_FOOD, getTeam()) == 0 || pLoopPlot->calculateTotalBestNatureYield(getTeam()) <= 1))
+				(pLoopPlot->calculateBestNatureYield(YIELD_FOOD, getID(), kSet.bStartingLoc) == 0 || pLoopPlot->calculateTotalBestNatureYield(getID(), kSet.bStartingLoc) <= 1))
 			{
 				iBadTile += 2;
 			}
-			else if (pLoopPlot->isWater() && !bIsCoastal && pLoopPlot->calculateBestNatureYield(YIELD_FOOD, getTeam()) <= 1)
+			else if (pLoopPlot->isWater() && !bIsCoastal && pLoopPlot->calculateBestNatureYield(YIELD_FOOD, getID(), kSet.bStartingLoc) <= 1)
 			{
 				iBadTile += 2; // Civ4 Reimagined
 			}
@@ -3032,7 +3032,7 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 				iBadTile += 2;
 			}
 			// Civ4 Reimagined
-			else if (pLoopPlot->getNonObsoleteBonusType(getTeam()) == NO_BONUS && (pLoopPlot->calculateBestNatureYield(YIELD_FOOD, getTeam()) + pLoopPlot->calculateNatureYield(YIELD_PRODUCTION, getTeam(), true) + pLoopPlot->calculateNatureYield(YIELD_COMMERCE, getTeam(), true)) <= 1)
+			else if (pLoopPlot->getNonObsoleteBonusType(getTeam()) == NO_BONUS && (pLoopPlot->calculateBestNatureYield(YIELD_FOOD, getID(), kSet.bStartingLoc) + pLoopPlot->calculateNatureYield(YIELD_PRODUCTION, getID(), true, kSet.bStartingLoc) + pLoopPlot->calculateNatureYield(YIELD_COMMERCE, getID(), true, kSet.bStartingLoc)) <= 1)
 			{
 				iBadTile++;
 			}
@@ -3241,7 +3241,7 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 			for (int iYieldType = 0; iYieldType < NUM_YIELD_TYPES; ++iYieldType)
 			{
 				YieldTypes eYield = (YieldTypes)iYieldType;
-				aiYield[eYield] = pLoopPlot->calculateNatureYield(eYield, getTeam(), bEventuallyRemoveableFeature); // K-Mod
+				aiYield[eYield] = pLoopPlot->calculateNatureYield(eYield, getID(), bEventuallyRemoveableFeature, kSet.bStartingLoc); // K-Mod
 
 				if (iI == CITY_HOME_PLOT)
 				{
@@ -3254,6 +3254,12 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 					aiYield[eYield] += GC.getYieldInfo(eYield).getCityChange();
 
 					aiYield[eYield] = std::max(aiYield[eYield], GC.getYieldInfo(eYield).getMinCity());
+
+					// Civ4 Reimagined: Ethiopia UP
+					if (!kSet.bStartingLoc && pLoopPlot->isHills())
+					{
+						aiYield[eYield] += getCityOnHillsExtraYield(eYield);
+					}
 
 					// K-Mod. Before we make special adjustments, there are some things we need to do with the true values.
 					if (eYield == YIELD_PRODUCTION)
@@ -3333,7 +3339,7 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 				{
 					iAdditionalFood += aiYield[YIELD_FOOD] - GC.getFOOD_CONSUMPTION_PER_POPULATION();
 				}
-				else if (pLoopPlot->calculateNatureYield(YIELD_FOOD, getTeam(), bEventuallyRemoveableFeature) == GC.getFOOD_CONSUMPTION_PER_POPULATION()
+				else if (pLoopPlot->calculateNatureYield(YIELD_FOOD, getID(), bEventuallyRemoveableFeature, kSet.bStartingLoc) == GC.getFOOD_CONSUMPTION_PER_POPULATION()
 						&& pLoopPlot->canHaveImprovement(IMPROVEMENT_FARM, getID(), true))
 				{
 					iAdditionalFood++;
@@ -3448,7 +3454,7 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 						if (eBonus != NO_BONUS && eImprovement != NO_IMPROVEMENT)
 						{
 							int iSpecialFoodTemp;
-							iSpecialFoodTemp = pLoopPlot->calculateBestNatureYield(YIELD_FOOD, getTeam()) + GC.getImprovementInfo(eImprovement).getImprovementBonusYield(eBonus, YIELD_FOOD);
+							iSpecialFoodTemp = pLoopPlot->calculateBestNatureYield(YIELD_FOOD, getID(), kSet.bStartingLoc) + GC.getImprovementInfo(eImprovement).getImprovementBonusYield(eBonus, YIELD_FOOD);
 
 							iSpecialFood += iSpecialFoodTemp;
 
@@ -3456,8 +3462,8 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 
 							iSpecialFoodPlus += std::max(0,iSpecialFoodTemp);
 							iSpecialFoodMinus -= std::min(0,iSpecialFoodTemp);
-							iSpecialProduction += pLoopPlot->calculateBestNatureYield(YIELD_PRODUCTION, getTeam()) + GC.getImprovementInfo(eImprovement).getImprovementBonusYield(eBonus, YIELD_PRODUCTION);
-							iSpecialCommerce += pLoopPlot->calculateBestNatureYield(YIELD_COMMERCE, getTeam()) + GC.getImprovementInfo(eImprovement).getImprovementBonusYield(eBonus, YIELD_COMMERCE);
+							iSpecialProduction += pLoopPlot->calculateBestNatureYield(YIELD_PRODUCTION, getID(), kSet.bStartingLoc) + GC.getImprovementInfo(eImprovement).getImprovementBonusYield(eBonus, YIELD_PRODUCTION);
+							iSpecialCommerce += pLoopPlot->calculateBestNatureYield(YIELD_COMMERCE, getID(), kSet.bStartingLoc) + GC.getImprovementInfo(eImprovement).getImprovementBonusYield(eBonus, YIELD_COMMERCE);
 						}
 					}
 				} // end if usable bonus
@@ -3576,20 +3582,16 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 				iValue += getCoastalTradeRouteModifier() * 3;
 			}
 
-			if (pArea != getCapitalCity()->area())
+			if (pCapital != NULL && pCapital->getArea() != pArea->getID())
 			{
-				if (bNeutralTerritory)
+				if (bNeutralTerritory && pArea->getNumTiles() >= GC.getDefineINT("MINIMUM_NUM_TILES_FOR_CONTINENT"))
 				{
 					iValue += getColonyTraderouteModifier() * 3;
-				}
-			}
-
-			if (pArea->getCitiesPerPlayer(getID()) == 0)
-			{
-				if (bNeutralTerritory)
-				{
-					// Civ4 Reimagined: doubled those values for first colony
 					iValue += iResourceValue > 0 ? (kSet.bSeafaring ? 2000 : 1000) : 200;
+				}
+				else
+				{
+					iValue += 200;
 				}
 			}
 			else
@@ -3704,7 +3706,7 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 							// 2 points for bad plots (ocean, tundra)
 							// 1 point for fixable bad plots (jungle)
 							iGreaterBadTile++;
-							if (pLoopPlot->calculateBestNatureYield(YIELD_FOOD,getTeam()) < 2)
+							if (pLoopPlot->calculateBestNatureYield(YIELD_FOOD, getID(), true) < 2)
 							{
 								iGreaterBadTile++;
 								if (iTempValue <= 0)

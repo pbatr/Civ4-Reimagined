@@ -7647,8 +7647,8 @@ int CvCityAI::AI_getImprovementValue(CvPlot* pPlot, ImprovementTypes eImprovemen
 
 		for (int iJ = 0; iJ < NUM_YIELD_TYPES; iJ++)
 		{
-			weighted_final_yields[iJ] += pPlot->calculateNatureYield((YieldTypes)iJ, getTeam(), bIgnoreFeature);
-			weighted_yield_diffs[iJ] = weighted_final_yields[iJ] - (weighted_yield_diffs[iJ] + pPlot->calculateNatureYield((YieldTypes)iJ, getTeam()));
+			weighted_final_yields[iJ] += pPlot->calculateNatureYield((YieldTypes)iJ, getOwnerINLINE(), bIgnoreFeature);
+			weighted_yield_diffs[iJ] = weighted_final_yields[iJ] - (weighted_yield_diffs[iJ] + pPlot->calculateNatureYield((YieldTypes)iJ, getOwnerINLINE()));
 		}
 		
 		// Civ4 Reimagined: Temporary workaround (AI sometimes replaces good improvements with forts...)

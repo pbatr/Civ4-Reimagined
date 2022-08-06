@@ -2544,7 +2544,7 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, PlayerTypes ePlay
 
 	for (iI = 0; iI < NUM_YIELD_TYPES; ++iI)
 	{
-		if (calculateNatureYield(((YieldTypes)iI), eTeam) < GC.getImprovementInfo(eImprovement).getPrereqNatureYield(iI))
+		if (calculateNatureYield(((YieldTypes)iI), ePlayer, false, /*ignore UP*/ true) < GC.getImprovementInfo(eImprovement).getPrereqNatureYield(iI))
 		{
 			return false;
 		}
@@ -6576,7 +6576,7 @@ int CvPlot::getYield(YieldTypes eIndex) const
 }
 
 
-int CvPlot::calculateNatureYield(YieldTypes eYield, TeamTypes eTeam, bool bIgnoreFeature) const
+int CvPlot::calculateNatureYield(YieldTypes eYield, PlayerTypes ePlayer, bool bIgnoreFeature, bool bIgnoreUniquePower) const
 {
 	BonusTypes eBonus;
 	int iYield;
@@ -6605,13 +6605,45 @@ int CvPlot::calculateNatureYield(YieldTypes eYield, TeamTypes eTeam, bool bIgnor
 		iYield += GC.getYieldInfo(eYield).getLakeChange();
 	}
 
-	if (eTeam != NO_TEAM)
+	if (ePlayer != NO_PLAYER)
 	{
-		eBonus = getBonusType(eTeam);
+		eBonus = getBonusType(GET_PLAYER(ePlayer).getTeam());
 
 		if (eBonus != NO_BONUS)
 		{
 			iYield += GC.getBonusInfo(eBonus).getYieldChange(eYield);
+		}
+
+		// Civ4 Reimagined
+		if (!bIgnoreUniquePower)
+		{
+			if (GET_PLAYER(ePlayer).getPeakAdjacencyExtraYield(eYield) != 0)
+			{
+				if (isFlatlands() || isHills())
+				{
+					if (isAdjacentToPeak())
+					{
+						iYield += GET_PLAYER(ePlayer).getPeakAdjacencyExtraYield(eYield);
+					}
+				}
+			}
+
+			// Civ4 Reimagined
+			if (!isImpassable())
+			{
+				iYield += GET_PLAYER(ePlayer).getTerrainYieldChange(getTerrainType(), eYield);
+			}
+
+			// Civ4 Reimagined: Inca UP
+			if (isPeak())
+			{
+				iYield += GET_PLAYER(ePlayer).getPeakYield(eYield);
+
+				if (GET_PLAYER(ePlayer).getPeakYieldChangeAdjacentToTerrace(eYield) != 0 && isAdjacentToImprovement((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_TERRACE")))
+				{
+					iYield += GET_PLAYER(ePlayer).getPeakYieldChangeAdjacentToTerrace(eYield);
+				}
+			}
 		}
 	}
 
@@ -6637,15 +6669,15 @@ int CvPlot::calculateNatureYield(YieldTypes eYield, TeamTypes eTeam, bool bIgnor
 }
 
 
-int CvPlot::calculateBestNatureYield(YieldTypes eIndex, TeamTypes eTeam) const
+int CvPlot::calculateBestNatureYield(YieldTypes eIndex, PlayerTypes ePlayer, bool bIgnoreUniquePower) const
 {
-	return std::max(calculateNatureYield(eIndex, eTeam, false), calculateNatureYield(eIndex, eTeam, true));
+	return std::max(calculateNatureYield(eIndex, ePlayer, false, bIgnoreUniquePower), calculateNatureYield(eIndex, ePlayer, true, bIgnoreUniquePower));
 }
 
 
-int CvPlot::calculateTotalBestNatureYield(TeamTypes eTeam) const
+int CvPlot::calculateTotalBestNatureYield(PlayerTypes ePlayer, bool bIgnoreUniquePower) const
 {
-	return (calculateBestNatureYield(YIELD_FOOD, eTeam) + calculateBestNatureYield(YIELD_PRODUCTION, eTeam) + calculateBestNatureYield(YIELD_COMMERCE, eTeam));
+	return (calculateBestNatureYield(YIELD_FOOD, ePlayer, bIgnoreUniquePower) + calculateBestNatureYield(YIELD_PRODUCTION, ePlayer, bIgnoreUniquePower) + calculateBestNatureYield(YIELD_COMMERCE, ePlayer, bIgnoreUniquePower));
 }
 
 /************************************************************************************************/
@@ -6817,7 +6849,7 @@ int CvPlot::calculateYield(YieldTypes eYield, bool bDisplay) const
 		eRoute = getRouteType();
 	}
 
-	iYield = calculateNatureYield(eYield, ((ePlayer != NO_PLAYER) ? GET_PLAYER(ePlayer).getTeam() : NO_TEAM));
+	iYield = calculateNatureYield(eYield, ePlayer);
 
 	if (eImprovement != NO_IMPROVEMENT)
 	{
@@ -6831,23 +6863,6 @@ int CvPlot::calculateYield(YieldTypes eYield, bool bDisplay) const
 
 	if (ePlayer != NO_PLAYER)
 	{
-		// Civ4 Reimagined
-		if (!isImpassable())
-		{
-			iYield += GET_PLAYER(ePlayer).getTerrainYieldChange(getTerrainType(), eYield);
-		}
-
-		// Civ4 Reimagined: Inca UP
-		if (isPeak())
-		{
-			iYield += GET_PLAYER(ePlayer).getPeakYield(eYield);
-
-			if (GET_PLAYER(ePlayer).getPeakYieldChangeAdjacentToTerrace(eYield) != 0 && isAdjacentToImprovement((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_TERRACE")))
-			{
-				iYield += GET_PLAYER(ePlayer).getPeakYieldChangeAdjacentToTerrace(eYield);
-			}
-		}
-
 		// Civ4 Reimagined
 		if (getFeatureType() != NO_FEATURE)
 		{
@@ -6887,18 +6902,6 @@ int CvPlot::calculateYield(YieldTypes eYield, bool bDisplay) const
 			if (GET_PLAYER(ePlayer).getTownAdjacencyBonus(eYield) > 0 && eImprovement == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_TOWN"))
 			{
 				iYield += calculateAdjacencyBonus(eYield, eImprovement, GET_PLAYER(ePlayer).getTownAdjacencyBonus(eYield));
-			}
-		}
-
-		// Civ4 Reimagined
-		if (GET_PLAYER(ePlayer).getPeakAdjacencyExtraYield(eYield) != 0)
-		{
-			if (isFlatlands() || isHills())
-			{
-				if (isAdjacentToPeak())
-				{
-					iYield += GET_PLAYER(ePlayer).getPeakAdjacencyExtraYield(eYield);
-				}
 			}
 		}
 
@@ -10226,7 +10229,7 @@ int CvPlot::getYieldWithBuild(BuildTypes eBuild, YieldTypes eYield, bool bWithUp
 		}
 	}
 
-	iYield += calculateNatureYield(eYield, getTeam(), bIgnoreFeature);
+	iYield += calculateNatureYield(eYield, getOwnerINLINE(), bIgnoreFeature);
 
 	ImprovementTypes eImprovement = (ImprovementTypes)GC.getBuildInfo(eBuild).getImprovement();
 	// K-Mod. if the build doesn't have its own improvement - use the existing one!

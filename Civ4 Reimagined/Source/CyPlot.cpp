@@ -837,19 +837,19 @@ int CyPlot::getYield(YieldTypes eIndex)
 }
 
 // K-Mod, 26/Jun/2011, karadoc: changed enum types to ints, so that it actually works...
-int CyPlot::calculateNatureYield(int /*YieldTypes*/ eIndex, int /*TeamTypes*/ eTeam, bool bIgnoreFeature)
+int CyPlot::calculateNatureYield(int /*YieldTypes*/ eIndex, int /*PlayerTypes*/ ePlayer, bool bIgnoreFeature, bool bIgnoreUniquePower)
 {
-	return m_pPlot ? m_pPlot->calculateNatureYield((YieldTypes)eIndex, (TeamTypes)eTeam, bIgnoreFeature) : -1;
+	return m_pPlot ? m_pPlot->calculateNatureYield((YieldTypes)eIndex, (PlayerTypes)ePlayer, bIgnoreFeature, bIgnoreUniquePower) : -1;
 }
 
-int CyPlot::calculateBestNatureYield(YieldTypes eIndex, TeamTypes eTeam)
+int CyPlot::calculateBestNatureYield(int /*YieldTypes*/ eIndex, int /*PlayerTypes*/ ePlayer, bool bIgnoreUniquePower)
 {
-	return m_pPlot ? m_pPlot->calculateBestNatureYield(eIndex, eTeam) : -1;
+	return m_pPlot ? m_pPlot->calculateBestNatureYield((YieldTypes)eIndex, (PlayerTypes)ePlayer, bIgnoreUniquePower) : -1;
 }
 
-int CyPlot::calculateTotalBestNatureYield(TeamTypes eTeam)
+int CyPlot::calculateTotalBestNatureYield(int /*PlayerTypes*/ ePlayer, bool bIgnoreUniquePower)
 {
-	return m_pPlot ? m_pPlot->calculateTotalBestNatureYield(eTeam) : -1;
+	return m_pPlot ? m_pPlot->calculateTotalBestNatureYield((PlayerTypes)ePlayer, bIgnoreUniquePower) : -1;
 }
 
 int CyPlot::calculateImprovementYieldChange(int /*ImprovementTypes*/ eImprovement, YieldTypes eYield, int /*PlayerTypes*/ ePlayer, bool bOptimal)

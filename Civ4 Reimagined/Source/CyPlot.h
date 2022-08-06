@@ -205,9 +205,9 @@ public:
 	int getReconCount();
 	int getRiverCrossingCount();
 	int getYield(YieldTypes eIndex);
-	int calculateNatureYield(int /*YieldTypes*/ eIndex, int /*TeamTypes*/ eTeam, bool bIgnoreFeature = false);
-	int calculateBestNatureYield(YieldTypes eIndex, TeamTypes eTeam);
-	int calculateTotalBestNatureYield(TeamTypes eTeam);
+	int calculateNatureYield(int /*YieldTypes*/ eIndex, int /*PlayerTypes*/ ePlayer, bool bIgnoreFeature = false, bool bIgnoreUniquePower = false);
+	int calculateBestNatureYield(int /*YieldTypes*/ eIndex, int /*PlayerTypes*/ ePlayer, bool bIgnoreUniquePower = false);
+	int calculateTotalBestNatureYield(int /*PlayerTypes*/ ePlayer, bool bIgnoreUniquePower = false);
 	int calculateImprovementYieldChange(int /*ImprovementTypes*/ eImprovement, YieldTypes eYield, int /*PlayerTypes*/ ePlayer, bool bOptimal);
 	int calculateYield(YieldTypes eIndex, bool bDisplay);
 	bool hasYield();

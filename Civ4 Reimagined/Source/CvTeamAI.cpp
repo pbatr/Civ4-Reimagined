@@ -1388,14 +1388,14 @@ int CvTeamAI::AI_warSpoilsValue(TeamTypes eTarget, WarPlanTypes eWarPlan) const
 				if (!pLoopPlot || !pLoopPlot->isRevealed(getID(), false) || pLoopPlot->getWorkingCity() != pLoopCity)
 					continue;
 
-				if (pLoopPlot->isWater() && !(bCoastal && pLoopPlot->calculateNatureYield(YIELD_FOOD, getID()) >= GC.getFOOD_CONSUMPTION_PER_POPULATION()))
+				if (pLoopPlot->isWater() && !(bCoastal && pLoopPlot->calculateNatureYield(YIELD_FOOD, getLeaderID()) >= GC.getFOOD_CONSUMPTION_PER_POPULATION()))
 					continue;
 
 				// This is a very rough estimate of the value of the plot. It's a bit ad-hoc. I'm sorry about that, but I want it to be fast.
 				//BonusTypes eBonus = pLoopPlot->getBonusType(getID());
 				int iPlotValue = 0;
-				iPlotValue += 3 * pLoopPlot->calculateBestNatureYield(YIELD_FOOD, getID()); // don't ignore floodplains
-				iPlotValue += 2 * pLoopPlot->calculateNatureYield(YIELD_PRODUCTION, getID(), true); // ignore forest
+				iPlotValue += 3 * pLoopPlot->calculateBestNatureYield(YIELD_FOOD, getLeaderID()); // don't ignore floodplains
+				iPlotValue += 2 * pLoopPlot->calculateNatureYield(YIELD_PRODUCTION, getLeaderID(), true); // ignore forest
 				iPlotValue += GC.getTerrainInfo(pLoopPlot->getTerrainType()).getYield(YIELD_FOOD) >= GC.getFOOD_CONSUMPTION_PER_POPULATION() ? 1 : 0; // bonus for grassland
 				iPlotValue += pLoopPlot->isRiver() ? 1 : 0;
 				if (pLoopPlot->getBonusType(getID()) != NO_BONUS)

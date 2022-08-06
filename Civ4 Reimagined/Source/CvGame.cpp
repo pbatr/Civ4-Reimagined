@@ -1704,7 +1704,7 @@ void CvGame::normalizeAddFoodBonuses()
 											iFoodBonus += 3;
 										else
 											iFoodBonus += 2; */
-										int iNaturalFood = pLoopPlot->calculateBestNatureYield(YIELD_FOOD, kLoopPlayer.getTeam());
+										int iNaturalFood = pLoopPlot->calculateBestNatureYield(YIELD_FOOD, kLoopPlayer.getID(), /*ignore UP*/ true);
 										int iHighFoodThreshold = 2*iFoodPerPop; // ie. 4 food.
 										bool bHighFood = iNaturalFood + 1 >= iHighFoodThreshold; // (+1 just as a shortcut to save time for obvious cases.)
 
@@ -1720,14 +1720,14 @@ void CvGame::normalizeAddFoodBonuses()
 									}
 								}
 							}
-							else if (pLoopPlot->calculateBestNatureYield(YIELD_FOOD, kLoopPlayer.getTeam()) >= iFoodPerPop)
+							else if (pLoopPlot->calculateBestNatureYield(YIELD_FOOD, kLoopPlayer.getID(), /*ignore UP*/ true) >= iFoodPerPop)
 						    {
 						        iGoodNatureTileCount++;
 						    }
 						}
 						else
 						{
-                            if (pLoopPlot->calculateBestNatureYield(YIELD_FOOD, kLoopPlayer.getTeam()) >= iFoodPerPop+1)
+                            if (pLoopPlot->calculateBestNatureYield(YIELD_FOOD, kLoopPlayer.getID(), /*ignore UP*/ true) >= iFoodPerPop+1)
 						    {
 						        iGoodNatureTileCount++;
 						    }
@@ -1772,7 +1772,7 @@ void CvGame::normalizeAddFoodBonuses()
 											{
 												//iFoodBonus += 3;
 												// K-Mod
-												int iNaturalFood = pLoopPlot->calculateBestNatureYield(YIELD_FOOD, kLoopPlayer.getTeam());
+												int iNaturalFood = pLoopPlot->calculateBestNatureYield(YIELD_FOOD, kLoopPlayer.getID(), /*ignore UP*/ true);
 												int iHighFoodThreshold = 2*iFoodPerPop; // ie. 4 food.
 												bool bHighFood = iNaturalFood + 1 >= iHighFoodThreshold; // (+1 just as a shortcut to save time for obvious cases.)
 
@@ -1826,8 +1826,8 @@ void CvGame::normalizeAddGoodTerrain()
 					{
 						if (pLoopPlot != pStartingPlot)
 						{
-							if ((pLoopPlot->calculateNatureYield(YIELD_FOOD, GET_PLAYER((PlayerTypes)iI).getTeam()) >= GC.getFOOD_CONSUMPTION_PER_POPULATION()) &&
-								  (pLoopPlot->calculateNatureYield(YIELD_PRODUCTION, GET_PLAYER((PlayerTypes)iI).getTeam()) > 0))
+							if ((pLoopPlot->calculateNatureYield(YIELD_FOOD, (PlayerTypes)iI, false, /* ignore UP */ true) >= GC.getFOOD_CONSUMPTION_PER_POPULATION()) &&
+								  (pLoopPlot->calculateNatureYield(YIELD_PRODUCTION, (PlayerTypes)iI, false, /* ignore UP */ true) > 0))
 							{
 								iGoodPlot++;
 							}
@@ -1856,7 +1856,7 @@ void CvGame::normalizeAddGoodTerrain()
 									{
 										bChanged = false;
 
-										if (pLoopPlot->calculateNatureYield(YIELD_FOOD, GET_PLAYER((PlayerTypes)iI).getTeam()) < GC.getFOOD_CONSUMPTION_PER_POPULATION())
+										if (pLoopPlot->calculateNatureYield(YIELD_FOOD, (PlayerTypes)iI, false, /* ignore UP */ true) < GC.getFOOD_CONSUMPTION_PER_POPULATION())
 										{
 											for (iK = 0; iK < GC.getNumTerrainInfos(); iK++)
 											{
@@ -1872,7 +1872,7 @@ void CvGame::normalizeAddGoodTerrain()
 											}
 										}
 
-										if (pLoopPlot->calculateNatureYield(YIELD_PRODUCTION, GET_PLAYER((PlayerTypes)iI).getTeam()) == 0)
+										if (pLoopPlot->calculateNatureYield(YIELD_PRODUCTION, (PlayerTypes)iI, false, /* ignore UP */ true) == 0)
 										{
 											for (iK = 0; iK < GC.getNumFeatureInfos(); iK++)
 											{
@@ -4562,7 +4562,7 @@ void CvGame::initScoreCalculation()
 		CvPlot* pPlot = GC.getMapINLINE().plotByIndexINLINE(i);
 		if (!pPlot->isWater() || pPlot->isAdjacentToLand())
 		{
-			iMaxFood += pPlot->calculateBestNatureYield(YIELD_FOOD, NO_TEAM);
+			iMaxFood += pPlot->calculateBestNatureYield(YIELD_FOOD, NO_PLAYER);
 		}
 	}
 	m_iMaxPopulation = getPopulationScore(iMaxFood / std::max(1, GC.getFOOD_CONSUMPTION_PER_POPULATION()));

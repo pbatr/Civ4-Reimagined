@@ -4767,9 +4767,9 @@ class StartingPlotFinder :
         production = 0
         plot = gameMap.plot(x,y)
         if debugOut: print "Evaluating plot x = %(x)d, y = %(y)d" % {"x":x,"y":y}
-        commerce += plot.calculateBestNatureYield(YieldTypes.YIELD_COMMERCE,TeamTypes.NO_TEAM)
-        food += plot.calculateBestNatureYield(YieldTypes.YIELD_FOOD,TeamTypes.NO_TEAM)
-        production += plot.calculateBestNatureYield(YieldTypes.YIELD_PRODUCTION,TeamTypes.NO_TEAM)
+        commerce += plot.calculateBestNatureYield(YieldTypes.YIELD_COMMERCE,PlayerTypes.NO_PLAYER,True)
+        food += plot.calculateBestNatureYield(YieldTypes.YIELD_FOOD,PlayerTypes.NO_PLAYER,True)
+        production += plot.calculateBestNatureYield(YieldTypes.YIELD_PRODUCTION,PlayerTypes.NO_PLAYER,True)
         if debugOut: print "Natural yields. Food=%(f)d, Production=%(p)d, Commerce=%(c)d" % \
         {"f":food,"p":production,"c":commerce}
         #Get best bonus improvement score. Test tachnology era of bonus
