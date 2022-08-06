@@ -7778,12 +7778,21 @@ int CvCityAI::AI_getImprovementValue(CvPlot* pPlot, ImprovementTypes eImprovemen
 			iValue += 2000;
 		}
 
+		// Civ4 Reimagined
+		if (kOwner.getGreatSpyPointsFromImprovementInRadius(eFinalImprovement) != 0)
+		{
+			if ((eFinalImprovement == pPlot->getImprovementType() && countNumImprovedPlots(eFinalImprovement) == 1) || countNumImprovedPlots(eFinalImprovement) == 0)
+			{
+				iValue += kOwner.getGreatSpyPointsFromImprovementInRadius(eFinalImprovement) * 100;
+			}
+		}
+
 		int iHappiness = GC.getImprovementInfo(eFinalImprovement).getHappiness();
 
 		// Civ4 Reimagined
 		if (kOwner.getRadiusImprovementHappiness(eFinalImprovement) != 0)
 		{
-			if ((eImprovement == pPlot->getImprovementType() && countNumImprovedPlots(eImprovement) == 1) || countNumImprovedPlots(eImprovement) == 0)
+			if ((eFinalImprovement == pPlot->getImprovementType() && countNumImprovedPlots(eFinalImprovement) == 1) || countNumImprovedPlots(eFinalImprovement) == 0)
 			{
 				iHappiness += kOwner.getRadiusImprovementHappiness(eFinalImprovement);
 			}
