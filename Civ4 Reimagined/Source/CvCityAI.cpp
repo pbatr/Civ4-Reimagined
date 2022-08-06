@@ -8472,7 +8472,7 @@ void CvCityAI::AI_doHurry(bool bForce)
 		int iHappyDiff = 0;
 		int iHappy = 0;
 		int iPopCost = 0;
-		
+		int iValue = 0;
 
 		if (iHurryPopulation > 0)
 		{
@@ -8527,6 +8527,8 @@ void CvCityAI::AI_doHurry(bool bForce)
 
 			// convert units from 4x commerce to 1x commerce
 			iPopCost /= 4;
+
+			iValue += kOwner.getSlavePointsPerPopulationSacrificed();
 		}
 
 		int iTotalCost = iPopCost + iGoldCost;
@@ -8535,12 +8537,11 @@ void CvCityAI::AI_doHurry(bool bForce)
 		{
 			const CvUnitInfo& kUnitInfo = GC.getUnitInfo(eProductionUnit);
 
-			int iValue = 0;
 			if (kOwner.AI_isFinancialTrouble())
 				iTotalCost = std::max(0, iTotalCost); // overflow is not good when it is being used to build units that we don't want.
 			else
 			{
-				iValue = productionLeft();
+				iValue += productionLeft();
 				
 				// Civ4 Reimagined
 				int iProductionMultiplier = getUnitProductionMultiplier(eProductionUnit);
@@ -8625,7 +8626,7 @@ void CvCityAI::AI_doHurry(bool bForce)
 		{
 			const CvBuildingInfo& kBuildingInfo = GC.getBuildingInfo(eProductionBuilding);
 
-			int iValue = AI_buildingValue(eProductionBuilding) * (getProductionTurnsLeft(eProductionBuilding, 1) - 1);
+			iValue += AI_buildingValue(eProductionBuilding) * (getProductionTurnsLeft(eProductionBuilding, 1) - 1);
 			
 			// Civ4 Reimagined
 			if (isWorldWonderClass((BuildingClassTypes)kBuildingInfo.getBuildingClassType()))

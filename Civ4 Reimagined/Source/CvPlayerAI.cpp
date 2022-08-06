@@ -16897,9 +16897,11 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 
 			if (kHurryInfo.getProductionPerPopulation() > 0)
 			{
-				// if we had easy access to averages for getMaxFoodKeptPercent and getHurryAngerModifier, then I'd use them. - but I don't want to calculate them here.
-				//iTempValue += (bWarPlan ? 8 : 5) * iCities * kGame.getProductionPerPopulation(i) / std::max(1, getGrowthThreshold(getAveragePopulation()));
-				iTempValue += 3 * iCities * kGame.getProductionPerPopulation(i) / std::max(1, getGrowthThreshold(getAveragePopulation())); // Civ4 Reimagined
+				int iProductionPerPop = GC.getGameINLINE().getProductionPerPopulation(i);
+				// Civ4 Reimagined: Egypt UP
+				iProductionPerPop += getProductionPerPopulation() * 100 / std::max(1, GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getHurryPercent());
+				
+				iTempValue += 3 * iCities * iProductionPerPop / std::max(1, getGrowthThreshold(getAveragePopulation())); // Civ4 Reimagined
 			}
 
 			if (iTempValue > 0)
@@ -16995,6 +16997,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		}
 		
 		iSlaveValue += iCities * (getNumSlaveUnits() + bWarPlan ? 2 : 0);
+		iSlaveValue += getSlavePointsPerPopulationSacrificed();
 
 		// Civ4 Reimagined: Aztec UP
 		if (isCaptureSlaves())
