@@ -4229,13 +4229,27 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 
 			if (kBuilding.getDomesticGreatGeneralRateModifier() != 0)
 			{
-				iValue += (kBuilding.getDomesticGreatGeneralRateModifier() / 10);
+				int iGreatGeneralValue = (kBuilding.getDomesticGreatGeneralRateModifier() / 10);
+
+				// Civ4 Reimagined
+				if (GET_PLAYER(getOwnerINLINE()).getGreatGeneralGoldenAgeLength() > 0)
+				{
+					iGreatGeneralValue += iGreatGeneralValue * GET_PLAYER(getOwnerINLINE()).getGreatGeneralGoldenAgeLength() / 100;
+				}
+				iValue += iGreatGeneralValue;
 			}
 
 			// Civ4 Reimagined
 			if (kBuilding.getGreatGeneralRateModifier() != 0)
 			{
-				iValue += (kBuilding.getDomesticGreatGeneralRateModifier() / (bWarPlan ? 2 : 5));
+				int iGreatGeneralValue = (kBuilding.getDomesticGreatGeneralRateModifier() / (bWarPlan ? 2 : 5));
+
+				// Civ4 Reimagined
+				if (GET_PLAYER(getOwnerINLINE()).getGreatGeneralGoldenAgeLength() > 0)
+				{
+					iGreatGeneralValue += iGreatGeneralValue * GET_PLAYER(getOwnerINLINE()).getGreatGeneralGoldenAgeLength() / 100;
+				}
+				iValue += iGreatGeneralValue;
 			}
 
 			if (kBuilding.isAreaBorderObstacle() && !(area()->isBorderObstacle(getTeam())))

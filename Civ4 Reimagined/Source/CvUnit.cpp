@@ -7480,10 +7480,25 @@ bool CvUnit::isIntruding() const
 	return true;
 }
 
+// Civ4 Reimagined
 bool CvUnit::isGreatGeneralGoldenAge() const
 {
-	return GET_PLAYER(getOwnerINLINE()).getGreatGeneralGoldenAgeLength() > 0 &&
-		getUnitClassType() == (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_GREAT_GENERAL");
+	if (isDelayedDeath())
+	{
+		return false;
+	}
+
+	if (GET_PLAYER(getOwnerINLINE()).getGreatGeneralGoldenAgeLength() <= 0)
+	{
+		return false;
+	}
+
+	if (getUnitClassType() != (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_GREAT_GENERAL"))
+	{
+		return false;
+	}
+
+	return true;
 }
 
 bool CvUnit::canGoldenAge(const CvPlot* pPlot, bool bTestVisible) const

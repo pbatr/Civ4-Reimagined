@@ -5247,7 +5247,11 @@ void CvUnitAI::AI_generalMove()
 	int iDanger = GET_PLAYER(getOwnerINLINE()).AI_getPlotDanger(plot(), 2);
 	
 	bool bOffenseWar = (area()->getAreaAIType(getTeam()) == AREAAI_OFFENSIVE);
-	
+
+	if (AI_goldenAge())
+    {
+        return;
+    }
 	
 	if (iDanger > 0)
 	{
@@ -5733,7 +5737,6 @@ bool CvUnitAI::AI_greatPersonMove()
 		iGoldenAgeValue /= 100;
 		missions.push_back(std::pair<int, int>(iGoldenAgeValue, GP_GOLDENAGE));
 	}
-	//
 
 	// Discover ("bulb tech")
 	int iDiscoverValue = 0;
