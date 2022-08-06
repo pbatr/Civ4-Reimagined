@@ -6579,11 +6579,22 @@ int CvPlot::getYield(YieldTypes eIndex) const
 int CvPlot::calculateNatureYield(YieldTypes eYield, PlayerTypes ePlayer, bool bIgnoreFeature, bool bIgnoreUniquePower) const
 {
 	BonusTypes eBonus;
-	int iYield;
+	int iYield = 0;
 
 	if (isImpassable())
 	{
-		return 0;
+		// Civ4 Reimagined: Inca UP
+		if (!bIgnoreUniquePower && ePlayer != NO_PLAYER && isPeak())
+		{
+			iYield += GET_PLAYER(ePlayer).getPeakYield(eYield);
+
+			if (GET_PLAYER(ePlayer).getPeakYieldChangeAdjacentToTerrace(eYield) != 0 && isAdjacentToImprovement((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_TERRACE")))
+			{
+				iYield += GET_PLAYER(ePlayer).getPeakYieldChangeAdjacentToTerrace(eYield);
+			}
+		}
+
+		return iYield;
 	}
 
 	FAssertMsg(getTerrainType() != NO_TERRAIN, "TerrainType is not assigned a valid value");
@@ -6633,17 +6644,6 @@ int CvPlot::calculateNatureYield(YieldTypes eYield, PlayerTypes ePlayer, bool bI
 			{
 				iYield += GET_PLAYER(ePlayer).getTerrainYieldChange(getTerrainType(), eYield);
 			}
-
-			// Civ4 Reimagined: Inca UP
-			if (isPeak())
-			{
-				iYield += GET_PLAYER(ePlayer).getPeakYield(eYield);
-
-				if (GET_PLAYER(ePlayer).getPeakYieldChangeAdjacentToTerrace(eYield) != 0 && isAdjacentToImprovement((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_TERRACE")))
-				{
-					iYield += GET_PLAYER(ePlayer).getPeakYieldChangeAdjacentToTerrace(eYield);
-				}
-			}
 		}
 	}
 
@@ -6662,6 +6662,12 @@ int CvPlot::calculateNatureYield(YieldTypes eYield, PlayerTypes ePlayer, bool bI
 		if (getFeatureType() != NO_FEATURE)
 		{
 			iYield += GC.getFeatureInfo(getFeatureType()).getYieldChange(eYield);
+
+			// Civ4 Reimagined
+			if (ePlayer != NO_PLAYER && !bIgnoreUniquePower)
+			{
+				iYield += GET_PLAYER(ePlayer).getFeatureExtraYield(getFeatureType(), eYield);
+			}
 		}
 	}
 
@@ -6771,6 +6777,28 @@ int CvPlot::calculateImprovementYieldChange(ImprovementTypes eImprovement, Yield
 			}
 		}
 
+		// Civ4 Reimagined
+		if (isFlatlands())
+		{
+			CvCity* pWorkingCity = getWorkingCity();
+
+			// Khmer UB
+			if (pWorkingCity != NULL)
+			{
+				if (pWorkingCity->getFarmAdjacencyBonus(eYield) > 0 && eImprovement == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FARM") 
+					&& !GET_TEAM(getTeam()).isHasTech((TechTypes)GC.getInfoTypeForString("TECH_BIOLOGY")))
+				{
+					iYield += calculateAdjacencyBonus(eYield, eImprovement, pWorkingCity->getFarmAdjacencyBonus(eYield));
+				}
+			}
+
+			// Korea UP
+			if (GET_PLAYER(ePlayer).getTownAdjacencyBonus(eYield) > 0 && eImprovement == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_TOWN"))
+			{
+				iYield += calculateAdjacencyBonus(eYield, eImprovement, GET_PLAYER(ePlayer).getTownAdjacencyBonus(eYield));
+			}
+		}
+
 		eBonus = getBonusType(GET_PLAYER(ePlayer).getTeam());
 
 		if (eBonus != NO_BONUS)
@@ -6863,12 +6891,6 @@ int CvPlot::calculateYield(YieldTypes eYield, bool bDisplay) const
 
 	if (ePlayer != NO_PLAYER)
 	{
-		// Civ4 Reimagined
-		if (getFeatureType() != NO_FEATURE)
-		{
-			iYield += GET_PLAYER(ePlayer).getFeatureExtraYield(getFeatureType(), eYield);
-		}
-
 		pCity = getPlotCity();
 
 		if (pCity != NULL)
@@ -6882,26 +6904,6 @@ int CvPlot::calculateYield(YieldTypes eYield, bool bDisplay) const
 				}
 
 				bCity = true;
-			}
-		}
-
-		// Civ4 Reimagined
-		if (isFlatlands())
-		{
-			pWorkingCity = getWorkingCity();
-
-			if (pWorkingCity != NULL)
-			{
-				if (pWorkingCity->getFarmAdjacencyBonus(eYield) > 0 && eImprovement == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FARM") 
-					&& !GET_TEAM(getTeam()).isHasTech((TechTypes)GC.getInfoTypeForString("TECH_BIOLOGY")))
-				{
-					iYield += calculateAdjacencyBonus(eYield, eImprovement, pWorkingCity->getFarmAdjacencyBonus(eYield));
-				}
-			}
-
-			if (GET_PLAYER(ePlayer).getTownAdjacencyBonus(eYield) > 0 && eImprovement == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_TOWN"))
-			{
-				iYield += calculateAdjacencyBonus(eYield, eImprovement, GET_PLAYER(ePlayer).getTownAdjacencyBonus(eYield));
 			}
 		}
 
