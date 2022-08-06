@@ -3617,6 +3617,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 	BuildingClassTypes eBuildingClass = (BuildingClassTypes) kBuilding.getBuildingClassType();
 	int iLimitedWonderLimit = limitedWonderClassLimit(eBuildingClass);
 	bool bIsLimitedWonder = (iLimitedWonderLimit >= 0);
+	const SpecialBuildingTypes eSpecialBuilding = (SpecialBuildingTypes)kBuilding.getSpecialBuildingType();
 	// K-Mod. This new value, iPriorityFactor, is used to boost the value of productivity buildings without overvaluing productivity.
 	// The point is to get the AI to build productiviy buildings quickly, but not if they come with large negative side effects.
 	// I may use it for other adjustments in the future.
@@ -4563,6 +4564,13 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 			if (!kOwner.isNoGreatPeople())
 			{
 				int iTempValue = 100 * kBuilding.getGreatPeopleRateChange() * 2 * 4; // everything seems to be x4 around here
+
+				// Civ4 Reimagined
+				if (eSpecialBuilding == (SpecialBuildingTypes)GC.getInfoTypeForString("SPECIALBUILDING_CATHEDRAL"))
+				{
+					iTempValue += 100 * getGreatEngineerPointsFromCathedrals() * 2 * 4;
+				}
+
 				int iCityRate = getGreatPeopleRate();
 				int iHighestRate = 0;
 				int iLoop;
@@ -4676,7 +4684,6 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				}
 			}
 
-			const SpecialBuildingTypes eSpecialBuilding = (SpecialBuildingTypes)kBuilding.getSpecialBuildingType();
 			if (eSpecialBuilding == NO_SPECIALBUILDING || ! GET_PLAYER(getOwnerINLINE()).isSpecialBuildingNotRequired(eSpecialBuilding)) // Civ4 Reimagined
 			{
 				for (int iI = 0; iI < GC.getNumUnitInfos(); iI++)
