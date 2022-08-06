@@ -5882,6 +5882,12 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 		// Civ4 Reimagined: Use AI weight also for building suggestions
 		iValue += kBuilding.getAIWeight();
 
+		// Civ4 Reimagined: Byzantium UP
+		if (kOwner.getCapitalCultureAttitudeBonus() > 0 && isCapital())
+		{
+			iValue = iValue * (10 + kBuilding.getFlavorValue(FLAVOR_CULTURE) / 2) / 10;
+		}
+
 		// flavour factor. (original flavour code deleted)
 		if (!isHuman())
 		{
