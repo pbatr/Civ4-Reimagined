@@ -2518,6 +2518,10 @@
 					<TerrainType>TERRAIN_COAST</TerrainType>
 					<iBias>-1</iBias>
 				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_HILL</TerrainType>
+					<iBias>-1</iBias>
+				</TerrainBias>
 			</TerrainBiases>
 			<FeatureBiases>
 				<FeatureBias>
