@@ -11495,7 +11495,7 @@ int CvCityAI::AI_cityValue() const
 
 	if (kOwner.getColonyTraderouteModifier() != 0)
 	{
-		iCosts += (kOwner.getNumCities() - iSplitCities) * 2 * kOwner.getColonyTraderouteModifier() * kOwner.AI_yieldWeight(YIELD_COMMERCE) / 100;
+		iCosts += (iSplitCities + 3) * 2 * kOwner.getColonyTraderouteModifier() * kOwner.AI_yieldWeight(YIELD_COMMERCE) / 100;
 	}
 	
 	if (gCityLogLevel >= 2 && iCosts != 0) logBBAI("%S Colony Value: %d , Cost: %d (HapValue: %d)", getName().GetCString(), iValue, iCosts, iHapValue);

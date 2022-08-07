@@ -21526,6 +21526,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(GC.getNumTechInfos(), m_pabResearchingTech);
 
 	pStream->Read(GC.getNumVoteSourceInfos(), m_pabLoyalMember);
+	pStream->Read(GC.getNumSpecialistInfos(), m_pabUnlimitedSpecialistsWithTemple); // Civ4 Reimagined
 
 	for (iI=0;iI<GC.getNumCivicOptionInfos();iI++)
 	{
@@ -22067,6 +22068,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iCombatBonusOnHomeArea); // Civ4 Reimagined
 	pStream->Write(m_iStrategicBonusYieldModifier); // Civ4 Reimagined
 	pStream->Write(m_iBuildingProductionModifierFromCapital); // Civ4 Reimagined
+	pStream->Write(m_iCultureResistanceModifier); // Civ4 Reimagined
 	pStream->Write(m_iFreshWaterHealthModifier); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
@@ -22178,6 +22180,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumTechInfos(), m_pabResearchingTech);
 
 	pStream->Write(GC.getNumVoteSourceInfos(), m_pabLoyalMember);
+	pStream->Write(GC.getNumSpecialistInfos(), m_pabUnlimitedSpecialistsWithTemple); // Civ4 Reimagined
 
 	for (iI=0;iI<GC.getNumCivicOptionInfos();iI++)
 	{

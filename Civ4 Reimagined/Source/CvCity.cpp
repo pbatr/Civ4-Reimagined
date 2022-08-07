@@ -16224,6 +16224,7 @@ void CvCity::read(FDataStreamBase* pStream)
 	// m_bLayoutDirty not saved...
 	pStream->Read(&m_bPlundered);
 	pStream->Read(&m_bColony); // Civ4 Reimagined
+	pStream->Read(&m_bStateReligionTemple); // Civ4 Reimagined
 
 	pStream->Read((int*)&m_eOwner);
 	pStream->Read((int*)&m_ePreviousOwner);
@@ -16491,6 +16492,7 @@ void CvCity::write(FDataStreamBase* pStream)
 	// m_bLayoutDirty not saved...
 	pStream->Write(m_bPlundered);
 	pStream->Write(m_bColony); // Civ4 Reimagined
+	pStream->Write(m_bStateReligionTemple); // Civ4 Reimagined
 
 	pStream->Write(m_eOwner);
 	pStream->Write(m_ePreviousOwner);
