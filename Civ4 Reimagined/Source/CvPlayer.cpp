@@ -30012,7 +30012,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			changeFreshWaterHealthModifier(100);
 			notifyUniquePowersChanged(true);
 		}
-		else if (eEra == ERA_CLASSICAL)
+		else if (eEra == ERA_MEDIEVAL)
 		{
 			changeStateReligionCommercePerPopulationOverThreshold(COMMERCE_GOLD, GC.getDefineINT("UNIQUE_POWER_KHMER"));
 			changeSpecialistCommerceChange((SpecialistTypes)GC.getInfoTypeForString("SPECIALIST_PRIEST"), COMMERCE_GOLD, 1);
