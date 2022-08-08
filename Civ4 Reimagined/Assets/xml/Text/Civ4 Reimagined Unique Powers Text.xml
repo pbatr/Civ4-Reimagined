@@ -213,7 +213,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_OTTOMAN</Tag>
-		<English>After the discovery of Gunpowder: Can conscript units without Conscription Civic and unhappiness in cities with less than 10% own culture. Conscripted units start with experience. Cities do not revolt when captured.</English>
+		<English>After the discovery of Gunpowder: Cities do not revolt when captured. Can conscript units without Conscription Civic in cities with less than 10% own culture. No unhappiness from conscripting units and conscripted units start with experience.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_NETHERLANDS</Tag>
@@ -277,11 +277,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_PORTUGAL</Tag>
-		<English>After entering the Medieval Era: +100%[ICON_COMMERCE] from oversea trade routes. Trade missions grant 50% more [ICON_COMMERCE] for each instance of a happiness resource in trading city's fatcross that Portugal does not have access to without import trading.</English>
+		<English>After entering the Medieval Era: +100%[ICON_COMMERCE] from oversea trade routes. Trade missions grant 50% more [ICON_GOLD] for each instance of a happiness resource in trading city's fatcross that Portugal does not have access to without import trading.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_KOREA</Tag>
-		<English>After entering the Industrial Era: Towns provide +1[ICON_COMMERCE] for each three adjacent Towns. Great works give additional [ICON_COMMERCE] if target city has access to Hit Singles or Hit Movies (insufficient resources decrease [ICON_COMMERCE] bonus).</English>
+		<English>After entering the Industrial Era: Towns provide +1[ICON_COMMERCE] for each three adjacent Towns. Great works give additional [ICON_GOLD] if target city has access to Hit Singles or Hit Movies (insufficient resources decrease [ICON_GOLD] bonus).</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_HOLY_ROMAN</Tag>
