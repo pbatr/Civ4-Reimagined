@@ -6079,7 +6079,7 @@ void CvTeam::setTechBoosted(TechTypes eIndex, PlayerTypes ePlayer, bool bNewValu
 		{
 			int iTechBoost = GC.getDefineINT("EUREKA_TECH_BOOST_PERCENTAGE");
 
-			if (GC.getTechInfo(eIndex).getEra() <= GC.getDefineINT("ERA_ANCIENT"))
+			if (GC.getTechInfo(eIndex).getEra() <= GC.getDefineINT("ERA_CLASSICAL"))
 			{
 				iTechBoost += GET_PLAYER(ePlayer).getAdditionalAncientEurekaBoost();
 			}
