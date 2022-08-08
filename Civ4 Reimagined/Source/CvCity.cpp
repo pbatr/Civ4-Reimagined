@@ -11015,16 +11015,16 @@ int CvCity::getBuildingCommerceByBuilding(CommerceTypes eIndex, BuildingTypes eB
 				// Civ4 Reimagined START: Commerce gain from shrines and headquarter buildings now suffers dimished returns (restricted growth) and can not exceed iCap.
 				int iCap = GC.getDefineINT("COMMERCE_CAP_FOR_SHRINES_AND_HEADQUARTERS");
 	
-				if (GC.getBuildingInfo(eBuilding).getGlobalReligionCommerce() != NO_RELIGION)
+				if ((ReligionTypes)GC.getBuildingInfo(eBuilding).getGlobalReligionCommerce() != NO_RELIGION)
 				{
-					iCommerce += ( GC.getReligionInfo((ReligionTypes)(GC.getBuildingInfo(eBuilding).getGlobalReligionCommerce())).getGlobalReligionCommerce(eIndex) * restrictedGrowth(GC.getGameINLINE().countReligionLevels((ReligionTypes)(GC.getBuildingInfo(eBuilding).getGlobalReligionCommerce())), iCap) ) * getNumActiveBuilding(eBuilding);
+					iCommerce += GET_PLAYER(getOwnerINLINE()).getShrineCommerceIncome(eIndex, (ReligionTypes)GC.getBuildingInfo(eBuilding).getGlobalReligionCommerce()) * getNumActiveBuilding(eBuilding);
 				}
 
 				if (GC.getBuildingInfo(eBuilding).getGlobalCorporationCommerce() != NO_CORPORATION)
 				{
 					CorporationTypes eCorporation = (CorporationTypes)GC.getBuildingInfo(eBuilding).getGlobalCorporationCommerce();
 					
-					iCommerce += ( GC.getCorporationInfo(eCorporation).getHeadquarterCommerce(eIndex) * restrictedGrowth(GC.getGameINLINE().countCorporationLevels(eCorporation), iCap) ) * getNumActiveBuilding(eBuilding);
+					iCommerce += ( GC.getCorporationInfo(eCorporation).getHeadquarterCommerce(eIndex) * ::restrictedGrowth(GC.getGameINLINE().countCorporationLevels(eCorporation), iCap) ) * getNumActiveBuilding(eBuilding);
 				}
 				// Civ4 Reimagined END
 			}
@@ -11161,13 +11161,19 @@ int CvCity::getAdditionalBaseCommerceRateByBuildingImpl(CommerceTypes eIndex, Bu
 				iExtraRate += GET_PLAYER(getOwnerINLINE()).getStateReligionBuildingCommerce(eIndex);
 			}
 		}
-		if (kBuilding.getGlobalReligionCommerce() != NO_RELIGION)
+
+		// Civ4 Reimagined
+		int iCap = GC.getDefineINT("COMMERCE_CAP_FOR_SHRINES_AND_HEADQUARTERS");
+
+		if ((ReligionTypes)kBuilding.getGlobalReligionCommerce() != NO_RELIGION)
 		{
-			iExtraRate += GC.getReligionInfo((ReligionTypes)(kBuilding.getGlobalReligionCommerce())).getGlobalReligionCommerce(eIndex) * GC.getGameINLINE().countReligionLevels((ReligionTypes)(kBuilding.getGlobalReligionCommerce()));
+			iExtraRate += GET_PLAYER(getOwnerINLINE()).getShrineCommerceIncome(eIndex, (ReligionTypes)kBuilding.getGlobalReligionCommerce());
 		}
-		if (kBuilding.getGlobalCorporationCommerce() != NO_CORPORATION)
+
+		if ((CorporationTypes)kBuilding.getGlobalCorporationCommerce() != NO_CORPORATION)
 		{
-			iExtraRate += GC.getCorporationInfo((CorporationTypes)(kBuilding.getGlobalCorporationCommerce())).getHeadquarterCommerce(eIndex) * GC.getGameINLINE().countCorporationLevels((CorporationTypes)(kBuilding.getGlobalCorporationCommerce()));
+			CorporationTypes eCorporation = (CorporationTypes)kBuilding.getGlobalCorporationCommerce();	
+			iExtraRate += ( GC.getCorporationInfo(eCorporation).getHeadquarterCommerce(eIndex) * ::restrictedGrowth(GC.getGameINLINE().countCorporationLevels(eCorporation), iCap));
 		}
 		// ignore double-time check since this assumes you are building it this turn
 
@@ -18256,12 +18262,6 @@ void CvCity::getBuildQueue(std::vector<std::string>& astrQueue) const
 
 		pNode = nextOrderQueueNode(pNode);
 	}
-}
-
-// Civ4 Reimagined
-int CvCity::restrictedGrowth(int numCities, int cap) const
-{
-	return (int)(cap - cap * exp(-0.02 * (double)numCities));
 }
 
 // Civ4 Reimagined

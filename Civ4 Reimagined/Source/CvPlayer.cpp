@@ -1094,6 +1094,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iBuildingProductionModifierFromCapital = 0; // Civ4 Reimagined
 	m_iCultureResistanceModifier = 0; // Civ4 Reimagined
 	m_iFreshWaterHealthModifier = 0; // Civ4 Reimagined
+	m_iStateReligionShrineModifier = 0; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -12763,6 +12764,7 @@ void CvPlayer::changeStateReligionCount(int iChange)
 		updateMaintenance();
 		updateReligionHappiness();
 		updateReligionCommerce();
+		updateBuildingCommerce();
 		updateStateReligionTempleCache();
 
 		GC.getGameINLINE().AI_makeAssignWorkDirty();
@@ -14213,6 +14215,7 @@ void CvPlayer::setLastStateReligion(ReligionTypes eNewValue)
 		updateMaintenance();
 		updateReligionHappiness();
 		updateReligionCommerce();
+		updateBuildingCommerce();
 
 		GC.getGameINLINE().updateSecretaryGeneral();
 
@@ -21406,6 +21409,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iBuildingProductionModifierFromCapital); // Civ4 Reimagined
 	pStream->Read(&m_iCultureResistanceModifier); // Civ4 Reimagined
 	pStream->Read(&m_iFreshWaterHealthModifier); // Civ4 Reimagined
+	pStream->Read(&m_iStateReligionShrineModifier); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -22070,6 +22074,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iBuildingProductionModifierFromCapital); // Civ4 Reimagined
 	pStream->Write(m_iCultureResistanceModifier); // Civ4 Reimagined
 	pStream->Write(m_iFreshWaterHealthModifier); // Civ4 Reimagined
+	pStream->Write(m_iStateReligionShrineModifier); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -28648,6 +28653,39 @@ void CvPlayer::changeFreshWaterHealthModifier(int iChange)
 }
 
 // Civ4 Reimagined
+int CvPlayer::getStateReligionShrineModifier() const
+{
+	return m_iStateReligionShrineModifier;
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeStateReligionShrineModifier(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iStateReligionShrineModifier = m_iStateReligionShrineModifier + iChange;
+
+		updateBuildingCommerce();
+	}
+}
+
+// Civ4 Reimagined
+int CvPlayer::getShrineCommerceIncome(CommerceTypes eIndex, ReligionTypes eReligion) const
+{
+	const int iCap = GC.getDefineINT("COMMERCE_CAP_FOR_SHRINES_AND_HEADQUARTERS");
+
+	int iShrineCommerce = (GC.getReligionInfo((ReligionTypes)(eReligion)).getGlobalReligionCommerce(eIndex) * ::restrictedGrowth(GC.getGameINLINE().countReligionLevels(eReligion), iCap));
+
+	if (getStateReligion() == eReligion)
+	{
+		iShrineCommerce *= 100 + getStateReligionShrineModifier();
+		iShrineCommerce /= 100;
+	}
+
+	return iShrineCommerce;
+}
+
+// Civ4 Reimagined
 CivicTypes CvPlayer::getFreeCivicEnabled() const
 {
 	return m_iFreeCivicEnabled;
@@ -29741,6 +29779,7 @@ void CvPlayer::updateUniquePowers(TechTypes eTech)
 		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_DIVINE_RIGHT"))
 	{
 		setFaithConquest(true);
+		changeStateReligionShrineModifier(50);
 		notifyUniquePowersChanged(true);
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_OTTOMAN")

@@ -1525,6 +1525,9 @@ public:
 	void changeFreshWaterHealthModifier(int iChange); // Civ4 Reimagined
 	int getFreshWaterHealthModifier() const; // Civ4 Reimagined
 	void updateStateReligionTempleCache(); // Civ4 Reimagined
+	int getStateReligionShrineModifier() const; // Civ4 Reimagined
+	void changeStateReligionShrineModifier(int iChange); // Civ4 Reimagined
+	int getShrineCommerceIncome(CommerceTypes eIndex, ReligionTypes eReligion) const; // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1816,6 +1819,7 @@ protected:
 	int m_iBuildingProductionModifierFromCapital; // Civ4 Reimagind
 	int m_iCultureResistanceModifier; // Civ4 Reimagined
 	int m_iFreshWaterHealthModifier; // Civ4 Reimagined
+	int m_iStateReligionShrineModifier; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
 

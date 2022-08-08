@@ -227,6 +227,12 @@ inline DirectionTypes directionXY(const CvPlot* pFromPlot, const CvPlot* pToPlot
 	return directionXY(dxWrap(pToPlot->getX_INLINE() - pFromPlot->getX_INLINE()), dyWrap(pToPlot->getY_INLINE() - pFromPlot->getY_INLINE()));
 }
 
+// Civ4 Reimagined
+inline int restrictedGrowth(int numCities, int cap)
+{
+	return (int)(cap - cap * exp(-0.02 * (double)numCities));
+}
+
 CvPlot* plotCity(int iX, int iY, int iIndex);																			// Exposed to Python
 int plotCityXY(int iDX, int iDY);																									// Exposed to Python
 int plotCityXY(const CvCity* pCity, const CvPlot* pPlot);													// Exposed to Python
