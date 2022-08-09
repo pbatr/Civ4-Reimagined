@@ -5266,6 +5266,7 @@ void CvPlot::setOwner(PlayerTypes eNewValue, bool bCheckUnits, bool bUpdatePlotG
 				{
 					pWorkingCity->updateFeatureHappiness();
 					pWorkingCity->updateImprovementsInRadius();
+					pWorkingCity->updateFeatureCommerce(); // Civ4 Reimagined
 				}
 			}
 
@@ -5331,6 +5332,7 @@ void CvPlot::setOwner(PlayerTypes eNewValue, bool bCheckUnits, bool bUpdatePlotG
 				{
 					pWorkingCity->updateFeatureHappiness();
 					pWorkingCity->updateImprovementsInRadius();
+					pWorkingCity->updateFeatureCommerce(); // Civ4 Reimagined
 				}
 			}
 
@@ -6810,6 +6812,12 @@ int CvPlot::calculateImprovementYieldChange(ImprovementTypes eImprovement, Yield
 			if (iBonusYield > 0 && eImprovement == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FARM") && eYield == YIELD_FOOD)
 			{
 				iBonusYield += GET_PLAYER(ePlayer).getAdditionalFarmBonusYield();
+			}
+
+			// Civ4 Reimagined: Celtic UP
+			if (eImprovement == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_MINE") && eYield == YIELD_COMMERCE)
+			{
+				iBonusYield += GET_PLAYER(ePlayer).getAdditionalMineBonusCommerce();
 			}
 
 			// Civ4 Reimagined: Russia UP

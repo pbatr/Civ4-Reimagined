@@ -5648,6 +5648,12 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 												iYieldChange += GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getAdditionalFarmBonusYield();
 											}
 
+											// Civ4 Reimagined: Celtic UP
+											if (GC.getBuildInfo((BuildTypes) iI).getImprovement() == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_MINE") && k == YIELD_COMMERCE)
+											{
+												iYieldChange += GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getAdditionalMineBonusCommerce();
+											}
+
 											// Civ4 Reimagined: Russia UP
 											if (kImprovementInfo.getImprovementBonusYield(eBonus, k) > 0 && GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getStrategicBonusYieldModifier() != 0)
 											{

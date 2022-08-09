@@ -193,7 +193,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_CELTS</Tag>
-		<English>Iron is revealed at the start of the game. Cities gain +0.25[ICON_CULTURE] per unimproved Forest in their territory.</English>
+		<English>Iron is revealed at the start of the game. +2[ICON_COMMERCE] from Mines improving resources. Cities gain +0.25[ICON_CULTURE] per unimproved Forest in their territory. Pillaging does not cost movement points. Double [ICON_GOLD] bonus from conquering enemy cities.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_MALI</Tag>

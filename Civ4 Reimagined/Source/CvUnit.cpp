@@ -5235,7 +5235,10 @@ bool CvUnit::pillage()
 		pPlot->setRouteType(NO_ROUTE, true); // XXX downgrade rail???
 	}
 
-	changeMoves(GC.getMOVE_DENOMINATOR());
+	if (!GET_PLAYER(getOwnerINLINE()).isFreePillage())
+	{
+		changeMoves(GC.getMOVE_DENOMINATOR());
+	}
 
 	if (pPlot->isActiveVisible(false))
 	{

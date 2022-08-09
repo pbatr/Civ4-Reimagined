@@ -8133,7 +8133,7 @@ void CvCity::updateFeatureCommerce()
 			if (pLoopPlot != NULL)
 			{
 				FeatureTypes eFeature = pLoopPlot->getFeatureType();
-				if (eFeature != NO_FEATURE && pLoopPlot->getImprovementType() == NO_IMPROVEMENT)
+				if (eFeature != NO_FEATURE && pLoopPlot->getImprovementType() == NO_IMPROVEMENT && pLoopPlot->getOwnerINLINE() == getOwnerINLINE())
 				{
 					int iSinglePlotCommerce = GET_PLAYER(getOwnerINLINE()).getFeatureCommerce(eFeature, (CommerceTypes)iI);
 					iFeatureCommerce += iSinglePlotCommerce;

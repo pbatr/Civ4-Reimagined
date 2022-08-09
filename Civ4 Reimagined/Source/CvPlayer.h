@@ -573,6 +573,10 @@ public:
 	// Civ4 Reimagined
 	int getAdditionalFarmBonusYield() const;
 	void changeAdditionalFarmBonusYield(int iChange);
+
+	// Civ4 Reimagined
+	int getAdditionalMineBonusCommerce() const;
+	void changeAdditionalMineBonusCommerce(int iChange);
 	
 	// Civ4 Reimagined
 	CivicTypes getFreeCivicEnabled() const;
@@ -1530,6 +1534,10 @@ public:
 	int getShrineCommerceIncome(CommerceTypes eIndex, ReligionTypes eReligion) const; // Civ4 Reimagined
 	void setIsCityImprovesBonus(bool bNewValue); // Civ4 Reimagined
 	bool isCityImprovesBonus() const; // Civ4 Reimagined
+	void setIsFreePillage(bool bNewValue); // Civ4 Reimagined
+	bool isFreePillage() const; // Civ4 Reimagined
+	int getLootCityModifier() const; // Civ4 Reimagined
+	void changeLootCityModifier(int iChange); // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1808,6 +1816,7 @@ protected:
 	bool m_bCanRemoveFeatures; // Civ4 Reimagined
 	bool m_bCityRevoltOnKill; // Civ4 Reimagined
 	int m_iAdditionalFarmBonusYield; // Civ4 Reimagined
+	int m_iAdditionalMineBonusCommerce; // Civ4 Reimagined
 	int m_iGreatPeopleRatePerReligionModifier; // Civ4 Reimagined
 	bool m_bNoReligionRemoval; // Civ4 Reimagined
 	bool m_bCoastalRaid; // Civ4 Reimagined
@@ -1822,6 +1831,7 @@ protected:
 	int m_iCultureResistanceModifier; // Civ4 Reimagined
 	int m_iFreshWaterHealthModifier; // Civ4 Reimagined
 	int m_iStateReligionShrineModifier; // Civ4 Reimagined
+	int m_iLootCityModifier; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
 
@@ -1841,6 +1851,7 @@ protected:
 	bool m_bDesertGold; // Civ4 Reimagined
 	bool m_bCanBuildWindmillsOnCoast; // Civ4 Reimagined
 	bool m_bCityImprovesBonus; // Civ4 Reimagined
+	bool m_bFreePillage; // Civ4 Reimagined
 
 
 	bool m_bDisableHuman;	// Set to true to disable isHuman() check

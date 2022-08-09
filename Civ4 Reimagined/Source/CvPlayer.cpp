@@ -1074,6 +1074,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iCapitalCultureAttitudeBonus = 0; // Civ4 Reimagined
 	m_iAdditionalAncientEurekaBoost = 0; // Civ4 Reimagined
 	m_iAdditionalFarmBonusYield = 0; // Civ4 Reimagined
+	m_iAdditionalMineBonusCommerce = 0; // Civ4 Reimagined
 	m_iPillageHeal = 0; // Civ4 Reimagined
 	m_iGreatPeopleRatePerReligionModifier = 0; // Civ4 Reimagined
 	m_eIdeology = IDEOLOGY_CONSERVATISM; // Civ4 Reimagined
@@ -1095,7 +1096,9 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iCultureResistanceModifier = 0; // Civ4 Reimagined
 	m_iFreshWaterHealthModifier = 0; // Civ4 Reimagined
 	m_iStateReligionShrineModifier = 0; // Civ4 Reimagined
+	m_iLootCityModifier = 0; // Civ4 Reimagined
 	m_bCityImprovesBonus = false; // Civ4 Reimagined
+	m_bFreePillage = false; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -2785,6 +2788,10 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 		delete pyOldCity;	// python fxn must not hold on to this pointer 
 
 		iCaptureGold = (int)lCaptureGold;
+
+		// Civ4 Reimagined: Celtic UP
+		iCaptureGold *= 100 + getLootCityModifier();
+		iCaptureGold /= 100;
 	}
 
 	changeGold(iCaptureGold);
@@ -21392,6 +21399,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iCapitalCultureAttitudeBonus); // Civ4 Reimagined
 	pStream->Read(&m_iAdditionalAncientEurekaBoost); // Civ4 Reimagined
 	pStream->Read(&m_iAdditionalFarmBonusYield); // Civ4 Reimagined
+	pStream->Read(&m_iAdditionalMineBonusCommerce); // Civ4 Reimagined
 	pStream->Read(&m_iPillageHeal); // Civ4 Reimagined
 	pStream->Read(&m_iGreatPeopleRatePerReligionModifier); // Civ4 Reimagined
 	pStream->Read(&m_bAlwaysFreshWater); // Civ4 Reimagined
@@ -21411,7 +21419,9 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iCultureResistanceModifier); // Civ4 Reimagined
 	pStream->Read(&m_iFreshWaterHealthModifier); // Civ4 Reimagined
 	pStream->Read(&m_iStateReligionShrineModifier); // Civ4 Reimagined
+	pStream->Read(&m_iLootCityModifier); // Civ4 Reimagined
 	pStream->Read(&m_bCityImprovesBonus); // Civ4 Reimagined
+	pStream->Read(&m_bFreePillage); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -22058,6 +22068,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iCapitalCultureAttitudeBonus); // Civ4 Reimagined
 	pStream->Write(m_iAdditionalAncientEurekaBoost); // Civ4 Reimagined
 	pStream->Write(m_iAdditionalFarmBonusYield); // Civ4 Reimagined
+	pStream->Write(m_iAdditionalMineBonusCommerce); // Civ4 Reimagined
 	pStream->Write(m_iPillageHeal); // Civ4 Reimagined
 	pStream->Write(m_iGreatPeopleRatePerReligionModifier); // Civ4 Reimagined
 	pStream->Write(m_bAlwaysFreshWater); // Civ4 Reimagined
@@ -22077,7 +22088,9 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iCultureResistanceModifier); // Civ4 Reimagined
 	pStream->Write(m_iFreshWaterHealthModifier); // Civ4 Reimagined
 	pStream->Write(m_iStateReligionShrineModifier); // Civ4 Reimagined
+	pStream->Write(m_iLootCityModifier); // Civ4 Reimagined
 	pStream->Write(m_bCityImprovesBonus); // Civ4 Reimagined
+	pStream->Write(m_bFreePillage); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -28491,6 +28504,25 @@ void CvPlayer::changeAdditionalFarmBonusYield(int iChange)
 	if (iChange != 0)
 	{
 		m_iAdditionalFarmBonusYield += iChange;
+
+		updateYield();
+	}
+}
+
+// Civ4 Reimagined
+int CvPlayer::getAdditionalMineBonusCommerce() const
+{
+	return m_iAdditionalMineBonusCommerce;
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeAdditionalMineBonusCommerce(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iAdditionalMineBonusCommerce += iChange;
+
+		updateYield();
 	}
 }
 
@@ -28669,6 +28701,21 @@ void CvPlayer::changeStateReligionShrineModifier(int iChange)
 		m_iStateReligionShrineModifier = m_iStateReligionShrineModifier + iChange;
 
 		updateBuildingCommerce();
+	}
+}
+
+// Civ4 Reimagined
+int CvPlayer::getLootCityModifier() const
+{
+	return m_iLootCityModifier;
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeLootCityModifier(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iLootCityModifier = m_iLootCityModifier + iChange;
 	}
 }
 
@@ -29662,6 +29709,18 @@ bool CvPlayer::isCityImprovesBonus() const
 	return m_bCityImprovesBonus;
 }
 
+//Civ4 Reimagined
+void CvPlayer::setIsFreePillage(bool bNewValue)
+{
+	m_bFreePillage = bNewValue;
+}
+
+//Civ4 Reimagined
+bool CvPlayer::isFreePillage() const
+{
+	return m_bFreePillage;
+}
+
 // Civ4 Reimagined
 bool CvPlayer::hasGoodRelationsWithPope() const
 {
@@ -29916,6 +29975,9 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		{
 			changeFeatureCommerce((FeatureTypes)GC.getInfoTypeForString("FEATURE_FOREST"), COMMERCE_CULTURE, GC.getDefineINT("UNIQUE_POWER_CELT_CULTURE"));
 			GET_TEAM(getTeam()).setForceRevealedBonus((BonusTypes)GC.getInfoTypeForString("BONUS_IRON"), true);
+			setIsFreePillage(true);
+			changeLootCityModifier(100);
+			changeAdditionalMineBonusCommerce(2);
 			notifyUniquePowersChanged(true);
 		}
 	}
