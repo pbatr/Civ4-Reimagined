@@ -497,7 +497,7 @@ void CvPlot::doImprovement()
 						// Civ4 Reimagined
 						if (GET_PLAYER(getOwnerINLINE()).isDesertGold() && iI == GC.getInfoTypeForString("BONUS_GOLD"))
 						{
-							iOdds *= 2;
+							iOdds /= 2;
 						}
 
 						if( GC.getGameINLINE().getSorenRandNum(iOdds, "Bonus Discovery") == 0)
