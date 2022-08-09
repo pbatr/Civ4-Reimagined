@@ -173,7 +173,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_MAYA</Tag>
-		<English>Farms are always irrigated even without fresh water and can be build without fresh water. Can remove Forest/Jungle from the start. Chopping Jungle gives production. Cities always have access to fresh water.</English>
+		<English>Farms are always irrigated even without fresh water and can be build without fresh water. Can remove Forest/Jungle from the start. Cities always have access to fresh water and get maximum bonus yields if founded on a resource.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_KHMER</Tag>

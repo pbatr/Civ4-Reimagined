@@ -2817,10 +2817,11 @@ int CvPlot::getFeatureProduction(BuildTypes eBuild, TeamTypes eTeam, CvCity** pp
 	int iFeatureProduction = GC.getBuildInfo(eBuild).getFeatureProduction(getFeatureType());
 
 	// Civ4 Reimagined: Maya UP
+	/*
 	if (GET_PLAYER((*ppCity)->getOwnerINLINE()).isCanRemoveFeatures() && getFeatureType() == (FeatureTypes)GC.getInfoTypeForString("FEATURE_JUNGLE"))
 	{
 		iFeatureProduction = GC.getDefineINT("UNIQUE_POWER_MAYA");
-	}
+	}*/
 
 	iProduction = iFeatureProduction - (std::max(0, (plotDistance(getX_INLINE(), getY_INLINE(), (*ppCity)->getX_INLINE(), (*ppCity)->getY_INLINE()) - 2)) * 5);
 
@@ -6901,6 +6902,18 @@ int CvPlot::calculateYield(YieldTypes eYield, bool bDisplay) const
 				if (GC.getYieldInfo(eYield).getPopulationChangeDivisor() != 0)
 				{
 					iYield += ((pCity->getPopulation() + GC.getYieldInfo(eYield).getPopulationChangeOffset()) / GC.getYieldInfo(eYield).getPopulationChangeDivisor());
+				}
+
+				// Civ4 Reimagined: Maya UP
+				const eBonus = getBonusType(GET_PLAYER(ePlayer).getTeam());
+				if (GET_PLAYER(ePlayer).isCityImprovesBonus() && eBonus != NO_BONUS)
+				{
+					int iMaxBonusYield = 0;
+					for (int iI = 0; iI < GC.getNumImprovementInfos(); ++iI)
+					{
+						iMaxBonusYield = std::max(iMaxBonusYield, GC.getImprovementInfo((ImprovementTypes)iI).getImprovementBonusYield(eBonus, eYield));
+					}
+					iYield += iMaxBonusYield;
 				}
 
 				bCity = true;

@@ -1528,6 +1528,8 @@ public:
 	int getStateReligionShrineModifier() const; // Civ4 Reimagined
 	void changeStateReligionShrineModifier(int iChange); // Civ4 Reimagined
 	int getShrineCommerceIncome(CommerceTypes eIndex, ReligionTypes eReligion) const; // Civ4 Reimagined
+	void setIsCityImprovesBonus(bool bNewValue); // Civ4 Reimagined
+	bool isCityImprovesBonus() const; // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1838,6 +1840,7 @@ protected:
 	bool m_bCaptureSlaves; // Civ4 Reimagined
 	bool m_bDesertGold; // Civ4 Reimagined
 	bool m_bCanBuildWindmillsOnCoast; // Civ4 Reimagined
+	bool m_bCityImprovesBonus; // Civ4 Reimagined
 
 
 	bool m_bDisableHuman;	// Set to true to disable isHuman() check

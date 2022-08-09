@@ -1095,6 +1095,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iCultureResistanceModifier = 0; // Civ4 Reimagined
 	m_iFreshWaterHealthModifier = 0; // Civ4 Reimagined
 	m_iStateReligionShrineModifier = 0; // Civ4 Reimagined
+	m_bCityImprovesBonus = false; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -21410,6 +21411,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iCultureResistanceModifier); // Civ4 Reimagined
 	pStream->Read(&m_iFreshWaterHealthModifier); // Civ4 Reimagined
 	pStream->Read(&m_iStateReligionShrineModifier); // Civ4 Reimagined
+	pStream->Read(&m_bCityImprovesBonus); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -22075,6 +22077,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iCultureResistanceModifier); // Civ4 Reimagined
 	pStream->Write(m_iFreshWaterHealthModifier); // Civ4 Reimagined
 	pStream->Write(m_iStateReligionShrineModifier); // Civ4 Reimagined
+	pStream->Write(m_bCityImprovesBonus); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -29645,6 +29648,19 @@ bool CvPlayer::canBuildWindmillsOnCoast() const
 	return m_bCanBuildWindmillsOnCoast;
 }
 
+//Civ4 Reimagined
+void CvPlayer::setIsCityImprovesBonus(bool bNewValue)
+{
+	m_bCityImprovesBonus = bNewValue;
+
+	updateYield();
+}
+
+//Civ4 Reimagined
+bool CvPlayer::isCityImprovesBonus() const
+{
+	return m_bCityImprovesBonus;
+}
 
 // Civ4 Reimagined
 bool CvPlayer::hasGoodRelationsWithPope() const
@@ -30076,6 +30092,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			GET_TEAM(getTeam()).changeIgnoreIrrigationCount(1);
 			setAlwaysFreshWater(true);
 			setCanRemoveFeatures(true);
+			setIsCityImprovesBonus(true);
 			notifyUniquePowersChanged(true);
 		}
 	}
