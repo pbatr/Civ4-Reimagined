@@ -29912,10 +29912,10 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CELT"))
 	{
-		if (eEra == ERA_CLASSICAL)
+		if (eEra == ERA_ANCIENT)
 		{
 			changeFeatureCommerce((FeatureTypes)GC.getInfoTypeForString("FEATURE_FOREST"), COMMERCE_CULTURE, GC.getDefineINT("UNIQUE_POWER_CELT_CULTURE"));
-			changeFeatureCommerce((FeatureTypes)GC.getInfoTypeForString("FEATURE_FOREST"), COMMERCE_RESEARCH, GC.getDefineINT("UNIQUE_POWER_CELT_RESEARCH"));
+			GET_TEAM(getTeam()).setForceRevealedBonus((BonusTypes)GC.getInfoTypeForString("BONUS_IRON"), true);
 			notifyUniquePowersChanged(true);
 		}
 	}

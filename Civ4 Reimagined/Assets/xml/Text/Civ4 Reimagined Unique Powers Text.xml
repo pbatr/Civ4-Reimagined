@@ -193,7 +193,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_CELTS</Tag>
-		<English>After entering the Classical Era: Cities gain +0.25[ICON_RESEARCH] and +0.25[ICON_CULTURE] per unimproved Forest in their territory.</English>
+		<English>Iron is revealed at the start of the game. Cities gain +0.25[ICON_CULTURE] per unimproved Forest in their territory.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_MALI</Tag>
