@@ -8283,7 +8283,7 @@ bool CvPlayer::canBuild(const CvPlot* pPlot, BuildTypes eBuild, bool bTestEra, b
 			if (!isCanRemoveFeatures() && !(GET_TEAM(getTeam()).isHasTech((TechTypes)GC.getBuildInfo(eBuild).getFeatureTech(pPlot->getFeatureType()))))
 			{
 				BonusTypes eBonus = pPlot->getBonusType();
-				if (eBonus == NO_BONUS || (GC.getBonusInfo(eBonus).getTechReveal() > -1 && !(GET_TEAM(getTeam()).isHasTech((TechTypes)GC.getBonusInfo(eBonus).getTechReveal()))))
+				if (eBonus == NO_BONUS || (GC.getBonusInfo(eBonus).getTechReveal() > -1 && !(GET_TEAM(getTeam()).isBonusRevealed(eBonus))))
 				{
 					return false;
 				}
@@ -23510,7 +23510,7 @@ bool CvPlayer::canDoEvent(EventTypes eEvent, const EventTriggeredData& kTriggere
 
 	if (NO_BONUS != kEvent.getBonusRevealed())
 	{
-		if (GET_TEAM(getTeam()).isHasTech((TechTypes)GC.getBonusInfo((BonusTypes)kEvent.getBonusRevealed()).getTechReveal()))
+		if (GET_TEAM(getTeam()).isBonusRevealed((BonusTypes)kEvent.getBonusRevealed()))
 		{
 			return false;
 		}

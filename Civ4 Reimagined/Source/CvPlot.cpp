@@ -474,7 +474,7 @@ void CvPlot::doImprovement()
 			FAssertMsg((0 < GC.getNumBonusInfos()), "GC.getNumBonusInfos() is not greater than zero but an array is being allocated in CvPlot::doImprovement");
 			for (iI = 0; iI < GC.getNumBonusInfos(); ++iI)
 			{
-				if (GET_TEAM(getTeam()).isHasTech((TechTypes)(GC.getBonusInfo((BonusTypes) iI).getTechReveal())))
+				if (GET_TEAM(getTeam()).isBonusRevealed((BonusTypes) iI))
 				{
 /************************************************************************************************/
 /* UNOFFICIAL_PATCH                       03/04/10                                jdog5000      */

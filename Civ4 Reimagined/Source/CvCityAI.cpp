@@ -10841,7 +10841,7 @@ int CvCityAI::AI_specialPlotImprovementValue(CvPlot* pPlot) const
 		{
 			for (BonusTypes i = (BonusTypes)0; i < GC.getNumBonusInfos(); i=(BonusTypes)(i+1))
 			{
-				if (GET_TEAM(getTeam()).isHasTech((TechTypes)(GC.getBonusInfo(i).getTechReveal())))
+				if (GET_TEAM(getTeam()).isBonusRevealed((BonusTypes)i))
 				{
 					if (GC.getImprovementInfo(eImprovement).getImprovementBonusDiscoverRand(i) > 0)
 					{

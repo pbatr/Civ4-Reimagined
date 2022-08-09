@@ -1758,7 +1758,7 @@ void CvGame::normalizeAddFoodBonuses()
 							{
 								if ((kLoopBonus.getTechCityTrade() == NO_TECH) || (GC.getTechInfo((TechTypes)(kLoopBonus.getTechCityTrade())).getEra() <= getStartEra()))
 								{
-									if (GET_TEAM(kLoopPlayer.getTeam()).isHasTech((TechTypes)kLoopBonus.getTechReveal()))
+									if (GET_TEAM(kLoopPlayer.getTeam()).isBonusRevealed((BonusTypes)iK))
 									{
 										// Civ4 Reimagined: Added coastal condition for sea resources
 										if (pLoopPlot->canHaveBonus(((BonusTypes)iK), bIgnoreLatitude) && (!pLoopPlot->isWater() || pStartingPlot->isCoastalLand(GC.getMIN_WATER_SIZE_FOR_OCEAN())))
@@ -2211,7 +2211,7 @@ void CvGame::normalizeAddExtras()
 													{
 														if ((GC.getBonusInfo((BonusTypes)iK).getTechCityTrade() == NO_TECH) || (GC.getTechInfo((TechTypes)(GC.getBonusInfo((BonusTypes)iK).getTechCityTrade())).getEra() <= getStartEra()) || (BonusTypes)iK == eUniqueBonus)
 														{
-															if (GET_TEAM(kLoopPlayer.getTeam()).isHasTech((TechTypes)(GC.getBonusInfo((BonusTypes)iK).getTechReveal())) || (BonusTypes)iK == eUniqueBonus)
+															if (GET_TEAM(kLoopPlayer.getTeam()).isBonusRevealed((BonusTypes)iK) || (BonusTypes)iK == eUniqueBonus)
 															{
 																if ((iPass == 1) ? CvMapGenerator::GetInstance().canPlaceBonusAt(((BonusTypes)iK), pLoopPlot->getX(), pLoopPlot->getY(), bIgnoreLatitude) : pLoopPlot->canHaveBonus(((BonusTypes)iK), bIgnoreLatitude))
 																{
