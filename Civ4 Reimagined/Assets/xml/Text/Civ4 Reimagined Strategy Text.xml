@@ -407,7 +407,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_GREEK_ODEON_STRATEGY</Tag>
-		<English>The [COLOR_BUILDING_TEXT]Odeon[COLOR_REVERT] grants more happiness, increased great person rate and culture.</English>
+		<English>The [COLOR_BUILDING_TEXT]Odeon[COLOR_REVERT] grants more happiness. It also increases great person rate and culture per exiting world wonder in the city.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_CARTHAGE_COTHON_STRATEGY</Tag>

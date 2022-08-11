@@ -1097,6 +1097,8 @@ public:
 	int getGreatEngineerPointsFromCathedrals() const;
 	bool hasStateReligionTemple() const;
 	void updateStateReligionTempleCache();
+	void changeGreatPeopleRatePerWorldWonder(int iValue); // Civ4 Reimagined
+	int getGreatPeopleRatePerWorldWonder() const; // Civ4 Reimagined
 
 	void read(FDataStreamBase* pStream);
 	void write(FDataStreamBase* pStream);
@@ -1279,6 +1281,7 @@ protected:
 	int m_iDistance; // Civ4 Reimagined
 	int m_iImmigrants; // Civ4 Reimagined
 	int m_iVoteSourceStateReligionUnitProductionModifier; // Civ4 Reimagined
+	int m_iGreatPeopleRatePerWorldWonder; // Civ4 Reimagined
 
 	bool m_bNeverLost;
 	bool m_bBombarded;

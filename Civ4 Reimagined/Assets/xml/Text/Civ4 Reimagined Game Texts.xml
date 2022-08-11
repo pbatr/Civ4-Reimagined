@@ -1489,4 +1489,8 @@
 		<Tag>TXT_KEY_MISC_FREE_WORKER</Tag>
 		<English>Bureaucrat</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_BIRTH_RATE_PER_WORLD_WONDER</Tag>
+		<English>[ICON_BULLET]%D1[ICON_GREATPEOPLE] per World Wonder in City</English>
+	</TEXT>
 </Civ4GameText>

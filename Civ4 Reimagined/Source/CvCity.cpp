@@ -542,6 +542,7 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 	m_iCitySizeBoost = 0;
 	m_iSpecialistFreeExperience = 0;
 	m_iGoldForHappinessBonus = 0; // Civ4 Reimagined
+	m_iGreatPeopleRatePerWorldWonder = 0; // Civ4 Reimagined
 	m_iEspionageDefenseModifier = 0;
 	m_iDistance = 0; // Civ4 Reimagined
 	m_iImmigrants = 0; // Civ4 Reimagined
@@ -4395,6 +4396,7 @@ void CvCity::processBuilding(BuildingTypes eBuilding, int iChange, bool bObsolet
 
 		changeEspionageDefenseModifier(GC.getBuildingInfo(eBuilding).getEspionageDefenseModifier() * iChange);
 		changeGreatPeopleRateModifier(GC.getBuildingInfo(eBuilding).getGreatPeopleRateModifier() * iChange);
+		changeGreatPeopleRatePerWorldWonder(GC.getBuildingInfo(eBuilding).getGreatPeopleRateChangePerWorldWonder() * iChange); // Civ4 Reimagined
 		changeFreeExperience(GC.getBuildingInfo(eBuilding).getFreeExperience() * iChange);
 		changeMaxFoodKeptPercent(GC.getBuildingInfo(eBuilding).getFoodKept() * iChange);
 		changeMaxAirlift(GC.getBuildingInfo(eBuilding).getAirlift() * iChange);
@@ -6385,8 +6387,10 @@ int CvCity::getGreatPeopleRate() const
 		return 0;
 	}
 
+	int iGreatPeopleRate = getBaseGreatPeopleRate();
+
 	// Civ4 Reimagined: Dutch UP
-	int iGreatPeopleRate = getBaseGreatPeopleRate() + GET_PLAYER(getOwnerINLINE()).getGreatMerchantPointsPerTrade() * getTradeYield(YIELD_COMMERCE) / 100;
+	iGreatPeopleRate += GET_PLAYER(getOwnerINLINE()).getGreatMerchantPointsPerTrade() * getTradeYield(YIELD_COMMERCE) / 100;
 
 	// Civ4 Reimagined: American UP
 	iGreatPeopleRate += GET_PLAYER(getOwnerINLINE()).getGreatPeoplePointsPerTrade() * getTradeYield(YIELD_COMMERCE) / 100;
@@ -6399,6 +6403,8 @@ int CvCity::getGreatPeopleRate() const
 
 	// Civ4 Reimagined: France UP
 	iGreatPeopleRate += getGreatEngineerPointsFromCathedrals();
+
+	iGreatPeopleRate += getGreatPeopleRatePerWorldWonder() * getNumWorldWonders();
 
 	return std::max(0, ((iGreatPeopleRate * getTotalGreatPeopleRateModifier()) / 100));
 }
@@ -6483,6 +6489,15 @@ int CvCity::getAdditionalBaseGreatPeopleRateByBuilding(BuildingTypes eBuilding) 
 	int iExtraRate = 0;
 
 	iExtraRate += kBuilding.getGreatPeopleRateChange();
+
+	// Civ4 Reimagined
+	iExtraRate += kBuilding.getGreatPeopleRateChangePerWorldWonder() * getNumWorldWonders();
+
+	// Civ4 Reimagined
+	if (isWorldWonderClass(((BuildingClassTypes)kBuilding.getBuildingClassType())))
+	{
+		iExtraRate += getGreatPeopleRatePerWorldWonder();
+	}
 
 	// Civ4 Reimagined: France UP
 	if (kBuilding.getReligionType() != NO_RELIGION && kBuilding.getStateReligion() != NO_RELIGION && !isWorldWonderClass(((BuildingClassTypes)kBuilding.getBuildingClassType())))
@@ -12478,6 +12493,23 @@ int CvCity::getGoldForHappinessBonus() const
 
 
 // Civ4 Reimagined
+void CvCity::changeGreatPeopleRatePerWorldWonder(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iGreatPeopleRatePerWorldWonder += iChange;
+	}
+}
+
+
+// Civ4 Reimagined
+int CvCity::getGreatPeopleRatePerWorldWonder() const
+{
+	return m_iGreatPeopleRatePerWorldWonder;
+}
+
+
+// Civ4 Reimagined
 void CvCity::changeNumBonusesInFatCross(BonusTypes eIndex, int iChange)
 {
 	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
@@ -16213,6 +16245,7 @@ void CvCity::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iCitySizeBoost);
 	pStream->Read(&m_iSpecialistFreeExperience);
 	pStream->Read(&m_iGoldForHappinessBonus); // Civ4 Reimagined
+	pStream->Read(&m_iGreatPeopleRatePerWorldWonder); // Civ4 Reimagined
 	pStream->Read(&m_iEspionageDefenseModifier);
 	pStream->Read(&m_iDistance); // Civ4 Reimagined
 	pStream->Read(&m_iImmigrants); // Civ4 Reimagined
@@ -16481,6 +16514,7 @@ void CvCity::write(FDataStreamBase* pStream)
 	pStream->Write(m_iCitySizeBoost);
 	pStream->Write(m_iSpecialistFreeExperience);
 	pStream->Write(m_iGoldForHappinessBonus); // Civ4 Reimagined
+	pStream->Write(m_iGreatPeopleRatePerWorldWonder); // Civ4 Reimagined
 	pStream->Write(m_iEspionageDefenseModifier);
 	pStream->Write(m_iDistance); // Civ4 Reimagined
 	pStream->Write(m_iImmigrants); // Civ4 Reimagined

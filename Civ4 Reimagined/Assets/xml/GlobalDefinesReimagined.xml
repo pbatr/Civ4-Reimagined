@@ -412,7 +412,7 @@
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_GREECE</DefineName>
-		<iDefineIntVal>25</iDefineIntVal> <!-- Number of turns per civic -->
+		<iDefineIntVal>30</iDefineIntVal> <!-- Number of turns per civic -->
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_JAPAN</DefineName>

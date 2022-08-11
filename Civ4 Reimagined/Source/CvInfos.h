@@ -1802,6 +1802,7 @@ public:
 	int getPlotTypeFatCross() const; // Civ4 Reimagined
 	int getGreatPeopleUnitClass() const;				// Exposed to Python
 	int getGreatPeopleRateChange() const;				// Exposed to Python
+	int getGreatPeopleRateChangePerWorldWonder() const; // Civ4 Reimagined
 	int getConquestProbability() const;				// Exposed to Python
 	int getMaintenanceModifier() const;				// Exposed to Python
 	int getAreaDistanceMaintenanceModifier() const; // Civ4 Reimagined
@@ -2078,7 +2079,8 @@ protected:
 	int m_iBonusFatCross; // Civ4 Reimagined
 	int m_iPlotTypeFatCross; // Civ4 Reimagined
 	int m_iGreatPeopleUnitClass;					
-	int m_iGreatPeopleRateChange;				
+	int m_iGreatPeopleRateChange;	
+	int m_iGreatPeopleRateChangePerWorldWonder;	// Civ4 Reimagined
 	int m_iConquestProbability;						
 	int m_iMaintenanceModifier;
 	int m_iAreaDistanceMaintenanceModifier; // Civ4 Reimagined

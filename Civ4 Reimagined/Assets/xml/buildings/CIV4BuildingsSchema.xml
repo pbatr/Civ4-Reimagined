@@ -201,6 +201,7 @@
 	<ElementType name="NoAnarchyCivicOption" content="textOnly"/> <!-- Civ4 Reimagined -->
 	<ElementType name="GreatPeopleUnitClass" content="textOnly"/>
 	<ElementType name="iGreatPeopleRateChange" content="textOnly" dt:type="int"/>
+	<ElementType name="iGreatPeopleRateChangePerWorldWonder" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iHurryAngerModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="bBorderObstacle" content="textOnly" dt:type="boolean"/>
 	<ElementType name="iYield" content="textOnly" dt:type="int"/>
@@ -548,6 +549,7 @@
 		<element type="NoAnarchyCivicOption" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="GreatPeopleUnitClass"/>
 		<element type="iGreatPeopleRateChange"/>
+		<element type="iGreatPeopleRateChangePerWorldWonder" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="iHurryAngerModifier"/>
 		<element type="bBorderObstacle"/>
 		<element type="bTeamShare"/>

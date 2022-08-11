@@ -11243,6 +11243,13 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_NO_NON_STATE_RELIGION_SPREAD"));
 	}
 
+	// Civ4 Reimagined
+	if (kBuilding.getGreatPeopleRateChangePerWorldWonder() != 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_BIRTH_RATE_PER_WORLD_WONDER", kBuilding.getGreatPeopleRateChangePerWorldWonder()));
+	}
+
 	setYieldChangeHelp(szBuffer, gDLL->getText("TXT_KEY_BUILDING_WATER_PLOTS").c_str(), L": ", L"", kBuilding.getSeaPlotYieldChangeArray());
 
 	setYieldChangeHelp(szBuffer, gDLL->getText("TXT_KEY_BUILDING_RIVER_PLOTS").c_str(), L": ", L"", kBuilding.getRiverPlotYieldChangeArray());
@@ -11332,31 +11339,28 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 		}
 
 		// Civ4 Reimagined
-		if (pCity == NULL || ePlayer == NO_PLAYER)
+		if (kBuilding.getCommercePerCultureLevel(iI) != 0)
 		{
-			if (kBuilding.getCommercePerCultureLevel(iI) != 0)
-			{
-				szBuffer.append(NEWLINE);
-				szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_PER_CULTURE_LEVEL", kBuilding.getCommercePerCultureLevel(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
-			}
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_PER_CULTURE_LEVEL", kBuilding.getCommercePerCultureLevel(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
+		}
 
-			if (kBuilding.getCommercePerWorldWonder(iI) != 0)
-			{
-				szBuffer.append(NEWLINE);
-				szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_PER_WORLD_WONDER", kBuilding.getCommercePerWorldWonder(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
-			}
+		if (kBuilding.getCommercePerWorldWonder(iI) != 0)
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_PER_WORLD_WONDER", kBuilding.getCommercePerWorldWonder(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
+		}
 
-			if (kBuilding.getCommerceFromCoast(iI) != 0)
-			{
-				szBuffer.append(NEWLINE);
-				szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_FROM_COAST", kBuilding.getCommerceFromCoast(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
-			}
+		if (kBuilding.getCommerceFromCoast(iI) != 0)
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_FROM_COAST", kBuilding.getCommerceFromCoast(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
+		}
 
-			if (kBuilding.getCommerceFromAirlift(iI) != 0)
-			{
-				szBuffer.append(NEWLINE);
-				szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_FROM_AIRLIFT", kBuilding.getCommerceFromAirlift(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
-			}
+		if (kBuilding.getCommerceFromAirlift(iI) != 0)
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_FROM_AIRLIFT", kBuilding.getCommerceFromAirlift(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
 		}
 	}
 /************************************************************************************************/
@@ -17917,9 +17921,12 @@ void CvGameTextMgr::parseGreatPeopleHelp(CvWStringBuffer &szBuffer, CvCity& city
 		return;
 	}
 
+	// Civ4 Reimagined
+	const int iBaseGPRate = city.getBaseGreatPeopleRate() + city.getGreatPeopleRatePerWorldWonder() * city.getNumWorldWonders();
+
 	szBuffer.append(SEPARATOR);
 	szBuffer.append(NEWLINE);
-	szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_GREATPEOPLE_BASE_RATE", city.getBaseGreatPeopleRate()));
+	szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_GREATPEOPLE_BASE_RATE", iBaseGPRate));
 	szBuffer.append(NEWLINE);
 
 	// Civ4 Reimagined: Dutch UP
@@ -18052,8 +18059,11 @@ void CvGameTextMgr::parseGreatPeopleHelp(CvWStringBuffer &szBuffer, CvCity& city
 		}
 	}
 
+	// Civ4 Reimagined
+	int iGreatPeopleRate = city.getBaseGreatPeopleRate() + city.getGreatPeopleRatePerWorldWonder() * city.getNumWorldWonders();
+
 	// Civ4 Reimagined: Dutch UP
-	int iGreatPeopleRate = city.getBaseGreatPeopleRate() + owner.getGreatMerchantPointsPerTrade() * city.getTradeYield(YIELD_COMMERCE) / 100;
+	iGreatPeopleRate += owner.getGreatMerchantPointsPerTrade() * city.getTradeYield(YIELD_COMMERCE) / 100;
 
 	// Civ4 Reimagined: American UP
 	iGreatPeopleRate += owner.getGreatPeoplePointsPerTrade() * city.getTradeYield(YIELD_COMMERCE) / 100;

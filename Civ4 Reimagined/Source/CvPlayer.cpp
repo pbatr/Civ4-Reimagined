@@ -29434,12 +29434,7 @@ void CvPlayer::updateEffectFromStayingAtCivic()
 		
 		if (eCivic != NULL)
 		{
-			// Exclude starting civics
-			const CivicTypes startingGovernmentCivic = (CivicTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationInitialCivics(governmentCivicOption);
-			if ( eCivic != startingGovernmentCivic)
-			{
-				changeTurnsToEffectFromStayingAtCivic(eCivic, -1);
-			}
+			changeTurnsToEffectFromStayingAtCivic(eCivic, -1);
 		}
 	}	
 }
@@ -29467,15 +29462,19 @@ void CvPlayer::changeTurnsToEffectFromStayingAtCivic(CivicTypes eIndex, int iCha
 		} 
 		else if (eIndex == (CivicTypes)GC.getInfoTypeForString("CIVIC_DYNASTICISM"))
 		{
-			eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_ENGINEER");
+			eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_ARTIST");
 		} 
 		else if (eIndex == (CivicTypes)GC.getInfoTypeForString("CIVIC_THEOCRACY"))
 		{
-			eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_ARTIST");
+			eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_PROPHET");
 		} 
 		else if (eIndex == (CivicTypes)GC.getInfoTypeForString("CIVIC_REPUBLIC"))
 		{
 			eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_SCIENTIST");
+		}
+		else if (eIndex == (CivicTypes)GC.getInfoTypeForString("CIVIC_TYRANNY"))
+		{
+			eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_ENGINEER");
 		}
 
 		CvCity* pCapitalCity = getCapitalCity();
@@ -30044,34 +30043,27 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	{
 		if (eEra == ERA_ANCIENT)
 		{
-			setHasCivicEffect(true); // Activate before calling changeTurnsToEffectFromStayingAtCivic
+			const CivicOptionTypes eGovernmentCivicOption = (CivicOptionTypes)GC.getInfoTypeForString("CIVICOPTION_GOVERNMENT");
 
-			const CivicOptionTypes governmentCivicOption = (CivicOptionTypes)GC.getInfoTypeForString("CIVICOPTION_GOVERNMENT");
-			const CivicTypes startingGovernmentCivic = (CivicTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationInitialCivics(governmentCivicOption);
+			setHasCivicEffect(true); // Activate before calling changeTurnsToEffectFromStayingAtCivic
+			changeHasCivicOptionCount(eGovernmentCivicOption, 1);
+			changeCoastalTradeRouteModifier(100);
+
 			for (int iI = 0; iI < GC.getNumCivicInfos(); iI++)
 			{
 				// Exclude non-government civics
-				if (GC.getCivicInfo((CivicTypes)iI).getCivicOptionType() == governmentCivicOption)
+				if (GC.getCivicInfo((CivicTypes)iI).getCivicOptionType() == eGovernmentCivicOption)
 				{
-					// Exclude starting civics
-					if (((CivicTypes)iI) != startingGovernmentCivic)
-					{
-						int iTurnsPerCivic = GC.getDefineINT("UNIQUE_POWER_GREECE");
+					int iTurnsPerCivic = GC.getDefineINT("UNIQUE_POWER_GREECE");
 						
-						iTurnsPerCivic *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getResearchPercent();
-						iTurnsPerCivic /= 100;
+					iTurnsPerCivic *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getResearchPercent();
+					iTurnsPerCivic /= 100;
 
-						m_paiCivicEffect[iI] = iTurnsPerCivic;
-					}
+					m_paiCivicEffect[iI] = iTurnsPerCivic;
 				}
 			}
 			
 			notifyUniquePowersChanged(true);
-		}
-		else if (eEra == ERA_MEDIEVAL)
-		{
-			setHasCivicEffect(false);
-			notifyUniquePowersChanged(false);
 		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_HOLY_ROMAN"))

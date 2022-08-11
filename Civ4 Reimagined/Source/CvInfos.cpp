@@ -7757,7 +7757,8 @@ m_iPrereqAndBonus(NO_BONUS),
 m_iBonusFatCross(NO_BONUS), // Civ4 Reimagined
 m_iPlotTypeFatCross(NO_PLOT), // Civ4 Reimagined			
 m_iGreatPeopleUnitClass(NO_UNITCLASS),					
-m_iGreatPeopleRateChange(0),				
+m_iGreatPeopleRateChange(0),
+m_iGreatPeopleRateChangePerWorldWonder(0), // Civ4 Reimagined				
 m_iConquestProbability(0),
 m_iMaintenanceModifier(0),
 m_iAreaDistanceMaintenanceModifier(0), // Civ4 Reimagined
@@ -8404,6 +8405,12 @@ int CvBuildingInfo::getGreatPeopleUnitClass() const
 int CvBuildingInfo::getGreatPeopleRateChange() const
 {
 	return m_iGreatPeopleRateChange;
+}
+
+// Civ4 Reimagined
+int CvBuildingInfo::getGreatPeopleRateChangePerWorldWonder() const
+{
+	return m_iGreatPeopleRateChangePerWorldWonder;
 }
 
 int CvBuildingInfo::getConquestProbability() const
@@ -9491,6 +9498,7 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iPlotTypeFatCross); // Civ4 Reimagined
 	stream->Read(&m_iGreatPeopleUnitClass);
 	stream->Read(&m_iGreatPeopleRateChange);
+	stream->Read(&m_iGreatPeopleRateChangePerWorldWonder); // Civ4 Reimagined
 	stream->Read(&m_iConquestProbability);
 	stream->Read(&m_iMaintenanceModifier);
 	stream->Read(&m_iAreaDistanceMaintenanceModifier); // Civ4 Reimagined
@@ -10018,6 +10026,7 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iPrereqAndBonus);
 	stream->Write(m_iGreatPeopleUnitClass);
 	stream->Write(m_iGreatPeopleRateChange);
+	stream->Write(m_iGreatPeopleRateChangePerWorldWonder); // Civ4 Reimagined
 	stream->Write(m_iConquestProbability);
 	stream->Write(m_iMaintenanceModifier);
 	stream->Write(m_iAreaDistanceMaintenanceModifier); // Civ4 Reimagined
@@ -10359,6 +10368,7 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 	m_iVoteSourceType = pXML->FindInInfoClass(szTextVal);
 
 	pXML->GetChildXmlValByName(&m_iGreatPeopleRateChange, "iGreatPeopleRateChange");
+	pXML->GetChildXmlValByName(&m_iGreatPeopleRateChangePerWorldWonder, "iGreatPeopleRateChangePerWorldWonder"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_bTeamShare, "bTeamShare");
 	pXML->GetChildXmlValByName(&m_bWater, "bWater");
 	pXML->GetChildXmlValByName(&m_bRiver, "bRiver");
