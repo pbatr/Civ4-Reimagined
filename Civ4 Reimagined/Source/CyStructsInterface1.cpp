@@ -186,5 +186,6 @@ void CyStructsPythonInterface1()
 		.def_readwrite("sUnitName", &CombatDetails::sUnitName)
 		.def_readwrite("iDefenseBuildingModifier", &CombatDetails::iDefenseBuildingModifier) // Civ4 Reimagined
 		.def_readwrite("iHomeAreaOwnBordersModifier", &CombatDetails::iHomeAreaOwnBordersModifier) // Civ4 Reimagined
+		.def_readwrite("iAgainstInjuredModifier", &CombatDetails::iAgainstInjuredModifier) // Civ4 Reimagined
 		;
 }

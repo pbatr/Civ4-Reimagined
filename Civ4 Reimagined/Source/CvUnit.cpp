@@ -8887,6 +8887,7 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 		pCombatDetails->iFeatureDefenseModifier = 0;
 		pCombatDetails->iTerrainAttackModifier = 0;
 		pCombatDetails->iTerrainDefenseModifier = 0;
+		pCombatDetails->iAgainstInjuredModifier = 0; // Civ4 Reimagined
 		pCombatDetails->iHomeAreaOwnBordersModifier = 0; // Civ4 Reimagined
 		pCombatDetails->iCityAttackModifier = 0;
 		pCombatDetails->iDomainDefenseModifier = 0;
@@ -9022,6 +9023,17 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 				{
 					pCombatDetails->iAIBarbarianCombatModifierTB = iExtraModifier;
 				}
+			}
+		}
+
+		// Civ4 Reimagined
+		if (pAttacker->isHurt())
+		{
+			iExtraModifier = againstInjuredModifier();
+			iModifier += iExtraModifier;
+			if (pCombatDetails != NULL)
+			{
+				pCombatDetails->iAgainstInjuredModifier = iExtraModifier;
 			}
 		}
 	}
@@ -9313,6 +9325,17 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 				if (pCombatDetails != NULL)
 				{
 					pCombatDetails->iAnimalCombatModifierT = iExtraModifier;
+				}
+			}
+
+			// Civ4 Reimagined
+			if (isHurt())
+			{
+				iExtraModifier = -pAttacker->againstInjuredModifier();
+				iModifier += iExtraModifier;
+				if (pCombatDetails != NULL)
+				{
+					pCombatDetails->iAgainstInjuredModifier = iExtraModifier;
 				}
 			}
 		}
@@ -10147,6 +10170,12 @@ int CvUnit::cityDefenseModifier() const
 int CvUnit::defenseBuildingModifier() const
 {
 	return m_pUnitInfo->getDefenseBuildingModifier();
+}
+
+//Civ4 Reimagined
+int CvUnit::againstInjuredModifier() const
+{
+	return m_pUnitInfo->getAgainstInjuredModifier();
 }
 
 

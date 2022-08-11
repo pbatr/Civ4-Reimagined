@@ -41,6 +41,7 @@ struct DllExport CombatDetails					// Exposed to Python
 	int iTerrainAttackModifier;
 	int iTerrainDefenseModifier;
 	int iHomeAreaOwnBordersModifier; // Civ4 Reimagined
+	int iAgainstInjuredModifier; // Civ4 Reimagined
 	int iCityAttackModifier;
 	int iDomainDefenseModifier;
 	int iCityBarbarianDefenseModifier;
@@ -417,6 +418,7 @@ public:
 	int cityAttackModifier() const;																					// Exposed to Python
 	int cityDefenseModifier() const;																				// Exposed to Python
 	int defenseBuildingModifier() const; //Civ4 Reimagined
+	int againstInjuredModifier() const; //Civ4 Reimagined
 	int animalCombatModifier() const;																				// Exposed to Python
 	int hillsAttackModifier() const;																				// Exposed to Python
 	int hillsDefenseModifier() const;																				// Exposed to Python

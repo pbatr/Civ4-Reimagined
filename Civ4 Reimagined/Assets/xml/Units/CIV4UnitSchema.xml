@@ -369,6 +369,7 @@
 	<ElementType name="iCityAttack" content="textOnly" dt:type="int"/>
 	<ElementType name="iCityDefense" content="textOnly" dt:type="int"/>
 	<ElementType name="iDefenseBuildingModifier" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
+	<ElementType name="iAgainstInjured" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iAnimalCombat" content="textOnly" dt:type="int"/>
 	<ElementType name="iHillsAttack" content="textOnly" dt:type="int"/>
 	<ElementType name="iHillsDefense" content="textOnly" dt:type="int"/>
@@ -653,6 +654,7 @@
 		<element type="iCityAttack"/>
 		<element type="iCityDefense"/>
 		<element type="iDefenseBuildingModifier" minOccurs="0"/> <!-- Civ4 Reimagined -->
+		<element type="iAgainstInjured" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="iAnimalCombat"/>
 		<element type="iHillsAttack"/>
 		<element type="iHillsDefense"/>

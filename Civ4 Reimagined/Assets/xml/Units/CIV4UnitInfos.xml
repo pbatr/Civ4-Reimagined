@@ -6061,13 +6061,8 @@
             <PrereqCivic>NONE</PrereqCivic>
 			<PrereqTech>TECH_IRON_WORKING</PrereqTech>
 			<TechTypes/>
-			<BonusType>NONE</BonusType>
-			<PrereqBonuses>
-				<BonusType>BONUS_COPPER</BonusType>
-				<BonusType>BONUS_IRON</BonusType>
-				<BonusType>NONE</BonusType>
-				<BonusType>NONE</BonusType>
-			</PrereqBonuses>
+			<BonusType>BONUS_IRON</BonusType>
+			<PrereqBonuses/>
 			<ProductionTraits/>
 			<Flavors/>
 			<iAIWeight>0</iAIWeight>
@@ -6111,6 +6106,7 @@
 			<iCollateralDamageMaxUnits>0</iCollateralDamageMaxUnits>
 			<iCityAttack>0</iCityAttack>
 			<iCityDefense>-10</iCityDefense>
+			<iAgainstInjured>10</iAgainstInjured>
 			<iAnimalCombat>0</iAnimalCombat>
 			<iHillsAttack>25</iHillsAttack>
 			<iHillsDefense>25</iHillsDefense>

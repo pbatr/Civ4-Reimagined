@@ -307,6 +307,11 @@ def combatDetailMessageBuilder(cdUnit, ePlayer, iChange):
 	if (cdUnit.iHomeAreaOwnBordersModifier != 0):
 		msg=localText.getText("TXT_KEY_COMBAT_MESSAGE_HOME_AREA",(cdUnit.iHomeAreaOwnBordersModifier * iChange,))
 		CyInterface().addCombatMessage(ePlayer,msg)
+
+	# Civ4 Reimagined
+	if (cdUnit.iAgainstInjuredModifier != 0):
+		msg=localText.getText("TXT_KEY_COMBAT_MESSAGE_INJURED",(cdUnit.iAgainstInjuredModifier * iChange,))
+		CyInterface().addCombatMessage(ePlayer,msg)
         
 	if (cdUnit.iHillsAttackModifier != 0):
 		msg=localText.getText("TXT_KEY_COMBAT_MESSAGE_HILLS_ATTACK",(cdUnit.iHillsAttackModifier * iChange,))

@@ -865,6 +865,7 @@ public:
 	int getCollateralDamageLimit() const;			// Exposed to Python
 	int getCollateralDamageMaxUnits() const;	// Exposed to Python
 	int getDefenseBuildingModifier() const; //Civ4 Reimagined
+	int getAgainstInjuredModifier() const; //Civ4 Reimagined
 	int getCityAttackModifier() const;				// Exposed to Python
 	int getCityDefenseModifier() const;				// Exposed to Python
 	int getAnimalCombatModifier() const;			// Exposed to Python
@@ -1060,6 +1061,7 @@ protected:
 	int m_iCollateralDamageLimit;
 	int m_iCollateralDamageMaxUnits;
 	int m_iDefenseBuildingModifier; //Civ4 Reimagined
+	int m_iAgainstInjuredModifier; //Civ4 Reimagined
 	int m_iCityAttackModifier;
 	int m_iCityDefenseModifier;
 	int m_iAnimalCombatModifier;

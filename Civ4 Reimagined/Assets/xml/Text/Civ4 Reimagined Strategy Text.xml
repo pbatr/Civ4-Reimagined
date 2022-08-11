@@ -194,7 +194,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_CELTIC_GALLIC_WARRIOR_STRATEGY</Tag>
-		<English>Compared to the [COLOR_UNIT_TEXT]Swordsman[COLOR_REVERT], this unit can be build with either Copper or Iron and has a 25% hill combat bonus. Is is slightly cheaper than the Swordsman.</English>
+		<English>Compared to the [COLOR_UNIT_TEXT]Swordsman[COLOR_REVERT], this unit has a 25% hill combat bonus and a combat bonus against injured units. Is is slightly cheaper than the Swordsman.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_ROME_PRAETORIAN_STRATEGY</Tag>

@@ -3072,6 +3072,7 @@ m_iCollateralDamage(0),
 m_iCollateralDamageLimit(0),
 m_iCollateralDamageMaxUnits(0),
 m_iDefenseBuildingModifier(0), //Civ4 Reimagined
+m_iAgainstInjuredModifier(0), //Civ4 Reimagined
 m_iCityAttackModifier(0),
 m_iCityDefenseModifier(0),
 m_iAnimalCombatModifier(0),
@@ -3454,6 +3455,12 @@ int CvUnitInfo::getCollateralDamageMaxUnits() const
 int CvUnitInfo::getDefenseBuildingModifier() const
 {
 	return m_iDefenseBuildingModifier;
+}
+
+//Civ4 Reimagined
+int CvUnitInfo::getAgainstInjuredModifier() const
+{
+	return m_iAgainstInjuredModifier;
 }
 
 int CvUnitInfo::getCityAttackModifier() const
@@ -4335,6 +4342,7 @@ void CvUnitInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iCollateralDamageLimit);
 	stream->Read(&m_iCollateralDamageMaxUnits);
 	stream->Read(&m_iDefenseBuildingModifier); //Civ4 Reimagined
+	stream->Read(&m_iAgainstInjuredModifier); //Civ4 Reimagined
 	stream->Read(&m_iCityAttackModifier);
 	stream->Read(&m_iCityDefenseModifier);
 	stream->Read(&m_iAnimalCombatModifier);
@@ -4646,6 +4654,7 @@ void CvUnitInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iCollateralDamageLimit);
 	stream->Write(m_iCollateralDamageMaxUnits);
 	stream->Write(m_iDefenseBuildingModifier); //Civ4 Reimagined
+	stream->Write(m_iAgainstInjuredModifier); //Civ4 Reimagined
 	stream->Write(m_iCityAttackModifier);
 	stream->Write(m_iCityDefenseModifier);
 	stream->Write(m_iAnimalCombatModifier);
@@ -5056,6 +5065,7 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iCollateralDamageLimit, "iCollateralDamageLimit");
 	pXML->GetChildXmlValByName(&m_iCollateralDamageMaxUnits, "iCollateralDamageMaxUnits");
 	pXML->GetChildXmlValByName(&m_iDefenseBuildingModifier, "iDefenseBuildingModifier"); //Civ4 Reimagined
+	pXML->GetChildXmlValByName(&m_iAgainstInjuredModifier, "iAgainstInjured"); //Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iCityAttackModifier, "iCityAttack");
 	pXML->GetChildXmlValByName(&m_iCityDefenseModifier, "iCityDefense");
 	pXML->GetChildXmlValByName(&m_iAnimalCombatModifier, "iAnimalCombat");

@@ -23,12 +23,20 @@
 		<English>(Inside own borders on home continent: %D1%%)</English>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_COMBAT_MESSAGE_INJURED</Tag>
+		<English>(Against injured unit: %D1%%)</English>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_COMBAT_PLOT_FAITH_MOD</Tag>
 		<English>[ICON_BULLET]%D1_Bonus%% against Infidels</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_COMBAT_PLOT_HOME_AREA</Tag>
 		<English>[ICON_BULLET]%D1_Bonus%% Fighting in Russian Territory</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_COMBAT_AGAINST_INJURED_MOD</Tag>
+		<English>[ICON_BULLET]%D1_Bonus%% Fighting against Injured Unit</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWERS_TECH_PROGRESS_SETTLE</Tag>

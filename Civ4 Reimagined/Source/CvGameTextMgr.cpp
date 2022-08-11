@@ -736,6 +736,13 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 				}
 			}
 
+			// Civ4 Reimagined
+			if (pUnit->againstInjuredModifier() != 0)
+			{
+				szString.append(NEWLINE);
+				szString.append(gDLL->getText("TXT_KEY_UNIT_AGAINST_INJURED", pUnit->againstInjuredModifier()));
+			}
+
 			if (pUnit->flatMovementCost())
 			{
 				szString.append(NEWLINE);
@@ -3750,14 +3757,16 @@ bool CvGameTextMgr::setCombatPlotHelp(CvWStringBuffer &szString, CvPlot* pPlot)
 					}
 				}
 			}
-			if (pPlot->isHills())
+
+			// Civ4 Reimagined
+			if (pDefender->isHurt())
 			{
-				iModifier = pAttacker->hillsAttackModifier();
+				iModifier = pAttacker->againstInjuredModifier();
 
 				if (iModifier != 0)
 				{
 					szString.append(NEWLINE);
-					szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_HILLS_MOD", -iModifier));
+					szString.append(gDLL->getText("TXT_KEY_COMBAT_AGAINST_INJURED_MOD", -iModifier));
 				}
 			}
 
@@ -3972,6 +3981,18 @@ bool CvGameTextMgr::setCombatPlotHelp(CvWStringBuffer &szString, CvPlot* pPlot)
 			{
 				szString.append(NEWLINE);
 				szString.append(gDLL->getText("TXT_KEY_UNIT_ANIMAL_COMBAT_MOD", iModifier));
+			}
+		}
+
+		// Civ4 Reimagined
+		if (pDefender->isHurt())
+		{
+			iModifier = pAttacker->againstInjuredModifier();
+
+			if (iModifier != 0)
+			{
+				szString.append(NEWLINE);
+				szString.append(gDLL->getText("TXT_KEY_COMBAT_AGAINST_INJURED_MOD", iModifier));
 			}
 		}
 
@@ -9343,6 +9364,13 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
 	{
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_BLITZ_TEXT"));
+	}
+
+	// Civ4 Reimagined
+	if (GC.getUnitInfo(eUnit).getAgainstInjuredModifier() > 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_AGAINST_INJURED", GC.getUnitInfo(eUnit).getAgainstInjuredModifier()));
 	}
 
 	if (GC.getUnitInfo(eUnit).isFlatMovementCost())
