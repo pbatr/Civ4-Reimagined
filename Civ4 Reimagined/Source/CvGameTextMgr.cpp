@@ -3470,7 +3470,6 @@ bool CvGameTextMgr::setCombatPlotHelp(CvWStringBuffer &szString, CvPlot* pPlot)
 			szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_EXTRA_STRENGTH", iModifier));
 		}
 
-
 		szString.append(gDLL->getText("TXT_KEY_COLOR_REVERT"));
 
 		szString.append(L' ');//XXX
@@ -3559,14 +3558,14 @@ bool CvGameTextMgr::setCombatPlotHelp(CvWStringBuffer &szString, CvPlot* pPlot)
 				szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_EXTRA_STRENGTH", iModifier));
 			}
 
-			iModifier = pDefender->unitClassDefenseModifier(pAttacker->getUnitClassType());
-
 			// Civ4 Reimagined
 			if (pAttacker->collateralDamage() > 0 && ((GC.getUnitInfo(pAttacker->getUnitType())).getFirstStrikes() > GC.getUnitInfo(pDefender->getUnitType()).getFirstStrikes()))
 			{
 				szString.append(NEWLINE);
 				szString.append(gDLL->getText("TXT_KEY_COMBAT_RANGE_DISADVANTAGE", -500, GC.getUnitClassInfo(pAttacker->getUnitClassType()).getTextKeyWide()));
 			}
+
+			iModifier = pDefender->unitClassDefenseModifier(pAttacker->getUnitClassType());
 			
 			if (iModifier != 0)
 			{
@@ -3591,6 +3590,22 @@ bool CvGameTextMgr::setCombatPlotHelp(CvWStringBuffer &szString, CvPlot* pPlot)
 			{
 				szString.append(NEWLINE);
 				szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_MOD_VS_TYPE", iModifier, GC.getDomainInfo(pAttacker->getDomainType()).getTextKeyWide()));
+			}
+
+			// Civ4 Reimagined
+			iModifier = pDefender->getExtraCombatPercentAgainstWoodenShips();
+
+			if (iModifier != 0)
+			{
+				if ((UnitCombatTypes)pAttacker->getUnitCombatType() == GC.getInfoTypeForString("UNITCOMBAT_NAVAL"))
+				{
+					const TechTypes ePrereqTech = (TechTypes)GC.getUnitInfo(pAttacker->getUnitType()).getPrereqAndTech();
+					if (ePrereqTech == NO_TECH || GC.getTechInfo(ePrereqTech).getEra() < 4)
+					{
+						szString.append(NEWLINE);
+						szString.append(gDLL->getText("TXT_KEY_COMBAT_EXTRA_STRENGTH_WOODEN_SHIPS", iModifier));
+					}
+				}
 			}
 
 			if (!(pDefender->noDefensiveBonus()))
@@ -3689,6 +3704,22 @@ bool CvGameTextMgr::setCombatPlotHelp(CvWStringBuffer &szString, CvPlot* pPlot)
 			{
 				szString.append(NEWLINE);
 				szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_MOD_VS_TYPE", -iModifier, GC.getDomainInfo(pDefender->getDomainType()).getTextKeyWide()));
+			}
+
+			// Civ4 Reimagined
+			iModifier = pAttacker->getExtraCombatPercentAgainstWoodenShips();
+
+			if (iModifier != 0)
+			{
+				if ((UnitCombatTypes)pDefender->getUnitCombatType() == GC.getInfoTypeForString("UNITCOMBAT_NAVAL"))
+				{
+					const TechTypes ePrereqTech = (TechTypes)GC.getUnitInfo(pDefender->getUnitType()).getPrereqAndTech();
+					if (ePrereqTech == NO_TECH || GC.getTechInfo(ePrereqTech).getEra() < 4)
+					{
+						szString.append(NEWLINE);
+						szString.append(gDLL->getText("TXT_KEY_COMBAT_EXTRA_STRENGTH_WOODEN_SHIPS", -iModifier));
+					}
+				}
 			}
 
 			if (pPlot->isCity(true, pDefender->getTeam()))
@@ -3920,6 +3951,22 @@ bool CvGameTextMgr::setCombatPlotHelp(CvWStringBuffer &szString, CvPlot* pPlot)
 			szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_MOD_VS_TYPE", iModifier, GC.getDomainInfo(pDefender->getDomainType()).getTextKeyWide()));
 		}
 
+		// Civ4 Reimagined
+		iModifier = pAttacker->getExtraCombatPercentAgainstWoodenShips();
+
+		if (iModifier != 0)
+		{
+			if ((UnitCombatTypes)pDefender->getUnitCombatType() == GC.getInfoTypeForString("UNITCOMBAT_NAVAL"))
+			{
+				const TechTypes ePrereqTech = (TechTypes)GC.getUnitInfo(pDefender->getUnitType()).getPrereqAndTech();
+				if (ePrereqTech == NO_TECH || GC.getTechInfo(ePrereqTech).getEra() < 4)
+				{
+					szString.append(NEWLINE);
+					szString.append(gDLL->getText("TXT_KEY_COMBAT_EXTRA_STRENGTH_WOODEN_SHIPS", iModifier));
+				}
+			}
+		}
+
 		if (pPlot->isCity(true, pDefender->getTeam()))
 		{
 			iModifier = pAttacker->cityAttackModifier();
@@ -4083,6 +4130,13 @@ bool CvGameTextMgr::setCombatPlotHelp(CvWStringBuffer &szString, CvPlot* pPlot)
 			szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_EXTRA_STRENGTH", iModifier));
 		}
 
+		// Civ4 Reimagined
+		if (pAttacker->collateralDamage() > 0 && ((GC.getUnitInfo(pAttacker->getUnitType())).getFirstStrikes() > GC.getUnitInfo(pDefender->getUnitType()).getFirstStrikes()))
+		{
+			szString.append(NEWLINE);
+			szString.append(gDLL->getText("TXT_KEY_COMBAT_RANGE_DISADVANTAGE", -500, GC.getUnitClassInfo(pAttacker->getUnitClassType()).getTextKeyWide()));
+		}
+
 		iModifier = pDefender->unitClassDefenseModifier(pAttacker->getUnitClassType());
 
 		if (iModifier != 0)
@@ -4108,6 +4162,22 @@ bool CvGameTextMgr::setCombatPlotHelp(CvWStringBuffer &szString, CvPlot* pPlot)
 		{
 			szString.append(NEWLINE);
 			szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_MOD_VS_TYPE", iModifier, GC.getDomainInfo(pAttacker->getDomainType()).getTextKeyWide()));
+		}
+
+		// Civ4 Reimagined
+		iModifier = pDefender->getExtraCombatPercentAgainstWoodenShips();
+
+		if (iModifier != 0)
+		{
+			if ((UnitCombatTypes)pAttacker->getUnitCombatType() == GC.getInfoTypeForString("UNITCOMBAT_NAVAL"))
+			{
+				const TechTypes ePrereqTech = (TechTypes)GC.getUnitInfo(pAttacker->getUnitType()).getPrereqAndTech();
+				if (ePrereqTech == NO_TECH || GC.getTechInfo(ePrereqTech).getEra() < 4)
+				{
+					szString.append(NEWLINE);
+					szString.append(gDLL->getText("TXT_KEY_COMBAT_EXTRA_STRENGTH_WOODEN_SHIPS", iModifier));
+				}
+			}
 		}
 
 		if (!(pDefender->noDefensiveBonus()))
@@ -7067,6 +7137,13 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 	{
 		szBuffer.append(pcNewline);
 		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_STRENGTH_TEXT", GC.getPromotionInfo(ePromotion).getCombatPercent()));
+	}
+
+	// Civ4 Reimagined
+	if (GC.getPromotionInfo(ePromotion).getCombatPercentAgainstWoodenShips() != 0)
+	{
+		szBuffer.append(pcNewline);
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_STRENGTH_AGAINST_WOODEN_SHIPS_TEXT", GC.getPromotionInfo(ePromotion).getCombatPercentAgainstWoodenShips()));
 	}
 
 	if (GC.getPromotionInfo(ePromotion).getCityAttackPercent() != 0)

@@ -1520,6 +1520,8 @@ public:
 	void applyNativeAmericanBonus(int iX, int iY); // Civ4 Reimagined
 	BuildingTypes getUniquePowerBuilding() const; // Civ4 Reimagined
 	void setUniquePowerBuilding(BuildingTypes eBuilding); // Civ4 Reimagined
+	PromotionTypes getUniquePowerPromotion() const; // Civ4 Reimagined
+	void setUniquePowerPromotion(PromotionTypes eBuilding); // Civ4 Reimagined
 	void changeBuildingProductionModifierFromCapital(int iChange); // Civ4 Reimagined
 	int getBuildingProductionModifierFromCapital() const; // Civ4 Reimagined
 	void setCanBuildWindmillsOnCoast(bool bNewValue); // Civ4 Reimagined
@@ -1866,6 +1868,7 @@ protected:
 	TeamTypes m_eTeamType;
 	IdeologyTypes m_eIdeology; // Civ4 Reimagined
 	BuildingTypes m_eUniquePowerBuilding; // Civ4 Reimagined
+	PromotionTypes m_eUniquePowerPromotion; // Civ4 Reimagined
 
 	int* m_aiSeaPlotYield;
 	int* m_aiPeakYield; // Civ4 Reimagined

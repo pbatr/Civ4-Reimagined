@@ -22,6 +22,7 @@ class KmodPathFinder;
 struct DllExport CombatDetails					// Exposed to Python
 {
 	int iExtraCombatPercent;
+	int iExtraCombatPercentAgainstWoodenShips; // Civ4 Reimagined
 	int iAnimalCombatModifierTA;
 	int iAIAnimalCombatModifierTA;
 	int iAnimalCombatModifierAA;
@@ -609,6 +610,10 @@ public:
 	int getExtraCombatPercent() const;																							// Exposed to Python					
 	void changeExtraCombatPercent(int iChange);
 
+	// Civ4 Reimagined
+	int getExtraCombatPercentAgainstWoodenShips() const;																						// Exposed to Python					
+	void changeExtraCombatPercentAgainstWoodenShips(int iChange);
+
 	int getExtraCityAttackPercent() const;																										// Exposed to Python
 	void changeExtraCityAttackPercent(int iChange);
 
@@ -872,6 +877,7 @@ protected:
 	int m_iExtraFriendlyHeal;
 	int m_iSameTileHeal;
 	int m_iExtraCombatPercent;
+	int m_iExtraCombatPercentAgainstWoodenShips; // Civ4 Reimagined
 	int m_iExtraCityAttackPercent;
 	int m_iExtraCityDefensePercent;
 	int m_iExtraHillsAttackPercent;

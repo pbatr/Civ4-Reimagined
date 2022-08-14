@@ -316,7 +316,7 @@ bool isPromotionValid(PromotionTypes ePromotion, UnitTypes eUnit, bool bLeader)
 			return true;
 		}
 	}
-
+	
 	if (kUnit.getFreePromotions(ePromotion))
 	{
 		return true;

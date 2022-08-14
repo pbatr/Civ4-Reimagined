@@ -487,6 +487,7 @@ public:
 	int getFriendlyHealChange() const;				// Exposed to Python
 	int getSameTileHealChange() const;				// Exposed to Python
 	int getCombatPercent() const;				// Exposed to Python
+	int getCombatPercentAgainstWoodenShips() const; // Civ4 Reimagined
 	int getCityAttackPercent() const;				// Exposed to Python
 	int getCityDefensePercent() const;				// Exposed to Python
 	int getHillsAttackPercent() const;				// Exposed to Python
@@ -511,6 +512,7 @@ public:
 	bool isHillsDoubleMove() const;				// Exposed to Python
 	bool isImmuneToFirstStrikes() const;				// Exposed to Python
 	bool isNoUpgrade() const; // Leoreth
+	bool isUniquePower() const; // Civ4 Reimagined
 
 	const TCHAR* getSound() const;				// Exposed to Python
 	void setSound(const TCHAR* szVal);
@@ -563,6 +565,7 @@ protected:
 	int m_iFriendlyHealChange;				
 	int m_iSameTileHealChange;	
 	int m_iCombatPercent;
+	int m_iCombatPercentAgainstWoodenShips; // Civ4 Reimagined
 	int m_iCityAttackPercent;
 	int m_iCityDefensePercent;
 	int m_iHillsAttackPercent;
@@ -585,6 +588,7 @@ protected:
 	bool m_bHillsDoubleMove;				
 	bool m_bImmuneToFirstStrikes;				
 	bool m_bNoUpgrade; // Leoreth
+	bool m_bUniquePower; // Civ4 Reimagined
 
 	CvString m_szSound;
 

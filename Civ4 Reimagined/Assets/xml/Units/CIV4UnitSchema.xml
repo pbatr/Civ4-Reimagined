@@ -813,7 +813,8 @@
 	<ElementType name="bAlwaysHeal" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bHillsDoubleMove" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bImmuneToFirstStrikes" content="textOnly" dt:type="boolean"/>
-	<ElementType name="bNoUpgrade" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bNoUpgrade" content="textOnly" dt:type="boolean"/> <!-- Civ4 Reimagined -->
+	<ElementType name="bUniquePower" content="textOnly" dt:type="boolean"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iVisibilityChange" content="textOnly" dt:type="int"/>
 	<ElementType name="iMovesChange" content="textOnly" dt:type="int"/>
 	<ElementType name="iMoveDiscountChange" content="textOnly" dt:type="int"/>
@@ -831,6 +832,7 @@
 	<ElementType name="iFriendlyHealChange" content="textOnly" dt:type="int"/>
 	<ElementType name="iSameTileHealChange" content="textOnly" dt:type="int"/>
 	<ElementType name="iCombatPercent" content="textOnly" dt:type="int"/>
+	<ElementType name="iCombatPercentAgainstWoodenShips" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iExtraUpkeep" content="textOnly" dt:type="int"/>
 	<ElementType name="bUnitCombat" content="textOnly" dt:type="boolean"/>
 	<ElementType name="UnitCombat" content="eltOnly">
@@ -876,7 +878,8 @@
 		<element type="bAlwaysHeal"/>
 		<element type="bHillsDoubleMove"/>
 		<element type="bImmuneToFirstStrikes"/>
-		<element type="bNoUpgrade" minOccurs="0"/>
+		<element type="bNoUpgrade" minOccurs="0"/> <!-- Civ4 Reimagined -->
+		<element type="bUniquePower" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="iVisibilityChange"/>
 		<element type="iMovesChange"/>
 		<element type="iMoveDiscountChange"/>
@@ -894,6 +897,7 @@
 		<element type="iFriendlyHealChange"/>
 		<element type="iSameTileHealChange"/>
 		<element type="iCombatPercent"/>
+		<element type="iCombatPercentAgainstWoodenShips" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="iCityAttack"/>
 		<element type="iCityDefense"/>
 		<element type="iHillsAttack"/>

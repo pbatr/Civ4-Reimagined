@@ -1618,6 +1618,7 @@ m_iNeutralHealChange(0),
 m_iFriendlyHealChange(0),
 m_iSameTileHealChange(0),
 m_iCombatPercent(0),
+m_iCombatPercentAgainstWoodenShips(0), // Civ4 Reimagined
 m_iCityAttackPercent(0),
 m_iCityDefensePercent(0),
 m_iHillsAttackPercent(0),
@@ -1639,6 +1640,7 @@ m_bAlwaysHeal(false),
 m_bHillsDoubleMove(false),
 m_bImmuneToFirstStrikes(false),
 m_bNoUpgrade(false), // Leoreth
+m_bUniquePower(false), // Civ4 Reimagined
 m_piTerrainAttackPercent(NULL),
 m_piTerrainDefensePercent(NULL),
 m_piFeatureAttackPercent(NULL),
@@ -1816,6 +1818,12 @@ int CvPromotionInfo::getCombatPercent() const
 	return m_iCombatPercent;
 }
 
+// Civ4 Reimagined
+int CvPromotionInfo::getCombatPercentAgainstWoodenShips() const
+{
+	return m_iCombatPercentAgainstWoodenShips;
+}
+
 int CvPromotionInfo::getCityAttackPercent() const
 {
 	return m_iCityAttackPercent;
@@ -1928,6 +1936,12 @@ bool CvPromotionInfo::isNoUpgrade() const
 	return m_bNoUpgrade;
 }
 
+// Civ4 Reimagined
+bool CvPromotionInfo::isUniquePower() const
+{
+	return m_bUniquePower;
+}
+
 const TCHAR* CvPromotionInfo::getSound() const										
 {
 	return m_szSound;
@@ -2035,6 +2049,7 @@ void CvPromotionInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iFriendlyHealChange);				
 	stream->Read(&m_iSameTileHealChange);	
 	stream->Read(&m_iCombatPercent);
+	stream->Read(&m_iCombatPercentAgainstWoodenShips); // Civ4 Reimagined
 	stream->Read(&m_iCityAttackPercent);
 	stream->Read(&m_iCityDefensePercent);
 	stream->Read(&m_iHillsAttackPercent);
@@ -2057,6 +2072,7 @@ void CvPromotionInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bHillsDoubleMove);
 	stream->Read(&m_bImmuneToFirstStrikes);				
 	stream->Read(&m_bNoUpgrade); // Leoreth
+	stream->Read(&m_bUniquePower); // Leoreth
 
 	stream->ReadString(m_szSound);
 
@@ -2131,6 +2147,7 @@ void CvPromotionInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iFriendlyHealChange);				
 	stream->Write(m_iSameTileHealChange);		
 	stream->Write(m_iCombatPercent);
+	stream->Write(m_iCombatPercentAgainstWoodenShips); // Civ4 Reimagined
 	stream->Write(m_iCityAttackPercent);
 	stream->Write(m_iCityDefensePercent);
 	stream->Write(m_iHillsAttackPercent);
@@ -2153,6 +2170,7 @@ void CvPromotionInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bHillsDoubleMove);
 	stream->Write(m_bImmuneToFirstStrikes);
 	stream->Write(m_bNoUpgrade); // Leoreth
+	stream->Write(m_bUniquePower); // Leoreth
 
 	stream->WriteString(m_szSound);
 
@@ -2202,6 +2220,7 @@ bool CvPromotionInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bHillsDoubleMove, "bHillsDoubleMove");
 	pXML->GetChildXmlValByName(&m_bImmuneToFirstStrikes, "bImmuneToFirstStrikes");
 	pXML->GetChildXmlValByName(&m_bNoUpgrade, "bNoUpgrade"); // Leoreth
+	pXML->GetChildXmlValByName(&m_bUniquePower, "bUniquePower"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iVisibilityChange, "iVisibilityChange");
 	pXML->GetChildXmlValByName(&m_iMovesChange, "iMovesChange");
 	pXML->GetChildXmlValByName(&m_iMoveDiscountChange, "iMoveDiscountChange");
@@ -2219,6 +2238,7 @@ bool CvPromotionInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iFriendlyHealChange, "iFriendlyHealChange");
 	pXML->GetChildXmlValByName(&m_iSameTileHealChange, "iSameTileHealChange");
 	pXML->GetChildXmlValByName(&m_iCombatPercent, "iCombatPercent");
+	pXML->GetChildXmlValByName(&m_iCombatPercentAgainstWoodenShips, "iCombatPercentAgainstWoodenShips"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iCityAttackPercent, "iCityAttack");
 	pXML->GetChildXmlValByName(&m_iCityDefensePercent, "iCityDefense");
 	pXML->GetChildXmlValByName(&m_iHillsAttackPercent, "iHillsAttack");

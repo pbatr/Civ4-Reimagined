@@ -10492,6 +10492,20 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
 		iValue += (iTemp * 1);
 	}
 
+	// Civ4 Reimagined
+	iTemp = GC.getPromotionInfo(ePromotion).getCombatPercentAgainstWoodenShips();
+	if ((AI_getUnitAIType() == UNITAI_ATTACK_SEA)   ||
+		(AI_getUnitAIType() == UNITAI_PIRATE_SEA)   ||
+		(AI_getUnitAIType() == UNITAI_RESERVE_SEA)  ||
+		(AI_getUnitAIType() == UNITAI_ESCORT_SEA)   ||
+		(AI_getUnitAIType() == UNITAI_CARRIER_SEA))
+	{
+		if (GC.getGameINLINE().getCurrentEra() < 4)
+		{
+			iValue += (iTemp * 2);
+		}
+	}
+
 	iTemp = GC.getPromotionInfo(ePromotion).getCityAttackPercent();
 	if (iTemp != 0)
 	{

@@ -1079,6 +1079,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iGreatPeopleRatePerReligionModifier = 0; // Civ4 Reimagined
 	m_eIdeology = IDEOLOGY_CONSERVATISM; // Civ4 Reimagined
 	m_eUniquePowerBuilding = NO_BUILDING; // Civ4 Reimagined
+	m_eUniquePowerPromotion = NO_PROMOTION; // Civ4 Reimagined
 	m_bAlwaysFreshWater = false; // Civ4 Reimagined
 	m_bCanRemoveFeatures = false; // Civ4 Reimagined
 	m_bCityRevoltOnKill = false; // Civ4 Reimagined
@@ -21450,6 +21451,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read((int*)&m_eParent);
 	pStream->Read((int*)&m_eIdeology); // Civ4 Reimagined
 	pStream->Read((int*)&m_eUniquePowerBuilding); // Civ4 Reimagined
+	pStream->Read((int*)&m_eUniquePowerPromotion); // Civ4 Reimagined
 	updateTeamType(); //m_eTeamType not saved
 	updateHuman();
 
@@ -22110,6 +22112,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_eParent);
 	pStream->Write(m_eIdeology); // Civ4 Reimagined
 	pStream->Write(m_eUniquePowerBuilding); // Civ4 Reimagined
+	pStream->Write(m_eUniquePowerPromotion); // Civ4 Reimagined
 	//m_eTeamType not saved
 
 	pStream->Write(NUM_YIELD_TYPES, m_aiSeaPlotYield);
@@ -28109,6 +28112,18 @@ void CvPlayer::setUniquePowerBuilding(BuildingTypes eIndex)
 	m_eUniquePowerBuilding = eIndex;
 }
 
+PromotionTypes CvPlayer::getUniquePowerPromotion() const
+{
+	return m_eUniquePowerPromotion;
+}
+
+void CvPlayer::setUniquePowerPromotion(PromotionTypes eIndex)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumPromotionInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+	m_eUniquePowerPromotion = eIndex;
+}
+
 int CvPlayer::getForeignTradeIdeologyModifier(IdeologyTypes eIndex) const
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
@@ -29956,6 +29971,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		else if (eEra == ERA_MEDIEVAL)
 		{
 			changeStateReligionBuildingCommerce(COMMERCE_ESPIONAGE, 2);
+			setUniquePowerPromotion((PromotionTypes)GC.getInfoTypeForString("PROMOTION_GREEK_FIRE"));
 			notifyUniquePowersChanged(true);
 		}
 	}

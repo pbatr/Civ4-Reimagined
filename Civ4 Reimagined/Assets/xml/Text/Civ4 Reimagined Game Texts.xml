@@ -1493,4 +1493,16 @@
 		<Tag>TXT_KEY_BUILDING_BIRTH_RATE_PER_WORLD_WONDER</Tag>
 		<English>[ICON_BULLET]%D1[ICON_GREATPEOPLE] per World Wonder in City</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_PROMOTION_STRENGTH_AGAINST_WOODEN_SHIPS_TEXT</Tag>
+		<English>[ICON_BULLET]%D1_Bonus%% vs. Renaissance or earlier Ships</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_COMBAT_EXTRA_STRENGTH_WOODEN_SHIPS</Tag>
+		<English>[ICON_BULLET]%D1_Bonus%% vs. Renaissance or earlier ships</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_PROMOTION_GREEK_FIRE</Tag>
+		<English>Greek Fire</English>
+	</TEXT>	
 </Civ4GameText>

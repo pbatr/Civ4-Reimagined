@@ -382,6 +382,7 @@ void CvUnit::reset(int iID, UnitTypes eUnit, PlayerTypes eOwner, bool bConstruct
 	m_iExtraFriendlyHeal = 0;
 	m_iSameTileHeal = 0;
 	m_iExtraCombatPercent = 0;
+	m_iExtraCombatPercentAgainstWoodenShips = 0; // Civ4 Reimagined
 	m_iExtraCityAttackPercent = 0;
 	m_iExtraCityDefensePercent = 0;
 	m_iExtraHillsAttackPercent = 0;
@@ -8868,6 +8869,7 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 	if (pCombatDetails != NULL)
 	{
 		pCombatDetails->iExtraCombatPercent = 0;
+		pCombatDetails->iExtraCombatPercentAgainstWoodenShips = 0; // Civ4 Reimagined
 		pCombatDetails->iAnimalCombatModifierTA = 0;
 		pCombatDetails->iAIAnimalCombatModifierTA = 0;
 		pCombatDetails->iAnimalCombatModifierAA = 0;
@@ -9023,17 +9025,6 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 				{
 					pCombatDetails->iAIBarbarianCombatModifierTB = iExtraModifier;
 				}
-			}
-		}
-
-		// Civ4 Reimagined
-		if (pAttacker->isHurt())
-		{
-			iExtraModifier = againstInjuredModifier();
-			iModifier += iExtraModifier;
-			if (pCombatDetails != NULL)
-			{
-				pCombatDetails->iAgainstInjuredModifier = iExtraModifier;
 			}
 		}
 	}
@@ -9294,6 +9285,54 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 				}
 			}
 
+			// Civ4 Reimagined
+			if (pAttacker->isHurt())
+			{
+				iExtraModifier = againstInjuredModifier();
+				iModifier += iExtraModifier;
+				if (pCombatDetails != NULL)
+				{
+					pCombatDetails->iAgainstInjuredModifier = iExtraModifier;
+				}
+			}
+			if (isHurt())
+			{
+				iExtraModifier = -pAttacker->againstInjuredModifier();
+				iModifier += iExtraModifier;
+				if (pCombatDetails != NULL)
+				{
+					pCombatDetails->iAgainstInjuredModifier = iExtraModifier;
+				}
+			}
+
+			// Civ4 Reimagined
+			if ((UnitCombatTypes)pAttacker->getUnitCombatType() == GC.getInfoTypeForString("UNITCOMBAT_NAVAL"))
+			{
+				const TechTypes ePrereqTech = (TechTypes)GC.getUnitInfo(pAttacker->getUnitType()).getPrereqAndTech();
+				if (ePrereqTech == NO_TECH || GC.getTechInfo(ePrereqTech).getEra() < 4)
+				{
+					iExtraModifier = getExtraCombatPercentAgainstWoodenShips();
+					iModifier += iExtraModifier;
+					if (pCombatDetails != NULL)
+					{
+						pCombatDetails->iExtraCombatPercentAgainstWoodenShips = iExtraModifier;
+					}
+				}
+			}
+			if ((UnitCombatTypes)getUnitCombatType() == GC.getInfoTypeForString("UNITCOMBAT_NAVAL"))
+			{
+				const TechTypes ePrereqTech = (TechTypes)GC.getUnitInfo(getUnitType()).getPrereqAndTech();
+				if (ePrereqTech == NO_TECH || GC.getTechInfo(ePrereqTech).getEra() < 4)
+				{
+					iExtraModifier = -pAttacker->getExtraCombatPercentAgainstWoodenShips();
+					iModifier += iExtraModifier;
+					if (pCombatDetails != NULL)
+					{
+						pCombatDetails->iExtraCombatPercentAgainstWoodenShips = iExtraModifier;
+					}
+				}
+			}
+
 			iExtraModifier = domainModifier(pAttacker->getDomainType());
 			iTempModifier += iExtraModifier;
 			if (pCombatDetails != NULL)
@@ -9325,17 +9364,6 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 				if (pCombatDetails != NULL)
 				{
 					pCombatDetails->iAnimalCombatModifierT = iExtraModifier;
-				}
-			}
-
-			// Civ4 Reimagined
-			if (isHurt())
-			{
-				iExtraModifier = -pAttacker->againstInjuredModifier();
-				iModifier += iExtraModifier;
-				if (pCombatDetails != NULL)
-				{
-					pCombatDetails->iAgainstInjuredModifier = iExtraModifier;
 				}
 			}
 		}
@@ -11931,6 +11959,23 @@ void CvUnit::changeExtraCombatPercent(int iChange)
 	}
 }
 
+// Civ4 Reimagined
+int CvUnit::getExtraCombatPercentAgainstWoodenShips() const
+{
+	return m_iExtraCombatPercentAgainstWoodenShips;
+}
+
+// Civ4 Reimagined
+void CvUnit::changeExtraCombatPercentAgainstWoodenShips(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iExtraCombatPercentAgainstWoodenShips += iChange;
+
+		setInfoBarDirty(true);
+	}
+}
+
 int CvUnit::getExtraCityAttackPercent() const
 {
 	return m_iExtraCityAttackPercent;
@@ -12910,6 +12955,12 @@ bool CvUnit::isPromotionValid(PromotionTypes ePromotion) const
 		return false;
 	}
 
+	// Civ4 Reimagined
+	if (GC.getPromotionInfo(ePromotion).isUniquePower() && GET_PLAYER(getOwnerINLINE()).getUniquePowerPromotion() != ePromotion)
+	{
+		return false;
+	}
+
 	CvPromotionInfo& promotionInfo = GC.getPromotionInfo(ePromotion);
 
 	if (promotionInfo.getWithdrawalChange() + m_pUnitInfo->getWithdrawalProbability() + getExtraWithdrawal() > GC.getDefineINT("MAX_WITHDRAWAL_PROBABILITY"))
@@ -12991,6 +13042,7 @@ void CvUnit::setHasPromotion(PromotionTypes eIndex, bool bNewValue)
 		changeExtraFriendlyHeal(GC.getPromotionInfo(eIndex).getFriendlyHealChange() * iChange);
 		changeSameTileHeal(GC.getPromotionInfo(eIndex).getSameTileHealChange() * iChange);
 		changeExtraCombatPercent(GC.getPromotionInfo(eIndex).getCombatPercent() * iChange);
+		changeExtraCombatPercentAgainstWoodenShips(GC.getPromotionInfo(eIndex).getCombatPercentAgainstWoodenShips() * iChange); // Civ4 Reimagined
 		changeExtraCityAttackPercent(GC.getPromotionInfo(eIndex).getCityAttackPercent() * iChange);
 		changeExtraCityDefensePercent(GC.getPromotionInfo(eIndex).getCityDefensePercent() * iChange);
 		changeExtraHillsAttackPercent(GC.getPromotionInfo(eIndex).getHillsAttackPercent() * iChange);
