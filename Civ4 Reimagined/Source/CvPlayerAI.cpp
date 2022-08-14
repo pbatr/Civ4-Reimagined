@@ -6386,6 +6386,11 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				{
 					// Civ4 Reimagined
 					iRaceModifier = std::min(100, iRaceModifier + 2*getReligionTechModifier());
+
+					if (!GET_TEAM(getTeam()).isTechBoosted(eTech))
+					{
+						iRaceModifier /= 2;
+					}
 					
 					if (!(GC.getGameINLINE().isReligionSlotTaken((ReligionTypes)iJ)))
 					{
@@ -6436,7 +6441,11 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				// Civ4 Reimagined
 				if (countTotalHasReligion() > 0)
 				{
-					if (getNonStateReligionHappiness() < 0)
+					if (getGreatPeopleRatePerReligionModifier() > 0)
+					{
+						iReligionValue += getGreatPeopleRatePerReligionModifier() * 5;
+					}
+					else if (getNonStateReligionHappiness() < 0)
 					{
 						iReligionValue /= 3;
 					}
@@ -6446,6 +6455,8 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 					// Civ4 Reimagined
 					iReligionValue += 300;
 					bool bHasNeighbors = false;
+
+					iReligionValue += getGreatPeopleRatePerReligionModifier() * 10;
 
 					bool bNeighbouringReligions = false;
 					for (PlayerTypes i = (PlayerTypes)0; !bNeighbouringReligions && i < MAX_CIV_PLAYERS; i = (PlayerTypes)(i+1))
@@ -14897,6 +14908,31 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 
 	//iValue += -(getSingleCivicUpkeep(eCivic, true)*80)/100;
 	iValue -= 2 * getSingleCivicUpkeep(eCivic, true) * iMaintenanceFactor / 100; // K-Mod. (note. upkeep modifiers are included in getSingleCivicUpkeep.)
+
+	// Civ4 Reimagined
+	if (isHasCivicEffect() && getRemainingTurnsForCivicEffect(eCivic) > 0)
+	{
+		int iTempValue = AI_getGreatPersonWeight((UnitClassTypes)GC.getUnitInfo(getCivicEffectGreatPerson(eCivic)).getUnitClassType());
+
+		if (AI_isDoStrategy(AI_STRATEGY_SPECIALIST_ECONOMY))
+		{
+			iTempValue *= 3;
+			iTempValue /= 2;
+		}
+
+		// A bit more value for the civic we are already on
+		if (isCivic(eCivic))
+		{
+			int iTurnsPerCivic = GC.getDefineINT("UNIQUE_POWER_GREECE");
+			iTurnsPerCivic *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getResearchPercent();
+			iTurnsPerCivic /= 100;
+
+			iTempValue += getRemainingTurnsForCivicEffect(eCivic) < iTurnsPerCivic/2 ? 20 : 10;
+		}
+
+		if (iTempValue != 0 && gPlayerLogLevel > 2) logBBAI("	Civic Value of Greek UP: %d", iTempValue);
+		iValue += iTempValue;
+	}
 	
 	// Civ4 Reimagined
 	if (!isNoGreatPeople() || kCivic.isNoGreatPeople())
@@ -17049,16 +17085,20 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		int iTempValue = 0;
 		if (kCivic.isSpecialistValid(iI))
 		{
-			// K-Mod todo: the current code sucks. Fix it.
-			iTempValue += iCities * (AI_isDoVictoryStrategy(AI_VICTORY_CULTURE3) ? 10 : 1) + 6;
-			// Civ4 Reimagined
+			int iLoop;
+			for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+			{
+				iTempValue += pLoopCity->getSpecialistCount((SpecialistTypes)iI);
+			}
+
 			if (AI_isDoStrategy(AI_STRATEGY_SPECIALIST_ECONOMY))
 			{
 				iTempValue *= 3;
 				iTempValue /= 2;
 			}
 		}
-		iValue += (iTempValue / 2);
+		if (iTempValue > 0 && gPlayerLogLevel > 2) logBBAI("	Civic Value of double specialists: %d", iTempValue);
+		iValue += iTempValue;
 	}
 	
 	// Civ4 Reimagined

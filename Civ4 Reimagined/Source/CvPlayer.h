@@ -1460,6 +1460,8 @@ public:
 	int getSlavePointsPerPopulationSacrificed() const; // Civ4 Reimagined
 	void setHasCivicEffect(bool bEnabled); // Civ4 Reimagined
 	bool isHasCivicEffect() const; // Civ4 Reimagined
+	UnitTypes getCivicEffectGreatPerson(CivicTypes eIndex) const; // Civ4 Reimagined
+	int getRemainingTurnsForCivicEffect(CivicTypes eIndex) const; // Civ4 Reimagined
 	void changeTurnsToEffectFromStayingAtCivic(CivicTypes eCivic, int iChange); // Civ4 Reimagined
 	void updateEffectFromStayingAtCivic(); // Civ4 Reimagined
 	void setFaithConquest(bool bNewValue); // Civ4 Reimagined

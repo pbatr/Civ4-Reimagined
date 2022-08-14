@@ -29437,6 +29437,11 @@ void CvPlayer::setHasCivicEffect(bool bEnabled)
 	m_bCivicEffect = bEnabled;
 }
 
+int CvPlayer::getRemainingTurnsForCivicEffect(CivicTypes eIndex) const
+{
+	return m_paiCivicEffect[eIndex];
+}
+
 //Civ4Reimagined
 void CvPlayer::updateEffectFromStayingAtCivic()
 {
@@ -29446,8 +29451,10 @@ void CvPlayer::updateEffectFromStayingAtCivic()
 	{
 		// Get our current government civic
 		CivicTypes eCivic = getCivics(governmentCivicOption);
+
+		logBBAI("Current government: %S", GC.getCivicInfo(eCivic).getDescription(0));
 		
-		if (eCivic != NULL)
+		if (eCivic != NO_CIVIC)
 		{
 			changeTurnsToEffectFromStayingAtCivic(eCivic, -1);
 		}
@@ -29461,36 +29468,13 @@ void CvPlayer::changeTurnsToEffectFromStayingAtCivic(CivicTypes eIndex, int iCha
 	FAssertMsg(eIndex < GC.getNumCivicInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");	
 	
 	m_paiCivicEffect[eIndex] = (m_paiCivicEffect[eIndex] + iChange);
+
+	logBBAI("Remaining turns for civic %S: %d ", GC.getCivicInfo(eIndex).getDescription(0), m_paiCivicEffect[eIndex]);
 	
 	// Trigger effect when the player stayed on that civic for the specified number of turns
 	if(iChange < 0 && m_paiCivicEffect[eIndex] == 0)
 	{
-		UnitTypes eUnit = NO_UNIT;
-
-		if (eIndex == (CivicTypes)GC.getInfoTypeForString("CIVIC_AUTOCRACY"))
-		{
-			eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_GREAT_GENERAL");
-		} 
-		else if (eIndex == (CivicTypes)GC.getInfoTypeForString("CIVIC_CITY_STATES"))
-		{
-			eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_MERCHANT");
-		} 
-		else if (eIndex == (CivicTypes)GC.getInfoTypeForString("CIVIC_DYNASTICISM"))
-		{
-			eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_ARTIST");
-		} 
-		else if (eIndex == (CivicTypes)GC.getInfoTypeForString("CIVIC_THEOCRACY"))
-		{
-			eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_PROPHET");
-		} 
-		else if (eIndex == (CivicTypes)GC.getInfoTypeForString("CIVIC_REPUBLIC"))
-		{
-			eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_SCIENTIST");
-		}
-		else if (eIndex == (CivicTypes)GC.getInfoTypeForString("CIVIC_TYRANNY"))
-		{
-			eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_ENGINEER");
-		}
+		UnitTypes eUnit = getCivicEffectGreatPerson(eIndex);
 
 		CvCity* pCapitalCity = getCapitalCity();
 		if (eUnit != NO_UNIT && pCapitalCity != NULL)
@@ -29502,6 +29486,39 @@ void CvPlayer::changeTurnsToEffectFromStayingAtCivic(CivicTypes eIndex, int iCha
 			pCapitalCity->createGreatPeople(eUnit, false, false);
 		}
 	}
+}
+
+// Civ4 Reimagined
+UnitTypes CvPlayer::getCivicEffectGreatPerson(CivicTypes eIndex) const
+{
+	UnitTypes eUnit = NO_UNIT;
+
+	if (eIndex == (CivicTypes)GC.getInfoTypeForString("CIVIC_AUTOCRACY"))
+	{
+		eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_GREAT_GENERAL");
+	} 
+	else if (eIndex == (CivicTypes)GC.getInfoTypeForString("CIVIC_CITY_STATES"))
+	{
+		eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_MERCHANT");
+	} 
+	else if (eIndex == (CivicTypes)GC.getInfoTypeForString("CIVIC_DYNASTICISM"))
+	{
+		eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_ARTIST");
+	} 
+	else if (eIndex == (CivicTypes)GC.getInfoTypeForString("CIVIC_THEOCRACY"))
+	{
+		eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_PROPHET");
+	} 
+	else if (eIndex == (CivicTypes)GC.getInfoTypeForString("CIVIC_REPUBLIC"))
+	{
+		eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_SCIENTIST");
+	}
+	else if (eIndex == (CivicTypes)GC.getInfoTypeForString("CIVIC_TYRANNY"))
+	{
+		eUnit = (UnitTypes)GC.getInfoTypeForString("UNIT_ENGINEER");
+	}
+
+	return eUnit;
 }
 
 //Civ4 Reimagined

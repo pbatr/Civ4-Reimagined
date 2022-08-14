@@ -1733,6 +1733,12 @@ void CvUnitAI::AI_workerMove()
 		}
 	}
 
+	// Civ4 Reimagined
+	if (AI_searchGoldMines())
+	{
+		return;
+	}
+
 	pCity = NULL;
 
 	if (plot()->getOwnerINLINE() == getOwnerINLINE())
@@ -19523,6 +19529,83 @@ bool CvUnitAI::AI_nextCityToImproveAirlift()
 	if (pBestPlot != NULL)
 	{
 		getGroup()->pushMission(MISSION_AIRLIFT, pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE());
+		return true;
+	}
+
+	return false;
+}
+
+
+// Civ4 Reimagined
+// Returns true if a mission was pushed...
+bool CvUnitAI::AI_searchGoldMines()
+{
+	PROFILE_FUNC();
+
+	int iBestValue = 0;
+	CvPlot* pBestPlot = NULL;
+
+	const BuildTypes eBuild = (BuildTypes)GC.getInfoTypeForString("BUILD_MINE");
+
+	if (!GET_PLAYER(getOwnerINLINE()).isDesertGold())
+	{
+		return false;
+	}
+
+	for (int iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
+	{
+		CvPlot* pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(iI);
+
+		if (!AI_plotValid(pLoopPlot))
+		{
+			continue;
+		}
+
+		if (pLoopPlot->getOwnerINLINE() != getOwnerINLINE())
+		{
+			continue;
+		}
+
+		if (pLoopPlot->getTerrainType() != (TerrainTypes)GC.getInfoTypeForString("TERRAIN_DESERT"))
+		{
+			continue;
+		}
+
+		if (!pLoopPlot->isHills())
+		{
+			continue;
+		}
+
+		if (!pLoopPlot->canBuild(eBuild))
+		{
+			continue;
+		}
+
+		if (pLoopPlot->getImprovementType() != NO_BONUS)
+		{
+			continue;
+		}
+
+		if (!pLoopPlot->isAdjacentToBonus((BonusTypes)GC.getInfoTypeForString("BONUS_GOLD")))
+		{
+			continue;
+		}
+
+		int iValue = 10000;
+		iValue /= plotDistance(plot()->getX_INLINE(), plot()->getY_INLINE(), pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE());
+
+		if (iValue > iBestValue)
+		{
+			iBestValue = iValue;
+			pBestPlot = pLoopPlot;
+		}
+	}
+
+	if (pBestPlot != NULL)
+	{
+		getGroup()->pushMission(MISSION_MOVE_TO, pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE(), 0, false, false, MISSIONAI_BUILD, pBestPlot);
+		getGroup()->pushMission(MISSION_BUILD, eBuild, -1, 0, true, false, MISSIONAI_BUILD, pBestPlot);
+
 		return true;
 	}
 
