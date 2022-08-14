@@ -438,8 +438,8 @@
 		<English>The [COLOR_BUILDING_TEXT]Sacrificial Altar[COLOR_REVERT] reduces anger duration by 50% and costs less.</English>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_BUILDING_BIT_DINU_STRATEGY</Tag>
-		<English>The [COLOR_BUILDING_TEXT]Bit Dinu[COLOR_REVERT] increases happiness.</English>
+		<Tag>TXT_KEY_BUILDING_PALGUM_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Palgum[COLOR_REVERT] gives additional food.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_SPANISH_CITADEL_STRATEGY</Tag>

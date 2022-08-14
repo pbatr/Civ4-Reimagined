@@ -453,7 +453,7 @@
 			</Cities>
 			<Buildings>
 				<Building>
-					<BuildingClassType>BUILDINGCLASS_COURTHOUSE</BuildingClassType>
+					<BuildingClassType>BUILDINGCLASS_AQUEDUCT</BuildingClassType>
 					<BuildingType>BUILDING_BABYLON_GARDEN</BuildingType>
 				</Building>
 			</Buildings>
