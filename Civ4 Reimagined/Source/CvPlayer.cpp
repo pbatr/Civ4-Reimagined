@@ -29764,9 +29764,12 @@ bool CvPlayer::hasGoodRelationsWithPope() const
 			if (eTeam != NO_TEAM)
 			{
 				const PlayerTypes ePope = GET_TEAM(eTeam).getSecretaryID();
-				if (ePope != NO_PLAYER && ePope != getID() && GET_PLAYER(ePope).AI_getAttitude(getID()) >= ATTITUDE_PLEASED)
+				if (ePope != NO_PLAYER && ePope != getID() && !GET_TEAM(eTeam).isAtWar(getTeam()))
 				{
-					return true;
+					if (GET_PLAYER(ePope).AI_getAttitude(getID()) >= ATTITUDE_PLEASED || GET_PLAYER(ePope).isHuman())
+					{
+						return true;
+					}
 				}
 				break;
 			}
