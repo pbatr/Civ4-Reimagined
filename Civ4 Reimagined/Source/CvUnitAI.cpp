@@ -22979,6 +22979,8 @@ int CvUnitAI::AI_greatWorkValue(CvPlot*& pBestPlot, int iThreshold)
 			// Also, it doesn't take into account the possibility of flipping enemy cities.
 			// ... But it's a good start.
 
+			iValue += getGreatWorkGold(pLoopCity->plot()) * kOwner.AI_commerceWeight(COMMERCE_GOLD, pLoopCity) / 100;
+
 			// Civ4 Reimagined: Aztec UP
 			if (getUnitType() == (UnitTypes)GC.getInfoTypeForString("UNIT_AZTEC_CAPTIVE"))
 			{

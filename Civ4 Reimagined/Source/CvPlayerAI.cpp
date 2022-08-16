@@ -3096,6 +3096,8 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 	int iYieldLostHere = 0;
 	std::vector<int> iPlotValueList;// Civ4 Reimagined. Stores all iPlotValues.
 
+	bool bDesertGold = false;
+
 	for (int iI = 0; iI < NUM_CITY_PLOTS; iI++)
 	{
 		CvPlot* pLoopPlot = plotCity(iX, iY, iI);
@@ -3221,6 +3223,16 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 					eImprovement = NO_IMPROVEMENT;
 				}
 			}
+			else if (!kSet.bStartingLoc && isDesertGold())
+			{
+				if (iI != CITY_HOME_PLOT && pLoopPlot->isHills() && pLoopPlot->getTerrainType() == (TerrainTypes)GC.getInfoTypeForString("TERRAIN_DESERT"))
+				{
+					if (!pLoopPlot->isAdjacentToBonus((BonusTypes)GC.getInfoTypeForString("BONUS_GOLD")))
+					{
+						bDesertGold = true;
+					}
+				}
+			}
 			
 			// Civ4 Reimagined
 			if (eImprovement == NO_IMPROVEMENT && pLoopPlot->canHaveImprovement(IMPROVEMENT_MINE, getID(), true))
@@ -3251,6 +3263,17 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 					if (eFeature != NO_FEATURE && !bEventuallyRemoveableFeature) // note: if the feature is removable, was ignored already
 						aiYield[eYield] -= GC.getFeatureInfo(eFeature).getYieldChange(eYield);
 
+					// Civ4 Reimagined: Maya UP
+					if (isCityImprovesBonus() && eBonus != NO_BONUS)
+					{
+						int iMaxBonusYield = 0;
+						for (int iI = 0; iI < GC.getNumImprovementInfos(); ++iI)
+						{
+							iMaxBonusYield = std::max(iMaxBonusYield, GC.getImprovementInfo((ImprovementTypes)iI).getImprovementBonusYield(eBonus, eYield));
+						}
+						aiYield[eYield] += iMaxBonusYield;
+					}
+
 					aiYield[eYield] += GC.getYieldInfo(eYield).getCityChange();
 
 					aiYield[eYield] = std::max(aiYield[eYield], GC.getYieldInfo(eYield).getMinCity());
@@ -3272,7 +3295,7 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 					// Exception: the improvement might be something dud which we wouldn't normally build.
 					// eg. +1 food from a plantation should not be counted, because a farm would be just as good.
 					// But +1 hammers from a mine should be counted, because we'd build the mine anyway. I haven't thought of a good way to deal with this issue.
-					if (eBonus != NO_BONUS && eImprovement != NO_IMPROVEMENT)
+					if (eBonus != NO_BONUS && eImprovement != NO_IMPROVEMENT && !isCityImprovesBonus())
 					{
 						aiYield[eYield] -= GC.getImprovementInfo(eImprovement).getImprovementBonusYield(eBonus, eYield);
 						// Civ4 Reimagined
@@ -3480,6 +3503,15 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 			}
 		}
 	}
+
+	if (bDesertGold)
+	{
+		int iBonusValue = AI_bonusVal((BonusTypes)GC.getInfoTypeForString("BONUS_GOLD"), 1, true) * 12;
+		iBonusValue *= kSet.iGreed;
+		iBonusValue /= 100;
+
+		iResourceValue += iBonusValue * 2;
+	}
 	
 	// Civ4 Reimagined:
 	std::sort(iPlotValueList.begin(), iPlotValueList.end());
@@ -3538,11 +3570,15 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 		return 0;
 	}
 	
-	if (pPlot->isFreshWater())
+	if (pPlot->isFreshWater() || (!kSet.bStartingLoc && isAlwaysFreshWater()))
 	{
 		int iFreshWaterHealth = GC.getDefineINT("FRESH_WATER_HEALTH_CHANGE");
-		iFreshWaterHealth *= 100 + getFreshWaterHealthModifier();
-		iFreshWaterHealth /= 100;
+
+		if (!kSet.bStartingLoc)
+		{
+			iFreshWaterHealth *= 100 + getFreshWaterHealthModifier();
+			iFreshWaterHealth /= 100;
+		}
 
 		iHealth += iFreshWaterHealth * 100;
 		iValue += iFreshWaterHealth * 500; // Civ4 Reimagined
@@ -11172,7 +11208,6 @@ int CvPlayerAI::AI_baseBonusVal(BonusTypes eBonus, bool bAdditional) const
 					if (kLoopBuilding.getBonusHealthChanges(eBonus) != 0)
 					{
 						int iHealth = kLoopBuilding.getBonusHealthChanges(eBonus) + getBonusHealthFromBuilding(eLoopBuilding, eBonus);
-						//iTempValue += kLoopBuilding.getBonusHealthChanges(eBonus) * (kLoopBuilding.getSpecialBuildingType() != NO_SPECIALBUILDING ? 5 : 34);
 						iTempValue += (100 * iHealth + 2 * AI_getHealthWeight(iHealth, 1)) * (kLoopBuilding.getSpecialBuildingType() != NO_SPECIALBUILDING ? 5 : 34) / 200;
 					}
 					
@@ -11373,6 +11408,14 @@ int CvPlayerAI::AI_baseBonusVal(BonusTypes eBonus, bool bAdditional) const
 	} else {
 		iValue += GC.getBonusInfo(eBonus).getHealth() * 100;
 		iValue += GC.getBonusInfo(eBonus).getHappiness() * 100;
+	}
+
+	if (isGainGreatWorkGoldWithHitBonuses())
+	{
+		if (eBonus == (BonusTypes)GC.getInfoTypeForString("BONUS_MUSIC") || eBonus == (BonusTypes)GC.getInfoTypeForString("BONUS_MOVIES"))
+		{
+			iValue *= 2;
+		}
 	}
 	
 	return iValue;
@@ -23272,6 +23315,8 @@ void CvPlayerAI::AI_updateStrategyHash()
                 iMissionary += (iHolyCityCount - 1) * 5;
                 
 				iMissionary += std::min(iMetCount, 5) * 7;
+
+				iMissionary += getGreatPeopleRatePerReligionModifier() * 2;
 
                 for (int iI = 0; iI < MAX_CIV_PLAYERS; iI++)
                 {

@@ -7473,6 +7473,13 @@ void CvCityAI::AI_getYieldMultipliers(int &iFoodMultiplier, int &iProductionMult
 		iFoodMultiplier /= 100;
 	}
 
+	// Civ4 Reimagined: Khmer needs more value for Food
+	if (kPlayer.getFreshWaterHealthModifier() > 0)
+	{
+		iFoodMultiplier *= 100 + kPlayer.getFreshWaterHealthModifier();
+		iFoodMultiplier /= 100;
+	}
+
 	// Note: this food multiplier calculation still doesn't account for possible food yield multipliers. Sorry.
 
 	if (isHuman() && AI_isEmphasizeYield(YIELD_FOOD))
@@ -7787,6 +7794,15 @@ int CvCityAI::AI_getImprovementValue(CvPlot* pPlot, ImprovementTypes eImprovemen
 			if ((eFinalImprovement == pPlot->getImprovementType() && countNumImprovedPlots(eFinalImprovement) == 1) || countNumImprovedPlots(eFinalImprovement) == 0)
 			{
 				iValue += kOwner.getGreatSpyPointsFromImprovementInRadius(eFinalImprovement) * 100;
+			}
+		}
+
+		// Civ4 Reimagined
+		if (kOwner.getPeakYieldChangeAdjacentToTerrace(YIELD_FOOD) > 0 && eImprovement == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_TERRACE"))
+		{
+			if (pPlot->isAdjacentToPeak())
+			{
+				iValue += kOwner.getPeakYieldChangeAdjacentToTerrace((YieldTypes)iJ) * 25;
 			}
 		}
 
@@ -8996,7 +9012,7 @@ bool CvCityAI::AI_bestSpreadUnit(bool bMissionary, bool bExecutive, int iBaseCha
 				{
 					iRoll += 25;
 				}
-				else if (!kTeam.hasHolyCity(eReligion) && !(kPlayer.getStateReligion() == eReligion && iHasCount < kPlayer.getNumCities()))
+				else if (!kTeam.hasHolyCity(eReligion) && !(kPlayer.getStateReligion() == eReligion && iHasCount < kPlayer.getNumCities()) && kPlayer.getGreatPeopleRatePerReligionModifier() <= 0)
 				{
 					//iRoll /= 2;
 					// Civ4 Reimagined
