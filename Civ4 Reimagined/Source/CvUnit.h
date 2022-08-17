@@ -764,6 +764,9 @@ public:
 	bool canCoastalRaidAt(const CvPlot* pPlot, int iX, int iY) const;
 	bool coastalRaid(int iX, int iY);
 
+	// Civ4 Reimagined
+	void doPirateGold(UnitTypes eKilledUnit, CvPlot* pPlot); // Civ4 Reimagined
+
 	int getTriggerValue(EventTriggerTypes eTrigger, const CvPlot* pPlot, bool bCheckPlot) const;
 	bool canApplyEvent(EventTypes eEvent) const;
 	void applyEvent(EventTypes eEvent);

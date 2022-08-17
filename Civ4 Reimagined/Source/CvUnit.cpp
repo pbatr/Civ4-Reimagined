@@ -1656,6 +1656,12 @@ void CvUnit::updateCombat(bool bQuick)
 				}
 			}
 
+			// Civ4 Reimagined
+			if (GET_PLAYER(pDefender->getOwnerINLINE()).isPirateGold() && pDefender->getUnitInfo().isHiddenNationality())
+			{
+				pDefender->doPirateGold(getUnitType(), pPlot);
+			}
+
 			if (!m_pUnitInfo->isHiddenNationality() && !pDefender->getUnitInfo().isHiddenNationality())
 			{
 				GET_TEAM(getTeam()).changeWarWeariness(pDefender->getTeam(), *pPlot, GC.getDefineINT("WW_UNIT_KILLED_ATTACKING"));
@@ -1713,6 +1719,12 @@ void CvUnit::updateCombat(bool bQuick)
 				{
 					GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_RIFLING"), getOwnerINLINE(), true);
 				}
+			}
+
+			// Civ4 Reimagined
+			if (GET_PLAYER(getOwnerINLINE()).isPirateGold() && m_pUnitInfo->isHiddenNationality())
+			{
+				doPirateGold(pDefender->getUnitType(), pPlot);
 			}
 
 			if (!m_pUnitInfo->isHiddenNationality() && !pDefender->getUnitInfo().isHiddenNationality())
@@ -15221,5 +15233,24 @@ void CvUnit::bombardCity(CvCity* pCity, int bombardRate)
 	szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_AIRBOMBFAIL", pCity->getNameKey());
 	gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getDefineINT("EVENT_MESSAGE_TIME"), szBuffer, "AS2D_BOMBARD", MESSAGE_TYPE_INFO, NULL, 
 										 (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pCity->getX_INLINE(), pCity->getY_INLINE(), true, true);
+}
+
+//Civ4 Reimagined
+void CvUnit::doPirateGold(UnitTypes eKilledUnit, CvPlot* pPlot)
+{
+	int iPirateGold = GC.getUnitInfo(eKilledUnit).getProductionCost();
+
+	iPirateGold *= GC.getDefineINT("UNIT_PRODUCTION_PERCENT");
+	iPirateGold /= 100;
+
+	iPirateGold *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getTrainPercent();
+	iPirateGold /= 100;
+
+	iPirateGold *= GC.getEraInfo(GC.getGameINLINE().getStartEra()).getTrainPercent();
+	iPirateGold /= 100;
+
+	GET_PLAYER(getOwnerINLINE()).changeGold(iPirateGold);
+	CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_PIRATE_GOLD", iPirateGold, GC.getUnitInfo(eKilledUnit).getTextKeyWide());
+	gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_PILLAGE", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
 }
 

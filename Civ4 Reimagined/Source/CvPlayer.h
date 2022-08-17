@@ -1542,6 +1542,8 @@ public:
 	bool isFreePillage() const; // Civ4 Reimagined
 	int getLootCityModifier() const; // Civ4 Reimagined
 	void changeLootCityModifier(int iChange); // Civ4 Reimagined
+	void setIsPirateGold(bool bNewValue); // Civ4 Reimagined
+	bool isPirateGold() const; // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1856,6 +1858,7 @@ protected:
 	bool m_bCanBuildWindmillsOnCoast; // Civ4 Reimagined
 	bool m_bCityImprovesBonus; // Civ4 Reimagined
 	bool m_bFreePillage; // Civ4 Reimagined
+	bool m_bPirateGold; // Civ4 Reimagined
 
 
 	bool m_bDisableHuman;	// Set to true to disable isHuman() check

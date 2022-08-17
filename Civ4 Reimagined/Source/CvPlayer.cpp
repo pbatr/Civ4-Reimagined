@@ -1100,6 +1100,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iLootCityModifier = 0; // Civ4 Reimagined
 	m_bCityImprovesBonus = false; // Civ4 Reimagined
 	m_bFreePillage = false; // Civ4 Reimagined
+	m_bPirateGold = false; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -21423,6 +21424,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iLootCityModifier); // Civ4 Reimagined
 	pStream->Read(&m_bCityImprovesBonus); // Civ4 Reimagined
 	pStream->Read(&m_bFreePillage); // Civ4 Reimagined
+	pStream->Read(&m_bPirateGold); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -22093,6 +22095,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iLootCityModifier); // Civ4 Reimagined
 	pStream->Write(m_bCityImprovesBonus); // Civ4 Reimagined
 	pStream->Write(m_bFreePillage); // Civ4 Reimagined
+	pStream->Write(m_bPirateGold); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -29752,6 +29755,18 @@ bool CvPlayer::isFreePillage() const
 	return m_bFreePillage;
 }
 
+//Civ4 Reimagined
+void CvPlayer::setIsPirateGold(bool bNewValue)
+{
+	m_bPirateGold = bNewValue;
+}
+
+//Civ4 Reimagined
+bool CvPlayer::isPirateGold() const
+{
+	return m_bPirateGold;
+}
+
 // Civ4 Reimagined
 bool CvPlayer::hasGoodRelationsWithPope() const
 {
@@ -30043,6 +30058,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		}
 		else if (eEra == ERA_RENAISSANCE)
 		{
+			setIsPirateGold(true);
 			changeColonyTraderouteModifier(GC.getDefineINT("UNIQUE_POWER_ENGLAND"));
 			notifyUniquePowersChanged(true);
 		}
