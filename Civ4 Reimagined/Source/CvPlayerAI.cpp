@@ -3225,12 +3225,9 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 			}
 			else if (!kSet.bStartingLoc && isDesertGold())
 			{
-				if (iI != CITY_HOME_PLOT && pLoopPlot->isHills() && pLoopPlot->getTerrainType() == (TerrainTypes)GC.getInfoTypeForString("TERRAIN_DESERT"))
+				if (iI != CITY_HOME_PLOT && pLoopPlot->canDiscoverDesertGold())
 				{
-					if (!pLoopPlot->isAdjacentToBonus((BonusTypes)GC.getInfoTypeForString("BONUS_GOLD")))
-					{
-						bDesertGold = true;
-					}
+					bDesertGold = true;
 				}
 			}
 			
@@ -3264,7 +3261,7 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 						aiYield[eYield] -= GC.getFeatureInfo(eFeature).getYieldChange(eYield);
 
 					// Civ4 Reimagined: Maya UP
-					if (isCityImprovesBonus() && eBonus != NO_BONUS)
+					if (!kSet.bStartingLoc && isCityImprovesBonus() && eBonus != NO_BONUS)
 					{
 						int iMaxBonusYield = 0;
 						for (int iI = 0; iI < GC.getNumImprovementInfos(); ++iI)
@@ -3272,6 +3269,9 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 							iMaxBonusYield = std::max(iMaxBonusYield, GC.getImprovementInfo((ImprovementTypes)iI).getImprovementBonusYield(eBonus, eYield));
 						}
 						aiYield[eYield] += iMaxBonusYield;
+
+						// More value for faster yields because it is city home plot
+						iPlotValue += iMaxBonusYield * 75;
 					}
 
 					aiYield[eYield] += GC.getYieldInfo(eYield).getCityChange();
@@ -6804,7 +6804,7 @@ int CvPlayerAI::uniquePowerAIEraValueMult(EraTypes eEra) const
 	
 	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AMERICA") && eEra == ERA_INDUSTRIAL)
 	{
-		return 125;
+		return 150;
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BYZANTIUM") && eEra == ERA_MEDIEVAL)
 	{
@@ -6814,29 +6814,57 @@ int CvPlayerAI::uniquePowerAIEraValueMult(EraTypes eEra) const
 	{
 		return 150;
 	}
-	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CELT") && eEra == ERA_CLASSICAL)
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ENGLAND") && eEra == ERA_RENAISSANCE)
 	{
 		return 150;
 	}
-	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ENGLAND") && eEra == ERA_RENAISSANCE)
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_FRANCE") && eEra == ERA_MEDIEVAL)
 	{
 		return 150;
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_GERMANY") && eEra == ERA_INDUSTRIAL)
 	{
-		return 125;
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_HOLY_ROMAN") && eEra == ERA_MEDIEVAL)
+	{
+		return 150;
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_JAPAN") && eEra == ERA_INDUSTRIAL)
 	{
-		return 125;
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_KHMER") && eEra == ERA_MEDIEVAL)
+	{
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_KOREA") && eEra == ERA_INDUSTRIAL)
+	{
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MALI") && eEra == ERA_CLASSICAL)
+	{
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MONGOL") && eEra == ERA_MEDIEVAL)
+	{
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_PORTUGAL") && eEra == ERA_MEDIEVAL)
+	{
+		return 150;
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME") && eEra == ERA_CLASSICAL)
 	{
 		return 150;
 	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_RUSSIA") && eEra == ERA_MEDIEVAL)
+	{
+		return 150;
+	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SPAIN") && eEra == ERA_MEDIEVAL)
 	{
-		return 110;
+		return 150;
 	}
 
 	return 100;
@@ -14431,6 +14459,7 @@ int CvPlayerAI::AI_localDefenceStrength(const CvPlot* pDefencePlot, TeamTypes eD
 						// actually, the value of first strikes is non-trivial to calculate... but we should so /something/ to take them into account.
 						iUnitStr *= 100 + 4 * pLoopUnit->firstStrikes() + 2 * pLoopUnit->chanceFirstStrikes();
 						iUnitStr /= 100;
+
 						// note. Most other parts of the code use 5% per first strike, but I figure we should go lower because this unit may get clobbered by collateral damage before fighting.
 						iPlotTotal += iUnitStr;
 					}
@@ -17297,6 +17326,19 @@ ReligionTypes CvPlayerAI::AI_bestReligion() const
 					iValue = iValue*4/3;
 			}
 			// K-Mod end
+
+			// Civ4 Reimagined
+			if (getVoteSourceStateReligionUnitProductionModifier() > 0)
+			{
+				for (VoteSourceTypes i = (VoteSourceTypes)0; i < GC.getNumVoteSourceInfos(); i = (VoteSourceTypes)(i+1))
+				{
+					if (GC.getGameINLINE().isDiploVote(i) && GC.getGameINLINE().getVoteSourceReligion(i) == (ReligionTypes)iI)
+					{
+						iValue *= 100 + getVoteSourceStateReligionUnitProductionModifier() * 4;
+						iValue /= 100;
+					}
+				}	
+			}
 
 			if (eFavorite == iI)
 			{

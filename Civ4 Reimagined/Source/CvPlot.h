@@ -528,6 +528,7 @@ public:
 	
 	//Civ4 Reimagined
 	bool canUpgradeTo(UnitTypes eUnit) const;
+	bool canDiscoverDesertGold() const;
 
 	bool isEspionageCounterSpy(TeamTypes eTeam) const;
 

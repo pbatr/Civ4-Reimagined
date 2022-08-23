@@ -6136,9 +6136,9 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 				GET_PLAYER(getOwnerINLINE()).changeImprovementCount(getImprovementType(), 1);
 
 				// Civ4 Reimagined: Mali UP
-				if (GET_PLAYER(getOwnerINLINE()).isDesertGold() && getTerrainType() == (TerrainTypes)GC.getInfoTypeForString("TERRAIN_DESERT") && getImprovementType() == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_MINE"))
+				if (GET_PLAYER(getOwnerINLINE()).isDesertGold() && getImprovementType() == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_MINE"))
 				{
-					if (getBonusType() == NO_BONUS && !isAdjacentToBonus((BonusTypes)GC.getInfoTypeForString("BONUS_GOLD")))
+					if (canDiscoverDesertGold())
 					{
 						discoverBonus((BonusTypes)GC.getInfoTypeForString("BONUS_GOLD"));
 					}
@@ -11144,3 +11144,30 @@ bool CvPlot::hasDefender(bool bCheckCanAttack, PlayerTypes eOwner, PlayerTypes e
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
+
+
+// Civ4 Reimagined
+bool CvPlot::canDiscoverDesertGold() const
+{
+	if (getTerrainType() != (TerrainTypes)GC.getInfoTypeForString("TERRAIN_DESERT"))
+	{
+		return false;
+	}
+
+	if (!isHills())
+	{
+		return false;
+	}
+
+	if (getBonusType() != NO_BONUS)
+	{
+		return false;
+	}
+
+	if (isAdjacentToBonus((BonusTypes)GC.getInfoTypeForString("BONUS_GOLD")))
+	{
+		return false;
+	}
+
+	return true;
+}

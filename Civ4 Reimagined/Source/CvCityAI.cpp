@@ -7635,8 +7635,15 @@ int CvCityAI::AI_getImprovementValue(CvPlot* pPlot, ImprovementTypes eImprovemen
 			{
 				if (GC.getImprovementInfo(eFinalImprovement).getImprovementBonusDiscoverRand(iJ) > 0)
 				{
-					iValue++;
+					// Civ4 Reimagined: Mali UP
+					iValue += ((BonusTypes)iJ == (BonusTypes)GC.getInfoTypeForString("BONUS_GOLD") && GET_PLAYER(getOwnerINLINE()).isDesertGold()) ? 5 : 1;
 				}
+			}
+
+			// Civ4 Reimagined: Mali UP
+			if (GET_PLAYER(getOwnerINLINE()).isDesertGold() && pPlot->canDiscoverDesertGold() && eImprovement == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_MINE"))
+			{
+				iValue += kOwner.AI_bonusVal((BonusTypes)GC.getInfoTypeForString("BONUS_GOLD"), 1) * 50;
 			}
 		}
 	}

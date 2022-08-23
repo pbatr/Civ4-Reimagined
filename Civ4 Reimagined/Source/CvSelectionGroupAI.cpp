@@ -539,6 +539,15 @@ int CvSelectionGroupAI::AI_compareStacks(const CvPlot* pPlot, bool bCheckCanAtta
 	int defenderSum = pPlot->isVisible(getHeadTeam(), false)
 		? GET_PLAYER(eOwner).AI_localDefenceStrength(pPlot, NO_TEAM, eDomainType, 0)
 		: GET_TEAM(getHeadTeam()).AI_getStrengthMemory(pPlot);
+
+	// Civ4 Reimagined: Mongol UP
+	CvCity* pDefenderCity = pPlot->getPlotCity();
+	if (pDefenderCity != NULL && GET_PLAYER(eOwner).isCityRevoltOnKill() && pDefenderCity->getDefenseModifier(false) > 0 && pDefenderCity->getCultureLevel() < (CultureLevelTypes)5)
+	{
+		defenderSum *= 100 - pDefenderCity->getDefenseModifier(false) / 2;
+		defenderSum /= 100;
+	}
+
 	// K-Mod end
 	compareRatio /= std::max(1, defenderSum);
 

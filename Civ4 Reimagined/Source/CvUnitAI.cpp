@@ -2358,6 +2358,13 @@ void CvUnitAI::AI_attackMove()
 				}
 			}
 		}
+
+		// Civ4 Reimagined: Celtic UP
+		if (GET_PLAYER(getOwnerINLINE()).isFreePillage() && AI_pillageRange(0))
+		{
+			return;
+		}
+
 		// K-Mod (moved from below, and replacing the disabled stuff above)
 		// Civ4 Reimagined
 		if (collateralDamage() == 0 && AI_anyAttack(1, 70))
@@ -2741,6 +2748,12 @@ void CvUnitAI::AI_paratrooperMove()
 		}
 	}
 
+	// Civ4 Reimagined: Celtic UP
+	if (GET_PLAYER(getOwnerINLINE()).isFreePillage() && AI_pillageRange(0))
+	{
+		return;
+	}
+
 	if (AI_cityAttack(1, 45))
 	{
 		return;
@@ -2961,6 +2974,12 @@ void CvUnitAI::AI_attackCityMove()
 			return;
 	}
 	// K-Mod end
+
+	// Civ4 Reimagined: Celtic UP
+	if (GET_PLAYER(getOwnerINLINE()).isFreePillage() && AI_pillageRange(0))
+	{
+		return;
+	}
 
 	//if (AI_groupMergeRange(UNITAI_ATTACK_CITY, 0, true, true, bIgnoreFaster))
 	if (AI_omniGroup(UNITAI_ATTACK_CITY, -1, -1, true, iMoveFlags, 0, true, false, bIgnoreFaster))
@@ -3907,7 +3926,8 @@ void CvUnitAI::AI_pillageMove()
 
 	// K-Mod. Pillage units should focus on pillaging, when possible.
 	// note: having 2 moves doesn't necessarily mean we can move & pillage in the same turn, but it's a good enough approximation.
-	if (AI_pillageRange(getGroup()->baseMoves() > 1 ? 1 : 0, 11))
+	const bool bEnoughMovesForPillage = getGroup()->baseMoves() > 1 || GET_PLAYER(getOwnerINLINE()).isFreePillage();
+	if (AI_pillageRange(bEnoughMovesForPillage ? 1 : 0, 11))
 	{
 		return;
 	}
@@ -4062,6 +4082,12 @@ void CvUnitAI::AI_reserveMove()
 	}
 	else
 	{
+		// Civ4 Reimagined: Celtic UP
+		if (GET_PLAYER(getOwnerINLINE()).isFreePillage() && AI_pillageRange(0))
+		{
+			return;
+		}
+
 		if (AI_anyAttack(1, 65))
 			return;
 	}
@@ -12669,7 +12695,13 @@ bool CvUnitAI::AI_heal(int iDamagePercent, int iMaxPath)
 	{
 	    if (getDamage() > 0)
         {
-        	
+        	// Civ4 Reimagined: Mongol UP
+			if (GET_PLAYER(getOwnerINLINE()).getPillageHeal() > 0 && canPillage(plot()))
+			{
+				getGroup()->pushMission(MISSION_PILLAGE, -1, -1, 0, false, false, MISSIONAI_PILLAGE, plot());
+				return true;
+			}
+
             if (plot()->isCity() || (healTurns(plot()) == 1))
             {
                 if (!(isAlwaysHeal()))
@@ -19586,7 +19618,7 @@ bool CvUnitAI::AI_searchGoldMines()
 			continue;
 		}
 
-		if (!pLoopPlot->isAdjacentToBonus((BonusTypes)GC.getInfoTypeForString("BONUS_GOLD")))
+		if (pLoopPlot->isAdjacentToBonus((BonusTypes)GC.getInfoTypeForString("BONUS_GOLD")))
 		{
 			continue;
 		}
@@ -19603,6 +19635,7 @@ bool CvUnitAI::AI_searchGoldMines()
 
 	if (pBestPlot != NULL)
 	{
+		logBBAI("Push mission SearchGoldMines");
 		getGroup()->pushMission(MISSION_MOVE_TO, pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE(), 0, false, false, MISSIONAI_BUILD, pBestPlot);
 		getGroup()->pushMission(MISSION_BUILD, eBuild, -1, 0, true, false, MISSIONAI_BUILD, pBestPlot);
 
@@ -24190,6 +24223,12 @@ int CvUnitAI::AI_pillageValue(CvPlot* pPlot, int iBonusValueThreshold)
 		if (getDomainType() != DOMAIN_AIR)
 		{
 			iValue += GC.getImprovementInfo(eImprovement).getPillageGold();
+
+			// Civ4 Reimagined: Mongol UP
+			if (GET_PLAYER(getOwnerINLINE()).getPillageHeal() > 0 && getDamage() > 0)
+			{
+				iValue *= 2;
+			}
 		}
 
 		if (eNonObsoleteBonus != NO_BONUS)
@@ -24588,7 +24627,12 @@ int CvUnitAI::AI_getWeightedOdds(CvPlot* pPlot, bool bPotentialEnemy)
 	// adjust down if the enemy is on a defensive tile - we'd prefer to attack them on open ground.
 	if (!pDefender->noDefensiveBonus())
 	{
-		iAdjustedOdds -= (100 - iOdds) * pPlot->defenseModifier(pDefender->getTeam(), false, false, pDefender->defenseBuildingModifier()) / (getDomainType() == DOMAIN_SEA ? 100 : 300);
+		// Civ4 Reimagined: Mongol UP
+		CvCity* pDefenderCity = pPlot->getPlotCity();
+		if (!GET_PLAYER(getOwnerINLINE()).isCityRevoltOnKill() || pDefenderCity == NULL || pDefenderCity->getCultureLevel() >= (CultureLevelTypes)5 || pDefenderCity->getOccupationTimer() > 0)
+		{
+			iAdjustedOdds -= (100 - iOdds) * pPlot->defenseModifier(pDefender->getTeam(), false, false, pDefender->defenseBuildingModifier()) / (getDomainType() == DOMAIN_SEA ? 100 : 300);
+		}
 	}
 
 	// adjust the odds up if the enemy is wounded. We want to attack them now before they heal.

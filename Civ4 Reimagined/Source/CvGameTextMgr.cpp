@@ -761,6 +761,13 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 				szString.append(gDLL->getText("TXT_KEY_PROMOTION_BLITZ_TEXT"));
 			}
 
+			// Civ4 Reimagined
+			if (pUnit->getExtraCombatPercentAgainstWoodenShips() != 0)
+			{
+				szString.append(NEWLINE);
+				szString.append(gDLL->getText("TXT_KEY_PROMOTION_STRENGTH_AGAINST_WOODEN_SHIPS_TEXT", pUnit->getExtraCombatPercentAgainstWoodenShips()));
+			}
+
 			if (pUnit->isAmphib())
 			{
 				szString.append(NEWLINE);
