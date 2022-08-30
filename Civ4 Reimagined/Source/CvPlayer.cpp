@@ -3123,11 +3123,11 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 
 	// Civ4 Reimagined: Unique power for Rome
 	int iFreeUnitsOnConquest = getFreeUnitsOnConquest();
-	if (iFreeUnitsOnConquest > 0 && bConquest && eOldHighestCulturePlayer != NO_PLAYER && !bOldEverOwned && GET_PLAYER(eOldHighestCulturePlayer).getCurrentEra() < ERA_MEDIEVAL)
+	if (iFreeUnitsOnConquest > 0 && bConquest && !bOldEverOwned && GET_PLAYER(eOldOwner).getCurrentEra() < ERA_MEDIEVAL)
 	{
 		int iNumUnits = iOldCultureLevel + iFreeUnitsOnConquest - 1;
 		
-		PlayerTypes eOtherPlayer = eOldHighestCulturePlayer; //pNewCity->getOriginalOwner();
+		PlayerTypes eOtherPlayer = (eOldHighestCulturePlayer != NO_PLAYER) ? eOldHighestCulturePlayer : eOldOwner;
 		
 		UnitClassTypes UNITCLASS_SPEARMAN = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SPEARMAN");
 		UnitClassTypes UNITCLASS_AXEMAN = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_AXEMAN");
