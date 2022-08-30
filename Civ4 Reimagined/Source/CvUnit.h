@@ -185,6 +185,7 @@ public:
 	bool paradrop(int iX, int iY);
 
 	bool canPillage(const CvPlot* pPlot) const;																										// Exposed to Python
+	bool isFreePillage() const; // Civ4 Reimagined
 	bool pillage();
 
 	bool canPlunder(const CvPlot* pPlot, bool bTestVisible = false) const;																					// Exposed to Python

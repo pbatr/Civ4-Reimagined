@@ -5248,7 +5248,8 @@ bool CvUnit::pillage()
 		pPlot->setRouteType(NO_ROUTE, true); // XXX downgrade rail???
 	}
 
-	if (!GET_PLAYER(getOwnerINLINE()).isFreePillage())
+	// Civ4 Reimagined: Celtic UP
+	if (!isFreePillage())
 	{
 		changeMoves(GC.getMOVE_DENOMINATOR());
 	}
@@ -5271,6 +5272,13 @@ bool CvUnit::pillage()
 	}
 
 	return true;
+}
+
+
+// Civ4 Reimagined
+bool CvUnit::isFreePillage() const
+{
+	return GET_PLAYER(getOwnerINLINE()).isFreePillage() && getUnitCombatType() == (UnitCombatTypes)GC.getInfoTypeForString("UNITCOMBAT_MELEE");
 }
 
 

@@ -2360,7 +2360,7 @@ void CvUnitAI::AI_attackMove()
 		}
 
 		// Civ4 Reimagined: Celtic UP
-		if (GET_PLAYER(getOwnerINLINE()).isFreePillage() && AI_pillageRange(0))
+		if (isFreePillage() && AI_pillageRange(0))
 		{
 			return;
 		}
@@ -2749,7 +2749,7 @@ void CvUnitAI::AI_paratrooperMove()
 	}
 
 	// Civ4 Reimagined: Celtic UP
-	if (GET_PLAYER(getOwnerINLINE()).isFreePillage() && AI_pillageRange(0))
+	if (isFreePillage() && AI_pillageRange(0))
 	{
 		return;
 	}
@@ -2976,7 +2976,7 @@ void CvUnitAI::AI_attackCityMove()
 	// K-Mod end
 
 	// Civ4 Reimagined: Celtic UP
-	if (GET_PLAYER(getOwnerINLINE()).isFreePillage() && AI_pillageRange(0))
+	if (isFreePillage() && AI_pillageRange(0))
 	{
 		return;
 	}
@@ -3926,7 +3926,7 @@ void CvUnitAI::AI_pillageMove()
 
 	// K-Mod. Pillage units should focus on pillaging, when possible.
 	// note: having 2 moves doesn't necessarily mean we can move & pillage in the same turn, but it's a good enough approximation.
-	const bool bEnoughMovesForPillage = getGroup()->baseMoves() > 1 || GET_PLAYER(getOwnerINLINE()).isFreePillage();
+	const bool bEnoughMovesForPillage = getGroup()->baseMoves() > 1 || isFreePillage();
 	if (AI_pillageRange(bEnoughMovesForPillage ? 1 : 0, 11))
 	{
 		return;
@@ -4083,7 +4083,7 @@ void CvUnitAI::AI_reserveMove()
 	else
 	{
 		// Civ4 Reimagined: Celtic UP
-		if (GET_PLAYER(getOwnerINLINE()).isFreePillage() && AI_pillageRange(0))
+		if (isFreePillage() && AI_pillageRange(0))
 		{
 			return;
 		}
