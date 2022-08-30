@@ -1,20 +1,30 @@
 *******************************************
-Civ4 Reimagined 1.7
+Civ4 Reimagined 2.0
 *******************************************
+
 *********
 New
 *********
--New faster gamespeed: Online (2x as fast as normal)
+-Every Civilzation has now access to a Unique Power
 -Eurekas boosts for all technologies in game (instantly gain 40% of the science needed to discover the technology)
+-New faster gamespeed: Online (2x as fast as normal)
 
 *********
 Changes
 *********
+-Worker can build Villages with Medicine Tech
+-Cannot hurry units with Slavery, upkeep changed from high to medium
+-Khmer Baray overhaul: Adjacency bonus for farms and more extra health
+-Byzantine Hippodrome now replaces Stadium. It boosts gold income and grants additional experience to mounted units
+-Incan unique building Terrace changed to Qullqa (replaces Granery, -20% city maintenance & units heal 10% faster)
+-Incan unique unit Awqaq Runa now has reduced cost (15 instead of 30) and combat bonus on hills but no longer bonus vs melee
+-Decreased worker limit from 8 to 6
+-Additional effect from Bureaucracy civic: Instantly gain 2 additional workers and temporarily increase worker limit by 2
+-Additional effect from Vassalage civic: Happiness from forts in city radius
+-Cities can not be traded unless both players are at war (peace negotiations) or a city is liberated
 -With a low resource ratio in coal and oil, Railroads take longer to construct and units can traverse less Railroad squares per turn
 -Friendly units from another civilization stationed in your city do no longer reduce the risk of revolts
--Worker can build Villages with Medicine Tech
--Civilizations have a starting bias for native resources
--Cannot hurry units with Slavery
+-Adjusted starting bias of Civilizations to accomodate Unique Powers and also have starting bias for native resources
 
 *********
 Tweaks
@@ -40,14 +50,22 @@ Tweaks
 -Spanish Citadel gets obsolete with Liberalism instead of Corporation
 -Great Wall costs reduced from 300 to 250
 -Higher tech speed on lower difficulties
--Incan unique building Terrace changed to Qullqa (replaces Granery, -20% city maintenance & units heal 10% faster)
--Incan unique unit Awqaq Runa now has reduced cost (15 instead of 30) and combat bonus on hills but no longer bonus vs melee
 -Quests which require training a number of units are easier to fullfil
+-Minimum time between revolutions reduced from 5 to 4 turns
+-Event probabilities adjusted to game speed
+-Roman legion has 2 potential first strikes and same defensive city malus as swordsman
+-Switch leader traits: Charlemagne is now organized and Roosevelt progressive
+-India starts with Hunting instead of Mining
+-More vision at starting position
+-Maya Holkan is available with Masonry
+-Celtic Gallic Warrior now requires Iron but has a combat bonus against injured units
+-Greek Odeon now increases great person rate and culture per world wonder in the city 
 
 *********
 Interface
 *********
-
+-Remove unused Unique Power tab
+-Range symbol changed
 
 *********
 Fixes
@@ -58,6 +76,9 @@ Fixes
 -Religion switches did not update commerce during player's turn
 -Acquired cities from a civ running Totalitarianism no longer keep the free Spy specialists
 -Great people probabilities kept changing even when running Autocracy
+-Sumerian Ziggurats did not get converted to religious temples when adopting a state religion
+-Horse whispering quest could not be achieved
+-Totestra map script sometimes generated starting positions too close to the edge of the map
 
 *******************************************
 Civ4 Reimagined 1.6
