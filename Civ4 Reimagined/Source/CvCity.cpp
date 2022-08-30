@@ -3519,7 +3519,12 @@ int CvCity::getProductionModifier(BuildingTypes eBuilding) const
 
 		if (pCapital != NULL && getArea() == pCapital->getArea() && pCapital->getNumBuilding(eBuilding) > 0)
 		{
-			iMultiplier += iProductionModifierFromCapital;
+			const TechTypes ePrereqTech = (TechTypes)GC.getBuildingInfo(eBuilding).getPrereqAndTech();
+			
+			if (ePrereqTech == NO_TECH || GC.getTechInfo(ePrereqTech).getEra() < 2)
+			{
+				iMultiplier += iProductionModifierFromCapital;
+			}
 		}
 	}
 	

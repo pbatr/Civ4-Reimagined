@@ -16945,9 +16945,14 @@ void CvGameTextMgr::setProductionHelp(CvWStringBuffer &szBuffer, CvCity& city)
 
 				if (pCapital != NULL && city.getArea() == pCapital->getArea() && pCapital->getNumBuilding(eBuilding) > 0)
 				{
-					szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_PROD_UNIQUE_POWER", iFromCapitalMod));
-					szBuffer.append(NEWLINE);
-					iBaseModifier += iFromCapitalMod;
+					const TechTypes ePrereqTech = (TechTypes)GC.getBuildingInfo(eBuilding).getPrereqAndTech();
+			
+					if (ePrereqTech == NO_TECH || GC.getTechInfo(ePrereqTech).getEra() < 2)
+					{
+						szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_PROD_UNIQUE_POWER", iFromCapitalMod));
+						szBuffer.append(NEWLINE);
+						iBaseModifier += iFromCapitalMod;
+					}
 				}
 			}
 		}

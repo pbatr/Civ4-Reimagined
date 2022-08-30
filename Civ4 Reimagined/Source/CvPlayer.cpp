@@ -30264,10 +30264,14 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME"))
 	{
-		if (eEra == ERA_CLASSICAL) 
+		if (eEra == ERA_ANCIENT)
 		{
-			changeFreeUnitsOnConquest(GC.getDefineINT("UNIQUE_POWER_ROME")); // 2+Culture-Level der Stadt Einheiten
-			changeBuildingProductionModifierFromCapital(25);
+			changeBuildingProductionModifierFromCapital(50);
+			notifyUniquePowersChanged(true);
+		}
+		else if (eEra == ERA_CLASSICAL) 
+		{
+			changeFreeUnitsOnConquest(GC.getDefineINT("UNIQUE_POWER_ROME"));
 			notifyUniquePowersChanged(true);
 		}			
 	}

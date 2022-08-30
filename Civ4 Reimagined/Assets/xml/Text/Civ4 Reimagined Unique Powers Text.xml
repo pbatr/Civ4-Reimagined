@@ -197,7 +197,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_ROME</Tag>
-		<English>After entering the Classical Era: Cities on the same continent have +25% production bonus for buildings that already exist in capital. When conquering a city of a civilization that has not yet entered the medieval era, receive (cities culture level+1) military land units of that conquered civilization.</English>
+		<English>Cities on the same continent have +50% production bonus towards classical or earlier buildings that already exist in capital. After entering the Classical Era: When conquering a city of a civilization that has not yet entered the medieval era, receive (cities culture level+1) military land units of that conquered civilization.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_CELTS</Tag>
