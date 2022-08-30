@@ -2274,6 +2274,12 @@ void CyCity::setBuildingHealthChange(int /*BuildingClassTypes*/ eBuildingClass, 
 	}
 }
 
+// Civ4 Reimagined
+int CyCity::getBonusValueTimes100(int iBonusCount) const
+{
+	return m_pCity ? m_pCity->getBonusValueTimes100(iBonusCount) : 0;
+}
+
 int CyCity::getLiberationPlayer(bool bConquest)
 {
 	return (m_pCity ? m_pCity->getLiberationPlayer(bConquest) : -1);

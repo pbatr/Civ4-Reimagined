@@ -1618,6 +1618,7 @@ m_iNeutralHealChange(0),
 m_iFriendlyHealChange(0),
 m_iSameTileHealChange(0),
 m_iCombatPercent(0),
+m_iCombatPercentAgainstWoodenShips(0), // Civ4 Reimagined
 m_iCityAttackPercent(0),
 m_iCityDefensePercent(0),
 m_iHillsAttackPercent(0),
@@ -1639,6 +1640,7 @@ m_bAlwaysHeal(false),
 m_bHillsDoubleMove(false),
 m_bImmuneToFirstStrikes(false),
 m_bNoUpgrade(false), // Leoreth
+m_bUniquePower(false), // Civ4 Reimagined
 m_piTerrainAttackPercent(NULL),
 m_piTerrainDefensePercent(NULL),
 m_piFeatureAttackPercent(NULL),
@@ -1816,6 +1818,12 @@ int CvPromotionInfo::getCombatPercent() const
 	return m_iCombatPercent;
 }
 
+// Civ4 Reimagined
+int CvPromotionInfo::getCombatPercentAgainstWoodenShips() const
+{
+	return m_iCombatPercentAgainstWoodenShips;
+}
+
 int CvPromotionInfo::getCityAttackPercent() const
 {
 	return m_iCityAttackPercent;
@@ -1928,6 +1936,12 @@ bool CvPromotionInfo::isNoUpgrade() const
 	return m_bNoUpgrade;
 }
 
+// Civ4 Reimagined
+bool CvPromotionInfo::isUniquePower() const
+{
+	return m_bUniquePower;
+}
+
 const TCHAR* CvPromotionInfo::getSound() const										
 {
 	return m_szSound;
@@ -2035,6 +2049,7 @@ void CvPromotionInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iFriendlyHealChange);				
 	stream->Read(&m_iSameTileHealChange);	
 	stream->Read(&m_iCombatPercent);
+	stream->Read(&m_iCombatPercentAgainstWoodenShips); // Civ4 Reimagined
 	stream->Read(&m_iCityAttackPercent);
 	stream->Read(&m_iCityDefensePercent);
 	stream->Read(&m_iHillsAttackPercent);
@@ -2057,6 +2072,7 @@ void CvPromotionInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bHillsDoubleMove);
 	stream->Read(&m_bImmuneToFirstStrikes);				
 	stream->Read(&m_bNoUpgrade); // Leoreth
+	stream->Read(&m_bUniquePower); // Leoreth
 
 	stream->ReadString(m_szSound);
 
@@ -2131,6 +2147,7 @@ void CvPromotionInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iFriendlyHealChange);				
 	stream->Write(m_iSameTileHealChange);		
 	stream->Write(m_iCombatPercent);
+	stream->Write(m_iCombatPercentAgainstWoodenShips); // Civ4 Reimagined
 	stream->Write(m_iCityAttackPercent);
 	stream->Write(m_iCityDefensePercent);
 	stream->Write(m_iHillsAttackPercent);
@@ -2153,6 +2170,7 @@ void CvPromotionInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bHillsDoubleMove);
 	stream->Write(m_bImmuneToFirstStrikes);
 	stream->Write(m_bNoUpgrade); // Leoreth
+	stream->Write(m_bUniquePower); // Leoreth
 
 	stream->WriteString(m_szSound);
 
@@ -2202,6 +2220,7 @@ bool CvPromotionInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bHillsDoubleMove, "bHillsDoubleMove");
 	pXML->GetChildXmlValByName(&m_bImmuneToFirstStrikes, "bImmuneToFirstStrikes");
 	pXML->GetChildXmlValByName(&m_bNoUpgrade, "bNoUpgrade"); // Leoreth
+	pXML->GetChildXmlValByName(&m_bUniquePower, "bUniquePower"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iVisibilityChange, "iVisibilityChange");
 	pXML->GetChildXmlValByName(&m_iMovesChange, "iMovesChange");
 	pXML->GetChildXmlValByName(&m_iMoveDiscountChange, "iMoveDiscountChange");
@@ -2219,6 +2238,7 @@ bool CvPromotionInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iFriendlyHealChange, "iFriendlyHealChange");
 	pXML->GetChildXmlValByName(&m_iSameTileHealChange, "iSameTileHealChange");
 	pXML->GetChildXmlValByName(&m_iCombatPercent, "iCombatPercent");
+	pXML->GetChildXmlValByName(&m_iCombatPercentAgainstWoodenShips, "iCombatPercentAgainstWoodenShips"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iCityAttackPercent, "iCityAttack");
 	pXML->GetChildXmlValByName(&m_iCityDefensePercent, "iCityDefense");
 	pXML->GetChildXmlValByName(&m_iHillsAttackPercent, "iHillsAttack");
@@ -3072,6 +3092,7 @@ m_iCollateralDamage(0),
 m_iCollateralDamageLimit(0),
 m_iCollateralDamageMaxUnits(0),
 m_iDefenseBuildingModifier(0), //Civ4 Reimagined
+m_iAgainstInjuredModifier(0), //Civ4 Reimagined
 m_iCityAttackModifier(0),
 m_iCityDefenseModifier(0),
 m_iAnimalCombatModifier(0),
@@ -3152,6 +3173,7 @@ m_bSuicide(false),
 m_bLineOfSight(false),
 m_bHiddenNationality(false),
 m_bAlwaysHostile(false),
+m_bIgnoreMaxInstances(false), // Civ4 Reimagined
 m_bNoRevealMap(false),
 m_iLeaderPromotion(NO_PROMOTION),
 m_fUnitMaxSpeed(0.0f),
@@ -3453,6 +3475,12 @@ int CvUnitInfo::getCollateralDamageMaxUnits() const
 int CvUnitInfo::getDefenseBuildingModifier() const
 {
 	return m_iDefenseBuildingModifier;
+}
+
+//Civ4 Reimagined
+int CvUnitInfo::getAgainstInjuredModifier() const
+{
+	return m_iAgainstInjuredModifier;
 }
 
 int CvUnitInfo::getCityAttackModifier() const
@@ -3866,6 +3894,12 @@ bool CvUnitInfo::isHiddenNationality() const
 bool CvUnitInfo::isAlwaysHostile() const
 {
 	return m_bAlwaysHostile;
+}
+
+// Civ4 Reimagined
+bool CvUnitInfo::isIgnoreMaxInstances() const
+{
+	return m_bIgnoreMaxInstances;
 }
 
 bool CvUnitInfo::isNoRevealMap() const		
@@ -4328,6 +4362,7 @@ void CvUnitInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iCollateralDamageLimit);
 	stream->Read(&m_iCollateralDamageMaxUnits);
 	stream->Read(&m_iDefenseBuildingModifier); //Civ4 Reimagined
+	stream->Read(&m_iAgainstInjuredModifier); //Civ4 Reimagined
 	stream->Read(&m_iCityAttackModifier);
 	stream->Read(&m_iCityDefenseModifier);
 	stream->Read(&m_iAnimalCombatModifier);
@@ -4419,6 +4454,7 @@ void CvUnitInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bLineOfSight);
 	stream->Read(&m_bHiddenNationality);
 	stream->Read(&m_bAlwaysHostile);
+	stream->Read(&m_bIgnoreMaxInstances); // Civ4 Reimagined
 	stream->Read(&m_bNoRevealMap);
 
 	stream->Read(&m_fUnitMaxSpeed);
@@ -4638,6 +4674,7 @@ void CvUnitInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iCollateralDamageLimit);
 	stream->Write(m_iCollateralDamageMaxUnits);
 	stream->Write(m_iDefenseBuildingModifier); //Civ4 Reimagined
+	stream->Write(m_iAgainstInjuredModifier); //Civ4 Reimagined
 	stream->Write(m_iCityAttackModifier);
 	stream->Write(m_iCityDefenseModifier);
 	stream->Write(m_iAnimalCombatModifier);
@@ -4725,6 +4762,7 @@ void CvUnitInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bLineOfSight);
 	stream->Write(m_bHiddenNationality);
 	stream->Write(m_bAlwaysHostile);
+	stream->Write(m_bIgnoreMaxInstances); // Civ4 Reimagined
 	stream->Write(m_bNoRevealMap);
 
 	stream->Write(m_fUnitMaxSpeed);
@@ -4873,6 +4911,7 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bLineOfSight,"bLineOfSight",false);
 	pXML->GetChildXmlValByName(&m_bHiddenNationality,"bHiddenNationality",false);
 	pXML->GetChildXmlValByName(&m_bAlwaysHostile,"bAlwaysHostile",false);
+	pXML->GetChildXmlValByName(&m_bIgnoreMaxInstances,"bIgnoreMaxInstances",false); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_bNoRevealMap,"bNoRevealMap",false);
 
 	pXML->SetVariableListTagPair(&m_pbUpgradeUnitClass, "UnitClassUpgrades", sizeof(GC.getUnitClassInfo((UnitClassTypes)0)), GC.getNumUnitClassInfos());
@@ -5046,6 +5085,7 @@ bool CvUnitInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iCollateralDamageLimit, "iCollateralDamageLimit");
 	pXML->GetChildXmlValByName(&m_iCollateralDamageMaxUnits, "iCollateralDamageMaxUnits");
 	pXML->GetChildXmlValByName(&m_iDefenseBuildingModifier, "iDefenseBuildingModifier"); //Civ4 Reimagined
+	pXML->GetChildXmlValByName(&m_iAgainstInjuredModifier, "iAgainstInjured"); //Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iCityAttackModifier, "iCityAttack");
 	pXML->GetChildXmlValByName(&m_iCityDefenseModifier, "iCityDefense");
 	pXML->GetChildXmlValByName(&m_iAnimalCombatModifier, "iAnimalCombat");
@@ -5446,6 +5486,7 @@ m_iFreeExperience(0),
 m_iWorkerSpeedModifier(0),
 m_iImprovementUpgradeRateModifier(0),
 m_iMilitaryProductionModifier(0),
+m_iFreeWorkers(0), // Civ4 Reimagined
 m_iBaseFreeUnits(0),
 m_iBaseFreeMilitaryUnits(0),
 m_iFreeUnitsPopulationPercent(0),
@@ -5502,7 +5543,7 @@ m_iLiberal(0), // Civ4 Reimagined
 m_iCommunist(0), // Civ4 Reimagined
 m_iFascist(0), // Civ4 Reimagined
 m_piYieldModifier(NULL),
-m_piUnitProductionModifiers(NULL), // Civ4 Reimagined
+m_piUnitClassProductionModifiers(NULL), // Civ4 Reimagined
 m_piExtraYield(NULL), // Civ4 Reimagined
 m_piCapitalExtraYieldFromCityPercent(NULL), // Civ4 Reimagined
 m_piCapitalYieldModifier(NULL),
@@ -5519,6 +5560,7 @@ m_paiBuildingHappinessChanges(NULL),
 m_paiBuildingHealthChanges(NULL),
 m_paiBuildingProductionModifiers(NULL), //Leoreth
 m_paiFeatureHappinessChanges(NULL),
+m_paiRadiusImprovementHappinessChanges(NULL), // Civ4 Reimagined
 m_paiDomainProductionModifiers(NULL), // Leoreth
 m_paiDomainExperienceModifiers(NULL), // Leoreth
 //m_paiHostileCivics(NULL), // Civ4 Reimagined
@@ -5547,7 +5589,7 @@ CvCivicInfo::~CvCivicInfo()
 	int iI;
 
 	SAFE_DELETE_ARRAY(m_piYieldModifier);
-	SAFE_DELETE_ARRAY(m_piUnitProductionModifiers); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_piUnitClassProductionModifiers); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_piExtraYield); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_piCapitalExtraYieldFromCityPercent); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_piCapitalYieldModifier);
@@ -5564,6 +5606,7 @@ CvCivicInfo::~CvCivicInfo()
 	SAFE_DELETE_ARRAY(m_paiBuildingHealthChanges);
 	SAFE_DELETE_ARRAY(m_paiBuildingProductionModifiers); //Leoreth
 	SAFE_DELETE_ARRAY(m_paiFeatureHappinessChanges);
+	SAFE_DELETE_ARRAY(m_paiRadiusImprovementHappinessChanges); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiDomainProductionModifiers); // Leoreth
 	SAFE_DELETE_ARRAY(m_paiDomainExperienceModifiers); // Leoreth
 	SAFE_DELETE_ARRAY(m_pabHurry);
@@ -5730,6 +5773,12 @@ int CvCivicInfo::getImprovementUpgradeRateModifier() const
 int CvCivicInfo::getMilitaryProductionModifier() const
 {
 	return m_iMilitaryProductionModifier;
+}
+
+// Civ4 Reimagined
+int CvCivicInfo::getFreeWorkers() const
+{
+	return m_iFreeWorkers;
 }
 
 int CvCivicInfo::getBaseFreeUnits() const
@@ -6089,11 +6138,11 @@ int* CvCivicInfo::getYieldModifierArray() const
 }
 
 // Civ4 Reimagined
-int CvCivicInfo::getUnitProductionModifier(int i) const
+int CvCivicInfo::getUnitClassProductionModifier(int i) const
 {
 	FAssertMsg(i < GC.getNumUnitClassInfos(), "Index out of bounds");
 	FAssertMsg(i > -1, "Index out of bounds");
-	return m_piUnitProductionModifiers ? m_piUnitProductionModifiers[i] : 0;
+	return m_piUnitClassProductionModifiers ? m_piUnitClassProductionModifiers[i] : 0;
 }
 
 // Civ4 Reimagined
@@ -6245,6 +6294,14 @@ int CvCivicInfo::getFeatureHappinessChanges(int i) const
 	FAssertMsg(i < GC.getNumFeatureInfos(), "Index out of bounds");
 	FAssertMsg(i > -1, "Index out of bounds");
 	return m_paiFeatureHappinessChanges ? m_paiFeatureHappinessChanges[i] : -1;
+}
+
+// Civ4 Reimagined
+int CvCivicInfo::getRadiusImprovementHappinessChanges(int i) const
+{
+	FAssertMsg(i < GC.getNumImprovementInfos(), "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_paiRadiusImprovementHappinessChanges ? m_paiRadiusImprovementHappinessChanges[i] : -1;
 }
 
 bool CvCivicInfo::isHurry(int i) const							
@@ -6419,6 +6476,7 @@ void CvCivicInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iWorkerSpeedModifier);
 	stream->Read(&m_iImprovementUpgradeRateModifier);
 	stream->Read(&m_iMilitaryProductionModifier);
+	stream->Read(&m_iFreeWorkers); // Civ4 Reimagined
 	stream->Read(&m_iBaseFreeUnits);
 	stream->Read(&m_iBaseFreeMilitaryUnits);
 	stream->Read(&m_iFreeUnitsPopulationPercent);
@@ -6485,9 +6543,9 @@ void CvCivicInfo::read(FDataStreamBase* stream)
 	stream->Read(NUM_YIELD_TYPES, m_piYieldModifier);
 
 	// Civ4 Reimagined
-	SAFE_DELETE_ARRAY(m_piUnitProductionModifiers);
-	m_piUnitProductionModifiers = new int[GC.getNumUnitClassInfos()];
-	stream->Read(GC.getNumUnitClassInfos(), m_piUnitProductionModifiers);
+	SAFE_DELETE_ARRAY(m_piUnitClassProductionModifiers);
+	m_piUnitClassProductionModifiers = new int[GC.getNumUnitClassInfos()];
+	stream->Read(GC.getNumUnitClassInfos(), m_piUnitClassProductionModifiers);
 	
 	// Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_piExtraYield);
@@ -6560,6 +6618,11 @@ void CvCivicInfo::read(FDataStreamBase* stream)
 	SAFE_DELETE_ARRAY(m_paiFeatureHappinessChanges);
 	m_paiFeatureHappinessChanges = new int[GC.getNumFeatureInfos()];
 	stream->Read(GC.getNumFeatureInfos(), m_paiFeatureHappinessChanges);
+
+	// Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_paiRadiusImprovementHappinessChanges);
+	m_paiRadiusImprovementHappinessChanges = new int[GC.getNumImprovementInfos()];
+	stream->Read(GC.getNumImprovementInfos(), m_paiRadiusImprovementHappinessChanges);
 
 	// Leoreth
 	SAFE_DELETE_ARRAY(m_paiDomainProductionModifiers);
@@ -6702,6 +6765,7 @@ void CvCivicInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iWorkerSpeedModifier);
 	stream->Write(m_iImprovementUpgradeRateModifier);
 	stream->Write(m_iMilitaryProductionModifier);
+	stream->Write(m_iFreeWorkers); // Civ4 Reimagined
 	stream->Write(m_iBaseFreeUnits);
 	stream->Write(m_iBaseFreeMilitaryUnits);
 	stream->Write(m_iFreeUnitsPopulationPercent);
@@ -6763,7 +6827,7 @@ void CvCivicInfo::write(FDataStreamBase* stream)
 	// Arrays
 
 	stream->Write(NUM_YIELD_TYPES, m_piYieldModifier);
-	stream->Write(GC.getNumUnitClassInfos(), m_piUnitProductionModifiers); // Civ4 Reimagined
+	stream->Write(GC.getNumUnitClassInfos(), m_piUnitClassProductionModifiers); // Civ4 Reimagined
 	stream->Write(NUM_YIELD_TYPES, m_piExtraYield); //Civ4 Reimagined
 	stream->Write(NUM_YIELD_TYPES, m_piCapitalExtraYieldFromCityPercent); //Civ4 Reimagined
 	stream->Write(NUM_YIELD_TYPES, m_piCapitalYieldModifier);
@@ -6780,6 +6844,7 @@ void CvCivicInfo::write(FDataStreamBase* stream)
 	stream->Write(GC.getNumBuildingClassInfos(), m_paiBuildingHealthChanges);
 	stream->Write(GC.getNumBuildingClassInfos(), m_paiBuildingProductionModifiers); //Leoreth
 	stream->Write(GC.getNumFeatureInfos(), m_paiFeatureHappinessChanges);
+	stream->Write(GC.getNumImprovementInfos(), m_paiRadiusImprovementHappinessChanges); // Civ4 Reimagined
 	stream->Write(NUM_DOMAIN_TYPES, m_paiDomainProductionModifiers); // Leoreth
 	stream->Write(NUM_DOMAIN_TYPES, m_paiDomainExperienceModifiers); // Leoreth
 	stream->Write(GC.getNumHurryInfos(), m_pabHurry);
@@ -6862,6 +6927,7 @@ bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iWorkerSpeedModifier, "iWorkerSpeedModifier");
 	pXML->GetChildXmlValByName(&m_iImprovementUpgradeRateModifier, "iImprovementUpgradeRateModifier");
 	pXML->GetChildXmlValByName(&m_iMilitaryProductionModifier, "iMilitaryProductionModifier");
+	pXML->GetChildXmlValByName(&m_iFreeWorkers, "iFreeWorkers");
 	pXML->GetChildXmlValByName(&m_iBaseFreeUnits, "iBaseFreeUnits");
 	pXML->GetChildXmlValByName(&m_iBaseFreeMilitaryUnits, "iBaseFreeMilitaryUnits");
 	pXML->GetChildXmlValByName(&m_iFreeUnitsPopulationPercent, "iFreeUnitsPopulationPercent");
@@ -7058,7 +7124,7 @@ bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
 	}
 	
 	// Civ4 Reimagined
-	pXML->SetVariableListTagPair(&m_piUnitProductionModifiers, "UnitProductionModifiers", sizeof(GC.getUnitClassInfo((UnitClassTypes)0)), GC.getNumUnitClassInfos());
+	pXML->SetVariableListTagPair(&m_piUnitClassProductionModifiers, "UnitProductionModifiers", sizeof(GC.getUnitClassInfo((UnitClassTypes)0)), GC.getNumUnitClassInfos());
 	
 	pXML->SetVariableListTagPair(&m_pabHurry, "Hurrys", sizeof(GC.getHurryInfo((HurryTypes)0)), GC.getNumHurryInfos());
 	pXML->SetVariableListTagPair(&m_pabSpecialBuildingNotRequired, "SpecialBuildingNotRequireds", sizeof(GC.getSpecialBuildingInfo((SpecialBuildingTypes)0)), GC.getNumSpecialBuildingInfos());
@@ -7074,6 +7140,9 @@ bool CvCivicInfo::read(CvXMLLoadUtility* pXML)
 	pXML->SetVariableListTagPair(&m_paiBuildingProductionModifiers, "BuildingProductionModifiers", sizeof(GC.getBuildingClassInfo((BuildingClassTypes)0)), GC.getNumBuildingClassInfos());
 
 	pXML->SetVariableListTagPair(&m_paiFeatureHappinessChanges, "FeatureHappinessChanges", sizeof(GC.getFeatureInfo((FeatureTypes)0)), GC.getNumFeatureInfos());
+
+	// Civ4 Reimagined
+	pXML->SetVariableListTagPair(&m_paiRadiusImprovementHappinessChanges, "RadiusImprovementHappinessChanges", sizeof(GC.getImprovementInfo((ImprovementTypes)0)), GC.getNumImprovementInfos());
 
 	// Leoreth
 	pXML->SetVariableListTagPair(&m_paiDomainProductionModifiers, "DomainProductionModifiers", sizeof(GC.getDomainInfo((DomainTypes)0)), NUM_DOMAIN_TYPES);
@@ -7708,7 +7777,8 @@ m_iPrereqAndBonus(NO_BONUS),
 m_iBonusFatCross(NO_BONUS), // Civ4 Reimagined
 m_iPlotTypeFatCross(NO_PLOT), // Civ4 Reimagined			
 m_iGreatPeopleUnitClass(NO_UNITCLASS),					
-m_iGreatPeopleRateChange(0),				
+m_iGreatPeopleRateChange(0),
+m_iGreatPeopleRateChangePerWorldWonder(0), // Civ4 Reimagined				
 m_iConquestProbability(0),
 m_iMaintenanceModifier(0),
 m_iAreaDistanceMaintenanceModifier(0), // Civ4 Reimagined
@@ -7732,6 +7802,7 @@ m_iNavalLevelPrereq(0), // Civ4 Reimagined
 m_iAllCityDefenseModifier(0),
 m_iEspionageDefenseModifier(0),
 m_iReligionSpreadBoost(0), // Civ4 Reimagined
+m_iFarmAdjacencyBonus(0), // Civ4 Reimagined
 m_iMissionType(NO_MISSION),
 m_iVoteSourceType(NO_VOTESOURCE),
 m_fVisibilityPriority(0.0f),
@@ -7764,6 +7835,7 @@ m_bUnlimitedBarbXP(false), // Civ4 Reimagined
 m_bBarbarianGreatGeneral(false), // Civ4 Reimagined
 m_bNoNonStateReligionSpread(false), // Civ4 Reimagined
 m_bStateReligion(false),
+m_bUniquePower(false), // Civ4 Reimagined
 m_bAllowsNukes(false),
 m_bNoConquestResistance(false), // Civ4 Reimagined
 m_bNoConscriptUnhappiness(false), // Civ4 Reimagined
@@ -8355,6 +8427,12 @@ int CvBuildingInfo::getGreatPeopleRateChange() const
 	return m_iGreatPeopleRateChange;
 }
 
+// Civ4 Reimagined
+int CvBuildingInfo::getGreatPeopleRateChangePerWorldWonder() const
+{
+	return m_iGreatPeopleRateChangePerWorldWonder;
+}
+
 int CvBuildingInfo::getConquestProbability() const
 {
 	return m_iConquestProbability;
@@ -8636,6 +8714,12 @@ int CvBuildingInfo::getReligionSpreadBoost() const
 }
 
 // Civ4 Reimagined
+int CvBuildingInfo::getFarmAdjacencyBonus() const
+{
+	return m_iFarmAdjacencyBonus;
+}
+
+// Civ4 Reimagined
 bool CvBuildingInfo::isNoNonStateReligionSpread() const
 {
 	return m_bNoNonStateReligionSpread;
@@ -8662,6 +8746,12 @@ int CvBuildingInfo::getNavalLevelPrereq() const
 bool CvBuildingInfo::isStateReligion() const
 {
 	return m_bStateReligion;
+}
+
+// Civ4 Reimagined
+bool CvBuildingInfo::isUniquePower() const
+{
+	return m_bUniquePower;
 }
 
 bool CvBuildingInfo::isAllowsNukes() const
@@ -9428,6 +9518,7 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iPlotTypeFatCross); // Civ4 Reimagined
 	stream->Read(&m_iGreatPeopleUnitClass);
 	stream->Read(&m_iGreatPeopleRateChange);
+	stream->Read(&m_iGreatPeopleRateChangePerWorldWonder); // Civ4 Reimagined
 	stream->Read(&m_iConquestProbability);
 	stream->Read(&m_iMaintenanceModifier);
 	stream->Read(&m_iAreaDistanceMaintenanceModifier); // Civ4 Reimagined
@@ -9481,11 +9572,13 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bCanFarmHills); // Civ4 Reimagined
 	stream->Read(&m_bNoWarAgainstSameFaithUnhappiness); // Civ4 Reimagined
 	stream->Read(&m_iReligionSpreadBoost); // Civ4 Reimagined
+	stream->Read(&m_iFarmAdjacencyBonus); // Civ4 Reimagined
 	stream->Read(&m_bNoNonStateReligionSpread); // Civ4 Reimagined
 	stream->Read(&m_iLootingModifier); // Civ4 Reimagined
 	stream->Read(&m_iStateReligionFreeExperience); // Civ4 Reimagined
 	stream->Read(&m_iNavalLevelPrereq); // Civ4 Reimagined
 	stream->Read(&m_bStateReligion);
+	stream->Read(&m_bUniquePower); // Civ4 Reimagined
 	stream->Read(&m_bAllowsNukes);
 	stream->Read(&m_bNoConquestResistance); // Civ4 Reimagined
 	stream->Read(&m_bNoConscriptUnhappiness); // Civ4 Reimagined
@@ -9953,6 +10046,7 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iPrereqAndBonus);
 	stream->Write(m_iGreatPeopleUnitClass);
 	stream->Write(m_iGreatPeopleRateChange);
+	stream->Write(m_iGreatPeopleRateChangePerWorldWonder); // Civ4 Reimagined
 	stream->Write(m_iConquestProbability);
 	stream->Write(m_iMaintenanceModifier);
 	stream->Write(m_iAreaDistanceMaintenanceModifier); // Civ4 Reimagined
@@ -10006,11 +10100,13 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bCanFarmHills); // Civ4 Reimagined
 	stream->Write(m_bNoWarAgainstSameFaithUnhappiness); // Civ4 Reimagined
 	stream->Write(m_iReligionSpreadBoost); // Civ4 Reimagined
+	stream->Write(m_iFarmAdjacencyBonus); // Civ4 Reimagined
 	stream->Write(m_bNoNonStateReligionSpread); // Civ4 Reimagined
 	stream->Write(m_iLootingModifier); // Civ4 Reimagined
 	stream->Write(m_iStateReligionFreeExperience); // Civ4 Reimagined
 	stream->Write(m_iNavalLevelPrereq); // Civ4 Reimagined
 	stream->Write(m_bStateReligion);
+	stream->Write(m_bUniquePower); // Civ4 Reimagined
 	stream->Write(m_bAllowsNukes);
 	stream->Write(m_bNoConquestResistance); // Civ4 Reimagined
 	stream->Write(m_bNoConscriptUnhappiness); // Civ4 Reimagined
@@ -10292,6 +10388,7 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 	m_iVoteSourceType = pXML->FindInInfoClass(szTextVal);
 
 	pXML->GetChildXmlValByName(&m_iGreatPeopleRateChange, "iGreatPeopleRateChange");
+	pXML->GetChildXmlValByName(&m_iGreatPeopleRateChangePerWorldWonder, "iGreatPeopleRateChangePerWorldWonder"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_bTeamShare, "bTeamShare");
 	pXML->GetChildXmlValByName(&m_bWater, "bWater");
 	pXML->GetChildXmlValByName(&m_bRiver, "bRiver");
@@ -10324,11 +10421,13 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bCanFarmHills, "bCanFarmHills"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_bNoWarAgainstSameFaithUnhappiness, "bNoWarAgainstSameFaithUnhappiness"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iReligionSpreadBoost, "iReligionSpreadBoost"); // Civ4 Reimagined
+	pXML->GetChildXmlValByName(&m_iFarmAdjacencyBonus, "iFarmAdjacencyBonus"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_bNoNonStateReligionSpread, "bNoNonStateReligionSpread"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iLootingModifier, "iLootingModifier"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iStateReligionFreeExperience, "iStateReligionFreeExperience"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iNavalLevelPrereq, "iNavalLevelPrereq"); // Civ4 Reimagined	
 	pXML->GetChildXmlValByName(&m_bStateReligion, "bStateReligion");
+	pXML->GetChildXmlValByName(&m_bUniquePower, "bUniquePower"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iAIWeight, "iAIWeight");
 	pXML->GetChildXmlValByName(&m_iProductionCost, "iCost");
 	pXML->GetChildXmlValByName(&m_iHurryCostModifier, "iHurryCostModifier");
@@ -11454,11 +11553,6 @@ m_iActionSoundScriptId(0),
 m_iDerivativeCiv(NO_CIVILIZATION),
 m_bPlayable(false),
 m_bAIPlayable(false),
-m_iUnique1(0), // Civ4 Reimagined
-m_iUnique2(0), // Civ4 Reimagined
-m_iUnique3(0), // Civ4 Reimagined
-m_iUnique4(0), // Civ4 Reimagined
-m_iUnique5(0), // Civ4 Reimagined
 m_piCivilizationBuildings(NULL),
 m_piCivilizationUnits(NULL),
 m_piCivilizationFreeUnitsClass(NULL),
@@ -11551,45 +11645,14 @@ bool CvCivilizationInfo::isPlayable() const
 }
 
 // Civ4 Reimagined
-int CvCivilizationInfo::getUniquePowerRequirement(int iLevel) const
+CvWString CvCivilizationInfo::getCivilizationUniquePowerText() const
 {
-	switch(iLevel)
-	{
-		case 0:
-			return 0;
-		case 1:
-			return m_iUnique1;
-		case 2:
-			return m_iUnique2;
-		case 3:
-			return m_iUnique3;
-		case 4:
-			return m_iUnique4;
-		case 5:
-			return m_iUnique5;
-		default:
-			return -1;
-	}
+	return gDLL->getText(m_szUniquePower);
 }
 
-// Civ4 Reimagined
-std::string CvCivilizationInfo::getCivilizationUniquePowerText(int iLevel) const
+void CvCivilizationInfo::setCivilizationUniquePowerText(const TCHAR* szVal)
 {
-	switch(iLevel)
-	{
-		case 1:
-			return m_szUnique1;
-		case 2:
-			return m_szUnique2;
-		case 3:
-			return m_szUnique3;
-		case 4:
-			return m_szUnique4;
-		case 5:
-			return m_szUnique5;
-		default:
-			return "";
-	}
+	m_szUniquePower = szVal;
 }
 
 const wchar* CvCivilizationInfo::getShortDescription(uint uiForm)
@@ -11765,17 +11828,8 @@ void CvCivilizationInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bAIPlayable);
 	stream->Read(&m_bPlayable);
 	
-	// Civ4 Reimagined
-	stream->Read(&m_iUnique1); 
-	stream->Read(&m_iUnique2); 
-	stream->Read(&m_iUnique3); 
-	stream->Read(&m_iUnique4); 
-	stream->Read(&m_iUnique5); 
-	stream->ReadString(m_szUnique1); 
-	stream->ReadString(m_szUnique2); 
-	stream->ReadString(m_szUnique3); 
-	stream->ReadString(m_szUnique4); 
-	stream->ReadString(m_szUnique5); 
+	// Civ4 Reimagined 
+	stream->ReadString(m_szUniquePower); 
 
 	stream->ReadString(m_szArtDefineTag);
 	stream->ReadString(m_szShortDescriptionKey);
@@ -11855,16 +11909,7 @@ void CvCivilizationInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bPlayable);
 	
 	// Civ4 Reimagined
-	stream->Write(&m_iUnique1); 
-	stream->Write(&m_iUnique2); 
-	stream->Write(&m_iUnique3); 
-	stream->Write(&m_iUnique4); 
-	stream->Write(&m_iUnique5); 
-	stream->WriteString(m_szUnique1); 
-	stream->WriteString(m_szUnique2); 
-	stream->WriteString(m_szUnique3); 
-	stream->WriteString(m_szUnique4); 
-	stream->WriteString(m_szUnique5); 
+	stream->WriteString(m_szUniquePower); 
 
 	stream->WriteString(m_szArtDefineTag);
 	stream->WriteString(m_szShortDescriptionKey);
@@ -11926,16 +11971,8 @@ bool CvCivilizationInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bAIPlayable, "bAIPlayable");
 	
 	// Civ4 Reimagined
-	pXML->GetChildXmlValByName(&m_iUnique1, "iUnique1");
-	pXML->GetChildXmlValByName(&m_iUnique2, "iUnique2");
-	pXML->GetChildXmlValByName(&m_iUnique3, "iUnique3");
-	pXML->GetChildXmlValByName(&m_iUnique4, "iUnique4");
-	pXML->GetChildXmlValByName(&m_iUnique5, "iUnique5");
-	pXML->GetChildXmlValByName(m_szUnique1, "DescriptionUnique1");
-	pXML->GetChildXmlValByName(m_szUnique2, "DescriptionUnique2");
-	pXML->GetChildXmlValByName(m_szUnique3, "DescriptionUnique3");
-	pXML->GetChildXmlValByName(m_szUnique4, "DescriptionUnique4");
-	pXML->GetChildXmlValByName(m_szUnique5, "DescriptionUnique5");
+	pXML->GetChildXmlValByName(szTextVal, "DescriptionUniquePower");
+	setCivilizationUniquePowerText(szTextVal);
 
 	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"Cities"))
 	{
@@ -13062,6 +13099,9 @@ m_iNumTurnIncrements(0),
 m_iDealLengthPercent(0),
 m_iHealPercent(0),
 m_iOccupyLengthPercent(0),
+m_iMemoryDecayPercent(0),
+m_iEventDelayTurns(0),
+m_iEventProbabilityModifier(0),
 m_pGameTurnInfo(NULL)
 {
 }
@@ -13186,6 +13226,24 @@ int CvGameSpeedInfo::getOccupyLengthPercent() const
 	return m_iOccupyLengthPercent;
 }
 
+// Civ4 Reimagined
+int CvGameSpeedInfo::getMemoryDecayPercent() const
+{
+	return m_iMemoryDecayPercent;
+}
+
+// Civ4 Reimagined
+int CvGameSpeedInfo::getEventDelayTurns() const
+{
+	return m_iEventDelayTurns;
+}
+
+// Civ4 Reimagined
+int CvGameSpeedInfo::getEventProbabilityModifier() const
+{
+	return m_iEventProbabilityModifier;
+}
+
 int CvGameSpeedInfo::getInflationOffset() const
 {
 	return m_iInflationOffset;
@@ -13249,6 +13307,9 @@ bool CvGameSpeedInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iDealLengthPercent, "iDealLengthPercent");
 	pXML->GetChildXmlValByName(&m_iHealPercent, "iHealPercent");
 	pXML->GetChildXmlValByName(&m_iOccupyLengthPercent, "iOccupyLengthPercent");
+	pXML->GetChildXmlValByName(&m_iMemoryDecayPercent, "iMemoryDecayPercent");
+	pXML->GetChildXmlValByName(&m_iEventDelayTurns, "iEventDelayTurns");
+	pXML->GetChildXmlValByName(&m_iEventProbabilityModifier, "iEventProbabilityModifier");
 
 	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"GameTurnInfos"))
 	{
@@ -13363,6 +13424,7 @@ CvBuildInfo::CvBuildInfo() :
 m_iTime(0),
 m_iCost(0),
 m_iTechPrereq(NO_TECH),
+m_iTechObsolete(NO_TECH), // Civ4 Reimagined
 m_iImprovement(NO_IMPROVEMENT),
 m_iRoute(NO_ROUTE),
 m_iEntityEvent(ENTITY_EVENT_NONE),
@@ -13403,6 +13465,12 @@ int CvBuildInfo::getCost() const
 int CvBuildInfo::getTechPrereq() const	
 {
 	return m_iTechPrereq;
+}
+
+// Civ4 Reimagined
+int CvBuildInfo::getTechObsolete() const
+{
+	return m_iTechObsolete;
 }
 
 int CvBuildInfo::getImprovement() const	
@@ -13475,6 +13543,8 @@ bool CvBuildInfo::read(CvXMLLoadUtility* pXML)
 
 	pXML->GetChildXmlValByName(szTextVal, "PrereqTech");
 	m_iTechPrereq = pXML->FindInInfoClass(szTextVal);
+	pXML->GetChildXmlValByName(szTextVal, "TechObsolete");
+	m_iTechObsolete = pXML->FindInInfoClass(szTextVal);
 
 	pXML->GetChildXmlValByName(&m_iTime, "iTime");
 	pXML->GetChildXmlValByName(&m_iCost, "iCost");

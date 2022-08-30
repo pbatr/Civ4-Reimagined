@@ -477,16 +477,7 @@
 	</ElementType>
 	<ElementType name="bPlayable" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bAIPlayable" content="textOnly" dt:type="boolean"/>
-	<ElementType name="iUnique1" content="textOnly" dt:type="int"/>
-	<ElementType name="iUnique2" content="textOnly" dt:type="int"/>
-	<ElementType name="iUnique3" content="textOnly" dt:type="int"/>
-	<ElementType name="iUnique4" content="textOnly" dt:type="int"/>
-	<ElementType name="iUnique5" content="textOnly" dt:type="int"/>
-	<ElementType name="DescriptionUnique1" content="textOnly"/>
-	<ElementType name="DescriptionUnique2" content="textOnly"/>
-	<ElementType name="DescriptionUnique3" content="textOnly"/>
-	<ElementType name="DescriptionUnique4" content="textOnly"/>
-	<ElementType name="DescriptionUnique5" content="textOnly"/>
+	<ElementType name="DescriptionUniquePower" content="textOnly"/>
 	<ElementType name="LeaderName" content="textOnly"/>
 	<ElementType name="bLeaderAvailability" content="textOnly" dt:type="boolean"/>
 	<ElementType name="Leader" content="eltOnly">
@@ -511,16 +502,7 @@
 		<element type="UnitArtStyleType" minOccurs="0" maxOccurs="1"/>
 		<element type="bPlayable"/>
 		<element type="bAIPlayable"/>
-		<element type="iUnique1"/>
-		<element type="iUnique2"/>
-		<element type="iUnique3"/>
-		<element type="iUnique4"/>
-		<element type="iUnique5"/>
-		<element type="DescriptionUnique1"/>
-		<element type="DescriptionUnique2"/>
-		<element type="DescriptionUnique3"/>
-		<element type="DescriptionUnique4"/>
-		<element type="DescriptionUnique5"/>
+		<element type="DescriptionUniquePower"/>
 		<element type="Cities"/>
 		<element type="Buildings"/>
 		<element type="Units"/>

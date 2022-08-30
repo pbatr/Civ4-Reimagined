@@ -2481,7 +2481,6 @@ void CvPlayerAI::AI_updateCommerceWeights()
 
 		// COMMERCE_CULTURE AIWeightPercent is set to 30% in the current xml.
 		int iWeight = GC.getCommerceInfo(COMMERCE_CULTURE).getAIWeightPercent();
-
 		int iPressureFactor = pCity->culturePressureFactor();
 		if (AI_isDoVictoryStrategy(AI_VICTORY_CULTURE2))
 			iPressureFactor = std::min(300, iPressureFactor); // don't let culture pressure dominate our decision making about where to put our culture.
@@ -2766,6 +2765,20 @@ CvPlayerAI::CvFoundSettings::CvFoundSettings(const CvPlayerAI& kPlayer, bool bSt
 				}
 			}
 		}
+		// Unique powers
+		if (!bSeafaring)
+		{
+			if (kPlayer.getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_JAPAN"))
+			{
+				bSeafaring = true;
+			}
+
+			if (kPlayer.getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SPAIN"))
+			{
+				bSeafaring = true;
+			}
+		}
+
 		// culture building process
 		if (!bEasyCulture)
 		{
@@ -3005,11 +3018,11 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 			}
 			// K-Mod (original code deleted)
 			else if (!pLoopPlot->isFreshWater() && !pLoopPlot->isHills() &&
-				(pLoopPlot->calculateBestNatureYield(YIELD_FOOD, getTeam()) == 0 || pLoopPlot->calculateTotalBestNatureYield(getTeam()) <= 1))
+				(pLoopPlot->calculateBestNatureYield(YIELD_FOOD, getID(), kSet.bStartingLoc) == 0 || pLoopPlot->calculateTotalBestNatureYield(getID(), kSet.bStartingLoc) <= 1))
 			{
 				iBadTile += 2;
 			}
-			else if (pLoopPlot->isWater() && !bIsCoastal && pLoopPlot->calculateBestNatureYield(YIELD_FOOD, getTeam()) <= 1)
+			else if (pLoopPlot->isWater() && !bIsCoastal && pLoopPlot->calculateBestNatureYield(YIELD_FOOD, getID(), kSet.bStartingLoc) <= 1)
 			{
 				iBadTile += 2; // Civ4 Reimagined
 			}
@@ -3019,7 +3032,7 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 				iBadTile += 2;
 			}
 			// Civ4 Reimagined
-			else if (pLoopPlot->getNonObsoleteBonusType(getTeam()) == NO_BONUS && (pLoopPlot->calculateBestNatureYield(YIELD_FOOD, getTeam()) + pLoopPlot->calculateNatureYield(YIELD_PRODUCTION, getTeam(), true) + pLoopPlot->calculateNatureYield(YIELD_COMMERCE, getTeam(), true)) <= 1)
+			else if (pLoopPlot->getNonObsoleteBonusType(getTeam()) == NO_BONUS && (pLoopPlot->calculateBestNatureYield(YIELD_FOOD, getID(), kSet.bStartingLoc) + pLoopPlot->calculateNatureYield(YIELD_PRODUCTION, getID(), true, kSet.bStartingLoc) + pLoopPlot->calculateNatureYield(YIELD_COMMERCE, getID(), true, kSet.bStartingLoc)) <= 1)
 			{
 				iBadTile++;
 			}
@@ -3082,6 +3095,8 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 
 	int iYieldLostHere = 0;
 	std::vector<int> iPlotValueList;// Civ4 Reimagined. Stores all iPlotValues.
+
+	bool bDesertGold = false;
 
 	for (int iI = 0; iI < NUM_CITY_PLOTS; iI++)
 	{
@@ -3208,17 +3223,24 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 					eImprovement = NO_IMPROVEMENT;
 				}
 			}
+			else if (!kSet.bStartingLoc && isDesertGold())
+			{
+				if (iI != CITY_HOME_PLOT && pLoopPlot->canDiscoverDesertGold())
+				{
+					bDesertGold = true;
+				}
+			}
 			
 			// Civ4 Reimagined
-			if (eImprovement == NO_IMPROVEMENT && pLoopPlot->canHaveImprovement(IMPROVEMENT_MINE, getTeam(), true))
+			if (eImprovement == NO_IMPROVEMENT && pLoopPlot->canHaveImprovement(IMPROVEMENT_MINE, getID(), true))
 			{
 				eImprovement = (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_MINE");
 			}
-			if (eImprovement == NO_IMPROVEMENT && pLoopPlot->isFreshWater() && pLoopPlot->canHaveImprovement(IMPROVEMENT_FARM, getTeam(), true))
+			if (eImprovement == NO_IMPROVEMENT && pLoopPlot->isFreshWater() && pLoopPlot->canHaveImprovement(IMPROVEMENT_FARM, getID(), true))
 			{
 				eImprovement = (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FARM");
 			}
-			if (eImprovement == NO_IMPROVEMENT && eBonus == NO_BONUS && pLoopPlot->canHaveImprovement(IMPROVEMENT_HAMLET, getTeam(), true))
+			if (eImprovement == NO_IMPROVEMENT && eBonus == NO_BONUS && pLoopPlot->canHaveImprovement(IMPROVEMENT_HAMLET, getID(), true))
 			{
 				eImprovement = (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_HAMLET");
 			}
@@ -3228,7 +3250,7 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 			for (int iYieldType = 0; iYieldType < NUM_YIELD_TYPES; ++iYieldType)
 			{
 				YieldTypes eYield = (YieldTypes)iYieldType;
-				aiYield[eYield] = pLoopPlot->calculateNatureYield(eYield, getTeam(), bEventuallyRemoveableFeature); // K-Mod
+				aiYield[eYield] = pLoopPlot->calculateNatureYield(eYield, getID(), bEventuallyRemoveableFeature, kSet.bStartingLoc); // K-Mod
 
 				if (iI == CITY_HOME_PLOT)
 				{
@@ -3238,9 +3260,29 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 					if (eFeature != NO_FEATURE && !bEventuallyRemoveableFeature) // note: if the feature is removable, was ignored already
 						aiYield[eYield] -= GC.getFeatureInfo(eFeature).getYieldChange(eYield);
 
+					// Civ4 Reimagined: Maya UP
+					if (!kSet.bStartingLoc && isCityImprovesBonus() && eBonus != NO_BONUS)
+					{
+						int iMaxBonusYield = 0;
+						for (int iI = 0; iI < GC.getNumImprovementInfos(); ++iI)
+						{
+							iMaxBonusYield = std::max(iMaxBonusYield, GC.getImprovementInfo((ImprovementTypes)iI).getImprovementBonusYield(eBonus, eYield));
+						}
+						aiYield[eYield] += iMaxBonusYield;
+
+						// More value for faster yields because it is city home plot
+						iPlotValue += iMaxBonusYield * 75;
+					}
+
 					aiYield[eYield] += GC.getYieldInfo(eYield).getCityChange();
 
 					aiYield[eYield] = std::max(aiYield[eYield], GC.getYieldInfo(eYield).getMinCity());
+
+					// Civ4 Reimagined: Ethiopia UP
+					if (!kSet.bStartingLoc && pLoopPlot->isHills())
+					{
+						aiYield[eYield] += getCityOnHillsExtraYield(eYield);
+					}
 
 					// K-Mod. Before we make special adjustments, there are some things we need to do with the true values.
 					if (eYield == YIELD_PRODUCTION)
@@ -3253,7 +3295,7 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 					// Exception: the improvement might be something dud which we wouldn't normally build.
 					// eg. +1 food from a plantation should not be counted, because a farm would be just as good.
 					// But +1 hammers from a mine should be counted, because we'd build the mine anyway. I haven't thought of a good way to deal with this issue.
-					if (eBonus != NO_BONUS && eImprovement != NO_IMPROVEMENT)
+					if (eBonus != NO_BONUS && eImprovement != NO_IMPROVEMENT && !isCityImprovesBonus())
 					{
 						aiYield[eYield] -= GC.getImprovementInfo(eImprovement).getImprovementBonusYield(eBonus, eYield);
 						// Civ4 Reimagined
@@ -3288,8 +3330,8 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 						if (bEventuallyRemoveableFeature && !bRemoveableFeature && kFeature.getYieldChange(eYield) <= 0)
 						{
 							// Civ4 Reimagined
-							iPlotValue += 40 * kFeature.getYieldChange(eYield);
-							iPlotValue -= 3;
+							iPlotValue += 30 * kFeature.getYieldChange(eYield);
+							iPlotValue -= 6;
 						}
 					}
 				}
@@ -3320,8 +3362,8 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 				{
 					iAdditionalFood += aiYield[YIELD_FOOD] - GC.getFOOD_CONSUMPTION_PER_POPULATION();
 				}
-				else if (pLoopPlot->calculateNatureYield(YIELD_FOOD, getTeam(), bEventuallyRemoveableFeature) == GC.getFOOD_CONSUMPTION_PER_POPULATION()
-						&& pLoopPlot->canHaveImprovement(IMPROVEMENT_FARM, getTeam(), true))
+				else if (pLoopPlot->calculateNatureYield(YIELD_FOOD, getID(), bEventuallyRemoveableFeature, kSet.bStartingLoc) == GC.getFOOD_CONSUMPTION_PER_POPULATION()
+						&& pLoopPlot->canHaveImprovement(IMPROVEMENT_FARM, getID(), true))
 				{
 					iAdditionalFood++;
 				}
@@ -3435,7 +3477,7 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 						if (eBonus != NO_BONUS && eImprovement != NO_IMPROVEMENT)
 						{
 							int iSpecialFoodTemp;
-							iSpecialFoodTemp = pLoopPlot->calculateBestNatureYield(YIELD_FOOD, getTeam()) + GC.getImprovementInfo(eImprovement).getImprovementBonusYield(eBonus, YIELD_FOOD);
+							iSpecialFoodTemp = pLoopPlot->calculateBestNatureYield(YIELD_FOOD, getID(), kSet.bStartingLoc) + GC.getImprovementInfo(eImprovement).getImprovementBonusYield(eBonus, YIELD_FOOD);
 
 							iSpecialFood += iSpecialFoodTemp;
 
@@ -3443,8 +3485,8 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 
 							iSpecialFoodPlus += std::max(0,iSpecialFoodTemp);
 							iSpecialFoodMinus -= std::min(0,iSpecialFoodTemp);
-							iSpecialProduction += pLoopPlot->calculateBestNatureYield(YIELD_PRODUCTION, getTeam()) + GC.getImprovementInfo(eImprovement).getImprovementBonusYield(eBonus, YIELD_PRODUCTION);
-							iSpecialCommerce += pLoopPlot->calculateBestNatureYield(YIELD_COMMERCE, getTeam()) + GC.getImprovementInfo(eImprovement).getImprovementBonusYield(eBonus, YIELD_COMMERCE);
+							iSpecialProduction += pLoopPlot->calculateBestNatureYield(YIELD_PRODUCTION, getID(), kSet.bStartingLoc) + GC.getImprovementInfo(eImprovement).getImprovementBonusYield(eBonus, YIELD_PRODUCTION);
+							iSpecialCommerce += pLoopPlot->calculateBestNatureYield(YIELD_COMMERCE, getID(), kSet.bStartingLoc) + GC.getImprovementInfo(eImprovement).getImprovementBonusYield(eBonus, YIELD_COMMERCE);
 						}
 					}
 				} // end if usable bonus
@@ -3460,6 +3502,15 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 				}
 			}
 		}
+	}
+
+	if (bDesertGold)
+	{
+		int iBonusValue = AI_bonusVal((BonusTypes)GC.getInfoTypeForString("BONUS_GOLD"), 1, true) * 12;
+		iBonusValue *= kSet.iGreed;
+		iBonusValue /= 100;
+
+		iResourceValue += iBonusValue * 2;
 	}
 	
 	// Civ4 Reimagined:
@@ -3519,17 +3570,19 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 		return 0;
 	}
 	
-	if (pPlot->isFreshWater())
+	if (pPlot->isFreshWater() || (!kSet.bStartingLoc && isAlwaysFreshWater()))
 	{
-		iHealth += GC.getDefineINT("FRESH_WATER_HEALTH_CHANGE") * 100;
-		iValue += GC.getDefineINT("FRESH_WATER_HEALTH_CHANGE") * 500; // Civ4 Reimagined
-		/*
-		if( gPlayerLogLevel >= 3 && kSet.bStartingLoc)
-		{
-			logBBAI("    Player %d (%S) River Value: %d", getID(), getCivilizationDescription(0), GC.getDefineINT("FRESH_WATER_HEALTH_CHANGE") * 300);
+		int iFreshWaterHealth = GC.getDefineINT("FRESH_WATER_HEALTH_CHANGE");
 
+		if (!kSet.bStartingLoc)
+		{
+			iFreshWaterHealth *= 100 + getFreshWaterHealthModifier();
+			iFreshWaterHealth /= 100;
 		}
-		*/
+
+		iHealth += iFreshWaterHealth * 100;
+		iValue += iFreshWaterHealth * 500; // Civ4 Reimagined
+
 		if (!kSet.bStartingLoc && pPlot->isRiver())
 		{
 			iValue += getProductionNearRiver() * 450;
@@ -3562,12 +3615,17 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 			{
 				iValue += getCoastalTradeRouteModifier() * 3;
 			}
-			if (pArea->getCitiesPerPlayer(getID()) == 0)
+
+			if (pCapital != NULL && pCapital->getArea() != pArea->getID())
 			{
-				if (bNeutralTerritory)
+				if (bNeutralTerritory && pArea->getNumTiles() >= GC.getDefineINT("MINIMUM_NUM_TILES_FOR_CONTINENT"))
 				{
-					// Civ4 Reimagined: doubled those values for first colony
-					iValue += iResourceValue > 0 ? (kSet.bSeafaring ? 1200 : 800) : 200;
+					iValue += getColonyTraderouteModifier() * 3;
+					iValue += iResourceValue > 0 ? (kSet.bSeafaring ? 2000 : 1000) : 200;
+				}
+				else
+				{
+					iValue += 200;
 				}
 			}
 			else
@@ -3682,7 +3740,7 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 							// 2 points for bad plots (ocean, tundra)
 							// 1 point for fixable bad plots (jungle)
 							iGreaterBadTile++;
-							if (pLoopPlot->calculateBestNatureYield(YIELD_FOOD,getTeam()) < 2)
+							if (pLoopPlot->calculateBestNatureYield(YIELD_FOOD, getID(), true) < 2)
 							{
 								iGreaterBadTile++;
 								if (iTempValue <= 0)
@@ -5442,13 +5500,19 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 		int iAddedCommerce = 3*(iCityCount+2)*kTechInfo.getTradeRoutes() + 3*range(iConnectedForeignCities-iTradeRoutesPerCity*iCityCount, 0, iCityCount*kTechInfo.getTradeRoutes());
 
 		// Civ4 Reimagined
+		int iTempValue = iAddedCommerce * (getGreatPeoplePointsPerTrade() + getGreatMerchantPointsPerTrade()) / 100;
+
+		// Civ4 Reimagined
 		iAddedCommerce *= 8; // usually 1 commerce ~ 4 value points, higher value here because AI always underestimates trade routes
 		iAddedCommerce *= AI_averageYieldMultiplier(YIELD_COMMERCE);
 		iAddedCommerce /= 100;
 		iAddedCommerce *= AI_yieldWeight(YIELD_COMMERCE);
 		iAddedCommerce /= 100;
-		if (gPlayerLogLevel >= 2) logBBAI("Value for trade routes: %d", iAddedCommerce);
-		iValue += iAddedCommerce;
+
+		iTempValue += iAddedCommerce;
+
+		if (gPlayerLogLevel >= 2) logBBAI("Value for trade routes: %d", iTempValue);
+		iValue += iTempValue;
 	}
 	// K-Mod end
 	
@@ -5910,8 +5974,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 			iValue += iRevealValue;
 		}
 		// K-Mod: Value for enabling resources that are already revealed
-		else if (GC.getBonusInfo((BonusTypes)iJ).getTechCityTrade() == eTech &&
-			(kTeam.isHasTech((TechTypes)GC.getBonusInfo((BonusTypes)iJ).getTechReveal()) || kTeam.isForceRevealedBonus((BonusTypes)iJ)))
+		else if (GC.getBonusInfo((BonusTypes)iJ).getTechCityTrade() == eTech && kTeam.isBonusRevealed((BonusTypes)iJ))
 		{
 			const int iOwned = countOwnedBonuses((BonusTypes)iJ);
 			if (iOwned > 0)
@@ -6359,6 +6422,11 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				{
 					// Civ4 Reimagined
 					iRaceModifier = std::min(100, iRaceModifier + 2*getReligionTechModifier());
+
+					if (!GET_TEAM(getTeam()).isTechBoosted(eTech))
+					{
+						iRaceModifier /= 2;
+					}
 					
 					if (!(GC.getGameINLINE().isReligionSlotTaken((ReligionTypes)iJ)))
 					{
@@ -6409,7 +6477,11 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 				// Civ4 Reimagined
 				if (countTotalHasReligion() > 0)
 				{
-					if (getNonStateReligionHappiness() < 0)
+					if (getGreatPeopleRatePerReligionModifier() > 0)
+					{
+						iReligionValue += getGreatPeopleRatePerReligionModifier() * 5;
+					}
+					else if (getNonStateReligionHappiness() < 0)
 					{
 						iReligionValue /= 3;
 					}
@@ -6419,6 +6491,8 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 					// Civ4 Reimagined
 					iReligionValue += 300;
 					bool bHasNeighbors = false;
+
+					iReligionValue += getGreatPeopleRatePerReligionModifier() * 10;
 
 					bool bNeighbouringReligions = false;
 					for (PlayerTypes i = (PlayerTypes)0; !bNeighbouringReligions && i < MAX_CIV_PLAYERS; i = (PlayerTypes)(i+1))
@@ -6691,17 +6765,16 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 	}
 
 	// Civ4 Reimagined
-	if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS))
 	{
 		int iEra = kTechInfo.getEra();
 		if (kTechInfo.getEra() != getCurrentEra())
 		{
-			if (checkForObsoleteUniquePowers((EraTypes)iEra))
-			{
-				iValue /= 3;
-				iValue *= 2;
-			}
+			iValue *= uniquePowerAIEraValueMult((EraTypes)iEra);
+			iValue /= uniquePowerAIEraValueMult(getCurrentEra());
 		}
+		
+		iValue *= uniquePowerAITechValueMult(eTech);
+		iValue /= 100;
 	}
 
 /***
@@ -6720,6 +6793,109 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 	return iValue;
 }
+
+
+// Civ4 Reimagined
+// Super rough calculation for unique powers. 100 is the default, powerless era.
+// Relative value is important. For example, switching from an era with value 110 (a small benefit) to an era with value 125 (a large benefit) nets a bonus of 125/110 in calculations.
+int CvPlayerAI::uniquePowerAIEraValueMult(EraTypes eEra) const
+{
+	FAssert(eEra >= -1);
+	
+	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AMERICA") && eEra == ERA_INDUSTRIAL)
+	{
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_BYZANTIUM") && eEra == ERA_MEDIEVAL)
+	{
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CARTHAGE") && eEra == ERA_CLASSICAL)
+	{
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ENGLAND") && eEra == ERA_RENAISSANCE)
+	{
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_FRANCE") && eEra == ERA_MEDIEVAL)
+	{
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_GERMANY") && eEra == ERA_INDUSTRIAL)
+	{
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_HOLY_ROMAN") && eEra == ERA_MEDIEVAL)
+	{
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_JAPAN") && eEra == ERA_INDUSTRIAL)
+	{
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_KHMER") && eEra == ERA_MEDIEVAL)
+	{
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_KOREA") && eEra == ERA_INDUSTRIAL)
+	{
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MALI") && eEra == ERA_CLASSICAL)
+	{
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MONGOL") && eEra == ERA_MEDIEVAL)
+	{
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_PORTUGAL") && eEra == ERA_MEDIEVAL)
+	{
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME") && eEra == ERA_CLASSICAL)
+	{
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_RUSSIA") && eEra == ERA_MEDIEVAL)
+	{
+		return 150;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SPAIN") && eEra == ERA_MEDIEVAL)
+	{
+		return 150;
+	}
+
+	return 100;
+}
+
+
+// Civ4 Reimagined
+// As uniquePowerAIEraValueMult, but for single technologies
+int CvPlayerAI::uniquePowerAITechValueMult(TechTypes eTech) const
+{
+	int iTechValueMult = 100;
+	
+	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ARABIA")
+		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_DIVINE_RIGHT"))
+	{
+		return 300;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_OTTOMAN")
+		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_GUNPOWDER"))
+	{
+		return 300;
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_NETHERLANDS")
+		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_CORPORATION"))
+	{
+		return 300;
+	}
+	
+	return iTechValueMult;
+}
+
 
 // K-mod. This function returns the (positive) value of the buildings we will lose by researching eTech.
 // (I think it's crazy that this stuff wasn't taken into account in original BtS)
@@ -7281,6 +7457,14 @@ int CvPlayerAI::AI_techUnitValue(TechTypes eTech, int iPathLength, bool& bEnable
 							{
 								iUtilityValue = 2 * std::max(iWeight, 200) / std::max(countHeadquarters(), 1);
 								iUtilityValue /= std::max(1, getCurrentEra() - 1);
+
+								// Civ4 Reimagined: American UP
+								if (getCorporationTraderouteModifier() > 0)
+								{
+									iUtilityValue *= 100 + getCorporationTraderouteModifier();
+									iUtilityValue /= 100;
+								}
+
 								if (gPlayerLogLevel > 0) logBBAI("		%S Utility Value: %d", GC.getUnitInfo(eLoopUnit).getDescription(0), iUtilityValue);
 							}
 						}
@@ -7715,7 +7899,7 @@ int CvPlayerAI::AI_techUnitValue(TechTypes eTech, int iPathLength, bool& bEnable
 				}
 				else
 				{
-					if ((kTeam.isHasTech((TechTypes)(GC.getBonusInfo(ePrereqBonus).getTechReveal())) || kTeam.isForceRevealedBonus(ePrereqBonus)) && countOwnedBonuses(ePrereqBonus) == 0)
+					if (kTeam.isBonusRevealed(ePrereqBonus) && countOwnedBonuses(ePrereqBonus) == 0)
 					{
 						bDefinitelyMissing = true;
 					}
@@ -7729,8 +7913,7 @@ int CvPlayerAI::AI_techUnitValue(TechTypes eTech, int iPathLength, bool& bEnable
 		BonusTypes ePrereqBonus = (BonusTypes)kLoopUnit.getPrereqAndBonus();
 		if (ePrereqBonus != NO_BONUS && !hasBonus(ePrereqBonus))
 		{
-			if ((kTeam.isHasTech((TechTypes)(GC.getBonusInfo(ePrereqBonus).getTechReveal())) || kTeam.isForceRevealedBonus(ePrereqBonus)) &&
-				countOwnedBonuses(ePrereqBonus) == 0)
+			if (kTeam.isBonusRevealed(ePrereqBonus) && countOwnedBonuses(ePrereqBonus) == 0)
 			{
 				bDefinitelyMissing = true;
 			}
@@ -8235,6 +8418,7 @@ void CvPlayerAI::AI_updateAttitudeCache(PlayerTypes ePlayer)
 	iAttitude += AI_getNeedOpenBordersAttitude(ePlayer); // Civ4 Reimagined
 	iAttitude += AI_getSameIdeologyAttitude(ePlayer); // Civ4 Reimagined
 	iAttitude += AI_getDifferentIdeologyAttitude(ePlayer); // Civ4 Reimagined
+	iAttitude += AI_getCapitalCultureAttitude(ePlayer); // Civ4 Reimagined
 
 	for (int iI = 0; iI < NUM_MEMORY_TYPES; iI++)
 	{
@@ -8753,6 +8937,23 @@ int CvPlayerAI::AI_getDifferentIdeologyAttitude(PlayerTypes ePlayer) const
 	}
 
 	return -4;
+}
+
+// Civ4 Reimagined
+int CvPlayerAI::AI_getCapitalCultureAttitude(PlayerTypes ePlayer) const
+{
+	if (GET_PLAYER(ePlayer).getCapitalCultureAttitudeBonus() != 0)
+	{
+		CvCity* pCapital = getCapitalCity();
+		CvCity* pOtherCapital = GET_PLAYER(ePlayer).getCapitalCity();
+
+		if (pCapital && pOtherCapital && pOtherCapital->countTotalCultureTimes100() > pCapital->countTotalCultureTimes100())
+		{
+			return GET_PLAYER(ePlayer).getCapitalCultureAttitudeBonus();
+		}
+	}
+
+	return 0;
 }
 
 
@@ -10795,7 +10996,7 @@ int CvPlayerAI::AI_bonusVal(BonusTypes eBonus, int iChange, bool bAssumeEnabled)
 			const CvTeam& kTeam = GET_TEAM(getTeam());
 			//if (!kTeam.isBonusRevealed(eBonus))
 			// note. the tech is used here as a kind of proxy for the civ's readiness to use the bonus.
-			if (!kTeam.isHasTech((TechTypes)GC.getBonusInfo(eBonus).getTechReveal()))
+			if (!kTeam.isBonusRevealed(eBonus))
 				iValue /= 2;
 			if (!kTeam.isHasTech((TechTypes)GC.getBonusInfo(eBonus).getTechCityTrade()))
 				iValue /= 2;
@@ -11034,8 +11235,7 @@ int CvPlayerAI::AI_baseBonusVal(BonusTypes eBonus, bool bAdditional) const
 					// Civ4 Reimagined
 					if (kLoopBuilding.getBonusHealthChanges(eBonus) != 0)
 					{
-						int iHealth = kLoopBuilding.getBonusHealthChanges(eBonus);
-						//iTempValue += kLoopBuilding.getBonusHealthChanges(eBonus) * (kLoopBuilding.getSpecialBuildingType() != NO_SPECIALBUILDING ? 5 : 34);
+						int iHealth = kLoopBuilding.getBonusHealthChanges(eBonus) + getBonusHealthFromBuilding(eLoopBuilding, eBonus);
 						iTempValue += (100 * iHealth + 2 * AI_getHealthWeight(iHealth, 1)) * (kLoopBuilding.getSpecialBuildingType() != NO_SPECIALBUILDING ? 5 : 34) / 200;
 					}
 					
@@ -11236,6 +11436,14 @@ int CvPlayerAI::AI_baseBonusVal(BonusTypes eBonus, bool bAdditional) const
 	} else {
 		iValue += GC.getBonusInfo(eBonus).getHealth() * 100;
 		iValue += GC.getBonusInfo(eBonus).getHappiness() * 100;
+	}
+
+	if (isGainGreatWorkGoldWithHitBonuses())
+	{
+		if (eBonus == (BonusTypes)GC.getInfoTypeForString("BONUS_MUSIC") || eBonus == (BonusTypes)GC.getInfoTypeForString("BONUS_MOVIES"))
+		{
+			iValue *= 2;
+		}
 	}
 	
 	return iValue;
@@ -11528,7 +11736,15 @@ int CvPlayerAI::AI_cityTradeVal(CvCity* pCity) const
 		for (CorporationTypes i = (CorporationTypes)0; i < GC.getNumCorporationInfos(); i=(CorporationTypes)(i+1))
 		{
 			if (pCity->isHeadquarters(i))
+			{
 				iCityValue += std::max(0, 2 * GC.getGameINLINE().countCorporationLevels(i) - 4);
+
+				// Civ4 Reimagined: American UP
+				if (getCorporationTraderouteModifier() != 0)
+				{
+					iCityValue += getCorporationTraderouteModifier() / 100;
+				}
+			}
 		}
 
 		// wonders
@@ -12853,6 +13069,13 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 					// Civ4 Reimagined
 					iValue *= GC.getCorporationInfo((CorporationTypes)iI).getSpreadFactor();
 					iValue /= 35;
+
+					// Civ4 Reimagined: American UP
+					if (getCorporationTraderouteModifier() != 0)
+					{
+						iValue *= 100 + getCorporationTraderouteModifier();
+						iValue /= 100;
+					}
 					
 /************************************************************************************************/
 /* UNOFFICIAL_PATCH                       06/03/09                                jdog5000      */
@@ -13261,7 +13484,7 @@ int CvPlayerAI::AI_neededExplorers(CvArea* pArea) const
 	else
 	{
 		// Changed by Civ4 Reimagined
-		iNeeded = std::min(iNeeded + (pArea->getNumUnrevealedTiles(getTeam()) / 150), ((getNumCities() + AI_totalAreaUnitAIs(pArea, UNITAI_SETTLE)) > 1 ? 3 : 2));
+		iNeeded = std::min((pArea->getNumUnrevealedTiles(getTeam()) / 250), ((getNumCities() + AI_totalAreaUnitAIs(pArea, UNITAI_SETTLE)) > 1 ? 1 : 0));
 	}
 
 	if (0 == iNeeded)
@@ -13415,7 +13638,11 @@ int CvPlayerAI::AI_neededExecutives(CvArea* pArea, CorporationTypes eCorporation
 	int iCount = ((pArea->getCitiesPerPlayer(getID()) - pArea->countHasCorporation(eCorporation, getID())) * 2);
 	iCount += (pArea->getNumCities() - pArea->countHasCorporation(eCorporation));
 
-	iCount /= 3;
+	// Civ4 Reimagined: American UP
+	if (getCorporationTraderouteModifier() <= 0)
+	{
+		iCount /= 3;
+	}
 
 	if (AI_isPrimaryArea(pArea))
 	{
@@ -13885,6 +14112,13 @@ int CvPlayerAI::AI_executiveValue(CvArea* pArea, CorporationTypes eCorporation, 
 				iHqValue += kCorp.getHeadquarterCommerce(i) * kHqCity->getTotalCommerceRateModifier(i) * AI_commerceWeight(i)/100;
 		}
 
+		// Civ4 Reimagined: American UP
+		if (getCorporationTraderouteModifier() != 0)
+		{
+			iHqValue *= 100 + getCorporationTraderouteModifier();
+			iHqValue /= 100;
+		}
+
 		iSpreadExternalValue += iHqValue;
 	}
 
@@ -13991,7 +14225,7 @@ int CvPlayerAI::AI_corporationValue(CorporationTypes eCorporation, const CvCity*
 			else
 				iBonuses += pCity->getNumBonuses(eBonus);
 			// maybe use getNumAvailableBonuses ?
-			if (!kTeam.isHasTech((TechTypes)GC.getBonusInfo(eBonus).getTechReveal()) && !kTeam.isForceRevealedBonus(eBonus))
+			if (!kTeam.isBonusRevealed(eBonus))
 			{
 				iBonuses++; // expect that we'll get one of each unrevealed resource
 			}
@@ -14055,6 +14289,13 @@ int CvPlayerAI::AI_corporationValue(CorporationTypes eCorporation, const CvCity*
 		}
 	}
 
+	// Civ4 Reimagined: American UP
+	if (getCorporationTraderouteModifier() > 0)
+	{
+		iValue *= 100 + getCorporationTraderouteModifier();
+		iValue /= 100;
+	}
+
 	// maintenance cost
 	int iTempValue = kCorp.getMaintenance() * iBonuses;
 	iTempValue *= GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getCorporationMaintenancePercent();
@@ -14076,7 +14317,7 @@ int CvPlayerAI::AI_corporationValue(CorporationTypes eCorporation, const CvCity*
 		//int iBonuses = getNumAvailableBonuses((BonusTypes)kCorp.getBonusProduced());
 		int iBonuses = pCity ? pCity->getNumBonuses(eBonusProduced) : countOwnedBonuses(eBonusProduced);
 		// pretend we have 1 bonus if it is not yet revealed. (so that we don't overvalue the corp before the resource gets revealed)
-		iBonuses += !kTeam.isHasTech((TechTypes)GC.getBonusInfo(eBonusProduced).getTechReveal()) ? 1 : 0;
+		iBonuses += !kTeam.isBonusRevealed(eBonusProduced) ? 1 : 0;
 		iValue += AI_baseBonusVal(eBonusProduced) * 25 / (1 + 2 * iBonuses * (iBonuses+3));
 	}
 
@@ -14218,6 +14459,7 @@ int CvPlayerAI::AI_localDefenceStrength(const CvPlot* pDefencePlot, TeamTypes eD
 						// actually, the value of first strikes is non-trivial to calculate... but we should so /something/ to take them into account.
 						iUnitStr *= 100 + 4 * pLoopUnit->firstStrikes() + 2 * pLoopUnit->chanceFirstStrikes();
 						iUnitStr /= 100;
+
 						// note. Most other parts of the code use 5% per first strike, but I figure we should go lower because this unit may get clobbered by collateral damage before fighting.
 						iPlotTotal += iUnitStr;
 					}
@@ -14738,6 +14980,31 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 
 	//iValue += -(getSingleCivicUpkeep(eCivic, true)*80)/100;
 	iValue -= 2 * getSingleCivicUpkeep(eCivic, true) * iMaintenanceFactor / 100; // K-Mod. (note. upkeep modifiers are included in getSingleCivicUpkeep.)
+
+	// Civ4 Reimagined
+	if (isHasCivicEffect() && getRemainingTurnsForCivicEffect(eCivic) > 0)
+	{
+		int iTempValue = AI_getGreatPersonWeight((UnitClassTypes)GC.getUnitInfo(getCivicEffectGreatPerson(eCivic)).getUnitClassType());
+
+		if (AI_isDoStrategy(AI_STRATEGY_SPECIALIST_ECONOMY))
+		{
+			iTempValue *= 3;
+			iTempValue /= 2;
+		}
+
+		// A bit more value for the civic we are already on
+		if (isCivic(eCivic))
+		{
+			int iTurnsPerCivic = GC.getDefineINT("UNIQUE_POWER_GREECE");
+			iTurnsPerCivic *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getResearchPercent();
+			iTurnsPerCivic /= 100;
+
+			iTempValue += getRemainingTurnsForCivicEffect(eCivic) < iTurnsPerCivic/2 ? 20 : 10;
+		}
+
+		if (iTempValue != 0 && gPlayerLogLevel > 2) logBBAI("	Civic Value of Greek UP: %d", iTempValue);
+		iValue += iTempValue;
+	}
 	
 	// Civ4 Reimagined
 	if (!isNoGreatPeople() || kCivic.isNoGreatPeople())
@@ -14879,9 +15146,9 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	iValue += -(kCivic.getGoldPerUnit() * getNumUnits());
 	iValue += -(kCivic.getGoldPerMilitaryUnit() * getNumMilitaryUnits() * iWarmongerPercent) / 200; */
 	// K-Mod, just a bunch of minor accuracy improvements to these approximations.
-	if (kCivic.getWorkerSpeedModifier() != 0)
+	if (kCivic.getWorkerSpeedModifier() != 0 || kCivic.getFreeWorkers() != 0)
 	{
-		int iWorkers = 0;
+		int iNeededWorkers = 0;
 		// Civ4 Reimagined
 		int iTempValue = kCivic.getWorkerSpeedModifier() * AI_getNumAIUnits(UNITAI_WORKER);
 		if (iTempValue != 0)
@@ -14891,14 +15158,15 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		int iLoop;
 		for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 		{
-			iWorkers += 2 * pLoopCity->AI_getWorkersNeeded();
+			iNeededWorkers += 2 * pLoopCity->AI_getWorkersNeeded();
 		}
-		iWorkers -= AI_getNumAIUnits(UNITAI_WORKER);
-		if (iWorkers > 0)
+		iNeededWorkers -= AI_getNumAIUnits(UNITAI_WORKER);
+		if (iNeededWorkers > 0)
 		{
-			iTempValue += kCivic.getWorkerSpeedModifier() * iWorkers / 30;
+			iTempValue += kCivic.getWorkerSpeedModifier() * iNeededWorkers / 30;  
 		}
-		if (gPlayerLogLevel > 2) logBBAI("	Civic Value of Workerspeed modifier: %d", iTempValue);
+		iTempValue += kCivic.getFreeWorkers() * (iNeededWorkers + 1) * 2;
+		if (gPlayerLogLevel > 2) logBBAI("	Civic Value of free workers / workerspeedmodifier: %d", iTempValue);
 		iValue += iTempValue;
 	}
 	
@@ -15296,7 +15564,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 		{
 			iTotalTradeRoutes += pLoopCity->getTradeRoutes();
-			iAverageTradeModifier += 100 + pLoopCity->getTradeRouteModifier();
+			iAverageTradeModifier += 100 + pLoopCity->totalTradeModifier();
 		}
 
 		iAverageTradeModifier /= iCities;
@@ -15397,12 +15665,17 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			iTempValue *= 3*(getCurrentEra()+1);
 			iTempValue /= GC.getNumEraInfos()+1;
 
+			// Civ4 Reimagined
+			const int iGPValue = (getGreatPeoplePointsPerTrade() + getGreatMerchantPointsPerTrade()) * iTempValue / 100;
+
 			iTempValue *= getTradeYieldModifier(YIELD_COMMERCE) + iAverageTradeModifier;
 			iTempValue /= 100;
 
 			// commerce multipliers
 			iTempValue *= AI_averageYieldMultiplier(YIELD_COMMERCE);
 			iTempValue /= 100;
+
+			iTempValue += iGPValue;
 			if (gPlayerLogLevel > 0) logBBAI("	Civic Value of Traderoutes: %d", iTempValue);
 			iValue += iTempValue;
 		}
@@ -15718,6 +15991,13 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				}
 			}
 
+			// Civ4 Reimagined: American UP
+			if (getCorporationTraderouteModifier() != 0)
+			{
+				iCorpValue *= 100 + getCorporationTraderouteModifier();
+				iCorpValue /= 100;
+			}
+
 			// loss of maintenance cost (money saved)
 			int iTempValue = kCorpInfo.getMaintenance() * iBonuses * iCorpCities;
 			iTempValue *= GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getCorporationMaintenancePercent();
@@ -15737,11 +16017,18 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			}
 			else
 			{
-				iCorpValue += (-kCivic.getCorporationMaintenanceModifier() * iTempValue)/100;
+				int iMaintenanceSafing = (-kCivic.getCorporationMaintenanceModifier() * iTempValue)/100;
+
+				if (iMaintenanceSafing != 0)
+				{
+					logBBAI("	Corporation maintenance value: %d", iMaintenanceSafing);
+				}
+
+				iValue += iMaintenanceSafing;
 			}
 
 			FAssert(iSpeculation == 0 || (!kGame.isCorporationFounded(eCorp) && kCivic.isNoCorporations()));
-			iCorpValue;
+
 			if (iSpeculation == 0)
 				iValue += iCorpValue;
 			else
@@ -15753,6 +16040,11 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 					iPotentialCorpValue = iCorpValue;
 			}
 		}
+
+		if (iPotentialCorpValue != 0)
+		{
+			logBBAI("	Missing out on corporations value: %d", iPotentialCorpValue);
+		}
 		FAssert(iPotentialCorpValue <= 0);
 		iValue += iPotentialCorpValue;
 	}
@@ -15760,12 +16052,23 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	
 	// Civ4 Reimagined
 	bool bAnyCapitalCommerceModifier = false;
+	bool bAnyRadiusImprovementHappiness = false;
 	
 	for (int iI = 0; iI < NUM_COMMERCE_TYPES; iI++)
 	{
 		if (kCivic.getCapitalCommerceModifierPerHappinessSurplus(iI) != 0)
 		{
 			bAnyCapitalCommerceModifier = true;
+			break;
+		}
+	}
+
+	// Civ4 Reimagined
+	for (int iI = 0; iI < GC.getNumImprovementInfos(); iI++)
+	{
+		if (kCivic.getRadiusImprovementHappinessChanges(iI) != 0)
+		{
+			bAnyRadiusImprovementHappiness = true;
 			break;
 		}
 	}
@@ -15781,7 +16084,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	}
 	
 	// Civ4 Reimagined: Happiness
-	if (kCivic.getCivicPercentAnger() != 0 || kCivic.getExtraHappiness() != 0 || kCivic.getHappyPerMilitaryUnit() != 0 || kCivic.getLargestCityHappiness() != 0 || kCivic.isNoForeignCultureUnhappiness() || kCivic.getProductionPerSurplusHappiness() != 0 || kCivic.isNoCapitalUnhappiness() != 0 || kCivic.getNonStateReligionHappiness() != 0 || kCivic.getStateReligionHappiness() != 0 || bAnyCapitalCommerceModifier || (kCivic.getWarWearinessModifier() != 0 && !bNoWarWeariness) || kCivic.getPopulationUnhappinessModifier() != 0)
+	if (kCivic.getCivicPercentAnger() != 0 || kCivic.getExtraHappiness() != 0 || kCivic.getHappyPerMilitaryUnit() != 0 || kCivic.getLargestCityHappiness() != 0 || kCivic.isNoForeignCultureUnhappiness() || kCivic.getProductionPerSurplusHappiness() != 0 || kCivic.isNoCapitalUnhappiness() != 0 || kCivic.getNonStateReligionHappiness() != 0 || kCivic.getStateReligionHappiness() != 0 || bAnyCapitalCommerceModifier || bAnyRadiusImprovementHappiness || (kCivic.getWarWearinessModifier() != 0 && !bNoWarWeariness) || kCivic.getPopulationUnhappinessModifier() != 0)
 	{
 		int iLoop;
 		CvCity* pLoopCity;
@@ -15793,6 +16096,18 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		if (kCivic.getHappyPerMilitaryUnit() != 0)
 		{
 			iGlobalHappiness += kCivic.getMilitaryHappinessLimit() > 0 ? kCivic.getMilitaryHappinessLimit() : 4;
+		}
+
+		// Civ4 Reimagined
+		if (bAnyRadiusImprovementHappiness)
+		{
+			for (int iI = 0; iI < GC.getNumImprovementInfos(); iI++)
+			{
+				if (kCivic.getRadiusImprovementHappinessChanges(iI) != 0 && getImprovementCount((ImprovementTypes)iI) > 0)
+				{
+					iGlobalHappiness += kCivic.getRadiusImprovementHappinessChanges(iI);
+				}
+			}	
 		}
 		
 		for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
@@ -16543,6 +16858,12 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		iTempProduction = kCivic.getBuildingProductionModifier(iI);
 		
 		BuildingTypes eBuilding = (BuildingTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationBuildings(iI);
+
+		if (eBuilding == NO_BUILDING)
+		{
+			continue;
+		}
+
 		const CvBuildingInfo& kBuildingInfo = GC.getBuildingInfo(eBuilding);
 		/* original bts code
 		if (iTempValue != 0)
@@ -16669,8 +16990,8 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			{
 				// Modified by Civ4 Reimagined
 				iTempValue = AI_averageCommerceMultiplier(COMMERCE_GOLD) * (AI_avoidScience() ? 400 : 200) * iCities / kHurryInfo.getGoldPerProduction();
-				bool bFinancialTrouble = AI_isFinancialTrouble();
-				iTempValue /= std::max(1, (getHurryModifier() + getHurryGoldCostModifier() + 100) * AI_commerceWeight(COMMERCE_GOLD)) * (bFinancialTrouble ? 5 : 1); //Civ4 Reimagined
+				int iHurryModifiers = getHurryModifier() + kHurryInfo.isUnits() ? getMercenaryCostModifier() : 0;
+				iTempValue /= std::max(1, (iHurryModifiers + 100) * AI_commerceWeight(COMMERCE_GOLD)) * (AI_isFinancialTrouble() ? 5 : 1);
 				
 				// Civ4 Reimagined
 				if (kHurryInfo.isUnits() && kHurryInfo.isBuildings())
@@ -16679,7 +17000,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				}
 				
 				// Civ4 Reimagined: Value for strategic boni we don't have
-				if (pCapital)
+				if (kHurryInfo.isUnits() && pCapital)
 				{
 					int iBonusValue = 0;
 					const BonusClassTypes BONUSCLASS_WONDER = (BonusClassTypes)GC.getInfoTypeForString("BONUSCLASS_WONDER");
@@ -16705,9 +17026,11 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 
 			if (kHurryInfo.getProductionPerPopulation() > 0)
 			{
-				// if we had easy access to averages for getMaxFoodKeptPercent and getHurryAngerModifier, then I'd use them. - but I don't want to calculate them here.
-				//iTempValue += (bWarPlan ? 8 : 5) * iCities * kGame.getProductionPerPopulation(i) / std::max(1, getGrowthThreshold(getAveragePopulation()));
-				iTempValue += 3 * iCities * kGame.getProductionPerPopulation(i) / std::max(1, getGrowthThreshold(getAveragePopulation())); // Civ4 Reimagined
+				int iProductionPerPop = GC.getGameINLINE().getProductionPerPopulation(i);
+				// Civ4 Reimagined: Egypt UP
+				iProductionPerPop += getProductionPerPopulation() * 100 / std::max(1, GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getHurryPercent());
+				
+				iTempValue += 3 * iCities * iProductionPerPop / std::max(1, getGrowthThreshold(getAveragePopulation())); // Civ4 Reimagined
 			}
 
 			if (iTempValue > 0)
@@ -16802,7 +17125,19 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			iSlaveValue /= std::max(1, std::max(iCities/2, iCoastalCities));
 		}
 		
-		iSlaveValue += iCities * getNumSlaveUnits();
+		iSlaveValue += iCities * (getNumSlaveUnits() + bWarPlan ? 2 : 0);
+		iSlaveValue += getSlavePointsPerPopulationSacrificed();
+
+		// Civ4 Reimagined: Aztec UP
+		if (isCaptureSlaves())
+		{
+			int iSlaveGold = GC.getDefineINT("UNIQUE_POWER_AZTEC");
+
+			iSlaveGold *= AI_commerceWeight(COMMERCE_GOLD);
+			iSlaveGold /= 100;
+
+			iTempValue += iSlaveGold / 2;
+		}
 		
 		if (iSlaveValue > 0 && gPlayerLogLevel > 2) logBBAI("	Civic Value of Slaves: %d (has %d)", iSlaveValue, getNumSlaveUnits());
 		if (iCorpValue > 0 && gPlayerLogLevel > 2) logBBAI("	Civic Value of Corporations: %d", iCorpValue);
@@ -16822,16 +17157,20 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		int iTempValue = 0;
 		if (kCivic.isSpecialistValid(iI))
 		{
-			// K-Mod todo: the current code sucks. Fix it.
-			iTempValue += iCities * (AI_isDoVictoryStrategy(AI_VICTORY_CULTURE3) ? 10 : 1) + 6;
-			// Civ4 Reimagined
+			int iLoop;
+			for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+			{
+				iTempValue += pLoopCity->getSpecialistCount((SpecialistTypes)iI);
+			}
+
 			if (AI_isDoStrategy(AI_STRATEGY_SPECIALIST_ECONOMY))
 			{
 				iTempValue *= 3;
 				iTempValue /= 2;
 			}
 		}
-		iValue += (iTempValue / 2);
+		if (iTempValue > 0 && gPlayerLogLevel > 2) logBBAI("	Civic Value of double specialists: %d", iTempValue);
+		iValue += iTempValue;
 	}
 	
 	// Civ4 Reimagined
@@ -16987,6 +17326,19 @@ ReligionTypes CvPlayerAI::AI_bestReligion() const
 					iValue = iValue*4/3;
 			}
 			// K-Mod end
+
+			// Civ4 Reimagined
+			if (getVoteSourceStateReligionUnitProductionModifier() > 0)
+			{
+				for (VoteSourceTypes i = (VoteSourceTypes)0; i < GC.getNumVoteSourceInfos(); i = (VoteSourceTypes)(i+1))
+				{
+					if (GC.getGameINLINE().isDiploVote(i) && GC.getGameINLINE().getVoteSourceReligion(i) == (ReligionTypes)iI)
+					{
+						iValue *= 100 + getVoteSourceStateReligionUnitProductionModifier() * 4;
+						iValue /= 100;
+					}
+				}	
+			}
 
 			if (eFavorite == iI)
 			{
@@ -18042,9 +18394,11 @@ void CvPlayerAI::AI_doCounter()
 			{
 				if (AI_getMemoryCount(((PlayerTypes)iI), ((MemoryTypes)iJ)) > 0)
 				{
-					if (GC.getLeaderHeadInfo(getPersonalityType()).getMemoryDecayRand(iJ) > 0)
+					// Civ4 Reimagined: Memory decay adjusts with game speed
+					const int iMemoryDecayRand = GC.getLeaderHeadInfo(getPersonalityType()).getMemoryDecayRand(iJ) * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getMemoryDecayPercent() / 100;
+					if (iMemoryDecayRand > 0)
 					{
-						if (GC.getGameINLINE().getSorenRandNum(GC.getLeaderHeadInfo(getPersonalityType()).getMemoryDecayRand(iJ), "Memory Decay") == 0)
+						if (GC.getGameINLINE().getSorenRandNum(iMemoryDecayRand, "Memory Decay") == 0)
 						{
 							AI_changeMemoryCount(((PlayerTypes)iI), ((MemoryTypes)iJ), -1);
 						}
@@ -23004,6 +23358,8 @@ void CvPlayerAI::AI_updateStrategyHash()
                 
 				iMissionary += std::min(iMetCount, 5) * 7;
 
+				iMissionary += getGreatPeopleRatePerReligionModifier() * 2;
+
                 for (int iI = 0; iI < MAX_CIV_PLAYERS; iI++)
                 {
 					if (iI != getID())
@@ -26418,6 +26774,10 @@ int CvPlayerAI::AI_disbandValue(const CvUnit* pUnit, bool bMilitaryOnly) const
 				{
 					iValue += 500 * getHasCorporationCount((CorporationTypes)iI);
 				}
+			}
+
+			if (isCaptureSlaves()) {
+				iValue += GC.getDefineINT("UNIQUE_POWER_AZTEC") * 4;
 			}
 		}
 		break;

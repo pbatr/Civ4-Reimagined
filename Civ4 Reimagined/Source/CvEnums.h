@@ -247,6 +247,7 @@ enum InterfaceModeTypes			// Exposed to Python
 	INTERFACEMODE_REBASE,
 	INTERFACEMODE_PYTHON_PICK_PLOT,
 	INTERFACEMODE_SAVE_PLOT_NIFS,
+	INTERFACEMODE_COASTAL_RAID, // Civ4 Reimagined
 
 #ifdef _USRDLL
 	NUM_INTERFACEMODE_TYPES
@@ -758,7 +759,6 @@ enum GameOptionTypes				// Exposed to Python
 	GAMEOPTION_NO_GOODY_HUTS,
 	GAMEOPTION_NO_EVENTS,
 	GAMEOPTION_NO_ESPIONAGE,
-	GAMEOPTION_NO_UNIQUE_POWERS, //Civ4 Reimagined
 	GAMEOPTION_NO_COLONY_ANGER, //Civ4 Reimagined
 	GAMEOPTION_UNLIMITED_WORKERS, //Civ4 Reimagined
 
@@ -822,6 +822,23 @@ enum PlayerOptionTypes			// Exposed to Python
 
 #ifdef _USRDLL
 	NUM_PLAYEROPTION_TYPES
+#endif
+};
+
+// Civ4 Reimagined
+enum NativeBonusTypes
+{
+	NO_NATIVEBONUS = -1,
+
+	NATIVEBONUS_LAKE,
+	NATIVEBONUS_TUNDRA,
+	NATIVEBONUS_DESERT,
+	NATIVEBONUS_HUNTING,
+	NATIVEBONUS_FOREST,
+	NATIVEBONUS_JUNGLE,
+
+#ifdef _USRDLL
+	NUM_NATIVEBONUS_TYPES
 #endif
 };
 
@@ -994,6 +1011,14 @@ enum TurnTimerTypes				// Exposed to Python
 enum EraTypes							// Exposed to Python
 {
 	NO_ERA = -1,
+	// Civ4 Reimagined: For hardcoded era comparisons (unique powers)
+	ERA_ANCIENT		= 0,	
+	ERA_CLASSICAL	= 1,
+	ERA_MEDIEVAL	= 2,
+	ERA_RENAISSANCE	= 3,
+	ERA_INDUSTRIAL	= 4,
+	ERA_MODERN		= 5,
+	ERA_FUTURE		= 6,
 };
 
 enum CivilizationTypes		// Exposed to Python
@@ -1464,6 +1489,8 @@ enum MissionTypes				// Exposed to Python
 	MISSION_DAMAGE,
 	MISSION_MULTI_SELECT,
 	MISSION_MULTI_DESELECT,
+	MISSION_SACRIFICE, // Civ4 Reimagined
+	MISSION_COASTAL_RAID, // Civ4 Reimagined
 
 #ifdef _USRDLL
 	NUM_MISSION_TYPES

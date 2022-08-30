@@ -576,9 +576,14 @@
 	</ElementType>
 	<ElementType name="iVictoryDelayTurns" content="textOnly" dt:type="int"/>
 	<ElementType name="iVictoryDelayPercent" content="textOnly" dt:type="int"/>
+	<!-- Civ4 Reimagined START -->
 	<ElementType name="iHealPercent" content="textOnly" dt:type="int"/>
 	<ElementType name="iDealLengthPercent" content="textOnly" dt:type="int"/>
 	<ElementType name="iOccupyLengthPercent" content="textOnly" dt:type="int"/>
+	<ElementType name="iMemoryDecayPercent" content="textOnly" dt:type="int"/>
+	<ElementType name="iEventDelayTurns" content="textOnly" dt:type="int"/>
+	<ElementType name="iEventProbabilityModifier" content="textOnly" dt:type="int"/>
+	<!-- Civ4 Reimagined END -->
 	<ElementType name="iSuccessRate" content="textOnly" dt:type="int"/>
 	<ElementType name="PrereqBonuses" content="eltOnly">
 		<element type="BonusType" minOccurs="0" maxOccurs="*"/>
@@ -705,6 +710,7 @@
 	<ElementType name="iWorkerSpeedModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="iImprovementUpgradeRateModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="iMilitaryProductionModifier" content="textOnly" dt:type="int"/>
+	<ElementType name="iFreeWorkers" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iBaseFreeUnits" content="textOnly" dt:type="int"/>
 	<ElementType name="iBaseFreeMilitaryUnits" content="textOnly" dt:type="int"/>
 	<ElementType name="iFreeUnitsPopulationPercent" content="textOnly" dt:type="int"/>
@@ -919,6 +925,13 @@
 		<element type="ImprovementYieldChange" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
 	<!-- Civ4 Reimagined start -->
+	<ElementType name="RadiusImprovementHappinessChange" content="eltOnly">
+		<element type="ImprovementType"/>
+		<element type="iHappinessChange"/>
+	</ElementType>
+	<ElementType name="RadiusImprovementHappinessChanges" content="eltOnly">
+		<element type="RadiusImprovementHappinessChange" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
 	<ElementType name="ImprovementCommerce" content="eltOnly">
 		<element type="iCommerce" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
@@ -989,6 +1002,7 @@
 		<element type="iWorkerSpeedModifier"/>
 		<element type="iImprovementUpgradeRateModifier"/>
 		<element type="iMilitaryProductionModifier"/>
+		<element type="iFreeWorkers" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="iBaseFreeUnits"/>
 		<element type="iBaseFreeMilitaryUnits"/>
 		<element type="iFreeUnitsPopulationPercent"/>
@@ -1062,6 +1076,7 @@
 		<element type="BuildingProductionModifiers" minOccurs="0"/> <!-- Leoreth -->
 		<element type="BuildingYieldChanges" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="FeatureHappinessChanges"/>
+		<element type="RadiusImprovementHappinessChanges" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="ImprovementYieldChanges"/>
 		<element type="RadiusImprovementCommerceChanges" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="DomainProductionModifiers" minOccurs="0"/> <!-- Leoreth -->
@@ -1116,6 +1131,9 @@
 		<element type="iDealLengthPercent"/>
 		<element type="iHealPercent"/>
 		<element type="iOccupyLengthPercent"/>
+		<element type="iMemoryDecayPercent"/>
+		<element type="iEventDelayTurns"/>
+		<element type="iEventProbabilityModifier"/>
 		<element type="GameTurnInfos"/>
 	</ElementType>
 	<ElementType name="GameSpeedInfos" content="eltOnly">

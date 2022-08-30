@@ -308,6 +308,15 @@ bool isPromotionValid(PromotionTypes ePromotion, UnitTypes eUnit, bool bLeader)
 	CvUnitInfo& kUnit = GC.getUnitInfo(eUnit);
 	CvPromotionInfo& kPromotion = GC.getPromotionInfo(ePromotion);
 
+	// Civ4 Reimagined
+	if (eUnit == (UnitTypes)GC.getInfoTypeForString("UNIT_AZTEC_JAGUAR"))
+	{
+		if (ePromotion == (PromotionTypes)GC.getInfoTypeForString("PROMOTION_JAGUAR_WARRIOR") || ePromotion == (PromotionTypes)GC.getInfoTypeForString("PROMOTION_EAGLE_WARRIOR"))
+		{
+			return true;
+		}
+	}
+	
 	if (kUnit.getFreePromotions(ePromotion))
 	{
 		return true;
@@ -1000,7 +1009,7 @@ int estimateCollateralWeight(const CvPlot* pPlot, TeamTypes eAttackTeam, TeamTyp
 			// Or we could check all types... But the reality is, there are always going to be mods and fringe cases where
 			// the esitmate is inaccurate. And currently in K-Mod, all instances of immunity are to the units own type anyway.
 			// Whichever way we do the estimate, cho-ku-nu is going to mess it up anyway. (Unless I change the game mechanics.)
-			if (pLoopUnit->getUnitInfo().getUnitCombatCollateralImmune(pLoopUnit->getUnitCombatType()))
+			if (pLoopUnit->getUnitCombatType() != NO_UNITCOMBAT && pLoopUnit->getUnitInfo().getUnitCombatCollateralImmune(pLoopUnit->getUnitCombatType()))
 				iResistanceSum += 100;
 			else
 				iResistanceSum += pLoopUnit->getCollateralDamageProtection();
@@ -2727,6 +2736,8 @@ void getMissionTypeString(CvWString& szString, MissionTypes eMissionType)
 	case MISSION_HURRY: szString = L"MISSION_HURRY"; break;
 	case MISSION_TRADE: szString = L"MISSION_TRADE"; break;
 	case MISSION_GREAT_WORK: szString = L"MISSION_GREAT_WORK"; break;
+	case MISSION_SACRIFICE: szString = L"MISSION_SACRIFICE"; break; // Civ4 Reimagined
+	case MISSION_COASTAL_RAID: szString = L"MISSION_COASTAL_RAID"; break; // Civ4 Reimagined
 	case MISSION_INFILTRATE: szString = L"MISSION_INFILTRATE"; break;
 	case MISSION_GOLDEN_AGE: szString = L"MISSION_GOLDEN_AGE"; break;
 	case MISSION_BUILD: szString = L"MISSION_BUILD"; break;

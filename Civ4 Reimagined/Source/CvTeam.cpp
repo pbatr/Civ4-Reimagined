@@ -67,6 +67,7 @@ CvTeam::CvTeam()
 	m_paiResearchProgress = NULL;
 	m_paiTechCount = NULL;
 	m_paiTerrainTradeCount = NULL;
+	m_paiAdditionalBonus = NULL; // Civ4 Reimagined
 	m_aiVictoryCountdown = NULL;
 	m_aiForceTeamVoteEligibilityCount = NULL;
 
@@ -139,18 +140,6 @@ void CvTeam::init(TeamTypes eID)
 				}
 			}
 		}
-
-		// Civ4 Reimagined
-		if (!isHuman())
-		{
-			for (iI = 0; iI < GC.getNumTechInfos(); iI++)
-			{
-				if (!CvWString(GC.getTechInfo((TechTypes)iI).getHelp()).empty())
-				{
-					m_pabTechBoosted[iI] = true;
-				}
-			}
-		}
 	}
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
@@ -175,6 +164,7 @@ void CvTeam::uninit()
 	SAFE_DELETE_ARRAY(m_paiResearchProgress);
 	SAFE_DELETE_ARRAY(m_paiTechCount);
 	SAFE_DELETE_ARRAY(m_paiTerrainTradeCount);
+	SAFE_DELETE_ARRAY(m_paiAdditionalBonus); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiVictoryCountdown);
 	SAFE_DELETE_ARRAY(m_aiForceTeamVoteEligibilityCount);
 
@@ -363,6 +353,14 @@ void CvTeam::reset(TeamTypes eID, bool bConstructorCall)
 		for (iI = 0; iI < GC.getNumTerrainInfos(); iI++)
 		{
 			m_paiTerrainTradeCount[iI] = 0;
+		}
+
+		// Civ4 Reimagined
+		FAssertMsg(m_paiAdditionalBonus==NULL, "about to leak memory, CvTeam::m_paiAdditionalBonus");
+		m_paiAdditionalBonus = new int[GC.getNumBonusInfos()];
+		for (iI = 0; iI < GC.getNumBonusInfos(); iI++)
+		{
+			m_paiAdditionalBonus[iI] = 0;
 		}
 
 		FAssertMsg(m_aiVictoryCountdown==NULL, "about to leak memory, CvTeam::m_aiVictoryCountdown");
@@ -6079,7 +6077,14 @@ void CvTeam::setTechBoosted(TechTypes eIndex, PlayerTypes ePlayer, bool bNewValu
 	{
 		if (bNewValue && bNewValue != m_pabTechBoosted[eIndex] && !isHasTech(eIndex))
 		{
-			changeResearchProgressPercent(eIndex, GC.getDefineINT("EUREKA_TECH_BOOST_PERCENTAGE"), ePlayer);
+			int iTechBoost = GC.getDefineINT("EUREKA_TECH_BOOST_PERCENTAGE");
+
+			if (GC.getTechInfo(eIndex).getEra() <= GC.getDefineINT("ERA_CLASSICAL"))
+			{
+				iTechBoost += GET_PLAYER(ePlayer).getAdditionalAncientEurekaBoost();
+			}
+
+			changeResearchProgressPercent(eIndex, iTechBoost, ePlayer);
 			CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_TECH_BOOSTED", GC.getTechInfo(eIndex).getTextKeyWide());
 			gDLL->getInterfaceIFace()->addHumanMessage(ePlayer, false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_NEW_ERA", MESSAGE_TYPE_MAJOR_EVENT, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_HIGHLIGHT_TEXT"));
 		}
@@ -6140,6 +6145,57 @@ void CvTeam::changeBuildingYieldChange(BuildingClassTypes eIndex1, YieldTypes eI
 
 		updateYield();
 	}
+}
+
+// Civ4 Reimagined: Dutch UP
+void CvTeam::setAdditionalPlantationBonus(int iCount)
+{
+	std::set<int> plantationBoni;
+	plantationBoni.insert(GC.getInfoTypeForString("BONUS_BANANA"));
+	plantationBoni.insert(GC.getInfoTypeForString("BONUS_DYE"));
+	plantationBoni.insert(GC.getInfoTypeForString("BONUS_INCENSE"));
+	plantationBoni.insert(GC.getInfoTypeForString("BONUS_SILK"));
+	plantationBoni.insert(GC.getInfoTypeForString("BONUS_SPICES"));
+	plantationBoni.insert(GC.getInfoTypeForString("BONUS_SUGAR"));
+
+	for (int iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
+	{
+		CvPlot* pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(iI);
+
+		if (plantationBoni.find((int)pLoopPlot->getBonusType()) != plantationBoni.end())
+		{
+			if (pLoopPlot->getTeam() == getID())
+			{
+				pLoopPlot->updatePlotGroupBonus(false);
+			}
+		}
+	}
+
+	for (std::set<int>::iterator it = plantationBoni.begin(); it != plantationBoni.end(); ++it)
+	{
+		m_paiAdditionalBonus[*it] = iCount;
+	}
+
+	for (int iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
+	{
+		CvPlot* pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(iI);
+
+		if (plantationBoni.find((int)pLoopPlot->getBonusType()) != plantationBoni.end())
+		{
+			if (pLoopPlot->getTeam() == getID())
+			{
+				pLoopPlot->updatePlotGroupBonus(true);
+			}
+		}
+	}
+}
+
+// Civ4 Reimagined
+int CvTeam::getAdditionalBonus(BonusTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumBonusInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_paiAdditionalBonus[eIndex];
 }
 
 // K-Mod. In the original code, there seems to be a lot of confusion about what the exact conditions are for a bonus being connected.
@@ -6813,6 +6869,7 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 			GET_PLAYER((PlayerTypes)iI).changePower(GC.getTechInfo(eTech).getPowerValue() * iChange);
 			GET_PLAYER((PlayerTypes)iI).changeTechScore(getTechScore(eTech) * iChange);
 			GET_PLAYER((PlayerTypes)iI).updateIdeology(); // Civ4 Reimagined
+			GET_PLAYER((PlayerTypes)iI).updateUniquePowers(eTech); // Civ4 Reimagined
 			
 			// Civ4 Reimagined
 			if (!GET_PLAYER((PlayerTypes)iI).canExploreSea())
@@ -6852,11 +6909,7 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 						}
 					}
 				}
-			}
 
-			// Civ4 Reimagined
-			for (iJ = 0; iJ < GC.getNumBuildingInfos(); iJ++)
-			{
 				if (GC.getBuildingInfo((BuildingTypes)iJ).isAnyTechCommerceModifier())
 				{
 					for (int iK = 0; iK < NUM_COMMERCE_TYPES; iK++)
@@ -6935,6 +6988,18 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 			{
 				pLoopPlot->updateYield();
 				pLoopPlot->setLayoutDirty(true);
+
+				// Civ4 Reimagined
+				for (iJ = 0; iJ < NUM_DIRECTION_TYPES; ++iJ)
+				{
+					CvPlot* pAdjacentPlot = plotDirection(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), ((DirectionTypes)iJ));
+
+					if (pAdjacentPlot != NULL)
+					{
+						pAdjacentPlot->updateYield();
+						pAdjacentPlot->setLayoutDirty(true);
+					}
+				}
 			}
 		}
 	}
@@ -7107,6 +7172,7 @@ void CvTeam::read(FDataStreamBase* pStream)
 	pStream->Read(GC.getNumTechInfos(), m_paiResearchProgress);
 	pStream->Read(GC.getNumTechInfos(), m_paiTechCount);
 	pStream->Read(GC.getNumTerrainInfos(), m_paiTerrainTradeCount);
+	pStream->Read(GC.getNumBonusInfos(), m_paiAdditionalBonus); // Civ4 Reimagined
 	pStream->Read(GC.getNumVictoryInfos(), m_aiVictoryCountdown);
 
 	pStream->Read(GC.getNumTechInfos(), m_pabHasTech);
@@ -7216,6 +7282,7 @@ void CvTeam::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumTechInfos(), m_paiResearchProgress);
 	pStream->Write(GC.getNumTechInfos(), m_paiTechCount);
 	pStream->Write(GC.getNumTerrainInfos(), m_paiTerrainTradeCount);
+	pStream->Write(GC.getNumBonusInfos(), m_paiAdditionalBonus); // Civ4 Reimagined
 	pStream->Write(GC.getNumVictoryInfos(), m_aiVictoryCountdown);
 
 	pStream->Write(GC.getNumTechInfos(), m_pabHasTech);

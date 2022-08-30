@@ -295,6 +295,18 @@
 			<VictoryThresholds/>
 		</BuildingClassInfo>
 		<BuildingClassInfo>
+			<Type>BUILDINGCLASS_TOTEM_POLE</Type>
+			<Description>TXT_KEY_BUILDING_NATIVE_AMERICA_TOTEM</Description>
+			<iMaxGlobalInstances>-1</iMaxGlobalInstances>
+			<iMaxTeamInstances>-1</iMaxTeamInstances>
+			<iMaxPlayerInstances>-1</iMaxPlayerInstances>
+			<iExtraPlayerInstances>0</iExtraPlayerInstances>
+			<bNoLimit>0</bNoLimit>
+			<bMonument>1</bMonument>
+			<DefaultBuilding>BUILDING_NATIVE_AMERICA_TOTEM</DefaultBuilding>
+			<VictoryThresholds/>
+		</BuildingClassInfo>
+		<BuildingClassInfo>
 			<Type>BUILDINGCLASS_PUBLIC_TRANSPORTATION</Type>
 			<Description>TXT_KEY_BUILDING_PUBLIC_TRANSPORTATION</Description>
 			<iMaxGlobalInstances>-1</iMaxGlobalInstances>

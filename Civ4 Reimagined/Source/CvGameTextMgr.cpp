@@ -736,6 +736,13 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 				}
 			}
 
+			// Civ4 Reimagined
+			if (pUnit->againstInjuredModifier() != 0)
+			{
+				szString.append(NEWLINE);
+				szString.append(gDLL->getText("TXT_KEY_UNIT_AGAINST_INJURED", pUnit->againstInjuredModifier()));
+			}
+
 			if (pUnit->flatMovementCost())
 			{
 				szString.append(NEWLINE);
@@ -752,6 +759,13 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 			{
 				szString.append(NEWLINE);
 				szString.append(gDLL->getText("TXT_KEY_PROMOTION_BLITZ_TEXT"));
+			}
+
+			// Civ4 Reimagined
+			if (pUnit->getExtraCombatPercentAgainstWoodenShips() != 0)
+			{
+				szString.append(NEWLINE);
+				szString.append(gDLL->getText("TXT_KEY_PROMOTION_STRENGTH_AGAINST_WOODEN_SHIPS_TEXT", pUnit->getExtraCombatPercentAgainstWoodenShips()));
 			}
 
 			if (pUnit->isAmphib())
@@ -3463,7 +3477,6 @@ bool CvGameTextMgr::setCombatPlotHelp(CvWStringBuffer &szString, CvPlot* pPlot)
 			szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_EXTRA_STRENGTH", iModifier));
 		}
 
-
 		szString.append(gDLL->getText("TXT_KEY_COLOR_REVERT"));
 
 		szString.append(L' ');//XXX
@@ -3552,14 +3565,14 @@ bool CvGameTextMgr::setCombatPlotHelp(CvWStringBuffer &szString, CvPlot* pPlot)
 				szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_EXTRA_STRENGTH", iModifier));
 			}
 
-			iModifier = pDefender->unitClassDefenseModifier(pAttacker->getUnitClassType());
-
 			// Civ4 Reimagined
 			if (pAttacker->collateralDamage() > 0 && ((GC.getUnitInfo(pAttacker->getUnitType())).getFirstStrikes() > GC.getUnitInfo(pDefender->getUnitType()).getFirstStrikes()))
 			{
 				szString.append(NEWLINE);
 				szString.append(gDLL->getText("TXT_KEY_COMBAT_RANGE_DISADVANTAGE", -500, GC.getUnitClassInfo(pAttacker->getUnitClassType()).getTextKeyWide()));
 			}
+
+			iModifier = pDefender->unitClassDefenseModifier(pAttacker->getUnitClassType());
 			
 			if (iModifier != 0)
 			{
@@ -3584,6 +3597,22 @@ bool CvGameTextMgr::setCombatPlotHelp(CvWStringBuffer &szString, CvPlot* pPlot)
 			{
 				szString.append(NEWLINE);
 				szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_MOD_VS_TYPE", iModifier, GC.getDomainInfo(pAttacker->getDomainType()).getTextKeyWide()));
+			}
+
+			// Civ4 Reimagined
+			iModifier = pDefender->getExtraCombatPercentAgainstWoodenShips();
+
+			if (iModifier != 0)
+			{
+				if ((UnitCombatTypes)pAttacker->getUnitCombatType() == GC.getInfoTypeForString("UNITCOMBAT_NAVAL"))
+				{
+					const TechTypes ePrereqTech = (TechTypes)GC.getUnitInfo(pAttacker->getUnitType()).getPrereqAndTech();
+					if (ePrereqTech == NO_TECH || GC.getTechInfo(ePrereqTech).getEra() < 4)
+					{
+						szString.append(NEWLINE);
+						szString.append(gDLL->getText("TXT_KEY_COMBAT_EXTRA_STRENGTH_WOODEN_SHIPS", iModifier));
+					}
+				}
 			}
 
 			if (!(pDefender->noDefensiveBonus()))
@@ -3684,6 +3713,22 @@ bool CvGameTextMgr::setCombatPlotHelp(CvWStringBuffer &szString, CvPlot* pPlot)
 				szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_MOD_VS_TYPE", -iModifier, GC.getDomainInfo(pDefender->getDomainType()).getTextKeyWide()));
 			}
 
+			// Civ4 Reimagined
+			iModifier = pAttacker->getExtraCombatPercentAgainstWoodenShips();
+
+			if (iModifier != 0)
+			{
+				if ((UnitCombatTypes)pDefender->getUnitCombatType() == GC.getInfoTypeForString("UNITCOMBAT_NAVAL"))
+				{
+					const TechTypes ePrereqTech = (TechTypes)GC.getUnitInfo(pDefender->getUnitType()).getPrereqAndTech();
+					if (ePrereqTech == NO_TECH || GC.getTechInfo(ePrereqTech).getEra() < 4)
+					{
+						szString.append(NEWLINE);
+						szString.append(gDLL->getText("TXT_KEY_COMBAT_EXTRA_STRENGTH_WOODEN_SHIPS", -iModifier));
+					}
+				}
+			}
+
 			if (pPlot->isCity(true, pDefender->getTeam()))
 			{
 				// old code:
@@ -3716,6 +3761,50 @@ bool CvGameTextMgr::setCombatPlotHelp(CvWStringBuffer &szString, CvPlot* pPlot)
 				{
 					szString.append(NEWLINE);
 					szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_CITY_MOD", -iModifier));
+				}
+
+				// Civ4 Reimagined
+				// Arabian unique power: Attacking cities of heretic rulers
+				bool bFaithConquest = GET_PLAYER(pAttacker->getOwnerINLINE()).isHasFaithConquest();
+				if (bFaithConquest)
+				{
+					ReligionTypes eAttackerStateReligion = GET_PLAYER(pAttacker->getOwnerINLINE()).getStateReligion();
+					bool bDefenderIsInfidel = GET_PLAYER(pAttackedCity->getOwnerINLINE()).getStateReligion() != NO_RELIGION && GET_PLAYER(pAttackedCity->getOwnerINLINE()).getStateReligion() != eAttackerStateReligion;
+					
+					if (bDefenderIsInfidel)
+					{
+						iModifier = GC.getDefineINT("UNIQUE_POWER_ARABIA");
+						szString.append(NEWLINE);
+						szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_FAITH_MOD", -iModifier));
+					}
+				}
+			}
+
+			// Civ4 Reimagined: Russia UP
+			if (GET_PLAYER(pAttacker->getOwnerINLINE()).getCombatBonusOnHomeArea() > 0)
+			{
+				CvCity* pCapital = GET_PLAYER(pAttacker->getOwnerINLINE()).getCapitalCity();
+				if (pCapital && pPlot->getArea() == pCapital->getArea() && pPlot->getOwnerINLINE() == pAttacker->getOwnerINLINE())
+				{
+					iModifier = GET_PLAYER(pAttacker->getOwnerINLINE()).getCombatBonusOnHomeArea();
+
+					if (iModifier != 0)
+					{
+						szString.append(NEWLINE);
+						szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_HOME_AREA", -iModifier));
+					}
+				}
+			}
+
+			// Civ4 Reimagined
+			if (pDefender->isHurt())
+			{
+				iModifier = pAttacker->againstInjuredModifier();
+
+				if (iModifier != 0)
+				{
+					szString.append(NEWLINE);
+					szString.append(gDLL->getText("TXT_KEY_COMBAT_AGAINST_INJURED_MOD", -iModifier));
 				}
 			}
 
@@ -3869,6 +3958,22 @@ bool CvGameTextMgr::setCombatPlotHelp(CvWStringBuffer &szString, CvPlot* pPlot)
 			szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_MOD_VS_TYPE", iModifier, GC.getDomainInfo(pDefender->getDomainType()).getTextKeyWide()));
 		}
 
+		// Civ4 Reimagined
+		iModifier = pAttacker->getExtraCombatPercentAgainstWoodenShips();
+
+		if (iModifier != 0)
+		{
+			if ((UnitCombatTypes)pDefender->getUnitCombatType() == GC.getInfoTypeForString("UNITCOMBAT_NAVAL"))
+			{
+				const TechTypes ePrereqTech = (TechTypes)GC.getUnitInfo(pDefender->getUnitType()).getPrereqAndTech();
+				if (ePrereqTech == NO_TECH || GC.getTechInfo(ePrereqTech).getEra() < 4)
+				{
+					szString.append(NEWLINE);
+					szString.append(gDLL->getText("TXT_KEY_COMBAT_EXTRA_STRENGTH_WOODEN_SHIPS", iModifier));
+				}
+			}
+		}
+
 		if (pPlot->isCity(true, pDefender->getTeam()))
 		{
 			iModifier = pAttacker->cityAttackModifier();
@@ -3930,6 +4035,18 @@ bool CvGameTextMgr::setCombatPlotHelp(CvWStringBuffer &szString, CvPlot* pPlot)
 			{
 				szString.append(NEWLINE);
 				szString.append(gDLL->getText("TXT_KEY_UNIT_ANIMAL_COMBAT_MOD", iModifier));
+			}
+		}
+
+		// Civ4 Reimagined
+		if (pDefender->isHurt())
+		{
+			iModifier = pAttacker->againstInjuredModifier();
+
+			if (iModifier != 0)
+			{
+				szString.append(NEWLINE);
+				szString.append(gDLL->getText("TXT_KEY_COMBAT_AGAINST_INJURED_MOD", iModifier));
 			}
 		}
 
@@ -4020,6 +4137,13 @@ bool CvGameTextMgr::setCombatPlotHelp(CvWStringBuffer &szString, CvPlot* pPlot)
 			szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_EXTRA_STRENGTH", iModifier));
 		}
 
+		// Civ4 Reimagined
+		if (pAttacker->collateralDamage() > 0 && ((GC.getUnitInfo(pAttacker->getUnitType())).getFirstStrikes() > GC.getUnitInfo(pDefender->getUnitType()).getFirstStrikes()))
+		{
+			szString.append(NEWLINE);
+			szString.append(gDLL->getText("TXT_KEY_COMBAT_RANGE_DISADVANTAGE", -500, GC.getUnitClassInfo(pAttacker->getUnitClassType()).getTextKeyWide()));
+		}
+
 		iModifier = pDefender->unitClassDefenseModifier(pAttacker->getUnitClassType());
 
 		if (iModifier != 0)
@@ -4045,6 +4169,22 @@ bool CvGameTextMgr::setCombatPlotHelp(CvWStringBuffer &szString, CvPlot* pPlot)
 		{
 			szString.append(NEWLINE);
 			szString.append(gDLL->getText("TXT_KEY_COMBAT_PLOT_MOD_VS_TYPE", iModifier, GC.getDomainInfo(pAttacker->getDomainType()).getTextKeyWide()));
+		}
+
+		// Civ4 Reimagined
+		iModifier = pDefender->getExtraCombatPercentAgainstWoodenShips();
+
+		if (iModifier != 0)
+		{
+			if ((UnitCombatTypes)pAttacker->getUnitCombatType() == GC.getInfoTypeForString("UNITCOMBAT_NAVAL"))
+			{
+				const TechTypes ePrereqTech = (TechTypes)GC.getUnitInfo(pAttacker->getUnitType()).getPrereqAndTech();
+				if (ePrereqTech == NO_TECH || GC.getTechInfo(ePrereqTech).getEra() < 4)
+				{
+					szString.append(NEWLINE);
+					szString.append(gDLL->getText("TXT_KEY_COMBAT_EXTRA_STRENGTH_WOODEN_SHIPS", iModifier));
+				}
+			}
 		}
 
 		if (!(pDefender->noDefensiveBonus()))
@@ -4723,7 +4863,7 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 
 			for (iI = 0; iI < GC.getNumImprovementInfos(); iI++)
 			{
-				if( pPlot->canHaveImprovement((ImprovementTypes)iI, pWorkingCity->getTeam()) )
+				if( pPlot->canHaveImprovement((ImprovementTypes)iI, pWorkingCity->getOwnerINLINE()) )
 				{
 					int iOtherBuildValue = pWorkingCity->AI_getImprovementValue( pPlot, (ImprovementTypes)iI, iFoodMultiplier, iProductionMultiplier, iCommerceMultiplier, iDesiredFoodChange, iClearFeatureValue);
 					
@@ -5583,7 +5723,7 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 								CvImprovementInfo& kImprovementInfo = GC.getImprovementInfo((ImprovementTypes) GC.getBuildInfo((BuildTypes) iI).getImprovement());
 								if (kImprovementInfo.isImprovementBonusTrade(eBonus))
 								{
-									if (pPlot->canHaveImprovement(((ImprovementTypes)(GC.getBuildInfo((BuildTypes) iI).getImprovement())), GC.getGameINLINE().getActiveTeam(), true))
+									if (pPlot->canHaveImprovement(((ImprovementTypes)(GC.getBuildInfo((BuildTypes) iI).getImprovement())), GC.getGameINLINE().getActivePlayer(), true))
 									{
 										if (GET_TEAM(GC.getGameINLINE().getActiveTeam()).isHasTech((TechTypes)GC.getBuildInfo((BuildTypes) iI).getTechPrereq()))
 										{
@@ -5599,6 +5739,40 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 										for (int k = 0; k < NUM_YIELD_TYPES; k++)
 										{
 											int iYieldChange = kImprovementInfo.getImprovementBonusYield(eBonus, k) + kImprovementInfo.getYieldChange(k);
+
+											// Civ4 Reimagined: Chinese UP
+											if (kImprovementInfo.getImprovementBonusYield(eBonus, k) > 0 && GC.getBuildInfo((BuildTypes) iI).getImprovement() == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FARM") && k == YIELD_FOOD)
+											{
+												iYieldChange += GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getAdditionalFarmBonusYield();
+											}
+
+											// Civ4 Reimagined: Celtic UP
+											if (GC.getBuildInfo((BuildTypes) iI).getImprovement() == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_MINE") && k == YIELD_COMMERCE)
+											{
+												iYieldChange += GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getAdditionalMineBonusCommerce();
+											}
+
+											// Civ4 Reimagined: Russia UP
+											if (kImprovementInfo.getImprovementBonusYield(eBonus, k) > 0 && GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getStrategicBonusYieldModifier() != 0)
+											{
+												CvBonusInfo& kBonusInfo = GC.getBonusInfo(eBonus);
+												if (kBonusInfo.getHappiness() == 0 && kBonusInfo.getHealth() == 0)
+												{
+													iYieldChange *= 100 + GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getStrategicBonusYieldModifier();
+													iYieldChange /= 100;
+												}
+											}
+
+											// Civ4 Reimagined: Russia UP
+											if (GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getImprovementYieldChangeAdjacentToStrategicBonus((ImprovementTypes)GC.getBuildInfo((BuildTypes) iI).getImprovement(), (YieldTypes)k) != 0)
+											{
+												CvCity* pCapitalCity = GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getCapitalCity();
+												if (pCapitalCity!= NULL && pPlot->getArea() == pCapitalCity->getArea() && pPlot->isAdjacentToStrategicBonus(GC.getGameINLINE().getActiveTeam()))
+												{
+													iYieldChange += GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getImprovementYieldChangeAdjacentToStrategicBonus((ImprovementTypes)GC.getBuildInfo((BuildTypes) iI).getImprovement(), (YieldTypes)k);
+												}
+											}
+
 											if (iYieldChange != 0)
 											{
 												if (iYieldChange > 0)
@@ -6103,14 +6277,7 @@ void CvGameTextMgr::parseTraits(CvWStringBuffer &szHelpString, TraitTypes eTrait
 		{
 			if (GC.getTraitInfo(eTrait).getCommerceChange(iI) != 0)
 			{
-				if (iI == COMMERCE_CULTURE && !GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS)) // Civ4 Reimagined Todo
-				{
-					szHelpString.append(gDLL->getText("TXT_KEY_TRAIT_COMMERCE_CHANGES_UNIQUE_POWERS", 	GC.getTraitInfo(eTrait).getCommerceChange(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar(), "COMMERCE"));
-				}
-				else 
-				{
-					szHelpString.append(gDLL->getText("TXT_KEY_TRAIT_COMMERCE_CHANGES", 	GC.getTraitInfo(eTrait).getCommerceChange(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar(), "COMMERCE"));
-				}
+				szHelpString.append(gDLL->getText("TXT_KEY_TRAIT_COMMERCE_CHANGES", 	GC.getTraitInfo(eTrait).getCommerceChange(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar(), "COMMERCE"));
 			}
 
 			if (GC.getTraitInfo(eTrait).getCommerceModifier(iI) != 0)
@@ -6568,6 +6735,28 @@ void CvGameTextMgr::parseCivInfos(CvWStringBuffer &szInfoText, CivilizationTypes
 			}
 			szInfoText.append(szTempString);
 		}
+
+		// Civ4 Reimagined: Unique Power
+		szText = gDLL->getText("TXT_KEY_UNIQUE_POWER");
+		if (bDawnOfMan)
+		{
+			if (bFound)
+			{
+				szInfoText.append(NEWLINE);
+			}
+			szTempString.Format(L"%s: ", szText.GetCString());
+		}
+		else
+		{
+			szTempString.Format(NEWLINE SETCOLR L"%s" ENDCOLR , TEXT_COLOR("COLOR_ALT_HIGHLIGHT_TEXT"), szText.GetCString());
+		}
+		szInfoText.append(szTempString);
+		if (!bDawnOfMan)
+		{
+			szInfoText.append(NEWLINE);
+		}
+		szBuffer.Format(L"%s", GC.getCivilizationInfo(eCivilization).getCivilizationUniquePowerText().GetCString());
+		szInfoText.append(szBuffer);
 	}
 	else
 	{
@@ -6629,6 +6818,12 @@ void CvGameTextMgr::parseSpecialistHelp(CvWStringBuffer &szHelpString, Specialis
 			else
 			{
 				aiCommerces[iI] = GET_PLAYER((pCity != NULL) ? pCity->getOwnerINLINE() : GC.getGameINLINE().getActivePlayer()).specialistCommerce(((SpecialistTypes)eSpecialist), ((CommerceTypes)iI));
+
+				// Civ4 Reimagined: France UP
+				if (pCity != NULL && pCity->isCapital() && !kInfo.isVisible())
+				{
+					aiCommerces[iI] += GET_PLAYER(pCity->getOwnerINLINE()).getGreatPeopleExtraCommerceInCapital((CommerceTypes)iI);
+				}
 			}
 		}
 
@@ -6636,8 +6831,11 @@ void CvGameTextMgr::parseSpecialistHelp(CvWStringBuffer &szHelpString, Specialis
 
 		if (kInfo.getExperience() > 0)
 		{
+			// Civ4 Reimagined
+			const int iExperience = kInfo.getExperience() + GET_PLAYER((pCity != NULL) ? pCity->getOwnerINLINE() : GC.getGameINLINE().getActivePlayer()).getExtraSpecialistExperience(eSpecialist);
+
 			szHelpString.append(NEWLINE);
-			szHelpString.append(gDLL->getText("TXT_KEY_SPECIALIST_EXPERIENCE", kInfo.getExperience()));
+			szHelpString.append(gDLL->getText("TXT_KEY_SPECIALIST_EXPERIENCE", iExperience));
 		}
 
 		if (kInfo.getGreatPeopleRateChange() != 0)
@@ -6733,13 +6931,15 @@ void CvGameTextMgr::parseFreeSpecialistHelp(CvWStringBuffer &szHelpString, const
 			}
 			szHelpString.append(szCommerceString);
 
-			if (GC.getSpecialistInfo(eSpecialist).getExperience() > 0)
+			// Civ4 Reimagined
+			const int iExperience = GC.getSpecialistInfo(eSpecialist).getExperience() + GET_PLAYER(kCity.getOwnerINLINE()).getExtraSpecialistExperience(eSpecialist);
+			if (iExperience > 0)
 			{
 				if (!szYield.isEmpty() || !szCommerceString.isEmpty())
 				{
 					szHelpString.append(L", ");
 				}
-				szHelpString.append(gDLL->getText("TXT_KEY_SPECIALIST_EXPERIENCE_SHORT", iNumSpecialists * GC.getSpecialistInfo(eSpecialist).getExperience()));
+				szHelpString.append(gDLL->getText("TXT_KEY_SPECIALIST_EXPERIENCE_SHORT", iNumSpecialists * iExperience));
 			}
 		}
 	}
@@ -6944,6 +7144,13 @@ void CvGameTextMgr::parsePromotionHelp(CvWStringBuffer &szBuffer, PromotionTypes
 	{
 		szBuffer.append(pcNewline);
 		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_STRENGTH_TEXT", GC.getPromotionInfo(ePromotion).getCombatPercent()));
+	}
+
+	// Civ4 Reimagined
+	if (GC.getPromotionInfo(ePromotion).getCombatPercentAgainstWoodenShips() != 0)
+	{
+		szBuffer.append(pcNewline);
+		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_STRENGTH_AGAINST_WOODEN_SHIPS_TEXT", GC.getPromotionInfo(ePromotion).getCombatPercentAgainstWoodenShips()));
 	}
 
 	if (GC.getPromotionInfo(ePromotion).getCityAttackPercent() != 0)
@@ -7357,6 +7564,13 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 		}
 	}
 
+	// Civ4 Reimagined
+	if (GC.getCivicInfo(eCivic).getFreeWorkers() != 0)
+	{
+		szHelpText.append(NEWLINE);
+		szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_FREE_WORKERS", GC.getCivicInfo(eCivic).getFreeWorkers(), GC.getCivicInfo(eCivic).getFreeWorkers()));
+	}
+
 	//	Free units population percent
 	if ((GC.getCivicInfo(eCivic).getBaseFreeUnits() != 0) || (GC.getCivicInfo(eCivic).getFreeUnitsPopulationPercent() != 0))
 	{
@@ -7651,24 +7865,34 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 		szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_BONUS_RATIO_MODIFIER"));
 	}
 	
-	/*
 	// Unit Production Modifier (Civ4 Reimagined)
+	UnitTypes eLoopUnit = NO_UNIT;
 	for (iI = 0; iI < GC.getNumUnitClassInfos(); iI++)
 	{
-		if(GC.getCivicInfo(eCivic).getUnitProductionModifier(iI) > 0)
+		if(GC.getCivicInfo(eCivic).getUnitClassProductionModifier(iI) > 0)
 		{
+			if (GC.getGameINLINE().getActivePlayer() != NO_PLAYER)
+			{
+				eLoopUnit = (UnitTypes)GC.getCivilizationInfo(GC.getGameINLINE().getActiveCivilizationType()).getCivilizationUnits(iI);
+			}
+			else
+			{
+				eLoopUnit = (UnitTypes)GC.getUnitClassInfo((UnitClassTypes)iI).getDefaultUnitIndex();
+			}
+			
 			CvWString szTempBuffer;
 			szTempBuffer.Format(L"\n%c", gDLL->getSymbolID(BULLET_CHAR));
-			szTempBuffer += CvWString::format(L"%s%d%s",
-			GC.getCivicInfo(eCivic).getUnitProductionModifier(iI) > 0 ? L"+" : L"",
-			GC.getCivicInfo(eCivic).getUnitProductionModifier(iI),
-			L"%");
+			szTempBuffer += CvWString::format(L"%s%d%s %s",
+			GC.getCivicInfo(eCivic).getUnitClassProductionModifier(iI) > 0 ? L"+" : L"",
+			GC.getCivicInfo(eCivic).getUnitClassProductionModifier(iI),
+			L"%",
+			GC.getUnitInfo(eLoopUnit).getDescription());
 			
 			szHelpText.append(szTempBuffer);
-			szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_PILLAGE_GAIN_MODIFIER"));
-			szHelpText.append(L"("+(UnitTypes)GC.getUnitClassInfo((UnitClassTypes)iI).getName()+")");
+			szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_UNIT_CLASS_PRODUCTION_MODIFIER"));
+			//szHelpText.append(L"("+(UnitTypes)GC.getUnitClassInfo((UnitClassTypes)iI).getName()+")");
 		}
-	}*/
+	}
 
 	// Population Unhappiness Modifier (Civ4 Reimagined)
 	if (GC.getCivicInfo(eCivic).getPopulationUnhappinessModifier() != 0)
@@ -8189,10 +8413,6 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 	{
 		if (GC.getCivicInfo(eCivic).getFeatureHappinessChanges(iI) != 0)
 		{
-
-/* original bts code
-			szFirstBuffer.Format(L"%s%s", NEWLINE, gDLL->getText("TXT_KEY_CIVIC_FEATURE_HAPPINESS", GC.getCivicInfo(eCivic).getFeatureHappinessChanges(iI), ((GC.getCivicInfo(eCivic).getFeatureHappinessChanges(iI) > 0) ? gDLL->getSymbolID(HAPPY_CHAR) : gDLL->getSymbolID(UNHAPPY_CHAR))).c_str());
-*/
 			// Use absolute value with unhappy face
 			szFirstBuffer.Format(L"%s%s", NEWLINE, gDLL->getText("TXT_KEY_CIVIC_FEATURE_HAPPINESS", abs(GC.getCivicInfo(eCivic).getFeatureHappinessChanges(iI)), ((GC.getCivicInfo(eCivic).getFeatureHappinessChanges(iI) > 0) ? gDLL->getSymbolID(HAPPY_CHAR) : gDLL->getSymbolID(UNHAPPY_CHAR))).c_str());
 			
@@ -8200,6 +8420,22 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 			szFeature.Format(L"<link=literal>%s</link>", GC.getFeatureInfo((FeatureTypes)iI).getDescription());
 			setListHelp(szHelpText, szFirstBuffer, szFeature, L", ", (GC.getCivicInfo(eCivic).getFeatureHappinessChanges(iI) != iLast));
 			iLast = GC.getCivicInfo(eCivic).getFeatureHappinessChanges(iI);
+		}
+	}
+
+	// Civ4 Reimagined: Improvement in radius happiness
+	iLast = 0;
+
+	for (iI = 0; iI < GC.getNumImprovementInfos(); ++iI)
+	{
+		if (GC.getCivicInfo(eCivic).getRadiusImprovementHappinessChanges(iI) != 0)
+		{
+			// Use absolute value with unhappy face
+			szFirstBuffer.Format(L"%s%s", NEWLINE, gDLL->getText("TXT_KEY_CIVIC_IMPROVEMENT_RADIUS_HAPPINESS", abs(GC.getCivicInfo(eCivic).getRadiusImprovementHappinessChanges(iI)), ((GC.getCivicInfo(eCivic).getRadiusImprovementHappinessChanges(iI) > 0) ? gDLL->getSymbolID(HAPPY_CHAR) : gDLL->getSymbolID(UNHAPPY_CHAR))).c_str(), GC.getImprovementInfo((ImprovementTypes)iI).getDescription());
+			
+			CvWString szFeature;
+			setListHelp(szHelpText, szFirstBuffer, szFeature, L", ", (GC.getCivicInfo(eCivic).getRadiusImprovementHappinessChanges(iI) != iLast));
+			iLast = GC.getCivicInfo(eCivic).getRadiusImprovementHappinessChanges(iI);
 		}
 	}
 
@@ -8853,8 +9089,17 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
 			iCulture /= 100;
 		}
 
-		szBuffer.append(NEWLINE);
-		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_GREAT_WORK", iCulture));
+		// Civ4 Reimagined
+		if (eUnit == (UnitTypes)GC.getInfoTypeForString("UNIT_AZTEC_CAPTIVE"))
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_UNIT_SACRIFICE_SLAVE", iCulture, GC.getDefineINT("UNIQUE_POWER_AZTEC")));
+		}
+		else
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_UNIT_GREAT_WORK", iCulture));
+		}
 	}
 
 	if (GC.getUnitInfo(eUnit).getEspionagePoints() > 0)
@@ -8949,6 +9194,12 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
 		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_FREE_UNIT", GC.getUnitInfo((UnitTypes)GC.getUnitClassInfo((UnitClassTypes)GC.getUnitInfo(eUnit).getFreeUnitClassType()).getDefaultUnitIndex()).getTextKeyWide()));
 	}
 
+	// Civ4 Reimagined
+	if (eUnit == (UnitTypes)GC.getInfoTypeForString("UNIT_AZTEC_JAGUAR"))
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_JAGUAR_PROMOTIONS"));
+	}
 
 	if (GC.getUnitInfo(eUnit).getDomainType() == DOMAIN_LAND)
 	{
@@ -9197,6 +9448,13 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
 	{
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_PROMOTION_BLITZ_TEXT"));
+	}
+
+	// Civ4 Reimagined
+	if (GC.getUnitInfo(eUnit).getAgainstInjuredModifier() > 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_AGAINST_INJURED", GC.getUnitInfo(eUnit).getAgainstInjuredModifier()));
 	}
 
 	if (GC.getUnitInfo(eUnit).isFlatMovementCost())
@@ -9683,18 +9941,25 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit, bool
 	if (isNationalUnitClass(eUnitClass))
 	{
 		// Civ4 Reimagined
-		if (!(GC.getGameINLINE().isOption(GAMEOPTION_UNLIMITED_WORKERS) && GC.getUnitClassInfo(eUnitClass).isUnlimitedWorkerGameOption()))
+		if (!(GC.getGameINLINE().isOption(GAMEOPTION_UNLIMITED_WORKERS) && GC.getUnitClassInfo(eUnitClass).isUnlimitedWorkerGameOption()) && !GC.getUnitInfo(eUnit).isIgnoreMaxInstances())
 		{
+			int iMaxInstances = GC.getUnitClassInfo(eUnitClass).getMaxPlayerInstances();
+
+			if (ePlayer != NO_PLAYER && GC.getUnitClassInfo(eUnitClass).isUnlimitedWorkerGameOption())
+			{
+				iMaxInstances += GET_PLAYER(ePlayer).getFreeWorkers();
+			}
+
 			if (pCity == NULL)
 			{
 				szBuffer.append(NEWLINE);
-				szBuffer.append(gDLL->getText("TXT_KEY_UNIT_NATIONAL_UNIT_ALLOWED", GC.getUnitClassInfo(eUnitClass).getMaxPlayerInstances()));
+				szBuffer.append(gDLL->getText("TXT_KEY_UNIT_NATIONAL_UNIT_ALLOWED", iMaxInstances));
 			}
 			else
 			{
 				//szBuffer.append(gDLL->getText("TXT_KEY_UNIT_NATIONAL_UNIT_LEFT", (GC.getUnitClassInfo(eUnitClass).getMaxPlayerInstances() - (ePlayer != NO_PLAYER ? GET_PLAYER(ePlayer).getUnitClassCountPlusMaking(eUnitClass) : 0))));
 				// K-Mod
-				int iRemaining = std::max(0, GC.getUnitClassInfo(eUnitClass).getMaxPlayerInstances() - (ePlayer != NO_PLAYER ? GET_PLAYER(ePlayer).getUnitClassCountPlusMaking(eUnitClass) : 0));
+				int iRemaining = std::max(0, iMaxInstances - (ePlayer != NO_PLAYER ? GET_PLAYER(ePlayer).getUnitClassCountPlusMaking(eUnitClass) : 0));
 				szBuffer.append(NEWLINE);
 
 				if (iRemaining <= 0)
@@ -11040,6 +11305,13 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_RELIGION_BOOST"));
 	}
+
+	// Civ4 Reimagined
+	if (kBuilding.getFarmAdjacencyBonus() > 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_FARM_ADJACENCY_BONUS", kBuilding.getFarmAdjacencyBonus()));
+	}
 	
 	// Civ4 Reimagined
 	if (kBuilding.getLootingModifier() != 0)
@@ -11053,6 +11325,13 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 	{
 		szBuffer.append(NEWLINE);
 		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_NO_NON_STATE_RELIGION_SPREAD"));
+	}
+
+	// Civ4 Reimagined
+	if (kBuilding.getGreatPeopleRateChangePerWorldWonder() != 0)
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_BIRTH_RATE_PER_WORLD_WONDER", kBuilding.getGreatPeopleRateChangePerWorldWonder()));
 	}
 
 	setYieldChangeHelp(szBuffer, gDLL->getText("TXT_KEY_BUILDING_WATER_PLOTS").c_str(), L": ", L"", kBuilding.getSeaPlotYieldChangeArray());
@@ -11144,31 +11423,28 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 		}
 
 		// Civ4 Reimagined
-		if (pCity == NULL || ePlayer == NO_PLAYER)
+		if (kBuilding.getCommercePerCultureLevel(iI) != 0)
 		{
-			if (kBuilding.getCommercePerCultureLevel(iI) != 0)
-			{
-				szBuffer.append(NEWLINE);
-				szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_PER_CULTURE_LEVEL", kBuilding.getCommercePerCultureLevel(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
-			}
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_PER_CULTURE_LEVEL", kBuilding.getCommercePerCultureLevel(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
+		}
 
-			if (kBuilding.getCommercePerWorldWonder(iI) != 0)
-			{
-				szBuffer.append(NEWLINE);
-				szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_PER_WORLD_WONDER", kBuilding.getCommercePerWorldWonder(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
-			}
+		if (kBuilding.getCommercePerWorldWonder(iI) != 0)
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_PER_WORLD_WONDER", kBuilding.getCommercePerWorldWonder(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
+		}
 
-			if (kBuilding.getCommerceFromCoast(iI) != 0)
-			{
-				szBuffer.append(NEWLINE);
-				szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_FROM_COAST", kBuilding.getCommerceFromCoast(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
-			}
+		if (kBuilding.getCommerceFromCoast(iI) != 0)
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_FROM_COAST", kBuilding.getCommerceFromCoast(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
+		}
 
-			if (kBuilding.getCommerceFromAirlift(iI) != 0)
-			{
-				szBuffer.append(NEWLINE);
-				szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_FROM_AIRLIFT", kBuilding.getCommerceFromAirlift(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
-			}
+		if (kBuilding.getCommerceFromAirlift(iI) != 0)
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_COMMERCE_FROM_AIRLIFT", kBuilding.getCommerceFromAirlift(iI), GC.getCommerceInfo((CommerceTypes) iI).getChar()));
 		}
 	}
 /************************************************************************************************/
@@ -11277,10 +11553,17 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 	{
 		if (kBuilding.getBonusHealthChanges(iI) != 0)
 		{
-			szFirstBuffer.Format(L"%s%s", NEWLINE, gDLL->getText("TXT_KEY_BUILDING_HEALTH_HAPPINESS_CHANGE", abs(kBuilding.getBonusHealthChanges(iI)), ((kBuilding.getBonusHealthChanges(iI) > 0) ? gDLL->getSymbolID(HEALTHY_CHAR): gDLL->getSymbolID(UNHEALTHY_CHAR))).c_str());
+			// Civ4 Reimagined: Japan UP
+			int iHealth = kBuilding.getBonusHealthChanges(iI);
+			if (ePlayer != NO_PLAYER)
+			{
+				iHealth += GET_PLAYER(ePlayer).getBonusHealthFromBuilding(eBuilding, (BonusTypes)iI);
+			}
+
+			szFirstBuffer.Format(L"%s%s", NEWLINE, gDLL->getText("TXT_KEY_BUILDING_HEALTH_HAPPINESS_CHANGE", abs(iHealth), ((iHealth > 0) ? gDLL->getSymbolID(HEALTHY_CHAR): gDLL->getSymbolID(UNHEALTHY_CHAR))).c_str());
 			szTempBuffer.Format(L"<link=literal>%s</link>", GC.getBonusInfo((BonusTypes)iI).getDescription());
-			setListHelp(szBuffer, szFirstBuffer, szTempBuffer, L", ", (kBuilding.getBonusHealthChanges(iI) != iLast));
-			iLast = kBuilding.getBonusHealthChanges(iI);
+			setListHelp(szBuffer, szFirstBuffer, szTempBuffer, L", ", (iHealth != iLast));
+			iLast = iHealth;
 		}
 	}
 
@@ -13755,7 +14038,14 @@ void CvGameTextMgr::setBonusHelp(CvWStringBuffer &szBuffer, BonusTypes eBonus, b
 
 				if (kBuilding.getBonusHealthChanges(eBonus) != 0)
 				{
-					szBuffer.append(CvWString::format(L"\n%s", gDLL->getText("TXT_KEY_BUILDING_CIVIC_HEALTH_HAPPINESS_CHANGE", abs(kBuilding.getBonusHealthChanges(eBonus)),
+					// Civ4 Reimagined: Japan UP
+					int iHealth = kBuilding.getBonusHealthChanges(eBonus);
+					if (GC.getGameINLINE().getActivePlayer() != NO_PLAYER)
+					{
+						iHealth += GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getBonusHealthFromBuilding(eLoopBuilding, eBonus);
+					}
+
+					szBuffer.append(CvWString::format(L"\n%s", gDLL->getText("TXT_KEY_BUILDING_CIVIC_HEALTH_HAPPINESS_CHANGE", abs(iHealth),
 					kBuilding.getBonusHealthChanges(eBonus) > 0 ? gDLL->getSymbolID(HEALTHY_CHAR) : gDLL->getSymbolID(UNHEALTHY_CHAR)).c_str()));
 					szBuffer.append(CvWString::format(L"<link=literal>%s</link>", kBuilding.getDescription()));
 				}
@@ -13937,6 +14227,16 @@ void CvGameTextMgr::setReligionHelpCity(CvWStringBuffer &szBuffer, ReligionTypes
 		}
 
 		iProductionModifier = GET_PLAYER(pCity->getOwnerINLINE()).getStateReligionUnitProductionModifier();
+
+		// Civ4 Reimagined
+		if (pCity->getVoteSourceStateReligionUnitProductionModifier() != 0)
+		{
+			if (GET_PLAYER(pCity->getOwnerINLINE()).hasGoodRelationsWithPope())
+			{
+				iProductionModifier += pCity->getVoteSourceStateReligionUnitProductionModifier();
+			}
+		}
+
 		if (iProductionModifier != 0)
 		{
 			if (bHandled)
@@ -15599,6 +15899,15 @@ void CvGameTextMgr::getAttitudeString(CvWStringBuffer& szBuffer, PlayerTypes ePl
 			szBuffer.append(szTempBuffer);
 		}
 
+		// Civ4 Reimagined
+		iAttitudeChange = kPlayer.AI_getCapitalCultureAttitude(eTargetPlayer);
+		if ((iPass == 0) ? (iAttitudeChange > 0) : (iAttitudeChange < 0))
+		{
+			szTempBuffer.Format(SETCOLR L"%s" ENDCOLR, TEXT_COLOR((iAttitudeChange > 0) ? "COLOR_POSITIVE_TEXT" : "COLOR_NEGATIVE_TEXT"), gDLL->getText("TXT_KEY_MISC_ATTITUDE_CAPITAL_CULTURE", iAttitudeChange).GetCString());
+			szBuffer.append(NEWLINE);
+			szBuffer.append(szTempBuffer);
+		}
+
 		iAttitudeChange = GET_PLAYER(ePlayer).AI_getAttitudeExtra(eTargetPlayer);
 		if ((iPass == 0) ? (iAttitudeChange > 0) : (iAttitudeChange < 0))
 		{
@@ -16379,7 +16688,7 @@ void CvGameTextMgr::setProductionHelp(CvWStringBuffer &szBuffer, CvCity& city)
 		{
 			if (city.hasBonus((BonusTypes)iI))
 			{
-				int iBonusMultiplier = GET_PLAYER(city.getOwnerINLINE()).getBonusValueTimes100(city.getNumBonuses((BonusTypes)iI)); // Civ4 Reimagined
+				int iBonusMultiplier = city.getBonusValueTimes100(city.getNumBonuses((BonusTypes)iI)); // Civ4 Reimagined
 				int iBonusMod = unit.getBonusProductionModifier(iI) * std::max(0, iBonusMultiplier) / 100;
 				// Civ4 Reimagined
 				if (GC.getUnitInfo(eUnit).isMilitaryProduction())
@@ -16446,6 +16755,19 @@ void CvGameTextMgr::setProductionHelp(CvWStringBuffer &szBuffer, CvCity& city)
 			if (city.isHasReligion(GET_PLAYER(city.getOwnerINLINE()).getStateReligion()))
 			{
 				int iReligionMod = GET_PLAYER(city.getOwnerINLINE()).getStateReligionUnitProductionModifier();
+
+				// Civ4 Reimagined
+				if (city.getVoteSourceStateReligionUnitProductionModifier() != 0)
+				{
+					if (GET_PLAYER(city.getOwnerINLINE()).hasGoodRelationsWithPope())
+					{
+						iReligionMod += city.getVoteSourceStateReligionUnitProductionModifier();
+					}
+				}
+
+				// Civ4 Reimagined: Spain UP
+				iReligionMod += GET_PLAYER(city.getOwnerINLINE()).getReligiousUnitClassProductionModifier((UnitClassTypes)unit.getUnitClassType());
+
 				if (0 != iReligionMod)
 				{
 					szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_PROD_RELIGION", iReligionMod, GC.getReligionInfo(GET_PLAYER(city.getOwnerINLINE()).getStateReligion()).getTextKeyWide()));
@@ -16477,7 +16799,7 @@ void CvGameTextMgr::setProductionHelp(CvWStringBuffer &szBuffer, CvCity& city)
 		{
 			if (city.hasBonus((BonusTypes)i))
 			{
-				int iBonusMultiplier = GET_PLAYER(city.getOwnerINLINE()).getBonusValueTimes100(city.getNumBonuses((BonusTypes)i)); // Civ4 Reimagined
+				int iBonusMultiplier = city.getBonusValueTimes100(city.getNumBonuses((BonusTypes)i)); // Civ4 Reimagined
 				int iBonusMod = building.getBonusProductionModifier(i) * std::max(0, iBonusMultiplier) / 100;
 				iBonusMod += city.getBonusBuildingProductionModifier((BonusTypes)i); // Civ4 Reimagined
 				if (0 != iBonusMod)
@@ -16612,6 +16934,23 @@ void CvGameTextMgr::setProductionHelp(CvWStringBuffer &szBuffer, CvCity& city)
 			szBuffer.append(NEWLINE);
 			iBaseModifier += iUniquePowerMod;
 		}
+
+		// Building already existing in capital Unique Power Civ4 Reimagined
+		int iFromCapitalMod = GET_PLAYER(city.getOwnerINLINE()).getBuildingProductionModifierFromCapital();
+		if (iFromCapitalMod != 0)
+		{
+			if (!city.isCapital() && iFromCapitalMod != 0)
+			{
+				CvCity* pCapital = GET_PLAYER(city.getOwnerINLINE()).getCapitalCity();
+
+				if (pCapital != NULL && city.getArea() == pCapital->getArea() && pCapital->getNumBuilding(eBuilding) > 0)
+				{
+					szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_PROD_UNIQUE_POWER", iFromCapitalMod));
+					szBuffer.append(NEWLINE);
+					iBaseModifier += iFromCapitalMod;
+				}
+			}
+		}
 	}
 
 	ProjectTypes eProject = city.getProductionProject();
@@ -16640,7 +16979,7 @@ void CvGameTextMgr::setProductionHelp(CvWStringBuffer &szBuffer, CvCity& city)
 		{
 			if (city.hasBonus((BonusTypes)i))
 			{
-				int iBonusMultiplier = GET_PLAYER(city.getOwnerINLINE()).getBonusValueTimes100(city.getNumBonuses((BonusTypes)i)); // Civ4 Reimagined
+				int iBonusMultiplier = city.getBonusValueTimes100(city.getNumBonuses((BonusTypes)i)); // Civ4 Reimagined
 				int iBonusMod = project.getBonusProductionModifier(i) * std::max(0, iBonusMultiplier) / 100; // Civ4 Reimagined
 				if (0 != iBonusMod)
 				{
@@ -17043,6 +17382,12 @@ void CvGameTextMgr::setCommerceHelp(CvWStringBuffer &szBuffer, CvCity& city, Com
 
 	int iSpecialistCommerce = city.getSpecialistCommerce(eCommerceType) + (city.getSpecialistPopulation() + city.getNumGreatPeople()) * owner.getSpecialistExtraCommerce(eCommerceType);
 
+	// Civ4 Reimagined: France UP
+	if (city.isCapital())
+	{
+		iSpecialistCommerce += city.getNumGreatPeople() * owner.getGreatPeopleExtraCommerceInCapital(eCommerceType);
+	}
+
 	// Civ4 Reimagined
 	for (int iI = 0; iI < GC.getNumSpecialistInfos(); iI++)
 	{
@@ -17091,6 +17436,49 @@ void CvGameTextMgr::setCommerceHelp(CvWStringBuffer &szBuffer, CvCity& city, Com
 		szBuffer.append(NEWLINE);
 		
 		iBaseCommerceRate += iGoldForHappinessBonus;
+		bNeedSubtotal = true; // BUG - Base Commerce 
+	}
+
+	// Civ4 Reimagined: Commerce from features
+	int iCommerceForFeatures = city.getFeatureCommerce(eCommerceType);
+	if (0 != iCommerceForFeatures)
+	{
+		CvWString szFeatureCommerceString = iCommerceForFeatures%100 > 0 ?
+				CvWString::format(L"%s%d.%02d", iCommerceForFeatures > 0 ? "+" : "", iCommerceForFeatures/100, iCommerceForFeatures%100) :
+				CvWString::format(L"%s%d", iCommerceForFeatures > 0 ? "+" : "", iCommerceForFeatures/100);
+		
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_FEATURE_COMMERCE", szFeatureCommerceString.GetCString(), info.getChar()));
+		szBuffer.append(NEWLINE);
+
+		iBaseCommerceRate += iCommerceForFeatures;
+		bNeedSubtotal = true; // BUG - Base Commerce 
+	}
+
+	// Civ4 Reimagined: Khmer UP
+	int iPopulationGold = city.getStateReligionCommercePerPopulationOverThreshold(eCommerceType);
+	if (iPopulationGold != 0)
+	{
+		CvWString szPopulationGoldString = iPopulationGold%100 > 0 ?
+				CvWString::format(L"%s%d.%02d", iPopulationGold > 0 ? "+" : "", iPopulationGold/100, iPopulationGold%100) :
+				CvWString::format(L"%s%d", iPopulationGold > 0 ? "+" : "", iPopulationGold/100);
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_COMMERCE_FROM_UNIQUE_POWER", szPopulationGoldString.GetCString(), info.getChar()));
+		szBuffer.append(NEWLINE);
+		
+		iBaseCommerceRate += iPopulationGold;
+		bNeedSubtotal = true; // BUG - Base Commerce 
+	}
+
+	// Civ4 Reimagined: Babylon UP
+	int iCapitalCommerce = city.isCapital() ? owner.getCapitalCommercePerPopulation(eCommerceType, city.getPopulation()) : 0;
+	if (iCapitalCommerce != 0)
+	{
+		CvWString szCapitalCommerceString = iCapitalCommerce%100 > 0 ?
+				CvWString::format(L"%s%d.%02d", iCapitalCommerce > 0 ? "+" : "", iCapitalCommerce/100, iCapitalCommerce%100) :
+				CvWString::format(L"%s%d", iCapitalCommerce > 0 ? "+" : "", iCapitalCommerce/100);
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_COMMERCE_FROM_UNIQUE_POWER", szCapitalCommerceString.GetCString(), info.getChar()));
+		szBuffer.append(NEWLINE);
+		
+		iBaseCommerceRate += iCapitalCommerce;
 		bNeedSubtotal = true; // BUG - Base Commerce 
 	}
 	
@@ -17252,7 +17640,7 @@ void CvGameTextMgr::setCommerceHelp(CvWStringBuffer &szBuffer, CvCity& city, Com
 	}
 	
 	// Unique Powers
-	int iUniquePowerMod = owner.getUniquePowerCommerceModifier(eCommerceType) + (city.isCapital() ? owner.getCapitalCommercePerPopulation(eCommerceType, city.getPopulation()) : 0);
+	int iUniquePowerMod = owner.getUniquePowerCommerceModifier(eCommerceType) + owner.getCommerceAboveAveragePopulation(eCommerceType);
 	
 	if (0 != iUniquePowerMod)
 	{
@@ -17299,7 +17687,7 @@ void CvGameTextMgr::setCommerceHelp(CvWStringBuffer &szBuffer, CvCity& city, Com
 			iModYield += iEspionageToCommerce;
 		}
 	}
-
+	
 	FAssertMsg(iModYield == city.getCommerceRateTimes100(eCommerceType), "Commerce yield does not match actual value");
 
 	CvWString szYield = CvWString::format(L"%d.%02d", iModYield/100, iModYield%100);
@@ -17617,10 +18005,35 @@ void CvGameTextMgr::parseGreatPeopleHelp(CvWStringBuffer &szBuffer, CvCity& city
 		return;
 	}
 
+	// Civ4 Reimagined
+	const int iBaseGPRate = city.getBaseGreatPeopleRate() + city.getGreatPeopleRatePerWorldWonder() * city.getNumWorldWonders();
+
 	szBuffer.append(SEPARATOR);
 	szBuffer.append(NEWLINE);
-	szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_GREATPEOPLE_BASE_RATE", city.getBaseGreatPeopleRate()));
+	szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_GREATPEOPLE_BASE_RATE", iBaseGPRate));
 	szBuffer.append(NEWLINE);
+
+	// Civ4 Reimagined: Dutch UP
+	int iBonusGPPoints = owner.getGreatMerchantPointsPerTrade() * city.getTradeYield(YIELD_COMMERCE) / 100;
+
+	// Civ4 Reimagined: American UP
+	iBonusGPPoints += owner.getGreatPeoplePointsPerTrade() * city.getTradeYield(YIELD_COMMERCE) / 100;
+
+	// Civ4 Reimagined: HRE UP
+	const std::set<ImprovementTypes> aiImprovementsInRadius = city.getImprovementsInRadius();
+	for (std::set<ImprovementTypes>::const_iterator it = aiImprovementsInRadius.begin(); it != aiImprovementsInRadius.end(); ++it)
+	{
+		iBonusGPPoints += owner.getGreatSpyPointsFromImprovementInRadius(*it);
+	}
+
+	// Civ4 Reimagined: France UP
+	iBonusGPPoints += city.getGreatEngineerPointsFromCathedrals();
+
+	if (iBonusGPPoints != 0)
+	{
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_GREATPEOPLE_UP_BONUS_RATE", iBonusGPPoints));
+		szBuffer.append(NEWLINE);
+	}
 
 	int iModifier = 100;
 
@@ -17692,6 +18105,15 @@ void CvGameTextMgr::parseGreatPeopleHelp(CvWStringBuffer &szBuffer, CvCity& city
 		szBuffer.append(NEWLINE);
 		iModifier += iUniquePowerMod;
 	}
+
+	// Civ4 Reimagined: India UP
+	const int iReligionUniquePowerMod = owner.getGreatPeopleRatePerReligionModifier() * city.getReligionCount();
+	if (iReligionUniquePowerMod != 0)
+	{
+		szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_GREATPEOPLE_UNIQUE_POWER", iReligionUniquePowerMod));
+		szBuffer.append(NEWLINE);
+		iModifier += iReligionUniquePowerMod;
+	}
 	
 	// Trait
 	for (int i = 0; i < GC.getNumTraitInfos(); i++)
@@ -17721,7 +18143,25 @@ void CvGameTextMgr::parseGreatPeopleHelp(CvWStringBuffer &szBuffer, CvCity& city
 		}
 	}
 
-	int iModGreatPeople = (iModifier * city.getBaseGreatPeopleRate()) / 100;
+	// Civ4 Reimagined
+	int iGreatPeopleRate = city.getBaseGreatPeopleRate() + city.getGreatPeopleRatePerWorldWonder() * city.getNumWorldWonders();
+
+	// Civ4 Reimagined: Dutch UP
+	iGreatPeopleRate += owner.getGreatMerchantPointsPerTrade() * city.getTradeYield(YIELD_COMMERCE) / 100;
+
+	// Civ4 Reimagined: American UP
+	iGreatPeopleRate += owner.getGreatPeoplePointsPerTrade() * city.getTradeYield(YIELD_COMMERCE) / 100;
+
+	// Civ4 Reimagined: HRE UP
+	for (std::set<ImprovementTypes>::const_iterator it = aiImprovementsInRadius.begin(); it != aiImprovementsInRadius.end(); ++it)
+	{
+		iGreatPeopleRate += owner.getGreatSpyPointsFromImprovementInRadius(*it);
+	}
+
+	// Civ4 Reimagined: France UP
+	iGreatPeopleRate += city.getGreatEngineerPointsFromCathedrals();
+
+	int iModGreatPeople = (iModifier * iGreatPeopleRate) / 100;
 
 	FAssertMsg(iModGreatPeople == city.getGreatPeopleRate(), "Great person rate does not match actual value");
 
@@ -17769,24 +18209,12 @@ bool CvGameTextMgr::setBuildingAdditionalGreatPeopleHelp(CvWStringBuffer &szBuff
 
 void CvGameTextMgr::parseGreatGeneralHelp(CvWStringBuffer &szBuffer, CvPlayer& kPlayer)
 {
-	// Civ4 Reimagined: Use unique power progress text for mouseover if unique powers are enabled.
-	if (GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS))
-	{
-		szBuffer.assign(gDLL->getText("TXT_KEY_MISC_GREAT_GENERAL", kPlayer.getCombatExperience(), kPlayer.greatPeopleThreshold(true)));
-	}
-	else
-	{
-		if (kPlayer.getUniquePowerLevel() <= 4)
-		{
-			szBuffer.assign(gDLL->getText("TXT_KEY_MISC_UNIQUE_POWER_PROGRESS", kPlayer.getAccumulatedCulture() / 100, kPlayer.getUniquePowerRequirement(kPlayer.getUniquePowerLevel() + 1) / 100));
-		}
-
-	}
+	szBuffer.assign(gDLL->getText("TXT_KEY_MISC_GREAT_GENERAL", kPlayer.getCombatExperience(), kPlayer.greatPeopleThreshold(true))); 
 }
 
 void CvGameTextMgr::parseSlaveryBarHelp(CvWStringBuffer &szBuffer, CvPlayer& kPlayer)
 {
-	szBuffer.assign(gDLL->getText("TXT_KEY_MISC_SLAVERY_PROGRESS", kPlayer.getSlavePoints(), kPlayer.getNewSlaveThreshold()));
+	szBuffer.assign(gDLL->getText("TXT_KEY_MISC_SLAVERY_PROGRESS", kPlayer.getSlavePoints(), kPlayer.getNewSlaveThreshold(), GC.getDefineINT("NEW_COLONY_SLAVE_POINTS")));
 }
 
 
@@ -18969,7 +19397,7 @@ void CvGameTextMgr::setTradeRouteHelp(CvWStringBuffer &szBuffer, int iRoute, CvC
 				// Civ4 Reimagined
 				if (GET_PLAYER(pOtherCity->getOwnerINLINE()).isColony(pCity->getOwnerINLINE()))
 				{
-					iNewMod = GC.getDefineINT("COLONY_TRADE_MODIFIER");
+					iNewMod = GC.getDefineINT("COLONY_TRADE_MODIFIER") + GET_PLAYER(pCity->getOwnerINLINE()).getColonyTraderouteModifier();
 					if (0 != iNewMod)
 					{
 						szBuffer.append(NEWLINE);
@@ -18979,8 +19407,42 @@ void CvGameTextMgr::setTradeRouteHelp(CvWStringBuffer &szBuffer, int iRoute, CvC
 				}
 
 				// Civ4 Reimagined
-				iNewMod = ((pCity->isCapital() && !GET_PLAYER(pCity->getOwnerINLINE()).isNoCapital()) ? GC.getDefineINT("CAPITAL_TRADE_MODIFIER") : 0) + ((pOtherCity->isCapital() && !GET_PLAYER(pOtherCity->getOwnerINLINE()).isNoCapital()) ? GC.getDefineINT("CAPITAL_TRADE_MODIFIER") : 0);
-				
+				iNewMod = GET_PLAYER(pCity->getOwnerINLINE()).getCorporationTraderouteModifier();
+				if (iNewMod > 0)
+				{
+					if (pOtherCity->getOwnerINLINE() != pCity->getOwnerINLINE())
+					{
+						for (int iI = 0; iI < GC.getNumCorporationInfos(); iI++)
+						{
+							CorporationTypes eCorporation = (CorporationTypes)iI;
+							if (GET_PLAYER(pCity->getOwnerINLINE()).hasHeadquarters(eCorporation))
+							{
+								if (pOtherCity->isActiveCorporation((CorporationTypes)iI))
+								{
+									szBuffer.append(NEWLINE);
+									szBuffer.append(gDLL->getText("TXT_KEY_TRADE_ROUTE_MOD_UNIQUE", iNewMod));
+									iModifier += iNewMod;
+									break; // Modifier applies only once, not once per corporation
+								}
+							}
+						}
+					}
+				}
+
+				// Civ4 Reimagined
+				iNewMod =  ((pCity->isCapital() && !GET_PLAYER(pCity->getOwnerINLINE()).isNoCapital()) ? GC.getDefineINT("CAPITAL_TRADE_MODIFIER") : 0);
+
+				if (pOtherCity->isCapital() && !GET_PLAYER(pOtherCity->getOwnerINLINE()).isNoCapital())
+				{
+					iNewMod += GC.getDefineINT("CAPITAL_TRADE_MODIFIER");
+					
+					if (GET_PLAYER(pCity->getOwnerINLINE()).isSpecialTradeRoutePerPlayer())
+					{
+						szBuffer.append(NEWLINE);
+						szBuffer.append(gDLL->getText("TXT_KEY_TRADE_ROUTE_MOD_UNIQUE", GC.getDefineINT("UNIQUE_POWER_CARTHARGE")));
+					}
+				}
+
 				if (0 != iNewMod)
 				{
 					if (pCity->isCapital() || (pOtherCity->isCapital() && pCity->getOwnerINLINE() == pOtherCity->getOwnerINLINE()))

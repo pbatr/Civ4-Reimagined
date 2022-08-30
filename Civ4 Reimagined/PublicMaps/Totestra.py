@@ -350,7 +350,7 @@ class MapConstants :
         
         #The percent chance that an oasis may appear in desert. A tile must be desert and
         #surrounded on all sides by desert.
-        self.OasisChance = .06
+        self.OasisChance = .12
 
         #This sets the amount of heat lost at the highest altitude. 1.0 loses all heat
         #0.0 loses no heat.
@@ -4767,9 +4767,9 @@ class StartingPlotFinder :
         production = 0
         plot = gameMap.plot(x,y)
         if debugOut: print "Evaluating plot x = %(x)d, y = %(y)d" % {"x":x,"y":y}
-        commerce += plot.calculateBestNatureYield(YieldTypes.YIELD_COMMERCE,TeamTypes.NO_TEAM)
-        food += plot.calculateBestNatureYield(YieldTypes.YIELD_FOOD,TeamTypes.NO_TEAM)
-        production += plot.calculateBestNatureYield(YieldTypes.YIELD_PRODUCTION,TeamTypes.NO_TEAM)
+        commerce += plot.calculateBestNatureYield(YieldTypes.YIELD_COMMERCE,PlayerTypes.NO_PLAYER,True)
+        food += plot.calculateBestNatureYield(YieldTypes.YIELD_FOOD,PlayerTypes.NO_PLAYER,True)
+        production += plot.calculateBestNatureYield(YieldTypes.YIELD_PRODUCTION,PlayerTypes.NO_PLAYER,True)
         if debugOut: print "Natural yields. Food=%(f)d, Production=%(p)d, Commerce=%(c)d" % \
         {"f":food,"p":production,"c":commerce}
         #Get best bonus improvement score. Test tachnology era of bonus
@@ -5146,9 +5146,9 @@ class StartingArea :
         gc = CyGlobalContext()
         gameMap = CyMap()
         
-        hrangelimit = mc.height - 4
-        h = range(hrangelimit)
-        for y in [i+4 for i in h]:
+        hrangelimit = mc.height - 3 # Civ4 Reimagined: Don't start at the edge of the map
+        h = range(4, hrangelimit)
+        for y in [i for i in h]:
             for x in range(mc.width):
                 plot = gameMap.plot(x,y)
                 if plot.getArea() == self.areaID:

@@ -487,6 +487,7 @@ public:
 	int getFriendlyHealChange() const;				// Exposed to Python
 	int getSameTileHealChange() const;				// Exposed to Python
 	int getCombatPercent() const;				// Exposed to Python
+	int getCombatPercentAgainstWoodenShips() const; // Civ4 Reimagined
 	int getCityAttackPercent() const;				// Exposed to Python
 	int getCityDefensePercent() const;				// Exposed to Python
 	int getHillsAttackPercent() const;				// Exposed to Python
@@ -511,6 +512,7 @@ public:
 	bool isHillsDoubleMove() const;				// Exposed to Python
 	bool isImmuneToFirstStrikes() const;				// Exposed to Python
 	bool isNoUpgrade() const; // Leoreth
+	bool isUniquePower() const; // Civ4 Reimagined
 
 	const TCHAR* getSound() const;				// Exposed to Python
 	void setSound(const TCHAR* szVal);
@@ -563,6 +565,7 @@ protected:
 	int m_iFriendlyHealChange;				
 	int m_iSameTileHealChange;	
 	int m_iCombatPercent;
+	int m_iCombatPercentAgainstWoodenShips; // Civ4 Reimagined
 	int m_iCityAttackPercent;
 	int m_iCityDefensePercent;
 	int m_iHillsAttackPercent;
@@ -585,6 +588,7 @@ protected:
 	bool m_bHillsDoubleMove;				
 	bool m_bImmuneToFirstStrikes;				
 	bool m_bNoUpgrade; // Leoreth
+	bool m_bUniquePower; // Civ4 Reimagined
 
 	CvString m_szSound;
 
@@ -865,6 +869,7 @@ public:
 	int getCollateralDamageLimit() const;			// Exposed to Python
 	int getCollateralDamageMaxUnits() const;	// Exposed to Python
 	int getDefenseBuildingModifier() const; //Civ4 Reimagined
+	int getAgainstInjuredModifier() const; //Civ4 Reimagined
 	int getCityAttackModifier() const;				// Exposed to Python
 	int getCityDefenseModifier() const;				// Exposed to Python
 	int getAnimalCombatModifier() const;			// Exposed to Python
@@ -950,6 +955,7 @@ public:
 	bool isLineOfSight() const;			// Exposed to Python
 	bool isHiddenNationality() const;			// Exposed to Python
 	bool isAlwaysHostile() const;			// Exposed to Python
+	bool isIgnoreMaxInstances() const; // Civ4 Reimagined
 	bool isNoRevealMap() const;			// Exposed to Python
 
 	float getUnitMaxSpeed() const;					// Exposed to Python
@@ -1059,6 +1065,7 @@ protected:
 	int m_iCollateralDamageLimit;
 	int m_iCollateralDamageMaxUnits;
 	int m_iDefenseBuildingModifier; //Civ4 Reimagined
+	int m_iAgainstInjuredModifier; //Civ4 Reimagined
 	int m_iCityAttackModifier;
 	int m_iCityDefenseModifier;
 	int m_iAnimalCombatModifier;
@@ -1141,6 +1148,7 @@ protected:
 	bool m_bLineOfSight;
 	bool m_bHiddenNationality;
 	bool m_bAlwaysHostile;
+	bool m_bIgnoreMaxInstances; // Civ4 Reimagined
 	bool m_bNoRevealMap;
 	int m_iLeaderPromotion;
 
@@ -1363,6 +1371,7 @@ public:
 	int getWorkerSpeedModifier() const;				// Exposed to Python
 	int getImprovementUpgradeRateModifier() const;				// Exposed to Python
 	int getMilitaryProductionModifier() const;				// Exposed to Python
+	int getFreeWorkers() const; // Civ4 Reimagined
 	int getBaseFreeUnits() const;				// Exposed to Python
 	int getBaseFreeMilitaryUnits() const;				// Exposed to Python
 	int getFreeUnitsPopulationPercent() const;				// Exposed to Python
@@ -1434,7 +1443,7 @@ public:
 
 	int getYieldModifier(int i) const;				// Exposed to Python
 	int* getYieldModifierArray() const;
-	int getUnitProductionModifier(int i) const; // Civ4 Reimagined
+	int getUnitClassProductionModifier(int i) const; // Civ4 Reimagined
 	int getExtraYield(int i) const; // Civ4 Reimagined				// Exposed to Python
 	int* getExtraYieldArray() const; // Civ4 Reimagined
 	int getCapitalExtraYieldFromCityPercent(int i) const; // Civ4 Reimagined
@@ -1450,8 +1459,8 @@ public:
 	int getCapitalCommerceModifierPerHappinessSurplus(int i) const; // Civ4 Reimagined
 	int* getCapitalCommerceModifierPerHappinessSurplusArray() const; // Civ4 Reimagined
 	int getExtraCommerceHappiness(int i) const;	// Civ4 Reimagined
-	int* getExtraCommerceHappinessArray() const;	// Civ4 Reimagined
-	int getStateReligionBuildingCommerce(int i) const;	// Civ4 Reimagined
+	int* getExtraCommerceHappinessArray() const; // Civ4 Reimagined
+	int getStateReligionBuildingCommerce(int i) const; // Civ4 Reimagined
 	int* getStateReligionBuildingCommerceArray() const;	// Civ4 Reimagined
 	int getSpecialistExtraCommerce(int i) const;				// Exposed to Python
 	int* getSpecialistExtraCommerceArray() const;
@@ -1463,6 +1472,7 @@ public:
 	int getBuildingHealthChanges(int i) const;				// Exposed to Python
 	int getBuildingProductionModifier(int i) const;	//Leoreth
 	int getFeatureHappinessChanges(int i) const;				// Exposed to Python
+	int getRadiusImprovementHappinessChanges(int i) const; // Civ4 Reimagined
 
 	int getDomainProductionModifier(int i) const; // Leoreth
 	int getDomainExperienceModifier(int i) const; // Leoreth
@@ -1513,6 +1523,7 @@ protected:
 	int m_iWorkerSpeedModifier;
 	int m_iImprovementUpgradeRateModifier;
 	int m_iMilitaryProductionModifier;
+	int m_iFreeWorkers; // Civ4 Reimagined
 	int m_iBaseFreeUnits;
 	int m_iBaseFreeMilitaryUnits;
 	int m_iFreeUnitsPopulationPercent;
@@ -1582,6 +1593,7 @@ protected:
 
 	int* m_piYieldModifier;
 	int* m_piUnitProductionModifiers; // Civ4 Reimagined
+	int* m_piUnitClassProductionModifiers; // Civ4 Reimagined
 	int* m_piExtraYield; // Civ4 Reimagined
 	int* m_piCapitalExtraYieldFromCityPercent; // Civ4 Reimagined
 	int* m_piCapitalYieldModifier;
@@ -1598,6 +1610,7 @@ protected:
 	int* m_paiBuildingHealthChanges;
 	int* m_paiBuildingProductionModifiers; //Leoreth
 	int* m_paiFeatureHappinessChanges;
+	int* m_paiRadiusImprovementHappinessChanges; // Civ4 Reimagined
 
 	int* m_paiDomainProductionModifiers; // Leoreth
 	int* m_paiDomainExperienceModifiers; // Leoreth
@@ -1793,6 +1806,7 @@ public:
 	int getPlotTypeFatCross() const; // Civ4 Reimagined
 	int getGreatPeopleUnitClass() const;				// Exposed to Python
 	int getGreatPeopleRateChange() const;				// Exposed to Python
+	int getGreatPeopleRateChangePerWorldWonder() const; // Civ4 Reimagined
 	int getConquestProbability() const;				// Exposed to Python
 	int getMaintenanceModifier() const;				// Exposed to Python
 	int getAreaDistanceMaintenanceModifier() const; // Civ4 Reimagined
@@ -1850,11 +1864,13 @@ public:
 	int getStateReligionFreeExperience() const; // Civ4 Reimagined
 	int getNavalLevelPrereq() const; // Civ4 Reimagined
 	bool isStateReligion() const;				// Exposed to Python
+	bool isUniquePower() const; // Civ4 Reimagined
 	bool isAllowsNukes() const;				// Exposed to Python
 	bool isNoConquestResistance() const; // Civ4 Reimagined
 	bool isNoConscriptUnhappiness() const; // Civ4 Reimagined
 	bool isNoWarAgainstSameFaithUnhappiness() const; // Civ4 Reimagined
 	int getReligionSpreadBoost() const; // Civ4 Reimagined
+	int getFarmAdjacencyBonus() const; // Civ4 Reimagined
 
 	const TCHAR* getConstructSound() const;				// Exposed to Python
 	void setConstructSound(const TCHAR* szVal);
@@ -2067,7 +2083,8 @@ protected:
 	int m_iBonusFatCross; // Civ4 Reimagined
 	int m_iPlotTypeFatCross; // Civ4 Reimagined
 	int m_iGreatPeopleUnitClass;					
-	int m_iGreatPeopleRateChange;				
+	int m_iGreatPeopleRateChange;	
+	int m_iGreatPeopleRateChangePerWorldWonder;	// Civ4 Reimagined
 	int m_iConquestProbability;						
 	int m_iMaintenanceModifier;
 	int m_iAreaDistanceMaintenanceModifier; // Civ4 Reimagined
@@ -2115,6 +2132,7 @@ protected:
 	//bool m_bNoUnhealthyPopulation; // ...
 	int m_iUnhealthyPopulationModifier; // K-Mod
 	int m_iReligionSpreadBoost; // Civ4 Reimagined
+	int m_iFarmAdjacencyBonus; // Civ4 Reimagined
 	bool m_bBuildingOnlyHealthy;			
 	bool m_bNeverCapture;					
 	bool m_bNukeImmune;					
@@ -2125,6 +2143,7 @@ protected:
 	bool m_bCanFarmHills; // Civ4 Reimagined
 	bool m_bNoNonStateReligionSpread; // Civ4 Reimagined
 	bool m_bStateReligion;
+	bool m_bUniquePower; // Civ4 Reimagined
 	bool m_bAllowsNukes;
 	bool m_bNoConquestResistance; // Civ4 Reimagined
 	bool m_bNoConscriptUnhappiness; // Civ4 Reimagined
@@ -2444,8 +2463,9 @@ public:
 	DllExport bool isAIPlayable() const;				// Expose to Python
 	DllExport bool isPlayable() const;				// Expose to Python
 
-	DllExport int getUniquePowerRequirement(int iLevel) const; // Civ4 Reimagined
-	DllExport std::string getCivilizationUniquePowerText(int i) const; // Civ4 Reimagined - Exposed to Python
+	std::wstring pyGetCivilizationUniquePowerText() { return getCivilizationUniquePowerText(); }	
+	CvWString getCivilizationUniquePowerText() const; // Civ4 Reimagined
+	void setCivilizationUniquePowerText(const TCHAR* szVal); // Civ4 Reimagined
 
 	std::wstring pyGetShortDescription(uint uiForm) { return getShortDescription(uiForm); }				// Exposed to Python
 	DllExport const wchar* getShortDescription(uint uiForm = 0);
@@ -2506,16 +2526,7 @@ protected:
 	bool m_bAIPlayable;			
 	bool m_bPlayable;
 
-	int m_iUnique1; // Civ4 Reimagined
-	int m_iUnique2; // Civ4 Reimagined
-	int m_iUnique3; // Civ4 Reimagined
-	int m_iUnique4; // Civ4 Reimagined
-	int m_iUnique5; // Civ4 Reimagined
-	std::string m_szUnique1; // Civ4 Reimagined
-	std::string m_szUnique2; // Civ4 Reimagined
-	std::string m_szUnique3; // Civ4 Reimagined
-	std::string m_szUnique4; // Civ4 Reimagined
-	std::string m_szUnique5; // Civ4 Reimagined
+	CvString m_szUniquePower; // Civ4 Reimagined
 
 	CvString m_szArtDefineTag;
 	CvWString m_szShortDescriptionKey;
@@ -2843,6 +2854,9 @@ public:
 	int getDealLengthPercent() const;	// Civ4 Reimagined
 	int getHealPercent() const;			// Civ4 Reimagined
 	int getOccupyLengthPercent() const; // Civ4 Reimagined
+	int getMemoryDecayPercent() const; // Civ4 Reimagined
+	int getEventDelayTurns() const; // Civ4 Reimagined
+	int getEventProbabilityModifier() const; // Civ4 Reimagined
 	int getNumTurnIncrements() const;						// Exposed to Python
 
 	GameTurnInfo& getGameTurnInfo(int iIndex) const;		// Exposed to Python
@@ -2878,6 +2892,9 @@ protected:
 	int m_iDealLengthPercent;
 	int m_iHealPercent;
 	int m_iOccupyLengthPercent;
+	int m_iMemoryDecayPercent;
+	int m_iEventDelayTurns;
+	int m_iEventProbabilityModifier;
 
 	CvString m_szGameSpeedName;
 	GameTurnInfo* m_pGameTurnInfo;
@@ -2932,8 +2949,9 @@ public:
 
 	int getTime() const;				// Exposed to Python
 	int getCost() const;				// Exposed to Python
-	int getTechPrereq() const;				// Exposed to Python
-	int getImprovement() const;				// Exposed to Python
+	int getTechPrereq() const;			// Exposed to Python
+	int getTechObsolete() const;		// Exposed to Python, Civ4 Reimagined
+	int getImprovement() const;			// Exposed to Python
 	int getRoute() const;				// Exposed to Python
 	DllExport int getEntityEvent() const;				// Exposed to Python
 	DllExport int getMissionType() const;				// Exposed to Python
@@ -2945,7 +2963,7 @@ public:
 
 	int getFeatureTech(int i) const;				// Exposed to Python
 	int getFeatureTime(int i) const;				// Exposed to Python
-	int getFeatureProduction(int i) const;				// Exposed to Python
+	int getFeatureProduction(int i) const;			// Exposed to Python
 
 	bool isFeatureRemove(int i) const;				// Exposed to Python
 
@@ -2958,6 +2976,7 @@ protected:
 	int m_iTime;					
 	int m_iCost;					
 	int m_iTechPrereq;		
+	int m_iTechObsolete;
 	int m_iImprovement;	
 	int m_iRoute;				
 	int m_iEntityEvent;		
@@ -3184,20 +3203,20 @@ public:
 	int getImprovementUpgrade() const;				// Exposed to Python
 	void setImprovementUpgrade(int i);
 
-	bool isActsAsCity() const;				// Exposed to Python
+	bool isActsAsCity() const;					// Exposed to Python
 	bool isHillsMakesValid() const;				// Exposed to Python
-	bool isFreshWaterMakesValid() const;				// Exposed to Python
-	bool isRiverSideMakesValid() const;				// Exposed to Python
+	bool isFreshWaterMakesValid() const;		// Exposed to Python
+	bool isRiverSideMakesValid() const;			// Exposed to Python
 	bool isNoFreshWater() const;				// Exposed to Python
-	bool isRequiresFlatlands() const;				// Exposed to Python
-	DllExport bool isRequiresRiverSide() const;				// Exposed to Python
-	bool isRequiresIrrigation() const;				// Exposed to Python
-	bool isCarriesIrrigation() const;				// Exposed to Python
-	bool isRequiresCanFarmHills() const; //Civ4 Reimagined
+	bool isRequiresFlatlands() const;			// Exposed to Python
+	DllExport bool isRequiresRiverSide() const;	// Exposed to Python
+	bool isRequiresIrrigation() const;			// Exposed to Python
+	bool isCarriesIrrigation() const;			// Exposed to Python
+	bool isRequiresCanFarmHills() const;		// Exposed to Python, Civ4 Reimagined
 	bool isRequiresFeature() const;				// Exposed to Python
-	bool isWater() const;				// Exposed to Python
+	bool isWater() const;						// Exposed to Python
 	DllExport bool isGoody() const;				// Exposed to Python
-	bool isPermanent() const;				// Exposed to Python
+	bool isPermanent() const;					// Exposed to Python
 	bool isOutsideBorders() const;				// Exposed to Python
 
 	const TCHAR* getArtDefineTag() const;

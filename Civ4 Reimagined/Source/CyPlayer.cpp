@@ -1880,35 +1880,18 @@ int CyPlayer::getBonusRatio()
 	return m_pPlayer ? m_pPlayer->getBonusRatio() : -1;
 }
 
-// Civ4 Reimagined
-int CyPlayer::getUniquePowerLevel()
-{
-	return m_pPlayer ? m_pPlayer->getUniquePowerLevel() : -1;
-}
-
 
 // Civ4 Reimagined
-long CyPlayer::getUniquePowerRequirement(int iLevel)
+int CyPlayer::getBonusHealthFromBuilding(int /*BuildingTypes*/ eIndex1, int /*BonusTypes*/ eIndex2) const
 {
-	return m_pPlayer ? m_pPlayer->getUniquePowerRequirement(iLevel) : -1;
+	return m_pPlayer ? m_pPlayer->getBonusHealthFromBuilding((BuildingTypes)eIndex1, (BonusTypes)eIndex2) : -1;
 }
 
 // Civ4 Reimagined
-long CyPlayer::getAccumulatedCulture()
+void CyPlayer::changeBonusHealthFromBuilding(int /*BuildingTypes*/ eIndex1, int /*BonusTypes*/ eIndex2, int iChange)
 {
-	return m_pPlayer ? m_pPlayer->getAccumulatedCulture() : -1;
-}
-
-// Civ4 Reimagined
-long CyPlayer::getUniquePowerRate()
-{
-	return m_pPlayer ? m_pPlayer->getUniquePowerRate() : -1;
-}
-
-// Civ4 Reimagined
-int CyPlayer::getMayaCalendar()
-{
-	return m_pPlayer ? m_pPlayer->getMayaCalendar() : -1;
+	if (m_pPlayer)
+		m_pPlayer->changeBonusHealthFromBuilding((BuildingTypes)eIndex1, (BonusTypes)eIndex2, iChange);
 }
 
 

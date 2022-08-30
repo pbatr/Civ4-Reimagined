@@ -1733,6 +1733,12 @@ void CvUnitAI::AI_workerMove()
 		}
 	}
 
+	// Civ4 Reimagined
+	if (AI_searchGoldMines())
+	{
+		return;
+	}
+
 	pCity = NULL;
 
 	if (plot()->getOwnerINLINE() == getOwnerINLINE())
@@ -2352,6 +2358,13 @@ void CvUnitAI::AI_attackMove()
 				}
 			}
 		}
+
+		// Civ4 Reimagined: Celtic UP
+		if (GET_PLAYER(getOwnerINLINE()).isFreePillage() && AI_pillageRange(0))
+		{
+			return;
+		}
+
 		// K-Mod (moved from below, and replacing the disabled stuff above)
 		// Civ4 Reimagined
 		if (collateralDamage() == 0 && AI_anyAttack(1, 70))
@@ -2735,6 +2748,12 @@ void CvUnitAI::AI_paratrooperMove()
 		}
 	}
 
+	// Civ4 Reimagined: Celtic UP
+	if (GET_PLAYER(getOwnerINLINE()).isFreePillage() && AI_pillageRange(0))
+	{
+		return;
+	}
+
 	if (AI_cityAttack(1, 45))
 	{
 		return;
@@ -2955,6 +2974,12 @@ void CvUnitAI::AI_attackCityMove()
 			return;
 	}
 	// K-Mod end
+
+	// Civ4 Reimagined: Celtic UP
+	if (GET_PLAYER(getOwnerINLINE()).isFreePillage() && AI_pillageRange(0))
+	{
+		return;
+	}
 
 	//if (AI_groupMergeRange(UNITAI_ATTACK_CITY, 0, true, true, bIgnoreFaster))
 	if (AI_omniGroup(UNITAI_ATTACK_CITY, -1, -1, true, iMoveFlags, 0, true, false, bIgnoreFaster))
@@ -3901,7 +3926,8 @@ void CvUnitAI::AI_pillageMove()
 
 	// K-Mod. Pillage units should focus on pillaging, when possible.
 	// note: having 2 moves doesn't necessarily mean we can move & pillage in the same turn, but it's a good enough approximation.
-	if (AI_pillageRange(getGroup()->baseMoves() > 1 ? 1 : 0, 11))
+	const bool bEnoughMovesForPillage = getGroup()->baseMoves() > 1 || GET_PLAYER(getOwnerINLINE()).isFreePillage();
+	if (AI_pillageRange(bEnoughMovesForPillage ? 1 : 0, 11))
 	{
 		return;
 	}
@@ -4056,6 +4082,12 @@ void CvUnitAI::AI_reserveMove()
 	}
 	else
 	{
+		// Civ4 Reimagined: Celtic UP
+		if (GET_PLAYER(getOwnerINLINE()).isFreePillage() && AI_pillageRange(0))
+		{
+			return;
+		}
+
 		if (AI_anyAttack(1, 65))
 			return;
 	}
@@ -5247,7 +5279,11 @@ void CvUnitAI::AI_generalMove()
 	int iDanger = GET_PLAYER(getOwnerINLINE()).AI_getPlotDanger(plot(), 2);
 	
 	bool bOffenseWar = (area()->getAreaAIType(getTeam()) == AREAAI_OFFENSIVE);
-	
+
+	if (AI_goldenAge())
+    {
+        return;
+    }
 	
 	if (iDanger > 0)
 	{
@@ -5733,7 +5769,6 @@ bool CvUnitAI::AI_greatPersonMove()
 		iGoldenAgeValue /= 100;
 		missions.push_back(std::pair<int, int>(iGoldenAgeValue, GP_GOLDENAGE));
 	}
-	//
 
 	// Discover ("bulb tech")
 	int iDiscoverValue = 0;
@@ -6024,7 +6059,7 @@ bool CvUnitAI::AI_greatPersonMove()
 		}
 		iChoice++;
 	}
-	FAssert(iScoreThreshold > 0);
+	FAssert(iScoreThreshold >= 0);
 	if (gUnitLogLevel > 2) logBBAI("    %S chooses 'wait' with their %S (value: %d, dead time: %d)", GET_PLAYER(getOwnerINLINE()).getCivilizationDescription(0), getName(0).GetCString(), iScoreThreshold, GC.getGameINLINE().getGameTurn() - getGameTurnCreated());
 	return false;
 }
@@ -10489,6 +10524,20 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
 		iValue += (iTemp * 1);
 	}
 
+	// Civ4 Reimagined
+	iTemp = GC.getPromotionInfo(ePromotion).getCombatPercentAgainstWoodenShips();
+	if ((AI_getUnitAIType() == UNITAI_ATTACK_SEA)   ||
+		(AI_getUnitAIType() == UNITAI_PIRATE_SEA)   ||
+		(AI_getUnitAIType() == UNITAI_RESERVE_SEA)  ||
+		(AI_getUnitAIType() == UNITAI_ESCORT_SEA)   ||
+		(AI_getUnitAIType() == UNITAI_CARRIER_SEA))
+	{
+		if (GC.getGameINLINE().getCurrentEra() < 4)
+		{
+			iValue += (iTemp * 2);
+		}
+	}
+
 	iTemp = GC.getPromotionInfo(ePromotion).getCityAttackPercent();
 	if (iTemp != 0)
 	{
@@ -12646,7 +12695,13 @@ bool CvUnitAI::AI_heal(int iDamagePercent, int iMaxPath)
 	{
 	    if (getDamage() > 0)
         {
-        	
+        	// Civ4 Reimagined: Mongol UP
+			if (GET_PLAYER(getOwnerINLINE()).getPillageHeal() > 0 && canPillage(plot()))
+			{
+				getGroup()->pushMission(MISSION_PILLAGE, -1, -1, 0, false, false, MISSIONAI_PILLAGE, plot());
+				return true;
+			}
+
             if (plot()->isCity() || (healTurns(plot()) == 1))
             {
                 if (!(isAlwaysHeal()))
@@ -19513,6 +19568,84 @@ bool CvUnitAI::AI_nextCityToImproveAirlift()
 }
 
 
+// Civ4 Reimagined
+// Returns true if a mission was pushed...
+bool CvUnitAI::AI_searchGoldMines()
+{
+	PROFILE_FUNC();
+
+	int iBestValue = 0;
+	CvPlot* pBestPlot = NULL;
+
+	const BuildTypes eBuild = (BuildTypes)GC.getInfoTypeForString("BUILD_MINE");
+
+	if (!GET_PLAYER(getOwnerINLINE()).isDesertGold())
+	{
+		return false;
+	}
+
+	for (int iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
+	{
+		CvPlot* pLoopPlot = GC.getMapINLINE().plotByIndexINLINE(iI);
+
+		if (!AI_plotValid(pLoopPlot))
+		{
+			continue;
+		}
+
+		if (pLoopPlot->getOwnerINLINE() != getOwnerINLINE())
+		{
+			continue;
+		}
+
+		if (pLoopPlot->getTerrainType() != (TerrainTypes)GC.getInfoTypeForString("TERRAIN_DESERT"))
+		{
+			continue;
+		}
+
+		if (!pLoopPlot->isHills())
+		{
+			continue;
+		}
+
+		if (!pLoopPlot->canBuild(eBuild))
+		{
+			continue;
+		}
+
+		if (pLoopPlot->getImprovementType() != NO_BONUS)
+		{
+			continue;
+		}
+
+		if (pLoopPlot->isAdjacentToBonus((BonusTypes)GC.getInfoTypeForString("BONUS_GOLD")))
+		{
+			continue;
+		}
+
+		int iValue = 10000;
+		iValue /= plotDistance(plot()->getX_INLINE(), plot()->getY_INLINE(), pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE());
+
+		if (iValue > iBestValue)
+		{
+			iBestValue = iValue;
+			pBestPlot = pLoopPlot;
+		}
+	}
+
+	if (pBestPlot != NULL)
+	{
+		logBBAI("Push mission SearchGoldMines");
+		getGroup()->pushMission(MISSION_MOVE_TO, pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE(), 0, false, false, MISSIONAI_BUILD, pBestPlot);
+		getGroup()->pushMission(MISSION_BUILD, eBuild, -1, 0, true, false, MISSIONAI_BUILD, pBestPlot);
+
+		return true;
+	}
+
+	return false;
+}
+
+
 // Returns true if a mission was pushed...
 bool CvUnitAI::AI_irrigateTerritory()
 {
@@ -19938,7 +20071,7 @@ bool CvUnitAI::AI_improveBonus() // K-Mod. (all that junk wasn't being used anyw
 									FAssert(eImprovement != NO_IMPROVEMENT);
 									//iValue += (GC.getImprovementInfo((ImprovementTypes) GC.getBuildInfo(eBestTempBuild).getImprovement()))
 									iValue += 5 * pLoopPlot->calculateImprovementYieldChange(eImprovement, YIELD_FOOD, getOwnerINLINE(), false);
-									iValue += 5 * pLoopPlot->calculateNatureYield(YIELD_FOOD, getTeam(), (pLoopPlot->getFeatureType() == NO_FEATURE) ? true : GC.getBuildInfo(eBestTempBuild).isFeatureRemove(pLoopPlot->getFeatureType()));
+									iValue += 5 * pLoopPlot->calculateNatureYield(YIELD_FOOD, getOwnerINLINE(), (pLoopPlot->getFeatureType() == NO_FEATURE) ? true : GC.getBuildInfo(eBestTempBuild).isFeatureRemove(pLoopPlot->getFeatureType()));
 								}
 
 								iValue += std::max(0, 100 * GC.getBonusInfo(eNonObsoleteBonus).getAIObjective());
@@ -22878,9 +23011,23 @@ int CvUnitAI::AI_greatWorkValue(CvPlot*& pBestPlot, int iThreshold)
 			// victory part is based on current culture rather than turns to legendary.
 			// Also, it doesn't take into account the possibility of flipping enemy cities.
 			// ... But it's a good start.
+
+			iValue += getGreatWorkGold(pLoopCity->plot()) * kOwner.AI_commerceWeight(COMMERCE_GOLD, pLoopCity) / 100;
+
+			// Civ4 Reimagined: Aztec UP
+			if (getUnitType() == (UnitTypes)GC.getInfoTypeForString("UNIT_AZTEC_CAPTIVE"))
+			{
+				iValue += GC.getDefineINT("UNIQUE_POWER_AZTEC") * kOwner.AI_commerceWeight(COMMERCE_GOLD, pLoopCity) / 100;
+
+				if (pLoopCity->getHappinessTimer() == 0)
+				{
+					iValue += 10;
+				}
+			}
+
 			int iPathTurns;
 
-			if (iValue >= iThreshold && canGreatWork(pLoopCity->plot()))
+			if (iValue >= iThreshold && (canGreatWork(pLoopCity->plot()) || canSacrifice(pLoopCity->plot())))
 			{
 				if (generatePath(pLoopCity->plot(), MOVE_NO_ENEMY_TERRITORY, true, &iPathTurns))
 				{
@@ -22906,10 +23053,15 @@ bool CvUnitAI::AI_doGreatWork(CvPlot* pCulturePlot)
 	{
 		if (atPlot(pCulturePlot))
 		{
-			FAssert(canGreatWork(pCulturePlot));
 			if (canGreatWork(pCulturePlot))
 			{
 				getGroup()->pushMission(MISSION_GREAT_WORK);
+				return true;
+			}
+
+			if (canSacrifice(pCulturePlot))
+			{
+				getGroup()->pushMission(MISSION_SACRIFICE);
 				return true;
 			}
 		}
@@ -24071,6 +24223,12 @@ int CvUnitAI::AI_pillageValue(CvPlot* pPlot, int iBonusValueThreshold)
 		if (getDomainType() != DOMAIN_AIR)
 		{
 			iValue += GC.getImprovementInfo(eImprovement).getPillageGold();
+
+			// Civ4 Reimagined: Mongol UP
+			if (GET_PLAYER(getOwnerINLINE()).getPillageHeal() > 0 && getDamage() > 0)
+			{
+				iValue *= 2;
+			}
 		}
 
 		if (eNonObsoleteBonus != NO_BONUS)
@@ -24469,7 +24627,12 @@ int CvUnitAI::AI_getWeightedOdds(CvPlot* pPlot, bool bPotentialEnemy)
 	// adjust down if the enemy is on a defensive tile - we'd prefer to attack them on open ground.
 	if (!pDefender->noDefensiveBonus())
 	{
-		iAdjustedOdds -= (100 - iOdds) * pPlot->defenseModifier(pDefender->getTeam(), false, false, pDefender->defenseBuildingModifier()) / (getDomainType() == DOMAIN_SEA ? 100 : 300);
+		// Civ4 Reimagined: Mongol UP
+		CvCity* pDefenderCity = pPlot->getPlotCity();
+		if (!GET_PLAYER(getOwnerINLINE()).isCityRevoltOnKill() || pDefenderCity == NULL || pDefenderCity->getCultureLevel() >= (CultureLevelTypes)5 || pDefenderCity->getOccupationTimer() > 0)
+		{
+			iAdjustedOdds -= (100 - iOdds) * pPlot->defenseModifier(pDefender->getTeam(), false, false, pDefender->defenseBuildingModifier()) / (getDomainType() == DOMAIN_SEA ? 100 : 300);
+		}
 	}
 
 	// adjust the odds up if the enemy is wounded. We want to attack them now before they heal.

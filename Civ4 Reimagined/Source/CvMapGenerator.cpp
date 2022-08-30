@@ -181,7 +181,7 @@ bool CvMapGenerator::canPlaceGoodyAt(ImprovementTypes eImprovement, int iX, int 
 
 	pPlot = GC.getMapINLINE().plotINLINE(iX, iY);
 
-	if (!(pPlot->canHaveImprovement(eImprovement, NO_TEAM))) 
+	if (!(pPlot->canHaveImprovement(eImprovement, NO_PLAYER))) 
 	{
 		return false;
 	}

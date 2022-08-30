@@ -1,0 +1,464 @@
+*******************************************
+Civ4 Reimagined 2.0
+*******************************************
+
+*********
+New
+*********
+-Every Civilzation has now access to a Unique Power
+-Eurekas boosts for all technologies in game (instantly gain 40% of the science needed to discover the technology)
+-New faster gamespeed: Online (2x as fast as normal)
+
+*********
+Changes
+*********
+-Worker can build Villages with Medicine Tech
+-Cannot hurry units with Slavery, upkeep changed from high to medium
+-Khmer Baray overhaul: Adjacency bonus for farms and more extra health
+-Byzantine Hippodrome now replaces Stadium. It boosts gold income and grants additional experience to mounted units
+-Incan unique building Terrace changed to Qullqa (replaces Granery, -20% city maintenance & units heal 10% faster)
+-Incan unique unit Awqaq Runa now has reduced cost (15 instead of 30) and combat bonus on hills but no longer bonus vs melee
+-Decreased worker limit from 8 to 6
+-Additional effect from Bureaucracy civic: Instantly gain 2 additional workers and temporarily increase worker limit by 2
+-Additional effect from Vassalage civic: Happiness from forts in city radius
+-Cities can not be traded unless both players are at war (peace negotiations) or a city is liberated
+-With a low resource ratio in coal and oil, Railroads take longer to construct and units can traverse less Railroad squares per turn
+-Friendly units from another civilization stationed in your city do no longer reduce the risk of revolts
+-Adjusted starting bias of Civilizations to accomodate Unique Powers and also have starting bias for native resources
+
+*********
+Tweaks
+*********
+-Reduced Awqaq Runa costs from 30 to 25
+-Increased Vulture anti-archer bonus from 10% to 20%
+-Increased Assembly Plant production with electricity from +40% to +85%, but it starts off with 15% less production compared to other factories and loses its former +3 production and +50% building with coal bonus.
+-Industrialism production bonus increased from 15% to 20%
+-Free Market grants 1 additional gold per merchant specialist
+-Central Planning bonus ratio modifier decreased from -10% to -25%
+-State Atheism reduces overcrowding unhappiness by 10%
+-Senate grants Great Spy points
+-Pikemen require Corporation instead of Banking
+-Colossus obsoletes with Astronomy
+-Shwedagon Paya requires Meditation instead of Philosophy
+-National Epic requires Philosophy instead of Literature
+-Statue of Liberty trade with liberal Civs bonus reduced from 300% to 200% and food from trade routes reduced from 5% to 4%
+-Small adjustments to Renaissance tech tree
+-Cavalry require Replaceable Parts tech
+-Increase great person modifier of Cristo Redentor from 25% to 100%
+-Lubyanka only requires one National Security building in city
+-Angkor Wat gives no defense bonus anymore
+-Spanish Citadel gets obsolete with Liberalism instead of Corporation
+-Great Wall costs reduced from 300 to 250
+-Higher tech speed on lower difficulties
+-Quests which require training a number of units are easier to fullfil
+-Minimum time between revolutions reduced from 5 to 4 turns
+-Event probabilities adjusted to game speed
+-Roman legion has 2 potential first strikes and same defensive city malus as swordsman
+-Switch leader traits: Charlemagne is now organized and Roosevelt progressive
+-India starts with Hunting instead of Mining
+-More vision at starting position
+-Maya Holkan is available with Masonry
+-Celtic Gallic Warrior now requires Iron but has a combat bonus against injured units
+-Greek Odeon now increases great person rate and culture per world wonder in the city 
+
+*********
+Interface
+*********
+-Remove unused Unique Power tab
+-Range symbol changed
+
+*********
+Fixes
+*********
+-"Better coal" event triggers only with researched drydock or coal plant
+-AI would move capital too often to colonies
+-Corporation could sometimes drive out competing headquarter from a city
+-Religion switches did not update commerce during player's turn
+-Acquired cities from a civ running Totalitarianism no longer keep the free Spy specialists
+-Great people probabilities kept changing even when running Autocracy
+-Sumerian Ziggurats did not get converted to religious temples when adopting a state religion
+-Horse whispering quest could not be achieved
+-Totestra map script sometimes generated starting positions too close to the edge of the map
+
+*******************************************
+Civ4 Reimagined 1.6
+*******************************************
+
+*********
+New
+*********
+-Civilizations have a starting position bias for native terrain and features
+-New Leader Jayavarman VII of Khmer empire with Creative, Industrious
+-After the discovery of Liberalism all Civilizations adopt an Ideology depending on their current civics. Ideologies influence diplomatic relations and allow building specific wonders.
+-New Wonder Olympiastadion (req Fascism Ideology, no Unhappiness from Conscription, other fascist civs contribute to Great General progress)
+-New Project Communist Manifesto (req Communism Ideology, grants Communism tech to all civs, better resource ratios for every communist civ in the game)
+
+*********
+Changes
+*********
+-Reassign almost all leader traits
+-Lumbermills grant 1 less production but are available with Machinery
+-Reintroduced longer anarchy for large empires
+-Removed Leader Brennus
+-New American UU Supercarrier replaces Navy Seal
+-Statue of Liberty now requires Liberalism Ideology, trade routes on the continent give food and trade route bonus with other liberal civilizations
+-Founding cities on new continents after Astronomy does give slave points instead of always acquiring a new slave
+-Totalitarianism and Statue of Zeus destroy culture of adjacent tiles of conquered cities
+
+*********
+Tweaks
+*********
+-Harbor gives additional 2XP for ships but costs increase from 80 to 90
+-Russian Cossack strength increased from 15 to 16 but no longer has reduced costs
+-Guided Missile air range increased from 5 to 8
+-Tactical Nuke range increased from 6 to 8
+-Missile Submarines cannot pillage or blockade
+-Carrier speed increased from 7 to 8
+-Blitz promotion only requires Flanking II or Drill II
+-Changed Woodsman promotions to 10% attack&defense and +10% heal for friendly/neutral/enemy territory (was: +25% defense, healing and first strike on woodsman3)
+-Removed adjacent tile healing from medic promotions (almost never used in our experience, and the implementation was computationally expensive)
+-Medic3 promotion decreased from 15% healing to 10% healing
+-Tanks no longer have Blitz promotion per default
+-Central Planning no longer disables production mali for military units
+-Apollo Program costs decreased from 2000 to 1500
+-SDI costs increased from 2500 to 3000
+-CERN Research Complex costs increased from 800 to 1200
+-Space Elevator costs increased from 1000 to 1500
+-Spaceship projects are slightly cheaper
+-Great Harbor moved to Guilds from Refrigeration, reduced cost from 250 to 150, removed +100% production with steel, removed +1C per water tile, +3 culture
+-Can change 3 civics for one turn of anarchy on quick speed (was 4)
+-Barbarian ships do not spawn in Medieval and later eras
+-Longer period between Apostolic Palace votes
+-Factory requires Coal or Oil
+-Coal Plant requires Coal
+-Nuclear Plant requires Uranium
+-Iron Works requires Iron
+-Motorized and Mechanized Infantry have 50% combat bonus vs Mounted
+-Great Engineers can hurry Projects
+-Slaves cannot be gifted to other civilizations
+-Absolutism commerce modifier by happiness surplus is capped at 75%
+-Cannon requires Chemisty instead of Military Tradition
+-Pinch promotion requires Military Tradition instead of Chemistry
+-Higher passive spread rate for corporations
+-German Panzer starts with March promotion instead of bonus vs Tanks
+-Incan Terrace stors 60% food on growth instead of 67%
+-AI improvements leading to faster research, better civic decisions and faster colonization
+-Best Defense quest reward nerfed from +3 attitude to +1 attitude
+-Slaves are a bit harder to gain via conquest in later eras
+
+*********
+Interface
+*********
+
+*********
+Fixes
+*********
+-Low resolution for texts and icons
+-Occasional crash when changing civics
+-Levy Armies did not grant free units
+-Seowon and Madrassa did not give science bonus with Scientific Method
+-Protective players couldn't pillage their own improvements
+-French Missile Submarine had broken graphics
+-Abolish slavery would not always update corporation yields
+-Freed colonies would sometimes get warrior units as free defenders in later eras
+-Event that spawns Deer and places Camp now correctly removes forest
+
+
+*******************************************
+Civ4 Reimagined 1.5a
+*******************************************
+-Fix crash on custom maps and late era starts
+-AI was undervalueing Pantheon
+
+
+*******************************************
+Civ4 Reimagined 1.5
+*******************************************
+
+*********
+New
+*********
+-New renaissance building: Sewer (+2[h], costs 200[p]). Available with Scientific Method. Replaces flat health bonus from Scientific Method
+-New religious civic: State Ideology (No state religion, unhappiness from religions, no religion spread, less war weariness and espionage bonus). Available with Communism
+
+*********
+Changes
+*********
+-Can change only two civics instead of three for one turn of anarchy (with ancient starting era)
+-Animism civic removed (XP from animals is enabled by default), Pantheon is start civic
+-Pantheon new effects: No state religion, 1 unhappiness from religions and enables Classical Temple
+-Classical temples have same effects and costs as normal temples
+-Ziggurat replaces Classical Temple, provides 1 additional food and is available with Mysticism
+-Cavalry upgrades to Motorized Infantry
+-Barbarians cannot spawn on tiles without food
+-New effect for Levy Armies: Melee Units produced with food (2:1 ratio), but free units reduced
+-Scientific Method enables +15% research from Universities
+-Shwedagon Paya now gives 1 gold per state religion building in all cities
+-Spiral Minaret now gives 1 commerce per Merchant, Great Merchant, Priest and Great Prophet in all cities
+
+*********
+Tweaks
+*********
+-Babylonian Bowman gain 2 potential first strike chances
+-Organized Religion requires Polytheism
+-Theocracy requires Monotheism
+-Theocracy upkeep cost increased from medium to high
+-Public Welfare requires Mass Media
+-Totalitarianism war weariness modifier changed from -100% to -50%
+-Standing Army upkeep cost decreased from medium to low
+-Conscription upkeep cost decreased from high to medium
+-Secularism no longer provides espionage bonus
+-The Great Harbor grants an additional +1 Commerce per water tile
+-Ancient wonder grant less great person points, later wonders grant more
+-Better starting position evaluation
+-Civilizations have the resource of the base unit of their unique unit near their starting location
+-Movement speed of Missionaries decreased from 2 to 1
+-Russian Research Institut grants two additional scientists instead of research bonus
+-Distribute workers to different cities when colony is granted independence
+-Added game speed adjustments and randomization for goodie hut events (food, production, GPP, GGP)
+-Greek Hoplites bonus vs melee increased from 20 to 30 % but no bonus vs archers anymore
+-Ivory now always grants 1 food. It receives 2 commerce and 1 production with the Camp improvement
+-Civic AI improvements
+-More world wonders require a state religion present in the city
+-American Mall grants 50% gold bonus up from 35%
+
+*********
+Interface
+*********
+-Maintenance cost in domestic advisor screen now takes inflation into account
+-Display slavery points in military advisor (BUG military advisor needs to be activated)
+
+*********
+Fixes
+*********
+-Fixed a bug that doubled pillage gold and gold stolen by spies
+-Fixed a crash that happened during AI building evaluation
+-Fixed a crash that could happen during global warming events
+
+
+*******************************************
+Civ4 Reimagined 1.4
+*******************************************
+
+*********
+Tweaks
+*********
+-"Tech X has been discovered by someone" announcements for all techs that grant free great persons
+-Corporation Executives cost scale with era
+-Some small AI improvements
+-Adjust tech costs
+
+*********
+Interface
+*********
+-Display sum of health and happiness gained from resources for convenience
+
+*********
+Fixes
+*********
+-Fixed a bug in AI steal tech evaluations that could cause an infinite loop during AI turn
+-Fixed a bug that caused miscalculations when AI decided if delaying anarchy to wait for another tech made sense
+-Fixed a bug that occured when wonders granting free buildings were captured or destroyed
+-Fixed a bug that made colonies always decline unit gifts on turn of their liberation
+-Republic civic did not change improvement upgrade rate
+-Commerce was not always updated during a player's turn
+
+
+*******************************************
+Civ4 Reimagined 1.3a
+*******************************************
+-Fixed a bug that caused incorrect calculations of capital commerce for players with either Mercantilism or Absolutism
+
+
+*******************************************
+Civ4 Reimagined 1.3
+*******************************************
+
+*********
+New
+*********
+-Two new ships: Marauder (Navigation) and Pirate (Guilds). They are weaker than their military counterparts, but bear no markings of nationality. This allows for some early game naval harassing and makes the early naval game more engaging in general
+-Two new(ish) medieval technologies: Crop Rotation (Farms spread irrigation; Floating Gardens; Agrarianism) and Civil Service (Longbowman, Crossbowman, Bureaucracy). They are intended to smoothen out some bumps in technology costs
+-National building: Great Harbor (Refrigeration; +1 [P] from water tiles)
+-Slaves can be acquired by conquering or razing enemy cities when having Slavery as a civic. There exists a threshold of population points you have to conquer before gaining a Slave. The threshold increases with every Slave.
+
+*********
+Changes
+*********
+-Update to K-Mod version 1.45
+-Archers and Longbowman gain additional defense bonuses from defensive buildings such as Walls and Castles. Otherwise offensive units with higher ST would benefit more from Walls/Castles than dedicated city defenders, making balancing them tricky. Increased costs to compensate
+-Scouts and Explorers cannot enter rival territory
+-Chance of destroying buildings when bombarding cities halved
+-Naval changes (see also: New pirate ships)
+*-Wooden ships gain double production from chopping. This bonus is not applied to overflow production when unit is finished in the same turn.
+*-All sailing ships except Frigates have +1 ST (to reduce differences between tiers)
+*-Frigates and Privateers have +1 movement
+*-Ship of the Lines no longer have combat bonuses vs Frigates
+*-AI is more likely to research stronger ships when cities are plundered by pirates
+*-Improved AI for building ships in general
+*-Viking Longships are Pirates with improved trade blockade ability
+*-Ships with hidden nationality now get the same movement penalty when entering enemy territory during war times
+-Military units only count towards reducing unhappiness in a city ("We demand military protection!") when they are at most 2 eras behind your current era. Also, they no longer reduce unhappiness in other player's cities
+-Classical Temples get converted to state religion temples when adopting a state religion
+-Modified resource ratios: Worse ratios during Middle Ages / Renaissance, better ratios later in the game
+-Units with hidden nationality no longer contribute to a civ's power value
+-Nuclear plants grant +100% production speed for nuclear missiles
+-Great Wall has been changed: Available with Construction, free Walls on continent and reduced maintenance for all cities on continent
+
+*********
+Tweaks
+*********
+-Iron Working, Monotheism and Machinery are now classical techs
+-Philosophy is now a medieval tech
+-Knights strength increased from 9 to 10, cost changed from 70 to 90 and they have -50% city strength
+-Heavy Footmen upgrade to Musketmen
+-Musketmen no longer have city attack mali
+-Axemen bonus vs Archer reduced from 30% to 25%
+-Cho-Ko-Nu deals collateral damage to 4 units instead of 3
+-Cathedrals cannot be destroyed when bombarding cities
+-Colossus obsoletes with Corporation
+-Temple of Artemis obsoletes with Education
+-Terracotta Army obsoletes with Rifling
+-Hanging Gardens require Calender instead of Construction
+-Fewer world wonders require stone. Having access to stone still gives production boni in most cases
+-Incan Terrace stores 67% food after growth instead of 75%
+-"Trade route blocked" now has an appropriatly negative sound effect
+-Reduced gold gain from blockading trade routes by 33%
+-Horses become obsolete with Industrialism
+-Project Internet now requires Fiber Optics. Costs are reduced from 2000 to 1200
+-Destroyer upgrade to Stealth Destroyer
+-Small adjustments to modern tech tree
+-Tech Composites requires Robotics instead of Computers
+-Tech Stealth requires Superconductors instead of Advanced Flight and Composites
+-Civic Bureaucracy resource ratio modfier increased from +10% to +20%
+-Ambush promotion no longer available for air units
+-City Raider promotion available for gunpowder units
+-Guerilla promotion available for melee units
+-Interception promotion available for naval units
+-March promotion available for armored units
+-Shock promotion no longer available for siege units
+-Navigation II promotion grants 2 movement points and is now an optional requirement for Blitz promotion
+-Babylonian bowman strength reduced to 3 but gains a 100% bonus vs archery units
+-Viking Trading Post moved to Harbor, grants +50% trade route yield, +2 XP and Navigation I
+-Wall building quest no longer triggers when Walls are obsolete
+-AI is quicker in negotiating open border deals
+-AI cancels open borders more sensibly
+-Improved AI civic and research tech evaluation
+-Smaller chance for barbarian units to spawn in tiles without food
+-More stone, more marble
+
+*********
+Interface
+*********
+-Don't show units in city screen that require obsolete resources
+-Fix display of negative resource ratio modifiers in city screen
+
+*********
+Fixes
+*********
+-Fixed an OOS error during map initialization
+-"The old dynasty has died out" event now has a different drawback. "Unhappiness in capital" was always negated by Dynasticism's unlimited happiness
+-Fixed tsunami, sports league and great depression event tooltips
+-Fixed 'balanced' resources appearing directly on starting positions
+-Players no longer automatically receive slaves when conquering colonial cities or acquiring them by trade
+-Fixed a bug that caused AI to bombard cities without any defensive buildings with land based siege units
+-Fixed a bug that prevented units from getting automatically moved outside of enemy territory when war was declared
+-Fixed a bug that caused sea units to have a bigger visibility range than land units when stationed in cities
+-Fixed great person bar showing negative turn numbers on special occasions
+-'Homeless children' now correctly costs you money when selecting the second option, not giving you money
+-Ships can no longer plunder cities that are unreachable (e.g. on the other side of continent)
+
+
+*******************************************
+Civ4 Reimagined 1.2
+*******************************************
+
+*********
+New
+*********
+-French translation project by juni_be_good. If you are interested in helping us to translate Civ4 Reimagined into your language, just drop us a message.
+-New ancient building: Tannery (+2[g], -1[h], costs 90[p], +1[hap] from deer, fur). Available with Leather Working.
+-Archery replaced with Leather Working. Archers moved to Hunting.
+-Removed Totem Pole and added a tannery as unique building for Native Americans.
+-New game option to disable the worker limit.
+-New game option to disable modern unhappiness in colonies.
+-All leaders have the same base attitude and instead gain a relationship bonus when they don't have enough open border contracts.
+-Tech cost for all players scale with handicap setting. This should result in a more consistent game speed across difficulty levels. Feedback on the modifiers is highly appreciated.
+-Entering war on behalf of an AI player grants a small "You agreed to come to our aid in war-time." diplomatic modifier.
+
+*********
+Changes
+*********
+-Redestributed bonuses for fur, deer, wine and whale across market, grocer, supermarket and tannery.
+-Horseback Riding requires Leather Working instead of Iron Working but at increased cost.
+-Changed the way "balanced resources" map option works: Every player now has at least one copper, iron and oil near his starting position instead of exactly one of each.
+-Production penalties for insufficient strategic resources are halved. Example: With a ratio of 0.8 and 1 Iron, your production speed for swordsman will be 90% (-20% for a 0.8 ratio, halved to -10%).
+-Great Generals are always born in capital
+-All diplomacy modifiers expire eventually. Harsher modifiers such as "nuked us" take more time to be forgotten than smaller ones such as "made demand".
+-No blockade gold from barbarian cities
+-Slaves can no longer be captured by players without slavery
+-Bombarding city mechanic slightly changed. Castles are always targeted before Walls with a small chance to destroy other buildings. Success chance no longer depends on number of buildings in the city
+
+*********
+Tweaks
+*********
+-Fighters and pre-modern ships are less effective when bombarding cities
+-Adjusted tech costs to incorporate Leather Working change.
+-Slightly increased technology progression for medieval+.
+-Some AI adjustments when deciding which technology to research next.
+-Improved AI Civic and Corporation evaluations
+-AI doesn't cancel deals as often as before (except open borders, which are cancelled quicker)
+-Uranium yield with mine changed from 3 additional commerce to 1 additional production
+-Airports require Oil
+-Railroad building time reduced from 400 to 200
+-Tyranny upkeep cost increased from low to medium
+-Capitalism upkeep cost increased from low to medium
+-Tank production cost increased from 180 to 250
+-Tank city strength reduced from -10% to -15%
+-Modern Armor production cost increased from 240 to 320
+-Battleship production cost increased from 280 to 350
+-Missile Cruiser production cost increased from 300 to 370
+-Movement speed for Corporation ships increased from 4 to 6
+-Commerce yield from gold/silver/gems reduced by 1
+-Angkor Wat becomes obsolete with Liberalism (was: Computers).
+-Academy grants +1 scientist slot.
+-No improvement building speed penalty for tundra terrain
+-Ajusted appearance of copper, iron, oil, horse and stone
+-Deer and fur appearance increased on most map types
+-Switched rarity for gold and silver.
+-Increased passive spread for Luxury Industry
+-Reduced cost for The Great Dam
+-Native Americans start with Hunting instead of Agriculture
+-Event quests that require a certain number of units to be build can only trigger with less than 50% quest progress at start. Increased number of units required for completion.
+-Pushed back the looter and marauder event into the renaissance. For an event that could destroy multiple buildings and improvements it could trigger awfully early.
+-Totestra map script: "Reduce peaks" is disabled per default
+
+*********
+Interface
+*********
+-Improved city resource display, which can now show up to 99 of each resource without overlapping.
+-Building preview shows estimated commerce gain for bonus trade routes
+-Different unit art: German horseman (looked too advanced for classic tech unit), Japanese axeman (using two swords prior to swordsmen was a bit unfair), Roman caravel and Arab/Babylon/Carthage/Celtic/Egypt/Ethiopian/Malinese/Persian/Sumer frigate (suffering from looking to old/frail and unable to go over the ocean - the model was pretty, but it was hard to tell whether it was a ship of war or a fishing boat).
+-Displays how much gold has been stolen by enemy spies
+-Withdrawal and collateral messages are displayed in yellow instead of red.
+-Improved babylonian unique building text
+-Improved slave unit texts, should help to determine how slaves are gained
+
+*********
+Fixes
+*********
+-Fixed a bug where old BtS Texts were showing up instead of our new ones.
+-Fixed a bug where units could be upgraded without having the appropriate resources when playing with the mercenary civic
+-Fixed display for gold per happiness resource from Mercantilism.
+-Maximum number of specialists (i.e. "Max: 6") shows up again even when the number of specialists allowed was doubled
+-Fixed unit buttons for celtic and zulu tanks.
+-Fixed city trade route display now showing custom house oversea trade modifier
+-Fixed various event help texts
+-Totestra map script no longer places starting position close to map boundaries.
+
+
+*******************************************
+Civ4 Reimagined 1.1
+*******************************************
+-Fixed major bug that allowed resources to stack their health/happiness beyond 1
+-Fixed bug displaying health/happiness benefits from resources incorrectly for resource ratios below 0.1

@@ -48,7 +48,9 @@ CvCity::CvCity()
 	m_aiPowerYieldRateModifier = new int[NUM_YIELD_TYPES];
 	m_aiBonusYieldRateModifier = new int[NUM_YIELD_TYPES];
 	m_aiTechYieldRateModifier = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
+	m_aiFarmAdjacencyBonus = new int[NUM_YIELD_TYPES];; // Civ4 Reimagined
 	m_aiTechCommerceRateModifier = new int[NUM_COMMERCE_TYPES]; // Civ4 Reimagined
+	m_aiFeatureCommerce = new int[NUM_COMMERCE_TYPES]; // Civ4 Reimagined
 	m_aiTradeYield = new int[NUM_YIELD_TYPES];
 	m_aiCorporationYield = new int[NUM_YIELD_TYPES];
 	m_aiExtraSpecialistYield = new int[NUM_YIELD_TYPES];
@@ -140,7 +142,9 @@ CvCity::~CvCity()
 	SAFE_DELETE_ARRAY(m_aiPowerYieldRateModifier);
 	SAFE_DELETE_ARRAY(m_aiBonusYieldRateModifier);
 	SAFE_DELETE_ARRAY(m_aiTechYieldRateModifier); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_aiFarmAdjacencyBonus); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiTechCommerceRateModifier); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_aiFeatureCommerce); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiTradeYield);
 	SAFE_DELETE_ARRAY(m_aiCorporationYield);
 	SAFE_DELETE_ARRAY(m_aiExtraSpecialistYield);
@@ -339,7 +343,10 @@ void CvCity::init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, 
 	updateFreshWaterHealth();
 	updateFeatureHealth();
 	updateFeatureHappiness();
+	updateFeatureCommerce();
 	updatePowerHealth();
+	// Civ4 Reiamgined
+	updateImprovementsInRadius();
 
 	GET_PLAYER(getOwnerINLINE()).updateMaintenance();
 
@@ -535,8 +542,11 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 	m_iCitySizeBoost = 0;
 	m_iSpecialistFreeExperience = 0;
 	m_iGoldForHappinessBonus = 0; // Civ4 Reimagined
+	m_iGreatPeopleRatePerWorldWonder = 0; // Civ4 Reimagined
 	m_iEspionageDefenseModifier = 0;
 	m_iDistance = 0; // Civ4 Reimagined
+	m_iImmigrants = 0; // Civ4 Reimagined
+	m_iVoteSourceStateReligionUnitProductionModifier = 0; // Civ4 Reimagined
 
 	m_bNeverLost = true;
 	m_bBombarded = false;
@@ -550,6 +560,7 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 	m_bLayoutDirty = false;
 	m_bPlundered = false;
 	m_bColony = false; // Civ4 Reimagined
+	m_bStateReligionTemple = false; // Civ4 Reimagined
 
 	m_eOwner = eOwner;
 	m_ePreviousOwner = NO_PLAYER;
@@ -565,6 +576,7 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 		m_aiPowerYieldRateModifier[iI] = 0;
 		m_aiBonusYieldRateModifier[iI] = 0;
 		m_aiTechYieldRateModifier[iI] = 0; // Civ4 Reimagined
+		m_aiFarmAdjacencyBonus[iI] = 0; // Civ4 Reimagined
 		m_aiTradeYield[iI] = 0;
 		m_aiCorporationYield[iI] = 0;
 		m_aiExtraSpecialistYield[iI] = 0;
@@ -581,6 +593,7 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 		m_aiCommerceRateModifier[iI] = 0;
 		m_aiCommerceHappinessPer[iI] = 0;
 		m_aiTechCommerceRateModifier[iI] = 0; // Civ4 Reimagined
+		m_aiFeatureCommerce[iI] = 0; // Civ4 Reimagined
 	}
 
 	for (iI = 0; iI < NUM_DOMAIN_TYPES; iI++)
@@ -773,6 +786,7 @@ void CvCity::reset(int iID, PlayerTypes eOwner, int iX, int iY, bool bConstructo
 		m_aBuildingCommerceChange.clear();
 		m_aBuildingHappyChange.clear();
 		m_aBuildingHealthChange.clear();
+		m_aImprovementsInRadius.clear();
 	}
 
 	if (!bConstructorCall)
@@ -1044,6 +1058,8 @@ void CvCity::doTurn()
 
 	doMeltdown();
 
+	doImmigration();
+
 	updateEspionageVisibility(true);
 
 	if (!isDisorder())
@@ -1186,13 +1202,18 @@ void CvCity::doTurn()
 				{
 					iCount += std::min(getPopulation(), std::max(0, (happyLevel() - unhappyLevel())) * GET_PLAYER(getOwnerINLINE()).getProductionPerSurplusHappiness() / 100);
 				}
+
+				if (getImmigrants() > 0)
+				{
+					iCount += getImmigrants();
+				}
 			}
 
 			if (iCount != getBaseYieldRate((YieldTypes)iI))
 			{
 				logBBAI("base yieldRate is invalid in %S for %d (value: %d, count: %d)", getName().GetCString(), iI, getBaseYieldRate((YieldTypes)iI), iCount);
 			}
-
+			
 			FAssert(iCount == getBaseYieldRate((YieldTypes)iI));
 		}
 
@@ -1568,7 +1589,7 @@ int CvCity::countNumImprovedPlots(ImprovementTypes eImprovement, bool bPotential
 				if (eImprovement != NO_IMPROVEMENT)
 				{
 					if (pLoopPlot->getImprovementType() == eImprovement || 
-						(bPotential && pLoopPlot->canHaveImprovement(eImprovement, getTeam())))
+						(bPotential && pLoopPlot->canHaveImprovement(eImprovement, getOwnerINLINE())))
 					{
 						++iCount;
 					}
@@ -3433,7 +3454,7 @@ int CvCity::getProductionModifier(UnitTypes eUnit) const
 			if (hasBonus((BonusTypes)iI))
 			{
 				// Civ4 Reimagined
-				int iBonusMultiplier = GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(getNumBonuses((BonusTypes)iI)); // Civ4 Reimagined
+				int iBonusMultiplier = getBonusValueTimes100(getNumBonuses((BonusTypes)iI)); // Civ4 Reimagined
 				iMultiplier += GC.getUnitInfo(eUnit).getBonusProductionModifier(iI) * std::max(0, iBonusMultiplier) / 100; // Civ4 Reimagined: Added iBonusMultiplier / 100
 				if (GC.getUnitInfo(eUnit).isMilitaryProduction())
 				{
@@ -3444,13 +3465,26 @@ int CvCity::getProductionModifier(UnitTypes eUnit) const
 	}
 
 	// Civ4 Reimagined: Bonus from civics/player:
-	//iMultiplier += GET_PLAYER(getOwnerINLINE()).getUnitProductionModifier(eUnit);
+	iMultiplier += GET_PLAYER(getOwnerINLINE()).getUnitClassProductionModifier((UnitClassTypes)GC.getUnitInfo(eUnit).getUnitClassType());
+
+	const ReligionTypes eStateReligion = GET_PLAYER(getOwnerINLINE()).getStateReligion();
 	
-	if (GET_PLAYER(getOwnerINLINE()).getStateReligion() != NO_RELIGION)
+	if (eStateReligion != NO_RELIGION)
 	{
-		if (isHasReligion(GET_PLAYER(getOwnerINLINE()).getStateReligion()))
+		if (isHasReligion(eStateReligion))
 		{
 			iMultiplier += GET_PLAYER(getOwnerINLINE()).getStateReligionUnitProductionModifier();
+			// Civ4 Reimagined
+			iMultiplier += GET_PLAYER(getOwnerINLINE()).getReligiousUnitClassProductionModifier((UnitClassTypes)GC.getUnitInfo(eUnit).getUnitClassType());
+
+			// Civ4 Reimagined
+			if (getVoteSourceStateReligionUnitProductionModifier() != 0)
+			{
+				if (GET_PLAYER(getOwnerINLINE()).hasGoodRelationsWithPope())
+				{
+					iMultiplier += getVoteSourceStateReligionUnitProductionModifier();
+				}
+			}
 		}
 	}
 
@@ -3476,6 +3510,18 @@ int CvCity::getProductionModifier(BuildingTypes eBuilding) const
 			iMultiplier += GET_PLAYER(getOwnerINLINE()).getUniquePowerWorldWonderCapitalModifier();
 		}
 	}
+
+	// Civ4 Reimagined
+	const int iProductionModifierFromCapital = GET_PLAYER(getOwnerINLINE()).getBuildingProductionModifierFromCapital();
+	if (!isCapital() && iProductionModifierFromCapital != 0)
+	{
+		CvCity* pCapital = GET_PLAYER(getOwnerINLINE()).getCapitalCity();
+
+		if (pCapital != NULL && getArea() == pCapital->getArea() && pCapital->getNumBuilding(eBuilding) > 0)
+		{
+			iMultiplier += iProductionModifierFromCapital;
+		}
+	}
 	
 	for (int iI = 0; iI < GC.getNumBonusInfos(); iI++)
 	{
@@ -3483,7 +3529,7 @@ int CvCity::getProductionModifier(BuildingTypes eBuilding) const
 		{
 			// Civ4 Reimagined
 			iMultiplier += getBonusBuildingProductionModifier((BonusTypes)iI);
-			int iBonusMultiplier = GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(getNumBonuses((BonusTypes)iI)); // Civ4 Reimagined
+			int iBonusMultiplier = getBonusValueTimes100(getNumBonuses((BonusTypes)iI)); // Civ4 Reimagined
 			iMultiplier += GC.getBuildingInfo(eBuilding).getBonusProductionModifier(iI) * std::max(0, iBonusMultiplier) / 100; // Civ4 Reimagined: Added iBonusMultiplier / 100
 		}
 	}
@@ -3518,7 +3564,7 @@ int CvCity::getProductionModifier(ProjectTypes eProject) const
 	{
 		if (hasBonus((BonusTypes)iI))
 		{
-			int iBonusMultiplier = GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(getNumBonuses((BonusTypes)iI)); // Civ4 Reimagined
+			int iBonusMultiplier = getBonusValueTimes100(getNumBonuses((BonusTypes)iI)); // Civ4 Reimagined
 			iMultiplier += GC.getProjectInfo(eProject).getBonusProductionModifier(iI) * std::max(0, iBonusMultiplier) / 100; // Civ4 Reimagined: Added iBonusMultiplier / 100
 		}
 	}
@@ -3637,7 +3683,6 @@ bool CvCity::canHurry(HurryTypes eHurry, bool bTestVisible) const
 			return false;
 		}*/
 
-		// Leoreth: hurry gold now split into buildings and units
 		if (isProductionUnit() && !GC.getHurryInfo(eHurry).isUnits())
 		{
 			return false;
@@ -3648,10 +3693,10 @@ bool CvCity::canHurry(HurryTypes eHurry, bool bTestVisible) const
 			return false;
 		}
 
-		// non-military units cannot be hurried
 		if (isProductionUnit())
 		{
-			if (!GC.getUnitInfo(getProductionUnit()).isMilitaryProduction() && hurryGold(eHurry) > 0)
+			// non-military units cannot be hurried
+			if (!GC.getUnitInfo(getProductionUnit()).isMilitaryProduction())
 			{
 				return false;
 			}
@@ -3816,7 +3861,12 @@ void CvCity::hurry(HurryTypes eHurry)
 	changePopulation(-(iHurryPopulation));
 	
 	changeCultureTimes100(getOwnerINLINE(), iHurryPopulation * GET_PLAYER(getOwnerINLINE()).getCulturePerPopulationSacrified(), true, true); // Civ4 Reimagined
-
+	
+	if (GET_PLAYER(getOwnerINLINE()).getSlavePointsPerPopulationSacrificed() != 0)
+	{
+		GET_PLAYER(getOwnerINLINE()).gainSlavePoints(iHurryPopulation * GET_PLAYER(getOwnerINLINE()).getSlavePointsPerPopulationSacrificed(), this); // Civ4 Reimagined
+	}
+	
 	changeHurryAngerTimer(iHurryAngerLength);
 
 	// Civ4 Reimagined
@@ -3970,7 +4020,7 @@ bool CvCity::canConscript() const
 		return false;
 	}
 
-	if (GET_PLAYER(getOwnerINLINE()).getConscriptCount() >= GET_PLAYER(getOwnerINLINE()).getMaxConscript())
+	if (getConscriptUnit() == NO_UNIT)
 	{
 		return false;
 	}
@@ -3980,17 +4030,26 @@ bool CvCity::canConscript() const
 		return false;
 	}
 
+	// Civ4 Reimagined: Unique power
+	if (GET_PLAYER(getOwnerINLINE()).isConscriptInfidels())
+	{
+		if (plot()->calculateTeamCulturePercent(getTeam()) < GC.getDefineINT("CONSCRIPT_MIN_CULTURE_PERCENT"))
+		{
+			return true;
+		}
+	}
+
+	if (GET_PLAYER(getOwnerINLINE()).getMaxConscript() <= GET_PLAYER(getOwnerINLINE()).getConscriptCount())
+	{
+		return false;		
+	}
+
 	if (getPopulation() < conscriptMinCityPopulation())
 	{
 		return false;
 	}
 
 	if (plot()->calculateTeamCulturePercent(getTeam()) < GC.getDefineINT("CONSCRIPT_MIN_CULTURE_PERCENT"))
-	{
-		return false;
-	}
-
-	if (getConscriptUnit() == NO_UNIT)
 	{
 		return false;
 	}
@@ -4034,7 +4093,9 @@ CvUnit* CvCity::initConscriptedUnit()
 
 	if (NULL != pUnit)
 	{
-		addProductionExperience(pUnit, true);
+		// Civ4 Reimagined: Ottoman Unique Power
+		bool bNoXP = !GET_PLAYER(getOwnerINLINE()).isConscriptInfidels();
+		addProductionExperience(pUnit, bNoXP);
 
 		pUnit->setMoves(0);
 // K-Mod, karadoc, 26/Jun/2011: Conscription counts as building the unit
@@ -4065,7 +4126,11 @@ void CvCity::conscript()
 	// Civ4 Reimagined
 	if (!GET_TEAM(getTeam()).isNoConscriptUnhappiness())
 	{
-		changeConscriptAngerTimer(iAngerLength);
+		// Civ4 Reimagined: Unique power
+		if (!GET_PLAYER(getOwnerINLINE()).isConscriptInfidels() || plot()->calculateTeamCulturePercent(getTeam()) >= GC.getDefineINT("CONSCRIPT_MIN_CULTURE_PERCENT"))
+		{
+			changeConscriptAngerTimer(iAngerLength);
+		}
 	}
 
 	setDrafted(true);
@@ -4098,11 +4163,13 @@ int CvCity::getBonusHealth(BonusTypes eBonus) const
 	int iHealth;
 	int iI;
 
-	iHealth = GC.getBonusInfo(eBonus).getHealth() * GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(getNumBonuses(eBonus));
+	iHealth = GC.getBonusInfo(eBonus).getHealth() * getBonusValueTimes100(getNumBonuses(eBonus));
 
 	for (iI = 0; iI < GC.getNumBuildingInfos(); iI++)
 	{
 		iHealth += 100 * (getNumActiveBuilding((BuildingTypes)iI) * GC.getBuildingInfo((BuildingTypes) iI).getBonusHealthChanges(eBonus));
+		// Japan UP
+		iHealth += 100 * (getNumActiveBuilding((BuildingTypes)iI) * GET_PLAYER(getOwnerINLINE()).getBonusHealthFromBuilding((BuildingTypes) iI, eBonus));
 	}
 
 	return iHealth;
@@ -4115,7 +4182,7 @@ int CvCity::getBonusHappiness(BonusTypes eBonus) const
 	int iHappiness;
 	int iI;
 
-	iHappiness = GC.getBonusInfo(eBonus).getHappiness() * GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(getNumBonuses(eBonus));
+	iHappiness = GC.getBonusInfo(eBonus).getHappiness() * getBonusValueTimes100(getNumBonuses(eBonus));
 
 	for (iI = 0; iI < GC.getNumBuildingInfos(); iI++)
 	{
@@ -4209,8 +4276,8 @@ void CvCity::processBonus(BonusTypes eBonus, int iChange, bool bChangeValue, boo
 		double dGoodHappiness = 0.;
 		double dBadHappiness = 0.;
 
-		const int iOldHealth = GC.getBonusInfo(eBonus).getHealth() * GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iOldCount);
-		const int iNewHealth = GC.getBonusInfo(eBonus).getHealth() * GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iNewCount);
+		const int iOldHealth = GC.getBonusInfo(eBonus).getHealth() * getBonusValueTimes100(iOldCount);
+		const int iNewHealth = GC.getBonusInfo(eBonus).getHealth() * getBonusValueTimes100(iNewCount);
 		const double dHealthDifference = (double)(iNewHealth - iOldHealth) / 100.0;
 		
 		if (iNewHealth >= 0 && iOldHealth >= 0)
@@ -4222,8 +4289,8 @@ void CvCity::processBonus(BonusTypes eBonus, int iChange, bool bChangeValue, boo
 			dBadHealth = dHealthDifference;
 		}
 		
-		const int iOldHappiness = GC.getBonusInfo(eBonus).getHappiness() * GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iOldCount);
-		const int iNewHappiness = GC.getBonusInfo(eBonus).getHappiness() * GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iNewCount);
+		const int iOldHappiness = GC.getBonusInfo(eBonus).getHappiness() * getBonusValueTimes100(iOldCount);
+		const int iNewHappiness = GC.getBonusInfo(eBonus).getHappiness() * getBonusValueTimes100(iNewCount);
 		const double dHappinessDifference = (double)(iNewHappiness - iOldHappiness) / 100.0;
 
 		if (iNewHappiness >= 0 && iOldHappiness >= 0)
@@ -4245,7 +4312,9 @@ void CvCity::processBonus(BonusTypes eBonus, int iChange, bool bChangeValue, boo
 				const int iNumBuildings = getNumActiveBuilding((BuildingTypes)iI);
 				if (iNumBuildings > 0)
 				{
-					const int iBuildingHealth = GC.getBuildingInfo((BuildingTypes) iI).getBonusHealthChanges(eBonus) * iNumBuildings;
+					int iBuildingHealth = GC.getBuildingInfo((BuildingTypes) iI).getBonusHealthChanges(eBonus) * iNumBuildings;
+					// Civ4 Reimagined: Japan UP
+					iBuildingHealth += GET_PLAYER(getOwnerINLINE()).getBonusHealthFromBuilding((BuildingTypes) iI, eBonus) * iNumBuildings;
 					
 					if (iBuildingHealth >= 0)
 					{
@@ -4327,6 +4396,7 @@ void CvCity::processBuilding(BuildingTypes eBuilding, int iChange, bool bObsolet
 
 		changeEspionageDefenseModifier(GC.getBuildingInfo(eBuilding).getEspionageDefenseModifier() * iChange);
 		changeGreatPeopleRateModifier(GC.getBuildingInfo(eBuilding).getGreatPeopleRateModifier() * iChange);
+		changeGreatPeopleRatePerWorldWonder(GC.getBuildingInfo(eBuilding).getGreatPeopleRateChangePerWorldWonder() * iChange); // Civ4 Reimagined
 		changeFreeExperience(GC.getBuildingInfo(eBuilding).getFreeExperience() * iChange);
 		changeMaxFoodKeptPercent(GC.getBuildingInfo(eBuilding).getFoodKept() * iChange);
 		changeMaxAirlift(GC.getBuildingInfo(eBuilding).getAirlift() * iChange);
@@ -4422,13 +4492,17 @@ void CvCity::processBuilding(BuildingTypes eBuilding, int iChange, bool bObsolet
 			
 			if (hasBonus((BonusTypes)iI))
 			{
+				int iBuildingHealth = GC.getBuildingInfo(eBuilding).getBonusHealthChanges(iI);
+				// Civ4 Reimagined: Japan UP
+				iBuildingHealth += GET_PLAYER(getOwnerINLINE()).getBonusHealthFromBuilding(eBuilding, (BonusTypes)iI);
+
 				if (GC.getBuildingInfo(eBuilding).getBonusHealthChanges(iI) > 0)
 				{
-					changeBonusGoodHealth((double)(GC.getBuildingInfo(eBuilding).getBonusHealthChanges(iI) * iChange));
+					changeBonusGoodHealth((double)(iBuildingHealth * iChange));
 				}
 				else
 				{
-					changeBonusBadHealth((double)(GC.getBuildingInfo(eBuilding).getBonusHealthChanges(iI) * iChange));
+					changeBonusBadHealth((double)(iBuildingHealth * iChange));
 				}
 				if (GC.getBuildingInfo(eBuilding).getBonusHappinessChanges(iI) > 0)
 				{
@@ -4464,6 +4538,12 @@ void CvCity::processBuilding(BuildingTypes eBuilding, int iChange, bool bObsolet
 					}
 				}
 			}
+		}
+
+		// Civ4 Reimagined
+		if (GC.getBuildingInfo(eBuilding).getFarmAdjacencyBonus() > 0)
+		{
+			changeFarmAdjacencyBonus(YIELD_FOOD, GC.getBuildingInfo(eBuilding).getFarmAdjacencyBonus() * iChange);
 		}
 
 		// Civ4 Reimagined
@@ -4539,6 +4619,12 @@ void CvCity::processBuilding(BuildingTypes eBuilding, int iChange, bool bObsolet
 		GET_PLAYER(getOwnerINLINE()).changeWondersScore(getWonderScore((BuildingClassTypes)(GC.getBuildingInfo(eBuilding).getBuildingClassType())) * iChange);
 	}
 
+	// Civ4 Reimagined
+	if (GC.getBuildingInfo(eBuilding).getSpecialBuildingType() == (SpecialBuildingTypes)GC.getInfoTypeForString("SPECIALBUILDING_TEMPLE"))
+	{
+		updateStateReligionTempleCache();
+	}
+
 	updateBuildingCommerce();
 
 	setLayoutDirty(true);
@@ -4600,7 +4686,8 @@ void CvCity::processSpecialist(SpecialistTypes eSpecialist, int iChange)
 
 	updateExtraSpecialistYield();
 
-	changeSpecialistFreeExperience(GC.getSpecialistInfo(eSpecialist).getExperience() * iChange);
+	// Civ4 Reimagined: Zulu UP
+	changeSpecialistFreeExperience((GC.getSpecialistInfo(eSpecialist).getExperience() + GET_PLAYER(getOwnerINLINE()).getExtraSpecialistExperience(eSpecialist)) * iChange);
 }
 
 
@@ -5533,8 +5620,11 @@ int CvCity::getHurryGold(HurryTypes eHurry, int iHurryCost) const
 	iGold = (iHurryCost * GC.getHurryInfo(eHurry).getGoldPerProduction());
 	
 	// Civ4 Reimagined
-	iGold *= std::max(0, 100 + (GET_PLAYER(getOwnerINLINE())).getHurryGoldCostModifier());
-	iGold /= 100;
+	if (GC.getHurryInfo(eHurry).isUnits())
+	{
+		iGold *= std::max(0, 100 + (GET_PLAYER(getOwnerINLINE())).getMercenaryCostModifier());
+		iGold /= 100;
+	}
 	
 	return std::max(1, iGold);
 }
@@ -5554,9 +5644,8 @@ int CvCity::getHurryPopulation(HurryTypes eHurry, int iHurryCost) const
 
 	int iProduction = GC.getGameINLINE().getProductionPerPopulation(eHurry);
 	
-	// Civ4 Reimagined
-	iProduction *= GET_PLAYER(getOwnerINLINE()).getProductionPerPopulationModifier();
-	iProduction /= 100;
+	// Civ4 Reimagined: Egypt UP
+	iProduction += GET_PLAYER(getOwnerINLINE()).getProductionPerPopulation() * 100 / std::max(1, GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getHurryPercent());
 	
 	int iPopulation = (iHurryCost - 1) / iProduction;
 
@@ -5569,7 +5658,11 @@ int CvCity::hurryProduction(HurryTypes eHurry) const
 
 	if (GC.getHurryInfo(eHurry).getProductionPerPopulation() > 0)
 	{
-		iProduction = (GET_PLAYER(getOwnerINLINE()).getProductionPerPopulationModifier() * getExtraProductionDifference(hurryPopulation(eHurry) * GC.getGameINLINE().getProductionPerPopulation(eHurry))) / std::max(1, getHurryCostModifier()); // Civ4 Reimagined: Added UP modifier
+		// Civ4 Reimagined: Egypt UP
+		int iProductionPerPop = GC.getGameINLINE().getProductionPerPopulation(eHurry);
+		iProductionPerPop += GET_PLAYER(getOwnerINLINE()).getProductionPerPopulation() * 100 / std::max(1, GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getHurryPercent());
+
+		iProduction = (100 * getExtraProductionDifference(hurryPopulation(eHurry) * iProductionPerPop)) / std::max(1, getHurryCostModifier());
 		FAssert(iProduction >= productionLeft());
 	}
 	else
@@ -6184,15 +6277,6 @@ void CvCity::setPopulation(int iNewValue)
 			gDLL->getInterfaceIFace()->setDirty(CityScreen_DIRTY_BIT, true);
 		}
 
-		// Civ4 Reimagined
-		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_POLYTHEISM")))
-		{
-			if (getPopulation() > 1)
-			{
-				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_POLYTHEISM"), getOwnerINLINE(), true);
-			}
-		}
-
 		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MONARCHY")))
 		{
 			if (getPopulation() > 5)
@@ -6303,7 +6387,26 @@ int CvCity::getGreatPeopleRate() const
 		return 0;
 	}
 
-	return std::max(0, ((getBaseGreatPeopleRate() * getTotalGreatPeopleRateModifier()) / 100));
+	int iGreatPeopleRate = getBaseGreatPeopleRate();
+
+	// Civ4 Reimagined: Dutch UP
+	iGreatPeopleRate += GET_PLAYER(getOwnerINLINE()).getGreatMerchantPointsPerTrade() * getTradeYield(YIELD_COMMERCE) / 100;
+
+	// Civ4 Reimagined: American UP
+	iGreatPeopleRate += GET_PLAYER(getOwnerINLINE()).getGreatPeoplePointsPerTrade() * getTradeYield(YIELD_COMMERCE) / 100;
+
+	// Civ4 Reimagined: HRE UP
+	for (std::set<ImprovementTypes>::const_iterator it = m_aImprovementsInRadius.begin(); it != m_aImprovementsInRadius.end(); ++it)
+	{
+		iGreatPeopleRate += GET_PLAYER(getOwnerINLINE()).getGreatSpyPointsFromImprovementInRadius((ImprovementTypes)*it);
+	}
+
+	// Civ4 Reimagined: France UP
+	iGreatPeopleRate += getGreatEngineerPointsFromCathedrals();
+
+	iGreatPeopleRate += getGreatPeopleRatePerWorldWonder() * getNumWorldWonders();
+
+	return std::max(0, ((iGreatPeopleRate * getTotalGreatPeopleRateModifier()) / 100));
 }
 
 
@@ -6314,6 +6417,8 @@ int CvCity::getTotalGreatPeopleRateModifier() const
 	iModifier = getGreatPeopleRateModifier();
 
 	iModifier += GET_PLAYER(getOwnerINLINE()).getGreatPeopleRateModifier();
+	// Civ4 Reimagined: India UP
+	iModifier += GET_PLAYER(getOwnerINLINE()).getGreatPeopleRatePerReligionModifier() * getReligionCount();
 
 	if (GET_PLAYER(getOwnerINLINE()).getStateReligion() != NO_RELIGION)
 	{
@@ -6384,6 +6489,24 @@ int CvCity::getAdditionalBaseGreatPeopleRateByBuilding(BuildingTypes eBuilding) 
 	int iExtraRate = 0;
 
 	iExtraRate += kBuilding.getGreatPeopleRateChange();
+
+	// Civ4 Reimagined
+	iExtraRate += kBuilding.getGreatPeopleRateChangePerWorldWonder() * getNumWorldWonders();
+
+	// Civ4 Reimagined
+	if (isWorldWonderClass(((BuildingClassTypes)kBuilding.getBuildingClassType())))
+	{
+		iExtraRate += getGreatPeopleRatePerWorldWonder();
+	}
+
+	// Civ4 Reimagined: France UP
+	if (kBuilding.getReligionType() != NO_RELIGION && kBuilding.getStateReligion() != NO_RELIGION && !isWorldWonderClass(((BuildingClassTypes)kBuilding.getBuildingClassType())))
+	{
+		if (isHasReligion((ReligionTypes)kBuilding.getReligionType()))
+		{
+			iExtraRate += GET_PLAYER(getOwnerINLINE()).getGreatEngineerPointsFromCathedrals();
+		}
+	}
 
 	// Specialists
 	if (!bObsolete)
@@ -6592,6 +6715,39 @@ void CvCity::updateColonialStatus()
 }
 
 
+// Civ4 Reimagined
+bool CvCity::hasStateReligionTemple() const
+{
+	return m_bStateReligionTemple;
+}
+
+
+// Civ4 Reimagined
+void CvCity::updateStateReligionTempleCache()
+{
+	ReligionTypes eStateReligion = GET_PLAYER(getOwnerINLINE()).getStateReligion();
+
+	if (eStateReligion != NO_RELIGION)
+	{
+		for (int iI = 0; iI < GC.getNumBuildingInfos(); iI++)
+		{
+			CvBuildingInfo& kBuilding = GC.getBuildingInfo((BuildingTypes)iI);
+
+			if (kBuilding.getSpecialBuildingType() == (SpecialBuildingTypes)GC.getInfoTypeForString("SPECIALBUILDING_TEMPLE"))
+			{
+				if (getNumActiveBuilding((BuildingTypes)iI) > 0 && kBuilding.getReligionType() == eStateReligion)
+				{
+					m_bStateReligionTemple = true;
+					return;
+				}
+			}
+		}
+	}
+
+	m_bStateReligionTemple = false;
+}
+
+
 // BUG - Building Saved Maintenance - start
 /*
  * Returns the total additional gold from saved maintenance times 100 that adding one of the given buildings will provide.
@@ -6721,6 +6877,13 @@ int CvCity::calculateDistanceMaintenanceTimes100() const
 		iTempMaintenance /= 100;
 
 		iTempMaintenance /= GC.getMapINLINE().maxPlotDistance();
+
+		// Civ4 Reimagined: Spanish UP
+		if (isColony() && GET_PLAYER(getOwnerINLINE()).getStateReligion() != NO_RELIGION && isHasReligion(GET_PLAYER(getOwnerINLINE()).getStateReligion()))
+		{
+			iTempMaintenance *= 100 + GET_PLAYER(getOwnerINLINE()).getReligiousColonyMaintenanceModifier();
+			iTempMaintenance /= 100;
+		}
 
 	/* original bts code
 		iWorstCityMaintenance = std::max(iWorstCityMaintenance, iTempMaintenance);
@@ -7080,15 +7243,20 @@ void CvCity::updateFreshWaterHealth()
 	iNewGoodHealth = 0;
 	iNewBadHealth = 0;
 
-	if (plot()->isFreshWater())
+	// Civ4 Reimagind: Maya unique power
+	if (plot()->isFreshWater() || GET_PLAYER(getOwnerINLINE()).isAlwaysFreshWater())
 	{
-		if (GC.getDefineINT("FRESH_WATER_HEALTH_CHANGE") > 0)
+		int iFreshWaterHealth = GC.getDefineINT("FRESH_WATER_HEALTH_CHANGE");
+		iFreshWaterHealth *= 100 + GET_PLAYER(getOwnerINLINE()).getFreshWaterHealthModifier();
+		iFreshWaterHealth /= 100;
+
+		if (iFreshWaterHealth > 0)
 		{
-			iNewGoodHealth += GC.getDefineINT("FRESH_WATER_HEALTH_CHANGE");
+			iNewGoodHealth += iFreshWaterHealth;
 		}
 		else
 		{
-			iNewBadHealth += GC.getDefineINT("FRESH_WATER_HEALTH_CHANGE");
+			iNewBadHealth += iFreshWaterHealth;
 		}
 	}
 
@@ -7460,17 +7628,6 @@ int CvCity::getMilitaryHappinessUnits() const
 
 	if (iMilitaryHappinessLimit > 0)
 	{
-		// Civ4 Reimagined: Unique Power
-		if (GET_PLAYER(getOwnerINLINE()).isFullMilitaryHappinessValueWithPantheon())
-		{
-			CivicTypes CIVIC_PANTHEON = (CivicTypes)GC.getInfoTypeForString("CIVIC_PANTHEON");
-
-			if (GET_PLAYER(getOwnerINLINE()).getCivics((CivicOptionTypes)(GC.getCivicInfo(CIVIC_PANTHEON).getCivicOptionType())) == CIVIC_PANTHEON)
-			{
-				return iMilitaryHappinessLimit;	
-			}
-		}
-		
 		return std::min(m_iMilitaryHappinessUnits, iMilitaryHappinessLimit);
 	}
 	else
@@ -7822,7 +7979,10 @@ int CvCity::getAdditionalHealthByBuilding(BuildingTypes eBuilding, int& iGood, i
 	{
 		if ((hasBonus((BonusTypes)iI) || kBuilding.getFreeBonus() == iI) && kBuilding.getNoBonus() != iI)
 		{
-			addGoodOrBad(kBuilding.getBonusHealthChanges(iI), iGood, iBad);
+			// Civ4 Reimagined: Japan UP
+			int iBuildingHealth = kBuilding.getBonusHealthChanges(iI);
+			iBuildingHealth += GET_PLAYER(getOwnerINLINE()).getBonusHealthFromBuilding(eBuilding, (BonusTypes)iI);
+			addGoodOrBad(iBuildingHealth, iGood, iBad);
 		}
 	}
 
@@ -7974,6 +8134,36 @@ int CvCity::getFeatureBadHappiness() const
 	return m_iFeatureBadHappiness;
 }
 
+// Civ4 Reimagined
+void CvCity::updateFeatureCommerce()
+{
+	for (int iI = 0; iI < NUM_COMMERCE_TYPES; iI++)
+	{
+		int iFeatureCommerce = 0;
+
+		for (int iJ = 0; iJ < NUM_CITY_PLOTS; iJ++)
+		{
+			CvPlot* pLoopPlot = getCityIndexPlot(iJ);
+
+			if (pLoopPlot != NULL)
+			{
+				FeatureTypes eFeature = pLoopPlot->getFeatureType();
+				if (eFeature != NO_FEATURE && pLoopPlot->getImprovementType() == NO_IMPROVEMENT && pLoopPlot->getOwnerINLINE() == getOwnerINLINE())
+				{
+					int iSinglePlotCommerce = GET_PLAYER(getOwnerINLINE()).getFeatureCommerce(eFeature, (CommerceTypes)iI);
+					iFeatureCommerce += iSinglePlotCommerce;
+				}
+			}
+		}
+		
+		if (iFeatureCommerce != m_aiFeatureCommerce[iI])
+		{
+			m_aiFeatureCommerce[iI] = iFeatureCommerce;
+			FAssert(m_aiFeatureCommerce[iI] >= 0);
+			updateCommerce((CommerceTypes)iI);
+		}
+	}
+}
 
 void CvCity::updateFeatureHappiness()
 {
@@ -7984,7 +8174,8 @@ void CvCity::updateFeatureHappiness()
 	{
 		CvPlot* pLoopPlot = getCityIndexPlot(iI);
 
-		if (pLoopPlot != NULL)
+		// Civ4 Reimagined: Only count plots in our empire
+		if (pLoopPlot != NULL && pLoopPlot->getOwnerINLINE() == getOwnerINLINE())
 		{
 			FeatureTypes eFeature = pLoopPlot->getFeatureType();
 
@@ -8015,6 +8206,20 @@ void CvCity::updateFeatureHappiness()
 					iNewFeatureBadHappiness += iHappy;
 				}
 			}
+		}
+	}
+
+	// Civ4 Reimagined
+	for (std::set<ImprovementTypes>::iterator it = m_aImprovementsInRadius.begin(); it != m_aImprovementsInRadius.end(); ++it)
+	{
+		const int iHappy = GET_PLAYER(getOwnerINLINE()).getRadiusImprovementHappiness(*it);
+		if (iHappy > 0)
+		{
+			iNewFeatureGoodHappiness += iHappy;
+		}
+		else if (iHappy < 0)
+		{
+			iNewFeatureBadHappiness += iHappy;
 		}
 	}
 
@@ -8301,6 +8506,18 @@ void CvCity::changeHappinessTimer(int iChange)
 
 		AI_setAssignWorkDirty(true);
 	}
+}
+
+
+void CvCity::setHappinessTimer(int iValue)
+{
+	m_iHappinessTimer = iValue;
+	FAssert(getHappinessTimer() >= 0);
+
+	// Civ4 Reimagined
+	updateHappinessCommerce();
+
+	AI_setAssignWorkDirty(true);
 }
 
 
@@ -10035,6 +10252,64 @@ void CvCity::changeTechYieldRateModifier(YieldTypes eIndex, int iChange)
 }
 
 // Civ4 Reimagined
+int CvCity::getFarmAdjacencyBonus(YieldTypes eIndex) const												
+{
+	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
+	FAssertMsg(eIndex < NUM_YIELD_TYPES, "eIndex expected to be < NUM_YIELD_TYPES");
+	return m_aiFarmAdjacencyBonus[eIndex];
+}
+
+// Civ4 Reimagined
+void CvCity::changeFarmAdjacencyBonus(YieldTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
+	FAssertMsg(eIndex < NUM_YIELD_TYPES, "eIndex expected to be < NUM_YIELD_TYPES");
+	
+	if (iChange != 0)
+	{
+		m_aiFarmAdjacencyBonus[eIndex] = (m_aiFarmAdjacencyBonus[eIndex] + iChange);
+
+		for (int iI = 0; iI < NUM_CITY_PLOTS; iI++)
+		{
+			CvPlot* pLoopPlot = getCityIndexPlot(iI);
+
+			if (pLoopPlot != NULL)
+			{
+				if (pLoopPlot->getWorkingCity() == this)
+				{
+					pLoopPlot->updateYield();
+				}
+			}
+		}
+
+		FAssert(getYieldRate(eIndex) >= 0);
+
+		GET_PLAYER(getOwnerINLINE()).invalidateYieldRankCache(eIndex);
+
+		if (eIndex == YIELD_COMMERCE)
+		{
+			updateCommerce();
+		}
+
+		AI_setAssignWorkDirty(true);
+
+		if (getTeam() == GC.getGameINLINE().getActiveTeam())
+		{
+			setInfoDirty(true);
+		}
+	}
+	
+}
+
+// Civ4 Reimagined
+int CvCity::getFeatureCommerce(CommerceTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
+	FAssertMsg(eIndex < NUM_COMMERCE_TYPES, "eIndex expected to be < NUM_COMMERCE_TYPES");
+	return m_aiFeatureCommerce[eIndex];
+}
+
+// Civ4 Reimagined
 int CvCity::getTechCommerceRateModifier(CommerceTypes eIndex) const												
 {
 	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
@@ -10084,7 +10359,7 @@ int CvCity::totalTradeModifier(CvCity* pOtherCity) const
 
 	iModifier += getPopulationTradeModifier();
 	
-	// Civ4 Reimagined: Greek Unique Power
+	// Civ4 Reimagined: Unique Power
 	if (GET_PLAYER(getOwnerINLINE()).getCoastalTradeRouteModifier() > 0)
 	{
 		if (isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
@@ -10092,9 +10367,38 @@ int CvCity::totalTradeModifier(CvCity* pOtherCity) const
 			iModifier += GET_PLAYER(getOwnerINLINE()).getCoastalTradeRouteModifier();
 		}
 	}
-
+	
 	if (NULL != pOtherCity)
 	{
+		// Civ4 Reimagined: Unique Power
+		if (GET_PLAYER(getOwnerINLINE()).getColonyTraderouteModifier() > 0)
+		{
+			if (GET_PLAYER(pOtherCity->getOwnerINLINE()).isColony(getOwnerINLINE()))
+			{
+				iModifier += GET_PLAYER(getOwnerINLINE()).getColonyTraderouteModifier();
+			}
+		}
+		
+		// Civ4 Reimagined: Unique Power
+		if (GET_PLAYER(getOwnerINLINE()).getCorporationTraderouteModifier() > 0)
+		{
+			if (pOtherCity->getOwnerINLINE() != getOwnerINLINE())
+			{
+				for (int iI = 0; iI < GC.getNumCorporationInfos(); iI++)
+				{
+					CorporationTypes eCorporation = (CorporationTypes)iI;
+					if (GET_PLAYER(getOwnerINLINE()).hasHeadquarters(eCorporation))
+					{
+						if (pOtherCity->isActiveCorporation((CorporationTypes)iI))
+						{
+							iModifier += GET_PLAYER(getOwnerINLINE()).getCorporationTraderouteModifier();
+							break; // Modifier applies only once, not once per corporation
+						}
+					}
+				}
+			}			
+		}
+
 		// Civ4 Reimagined
 		if (isConnectedToCapital() && !GET_PLAYER(pOtherCity->getOwnerINLINE()).isNoCapital())
 		{
@@ -10114,6 +10418,11 @@ int CvCity::totalTradeModifier(CvCity* pOtherCity) const
 			if (pOtherCity->getOwnerINLINE() == getOwnerINLINE())
 			{
 				bTradeThroughCapital = true;
+			}
+			
+			if (GET_PLAYER(getOwnerINLINE()).isSpecialTradeRoutePerPlayer())
+			{
+				iModifier += GC.getDefineINT("UNIQUE_POWER_CARTHARGE");
 			}
 		}
 		
@@ -10483,6 +10792,13 @@ int CvCity::getBaseCommerceRateTimes100(CommerceTypes eIndex) const
 	iBaseCommerceRate += 100 * (getBuildingCommerce(eIndex) + getSpecialistCommerce(eIndex) + getReligionCommerce(eIndex) + getCorporationCommerce(eIndex) + GET_PLAYER(getOwnerINLINE()).getFreeCityCommerce(eIndex));
 
 	// Civ4 Reimagined
+	if (isCapital())
+	{
+		iBaseCommerceRate += 100 * getNumGreatPeople() * GET_PLAYER(getOwnerINLINE()).getGreatPeopleExtraCommerceInCapital(eIndex);
+		iBaseCommerceRate += GET_PLAYER(getOwnerINLINE()).getCapitalCommercePerPopulation(eIndex, getPopulation());
+	}
+
+	// Civ4 Reimagined
 	for (int iI = 0; iI < GC.getNumSpecialistInfos(); iI++)
 	{
 		iBaseCommerceRate += 100 * (getSpecialistCount((SpecialistTypes)iI) * GET_PLAYER(getOwnerINLINE()).getSpecialistCommerceChange((SpecialistTypes)iI, eIndex));
@@ -10504,6 +10820,9 @@ int CvCity::getBaseCommerceRateTimes100(CommerceTypes eIndex) const
 			iBaseCommerceRate += getGoldForHappinessBonus();
 		}
 	}
+
+	// Civ4 Reimagined: Commerce from features
+	iBaseCommerceRate += m_aiFeatureCommerce[eIndex];
 	
 	// Civ4 Reimagined: Culture from Peaks
 	if (GET_PLAYER(getOwnerINLINE()).getFatcrossPeakCulture() > 0)
@@ -10512,6 +10831,12 @@ int CvCity::getBaseCommerceRateTimes100(CommerceTypes eIndex) const
 		{
 			iBaseCommerceRate += GET_PLAYER(getOwnerINLINE()).getFatcrossPeakCulture();
 		}
+	}
+
+	// Civ4 Reimagined: Khmer UP
+	if (GET_PLAYER(getOwnerINLINE()).getStateReligionCommercePerPopulationOverThreshold(eIndex) > 0)
+	{
+		iBaseCommerceRate += getStateReligionCommercePerPopulationOverThreshold(eIndex);
 	}
 
 	return iBaseCommerceRate;
@@ -10523,11 +10848,11 @@ int CvCity::getTotalCommerceRateModifier(CommerceTypes eIndex) const
 	int iTotal = 100;
 	iTotal += getCommerceRateModifier(eIndex) + GET_PLAYER(getOwnerINLINE()).getCommerceRateModifier(eIndex);
 	iTotal += getTechCommerceRateModifier(eIndex); // Civ4 Reimagined
-	
+	iTotal += GET_PLAYER(getOwnerINLINE()).getCommerceAboveAveragePopulation(eIndex); // Civ4 Reimagined
+
 	if (isCapital() && !GET_PLAYER(getOwnerINLINE()).isNoCapital()) // Civ4 Reimagined: Excluded capital modifier if player does not gain the benefits of a capital.
 	{
 		iTotal += GET_PLAYER(getOwnerINLINE()).getCapitalCommerceRateModifier(eIndex);
-		iTotal += GET_PLAYER(getOwnerINLINE()).getCapitalCommercePerPopulation(eIndex, getPopulation()); // Civ4 Reimagined
 		
 		// Civ4 Reimagined
 		if (GET_PLAYER(getOwnerINLINE()).getCapitalCommerceRateModifierPerHappinessSurplus(eIndex) > 0)
@@ -10705,16 +11030,16 @@ int CvCity::getBuildingCommerceByBuilding(CommerceTypes eIndex, BuildingTypes eB
 				// Civ4 Reimagined START: Commerce gain from shrines and headquarter buildings now suffers dimished returns (restricted growth) and can not exceed iCap.
 				int iCap = GC.getDefineINT("COMMERCE_CAP_FOR_SHRINES_AND_HEADQUARTERS");
 	
-				if (GC.getBuildingInfo(eBuilding).getGlobalReligionCommerce() != NO_RELIGION)
+				if ((ReligionTypes)GC.getBuildingInfo(eBuilding).getGlobalReligionCommerce() != NO_RELIGION)
 				{
-					iCommerce += ( GC.getReligionInfo((ReligionTypes)(GC.getBuildingInfo(eBuilding).getGlobalReligionCommerce())).getGlobalReligionCommerce(eIndex) * restrictedGrowth(GC.getGameINLINE().countReligionLevels((ReligionTypes)(GC.getBuildingInfo(eBuilding).getGlobalReligionCommerce())), iCap) ) * getNumActiveBuilding(eBuilding);
+					iCommerce += GET_PLAYER(getOwnerINLINE()).getShrineCommerceIncome(eIndex, (ReligionTypes)GC.getBuildingInfo(eBuilding).getGlobalReligionCommerce()) * getNumActiveBuilding(eBuilding);
 				}
 
 				if (GC.getBuildingInfo(eBuilding).getGlobalCorporationCommerce() != NO_CORPORATION)
 				{
 					CorporationTypes eCorporation = (CorporationTypes)GC.getBuildingInfo(eBuilding).getGlobalCorporationCommerce();
 					
-					iCommerce += ( GC.getCorporationInfo(eCorporation).getHeadquarterCommerce(eIndex) * restrictedGrowth(GC.getGameINLINE().countCorporationLevels(eCorporation), iCap) ) * getNumActiveBuilding(eBuilding);
+					iCommerce += ( GC.getCorporationInfo(eCorporation).getHeadquarterCommerce(eIndex) * ::restrictedGrowth(GC.getGameINLINE().countCorporationLevels(eCorporation), iCap) ) * getNumActiveBuilding(eBuilding);
 				}
 				// Civ4 Reimagined END
 			}
@@ -10851,13 +11176,19 @@ int CvCity::getAdditionalBaseCommerceRateByBuildingImpl(CommerceTypes eIndex, Bu
 				iExtraRate += GET_PLAYER(getOwnerINLINE()).getStateReligionBuildingCommerce(eIndex);
 			}
 		}
-		if (kBuilding.getGlobalReligionCommerce() != NO_RELIGION)
+
+		// Civ4 Reimagined
+		int iCap = GC.getDefineINT("COMMERCE_CAP_FOR_SHRINES_AND_HEADQUARTERS");
+
+		if ((ReligionTypes)kBuilding.getGlobalReligionCommerce() != NO_RELIGION)
 		{
-			iExtraRate += GC.getReligionInfo((ReligionTypes)(kBuilding.getGlobalReligionCommerce())).getGlobalReligionCommerce(eIndex) * GC.getGameINLINE().countReligionLevels((ReligionTypes)(kBuilding.getGlobalReligionCommerce()));
+			iExtraRate += GET_PLAYER(getOwnerINLINE()).getShrineCommerceIncome(eIndex, (ReligionTypes)kBuilding.getGlobalReligionCommerce());
 		}
-		if (kBuilding.getGlobalCorporationCommerce() != NO_CORPORATION)
+
+		if ((CorporationTypes)kBuilding.getGlobalCorporationCommerce() != NO_CORPORATION)
 		{
-			iExtraRate += GC.getCorporationInfo((CorporationTypes)(kBuilding.getGlobalCorporationCommerce())).getHeadquarterCommerce(eIndex) * GC.getGameINLINE().countCorporationLevels((CorporationTypes)(kBuilding.getGlobalCorporationCommerce()));
+			CorporationTypes eCorporation = (CorporationTypes)kBuilding.getGlobalCorporationCommerce();	
+			iExtraRate += ( GC.getCorporationInfo(eCorporation).getHeadquarterCommerce(eIndex) * ::restrictedGrowth(GC.getGameINLINE().countCorporationLevels(eCorporation), iCap));
 		}
 		// ignore double-time check since this assumes you are building it this turn
 
@@ -11022,6 +11353,7 @@ int CvCity::getAdditionalBaseCommerceRateBySpecialistImpl(CommerceTypes eIndex, 
 	FAssertMsg(eSpecialist < GC.getNumSpecialistInfos(), "eSpecialist expected to be < GC.getNumSpecialistInfos()");
 
 	CvSpecialistInfo& kSpecialist = GC.getSpecialistInfo(eSpecialist);
+
 	return iChange * (kSpecialist.getCommerceChange(eIndex) + GET_PLAYER(getOwnerINLINE()).getSpecialistExtraCommerce(eIndex));
 }
 // BUG - Specialist Additional Commerce - end
@@ -11597,27 +11929,11 @@ void CvCity::setCultureTimes100(PlayerTypes eIndex, int iNewValue, bool bPlots, 
 void CvCity::changeCulture(PlayerTypes eIndex, int iChange, bool bPlots, bool bUpdatePlotGroups)
 {
 	setCultureTimes100(eIndex, (getCultureTimes100(eIndex) + 100  * iChange), bPlots, bUpdatePlotGroups);
-	
-	//Civ4 Reimagined
-	if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS))
-	{
-		if(eIndex == getOwnerINLINE() && iChange > 0)
-		{
-			GET_PLAYER(getOwnerINLINE()).changeAccumulatedCulture(iChange * 100);
-		}
-	}
 }
 
 void CvCity::changeCultureTimes100(PlayerTypes eIndex, int iChange, bool bPlots, bool bUpdatePlotGroups)
 {
 	setCultureTimes100(eIndex, (getCultureTimes100(eIndex) + iChange), bPlots, bUpdatePlotGroups);
-	
-	//Civ4 Reimagined
-	if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS))
-	{
-		if (eIndex == getOwnerINLINE() && iChange > 0)
-			GET_PLAYER(getOwnerINLINE()).changeAccumulatedCulture(iChange);
-	}
 }
 
 
@@ -12177,6 +12493,23 @@ int CvCity::getGoldForHappinessBonus() const
 
 
 // Civ4 Reimagined
+void CvCity::changeGreatPeopleRatePerWorldWonder(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iGreatPeopleRatePerWorldWonder += iChange;
+	}
+}
+
+
+// Civ4 Reimagined
+int CvCity::getGreatPeopleRatePerWorldWonder() const
+{
+	return m_iGreatPeopleRatePerWorldWonder;
+}
+
+
+// Civ4 Reimagined
 void CvCity::changeNumBonusesInFatCross(BonusTypes eIndex, int iChange)
 {
 	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
@@ -12478,8 +12811,43 @@ int CvCity::getGreatPeopleUnitRate(UnitTypes eIndex) const
 	{
 		return 0;
 	}
-	
-	return m_paiGreatPeopleUnitRate[eIndex];
+
+	int iGreatPeopleUnitRate = m_paiGreatPeopleUnitRate[eIndex];
+
+	// Civ4 Reimagined: Dutch UP
+	if (GET_PLAYER(getOwnerINLINE()).getGreatMerchantPointsPerTrade() != 0)
+	{
+		const UnitClassTypes UNITCLASS_MERCHANT = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_MERCHANT");
+		const UnitTypes UNIT_MERCHANT = (UnitTypes)GC.getUnitClassInfo(UNITCLASS_MERCHANT).getDefaultUnitIndex();
+
+		if (eIndex == UNIT_MERCHANT)
+		{
+			iGreatPeopleUnitRate += GET_PLAYER(getOwnerINLINE()).getGreatMerchantPointsPerTrade() * getTradeYield(YIELD_COMMERCE) / 100;
+		}
+	}
+
+	// Civ4 Reimagined: HRE UP
+	const UnitClassTypes UNITCLASS_GREAT_SPY = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_GREAT_SPY");
+	const UnitTypes UNIT_GREAT_SPY = (UnitTypes)GC.getUnitClassInfo(UNITCLASS_GREAT_SPY).getDefaultUnitIndex();
+
+	if (eIndex == UNIT_GREAT_SPY)
+	{
+		for (std::set<ImprovementTypes>::const_iterator it = m_aImprovementsInRadius.begin(); it != m_aImprovementsInRadius.end(); ++it)
+		{
+			iGreatPeopleUnitRate += GET_PLAYER(getOwnerINLINE()).getGreatSpyPointsFromImprovementInRadius((ImprovementTypes)*it);
+		}
+	}
+
+	// Civ4 Reimagined: France UP
+	const UnitClassTypes UNITCLASS_GREAT_ENGINEER = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_ENGINEER");
+	const UnitTypes UNIT_GREAT_ENGINEER = (UnitTypes)GC.getUnitClassInfo(UNITCLASS_GREAT_ENGINEER).getDefaultUnitIndex();
+
+	if (eIndex == UNIT_GREAT_ENGINEER)
+	{
+		iGreatPeopleUnitRate += getGreatEngineerPointsFromCathedrals();
+	}
+
+	return iGreatPeopleUnitRate;
 }
 
 
@@ -12499,7 +12867,7 @@ void CvCity::setGreatPeopleUnitRate(UnitTypes eIndex, int iNewValue)
 
 void CvCity::changeGreatPeopleUnitRate(UnitTypes eIndex, int iChange)									 
 {
-	setGreatPeopleUnitRate(eIndex, (getGreatPeopleUnitRate(eIndex) + iChange));
+	setGreatPeopleUnitRate(eIndex, (m_paiGreatPeopleUnitRate[eIndex] + iChange));
 }
 
 
@@ -12659,6 +13027,12 @@ int CvCity::getMaxSpecialistCount(SpecialistTypes eIndex) const
 	FAssertMsg(eIndex < GC.getNumSpecialistInfos(), "eIndex expected to be < GC.getNumSpecialistInfos()");
 	
 	int iMaxSpecialistCount = m_paiMaxSpecialistCount[eIndex];
+
+	// Civ4 Reimagined
+	if (GET_PLAYER(getOwnerINLINE()).isUnlimitedSpecialistsWithTemple(eIndex) && hasStateReligionTemple())
+	{
+		return MAX_INT;
+	}
 	
 	// Leoreth: unlimited specialist effects now only double available specialists
 	if (GET_PLAYER(getOwnerINLINE()).isSpecialistValid(eIndex))
@@ -12672,6 +13046,12 @@ int CvCity::getMaxSpecialistCount(SpecialistTypes eIndex) const
 
 bool CvCity::isSpecialistValid(SpecialistTypes eIndex, int iExtra) const
 {
+	// Civ4 Reimagined
+	if (GET_PLAYER(getOwnerINLINE()).isUnlimitedSpecialistsWithTemple(eIndex) && hasStateReligionTemple())
+	{
+		return true;
+	}
+
 	// Leoreth
 	return (((getSpecialistCount(eIndex) + iExtra) <= getMaxSpecialistCount(eIndex)) || (eIndex == GC.getDefineINT("DEFAULT_SPECIALIST")));
 }
@@ -12928,6 +13308,21 @@ void CvCity::changeEspionageDefenseModifier(int iChange)
 	if (0 != iChange)
 	{
 		m_iEspionageDefenseModifier += iChange;
+	}
+}
+
+// Civ4 Reimagined
+int CvCity::getVoteSourceStateReligionUnitProductionModifier() const
+{
+	return m_iVoteSourceStateReligionUnitProductionModifier;
+}
+
+// Civ4 Reimagined
+void CvCity::changeVoteSourceStateReligionUnitProductionModifier(int iChange)
+{
+	if (0 != iChange)
+	{
+		m_iVoteSourceStateReligionUnitProductionModifier += iChange;
 	}
 }
 
@@ -13609,6 +14004,7 @@ int CvCity::getReligionGrip(ReligionTypes eReligion) const
 
 void CvCity::processVoteSourceBonus(VoteSourceTypes eVoteSource, bool bActive)
 {
+
 	if (!GET_PLAYER(getOwnerINLINE()).isLoyalMember(eVoteSource))
 	{
 		return;
@@ -13668,6 +14064,9 @@ void CvCity::processVoteSourceBonus(VoteSourceTypes eVoteSource, bool bActive)
 					}
 				}
 			}
+
+			// Civ4 Reimagined
+			changeVoteSourceStateReligionUnitProductionModifier(GET_PLAYER(getOwnerINLINE()).getVoteSourceStateReligionUnitProductionModifier() * (bActive ? 1 : -1));
 		}
 	}
 }
@@ -14992,21 +15391,6 @@ void CvCity::doCulture()
 /*
 ** K-Mod END
 */
-
-	//Civ4 Reimagined: Substract free trait culture for unique powers
-	if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS) && !isDisorder())
-	{
-		int iFreeCityCommerce = 0;
-		for (int iI = 0; iI < GC.getNumTraitInfos(); iI++)
-		{
-			if (GET_PLAYER(getOwnerINLINE()).hasTrait((TraitTypes)iI))
-			{
-				iFreeCityCommerce += GC.getTraitInfo((TraitTypes)iI).getCommerceChange(COMMERCE_CULTURE);
-			}
-		}
-		
-		GET_PLAYER(getOwnerINLINE()).changeAccumulatedCulture(-iFreeCityCommerce * getTotalCommerceRateModifier(COMMERCE_CULTURE));
-	}
 	
 	changeCultureTimes100(getOwnerINLINE(), getCommerceRateTimes100(COMMERCE_CULTURE), false, true);
 }
@@ -15097,6 +15481,13 @@ void CvCity::doPlotCultureTimes100(bool bUpdate, PlayerTypes ePlayer, int iCultu
 							int iCultureToAdd =
 								iCultureRateTimes100*((iScale-1)*(iDistance-iCultureRange)*(iDistance-iCultureRange) + iCultureRange*iCultureRange)/(100*iCultureRange*iCultureRange);
 
+							// Civ4 Reimagined: Japan UP
+							if (pLoopPlot->getOwnerINLINE() != getOwnerINLINE() && GET_PLAYER(pLoopPlot->getOwnerINLINE()).getCultureResistanceModifier() != 0)
+							{
+								iCultureToAdd *= 100 - GET_PLAYER(pLoopPlot->getOwnerINLINE()).getCultureResistanceModifier();
+								iCultureToAdd /= 100;
+							}
+
 							pLoopPlot->changeCulture(ePlayer, iCultureToAdd, (bUpdate || !(pLoopPlot->isOwned())));
 						}
 					}
@@ -15124,7 +15515,7 @@ bool CvCity::doCheckProduction()
 	{
 		if (getUnitProduction((UnitTypes)iI) > 0)
 		{
-			if (GET_PLAYER(getOwnerINLINE()).isProductionMaxedUnitClass((UnitClassTypes)(GC.getUnitInfo((UnitTypes)iI).getUnitClassType())))
+			if (GET_PLAYER(getOwnerINLINE()).isProductionMaxedUnitClass((UnitClassTypes)(GC.getUnitInfo((UnitTypes)iI).getUnitClassType())) && !GC.getUnitInfo((UnitTypes)iI).isIgnoreMaxInstances())
 			{
 				iProductionGold = ((getUnitProduction((UnitTypes)iI) * GC.getDefineINT("MAXED_UNIT_GOLD_PERCENT")) / 100);
 
@@ -15636,7 +16027,11 @@ void CvCity::doGreatPeople()
 
 		int iGreatPeopleUnitRand = GC.getGameINLINE().getSorenRandNum(iTotalGreatPeopleUnitProgress, "Great Person");
 
-		UnitTypes eGreatPeopleUnit = NO_UNIT;
+		// Civ4 Reimagined: default great person
+		const UnitClassTypes UNITCLASS_GREAT_SCIENTIST = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SCIENTIST");
+		const UnitTypes UNIT_GREAT_SCIENTIST = (UnitTypes)GC.getUnitClassInfo(UNITCLASS_GREAT_SCIENTIST).getDefaultUnitIndex();
+
+		UnitTypes eGreatPeopleUnit = UNIT_GREAT_SCIENTIST;
 		for (int iI = 0; iI < GC.getNumUnitInfos(); iI++)
 		{
 			if (iGreatPeopleUnitRand < getGreatPeopleUnitProgress((UnitTypes)iI))
@@ -15662,6 +16057,42 @@ void CvCity::doGreatPeople()
 			createGreatPeople(eGreatPeopleUnit, true, false);
 		}
 	}
+}
+
+// Civ4 Reimagined
+void CvCity::doImmigration()
+{
+	if (!GET_PLAYER(getOwnerINLINE()).getImmigrants())
+	{
+		return;
+	}
+
+	if (angryPopulation() <= 0 && healthRate() <= 0)
+	{
+		int iChance = GC.getDefineINT("UNIQUE_POWER_AMERICA_IMMIGRATION_BASE") - GC.getDefineINT("UNIQUE_POWER_AMERICA_IMMIGRATION_REDUCTION") * getImmigrants();
+		
+		iChance = (iChance * 100) / GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getGrowthPercent();
+
+		if(GC.getGameINLINE().getSorenRandNum(100, "Immigrant chance") < iChance)
+		{
+			m_iImmigrants++;
+			changePopulation(1);
+			changeExtraHappiness(1); // Verf?lt, wenn Stadt erobert
+			changeBaseYieldRate(YIELD_PRODUCTION, 1); // Verf?lt, wenn Stadt erobert
+			
+			// ONEVENT - City growth
+			CvEventReporter::getInstance().cityGrowth(this, getOwnerINLINE());
+			CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_IMMIGRANTS", getNameKey());
+			gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_WELOVEKING", MESSAGE_TYPE_MINOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_HAPPY_PERSON")->getPath(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), getX_INLINE(), getY_INLINE(), true, true);
+		}	
+	}
+}
+
+
+// Civ4 Reimagined
+int CvCity::getImmigrants()
+{
+	return m_iImmigrants;
 }
 
 
@@ -15814,8 +16245,11 @@ void CvCity::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iCitySizeBoost);
 	pStream->Read(&m_iSpecialistFreeExperience);
 	pStream->Read(&m_iGoldForHappinessBonus); // Civ4 Reimagined
+	pStream->Read(&m_iGreatPeopleRatePerWorldWonder); // Civ4 Reimagined
 	pStream->Read(&m_iEspionageDefenseModifier);
 	pStream->Read(&m_iDistance); // Civ4 Reimagined
+	pStream->Read(&m_iImmigrants); // Civ4 Reimagined
+	pStream->Read(&m_iVoteSourceStateReligionUnitProductionModifier); // Civ4 Reimagined
 
 	pStream->Read(&m_bNeverLost);
 	pStream->Read(&m_bBombarded);
@@ -15829,6 +16263,7 @@ void CvCity::read(FDataStreamBase* pStream)
 	// m_bLayoutDirty not saved...
 	pStream->Read(&m_bPlundered);
 	pStream->Read(&m_bColony); // Civ4 Reimagined
+	pStream->Read(&m_bStateReligionTemple); // Civ4 Reimagined
 
 	pStream->Read((int*)&m_eOwner);
 	pStream->Read((int*)&m_ePreviousOwner);
@@ -15842,6 +16277,7 @@ void CvCity::read(FDataStreamBase* pStream)
 	pStream->Read(NUM_YIELD_TYPES, m_aiPowerYieldRateModifier);
 	pStream->Read(NUM_YIELD_TYPES, m_aiBonusYieldRateModifier);
 	pStream->Read(NUM_YIELD_TYPES, m_aiTechYieldRateModifier); // Civ4 Reimagined
+	pStream->Read(NUM_YIELD_TYPES, m_aiFarmAdjacencyBonus); // Civ4 Reimagined
 	pStream->Read(NUM_YIELD_TYPES, m_aiTradeYield);
 	pStream->Read(NUM_YIELD_TYPES, m_aiCorporationYield);
 	pStream->Read(NUM_YIELD_TYPES, m_aiExtraSpecialistYield);
@@ -15854,6 +16290,7 @@ void CvCity::read(FDataStreamBase* pStream)
 	pStream->Read(NUM_COMMERCE_TYPES, m_aiCommerceRateModifier);
 	pStream->Read(NUM_COMMERCE_TYPES, m_aiCommerceHappinessPer);
 	pStream->Read(NUM_COMMERCE_TYPES, m_aiTechCommerceRateModifier); // Civ4 Reimagined
+	pStream->Read(NUM_COMMERCE_TYPES, m_aiFeatureCommerce); // Civ4 Reimagined
 	pStream->Read(NUM_DOMAIN_TYPES, m_aiDomainFreeExperience);
 	pStream->Read(NUM_DOMAIN_TYPES, m_aiDomainProductionModifier);
 	pStream->Read(MAX_PLAYERS, m_aiCulture);
@@ -15926,6 +16363,16 @@ void CvCity::read(FDataStreamBase* pStream)
 		EventTypes eEvent;
 		pStream->Read((int*)&eEvent);
 		m_aEventsOccured.push_back(eEvent);
+	}
+
+	// Civ4 Reimagined
+	pStream->Read(&iNumElts);
+	m_aImprovementsInRadius.clear();
+	for (int i = 0; i < iNumElts; ++i)
+	{
+		ImprovementTypes eImprovement;
+		pStream->Read((int*)&eImprovement);
+		m_aImprovementsInRadius.insert(eImprovement);
 	}
 
 	pStream->Read(&iNumElts);
@@ -16067,8 +16514,11 @@ void CvCity::write(FDataStreamBase* pStream)
 	pStream->Write(m_iCitySizeBoost);
 	pStream->Write(m_iSpecialistFreeExperience);
 	pStream->Write(m_iGoldForHappinessBonus); // Civ4 Reimagined
+	pStream->Write(m_iGreatPeopleRatePerWorldWonder); // Civ4 Reimagined
 	pStream->Write(m_iEspionageDefenseModifier);
 	pStream->Write(m_iDistance); // Civ4 Reimagined
+	pStream->Write(m_iImmigrants); // Civ4 Reimagined
+	pStream->Write(m_iVoteSourceStateReligionUnitProductionModifier); // Civ4 Reimagined
 
 	pStream->Write(m_bNeverLost);
 	pStream->Write(m_bBombarded);
@@ -16082,6 +16532,7 @@ void CvCity::write(FDataStreamBase* pStream)
 	// m_bLayoutDirty not saved...
 	pStream->Write(m_bPlundered);
 	pStream->Write(m_bColony); // Civ4 Reimagined
+	pStream->Write(m_bStateReligionTemple); // Civ4 Reimagined
 
 	pStream->Write(m_eOwner);
 	pStream->Write(m_ePreviousOwner);
@@ -16095,6 +16546,7 @@ void CvCity::write(FDataStreamBase* pStream)
 	pStream->Write(NUM_YIELD_TYPES, m_aiPowerYieldRateModifier);
 	pStream->Write(NUM_YIELD_TYPES, m_aiBonusYieldRateModifier);
 	pStream->Write(NUM_YIELD_TYPES, m_aiTechYieldRateModifier); // Civ4 Reimagined
+	pStream->Write(NUM_YIELD_TYPES, m_aiFarmAdjacencyBonus); // Civ4 Reimagined
 	pStream->Write(NUM_YIELD_TYPES, m_aiTradeYield);
 	pStream->Write(NUM_YIELD_TYPES, m_aiCorporationYield);
 	pStream->Write(NUM_YIELD_TYPES, m_aiExtraSpecialistYield);
@@ -16107,6 +16559,7 @@ void CvCity::write(FDataStreamBase* pStream)
 	pStream->Write(NUM_COMMERCE_TYPES, m_aiCommerceRateModifier);
 	pStream->Write(NUM_COMMERCE_TYPES, m_aiCommerceHappinessPer);
 	pStream->Write(NUM_COMMERCE_TYPES, m_aiTechCommerceRateModifier); // Civ4 Reimagined
+	pStream->Write(NUM_COMMERCE_TYPES, m_aiFeatureCommerce); // Civ4 Reimagined
 	pStream->Write(NUM_DOMAIN_TYPES, m_aiDomainFreeExperience);
 	pStream->Write(NUM_DOMAIN_TYPES, m_aiDomainProductionModifier);
 	pStream->Write(MAX_PLAYERS, m_aiCulture);
@@ -16174,6 +16627,13 @@ void CvCity::write(FDataStreamBase* pStream)
 
 	pStream->Write(m_aEventsOccured.size());
 	for (std::vector<EventTypes>::iterator it = m_aEventsOccured.begin(); it != m_aEventsOccured.end(); ++it)
+	{
+		pStream->Write(*it);
+	}
+
+	// Civ4 Reimagined
+	pStream->Write(m_aImprovementsInRadius.size());
+	for (std::set<ImprovementTypes>::iterator it = m_aImprovementsInRadius.begin(); it != m_aImprovementsInRadius.end(); ++it)
 	{
 		pStream->Write(*it);
 	}
@@ -17037,6 +17497,39 @@ void CvCity::setEventOccured(EventTypes eEvent, bool bOccured)
 	}
 }
 
+bool CvCity::hasImprovementInRadius(ImprovementTypes eImprovement) const
+{
+	return m_aImprovementsInRadius.count(eImprovement) > 0;
+}
+
+// Civ4 Reimagined
+void CvCity::updateImprovementsInRadius()
+{
+	std::set<ImprovementTypes> aImprovementsInFatcross;
+
+	for (int iI = 0; iI < NUM_CITY_PLOTS; iI++)
+	{
+		CvPlot* pLoopPlot = getCityIndexPlot(iI);
+
+		if (pLoopPlot != NULL && pLoopPlot->getOwnerINLINE() == getOwnerINLINE())
+		{
+			ImprovementTypes eImprovement = pLoopPlot->getImprovementType();
+
+			if (NO_IMPROVEMENT != eImprovement)
+			{
+				aImprovementsInFatcross.insert(eImprovement);
+			}
+		}
+	}
+
+	m_aImprovementsInRadius = aImprovementsInFatcross;
+}
+
+std::set<ImprovementTypes> CvCity::getImprovementsInRadius() const
+{
+	return m_aImprovementsInRadius;
+}
+
 // CACHE: cache frequently used values
 ///////////////////////////////////////
 bool CvCity::hasShrine(ReligionTypes eReligion) const
@@ -17370,67 +17863,7 @@ int CvCity::getBuildingHappyChange(BuildingClassTypes eBuildingClass) const
 	return 0;
 }
 
-/************************************************************************************************/
-/* UNOFFICIAL_PATCH                       10/22/09                                jdog5000      */
-/*                                                                                              */
-/* Bugfix                                                                                       */
-/************************************************************************************************/
-/* orginal bts code
-void CvCity::setBuildingHealthChange(BuildingClassTypes eBuildingClass, int iChange)
-{
-	for (BuildingChangeArray::iterator it = m_aBuildingHealthChange.begin(); it != m_aBuildingHealthChange.end(); ++it)
-	{
-		if ((*it).first == eBuildingClass)
-		{
-			if ((*it).second != iChange)
-			{
-				if ((*it).second > 0)
-				{
-					changeBuildingGoodHealth(-(*it).second);
-				}
-				else if ((*it).second < 0)
-				{
-					changeBuildingBadHealth((*it).second);
-				}
 
-				if (iChange == 0)
-				{
-					m_aBuildingHealthChange.erase(it);
-				}
-				else
-				{
-					(*it).second = iChange;
-				}
-
-				if (iChange > 0)
-				{
-					changeBuildingGoodHealth(iChange);
-				}
-				else if (iChange < 0)
-				{
-					changeBuildingBadHealth(-iChange);
-				}
-			}
-
-			return;
-		}
-	}
-
-	if (0 != iChange)
-	{
-		m_aBuildingHealthChange.push_back(std::make_pair(eBuildingClass, iChange));
-
-		if (iChange > 0)
-		{
-			changeBuildingGoodHappiness(iChange);
-		}
-		else if (iChange < 0)
-		{
-			changeBuildingGoodHappiness(-iChange);
-		}
-	}
-}
-*/
 void CvCity::setBuildingHealthChange(BuildingClassTypes eBuildingClass, int iChange)
 {
 	for (BuildingChangeArray::iterator it = m_aBuildingHealthChange.begin(); it != m_aBuildingHealthChange.end(); ++it)
@@ -17866,12 +18299,6 @@ void CvCity::getBuildQueue(std::vector<std::string>& astrQueue) const
 }
 
 // Civ4 Reimagined
-int CvCity::restrictedGrowth(int numCities, int cap) const
-{
-	return (int)(cap - cap * exp(-0.02 * (double)numCities));
-}
-
-// Civ4 Reimagined
 void CvCity::updateResources()
 {
 	int iI;
@@ -17892,12 +18319,12 @@ void CvCity::updateResources()
 		iBonusCount = getNumBonuses((BonusTypes)iI);
 		if (iBonusCount > 0)
 		{
-			iValue = GC.getBonusInfo((BonusTypes)iI).getHealth() * GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iBonusCount);
+			iValue = GC.getBonusInfo((BonusTypes)iI).getHealth() * getBonusValueTimes100(iBonusCount);
 
 			dGoodHealth += std::max(0.0, (double)(iValue) / 100.0);
 			dBadHealth += std::min(0.0, (double)(iValue) / 100.0);
 			
-			iValue = GC.getBonusInfo((BonusTypes)iI).getHappiness() * GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iBonusCount);
+			iValue = GC.getBonusInfo((BonusTypes)iI).getHappiness() * getBonusValueTimes100(iBonusCount);
 
 			dGoodHappiness += std::max(0.0, (double)(iValue) / 100.0);
 			dBadHappiness += std::min(0.0, (double)(iValue) / 100.0);
@@ -17907,7 +18334,11 @@ void CvCity::updateResources()
 				int iNumBuildings = getNumActiveBuilding((BuildingTypes)iJ);
 				if (iNumBuildings > 0)
 				{
-					iValue = GC.getBuildingInfo((BuildingTypes) iJ).getBonusHealthChanges((BonusTypes)iI) * iNumBuildings;
+					// Civ4 Reimagined: Japan UP
+					int iBuildingHealth = GC.getBuildingInfo((BuildingTypes) iJ).getBonusHealthChanges((BonusTypes)iI);
+					iBuildingHealth += GET_PLAYER(getOwnerINLINE()).getBonusHealthFromBuilding((BuildingTypes) iJ, (BonusTypes)iI);
+
+					iValue = iBuildingHealth * iNumBuildings;
 
 					if (iValue >= 0)
 					{
@@ -18072,7 +18503,7 @@ int CvCity::getUnitProductionMultiplier(UnitTypes eUnit) const
 		{
 			if (hasBonus(ePrereqBonus))
 			{
-				iAndBonusMultiplier = std::min(iAndBonusMultiplier, GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(getNumBonuses(ePrereqBonus)));
+				iAndBonusMultiplier = std::min(iAndBonusMultiplier, getBonusValueTimes100(getNumBonuses(ePrereqBonus)));
 			}
 			else
 			{
@@ -18091,7 +18522,7 @@ int CvCity::getUnitProductionMultiplier(UnitTypes eUnit) const
 				if (hasBonus(ePrereqOrBonus))
 				{
 					bNeedsBonus = false;
-					iOrBonusMultiplier = std::max(iOrBonusMultiplier, GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(getNumBonuses(ePrereqOrBonus)));
+					iOrBonusMultiplier = std::max(iOrBonusMultiplier, getBonusValueTimes100(getNumBonuses(ePrereqOrBonus)));
 				}
 			}
 		}
@@ -18144,7 +18575,7 @@ int CvCity::getBuildingProductionMultiplier(BuildingTypes eBuilding) const
 		{
 			if (hasBonus(ePrereqBonus))
 			{
-				iAndBonusMultiplier = std::min(iAndBonusMultiplier, GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(getNumBonuses(ePrereqBonus)));
+				iAndBonusMultiplier = std::min(iAndBonusMultiplier, getBonusValueTimes100(getNumBonuses(ePrereqBonus)));
 			}
 			else
 			{	
@@ -18163,7 +18594,7 @@ int CvCity::getBuildingProductionMultiplier(BuildingTypes eBuilding) const
 				if (hasBonus(ePrereqOrBonus))
 				{
 					bNeedsBonus = false;
-					iOrBonusMultiplier = std::max(iOrBonusMultiplier, GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(getNumBonuses(ePrereqOrBonus)));
+					iOrBonusMultiplier = std::max(iOrBonusMultiplier, getBonusValueTimes100(getNumBonuses(ePrereqOrBonus)));
 				}
 			}
 		}
@@ -18187,10 +18618,11 @@ void CvCity::destroyReligiousBuildings(ReligionTypes eReligion, ReligionTypes eN
 {
 	for (int iI = 0; iI < GC.getNumBuildingInfos(); iI++)
 	{
+		const CvBuildingInfo& kBuilding = GC.getBuildingInfo((BuildingTypes)iI);
 		if (getNumRealBuilding((BuildingTypes)iI) > 0)
 		{
-			// don't destroy cathedrals
-			if (GC.getBuildingInfo((BuildingTypes)iI).getReligionType() == eReligion && GC.getBuildingInfo((BuildingTypes)iI).getStateReligion() == NO_RELIGION)
+			// don't destroy cathedrals, shrines
+			if (kBuilding.getReligionType() == eReligion && kBuilding.getStateReligion() == NO_RELIGION && !isWorldWonderClass((BuildingClassTypes)kBuilding.getBuildingClassType()))
 			{
 				setNumRealBuilding(((BuildingTypes)iI), 0);
 				CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_RELIGIOUS_BUILDING_DESTROYED", GC.getReligionInfo(eNewReligion).getChar(), getNameKey(), GC.getBuildingInfo((BuildingTypes)iI).getTextKeyWide());
@@ -18204,7 +18636,6 @@ void CvCity::destroyReligiousBuildings(ReligionTypes eReligion, ReligionTypes eN
 bool CvCity::convertClassicalTemples(ReligionTypes eReligion)
 {
 	BuildingTypes eClassicalTemple = NO_BUILDING;
-	SpecialBuildingTypes eGenericTemple = NO_SPECIALBUILDING;
 
 	for (int iI = 0; iI < GC.getNumBuildingInfos(); iI++)
 	{
@@ -18214,19 +18645,18 @@ bool CvCity::convertClassicalTemples(ReligionTypes eReligion)
 			getNumRealBuilding((BuildingTypes)iI) > 0)
 		{
 			eClassicalTemple = (BuildingTypes)iI;
-			eGenericTemple = (SpecialBuildingTypes)kBuilding.getSpecialBuildingType();
 			break;
 		}
 	}
 
-	if (eClassicalTemple == NO_BUILDING || eGenericTemple == NO_SPECIALBUILDING)
+	if (eClassicalTemple == NO_BUILDING)
 		return false;;
 
 	for (int iI = 0; iI < GC.getNumBuildingInfos(); iI++)
 	{
 		const CvBuildingInfo& kBuilding = GC.getBuildingInfo((BuildingTypes)iI);
 
-		if (kBuilding.getSpecialBuildingType() == eGenericTemple && kBuilding.getReligionType() == eReligion)
+		if (kBuilding.getSpecialBuildingType() == (SpecialBuildingTypes)GC.getInfoTypeForString("SPECIALBUILDING_TEMPLE") && kBuilding.getReligionType() == eReligion)
 		{
 			if (getNumRealBuilding(BuildingTypes(iI)) > 0)
 				break;
@@ -18238,6 +18668,19 @@ bool CvCity::convertClassicalTemples(ReligionTypes eReligion)
 	}
 
 	return false;
+}
+
+
+// Civ4 Reimagined
+int CvCity::getStateReligionCommercePerPopulationOverThreshold(CommerceTypes eIndex) const
+{
+	if (GET_PLAYER(getOwnerINLINE()).getStateReligion() != NO_RELIGION && isHasReligion(GET_PLAYER(getOwnerINLINE()).getStateReligion()))
+	{
+		const int iStateReligionCommerce = GET_PLAYER(getOwnerINLINE()).getStateReligionCommercePerPopulationOverThreshold(eIndex);
+		return iStateReligionCommerce * std::max(0, getPopulation() - GC.getDefineINT("UNIQUE_POWER_KHMER_THRESHOLD"));
+	}
+
+	return 0;
 }
 
 
@@ -18261,3 +18704,53 @@ void CvCity::checkCultureLevelEurekas()
 	}
 }
 
+
+// Civ4 Reimagined
+int CvCity::getBonusValueTimes100(int iBonusCount) const
+{
+	if (iBonusCount <= 0)
+	{
+		return 0;
+	}
+
+	if (isCapital() && GET_PLAYER(getOwnerINLINE()).isCapitalAlwaysPerfectBonusValue())
+	{
+		return 100;
+	}
+
+	return GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(iBonusCount);
+}
+
+
+// Civ4 Reimagined: France UP
+int CvCity::getGreatEngineerPointsFromCathedrals() const
+{
+	if (GET_PLAYER(getOwnerINLINE()).getGreatEngineerPointsFromCathedrals() == 0)
+	{
+		return 0;
+	}
+
+	const BuildingTypes aiCathedrals[] = {
+		(BuildingTypes)GC.getInfoTypeForString("BUILDING_JEWISH_CATHEDRAL"),
+		(BuildingTypes)GC.getInfoTypeForString("BUILDING_CHRISTIAN_CATHEDRAL"),
+		(BuildingTypes)GC.getInfoTypeForString("BUILDING_ISLAMIC_CATHEDRAL"),
+		(BuildingTypes)GC.getInfoTypeForString("BUILDING_HINDU_CATHEDRAL"),
+		(BuildingTypes)GC.getInfoTypeForString("BUILDING_BUDDHIST_CATHEDRAL"),
+		(BuildingTypes)GC.getInfoTypeForString("BUILDING_CONFUCIAN_CATHEDRAL"),
+		(BuildingTypes)GC.getInfoTypeForString("BUILDING_TAOIST_CATHEDRAL")
+	};
+
+	for (int iI = 0; iI < 7; iI++)
+	{
+		if (getNumBuilding(aiCathedrals[iI]) > 0)
+		{
+			const ReligionTypes eReligion = (ReligionTypes)GC.getBuildingInfo(aiCathedrals[iI]).getReligionType();
+			if (isHasReligion(eReligion) && GET_PLAYER(getOwnerINLINE()).getStateReligion() == eReligion)
+			{
+				return GET_PLAYER(getOwnerINLINE()).getGreatEngineerPointsFromCathedrals();
+			}
+		}
+	}
+
+	return 0;
+}

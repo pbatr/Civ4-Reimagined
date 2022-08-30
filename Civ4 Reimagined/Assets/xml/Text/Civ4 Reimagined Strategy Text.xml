@@ -162,7 +162,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_HOLKAN_STRATEGY</Tag>
-		<English>Compared to the [COLOR_UNIT_TEXT]Spearman[COLOR_REVERT], this unit doesn't need copper or iron and targets mounted units first in combat outside of cities.</English>
+		<English>Compared to the [COLOR_UNIT_TEXT]Spearman[COLOR_REVERT], this unit doesn't need copper or iron, is available with Masonry and targets mounted units first in combat outside of cities.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_MALI_SKIRMISHER_STRATEGY</Tag>
@@ -190,15 +190,15 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_AZTEC_JAGUAR_STRATEGY</Tag>
-		<English>Compared to the [COLOR_UNIT_TEXT]Swordsman[COLOR_REVERT], this unit doesn't require Iron and gains has 25% forest/jungle combat bonus.</English>
+		<English>Compared to the [COLOR_UNIT_TEXT]Swordsman[COLOR_REVERT], this unit doesn't require Iron. It can gain the [LINK=PROMOTION_JAGUAR_WARRIOR]Jaguar[\LINK] and [LINK=literal]Eagle[\LINK] promotions.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_CELTIC_GALLIC_WARRIOR_STRATEGY</Tag>
-		<English>Compared to the [COLOR_UNIT_TEXT]Swordsman[COLOR_REVERT], this unit can be build with either Copper or Iron and has a 25% hill combat bonus. Is is slightly cheaper than the Swordsman.</English>
+		<English>Compared to the [COLOR_UNIT_TEXT]Swordsman[COLOR_REVERT], this unit has a 25% hill combat bonus and a combat bonus against injured units. Is is slightly cheaper than the Swordsman.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_ROME_PRAETORIAN_STRATEGY</Tag>
-		<English>Compared to the [COLOR_UNIT_TEXT]Swordsman[COLOR_REVERT], this unit can build roads, is immune to collateral damage and receives no penalty for defending a city.</English>
+		<English>Compared to the [COLOR_UNIT_TEXT]Swordsman[COLOR_REVERT], this unit can build roads, is immune to collateral damage and gains 2 potential first strikes.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_KHMER_BALLISTA_ELEPHANT_STRATEGY</Tag>
@@ -399,7 +399,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_KHMER_BARAY_STRATEGY</Tag>
-		<English>The [COLOR_BUILDING_TEXT]Baray[COLOR_REVERT] gives the city food.</English>
+		<English>The [COLOR_BUILDING_TEXT]Baray[COLOR_REVERT] grants additional health for the city. It also gives the city additional food from farms that are adjacent to other farms.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_OTTOMAN_HAMMAM_STRATEGY</Tag>
@@ -407,7 +407,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_GREEK_ODEON_STRATEGY</Tag>
-		<English>The [COLOR_BUILDING_TEXT]Odeon[COLOR_REVERT] grants more happiness, increased great person rate and culture.</English>
+		<English>The [COLOR_BUILDING_TEXT]Odeon[COLOR_REVERT] grants more happiness. It also increases great person rate and culture per exiting world wonder in the city.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_CARTHAGE_COTHON_STRATEGY</Tag>
@@ -419,7 +419,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_BYZANTINE_HIPPODROME_STRATEGY</Tag>
-		<English>The [COLOR_BUILDING_TEXT]Hippodrome[COLOR_REVERT] gives more happiness, especially when the culture slider is used. It also boost gold income. Happiness is provided with Horse instead of Dye, and no artist slots are added.</English>
+		<English>The [COLOR_BUILDING_TEXT]Hippodrome[COLOR_REVERT] boosts gold income and grants additional experience to mounted units.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_CHINESE_PAVILLION_STRATEGY</Tag>
@@ -438,8 +438,8 @@
 		<English>The [COLOR_BUILDING_TEXT]Sacrificial Altar[COLOR_REVERT] reduces anger duration by 50% and costs less.</English>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_BUILDING_BIT_DINU_STRATEGY</Tag>
-		<English>The [COLOR_BUILDING_TEXT]Bit Dinu[COLOR_REVERT] increases happiness.</English>
+		<Tag>TXT_KEY_BUILDING_PALGUM_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Palgum[COLOR_REVERT] gives additional food.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_SPANISH_CITADEL_STRATEGY</Tag>
@@ -747,6 +747,10 @@
 		<English>Slaves are less efficient than workers, but they do not affect your worker limit. Use Slaves to modernize a large and distributed empire.[PARAGRAPH:1]There are two ways to gain slaves with slavery. First to conquer enemy cities. Second to settle on large oversea continents after discovering Astronomy. But beware, if you abolish slavery all slaves will be lost.</English>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_UNIT_AZTEC_CAPTIVE_STRATEGY</Tag>
+		<English>Aztec slaves have no worker abilities but can be sacrificed in cities with a Sacrificial Altar to gain additional culture, gold and happiness.[PARAGRAPH:1]There are three ways to gain slaves as Aztec. First to conquer enemy cities. Second to settle on large oversea continents after discovering Astronomy. Third defeating a unit and advancing to its plot. But beware, if you abolish slavery all slaves will be lost.</English>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_BUILDING_NATIVE_AMERICA_TANNERY_STRATEGY</Tag>
 		<English>The [COLOR_BUILDING_TEXT]Brain Tannery[COLOR_REVERT] grants two artist slots. It produces no unhealthiness and costs less.</English>
 	</TEXT>
@@ -789,5 +793,17 @@
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_AMERICAN_SUPERCARRIER_STRATEGY</Tag>
 		<English>Compared to the [COLOR_UNIT_TEXT]Carrier[COLOR_REVERT], this unit is faster, costs less, heals its cargo units, gives additional range to the stationed Fighters and provides a free Fighter when it is constructed.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_ZULU_IKHANDA_STRATEGY</Tag>
+		<English>[COLOR_BUILDING_TEXT]Ikhandas[COLOR_REVERT], the Zulu replacements for [COLOR_BUILDING_TEXT]Baracks[COLOR_REVERT], grant experience points to troops built in their cities, and progress towards a Great General.</English>
+	</TEXT>
+	<TEXT>	
+		<Tag>TXT_KEY_UNIT_INDIAN_VARU_STRATEGY</Tag>
+		<English>Compared to the [COLOR_UNIT_TEXT]War Elephant[COLOR_REVERT], this unit costs less and it has no national limit.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_TOTEM_POLE_STRATEGY</Tag>
+		<English>The [COLOR_BUILDING_TEXT]Totem Pole[COLOR_REVERT] is a unique building of Native Americans and can only be built when they have access to their unique power. It grants an additional artist slot and give happiness and culture. The culture does not increase over time.</English>
 	</TEXT>
 </Civ4GameText>

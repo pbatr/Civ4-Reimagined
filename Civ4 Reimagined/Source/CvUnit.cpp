@@ -382,6 +382,7 @@ void CvUnit::reset(int iID, UnitTypes eUnit, PlayerTypes eOwner, bool bConstruct
 	m_iExtraFriendlyHeal = 0;
 	m_iSameTileHeal = 0;
 	m_iExtraCombatPercent = 0;
+	m_iExtraCombatPercentAgainstWoodenShips = 0; // Civ4 Reimagined
 	m_iExtraCityAttackPercent = 0;
 	m_iExtraCityDefensePercent = 0;
 	m_iExtraHillsAttackPercent = 0;
@@ -404,6 +405,7 @@ void CvUnit::reset(int iID, UnitTypes eUnit, PlayerTypes eOwner, bool bConstruct
 	m_bInfoBarDirty = false;
 	m_bBlockading = false;
 	m_bAirCombat = false;
+	m_bFreeWorker = false; // Civ4 Reimagined
 
 	m_eOwner = eOwner;
 	m_eCapturingPlayer = NO_PLAYER;
@@ -701,47 +703,38 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer)
 
 	GET_PLAYER(getOwnerINLINE()).deleteUnit(getID());
 
+	// Civ4 Reimagined
+	if (eCapturingPlayer != NO_PLAYER && GET_PLAYER(eCapturingPlayer).isCaptureSlaves() && GET_PLAYER(eCapturingPlayer).hasSlavery() && !isAnimal() && getDomainType() == DOMAIN_LAND)
+	{
+		eCaptureUnitType = (UnitTypes)GC.getCivilizationInfo(GET_PLAYER(eCapturingPlayer).getCivilizationType()).getCivilizationUnits((UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SLAVE"));
+	}
+
 	if ((eCapturingPlayer != NO_PLAYER) && (eCaptureUnitType != NO_UNIT) && !(GET_PLAYER(eCapturingPlayer).isBarbarian()))
 	{
 		if (!isSlave() || GET_PLAYER(eCapturingPlayer).hasSlavery())
 		{
-			if (GET_PLAYER(eCapturingPlayer).isHuman() || GET_PLAYER(eCapturingPlayer).AI_captureUnit(eCaptureUnitType, pPlot) || 0 == GC.getDefineINT("AI_CAN_DISBAND_UNITS"))
+			CvUnit* pkCapturedUnit = GET_PLAYER(eCapturingPlayer).initUnit(eCaptureUnitType, pPlot->getX_INLINE(), pPlot->getY_INLINE());
+
+			if (pkCapturedUnit != NULL)
 			{
-				CvUnit* pkCapturedUnit = GET_PLAYER(eCapturingPlayer).initUnit(eCaptureUnitType, pPlot->getX_INLINE(), pPlot->getY_INLINE());
+				CvWString szBuffer;
+				szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_CAPTURED_UNIT", GC.getUnitInfo(eCaptureUnitType).getTextKeyWide());
+				gDLL->getInterfaceIFace()->addHumanMessage(eCapturingPlayer, true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNITCAPTURE", MESSAGE_TYPE_INFO, pkCapturedUnit->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
+				logBBAI("Aztec Slave has been captured at (%d, %d)", pPlot->getX_INLINE(), pPlot->getY_INLINE());
 
-				if (pkCapturedUnit != NULL)
+				// Add a captured mission
+				if (pPlot->isActiveVisible(false)) // K-Mod
 				{
-					CvWString szBuffer;
-					szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_CAPTURED_UNIT", GC.getUnitInfo(eCaptureUnitType).getTextKeyWide());
-					gDLL->getInterfaceIFace()->addHumanMessage(eCapturingPlayer, true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNITCAPTURE", MESSAGE_TYPE_INFO, pkCapturedUnit->getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
-
-					// Add a captured mission
-					if (pPlot->isActiveVisible(false)) // K-Mod
-					{
-						CvMissionDefinition kMission;
-						kMission.setMissionTime(GC.getMissionInfo(MISSION_CAPTURED).getTime() * gDLL->getSecsPerTurn());
-						kMission.setUnit(BATTLE_UNIT_ATTACKER, pkCapturedUnit);
-						kMission.setUnit(BATTLE_UNIT_DEFENDER, NULL);
-						kMission.setPlot(pPlot);
-						kMission.setMissionType(MISSION_CAPTURED);
-						gDLL->getEntityIFace()->AddMission(&kMission);
-					}
-
-					pkCapturedUnit->finishMoves();
-
-					if (!GET_PLAYER(eCapturingPlayer).isHuman())
-					{
-						CvPlot* pPlot = pkCapturedUnit->plot();
-						if (pPlot && !pPlot->isCity(false))
-						{
-							if (GET_PLAYER(eCapturingPlayer).AI_getPlotDanger(pPlot) && GC.getDefineINT("AI_CAN_DISBAND_UNITS"))
-							{
-								//pkCapturedUnit->kill(false);
-								pkCapturedUnit->scrap(); // K-Mod. roughly the same thing, but this is more appropriate.
-							}
-						}
-					}
+					CvMissionDefinition kMission;
+					kMission.setMissionTime(GC.getMissionInfo(MISSION_CAPTURED).getTime() * gDLL->getSecsPerTurn());
+					kMission.setUnit(BATTLE_UNIT_ATTACKER, pkCapturedUnit);
+					kMission.setUnit(BATTLE_UNIT_DEFENDER, NULL);
+					kMission.setPlot(pPlot);
+					kMission.setMissionType(MISSION_CAPTURED);
+					gDLL->getEntityIFace()->AddMission(&kMission);
 				}
+
+				pkCapturedUnit->finishMoves();
 			}
 		}
 	}
@@ -1367,7 +1360,6 @@ void CvUnit::resolveCombat(CvUnit* pDefender, CvPlot* pPlot, bool bVisible)
 				iExperience = ((iExperience * iDefenderStrength) / iAttackerStrength);
 				iExperience = range(iExperience, GC.getDefineINT("MIN_EXPERIENCE_PER_COMBAT"), GC.getDefineINT("MAX_EXPERIENCE_PER_COMBAT"));
 				changeExperience(iExperience, pDefender->maxXPValue(getOwnerINLINE()), true, pPlot->getOwnerINLINE() == getOwnerINLINE(), !pDefender->isBarbarian() || GET_PLAYER(getOwnerINLINE()).isBarbarianGreatGeneral()); // Civ4 Reimagined: Added great general experience from barbarians
-				GET_PLAYER(getOwnerINLINE()).doUniqueAztecPromotion(this); // Civ4 Reimagined: Unique power
 			}
 
 			break;
@@ -1664,6 +1656,12 @@ void CvUnit::updateCombat(bool bQuick)
 				}
 			}
 
+			// Civ4 Reimagined
+			if (GET_PLAYER(pDefender->getOwnerINLINE()).isPirateGold() && pDefender->getUnitInfo().isHiddenNationality())
+			{
+				pDefender->doPirateGold(getUnitType(), pPlot);
+			}
+
 			if (!m_pUnitInfo->isHiddenNationality() && !pDefender->getUnitInfo().isHiddenNationality())
 			{
 				GET_TEAM(getTeam()).changeWarWeariness(pDefender->getTeam(), *pPlot, GC.getDefineINT("WW_UNIT_KILLED_ATTACKING"));
@@ -1723,11 +1721,27 @@ void CvUnit::updateCombat(bool bQuick)
 				}
 			}
 
+			// Civ4 Reimagined
+			if (GET_PLAYER(getOwnerINLINE()).isPirateGold() && m_pUnitInfo->isHiddenNationality())
+			{
+				doPirateGold(pDefender->getUnitType(), pPlot);
+			}
+
 			if (!m_pUnitInfo->isHiddenNationality() && !pDefender->getUnitInfo().isHiddenNationality())
 			{
 				GET_TEAM(pDefender->getTeam()).changeWarWeariness(getTeam(), *pPlot, GC.getDefineINT("WW_UNIT_KILLED_DEFENDING"));
 				GET_TEAM(getTeam()).changeWarWeariness(pDefender->getTeam(), *pPlot, GC.getDefineINT("WW_KILLED_UNIT_ATTACKING"));
 				GET_TEAM(getTeam()).AI_changeWarSuccess(pDefender->getTeam(), GC.getDefineINT("WAR_SUCCESS_ATTACKING"));
+			}
+
+			// Civ4 Reimagined: Mongol UP
+			if (GET_PLAYER(getOwnerINLINE()).isCityRevoltOnKill() && pDefenderCity != NULL)
+			{
+				if (pDefenderCity->getCultureLevel() < (CultureLevelTypes)5 && pDefenderCity->getOccupationTimer() == 0)
+				{
+					pDefenderCity->changeCultureUpdateTimer(1);
+					pDefenderCity->changeOccupationTimer(1);
+				}
 			}
 
 			szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_UNIT_DESTROYED_ENEMY", getNameKey(), pDefender->getNameKey());
@@ -5205,6 +5219,16 @@ bool CvUnit::pillage()
 			{
 				GET_PLAYER(getOwnerINLINE()).changeGold(iPillageGold);
 
+				// Civ4 Reimagined: Mongol UP
+				if (GET_PLAYER(getOwnerINLINE()).getPillageHeal() > 0)
+				{
+					int iHeal = GET_PLAYER(getOwnerINLINE()).getPillageHeal();
+					iHeal *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getHealPercent();
+					iHeal /= 100;
+					iHeal = std::max(1, iHeal);
+					changeDamage(-iHeal);
+				}
+
 				szBuffer = gDLL->getText("TXT_KEY_MISC_PLUNDERED_GOLD_FROM_IMP", iPillageGold, GC.getImprovementInfo(pPlot->getImprovementType()).getTextKeyWide());
 				gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_PILLAGE", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
 
@@ -5224,7 +5248,10 @@ bool CvUnit::pillage()
 		pPlot->setRouteType(NO_ROUTE, true); // XXX downgrade rail???
 	}
 
-	changeMoves(GC.getMOVE_DENOMINATOR());
+	if (!GET_PLAYER(getOwnerINLINE()).isFreePillage())
+	{
+		changeMoves(GC.getMOVE_DENOMINATOR());
+	}
 
 	if (pPlot->isActiveVisible(false))
 	{
@@ -6152,7 +6179,7 @@ bool CvUnit::spread(ReligionTypes eReligion)
 			std::partial_sort(rankedReligions.begin(), rankedReligions.begin()+1, rankedReligions.end());
 			ReligionTypes eFailedReligion = rankedReligions[0].second;
 			
-			if (eFailedReligion != eReligion)
+			if (eFailedReligion != eReligion && !GET_PLAYER(getOwnerINLINE()).isNoReligionRemoval())
 			{
 				pCity->setHasReligion(eFailedReligion, false, true, false);
 				pCity->destroyReligiousBuildings(eFailedReligion, eReligion); // Civ4 Reimagined
@@ -6166,6 +6193,21 @@ bool CvUnit::spread(ReligionTypes eReligion)
 			szBuffer = gDLL->getText("TXT_KEY_MISC_RELIGION_FAILED_TO_SPREAD", getNameKey(), GC.getReligionInfo(eReligion).getChar(), pCity->getNameKey());
 			gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_NOSPREAD", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pCity->getX_INLINE(), pCity->getY_INLINE());
 			bSuccess = false;
+		}
+
+		if (bSuccess)
+		{
+			// Civ4 Reimagined: Spanish UP
+			if (GET_PLAYER(getOwnerINLINE()).getReligiousColonyMaintenanceModifier() != 0 && pCity->getOwnerINLINE() == getOwnerINLINE() && pCity->isColony() && GET_PLAYER(getOwnerINLINE()).getStateReligion() == eReligion)
+			{
+				const UnitTypes UNIT_CONQUISTADOR = (UnitTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits(GC.getInfoTypeForString("UNITCLASS_CUIRASSIER"));
+
+				if (GET_TEAM(getTeam()).isHasTech((TechTypes)GC.getUnitInfo(UNIT_CONQUISTADOR).getPrereqAndTech()))
+				{
+					GET_PLAYER(getOwnerINLINE()).initUnit(UNIT_CONQUISTADOR, pCity->getX_INLINE(), pCity->getY_INLINE(), UNITAI_ATTACK);
+					gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MISC_CONQUISTADOR_RECEIVED", pCity->getNameKey()).GetCString(), "AS2D_UNIT_BUILD_UNIT", MESSAGE_TYPE_MINOR_EVENT);
+				}
+			}
 		}
 
 		// Python Event
@@ -6752,6 +6794,33 @@ bool CvUnit::hurry()
 	return true;
 }
 
+
+// Civ4 Reimagined: Portugal UP
+int CvUnit::getTradeGoldHappinessBonusModifier(const CvCity* pCity) const
+{
+	if (GET_PLAYER(getOwnerINLINE()).getTradeGoldModifierPerForeignResource() == 0)
+	{
+		return 0;
+	}
+
+	int iNumForeignBonuses = 0;
+	for (int iI = 0; iI < GC.getNumBonusInfos(); ++iI)
+	{
+		if (GC.getBonusInfo((BonusTypes)iI).getHappiness() < 1)
+		{
+			continue;
+		}
+
+		if (GET_PLAYER(getOwnerINLINE()).getNumTradeableBonuses((BonusTypes)iI) == 0)
+		{
+			iNumForeignBonuses += pCity->getNumBonusesInFatCross((BonusTypes)iI);
+		}
+	}
+
+	return iNumForeignBonuses * GET_PLAYER(getOwnerINLINE()).getTradeGoldModifierPerForeignResource();
+}
+
+
 // Civ4 Reimagined: Rewrittten
 int CvUnit::getTradeGold(const CvPlot* pPlot) const
 {
@@ -6815,8 +6884,10 @@ int CvUnit::getTradeGold(const CvPlot* pPlot) const
 		int iDistanceModifier = 130 * plotDistance(getX_INLINE(), getY_INLINE(), pCity->getX_INLINE(), pCity->getY_INLINE());
 		iDistanceModifier /= GC.getMapINLINE().maxPlotDistance();
 		iDistanceModifier = std::min(65, iDistanceModifier);
+
+		const iBonusModifier = getTradeGoldHappinessBonusModifier(pCity);
 		
-		iGold *= 100 + iPopulationModifier + iDistanceModifier;
+		iGold *= 100 + iPopulationModifier + iDistanceModifier + iBonusModifier;
 		iGold /= 100;
 	}
 		
@@ -6897,7 +6968,7 @@ int CvUnit::getGreatWorkCulture(const CvPlot* pPlot) const
 	/* original bts code
 	iCulture = m_pUnitInfo->getGreatWorkCulture();
 	*/
-	iCulture = m_pUnitInfo->getGreatWorkCulture() * (GET_PLAYER(getOwnerINLINE()).getCurrentEra());
+	iCulture = m_pUnitInfo->getGreatWorkCulture() * ((int)GET_PLAYER(getOwnerINLINE()).getCurrentEra() + 1);
 /**
 *** K-Mod end
 **/
@@ -6909,8 +6980,45 @@ int CvUnit::getGreatWorkCulture(const CvPlot* pPlot) const
 }
 
 
+// Civ4 Reimagined
+int CvUnit::getGreatWorkGold(const CvPlot* pPlot) const
+{
+	if (!GET_PLAYER(getOwnerINLINE()).isGainGreatWorkGoldWithHitBonuses())
+	{
+		return 0;
+	}
+
+	CvCity* pCity = pPlot->getPlotCity();
+
+	if (pCity == NULL)
+	{
+		return 0;
+	}
+
+	int iGold = getGreatPersonBulbScaling();
+
+	int iModifier = 0;
+	iModifier += GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(pCity->getNumBonuses((BonusTypes)GC.getInfoTypeForString("BONUS_MUSIC"))) / 2;
+	iModifier += GET_PLAYER(getOwnerINLINE()).getBonusValueTimes100(pCity->getNumBonuses((BonusTypes)GC.getInfoTypeForString("BONUS_MOVIES"))) / 2;
+
+	iGold *= iModifier;
+	iGold /= 100;
+
+	iGold *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getUnitTradePercent();
+	iGold /= 100;
+
+	return iGold;
+}
+
+
 bool CvUnit::canGreatWork(const CvPlot* pPlot) const
 {
+	// Civ4 Reimagined
+	if (getUnitType() == (UnitTypes)GC.getInfoTypeForString("UNIT_AZTEC_CAPTIVE"))
+	{
+		return false;
+	}
+
 	if (isDelayedDeath())
 	{
 		return false;
@@ -6952,33 +7060,95 @@ bool CvUnit::greatWork()
 		pCity->setOccupationTimer(0);
 
 		int iCultureToAdd = 100 * getGreatWorkCulture(plot());
-/**
-*** K-Mod, 6/dec/10, Karadoc
-*** apply culture in one hit. We don't need fake 'free city culture' anymore.
-**/
-		/* original bts code
-		int iNumTurnsApplied = (GC.getDefineINT("GREAT_WORKS_CULTURE_TURNS") * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getUnitGreatWorkPercent()) / 100;
-
-		for (int i = 0; i < iNumTurnsApplied; ++i)
-		{
-			pCity->changeCultureTimes100(getOwnerINLINE(), iCultureToAdd / iNumTurnsApplied, true, true);
-		}
-
-		if (iNumTurnsApplied > 0)
-		{
-			pCity->changeCultureTimes100(getOwnerINLINE(), iCultureToAdd % iNumTurnsApplied, false, true);
-		}
-		*/
 		pCity->changeCultureTimes100(getOwnerINLINE(), iCultureToAdd, true, true);
 		GET_PLAYER(getOwnerINLINE()).AI_updateCommerceWeights(); // significant culture change may cause signficant weight changes.
-/**
-*** K-Mod end
-**/
+
+		// Civ4 Reimagined: Korea UP
+		if (getGreatWorkGold(plot()) > 0)
+		{
+			GET_PLAYER(getOwnerINLINE()).changeGold(getGreatWorkGold(plot()));
+		}
 	}
 
 	if (plot()->isActiveVisible(false))
 	{
 		NotifyEntity(MISSION_GREAT_WORK);
+	}
+
+	kill(true);
+
+	return true;
+}
+
+
+// Civ4 Reimagined
+bool CvUnit::canSacrifice(const CvPlot* pPlot) const
+{
+	if (getUnitType() != (UnitTypes)GC.getInfoTypeForString("UNIT_AZTEC_CAPTIVE"))
+	{
+		return false;
+	}
+
+	if (isDelayedDeath())
+	{
+		return false;
+	}
+
+	CvCity* pCity = pPlot->getPlotCity();
+
+	if (pCity == NULL)
+	{
+		return false;
+	}
+
+	if (pCity->getOwnerINLINE() != getOwnerINLINE())
+	{
+		return false;
+	}
+
+	if (getGreatWorkCulture(pPlot) == 0)
+	{
+		return false;
+	}
+
+	if (pCity->getNumBuilding((BuildingTypes)GC.getInfoTypeForString("BUILDING_AZTEC_SACRIFICIAL_ALTAR")) < 1)
+	{
+		return false;
+	}
+
+	return true;
+}
+
+
+// Civ4 Reimagined
+bool CvUnit::sacrifice()
+{
+	if (!canSacrifice(plot()))
+	{
+		return false;
+	}
+
+	CvCity* pCity = plot()->getPlotCity();
+
+	if (pCity != NULL)
+	{
+		pCity->setCultureUpdateTimer(0);
+		pCity->setOccupationTimer(0);
+
+		pCity->setHappinessTimer(std::max(pCity->getHappinessTimer(), 20 * GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getUnitGreatWorkPercent() / 100));
+
+		int iCultureToAdd = 100 * getGreatWorkCulture(plot());
+		pCity->changeCultureTimes100(getOwnerINLINE(), iCultureToAdd, true, true);
+		GET_PLAYER(getOwnerINLINE()).changeGold(GC.getDefineINT("UNIQUE_POWER_AZTEC"));
+		GET_PLAYER(getOwnerINLINE()).AI_updateCommerceWeights(); // significant culture change may cause signficant weight changes.
+
+		CvWString szBuffer = gDLL->getText("TXT_KEY_SACRIFICE_SLAVE", pCity->getNameKey());
+		gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_UNIT_BUILD_AZTEC_JAGUAR", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"), pCity->getX_INLINE(), pCity->getY_INLINE(), true, true);
+	}
+
+	if (plot()->isActiveVisible(false))
+	{
+		NotifyEntity(MISSION_SACRIFICE);
 	}
 
 	kill(true);
@@ -7326,8 +7496,35 @@ bool CvUnit::isIntruding() const
 	return true;
 }
 
+// Civ4 Reimagined
+bool CvUnit::isGreatGeneralGoldenAge() const
+{
+	if (isDelayedDeath())
+	{
+		return false;
+	}
+
+	if (GET_PLAYER(getOwnerINLINE()).getGreatGeneralGoldenAgeLength() <= 0)
+	{
+		return false;
+	}
+
+	if (getUnitClassType() != (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_GREAT_GENERAL"))
+	{
+		return false;
+	}
+
+	return true;
+}
+
 bool CvUnit::canGoldenAge(const CvPlot* pPlot, bool bTestVisible) const
 {
+	// Civ4 Reimagined
+	if (isGreatGeneralGoldenAge())
+	{
+		return true;
+	}
+
 	if (!isGoldenAge())
 	{
 		return false;
@@ -7350,6 +7547,12 @@ bool CvUnit::goldenAge()
 	if (!canGoldenAge(plot()))
 	{
 		return false;
+	}
+
+	// Civ4 Reimagined
+	if (isGreatGeneralGoldenAge())
+	{
+		return greatGeneralGoldenAge();
 	}
 
 	GET_PLAYER(getOwnerINLINE()).killGoldenAgeUnits(this);
@@ -7376,6 +7579,23 @@ bool CvUnit::goldenAge()
 	return true;
 }
 
+// Civ4 Reimagined: As regular golden age, but does only require one general, is modified by greatGeneralGoldenAgeLength, and does not advance golden age requirements (i.e. +1 great person for future golden ages)
+bool CvUnit::greatGeneralGoldenAge()
+{
+	int iAgeLength = GC.getGameINLINE().goldenAgeLength();
+	iAgeLength *= GET_PLAYER(getOwnerINLINE()).getGreatGeneralGoldenAgeLength();
+	iAgeLength /= 100;
+	GET_PLAYER(getOwnerINLINE()).changeGoldenAgeTurns(iAgeLength);
+
+	if (plot()->isActiveVisible(false))
+	{
+		NotifyEntity(MISSION_GOLDEN_AGE);
+	}
+
+	kill(true);
+
+	return true;
+}
 
 bool CvUnit::canBuild(const CvPlot* pPlot, BuildTypes eBuild, bool bTestVisible) const
 {
@@ -7535,7 +7755,7 @@ void CvUnit::promote(PromotionTypes ePromotion, int iLeaderUnitId)
 	// Civ4 Reimagined
 	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_BIOLOGY")))
 	{
-		if (ePromotion == (PromotionTypes)GC.getInfoTypeForString("PROMOTION_SENTRY") && getUnitClassType() == (UnitClassTypes)GC.getInfoTypeForString("UNTCLASS_EXPLORER"))
+		if (ePromotion == (PromotionTypes)GC.getInfoTypeForString("PROMOTION_WOODSMAN3") && getUnitClassType() == (UnitClassTypes)GC.getInfoTypeForString("UNTCLASS_EXPLORER"))
 		{
 			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_BIOLOGY"), getOwnerINLINE(), true);
 		}
@@ -7734,7 +7954,15 @@ int CvUnit::upgradePrice(UnitTypes eUnit) const
 		return 0;
 	}
 
-	iPrice = GC.getDefineINT("BASE_UNIT_UPGRADE_COST");
+	// Civ4 Reimagined: Revisit this
+	if (eUnit == (UnitTypes)GC.getInfoTypeForString("UNIT_INCAN_QUECHUA"))
+	{
+		iPrice = 0;
+	}
+	else
+	{
+		iPrice = GC.getDefineINT("BASE_UNIT_UPGRADE_COST");
+	}
 
 	iPrice += (std::max(0, (GET_PLAYER(getOwnerINLINE()).getProductionNeeded(eUnit) - GET_PLAYER(getOwnerINLINE()).getProductionNeeded(getUnitType()))) * GC.getDefineINT("UNIT_UPGRADE_COST_PER_PRODUCTION"));
 
@@ -8142,6 +8370,7 @@ SpecialUnitTypes CvUnit::getSpecialUnitType() const
 UnitTypes CvUnit::getCaptureUnitType(CivilizationTypes eCivilization) const
 {
 	FAssert(eCivilization != NO_CIVILIZATION);
+
 	return ((m_pUnitInfo->getUnitCaptureClassType() == NO_UNITCLASS) ? NO_UNIT : (UnitTypes)GC.getCivilizationInfo(eCivilization).getCivilizationUnits(m_pUnitInfo->getUnitCaptureClassType()));
 }
 
@@ -8210,7 +8439,16 @@ int CvUnit::baseMoves() const
 	{
 		return (m_pUnitInfo->getMoves() + getExtraMoves());
 	}
-	return (m_pUnitInfo->getMoves() + getExtraMoves() + GET_TEAM(getTeam()).getExtraMoves(getDomainType()));
+	
+	int iMoves = m_pUnitInfo->getMoves() + getExtraMoves() + GET_TEAM(getTeam()).getExtraMoves(getDomainType());
+
+	// Civ4 Reimagined: Persia UP
+	if (GET_PLAYER(getOwnerINLINE()).getExtraMovesInGoldenAge(getDomainType()) > 0 && GET_PLAYER(getOwnerINLINE()).isGoldenAge())
+	{
+		iMoves += GET_PLAYER(getOwnerINLINE()).getExtraMovesInGoldenAge(getDomainType());
+	}
+
+	return iMoves;
 }
 
 
@@ -8342,6 +8580,8 @@ BuildTypes CvUnit::getBuildType() const
 		case MISSION_HURRY:
 		case MISSION_TRADE:
 		case MISSION_GREAT_WORK:
+		case MISSION_SACRIFICE: // Civ4 Reimagined
+		case MISSION_COASTAL_RAID: // Civ4 Reimagined
 		case MISSION_INFILTRATE:
 		case MISSION_GOLDEN_AGE:
 		case MISSION_LEAD:
@@ -8641,6 +8881,7 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 	if (pCombatDetails != NULL)
 	{
 		pCombatDetails->iExtraCombatPercent = 0;
+		pCombatDetails->iExtraCombatPercentAgainstWoodenShips = 0; // Civ4 Reimagined
 		pCombatDetails->iAnimalCombatModifierTA = 0;
 		pCombatDetails->iAIAnimalCombatModifierTA = 0;
 		pCombatDetails->iAnimalCombatModifierAA = 0;
@@ -8653,12 +8894,15 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 		pCombatDetails->iFortifyModifier = 0;
 		pCombatDetails->iCityDefenseModifier = 0;
 		pCombatDetails->iDefenseBuildingModifier = 0; //Civ4 Reimagined
+		pCombatDetails->iFaithModifier = 0; //Civ4 Reimagined
 		pCombatDetails->iHillsAttackModifier = 0;
 		pCombatDetails->iHillsDefenseModifier = 0;
 		pCombatDetails->iFeatureAttackModifier = 0;
 		pCombatDetails->iFeatureDefenseModifier = 0;
 		pCombatDetails->iTerrainAttackModifier = 0;
 		pCombatDetails->iTerrainDefenseModifier = 0;
+		pCombatDetails->iAgainstInjuredModifier = 0; // Civ4 Reimagined
+		pCombatDetails->iHomeAreaOwnBordersModifier = 0; // Civ4 Reimagined
 		pCombatDetails->iCityAttackModifier = 0;
 		pCombatDetails->iDomainDefenseModifier = 0;
 		pCombatDetails->iCityBarbarianDefenseModifier = 0;
@@ -8873,6 +9117,21 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 				pCombatDetails->iTerrainDefenseModifier = iExtraModifier;
 			}
 		}
+
+		// Civ4 Reimagined: Russia UP
+		if (GET_PLAYER(getOwnerINLINE()).getCombatBonusOnHomeArea() > 0)
+		{
+			CvCity* pCapital = GET_PLAYER(getOwnerINLINE()).getCapitalCity();
+			if (pCapital && pPlot->getArea() == pCapital->getArea() && pPlot->getOwnerINLINE() == getOwnerINLINE())
+			{
+				iExtraModifier = GET_PLAYER(getOwnerINLINE()).getCombatBonusOnHomeArea();
+				iModifier += iExtraModifier;
+				if (pCombatDetails != NULL)
+				{
+					pCombatDetails->iHomeAreaOwnBordersModifier = iExtraModifier;
+				}
+			}
+		}
 	}
 
 	// if we are attacking to an plot with an unknown defender, the calc the modifier in reverse
@@ -8927,6 +9186,25 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 					pCombatDetails->iCityBarbarianDefenseModifier = iExtraModifier;
 				}
 			}
+
+			// Civ4 Reimagined
+			// Arabian unique power: Attacking cities of heretic rulers
+			bool bFaithConquest = GET_PLAYER(pAttacker->getOwnerINLINE()).isHasFaithConquest();
+			if (bFaithConquest)
+			{
+				ReligionTypes eAttackerStateReligion = GET_PLAYER(pAttacker->getOwnerINLINE()).getStateReligion();
+				bool bDefenderIsInfidel = GET_PLAYER(getOwnerINLINE()).getStateReligion() != NO_RELIGION && GET_PLAYER(getOwnerINLINE()).getStateReligion() != eAttackerStateReligion;
+				
+				if (bDefenderIsInfidel)
+				{
+					iExtraModifier = GC.getDefineINT("UNIQUE_POWER_ARABIA");
+					iTempModifier -= iExtraModifier;
+					if (pCombatDetails != NULL)
+					{
+						pCombatDetails->iFaithModifier = -iExtraModifier;
+					}
+				}
+			}
 		}
 
 		if (pAttackedPlot->isHills())
@@ -8955,6 +9233,21 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 			if (pCombatDetails != NULL)
 			{
 				pCombatDetails->iTerrainAttackModifier = iExtraModifier;
+			}
+		}
+
+		// Civ4 Reimagined: Russia UP
+		if (GET_PLAYER(pAttacker->getOwnerINLINE()).getCombatBonusOnHomeArea() > 0)
+		{
+			CvCity* pCapital = GET_PLAYER(pAttacker->getOwnerINLINE()).getCapitalCity();
+			if (pCapital && pAttackedPlot->getArea() == pCapital->getArea() && pAttackedPlot->getOwnerINLINE() == pAttacker->getOwnerINLINE())
+			{
+				iExtraModifier = -GET_PLAYER(pAttacker->getOwnerINLINE()).getCombatBonusOnHomeArea();
+				iTempModifier += iExtraModifier;
+				if (pCombatDetails != NULL)
+				{
+					pCombatDetails->iHomeAreaOwnBordersModifier = iExtraModifier;
+				}
 			}
 		}
 
@@ -9001,6 +9294,54 @@ int CvUnit::maxCombatStr(const CvPlot* pPlot, const CvUnit* pAttacker, CombatDet
 				if (pCombatDetails != NULL)
 				{
 					pCombatDetails->iCombatModifierT = iExtraModifier;
+				}
+			}
+
+			// Civ4 Reimagined
+			if (pAttacker->isHurt())
+			{
+				iExtraModifier = againstInjuredModifier();
+				iModifier += iExtraModifier;
+				if (pCombatDetails != NULL)
+				{
+					pCombatDetails->iAgainstInjuredModifier = iExtraModifier;
+				}
+			}
+			if (isHurt())
+			{
+				iExtraModifier = -pAttacker->againstInjuredModifier();
+				iModifier += iExtraModifier;
+				if (pCombatDetails != NULL)
+				{
+					pCombatDetails->iAgainstInjuredModifier = iExtraModifier;
+				}
+			}
+
+			// Civ4 Reimagined
+			if ((UnitCombatTypes)pAttacker->getUnitCombatType() == GC.getInfoTypeForString("UNITCOMBAT_NAVAL"))
+			{
+				const TechTypes ePrereqTech = (TechTypes)GC.getUnitInfo(pAttacker->getUnitType()).getPrereqAndTech();
+				if (ePrereqTech == NO_TECH || GC.getTechInfo(ePrereqTech).getEra() < 4)
+				{
+					iExtraModifier = getExtraCombatPercentAgainstWoodenShips();
+					iModifier += iExtraModifier;
+					if (pCombatDetails != NULL)
+					{
+						pCombatDetails->iExtraCombatPercentAgainstWoodenShips = iExtraModifier;
+					}
+				}
+			}
+			if ((UnitCombatTypes)getUnitCombatType() == GC.getInfoTypeForString("UNITCOMBAT_NAVAL"))
+			{
+				const TechTypes ePrereqTech = (TechTypes)GC.getUnitInfo(getUnitType()).getPrereqAndTech();
+				if (ePrereqTech == NO_TECH || GC.getTechInfo(ePrereqTech).getEra() < 4)
+				{
+					iExtraModifier = -pAttacker->getExtraCombatPercentAgainstWoodenShips();
+					iModifier += iExtraModifier;
+					if (pCombatDetails != NULL)
+					{
+						pCombatDetails->iExtraCombatPercentAgainstWoodenShips = iExtraModifier;
+					}
 				}
 			}
 
@@ -9869,6 +10210,12 @@ int CvUnit::cityDefenseModifier() const
 int CvUnit::defenseBuildingModifier() const
 {
 	return m_pUnitInfo->getDefenseBuildingModifier();
+}
+
+//Civ4 Reimagined
+int CvUnit::againstInjuredModifier() const
+{
+	return m_pUnitInfo->getAgainstInjuredModifier();
 }
 
 
@@ -11102,7 +11449,8 @@ void CvUnit::changeExperience(int iChange, int iMax, bool bFromCombat, bool bInB
 	{
 		CvPlayer& kPlayer = GET_PLAYER(getOwnerINLINE());
 
-		int iCombatExperienceMod = 100 + kPlayer.getGreatGeneralRateModifier();
+		// Civ4 Reimagined: English UP
+		int iCombatExperienceMod = 100 + kPlayer.getGreatGeneralRateModifier() + kPlayer.getDomainGreatGeneralRateModifier(getDomainType());
 
 		if (bInBorders)
 		{
@@ -11239,6 +11587,19 @@ void CvUnit::setAttackPlot(const CvPlot* pNewValue, bool bAirCombat)
 bool CvUnit::isAirCombat() const
 {
 	return m_bAirCombat;
+}
+
+void CvUnit::setIsFreeWorker(bool bNewValue)
+{
+	m_bFreeWorker = bNewValue;
+
+	CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_FREE_WORKER");
+	setName(szBuffer);
+}
+
+bool CvUnit::isFreeWorker() const
+{
+	return m_bFreeWorker;
 }
 
 int CvUnit::getCombatTimer() const
@@ -11605,6 +11966,23 @@ void CvUnit::changeExtraCombatPercent(int iChange)
 	if (iChange != 0)
 	{
 		m_iExtraCombatPercent += iChange;
+
+		setInfoBarDirty(true);
+	}
+}
+
+// Civ4 Reimagined
+int CvUnit::getExtraCombatPercentAgainstWoodenShips() const
+{
+	return m_iExtraCombatPercentAgainstWoodenShips;
+}
+
+// Civ4 Reimagined
+void CvUnit::changeExtraCombatPercentAgainstWoodenShips(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iExtraCombatPercentAgainstWoodenShips += iChange;
 
 		setInfoBarDirty(true);
 	}
@@ -12589,6 +12967,12 @@ bool CvUnit::isPromotionValid(PromotionTypes ePromotion) const
 		return false;
 	}
 
+	// Civ4 Reimagined
+	if (GC.getPromotionInfo(ePromotion).isUniquePower() && GET_PLAYER(getOwnerINLINE()).getUniquePowerPromotion() != ePromotion)
+	{
+		return false;
+	}
+
 	CvPromotionInfo& promotionInfo = GC.getPromotionInfo(ePromotion);
 
 	if (promotionInfo.getWithdrawalChange() + m_pUnitInfo->getWithdrawalProbability() + getExtraWithdrawal() > GC.getDefineINT("MAX_WITHDRAWAL_PROBABILITY"))
@@ -12670,6 +13054,7 @@ void CvUnit::setHasPromotion(PromotionTypes eIndex, bool bNewValue)
 		changeExtraFriendlyHeal(GC.getPromotionInfo(eIndex).getFriendlyHealChange() * iChange);
 		changeSameTileHeal(GC.getPromotionInfo(eIndex).getSameTileHealChange() * iChange);
 		changeExtraCombatPercent(GC.getPromotionInfo(eIndex).getCombatPercent() * iChange);
+		changeExtraCombatPercentAgainstWoodenShips(GC.getPromotionInfo(eIndex).getCombatPercentAgainstWoodenShips() * iChange); // Civ4 Reimagined
 		changeExtraCityAttackPercent(GC.getPromotionInfo(eIndex).getCityAttackPercent() * iChange);
 		changeExtraCityDefensePercent(GC.getPromotionInfo(eIndex).getCityDefensePercent() * iChange);
 		changeExtraHillsAttackPercent(GC.getPromotionInfo(eIndex).getHillsAttackPercent() * iChange);
@@ -12869,6 +13254,7 @@ void CvUnit::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bCombatFocus);
 	// m_bInfoBarDirty not saved...
 	pStream->Read(&m_bBlockading);
+	pStream->Read(&m_bFreeWorker); // Civ4 Reimagined
 	if (uiFlag > 0)
 	{
 		pStream->Read(&m_bAirCombat);
@@ -12974,6 +13360,7 @@ void CvUnit::write(FDataStreamBase* pStream)
 	pStream->Write(m_bCombatFocus);
 	// m_bInfoBarDirty not saved...
 	pStream->Write(m_bBlockading);
+	pStream->Write(m_bFreeWorker); // Civ4 Reimagined
 	pStream->Write(m_bAirCombat);
 
 	pStream->Write(m_eOwner);
@@ -13503,6 +13890,225 @@ bool CvUnit::rangeStrike(int iX, int iY)
 /************************************************************************************************/
 /* UNOFFICIAL_PATCH                        END                                                  */
 /************************************************************************************************/
+	}
+
+	return true;
+}
+
+
+// Civ4 Reimagined
+bool CvUnit::canCoastalRaid() const
+{
+	if (!GET_PLAYER(getOwnerINLINE()).canCoastalRaid())
+	{
+		return false;
+	}
+
+	if (getDomainType() != DOMAIN_SEA)
+	{
+		return false;
+	}
+
+	if (!m_pUnitInfo->isHiddenNationality())
+	{
+		return false;
+	}
+
+	if (!canFight())
+	{
+		return false;
+	}
+
+	if (isMadeAttack() && !isBlitz())
+	{
+		return false;
+	}
+
+	if (!canMove() && getMoves() > 0)
+	{
+		return false;
+	}
+
+	return true;
+}
+
+bool CvUnit::canCoastalRaidAt(const CvPlot* pPlot, int iX, int iY) const
+{
+	if (!canCoastalRaid())
+	{
+		return false;
+	}
+
+	CvPlot* pTargetPlot = GC.getMapINLINE().plotINLINE(iX, iY);
+
+	if (NULL == pTargetPlot)
+	{
+		return false;
+	}
+
+	if (!pPlot->isVisible(getTeam(), false))
+	{
+		return false;
+	}
+
+	if (!pTargetPlot->isVisible(getTeam(), false))
+	{
+		return false;
+	}
+
+	if (pTargetPlot->isWater())
+	{
+		return false;
+	}
+
+	if (plotDistance(pPlot->getX_INLINE(), pPlot->getY_INLINE(), pTargetPlot->getX_INLINE(), pTargetPlot->getY_INLINE()) > 1)
+	{
+		return false;
+	}
+
+	if (!pPlot->canSeePlot(pTargetPlot, getTeam(), airRange(), getFacingDirection(true)))
+	{
+		return false;
+	}
+
+	if (pTargetPlot->isCity())
+	{
+		return false;
+	}
+
+	if (pTargetPlot->getImprovementType() == NO_IMPROVEMENT)
+	{
+		if (!(pTargetPlot->isRoute()))
+		{
+			return false;
+		}
+	}
+	else
+	{
+		if (GC.getImprovementInfo(pTargetPlot->getImprovementType()).isPermanent())
+		{
+			return false;
+		}
+	}
+
+	if (pTargetPlot->isOwned())
+	{
+		if (pTargetPlot->getOwnerINLINE() == getOwnerINLINE())
+		{
+			return false;
+		}
+
+		if (GET_PLAYER(pPlot->getOwnerINLINE()).isNoPillage())
+		{
+			return false;
+		}
+	}
+	
+	return true;
+}
+
+
+bool CvUnit::coastalRaid(int iX, int iY)
+{
+	CvWString szBuffer;
+	int iPillageGold;
+	long lPillageGold;
+	ImprovementTypes eTempImprovement = NO_IMPROVEMENT;
+	RouteTypes eTempRoute = NO_ROUTE;
+
+	CvPlot* pPlot = GC.getMapINLINE().plot(iX, iY);
+	if (NULL == pPlot)
+	{
+		return false;
+	}
+
+	if (!canCoastalRaidAt(plot(), iX, iY))
+	{
+		return false;
+	}
+
+	if (pPlot->getImprovementType() != NO_IMPROVEMENT)
+	{
+		eTempImprovement = pPlot->getImprovementType();
+
+		if (pPlot->getTeam() != getTeam())
+		{
+			lPillageGold = -1;
+
+			if (GC.getUSE_DO_PILLAGE_GOLD_CALLBACK()) // K-Mod. I've writen C to replace the python callback.
+			{
+				CyPlot* pyPlot = new CyPlot(pPlot);
+				CyUnit* pyUnit = new CyUnit(this);
+
+				CyArgsList argsList;
+				argsList.add(gDLL->getPythonIFace()->makePythonObject(pyPlot));	// pass in plot class
+				argsList.add(gDLL->getPythonIFace()->makePythonObject(pyUnit));	// pass in unit class
+
+				gDLL->getPythonIFace()->callFunction(PYGameModule, "doPillageGold", argsList.makeFunctionArgs(),&lPillageGold);
+
+				delete pyPlot;	// python fxn must not hold on to this pointer 
+				delete pyUnit;	// python fxn must not hold on to this pointer 
+
+				iPillageGold = (int)lPillageGold;
+			}
+			// K-Mod. C version of the original python code
+			if (lPillageGold < 0)
+			{
+				int iPillageBase = GC.getImprovementInfo((ImprovementTypes)pPlot->getImprovementType()).getPillageGold();
+				iPillageGold = 0;
+				iPillageGold += GC.getGameINLINE().getSorenRandNum(iPillageBase + 1, "Pillage Gold 1"); // Civ4 Reimagined: Added +1 in both instances to make the sum yield iPillageBase on average.
+				iPillageGold += GC.getGameINLINE().getSorenRandNum(iPillageBase + 1, "Pillage Gold 2");
+				iPillageGold += getPillageChange() * iPillageGold / 100;
+				
+				// Civ4 Reimagined
+				iPillageGold *= 100 + GET_PLAYER(getOwnerINLINE()).getLootingModifier() + GET_PLAYER(getOwnerINLINE()).getPillageGainModifier();
+				if (iPillageGold > 0)
+					iPillageGold /= 100;
+			}
+			// K-Mod end
+
+			if (iPillageGold > 0)
+			{
+				GET_PLAYER(getOwnerINLINE()).changeGold(iPillageGold);
+
+				szBuffer = gDLL->getText("TXT_KEY_MISC_PLUNDERED_GOLD_FROM_IMP", iPillageGold, GC.getImprovementInfo(pPlot->getImprovementType()).getTextKeyWide());
+				gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_PILLAGE", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
+
+				if (pPlot->isOwned())
+				{
+					szBuffer = gDLL->getText("TXT_KEY_MISC_IMP_DESTROYED", GC.getImprovementInfo(pPlot->getImprovementType()).getTextKeyWide(), getNameKey(), getVisualCivAdjective(pPlot->getTeam()));
+					gDLL->getInterfaceIFace()->addHumanMessage(pPlot->getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_PILLAGED", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pPlot->getX_INLINE(), pPlot->getY_INLINE(), true, true);
+				}
+			}
+		}
+
+		pPlot->setImprovementType((ImprovementTypes)(GC.getImprovementInfo(pPlot->getImprovementType()).getImprovementPillage()));
+	}
+	else if (pPlot->isRoute())
+	{
+		eTempRoute = pPlot->getRouteType();
+		pPlot->setRouteType(NO_ROUTE, true); // XXX downgrade rail???
+	}
+
+	setMadeAttack(true);
+
+	changeMoves(GC.getMOVE_DENOMINATOR());
+
+	if (pPlot->isActiveVisible(false))
+	{
+		// Coastal raid entity mission
+		CvMissionDefinition kDefiniton;
+		kDefiniton.setMissionTime(GC.getMissionInfo(MISSION_COASTAL_RAID).getTime() * gDLL->getSecsPerTurn());
+		kDefiniton.setMissionType(MISSION_COASTAL_RAID);
+		kDefiniton.setPlot(pPlot);
+		kDefiniton.setUnit(BATTLE_UNIT_ATTACKER, this);
+		kDefiniton.setUnit(BATTLE_UNIT_DEFENDER, NULL);
+		gDLL->getEntityIFace()->AddMission(&kDefiniton);
+	}
+
+	if (eTempImprovement != NO_IMPROVEMENT || eTempRoute != NO_ROUTE)
+	{
+		CvEventReporter::getInstance().unitPillage(this, eTempImprovement, eTempRoute, getOwnerINLINE());
 	}
 
 	return true;
@@ -14584,12 +15190,6 @@ void CvUnit::bombardCity(CvCity* pCity, int bombardRate)
 		}
 	}
 
-	// Civ4 Reimagined
-	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ROCKETRY")))
-	{
-		GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ROCKETRY"), getOwnerINLINE(), true);
-	}
-
 	CvWString szBuffer;
 	
 	if (buildingList.getLength() > 0)
@@ -14612,6 +15212,12 @@ void CvUnit::bombardCity(CvCity* pCity, int bombardRate)
 		
 		if (bombChance <= bombardRate * (defenseBuilding ? 6 : 3))
 		{
+			// Civ4 Reimagined
+			if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ROCKETRY")) && getDomainType() == DOMAIN_AIR)
+			{
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ROCKETRY"), getOwnerINLINE(), true);
+			}
+
 			pCity->setNumRealBuilding(eBuilding, pCity->getNumRealBuilding(eBuilding) - 1);
 			szBuffer = gDLL->getText("TXT_KEY_MISC_ENEMY_AIRBOMBSUCCESS", GC.getBuildingInfo(eBuilding).getTextKeyWide(), pCity->getNameKey());
 			gDLL->getInterfaceIFace()->addMessage(pCity->getOwnerINLINE(), false, GC.getDefineINT("EVENT_MESSAGE_TIME"), szBuffer, "AS2D_BOMBARDED", MESSAGE_TYPE_INFO, 
@@ -14627,5 +15233,24 @@ void CvUnit::bombardCity(CvCity* pCity, int bombardRate)
 	szBuffer = gDLL->getText("TXT_KEY_MISC_YOU_AIRBOMBFAIL", pCity->getNameKey());
 	gDLL->getInterfaceIFace()->addMessage(getOwnerINLINE(), true, GC.getDefineINT("EVENT_MESSAGE_TIME"), szBuffer, "AS2D_BOMBARD", MESSAGE_TYPE_INFO, NULL, 
 										 (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pCity->getX_INLINE(), pCity->getY_INLINE(), true, true);
+}
+
+//Civ4 Reimagined
+void CvUnit::doPirateGold(UnitTypes eKilledUnit, CvPlot* pPlot)
+{
+	int iPirateGold = GC.getUnitInfo(eKilledUnit).getProductionCost();
+
+	iPirateGold *= GC.getDefineINT("UNIT_PRODUCTION_PERCENT");
+	iPirateGold /= 100;
+
+	iPirateGold *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getTrainPercent();
+	iPirateGold /= 100;
+
+	iPirateGold *= GC.getEraInfo(GC.getGameINLINE().getStartEra()).getTrainPercent();
+	iPirateGold /= 100;
+
+	GET_PLAYER(getOwnerINLINE()).changeGold(iPirateGold);
+	CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_PIRATE_GOLD", iPirateGold, GC.getUnitInfo(eKilledUnit).getTextKeyWide());
+	gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_PILLAGE", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
 }
 

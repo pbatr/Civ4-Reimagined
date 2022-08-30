@@ -18,16 +18,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_USA</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_AMERICA</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_WASHINGTON</City>
 				<City>TXT_KEY_CITY_NAME_NEW_YORK</City>
@@ -163,16 +154,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_ARABIAN</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_ARABIA</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_MECCA</City>
 				<City>TXT_KEY_CITY_NAME_MEDINA</City>
@@ -296,16 +278,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_AZTEC</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>0</iUnique1>
-			<iUnique2>250</iUnique2>
-			<iUnique3>600</iUnique3>
-			<iUnique4>1000</iUnique4>
-			<iUnique5>1500</iUnique5>
-			<DescriptionUnique1>TXT_KEY_UNIQUE_POWERS_AZTEC1</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_UNIQUE_POWERS_AZTEC2</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_UNIQUE_POWERS_AZTEC4</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_AZTEC</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_TENOCHTITLAN</City>
 				<City>TXT_KEY_CITY_NAME_TEOTIHUACAN</City>
@@ -354,6 +327,10 @@
 				<Unit>
 					<UnitClassType>UNITCLASS_SWORDSMAN</UnitClassType>
 					<UnitType>UNIT_AZTEC_JAGUAR</UnitType>
+				</Unit>
+				<Unit>
+					<UnitClassType>UNITCLASS_SLAVE</UnitClassType>
+					<UnitType>UNIT_AZTEC_CAPTIVE</UnitType>
 				</Unit>
 			</Units>
 			<FreeUnitClasses>
@@ -431,16 +408,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_BABYLONIAN</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>30</iUnique1>
-			<iUnique2>125</iUnique2>
-			<iUnique3>300</iUnique3>
-			<iUnique4>600</iUnique4>
-			<iUnique5>1100</iUnique5>
-			<DescriptionUnique1>TXT_KEY_UNIQUE_POWERS_BABYLON1</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_UNIQUE_POWERS_BABYLON2</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_UNIQUE_POWERS_BABYLON3</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_UNIQUE_POWERS_BABYLON4</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_UNIQUE_POWERS_BABYLON5</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_BABYLON</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_BABYLON</City>
 				<City>TXT_KEY_CITY_NAME_AKKAD</City>
@@ -485,7 +453,7 @@
 			</Cities>
 			<Buildings>
 				<Building>
-					<BuildingClassType>BUILDINGCLASS_COURTHOUSE</BuildingClassType>
+					<BuildingClassType>BUILDINGCLASS_AQUEDUCT</BuildingClassType>
 					<BuildingType>BUILDING_BABYLON_GARDEN</BuildingType>
 				</Building>
 			</Buildings>
@@ -570,16 +538,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_BYZANTINE</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_BYZANTIUM</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_CONSTANTINOPLE</City>
 				<City>TXT_KEY_CITY_NAME_THESSALONICA</City>
@@ -628,7 +587,7 @@
 			</Cities>
 			<Buildings>
 				<Building>
-					<BuildingClassType>BUILDINGCLASS_THEATRE</BuildingClassType>
+					<BuildingClassType>BUILDINGCLASS_COLOSSEUM</BuildingClassType>
 					<BuildingType>BUILDING_BYZANTINE_HIPPODROME</BuildingType>
 				</Building>
 			</Buildings>
@@ -707,16 +666,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_CARTHAGE</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>100</iUnique1>
-			<iUnique2>200</iUnique2>
-			<iUnique3>400</iUnique3>
-			<iUnique4>650</iUnique4>
-			<iUnique5>900</iUnique5>
-			<DescriptionUnique1>TXT_KEY_UNIQUE_POWERS_CARTHAGE1</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_UNIQUE_POWERS_CARTHAGE2</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_UNIQUE_POWERS_CARTHAGE3</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_UNIQUE_POWERS_CARTHAGE4</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_UNIQUE_POWERS_CARTHAGE5</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_CARTHAGE</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_CARTHAGE</City>
 				<City>TXT_KEY_CITY_NAME_UTICA</City>
@@ -841,16 +791,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_CELTIC</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_CELTS</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_BIBRACTE</City>
 				<City>TXT_KEY_CITY_NAME_VIENNE</City>
@@ -942,7 +883,7 @@
 			<FeatureBiases>
 				<FeatureBias>
 					<FeatureType>FEATURE_FOREST</FeatureType>
-					<iBias>1</iBias>
+					<iBias>3</iBias>
 				</FeatureBias>
 			</FeatureBiases>
 			<InitialCivics>
@@ -979,16 +920,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_CHINESE</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_CHINA</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_BEIJING</City>
 				<City>TXT_KEY_CITY_NAME_SHANGHAI</City>
@@ -1073,7 +1005,7 @@
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_RICE</BonusType>
-					<iBias>10</iBias>
+					<iBias>25</iBias>
 				</BonusBias>
 				<BonusBias>
 					<BonusType>BONUS_SILK</BonusType>
@@ -1118,16 +1050,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_EGYPT</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>0</iUnique1>
-			<iUnique2>100</iUnique2>
-			<iUnique3>250</iUnique3>
-			<iUnique4>500</iUnique4>
-			<iUnique5>1200</iUnique5>
-			<DescriptionUnique1>TXT_KEY_UNIQUE_POWERS_EGYPT1</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_UNIQUE_POWERS_EGYPT2</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_UNIQUE_POWERS_EGYPT3</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_UNIQUE_POWERS_EGYPT4</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_UNIQUE_POWERS_EGYPT5</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_EGYPT</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_THEBES</City>
 				<City>TXT_KEY_CITY_NAME_MEMPHIS</City>
@@ -1277,16 +1200,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_ENGLISH</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_ENGLAND</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_LONDON</City>
 				<City>TXT_KEY_CITY_NAME_YORK</City>
@@ -1410,16 +1324,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_ETHIOPIAN</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_ETHIOPIA</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_AKSUM</City>
 				<City>TXT_KEY_CITY_NAME_GONDAR</City>
@@ -1545,16 +1450,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_FRENCH</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_FRANCE</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_PARIS</City>
 				<City>TXT_KEY_CITY_NAME_ORLEANS</City>
@@ -1688,16 +1584,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_GERMAN</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_GERMANY</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_BERLIN</City>
 				<City>TXT_KEY_CITY_NAME_HAMBURG</City>
@@ -1840,16 +1727,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_GREEK</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>0</iUnique1>
-			<iUnique2>200</iUnique2>
-			<iUnique3>400</iUnique3>
-			<iUnique4>650</iUnique4>
-			<iUnique5>1000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_UNIQUE_POWERS_GREECE1</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_UNIQUE_POWERS_GREECE2</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_UNIQUE_POWERS_GREECE3</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_UNIQUE_POWERS_GREECE4</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_UNIQUE_POWERS_GREECE5</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_GREECE</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_ATHENS</City>
 				<City>TXT_KEY_CITY_NAME_SPARTA</City>
@@ -1986,16 +1864,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_HOLYROMAN</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_HOLY_ROMAN</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_AACHEN</City>
 				<City>TXT_KEY_CITY_NAME_PRAGUE</City>
@@ -2121,16 +1990,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_INCAN</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>0</iUnique1>
-			<iUnique2>250</iUnique2>
-			<iUnique3>600</iUnique3>
-			<iUnique4>1000</iUnique4>
-			<iUnique5>1500</iUnique5>
-			<DescriptionUnique1>TXT_KEY_UNIQUE_POWERS_INCA1</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_UNIQUE_POWERS_INCA2</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_UNIQUE_POWERS_INCA3</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_UNIQUE_POWERS_INCA4</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_UNIQUE_POWERS_INCA5</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_INCA</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_CUZCO</City>
 				<City>TXT_KEY_CITY_NAME_TIWANAKU</City>
@@ -2250,16 +2110,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_INDIAN</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>0</iUnique1>
-			<iUnique2>600</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_UNIQUE_POWERS_INDIA1</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_UNIQUE_POWERS_INDIA2</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_INDIA</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_DELHI</City>
 				<City>TXT_KEY_CITY_NAME_BOMBAY</City>
@@ -2367,8 +2218,8 @@
 			</Buildings>
 			<Units>
 				<Unit>
-					<UnitClassType>UNITCLASS_WORKER</UnitClassType>
-					<UnitType>UNIT_INDIAN_FAST_WORKER</UnitType>
+					<UnitClassType>UNITCLASS_WAR_ELEPHANT</UnitClassType>
+					<UnitType>UNIT_INDIAN_VARU</UnitType>
 				</Unit>
 			</Units>
 			<FreeUnitClasses>
@@ -2385,7 +2236,7 @@
 			</FreeBuildingClasses>
 			<FreeTechs>
 				<FreeTech>
-					<TechType>TECH_MINING</TechType>
+					<TechType>TECH_HUNTING</TechType>
 					<bFreeTech>1</bFreeTech>
 				</FreeTech>
 				<FreeTech>
@@ -2448,16 +2299,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_JAPANESE</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_JAPAN</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_KYOTO</City>
 				<City>TXT_KEY_CITY_NAME_OSAKA</City>
@@ -2542,12 +2384,16 @@
 			</TerrainBiases>
 			<BonusBiases>
 				<BonusBias>
-					<BonusType>BONUS_WHALE</BonusType>
-					<iBias>10</iBias>
+					<BonusType>BONUS_CLAM</BonusType>
+					<iBias>5</iBias>
 				</BonusBias>
 				<BonusBias>
-					<BonusType>BONUS_INCENSE</BonusType>
-					<iBias>2</iBias>
+					<BonusType>BONUS_CRAB</BonusType>
+					<iBias>5</iBias>
+				</BonusBias>
+				<BonusBias>
+					<BonusType>BONUS_FISH</BonusType>
+					<iBias>5</iBias>
 				</BonusBias>
 				<BonusBias>
 					<BonusType>BONUS_RICE</BonusType>
@@ -2588,16 +2434,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_KHMER</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_KHMER</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_YASODHARAPURA</City>
 				<City>TXT_KEY_CITY_NAME_HARIHARALAYA</City>
@@ -2676,6 +2513,16 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<TerrainBiases>
+				<TerrainBias>
+					<TerrainType>TERRAIN_COAST</TerrainType>
+					<iBias>-1</iBias>
+				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_HILL</TerrainType>
+					<iBias>-1</iBias>
+				</TerrainBias>
+			</TerrainBiases>
 			<FeatureBiases>
 				<FeatureBias>
 					<FeatureType>FEATURE_JUNGLE</FeatureType>
@@ -2722,16 +2569,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_KOREAN</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_KOREA</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_SEOUL</City>
 				<City>TXT_KEY_CITY_NAME_PYONGYANG</City>
@@ -2845,16 +2683,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_MALINESE</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_MALI</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_TIMBUKTU</City>
 				<City>TXT_KEY_CITY_NAME_DJENNE</City>
@@ -2931,12 +2760,21 @@
 					<TerrainType>TERRAIN_PLAINS</TerrainType>
 					<iBias>1</iBias>
 				</TerrainBias>
+				<TerrainBias>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<iBias>-3</iBias>
+				</TerrainBias>
 			</TerrainBiases>
-			<FeatureBiases/>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_OASIS</FeatureType>
+					<iBias>5</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_GOLD</BonusType>
-					<iBias>10</iBias>
+					<iBias>3</iBias>
 				</BonusBias>
 			</BonusBiases>
 			<InitialCivics>
@@ -2969,16 +2807,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_MAYAN</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>0</iUnique1>
-			<iUnique2>200</iUnique2>
-			<iUnique3>600</iUnique3>
-			<iUnique4>1000</iUnique4>
-			<iUnique5>1500</iUnique5>
-			<DescriptionUnique1>TXT_KEY_UNIQUE_POWERS_MAYA1</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_UNIQUE_POWERS_MAYA2</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_UNIQUE_POWERS_MAYA3</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_UNIQUE_POWERS_MAYA4</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_UNIQUE_POWERS_MAYA5</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_MAYA</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_MUTAL</City>
 				<City>TXT_KEY_CITY_NAME_LAKAMHA</City>
@@ -3051,7 +2880,7 @@
 			</FreeBuildingClasses>
 			<FreeTechs>
 				<FreeTech>
-					<TechType>TECH_MINING</TechType>
+					<TechType>TECH_AGRICULTURE</TechType>
 					<bFreeTech>1</bFreeTech>
 				</FreeTech>
 				<FreeTech>
@@ -3062,18 +2891,16 @@
 			<DisableTechs/>
 			<TerrainBiases>
 				<TerrainBias>
-					<TerrainType>TERRAIN_PEAK</TerrainType>
-					<iBias>1</iBias>
-				</TerrainBias>
-				<TerrainBias>
-					<TerrainType>TERRAIN_HILL</TerrainType>
-					<iBias>1</iBias>
-				</TerrainBias>
-				<TerrainBias>
 					<TerrainType>TERRAIN_PLAINS</TerrainType>
-					<iBias>2</iBias>
+					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>3</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -3104,16 +2931,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_MONGOL</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_MONGOL</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_KARAKORUM</City>
 				<City>TXT_KEY_CITY_NAME_BESHBALIK</City>
@@ -3230,16 +3048,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_NATIVE_AMERICAN</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_NATIVE_AMERICA</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_CAHOKIA</City>
 				<City>TXT_KEY_CITY_NAME_POVERTY_POINT</City>
@@ -3369,16 +3178,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_HOLLAND</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_NETHERLANDS</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_AMSTERDAM</City>
 				<City>TXT_KEY_CITY_NAME_UTRECHT</City>
@@ -3497,16 +3297,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_OTTOMAN</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_OTTOMAN</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_ISTANBUL</City>
 				<City>TXT_KEY_CITY_NAME_EDIRNE</City>
@@ -3620,16 +3411,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_PERSIA</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_PERSIA</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_PERSEPOLIS</City>
 				<City>TXT_KEY_CITY_NAME_PASARGADAE</City>
@@ -3790,16 +3572,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_PORTUGAL</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_PORTUGAL</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_LISBON</City>
 				<City>TXT_KEY_CITY_NAME_OPORTO</City>
@@ -3918,16 +3691,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_ROMAN</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_ROME</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_ROME</City>
 				<City>TXT_KEY_CITY_NAME_ANTIUM</City>
@@ -4068,16 +3832,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_RUSSIAN</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_RUSSIA</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_MOSCOW</City>
 				<City>TXT_KEY_CITY_NAME_STPETERSBURG</City>
@@ -4156,7 +3911,7 @@
 			<TerrainBiases>
 				<TerrainBias>
 					<TerrainType>TERRAIN_TUNDRA</TerrainType>
-					<iBias>1</iBias>
+					<iBias>2</iBias>
 				</TerrainBias>
 				<TerrainBias>
 					<TerrainType>TERRAIN_PLAINS</TerrainType>
@@ -4211,16 +3966,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_SPAIN</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_SPAIN</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_MADRID</City>
 				<City>TXT_KEY_CITY_NAME_BARCELONA</City>
@@ -4349,16 +4095,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_SUMERIAN</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>0</iUnique1>
-			<iUnique2>60</iUnique2>
-			<iUnique3>175</iUnique3>
-			<iUnique4>500</iUnique4>
-			<iUnique5>2250</iUnique5>
-			<DescriptionUnique1>TXT_KEY_UNIQUE_POWERS_SUMERIA1</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_UNIQUE_POWERS_SUMERIA2</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_UNIQUE_POWERS_SUMERIA3</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_UNIQUE_POWERS_SUMERIA4</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_UNIQUE_POWERS_SUMERIA5</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_SUMERIA</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_URUK</City>
 				<City>TXT_KEY_CITY_NAME_ERIDU</City>
@@ -4479,16 +4216,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_VIKING</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_VIKING</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_NIDAROS</City>
 				<City>TXT_KEY_CITY_NAME_UPPSALA</City>
@@ -4572,7 +4300,7 @@
 				</TerrainBias>
 				<TerrainBias>
 					<TerrainType>TERRAIN_TUNDRA</TerrainType>
-					<iBias>3</iBias>
+					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
 			<InitialCivics>
@@ -4605,16 +4333,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_ZULU</UnitArtStyleType>
 			<bPlayable>1</bPlayable>
 			<bAIPlayable>1</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_UNIQUE_POWER_ZULU</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_ULUNDI</City>
 				<City>TXT_KEY_CITY_NAME_UMGUNGUNDLOVU</City>
@@ -4724,16 +4443,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_BARBARIAN</UnitArtStyleType>
 			<bPlayable>0</bPlayable>
 			<bAIPlayable>0</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_CHEROKEE</City>
 				<City>TXT_KEY_CITY_NAME_ANASAZI</City>
@@ -4872,16 +4582,7 @@
 			<UnitArtStyleType>UNIT_ARTSTYLE_BARBARIAN</UnitArtStyleType>
 			<bPlayable>0</bPlayable>
 			<bAIPlayable>0</bAIPlayable>
-			<iUnique1>200</iUnique1>
-			<iUnique2>1000</iUnique2>
-			<iUnique3>3500</iUnique3>
-			<iUnique4>10000</iUnique4>
-			<iUnique5>30000</iUnique5>
-			<DescriptionUnique1>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique1>
-			<DescriptionUnique2>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique2>
-			<DescriptionUnique3>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique3>
-			<DescriptionUnique4>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique4>
-			<DescriptionUnique5>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUnique5>
+			<DescriptionUniquePower>TXT_KEY_NO_UNIQUE_POWERS</DescriptionUniquePower>
 			<Cities>
 				<City>TXT_KEY_CITY_NAME_CHEROKEE</City>
 				<City>TXT_KEY_CITY_NAME_ANASAZI</City>

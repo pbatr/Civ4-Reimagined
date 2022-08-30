@@ -50,6 +50,7 @@
 	<ElementType name="ReligionType" content="textOnly"/>
 	<ElementType name="StateReligion" content="textOnly"/>
 	<ElementType name="bStateReligion" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bUniquePower" content="textOnly" dt:type="boolean"/> <!-- Civ4 Reimagined -->
 	<ElementType name="PrereqReligion" content="textOnly"/>
 	<ElementType name="PrereqIdeology" content="textOnly"/> <!-- Civ4 Reimagined -->
 	<ElementType name="PrereqCorporation" content="textOnly"/>
@@ -126,6 +127,7 @@
 	<ElementType name="bCanFarmHills" content="textOnly" dt:type="boolean"/> <!-- Civ4 Reimagined -->
 	<ElementType name="bNoWarAgainstSameFaithUnhappiness" content="textOnly" dt:type="boolean"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iReligionSpreadBoost" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
+	<ElementType name="iFarmAdjacencyBonus" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iLootingModifier" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iStateReligionFreeExperience" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iNavalLevelPrereq" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
@@ -199,6 +201,7 @@
 	<ElementType name="NoAnarchyCivicOption" content="textOnly"/> <!-- Civ4 Reimagined -->
 	<ElementType name="GreatPeopleUnitClass" content="textOnly"/>
 	<ElementType name="iGreatPeopleRateChange" content="textOnly" dt:type="int"/>
+	<ElementType name="iGreatPeopleRateChangePerWorldWonder" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iHurryAngerModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="bBorderObstacle" content="textOnly" dt:type="boolean"/>
 	<ElementType name="iYield" content="textOnly" dt:type="int"/>
@@ -511,6 +514,7 @@
 		<element type="ReligionType"/>
 		<element type="StateReligion"/>
 		<element type="bStateReligion"/>
+		<element type="bUniquePower" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="PrereqReligion"/>
 		<element type="PrereqIdeology" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<!-- Building Civic Prereqs Start -->
@@ -545,6 +549,7 @@
 		<element type="NoAnarchyCivicOption" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="GreatPeopleUnitClass"/>
 		<element type="iGreatPeopleRateChange"/>
+		<element type="iGreatPeopleRateChangePerWorldWonder" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="iHurryAngerModifier"/>
 		<element type="bBorderObstacle"/>
 		<element type="bTeamShare"/>
@@ -577,6 +582,7 @@
 		<element type="bCanFarmHills" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="bNoWarAgainstSameFaithUnhappiness" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="iReligionSpreadBoost" minOccurs="0"/> <!-- Civ4 Reimagined -->
+		<element type="iFarmAdjacencyBonus" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="iLootingModifier" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="iStateReligionFreeExperience" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="iNavalLevelPrereq" minOccurs="0"/> <!-- Civ4 Reimagined -->

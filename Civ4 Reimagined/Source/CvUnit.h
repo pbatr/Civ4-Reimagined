@@ -22,6 +22,7 @@ class KmodPathFinder;
 struct DllExport CombatDetails					// Exposed to Python
 {
 	int iExtraCombatPercent;
+	int iExtraCombatPercentAgainstWoodenShips; // Civ4 Reimagined
 	int iAnimalCombatModifierTA;
 	int iAIAnimalCombatModifierTA;
 	int iAnimalCombatModifierAA;
@@ -40,6 +41,8 @@ struct DllExport CombatDetails					// Exposed to Python
 	int iFeatureDefenseModifier;
 	int iTerrainAttackModifier;
 	int iTerrainDefenseModifier;
+	int iHomeAreaOwnBordersModifier; // Civ4 Reimagined
+	int iAgainstInjuredModifier; // Civ4 Reimagined
 	int iCityAttackModifier;
 	int iDomainDefenseModifier;
 	int iCityBarbarianDefenseModifier;
@@ -61,6 +64,7 @@ struct DllExport CombatDetails					// Exposed to Python
 	int iCurrHitPoints;
 	int iMaxHitPoints;
 	int iCurrCombatStr;
+	int iFaithModifier; // Civ4 Reimagined
 	PlayerTypes eOwner;
 	PlayerTypes eVisualOwner;
 	std::wstring sUnitName;
@@ -231,13 +235,19 @@ public:
 	bool canHurry(const CvPlot* pPlot, bool bTestVisible = false) const;													// Exposed to Python
 	bool hurry();
 
+	int getTradeGoldHappinessBonusModifier(const CvCity* pCity) const; // Civ4 Reimagined
 	int getTradeGold(const CvPlot* pPlot) const;																									// Exposed to Python
 	bool canTrade(const CvPlot* pPlot, bool bTestVisible = false) const;													// Exposed to Python
 	bool trade();
 
+	int getGreatWorkGold(const CvPlot* pPlot) const;
 	int getGreatWorkCulture(const CvPlot* pPlot) const;																						// Exposed to Python
 	bool canGreatWork(const CvPlot* pPlot) const;																									// Exposed to Python
 	bool greatWork();
+
+	// Civ4 Reimagined
+	bool canSacrifice(const CvPlot* pPlot) const;
+	bool sacrifice();
 
 	int getEspionagePoints(const CvPlot* pPlot) const;																									// Exposed to Python
 	bool canInfiltrate(const CvPlot* pPlot, bool bTestVisible = false) const;													// Exposed to Python
@@ -320,7 +330,11 @@ public:
 	bool isGoldenAge() const;																							// Exposed to Python
 	bool isNoUpkeep() const; // Civ4 Reimagined
 	bool isSlave() const; // Civ4 Reimagined
-	bool canCoexistWithEnemyUnit(TeamTypes eTeam) const;																				// Exposed to Python
+	bool canCoexistWithEnemyUnit(TeamTypes eTeam) const;
+
+	// Civ4 Reimagined
+	void setIsFreeWorker(bool bNewValue);
+	bool isFreeWorker() const;																				// Exposed to Python
 
 	DllExport bool isFighting() const;																		// Exposed to Python						
 	DllExport bool isAttacking() const;																		// Exposed to Python						
@@ -373,6 +387,8 @@ public:
 	int getCombatXPModifier() const; // Civ4 Reimagined
 	int getBlockadeGoldModifier() const; // Civ4 Reimagined
 	int getFeatureProductionModifier() const; // Civ4 Reimagined
+	bool isGreatGeneralGoldenAge() const; // Civ4 Reimagined
+	bool greatGeneralGoldenAge(); // Civ4 Reimagined
 	
 	int firstStrikes() const;																								// Exposed to Python
 	int chanceFirstStrikes() const;																					// Exposed to Python 
@@ -403,6 +419,7 @@ public:
 	int cityAttackModifier() const;																					// Exposed to Python
 	int cityDefenseModifier() const;																				// Exposed to Python
 	int defenseBuildingModifier() const; //Civ4 Reimagined
+	int againstInjuredModifier() const; //Civ4 Reimagined
 	int animalCombatModifier() const;																				// Exposed to Python
 	int hillsAttackModifier() const;																				// Exposed to Python
 	int hillsDefenseModifier() const;																				// Exposed to Python
@@ -593,6 +610,10 @@ public:
 	int getExtraCombatPercent() const;																							// Exposed to Python					
 	void changeExtraCombatPercent(int iChange);
 
+	// Civ4 Reimagined
+	int getExtraCombatPercentAgainstWoodenShips() const;																						// Exposed to Python					
+	void changeExtraCombatPercentAgainstWoodenShips(int iChange);
+
 	int getExtraCityAttackPercent() const;																										// Exposed to Python
 	void changeExtraCityAttackPercent(int iChange);
 
@@ -738,6 +759,14 @@ public:
 	bool canRangeStrikeAt(const CvPlot* pPlot, int iX, int iY) const;
 	bool rangeStrike(int iX, int iY);
 
+	// Civ4 Reimagined
+	bool canCoastalRaid() const;
+	bool canCoastalRaidAt(const CvPlot* pPlot, int iX, int iY) const;
+	bool coastalRaid(int iX, int iY);
+
+	// Civ4 Reimagined
+	void doPirateGold(UnitTypes eKilledUnit, CvPlot* pPlot); // Civ4 Reimagined
+
 	int getTriggerValue(EventTriggerTypes eTrigger, const CvPlot* pPlot, bool bCheckPlot) const;
 	bool canApplyEvent(EventTypes eEvent) const;
 	void applyEvent(EventTypes eEvent);
@@ -851,6 +880,7 @@ protected:
 	int m_iExtraFriendlyHeal;
 	int m_iSameTileHeal;
 	int m_iExtraCombatPercent;
+	int m_iExtraCombatPercentAgainstWoodenShips; // Civ4 Reimagined
 	int m_iExtraCityAttackPercent;
 	int m_iExtraCityDefensePercent;
 	int m_iExtraHillsAttackPercent;
@@ -874,6 +904,7 @@ protected:
 	bool m_bInfoBarDirty;
 	bool m_bBlockading;
 	bool m_bAirCombat;
+	bool m_bFreeWorker; // Civ4 Reimagined
 
 	PlayerTypes m_eOwner;
 	PlayerTypes m_eCapturingPlayer;

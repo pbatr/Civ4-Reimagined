@@ -463,8 +463,6 @@ void CvPlot::doImprovement()
 {
 	PROFILE_FUNC();
 
-	CvCity* pCity;
-	CvWString szBuffer;
 	int iI;
 
 	FAssert(isBeingWorked() && isOwned());
@@ -476,7 +474,7 @@ void CvPlot::doImprovement()
 			FAssertMsg((0 < GC.getNumBonusInfos()), "GC.getNumBonusInfos() is not greater than zero but an array is being allocated in CvPlot::doImprovement");
 			for (iI = 0; iI < GC.getNumBonusInfos(); ++iI)
 			{
-				if (GET_TEAM(getTeam()).isHasTech((TechTypes)(GC.getBonusInfo((BonusTypes) iI).getTechReveal())))
+				if (GET_TEAM(getTeam()).isBonusRevealed((BonusTypes) iI))
 				{
 /************************************************************************************************/
 /* UNOFFICIAL_PATCH                       03/04/10                                jdog5000      */
@@ -496,20 +494,18 @@ void CvPlot::doImprovement()
 						iOdds *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getVictoryDelayPercent();
 						iOdds /= 100;
 
+						// Civ4 Reimagined
+						if (GET_PLAYER(getOwnerINLINE()).isDesertGold() && iI == GC.getInfoTypeForString("BONUS_GOLD"))
+						{
+							iOdds /= 2;
+						}
+
 						if( GC.getGameINLINE().getSorenRandNum(iOdds, "Bonus Discovery") == 0)
 						{
 /************************************************************************************************/
 /* UNOFFICIAL_PATCH                        END                                                  */
 /************************************************************************************************/
-							setBonusType((BonusTypes)iI);
-
-							pCity = GC.getMapINLINE().findCity(getX_INLINE(), getY_INLINE(), getOwnerINLINE(), NO_TEAM, false);
-
-							if (pCity != NULL)
-							{
-								szBuffer = gDLL->getText("TXT_KEY_MISC_DISCOVERED_NEW_RESOURCE", GC.getBonusInfo((BonusTypes) iI).getTextKeyWide(), pCity->getNameKey());
-								gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MINOR_EVENT, GC.getBonusInfo((BonusTypes) iI).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"), getX_INLINE(), getY_INLINE(), true, true);
-							}
+							discoverBonus((BonusTypes)iI);
 
 							break;
 						}
@@ -520,6 +516,20 @@ void CvPlot::doImprovement()
 	}
 
 	doImprovementUpgrade();
+}
+
+// Civ4 Reimagined
+void CvPlot::discoverBonus(BonusTypes eBonus)
+{
+	setBonusType(eBonus);
+
+	CvCity* pCity = GC.getMapINLINE().findCity(getX_INLINE(), getY_INLINE(), getOwnerINLINE(), NO_TEAM, false);
+
+	if (pCity != NULL)
+	{
+		CvWString szBuffer = gDLL->getText("TXT_KEY_MISC_DISCOVERED_NEW_RESOURCE", GC.getBonusInfo(eBonus).getTextKeyWide(), pCity->getNameKey());
+		gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_DISCOVERBONUS", MESSAGE_TYPE_MINOR_EVENT, GC.getBonusInfo(eBonus).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"), getX_INLINE(), getY_INLINE(), true, true);
+	}
 }
 
 void CvPlot::doImprovementUpgrade()
@@ -1227,7 +1237,9 @@ void CvPlot::updatePlotGroupBonus(bool bAdd)
 		BonusTypes eBonus = getNonObsoleteBonusType(getTeam(), true);
 		if (eBonus != NO_BONUS && pPlotGroup && isBonusNetwork(getTeam()))
 		{
-			pPlotGroup->changeNumBonuses(eBonus, bAdd ? 1 : -1);
+			// Civ4 Reimagined: Dutch UP
+			const int iBonusCount = GET_TEAM(getTeam()).getAdditionalBonus(eBonus) + 1;
+			pPlotGroup->changeNumBonuses(eBonus, bAdd ? iBonusCount : -iBonusCount);
 		}
 		// K-Mod end
 	}
@@ -1364,6 +1376,109 @@ bool CvPlot::isAdjacentToPeak() const
 			if (pAdjacentPlot->isPeak())
 			{
 				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+// Civ4 Reimagined
+bool CvPlot::isAdjacentToLake() const
+{
+	PROFILE_FUNC();
+
+	CvPlot* pAdjacentPlot;
+	int iI;
+
+	for (iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
+	{
+		pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
+
+		if (pAdjacentPlot != NULL)
+		{
+			if (pAdjacentPlot->isLake())
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+// Civ4 Reimagined
+bool CvPlot::isAdjacentToImprovement(ImprovementTypes eIndex) const
+{
+	PROFILE_FUNC();
+
+	CvPlot* pAdjacentPlot;
+	int iI;
+
+	for (iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
+	{
+		pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
+
+		if (pAdjacentPlot != NULL)
+		{
+			if (pAdjacentPlot->getImprovementType() == eIndex)
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+// Civ4 Reimagined
+bool CvPlot::isAdjacentToBonus(BonusTypes eIndex) const
+{
+	PROFILE_FUNC();
+
+	CvPlot* pAdjacentPlot;
+	int iI;
+
+	for (iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
+	{
+		pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
+
+		if (pAdjacentPlot != NULL)
+		{
+			if (pAdjacentPlot->getBonusType() == eIndex)
+			{
+				return true;
+			}
+		}
+	}
+
+	return false;
+}
+
+
+// Civ4 Reimagined
+bool CvPlot::isAdjacentToStrategicBonus(TeamTypes eTeam) const
+{
+	PROFILE_FUNC();
+
+	CvPlot* pAdjacentPlot;
+	int iI;
+
+	for (iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
+	{
+		pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
+
+		if (pAdjacentPlot != NULL)
+		{
+			const BonusTypes eBonus = pAdjacentPlot->getBonusType(eTeam);
+
+			if (eBonus != NO_BONUS)
+			{
+				CvBonusInfo& kBonusInfo = GC.getBonusInfo(eBonus);
+				if (kBonusInfo.getHappiness() == 0 && kBonusInfo.getHealth() == 0)
+				{
+					return true;
+				}
 			}
 		}
 	}
@@ -1534,7 +1649,7 @@ bool CvPlot::canHavePotentialIrrigation() const
 	{
 		if (GC.getImprovementInfo((ImprovementTypes)iI).isCarriesIrrigation())
 		{
-			if (canHaveImprovement(((ImprovementTypes)iI), NO_TEAM, true))
+			if (canHaveImprovement(((ImprovementTypes)iI), NO_PLAYER, true))
 			{
 				return true;
 			}
@@ -1556,6 +1671,12 @@ bool CvPlot::isIrrigationAvailable(bool bIgnoreSelf) const
 	}
 
 	if (isFreshWater())
+	{
+		return true;
+	}
+
+	// Civ4 Reimagined
+	if (getOwnerINLINE() != NO_PLAYER && GET_PLAYER(getOwnerINLINE()).isAlwaysFreshWater())
 	{
 		return true;
 	}
@@ -2275,11 +2396,18 @@ bool CvPlot::canHaveBonus(BonusTypes eBonus, bool bIgnoreLatitude) const
 }
 
 
-bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, bool bPotential) const
+bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, PlayerTypes ePlayer, bool bPotential) const
 {
 	CvPlot* pLoopPlot;
 	bool bValid;
 	int iI;
+
+	TeamTypes eTeam = NO_TEAM;
+
+	if (ePlayer != NO_PLAYER)
+	{
+		eTeam = GET_PLAYER(ePlayer).getTeam();
+	}
 
 /*
 ** K-Mod, 21/dec/10, karadoc
@@ -2333,7 +2461,7 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, 
 		return false;
 	}
 	
-	// Civ4 Reimagined
+	// Civ4 Reimagined: Inca UP
 	if (GC.getImprovementInfo(eImprovement).isRequiresCanFarmHills()) 
 	{
 		if ((eTeam == -1 || !(GET_TEAM(eTeam).isCanFarmHills())
@@ -2373,6 +2501,15 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, 
 		bValid = true;
 	}
 
+	// Civ4 Reimagined: Dutch UP
+	if (eImprovement == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_WINDMILL") && isCoastalLand(GC.getMIN_WATER_SIZE_FOR_OCEAN())) 
+	{
+		if (ePlayer != NO_PLAYER && GET_PLAYER(ePlayer).canBuildWindmillsOnCoast())
+		{
+			bValid = true;
+		}
+	}
+
 	if (!bValid)
 	{
 		return false;
@@ -2407,7 +2544,7 @@ bool CvPlot::canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam, 
 
 	for (iI = 0; iI < NUM_YIELD_TYPES; ++iI)
 	{
-		if (calculateNatureYield(((YieldTypes)iI), eTeam) < GC.getImprovementInfo(eImprovement).getPrereqNatureYield(iI))
+		if (calculateNatureYield(((YieldTypes)iI), ePlayer, false, /*ignore UP*/ true) < GC.getImprovementInfo(eImprovement).getPrereqNatureYield(iI))
 		{
 			return false;
 		}
@@ -2462,7 +2599,7 @@ bool CvPlot::canBuild(BuildTypes eBuild, PlayerTypes ePlayer, bool bTestVisible)
 
 	if (eImprovement != NO_IMPROVEMENT)
 	{
-		if (!canHaveImprovement(eImprovement, GET_PLAYER(ePlayer).getTeam(), bTestVisible))
+		if (!canHaveImprovement(eImprovement, ePlayer, bTestVisible))
 		{
 			return false;
 		}
@@ -2677,7 +2814,16 @@ int CvPlot::getFeatureProduction(BuildTypes eBuild, TeamTypes eTeam, CvCity** pp
 		return 0;
 	}
 
-	iProduction = (GC.getBuildInfo(eBuild).getFeatureProduction(getFeatureType()) - (std::max(0, (plotDistance(getX_INLINE(), getY_INLINE(), (*ppCity)->getX_INLINE(), (*ppCity)->getY_INLINE()) - 2)) * 5));
+	int iFeatureProduction = GC.getBuildInfo(eBuild).getFeatureProduction(getFeatureType());
+
+	// Civ4 Reimagined: Maya UP
+	/*
+	if (GET_PLAYER((*ppCity)->getOwnerINLINE()).isCanRemoveFeatures() && getFeatureType() == (FeatureTypes)GC.getInfoTypeForString("FEATURE_JUNGLE"))
+	{
+		iFeatureProduction = GC.getDefineINT("UNIQUE_POWER_MAYA");
+	}*/
+
+	iProduction = iFeatureProduction - (std::max(0, (plotDistance(getX_INLINE(), getY_INLINE(), (*ppCity)->getX_INLINE(), (*ppCity)->getY_INLINE()) - 2)) * 5);
 
 	iProduction *= std::max(0, (GET_PLAYER((*ppCity)->getOwnerINLINE()).getFeatureProductionModifier() + 100));
 	iProduction /= 100;
@@ -5007,6 +5153,7 @@ void CvPlot::setOwner(PlayerTypes eNewValue, bool bCheckUnits, bool bUpdatePlotG
 	CLLNode<IDInfo>* pUnitNode;
 	CvCity* pOldCity;
 	CvCity* pNewCity;
+	CvCity* pWorkingCity;
 	CvUnit* pLoopUnit;
 	CvWString szBuffer;
 	UnitTypes eBestUnit;
@@ -5112,6 +5259,15 @@ void CvPlot::setOwner(PlayerTypes eNewValue, bool bCheckUnits, bool bUpdatePlotG
 				}
 
 				updatePlotGroupBonus(false);
+
+				// Civ4 Reimagined
+				pWorkingCity = getWorkingCity();
+				if (pWorkingCity != NULL)
+				{
+					pWorkingCity->updateFeatureHappiness();
+					pWorkingCity->updateImprovementsInRadius();
+					pWorkingCity->updateFeatureCommerce(); // Civ4 Reimagined
+				}
 			}
 
 			pUnitNode = headUnitNode();
@@ -5169,6 +5325,15 @@ void CvPlot::setOwner(PlayerTypes eNewValue, bool bCheckUnits, bool bUpdatePlotG
 				}
 
 				updatePlotGroupBonus(true);
+
+				// Civ4 Reimagined
+				pWorkingCity = getWorkingCity();
+				if (pWorkingCity != NULL)
+				{
+					pWorkingCity->updateFeatureHappiness();
+					pWorkingCity->updateImprovementsInRadius();
+					pWorkingCity->updateFeatureCommerce(); // Civ4 Reimagined
+				}
 			}
 
 			pUnitNode = headUnitNode();
@@ -5722,6 +5887,7 @@ void CvPlot::setFeatureType(FeatureTypes eNewValue, int iVariety)
 				{
 					pLoopCity->updateFeatureHealth();
 					pLoopCity->updateFeatureHappiness();
+					pLoopCity->updateFeatureCommerce(); // Civ4 Reimagined
 				}
 			}
 		}
@@ -5968,11 +6134,31 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 			if (isOwned())
 			{
 				GET_PLAYER(getOwnerINLINE()).changeImprovementCount(getImprovementType(), 1);
+
+				// Civ4 Reimagined: Mali UP
+				if (GET_PLAYER(getOwnerINLINE()).isDesertGold() && getImprovementType() == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_MINE"))
+				{
+					if (canDiscoverDesertGold())
+					{
+						discoverBonus((BonusTypes)GC.getInfoTypeForString("BONUS_GOLD"));
+					}
+				}
 			}
 		}
 
 		updateIrrigated();
 		updateYield();
+
+		// Civ4 Reimagined: Update adjacent plots
+		for (iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
+		{
+			CvPlot* pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
+
+			if ((pAdjacentPlot != NULL) && pAdjacentPlot->getOwnerINLINE() == getOwnerINLINE())
+			{
+				pAdjacentPlot->updateYield();
+			}
+		}
 
 		for (iI = 0; iI < NUM_CITY_PLOTS; ++iI)
 		{
@@ -5985,6 +6171,8 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 				if (pLoopCity != NULL)
 				{
 					pLoopCity->updateFeatureHappiness();
+					pLoopCity->updateImprovementsInRadius(); // Civ4 Reimagined
+					pLoopCity->updateFeatureCommerce(); // Civ4 Reimagined
 				}
 			}
 		}
@@ -6391,14 +6579,25 @@ int CvPlot::getYield(YieldTypes eIndex) const
 }
 
 
-int CvPlot::calculateNatureYield(YieldTypes eYield, TeamTypes eTeam, bool bIgnoreFeature) const
+int CvPlot::calculateNatureYield(YieldTypes eYield, PlayerTypes ePlayer, bool bIgnoreFeature, bool bIgnoreUniquePower) const
 {
 	BonusTypes eBonus;
-	int iYield;
+	int iYield = 0;
 
 	if (isImpassable())
 	{
-		return 0;
+		// Civ4 Reimagined: Inca UP
+		if (!bIgnoreUniquePower && ePlayer != NO_PLAYER && isPeak())
+		{
+			iYield += GET_PLAYER(ePlayer).getPeakYield(eYield);
+
+			if (GET_PLAYER(ePlayer).getPeakYieldChangeAdjacentToTerrace(eYield) != 0 && isAdjacentToImprovement((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_TERRACE")))
+			{
+				iYield += GET_PLAYER(ePlayer).getPeakYieldChangeAdjacentToTerrace(eYield);
+			}
+		}
+
+		return iYield;
 	}
 
 	FAssertMsg(getTerrainType() != NO_TERRAIN, "TerrainType is not assigned a valid value");
@@ -6420,13 +6619,34 @@ int CvPlot::calculateNatureYield(YieldTypes eYield, TeamTypes eTeam, bool bIgnor
 		iYield += GC.getYieldInfo(eYield).getLakeChange();
 	}
 
-	if (eTeam != NO_TEAM)
+	if (ePlayer != NO_PLAYER)
 	{
-		eBonus = getBonusType(eTeam);
+		eBonus = getBonusType(GET_PLAYER(ePlayer).getTeam());
 
 		if (eBonus != NO_BONUS)
 		{
 			iYield += GC.getBonusInfo(eBonus).getYieldChange(eYield);
+		}
+
+		// Civ4 Reimagined
+		if (!bIgnoreUniquePower)
+		{
+			if (GET_PLAYER(ePlayer).getPeakAdjacencyExtraYield(eYield) != 0)
+			{
+				if (isFlatlands() || isHills())
+				{
+					if (isAdjacentToPeak())
+					{
+						iYield += GET_PLAYER(ePlayer).getPeakAdjacencyExtraYield(eYield);
+					}
+				}
+			}
+
+			// Civ4 Reimagined
+			if (!isImpassable())
+			{
+				iYield += GET_PLAYER(ePlayer).getTerrainYieldChange(getTerrainType(), eYield);
+			}
 		}
 	}
 
@@ -6445,6 +6665,12 @@ int CvPlot::calculateNatureYield(YieldTypes eYield, TeamTypes eTeam, bool bIgnor
 		if (getFeatureType() != NO_FEATURE)
 		{
 			iYield += GC.getFeatureInfo(getFeatureType()).getYieldChange(eYield);
+
+			// Civ4 Reimagined
+			if (ePlayer != NO_PLAYER && !bIgnoreUniquePower)
+			{
+				iYield += GET_PLAYER(ePlayer).getFeatureExtraYield(getFeatureType(), eYield);
+			}
 		}
 	}
 
@@ -6452,15 +6678,15 @@ int CvPlot::calculateNatureYield(YieldTypes eYield, TeamTypes eTeam, bool bIgnor
 }
 
 
-int CvPlot::calculateBestNatureYield(YieldTypes eIndex, TeamTypes eTeam) const
+int CvPlot::calculateBestNatureYield(YieldTypes eIndex, PlayerTypes ePlayer, bool bIgnoreUniquePower) const
 {
-	return std::max(calculateNatureYield(eIndex, eTeam, false), calculateNatureYield(eIndex, eTeam, true));
+	return std::max(calculateNatureYield(eIndex, ePlayer, false, bIgnoreUniquePower), calculateNatureYield(eIndex, ePlayer, true, bIgnoreUniquePower));
 }
 
 
-int CvPlot::calculateTotalBestNatureYield(TeamTypes eTeam) const
+int CvPlot::calculateTotalBestNatureYield(PlayerTypes ePlayer, bool bIgnoreUniquePower) const
 {
-	return (calculateBestNatureYield(YIELD_FOOD, eTeam) + calculateBestNatureYield(YIELD_PRODUCTION, eTeam) + calculateBestNatureYield(YIELD_COMMERCE, eTeam));
+	return (calculateBestNatureYield(YIELD_FOOD, ePlayer, bIgnoreUniquePower) + calculateBestNatureYield(YIELD_PRODUCTION, ePlayer, bIgnoreUniquePower) + calculateBestNatureYield(YIELD_COMMERCE, ePlayer, bIgnoreUniquePower));
 }
 
 /************************************************************************************************/
@@ -6544,11 +6770,68 @@ int CvPlot::calculateImprovementYieldChange(ImprovementTypes eImprovement, Yield
 
 	if (ePlayer != NO_PLAYER)
 	{
+		// Cvi4 Reimagined: Russia UP
+		if (GET_PLAYER(ePlayer).getImprovementYieldChangeAdjacentToStrategicBonus(eImprovement, eYield) != 0)
+		{
+			CvCity* pCapitalCity = GET_PLAYER(ePlayer).getCapitalCity();
+			if (pCapitalCity!= NULL && getArea() == pCapitalCity->getArea() && isAdjacentToStrategicBonus(getTeam()))
+			{
+				iYield += GET_PLAYER(ePlayer).getImprovementYieldChangeAdjacentToStrategicBonus(eImprovement, eYield);
+			}
+		}
+
+		// Civ4 Reimagined
+		if (isFlatlands())
+		{
+			CvCity* pWorkingCity = getWorkingCity();
+
+			// Khmer UB
+			if (pWorkingCity != NULL)
+			{
+				if (pWorkingCity->getFarmAdjacencyBonus(eYield) > 0 && eImprovement == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FARM") 
+					&& !GET_TEAM(getTeam()).isHasTech((TechTypes)GC.getInfoTypeForString("TECH_BIOLOGY")))
+				{
+					iYield += calculateAdjacencyBonus(eYield, eImprovement, pWorkingCity->getFarmAdjacencyBonus(eYield));
+				}
+			}
+
+			// Korea UP
+			if (GET_PLAYER(ePlayer).getTownAdjacencyBonus(eYield) > 0 && eImprovement == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_TOWN"))
+			{
+				iYield += calculateAdjacencyBonus(eYield, eImprovement, GET_PLAYER(ePlayer).getTownAdjacencyBonus(eYield));
+			}
+		}
+
 		eBonus = getBonusType(GET_PLAYER(ePlayer).getTeam());
 
 		if (eBonus != NO_BONUS)
 		{
-			iYield += GC.getImprovementInfo(eImprovement).getImprovementBonusYield(eBonus, eYield);
+			int iBonusYield = GC.getImprovementInfo(eImprovement).getImprovementBonusYield(eBonus, eYield);
+
+			// Civ4 Reimagined: Chinese UP
+			if (iBonusYield > 0 && eImprovement == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FARM") && eYield == YIELD_FOOD)
+			{
+				iBonusYield += GET_PLAYER(ePlayer).getAdditionalFarmBonusYield();
+			}
+
+			// Civ4 Reimagined: Celtic UP
+			if (eImprovement == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_MINE") && eYield == YIELD_COMMERCE)
+			{
+				iBonusYield += GET_PLAYER(ePlayer).getAdditionalMineBonusCommerce();
+			}
+
+			// Civ4 Reimagined: Russia UP
+			if (iBonusYield > 0 && GET_PLAYER(ePlayer).getStrategicBonusYieldModifier() != 0)
+			{
+				CvBonusInfo& kBonusInfo = GC.getBonusInfo(eBonus);
+				if (kBonusInfo.getHappiness() == 0 && kBonusInfo.getHealth() == 0)
+				{
+					iBonusYield *= 100 + GET_PLAYER(ePlayer).getStrategicBonusYieldModifier();
+					iBonusYield /= 100;
+				}
+			}
+
+			iYield += iBonusYield;
 		}
 	}
 
@@ -6603,7 +6886,7 @@ int CvPlot::calculateYield(YieldTypes eYield, bool bDisplay) const
 		eRoute = getRouteType();
 	}
 
-	iYield = calculateNatureYield(eYield, ((ePlayer != NO_PLAYER) ? GET_PLAYER(ePlayer).getTeam() : NO_TEAM));
+	iYield = calculateNatureYield(eYield, ePlayer);
 
 	if (eImprovement != NO_IMPROVEMENT)
 	{
@@ -6628,6 +6911,19 @@ int CvPlot::calculateYield(YieldTypes eYield, bool bDisplay) const
 				{
 					iYield += ((pCity->getPopulation() + GC.getYieldInfo(eYield).getPopulationChangeOffset()) / GC.getYieldInfo(eYield).getPopulationChangeDivisor());
 				}
+
+				// Civ4 Reimagined: Maya UP
+				const eBonus = getBonusType(GET_PLAYER(ePlayer).getTeam());
+				if (GET_PLAYER(ePlayer).isCityImprovesBonus() && eBonus != NO_BONUS)
+				{
+					int iMaxBonusYield = 0;
+					for (int iI = 0; iI < GC.getNumImprovementInfos(); ++iI)
+					{
+						iMaxBonusYield = std::max(iMaxBonusYield, GC.getImprovementInfo((ImprovementTypes)iI).getImprovementBonusYield(eBonus, eYield));
+					}
+					iYield += iMaxBonusYield;
+				}
+
 				bCity = true;
 			}
 		}
@@ -6670,6 +6966,12 @@ int CvPlot::calculateYield(YieldTypes eYield, bool bDisplay) const
 	if (bCity)
 	{
 		iYield = std::max(iYield, GC.getYieldInfo(eYield).getMinCity());
+
+		// Civ4 Reimagined
+		if (isHills())
+		{
+			iYield += GET_PLAYER(ePlayer).getCityOnHillsExtraYield(eYield);
+		}
 	}
 
 	iYield += GC.getGameINLINE().getPlotExtraYield(m_iX, m_iY, eYield);
@@ -6759,6 +7061,24 @@ void CvPlot::updateYield()
 	{
 		updateSymbols();
 	}
+}
+
+
+// Civ4 Reimagined
+int CvPlot::calculateAdjacencyBonus(YieldTypes eYield, ImprovementTypes eImprovement, int iNeededAdjacentImprovements) const
+{
+	int iCountAdjacentImprovemnts = 0;
+	for (int iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
+	{
+		CvPlot* pAdjacentPlot = plotDirection(getX_INLINE(), getY_INLINE(), ((DirectionTypes)iI));
+
+		if ((pAdjacentPlot != NULL) && pAdjacentPlot->getOwner() == getOwner() && pAdjacentPlot->getImprovementType() == eImprovement)
+		{
+			iCountAdjacentImprovemnts++;
+		}
+	}
+
+	return iCountAdjacentImprovemnts / iNeededAdjacentImprovements;
 }
 
 
@@ -9175,7 +9495,11 @@ void CvPlot::processArea(CvArea* pArea, int iChange)
 				if (GC.getBuildingInfo((BuildingTypes) iI).getAreaFreeBuildingClass() != NO_BUILDINGCLASS)
 				{
 					BuildingTypes eFreeBuilding = (BuildingTypes)GC.getCivilizationInfo(GET_PLAYER(getOwnerINLINE()).getCivilizationType()).getCivilizationBuildings(GC.getBuildingInfo((BuildingTypes) iI).getAreaFreeBuildingClass());
-					pArea->changeFreeBuildingCount(pCity->getOwnerINLINE(), eFreeBuilding, iChange * pCity->getNumActiveBuilding((BuildingTypes)iI));
+
+					if (eFreeBuilding != NO_BUILDING)
+					{
+						pArea->changeFreeBuildingCount(pCity->getOwnerINLINE(), eFreeBuilding, iChange * pCity->getNumActiveBuilding((BuildingTypes)iI));
+					}
 				}
 			}
 		}
@@ -9928,7 +10252,7 @@ int CvPlot::getYieldWithBuild(BuildTypes eBuild, YieldTypes eYield, bool bWithUp
 		}
 	}
 
-	iYield += calculateNatureYield(eYield, getTeam(), bIgnoreFeature);
+	iYield += calculateNatureYield(eYield, getOwnerINLINE(), bIgnoreFeature);
 
 	ImprovementTypes eImprovement = (ImprovementTypes)GC.getBuildInfo(eBuild).getImprovement();
 	// K-Mod. if the build doesn't have its own improvement - use the existing one!
@@ -10193,7 +10517,7 @@ bool CvPlot::canApplyEvent(EventTypes eEvent) const
 	{
 		if (NO_IMPROVEMENT != kEvent.getImprovement())
 		{
-			if (!canHaveImprovement((ImprovementTypes)kEvent.getImprovement(), getTeam()))
+			if (!canHaveImprovement((ImprovementTypes)kEvent.getImprovement(), getOwnerINLINE()))
 			{
 				return false;
 			}
@@ -10820,3 +11144,30 @@ bool CvPlot::hasDefender(bool bCheckCanAttack, PlayerTypes eOwner, PlayerTypes e
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                       END                                                  */
 /************************************************************************************************/
+
+
+// Civ4 Reimagined
+bool CvPlot::canDiscoverDesertGold() const
+{
+	if (getTerrainType() != (TerrainTypes)GC.getInfoTypeForString("TERRAIN_DESERT"))
+	{
+		return false;
+	}
+
+	if (!isHills())
+	{
+		return false;
+	}
+
+	if (getBonusType() != NO_BONUS)
+	{
+		return false;
+	}
+
+	if (isAdjacentToBonus((BonusTypes)GC.getInfoTypeForString("BONUS_GOLD")))
+	{
+		return false;
+	}
+
+	return true;
+}

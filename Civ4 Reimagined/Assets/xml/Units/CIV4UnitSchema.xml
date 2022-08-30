@@ -10,6 +10,7 @@
 	<ElementType name="FeatureType" content="textOnly"/>
 	<ElementType name="BonusType" content="textOnly"/>
 	<ElementType name="PrereqTech" content="textOnly"/>
+	<ElementType name="TechObsolete" content="textOnly"/>
 	<ElementType name="Description" content="textOnly"/>
 	<ElementType name="Civilopedia" content="textOnly"/>
 	<ElementType name="Help" content="textOnly"/>
@@ -47,6 +48,7 @@
 		<element type="Description"/>
 		<element type="Help"/>
 		<element type="PrereqTech"/>
+		<element type="TechObsolete" minOccurs="0" maxOccurs="*"/>
 		<element type="iTime"/>
 		<element type="iCost"/>
 		<element type="bKill"/>
@@ -144,6 +146,7 @@
 	<ElementType name="bLineOfSight" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bHiddenNationality" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bAlwaysHostile" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bIgnoreMaxInstances" content="textOnly" dt:type="boolean"/> <!-- Civ4 Reimagined -->
 	<ElementType name="UnitClassUpgradeType" content="textOnly"/>
 	<ElementType name="bUnitClassUpgrade" content="textOnly" dt:type="boolean"/>
 	<ElementType name="UnitClassUpgrade" content="eltOnly">
@@ -366,6 +369,7 @@
 	<ElementType name="iCityAttack" content="textOnly" dt:type="int"/>
 	<ElementType name="iCityDefense" content="textOnly" dt:type="int"/>
 	<ElementType name="iDefenseBuildingModifier" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
+	<ElementType name="iAgainstInjured" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iAnimalCombat" content="textOnly" dt:type="int"/>
 	<ElementType name="iHillsAttack" content="textOnly" dt:type="int"/>
 	<ElementType name="iHillsDefense" content="textOnly" dt:type="int"/>
@@ -576,6 +580,7 @@
 		<element type="bLineOfSight" minOccurs="0"/>
 		<element type="bHiddenNationality"/>
 		<element type="bAlwaysHostile"/>
+		<element type="bIgnoreMaxInstances" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="UnitClassUpgrades"/>
 		<element type="UnitClassTargets"/>
 		<element type="UnitCombatTargets"/>
@@ -649,6 +654,7 @@
 		<element type="iCityAttack"/>
 		<element type="iCityDefense"/>
 		<element type="iDefenseBuildingModifier" minOccurs="0"/> <!-- Civ4 Reimagined -->
+		<element type="iAgainstInjured" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="iAnimalCombat"/>
 		<element type="iHillsAttack"/>
 		<element type="iHillsDefense"/>
@@ -807,7 +813,8 @@
 	<ElementType name="bAlwaysHeal" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bHillsDoubleMove" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bImmuneToFirstStrikes" content="textOnly" dt:type="boolean"/>
-	<ElementType name="bNoUpgrade" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bNoUpgrade" content="textOnly" dt:type="boolean"/> <!-- Civ4 Reimagined -->
+	<ElementType name="bUniquePower" content="textOnly" dt:type="boolean"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iVisibilityChange" content="textOnly" dt:type="int"/>
 	<ElementType name="iMovesChange" content="textOnly" dt:type="int"/>
 	<ElementType name="iMoveDiscountChange" content="textOnly" dt:type="int"/>
@@ -825,6 +832,7 @@
 	<ElementType name="iFriendlyHealChange" content="textOnly" dt:type="int"/>
 	<ElementType name="iSameTileHealChange" content="textOnly" dt:type="int"/>
 	<ElementType name="iCombatPercent" content="textOnly" dt:type="int"/>
+	<ElementType name="iCombatPercentAgainstWoodenShips" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iExtraUpkeep" content="textOnly" dt:type="int"/>
 	<ElementType name="bUnitCombat" content="textOnly" dt:type="boolean"/>
 	<ElementType name="UnitCombat" content="eltOnly">
@@ -870,7 +878,8 @@
 		<element type="bAlwaysHeal"/>
 		<element type="bHillsDoubleMove"/>
 		<element type="bImmuneToFirstStrikes"/>
-		<element type="bNoUpgrade" minOccurs="0"/>
+		<element type="bNoUpgrade" minOccurs="0"/> <!-- Civ4 Reimagined -->
+		<element type="bUniquePower" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="iVisibilityChange"/>
 		<element type="iMovesChange"/>
 		<element type="iMoveDiscountChange"/>
@@ -888,6 +897,7 @@
 		<element type="iFriendlyHealChange"/>
 		<element type="iSameTileHealChange"/>
 		<element type="iCombatPercent"/>
+		<element type="iCombatPercentAgainstWoodenShips" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="iCityAttack"/>
 		<element type="iCityDefense"/>
 		<element type="iHillsAttack"/>

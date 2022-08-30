@@ -788,12 +788,8 @@ class CvMainInterface:
 		screen.hide( "ResearchBar" )
 
 # BUG - Great General Bar - start
-		if (gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_UNIQUE_POWERS)): # Civ4 Reimagined 
-			screen.addStackedBarGFC( "GreatGeneralBar", xCoord, 27, 100, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_HELP_GREAT_GENERAL, -1, -1 )
-			screen.setStackedBarColors( "GreatGeneralBar", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_NEGATIVE_RATE") ) 
-		else:
-			screen.addStackedBarGFC( "GreatGeneralBar", xCoord - 50, 27, 100 + 50, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_HELP_GREAT_GENERAL, -1, -1 )
-			screen.setStackedBarColors( "GreatGeneralBar", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_CULTURE_STORED") )
+		screen.addStackedBarGFC( "GreatGeneralBar", xCoord, 27, 100, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_HELP_GREAT_GENERAL, -1, -1 )
+		screen.setStackedBarColors( "GreatGeneralBar", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_NEGATIVE_RATE") ) 
 		screen.setStackedBarColors( "GreatGeneralBar", InfoBarTypes.INFOBAR_RATE, gc.getInfoTypeForString("COLOR_EMPTY") )
 		screen.setStackedBarColors( "GreatGeneralBar", InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_EMPTY") )
 		screen.setStackedBarColors( "GreatGeneralBar", InfoBarTypes.INFOBAR_EMPTY, gc.getInfoTypeForString("COLOR_EMPTY") )
@@ -813,10 +809,7 @@ class CvMainInterface:
 # BUG - Bars on single line for higher resolution screens - start
 		xCoord = 268 + (xResolution - 1440) / 2
 		screen.addStackedBarGFC( "GreatGeneralBar-w", xCoord - 50, 2, 84 + 50, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_HELP_GREAT_GENERAL, -1, -1 )
-		if (gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_UNIQUE_POWERS)): # Civ4 Reimagined
-			screen.setStackedBarColors( "GreatGeneralBar-w", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_NEGATIVE_RATE") )
-		else:
-			screen.setStackedBarColors( "GreatGeneralBar-w", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_CULTURE_STORED") )
+		screen.setStackedBarColors( "GreatGeneralBar-w", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_NEGATIVE_RATE") )
 		screen.setStackedBarColors( "GreatGeneralBar-w", InfoBarTypes.INFOBAR_RATE, gc.getInfoTypeForString("COLOR_EMPTY") )
 		screen.setStackedBarColors( "GreatGeneralBar-w", InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_EMPTY") )
 		screen.setStackedBarColors( "GreatGeneralBar-w", InfoBarTypes.INFOBAR_EMPTY, gc.getInfoTypeForString("COLOR_EMPTY") )
@@ -2252,16 +2245,19 @@ class CvMainInterface:
 				iBtnW = 32
 				iBtnH = 28
 				
-				# Hurry Buttons		
-				screen.setButtonGFC( "Hurry0", "", "", iBtnX, iBtnY, iBtnW, iBtnH, WidgetTypes.WIDGET_HURRY, 0, -1, ButtonStyles.BUTTON_STYLE_STANDARD )
+				# Hurry Buttons	
+				# Civ4 Reimagined
+				i = 1
+				if pHeadSelectedCity.isProductionUnit(): i = 0	
+				screen.setButtonGFC( "Hurry0", "", "", iBtnX, iBtnY, iBtnW, iBtnH, WidgetTypes.WIDGET_HURRY, i, -1, ButtonStyles.BUTTON_STYLE_STANDARD )
 				screen.setStyle( "Hurry0", "Button_CityC1_Style" )
 				screen.hide( "Hurry0" )
 
 				iBtnX += iBtnW
 
 				#Leoreth
-				i = 2
-				if pHeadSelectedCity.isProductionUnit(): i = 1
+				i = 3
+				if pHeadSelectedCity.isProductionUnit(): i = 2
 				screen.setButtonGFC( "Hurry1", "", "", iBtnX, iBtnY, iBtnW, iBtnH, WidgetTypes.WIDGET_HURRY, i, -1, ButtonStyles.BUTTON_STYLE_STANDARD )
 				screen.setStyle( "Hurry1", "Button_CityC2_Style" )
 				screen.hide( "Hurry1" )
@@ -2356,17 +2352,19 @@ class CvMainInterface:
 				#	screen.show( szButtonID )
 				#	screen.enable( szButtonID, pHeadSelectedCity.canHurry(i, False) )
 
-				# Leoreth
+				# Civ 4 Reimagined
 				# Slavery button
 				szButtonID = "Hurry0"
 				screen.show(szButtonID)
-				screen.enable(szButtonID, pHeadSelectedCity.canHurry(0, False))
+				i = 1
+				if pHeadSelectedCity.isProductionUnit(): i = 0
+				screen.enable(szButtonID, pHeadSelectedCity.canHurry(i, False))
 				
 				# Mercenary/Public Welfare button
 				szButtonID = "Hurry1"
 				screen.show(szButtonID)
-				i = 2
-				if pHeadSelectedCity.isProductionUnit(): i = 1
+				i = 3
+				if pHeadSelectedCity.isProductionUnit(): i = 2
 				screen.enable(szButtonID, pHeadSelectedCity.canHurry(i, False))
 				
 				# Conscript Button Show
@@ -3013,30 +3011,18 @@ class CvMainInterface:
 		screen.hide( "TimeText" )
 		screen.hide( "ResearchBar" )
 
-# BUG - NJAGC - start
 		screen.hide( "EraText" )
-# BUG - NJAGC - end
-
-# BUG - Great Person Bar - start
 		screen.hide( "GreatPersonBar" )
 		screen.hide( "GreatPersonBarText" )
-# BUG - Great Person Bar - end
-
-# BUG - Great General Bar - start
 		screen.hide( "GreatGeneralBar" )
 		screen.hide( "GreatGeneralBarText" )
-# BUG - Great General Bar - end
 
-# BUG - Bars on single line for higher resolution screens - start
 		screen.hide( "GreatGeneralBar-w" )
 		screen.hide( "ResearchBar-w" )
 		screen.hide( "GreatPersonBar-w" )
-# BUG - Bars on single line for higher resolution screens - end
 
-# BUG - Progress Bar - Tick Marks - start
 		self.pBarResearchBar_n.hide(screen)
 		self.pBarResearchBar_w.hide(screen)
-# BUG - Progress Bar - Tick Marks - end
 
 		bShift = CyInterface().shiftKey()
 		
@@ -3197,17 +3183,11 @@ class CvMainInterface:
 							self.pBarResearchBar_w.drawTickMarks(screen, researchProgress + overflowResearch, researchCost, researchRate, researchRate, False)
 # BUG - Progress Bar - Tick Marks - end
 
-# BUG - Great Person Bar - start
 				self.updateGreatPersonBar(screen)
-# BUG - Great Person Bar - end
-
-# BUG - Great General Bar - start
 				self.updateGreatGeneralBar(screen)
-# BUG - Great General Bar - end
 					
 		return 0
-		
-# BUG - Great Person Bar - start
+	
 	def updateGreatPersonBar(self, screen):
 		if (not CyInterface().isCityScreenUp() and MainOpt.isShowGPProgressBar()):
 			pGPCity, iGPTurns = GPUtil.getDisplayCity()
@@ -3250,93 +3230,37 @@ class CvMainInterface:
 				screen.setBarPercentage( szGreatPersonBar, InfoBarTypes.INFOBAR_RATE, 0 )
 
 			screen.show( szGreatPersonBar )
-# BUG - Great Person Bar - end
+			
 
-# BUG - Great General Bar - start
-
-	# Civ4 Reimagined: Used for unique powers
 	def updateGreatGeneralBar(self, screen):
-		if (not CyInterface().isCityScreenUp() and not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_UNIQUE_POWERS)):
+		if not CyInterface().isCityScreenUp() and MainOpt.isShowGGProgressBar():
 			pPlayer = gc.getActivePlayer()
-			iAccumulatedCultureTimes100 = int(pPlayer.getAccumulatedCulture())
-			iUniquePowerLevel = pPlayer.getUniquePowerLevel()
-			iMayaCalendar = pPlayer.getMayaCalendar()
+			iCombatExp = pPlayer.getCombatExperience()
+			iThresholdExp = pPlayer.greatPeopleThreshold(True)
+			iNeededExp = iThresholdExp - iCombatExp
 			
-			if (iUniquePowerLevel >= 5 and iMayaCalendar == -5000):
-				screen.hide("GreatGeneralBar")
-				screen.hide("GreatGeneralBar-w")
+			szText = u"<font=2>%s</font>" %(GGUtil.getGreatGeneralText(iNeededExp))
+			
+# BUG - Bars on single line for higher resolution screens - start
+			xResolution = screen.getXResolution()
+			if (xResolution >= 1440):
+				szGreatGeneralBar = "GreatGeneralBar-w"
+				xCoord = 268 + (xResolution - 1440) / 2 + 84 / 2
+				yCoord = 5
 			else:
-				iThresholdExpTimes100 = int(pPlayer.getUniquePowerRequirement(iUniquePowerLevel + 1))
-				iNeededExpTimes100 = iThresholdExpTimes100 - iAccumulatedCultureTimes100
-				iUniquePowerRateTimes100 = pPlayer.getUniquePowerRate()
-				
-				if (iUniquePowerRateTimes100 > 0):
-					iTurnsUniquePower = (iNeededExpTimes100 / iUniquePowerRateTimes100) + (iNeededExpTimes100 % iUniquePowerRateTimes100 > 0) # Adds +1 turn required in case any remainder is left
-					iTurnsUniquePower = max(1, iTurnsUniquePower)
-				else:
-					iTurnsUniquePower = 999
-				
-				szText = u"<font=2>%s</font>" %(GGUtil.getUniquePowerText(iUniquePowerLevel, (iUniquePowerRateTimes100 / 100), (iUniquePowerRateTimes100 % 100) / 10, iTurnsUniquePower))
-				
-				if (iMayaCalendar > -5000):
-					if (iMayaCalendar >= 0):
-						szText = u"<font=2>Next: %d AD</font>" %(iMayaCalendar)
-					else:
-						szText = u"<font=2>Next: %d BC</font>" %(-iMayaCalendar)
-				
-	# BUG - Bars on single line for higher resolution screens - start
-				xResolution = screen.getXResolution()
-				if (xResolution >= 1440):
-					szGreatGeneralBar = "GreatGeneralBar-w"
-					xCoord = 268 + (xResolution - 1440) / 2 + 84 / 2 - 50 / 2
-					yCoord = 5
-				else:
-					szGreatGeneralBar = "GreatGeneralBar"
-					xCoord = 268 + (xResolution - 1024) / 2 + 100 / 2 - 50 / 2
-					yCoord = 32
-	# BUG - Bars on single line for higher resolution screens - end
+				szGreatGeneralBar = "GreatGeneralBar"
+				xCoord = 268 + (xResolution - 1024) / 2 + 100 / 2
+				yCoord = 32
 
-				screen.setLabel( "GreatGeneralBarText", "Background", szText, CvUtil.FONT_CENTER_JUSTIFY, xCoord, yCoord, -0.4, FontTypes.GAME_FONT, WidgetTypes.WIDGET_HELP_GREAT_GENERAL, -1, -1 )
-				screen.show( "GreatGeneralBarText" )
+			screen.setLabel( "GreatGeneralBarText", "Background", szText, CvUtil.FONT_CENTER_JUSTIFY, xCoord, yCoord, -0.4, FontTypes.GAME_FONT, WidgetTypes.WIDGET_HELP_GREAT_GENERAL, -1, -1 )
+			screen.show( "GreatGeneralBarText" )
+# BUG - Bars on single line for higher resolution screens - end
 
-
-				iProgressBarAccumulatedCulture = iAccumulatedCultureTimes100 - pPlayer.getUniquePowerRequirement(iUniquePowerLevel)
-				iProgressBarThresholdExp = max(1, (iThresholdExpTimes100 - pPlayer.getUniquePowerRequirement(iUniquePowerLevel)))
-				fProgress = float(iProgressBarAccumulatedCulture) / float(iProgressBarThresholdExp)
-				screen.setBarPercentage( szGreatGeneralBar, InfoBarTypes.INFOBAR_STORED, fProgress)
-				#screen.setBarPercentage( szGreatGeneralBar, InfoBarTypes.INFOBAR_RATE, 10 / float(iThresholdExp))
-				screen.show( szGreatGeneralBar )
-		else:
-			if not CyInterface().isCityScreenUp() and MainOpt.isShowGGProgressBar():
-				pPlayer = gc.getActivePlayer()
-				iCombatExp = pPlayer.getCombatExperience()
-				iThresholdExp = pPlayer.greatPeopleThreshold(True)
-				iNeededExp = iThresholdExp - iCombatExp
-				
-				szText = u"<font=2>%s</font>" %(GGUtil.getGreatGeneralText(iNeededExp))
-				
-	# BUG - Bars on single line for higher resolution screens - start
-				xResolution = screen.getXResolution()
-				if (xResolution >= 1440):
-					szGreatGeneralBar = "GreatGeneralBar-w"
-					xCoord = 268 + (xResolution - 1440) / 2 + 84 / 2
-					yCoord = 5
-				else:
-					szGreatGeneralBar = "GreatGeneralBar"
-					xCoord = 268 + (xResolution - 1024) / 2 + 100 / 2
-					yCoord = 32
-
-				screen.setLabel( "GreatGeneralBarText", "Background", szText, CvUtil.FONT_CENTER_JUSTIFY, xCoord, yCoord, -0.4, FontTypes.GAME_FONT, WidgetTypes.WIDGET_HELP_GREAT_GENERAL, -1, -1 )
-				screen.show( "GreatGeneralBarText" )
-	# BUG - Bars on single line for higher resolution screens - end
-
-				fProgress = float(iCombatExp) / float(iThresholdExp)
-				screen.setBarPercentage( szGreatGeneralBar, InfoBarTypes.INFOBAR_STORED, fProgress )
-				screen.show( szGreatGeneralBar )
-	# BUG - Great General Bar - end
+			fProgress = float(iCombatExp) / float(iThresholdExp)
+			screen.setBarPercentage( szGreatGeneralBar, InfoBarTypes.INFOBAR_STORED, fProgress )
+			screen.show( szGreatGeneralBar )
 			
-# BUG - Great General Bar - end
-					
+			
 	def updateTimeText( self ):
 		
 		global g_szTimeText
@@ -3697,7 +3621,7 @@ class CvMainInterface:
 						szBuffer = pHeadSelectedCity.getProductionName()
 # BUG - Whip Assist - start
 					else:
-						HURRY_WHIP = gc.getInfoTypeForString("HURRY_POPULATION")
+						HURRY_WHIP = gc.getInfoTypeForString("HURRY_POPULATION_BUILDINGS")
 						HURRY_BUY_UNIT = gc.getInfoTypeForString("HURRY_GOLD_UNITS") #Leoreth
 						HURRY_BUY_BUILDING = gc.getInfoTypeForString("HURRY_GOLD_BUILDINGS") #Leoreth
 						if (CityScreenOpt.isShowWhipAssist() and pHeadSelectedCity.canHurry(HURRY_WHIP, False)):
@@ -3804,7 +3728,7 @@ class CvMainInterface:
 							iRate = pHeadSelectedCity.getCurrentProductionDifference(True, False)
 						self.pBarProductionBar.drawTickMarks(screen, pHeadSelectedCity.getProduction(), pHeadSelectedCity.getProductionNeeded(), iFirst, iRate, False)
 
-						HURRY_WHIP = gc.getInfoTypeForString("HURRY_POPULATION")
+						HURRY_WHIP = gc.getInfoTypeForString("HURRY_POPULATION_BUILDINGS")
 						if pHeadSelectedCity.canHurry(HURRY_WHIP, True): # K-Mod, changed from False to True
 							iRate = pHeadSelectedCity.hurryProduction(HURRY_WHIP) / pHeadSelectedCity.hurryPopulation(HURRY_WHIP)
 							self.pBarProductionBar_Whip.drawTickMarks(screen, pHeadSelectedCity.getProduction(), pHeadSelectedCity.getProductionNeeded(), iFirst, iRate, True)
@@ -4141,9 +4065,7 @@ class CvMainInterface:
 				
 				
 				#Civ4 Reimagined: Display resource ratio and total health/happiness
-				iBonusRatio = int(gc.getPlayer(pHeadSelectedCity.getOwner()).getTechValue() / max(1, gc.getPlayer(pHeadSelectedCity.getOwner()).getTotalPopulation()))
-				iBonusRatio *= (100 + gc.getPlayer(pHeadSelectedCity.getOwner()).calculateBonusRatioModifier())
-				iBonusRatio /= 100
+				iBonusRatio = pHeadSelectedCity.getBonusValueTimes100(1)
 				szBuffer = u"Resource Ratio: %d.%02d" %(iBonusRatio/100, iBonusRatio%100)
 				if iBonusRatio > 100:
 					szBuffer = szBuffer + " " + localText.getText("TXT_KEY_MISC_BONUS_RATIO_CAPPED", ())

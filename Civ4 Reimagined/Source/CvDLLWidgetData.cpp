@@ -1950,7 +1950,8 @@ void CvDLLWidgetData::parseHurryHelp(CvWidgetDataStruct &widgetDataStruct, CvWSt
 
 			if (bFirst)
 			{
-				szTempBuffer = NEWLINE + gDLL->getText("TXT_KEY_NO_HURRY");
+				szBuffer.append(NEWLINE);
+				szBuffer.append(gDLL->getText("TXT_KEY_NO_HURRY"));
 			}		
 
 			szBuffer.append(ENDCOLR);
@@ -1963,10 +1964,6 @@ void CvDLLWidgetData::parseConscriptHelp(CvWidgetDataStruct &widgetDataStruct, C
 {
 	CvCity* pHeadSelectedCity;
 	CvWString szTempBuffer;
-	int iConscriptPopulation;
-	int iConscriptAngerLength;
-	int iMinCityPopulation;
-	int iMinCulturePercent;
 	int iI;
 	bool bFirst;
 
@@ -1980,7 +1977,7 @@ void CvDLLWidgetData::parseConscriptHelp(CvWidgetDataStruct &widgetDataStruct, C
 			szTemp.Format(SETCOLR L"%s" ENDCOLR, TEXT_COLOR("COLOR_UNIT_TEXT"), GC.getUnitInfo(pHeadSelectedCity->getConscriptUnit()).getDescription());
 			szBuffer.assign(szTemp);
 
-			iConscriptPopulation = pHeadSelectedCity->getConscriptPopulation();
+			int iConscriptPopulation = pHeadSelectedCity->getConscriptPopulation();
 
 			if (iConscriptPopulation > 0)
 			{
@@ -1988,7 +1985,7 @@ void CvDLLWidgetData::parseConscriptHelp(CvWidgetDataStruct &widgetDataStruct, C
 				szBuffer.append(gDLL->getText("TXT_KEY_MISC_HURRY_POP", iConscriptPopulation));
 			}
 
-			iConscriptAngerLength = pHeadSelectedCity->flatConscriptAngerLength();
+			int iConscriptAngerLength = pHeadSelectedCity->flatConscriptAngerLength();
 
 			// Civ4 Reimagined
 			if (iConscriptAngerLength > 0 && !GET_TEAM(pHeadSelectedCity->getTeam()).isNoConscriptUnhappiness())
@@ -1997,22 +1994,31 @@ void CvDLLWidgetData::parseConscriptHelp(CvWidgetDataStruct &widgetDataStruct, C
 				szBuffer.append(gDLL->getText("TXT_KEY_MISC_ANGER_TURNS", GC.getDefineINT("CONSCRIPT_POP_ANGER"), (iConscriptAngerLength + pHeadSelectedCity->getConscriptAngerTimer())));
 			}
 
-			iMinCityPopulation = pHeadSelectedCity->conscriptMinCityPopulation();
+			int iMinCityPopulation = pHeadSelectedCity->conscriptMinCityPopulation();
 
 			if (pHeadSelectedCity->getPopulation() < iMinCityPopulation)
 			{
 				szBuffer.append(NEWLINE);
 				szBuffer.append(gDLL->getText("TXT_KEY_MISC_MIN_CITY_POP", iMinCityPopulation));
 			}
+			
+			int iMinCulturePercent = GC.getDefineINT("CONSCRIPT_MIN_CULTURE_PERCENT");
 
-			iMinCulturePercent = GC.getDefineINT("CONSCRIPT_MIN_CULTURE_PERCENT");
+			// Civ4 Reimagined: Unique power
+			if (GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).isConscriptInfidels())
+			{
+				if (pHeadSelectedCity->plot()->calculateTeamCulturePercent(pHeadSelectedCity->getTeam()) < iMinCulturePercent)
+				{
+					return;
+				}		
+			}
 
 			if (pHeadSelectedCity->plot()->calculateTeamCulturePercent(pHeadSelectedCity->getTeam()) < iMinCulturePercent)
 			{
 				szBuffer.append(NEWLINE);
 				szBuffer.append(gDLL->getText("TXT_KEY_MISC_MIN_CULTURE_PERCENT", iMinCulturePercent));
 			}
-
+			
 			if (GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).getMaxConscript() == 0)
 			{
 				bFirst = true;
@@ -2539,8 +2545,41 @@ void CvDLLWidgetData::parseActionHelp(CvWidgetDataStruct &widgetDataStruct, CvWS
 
 					if (pSelectedUnit->canGreatWork(pMissionPlot))
 					{
-						szTempBuffer.Format(L"%s+%d%c", NEWLINE, pSelectedUnit->getGreatWorkCulture(pMissionPlot), GC.getCommerceInfo(COMMERCE_CULTURE).getChar());
+						if (pSelectedUnit->getGreatWorkGold(pMissionPlot) > 0)
+						{
+							szTempBuffer.Format(L"%s+%d%c, +%d%c", NEWLINE, pSelectedUnit->getGreatWorkCulture(pMissionPlot), GC.getCommerceInfo(COMMERCE_CULTURE).getChar(), pSelectedUnit->getGreatWorkGold(pMissionPlot), GC.getCommerceInfo(COMMERCE_GOLD).getChar());
+							szBuffer.append(szTempBuffer);
+						}
+						else
+						{
+							szTempBuffer.Format(L"%s+%d%c", NEWLINE, pSelectedUnit->getGreatWorkCulture(pMissionPlot), GC.getCommerceInfo(COMMERCE_CULTURE).getChar());
+							szBuffer.append(szTempBuffer);
+						}
+						break;
+					}
+
+					pSelectedUnitNode = gDLL->getInterfaceIFace()->nextSelectionListNode(pSelectedUnitNode);
+				}
+			}
+			// Civ4 Reimagined
+			else if (GC.getActionInfo(widgetDataStruct.m_iData1).getMissionType() == MISSION_SACRIFICE)
+			{
+				pSelectedUnitNode = gDLL->getInterfaceIFace()->headSelectionListNode();
+
+				while (pSelectedUnitNode != NULL)
+				{
+					pSelectedUnit = ::getUnit(pSelectedUnitNode->m_data);
+
+					if (pSelectedUnit->canSacrifice(pMissionPlot))
+					{
+						szTempBuffer.Format(L"%s+%d%c, +%d%c", NEWLINE, pSelectedUnit->getGreatWorkCulture(pMissionPlot), GC.getCommerceInfo(COMMERCE_CULTURE).getChar(), GC.getDefineINT("UNIQUE_POWER_AZTEC"), GC.getCommerceInfo(COMMERCE_GOLD).getChar());
 						szBuffer.append(szTempBuffer);
+
+						if (pMissionCity->getHappinessTimer() == 0)
+						{
+							szTempBuffer.Format(L", +1%c", gDLL->getSymbolID(HAPPY_CHAR));
+							szBuffer.append(szTempBuffer);
+						}
 						break;
 					}
 
@@ -2578,20 +2617,23 @@ void CvDLLWidgetData::parseActionHelp(CvWidgetDataStruct &widgetDataStruct, CvWS
 			}
 			else if (GC.getActionInfo(widgetDataStruct.m_iData1).getMissionType() == MISSION_GOLDEN_AGE)
 			{
-				iUnitConsume = GET_PLAYER(pHeadSelectedUnit->getOwnerINLINE()).unitsRequiredForGoldenAge();
-				iUnitDiff = (iUnitConsume - GET_PLAYER(pHeadSelectedUnit->getOwnerINLINE()).unitsGoldenAgeReady());
-
-				if (iUnitDiff > 0)
+				if (!pHeadSelectedUnit->isGreatGeneralGoldenAge()) // Civ4 Reimagined: No requirements for great general golden ages
 				{
-					szBuffer.append(NEWLINE);
-					szBuffer.append(gDLL->getText("TXT_KEY_ACTION_MORE_GREAT_PEOPLE", iUnitDiff));
-				}
+					iUnitConsume = GET_PLAYER(pHeadSelectedUnit->getOwnerINLINE()).unitsRequiredForGoldenAge();
+					iUnitDiff = (iUnitConsume - GET_PLAYER(pHeadSelectedUnit->getOwnerINLINE()).unitsGoldenAgeReady());
 
-				if (iUnitConsume > 1)
-				{
-					szBuffer.append(NEWLINE);
-					szBuffer.append(gDLL->getText("TXT_KEY_ACTION_CONSUME_GREAT_PEOPLE", iUnitConsume));
-				}
+					if (iUnitDiff > 0)
+					{
+						szBuffer.append(NEWLINE);
+						szBuffer.append(gDLL->getText("TXT_KEY_ACTION_MORE_GREAT_PEOPLE", iUnitDiff));
+					}
+
+					if (iUnitConsume > 1)
+					{
+						szBuffer.append(NEWLINE);
+						szBuffer.append(gDLL->getText("TXT_KEY_ACTION_CONSUME_GREAT_PEOPLE", iUnitConsume));
+					}
+				}				
 			}
 			else if (GC.getActionInfo(widgetDataStruct.m_iData1).getMissionType() == MISSION_LEAD)
 			{
@@ -2644,6 +2686,11 @@ void CvDLLWidgetData::parseActionHelp(CvWidgetDataStruct &widgetDataStruct, CvWS
 						if (GC.getBuildInfo(eBuild).isFeatureRemove(pMissionPlot->getFeatureType()))
 						{
 							iYield -= GC.getFeatureInfo(pMissionPlot->getFeatureType()).getYieldChange(iI);
+
+							if (pMissionPlot->getOwnerINLINE() != NO_PLAYER)
+							{
+								iYield -= GET_PLAYER(pMissionPlot->getOwnerINLINE()).getFeatureExtraYield(pMissionPlot->getFeatureType(), (YieldTypes)iI);
+							}
 						}
 					}
 
@@ -2860,7 +2907,7 @@ void CvDLLWidgetData::parseActionHelp(CvWidgetDataStruct &widgetDataStruct, CvWS
 						FAssert((0 < GC.getNumBonusInfos()) && "GC.getNumBonusInfos() is not greater than zero but an array is being allocated in CvDLLWidgetData::parseActionHelp");
 						for (iI = 0; iI < GC.getNumBonusInfos(); iI++)
 						{
-							if (GET_TEAM(pHeadSelectedUnit->getTeam()).isHasTech((TechTypes)(GC.getBonusInfo((BonusTypes) iI).getTechReveal())))
+							if (GET_TEAM(pHeadSelectedUnit->getTeam()).isBonusRevealed((BonusTypes) iI))
 							{
 								if (GC.getImprovementInfo(eImprovement).getImprovementBonusDiscoverRand(iI) > 0)
 								{
@@ -3295,7 +3342,8 @@ void CvDLLWidgetData::parseChangeSpecialistHelp(CvWidgetDataStruct &widgetDataSt
 			{
 				// Civ4 Reimagined
 				//if (!(GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).isSpecialistValid((SpecialistTypes)(widgetDataStruct.m_iData1))))
-					if (pHeadSelectedCity->getMaxSpecialistCount((SpecialistTypes)(widgetDataStruct.m_iData1)) > 0)
+					if (pHeadSelectedCity->getMaxSpecialistCount((SpecialistTypes)(widgetDataStruct.m_iData1)) < MAX_INT && 
+						pHeadSelectedCity->getMaxSpecialistCount((SpecialistTypes)(widgetDataStruct.m_iData1)) > 0)
 					{
 						szBuffer.append(NEWLINE);
 						szBuffer.append(gDLL->getText("TXT_KEY_MISC_MAX_SPECIALISTS", pHeadSelectedCity->getMaxSpecialistCount((SpecialistTypes)(widgetDataStruct.m_iData1))));

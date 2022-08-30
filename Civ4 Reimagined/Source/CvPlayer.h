@@ -108,7 +108,8 @@ public:
 /************************************************************************************************/
 	DllExport bool isHuman() const;	// Exposed to Python	
 	DllExport void updateHuman();
-	DllExport bool isBarbarian() const;	// Exposed to Python	
+	DllExport bool isBarbarian() const;	// Exposed to Python
+	void setupEurekas(); // Civ4 Reimagined	
 
 	// K-Mod note: I've changed getName, getCivilizationDescription, and getCivilizationShortDescription to only give accurate information if the active player has met this player.
 	// The "key" versions of those functions are unchanged. This is important because getNameKey and so on are used to create messages for the replay.
@@ -487,6 +488,11 @@ public:
 	int getNumOutsideUnits() const;	// Exposed to Python
 	void changeNumOutsideUnits(int iChange);
 
+	// Civ4 Reimagined
+	int getFreeWorkers() const;
+	void changeFreeWorkers(int iChange);
+	void initFreeWorkers(int iChange);
+
 	int getBaseFreeUnits() const;	// Exposed to Python
 	void changeBaseFreeUnits(int iChange);
 
@@ -535,6 +541,7 @@ public:
 	bool isMeleeMilitaryFoodProduction() const;
 	void changeMeleeMilitaryFoodProductionCount(int iChange);
 	
+	// Civ4 Reimagined
 	int getEnableSlavesCount() const;	
 	bool hasSlavery() const;
 	void changeEnableSlavesCount(int iChange);
@@ -560,6 +567,18 @@ public:
 	void changeFreePopulationInCapital(int iChange);
 
 	// Civ4 Reimagined
+	int getAdditionalAncientEurekaBoost() const;
+	void changeAdditionalAncientEurekaBoost(int iChange);
+
+	// Civ4 Reimagined
+	int getAdditionalFarmBonusYield() const;
+	void changeAdditionalFarmBonusYield(int iChange);
+
+	// Civ4 Reimagined
+	int getAdditionalMineBonusCommerce() const;
+	void changeAdditionalMineBonusCommerce(int iChange);
+	
+	// Civ4 Reimagined
 	CivicTypes getFreeCivicEnabled() const;
 	void setFreeCivicEnabled(CivicTypes eCivic);
 
@@ -570,12 +589,19 @@ public:
 	// Civ4 Reimagined
 	int getEarlyPriestExtraFood() const;
 	void changeEarlyPriestExtraFood(int iChange);
+	
+	// Civ4 Reimagined
+	void setHasImmigrants(bool bNewValue);
+	bool getImmigrants() const;
 
 	// Civ4 Reimagined
-	int getMayaCalendar() const; // Exposed to Python
-	void setMayaCalendar(int iNewValue);
-	void checkMayaCalendar();
-	
+	void setIsCaptureSlaves(bool bNewValue);
+	bool isCaptureSlaves() const;
+
+	// Civ4 Reimagined
+	void setIsDesertGold(bool bNewValue);
+	bool isDesertGold() const;
+
 	// Civ4 Reimagined
 	int getHighestNavalUnitLevel() const;
 	void setHighestNavalUnitLevel(int iNewValue);
@@ -773,6 +799,10 @@ public:
 	int getStateReligionUnitProductionModifier() const;	// Exposed to Python 
 	void changeStateReligionUnitProductionModifier(int iChange);
 
+	// Civ4 Reimagined
+	int getVoteSourceStateReligionUnitProductionModifier() const; 
+	void changeVoteSourceStateReligionUnitProductionModifier(int iChange);
+
 	int getStateReligionBuildingProductionModifier() const;	// Exposed to Python
 	void changeStateReligionBuildingProductionModifier(int iChange);	// Exposed to Python
 
@@ -807,6 +837,10 @@ public:
 	void changeMilitaryPower(DomainTypes eDomain, int iChange);
 	int getBestUnitPower(DomainTypes eDomain) const;
 	void setBestUnitPower(DomainTypes eDomain, int iPower);
+	int getExtraMovesInGoldenAge(DomainTypes eIndex) const; // Civ4 Reimagined
+	void changeExtraMovesInGoldenAge(DomainTypes eIndex, int iChange); // Civ4 Reimagined
+	int getDomainGreatGeneralRateModifier(DomainTypes eIndex) const; // Civ4 Reimagined
+	void changeDomainGreatGeneralRateModifier(DomainTypes eIndex, int iChange); // Civ4 Reimagined
 
 	DllExport int getPopScore(bool bCheckVassal = true) const;	// Exposed to Python
 	void changePopScore(int iChange);	// Exposed to Python  
@@ -891,12 +925,30 @@ public:
 	int getSeaPlotYield(YieldTypes eIndex) const;	// Exposed to Python
 	void changeSeaPlotYield(YieldTypes eIndex, int iChange);
 
+	int getPeakYield(YieldTypes eIndex) const;	// Civ4 Reimagined
+	void changePeakYield(YieldTypes eIndex, int iChange); // Civ4 Reimagined
+
+	int getPeakYieldChangeAdjacentToTerrace(YieldTypes eIndex) const;	// Civ4 Reimagined
+	void changePeakYieldChangeAdjacentToTerrace(YieldTypes eIndex, int iChange); // Civ4 Reimagined
+
 	int getYieldRateModifier(YieldTypes eIndex) const;	// Exposed to Python
 	void changeYieldRateModifier(YieldTypes eIndex, int iChange);
 	
 	// Civ4 Reimagined
 	int getExtraYield(YieldTypes eIndex) const;	// Exposed to Python
 	void changeExtraYield(YieldTypes eIndex, int iChange);
+
+	// Civ4 Reimagined
+	int getPeakAdjacencyExtraYield(YieldTypes eIndex) const;
+	void changePeakAdjacencyExtraYield(YieldTypes eIndex, int iChange);
+
+	// Civ4 Reimagined
+	int getCityOnHillsExtraYield(YieldTypes eIndex) const;
+	void changeCityOnHillsExtraYield(YieldTypes eIndex, int iChange);
+
+	// Civ4 Reimagined
+	int getTownAdjacencyBonus(YieldTypes eIndex) const; // Civ4 Reimagined
+	void changeTownAdjacencyBonus(YieldTypes eIndex, int iChange); // Civ4 Reimagined
 	
 	// Civ4 Reimagined
 	int getCapitalExtraYieldFromCityPercent(YieldTypes eIndex) const;
@@ -944,8 +996,16 @@ public:
 	int getStateReligionBuildingCommerce(CommerceTypes eIndex) const;	// Exposed to Python
 	void changeStateReligionBuildingCommerce(CommerceTypes eIndex, int iChange);
 
+	// Civ4 Reimagined
+	int getStateReligionCommercePerPopulationOverThreshold(CommerceTypes eIndex) const;
+	void changeStateReligionCommercePerPopulationOverThreshold(CommerceTypes eIndex, int iChange);
+
 	int getSpecialistExtraCommerce(CommerceTypes eIndex) const;	// Exposed to Python
 	void changeSpecialistExtraCommerce(CommerceTypes eIndex, int iChange);
+
+	// Civ4 Reimagined
+	int getGreatPeopleExtraCommerceInCapital(CommerceTypes eIndex) const;
+	void changeGreatPeopleExtraCommerceInCapital(CommerceTypes eIndex, int iChange);
 
 	int getCommerceFlexibleCount(CommerceTypes eIndex) const;
 	bool isCommerceFlexible(CommerceTypes eIndex) const;	// Exposed to Python
@@ -1051,6 +1111,13 @@ public:
 	int getExtraSpecialists(SpecialistTypes eIndex) const;
 	void changeExtraSpecialists(SpecialistTypes eIndex, int iChange);
 
+	// Civ4 Reimagined
+	bool isUnlimitedSpecialistsWithTemple(SpecialistTypes eIndex) const;
+	void setUnlimitedSpecialistsWithTemple(SpecialistTypes eIndex, bool bNewValue);
+
+	int getExtraSpecialistExperience(SpecialistTypes eIndex) const;
+	void changeExtraSpecialistExperience(SpecialistTypes eIndex, int iChange);
+
 	DllExport bool isResearchingTech(TechTypes eIndex) const;	// Exposed to Python	
 	void setResearchingTech(TechTypes eIndex, bool bNewValue);
 
@@ -1065,6 +1132,10 @@ public:
 	// Civ4 Reimaigned
 	int getSpecialistCommerceChange(SpecialistTypes eIndex1, CommerceTypes eIndex2) const;	// Exposed to Python
 	void changeSpecialistCommerceChange(SpecialistTypes eIndex1, CommerceTypes eIndex2, int iChange);
+
+	// Civ4 Reimaigned
+	int getBonusHealthFromBuilding(BuildingTypes eIndex1, BonusTypes eIndex2) const;	// Exposed to Python
+	void changeBonusHealthFromBuilding(BuildingTypes eIndex1, BonusTypes eIndex2, int iChange);
 	
 	// Leoreth
 	int getSpecialistThresholdExtraYield(SpecialistTypes eIndex1, YieldTypes eIndex2) const;
@@ -1072,10 +1143,26 @@ public:
 
 	int getImprovementYieldChange(ImprovementTypes eIndex1, YieldTypes eIndex2) const;	// Exposed to Python
 	void changeImprovementYieldChange(ImprovementTypes eIndex1, YieldTypes eIndex2, int iChange);
+
+	// Civ4 Reimagined
+	int getImprovementYieldChangeAdjacentToStrategicBonus(ImprovementTypes eIndex1, YieldTypes eIndex2) const;
+	void changeImprovementYieldChangeAdjacentToStrategicBonus(ImprovementTypes eIndex1, YieldTypes eIndex2, int iChange);
+
+	// Civ4 Reimagined
+	int getTerrainYieldChange(TerrainTypes eIndex1, YieldTypes eIndex2) const;
+	void changeTerrainYieldChange(TerrainTypes eIndex1, YieldTypes eIndex2, int iChange);
 	
 	// Civ4 Reimagined
 	int getRadiusImprovementCommerceChange(ImprovementTypes eIndex1, CommerceTypes eIndex2) const;
 	void changeRadiusImrovementCommerceChange(ImprovementTypes eIndex1, CommerceTypes eIndex2, int iChange);
+
+	// Civ4 Reimagined
+	int getRadiusImprovementHappiness(ImprovementTypes eIndex) const;	// Exposed to Python
+	void changeRadiusImprovementHappiness(ImprovementTypes eIndex, int iChange);
+
+	// Civ4 Reimagined
+	int getGreatSpyPointsFromImprovementInRadius(ImprovementTypes eIndex) const;	// Exposed to Python
+	void changeGreatSpyPointsFromImprovementInRadius(ImprovementTypes eIndex, int iChange);
 	
 	// Civ4 Reimagined
 	int getBuildingYieldChange(BuildingClassTypes eIndex1, YieldTypes eIndex2) const;	// Exposed to Python
@@ -1274,7 +1361,9 @@ public:
 	void changeDomainProductionModifier(DomainTypes eDomainType, int iChange);
 	void changeDomainExperienceModifier(DomainTypes eDomainType, int iChange);
 	
+	//
 	// Civ4 Reimagined Start
+	//
 	/*
 	int getNumColonies() const; // Civ4 Reimagined
 	void changeNumColonies(int iChange); // Civ4 Reimagined
@@ -1302,12 +1391,6 @@ public:
 	void updateBonusRatio(bool bAlwaysUpdate = false); // Civ4 Reimagined
 	int getResearchPerCulture() const; // Civ4 Reimagined
 	void changeResearchPerCulture(int iChange);
-	long getAccumulatedCulture() const;  // Civ4 Reimagined	// Exposed to Python
-	long getUniquePowerRate() const;  // Civ4 Reimagined	// Exposed to Python
-	void changeAccumulatedCulture(int iChange); // Civ4 Reimagined
-	int getUniquePowerLevel() const;  // Civ4 Reimagined	// Exposed to Python
-	long getUniquePowerRequirement(int iLevel) const;  // Civ4 Reimagined	// Exposed to Python
-	void setUniquePowerLevel(int iLevel); // Civ4 Reimagined
 	bool isWrongCivicBuilding(BuildingTypes eBuilding) const; // Civ4 Reimagined
 	int getUniquePowerCommerceModifier(CommerceTypes eIndex) const; // Civ4 Reimagined
 	void changeUniquePowerCommerceModifier(CommerceTypes eIndex, int iChange); // Civ4 Reimagined
@@ -1315,8 +1398,8 @@ public:
 	void changeUniquePowerWorldWonderCapitalModifier(int iChange); // Civ4 Reimagined
 	int getProductionNearRiver() const; // Civ4 Reimagined
 	void changeProductionNearRiver(int iChange); // Civ4 Reimagined
-	int getProductionPerPopulationModifier() const; // Civ4 Reimagined
-	void changeProductionPerPopulationModifier(int iChange); // Civ4 Reimagined
+	int getProductionPerPopulation() const; // Civ4 Reimagined
+	void changeProductionPerPopulation(int iChange); // Civ4 Reimagined
 	int getHurryWithGreatPriestsRatio() const; // Civ4 Reimagined
 	void changeHurryWithGreatPriestsRatio(int iChange);
 	void placeBonusAtCapitalFatCross(BonusTypes eBonus); // Civ4 Reimagined
@@ -1324,8 +1407,6 @@ public:
 	void changeCoastalTradeRouteModifier(int iChange); // Civ4 Reimagined
 	int getUniquePowerGreatPeopleModifier() const; // Civ4 Reimagined
 	void changeUniquePowerGreatPeopleModifier(int iChange); // Civ4 Reimagined
-	bool isFullMilitaryHappinessValueWithPantheon() const; // Civ4 Reimagined
-	void setFullMilitaryHappinessValueWithPantheon(bool bMilitary); // Civ4 Reimagined
 	int getUniqueUnitFreeExperience() const; // Civ4 Reimagined
 	void changeUniqueUnitFreeExperience(int iChange); // Civ4 Reimagined
 	int getFreeUnitsOnConquest() const; // Civ4 Reimagined
@@ -1342,20 +1423,28 @@ public:
 	void changeFatcrossTerrainCulture(TerrainTypes eIndex, int iChange); // Civ4 Reimagined
 	int getCapitalCommercePerPopulation(CommerceTypes eIndex, int iPopulation) const; // Civ4 Reimagined
 	void setCapitalCommercePerPopulation(CommerceTypes eIndex, int iCommerceModifierPerPopulation, int iTargetPopulation); // Civ4 Reimagined
+	int getCommerceAboveAveragePopulation(CommerceTypes eIndex) const; // Civ4 Reimagined
+	void setCommerceAboveAveragePopulation(CommerceTypes eIndex, int iPopulationAverageMax, int iCommerceModifierMax); // Civ4 Reimagined
+	void updateCommerceAboveAveragePopulation(); // Civ4 Reimagined
+	int getFeatureCommerce(FeatureTypes eFeatureIndex, CommerceTypes eCommerceIndex) const; // Civ4 Reimagined
+	void changeFeatureCommerce(FeatureTypes eFeatureIndex, CommerceTypes eCommerceIndex, int iChangePercent); // Civ4 Reimagined
+	int getFeatureExtraYield(FeatureTypes eFeatureIndex, YieldTypes eYieldIndex) const; // Civ4 Reimagined
+	void changeFeatureExtraYield(FeatureTypes eFeatureIndex, YieldTypes eYieldIndex, int iChange); // Civ4 Reimagined
 	int getFatcrossPeakHappiness() const; // Civ4 Reimagined
 	void changeFatcrossPeakHappiness(int iChange); // Civ4 Reimagined
 	int getFatcrossPeakCulture() const; // Civ4 Reimagined
 	void changeFatcrossPeakCulture(int iChange); // Civ4 Reimagined
 	int getNonStateReligionHappinessWithStateReligion() const; // Civ4 Reimagined
 	void changeNonStateReligionHappinessWithStateReligion(int iChange); // Civ4 Reimagined
-	void checkObsoleteUniquePowers(EraTypes iEra); // Civ4 Reimagined
-	int checkForObsoleteUniquePowers(EraTypes iEra) const; // Civ4 Reimagined
+	void notifyUniquePowersChanged(bool bGained) const; // Civ4 Reimagined
+	void updateUniquePowers(TechTypes eTech); // Civ4 Reimagined
+	void updateUniquePowers(EraTypes eEra); // Civ4 Reimagined
 	bool isExploreRivalSea() const; // Civ4 Reimagined
 	void setExploreRivalSea(bool bNewValue); // Civ4 Reimagined
 	bool isEnableFinancial() const; // Civ4 Reimagined
 	void setEnableFinancial(bool bNewValue); // Civ4 Reimagined
-	int getHurryGoldCostModifier() const; // Civ4 Reimagined
-	void changeHurryGoldCostModifier(int iChange); // Civ4 Reimagined
+	int getMercenaryCostModifier() const; // Civ4 Reimagined
+	void changeMercenaryCostModifier(int iChange); // Civ4 Reimagined
 	int getCanFarmHillsCount() const; // Civ4 Reimagined
 	void changeCanFarmHillsCount(int iChange); // Civ4 Reimagined
 	bool isCanFarmHills() const; // Civ4 Reimagined
@@ -1367,9 +1456,97 @@ public:
 	void setHasExtraAvailableBonuses(bool bNewValue); // Civ4 Reimagined
 	int getCulturePerPopulationSacrified() const; // Civ4 Reimagined
 	void changeCulturePerPopulationSacrified(int iChange); // Civ4 Reimagined
-	bool isHasUniqueAztecPromotion() const; // Civ4 Reimagined
-	void setUniqueAztecPromotion(bool bNewValue); // Civ4 Reimagined
-	void doUniqueAztecPromotion(CvUnit* pUnit); // Civ4 Reimagined
+	void changeSlavePointsPerPopulationSacrificed(int iChange); // Civ4 Reimagined
+	int getSlavePointsPerPopulationSacrificed() const; // Civ4 Reimagined
+	void setHasCivicEffect(bool bEnabled); // Civ4 Reimagined
+	bool isHasCivicEffect() const; // Civ4 Reimagined
+	UnitTypes getCivicEffectGreatPerson(CivicTypes eIndex) const; // Civ4 Reimagined
+	int getRemainingTurnsForCivicEffect(CivicTypes eIndex) const; // Civ4 Reimagined
+	void changeTurnsToEffectFromStayingAtCivic(CivicTypes eCivic, int iChange); // Civ4 Reimagined
+	void updateEffectFromStayingAtCivic(); // Civ4 Reimagined
+	void setFaithConquest(bool bNewValue); // Civ4 Reimagined
+	bool isHasFaithConquest() const; // Civ4 Reimagined
+	void changeColonyTraderouteModifier(int iChange); // Civ4 Reimagined
+	int getColonyTraderouteModifier() const; // Civ4 Reimagined
+	void changeCorporationTraderouteModifier(int iChange); // Civ4 Reimagined
+	int getCorporationTraderouteModifier() const; // Civ4 Reimagined
+	void changeGreatGeneralGoldenAgeLength(int iChange); // Civ4 Reimagined
+	int getGreatGeneralGoldenAgeLength() const; // Civ4 Reimagined
+	void setConscriptInfidels(bool bNewValue); // Civ4 Reimagnied
+	bool isConscriptInfidels() const; // Civ4 Reimagined
+	void changeCatchUpTechModifier(int iChange); // Civ4 Reimagined
+	int getCatchUpTechModifier() const; // Civ4 Reimagined
+	int getUnitClassProductionModifier(UnitClassTypes eIndex); // Civ4 Reimagined
+	void changeUnitClassProductionModifier(UnitClassTypes eIndex, int iChange); // Civ4 Reimagined
+	void changeReligiousUnitClassProductionModifier(UnitClassTypes eIndex, int iChange); // Civ4 Reimagined
+	int getReligiousUnitClassProductionModifier(UnitClassTypes eIndex) const; // Civ4 Reimagined
+	void changeReligiousColonyMaintenanceModifier(int iChange); // Civ4 Reimagined
+	int getReligiousColonyMaintenanceModifier() const; // Civ4 Reimagined
+	void changeGreatMerchantPointsPerTrade(int iChange); // Civ4 Reimagined
+	int getGreatMerchantPointsPerTrade() const; // Civ4 Reimagined
+	void changeGreatPeoplePointsPerTrade(int iChange); // Civ4 Reimagined
+	int getGreatPeoplePointsPerTrade() const; // Civ4 Reimagined
+	void changeCapitalCultureAttitudeBonus(int iChange); // Civ4 Reimagined
+	int getCapitalCultureAttitudeBonus() const; // Civ4 Reimagined
+	void changePillageHeal(int iChange); // Civ4 Reimagined
+	int getPillageHeal() const; // Civ4 Reimagined
+	void setAlwaysFreshWater(bool bNewValue); // Civ4 Reimagnied
+	bool isAlwaysFreshWater() const; // Civ4 Reimagined
+	void setCanRemoveFeatures(bool bNewValue); // Civ4 Reimagnied
+	bool isCanRemoveFeatures() const; // Civ4 Reimagined
+	void setCityRevoltOnKill(bool bNewValue); // Civ4 Reimagnied
+	bool isCityRevoltOnKill() const; // Civ4 Reimagined
+	int getGreatPeopleRatePerReligionModifier() const;	// Civ4 Reimagined
+	void changeGreatPeopleRatePerReligionModifier(int iChange); // Civ4 Reimagined
+	void setNoReligionRemoval(bool bNewValue); // Civ4 Reimagnied
+	bool isNoReligionRemoval() const; // Civ4 Reimagined
+	void setCanCoastalRaid(bool bNewValue); // Civ4 Reimagined
+	bool canCoastalRaid() const; // Civ4 Reimagined
+	void changeTradeGoldModifierPerForeignResource(int iChange); // Civ4 Reimagined
+	int getTradeGoldModifierPerForeignResource() const; // Civ4 Reimagined
+	void setGainGreatWorkGoldWithHitBonuses(bool bNewValue); // Civ4 Reimagined
+	bool isGainGreatWorkGoldWithHitBonuses() const; // Civ4 Reimagined
+	void changeReligiousVoteModifier(int iChange); // Civ4 Reimagined
+	int getReligiousVoteModifier() const; // Civ4 Reimagined
+	bool hasGoodRelationsWithPope() const; // Civ4 Reimagined
+	void setCapitalAlwaysPerfectBonusValue(bool bNewValue); // Civ4 Reimagined
+	bool isCapitalAlwaysPerfectBonusValue() const; // Civ4 Reimagined
+	void changeGreatEngineerPointsFromCathedrals(int iChange); // Civ4 Reimagined
+	int getGreatEngineerPointsFromCathedrals() const; // Civ4 Reimagined
+	void changeCombatBonusOnHomeArea(int iChange); // Civ4 Reimagined
+	int getCombatBonusOnHomeArea() const; // Civ4 Reimagined
+	void changeStrategicBonusYieldModifier(int iChange); // Civ4 Reimagined
+	int getStrategicBonusYieldModifier() const; // Civ4 Reimagined
+	void setNativeAmericanBonus(NativeBonusTypes eIndex, bool bNewValue); // Civ4 Reimagined
+	bool isNativeAmericanBonus(NativeBonusTypes eIndex) const; // Civ4 Reimagined
+	void applyNativeAmericanBonus(int iX, int iY); // Civ4 Reimagined
+	BuildingTypes getUniquePowerBuilding() const; // Civ4 Reimagined
+	void setUniquePowerBuilding(BuildingTypes eBuilding); // Civ4 Reimagined
+	PromotionTypes getUniquePowerPromotion() const; // Civ4 Reimagined
+	void setUniquePowerPromotion(PromotionTypes eBuilding); // Civ4 Reimagined
+	void changeBuildingProductionModifierFromCapital(int iChange); // Civ4 Reimagined
+	int getBuildingProductionModifierFromCapital() const; // Civ4 Reimagined
+	void setCanBuildWindmillsOnCoast(bool bNewValue); // Civ4 Reimagined
+	bool canBuildWindmillsOnCoast() const; // Civ4 Reimagined
+	void changeCultureResistanceModifier(int iChange); // Civ4 Reimagined
+	int getCultureResistanceModifier() const; // Civ4 Reimagined
+	void changeFreshWaterHealthModifier(int iChange); // Civ4 Reimagined
+	int getFreshWaterHealthModifier() const; // Civ4 Reimagined
+	void updateStateReligionTempleCache(); // Civ4 Reimagined
+	int getStateReligionShrineModifier() const; // Civ4 Reimagined
+	void changeStateReligionShrineModifier(int iChange); // Civ4 Reimagined
+	int getShrineCommerceIncome(CommerceTypes eIndex, ReligionTypes eReligion) const; // Civ4 Reimagined
+	void setIsCityImprovesBonus(bool bNewValue); // Civ4 Reimagined
+	bool isCityImprovesBonus() const; // Civ4 Reimagined
+	void setIsFreePillage(bool bNewValue); // Civ4 Reimagined
+	bool isFreePillage() const; // Civ4 Reimagined
+	int getLootCityModifier() const; // Civ4 Reimagined
+	void changeLootCityModifier(int iChange); // Civ4 Reimagined
+	void setIsPirateGold(bool bNewValue); // Civ4 Reimagined
+	bool isPirateGold() const; // Civ4 Reimagined
+	//
+	// Civ4 Reimagined End
+	//
 
 	void checkImprovementEurekas(); // Civ4 Reimagined
 	void checkBuildingEurekas(); // Civ4 Reimagined
@@ -1388,7 +1565,6 @@ public:
 	int getIdeologyCombatExperienceModifier(IdeologyTypes eIndex) const;
 	void changeIdeologyCombatExperienceModifier(IdeologyTypes eIndex, int iChange);
 	int getIdeologyChangeCivicModifier(CivicTypes eCivic) const;
-	
 	
 	// K-Mod note: Adding new virtual functions to this list seems to cause unpredictable behaviour during the initialization of the game.
 	// So beware!
@@ -1499,6 +1675,7 @@ protected:
 	int m_iCityDefenseModifier;
 	int m_iNumNukeUnits;
 	int m_iNumOutsideUnits;
+	int m_iFreeWorkers; // Civ4 Reimagined
 	int m_iBaseFreeUnits;
 	int m_iBaseFreeMilitaryUnits;
 	int m_iFreeUnitsPopulationPercent;
@@ -1570,6 +1747,7 @@ protected:
 	int m_iStateReligionHappiness;
 	int m_iNonStateReligionHappiness;
 	int m_iStateReligionUnitProductionModifier;
+	int m_iVoteSourceStateReligionUnitProductionModifier; // Civ4 Reimagined
 	int m_iStateReligionBuildingProductionModifier;
 	int m_iStateReligionFreeExperience;
 	int m_iSpecialistExtraYieldBaseThreshold; //Leoreth
@@ -1597,23 +1775,19 @@ protected:
 	int m_iTechValue; // Civ4 Reimagined
 	int m_iBonusRatio; // Civ4 Reimagined
 	int m_iResearchPerCulture; // Civ4 Reimagined
-	long m_dAccumulatedCulture; // Civ4 Reimagined
-	int m_iUniquePowerLevel; // Civ4 Reimagined
 	int m_iFreePopulationInCapital; // Civ4 Reimagined
 	CivicTypes m_iFreeCivicEnabled; // Civ4 Reimagined
 	int m_iEarlyScientistBonusCommerce; // Civ4 Reimagined
 	int m_iEarlyPriestExtraFood; // Civ4 Reimagined
 	int m_iUniquePowerWorldWonderCapitalModifier; // Civ4 Reimagined
 	int m_iProductionNearRiver; // Civ4 Reimagined
-	int m_iProductionPerPopulationModifier; // Civ4 Reimagined
+	int m_iProductionPerPopulation; // Civ4 Reimagined
 	int m_iHurryWithGreatPriestsRatio; // Civ4 Reimagined
 	int m_iCoastalTradeRouteModifier; // Civ4 Reimagined
 	int m_iUniquePowerGreatPeopleModifier; // Civ4 Reimagined
-	bool m_bFullMilitaryHappinessValueWithPantheon; // Civ4 Reimagined
 	int m_iUniqueUnitFreeExperience; // Civ4 Reimagined
 	int m_iFreeUnitsOnConquest; // Civ4 Reimagined
 	int m_iReligionTechModifier; // Civ4 Reimagined
-	int m_iMayaCalendar; // Civ4 Reimagined
 	int m_iUniquePowerBuildingModifier; // Civ4 Reimagined
 	int m_iEarlyWorkerSpeedModifier; // Civ4 Reimagined
 	int m_iFatcrossPeakHappiness; // Civ4 Reimagined
@@ -1621,16 +1795,49 @@ protected:
 	int m_iNonStateReligionHappinessWithStateReligion; // Civ4 Reimagined
 	bool m_bExploreRivalSea; // Civ4 Reimagined
 	bool m_bEnableFinancial; // Civ4 Reimagined
-	int m_iHurryGoldCostModifier; // Civ4 Reimagined
+	int m_iMercenaryCostModifier; // Civ4 Reimagined
 	int m_iCanFarmHillsCount; // Civ4 Reimagined
 	bool m_bSpecialTradeRoutePerPlayer; // Civ4 Reimagined
 	bool m_bExtraAvailableBonuses; // Civ4 Reimagined
 	int m_iCulturePerPopulationSacrified; // Civ4 Reimagined
 	int m_iNoForeignCultureUnhappinessCount; // Civ4 Reimagined
 	int m_iNoCityResistanceCount; // Civ4 Reimagined
-	bool m_bUniqueAztecPromotion; // Civ4 Reimagined
 	bool m_bUpdateBonusRatio; // Civ4 Reimagined
 	//int m_iNumColonies; // Civ4 Reimagined
+	int m_iSlavePointsFromSacrificePopulation; // Civ4 Reimagined
+	bool m_bCivicEffect; // Civ4 Reimagined
+	bool m_bFaithConquest; // Civ4 Reimagined
+	int m_iColonyTraderouteModifier; // Civ4 Reimagined
+	int m_iCorporationTraderouteModifier; // Civ4 Reimagined
+	int m_iGreatGeneralGoldenAgeLength; // Civ4 Reimagined
+	bool m_bConscriptInfidels; // Civ4 Reimagined
+	int m_iCatchUpTechModifier; // Civ4 Reimagined
+	int m_iReligiousColonyMaintenanceModifier; // Civ4 Reimagined
+	int m_iGreatMerchantPointsPerTrade; // Civ4 Reimagined
+	int m_iGreatPeoplePointsPerTrade; // Civ4 Reimagined
+	int m_iCapitalCultureAttitudeBonus; // Civ4 Reimagined
+	int m_iPillageHeal; // Civ4 Reimagined
+	int m_iAdditionalAncientEurekaBoost; // Civ4 Reimagined
+	bool m_bAlwaysFreshWater; // Civ4 Reimagined
+	bool m_bCanRemoveFeatures; // Civ4 Reimagined
+	bool m_bCityRevoltOnKill; // Civ4 Reimagined
+	int m_iAdditionalFarmBonusYield; // Civ4 Reimagined
+	int m_iAdditionalMineBonusCommerce; // Civ4 Reimagined
+	int m_iGreatPeopleRatePerReligionModifier; // Civ4 Reimagined
+	bool m_bNoReligionRemoval; // Civ4 Reimagined
+	bool m_bCoastalRaid; // Civ4 Reimagined
+	int m_iTradeGoldModifierPerForeignResource; // Civ4 Reimagined
+	bool m_bGainGreatWorkGoldWithHitBonuses; // Civ4 Reimagined
+	int m_iReligiousVoteModifier; // Civ4 Reimagined
+	bool m_bCapitalAlwaysPerfectBonusValue; // Civ4 Reimagined
+	int m_iGreatEngineerPointsFromCathedrals; // Civ4 Reimagined
+	int m_iCombatBonusOnHomeArea; // Civ4 Reimagined
+	int m_iStrategicBonusYieldModifier; // Civ4 Reimagined
+	int m_iBuildingProductionModifierFromCapital; // Civ4 Reimagind
+	int m_iCultureResistanceModifier; // Civ4 Reimagined
+	int m_iFreshWaterHealthModifier; // Civ4 Reimagined
+	int m_iStateReligionShrineModifier; // Civ4 Reimagined
+	int m_iLootCityModifier; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
 
@@ -1645,6 +1852,13 @@ protected:
 	bool m_bStrike;
 	bool m_bHuman;
 	bool m_bCanExploreSea; // Civ4 Reimagined
+	bool m_bImmigrants; // Civ4 Reimagined
+	bool m_bCaptureSlaves; // Civ4 Reimagined
+	bool m_bDesertGold; // Civ4 Reimagined
+	bool m_bCanBuildWindmillsOnCoast; // Civ4 Reimagined
+	bool m_bCityImprovesBonus; // Civ4 Reimagined
+	bool m_bFreePillage; // Civ4 Reimagined
+	bool m_bPirateGold; // Civ4 Reimagined
 
 
 	bool m_bDisableHuman;	// Set to true to disable isHuman() check
@@ -1658,10 +1872,17 @@ protected:
 	PlayerTypes m_eParent;
 	TeamTypes m_eTeamType;
 	IdeologyTypes m_eIdeology; // Civ4 Reimagined
+	BuildingTypes m_eUniquePowerBuilding; // Civ4 Reimagined
+	PromotionTypes m_eUniquePowerPromotion; // Civ4 Reimagined
 
 	int* m_aiSeaPlotYield;
+	int* m_aiPeakYield; // Civ4 Reimagined
+	int* m_aiPeakYieldChangeAdjacentToTerrace; // Civ4 Reimagined
 	int* m_aiYieldRateModifier;
 	int* m_aiExtraYield; // Civ4 Reimagined
+	int* m_aiPeakAdjacencyExtraYield; // Civ4 Reimagined
+	int* m_aiCityOnHillsExtraYield; // Civ4 Reimagined
+	int* m_aiTownAdjacencyBonus; // Civ4 Reimagined
 	int* m_aiCapitalExtraYieldFromCityPercent; // Civ4 Reimagined
 	int* m_aiCapitalYieldRateModifier;
 	int* m_aiExtraYieldThreshold;
@@ -1676,13 +1897,18 @@ protected:
 	int* m_aiCapitalCommerceRateModifierPerHappinessSurplus; //Civ4 Reimagined
 	int* m_aiCommerceHappiness; //Civ4 Reimagined
 	int* m_aiStateReligionBuildingCommerce;
+	int* m_aiStateReligionCommercePerPopulationOverThreshold; // Civ4 Reimagined
 	int* m_aiSpecialistExtraCommerce;
+	int* m_aiGreatPeopleExtraCommerceInCapital; // Civ4 Reimagined
 	int* m_aiCommerceFlexibleCount;
 	int* m_aiGoldPerTurnByPlayer;
 	int* m_aiEspionageSpendingWeightAgainstTeam;
 	int* m_aiMilitaryPower; // Civ4 Reimagined
 	int* m_aiBestUnitPower; // Civ4 Reimagined
+	int* m_aiExtraMovesInGoldenAge; // Civ4 Reimagined
+	int* m_aiDomainGreatGeneralRateModifier; // Civ4 Reimagined
 	int* m_paiPlayerExtraAvailableBonuses; // Civ4 Reimagined
+	int* m_paiCivicEffect; // Civ4 Reimagined
 	int* m_aiIdeologyInfluence; // Civ4Reimagind
 	int* m_aiForeignTradeIdeologyModifier; // Civ4 Reimagined
 	int* m_aiBonusRatioModifierPerIdeologyCiv; // Civ4 Reimagined
@@ -1696,18 +1922,21 @@ protected:
 
 	bool* m_abFeatAccomplished;
 	bool* m_abOptions;
+	bool* m_abNativeAmericanBonus; // Civ4 Reimagined
 
 	CvString m_szScriptData;
 
 	int* m_paiBonusExport;
 	int* m_paiBonusImport;
 	int* m_paiImprovementCount;
+	int* m_paiRadiusImprovementHappiness; // Civ4 Reimagined
+	int* m_paiGreatSpyPointsFromImprovementInRadius; // Civ4 Reimagined
 	int* m_paiFreeBuildingCount;
 	int* m_paiExtraBuildingHappiness;
 	int* m_paiExtraBuildingHealth;
 	int* m_paiBuildingProductionModifiers; // Leoreth
-	int** m_paiExtraBuildingYield;
-	int** m_paiExtraBuildingCommerce;
+	int* m_paiUnitClassProductionModifier; // Civ4 Reimagined
+	int* m_paiReligiousUnitClassProductionModifier; // Civ4 Reimagined
 	int* m_paiFeatureHappiness;
 	int* m_paiUnitClassCount;
 	int* m_paiUnitClassMaking;
@@ -1723,10 +1952,14 @@ protected:
 	int* m_paiUpkeepCount;
 	int* m_paiSpecialistValidCount;
 	int* m_paiExtraSpecialists; // Civ4 Reimagined
+	int* m_paiExtraSpecialistExperience; // Civ4 Reimagined
 	int* m_paiFatcrossTerrainHappiness; // Civ4 Reimagined
 	int* m_paiFatcrossTerrainCulture; // Civ4 Reimagined
 	int* m_paiCapitalCommercePopulationThreshold; // Civ4 Reimagined
 	int* m_paiCapitalCommerceModifier; // Civ4 Reimagined
+	int* m_paiAveragePopCommerceModifier; // Civ4 Reimagined
+	int* m_paiAveragePopCommerceModifierMaxPop; // Civ4 Reimagined
+	int* m_paiAveragePopCommerceModifierMaxMod; // Civ4 Reimagined
 	
 	//std::vector< std::pair<int, int> > CapitalCommercePerPopulationArray; // Civ4 Reimagined
 	
@@ -1734,6 +1967,7 @@ protected:
 	
 	bool* m_pabResearchingTech;
 	bool* m_pabLoyalMember;
+	bool* m_pabUnlimitedSpecialistsWithTemple; // Civ4 Reimagined
 
 	std::vector<EventTriggerTypes> m_triggersFired;
 
@@ -1741,10 +1975,15 @@ protected:
 
 	int** m_ppaaiSpecialistExtraYield;
 	int** m_ppaaiSpecialistCommerceChanges; // Civ4 Reimagined
+	int** m_ppaaiBonusHealthFromBuilding; // Civ4 Reimagined
 	int** m_ppaaiSpecialistThresholdExtraYield; //Leoreth
 	int** m_ppaaiImprovementYieldChange;
+	int** m_ppaaiImprovementYieldChangeAdjacentToStrategicBonus; // Civ4 Reimagined
+	int** m_ppaaiTerrainYieldChange; // Civ4 Reimagined
 	int** m_ppaaiRadiusImprovementCommerceChange; // Civ4 Reimagined
 	int** m_ppaaiBuildingYieldChange; // Civ4 Reimagined
+	int** m_ppaiFeatureCommerce; // Civ4 Reimagined
+	int** m_ppaiFeatureExtraYield; // Civ4 Reimagined
 
 	CLinkList<int> m_groupCycle;
 
@@ -1794,6 +2033,7 @@ protected:
 	CvCity* pickTriggerCity(EventTriggerTypes eTrigger) const;
 	CvUnit* pickTriggerUnit(EventTriggerTypes eTrigger, CvPlot* pPlot, bool bPickPlot) const;
 	bool isValidEventTech(TechTypes eTech, EventTypes eEvent, PlayerTypes eOtherPlayer) const;
+	void notifyNativeAmericanBonus(NativeBonusTypes eNativeBonus); // Civ4 Reimagined
 
 	void verifyGoldCommercePercent();
 

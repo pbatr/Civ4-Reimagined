@@ -157,8 +157,11 @@ public:
 	
 	int getTechYieldRateModifier(YieldTypes eIndex) const; // Civ4 Reimagined
 	void changeTechYieldRateModifier(YieldTypes eIndex, int iChange); // Civ4 Reimagined
+	int getFarmAdjacencyBonus(YieldTypes eIndex) const; // Civ4 Reimagined
+	void changeFarmAdjacencyBonus(YieldTypes eIndex, int iChange); // Civ4 Reimagined
 	int getTechCommerceRateModifier(CommerceTypes eIndex) const; // Civ4 Reimagined
 	void changeTechCommerceRateModifier(CommerceTypes eIndex, int iChange); // Civ4 Reimagined
+	int getFeatureCommerce(CommerceTypes eIndex) const; // Civ4 Reimagined
 	
 	//Civ4 Reimagined
 	void processBonus(BonusTypes eBonus, int iChange, bool bChangeValue = true, bool YieldModifier = true);
@@ -483,6 +486,7 @@ public:
 	int getFeatureGoodHappiness() const;																	// Exposed to Python
 	int getFeatureBadHappiness() const;																		// Exposed to Python
 	void updateFeatureHappiness();
+	void updateFeatureCommerce(); // Civ4 Reimagined
 
 	int getBonusGoodHappiness() const;																		// Exposed to Python  
 	int getBonusBadHappiness() const;																			// Exposed to Python  
@@ -514,7 +518,8 @@ public:
 	int flatDefyResolutionAngerLength() const;																				// Exposed to Python
 
 	int getHappinessTimer() const;																				// Exposed to Python
-	void changeHappinessTimer(int iChange);												// Exposed to Python
+	void changeHappinessTimer(int iChange);
+	void setHappinessTimer(int iValue); // Civ4 Reimagined
 
 	int getNoUnhappinessCount() const;
 	bool isNoUnhappiness() const;																					// Exposed to Python
@@ -970,6 +975,10 @@ public:
 	int getEspionageDefenseModifier() const;										// Exposed to Python
 	void changeEspionageDefenseModifier(int iChange);
 
+	// Civ4 Reimagined
+	int getVoteSourceStateReligionUnitProductionModifier() const;
+	void changeVoteSourceStateReligionUnitProductionModifier(int iChange);
+
 	bool isWorkingPlot(int iIndex) const;													// Exposed to Python
 	bool isWorkingPlot(const CvPlot* pPlot) const;													// Exposed to Python
 	void setWorkingPlot(int iIndex, bool bNewValue);
@@ -995,10 +1004,10 @@ public:
 	CvCity* getTradeCity(int iIndex) const;																				// Exposed to Python
 	int getTradeRoutes() const;																										// Exposed to Python
 	void clearTradeRoutes();
-	void updateTradeRoutes();
+	void updateTradeRoutes();	
 	
-	// Civ4 Reimagined
-	bool spreadCorporation(CorporationTypes eCorporation, CvCity* pHeadquarters, int iNumTries = 1);
+	bool spreadCorporation(CorporationTypes eCorporation, CvCity* pHeadquarters, int iNumTries = 1); // Civ4 Reimagined
+	int getImmigrants(); // Civ4 Reimagined
 
 	void clearOrderQueue();																														// Exposed to Python
 	//void pushOrder(OrderTypes eOrder, int iData1, int iData2, bool bSave, bool bPop, bool bAppend, bool bForce = false);		// Exposed to Python
@@ -1042,6 +1051,9 @@ public:
 	void setEventOccured(EventTypes eEvent, bool bOccured);
 
 	// Civ4 Reimagined
+	bool hasImprovementInRadius(ImprovementTypes eImprovement) const;
+	std::set<ImprovementTypes> getImprovementsInRadius() const;
+	void updateImprovementsInRadius();
 	int getBuildingYieldChange(BuildingClassTypes eBuildingClass, YieldTypes eYield) const;           // Exposed to Python
 	void setBuildingYieldChange(BuildingClassTypes eBuildingClass, YieldTypes eYield, int iChange);          // Exposed to Python
 	void changeBuildingYieldChange(BuildingClassTypes eBuildingClass, YieldTypes eYield, int iChange);
@@ -1079,7 +1091,14 @@ public:
 	int getBuildingProductionMultiplier(BuildingTypes eBuilding) const;
 	void destroyReligiousBuildings(ReligionTypes eReligion, ReligionTypes eNewReligion);
 	bool convertClassicalTemples(ReligionTypes eReligion);
+	int getStateReligionCommercePerPopulationOverThreshold(CommerceTypes eIndex) const;
 	void checkCultureLevelEurekas();
+	int getBonusValueTimes100(int iBonusCount) const; // Civ4 Reimagined
+	int getGreatEngineerPointsFromCathedrals() const;
+	bool hasStateReligionTemple() const;
+	void updateStateReligionTempleCache();
+	void changeGreatPeopleRatePerWorldWonder(int iValue); // Civ4 Reimagined
+	int getGreatPeopleRatePerWorldWonder() const; // Civ4 Reimagined
 
 	void read(FDataStreamBase* pStream);
 	void write(FDataStreamBase* pStream);
@@ -1260,6 +1279,9 @@ protected:
 	int m_iGoldForHappinessBonus; // Civ4 Reimagined
 	int m_iEspionageDefenseModifier;
 	int m_iDistance; // Civ4 Reimagined
+	int m_iImmigrants; // Civ4 Reimagined
+	int m_iVoteSourceStateReligionUnitProductionModifier; // Civ4 Reimagined
+	int m_iGreatPeopleRatePerWorldWonder; // Civ4 Reimagined
 
 	bool m_bNeverLost;
 	bool m_bBombarded;
@@ -1273,6 +1295,7 @@ protected:
 	bool m_bLayoutDirty;
 	bool m_bPlundered;
 	bool m_bColony; //Civ4 Reimagined
+	bool m_bStateReligionTemple; // Civ4 Reimagined
 
 	PlayerTypes m_eOwner;
 	PlayerTypes m_ePreviousOwner;
@@ -1287,6 +1310,8 @@ protected:
 	int* m_aiBonusYieldRateModifier;
 	int* m_aiTechYieldRateModifier; // Civ4 Reimagined
 	int* m_aiTechCommerceRateModifier; // Civ4 Reimagined
+	int* m_aiFeatureCommerce; // Civ4 Reimagined
+	int* m_aiFarmAdjacencyBonus; // Civ4 Reimagined
 	int* m_aiTradeYield;
 	int* m_aiCorporationYield;
 	int* m_aiExtraSpecialistYield;
@@ -1355,6 +1380,7 @@ protected:
 	std::vector<EventTypes> m_aEventsOccured;
 	std::vector<BuildingYieldChange> m_aBuildingYieldChange;
 	std::vector<BuildingCommerceChange> m_aBuildingCommerceChange;
+	std::set<ImprovementTypes> m_aImprovementsInRadius; // Civ4 Reimagined
 	BuildingChangeArray m_aBuildingHappyChange;
 	BuildingChangeArray m_aBuildingHealthChange;
 
@@ -1383,6 +1409,7 @@ protected:
 	void doReligion();
 	void doGreatPeople();
 	void doMeltdown();
+	void doImmigration();
 
 	int getExtraProductionDifference(int iExtra, UnitTypes eUnit) const;
 	int getExtraProductionDifference(int iExtra, BuildingTypes eBuilding) const;

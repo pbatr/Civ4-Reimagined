@@ -4581,7 +4581,7 @@
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_PROGRESSIVE</TraitType>
+					<TraitType>TRAIT_ORGANIZED</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
@@ -14332,11 +14332,11 @@
 		  <Flavors>
 			<Flavor>
 			  <FlavorType>FLAVOR_GROWTH</FlavorType>
-			  <iFlavor>5</iFlavor>
+			  <iFlavor>2</iFlavor>
 			</Flavor>
 			<Flavor>
-			  <FlavorType>FLAVOR_PRODUCTION</FlavorType>
-			  <iFlavor>2</iFlavor>
+			  <FlavorType>FLAVOR_RELIGION</FlavorType>
+			  <iFlavor>5</iFlavor>
 			</Flavor>
 		  </Flavors>
 		  <ContactRands>
@@ -14679,7 +14679,12 @@
 			  <iWeightModifier>100</iWeightModifier>
 			</UnitAIWeightModifier>
 		  </UnitAIWeightModifiers>
-		  <ImprovementWeightModifiers/>
+		  <ImprovementWeightModifiers>
+				<ImprovementWeightModifier>
+					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
+					<iWeightModifier>200</iWeightModifier>
+				</ImprovementWeightModifier>
+		  </ImprovementWeightModifiers>
 		  <DiplomacyIntroMusicPeace>
 			<DiploMusicPeaceEra>
 			  <EraType>ERA_ANCIENT</EraType>
@@ -25863,7 +25868,7 @@
 					<bTrait>1</bTrait>
 				</Trait>
 				<Trait>
-					<TraitType>TRAIT_ORGANIZED</TraitType>
+					<TraitType>TRAIT_PROGRESSIVE</TraitType>
 					<bTrait>1</bTrait>
 				</Trait>
 			</Traits>
@@ -27472,7 +27477,12 @@
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
-			<ImprovementWeightModifiers/>
+			<ImprovementWeightModifiers>
+				<ImprovementWeightModifier>
+					<ImprovementType>IMPROVEMENT_TOWN</ImprovementType>
+					<iWeightModifier>50</iWeightModifier>
+				</ImprovementWeightModifier>
+			</ImprovementWeightModifiers>
 			<DiplomacyIntroMusicPeace>
 				<DiploMusicPeaceEra>
 					<EraType>ERA_ANCIENT</EraType>
@@ -30147,11 +30157,11 @@
 			</Traits>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_CULTURE</FlavorType>
+					<FlavorType>FLAVOR_GROWTH</FlavorType>
 					<iFlavor>5</iFlavor>
 				</Flavor>
 				<Flavor>
-					<FlavorType>FLAVOR_MILITARY</FlavorType>
+					<FlavorType>FLAVOR_RELIGION</FlavorType>
 					<iFlavor>2</iFlavor>
 				</Flavor>
 			</Flavors>
@@ -30567,7 +30577,12 @@
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
-			<ImprovementWeightModifiers/>
+			<ImprovementWeightModifiers>
+				<ImprovementWeightModifier>
+					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
+					<iWeightModifier>200</iWeightModifier>
+				</ImprovementWeightModifier>
+			</ImprovementWeightModifiers>
 			<DiplomacyIntroMusicPeace>
 				<DiploMusicPeaceEra>
 					<EraType>ERA_ANCIENT</EraType>
@@ -32442,8 +32457,8 @@
 			</UnitAIWeightModifiers>
 			<ImprovementWeightModifiers>
 				<ImprovementWeightModifier>
-					<ImprovementType>IMPROVEMENT_FARM</ImprovementType>
-					<iWeightModifier>40</iWeightModifier>
+					<ImprovementType>IMPROVEMENT_TOWN</ImprovementType>
+					<iWeightModifier>50</iWeightModifier>
 				</ImprovementWeightModifier>
 			</ImprovementWeightModifiers>
 			<DiplomacyIntroMusicPeace>

@@ -471,6 +471,7 @@ public:
 	void setBuildingHappyChange(int /*BuildingClassTypes*/ eBuildingClass, int iChange);
 	int getBuildingHealthChange(int /*BuildingClassTypes*/ eBuildingClass) const;
 	void setBuildingHealthChange(int /*BuildingClassTypes*/ eBuildingClass, int iChange);
+	int getBonusValueTimes100(int iBonusCount) const; // Civ4 Reimagined
 
 	int getLiberationPlayer(bool bConquest);
 	void liberate(bool bConquest);

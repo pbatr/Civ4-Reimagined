@@ -55,7 +55,7 @@ public:
 	CyPlot* getNearestLandPlot();
 	int seeThroughLevel();
 	bool canHaveBonus(int /*BonusTypes*/ eBonus, bool bIgnoreLatitude);
-	bool canHaveImprovement(int /* ImprovementTypes */ eImprovement, int /*TeamTypes*/ eTeam, bool bPotential);
+	bool canHaveImprovement(int /* ImprovementTypes */ eImprovement, int /*PlayerTypes*/ ePlayer, bool bPotential);
 	bool canBuild(int /*BuildTypes*/ eBuild, int /*PlayerTypes*/ ePlayer, bool bTestVisible);
 	int getBuildTime(int /*BuildTypes*/ eBuild);
 	int getBuildTurnsLeft(int /*BuildTypes*/ eBuild, int iNowExtra, int iThenExtra);
@@ -205,9 +205,9 @@ public:
 	int getReconCount();
 	int getRiverCrossingCount();
 	int getYield(YieldTypes eIndex);
-	int calculateNatureYield(int /*YieldTypes*/ eIndex, int /*TeamTypes*/ eTeam, bool bIgnoreFeature = false);
-	int calculateBestNatureYield(YieldTypes eIndex, TeamTypes eTeam);
-	int calculateTotalBestNatureYield(TeamTypes eTeam);
+	int calculateNatureYield(int /*YieldTypes*/ eIndex, int /*PlayerTypes*/ ePlayer, bool bIgnoreFeature = false, bool bIgnoreUniquePower = false);
+	int calculateBestNatureYield(int /*YieldTypes*/ eIndex, int /*PlayerTypes*/ ePlayer, bool bIgnoreUniquePower = false);
+	int calculateTotalBestNatureYield(int /*PlayerTypes*/ ePlayer, bool bIgnoreUniquePower = false);
 	int calculateImprovementYieldChange(int /*ImprovementTypes*/ eImprovement, YieldTypes eYield, int /*PlayerTypes*/ ePlayer, bool bOptimal);
 	int calculateYield(YieldTypes eIndex, bool bDisplay);
 	bool hasYield();

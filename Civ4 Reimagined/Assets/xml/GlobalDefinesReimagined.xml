@@ -158,12 +158,16 @@
 		<iDefineIntVal>-10</iDefineIntVal> <!-- original value: -15 -->
 	</Define>
 	<Define>
-		<DefineName>FIRST_EVENT_DELAY_TURNS</DefineName>
-		<iDefineIntVal>25</iDefineIntVal> <!-- original value: 20 -->
-	</Define>
-	<Define>
 		<DefineName>COLONY_NUM_FREE_DEFENDERS</DefineName>
 		<iDefineIntVal>3</iDefineIntVal> <!-- original value: 2 -->
+	</Define>
+	<Define>
+		<DefineName>MIN_REVOLUTION_TURNS</DefineName>
+		<iDefineIntVal>4</iDefineIntVal> <!-- original value: 5 -->
+	</Define>
+	<Define>
+		<DefineName>MIN_CONVERSION_TURNS</DefineName>
+		<iDefineIntVal>4</iDefineIntVal> <!-- original value: 5 -->
 	</Define>
 	<!-- Unchanged value but changed semantics, i.e. modifier for every trade route with a capital. If both the actual city and the trading city are capitals the bonus is doubled. 
 	The old modifier was renamed to CONNECTION_TO_CAPITAL_TRADE_MODIFIER (see below) -->
@@ -184,7 +188,7 @@
 		<DefineName>CONNECTION_TO_CAPITAL_TRADE_MODIFIER</DefineName>
 		<iDefineIntVal>25</iDefineIntVal>
 	</Define>
-	<!-- Trade route modifier for colony cities. Colonies are cities on different continent from the capital. For definition of continent see below. -->
+	<!-- Trade route modifier for colony cities. Colonies are cities on different continent from the capital owned by a vassal. For definition of continent see below. -->
 	<Define>
 		<DefineName>COLONY_TRADE_MODIFIER</DefineName>
 		<iDefineIntVal>100</iDefineIntVal>
@@ -345,9 +349,106 @@
 		<DefineName>EUREKA_TECH_BOOST_PERCENTAGE</DefineName>
 		<iDefineIntVal>40</iDefineIntVal>
 	</Define>
-	<!-- Not used at the moment. -->	
 	<Define>
-		<DefineName>UNIQUE_POWER_CULTURE_INCOME_PERCENT_PER_CITY</DefineName>
-		<iDefineIntVal>90</iDefineIntVal>
+		<DefineName>START_SIGHT_RANGE</DefineName>
+		<iDefineIntVal>2</iDefineIntVal>
 	</Define>
+	<!-- Unique Powers -->
+	<Define>
+		<DefineName>UNIQUE_POWER_OTHER</DefineName>
+		<iDefineIntVal>2</iDefineIntVal> <!-- % commerce modifier -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_AMERICA</DefineName>
+		<iDefineIntVal>600</iDefineIntVal> <!-- Trade route modifier with cities that have own corporation -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_ARABIA</DefineName>
+		<iDefineIntVal>20</iDefineIntVal> <!-- % siege bonus against players of different religion -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_AZTEC</DefineName>
+		<iDefineIntVal>50</iDefineIntVal> <!-- gold per sacrifice -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_BABYLON</DefineName>
+		<iDefineIntVal>100</iDefineIntVal> <!-- commerce times 100 in capital per population -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_BABYLON_2</DefineName>
+		<iDefineIntVal>5</iDefineIntVal> <!-- Population required -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_CARTHARGE</DefineName> 
+		<iDefineIntVal>200</iDefineIntVal> <!-- Trade route modifier for special trade routes -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_CELT_CULTURE</DefineName>
+		<iDefineIntVal>25</iDefineIntVal> <!-- Culture per unimproved forest -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_CELT_RESEARCH</DefineName>
+		<iDefineIntVal>25</iDefineIntVal> <!-- Research per unimproved forest -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_CHINA_MAX_POP</DefineName>
+		<iDefineIntVal>140</iDefineIntVal> <!-- Reaches max effect at X% of average population -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_CHINA_MAX_EFFECT</DefineName>
+		<iDefineIntVal>20</iDefineIntVal> <!-- Maximum +% research bonus in all cities for high population compared to world population -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_ENGLAND</DefineName>
+		<iDefineIntVal>400</iDefineIntVal> <!-- Traderoute bonus for connections to oversea vassals-->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_EGYPT</DefineName>
+		<iDefineIntVal>3</iDefineIntVal> <!-- Slavery points per population -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_GERMANY</DefineName>
+		<iDefineIntVal>67</iDefineIntVal> <!-- Length of golden ages made with generals (only). -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_GREECE</DefineName>
+		<iDefineIntVal>30</iDefineIntVal> <!-- Number of turns per civic -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_JAPAN</DefineName>
+		<iDefineIntVal>40</iDefineIntVal> <!-- Research bonus for known technologies -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_KHMER</DefineName>
+		<iDefineIntVal>100</iDefineIntVal> <!-- State Religion Commerce times 100 for population over threshold -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_KHMER_THRESHOLD</DefineName>
+		<iDefineIntVal>6</iDefineIntVal> <!-- State Religion Commerce for population over threshold -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_MAYA</DefineName>
+		<iDefineIntVal>15</iDefineIntVal> <!-- Production from chopping jungle -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_ROME</DefineName>
+		<iDefineIntVal>2</iDefineIntVal> <!-- Extra units on city conquest -->
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_SPAIN_RELIGIOUS_SETTLER</DefineName>
+		<iDefineIntVal>100</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_SPAIN_RELIGIOUS_MAINTENANCE</DefineName>
+		<iDefineIntVal>-50</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_MONGOL_PILLAGE_HEAL</DefineName>
+		<iDefineIntVal>30</iDefineIntVal>
+	</Define>
+	<Define>
+		<DefineName>UNIQUE_POWER_PORTUGAL</DefineName>
+		<iDefineIntVal>50</iDefineIntVal> <!-- Trade gold modifier per foreign happiness bonus in city fatcross -->
+	</Define>
+	<!-- Unique Powers end -->
 </Civ4Defines>

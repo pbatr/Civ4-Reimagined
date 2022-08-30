@@ -651,6 +651,8 @@ CvPlot* CvSelectionGroup::lastMissionPlot()
 		case MISSION_HURRY:
 		case MISSION_TRADE:
 		case MISSION_GREAT_WORK:
+		case MISSION_SACRIFICE: // Civ4 Reimagined
+		case MISSION_COASTAL_RAID: // Civ4 Reimagined
 		case MISSION_INFILTRATE:
 		case MISSION_GOLDEN_AGE:
 		case MISSION_BUILD:
@@ -828,6 +830,8 @@ void CvSelectionGroup::startMission()
 		case MISSION_HURRY:
 		case MISSION_TRADE:
 		case MISSION_GREAT_WORK:
+		case MISSION_SACRIFICE: // Civ4 Reimagined
+		case MISSION_COASTAL_RAID: // Civ4 Reimagined
 		case MISSION_INFILTRATE:
 		case MISSION_GOLDEN_AGE:
 			break;
@@ -1026,6 +1030,13 @@ void CvSelectionGroup::startMission()
 					}
 					break;
 
+				case MISSION_COASTAL_RAID:
+					if (pLoopUnit->coastalRaid(headMissionQueueNode()->m_data.iData1, headMissionQueueNode()->m_data.iData2))
+					{
+						bAction = true;
+					}
+					break;
+
 				case MISSION_PLUNDER:
 					if (pLoopUnit->plunder())
 					{
@@ -1112,6 +1123,14 @@ void CvSelectionGroup::startMission()
 
 				case MISSION_GREAT_WORK:
 					if (pLoopUnit->greatWork())
+					{
+						bAction = true;
+					}
+					break;
+
+				// Civ4 Reimagined
+				case MISSION_SACRIFICE:
+					if (pLoopUnit->sacrifice())
 					{
 						bAction = true;
 					}
@@ -1443,6 +1462,8 @@ bool CvSelectionGroup::continueMission_bulk(int iSteps)
 				case MISSION_HURRY:
 				case MISSION_TRADE:
 				case MISSION_GREAT_WORK:
+				case MISSION_SACRIFICE: // Civ4 Reimagined
+				case MISSION_COASTAL_RAID: // Civ4 Reimagined
 				case MISSION_INFILTRATE:
 				case MISSION_GOLDEN_AGE:
 				case MISSION_LEAD:
@@ -1530,6 +1551,8 @@ bool CvSelectionGroup::continueMission_bulk(int iSteps)
 			case MISSION_HURRY:
 			case MISSION_TRADE:
 			case MISSION_GREAT_WORK:
+			case MISSION_SACRIFICE: // Civ4 Reimagined
+			case MISSION_COASTAL_RAID: // Civ4 Reimagined
 			case MISSION_INFILTRATE:
 			case MISSION_GOLDEN_AGE:
 			case MISSION_LEAD:
@@ -1903,6 +1926,14 @@ bool CvSelectionGroup::canDoInterfaceMode(InterfaceModeTypes eInterfaceMode)
 			}
 			break;
 
+		// Civ4 Reimagined
+		case INTERFACEMODE_COASTAL_RAID:
+			if (pLoopUnit->canCoastalRaid())
+			{
+				return true;
+			}
+			break;
+
 		case INTERFACEMODE_AIRSTRIKE:
 			if (pLoopUnit->getDomainType() == DOMAIN_AIR)
 			{
@@ -1998,6 +2029,17 @@ bool CvSelectionGroup::canDoInterfaceModeAt(InterfaceModeTypes eInterfaceMode, C
 			if (pLoopUnit != NULL)
 			{
 				if (pLoopUnit->canRangeStrikeAt(pLoopUnit->plot(), pPlot->getX_INLINE(), pPlot->getY_INLINE()))
+				{
+					return true;
+				}
+			}
+			break;
+
+		// Civ4 Reimagined
+		case INTERFACEMODE_COASTAL_RAID:
+			if (pLoopUnit != NULL)
+			{
+				if (pLoopUnit->canCoastalRaidAt(pLoopUnit->plot(), pPlot->getX_INLINE(), pPlot->getY_INLINE()))
 				{
 					return true;
 				}
@@ -3916,6 +3958,12 @@ bool CvSelectionGroup::canDoMission(int iMission, int iData1, int iData2, CvPlot
 				return true;
 			break;
 
+		// Civ4 Reimagined
+		case MISSION_COASTAL_RAID:
+			if (pLoopUnit->canCoastalRaidAt(pPlot, iData1, iData2) && (!bCheckMoves || pLoopUnit->canMove()))
+				return true;
+			break;
+
 		case MISSION_PLUNDER:
 			if (pLoopUnit->canPlunder(pPlot, bTestVisible) && (!bCheckMoves || pLoopUnit->canMove()))
 				return true;
@@ -3983,6 +4031,12 @@ bool CvSelectionGroup::canDoMission(int iMission, int iData1, int iData2, CvPlot
 
 		case MISSION_GREAT_WORK:
 			if (pLoopUnit->canGreatWork(pPlot) && (!bCheckMoves || pLoopUnit->canMove()))
+				return true;
+			break;
+
+		// Civ4 Reimagined
+		case MISSION_SACRIFICE:
+			if (pLoopUnit->canSacrifice(pPlot) && (!bCheckMoves || pLoopUnit->canMove()))
 				return true;
 			break;
 

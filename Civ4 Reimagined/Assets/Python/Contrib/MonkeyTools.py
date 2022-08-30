@@ -137,6 +137,7 @@ def getPromotionInfoText(pUnit):
 	iFriendlyHealChange = 0
 	iSameTileHealChange = 0
 	iCombatPercent = 0
+	iCombatPercentAgainstWoodenShips = 0 # Civ4 Reimagined
 	iCityAttackPercent = 0
 	iCityDefensePercent = 0
 	iHillsDefensePercent = 0
@@ -200,6 +201,10 @@ def getPromotionInfoText(pUnit):
 			iTemp = gc.getPromotionInfo(i).getCombatPercent()
 			if iTemp > 0:
 				iCombatPercent += iTemp
+			# Civ4 Reimagined
+			iTemp = gc.getPromotionInfo(i).getCombatPercentAgainstWoodenShips()
+			if iTemp > 0:
+				iCombatPercentAgainstWoodenShips += iTemp
 			iTemp = gc.getPromotionInfo(i).getCityAttackPercent()
 			if iTemp > 0:
 				iCityAttackPercent += iTemp
@@ -271,6 +276,8 @@ def getPromotionInfoText(pUnit):
 		szPromotionInfo += localText.getText("TXT_KEY_PROMOTION_HEALS_SAME_TEXT", (iSameTileHealChange, )) + localText.getText("TXT_KEY_PROMOTION_DAMAGE_TURN_TEXT", ()) + "\n"
 	if iCombatPercent > 0:
 		szPromotionInfo += localText.getText("TXT_KEY_PROMOTION_STRENGTH_TEXT", (iCombatPercent, )) + "\n"
+	if iCombatPercentAgainstWoodenShips > 0:
+		szPromotionInfo += localText.getText("TXT_KEY_PROMOTION_STRENGTH_AGAINST_WOODEN_SHIPS_TEXT", (iCombatPercentAgainstWoodenShips, )) + "\n"
 	if iCityAttackPercent > 0:
 		szPromotionInfo += localText.getText("TXT_KEY_PROMOTION_CITY_ATTACK_TEXT", (iCityAttackPercent, )) + "\n"
 	if iCityDefensePercent > 0:

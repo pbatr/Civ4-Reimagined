@@ -212,6 +212,7 @@ protected:
 	bool AI_improveLocalPlot(int iRange, CvCity* pIgnoreCity);
 	bool AI_nextCityToImprove(CvCity* pCity);
 	bool AI_nextCityToImproveAirlift();
+	bool AI_searchGoldMines(); // Civ4 Reimagined
 	bool AI_irrigateTerritory();
 	bool AI_fortTerritory(bool bCanal, bool bAirbase);
 	//bool AI_improveBonus(int iMinValue = 0, CvPlot** ppBestPlot = NULL, BuildTypes* peBestBuild = NULL, int* piBestValue = NULL);

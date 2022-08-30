@@ -180,8 +180,12 @@ void CyStructsPythonInterface1()
 		.def_readwrite("iCurrHitPoints", &CombatDetails::iCurrHitPoints)
 		.def_readwrite("iMaxHitPoints", &CombatDetails::iMaxHitPoints)
 		.def_readwrite("iCurrCombatStr", &CombatDetails::iCurrCombatStr)
+		.def_readwrite("iFaithModifier", &CombatDetails::iFaithModifier) // Civ4 Reimagined
 		.def_readwrite("eOwner", &CombatDetails::eOwner)
 		.def_readwrite("eVisualOwner", &CombatDetails::eVisualOwner)
 		.def_readwrite("sUnitName", &CombatDetails::sUnitName)
+		.def_readwrite("iDefenseBuildingModifier", &CombatDetails::iDefenseBuildingModifier) // Civ4 Reimagined
+		.def_readwrite("iHomeAreaOwnBordersModifier", &CombatDetails::iHomeAreaOwnBordersModifier) // Civ4 Reimagined
+		.def_readwrite("iAgainstInjuredModifier", &CombatDetails::iAgainstInjuredModifier) // Civ4 Reimagined
 		;
 }

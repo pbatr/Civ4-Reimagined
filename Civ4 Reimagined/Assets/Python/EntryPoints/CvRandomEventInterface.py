@@ -2383,7 +2383,7 @@ def canTriggerHorseWhisperingDone(argsList):
 	
 	iStable = CvUtil.findInfoTypeNum(gc.getBuildingClassInfo, gc.getNumBuildingClassInfos(), 'BUILDINGCLASS_STABLE')
 	
-	if gc.getWorldInfo(player.getNumCities()) != player.getBuildingClassCount(iStable):
+	if player.getNumCities() > player.getBuildingClassCount(iStable):
 		return false
 	
 	return true

@@ -154,7 +154,7 @@
 			<Advisor>ADVISOR_RELIGION</Advisor>
 			<iAIWeight>0</iAIWeight>
 			<iAITradeModifier>0</iAITradeModifier>
-			<iCost>65</iCost>
+			<iCost>40</iCost>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<Era>ERA_ANCIENT</Era>
@@ -2909,8 +2909,8 @@
 				<PrereqTech>TECH_PAPER</PrereqTech>
 			</OrPreReqs>
 			<AndPreReqs>
+				<PrereqTech>TECH_GUILDS</PrereqTech>
 				<PrereqTech>TECH_OPTICS</PrereqTech>
-				<PrereqTech>TECH_LITERATURE</PrereqTech>
 			</AndPreReqs>
 			<Quote>TXT_KEY_TECH_EDUCATION_QUOTE</Quote>
 			<Sound>AS2D_TECH_EDUCATION</Sound>

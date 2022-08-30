@@ -738,12 +738,12 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_PROMOTION_JAGUAR_WARRIOR</Tag>
-		<English>Jaguar Warrior</English>
+		<English>Jaguar</English>
 		<French>Guerrier Jaguar</French>
 	</TEXT>	
 	<TEXT>
 		<Tag>TXT_KEY_PROMOTION_EAGLE_WARRIOR</Tag>
-		<English>Eagle Warrior</English>
+		<English>Eagle</English>
 		<French>Guerrier Aigle</French>
 	</TEXT>
 	<TEXT>
@@ -755,6 +755,10 @@
 		<Tag>TXT_KEY_UNIT_SLAVE</Tag>
 		<English>Slave</English>
 		<French>Esclave</French>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_AZTEC_CAPTIVE</Tag>
+		<English>Aztec Slave</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_BOMBARD_RATE</Tag>
@@ -972,6 +976,10 @@
 		<French>Un esclave a commencé à travailler à %s1.</French>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_MISC_CONQUISTADOR_RECEIVED</Tag>
+		<English>A Conquistador appeared in %s1.</English>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_UNIT_CANNOT_ENTER</Tag>
 		<English>[ICON_BULLET]Cannot Enter</English>
 		<French>[ICON_BULLET]Ne peut pas entrer</French>
@@ -1094,8 +1102,8 @@
 		<English>National Military Academy</English>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_BUILDING_BIT_DINU</Tag>
-		<English>Bit Dinu</English>
+		<Tag>TXT_KEY_BUILDING_PALGUM</Tag>
+		<English>Palgum</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_PROJECT_ENABLES_NUKES</Tag>
@@ -1252,7 +1260,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_ESPIONAGE_TARGET_STEAL_TREASURY</Tag>
 		<English>%d1 gold of our state treasury was looted by enemy infiltrators!</English>
-		<French>>Une partie de notre tr&#233;sor a &#233;t&#233; pill&#233;e par des ennemis infiltr&#233;s ! (%d1 or)</French>
+		<French>Une partie de notre tr&#233;sor a &#233;t&#233; pill&#233;e par des ennemis infiltr&#233;s ! (%d1 or)</French>
 		<German>Feindliche Spione haben %d1 Gold aus unserem Staatsschatz erbeutet!</German>
 		<Italian>Infiltrati nemici hanno rubato una parte del nostro tesoro di stato! (%d1 oro)</Italian>
 		<Spanish>&#161;Los enemigos infiltrados han saqueado parte de nuestro tesoro! (%d1 oro)</Spanish>
@@ -1268,6 +1276,10 @@
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_BUILDING_DEFENSE</Tag>
 		<English>[ICON_BULLET]%D1_Mod%% Defensive Bonus from Buildings</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_AGAINST_INJURED</Tag>
+		<English>[ICON_BULLET]%D1_Mod%% Combat Bonus against Injured Units</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_GREAT_HARBOR</Tag>
@@ -1343,7 +1355,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_SLAVERY_PROGRESS</Tag>
-		<English>Slave: %d1_Curr/%d2_Need Progress</English>
+		<English>Slave: %d1_Curr/%d2_Need Progress. Gain points equal to population of conquered or razed cities. Gain %d3_Settle Slave points by settling on oversea lands.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_MELEE_MILITARY_FOOD</Tag>
@@ -1398,6 +1410,10 @@
 		<English>Your %s1_UnitName was damaged by an enemy %s2_EnUName (%d3%% HP)</English>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_MISC_HELP_FEATURE_COMMERCE</Tag>
+		<English>[ICON_BULLET]%s1%F2 from Terrain Features</English>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_UNIT_ADD_CARGO_RANGE</Tag>
 		<English>[ICON_BULLET]Provides Additional %d1 Range to Cargo Units</English>
 	</TEXT>
@@ -1442,11 +1458,51 @@
 		<English>Qullqa</English>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_HURRY_POPULATION</Tag>
-		<English>Can Sacrifice Population to Finish Production of a Building in a City</English>
-	</TEXT>
-	<TEXT>
 		<Tag>TXT_KEY_NO_HURRY</Tag>
 		<English>Cannot be Hurried</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_JAGUAR_PROMOTIONS</Tag>
+		<English>[ICON_BULLET]Can gain the [LINK=PROMOTION_JAGUAR_WARRIOR]Jaguar[\LINK] and [LINK=PROMOTION_EAGLE_WARRIOR]Eagle[\LINK] Promotions</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_INDIAN_VARU</Tag>
+		<English>Varu</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_IMPROVEMENT_RADIUS_HAPPINESS</Tag>
+		<English>[ICON_BULLET]%D1_Change%F2_HappOrUnhapp in Cities with a %s3_ImprovementName in City Radius</English>
+	</TEXT>	
+	<TEXT>
+		<Tag>TXT_KEY_HAPPY_FEATURES</Tag>
+		<English>+%d1_Change[ICON_HAPPY]: "The surrounding landscape and structures make us happy!"</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_FREE_WORKERS</Tag>
+		<English>[ICON_BULLET]Increased Worker Limit by %d1_Change. Instantly receive %d2_Change Free Workers in Capital</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_FREE_WORKERS_LOST</Tag>
+		<English>Your additional Workers from running Bureaucracy retired!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_FREE_WORKER</Tag>
+		<English>Bureaucrat</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_BIRTH_RATE_PER_WORLD_WONDER</Tag>
+		<English>[ICON_BULLET]%D1[ICON_GREATPEOPLE] per World Wonder in City</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_PROMOTION_STRENGTH_AGAINST_WOODEN_SHIPS_TEXT</Tag>
+		<English>[ICON_BULLET]%D1_Bonus%% vs. Renaissance or earlier Ships</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_COMBAT_EXTRA_STRENGTH_WOODEN_SHIPS</Tag>
+		<English>[ICON_BULLET]%D1_Bonus%% vs. Renaissance or earlier ships</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_PROMOTION_GREEK_FIRE</Tag>
+		<English>Greek Fire</English>
+	</TEXT>	
 </Civ4GameText>

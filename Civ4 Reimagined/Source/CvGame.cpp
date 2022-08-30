@@ -315,11 +315,8 @@ void CvGame::setInitialItems()
 		{
 			kPlayer.AI_updateFoundValues();
 			
-			// Civ4 Reimagined: Quick fix to get powers working on game start. To-Do: Should happen later on when the player can already receive status messages.
-			if (!GC.getGameINLINE().isOption(GAMEOPTION_NO_UNIQUE_POWERS))
-			{		
-				kPlayer.changeAccumulatedCulture(0); 
-			}
+			// Civ4 Reimagined: Quick fix to get powers working on game start.
+			kPlayer.updateUniquePowers((EraTypes)0);
 		}
 	}
 }
@@ -1490,6 +1487,12 @@ void CvGame::normalizeRemoveBadFeatures()
 
 	for (iI = 0; iI < MAX_CIV_PLAYERS; iI++)
 	{
+		// Civ4 Reimagined: Maya can start in Jungle with their UP
+		if (GET_PLAYER((PlayerTypes)iI).getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_MAYA"))
+		{
+			continue;
+		}
+
 		if (GET_PLAYER((PlayerTypes)iI).isAlive())
 		{
 			pStartingPlot = GET_PLAYER((PlayerTypes)iI).getStartingPlot();
@@ -1701,7 +1704,7 @@ void CvGame::normalizeAddFoodBonuses()
 											iFoodBonus += 3;
 										else
 											iFoodBonus += 2; */
-										int iNaturalFood = pLoopPlot->calculateBestNatureYield(YIELD_FOOD, kLoopPlayer.getTeam());
+										int iNaturalFood = pLoopPlot->calculateBestNatureYield(YIELD_FOOD, kLoopPlayer.getID(), /*ignore UP*/ true);
 										int iHighFoodThreshold = 2*iFoodPerPop; // ie. 4 food.
 										bool bHighFood = iNaturalFood + 1 >= iHighFoodThreshold; // (+1 just as a shortcut to save time for obvious cases.)
 
@@ -1717,14 +1720,14 @@ void CvGame::normalizeAddFoodBonuses()
 									}
 								}
 							}
-							else if (pLoopPlot->calculateBestNatureYield(YIELD_FOOD, kLoopPlayer.getTeam()) >= iFoodPerPop)
+							else if (pLoopPlot->calculateBestNatureYield(YIELD_FOOD, kLoopPlayer.getID(), /*ignore UP*/ true) >= iFoodPerPop)
 						    {
 						        iGoodNatureTileCount++;
 						    }
 						}
 						else
 						{
-                            if (pLoopPlot->calculateBestNatureYield(YIELD_FOOD, kLoopPlayer.getTeam()) >= iFoodPerPop+1)
+                            if (pLoopPlot->calculateBestNatureYield(YIELD_FOOD, kLoopPlayer.getID(), /*ignore UP*/ true) >= iFoodPerPop+1)
 						    {
 						        iGoodNatureTileCount++;
 						    }
@@ -1755,7 +1758,7 @@ void CvGame::normalizeAddFoodBonuses()
 							{
 								if ((kLoopBonus.getTechCityTrade() == NO_TECH) || (GC.getTechInfo((TechTypes)(kLoopBonus.getTechCityTrade())).getEra() <= getStartEra()))
 								{
-									if (GET_TEAM(kLoopPlayer.getTeam()).isHasTech((TechTypes)kLoopBonus.getTechReveal()))
+									if (GET_TEAM(kLoopPlayer.getTeam()).isBonusRevealed((BonusTypes)iK))
 									{
 										// Civ4 Reimagined: Added coastal condition for sea resources
 										if (pLoopPlot->canHaveBonus(((BonusTypes)iK), bIgnoreLatitude) && (!pLoopPlot->isWater() || pStartingPlot->isCoastalLand(GC.getMIN_WATER_SIZE_FOR_OCEAN())))
@@ -1769,7 +1772,7 @@ void CvGame::normalizeAddFoodBonuses()
 											{
 												//iFoodBonus += 3;
 												// K-Mod
-												int iNaturalFood = pLoopPlot->calculateBestNatureYield(YIELD_FOOD, kLoopPlayer.getTeam());
+												int iNaturalFood = pLoopPlot->calculateBestNatureYield(YIELD_FOOD, kLoopPlayer.getID(), /*ignore UP*/ true);
 												int iHighFoodThreshold = 2*iFoodPerPop; // ie. 4 food.
 												bool bHighFood = iNaturalFood + 1 >= iHighFoodThreshold; // (+1 just as a shortcut to save time for obvious cases.)
 
@@ -1823,8 +1826,8 @@ void CvGame::normalizeAddGoodTerrain()
 					{
 						if (pLoopPlot != pStartingPlot)
 						{
-							if ((pLoopPlot->calculateNatureYield(YIELD_FOOD, GET_PLAYER((PlayerTypes)iI).getTeam()) >= GC.getFOOD_CONSUMPTION_PER_POPULATION()) &&
-								  (pLoopPlot->calculateNatureYield(YIELD_PRODUCTION, GET_PLAYER((PlayerTypes)iI).getTeam()) > 0))
+							if ((pLoopPlot->calculateNatureYield(YIELD_FOOD, (PlayerTypes)iI, false, /* ignore UP */ true) >= GC.getFOOD_CONSUMPTION_PER_POPULATION()) &&
+								  (pLoopPlot->calculateNatureYield(YIELD_PRODUCTION, (PlayerTypes)iI, false, /* ignore UP */ true) > 0))
 							{
 								iGoodPlot++;
 							}
@@ -1853,7 +1856,7 @@ void CvGame::normalizeAddGoodTerrain()
 									{
 										bChanged = false;
 
-										if (pLoopPlot->calculateNatureYield(YIELD_FOOD, GET_PLAYER((PlayerTypes)iI).getTeam()) < GC.getFOOD_CONSUMPTION_PER_POPULATION())
+										if (pLoopPlot->calculateNatureYield(YIELD_FOOD, (PlayerTypes)iI, false, /* ignore UP */ true) < GC.getFOOD_CONSUMPTION_PER_POPULATION())
 										{
 											for (iK = 0; iK < GC.getNumTerrainInfos(); iK++)
 											{
@@ -1869,7 +1872,7 @@ void CvGame::normalizeAddGoodTerrain()
 											}
 										}
 
-										if (pLoopPlot->calculateNatureYield(YIELD_PRODUCTION, GET_PLAYER((PlayerTypes)iI).getTeam()) == 0)
+										if (pLoopPlot->calculateNatureYield(YIELD_PRODUCTION, (PlayerTypes)iI, false, /* ignore UP */ true) == 0)
 										{
 											for (iK = 0; iK < GC.getNumFeatureInfos(); iK++)
 											{
@@ -1948,6 +1951,8 @@ void CvGame::normalizeAddExtras()
 
 		if (!kLoopPlayer.isAlive())
 			continue;
+
+		const CivilizationTypes eCiv = GET_PLAYER((PlayerTypes)iI).getCivilizationType();
 
 		CvPlot* pStartingPlot = kLoopPlayer.getStartingPlot();
 
@@ -2116,6 +2121,12 @@ void CvGame::normalizeAddExtras()
 		{
 			eUniqueBonus = (BonusTypes)GC.getUnitInfo(eUniqueUnit).getPrereqAndBonus();
 		}
+
+		// Civ4 Reimagined
+		if (kLoopPlayer.getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_CHINA"))
+		{
+			eUniqueBonus = (BonusTypes)GC.getInfoTypeForString("BONUS_RICE");
+		}
 		
 		for (int iJ = 0; iJ < NUM_CITY_PLOTS; iJ++)
 		{
@@ -2129,7 +2140,7 @@ void CvGame::normalizeAddExtras()
 		}
 		
 		if (!bHasUniqueBonus && gMapLogLevel > 0)
-			logBBAI("    Player %d needs %S for unique unit.", iI, GC.getBonusInfo(eUniqueBonus).getDescription());
+			logBBAI("    Player %d needs %S for unique unit / unique power.", iI, GC.getBonusInfo(eUniqueBonus).getDescription());
 
 		// Civ4 Reimagined
 		for (int iTry = 0; iTry < 2; iTry++)
@@ -2142,7 +2153,8 @@ void CvGame::normalizeAddExtras()
 
 					if ((pLoopPlot != NULL) && (pLoopPlot != pStartingPlot) && pLoopPlot->getBonusType() != NO_BONUS)
 					{
-						if (pLoopPlot->getBonusType() != BONUS_IRON && pLoopPlot->getBonusType() != BONUS_COPPER && pLoopPlot->getBonusType() != BONUS_OIL && pLoopPlot->getBonusType() != eUniqueBonus)
+						if (pLoopPlot->getBonusType() != BONUS_IRON && pLoopPlot->getBonusType() != BONUS_COPPER && pLoopPlot->getBonusType() != BONUS_OIL && pLoopPlot->getBonusType() != eUniqueBonus
+							&& GC.getCivilizationInfo(eCiv).getCivilizationBonusBias(pLoopPlot->getBonusType()) <= 0)
 						{
 							if (gMapLogLevel > 0)
 								logBBAI("    Removing %S for player %d.", GC.getBonusInfo(pLoopPlot->getBonusType()).getDescription(), iI);
@@ -2199,7 +2211,7 @@ void CvGame::normalizeAddExtras()
 													{
 														if ((GC.getBonusInfo((BonusTypes)iK).getTechCityTrade() == NO_TECH) || (GC.getTechInfo((TechTypes)(GC.getBonusInfo((BonusTypes)iK).getTechCityTrade())).getEra() <= getStartEra()) || (BonusTypes)iK == eUniqueBonus)
 														{
-															if (GET_TEAM(kLoopPlayer.getTeam()).isHasTech((TechTypes)(GC.getBonusInfo((BonusTypes)iK).getTechReveal())) || (BonusTypes)iK == eUniqueBonus)
+															if (GET_TEAM(kLoopPlayer.getTeam()).isBonusRevealed((BonusTypes)iK) || (BonusTypes)iK == eUniqueBonus)
 															{
 																if ((iPass == 1) ? CvMapGenerator::GetInstance().canPlaceBonusAt(((BonusTypes)iK), pLoopPlot->getX(), pLoopPlot->getY(), bIgnoreLatitude) : pLoopPlot->canHaveBonus(((BonusTypes)iK), bIgnoreLatitude))
 																{
@@ -2291,7 +2303,8 @@ void CvGame::normalizeAddExtras()
 
 						if ((pLoopPlot != NULL) && (pLoopPlot != pStartingPlot) && pLoopPlot->getBonusType() != NO_BONUS)
 						{
-							if ((iPass > 0 || GC.getBonusInfo(pLoopPlot->getBonusType()).getHealth() <= 0) && pLoopPlot->getBonusType() != BONUS_IRON && pLoopPlot->getBonusType() != BONUS_COPPER && pLoopPlot->getBonusType() != BONUS_OIL)
+							if ((iPass > 0 || GC.getBonusInfo(pLoopPlot->getBonusType()).getHealth() <= 0) && pLoopPlot->getBonusType() != BONUS_IRON && pLoopPlot->getBonusType() != BONUS_COPPER && pLoopPlot->getBonusType() != BONUS_OIL
+								&& GC.getCivilizationInfo(eCiv).getCivilizationBonusBias(pLoopPlot->getBonusType()) <= 0)
 							{
 								if (gMapLogLevel > 0)
 									logBBAI("    Removing %S for player %d, so we can add bonus for unique unit.", GC.getBonusInfo(pLoopPlot->getBonusType()).getDescription(), iI);
@@ -4549,7 +4562,7 @@ void CvGame::initScoreCalculation()
 		CvPlot* pPlot = GC.getMapINLINE().plotByIndexINLINE(i);
 		if (!pPlot->isWater() || pPlot->isAdjacentToLand())
 		{
-			iMaxFood += pPlot->calculateBestNatureYield(YIELD_FOOD, NO_TEAM);
+			iMaxFood += pPlot->calculateBestNatureYield(YIELD_FOOD, NO_PLAYER);
 		}
 	}
 	m_iMaxPopulation = getPopulationScore(iMaxFood / std::max(1, GC.getFOOD_CONSUMPTION_PER_POPULATION()));
@@ -4619,30 +4632,10 @@ void CvGame::setAIAutoPlay(int iNewValue)
 	if (iOldValue != iNewValue)
 	{
 		m_iAIAutoPlay = std::max(0, iNewValue);
-
-/************************************************************************************************/
-/* AI_AUTO_PLAY_MOD                           07/09/08                            jdog5000      */
-/*                                                                                              */
-/*                                                                                              */
-/************************************************************************************************/
-// Multiplayer compatibility idea from Jeckel
-/* original code
-		if ((iOldValue == 0) && (getAIAutoPlay() > 0))
-		{
-			GET_PLAYER(getActivePlayer()).killUnits();
-			GET_PLAYER(getActivePlayer()).killCities();
-		}
-*/
-		for( int iI = 0; iI < MAX_CIV_PLAYERS; iI++ )
-		{
-			if( GET_PLAYER((PlayerTypes)iI).isHuman() || GET_PLAYER((PlayerTypes)iI).isHumanDisabled() )
-			{
-				GET_PLAYER(getActivePlayer()).setHumanDisabled((getAIAutoPlay() != 0));
-			}
-		}
-/************************************************************************************************/
-/* AI_AUTO_PLAY_MOD                            END                                              */
-/************************************************************************************************/
+		
+		GET_PLAYER(getActivePlayer()).setHumanDisabled((getAIAutoPlay() != 0));
+		// Civ4 Reimagined
+		GET_PLAYER(getActivePlayer()).setupEurekas();
 	}
 }
 
@@ -5758,12 +5751,6 @@ void CvGame::setTeamScore(TeamTypes eTeam, int iScore)
 
 bool CvGame::isOption(GameOptionTypes eIndex) const
 {
-	// Civ4 Reimagined: Dirty fix to make sure, Unique Powers cannot be activated by accident (through civilizationIV.ini). Remove this when Unique Powers get incorporated again.
-	if (eIndex == GAMEOPTION_NO_UNIQUE_POWERS)
-	{
-		return true;
-	}
-	
 	return GC.getInitCore().getOption(eIndex);
 }
 

@@ -51,12 +51,10 @@ class EconomicsAdvisor:
 		self.PAGE_NAME_LIST = [
 			"TXT_KEY_ECONOMICS_ADVISOR_FINANCE_TAB",
 			"TXT_KEY_ECONOMICS_ADVISOR_ENVIRONMENT_TAB",
-			"TXT_KEY_ECONOMICS_ADVISOR_UNIQUE_POWERS_TAB",
 			]
 		self.PAGE_DRAW_LIST = [
 			self.drawFinance,
 			self.drawEnvironment,
-			self.drawUnique,
 			]
 			
 #		self.DX_LINK = (self.X_EXIT - self.X_LINK) / (len (self.PAGE_NAME_LIST) + 1)
@@ -476,78 +474,6 @@ class EconomicsAdvisor:
 		
 		return 0
 
-	def drawUnique(self):
-		
-		self.deleteAllWidgets()	
-		screen = self.getScreen()
-		
-		# Header...
-		screen.setLabel(self.WIDGET_HEADER, "Background", u"<font=4b>" + localText.getText("TXT_KEY_ECONOMICS_ADVISOR_UNIQUE_POWERS_TAB", ()).upper() + u"</font>", CvUtil.FONT_CENTER_JUSTIFY, self.X_SCREEN, self.Y_TITLE, self.Z_CONTROLS, FontTypes.TITLE_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1)
-		
-		#self.X_SCREEN = 500
-		#self.Y_SCREEN = 396
-		#self.W_SCREEN = 1024
-		#self.H_SCREEN = 768
-		#self.Y_TITLE = 12
-
-		#self.X_EXIT = 994
-		#self.Y_EXIT = 726
-
-		self.X_AREA = 10
-		self.Y_AREA = 60
-		self.W_AREA = 1010
-		self.H_AREA = 650
-		
-		self.TABLE_WIDTH_0 = 60
-		self.TABLE_WIDTH_1 = 90
-		self.TABLE_WIDTH_2 = 900
-		
-		screen.addPanel(self.getNextWidgetName(), "", "", False, False, self.X_AREA-10, self.Y_AREA-15, self.W_AREA+20, self.H_AREA+30, PanelStyles.PANEL_STYLE_BLUE50)
-		
-		szTable = self.getNextWidgetName()
-		
-		screen.addTableControlGFC(szTable, 6, self.X_AREA, self.Y_AREA, self.W_AREA, self.H_AREA, False, False, 32,32, TableStyles.TABLE_STYLE_STANDARD)
-		
-		screen.setTableColumnHeader(szTable, 0, "", self.TABLE_WIDTH_0)
-		screen.setTableColumnHeader(szTable, 1, "", self.TABLE_WIDTH_1)
-		screen.setTableColumnHeader(szTable, 2, "", self.TABLE_WIDTH_2)
-		screen.appendTableRow(szTable)
-		
-		player = gc.getPlayer(CyGame().getActivePlayer())
-		civInfo = gc.getCivilizationInfo(gc.getActivePlayer().getCivilizationType())
-		
-		#Header
-		iRow = screen.appendTableRow(szTable)
-		szText = "LEVEL"
-		szText = BugUtil.colorText(szText, "COLOR_PLAYER_GRAY")
-		screen.setTableText(szTable, 0, iRow, szText, "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
-		
-		szText = "CULTURE"
-		szText = BugUtil.colorText(szText, "COLOR_PLAYER_GRAY")
-		screen.setTableText(szTable, 1, iRow, szText, "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_RIGHT_JUSTIFY)
-	
-		szText = "EFFECT"
-		szText = BugUtil.colorText(szText, "COLOR_PLAYER_GRAY")
-		screen.setTableText(szTable, 2, iRow, szText, "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
-		
-		
-		if not gc.getGame().isOption(GameOptionTypes.GAMEOPTION_NO_UNIQUE_POWERS):
-				
-			#Unique powers
-			for i in range(1,6):
-				iRow = screen.appendTableRow(szTable)
-				
-				szText = BugUtil.getText("TXT_KEY_ECONOMICS_ADVISOR_UNIQUE_POWERS_LEVEL", i)
-				screen.setTableText(szTable, 0, iRow, szText, "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
-				
-				szText = BugUtil.getText("TXT_KEY_ECONOMICS_ADVISOR_UNIQUE_POWERS_REQUIREMENT", int(player.getUniquePowerRequirement(i) / 100))
-				screen.setTableText(szTable, 1, iRow, szText, "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_RIGHT_JUSTIFY)
-			
-				szText = BugUtil.getText(civInfo.getCivilizationUniquePowerText(i))
-				screen.setTableText(szTable, 2, iRow, szText, "", WidgetTypes.WIDGET_GENERAL, -1, -1, CvUtil.FONT_LEFT_JUSTIFY)
-		
-		return 0
-		
 	def drawEnvironment(self):
 		screen = self.getScreen()
 		# Header...

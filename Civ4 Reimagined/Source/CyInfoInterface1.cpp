@@ -129,6 +129,7 @@ void CyInfoPythonInterface1()
 		.def("getFriendlyHealChange", &CvPromotionInfo::getFriendlyHealChange, "int ()")
 		.def("getSameTileHealChange", &CvPromotionInfo::getSameTileHealChange, "int ()")
 		.def("getCombatPercent", &CvPromotionInfo::getCombatPercent, "int ()")
+		.def("getCombatPercentAgainstWoodenShips", &CvPromotionInfo::getCombatPercentAgainstWoodenShips, "int ()") // Civ4 Reimagined
 		.def("getCityAttackPercent", &CvPromotionInfo::getCityAttackPercent, "int ()")
 		.def("getCityDefensePercent", &CvPromotionInfo::getCityDefensePercent, "int ()")
 		.def("getHillsAttackPercent", &CvPromotionInfo::getHillsAttackPercent, "int ()")

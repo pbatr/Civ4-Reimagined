@@ -54,6 +54,7 @@ public:
 	void doTurn();
 
 	void doImprovement();
+	void discoverBonus(BonusTypes eBonus); // Civ4 Reimagined
 
 	void updateCulture(bool bBumpUnits, bool bUpdatePlotGroups);
 
@@ -87,6 +88,10 @@ public:
 	bool isAdjacentToLand() const;																															// Exposed to Python 
 	int countAdjacentPeaks() const; // Civ4 Reimagined
 	bool isAdjacentToPeak() const; // Civ4 Reimagined
+	bool isAdjacentToLake() const; // Civ4 Reimagined
+	bool isAdjacentToImprovement(ImprovementTypes eIndex) const; // Civ4 Reimagined
+	bool isAdjacentToBonus(BonusTypes eIndex) const; // Civ4 Reimagined
+	bool isAdjacentToStrategicBonus(TeamTypes eTeam = NO_TEAM) const; // Civ4 Reimagined
 	bool isCoastalLand(int iMinWaterSize = -1) const;																																	// Exposed to Python
 
 	bool isVisibleWorked() const;
@@ -118,7 +123,7 @@ public:
 	void updateSeeFromSight(bool bIncrement, bool bUpdatePlotGroups);
 
 	bool canHaveBonus(BonusTypes eBonus, bool bIgnoreLatitude = false) const;																						// Exposed to Python
-	bool canHaveImprovement(ImprovementTypes eImprovement, TeamTypes eTeam = NO_TEAM, bool bPotential = false) const;		// Exposed to Python
+	bool canHaveImprovement(ImprovementTypes eImprovement, PlayerTypes ePlayer = NO_PLAYER, bool bPotential = false) const;		// Exposed to Python
 
 	bool canBuild(BuildTypes eBuild, PlayerTypes ePlayer = NO_PLAYER, bool bTestVisible = false) const;														// Exposed to Python
 	int getBuildTime(BuildTypes eBuild) const;																																										// Exposed to Python
@@ -376,9 +381,9 @@ public:
 
 	short* getYield();
 	DllExport int getYield(YieldTypes eIndex) const;																										// Exposed to Python
-	int calculateNatureYield(YieldTypes eIndex, TeamTypes eTeam, bool bIgnoreFeature = false) const;		// Exposed to Python
-	int calculateBestNatureYield(YieldTypes eIndex, TeamTypes eTeam) const;															// Exposed to Python
-	int calculateTotalBestNatureYield(TeamTypes eTeam) const;																						// Exposed to Python
+	int calculateNatureYield(YieldTypes eIndex, PlayerTypes ePlayer, bool bIgnoreFeature = false, bool bIgnoreUniquePower = false) const;		// Exposed to Python
+	int calculateBestNatureYield(YieldTypes eIndex, PlayerTypes ePlayer, bool bIgnoreUniquePower = false) const;															// Exposed to Python
+	int calculateTotalBestNatureYield(PlayerTypes ePlayer, bool bIgnoreUniquePower = false) const;																						// Exposed to Python
 /************************************************************************************************/
 /* BETTER_BTS_AI_MOD                      10/06/09                                jdog5000      */
 /*                                                                                              */
@@ -393,6 +398,8 @@ public:
 	void updateYield();
 	// int calculateMaxYield(YieldTypes eYield) const; // disabled by K-Mod
 	int getYieldWithBuild(BuildTypes eBuild, YieldTypes eYield, bool bWithUpgrade) const;
+
+	int calculateAdjacencyBonus(YieldTypes eYield, ImprovementTypes eImprovement, int iNeededAdjacentImprovements) const; // Civ4 Reimagined
 
 	int getCulture(PlayerTypes eIndex) const;																									// Exposed to Python
 	int countTotalCulture() const;																														// Exposed to Python
@@ -521,6 +528,7 @@ public:
 	
 	//Civ4 Reimagined
 	bool canUpgradeTo(UnitTypes eUnit) const;
+	bool canDiscoverDesertGold() const;
 
 	bool isEspionageCounterSpy(TeamTypes eTeam) const;
 

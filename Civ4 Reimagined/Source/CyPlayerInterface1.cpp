@@ -427,11 +427,6 @@ void CyPlayerPythonInterface1(python::class_<CyPlayer>& x)
 		.def("calculateBonusRatioModifier", &CyPlayer::calculateBonusRatioModifier, "int () - ") // Civ4 Reimagined
 		.def("getTechValue", &CyPlayer::getTechValue, "int () - ") // Civ4 Reimagined
 		.def("getBonusRatio", &CyPlayer::getBonusRatio, "int () - ") // Civ4 Reimagined
-		.def("getUniquePowerLevel", &CyPlayer::getUniquePowerLevel, "int () - Current unique power level") // Civ4 Reimagined
-		.def("getUniquePowerRequirement", &CyPlayer::getUniquePowerRequirement, "long (int iLevel) - Amount of accumulated culture required for next level of unique power") // Civ4 Reimagined
-		.def("getAccumulatedCulture", &CyPlayer::getAccumulatedCulture, "long () - Accumulated culture used to check for unique powers") // Civ4 Reimagined
-		.def("getUniquePowerRate", &CyPlayer::getUniquePowerRate, "long () - The rate at which player generates points towards it's unique power") // Civ4 Reimagined
-		.def("getMayaCalendar", &CyPlayer::getMayaCalendar, "int () - return the next turn at which a great person will be generated for the Maya") // Civ4 Reimagined
 		
 		.def("getCombatExperience", &CyPlayer::getCombatExperience, "int () - Combat experience used to produce Warlords")
 		.def("changeCombatExperience", &CyPlayer::changeCombatExperience, "void (int) - Combat experience used to produce Warlords")

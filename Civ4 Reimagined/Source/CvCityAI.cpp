@@ -3617,6 +3617,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 	BuildingClassTypes eBuildingClass = (BuildingClassTypes) kBuilding.getBuildingClassType();
 	int iLimitedWonderLimit = limitedWonderClassLimit(eBuildingClass);
 	bool bIsLimitedWonder = (iLimitedWonderLimit >= 0);
+	const SpecialBuildingTypes eSpecialBuilding = (SpecialBuildingTypes)kBuilding.getSpecialBuildingType();
 	// K-Mod. This new value, iPriorityFactor, is used to boost the value of productivity buildings without overvaluing productivity.
 	// The point is to get the AI to build productiviy buildings quickly, but not if they come with large negative side effects.
 	// I may use it for other adjustments in the future.
@@ -4106,6 +4107,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 			// trade routes
 			// K-Mod. (original code deleted)
 			int iTotalTradeModifier = totalTradeModifier();
+
 			int iTempValue = kBuilding.getTradeRoutes() * (getTradeRoutes() > 0 ? 5*getTradeYield(YIELD_COMMERCE) / getTradeRoutes() : 5 * (getPopulation() / 5 + 1) * iTotalTradeModifier / 100);
 			//int iGlobalTradeValue = (6 * iTotalPopulation / (5 * iNumCities) + 1) * kOwner.AI_averageYieldMultiplier(YIELD_COMMERCE) / 100;
 			// 1.2 * average population seems wrong. Instead, do something roughly compariable to what's used in CvPlayerAI::AI_civicValue.
@@ -4142,6 +4144,12 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 					const int iIdeologyTradeRoutes = std::max(2, GC.getGameINLINE().getIdeologyCount(eIdeology) - 1) * iCitiesTarget;
 					iTempValue += 5 * iIdeologyTradeRoutes * kBuilding.getForeignTradeIdeologyModifier(eIdeology) * getTradeYield(YIELD_COMMERCE) / std::max(1, iTotalTradeModifier) / iNumTradeRoutes;
 				}
+			}
+
+			// Civ4 Reimagined: Aztec UP
+			if (eBuilding == (BuildingTypes)GC.getInfoTypeForString("BUILDING_AZTEC_SACRIFICIAL_ALTAR"))
+			{
+				iTempValue += GC.getDefineINT("UNIQUE_POWER_AZTEC");
 			}
 
 			iTempValue += iTempValue += 5 * iOverseaTradeRoutes * kBuilding.getOverseaTradeRouteModifier() * getTradeYield(YIELD_COMMERCE) / std::max(1, iTotalTradeModifier) / iNumTradeRoutes;
@@ -4221,13 +4229,27 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 
 			if (kBuilding.getDomesticGreatGeneralRateModifier() != 0)
 			{
-				iValue += (kBuilding.getDomesticGreatGeneralRateModifier() / 10);
+				int iGreatGeneralValue = (kBuilding.getDomesticGreatGeneralRateModifier() / 10);
+
+				// Civ4 Reimagined
+				if (GET_PLAYER(getOwnerINLINE()).getGreatGeneralGoldenAgeLength() > 0)
+				{
+					iGreatGeneralValue += iGreatGeneralValue * GET_PLAYER(getOwnerINLINE()).getGreatGeneralGoldenAgeLength() / 100;
+				}
+				iValue += iGreatGeneralValue;
 			}
 
 			// Civ4 Reimagined
 			if (kBuilding.getGreatGeneralRateModifier() != 0)
 			{
-				iValue += (kBuilding.getDomesticGreatGeneralRateModifier() / (bWarPlan ? 2 : 5));
+				int iGreatGeneralValue = (kBuilding.getDomesticGreatGeneralRateModifier() / (bWarPlan ? 2 : 5));
+
+				// Civ4 Reimagined
+				if (GET_PLAYER(getOwnerINLINE()).getGreatGeneralGoldenAgeLength() > 0)
+				{
+					iGreatGeneralValue += iGreatGeneralValue * GET_PLAYER(getOwnerINLINE()).getGreatGeneralGoldenAgeLength() / 100;
+				}
+				iValue += iGreatGeneralValue;
 			}
 
 			if (kBuilding.isAreaBorderObstacle() && !(area()->isBorderObstacle(getTeam())))
@@ -4556,6 +4578,16 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 			if (!kOwner.isNoGreatPeople())
 			{
 				int iTempValue = 100 * kBuilding.getGreatPeopleRateChange() * 2 * 4; // everything seems to be x4 around here
+
+				// Civ4 Reimagined
+				iTempValue += 100 * kBuilding.getGreatPeopleRateChangePerWorldWonder() * getNumWorldWonders() * 2 * 4; // everything seems to be x4 around here
+
+				// Civ4 Reimagined
+				if (eSpecialBuilding == (SpecialBuildingTypes)GC.getInfoTypeForString("SPECIALBUILDING_CATHEDRAL"))
+				{
+					iTempValue += 100 * getGreatEngineerPointsFromCathedrals() * 2 * 4;
+				}
+
 				int iCityRate = getGreatPeopleRate();
 				int iHighestRate = 0;
 				int iLoop;
@@ -4669,7 +4701,6 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				}
 			}
 
-			const SpecialBuildingTypes eSpecialBuilding = (SpecialBuildingTypes)kBuilding.getSpecialBuildingType();
 			if (eSpecialBuilding == NO_SPECIALBUILDING || ! GET_PLAYER(getOwnerINLINE()).isSpecialBuildingNotRequired(eSpecialBuilding)) // Civ4 Reimagined
 			{
 				for (int iI = 0; iI < GC.getNumUnitInfos(); iI++)
@@ -5036,6 +5067,11 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				if (kBuilding.getRiverPlotYieldChange(iI) > 0)
 				{
 					iRawYieldValue += (kBuilding.getRiverPlotYieldChange(iI) * countNumRiverPlots() * 3); // was 4
+				}
+				// Civ4 Reimagined
+				if (kBuilding.getFarmAdjacencyBonus() > 0 && iI == YIELD_FOOD)
+				{
+					iRawYieldValue += std::max(1, 2 * countNumImprovedPlots((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FARM"), false) / kBuilding.getFarmAdjacencyBonus()) * 4;
 				}
 				iRawYieldValue += (kBuilding.getYieldChange(iI) * 4); // was 6
 
@@ -5870,6 +5906,12 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 
 		// Civ4 Reimagined: Use AI weight also for building suggestions
 		iValue += kBuilding.getAIWeight();
+
+		// Civ4 Reimagined: Byzantium UP
+		if (kOwner.getCapitalCultureAttitudeBonus() > 0 && isCapital())
+		{
+			iValue = iValue * (10 + kBuilding.getFlavorValue(FLAVOR_CULTURE) / 2) / 10;
+		}
 
 		// flavour factor. (original flavour code deleted)
 		if (!isHuman())
@@ -6992,9 +7034,9 @@ int CvCityAI::AI_clearFeatureValue(int iIndex)
 	BonusTypes eBonus = pPlot->getNonObsoleteBonusType(getTeam());
 	if (eBonus != NO_BONUS && !GET_TEAM(getTeam()).isHasTech((TechTypes)GC.getBonusInfo(eBonus).getTechCityTrade()))
 	{
-		iValue += kFeatureInfo.getYieldChange(YIELD_FOOD) * 100;
-		iValue += kFeatureInfo.getYieldChange(YIELD_PRODUCTION) * 80; // was 60
-		iValue += kFeatureInfo.getYieldChange(YIELD_COMMERCE) * 40;
+		iValue += (kFeatureInfo.getYieldChange(YIELD_FOOD) + GET_PLAYER(getOwnerINLINE()).getFeatureExtraYield(eFeature, YIELD_FOOD)) * 100;
+		iValue += (kFeatureInfo.getYieldChange(YIELD_PRODUCTION) + GET_PLAYER(getOwnerINLINE()).getFeatureExtraYield(eFeature, YIELD_PRODUCTION)) * 80; // was 60
+		iValue += (kFeatureInfo.getYieldChange(YIELD_COMMERCE) + GET_PLAYER(getOwnerINLINE()).getFeatureExtraYield(eFeature, YIELD_COMMERCE)) * 40;
 		iValue *= 2;
 		// that should be enough incentive to keep good features until we have the tech to decide on the best improvement.
 	}
@@ -7431,6 +7473,13 @@ void CvCityAI::AI_getYieldMultipliers(int &iFoodMultiplier, int &iProductionMult
 		iFoodMultiplier /= 100;
 	}
 
+	// Civ4 Reimagined: Khmer needs more value for Food
+	if (kPlayer.getFreshWaterHealthModifier() > 0)
+	{
+		iFoodMultiplier *= 100 + kPlayer.getFreshWaterHealthModifier();
+		iFoodMultiplier /= 100;
+	}
+
 	// Note: this food multiplier calculation still doesn't account for possible food yield multipliers. Sorry.
 
 	if (isHuman() && AI_isEmphasizeYield(YIELD_FOOD))
@@ -7586,8 +7635,15 @@ int CvCityAI::AI_getImprovementValue(CvPlot* pPlot, ImprovementTypes eImprovemen
 			{
 				if (GC.getImprovementInfo(eFinalImprovement).getImprovementBonusDiscoverRand(iJ) > 0)
 				{
-					iValue++;
+					// Civ4 Reimagined: Mali UP
+					iValue += ((BonusTypes)iJ == (BonusTypes)GC.getInfoTypeForString("BONUS_GOLD") && GET_PLAYER(getOwnerINLINE()).isDesertGold()) ? 5 : 1;
 				}
+			}
+
+			// Civ4 Reimagined: Mali UP
+			if (GET_PLAYER(getOwnerINLINE()).isDesertGold() && pPlot->canDiscoverDesertGold() && eImprovement == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_MINE"))
+			{
+				iValue += kOwner.AI_bonusVal((BonusTypes)GC.getInfoTypeForString("BONUS_GOLD"), 1) * 50;
 			}
 		}
 	}
@@ -7629,8 +7685,8 @@ int CvCityAI::AI_getImprovementValue(CvPlot* pPlot, ImprovementTypes eImprovemen
 
 		for (int iJ = 0; iJ < NUM_YIELD_TYPES; iJ++)
 		{
-			weighted_final_yields[iJ] += pPlot->calculateNatureYield((YieldTypes)iJ, getTeam(), bIgnoreFeature);
-			weighted_yield_diffs[iJ] = weighted_final_yields[iJ] - (weighted_yield_diffs[iJ] + pPlot->calculateNatureYield((YieldTypes)iJ, getTeam()));
+			weighted_final_yields[iJ] += pPlot->calculateNatureYield((YieldTypes)iJ, getOwnerINLINE(), bIgnoreFeature);
+			weighted_yield_diffs[iJ] = weighted_final_yields[iJ] - (weighted_yield_diffs[iJ] + pPlot->calculateNatureYield((YieldTypes)iJ, getOwnerINLINE()));
 		}
 		
 		// Civ4 Reimagined: Temporary workaround (AI sometimes replaces good improvements with forts...)
@@ -7739,7 +7795,35 @@ int CvCityAI::AI_getImprovementValue(CvPlot* pPlot, ImprovementTypes eImprovemen
 			iValue += 2000;
 		}
 
+		// Civ4 Reimagined
+		if (kOwner.getGreatSpyPointsFromImprovementInRadius(eFinalImprovement) != 0)
+		{
+			if ((eFinalImprovement == pPlot->getImprovementType() && countNumImprovedPlots(eFinalImprovement) == 1) || countNumImprovedPlots(eFinalImprovement) == 0)
+			{
+				iValue += kOwner.getGreatSpyPointsFromImprovementInRadius(eFinalImprovement) * 100;
+			}
+		}
+
+		// Civ4 Reimagined
+		if (kOwner.getPeakYieldChangeAdjacentToTerrace(YIELD_FOOD) > 0 && eImprovement == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_TERRACE"))
+		{
+			if (pPlot->isAdjacentToPeak())
+			{
+				iValue += kOwner.getPeakYieldChangeAdjacentToTerrace((YieldTypes)iJ) * 25;
+			}
+		}
+
 		int iHappiness = GC.getImprovementInfo(eFinalImprovement).getHappiness();
+
+		// Civ4 Reimagined
+		if (kOwner.getRadiusImprovementHappiness(eFinalImprovement) != 0)
+		{
+			if ((eFinalImprovement == pPlot->getImprovementType() && countNumImprovedPlots(eFinalImprovement) == 1) || countNumImprovedPlots(eFinalImprovement) == 0)
+			{
+				iHappiness += kOwner.getRadiusImprovementHappiness(eFinalImprovement);
+			}
+		}
+
 		if ((iHappiness != 0) && !(kOwner.getAdvancedStartPoints() >= 0))
 		{
 			//int iHappyLevel = iHappyAdjust + (happyLevel() - unhappyLevel(0));
@@ -7777,6 +7861,16 @@ int CvCityAI::AI_getImprovementValue(CvPlot* pPlot, ImprovementTypes eImprovemen
 			iHappyValue /= 2;
 			//
 			iValue += iHappyValue * iHappiness;
+		}
+
+		// Civ4 Reimagined
+		if (getFarmAdjacencyBonus(YIELD_FOOD) > 0)
+		{
+			if (eImprovement == (ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FARM"))
+			{
+				iValue *= 9;
+				iValue /= getFarmAdjacencyBonus(YIELD_FOOD);
+			}
 		}
 
 		if (!isHuman())
@@ -8444,7 +8538,7 @@ void CvCityAI::AI_doHurry(bool bForce)
 		int iHappyDiff = 0;
 		int iHappy = 0;
 		int iPopCost = 0;
-		
+		int iValue = 0;
 
 		if (iHurryPopulation > 0)
 		{
@@ -8499,6 +8593,8 @@ void CvCityAI::AI_doHurry(bool bForce)
 
 			// convert units from 4x commerce to 1x commerce
 			iPopCost /= 4;
+
+			iValue += kOwner.getSlavePointsPerPopulationSacrificed();
 		}
 
 		int iTotalCost = iPopCost + iGoldCost;
@@ -8507,12 +8603,11 @@ void CvCityAI::AI_doHurry(bool bForce)
 		{
 			const CvUnitInfo& kUnitInfo = GC.getUnitInfo(eProductionUnit);
 
-			int iValue = 0;
 			if (kOwner.AI_isFinancialTrouble())
 				iTotalCost = std::max(0, iTotalCost); // overflow is not good when it is being used to build units that we don't want.
 			else
 			{
-				iValue = productionLeft();
+				iValue += productionLeft();
 				
 				// Civ4 Reimagined
 				int iProductionMultiplier = getUnitProductionMultiplier(eProductionUnit);
@@ -8597,7 +8692,7 @@ void CvCityAI::AI_doHurry(bool bForce)
 		{
 			const CvBuildingInfo& kBuildingInfo = GC.getBuildingInfo(eProductionBuilding);
 
-			int iValue = AI_buildingValue(eProductionBuilding) * (getProductionTurnsLeft(eProductionBuilding, 1) - 1);
+			iValue += AI_buildingValue(eProductionBuilding) * (getProductionTurnsLeft(eProductionBuilding, 1) - 1);
 			
 			// Civ4 Reimagined
 			if (isWorldWonderClass((BuildingClassTypes)kBuildingInfo.getBuildingClassType()))
@@ -8924,7 +9019,7 @@ bool CvCityAI::AI_bestSpreadUnit(bool bMissionary, bool bExecutive, int iBaseCha
 				{
 					iRoll += 25;
 				}
-				else if (!kTeam.hasHolyCity(eReligion) && !(kPlayer.getStateReligion() == eReligion && iHasCount < kPlayer.getNumCities()))
+				else if (!kTeam.hasHolyCity(eReligion) && !(kPlayer.getStateReligion() == eReligion && iHasCount < kPlayer.getNumCities()) && kPlayer.getGreatPeopleRatePerReligionModifier() <= 0)
 				{
 					//iRoll /= 2;
 					// Civ4 Reimagined
@@ -10237,8 +10332,7 @@ int CvCityAI::AI_yieldValue(short* piYields, short* piCommerceYields, bool bRemo
 
 				//Slavery evaluation
 				// K-Mod. Rescaled values and conditions.
-				// Civ4 Reimagined: only if production building
-				if (!bWorkerOptimization && isProductionBuilding() && kOwner.canPopRush() && getHurryAngerTimer() <= std::min(3,getPopulation()/2)+2*iHappinessLevel) // K-Mod
+				if (!bWorkerOptimization && kOwner.canPopRush() && getHurryAngerTimer() <= std::min(3,getPopulation()/2)+2*iHappinessLevel) // K-Mod
 				{
 					//iSlaveryValue = 30 * 14 * std::max(0, aiYields[YIELD_FOOD] - ((iHealthLevel < 0) ? 1 : 0));
 					int iProductionPerPop = 0;
@@ -10773,7 +10867,7 @@ int CvCityAI::AI_specialPlotImprovementValue(CvPlot* pPlot) const
 		{
 			for (BonusTypes i = (BonusTypes)0; i < GC.getNumBonusInfos(); i=(BonusTypes)(i+1))
 			{
-				if (GET_TEAM(getTeam()).isHasTech((TechTypes)(GC.getBonusInfo(i).getTechReveal())))
+				if (GET_TEAM(getTeam()).isBonusRevealed((BonusTypes)i))
 				{
 					if (GC.getImprovementInfo(eImprovement).getImprovementBonusDiscoverRand(i) > 0)
 					{
@@ -10958,9 +11052,9 @@ void CvCityAI::AI_bestPlotBuild(CvPlot* pPlot, long* piBestValue, BuildTypes* pe
 
 		const CvFeatureInfo& kFeatureInfo = GC.getFeatureInfo(pPlot->getFeatureType());
 		iClearValue_wYield = iClearFeatureValue;
-		iClearValue_wYield -= kFeatureInfo.getYieldChange(YIELD_FOOD) * 100 * iFoodPriority / 100;
-		iClearValue_wYield -= kFeatureInfo.getYieldChange(YIELD_PRODUCTION) * 60 * iProductionPriority / 100;
-		iClearValue_wYield -= kFeatureInfo.getYieldChange(YIELD_COMMERCE) * 40 * iCommercePriority / 100;
+		iClearValue_wYield -= (kFeatureInfo.getYieldChange(YIELD_FOOD) + GET_PLAYER(getOwnerINLINE()).getFeatureExtraYield(pPlot->getFeatureType(), YIELD_FOOD)) * 100 * iFoodPriority / 100;
+		iClearValue_wYield -= (kFeatureInfo.getYieldChange(YIELD_PRODUCTION) + GET_PLAYER(getOwnerINLINE()).getFeatureExtraYield(pPlot->getFeatureType(), YIELD_PRODUCTION)) * 60 * iProductionPriority / 100;
+		iClearValue_wYield -= (kFeatureInfo.getYieldChange(YIELD_COMMERCE) + GET_PLAYER(getOwnerINLINE()).getFeatureExtraYield(pPlot->getFeatureType(), YIELD_COMMERCE)) * 40 * iCommercePriority / 100;
 	}
 
 	if (!bHasBonusImprovement)
@@ -11424,6 +11518,11 @@ int CvCityAI::AI_cityValue() const
 	}
 	
 	iCosts += ((0 == iCount) ? 0 : iHapValue / iCount) * kOwner.getNumCities();
+
+	if (kOwner.getColonyTraderouteModifier() != 0)
+	{
+		iCosts += (iSplitCities + 3) * 2 * kOwner.getColonyTraderouteModifier() * kOwner.AI_yieldWeight(YIELD_COMMERCE) / 100;
+	}
 	
 	if (gCityLogLevel >= 2 && iCosts != 0) logBBAI("%S Colony Value: %d , Cost: %d (HapValue: %d)", getName().GetCString(), iValue, iCosts, iHapValue);
 	

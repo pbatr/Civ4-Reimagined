@@ -573,6 +573,7 @@
 			<iWorkerSpeedModifier>0</iWorkerSpeedModifier>
 			<iImprovementUpgradeRateModifier>0</iImprovementUpgradeRateModifier>
 			<iMilitaryProductionModifier>0</iMilitaryProductionModifier>
+			<iFreeWorkers>2</iFreeWorkers>
 			<iBaseFreeUnits>0</iBaseFreeUnits>
 			<iBaseFreeMilitaryUnits>0</iBaseFreeMilitaryUnits>
 			<iFreeUnitsPopulationPercent>0</iFreeUnitsPopulationPercent>
@@ -696,6 +697,12 @@
 				</BuildingYieldChange>
 			</BuildingYieldChanges>
 			<FeatureHappinessChanges/>
+			<RadiusImprovementHappinessChanges>
+				<RadiusImprovementHappinessChange>
+					<ImprovementType>IMPROVEMENT_FORT</ImprovementType>
+					<iHappinessChange>1</iHappinessChange>
+				</RadiusImprovementHappinessChange>
+			</RadiusImprovementHappinessChanges>
 			<ImprovementYieldChanges/>
 			<RadiusImprovementCommerceChanges>
 				<RadiusImprovementCommerceChange>
@@ -1051,7 +1058,7 @@
 			<Button>,Art/Interface/Buttons/Civics/Slavery.dds,Art/Interface/Buttons/Civics_Civilizations_Religions_Atlas.dds,8,2</Button>
 			<TechPrereq>TECH_MASONRY</TechPrereq>
 			<iAnarchyLength>1</iAnarchyLength>
-			<Upkeep>UPKEEP_HIGH</Upkeep>
+			<Upkeep>UPKEEP_MEDIUM</Upkeep>
 			<iAIWeight>0</iAIWeight>
 			<iGreatPeopleRateModifier>0</iGreatPeopleRateModifier>
 			<iGreatGeneralRateModifier>0</iGreatGeneralRateModifier>
@@ -1103,7 +1110,7 @@
 			<SpecialistExtraCommerces/>
 			<Hurrys>
 				<Hurry>
-					<HurryType>HURRY_POPULATION</HurryType>
+					<HurryType>HURRY_POPULATION_BUILDINGS</HurryType>
 					<bHurry>1</bHurry>
 				</Hurry>
 			</Hurrys>

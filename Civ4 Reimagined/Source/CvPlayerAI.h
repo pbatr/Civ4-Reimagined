@@ -131,6 +131,8 @@ public:
 /* Tech AI                                                                                      */
 /************************************************************************************************/
 	int AI_techValue(TechTypes eTech, int iPathLength, bool bIgnoreCost, bool bAsync, const std::vector<int>& viBonusClassRevealed, const std::vector<int>& viBonusClassUnrevealed, const std::vector<int>& viBonusClassHave) const;
+	int uniquePowerAIEraValueMult(EraTypes eEra) const; // Civ4 Reimagined
+	int uniquePowerAITechValueMult(TechTypes eTech) const; // Civ4 Reimagined
 	int AI_obsoleteBuildingPenalty(TechTypes eTech, bool bConstCache) const; // K-Mod
 	int AI_techBuildingValue(TechTypes eTech, bool bConstCache, bool& bEnablesWonder) const; // Rewritten for K-Mod
 	int AI_techProjectValue(TechTypes eTech, bool& bEnablesWonder) const; // Civ4 Reimagined
@@ -181,6 +183,7 @@ public:
 	int AI_updateAttitudeCache(PlayerTypes ePlayer) const; // Civ4 Reimagined
 	int AI_getSameIdeologyAttitude(PlayerTypes ePlayer) const; // Civ4 Reimagined
 	int AI_getDifferentIdeologyAttitude(PlayerTypes ePlayer) const; // Civ4 Reimagined
+	int AI_getCapitalCultureAttitude(PlayerTypes ePlayer) const; // Civ4 Reimagined
 
 	PlayerVoteTypes AI_diploVote(const VoteSelectionSubData& kVoteData, VoteSourceTypes eVoteSource, bool bPropose);
 

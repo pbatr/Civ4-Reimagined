@@ -168,6 +168,14 @@
 		<French>[ICON_BULLET]Emplacements doublés pour[SPACE]</French>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_HURRY_POPULATION_BUILDINGS</Tag>
+		<English>Can Sacrifice Population to Finish Building Production</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_HURRY_POPULATION_UNITS</Tag>
+		<English>Can Sacrifice Population to Finish Military Unit Production</English>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_HURRY_GOLD_BUILDINGS</Tag>
 		<English>Can Spend Gold to Finish Building Production in a City</English>
 		<French>Peut dépenser de l'or pour achever la production d'un bâtiment dans une ville</French>
@@ -376,7 +384,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_ENABLES_SLAVES</Tag>
-		<English>[ICON_BULLET]Enables [LINK=literal]Slaves[\LINK] (Conquer Cities or Found Colonies)</English>
+		<English>[ICON_BULLET]Receive [LINK=literal]Slave[\LINK] Units (Conquer Cities or Found Colonies)</English>
 		<French>[ICON_BULLET]Recevez un [LINK=literal]Slave[\LINK] pour chaque nouvelle colonie fondée</French>
 	</TEXT>
 	<TEXT>
@@ -420,5 +428,9 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_STATE_ATHEISM</Tag>
 		<English>State Atheism</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_UNIT_CLASS_PRODUCTION_MODIFIER</Tag>
+		<English>[SPACE] production</English>
 	</TEXT>
 </Civ4GameText>
