@@ -6913,15 +6913,20 @@ int CvPlot::calculateYield(YieldTypes eYield, bool bDisplay) const
 				}
 
 				// Civ4 Reimagined: Maya UP
-				const eBonus = getBonusType(GET_PLAYER(ePlayer).getTeam());
+				const BonusTypes eBonus = getBonusType(GET_PLAYER(ePlayer).getTeam());
 				if (GET_PLAYER(ePlayer).isCityImprovesBonus() && eBonus != NO_BONUS)
 				{
-					int iMaxBonusYield = 0;
-					for (int iI = 0; iI < GC.getNumImprovementInfos(); ++iI)
+					const TechTypes eNeededTech = (TechTypes)(GC.getBonusInfo(eBonus).getTechCityTrade());
+
+					if (eNeededTech == NO_TECH || GET_TEAM(GET_PLAYER(ePlayer).getTeam()).isHasTech(eNeededTech))
 					{
-						iMaxBonusYield = std::max(iMaxBonusYield, GC.getImprovementInfo((ImprovementTypes)iI).getImprovementBonusYield(eBonus, eYield));
+						int iMaxBonusYield = 0;
+						for (int iI = 0; iI < GC.getNumImprovementInfos(); ++iI)
+						{
+							iMaxBonusYield = std::max(iMaxBonusYield, GC.getImprovementInfo((ImprovementTypes)iI).getImprovementBonusYield(eBonus, eYield));
+						}
+						iYield += iMaxBonusYield;
 					}
-					iYield += iMaxBonusYield;
 				}
 
 				bCity = true;

@@ -3263,15 +3263,20 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 					// Civ4 Reimagined: Maya UP
 					if (!kSet.bStartingLoc && isCityImprovesBonus() && eBonus != NO_BONUS)
 					{
-						int iMaxBonusYield = 0;
-						for (int iI = 0; iI < GC.getNumImprovementInfos(); ++iI)
-						{
-							iMaxBonusYield = std::max(iMaxBonusYield, GC.getImprovementInfo((ImprovementTypes)iI).getImprovementBonusYield(eBonus, eYield));
-						}
-						aiYield[eYield] += iMaxBonusYield;
+						const TechTypes eNeededTech = (TechTypes)(GC.getBonusInfo(eBonus).getTechCityTrade());
 
-						// More value for faster yields because it is city home plot
-						iPlotValue += iMaxBonusYield * 75;
+						if (eNeededTech == NO_TECH || GET_TEAM(getTeam()).isHasTech(eNeededTech))
+						{
+							int iMaxBonusYield = 0;
+							for (int iI = 0; iI < GC.getNumImprovementInfos(); ++iI)
+							{
+								iMaxBonusYield = std::max(iMaxBonusYield, GC.getImprovementInfo((ImprovementTypes)iI).getImprovementBonusYield(eBonus, eYield));
+							}
+							aiYield[eYield] += iMaxBonusYield;
+
+							// More value for faster yields because it is city home plot
+							iPlotValue += iMaxBonusYield * 75;
+						}
 					}
 
 					aiYield[eYield] += GC.getYieldInfo(eYield).getCityChange();
