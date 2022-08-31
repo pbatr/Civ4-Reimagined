@@ -4085,9 +4085,19 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				if (kBuilding.getSpecialistCount(eLoopSpec) > 0 && iLimit <= 2)
 				{
 					int iTempValue = AI_specialistValue(eLoopSpec, false, false);
+					int iAdditionalSpecialists = kBuilding.getSpecialistCount(eLoopSpec);
+
+					// Civ4 Reimagined
+					if (eSpecialBuilding == (SpecialBuildingTypes)GC.getInfoTypeForString("SPECIALBUILDING_TEMPLE"))
+					{
+						if (kBuilding.getReligionType() == kOwner.getStateReligion() && kOwner.isUnlimitedSpecialistsWithTemple(eLoopSpec))
+						{
+							iAdditionalSpecialists = 10;
+						}
+					}
 
 					//iTempValue *= (iLimit == 0 ? 60 : 0) + 40 * std::min(iAvailableWorkers, kBuilding.getSpecialistCount(eLoopSpec));
-					iTempValue *= (iLimit == 0 ? 90 : 0) + 40 * std::min(iAvailableWorkers, kBuilding.getSpecialistCount(eLoopSpec)); // Civ4 Reimagined
+					iTempValue *= (iLimit == 0 ? 90 : 0) + 40 * std::min(iAvailableWorkers, iAdditionalSpecialists); // Civ4 Reimagined
 					// I'm choosing not to reduce 'iAvailableWorkers'... It's a tough call. Either way, the answer is going to be wrong!
 					iTempValue /= 100 + 200 * iLimit;
 
