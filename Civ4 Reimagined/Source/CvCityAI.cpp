@@ -5881,6 +5881,30 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 
 	iValue = std::max(0, iValue);
 
+	// Civ4 Reimagined
+	if (kOwner.getBuildingProductionModifierFromCapital() > 0 && isCapital())
+	{
+		const TechTypes ePrereqTech = (TechTypes)kBuilding.getPrereqAndTech();
+			
+		if (ePrereqTech == NO_TECH || GC.getTechInfo(ePrereqTech).getEra() < 2)
+		{
+			int iOtherCitiesValue = 0;
+			int iLoop;
+			for (CvCity* pLoopCity = kOwner.firstCity(&iLoop); pLoopCity; pLoopCity = kOwner.nextCity(&iLoop))
+			{
+				if (pLoopCity->isCapital() || pLoopCity->getArea() != getArea() || pLoopCity->getNumBuilding(eBuilding) > 0)
+					continue;
+
+				iOtherCitiesValue += AI_buildingValue(eBuilding);
+			}
+
+			iOtherCitiesValue *= kOwner.getBuildingProductionModifierFromCapital();
+			iOtherCitiesValue /= 100;
+
+			iValue += iOtherCitiesValue / 5;
+		}
+	}
+
 	// K-Mod
 	if (iValue > 0)
 	{
