@@ -3275,7 +3275,7 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 							aiYield[eYield] += iMaxBonusYield;
 
 							// More value for faster yields because it is city home plot
-							iPlotValue += iMaxBonusYield * 75;
+							iPlotValue += iMaxBonusYield * 150;
 						}
 					}
 
@@ -13510,6 +13510,27 @@ int CvPlayerAI::AI_neededExplorers(CvArea* pArea) const
 	if (pArea->isWater())
 	{
 		iNeeded = std::min(iNeeded + (pArea->getNumUnrevealedTiles(getTeam()) / 400), std::min(2, ((getNumCities() / 2) + 1)));
+
+		// Civ4 Reimagined
+		if (isSpecialTradeRoutePerPlayer())
+		{
+			for (int iPlayer = 0; iPlayer < MAX_CIV_PLAYERS; iPlayer++)
+			{
+				CvPlayerAI& kPlayer = GET_PLAYER((PlayerTypes)iPlayer);
+
+				if (kPlayer.isAlive() && kPlayer.getTeam() != getTeam())
+				{
+					if (!GET_TEAM(getTeam()).isHasMet(kPlayer.getTeam()))
+					{
+						if (pArea->getCitiesPerPlayer(kPlayer.getID()) > 0)
+						{
+							iNeeded++;
+							break;
+						}
+					}
+				}
+			}
+		}
 		
 		// Civ4 Reimagined
 		if (canExploreSea())

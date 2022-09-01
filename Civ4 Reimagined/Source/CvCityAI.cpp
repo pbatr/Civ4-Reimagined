@@ -5905,7 +5905,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				if (pLoopCity->isCapital() || pLoopCity->getArea() != getArea() || pLoopCity->getNumBuilding(eBuilding) > 0)
 					continue;
 
-				iOtherCitiesValue += AI_buildingValue(eBuilding);
+				iOtherCitiesValue += pLoopCity->AI_buildingValue(eBuilding);
 			}
 
 			iOtherCitiesValue *= kOwner.getBuildingProductionModifierFromCapital();
