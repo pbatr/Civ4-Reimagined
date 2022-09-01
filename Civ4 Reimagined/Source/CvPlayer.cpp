@@ -29828,11 +29828,14 @@ void CvPlayer::applyNativeAmericanBonus(int iX, int iY)
 
 	BonusTypes eBonus = pPlot->getBonusType();
 
-	if (isNativeAmericanBonus(NATIVEBONUS_HUNTING) && eBonus == (BonusTypes)GC.getInfoTypeForString("BONUS_DEER") || eBonus == (BonusTypes)GC.getInfoTypeForString("BONUS_HORSE") || eBonus == (BonusTypes)GC.getInfoTypeForString("BONUS_IVORY"))
+	if (isNativeAmericanBonus(NATIVEBONUS_HUNTING))
 	{
-		changeDomainExperienceModifier(DOMAIN_LAND, 50);
-		setNativeAmericanBonus(NATIVEBONUS_HUNTING, false);
-		notifyNativeAmericanBonus(NATIVEBONUS_HUNTING);
+		if (eBonus == (BonusTypes)GC.getInfoTypeForString("BONUS_DEER") || eBonus == (BonusTypes)GC.getInfoTypeForString("BONUS_HORSE") || eBonus == (BonusTypes)GC.getInfoTypeForString("BONUS_IVORY"))
+		{
+			changeDomainExperienceModifier(DOMAIN_LAND, 50);
+			setNativeAmericanBonus(NATIVEBONUS_HUNTING, false);
+			notifyNativeAmericanBonus(NATIVEBONUS_HUNTING);
+		}
 	}
 
 	FeatureTypes eFeature = pPlot->getFeatureType();

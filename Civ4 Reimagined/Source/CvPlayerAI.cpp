@@ -3630,9 +3630,12 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 			iValue += AI_isDoVictoryStrategy(AI_VICTORY_CULTURE3) ? 7000 : 2000;
 		}
 
-		if (isNativeAmericanBonus(NATIVEBONUS_HUNTING) && pPlot->getBonusType() == (BonusTypes)GC.getInfoTypeForString("BONUS_DEER") || pPlot->getBonusType() == (BonusTypes)GC.getInfoTypeForString("BONUS_HORSE") || pPlot->getBonusType() == (BonusTypes)GC.getInfoTypeForString("BONUS_IVORY"))
+		if (isNativeAmericanBonus(NATIVEBONUS_HUNTING))
 		{
-			iValue += 5000;
+			if (pPlot->getBonusType() == (BonusTypes)GC.getInfoTypeForString("BONUS_DEER") || pPlot->getBonusType() == (BonusTypes)GC.getInfoTypeForString("BONUS_HORSE") || pPlot->getBonusType() == (BonusTypes)GC.getInfoTypeForString("BONUS_IVORY"))
+			{
+				iValue += 5000;
+			}
 		}
 
 		if (isNativeAmericanBonus(NATIVEBONUS_FOREST) && pPlot->getFeatureType() == (FeatureTypes)GC.getInfoTypeForString("FEATURE_FOREST"))
