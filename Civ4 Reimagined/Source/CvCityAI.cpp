@@ -4593,7 +4593,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				iTempValue += 100 * kBuilding.getGreatPeopleRateChangePerWorldWonder() * getNumWorldWonders() * 2 * 4; // everything seems to be x4 around here
 
 				// Civ4 Reimagined
-				if (eSpecialBuilding == (SpecialBuildingTypes)GC.getInfoTypeForString("SPECIALBUILDING_CATHEDRAL"))
+				if (eSpecialBuilding == (SpecialBuildingTypes)GC.getInfoTypeForString("SPECIALBUILDING_CATHEDRAL") && kBuilding.getReligionType() == kOwner.getStateReligion())
 				{
 					iTempValue += 100 * getGreatEngineerPointsFromCathedrals() * 2 * 4;
 				}

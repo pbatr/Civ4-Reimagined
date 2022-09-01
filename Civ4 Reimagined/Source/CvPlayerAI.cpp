@@ -3612,6 +3612,40 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 	// Civ4 Reimagined
 	iValue += iHealthValue;
 
+	// Civ4 Reimagined: Native American UP
+	if (!kSet.bStartingLoc)
+	{
+		if (isNativeAmericanBonus(NATIVEBONUS_LAKE) && pPlot->isAdjacentToLake())
+		{
+			iValue += std::max(getNumCities(), GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getTargetNumCities()) * 1000;
+		}
+
+		if (isNativeAmericanBonus(NATIVEBONUS_TUNDRA) && pPlot->getTerrainType() == (TerrainTypes)GC.getInfoTypeForString("TERRAIN_TUNDRA"))
+		{
+			iValue += getImprovementCount((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FISHING_BOATS")) * 1000;
+		}
+
+		if (isNativeAmericanBonus(NATIVEBONUS_DESERT) && pPlot->getTerrainType() == (TerrainTypes)GC.getInfoTypeForString("TERRAIN_DESERT"))
+		{
+			iValue += AI_isDoVictoryStrategy(AI_VICTORY_CULTURE3) ? 7000 : 2000;
+		}
+
+		if (isNativeAmericanBonus(NATIVEBONUS_HUNTING) && pPlot->getBonusType() == (BonusTypes)GC.getInfoTypeForString("BONUS_DEER") || pPlot->getBonusType() == (BonusTypes)GC.getInfoTypeForString("BONUS_HORSE") || pPlot->getBonusType() == (BonusTypes)GC.getInfoTypeForString("BONUS_IVORY"))
+		{
+			iValue += 5000;
+		}
+
+		if (isNativeAmericanBonus(NATIVEBONUS_FOREST) && pPlot->getFeatureType() == (FeatureTypes)GC.getInfoTypeForString("FEATURE_FOREST"))
+		{
+			iValue += 3000;
+		}
+
+		if (isNativeAmericanBonus(NATIVEBONUS_JUNGLE) && pPlot->getFeatureType() == (FeatureTypes)GC.getInfoTypeForString("FEATURE_JUNGLE"))
+		{
+			iValue += 3000;
+		}
+	}
+
 	if (bIsCoastal)
 	{
 		if (!kSet.bStartingLoc)
