@@ -30306,10 +30306,6 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			changeAdditionalAncientEurekaBoost(GC.getDefineINT("UNIQUE_POWER_SUMERIA"));
 			notifyUniquePowersChanged(true);
 		}
-		else if (eEra == ERA_CLASSICAL)
-		{
-			changeUniquePowerCommerceModifier(COMMERCE_RESEARCH, -10);
-		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_VIKING"))
 	{
