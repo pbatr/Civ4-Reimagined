@@ -169,7 +169,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_GREECE</Tag>
-		<English>Coastal trade routes +100%[ICON_COMMERCE]. All government civics are enabled from the start. After playing with one government civic for 30 consequtive turns (on normal speed), gain a great person. Applies once per civic. Tyrrany -> Great Engineer, Autocracy -> Great General, City States -> Great Merchant, Dynasticism -> Great Artist, Theocracy -> Great Prophet, Republic -> Great Scientist.</English>
+		<English>Coastal trade routes +100%[ICON_COMMERCE]. All government civics are enabled from the start. After playing with one government civic for 40 consequtive turns (on normal speed), gain a great person. Applies once per civic. Tyrrany -> Great Engineer, Autocracy -> Great General, City States -> Great Merchant, Dynasticism -> Great Artist, Theocracy -> Great Prophet, Republic -> Great Scientist.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_AZTEC</Tag>
