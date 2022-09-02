@@ -6264,7 +6264,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 	/* ------------------ Civic Value  ------------------ */
 	for (int iJ = 0; iJ < GC.getNumCivicInfos(); iJ++)
 	{
-		if (GC.getCivicInfo((CivicTypes)iJ).getTechPrereq() == eTech)
+		if (GC.getCivicInfo((CivicTypes)iJ).getTechPrereq() == eTech && !canDoCivics((CivicTypes)iJ))
 		{
 			const CivicTypes eCurrentCivic = getCivics((CivicOptionTypes)(GC.getCivicInfo((CivicTypes)iJ).getCivicOptionType()));
 			const CivicTypes eNewCivic = (CivicTypes)iJ;
