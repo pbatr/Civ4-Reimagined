@@ -408,7 +408,7 @@
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_GERMANY</DefineName>
-		<iDefineIntVal>67</iDefineIntVal> <!-- Length of golden ages made with generals (only). -->
+		<iDefineIntVal>100</iDefineIntVal> <!-- Length of golden ages made with generals (only). -->
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_GREECE</DefineName>
