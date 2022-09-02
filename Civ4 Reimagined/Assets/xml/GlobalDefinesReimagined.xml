@@ -443,6 +443,10 @@
 		<iDefineIntVal>-50</iDefineIntVal>
 	</Define>
 	<Define>
+		<DefineName>UNIQUE_POWER_SUMERIA</DefineName>
+		<iDefineIntVal>40</iDefineIntVal> <!-- Extra eureka boost for ancient and classical techs -->
+	</Define>
+	<Define>
 		<DefineName>UNIQUE_POWER_MONGOL_PILLAGE_HEAL</DefineName>
 		<iDefineIntVal>30</iDefineIntVal>
 	</Define>
