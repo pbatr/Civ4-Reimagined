@@ -7763,7 +7763,7 @@ void CvUnit::promote(PromotionTypes ePromotion, int iLeaderUnitId)
 	// Civ4 Reimagined
 	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_BIOLOGY")))
 	{
-		if (ePromotion == (PromotionTypes)GC.getInfoTypeForString("PROMOTION_WOODSMAN3") && getUnitClassType() == (UnitClassTypes)GC.getInfoTypeForString("UNTCLASS_EXPLORER"))
+		if (ePromotion == (PromotionTypes)GC.getInfoTypeForString("PROMOTION_WOODSMAN3") && getUnitClassType() == (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_EXPLORER"))
 		{
 			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_BIOLOGY"), getOwnerINLINE(), true);
 		}
