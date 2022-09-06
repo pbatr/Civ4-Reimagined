@@ -5535,7 +5535,20 @@ int CvCity::getHurryCostModifier(UnitTypes eUnit, bool bIgnoreNew) const
 
 int CvCity::getHurryCostModifier(BuildingTypes eBuilding, bool bIgnoreNew) const
 {
-	return getHurryCostModifier(GC.getBuildingInfo(eBuilding).getHurryCostModifier(), getBuildingProduction(eBuilding), bIgnoreNew);
+	int iHurryCostModifier = GC.getBuildingInfo(eBuilding).getHurryCostModifier();
+
+	// Civ4 Reimagined: Egypt UP
+	if (GET_PLAYER(getOwnerINLINE()).isIgnoreEarlyWonderHurryCostModifier() && isWorldWonderClass((BuildingClassTypes)(GC.getBuildingInfo(eBuilding).getBuildingClassType())))
+	{
+		const TechTypes eBuildingTech = (TechTypes)GC.getBuildingInfo(eBuilding).getPrereqAndTech();
+
+		if (eBuildingTech == NO_TECH || GC.getTechInfo(eBuildingTech).getEra() <= ERA_CLASSICAL)
+		{
+			iHurryCostModifier = 0;
+		}
+	}
+
+	return getHurryCostModifier(iHurryCostModifier, getBuildingProduction(eBuilding), bIgnoreNew);
 }
 
 int CvCity::getHurryCostModifier(ProjectTypes eProject, bool bIgnoreNew) const

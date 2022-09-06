@@ -161,7 +161,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_EGYPT</Tag>
-		<English>+6[ICON_PRODUCTION] for sacrificing population with slavery. Gain slavery points for sacrificing population.</English>
+		<English>+6[ICON_PRODUCTION] for sacrificing population with slavery. Gain slavery points for sacrificing population. Ignore building hurry cost modifier for classical or earlier wonders.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_BABYLON</Tag>

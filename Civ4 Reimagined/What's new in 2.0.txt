@@ -60,7 +60,8 @@ Tweaks
 -More vision at starting position
 -Maya Holkan is available with Masonry
 -Celtic Gallic Warrior now requires Iron but has a combat bonus against injured units
--Greek Odeon now increases great person rate and culture per world wonder in the city 
+-Greek Odeon now increases great person rate and culture per world wonder in the city
+-Pyramids have 100 % hurry cost modifier again (was 0)
 
 *********
 Interface

@@ -1544,6 +1544,8 @@ public:
 	void changeLootCityModifier(int iChange); // Civ4 Reimagined
 	void setIsPirateGold(bool bNewValue); // Civ4 Reimagined
 	bool isPirateGold() const; // Civ4 Reimagined
+	void setIsIgnoreEarlyWonderHurryCostModifier(bool bNewValue); // Civ4 Reimagined
+	bool isIgnoreEarlyWonderHurryCostModifier() const; // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1859,7 +1861,7 @@ protected:
 	bool m_bCityImprovesBonus; // Civ4 Reimagined
 	bool m_bFreePillage; // Civ4 Reimagined
 	bool m_bPirateGold; // Civ4 Reimagined
-
+	bool m_bIsIgnoreEarlyWonderHurryCostModifier; // Civ4 Reimagined
 
 	bool m_bDisableHuman;	// Set to true to disable isHuman() check
 
