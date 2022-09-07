@@ -340,13 +340,13 @@ void CvCity::init(int iID, PlayerTypes eOwner, int iX, int iY, bool bBumpUnits, 
 		}
 	}
 	
+	// Civ4 Reiamgined
+	updateImprovementsInRadius();
 	updateFreshWaterHealth();
 	updateFeatureHealth();
 	updateFeatureHappiness();
 	updateFeatureCommerce();
 	updatePowerHealth();
-	// Civ4 Reiamgined
-	updateImprovementsInRadius();
 
 	GET_PLAYER(getOwnerINLINE()).updateMaintenance();
 

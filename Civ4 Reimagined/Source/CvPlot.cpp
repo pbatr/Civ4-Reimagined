@@ -5264,8 +5264,8 @@ void CvPlot::setOwner(PlayerTypes eNewValue, bool bCheckUnits, bool bUpdatePlotG
 				pWorkingCity = getWorkingCity();
 				if (pWorkingCity != NULL)
 				{
+					pWorkingCity->updateImprovementsInRadius(); // Civ4 Reimagined
 					pWorkingCity->updateFeatureHappiness();
-					pWorkingCity->updateImprovementsInRadius();
 					pWorkingCity->updateFeatureCommerce(); // Civ4 Reimagined
 				}
 			}
@@ -5330,8 +5330,8 @@ void CvPlot::setOwner(PlayerTypes eNewValue, bool bCheckUnits, bool bUpdatePlotG
 				pWorkingCity = getWorkingCity();
 				if (pWorkingCity != NULL)
 				{
+					pWorkingCity->updateImprovementsInRadius(); // Civ4 Reimagined
 					pWorkingCity->updateFeatureHappiness();
-					pWorkingCity->updateImprovementsInRadius();
 					pWorkingCity->updateFeatureCommerce(); // Civ4 Reimagined
 				}
 			}
@@ -6170,8 +6170,8 @@ void CvPlot::setImprovementType(ImprovementTypes eNewValue)
 
 				if (pLoopCity != NULL)
 				{
-					pLoopCity->updateFeatureHappiness();
 					pLoopCity->updateImprovementsInRadius(); // Civ4 Reimagined
+					pLoopCity->updateFeatureHappiness();
 					pLoopCity->updateFeatureCommerce(); // Civ4 Reimagined
 				}
 			}
