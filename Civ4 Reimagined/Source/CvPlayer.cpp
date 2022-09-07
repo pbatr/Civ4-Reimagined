@@ -6419,8 +6419,8 @@ bool CvPlayer::canReceiveGoody(CvPlot* pPlot, GoodyTypes eGoody, CvUnit* pUnit) 
 		{
 			if (GC.getTechInfo((TechTypes) iI).isGoodyTech())
 			{
-				//if (canResearch((TechTypes)iI))
-				if (canResearch((TechTypes)iI, false, true)) // K-Mod
+				// Civ4 Reimagined
+				if (canResearch((TechTypes)iI, false, true) && !GET_TEAM(getTeam()).isTechBoosted((TechTypes)iI))
 				{
 					bTechFound = true;
 					break;
@@ -6867,8 +6867,6 @@ void CvPlayer::receiveGoody(CvPlot* pPlot, GoodyTypes eGoody, CvUnit* pUnit)
 			}
 		}	
 	}
-	
-	//Civ4 Reimagined goodies end	
 
 	if (GC.getGoodyInfo(eGoody).isTech())
 	{
@@ -6879,8 +6877,7 @@ void CvPlayer::receiveGoody(CvPlot* pPlot, GoodyTypes eGoody, CvUnit* pUnit)
 		{
 			if (GC.getTechInfo((TechTypes) iI).isGoodyTech())
 			{
-				//if (canResearch((TechTypes)iI))
-				if (canResearch((TechTypes)iI, false, true)) // K-Mod
+				if (canResearch((TechTypes)iI, false, true) && !GET_TEAM(getTeam()).isTechBoosted((TechTypes)iI))
 				{
 					iValue = (1 + GC.getGameINLINE().getSorenRandNum(10000, "Goody Tech"));
 
@@ -6895,9 +6892,10 @@ void CvPlayer::receiveGoody(CvPlot* pPlot, GoodyTypes eGoody, CvUnit* pUnit)
 
 		FAssertMsg(eBestTech != NO_TECH, "BestTech is not assigned a valid value");
 
-		GET_TEAM(getTeam()).setHasTech(eBestTech, true, getID(), true, true);
-		GET_TEAM(getTeam()).setNoTradeTech(eBestTech, true);
+		GET_TEAM(getTeam()).setTechBoosted(eBestTech, getID(), true);
 	}
+
+	//Civ4 Reimagined goodies end	
 
 	if (GC.getGoodyInfo(eGoody).getUnitClassType() != NO_UNITCLASS)
 	{

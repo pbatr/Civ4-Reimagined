@@ -92,6 +92,10 @@
 				<GoodyType>GOODY_GREAT_PERSON_POINTS</GoodyType>
 				<GoodyType>GOODY_GREAT_GENERAL_POINTS</GoodyType>
 				<GoodyType>GOODY_SPECIAL_PROMOTION</GoodyType>
+				<GoodyType>GOODY_TECH</GoodyType>
+				<GoodyType>GOODY_TECH</GoodyType>
+				<GoodyType>GOODY_TECH</GoodyType>
+				<GoodyType>GOODY_TECH</GoodyType>
 			</Goodies>
 			<FreeTechs>
 				<FreeTech>
@@ -196,6 +200,9 @@
 				<GoodyType>GOODY_GREAT_PERSON_POINTS</GoodyType>
 				<GoodyType>GOODY_GREAT_GENERAL_POINTS</GoodyType>
 				<GoodyType>GOODY_SPECIAL_PROMOTION</GoodyType>
+				<GoodyType>GOODY_TECH</GoodyType>
+				<GoodyType>GOODY_TECH</GoodyType>
+				<GoodyType>GOODY_TECH</GoodyType>
 			</Goodies>
 			<FreeTechs>
 				<FreeTech>
@@ -296,6 +303,8 @@
 				<GoodyType>GOODY_GREAT_PERSON_POINTS</GoodyType>
 				<GoodyType>GOODY_GREAT_GENERAL_POINTS</GoodyType>
 				<GoodyType>GOODY_SPECIAL_PROMOTION</GoodyType>
+				<GoodyType>GOODY_TECH</GoodyType>
+				<GoodyType>GOODY_TECH</GoodyType>
 			</Goodies>
 			<FreeTechs>
 				<FreeTech>
@@ -393,6 +402,8 @@
 				<GoodyType>GOODY_GREAT_PERSON_POINTS</GoodyType>
 				<GoodyType>GOODY_GREAT_GENERAL_POINTS</GoodyType>
 				<GoodyType>GOODY_SPECIAL_PROMOTION</GoodyType>
+				<GoodyType>GOODY_TECH</GoodyType>
+				<GoodyType>GOODY_TECH</GoodyType>
 			</Goodies>
 			<FreeTechs/>
 			<AIFreeTechs/>
@@ -485,6 +496,8 @@
 				<GoodyType>GOODY_GREAT_PERSON_POINTS</GoodyType>
 				<GoodyType>GOODY_GREAT_GENERAL_POINTS</GoodyType>
 				<GoodyType>GOODY_SPECIAL_PROMOTION</GoodyType>
+				<GoodyType>GOODY_TECH</GoodyType>
+				<GoodyType>GOODY_TECH</GoodyType>
 			</Goodies>
 			<FreeTechs/>
 			<AIFreeTechs/>
@@ -576,6 +589,8 @@
 				<GoodyType>GOODY_GREAT_PERSON_POINTS</GoodyType>
 				<GoodyType>GOODY_GREAT_GENERAL_POINTS</GoodyType>
 				<GoodyType>GOODY_SPECIAL_PROMOTION</GoodyType>
+				<GoodyType>GOODY_TECH</GoodyType>
+				<GoodyType>GOODY_TECH</GoodyType>
 			</Goodies>
 			<FreeTechs/>
 			<AIFreeTechs>
@@ -672,6 +687,8 @@
 				<GoodyType>GOODY_GREAT_PERSON_POINTS</GoodyType>
 				<GoodyType>GOODY_GREAT_GENERAL_POINTS</GoodyType>
 				<GoodyType>GOODY_SPECIAL_PROMOTION</GoodyType>
+				<GoodyType>GOODY_TECH</GoodyType>
+				<GoodyType>GOODY_TECH</GoodyType>
 			</Goodies>
 			<FreeTechs/>
 			<AIFreeTechs>
@@ -772,6 +789,8 @@
 				<GoodyType>GOODY_GREAT_PERSON_POINTS</GoodyType>
 				<GoodyType>GOODY_GREAT_GENERAL_POINTS</GoodyType>
 				<GoodyType>GOODY_SPECIAL_PROMOTION</GoodyType>
+				<GoodyType>GOODY_TECH</GoodyType>
+				<GoodyType>GOODY_TECH</GoodyType>
 			</Goodies>
 			<FreeTechs/>
 			<AIFreeTechs>
@@ -878,6 +897,8 @@
 				<GoodyType>GOODY_GREAT_PERSON_POINTS</GoodyType>
 				<GoodyType>GOODY_GREAT_GENERAL_POINTS</GoodyType>
 				<GoodyType>GOODY_SPECIAL_PROMOTION</GoodyType>
+				<GoodyType>GOODY_TECH</GoodyType>
+				<GoodyType>GOODY_TECH</GoodyType>
 			</Goodies>
 			<FreeTechs/>
 			<AIFreeTechs>
