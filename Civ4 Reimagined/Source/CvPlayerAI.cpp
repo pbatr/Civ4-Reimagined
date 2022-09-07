@@ -17512,7 +17512,7 @@ int CvPlayerAI::AI_religionValue(ReligionTypes eReligion) const
 	// note. with the default xml, the highest the above number can get is 50 + 5*9 (Zara Yaqob). For most leaders its roughly 50 + 5*5. No one gets 100.
 	// also, most civs with a high base modifier also have iReligionFlavor > 0; and so their final modifier will be reduced.
 	int iDiplomaticModifier = 10 * iDiplomaticBase * iLikedReligionCivs / std::max(1, iTotalCivs);
-	iDiplomaticModifier /= 10 + iReligionFlavor;
+	iDiplomaticModifier /= 10 + std::max(0, iReligionFlavor);
 	if (iDiplomaticModifier < iDiplomaticBase/3)
 	{
 		for (VoteSourceTypes i = (VoteSourceTypes)0; i < GC.getNumVoteSourceInfos(); i = (VoteSourceTypes)(i+1))
