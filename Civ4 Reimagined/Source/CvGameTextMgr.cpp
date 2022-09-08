@@ -14691,7 +14691,18 @@ void CvGameTextMgr::buildMoveString(CvWStringBuffer &szBuffer, TechTypes eTech, 
 
 	for (iI = 0; iI < GC.getNumRouteInfos(); ++iI)
 	{
-		iMoveDiff = ((GC.getMOVE_DENOMINATOR() / std::max(1, (GC.getRouteInfo((RouteTypes) iI).getMovementCost() + ((bPlayerContext) ? GET_TEAM(GC.getGameINLINE().getActiveTeam()).getRouteChange((RouteTypes)iI) : 0)))) - (GC.getMOVE_DENOMINATOR() / std::max(1, (GC.getRouteInfo((RouteTypes) iI).getMovementCost() + ((bPlayerContext) ? GET_TEAM(GC.getGameINLINE().getActiveTeam()).getRouteChange((RouteTypes)iI) : 0) + GC.getRouteInfo((RouteTypes) iI).getTechMovementChange(eTech)))));
+		int iMovementCostBefore = GC.getRouteInfo((RouteTypes) iI).getMovementCost();
+
+		if (bPlayerContext)
+		{
+			iMovementCostBefore += GET_TEAM(GC.getGameINLINE().getActiveTeam()).getRouteChange((RouteTypes)iI);
+			// Civ4 Reimagined: Roman UP
+			iMovementCostBefore += GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getRouteChange((RouteTypes)iI);
+		}
+
+		const int iMovementCostAfter = iMovementCostBefore + GC.getRouteInfo((RouteTypes) iI).getTechMovementChange(eTech);
+
+		iMoveDiff = ((GC.getMOVE_DENOMINATOR() / std::max(1, iMovementCostBefore)) - (GC.getMOVE_DENOMINATOR() / std::max(1, iMovementCostAfter)));
 
 		if (iMoveDiff != 0)
 		{

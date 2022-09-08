@@ -1546,6 +1546,9 @@ public:
 	bool isPirateGold() const; // Civ4 Reimagined
 	void setIsIgnoreEarlyWonderHurryCostModifier(bool bNewValue); // Civ4 Reimagined
 	bool isIgnoreEarlyWonderHurryCostModifier() const; // Civ4 Reimagined
+	int getRouteChange(RouteTypes eIndex) const; // Civ4 Reimagined
+	void changeRouteChange(RouteTypes eIndex, int iChange); // Civ4 Reimagined
+	UnitTypes getStrongestPossibleLandUnit() const; // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1962,6 +1965,7 @@ protected:
 	int* m_paiAveragePopCommerceModifier; // Civ4 Reimagined
 	int* m_paiAveragePopCommerceModifierMaxPop; // Civ4 Reimagined
 	int* m_paiAveragePopCommerceModifierMaxMod; // Civ4 Reimagined
+	int* m_paiRouteChange; // Civ4 Reimagined
 	
 	//std::vector< std::pair<int, int> > CapitalCommercePerPopulationArray; // Civ4 Reimagined
 	

@@ -122,6 +122,7 @@ CvPlayer::CvPlayer()
 	m_paiUnitClassProductionModifier = NULL; // Civ4 Reimagined
 	m_paiReligiousUnitClassProductionModifier = NULL; // Civ4 Reimagined
 	m_paiCivicEffect = NULL; // Civ4 Reimagined
+	m_paiRouteChange = NULL; // Civ4 Reimagined
 
 	m_pabResearchingTech = NULL;
 	m_pabLoyalMember = NULL;
@@ -719,6 +720,7 @@ void CvPlayer::uninit()
 	SAFE_DELETE_ARRAY(m_paiAveragePopCommerceModifierMaxMod); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiPlayerExtraAvailableBonuses); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiCivicEffect); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_paiRouteChange); // Civ4 Reimagined
 
 	SAFE_DELETE_ARRAY(m_pabResearchingTech);
 	SAFE_DELETE_ARRAY(m_pabLoyalMember);
@@ -1337,6 +1339,14 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		for (iI = 0; iI < GC.getNumCivicInfos(); iI++)
 		{
 			m_paiCivicEffect[iI] = 0;
+		}
+
+		// Civ4 Reimagined
+		FAssertMsg(m_paiRouteChange==NULL, "about to leak memory, CvPlayer::m_paiRouteChange");
+		m_paiRouteChange = new int[GC.getNumRouteInfos()];
+		for (iI = 0; iI < GC.getNumRouteInfos(); iI++)
+		{
+			m_paiRouteChange[iI] = 0;
 		}
 		
 		FAssertMsg(m_paiHasReligionCount==NULL, "about to leak memory, CvPlayer::m_paiHasReligionCount");
@@ -3118,91 +3128,6 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 						pNewCity->setNumRealBuilding((BuildingTypes)iI, 1);
 					}
 				}
-			}
-		}
-	}
-
-	// Civ4 Reimagined: Unique power for Rome
-	int iFreeUnitsOnConquest = getFreeUnitsOnConquest();
-	if (iFreeUnitsOnConquest > 0 && bConquest && !bOldEverOwned && GET_PLAYER(eOldOwner).getCurrentEra() < ERA_MEDIEVAL)
-	{
-		int iNumUnits = iOldCultureLevel + iFreeUnitsOnConquest - 1;
-		
-		PlayerTypes eOtherPlayer = (eOldHighestCulturePlayer != NO_PLAYER) ? eOldHighestCulturePlayer : eOldOwner;
-		
-		UnitClassTypes UNITCLASS_SPEARMAN = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SPEARMAN");
-		UnitClassTypes UNITCLASS_AXEMAN = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_AXEMAN");
-		UnitClassTypes UNITCLASS_ARCHER = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_ARCHER");
-		UnitClassTypes UNITCLASS_CHARIOT = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_CHARIOT");
-		UnitClassTypes UNITCLASS_HORSEMAN = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_HORSE_ARCHER");
-		UnitClassTypes UNITCLASS_SWORDSMAN = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SWORDSMAN");
-		TechTypes TECH_IRON_WORKING = (TechTypes)GC.getInfoTypeForString("TECH_IRON_WORKING");
-		TechTypes TECH_HORSEBACK_RIDING = (TechTypes)GC.getInfoTypeForString("TECH_HORSEBACK_RIDING");
-		UnitTypes eSpearman = (UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(eOtherPlayer).getCivilizationType()).getCivilizationUnits(UNITCLASS_SPEARMAN));
-		UnitTypes eAxeman = (UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(eOtherPlayer).getCivilizationType()).getCivilizationUnits(UNITCLASS_AXEMAN));
-		UnitTypes eArcher = (UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(eOtherPlayer).getCivilizationType()).getCivilizationUnits(UNITCLASS_ARCHER));
-		UnitTypes eChariot = (UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(eOtherPlayer).getCivilizationType()).getCivilizationUnits(UNITCLASS_CHARIOT));
-		UnitTypes eHorseman = (UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(eOtherPlayer).getCivilizationType()).getCivilizationUnits(UNITCLASS_HORSEMAN));
-		UnitTypes eSwordsman = (UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(eOtherPlayer).getCivilizationType()).getCivilizationUnits(UNITCLASS_SWORDSMAN));
-		
-		int iSpearmanWeight = 4;
-		int iArcherWeight = 2;
-		int iInfantryWeight = 9;
-		int iCavalryWeight = 5;
-		
-		int iTotalWeight = iSpearmanWeight + iArcherWeight + iInfantryWeight + iCavalryWeight;
-		int iOffset = 0;
-		
-		if (iTotalWeight > 0)
-		{
-			for (int i = 0; i < iNumUnits; i++)
-			{
-				int iRand = 1 + GC.getGameINLINE().getSorenRandNum(iTotalWeight, "Random unit for rome"); // Range: [1,iTotalWeight]
-				
-				if (iRand <= iSpearmanWeight)
-				{
-					initUnit(eSpearman, pNewCity->getX_INLINE(), pNewCity->getY_INLINE());
-				} else 
-				{
-					iOffset += iSpearmanWeight;
-					
-					if (iRand <= iArcherWeight + iOffset)
-					{
-						initUnit(eArcher, pNewCity->getX_INLINE(), pNewCity->getY_INLINE());
-					} else
-					{
-						iOffset += iArcherWeight;
-						
-						if (iRand <= iInfantryWeight + iOffset)
-						{
-							if (GET_TEAM(GET_PLAYER(eOtherPlayer).getTeam()).isHasTech(TECH_IRON_WORKING))
-							{
-								initUnit(eSwordsman, pNewCity->getX_INLINE(), pNewCity->getY_INLINE());
-							} else
-							{
-								initUnit(eAxeman, pNewCity->getX_INLINE(), pNewCity->getY_INLINE());
-							}
-							
-						} else
-						{
-							iOffset += iInfantryWeight;
-							
-							if (iRand <= iCavalryWeight + iOffset)
-							{
-								if (GET_TEAM(GET_PLAYER(eOtherPlayer).getTeam()).isHasTech(TECH_HORSEBACK_RIDING))
-								{
-									initUnit(eHorseman, pNewCity->getX_INLINE(), pNewCity->getY_INLINE());
-								} else
-								{
-									initUnit(eChariot, pNewCity->getX_INLINE(), pNewCity->getY_INLINE());
-								}
-							} else
-							{
-								FAssertMsg(false, "Random unit generation for rome out of bounds");
-							}
-						}
-					}
-				}		
 			}
 		}
 	}
@@ -21541,6 +21466,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(GC.getNumUnitClassInfos(), m_paiUnitClassProductionModifier); // Civ4 Reimagined
 	pStream->Read(GC.getNumUnitClassInfos(), m_paiReligiousUnitClassProductionModifier); // Civ4 Reimagined
 	pStream->Read(GC.getNumCivicInfos(), m_paiCivicEffect); // Civ4 Reimagined
+	pStream->Read(GC.getNumRouteInfos(), m_paiRouteChange); // Civ4 Reimagined
 
 	FAssertMsg((0 < GC.getNumTechInfos()), "GC.getNumTechInfos() is not greater than zero but it is expected to be in CvPlayer::read");
 	pStream->Read(GC.getNumTechInfos(), m_pabResearchingTech);
@@ -22203,6 +22129,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumUnitClassInfos(), m_paiUnitClassProductionModifier); // Civ4 Reimagined
 	pStream->Write(GC.getNumUnitClassInfos(), m_paiReligiousUnitClassProductionModifier); // Civ4 Reimagined
 	pStream->Write(GC.getNumCivicInfos(), m_paiCivicEffect); // Civ4 Reimagined
+	pStream->Write(GC.getNumRouteInfos(), m_paiRouteChange); // Civ4 Reimagined
 	
 	FAssertMsg((0 < GC.getNumTechInfos()), "GC.getNumTechInfos() is not greater than zero but it is expected to be in CvPlayer::write");
 	pStream->Write(GC.getNumTechInfos(), m_pabResearchingTech);
@@ -28739,6 +28666,22 @@ void CvPlayer::changeLootCityModifier(int iChange)
 }
 
 // Civ4 Reimagined
+int CvPlayer::getRouteChange(RouteTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumRouteInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_paiRouteChange[eIndex];
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeRouteChange(RouteTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumRouteInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+	m_paiRouteChange[eIndex] = (m_paiRouteChange[eIndex] + iChange);
+}
+
+// Civ4 Reimagined
 int CvPlayer::getShrineCommerceIncome(CommerceTypes eIndex, ReligionTypes eReligion) const
 {
 	const int iCap = GC.getDefineINT("COMMERCE_CAP_FOR_SHRINES_AND_HEADQUARTERS");
@@ -29809,6 +29752,50 @@ bool CvPlayer::hasGoodRelationsWithPope() const
 
 
 // Civ4 Reimagined
+UnitTypes CvPlayer::getStrongestPossibleLandUnit() const
+{
+	UnitTypes eLoopUnit;
+	UnitTypes eBestUnit;
+	int iValue;
+	int iBestValue;
+	int iI;
+
+	long lConscriptUnit;
+	
+	iBestValue = 0;
+	eBestUnit = NO_UNIT;
+
+	CvCity* pCapitalCity = getCapitalCity();
+
+	if (pCapitalCity == NULL)
+	{
+		return NO_UNIT;
+	}
+
+	for (iI = 0; iI < GC.getNumUnitClassInfos(); iI++)
+	{
+		eLoopUnit = (UnitTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits(iI);
+
+		if (eLoopUnit != NO_UNIT && GC.getUnitInfo(eLoopUnit).getDomainType() == DOMAIN_LAND)
+		{
+			if (pCapitalCity->canTrain(eLoopUnit))
+			{
+				iValue = GC.getUnitInfo(eLoopUnit).getCombat();
+
+				if (iValue > iBestValue)
+				{
+					iBestValue = iValue;
+					eBestUnit = eLoopUnit;
+				}
+			}
+		}
+	}
+
+	return eBestUnit;
+}
+
+
+// Civ4 Reimagined
 void CvPlayer::applyNativeAmericanBonus(int iX, int iY)
 {
 	CvPlot* pPlot = GC.getMapINLINE().plotINLINE(iX, iY);
@@ -29934,7 +29921,19 @@ void CvPlayer::updateUniquePowers(TechTypes eTech)
 		GET_TEAM(getTeam()).setAdditionalPlantationBonus(1);
 		changeGreatMerchantPointsPerTrade(20);
 		notifyUniquePowersChanged(true);
-	}	
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME"))
+	{
+		if (eTech == (TechTypes)GC.getInfoTypeForString("TECH_ENGINEERING"))
+		{
+			changeRouteChange((RouteTypes)GC.getInfoTypeForString("ROUTE_ROAD"), 10);
+		}
+
+		if (eTech == (TechTypes)GC.getInfoTypeForString("TECH_PRINTING_PRESS"))
+		{
+			changeImprovementYieldChange((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_TOWN"), YIELD_COMMERCE, -1);
+		}
+	}
 }
 
 //Civ4 Reimagined
@@ -30284,11 +30283,9 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_ANCIENT)
 		{
 			changeBuildingProductionModifierFromCapital(50);
-			notifyUniquePowersChanged(true);
-		}
-		else if (eEra == ERA_CLASSICAL) 
-		{
-			changeFreeUnitsOnConquest(GC.getDefineINT("UNIQUE_POWER_ROME"));
+			changeImprovementYieldChange((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_TOWN"), YIELD_COMMERCE, 1);
+			changeFreeUnitsOnConquest(GC.getDefineINT("UNIQUE_POWER_ROME")); //TODO
+			changeRouteChange((RouteTypes)GC.getInfoTypeForString("ROUTE_ROAD"), -10);
 			notifyUniquePowersChanged(true);
 		}			
 	}

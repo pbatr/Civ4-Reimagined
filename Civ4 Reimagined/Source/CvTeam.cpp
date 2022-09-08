@@ -4484,6 +4484,29 @@ void CvTeam::setVassal(TeamTypes eIndex, bool bNewValue, bool bCapitulated)
 			setMasterPower(GET_TEAM(eIndex).getTotalLand());
 			setVassalPower(getTotalLand(false));
 
+			if (bCapitulated && GET_PLAYER(GET_TEAM(eIndex).getLeaderID()).getFreeUnitsOnConquest() > 0)
+			{
+				CvCity* pSurrenderCapitalCity = GET_PLAYER(getLeaderID()).getCapitalCity();
+				CvCity* pConquerorCapitalCity = GET_PLAYER(GET_TEAM(eIndex).getLeaderID()).getCapitalCity();
+
+				if (pSurrenderCapitalCity != NULL && pConquerorCapitalCity != NULL)
+				{
+					const UnitTypes eUnit = GET_PLAYER(getLeaderID()).getStrongestPossibleLandUnit();
+					const int iNumUnits = GET_PLAYER(GET_TEAM(eIndex).getLeaderID()).getFreeUnitsOnConquest() * getNumCities();
+
+					if (eUnit != NO_UNIT && pSurrenderCapitalCity->getArea() == pConquerorCapitalCity->getArea())
+					{
+						gDLL->getInterfaceIFace()->addHumanMessage(GET_TEAM(eIndex).getLeaderID(), true, GC.getEVENT_MESSAGE_TIME(), gDLL->getText("TXT_KEY_MISC_ROME_UP_UNIT", iNumUnits, GC.getUnitInfo(eUnit).getDescription(0), pConquerorCapitalCity->getNameKey()).GetCString(), "AS2D_UNIT_BUILD_UNIT", MESSAGE_TYPE_MINOR_EVENT);
+
+						for (int iI = 0; iI < iNumUnits; ++iI)
+						{ 
+							GET_PLAYER(GET_TEAM(eIndex).getLeaderID()).initUnit(eUnit, pConquerorCapitalCity->getX_INLINE(), pConquerorCapitalCity->getY_INLINE());
+							if (gTeamLogLevel > 2) logBBAI("Roman Unique Power: %S is sent to %S", GC.getUnitInfo(eUnit).getDescription(0), pConquerorCapitalCity->getNameKey());
+						}
+					}
+				}
+			}
+
 			if (GC.getGameINLINE().isFinalInitialized() && !(gDLL->GetWorldBuilderMode()))
 			{
 				CvWString szReplayMessage;

@@ -432,7 +432,7 @@
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_ROME</DefineName>
-		<iDefineIntVal>2</iDefineIntVal> <!-- Extra units on city conquest -->
+		<iDefineIntVal>2</iDefineIntVal> <!-- Extra units per city of vassal -->
 	</Define>
 	<Define>
 		<DefineName>UNIQUE_POWER_SPAIN_RELIGIOUS_SETTLER</DefineName>

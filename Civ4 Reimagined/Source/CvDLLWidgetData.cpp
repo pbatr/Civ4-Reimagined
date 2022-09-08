@@ -2968,6 +2968,12 @@ void CvDLLWidgetData::parseActionHelp(CvWidgetDataStruct &widgetDataStruct, CvWS
 					iMovementCost = GC.getRouteInfo(eRoute).getMovementCost() + GET_TEAM(pHeadSelectedUnit->getTeam()).getRouteChange(eRoute);
 					iFlatMovementCost = GC.getRouteInfo(eRoute).getFlatMovementCost();
 
+					// Civ4 Reimagined: Roman UP
+					if (pMissionPlot->getOwnerINLINE() != NO_PLAYER)
+					{
+						iMovementCost += GET_PLAYER(pMissionPlot->getOwnerINLINE()).getRouteChange(eRoute);
+					}
+
 					if (iFlatMovementCost > 0 && pMissionPlot && pHeadSelectedUnit)
 					{
 						// Civ4 Reimagined: Quantifiable Resource System

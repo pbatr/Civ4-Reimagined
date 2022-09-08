@@ -3093,8 +3093,21 @@ int CvPlot::movementCost(const CvUnit* pUnit, const CvPlot* pFromPlot) const
 
 	if (pFromPlot->isValidRoute(pUnit) && isValidRoute(pUnit) && ((GET_TEAM(pUnit->getTeam()).isBridgeBuilding() || !(pFromPlot->isRiverCrossing(directionXY(pFromPlot, this))))))
 	{
-		iRouteCost = std::max((GC.getRouteInfo(pFromPlot->getRouteType()).getMovementCost() + GET_TEAM(pUnit->getTeam()).getRouteChange(pFromPlot->getRouteType())),
-			               (GC.getRouteInfo(getRouteType()).getMovementCost() + GET_TEAM(pUnit->getTeam()).getRouteChange(getRouteType())));
+		int iRouteCostFromPlot = GC.getRouteInfo(pFromPlot->getRouteType()).getMovementCost() + GET_TEAM(pUnit->getTeam()).getRouteChange(pFromPlot->getRouteType());
+		int iRouteCostToPlot = GC.getRouteInfo(getRouteType()).getMovementCost() + GET_TEAM(pUnit->getTeam()).getRouteChange(getRouteType());
+
+		// Civ4 Reimagined: Roman UP
+		if (pFromPlot->getOwnerINLINE() != NO_PLAYER)
+		{
+			iRouteCostFromPlot += GET_PLAYER(pFromPlot->getOwnerINLINE()).getRouteChange(pFromPlot->getRouteType());
+		}
+
+		if (getOwnerINLINE() != NO_PLAYER)
+		{
+			iRouteCostToPlot += GET_PLAYER(getOwnerINLINE()).getRouteChange(getRouteType());
+		}
+
+		iRouteCost = std::max(iRouteCostFromPlot, iRouteCostToPlot);
 		iRouteFlatCost = std::max((GC.getRouteInfo(pFromPlot->getRouteType()).getFlatMovementCost() * pUnit->baseMoves()),
 			                   (GC.getRouteInfo(getRouteType()).getFlatMovementCost() * pUnit->baseMoves()));
 		
