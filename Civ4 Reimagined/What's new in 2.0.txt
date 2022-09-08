@@ -36,7 +36,7 @@ Tweaks
 -Free Market grants 1 additional gold per merchant specialist
 -Central Planning bonus ratio modifier decreased from -10% to -25%
 -State Atheism reduces overcrowding unhappiness by 10%
--Senate grants Great Spy points
+-Senate cost decreased from 200 to 125, grants Great Spy points and no more production bonus with marble
 -Pikemen require Corporation instead of Banking
 -Colossus obsoletes with Astronomy
 -Shwedagon Paya requires Meditation instead of Philosophy
