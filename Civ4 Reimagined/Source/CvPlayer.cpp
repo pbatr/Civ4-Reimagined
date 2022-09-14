@@ -640,7 +640,7 @@ void CvPlayer::setupEurekas()
 	{
 		for (int iI = 0; iI < GC.getNumTechInfos(); iI++)
 		{
-			if (!CvWString(GC.getTechInfo((TechTypes)iI).getHelp()).empty() && (TechTypes)iI != (TechTypes)GC.getInfoTypeForString("TECH_POLYTHEISM"))
+			if (!CvWString(GC.getTechInfo((TechTypes)iI).getHelp()).empty() && (TechTypes)iI != (TechTypes)GC.getInfoTypeForString("TECH_POLYTHEISM") && (TechTypes)iI != (TechTypes)GC.getInfoTypeForString("TECH_ECOLOGY"))
 			{
 				GET_TEAM(getTeam()).setTechBoosted((TechTypes)iI, getID(), true);
 			}
