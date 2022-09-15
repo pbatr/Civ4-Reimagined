@@ -511,7 +511,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_TERRACOTTA_ARMY_STRATEGY</Tag>
-		<English>The [COLOR_BUILDING_TEXT]Terracotta Army[COLOR_REVERT] improves your city's military unit production by half and allows all units to gain unlimited experience from barbarian encounters.</English>
+		<English>The [COLOR_BUILDING_TEXT]Terracotta Army[COLOR_REVERT] grants a free Great General and allows all units to gain unlimited experience from barbarian encounters.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_RED_FORT_STRATEGY</Tag>

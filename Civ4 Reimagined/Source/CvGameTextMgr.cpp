@@ -10717,6 +10717,26 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 		}
 	}
 
+	// Civ4 Reimagined
+	if (kBuilding.getFreeUnitClass() != NO_UNITCLASS)
+	{
+		UnitTypes eFreeUnit;
+		if (ePlayer != NO_PLAYER)
+		{
+			eFreeUnit = (UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(ePlayer).getCivilizationType()).getCivilizationUnits(kBuilding.getFreeUnitClass()));
+		}
+		else
+		{
+			eFreeUnit = (UnitTypes)GC.getUnitClassInfo((UnitClassTypes)kBuilding.getFreeUnitClass()).getDefaultUnitIndex();
+		}
+
+		if (NO_UNIT != eFreeUnit)
+		{
+			szBuffer.append(NEWLINE);
+			szBuffer.append(gDLL->getText("TXT_KEY_UNIT_FREE_IN_CITY", GC.getUnitInfo(eFreeUnit).getTextKeyWide()));
+		}
+	}
+
 	if (kBuilding.getFreePromotion() != NO_PROMOTION)
 	{
 		szBuffer.append(NEWLINE);

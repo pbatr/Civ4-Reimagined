@@ -1505,4 +1505,8 @@
 		<Tag>TXT_KEY_PROMOTION_GREEK_FIRE</Tag>
 		<English>Greek Fire</English>
 	</TEXT>	
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_FREE_IN_CITY</Tag>
+		<English>[ICON_BULLET]Free [COLOR_UNIT_TEXT][LINK=literal]%s1_Name[\LINK][COLOR_REVERT] in City</English>
+	</TEXT>
 </Civ4GameText>

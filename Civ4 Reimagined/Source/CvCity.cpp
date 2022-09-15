@@ -13749,6 +13749,34 @@ void CvCity::setNumRealBuildingTimed(BuildingTypes eIndex, int iNewValue, bool b
 						}
 					}
 
+					// Civ4 Reimagined
+					if (GC.getBuildingInfo(eIndex).getFreeUnitClass() != NO_UNITCLASS)
+					{
+						const UnitTypes eFreeUnit = (UnitTypes)(GC.getCivilizationInfo(GET_PLAYER(getOwnerINLINE()).getCivilizationType()).getCivilizationUnits(GC.getBuildingInfo(eIndex).getFreeUnitClass()));
+
+						if (eFreeUnit != NO_UNIT)
+						{
+							bool bGreatPerson = false;
+							for (iI = 0; iI < GC.getNumSpecialistInfos(); iI++)
+							{
+								if (GC.getUnitInfo(eFreeUnit).getGreatPeoples((SpecialistTypes)iI))
+								{
+									bGreatPerson = true;
+									break;
+								}
+							}
+
+							if (bGreatPerson)
+							{
+								createGreatPeople(eFreeUnit, false, false);
+							}
+							else
+							{
+								GET_PLAYER(getOwnerINLINE()).initUnit(eFreeUnit, getX_INLINE(), getY_INLINE());
+							}
+						}
+					}
+
 					// Civ4 Reimagined: Text Message "New Nuclear Power"
 					if ( GC.getBuildingInfo(eIndex).isAllowsNukes() )
 					{

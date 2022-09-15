@@ -4787,6 +4787,17 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 					}
 				}
 
+				// Civ4 Reimagined
+				if (kBuilding.getFreeUnitClass() != NO_UNITCLASS)
+				{
+					UnitTypes eFreeUnit = (UnitTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits(kBuilding.getFreeUnitClass());
+					if (NO_UNIT != eFreeUnit)
+					{
+						int iFreeUnitValue = kOwner.AI_unitValue(eFreeUnit, (UnitAITypes)GC.getUnitInfo(eFreeUnit).getDefaultUnitAIType(), area()) / 4;
+						iValue += iFreeUnitValue;
+					}
+				}
+
 				//
 				for (BuildingClassTypes eLoopClass = (BuildingClassTypes)0; eLoopClass < GC.getNumBuildingClassInfos(); eLoopClass = (BuildingClassTypes)(eLoopClass+1))
 				{
