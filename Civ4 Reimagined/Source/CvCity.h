@@ -343,7 +343,6 @@ public:
 
 // BUG - Specialist Additional Great People - start
 	int getAdditionalGreatPeopleRateBySpecialist(SpecialistTypes eSpecialist, int iChange = 1) const;
-	int getAdditionalBaseGreatPeopleRateBySpecialist(SpecialistTypes eSpecialist, int iChange = 1) const;
 // BUG - Specialist Additional Great People - end
 
 	int getGreatPeopleProgress() const;													// Exposed to Python

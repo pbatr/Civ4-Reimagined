@@ -4673,11 +4673,11 @@ void CvCity::processSpecialist(SpecialistTypes eSpecialist, int iChange)
 
 		if (eGreatPeopleUnit != NO_UNIT)
 		{
-			changeGreatPeopleUnitRate(eGreatPeopleUnit, GC.getSpecialistInfo(eSpecialist).getGreatPeopleRateChange() * iChange);
+			changeGreatPeopleUnitRate(eGreatPeopleUnit, GET_PLAYER(getOwnerINLINE()).getAdditionalBaseGreatPeopleRateBySpecialist(eSpecialist, iChange));
 		}
 	}
 
-	changeBaseGreatPeopleRate(GC.getSpecialistInfo(eSpecialist).getGreatPeopleRateChange() * iChange);
+	changeBaseGreatPeopleRate(GET_PLAYER(getOwnerINLINE()).getAdditionalBaseGreatPeopleRateBySpecialist(eSpecialist, iChange));
 
 	for (iI = 0; iI < NUM_YIELD_TYPES; iI++)
 	{
@@ -6533,7 +6533,7 @@ int CvCity::getAdditionalBaseGreatPeopleRateByBuilding(BuildingTypes eBuilding) 
 		{
 			if (kBuilding.getFreeSpecialistCount((SpecialistTypes)iI) != 0)
 			{
-				iExtraRate += getAdditionalBaseGreatPeopleRateBySpecialist((SpecialistTypes)iI, kBuilding.getFreeSpecialistCount((SpecialistTypes)iI));
+				iExtraRate += GET_PLAYER(getOwnerINLINE()).getAdditionalBaseGreatPeopleRateBySpecialist((SpecialistTypes)iI, kBuilding.getFreeSpecialistCount((SpecialistTypes)iI));
 			}
 		}
 	}
@@ -6575,22 +6575,11 @@ int CvCity::getAdditionalGreatPeopleRateBySpecialist(SpecialistTypes eSpecialist
 {
 	int iRate = getBaseGreatPeopleRate();
 	int iModifier = getTotalGreatPeopleRateModifier();
-	int iExtraRate = getAdditionalBaseGreatPeopleRateBySpecialist(eSpecialist, iChange);
+	int iExtraRate = GET_PLAYER(getOwnerINLINE()).getAdditionalBaseGreatPeopleRateBySpecialist(eSpecialist, iChange);
 
 	int iExtra = ((iRate + iExtraRate) * iModifier / 100) - (iRate * iModifier / 100);
 
 	return iExtra;
-}
-
-/*
- * Returns the additional great people rate that changing the number of the given specialist will provide/remove.
- */
-int CvCity::getAdditionalBaseGreatPeopleRateBySpecialist(SpecialistTypes eSpecialist, int iChange) const
-{
-	FAssertMsg(eSpecialist >= 0, "eSpecialist expected to be >= 0");
-	FAssertMsg(eSpecialist < GC.getNumSpecialistInfos(), "eSpecialist expected to be < GC.getNumSpecialistInfos()");
-
-	return iChange * GC.getSpecialistInfo(eSpecialist).getGreatPeopleRateChange();
 }
 // BUG - Specialist Additional Great People - end
 

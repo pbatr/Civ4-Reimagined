@@ -123,6 +123,7 @@ CvPlayer::CvPlayer()
 	m_paiReligiousUnitClassProductionModifier = NULL; // Civ4 Reimagined
 	m_paiCivicEffect = NULL; // Civ4 Reimagined
 	m_paiRouteChange = NULL; // Civ4 Reimagined
+	m_paiGreatPeopleRateChangeModifier = NULL; // Civ4 Reimagined
 
 	m_pabResearchingTech = NULL;
 	m_pabLoyalMember = NULL;
@@ -721,6 +722,7 @@ void CvPlayer::uninit()
 	SAFE_DELETE_ARRAY(m_paiPlayerExtraAvailableBonuses); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiCivicEffect); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiRouteChange); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_paiGreatPeopleRateChangeModifier); // Civ4 Reimagined
 
 	SAFE_DELETE_ARRAY(m_pabResearchingTech);
 	SAFE_DELETE_ARRAY(m_pabLoyalMember);
@@ -1405,15 +1407,15 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		FAssertMsg(0 < GC.getNumSpecialistInfos(), "GC.getNumSpecialistInfos() is not greater than zero but it is used to allocate memory in CvPlayer::reset");
 		FAssertMsg(m_paiExtraSpecialists==NULL, "about to leak memory, CvPlayer::m_paiExtraSpecialists");
 		m_paiExtraSpecialists = new int[GC.getNumSpecialistInfos()];
+		FAssertMsg(m_paiExtraSpecialistExperience==NULL, "about to leak memory, CvPlayer::m_paiExtraSpecialistExperience");
+		m_paiExtraSpecialistExperience = new int[GC.getNumSpecialistInfos()];
+		FAssertMsg(m_paiGreatPeopleRateChangeModifier==NULL, "about to leak memory, CvPlayer::m_paiGreatPeopleRateChangeModifier");
+		m_paiGreatPeopleRateChangeModifier = new int[GC.getNumSpecialistInfos()];
 		for (iI = 0; iI < GC.getNumSpecialistInfos(); iI++)
 		{
 			m_paiExtraSpecialists[iI] = 0;
-		}
-		FAssertMsg(m_paiExtraSpecialistExperience==NULL, "about to leak memory, CvPlayer::m_paiExtraSpecialistExperience");
-		m_paiExtraSpecialistExperience = new int[GC.getNumSpecialistInfos()];
-		for (iI = 0; iI < GC.getNumSpecialistInfos(); iI++)
-		{
 			m_paiExtraSpecialistExperience[iI] = 0;
+			m_paiGreatPeopleRateChangeModifier[iI] = 0;
 		}
 		
 		// Civ4 Reimagined
@@ -16298,6 +16300,30 @@ void CvPlayer::changeExtraSpecialistExperience(SpecialistTypes eIndex, int iChan
 }
 
 
+// Civ4 Reimagined
+int CvPlayer::getGreatPeopleRateChangeModifier(SpecialistTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumSpecialistInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+	FAssertMsg(m_paiGreatPeopleRateChangeModifier != NULL, "m_paiGreatPeopleRateChangeModifier is not expected to be equal with NULL");
+	return m_paiGreatPeopleRateChangeModifier[eIndex];
+}
+
+
+// Civ4 Reimagined
+void CvPlayer::changeGreatPeopleRateChangeModifier(SpecialistTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumSpecialistInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	if (iChange != 0)
+	{
+		FAssertMsg(m_paiGreatPeopleRateChangeModifier != NULL, "m_paiGreatPeopleRateChangeModifier is not expected to be equal with NULL");
+		m_paiGreatPeopleRateChangeModifier[eIndex] = (m_paiGreatPeopleRateChangeModifier[eIndex] + iChange);
+	}
+}
+
+
 bool CvPlayer::isResearchingTech(TechTypes eIndex) const	
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
@@ -21447,6 +21473,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(GC.getNumSpecialistInfos(), m_paiSpecialistValidCount);
 	pStream->Read(GC.getNumSpecialistInfos(), m_paiExtraSpecialists); // Civ4 Reimagined
 	pStream->Read(GC.getNumSpecialistInfos(), m_paiExtraSpecialistExperience); // Civ4 Reimagined
+	pStream->Read(GC.getNumSpecialistInfos(), m_paiGreatPeopleRateChangeModifier); // Civ4 Reimagined
 	pStream->Read(GC.getNumTerrainInfos(), m_paiFatcrossTerrainHappiness); // Civ4 Reimagined
 	pStream->Read(GC.getNumTerrainInfos(), m_paiFatcrossTerrainCulture); // Civ4 Reimagined
 	pStream->Read(NUM_COMMERCE_TYPES, m_paiCapitalCommercePopulationThreshold); // Civ4 Reimagined
@@ -22110,6 +22137,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumSpecialistInfos(), m_paiSpecialistValidCount);
 	pStream->Write(GC.getNumSpecialistInfos(), m_paiExtraSpecialists); // Civ4 Reimagined
 	pStream->Write(GC.getNumSpecialistInfos(), m_paiExtraSpecialistExperience); // Civ4 Reimagined
+	pStream->Write(GC.getNumSpecialistInfos(), m_paiGreatPeopleRateChangeModifier); // Civ4 Reimagined
 	pStream->Write(GC.getNumTerrainInfos(), m_paiFatcrossTerrainHappiness); // Civ4 Reimagined
 	pStream->Write(GC.getNumTerrainInfos(), m_paiFatcrossTerrainCulture); // Civ4 Reimagined
 	pStream->Write(NUM_COMMERCE_TYPES, m_paiCapitalCommercePopulationThreshold); // Civ4 Reimagined
@@ -29759,8 +29787,6 @@ UnitTypes CvPlayer::getStrongestPossibleLandUnit() const
 	int iValue;
 	int iBestValue;
 	int iI;
-
-	long lConscriptUnit;
 	
 	iBestValue = 0;
 	eBestUnit = NO_UNIT;
@@ -29792,6 +29818,28 @@ UnitTypes CvPlayer::getStrongestPossibleLandUnit() const
 	}
 
 	return eBestUnit;
+}
+
+
+/*
+ * Returns the additional great people rate that changing the number of the given specialist will provide/remove.
+ */
+int CvPlayer::getAdditionalBaseGreatPeopleRateBySpecialist(SpecialistTypes eSpecialist, int iChange) const
+{
+	FAssertMsg(eSpecialist >= 0, "eSpecialist expected to be >= 0");
+	FAssertMsg(eSpecialist < GC.getNumSpecialistInfos(), "eSpecialist expected to be < GC.getNumSpecialistInfos()");
+
+	if (isNoGreatPeople())
+	{
+		return 0;
+	}
+
+	// Civ4 Reimagined: Persia UP
+	int iGreatPeopleRateChange = GC.getSpecialistInfo(eSpecialist).getGreatPeopleRateChange();
+	iGreatPeopleRateChange *= 100 + getGreatPeopleRateChangeModifier(eSpecialist);
+	iGreatPeopleRateChange /= 100;
+
+	return iChange * iGreatPeopleRateChange;
 }
 
 
@@ -30266,6 +30314,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		{
 			changeExtraMovesInGoldenAge(DOMAIN_LAND, 1);
 			changeGoldenAgeModifier(40);
+			changeGreatPeopleRateChangeModifier((SpecialistTypes)GC.getInfoTypeForString("SPECIALIST_SPY"), 100);
 			notifyUniquePowersChanged(true);
 		}
 	}

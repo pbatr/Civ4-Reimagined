@@ -465,7 +465,7 @@ int CvCityAI::AI_permanentSpecialistValue(SpecialistTypes eSpecialist) const
 	}
 	
 	// Civ4 Reimagined
-	int iGreatPeopleRate = kPlayer.isNoGreatPeople() ? 0 : GC.getSpecialistInfo(eSpecialist).getGreatPeopleRateChange();
+	int iGreatPeopleRate = GET_PLAYER(getOwnerINLINE()).getAdditionalBaseGreatPeopleRateBySpecialist(eSpecialist, 1);
 
 	if (iGreatPeopleRate != 0)
 	{
@@ -10665,12 +10665,10 @@ int CvCityAI::AI_jobChangeValue(std::pair<bool, int> new_job, std::pair<bool, in
 		int iGPPLost = 0;
 		if (new_job.second >= 0 && new_job.first)
 			// Civ4 Reimagined
-			//iGPPGained += GC.getSpecialistInfo((SpecialistTypes)new_job.second).getGreatPeopleRateChange();
-			iGPPGained += kOwner.isNoGreatPeople() ? 0 : GC.getSpecialistInfo((SpecialistTypes)new_job.second).getGreatPeopleRateChange();
+			iGPPGained += GET_PLAYER(getOwnerINLINE()).getAdditionalBaseGreatPeopleRateBySpecialist((SpecialistTypes)new_job.second, 1);
 		if (old_job.second >= 0 && old_job.first)
 			// Civ4 Reimagined
-			//iGPPLost += GC.getSpecialistInfo((SpecialistTypes)old_job.second).getGreatPeopleRateChange();
-			iGPPLost += kOwner.isNoGreatPeople() ? 0 : GC.getSpecialistInfo((SpecialistTypes)old_job.second).getGreatPeopleRateChange();
+			iGPPLost += GET_PLAYER(getOwnerINLINE()).getAdditionalBaseGreatPeopleRateBySpecialist((SpecialistTypes)old_job.second, 1);
 
 		if (iGPPGained || iGPPLost)
 		{
@@ -12324,7 +12322,7 @@ int CvCityAI::AI_countGoodSpecialists(bool bHealthy) const
 		iValue += 40 * kPlayer.specialistCommerce(eSpecialist, COMMERCE_GOLD);
 		iValue += 20 * kPlayer.specialistCommerce(eSpecialist, COMMERCE_ESPIONAGE);
 		iValue += 15 * kPlayer.specialistCommerce(eSpecialist, COMMERCE_CULTURE);
-		iValue += 25 * GC.getSpecialistInfo(eSpecialist).getGreatPeopleRateChange();
+		iValue += 25 * GET_PLAYER(getOwnerINLINE()).getAdditionalBaseGreatPeopleRateBySpecialist(eSpecialist, 1);
 
 		if (iValue >= (bHealthy ? 200 : 300))
 		{

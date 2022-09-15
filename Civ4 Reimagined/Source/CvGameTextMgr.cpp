@@ -6841,7 +6841,8 @@ void CvGameTextMgr::parseSpecialistHelp(CvWStringBuffer &szHelpString, Specialis
 		if (kInfo.getGreatPeopleRateChange() != 0)
 		{
 			szHelpString.append(NEWLINE);
-			szHelpString.append(gDLL->getText("TXT_KEY_SPECIALIST_BIRTH_RATE", kInfo.getGreatPeopleRateChange()));
+			// Civ4 Reimagined
+			szHelpString.append(gDLL->getText("TXT_KEY_SPECIALIST_BIRTH_RATE", GET_PLAYER((pCity != NULL) ? pCity->getOwnerINLINE() : GC.getGameINLINE().getActivePlayer()).getAdditionalBaseGreatPeopleRateBySpecialist(eSpecialist, 1)));
 
 			// K-Mod
 			if (!bCivilopediaText && gDLL->getChtLvl() > 0 && GC.ctrlKey())

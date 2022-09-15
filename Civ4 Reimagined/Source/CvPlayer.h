@@ -1106,6 +1106,10 @@ public:
 	int getSpecialistValidCount(SpecialistTypes eIndex) const;
 	DllExport bool isSpecialistValid(SpecialistTypes eIndex) const;	// Exposed to Python	
 	void changeSpecialistValidCount(SpecialistTypes eIndex, int iChange);
+
+	// Civ4 Reimagined
+	int getGreatPeopleRateChangeModifier(SpecialistTypes eIndex) const;
+	void changeGreatPeopleRateChangeModifier(SpecialistTypes eIndex, int iChange);
 	
 	// Civ4 Reimagined
 	int getExtraSpecialists(SpecialistTypes eIndex) const;
@@ -1549,6 +1553,7 @@ public:
 	int getRouteChange(RouteTypes eIndex) const; // Civ4 Reimagined
 	void changeRouteChange(RouteTypes eIndex, int iChange); // Civ4 Reimagined
 	UnitTypes getStrongestPossibleLandUnit() const; // Civ4 Reimagined
+	int getAdditionalBaseGreatPeopleRateBySpecialist(SpecialistTypes eSpecialist, int iChange = 1) const; // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1966,6 +1971,7 @@ protected:
 	int* m_paiAveragePopCommerceModifierMaxPop; // Civ4 Reimagined
 	int* m_paiAveragePopCommerceModifierMaxMod; // Civ4 Reimagined
 	int* m_paiRouteChange; // Civ4 Reimagined
+	int* m_paiGreatPeopleRateChangeModifier; // Civ4 Reimagined
 	
 	//std::vector< std::pair<int, int> > CapitalCommercePerPopulationArray; // Civ4 Reimagined
 	
