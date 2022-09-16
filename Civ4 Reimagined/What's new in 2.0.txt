@@ -6,7 +6,7 @@ Civ4 Reimagined 2.0
 New
 *********
 -Every Civilzation has now access to a Unique Power
--Eurekas boosts for all technologies in game (instantly gain 40% of the science needed to discover the technology)
+-Eurekas boosts for most technologies in game (instantly gain 40% of the science needed to discover the technology)
 -New faster gamespeed: Online (2x as fast as normal)
 
 *********
@@ -29,7 +29,6 @@ Changes
 *********
 Tweaks
 *********
--Reduced Awqaq Runa costs from 30 to 25
 -Increased Vulture anti-archer bonus from 10% to 20%
 -Increased Assembly Plant production with electricity from +40% to +85%, but it starts off with 15% less production compared to other factories and loses its former +3 production and +50% building with coal bonus.
 -Industrialism production bonus increased from 15% to 20%
@@ -62,6 +61,7 @@ Tweaks
 -Celtic Gallic Warrior now requires Iron but has a combat bonus against injured units
 -Greek Odeon now increases great person rate and culture per world wonder in the city
 -Pyramids have 100 % hurry cost modifier again (was 0)
+-Terracotta Army provides a free Great General instead of 50 % military unit production
 
 *********
 Interface
@@ -75,7 +75,7 @@ Fixes
 -"Better coal" event triggers only with researched drydock or coal plant
 -AI would move capital too often to colonies
 -Corporation could sometimes drive out competing headquarter from a city
--Religion switches did not update commerce during player's turn
+-Adopting a new religion did not update commerce during player's turn
 -Acquired cities from a civ running Totalitarianism no longer keep the free Spy specialists
 -Great people probabilities kept changing even when running Autocracy
 -Sumerian Ziggurats did not get converted to religious temples when adopting a state religion
