@@ -173,7 +173,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_AZTEC</Tag>
-		<English>Killing a land unit and advancing to its plot gives an Aztec Slave while playing Slavery.</English>
+		<English>Killing a land unit and advancing to its plot gives an Aztec Slave while playing Slavery. Aztec Slaves have no worker abilities but can be sacrificed in cities with a Sacrificial Altar for culture, gold and happiness.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_CHINA</Tag>
