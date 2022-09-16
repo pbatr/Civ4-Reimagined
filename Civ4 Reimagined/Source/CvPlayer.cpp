@@ -30123,6 +30123,11 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		else if (eEra == ERA_RENAISSANCE)
 		{
 			setIsPirateGold(true);
+			changeCorporationMaintenanceModifier(-50);
+			notifyUniquePowersChanged(true);
+		}
+		else if (eEra == ERA_INDUSTRIAL)
+		{
 			changeColonyTraderouteModifier(GC.getDefineINT("UNIQUE_POWER_ENGLAND"));
 			notifyUniquePowersChanged(true);
 		}
