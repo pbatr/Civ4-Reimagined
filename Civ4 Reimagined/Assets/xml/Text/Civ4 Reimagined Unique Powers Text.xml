@@ -253,7 +253,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_MONGOL</Tag>
-		<English>Units can heal by pillaging enemy tiles. After entering the Medieval Era: Enemy cities with less than Influential culture start revolting when a defender is killed by Mongols.</English>
+		<English>Units can heal by pillaging enemy tiles. After entering the Medieval Era: Enemy cities with 12 population or less start revolting when a defender is killed by Mongols.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_INDIA</Tag>

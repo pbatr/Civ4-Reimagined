@@ -1737,7 +1737,7 @@ void CvUnit::updateCombat(bool bQuick)
 			// Civ4 Reimagined: Mongol UP
 			if (GET_PLAYER(getOwnerINLINE()).isCityRevoltOnKill() && pDefenderCity != NULL)
 			{
-				if (pDefenderCity->getCultureLevel() < (CultureLevelTypes)5 && pDefenderCity->getOccupationTimer() == 0)
+				if (pDefenderCity->getPopulation() <= 12 && pDefenderCity->getOccupationTimer() == 0)
 				{
 					pDefenderCity->changeCultureUpdateTimer(1);
 					pDefenderCity->changeOccupationTimer(1);
