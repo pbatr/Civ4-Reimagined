@@ -19495,6 +19495,7 @@ void CvGameTextMgr::setTradeRouteHelp(CvWStringBuffer &szBuffer, int iRoute, CvC
 				{
 					iNewMod = GC.getDefineINT("OVERSEAS_TRADE_MODIFIER");
 					iNewMod += pCity->getOverseaTradeRouteModifier(); // Civ4 Reimagined
+					iNewMod += GET_PLAYER(pCity->getOwnerINLINE()).getOverseaTradeRouteModifier(); // Civ4 Reimagined
 					if (pCity->getTeam() == pOtherCity->getTeam())
 					{
 						iNewMod += (GET_PLAYER(pCity->getOwnerINLINE())).getColonyTradeModifier();

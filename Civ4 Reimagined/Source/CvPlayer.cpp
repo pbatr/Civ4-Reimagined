@@ -113,6 +113,7 @@ CvPlayer::CvPlayer()
 	m_paiExtraSpecialistExperience = NULL; // Civ4 Reimagined
 	m_paiFatcrossTerrainHappiness = NULL; // Civ4 Reimagined
 	m_paiFatcrossTerrainCulture = NULL; // Civ4 Reimagined
+	m_paiTerrainMovementCostModifier = NULL; // Civ4 Reimagined
 	m_paiCapitalCommercePopulationThreshold = NULL; // Civ4 Reimagined
 	m_paiCapitalCommerceModifier = NULL; // Civ4 Reimagined
 	m_paiAveragePopCommerceModifier = NULL; // Civ4 Reimagined
@@ -714,6 +715,7 @@ void CvPlayer::uninit()
 	SAFE_DELETE_ARRAY(m_paiExtraSpecialistExperience); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiFatcrossTerrainHappiness); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiFatcrossTerrainCulture); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_paiTerrainMovementCostModifier); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiCapitalCommercePopulationThreshold); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiCapitalCommerceModifier); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiAveragePopCommerceModifier); // Civ4 Reimagined
@@ -1041,6 +1043,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iProductionPerPopulation = 0; // Civ4 Reimagined
 	m_iHurryWithGreatPriestsRatio = 0; // Civ4 Reimagined
 	m_iCoastalTradeRouteModifier = 0; // Civ4 Reimagined
+	m_iOverseaTradeRouteModifier = 0; // Civ4 Reimagined
 	m_iUniquePowerGreatPeopleModifier = 0; // Civ4 Reimagined
 	m_iUniqueUnitFreeExperience = 0; // Civ4 Reimagined
 	m_iReligionTechModifier = 0; // Civ4 Reimagined
@@ -1422,12 +1425,15 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		FAssertMsg(0 < GC.getNumTerrainInfos(), "GC.getNumTerrainInfos() is not greater than zero but it is used to allocate memory in CvPlayer::reset");
 		FAssertMsg(m_paiFatcrossTerrainHappiness==NULL, "about to leak memory, CvPlayer::m_paiFatcrossTerrainHappiness");
 		m_paiFatcrossTerrainHappiness = new int[GC.getNumTerrainInfos()];
-		FAssertMsg(m_paiFatcrossTerrainCulture==NULL, "about to leak memory, CvPlayer::m_paiFatcrossTerrainHappiness");
+		FAssertMsg(m_paiFatcrossTerrainCulture==NULL, "about to leak memory, CvPlayer::m_paiFatcrossTerrainCulture");
 		m_paiFatcrossTerrainCulture = new int[GC.getNumTerrainInfos()];
+		FAssertMsg(m_paiTerrainMovementCostModifier==NULL, "about to leak memory, CvPlayer::m_paiTerrainMovementCostModifier");
+		m_paiTerrainMovementCostModifier = new int[GC.getNumTerrainInfos()];
 		for (iI = 0; iI < GC.getNumTerrainInfos(); iI++)
 		{
 			m_paiFatcrossTerrainHappiness[iI] = 0;
 			m_paiFatcrossTerrainCulture[iI] = 0;
+			m_paiTerrainMovementCostModifier[iI] = 0;
 		}
 		
 		// Civ4 Reimagined
@@ -21314,6 +21320,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iProductionPerPopulation); // Civ4 Reimagined
 	pStream->Read(&m_iHurryWithGreatPriestsRatio); // Civ4 Reimagined
 	pStream->Read(&m_iCoastalTradeRouteModifier); // Civ4 Reimagined
+	pStream->Read(&m_iOverseaTradeRouteModifier); // Civ4 Reimagined
 	pStream->Read(&m_iUniquePowerGreatPeopleModifier); // Civ4 Reimagined
 	pStream->Read(&m_iUniqueUnitFreeExperience); // Civ4 Reimagined
 	pStream->Read(&m_iReligionTechModifier); // Civ4 Reimagined
@@ -21476,6 +21483,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(GC.getNumSpecialistInfos(), m_paiGreatPeopleRateChangeModifier); // Civ4 Reimagined
 	pStream->Read(GC.getNumTerrainInfos(), m_paiFatcrossTerrainHappiness); // Civ4 Reimagined
 	pStream->Read(GC.getNumTerrainInfos(), m_paiFatcrossTerrainCulture); // Civ4 Reimagined
+	pStream->Read(GC.getNumTerrainInfos(), m_paiTerrainMovementCostModifier); // Civ4 Reimagined
 	pStream->Read(NUM_COMMERCE_TYPES, m_paiCapitalCommercePopulationThreshold); // Civ4 Reimagined
 	pStream->Read(NUM_COMMERCE_TYPES, m_paiCapitalCommerceModifier); // Civ4 Reimagined
 	pStream->Read(NUM_COMMERCE_TYPES, m_paiAveragePopCommerceModifier); // Civ4 Reimagined
@@ -21988,6 +21996,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iProductionPerPopulation); // Civ4 Reimagined
 	pStream->Write(m_iHurryWithGreatPriestsRatio); // Civ4 Reimagined
 	pStream->Write(m_iCoastalTradeRouteModifier); // Civ4 Reimagined
+	pStream->Write(m_iOverseaTradeRouteModifier); // Civ4 Reimagined
 	pStream->Write(m_iUniquePowerGreatPeopleModifier); // Civ4 Reimagined
 	pStream->Write(m_iUniqueUnitFreeExperience); // Civ4 Reimagined	
 	pStream->Write(m_iReligionTechModifier); // Civ4 Reimagined	
@@ -22140,6 +22149,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumSpecialistInfos(), m_paiGreatPeopleRateChangeModifier); // Civ4 Reimagined
 	pStream->Write(GC.getNumTerrainInfos(), m_paiFatcrossTerrainHappiness); // Civ4 Reimagined
 	pStream->Write(GC.getNumTerrainInfos(), m_paiFatcrossTerrainCulture); // Civ4 Reimagined
+	pStream->Write(GC.getNumTerrainInfos(), m_paiTerrainMovementCostModifier); // Civ4 Reimagined
 	pStream->Write(NUM_COMMERCE_TYPES, m_paiCapitalCommercePopulationThreshold); // Civ4 Reimagined
 	pStream->Write(NUM_COMMERCE_TYPES, m_paiCapitalCommerceModifier); // Civ4 Reimagined
 	pStream->Write(NUM_COMMERCE_TYPES, m_paiAveragePopCommerceModifier); // Civ4 Reimagined
@@ -28954,6 +28964,21 @@ void CvPlayer::changeCoastalTradeRouteModifier(int iChange)
 	}
 }
 
+// Civ4 Reimagined
+int CvPlayer::getOverseaTradeRouteModifier() const
+{
+	return m_iOverseaTradeRouteModifier;
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeOverseaTradeRouteModifier(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iOverseaTradeRouteModifier = m_iOverseaTradeRouteModifier + iChange;
+	}
+}
+
 // Civ4 Reimagined - Only for interface
 int CvPlayer::getUniquePowerGreatPeopleModifier() const
 {
@@ -29115,6 +29140,27 @@ void CvPlayer::changeFatcrossTerrainCulture(TerrainTypes eIndex, int iChange)
 	if (iChange != 0)
 	{
 		m_paiFatcrossTerrainCulture[eIndex] += iChange;
+	}
+}
+
+// Civ4 Reimagined
+int CvPlayer::getTerrainMovementCostModifier(TerrainTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
+	FAssertMsg(eIndex < GC.getNumTerrainInfos(), "eIndex expected to be < GC.getNumTerrainInfos()");
+
+	return m_paiTerrainMovementCostModifier[eIndex];
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeTerrainMovementCostModifier(TerrainTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
+	FAssertMsg(eIndex < GC.getNumTerrainInfos(), "eIndex expected to be < GC.getNumTerrainInfos()");
+
+	if (iChange != 0)
+	{
+		m_paiTerrainMovementCostModifier[eIndex] += iChange;
 	}
 }
 
@@ -30325,10 +30371,14 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_PORTUGAL"))
 	{
-		if (eEra == ERA_MEDIEVAL)
+		if (eEra == ERA_ANCIENT)
+		{
+			changeTerrainMovementCostModifier((TerrainTypes)GC.getInfoTypeForString("TERRAIN_COAST"), -25);
+		}
+		else if (eEra == ERA_MEDIEVAL)
 		{
 			changeTradeGoldModifierPerForeignResource(GC.getDefineINT("UNIQUE_POWER_PORTUGAL"));
-			changeCoastalTradeRouteModifier(100);
+			changeOverseaTradeRouteModifier(200);
 			notifyUniquePowersChanged(true);
 		}
 	}

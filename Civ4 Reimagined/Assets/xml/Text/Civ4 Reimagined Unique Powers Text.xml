@@ -285,7 +285,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_PORTUGAL</Tag>
-		<English>After entering the Medieval Era: +100%[ICON_COMMERCE] from oversea trade routes. Trade missions grant 50% more [ICON_GOLD] for each instance of a happiness resource in trading city's fatcross that Portugal does not have access to without import trading.</English>
+		<English>-25% movement cost for naval units on coastal tiles. After entering the Medieval Era: +200%[ICON_COMMERCE] from oversea trade routes. Trade missions grant 50% more [ICON_GOLD] for each instance of a happiness resource in trading city's fatcross that Portugal does not have access to without import trading.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_KOREA</Tag>

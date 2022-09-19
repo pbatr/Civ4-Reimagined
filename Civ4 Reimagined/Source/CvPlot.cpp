@@ -3072,6 +3072,10 @@ int CvPlot::movementCost(const CvUnit* pUnit, const CvPlot* pFromPlot) const
 	iRegularCost = std::min(iRegularCost, pUnit->baseMoves());
 
 	iRegularCost *= GC.getMOVE_DENOMINATOR();
+
+	// Civ4 Reimagined
+	iRegularCost *= 100 + GET_PLAYER((PlayerTypes)pUnit->getOwnerINLINE()).getTerrainMovementCostModifier(getTerrainType());
+	iRegularCost /= 100;
 	
 	// Civ4 Reimagined
 	if (isOwned() && isWater() && getOwnerINLINE() != pUnit->getOwnerINLINE())

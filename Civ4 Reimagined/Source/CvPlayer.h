@@ -1554,6 +1554,10 @@ public:
 	void changeRouteChange(RouteTypes eIndex, int iChange); // Civ4 Reimagined
 	UnitTypes getStrongestPossibleLandUnit() const; // Civ4 Reimagined
 	int getAdditionalBaseGreatPeopleRateBySpecialist(SpecialistTypes eSpecialist, int iChange = 1) const; // Civ4 Reimagined
+	int getTerrainMovementCostModifier(TerrainTypes eIndex) const; // Civ4 Reimagined
+	void changeTerrainMovementCostModifier(TerrainTypes eIndex, int iChange); // Civ4 Reimagined
+	int getOverseaTradeRouteModifier() const; // Civ4 Reimagined
+	void changeOverseaTradeRouteModifier(int iChange); // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1848,6 +1852,7 @@ protected:
 	int m_iFreshWaterHealthModifier; // Civ4 Reimagined
 	int m_iStateReligionShrineModifier; // Civ4 Reimagined
 	int m_iLootCityModifier; // Civ4 Reimagined
+	int m_iOverseaTradeRouteModifier; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
 
@@ -1972,6 +1977,7 @@ protected:
 	int* m_paiAveragePopCommerceModifierMaxMod; // Civ4 Reimagined
 	int* m_paiRouteChange; // Civ4 Reimagined
 	int* m_paiGreatPeopleRateChangeModifier; // Civ4 Reimagined
+	int* m_paiTerrainMovementCostModifier; // Civ4 Reimagined
 	
 	//std::vector< std::pair<int, int> > CapitalCommercePerPopulationArray; // Civ4 Reimagined
 	
