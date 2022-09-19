@@ -29466,14 +29466,12 @@ int CvPlayer::getRemainingTurnsForCivicEffect(CivicTypes eIndex) const
 //Civ4Reimagined
 void CvPlayer::updateEffectFromStayingAtCivic()
 {
-	const CivicOptionTypes governmentCivicOption = (CivicOptionTypes)GC.getInfoTypeForString("CIVICOPTION_GOVERNMENT");
 	// Do we even have this unique power?
 	if (isHasCivicEffect())
 	{
 		// Get our current government civic
+		const CivicOptionTypes governmentCivicOption = (CivicOptionTypes)GC.getInfoTypeForString("CIVICOPTION_GOVERNMENT");
 		CivicTypes eCivic = getCivics(governmentCivicOption);
-
-		logBBAI("Current government: %S", GC.getCivicInfo(eCivic).getDescription(0));
 		
 		if (eCivic != NO_CIVIC)
 		{
@@ -29505,6 +29503,27 @@ void CvPlayer::changeTurnsToEffectFromStayingAtCivic(CivicTypes eIndex, int iCha
 			gDLL->getInterfaceIFace()->addHumanMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_UNIT_GREATPEOPLE", MESSAGE_TYPE_MAJOR_EVENT, GC.getUnitInfo(eUnit).getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_UNIT_TEXT"), pCapitalCity->getX_INLINE(), pCapitalCity->getY_INLINE(), true, true);
 
 			pCapitalCity->createGreatPeople(eUnit, false, false);
+		}
+
+		int iCount = 0;
+
+		for (int iI = 0; iI < GC.getNumCivicInfos(); iI++)
+		{
+			if (GC.getCivicInfo((CivicTypes)iI).getCivicOptionType() != (CivicOptionTypes)GC.getInfoTypeForString("CIVICOPTION_GOVERNMENT"))
+			{
+				continue;
+			}
+
+			if (m_paiCivicEffect[(CivicTypes)iI] == 0)
+			{
+				iCount++;
+			}
+		}
+
+		if (iCount >= 4)
+		{
+			setHasCivicEffect(false);
+			notifyUniquePowersChanged(false);
 		}
 	}
 }
@@ -30003,6 +30022,12 @@ void CvPlayer::updateUniquePowers(TechTypes eTech)
 		changeStateReligionShrineModifier(50);
 		notifyUniquePowersChanged(true);
 	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_GREECE")
+		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_WRITING"))
+	{
+		changeHasCivicOptionCount((CivicOptionTypes)GC.getInfoTypeForString("CIVICOPTION_GOVERNMENT"), 1);
+		notifyUniquePowersChanged(true);
+	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_OTTOMAN")
 		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_GUNPOWDER"))
 	{
@@ -30210,16 +30235,13 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	{
 		if (eEra == ERA_ANCIENT)
 		{
-			const CivicOptionTypes eGovernmentCivicOption = (CivicOptionTypes)GC.getInfoTypeForString("CIVICOPTION_GOVERNMENT");
-
 			setHasCivicEffect(true); // Activate before calling changeTurnsToEffectFromStayingAtCivic
-			changeHasCivicOptionCount(eGovernmentCivicOption, 1);
 			changeCoastalTradeRouteModifier(100);
 
 			for (int iI = 0; iI < GC.getNumCivicInfos(); iI++)
 			{
 				// Exclude non-government civics
-				if (GC.getCivicInfo((CivicTypes)iI).getCivicOptionType() == eGovernmentCivicOption)
+				if (GC.getCivicInfo((CivicTypes)iI).getCivicOptionType() == (CivicOptionTypes)GC.getInfoTypeForString("CIVICOPTION_GOVERNMENT"))
 				{
 					int iTurnsPerCivic = GC.getDefineINT("UNIQUE_POWER_GREECE");
 						
