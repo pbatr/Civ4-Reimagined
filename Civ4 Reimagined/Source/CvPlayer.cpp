@@ -30420,6 +30420,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_MEDIEVAL) 
 		{
 			changeTerrainYieldChange((TerrainTypes)GC.getInfoTypeForString("TERRAIN_TUNDRA"), YIELD_PRODUCTION, 1);
+			changeTerrainYieldChange((TerrainTypes)GC.getInfoTypeForString("TERRAIN_SNOW"), YIELD_PRODUCTION, 1);
 			changeCombatBonusOnHomeArea(10);
 			changeStrategicBonusYieldModifier(100);
 			changeImprovementYieldChangeAdjacentToStrategicBonus((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_WORKSHOP"), YIELD_COMMERCE, 1);
