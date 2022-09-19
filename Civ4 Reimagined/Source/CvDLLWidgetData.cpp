@@ -4809,6 +4809,12 @@ void CvDLLWidgetData::parseFlagHelp(CvWidgetDataStruct &widgetDataStruct, CvWStr
 	szBuffer.append(szTempBuffer);
 	szBuffer.append(NEWLINE);
 
+	// Civ4 Reimagined
+	szTempBuffer.Format(L"%s", GC.getCivilizationInfo(GC.getGameINLINE().getActiveCivilizationType()).getCivilizationUniquePowerText().GetCString());
+	szBuffer.append(szTempBuffer);
+	szBuffer.append(NEWLINE);
+
+	szBuffer.append(NEWLINE);
 	GAMETEXT.parseLeaderTraits(szBuffer, GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getLeaderType(), GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getCivilizationType());
 }
 
