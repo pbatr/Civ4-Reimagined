@@ -1509,4 +1509,8 @@
 		<Tag>TXT_KEY_UNIT_FREE_IN_CITY</Tag>
 		<English>[ICON_BULLET]Free [COLOR_UNIT_TEXT][LINK=literal]%s1_Name[\LINK][COLOR_REVERT] in City</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_CITY_REVOLT_MONGOL</Tag>
+		<English>The fear of the approaching Mongol army causes a revolt in %s1_Name leaving its defenses unguarded!</English>
+	</TEXT>
 </Civ4GameText>

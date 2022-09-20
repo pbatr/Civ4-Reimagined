@@ -1737,10 +1737,14 @@ void CvUnit::updateCombat(bool bQuick)
 			// Civ4 Reimagined: Mongol UP
 			if (GET_PLAYER(getOwnerINLINE()).isCityRevoltOnKill() && pDefenderCity != NULL)
 			{
-				if (pDefenderCity->getPopulation() <= 12 && pDefenderCity->getOccupationTimer() == 0)
+				if (pDefenderCity->getPopulation() <= 14 && pDefenderCity->getOccupationTimer() == 0)
 				{
 					pDefenderCity->changeCultureUpdateTimer(1);
 					pDefenderCity->changeOccupationTimer(1);
+
+					szBuffer = gDLL->getText("TXT_KEY_MISC_CITY_REVOLT_MONGOL", pDefenderCity->getNameKey());
+					gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_REVOLTSTART", MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pDefenderCity->plot()->getX_INLINE(), pDefenderCity->plot()->getY_INLINE());
+					gDLL->getInterfaceIFace()->addHumanMessage(pDefenderCity->getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_REVOLTSTART", MESSAGE_TYPE_INFO, NULL, (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pDefenderCity->plot()->getX_INLINE(), pDefenderCity->plot()->getY_INLINE());
 				}
 			}
 
