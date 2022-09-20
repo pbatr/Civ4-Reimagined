@@ -29867,7 +29867,7 @@ UnitTypes CvPlayer::getStrongestPossibleLandUnit() const
 	{
 		eLoopUnit = (UnitTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits(iI);
 
-		if (eLoopUnit != NO_UNIT && GC.getUnitInfo(eLoopUnit).getDomainType() == DOMAIN_LAND)
+		if (eLoopUnit != NO_UNIT && GC.getUnitInfo(eLoopUnit).getDomainType() == DOMAIN_LAND && !isNationalUnitClass((UnitClassTypes)iI))
 		{
 			if (pCapitalCity->canTrain(eLoopUnit))
 			{
