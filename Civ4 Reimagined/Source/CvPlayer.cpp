@@ -30050,6 +30050,7 @@ void CvPlayer::updateUniquePowers(TechTypes eTech)
 
 		if (eTech == (TechTypes)GC.getInfoTypeForString("TECH_PRINTING_PRESS"))
 		{
+			changeImprovementYieldChange((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_VILLAGE"), YIELD_COMMERCE, -1);
 			changeImprovementYieldChange((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_TOWN"), YIELD_COMMERCE, -1);
 		}
 	}
@@ -30409,8 +30410,9 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_ANCIENT)
 		{
 			changeBuildingProductionModifierFromCapital(50);
+			changeImprovementYieldChange((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_VILLAGE"), YIELD_COMMERCE, 1);
 			changeImprovementYieldChange((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_TOWN"), YIELD_COMMERCE, 1);
-			changeFreeUnitsOnConquest(GC.getDefineINT("UNIQUE_POWER_ROME")); //TODO
+			changeFreeUnitsOnConquest(GC.getDefineINT("UNIQUE_POWER_ROME"));
 			changeRouteChange((RouteTypes)GC.getInfoTypeForString("ROUTE_ROAD"), -10);
 			notifyUniquePowersChanged(true);
 		}			
