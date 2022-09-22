@@ -613,7 +613,7 @@ class MapConstants :
 
         #What temperature will be considered hot enough to be jungle. Temperatures range
         #from coldest 0.0 to hottest 1.0.
-        self.JungleTemp = .7
+        self.JungleTemp = .67 # Civ4 Reimagined, was .7
 
         # Temperate: 0 Tropical: 1 Arid: 2 Rocky: 3 Cold: 4
         self.iceChance = 1 # Chance of having iceberg at top/bottom of map
