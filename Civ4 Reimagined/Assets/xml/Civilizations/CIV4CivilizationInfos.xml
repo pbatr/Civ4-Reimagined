@@ -238,6 +238,12 @@
 					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>-1</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_OIL</BonusType>
@@ -501,6 +507,10 @@
 					<FeatureType>FEATURE_FLOOD_PLAINS</FeatureType>
 					<iBias>1</iBias>
 				</FeatureBias>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>-1</iBias>
+				</FeatureBias>
 			</FeatureBiases>
 			<BonusBiases>
 				<BonusBias>
@@ -630,6 +640,12 @@
 					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>-1</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_HORSE</BonusType>
@@ -755,6 +771,12 @@
 					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>-1</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_IVORY</BonusType>
@@ -884,6 +906,10 @@
 				<FeatureBias>
 					<FeatureType>FEATURE_FOREST</FeatureType>
 					<iBias>3</iBias>
+				</FeatureBias>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>-1</iBias>
 				</FeatureBias>
 			</FeatureBiases>
 			<InitialCivics>
@@ -1159,6 +1185,10 @@
 					<FeatureType>FEATURE_FLOOD_PLAINS</FeatureType>
 					<iBias>3</iBias>
 				</FeatureBias>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>-1</iBias>
+				</FeatureBias>
 			</FeatureBiases>
 			<BonusBiases>
 				<BonusBias>
@@ -1286,6 +1316,12 @@
 					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>-1</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -1539,6 +1575,10 @@
 					<FeatureType>FEATURE_FOREST</FeatureType>
 					<iBias>1</iBias>
 				</FeatureBias>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>-1</iBias>
+				</FeatureBias>
 			</FeatureBiases>
 			<BonusBiases>
 				<BonusBias>
@@ -1686,6 +1726,10 @@
 					<FeatureType>FEATURE_FOREST</FeatureType>
 					<iBias>1</iBias>
 				</FeatureBias>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>-1</iBias>
+				</FeatureBias>
 			</FeatureBiases>
 			<BonusBiases>
 				<BonusBias>
@@ -1824,6 +1868,12 @@
 					<iBias>3</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>-1</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_MARBLE</BonusType>
@@ -1958,6 +2008,10 @@
 				<FeatureBias>
 					<FeatureType>FEATURE_FOREST</FeatureType>
 					<iBias>1</iBias>
+				</FeatureBias>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>-1</iBias>
 				</FeatureBias>
 			</FeatureBiases>
 			<InitialCivics>
@@ -2643,6 +2697,12 @@
 					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>-1</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_RICE</BonusType>
@@ -3008,6 +3068,12 @@
 					<iBias>3</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>-1</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_HORSE</BonusType>
@@ -3267,6 +3333,12 @@
 					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>-1</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -3377,6 +3449,12 @@
 					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>-1</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -3524,6 +3602,12 @@
 					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>-1</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_HORSE</BonusType>
@@ -3661,6 +3745,12 @@
 					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>-1</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -3784,13 +3874,15 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>-1</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_WINE</BonusType>
-					<iBias>3</iBias>
-				</BonusBias>
-				<BonusBias>
-					<BonusType>BONUS_MARBLE</BonusType>
 					<iBias>3</iBias>
 				</BonusBias>
 				<BonusBias>
@@ -3918,6 +4010,12 @@
 					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>-2</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_HORSE</BonusType>
@@ -4055,6 +4153,12 @@
 					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>-1</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_HORSE</BonusType>
@@ -4185,6 +4289,10 @@
 					<FeatureType>FEATURE_FLOOD_PLAINS</FeatureType>
 					<iBias>2</iBias>
 				</FeatureBias>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>-1</iBias>
+				</FeatureBias>
 			</FeatureBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
@@ -4303,6 +4411,12 @@
 					<iBias>1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>-2</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>
@@ -4407,6 +4521,12 @@
 				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
+			<FeatureBiases>
+				<FeatureBias>
+					<FeatureType>FEATURE_JUNGLE</FeatureType>
+					<iBias>1</iBias>
+				</FeatureBias>
+			</FeatureBiases>
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_GEMS</BonusType>
