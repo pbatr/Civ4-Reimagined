@@ -25192,19 +25192,19 @@
 			<iDominationVictoryWeight>40</iDominationVictoryWeight>
 			<iDiplomacyVictoryWeight>25</iDiplomacyVictoryWeight>
 			<!-- BBAI Victory Strategy -->
-			<iMaxWarRand>150</iMaxWarRand>
+			<iMaxWarRand>120</iMaxWarRand>
 			<iMaxWarNearbyPowerRatio>110</iMaxWarNearbyPowerRatio>
-			<iMaxWarDistantPowerRatio>80</iMaxWarDistantPowerRatio>
+			<iMaxWarDistantPowerRatio>75</iMaxWarDistantPowerRatio>
 			<iMaxWarMinAdjacentLandPercent>0</iMaxWarMinAdjacentLandPercent>
 			<iLimitedWarRand>80</iLimitedWarRand>
 			<iLimitedWarPowerRatio>100</iLimitedWarPowerRatio>
-			<iDogpileWarRand>25</iDogpileWarRand>
+			<iDogpileWarRand>75</iDogpileWarRand>
 			<iMakePeaceRand>80</iMakePeaceRand>
 			<iDeclareWarTradeRand>40</iDeclareWarTradeRand>
 			<iDemandRebukedSneakProb>80</iDemandRebukedSneakProb>
 			<iDemandRebukedWarProb>20</iDemandRebukedWarProb>
 			<iRazeCityProb>50</iRazeCityProb>
-			<iBuildUnitProb>40</iBuildUnitProb>
+			<iBuildUnitProb>30</iBuildUnitProb>
 			<iBaseAttackOddsChange>4</iBaseAttackOddsChange>
 			<iAttackOddsChangeRand>8</iAttackOddsChangeRand>
 			<iWorseRankDifferenceAttitudeChange>-1</iWorseRankDifferenceAttitudeChange>
@@ -25663,6 +25663,10 @@
 			<UnitAIWeightModifiers>
 				<UnitAIWeightModifier>
 					<UnitAIType>UNITAI_ASSAULT_SEA</UnitAIType>
+					<iWeightModifier>100</iWeightModifier>
+				</UnitAIWeightModifier>
+				<UnitAIWeightModifier>
+					<UnitAIType>UNITAI_PIRATE_SEA</UnitAIType>
 					<iWeightModifier>100</iWeightModifier>
 				</UnitAIWeightModifier>
 			</UnitAIWeightModifiers>
