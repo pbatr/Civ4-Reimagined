@@ -30262,7 +30262,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		{
 			changeReligiousVoteModifier(100);
 			changeVoteSourceStateReligionUnitProductionModifier(50);
-			changeGreatSpyPointsFromImprovementInRadius((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FORT"), 6);
+			changeGreatSpyPointsFromImprovementInRadius((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FORT"), 10);
 			changeAnarchyModifier(100);
 			notifyUniquePowersChanged(true);
 		}

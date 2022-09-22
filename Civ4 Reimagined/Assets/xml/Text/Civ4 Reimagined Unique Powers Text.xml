@@ -293,7 +293,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_HOLY_ROMAN</Tag>
-		<English>After entering the Medieval Era: Additional progress to Great Spy (+6[ICON_GREATPEOPLE]) in cities with a Fort in City radius. Double Anarchy length. If Pope has good relations (pleased or friendly) to Holy Romans: Double vote count in Apostolic Palace and +50% unit production in cities with Apostolic Palace religion if it is also state religion.</English>
+		<English>After entering the Medieval Era: Anarchy takes twice as long and time between civic and religion changes is doubled. Additional progress to Great Spy (+10[ICON_GREATPEOPLE]) in cities with a Fort in City radius. Higher spread chance of Apostolic Palace religion to Holy Roman cities. If Pope has good relations (pleased or friendly) to Holy Romans: Double vote count in Apostolic Palace and +50% unit production in cities with Apostolic Palace religion if it is also state religion.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_FRANCE</Tag>
