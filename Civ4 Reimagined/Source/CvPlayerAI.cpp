@@ -2883,7 +2883,7 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 
 	CvPlot* pPlot = GC.getMapINLINE().plotINLINE(iX, iY);
 	CvArea* pArea = pPlot->area();
-	const bool bIsCoastal = pPlot->isCoastalLand(GC.getMIN_WATER_SIZE_FOR_OCEAN());
+	const bool bIsCoastal = pPlot->isCoastalLand(GC.getMIN_WATER_SIZE_FOR_OCEAN()); 
 	const int iNumAreaCities = pArea->getCitiesPerPlayer(getID());
 	const CvTeamAI& kTeam = GET_TEAM(getTeam());
 
@@ -3663,6 +3663,8 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 				if (bNeutralTerritory && pArea->getNumTiles() >= GC.getDefineINT("MINIMUM_NUM_TILES_FOR_CONTINENT"))
 				{
 					iValue += getColonyTraderouteModifier() * 3;
+					iValue += getOverseaTradeRouteModifier() * 3;
+					iValue += isStateReligion() ? -getReligiousColonyMaintenanceModifier() * 2 : 0;
 					iValue += iResourceValue > 0 ? (kSet.bSeafaring ? 2000 : 1000) : 200;
 				}
 				else
@@ -3795,6 +3797,11 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 							iGreaterBadTile++; // add at least 1 badness point for other islands.
 						// K-Mod end
 					}
+				}
+				else
+				{
+					// Civ4 Reimagined: Tiles outside of the map
+					iGreaterBadTile += 3;
 				}
 			}
 		}
@@ -5508,7 +5515,8 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 	if (kTechInfo.isIrrigation())
 	{
-		iValue += 16 * iCityCount;
+		// Civ4 Reimagined: Khmer UP
+		iValue += ((getFreshWaterHealthModifier() > 0) ? 50 : 16) * iCityCount;
 	}
 
 	if (kTechInfo.isIgnoreIrrigation())
@@ -13309,6 +13317,13 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 					{
 						iExploreValue *= 3;
 					}
+
+					// Civ4 Reimagined: Portugal UP
+					if (getCurrentEra() <= 3)
+					{
+						iExploreValue *= 100 + getTradeGoldModifierPerForeignResource();
+						iExploreValue /= 100;
+					}
 				}
 			}
 			iValue += (GC.getUnitInfo(eUnit).getMoves() * iExploreValue);
@@ -13368,6 +13383,12 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 		iValue += iCombatValue;
 		iValue += iCombatValue * GC.getUnitInfo(eUnit).getMoves();
 		iValue += iCombatValue * GC.getUnitInfo(eUnit).getBlockadeGoldModifier() / 25;
+
+		// Civ4 Reimagined
+		if (isPirateGold())
+		{
+			iValue *= 2;
+		}
 		break;
 
 	case UNITAI_ATTACK_AIR:
@@ -13664,8 +13685,13 @@ int CvPlayerAI::AI_neededMissionaries(CvArea* pArea, ReligionTypes eReligion) co
         iCount = std::max(iCount, (pArea->getCitiesPerPlayer(getID()) - pArea->countHasReligion(eReligion, getID())));
         if (iCount > 0)
         {
-            if (!bCultureVictory)
-	{
+        	// Civ4 Reimagined
+        	if (!AI_isPrimaryArea(pArea) && getReligiousColonyMaintenanceModifier() < 0)
+			{
+				iCount++;
+			}
+            else if (!bCultureVictory)
+            {
                 iCount = std::max(1, iCount / (bHoly ? 2 : 4));
             }
             return iCount;
@@ -14360,18 +14386,23 @@ int CvPlayerAI::AI_corporationValue(CorporationTypes eCorporation, const CvCity*
 	}
 
 	// maintenance cost
-	int iTempValue = kCorp.getMaintenance() * iBonuses;
-	iTempValue *= GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getCorporationMaintenancePercent();
-	iTempValue /= 100;
-	iTempValue += iMaintenance;
+	int iMaintenanceCost = kCorp.getMaintenance() * iBonuses;
+
+	iMaintenanceCost *= GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getCorporationMaintenancePercent();
+	iMaintenanceCost /= 100;
+
+	iMaintenanceCost *= 100 + getCorporationMaintenanceModifier();
+	iMaintenanceCost /= 100;
+
+	iMaintenance += iMaintenanceCost;
 	// Inflation, population, and maintenance modifiers... lets just approximate them like this:
-	iTempValue *= 2;
-	iTempValue /= 3;
+	iMaintenance *= 2;
+	iMaintenance /= 3;
 
-	iTempValue *= AI_commerceWeight(COMMERCE_GOLD);
-	iTempValue /= 100;
+	iMaintenance *= AI_commerceWeight(COMMERCE_GOLD);
+	iMaintenance /= 100;
 
-	iValue -= iTempValue;
+	iValue -= iMaintenance;
 
 	// bonus produced by the corp
 	BonusTypes eBonusProduced = (BonusTypes)kCorp.getBonusProduced();
@@ -17517,9 +17548,16 @@ int CvPlayerAI::AI_religionValue(ReligionTypes eReligion) const
 	{
 		for (VoteSourceTypes i = (VoteSourceTypes)0; i < GC.getNumVoteSourceInfos(); i = (VoteSourceTypes)(i+1))
 		{
-			if (isLoyalMember(i) && GC.getGameINLINE().isDiploVote(i) && GC.getGameINLINE().getVoteSourceReligion(i) == eReligion)
+			if (GC.getGameINLINE().isDiploVote(i) && GC.getGameINLINE().getVoteSourceReligion(i) == eReligion)
 			{
-				iDiplomaticModifier = iDiplomaticBase/3;
+				if (isLoyalMember(i))
+				{
+					iDiplomaticModifier = iDiplomaticBase/3;
+				}
+
+				// Civ4 Reimagined
+				iDiplomaticModifier *= 100 + 10 * getVoteSourceStateReligionUnitProductionModifier();
+				iDiplomaticModifier /= 100;
 			}
 		}
 	}
@@ -24285,6 +24323,38 @@ void CvPlayerAI::AI_updateGreatPersonWeights()
 				}
 			}
 		}
+
+		// Civ4 Reimagined: German uP
+		if (eGreatPerson == (UnitTypes)GC.getInfoTypeForString("UNIT_GREAT_GENERAL"))
+		{
+			iValue *= 100 + 3 * getGreatGeneralGoldenAgeLength();
+			iValue /= 100;
+		}
+
+		// Civ4 Reimagined: Korean UP
+		if (eGreatPerson == (UnitTypes)GC.getInfoTypeForString("UNIT_ARTIST") && isGainGreatWorkGoldWithHitBonuses())
+		{
+			CvCity* pCapitalCity = getCapitalCity();
+
+			if (pCapitalCity != NULL)
+			{
+				int iModifier = 100;
+
+				if (pCapitalCity->getNumBonuses((BonusTypes)GC.getInfoTypeForString("BONUS_MUSIC")) > 0)
+				{
+					iModifier += 50;
+				}
+
+				if (pCapitalCity->getNumBonuses((BonusTypes)GC.getInfoTypeForString("BONUS_MOVIES")) > 0)
+				{
+					iModifier += 50;
+				}
+
+				iValue *= 100 + iModifier;
+				iValue /= 100;
+			}
+		}
+
 		// don't bother trying to evaluate bulbing etc. That kind of value is too volatile anyway.
 
 		// store the value in the weights map - but remember, this isn't yet the actual weight.

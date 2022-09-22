@@ -6796,8 +6796,20 @@ void CvUnitAI::AI_pirateSeaMove()
 		}
 	}
 
+	// Civ4 Reimagined
+	if (AI_coastalRaid(1, 10))
+	{
+		return;
+	}
+
 	// Civ4 Reimagined: Pillage first and then start blockading
-	if (AI_pillageRange(3))
+	if (AI_pillageRange(2))
+	{
+		return;
+	}
+
+	// Civ4 Reimagined
+	if (AI_coastalRaid(1))
 	{
 		return;
 	}
@@ -17166,6 +17178,132 @@ bool CvUnitAI::AI_pillageRange(int iRange, int iBonusValueThreshold, int iFlags)
 		{
 			FAssert(!atPlot(pBestPlot));
 			getGroup()->pushMission(MISSION_MOVE_TO, pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE(), iFlags, false, false, MISSIONAI_PILLAGE, pBestPillagePlot);
+			getGroup()->pushMission(MISSION_PILLAGE, -1, -1, 0, false, false, MISSIONAI_PILLAGE, pBestPillagePlot); // Civ4 Reimagined
+			return true;
+		}
+	}
+
+	return false;
+}
+
+
+// CIv4 Reimagined
+// Returns true if a mission was pushed...
+bool CvUnitAI::AI_coastalRaid(int iRange, int iBonusValueThreshold, int iFlags)
+{
+	PROFILE_FUNC();
+
+	CvPlot* pLoopPlot;
+	CvPlot* pBestPlot;
+	CvPlot* pBestPillagePlot;
+	int iSearchRange;
+	int iPathTurns;
+	int iValue;
+	int iBestValue;
+	int iDX, iDY;
+
+	if (!canCoastalRaid())
+	{
+		return false;
+	}
+
+	iSearchRange = AI_searchRange(iRange);
+
+	iBestValue = 0;
+	pBestPlot = NULL;
+	pBestPillagePlot = NULL;
+
+	for (iDX = -(iSearchRange); iDX <= iSearchRange; iDX++)
+	{
+		for (iDY = -(iSearchRange); iDY <= iSearchRange; iDY++)
+		{
+			pLoopPlot = plotXY(getX_INLINE(), getY_INLINE(), iDX, iDY);
+
+			if (pLoopPlot != NULL)
+			{
+				const bool bPlotRevealed = !m_pUnitInfo->isNoRevealMap() || !willRevealByMove(pLoopPlot);
+
+				if (bPlotRevealed && pLoopPlot->isCoastalLand() && !pLoopPlot->isCity() && !pLoopPlot->isBarbarian())
+				{
+					if (potentialWarAction(pLoopPlot))
+					{
+                        CvCity * pWorkingCity = pLoopPlot->getWorkingCity();
+
+                        if (pWorkingCity != NULL)
+                        {
+                            if (canPillage(pLoopPlot) && pLoopPlot->getImprovementType() != NO_IMPROVEMENT)
+                            {
+                                if (GET_PLAYER(getOwnerINLINE()).AI_plotTargetMissionAIs(pLoopPlot, MISSIONAI_PILLAGE, getGroup()) == 0)
+                                {
+                                	for (int iI = 0; iI < NUM_DIRECTION_TYPES; ++iI)
+									{
+										CvPlot* pAdjacentPlot = plotDirection(pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE(), ((DirectionTypes)iI));
+
+										if (pAdjacentPlot != NULL && pAdjacentPlot->getArea() == getArea())
+										{
+											if (generatePath(pAdjacentPlot, iFlags, true, &iPathTurns, iRange))
+		                                    {
+		                                        if (getPathFinder().GetFinalMoves() == 0)
+		                                        {
+		                                            iPathTurns++;
+		                                        }
+
+		                                        if (iPathTurns <= iRange)
+		                                        {
+		                                            iValue = AI_pillageValue(pLoopPlot, iBonusValueThreshold);
+
+		                                            iValue *= 1000;
+
+		                                            iValue /= (iPathTurns + 1);
+
+													// if not at war with this plot owner, then devalue plot if we already inside this owner's borders
+													// (because declaring war will pop us some unknown distance away)
+													if (!isEnemy(pLoopPlot->getTeam()) && plot()->getTeam() == pLoopPlot->getTeam())
+													{
+														iValue /= 10;
+													}
+
+		                                            if (iValue > iBestValue)
+		                                            {
+		                                                iBestValue = iValue;
+		                                                pBestPlot = getPathEndTurnPlot();
+		                                                pBestPillagePlot = pLoopPlot;
+		                                            }
+		                                        }
+		                                    }
+										}
+									}
+                                }
+                            }
+                        }
+					}
+				}
+			}
+		}
+	}
+
+	if ((pBestPlot != NULL) && (pBestPillagePlot != NULL))
+	{
+		if (atPlot(pBestPlot) && !isEnemy(pBestPillagePlot->getTeam()))
+		{
+			//getGroup()->groupDeclareWar(pBestPillagePlot, true);
+			// rather than declare war, just find something else to do, since we may already be deep in enemy territory
+			return false;
+		}
+		
+		if (atPlot(pBestPlot))
+		{
+			if (isEnemy(pBestPillagePlot->getTeam()) && canCoastalRaidAt(pBestPlot, pBestPillagePlot->getX_INLINE(), pBestPillagePlot->getY_INLINE()))
+			{
+				getGroup()->pushMission(MISSION_COASTAL_RAID, pBestPillagePlot->getX_INLINE(), pBestPillagePlot->getY_INLINE());
+				return true;
+			}
+		}
+		else
+		{
+			FAssert(!atPlot(pBestPlot));
+			getGroup()->pushMission(MISSION_MOVE_TO, pBestPlot->getX_INLINE(), pBestPlot->getY_INLINE(), iFlags, false, false, MISSIONAI_PILLAGE, pBestPillagePlot);
+			getGroup()->pushMission(MISSION_COASTAL_RAID, pBestPillagePlot->getX_INLINE(), pBestPillagePlot->getY_INLINE());
 			return true;
 		}
 	}

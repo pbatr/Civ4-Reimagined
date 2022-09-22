@@ -455,6 +455,13 @@ int CvCityAI::AI_permanentSpecialistValue(SpecialistTypes eSpecialist) const
 	for (int iI = 0; iI < NUM_COMMERCE_TYPES; iI++)
 	{
 		int iTemp = iCommerceValue * kPlayer.specialistCommerce(eSpecialist, (CommerceTypes)iI);
+
+		// Civ4 Reimagined
+		if (isCapital())
+		{
+			iTemp += kPlayer.getGreatPeopleExtraCommerceInCapital((CommerceTypes)iI);
+		}
+
 		if (iTemp != 0)
 		{
 			iTemp *= getTotalCommerceRateModifier((CommerceTypes)iI);
@@ -498,7 +505,8 @@ int CvCityAI::AI_permanentSpecialistValue(SpecialistTypes eSpecialist) const
 		iValue += iTempValue;
 	}
 	
-	int iExperience = GC.getSpecialistInfo(eSpecialist).getExperience();
+	// Civ4 Reimagined
+	int iExperience = GC.getSpecialistInfo(eSpecialist).getExperience() + kPlayer.getExtraSpecialistExperience(eSpecialist);
 	if (0 != iExperience)
 	{
 		int iProductionRank = findYieldRateRank(YIELD_PRODUCTION);
@@ -7521,7 +7529,7 @@ void CvCityAI::AI_getYieldMultipliers(int &iFoodMultiplier, int &iProductionMult
 	// Civ4 Reimagined: Khmer needs more value for Food
 	if (kPlayer.getFreshWaterHealthModifier() > 0)
 	{
-		iFoodMultiplier *= 100 + kPlayer.getFreshWaterHealthModifier();
+		iFoodMultiplier *= 100 + kPlayer.getFreshWaterHealthModifier() + (getFarmAdjacencyBonus(YIELD_FOOD) > 0) ? 100 : 0;
 		iFoodMultiplier /= 100;
 	}
 
@@ -9060,6 +9068,16 @@ bool CvCityAI::AI_bestSpreadUnit(bool bMissionary, bool bExecutive, int iBaseCha
 					iRoll *= (kPlayer.getStateReligion() == eReligion) ? 170 : 65;
 					iRoll /= 100;
 				}
+				// Civ4 Reimagined
+				for (VoteSourceTypes i = (VoteSourceTypes)0; i < GC.getNumVoteSourceInfos(); i = (VoteSourceTypes)(i+1))
+				{
+					if (GC.getGameINLINE().isDiploVote(i) && GC.getGameINLINE().getVoteSourceReligion(i) == eReligion && kPlayer.getNumCities() > iHasCount)
+					{
+						iRoll *= 100 + getVoteSourceStateReligionUnitProductionModifier();
+						iRoll /= 100;
+					}
+				}
+
 				if (kPlayer.AI_isDoVictoryStrategy(AI_VICTORY_CULTURE2))
 				{
 					iRoll += 25;
@@ -10691,6 +10709,14 @@ int CvCityAI::AI_jobChangeValue(std::pair<bool, int> new_job, std::pair<bool, in
 					? 3
 					: 4;
 			// note: each point of iEmphasisCount reduces the value at the end.
+
+			// Civ4 Reimagined
+			iGPPGained *= 100 + kOwner.getGreatPeopleRateChangeModifier((SpecialistTypes)new_job.second);
+			iGPPGained /= 100;
+
+			// Civ4 Reimagined
+			iGPPLost *= 100 + kOwner.getGreatPeopleRateChangeModifier((SpecialistTypes)old_job.second);
+			iGPPLost /= 100;
 
 			int iGPPValue = 0;
 

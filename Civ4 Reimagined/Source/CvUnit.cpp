@@ -5085,15 +5085,7 @@ bool CvUnit::canPillage(const CvPlot* pPlot) const
 	{
 		if (!potentialWarAction(pPlot))
 		{
-/*
-** K-Mod, 16/dec/10, karadoc
-** enabled the pillaging of own roads
-*/
-			/* original bts code
-			if ((pPlot->getImprovementType() == NO_IMPROVEMENT) || (pPlot->getOwnerINLINE() != getOwnerINLINE()))
-			*/
 			if (pPlot->getOwnerINLINE() != getOwnerINLINE() || (pPlot->getImprovementType() == NO_IMPROVEMENT && !pPlot->isRoute()))
-// K-Mod end
 			{
 				return false;
 			}
@@ -5105,8 +5097,9 @@ bool CvUnit::canPillage(const CvPlot* pPlot) const
 			return false;
 		}
 	}
-		
-	if (!(pPlot->isValidDomainForAction(*this)))
+
+	// Civ4 Reimagined: Add check for coastal raid
+	if (!(pPlot->isValidDomainForAction(*this)) && !(canCoastalRaid() && pPlot->isCoastalLand()))
 	{
 		return false;
 	}
@@ -5235,12 +5228,12 @@ bool CvUnit::pillage()
 
 				szBuffer = gDLL->getText("TXT_KEY_MISC_PLUNDERED_GOLD_FROM_IMP", iPillageGold, GC.getImprovementInfo(pPlot->getImprovementType()).getTextKeyWide());
 				gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_PILLAGE", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
+			}
 
-				if (pPlot->isOwned())
-				{
-					szBuffer = gDLL->getText("TXT_KEY_MISC_IMP_DESTROYED", GC.getImprovementInfo(pPlot->getImprovementType()).getTextKeyWide(), getNameKey(), getVisualCivAdjective(pPlot->getTeam()));
-					gDLL->getInterfaceIFace()->addHumanMessage(pPlot->getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_PILLAGED", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pPlot->getX_INLINE(), pPlot->getY_INLINE(), true, true);
-				}
+			if (pPlot->isOwned())
+			{
+				szBuffer = gDLL->getText("TXT_KEY_MISC_IMP_DESTROYED", GC.getImprovementInfo(pPlot->getImprovementType()).getTextKeyWide(), getNameKey(), getVisualCivAdjective(pPlot->getTeam()));
+				gDLL->getInterfaceIFace()->addHumanMessage(pPlot->getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_PILLAGED", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pPlot->getX_INLINE(), pPlot->getY_INLINE(), true, true);
 			}
 		}
 
@@ -14010,7 +14003,7 @@ bool CvUnit::canCoastalRaidAt(const CvPlot* pPlot, int iX, int iY) const
 			return false;
 		}
 
-		if (GET_PLAYER(pPlot->getOwnerINLINE()).isNoPillage())
+		if (GET_PLAYER(pTargetPlot->getOwnerINLINE()).isNoPillage())
 		{
 			return false;
 		}
@@ -14085,13 +14078,13 @@ bool CvUnit::coastalRaid(int iX, int iY)
 
 				szBuffer = gDLL->getText("TXT_KEY_MISC_PLUNDERED_GOLD_FROM_IMP", iPillageGold, GC.getImprovementInfo(pPlot->getImprovementType()).getTextKeyWide());
 				gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_PILLAGE", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pPlot->getX_INLINE(), pPlot->getY_INLINE());
-
-				if (pPlot->isOwned())
-				{
-					szBuffer = gDLL->getText("TXT_KEY_MISC_IMP_DESTROYED", GC.getImprovementInfo(pPlot->getImprovementType()).getTextKeyWide(), getNameKey(), getVisualCivAdjective(pPlot->getTeam()));
-					gDLL->getInterfaceIFace()->addHumanMessage(pPlot->getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_PILLAGED", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pPlot->getX_INLINE(), pPlot->getY_INLINE(), true, true);
-				}
 			}
+		}
+
+		if (pPlot->isOwned())
+		{
+			szBuffer = gDLL->getText("TXT_KEY_MISC_IMP_DESTROYED", GC.getImprovementInfo(pPlot->getImprovementType()).getTextKeyWide(), getNameKey(), getVisualCivAdjective(pPlot->getTeam()));
+			gDLL->getInterfaceIFace()->addHumanMessage(pPlot->getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_PILLAGED", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pPlot->getX_INLINE(), pPlot->getY_INLINE(), true, true);
 		}
 
 		pPlot->setImprovementType((ImprovementTypes)(GC.getImprovementInfo(pPlot->getImprovementType()).getImprovementPillage()));
@@ -14101,6 +14094,9 @@ bool CvUnit::coastalRaid(int iX, int iY)
 		eTempRoute = pPlot->getRouteType();
 		pPlot->setRouteType(NO_ROUTE, true); // XXX downgrade rail???
 	}
+
+	if (gUnitLogLevel > 2)
+		logBBAI("%S did coastal raid on plot (%d, %d)", getNameKey(), pPlot->getX_INLINE(), pPlot->getY_INLINE());
 
 	setMadeAttack(true);
 

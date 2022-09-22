@@ -14031,8 +14031,18 @@ int CvCity::getReligionGrip(ReligionTypes eReligion) const
 	int iTurnFounded = GC.getGame().getReligionGameTurnFounded(eReligion);
 	int iTimeScale = GC.getDefineINT("RELIGION_INFLUENCE_TIME_SCALE")*GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getVictoryDelayPercent()/100;
 	iScore += GC.getDefineINT("RELIGION_INFLUENCE_TIME_WEIGHT") * (iTurnFounded + iTimeScale) / (iCurrentTurn + iTimeScale);
-	
-	//Civ4 Reimagined: todo log this value.. maybe overflow?
+
+	// Civ4 Reimagined: Holy Rome UP
+	if (GET_PLAYER(getOwnerINLINE()).getReligiousVoteModifier() > 0)
+	{
+		for (int iI = 0; iI < GC.getNumVoteSourceInfos(); ++iI)
+		{
+			if (GC.getGameINLINE().getVoteSourceReligion((VoteSourceTypes)iI) == eReligion)
+			{
+				iScore *= 3;
+			}
+		}
+	}
 
 	return iScore; // note. the random part is not included in this function.
 }
@@ -15954,6 +15964,18 @@ void CvCity::doReligion()
 						int iSpread = pLoopCity->getReligionInfluence(eLoopReligion);
 
 						iSpread *= GC.getReligionInfo(eLoopReligion).getSpreadFactor();
+
+						// Civ4 Reimagined: Holy Rome UP
+						if (GET_PLAYER(getOwnerINLINE()).getReligiousVoteModifier() > 0)
+						{
+							for (int iK = 0; iK < GC.getNumVoteSourceInfos(); ++iK)
+							{
+								if (GC.getGameINLINE().getVoteSourceReligion((VoteSourceTypes)iK) == eLoopReligion)
+								{
+									iSpread *= 3;
+								}
+							}
+						}
 
 						if (iSpread > 0)
 						{
