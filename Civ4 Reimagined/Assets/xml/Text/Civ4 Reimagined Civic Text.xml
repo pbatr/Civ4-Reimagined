@@ -9,13 +9,13 @@
 <Civ4GameText xmlns="http://www.firaxis.com">	
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_CORVEE_SYSTEM</Tag>
-		<English>Corvée System</English>
-		<French>Corvées</French>
+		<English>Corv&#233;e System</English>
+		<French>Corv&#233;es</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_WE_LOVE_CONSUL</Tag>
 		<English>"We Love the Consul Day"</English>
-		<French>"Journée à la gloire du Consul"</French>
+		<French>"Journ&#233;e à la gloire du Consul"</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_TYRANNY</Tag>
@@ -30,7 +30,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_CITY_STATES</Tag>
 		<English>City States</English>
-		<French>Cités-Etats</French>
+		<French>Cit&#233;s-Etats</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_AUTOCRACY</Tag>
@@ -95,12 +95,12 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_CENTRAL_PLANNING</Tag>
 		<English>Central Planning</English>
-		<French>Economie planifiée</French>
+		<French>Economie planifi&#233;e</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_PANTHEON</Tag>
 		<English>Pantheon</English>
-		<French>Panthéon</French>
+		<French>Panth&#233;on</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_SCHOLASTICISM</Tag>
@@ -115,7 +115,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_SECULARISM</Tag>
 		<English>Secularism</English>
-		<French>Laïcité</French>
+		<French>Laïcit&#233;</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_MILITIA</Tag>
@@ -135,12 +135,12 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_LEVY_ARMIES</Tag>
 		<English>Levy Armies</English>
-		<French>Levées</French>
+		<French>Lev&#233;es</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_STANDING_ARMY</Tag>
 		<English>Professional Army</English>
-		<French>Armée de métier</French>
+		<French>Arm&#233;e de m&#233;tier</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_CONSCRIPTION</Tag>
@@ -150,22 +150,22 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_REPUBLIC</Tag>
 		<English>Republic</English>
-		<French>République</French>
+		<French>R&#233;publique</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_LIMITED_UNIT_HAPPINESS</Tag>
 		<English>[ICON_BULLET]%D1_PerUnit%F2_HappyOrSad per Military Unit Stationed in a City up to a Maximum of %D3</English>
-		<French>[ICON_BULLET]%D1_PerUnit%F2_HappyOrSad par unité militaire en garnison dans une ville, avec un maximum de %D3</French>
+		<French>[ICON_BULLET]%D1_PerUnit%F2_HappyOrSad par unit&#233; militaire en garnison dans une ville, avec un maximum de %D3</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_PER_SPECIALIST_THRESHOLD</Tag>
 		<English>[SPACE]per Specialist in %d1_NumCities Largest Cities if They Work at Most %d2 Tiles</English>
-		<French>[SPACE]par spécialiste dans les %d1_NumCities plus grandes villes, si elles exploitent %d2 cases maximum</French>
+		<French>[SPACE]par sp&#233;cialiste dans les %d1_NumCities plus grandes villes, si elles exploitent %d2 cases maximum</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_UNLIMTED</Tag>
 		<English>[ICON_BULLET]Doubled slots for[SPACE]</English>
-		<French>[ICON_BULLET]Emplacements doublés pour[SPACE]</French>
+		<French>[ICON_BULLET]Emplacements doubl&#233;s pour[SPACE]</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_HURRY_POPULATION_BUILDINGS</Tag>
@@ -178,17 +178,17 @@
 	<TEXT>
 		<Tag>TXT_KEY_HURRY_GOLD_BUILDINGS</Tag>
 		<English>Can Spend Gold to Finish Building Production in a City</English>
-		<French>Peut dépenser de l'or pour achever la production d'un bâtiment dans une ville</French>
+		<French>Peut d&#233;penser de l'or pour achever la production d'un bâtiment dans une ville</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_HURRY_GOLD_UNITS</Tag>
 		<English>Can Spend Gold to Finish Military Unit Production and Ignore Resource Requirements in a City</English>
-		<French>Peut dépenser de l'or pour achever la production d'une unité et ignorer les prérequis de ressources dans une ville</French>
+		<French>Peut d&#233;penser de l'or pour achever la production d'une unit&#233; et ignorer les pr&#233;requis de ressources dans une ville</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_BUILDING_DOUBLE_PRODUCTION</Tag>
 		<English>[ICON_BULLET]Double Production Speed for [LINK=literal]%s1_unit_or_building[\LINK]</English>
-		<French>[ICON_BULLET]Vitesse de production doublée pour [LINK=literal]%s1_unit_or_building[\LINK]</French>
+		<French>[ICON_BULLET]Vitesse de production doubl&#233;e pour [LINK=literal]%s1_unit_or_building[\LINK]</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_BUILDING_PRODUCTION_MODIFIER</Tag>
@@ -211,12 +211,12 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_DOMAIN_XP</Tag>
 		<English>[ICON_BULLET]+%d1 Experience for All %s2</English>
-		<French>[ICON_BULLET]+%d1 expérience pour tous les %s2</French>
+		<French>[ICON_BULLET]+%d1 exp&#233;rience pour tous les %s2</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_MERCENARIES_HELP</Tag>
 		<English>[ICON_BULLET]Hurried Units Start with the [LINK=literal]Mercenary[\LINK], [LINK=literal]Combat I[\LINK] and [LINK=literal]Combat II[\LINK] promotions, but receive no experience from buildings.</English>
-		<French>[ICON_BULLET]Les unités achetées démarrent avec les promotions [LINK=literal]Mercenary[\LINK], [LINK=literal]Combat I[\LINK] et [LINK=literal]Combat II[\LINK], mais ne reçoivent aucune expérience des bâtiments.</French>
+		<French>[ICON_BULLET]Les unit&#233;s achet&#233;es d&#233;marrent avec les promotions [LINK=literal]Mercenary[\LINK], [LINK=literal]Combat I[\LINK] et [LINK=literal]Combat II[\LINK], mais ne reçoivent aucune exp&#233;rience des bâtiments.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_SELF_SUFFICIENCY_HELP</Tag>
@@ -236,12 +236,12 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_FROM_DOMESTIC_TRADE_ROUTES</Tag>
 		<English>[SPACE]from Domestic Trade Routes ([ICON_TRADE])</English>
-		<French>[SPACE]de routes commerciales intérieures ([ICON_TRADE])</French>
+		<French>[SPACE]de routes commerciales int&#233;rieures ([ICON_TRADE])</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_FROM_COLONY_TRADE_ROUTES</Tag>
 		<English>[SPACE]from Domestic Sea Trade Routes ([ICON_TRADE])</English>
-		<French>[SPACE]de routes commerciales intérieures maritimes ([ICON_TRADE])</French>
+		<French>[SPACE]de routes commerciales int&#233;rieures maritimes ([ICON_TRADE])</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TRADE_ROUTE_MOD_CIVIC</Tag>
@@ -251,7 +251,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_UNIT_UPGRADE_COST</Tag>
 		<English>[SPACE]Unit Upgrade Cost</English>
-		<French>[SPACE]coût d'amélioration des unités</French>
+		<French>[SPACE]coût d'am&#233;lioration des unit&#233;s</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVICOPTION_GOVERNMENT</Tag>
@@ -276,7 +276,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_DRAFTING</Tag>
 		<English>[ICON_BULLET]Can [LINK=CONCEPT_DRAFT]Draft[\LINK] %d1_Num [NUM1:Unit:Units] per Turn</English>
-		<French>[ICON_BULLET]Peut [LINK=CONCEPT_DRAFT]Draft[\LINK] %d1_Num [NUM1:Unité:Unités] par tour</French>
+		<French>[ICON_BULLET]Peut [LINK=CONCEPT_DRAFT]Draft[\LINK] %d1_Num [NUM1:Unit&#233;:Unit&#233;s] par tour</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_NO_MILITARY_PRODUCTION_MALI</Tag>
@@ -287,17 +287,17 @@
 		<Tag>TXT_KEY_CIVIC_UNLIMITED_ANIMAL_XP</Tag>
 		<English>[ICON_BULLET]Unlimited Experience from Animals</English>
 		<German>[ICON_BULLET]Unbegrenzte Erfahrung von tierischen Einheiten</German>
-		<French>[ICON_BULLET]Expérience illimitée contre les animaux</French>
+		<French>[ICON_BULLET]Exp&#233;rience illimit&#233;e contre les animaux</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_FOREIGN_UNIT_SUPPLY</Tag>
 		<English>[SPACE]Foreign Unit Supply Cost</English>
-		<French>[SPACE]Coût d'entretien des unités hors des frontières</French>
+		<French>[SPACE]Coût d'entretien des unit&#233;s hors des frontières</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_PILLAGE_GAIN_MODIFIER</Tag>
 		<English>[SPACE]looted [ICON_GOLD] from Pillaged Tiles</English>
-		<French>[SPACE]reçu [ICON_GOLD] des cases pillées</French>
+		<French>[SPACE]reçu [ICON_GOLD] des cases pill&#233;es</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_POPULATION_UNHAPPINESS_MODIFIER</Tag>
@@ -306,12 +306,12 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_ORGANIZED_RELIGION_HELP</Tag>
 		<English>[ICON_BULLET]+5[ICON_COMMERCE] from State [ICON_RELIGION] Cathedrals.</English>
-		<French>[ICON_BULLET]+5[ICON_COMMERCE] par cathédrale de la [ICON_RELIGION] d'Etat.</French>
+		<French>[ICON_BULLET]+5[ICON_COMMERCE] par cath&#233;drale de la [ICON_RELIGION] d'Etat.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_THEOCRACY_HELP</Tag>
 		<English>[ICON_BULLET]+1[ICON_COMMERCE] from State [ICON_RELIGION] Temples, Monasteries and Cathedrals.</English>
-		<French>[ICON_BULLET]+1[ICON_COMMERCE] par temple, monastère et cathédrale de la [ICON_RELIGION] d'Etat.</French>
+		<French>[ICON_BULLET]+1[ICON_COMMERCE] par temple, monastère et cath&#233;drale de la [ICON_RELIGION] d'Etat.</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_COMMERCE_HAPPINESS</Tag>
@@ -330,7 +330,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_CAPITAL_EXTRA_YIELD_FROM_CITIES</Tag>
 		<English>in Capital per Additional City</English>
-		<French>dans la capitale par ville supplémentaire</French>
+		<French>dans la capitale par ville suppl&#233;mentaire</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_NO_CAPITAL</Tag>
@@ -345,7 +345,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_NO_FOREIGN_CULTURE_UNHAPPINESS</Tag>
 		<English>[ICON_BULLET]No [ICON_UNHAPPY] from Foreign Culture</English>
-		<French>[ICON_BULLET]Aucun [ICON_UNHAPPY] à cause de cultures étrangères</French>
+		<French>[ICON_BULLET]Aucun [ICON_UNHAPPY] à cause de cultures &#233;trangères</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_PRODUCTION_PER_SURPLUS_HAPPINESS</Tag>
@@ -355,7 +355,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_WORKER_SPEED</Tag>
 		<English>[ICON_BULLET]%d1_Mod%% Faster Improvement Build</English>
-		<French>[ICON_BULLET]Construction d'aménagements %d1_Mod%% plus rapide</French>
+		<French>[ICON_BULLET]Construction d'am&#233;nagements %d1_Mod%% plus rapide</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_NO_MAINT_COLONY</Tag>
@@ -370,12 +370,12 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_NO_FOREIGN_CORPORATIONS</Tag>
 		<English>[ICON_BULLET]No Foreign Corporations</English>
-		<French>[ICON_BULLET]Aucune société commerciale étrangère</French>
+		<French>[ICON_BULLET]Aucune soci&#233;t&#233; commerciale &#233;trangère</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_NO_FOREIGN_TRADE</Tag>
 		<English>[ICON_BULLET]No Foreign [ICON_TRADE]</English>
-		<French>[ICON_BULLET]Aucune [ICON_TRADE] extérieure</French>
+		<French>[ICON_BULLET]Aucune [ICON_TRADE] ext&#233;rieure</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_FROM_CAPITAL_TRADE_ROUTES</Tag>
@@ -385,7 +385,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_ENABLES_SLAVES</Tag>
 		<English>[ICON_BULLET]Receive [LINK=literal]Slave[\LINK] Units (Conquer Cities or Found Colonies)</English>
-		<French>[ICON_BULLET]Recevez un [LINK=literal]Slave[\LINK] pour chaque nouvelle colonie fondée</French>
+		<French>[ICON_BULLET]Recevez un [LINK=literal]Slave[\LINK] pour chaque nouvelle colonie fond&#233;e</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_GOLD_PER_HAPPINESS_BONUS</Tag>
@@ -405,7 +405,7 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_NO_FOREIGN_UNIT_SUPPLY</Tag>
 		<English>[ICON_BULLET]No Foreign Unit Supply Cost</English>
-		<French>[ICON_BULLET]Pas de coût d'entretien des unités hors des frontières</French>
+		<French>[ICON_BULLET]Pas de coût d'entretien des unit&#233;s hors des frontières</French>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_IN_CAPITAL_PER_SURPLUS_HAPPY</Tag>
