@@ -18336,24 +18336,32 @@ int CvPlayerAI::AI_calculateGoldenAgeValue(bool bConsiderRevolution) const
     iValue = 0;
     for (iI = 0; iI <  NUM_YIELD_TYPES; ++iI)
     {
-		/* original bts code
-        iTempValue = (GC.getYieldInfo((YieldTypes)iI).getGoldenAgeYield() * AI_yieldWeight((YieldTypes)iI));
-        iTempValue /= std::max(1, (1 + GC.getYieldInfo((YieldTypes)iI).getGoldenAgeYieldThreshold())); */
-		// K-Mod
 		iTempValue = GC.getYieldInfo((YieldTypes)iI).getGoldenAgeYield() * AI_yieldWeight((YieldTypes)iI) * AI_averageYieldMultiplier((YieldTypes)iI);
 		iTempValue /= 1 + GC.getYieldInfo((YieldTypes)iI).getGoldenAgeYieldThreshold();
-		//
         iValue += iTempValue;
     }
 
-    /* original bts code
-	iValue *= getTotalPopulation();
-    iValue *= GC.getGameINLINE().goldenAgeLength(); // original BtS code
-    iValue /= 100; */
-	// K-Mod
 	iValue *= getTotalPopulation();
 	iValue *= getGoldenAgeLength();
     iValue /= 10000;
+
+    // Civ4 Reimagined: Persia UP
+    bool bWarPlan = GET_TEAM(getTeam()).getAtWarCount(true) > 0;
+
+    // If we plan for a war and do not have enough units for immedeate golden age then safing the great person makes a lot of sense
+    if (!bWarPlan && unitsRequiredForGoldenAge() > unitsGoldenAgeReady() && GET_TEAM(getTeam()).getAnyWarPlanCount(true) > 0)
+    {
+    	bWarPlan = true;
+    }
+
+    for (iI = 0; iI < NUM_DOMAIN_TYPES; iI++)
+    {
+    	const int iExtraMoves = getExtraMovesInGoldenAge((DomainTypes)iI);
+    	if (iExtraMoves > 0)
+    	{
+    		iValue += getMilitaryPower((DomainTypes)iI) * getGoldenAgeLength() / (bWarPlan ? 1 : 4);
+    	}
+    }
 
 	// K-Mod. Add some value if we would use the opportunity to switch civics
 	// Note: this first "if" isn't necessary. It just saves us checking civics when we don't need to.
