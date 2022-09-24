@@ -234,7 +234,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_HOLY_ROMAN_LANDSKNECHT_STRATEGY</Tag>
-		<English>Compared to the [COLOR_UNIT_TEXT]Pikeman[COLOR_REVERT], this unit gains +25% vs Melee and Mounted.</English>
+		<English>Compared to the [COLOR_UNIT_TEXT]Pikeman[COLOR_REVERT], this unit gains +25% vs Melee and is available earlier.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_PORTUGAL_CARRACK_STRATEGY</Tag>

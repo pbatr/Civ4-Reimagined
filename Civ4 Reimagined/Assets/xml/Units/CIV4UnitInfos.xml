@@ -8447,7 +8447,7 @@
 			<PrereqCorporation>NONE</PrereqCorporation>
 			<PrereqBuilding>NONE</PrereqBuilding>
             <PrereqCivic>NONE</PrereqCivic>
-			<PrereqTech>TECH_CORPORATION</PrereqTech>
+			<PrereqTech>TECH_BANKING</PrereqTech>
 			<TechTypes>
 				<PrereqTech>TECH_FEUDALISM</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
@@ -8512,7 +8512,7 @@
 			<UnitCombatMods>
 				<UnitCombatMod>
 					<UnitCombatType>UNITCOMBAT_MOUNTED</UnitCombatType>
-					<iUnitCombatMod>100</iUnitCombatMod>
+					<iUnitCombatMod>75</iUnitCombatMod>
 				</UnitCombatMod>
 				<UnitCombatMod>
 					<UnitCombatType>UNITCOMBAT_MELEE</UnitCombatType>

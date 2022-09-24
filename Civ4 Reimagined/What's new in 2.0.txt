@@ -59,6 +59,7 @@ Tweaks
 -More vision at starting position
 -Maya Holkan is available with Masonry
 -Celtic Gallic Warrior now requires Iron but has a combat bonus against injured units
+-Holy Roman Landsknecht is available with Banking and does not have an extra combat Bonus vs mounted
 -Greek Odeon now increases great person rate and culture per world wonder in the city
 -Pyramids have 100 % hurry cost modifier again (was 0)
 -Terracotta Army provides a free Great General instead of 50 % military unit production
