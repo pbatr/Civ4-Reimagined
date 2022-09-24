@@ -7378,6 +7378,12 @@ bool CvUnit::testSpyIntercepted(PlayerTypes eTargetPlayer, bool bMission, int iM
 		return false;
 	}
 
+	// Civ4 Reimagined
+	if (!bMission && GET_TEAM(kTargetPlayer.getTeam()).getCounterespionageModAgainstTeam(getTeam()) <= 0)
+	{
+		return false;
+	}
+
 	if (GC.getGameINLINE().getSorenRandNum(10000, "Spy Interception") >= getSpyInterceptPercent(kTargetPlayer.getTeam(), bMission) * (100 + iModifier))
 	{
 		return false;
