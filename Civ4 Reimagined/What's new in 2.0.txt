@@ -70,7 +70,6 @@ Interface
 *********
 -Remove unused Unique Power tab
 -Range symbol changed
--Fix display errors when using characters like é
 
 *********
 Fixes
@@ -84,6 +83,8 @@ Fixes
 -Sumerian Ziggurats did not get converted to religious temples when adopting a state religion
 -Horse whispering quest could not be achieved
 -Totestra map script sometimes generated starting positions too close to the edge of the map
+-Fix display errors when using uncommon unicode characters
+-Fix deal length error in trade screen
 
 *******************************************
 Civ4 Reimagined 1.6

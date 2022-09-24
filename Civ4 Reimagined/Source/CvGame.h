@@ -144,7 +144,7 @@ public:
 	DllExport EraTypes getCurrentEra() const;											// Exposed to Python
 	double getCurrentEraAverage() const;		// Civ4 Reimagined
 
-	int getPeaceDealLength() const;
+	int getPeaceDealLength() const; // Civ4 Reimagined // Exposed to Python
 	
 	DllExport TeamTypes getActiveTeam() const;																		// Exposed to Python
 	DllExport CivilizationTypes getActiveCivilizationType() const;								// Exposed to Python

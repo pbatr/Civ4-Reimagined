@@ -78,6 +78,8 @@ public:
 
 	int /* EraTypes */ getCurrentEra();
 
+	int getPeaceDealLength() const; // Civ4 Reimagined
+
 	int getActiveTeam();
 	int /* CivilizationTypes */ getActiveCivilizationType();
 	bool isNetworkMultiPlayer();

@@ -238,6 +238,12 @@ int CyGame::getCurrentEra()
 	return m_pGame ? (int) m_pGame->getCurrentEra() : (int) NO_ERA;
 }
 
+// Civ4 Reimagined
+int CyGame::getPeaceDealLength() const
+{
+	return m_pGame ? (int) m_pGame->getPeaceDealLength() : -1;
+}
+
 int CyGame::getActiveTeam()
 {
 	return m_pGame ? (int) m_pGame->getActiveTeam() : (int) NO_TEAM;

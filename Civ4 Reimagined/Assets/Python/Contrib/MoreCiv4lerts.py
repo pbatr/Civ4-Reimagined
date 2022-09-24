@@ -20,7 +20,7 @@ PyPlayer = PyHelpers.PyPlayer
 PyCity = PyHelpers.PyCity
 PyInfo = PyHelpers.PyInfo
 
-PEACE_TREATY_LENGTH = gc.getDefineINT("PEACE_TREATY_LENGTH")
+PEACE_TREATY_LENGTH = gc.getGame().getPeaceDealLength()
 
 class MoreCiv4lerts:
 

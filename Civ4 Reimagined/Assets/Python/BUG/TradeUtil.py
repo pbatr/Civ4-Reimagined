@@ -582,7 +582,7 @@ def getTradePlayer(player, trade):
 
 def getTradePeaceDeal(player, trade):
 	BugUtil.debug("TradeUtil - peace treaty has iData %d", trade.iData)
-	return BugUtil.getText("TXT_KEY_TRADE_PEACE_TREATY_STRING", (gc.getDefineINT("PEACE_TREATY_LENGTH"),))
+	return BugUtil.getText("TXT_KEY_TRADE_PEACE_TREATY_STRING", (gc.getGame().getPeaceDealLength(),))
 
 
 ## Classes for Formatting TradeData

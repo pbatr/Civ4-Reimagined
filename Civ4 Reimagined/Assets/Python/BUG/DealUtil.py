@@ -204,7 +204,7 @@ class Deal(object):
 			return self.deal.turnsToCancel(eByPlayer)
 		else:
 			# this is exactly what CvDeal does
-			return self.getInitialGameTurn() + gc.getDefineINT("PEACE_TREATY_LENGTH") - gc.getGame().getGameTurn()
+			return self.getInitialGameTurn() + gc.getGame().getPeaceDealLength() - gc.getGame().getGameTurn()
 	def kill(self):
 		self.deal.kill()
 	

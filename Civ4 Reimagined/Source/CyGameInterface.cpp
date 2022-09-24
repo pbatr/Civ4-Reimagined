@@ -68,6 +68,9 @@ void CyGamePythonInterface()
 
 		.def("getCurrentEra", &CyGame::getCurrentEra, "int /*EratTypes*/ ()")
 
+		// Civ4 Reimagined
+		.def("getPeaceDealLength", &CyGame::getPeaceDealLength, "int ()")
+
 		.def("getActiveTeam", &CyGame::getActiveTeam, "int () - returns ID for the group")
 		.def("getActiveCivilizationType", &CyGame::getActiveCivilizationType, "int () - returns CivilizationID" )
 		.def("isNetworkMultiPlayer", &CyGame::isNetworkMultiPlayer, "bool () - NetworkMultiplayer()? ")
