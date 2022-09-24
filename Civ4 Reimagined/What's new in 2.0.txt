@@ -70,6 +70,7 @@ Interface
 *********
 -Remove unused Unique Power tab
 -Range symbol changed
+-Show game turns remaining only at last 20% of the game
 
 *********
 Fixes

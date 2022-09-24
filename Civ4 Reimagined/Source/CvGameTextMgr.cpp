@@ -20421,7 +20421,8 @@ void CvGameTextMgr::getTurnTimerText(CvWString& strText)
 			}
 			else if (GC.getGameINLINE().getMaxTurns() > 0)
 			{
-				if ((GC.getGameINLINE().getElapsedGameTurns() >= (GC.getGameINLINE().getMaxTurns() - 100)) && (GC.getGameINLINE().getElapsedGameTurns() < GC.getGameINLINE().getMaxTurns()))
+				// Civ4 Reimagined: Show game turns left, last 20% of the game
+				if ((GC.getGameINLINE().getElapsedGameTurns() >= (GC.getGameINLINE().getMaxTurns()*4/5)) && (GC.getGameINLINE().getElapsedGameTurns() < GC.getGameINLINE().getMaxTurns()))
 				{
 					if (!strText.empty())
 					{
