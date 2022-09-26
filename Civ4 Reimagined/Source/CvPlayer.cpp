@@ -1036,6 +1036,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iResearchPerCulture = 0; // Civ4 Reimagined
 	m_iFreePopulationInCapital = 0; // Civ4 Reimagined
 	m_iFreeCivicEnabled = NO_CIVIC; // Civ4 Reimagined
+	m_iLegacyCivic = NO_CIVIC; // Civ4 Reimagined
 	m_iEarlyScientistBonusCommerce = 0; // Civ4 Reimagined
 	m_iEarlyPriestExtraFood = 0; // Civ4 Reimagined
 	m_iUniquePowerWorldWonderCapitalModifier = 0; // Civ4 Reimagined
@@ -1109,6 +1110,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bFreePillage = false; // Civ4 Reimagined
 	m_bPirateGold = false; // Civ4 Reimagined
 	m_bIsIgnoreEarlyWonderHurryCostModifier = false; // Civ4 Reimagined
+	m_bLegacyCivic = false; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -16493,10 +16495,24 @@ void CvPlayer::setCivics(CivicOptionTypes eIndex, CivicTypes eNewValue)
 		if (eOldCivic != NO_CIVIC)
 		{
 			processCivics(eOldCivic, -1);
+
+			// Civ4 Reimagined: Carthage UP
+			if (isLegacyCivic() && getLegacyCivic() == eOldCivic)
+			{
+				szBuffer = gDLL->getText("TXT_KEY_MISC_LEGACY_CIVIC_EFFECT", GC.getCivicInfo(eOldCivic).getTextKeyWide());
+				gDLL->getInterfaceIFace()->addHumanMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_CIVIC_ADOPT", MESSAGE_TYPE_MAJOR_EVENT);
+			}
 		}
+
 		if (getCivics(eIndex) != NO_CIVIC)
 		{
 			processCivics(getCivics(eIndex), 1);
+
+			// Civ4 Reimagined: Carthage UP
+			if (isLegacyCivic() && getLegacyCivic() == NO_CIVIC && eIndex == (CivicOptionTypes)GC.getInfoTypeForString("CIVICOPTION_GOVERNMENT"))
+			{
+				setLegacyCivic(eNewValue);
+			}
 
 			// Civ4 Reimagined
 			if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_CONSTITUTION")))
@@ -20967,6 +20983,12 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
 	changeUnlimitedAnimalXPCount((GC.getCivicInfo(eCivic).isUnlimitedAnimalXP()) ? iChange : 0); // Civ4 Reimagined
 	changeFreeWorkers(GC.getCivicInfo(eCivic).getFreeWorkers() * iChange); //Civ4 Reimagined
 
+	// Civ4 Reimagined: Carthage UP
+	if (getLegacyCivic() == eCivic)
+	{
+		processLegacyCivicBonus(-iChange);
+	}
+
 	// Civ4 Reimagined: Ideologies
 	const IdeologyTypes eCurrentIdeology = getIdeology();
 	changeIdeologyInfluence(IDEOLOGY_CONSERVATISM, GC.getCivicInfo(eCivic).getConservative() * iChange);
@@ -21313,6 +21335,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iResearchPerCulture); // Civ4 Reimagined
 	pStream->Read(&m_iFreePopulationInCapital); // Civ4 Reimagined
 	pStream->Read((int*)&m_iFreeCivicEnabled); // Civ4 Reimagined
+	pStream->Read((int*)&m_iLegacyCivic); // Civ4 Reimagined
 	pStream->Read(&m_iEarlyScientistBonusCommerce); // Civ4 Reimagined
 	pStream->Read(&m_iEarlyPriestExtraFood); // Civ4 Reimagined
 	pStream->Read(&m_iUniquePowerWorldWonderCapitalModifier); // Civ4 Reimagined
@@ -21383,6 +21406,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bFreePillage); // Civ4 Reimagined
 	pStream->Read(&m_bPirateGold); // Civ4 Reimagined
 	pStream->Read(&m_bIsIgnoreEarlyWonderHurryCostModifier); // Civ4 Reimagined
+	pStream->Read(&m_bLegacyCivic); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -21989,6 +22013,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iResearchPerCulture); // Civ4 Reimagined
 	pStream->Write(m_iFreePopulationInCapital); // Civ4 Reimagined
 	pStream->Write(m_iFreeCivicEnabled); // Civ4 Reimagined
+	pStream->Write(m_iLegacyCivic); // Civ4 Reimagined
 	pStream->Write(m_iEarlyScientistBonusCommerce); // Civ4 Reimagined
 	pStream->Write(m_iEarlyPriestExtraFood); // Civ4 Reimagined
 	pStream->Write(m_iUniquePowerWorldWonderCapitalModifier); // Civ4 Reimagined
@@ -22059,6 +22084,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_bFreePillage); // Civ4 Reimagined
 	pStream->Write(m_bPirateGold); // Civ4 Reimagined
 	pStream->Write(m_bIsIgnoreEarlyWonderHurryCostModifier); // Civ4 Reimagined
+	pStream->Write(m_bLegacyCivic); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -28748,6 +28774,18 @@ void CvPlayer::setFreeCivicEnabled(CivicTypes eCivic)
 }
 
 // Civ4 Reimagined
+CivicTypes CvPlayer::getLegacyCivic() const
+{
+	return m_iLegacyCivic;
+}
+
+// Civ4 Reimagined
+void CvPlayer::setLegacyCivic(CivicTypes eCivic)
+{
+	m_iLegacyCivic = eCivic;
+}
+
+// Civ4 Reimagined
 int CvPlayer::getEarlyScientistBonusCommerce() const
 {
 	return m_iEarlyScientistBonusCommerce;
@@ -29816,6 +29854,18 @@ bool CvPlayer::isIgnoreEarlyWonderHurryCostModifier() const
 	return m_bIsIgnoreEarlyWonderHurryCostModifier;
 }
 
+//Civ4 Reimagined
+void CvPlayer::setIsLegacyCivic(bool bNewValue)
+{
+	m_bLegacyCivic = bNewValue;
+}
+
+//Civ4 Reimagined
+bool CvPlayer::isLegacyCivic() const
+{
+	return m_bLegacyCivic;
+}
+
 // Civ4 Reimagined
 bool CvPlayer::hasGoodRelationsWithPope() const
 {
@@ -30007,6 +30057,31 @@ void CvPlayer::notifyNativeAmericanBonus(NativeBonusTypes eNativeBonus)
 }
 
 
+void CvPlayer::processLegacyCivicBonus(int iChange)
+{
+	if (getLegacyCivic() == (CivicTypes)GC.getInfoTypeForString("CIVIC_AUTOCRACY"))
+	{
+		changeMilitaryProductionModifier(25 * iChange);
+	} 
+	else if (getLegacyCivic() == (CivicTypes)GC.getInfoTypeForString("CIVIC_CITY_STATES"))
+	{
+		changeSpecialistCommerceChange((SpecialistTypes)GC.getInfoTypeForString("SPECIALIST_MERCHANT"), COMMERCE_GOLD, iChange);
+	} 
+	else if (getLegacyCivic() == (CivicTypes)GC.getInfoTypeForString("CIVIC_DYNASTICISM"))
+	{
+		changeCapitalExtraYieldFromCityPercent(YIELD_FOOD, 40 * iChange);
+	} 
+	else if (getLegacyCivic() == (CivicTypes)GC.getInfoTypeForString("CIVIC_THEOCRACY"))
+	{
+		changeSpecialistExtraYield((SpecialistTypes)GC.getInfoTypeForString("SPECIALIST_PRIEST"), YIELD_PRODUCTION, iChange);
+	} 
+	else if (getLegacyCivic() == (CivicTypes)GC.getInfoTypeForString("CIVIC_REPUBLIC"))
+	{
+		changeImprovementUpgradeRateModifier(50 * iChange);
+	}
+}
+
+
 //Civ4 Reimagined
 void CvPlayer::updateUniquePowers(TechTypes eTech)
 {
@@ -30151,6 +30226,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		{
 			setSpecialTradeRoutePerPlayer(true);
 			changeMercenaryCostModifier(-50);
+			setIsLegacyCivic(true);
 			notifyUniquePowersChanged(true);
 		}
 	}

@@ -193,7 +193,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_CARTHAGE</Tag>
-		<English>After entering the Classical Era: Can trade with every known capital as long as not being at war with that player. Those traderoutes give +200%[ICON_COMMERCE]. Costs for hiring mercenaries are at 50%.</English>
+		<English>After entering the Classical Era: Can trade with every known capital as long as not being at war with that player. Those traderoutes give +200%[ICON_COMMERCE]. Costs for hiring mercenaries are at 50%. The first government adopted by Carthage leaves a permanent legacy effect when running other civics: Dynasticism -> +0.4[ICON_FOOD] in capital per additional city, City States -> merchants +1[ICON_GOLD], Autocracy -> 25 % military unit production, Theocracy -> Priests +1[ICON_PRODUCTION], Republic -> +50% growth for cottage, hamlet, village.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_ROME</Tag>
@@ -338,5 +338,13 @@
 	<TEXT>
 		<Tag>TXT_KEY_MISC_ROME_UP_UNIT</Tag>
 		<English>Our new Vassal is sending %d1_Num %s2_UnitName to %s3_CityName.</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_LEGACY_CIVIC_EFFECT</Tag>
+		<English>Our people still enjoy some effects of our legacy civic %s1_CivicName!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CIVIC_LEGACY</Tag>
+		<English>[COLOR_HIGHLIGHT_TEXT]Legacy Civic[COLOR_REVERT]</English>
 	</TEXT>
 </Civ4GameText>

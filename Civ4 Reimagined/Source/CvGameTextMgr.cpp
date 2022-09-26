@@ -7325,6 +7325,13 @@ void CvGameTextMgr::parseCivicInfo(CvWStringBuffer &szHelpText, CivicTypes eCivi
 				}
 			}
 		}
+
+		// Civ4 Reimagined: Carthage UP
+		if (bPlayerContext && GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getLegacyCivic() == eCivic)
+		{
+			szHelpText.append(NEWLINE);
+			szHelpText.append(gDLL->getText("TXT_KEY_CIVIC_LEGACY"));
+		}
 	}
 
 	// Special Building Not Required...

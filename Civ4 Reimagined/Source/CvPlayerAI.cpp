@@ -14975,6 +14975,15 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 
 	int iS = isCivic(eCivic)?-1 :1;// K-Mod, sign for whether we should be considering gaining a bonus, or losing a bonus
 
+	// Civ4 Reimagined
+	CivicTypes eLegacyCivic = NO_CIVIC;
+	if (isLegacyCivic() && kCivic.getCivicOptionType() == GC.getInfoTypeForString("CIVICOPTION_GOVERNMENT") && eCivic != getLegacyCivic())
+	{
+		eLegacyCivic = getLegacyCivic();
+
+		if (gPlayerLogLevel > 2) logBBAI("	Legacy civic: %S", GC.getCivicInfo(eLegacyCivic).getDescription(0));
+	}
+
 	bool bWarPlan = (kTeam.getAnyWarPlanCount(true) > 0);
 
 	if( bWarPlan )
@@ -15275,8 +15284,14 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	}
 	
 	// Civ4 Reimagined
+	int iImprovementUpgradeRateModifier = kCivic.getImprovementUpgradeRateModifier();
+	if (eLegacyCivic == (CivicTypes)GC.getInfoTypeForString("CIVIC_REPUBLIC"))
+	{
+		iImprovementUpgradeRateModifier += 50;
+	}
+
 	// Republic
-	if (kCivic.getImprovementUpgradeRateModifier() != 0)
+	if (iImprovementUpgradeRateModifier != 0)
 	{
 		int iTempValue = 0;
 		
@@ -15319,7 +15334,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		if (iUpgradeTime > 0)
 		{
 			int iNewUpgradeTime = iUpgradeTime * 100;
-			iNewUpgradeTime /= std::max(20, kCivic.getImprovementUpgradeRateModifier() + 100);
+			iNewUpgradeTime /= std::max(20, iImprovementUpgradeRateModifier + 100);
 		
 			iTempValue += iUpgradeTime - iNewUpgradeTime;
 			iTempValue *= iCount;
@@ -16424,8 +16439,14 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	// K-Mod end
 
 	// Civ4 Reimagined. Experience and production modifiers
+	int iMilitaryProductionModifier = kCivic.getMilitaryProductionModifier();
+	if (eLegacyCivic == (CivicTypes)GC.getInfoTypeForString("CIVIC_AUTOCRACY"))
+	{
+		iMilitaryProductionModifier += 25;
+	}
+
 	if (kCivic.getStateReligionUnitProductionModifier() != 0 || kCivic.getStateReligionBuildingProductionModifier() != 0 || kCivic.getStateReligionFreeExperience() != 0 
-		|| kCivic.getMilitaryProductionModifier() != 0 || kCivic.getFreeExperience() != 0 || kCivic.isAnyDomainProductionModifier() || kCivic.isAnyDomainExperienceModifier())
+		|| iMilitaryProductionModifier != 0 || kCivic.getFreeExperience() != 0 || kCivic.isAnyDomainProductionModifier() || kCivic.isAnyDomainExperienceModifier())
 	{
 		int iProductionShareUnits = GC.getLeaderHeadInfo(getPersonalityType()).getBuildUnitProb();
 
@@ -16465,7 +16486,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				if (iDomainPercentage <= 0)
 					continue;
 
-				iBonusUnitProduction += (kCivic.getMilitaryProductionModifier() + kCivic.getDomainProductionModifier(iI)) * iCityProd * iDomainPercentage / 100;
+				iBonusUnitProduction += (iMilitaryProductionModifier + kCivic.getDomainProductionModifier(iI)) * iCityProd * iDomainPercentage / 100;
 				iBonusExperience += kCivic.getFreeExperience() * iCityProd * (100 + kCivic.getDomainExperienceModifier(iI)) * iDomainPercentage / 100;
 			}
 		}
@@ -16669,11 +16690,15 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				break;
 			}
 		}
-	
-		//iTempValue += ((kCivic.getYieldModifier(iI) * iCities) / 2);
-		//iTempValue += kCivic.getYieldModifier(iI) * iCities / 4; // K-Mod (Still bogus, but I'd rather assume 25 yield/turn average than 50.)
-		
-		if (kCivic.getYieldModifier(iI) != 0 || kCivic.getExtraYield(iI) != 0 || kCivic.getCapitalExtraYieldFromCityPercent(iI) != 0 || bSpecialistYieldChanges || kCivic.getCapitalYieldModifier(iI) != 0)
+
+		// Civ4 Reimagined
+		int iCapitalExtraYieldFromCityPercent = kCivic.getCapitalExtraYieldFromCityPercent(iI);
+		if (eLegacyCivic == (CivicTypes)GC.getInfoTypeForString("CIVIC_DYNASTICISM") && iI == YIELD_FOOD)
+		{
+			iCapitalExtraYieldFromCityPercent += 40;
+		}
+
+		if (kCivic.getYieldModifier(iI) != 0 || kCivic.getExtraYield(iI) != 0 || iCapitalExtraYieldFromCityPercent != 0 || bSpecialistYieldChanges || kCivic.getCapitalYieldModifier(iI) != 0)
 		{
 			int iLoop;
 			int iCityValue;
@@ -16690,7 +16715,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				if (pLoopCity->isCapital() && !isNoCapital())
 				{
 					iCityValue += (kCivic.getCapitalYieldModifier(iI) * (pLoopCity->getBaseYieldRate((YieldTypes)iI) + kCivic.getExtraYield(iI))) / 100;
-					iCityValue += (iCities - 1) * kCivic.getCapitalExtraYieldFromCityPercent(iI) / 100;
+					iCityValue += (iCities - 1) * iCapitalExtraYieldFromCityPercent / 100;
 				}
 				
 				iCityValue *= pLoopCity->AI_yieldMultiplier((YieldTypes)iI);
@@ -16733,6 +16758,12 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		
 		// Leoreth: specialist extra yield
 		iTempValue += ((kCivic.getSpecialistExtraYield(iI) * iPopulation * AI_averageYieldMultiplier((YieldTypes)iI)) / 15);
+
+		// Civ4 Reimagined
+		if (eLegacyCivic == (CivicTypes)GC.getInfoTypeForString("CIVIC_THEOCRACY") && iI == YIELD_PRODUCTION)
+		{
+			iTempValue += (iPopulation * AI_averageYieldMultiplier((YieldTypes)iI) / 15);
+		}
 		
 		if (iTempValue != 0)
 		{
@@ -16879,7 +16910,13 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 		// Civ4 Reimagined
 		for (int iJ = 0; iJ < GC.getNumSpecialistInfos(); iJ++)
 		{
-			if (kCivic.getSpecialistCommerceChanges(iJ, iI) != 0)
+			int iSpecialistCommerceChange = kCivic.getSpecialistCommerceChanges(iJ, iI);
+			if (eLegacyCivic == (CivicTypes)GC.getInfoTypeForString("CIVIC_CITY_STATES") && iJ == GC.getInfoTypeForString("SPECIALIST_MERCHANT") && iI == COMMERCE_GOLD)
+			{
+				iSpecialistCommerceChange += 1;
+			}
+
+			if (iSpecialistCommerceChange != 0)
 			{
 				int iSpecialistsValue = 0;
 
@@ -16887,7 +16924,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 				CvCity* pLoopCity;
 				for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 				{
-					iSpecialistsValue += std::max(1, pLoopCity->getSpecialistCount((SpecialistTypes)iJ)) * kCivic.getSpecialistCommerceChanges(iJ, iI) * pLoopCity->getTotalCommerceRateModifier((CommerceTypes)iI);
+					iSpecialistsValue += std::max(1, pLoopCity->getSpecialistCount((SpecialistTypes)iJ)) * iSpecialistCommerceChange * pLoopCity->getTotalCommerceRateModifier((CommerceTypes)iI);
 				}
 
 				if (AI_isDoStrategy(AI_STRATEGY_SPECIALIST_ECONOMY))

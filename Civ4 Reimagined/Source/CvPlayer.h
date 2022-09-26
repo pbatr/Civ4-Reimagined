@@ -583,6 +583,10 @@ public:
 	void setFreeCivicEnabled(CivicTypes eCivic);
 
 	// Civ4 Reimagined
+	CivicTypes getLegacyCivic() const;
+	void setLegacyCivic(CivicTypes eCivic);
+
+	// Civ4 Reimagined
 	int getEarlyScientistBonusCommerce() const;
 	void changeEarlyScientistBonusCommerce(int iChange);
 
@@ -1558,6 +1562,9 @@ public:
 	void changeTerrainMovementCostModifier(TerrainTypes eIndex, int iChange); // Civ4 Reimagined
 	int getOverseaTradeRouteModifier() const; // Civ4 Reimagined
 	void changeOverseaTradeRouteModifier(int iChange); // Civ4 Reimagined
+	bool isLegacyCivic() const; // Civ4 Reimagined
+	void setIsLegacyCivic(bool bNewValue); // Civ4 Reimagined
+	void processLegacyCivicBonus(int iChange); // CIv4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1791,6 +1798,7 @@ protected:
 	int m_iResearchPerCulture; // Civ4 Reimagined
 	int m_iFreePopulationInCapital; // Civ4 Reimagined
 	CivicTypes m_iFreeCivicEnabled; // Civ4 Reimagined
+	CivicTypes m_iLegacyCivic; // Civ4 Reimagined
 	int m_iEarlyScientistBonusCommerce; // Civ4 Reimagined
 	int m_iEarlyPriestExtraFood; // Civ4 Reimagined
 	int m_iUniquePowerWorldWonderCapitalModifier; // Civ4 Reimagined
@@ -1875,6 +1883,7 @@ protected:
 	bool m_bFreePillage; // Civ4 Reimagined
 	bool m_bPirateGold; // Civ4 Reimagined
 	bool m_bIsIgnoreEarlyWonderHurryCostModifier; // Civ4 Reimagined
+	bool m_bLegacyCivic; // Civ4 Reimagined
 
 	bool m_bDisableHuman;	// Set to true to disable isHuman() check
 
