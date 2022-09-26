@@ -29944,11 +29944,6 @@ int CvPlayer::getAdditionalBaseGreatPeopleRateBySpecialist(SpecialistTypes eSpec
 	FAssertMsg(eSpecialist >= 0, "eSpecialist expected to be >= 0");
 	FAssertMsg(eSpecialist < GC.getNumSpecialistInfos(), "eSpecialist expected to be < GC.getNumSpecialistInfos()");
 
-	if (isNoGreatPeople())
-	{
-		return 0;
-	}
-
 	// Civ4 Reimagined: Persia UP
 	int iGreatPeopleRateChange = GC.getSpecialistInfo(eSpecialist).getGreatPeopleRateChange();
 	iGreatPeopleRateChange *= 100 + getGreatPeopleRateChangeModifier(eSpecialist);
