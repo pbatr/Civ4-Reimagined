@@ -6279,13 +6279,20 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 			// Note: scale of AI_civicValue is 1 = commerce/turn
 			const int iCurrentCivicValue = AI_civicValue(eCurrentCivic);
-			const int iNewCivicValue = AI_civicValue(eNewCivic);
+			int iNewCivicValue = AI_civicValue(eNewCivic);
 
 			if (gPlayerLogLevel > 2) logBBAI("	Current Civic Value for %S: %d", GC.getCivicInfo(eCurrentCivic).getDescription(0), iCurrentCivicValue);
 			if (gPlayerLogLevel > 2) logBBAI("	Future Civic Value for %S: %d", GC.getCivicInfo(eNewCivic).getDescription(0), iNewCivicValue);
 
 			// Civ4 Reimagined
 			bool bNewReligionCivic = GC.getCivicInfo(eNewCivic).isStateReligion() && !isStateReligion() && AI_bestReligion() != NO_RELIGION;
+
+			// Civ4 Reimagined: Carthage UP
+			if (isLegacyCivic() && getLegacyCivic() == NO_CIVIC && GC.getCivicInfo(eNewCivic).getCivicOptionType() == GC.getInfoTypeForString("CIVICOPTION_GOVERNMENT"))
+			{
+				iNewCivicValue *= 3;
+				iNewCivicValue /= 2;
+			}
 
 			if (iNewCivicValue > iCurrentCivicValue)
 			{
@@ -14977,7 +14984,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 
 	// Civ4 Reimagined
 	CivicTypes eLegacyCivic = NO_CIVIC;
-	if (isLegacyCivic() && kCivic.getCivicOptionType() == GC.getInfoTypeForString("CIVICOPTION_GOVERNMENT") && eCivic != getLegacyCivic())
+	if (isLegacyCivic() && kCivic.getCivicOptionType() == GC.getInfoTypeForString("CIVICOPTION_GOVERNMENT") && eCivic != getLegacyCivic() && getLegacyCivic() != NO_CIVIC)
 	{
 		eLegacyCivic = getLegacyCivic();
 
