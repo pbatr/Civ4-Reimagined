@@ -7862,7 +7862,7 @@ int CvCityAI::AI_getImprovementValue(CvPlot* pPlot, ImprovementTypes eImprovemen
 		{
 			if (pPlot->isAdjacentToPeak())
 			{
-				iValue += kOwner.getPeakYieldChangeAdjacentToTerrace((YieldTypes)iJ) * 25;
+				iValue += kOwner.getPeakYieldChangeAdjacentToTerrace(YIELD_FOOD) * 25;
 			}
 		}
 
@@ -10711,12 +10711,18 @@ int CvCityAI::AI_jobChangeValue(std::pair<bool, int> new_job, std::pair<bool, in
 			// note: each point of iEmphasisCount reduces the value at the end.
 
 			// Civ4 Reimagined
-			iGPPGained *= 100 + kOwner.getGreatPeopleRateChangeModifier((SpecialistTypes)new_job.second);
-			iGPPGained /= 100;
+			if (iGPPGained)
+			{
+				iGPPGained *= 100 + kOwner.getGreatPeopleRateChangeModifier((SpecialistTypes)new_job.second);
+				iGPPGained /= 100;
+			}
 
 			// Civ4 Reimagined
-			iGPPLost *= 100 + kOwner.getGreatPeopleRateChangeModifier((SpecialistTypes)old_job.second);
-			iGPPLost /= 100;
+			if (iGPPLost)
+			{
+				iGPPLost *= 100 + kOwner.getGreatPeopleRateChangeModifier((SpecialistTypes)old_job.second);
+				iGPPLost /= 100;
+			}
 
 			int iGPPValue = 0;
 
