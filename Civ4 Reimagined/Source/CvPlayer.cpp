@@ -29954,6 +29954,30 @@ int CvPlayer::getAdditionalBaseGreatPeopleRateBySpecialist(SpecialistTypes eSpec
 
 
 // Civ4 Reimagined
+EraTypes CvPlayer::getUniqueUnitEra() const
+{
+	for (int iI = 0; iI < GC.getNumUnitClassInfos(); iI++)
+	{
+		UnitTypes eCivUnit = (UnitTypes)GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits(iI);
+		UnitTypes eDefaultUnit = (UnitTypes)GC.getUnitClassInfo((UnitClassTypes)iI).getDefaultUnitIndex();
+
+		if (eCivUnit != NO_UNIT && eCivUnit != eDefaultUnit)
+		{
+			TechTypes ePrereqTech = (TechTypes)GC.getUnitInfo(eCivUnit).getPrereqAndTech();
+
+			if (ePrereqTech != NO_TECH)
+			{
+				return (EraTypes)GC.getTechInfo(ePrereqTech).getEra();
+			}
+		}
+	}
+
+	return NO_ERA;
+}
+
+
+
+// Civ4 Reimagined
 void CvPlayer::applyNativeAmericanBonus(int iX, int iY)
 {
 	CvPlot* pPlot = GC.getMapINLINE().plotINLINE(iX, iY);

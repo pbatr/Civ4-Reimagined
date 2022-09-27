@@ -1565,6 +1565,7 @@ public:
 	bool isLegacyCivic() const; // Civ4 Reimagined
 	void setIsLegacyCivic(bool bNewValue); // Civ4 Reimagined
 	void processLegacyCivicBonus(int iChange); // CIv4 Reimagined
+	EraTypes getUniqueUnitEra() const;
 	//
 	// Civ4 Reimagined End
 	//

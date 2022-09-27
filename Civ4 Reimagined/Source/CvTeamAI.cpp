@@ -1559,7 +1559,7 @@ int CvTeamAI::AI_warSpoilsValue(TeamTypes eTarget, WarPlanTypes eWarPlan) const
 		
 		// bestEra should be a value between 0 and 7?
 		// Multiply with *4 (ancient) to *2 (future)
-		iGainedValue = iGainedValue / ((((8-bestEra)/2)+5) / 2);
+		iGainedValue = iGainedValue / (((8-bestEra)/2)+5);
 	}
 		
 	return iGainedValue + iDeniedValue;
@@ -3530,6 +3530,7 @@ void CvTeamAI::AI_getWarRands( int &iMaxWarRand, int &iLimitedWarRand, int &iDog
 	bool bSpace4 = false;
 	bool bCult3 = false;
 	bool bFinalWar = false;
+	bool bUniqueUnit = false;
 
 	for (int iI = 0; iI < MAX_CIV_PLAYERS; iI++)
 	{
@@ -3553,6 +3554,11 @@ void CvTeamAI::AI_getWarRands( int &iMaxWarRand, int &iLimitedWarRand, int &iDog
 				if(GET_PLAYER((PlayerTypes)iI).AI_isDoVictoryStrategy(AI_VICTORY_SPACE4))
 				{
 					bSpace4 = true;
+				}
+				// Civ4 Reimagined
+				if(GET_PLAYER((PlayerTypes)iI).getUniqueUnitEra() == GET_PLAYER((PlayerTypes)iI).getCurrentEra())
+				{
+					bUniqueUnit = true;
 				}
 			}
 		}
@@ -3582,6 +3588,12 @@ void CvTeamAI::AI_getWarRands( int &iMaxWarRand, int &iLimitedWarRand, int &iDog
 
 		iDogpileWarRand *= 3;
 		iDogpileWarRand /= 2;
+	}
+
+	// Civ4 Reimagined
+	if (bUniqueUnit)
+	{
+		iMaxWarRand /= 2;
 	}
 
 	int iNumMembers = getNumMembers();
