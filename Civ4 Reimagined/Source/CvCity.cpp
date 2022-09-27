@@ -10367,7 +10367,7 @@ int CvCity::totalTradeModifier(CvCity* pOtherCity) const
 	iModifier += getPopulationTradeModifier();
 	
 	// Civ4 Reimagined: Unique Power
-	if (GET_PLAYER(getOwnerINLINE()).getCoastalTradeRouteModifier() > 0)
+	if (GET_PLAYER(getOwnerINLINE()).getCoastalTradeRouteModifier() != 0)
 	{
 		if (isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
 		{
@@ -10377,17 +10377,14 @@ int CvCity::totalTradeModifier(CvCity* pOtherCity) const
 	
 	if (NULL != pOtherCity)
 	{
-		// Civ4 Reimagined: Unique Power
-		if (GET_PLAYER(getOwnerINLINE()).getColonyTraderouteModifier() > 0)
+		// Civ4 Reimagined
+		if (GET_PLAYER(pOtherCity->getOwnerINLINE()).isColony(getOwnerINLINE()))
 		{
-			if (GET_PLAYER(pOtherCity->getOwnerINLINE()).isColony(getOwnerINLINE()))
-			{
-				iModifier += GET_PLAYER(getOwnerINLINE()).getColonyTraderouteModifier();
-			}
+			iModifier += GC.getDefineINT("COLONY_TRADE_MODIFIER");
 		}
 		
 		// Civ4 Reimagined: Unique Power
-		if (GET_PLAYER(getOwnerINLINE()).getCorporationTraderouteModifier() > 0)
+		if (GET_PLAYER(getOwnerINLINE()).getCorporationTraderouteModifier() != 0)
 		{
 			if (pOtherCity->getOwnerINLINE() != getOwnerINLINE())
 			{
@@ -10413,9 +10410,10 @@ int CvCity::totalTradeModifier(CvCity* pOtherCity) const
 		}
 
 		// Civ4 Reimagined
-		if (GET_PLAYER(pOtherCity->getOwnerINLINE()).isColony(getOwnerINLINE()))
+		if (isCapital() && !GET_PLAYER(getOwnerINLINE()).isNoCapital())
 		{
-			iModifier += GC.getDefineINT("COLONY_TRADE_MODIFIER");
+			iModifier += GC.getDefineINT("CAPITAL_TRADE_MODIFIER");
+			bTradeThroughCapital = true;
 		}
 		
 		// Civ4 Reimagined
@@ -10434,13 +10432,6 @@ int CvCity::totalTradeModifier(CvCity* pOtherCity) const
 		}
 		
 		// Civ4 Reimagined
-		if (isCapital() && !GET_PLAYER(getOwnerINLINE()).isNoCapital())
-		{
-			iModifier += GC.getDefineINT("CAPITAL_TRADE_MODIFIER");
-			bTradeThroughCapital = true;
-		}
-		
-		// Civ4 Reimagined
 		if (bTradeThroughCapital)
 		{
 			iModifier += GET_PLAYER(getOwnerINLINE()).getCapitalTradeModifier();
@@ -10456,6 +10447,10 @@ int CvCity::totalTradeModifier(CvCity* pOtherCity) const
 			{
 				iModifier += GET_PLAYER(getOwnerINLINE()).getColonyTradeModifier();
 			}
+			else
+			{
+				iModifier += GET_PLAYER(getOwnerINLINE()).getLiberatedColonyTradeRouteModifier();
+			}
 		}
 
 		if (getTeam() != pOtherCity->getTeam())
@@ -10465,7 +10460,7 @@ int CvCity::totalTradeModifier(CvCity* pOtherCity) const
 
 			// Civ4 Reimagined
 			const IdeologyTypes eIdeology = GET_PLAYER(getOwnerINLINE()).getIdeology();
-			if (GET_PLAYER(getOwnerINLINE()).getIdeology() == eIdeology)
+			if (GET_PLAYER(pOtherCity->getOwnerINLINE()).getIdeology() == eIdeology)
 			{
 				iModifier += GET_PLAYER(getOwnerINLINE()).getForeignTradeIdeologyModifier(eIdeology);
 			}

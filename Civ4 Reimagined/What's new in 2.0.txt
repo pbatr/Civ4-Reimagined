@@ -86,6 +86,7 @@ Fixes
 -Totestra map script sometimes generated starting positions too close to the edge of the map
 -Fix display errors when using uncommon unicode characters
 -Fix deal length error in trade screen
+-Traderoute bonus for shared ideologies was not correct
 
 *******************************************
 Civ4 Reimagined 1.6

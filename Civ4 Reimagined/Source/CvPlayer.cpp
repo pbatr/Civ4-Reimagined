@@ -1071,7 +1071,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bUpdateBonusRatio = true; // Civ4 Reimagined
 	m_bCivicEffect = false; // Civ4 Reimagined
 	m_bFaithConquest = false; // Civ4 Reimagined
-	m_iColonyTraderouteModifier = 0; // Civ4 Reimagined
+	m_iLiberatedColonyTradeRouteModifier = 0; // Civ4 Reimagined
 	m_iCorporationTraderouteModifier = 0; // Civ4 Reimagined
 	m_iGreatGeneralGoldenAgeLength = 0; // Civ4 Reimagined
 	m_bConscriptInfidels = false; // Civ4 Reimagined
@@ -21370,7 +21370,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bUpdateBonusRatio); // Civ4 Reimagined
 	pStream->Read(&m_bCivicEffect); // Civ4 Reimagined
 	pStream->Read(&m_bFaithConquest); // Civ4 Reimagined
-	pStream->Read(&m_iColonyTraderouteModifier); // Civ4 Reimagined
+	pStream->Read(&m_iLiberatedColonyTradeRouteModifier); // Civ4 Reimagined
 	pStream->Read(&m_iCorporationTraderouteModifier); // Civ4 Reimagined
 	pStream->Read(&m_iGreatGeneralGoldenAgeLength); // Civ4 Reimagined
 	pStream->Read(&m_bConscriptInfidels); // Civ4 Reimagined
@@ -22048,7 +22048,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_bUpdateBonusRatio); // Civ4 Reimagined
 	pStream->Write(m_bCivicEffect); // Civ4 Reimagined
 	pStream->Write(m_bFaithConquest); // Civ4 Reimagined
-	pStream->Write(m_iColonyTraderouteModifier); // Civ4 Reimagined
+	pStream->Write(m_iLiberatedColonyTradeRouteModifier); // Civ4 Reimagined
 	pStream->Write(m_iCorporationTraderouteModifier); // Civ4 Reimagined
 	pStream->Write(m_iGreatGeneralGoldenAgeLength); // Civ4 Reimagined
 	pStream->Write(m_bConscriptInfidels); // Civ4 Reimagined
@@ -29612,17 +29612,17 @@ bool CvPlayer::isHasFaithConquest() const
 }
 
 //Civ4 Reimagined
-void CvPlayer::changeColonyTraderouteModifier(int iChange)
+void CvPlayer::changeLiberatedColonyTradeRouteModifier(int iChange)
 {
-	m_iColonyTraderouteModifier += iChange;
+	m_iLiberatedColonyTradeRouteModifier += iChange;
 	
 	updateTradeRoutes();
 }
 
 //Civ4 Reimagined
-int CvPlayer::getColonyTraderouteModifier() const
+int CvPlayer::getLiberatedColonyTradeRouteModifier() const
 {
-	return m_iColonyTraderouteModifier;
+	return m_iLiberatedColonyTradeRouteModifier;
 }
 
 //Civ4 Reimagined
@@ -30271,7 +30271,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		}
 		else if (eEra == ERA_INDUSTRIAL)
 		{
-			changeColonyTraderouteModifier(GC.getDefineINT("UNIQUE_POWER_ENGLAND"));
+			changeLiberatedColonyTradeRouteModifier(GC.getDefineINT("UNIQUE_POWER_ENGLAND"));
 			notifyUniquePowersChanged(true);
 		}
 	}

@@ -1474,8 +1474,8 @@ public:
 	void updateEffectFromStayingAtCivic(); // Civ4 Reimagined
 	void setFaithConquest(bool bNewValue); // Civ4 Reimagined
 	bool isHasFaithConquest() const; // Civ4 Reimagined
-	void changeColonyTraderouteModifier(int iChange); // Civ4 Reimagined
-	int getColonyTraderouteModifier() const; // Civ4 Reimagined
+	void changeLiberatedColonyTradeRouteModifier(int iChange); // Civ4 Reimagined
+	int getLiberatedColonyTradeRouteModifier() const; // Civ4 Reimagined
 	void changeCorporationTraderouteModifier(int iChange); // Civ4 Reimagined
 	int getCorporationTraderouteModifier() const; // Civ4 Reimagined
 	void changeGreatGeneralGoldenAgeLength(int iChange); // Civ4 Reimagined
@@ -1829,7 +1829,7 @@ protected:
 	int m_iSlavePointsFromSacrificePopulation; // Civ4 Reimagined
 	bool m_bCivicEffect; // Civ4 Reimagined
 	bool m_bFaithConquest; // Civ4 Reimagined
-	int m_iColonyTraderouteModifier; // Civ4 Reimagined
+	int m_iLiberatedColonyTradeRouteModifier; // Civ4 Reimagined
 	int m_iCorporationTraderouteModifier; // Civ4 Reimagined
 	int m_iGreatGeneralGoldenAgeLength; // Civ4 Reimagined
 	bool m_bConscriptInfidels; // Civ4 Reimagined

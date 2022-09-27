@@ -3662,7 +3662,8 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 			{
 				if (bNeutralTerritory && pArea->getNumTiles() >= GC.getDefineINT("MINIMUM_NUM_TILES_FOR_CONTINENT"))
 				{
-					iValue += getColonyTraderouteModifier() * 3;
+					iValue += getColonyTradeModifier() * 3;
+					iValue += getLiberatedColonyTradeRouteModifier() * 2;
 					iValue += getOverseaTradeRouteModifier() * 3;
 					iValue += isStateReligion() ? -getReligiousColonyMaintenanceModifier() * 2 : 0;
 					iValue += iResourceValue > 0 ? (kSet.bSeafaring ? 2000 : 1000) : 200;

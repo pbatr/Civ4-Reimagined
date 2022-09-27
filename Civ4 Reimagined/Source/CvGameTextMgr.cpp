@@ -19377,6 +19377,7 @@ void CvGameTextMgr::setTradeRouteHelp(CvWStringBuffer &szBuffer, int iRoute, CvC
 	if (NULL != pCity)
 	{
 		CvCity* pOtherCity = pCity->getTradeCity(iRoute);
+		bool bTradeThroughCapital = false; // Civ4 Reimagined
 
 		if (NULL != pOtherCity)
 		{
@@ -19406,12 +19407,61 @@ void CvGameTextMgr::setTradeRouteHelp(CvWStringBuffer &szBuffer, int iRoute, CvC
 				}
 			}
 
+			FAssert(100 + pCity->getTradeRouteModifier() == iModifier);
+
 			iNewMod = pCity->getPopulationTradeModifier();
 			if (0 != iNewMod)
 			{
 				szBuffer.append(NEWLINE);
 				szBuffer.append(gDLL->getText("TXT_KEY_TRADE_ROUTE_MOD_POPULATION", iNewMod));
 				iModifier += iNewMod;
+			}
+
+			// Civ4 Reimagined
+			iNewMod = GET_PLAYER(pCity->getOwnerINLINE()).getCoastalTradeRouteModifier();
+			if (iNewMod != 0)
+			{
+				if (pCity->isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
+				{
+					szBuffer.append(NEWLINE);
+					szBuffer.append(gDLL->getText("TXT_KEY_TRADE_ROUTE_MOD_COASTAL", iNewMod));
+					iModifier += iNewMod;
+				}
+			}
+
+			// Civ4 Reimagined
+			if (GET_PLAYER(pOtherCity->getOwnerINLINE()).isColony(pCity->getOwnerINLINE()))
+			{
+				iNewMod = GC.getDefineINT("COLONY_TRADE_MODIFIER");
+				if (0 != iNewMod)
+				{
+					szBuffer.append(NEWLINE);
+					szBuffer.append(gDLL->getText("TXT_KEY_TRADE_ROUTE_MOD_COLONY", iNewMod));
+					iModifier += iNewMod;
+				}
+			}
+
+			// Civ4 Reimagined
+			iNewMod = GET_PLAYER(pCity->getOwnerINLINE()).getCorporationTraderouteModifier();
+			if (iNewMod > 0)
+			{
+				if (pOtherCity->getOwnerINLINE() != pCity->getOwnerINLINE())
+				{
+					for (int iI = 0; iI < GC.getNumCorporationInfos(); iI++)
+					{
+						CorporationTypes eCorporation = (CorporationTypes)iI;
+						if (GET_PLAYER(pCity->getOwnerINLINE()).hasHeadquarters(eCorporation))
+						{
+							if (pOtherCity->isActiveCorporation((CorporationTypes)iI))
+							{
+								szBuffer.append(NEWLINE);
+								szBuffer.append(gDLL->getText("TXT_KEY_TRADE_ROUTE_MOD_UNIQUE", iNewMod));
+								iModifier += iNewMod;
+								break; // Modifier applies only once, not once per corporation
+							}
+						}
+					}
+				}
 			}
 
 			if (pCity->isConnectedToCapital() && !GET_PLAYER(pOtherCity->getOwnerINLINE()).isNoCapital())
@@ -19425,74 +19475,40 @@ void CvGameTextMgr::setTradeRouteHelp(CvWStringBuffer &szBuffer, int iRoute, CvC
 				}
 			}
 			
-			// Civ4 Reimagined
-			iNewMod = GET_PLAYER(pCity->getOwnerINLINE()).getCoastalTradeRouteModifier();
-			if (iNewMod != 0)
 			{
-				if (pCity->isCoastal(GC.getMIN_WATER_SIZE_FOR_OCEAN()))
-				{
-					szBuffer.append(NEWLINE);
-					szBuffer.append(gDLL->getText("TXT_KEY_TRADE_ROUTE_MOD_COASTAL", iNewMod));
-					iModifier += iNewMod;
-				}
-			}
-			
-			{
-				// Civ4 Reimagined
-				if (GET_PLAYER(pOtherCity->getOwnerINLINE()).isColony(pCity->getOwnerINLINE()))
-				{
-					iNewMod = GC.getDefineINT("COLONY_TRADE_MODIFIER") + GET_PLAYER(pCity->getOwnerINLINE()).getColonyTraderouteModifier();
-					if (0 != iNewMod)
-					{
-						szBuffer.append(NEWLINE);
-						szBuffer.append(gDLL->getText("TXT_KEY_TRADE_ROUTE_MOD_COLONY", iNewMod));
-						iModifier += iNewMod;
-					}
-				}
+				iNewMod = 0;
 
 				// Civ4 Reimagined
-				iNewMod = GET_PLAYER(pCity->getOwnerINLINE()).getCorporationTraderouteModifier();
-				if (iNewMod > 0)
+				if (pCity->isCapital() && !GET_PLAYER(pCity->getOwnerINLINE()).isNoCapital())
 				{
-					if (pOtherCity->getOwnerINLINE() != pCity->getOwnerINLINE())
-					{
-						for (int iI = 0; iI < GC.getNumCorporationInfos(); iI++)
-						{
-							CorporationTypes eCorporation = (CorporationTypes)iI;
-							if (GET_PLAYER(pCity->getOwnerINLINE()).hasHeadquarters(eCorporation))
-							{
-								if (pOtherCity->isActiveCorporation((CorporationTypes)iI))
-								{
-									szBuffer.append(NEWLINE);
-									szBuffer.append(gDLL->getText("TXT_KEY_TRADE_ROUTE_MOD_UNIQUE", iNewMod));
-									iModifier += iNewMod;
-									break; // Modifier applies only once, not once per corporation
-								}
-							}
-						}
-					}
+					iNewMod = GC.getDefineINT("CAPITAL_TRADE_MODIFIER");
+					bTradeThroughCapital = true;
 				}
-
-				// Civ4 Reimagined
-				iNewMod =  ((pCity->isCapital() && !GET_PLAYER(pCity->getOwnerINLINE()).isNoCapital()) ? GC.getDefineINT("CAPITAL_TRADE_MODIFIER") : 0);
 
 				if (pOtherCity->isCapital() && !GET_PLAYER(pOtherCity->getOwnerINLINE()).isNoCapital())
 				{
 					iNewMod += GC.getDefineINT("CAPITAL_TRADE_MODIFIER");
+
+					if (pOtherCity->getOwnerINLINE() == pCity->getOwnerINLINE())
+					{
+						bTradeThroughCapital = true;
+					}
 					
 					if (GET_PLAYER(pCity->getOwnerINLINE()).isSpecialTradeRoutePerPlayer())
 					{
 						szBuffer.append(NEWLINE);
 						szBuffer.append(gDLL->getText("TXT_KEY_TRADE_ROUTE_MOD_UNIQUE", GC.getDefineINT("UNIQUE_POWER_CARTHARGE")));
+						iModifier += GC.getDefineINT("UNIQUE_POWER_CARTHARGE");
 					}
+				}
+
+				if (bTradeThroughCapital)
+				{
+					iNewMod += GET_PLAYER(pCity->getOwnerINLINE()).getCapitalTradeModifier();
 				}
 
 				if (0 != iNewMod)
 				{
-					if (pCity->isCapital() || (pOtherCity->isCapital() && pCity->getOwnerINLINE() == pOtherCity->getOwnerINLINE()))
-					{
-						iNewMod += GET_PLAYER(pCity->getOwnerINLINE()).getCapitalTradeModifier();
-					}
 					szBuffer.append(NEWLINE);
 					szBuffer.append(gDLL->getText("TXT_KEY_CAPITAL_TRADE_ROUTE_MODIFIER", iNewMod));
 					iModifier += iNewMod;
@@ -19506,6 +19522,10 @@ void CvGameTextMgr::setTradeRouteHelp(CvWStringBuffer &szBuffer, int iRoute, CvC
 					if (pCity->getTeam() == pOtherCity->getTeam())
 					{
 						iNewMod += (GET_PLAYER(pCity->getOwnerINLINE())).getColonyTradeModifier();
+					}
+					else
+					{
+						iNewMod += (GET_PLAYER(pCity->getOwnerINLINE())).getLiberatedColonyTradeRouteModifier();
 					}
 					if (0 != iNewMod)
 					{

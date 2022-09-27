@@ -11544,16 +11544,6 @@ int CvCityAI::AI_cityValue() const
 	// Civ4 Reimagined: split if we have not enough workers there
 	iCosts += iCosts/4 * std::max(0,(kOwner.AI_neededWorkers(area()) / 4 - kOwner.AI_totalAreaUnitAIs(area(), UNITAI_WORKER)));
 	
-	/*
-	if (iCosts != 0)
-	{
-		for (int iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
-		{
-			iCosts += GC.getCivicInfo(kOwner.getCivics((CivicOptionTypes)iI)).getColonyTradeModifier();
-		}
-	}
-	*/
-	
 	// slightly encourage empire split when aiming for a diplomatic victory
 	if (kOwner.AI_isDoVictoryStrategy(AI_VICTORY_DIPLOMACY3) && kOwner.getCommercePercent(COMMERCE_GOLD) > 0)
 	{
@@ -11594,9 +11584,9 @@ int CvCityAI::AI_cityValue() const
 	
 	iCosts += ((0 == iCount) ? 0 : iHapValue / iCount) * kOwner.getNumCities();
 
-	if (kOwner.getColonyTraderouteModifier() != 0)
+	if (kOwner.getLiberatedColonyTradeRouteModifier() != 0)
 	{
-		iCosts += (iSplitCities + 3) * 2 * kOwner.getColonyTraderouteModifier() * kOwner.AI_yieldWeight(YIELD_COMMERCE) / 100;
+		iCosts += (iSplitCities + 3) * 2 * kOwner.getLiberatedColonyTradeRouteModifier() * kOwner.AI_yieldWeight(YIELD_COMMERCE) / 100;
 	}
 	
 	if (gCityLogLevel >= 2 && iCosts != 0) logBBAI("%S Colony Value: %d , Cost: %d (HapValue: %d)", getName().GetCString(), iValue, iCosts, iHapValue);
