@@ -155,7 +155,7 @@
 			<Type>WORLDSIZE_TOTESTRA</Type>
 			<Description>TXT_KEY_WORLD_TOTESTRA</Description>
 			<Help>TXT_KEY_WORLD_TOTESTRA_HELP</Help>
-			<iDefaultPlayers>19</iDefaultPlayers>
+			<iDefaultPlayers>18</iDefaultPlayers>
 			<iUnitNameModifier>0</iUnitNameModifier>
 			<iTargetNumCities>4</iTargetNumCities>
 			<iNumFreeBuildingBonuses>10</iNumFreeBuildingBonuses>
