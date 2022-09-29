@@ -2622,7 +2622,14 @@ bool CvPlot::canBuild(BuildTypes eBuild, PlayerTypes ePlayer, bool bTestVisible)
 			{
 				if (eFinalImprovementType == finalImprovementUpgrade(eImprovement))
 				{
-					return false;
+					// Civ4 Reimagined
+					for (int iI = 0; iI < NUM_YIELD_TYPES; ++iI)
+					{
+						if (GC.getImprovementInfo(eImprovement).getYieldChange((YieldTypes)iI) < GC.getImprovementInfo(getImprovementType()).getYieldChange((YieldTypes)iI))
+						{
+							return false;
+						}
+					}
 				}
 			}
 		}
