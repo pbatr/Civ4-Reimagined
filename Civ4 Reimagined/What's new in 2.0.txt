@@ -65,6 +65,7 @@ Tweaks
 -Terracotta Army provides a free Great General instead of 50 % military unit production
 -Spies can only get caught when doing a mission or when opponent is using counter espionage
 -Totestra map size default player number reduced from 19 to 18
+-Can build farms on Tundra tiles without fresh water after Biology
 
 *********
 Interface
