@@ -1145,9 +1145,9 @@ public:
 	int getBonusHealthFromBuilding(BuildingTypes eIndex1, BonusTypes eIndex2) const;	// Exposed to Python
 	void changeBonusHealthFromBuilding(BuildingTypes eIndex1, BonusTypes eIndex2, int iChange);
 	
-	// Leoreth
-	int getSpecialistThresholdExtraYield(SpecialistTypes eIndex1, YieldTypes eIndex2) const;
-	void changeSpecialistThresholdExtraYield(SpecialistTypes eIndex1, YieldTypes eIndex2, int iChange);
+	// Civ4 Reimaigned
+	int getSpecialistThresholdExtraYield(YieldTypes eIndex) const;
+	void changeSpecialistThresholdExtraYield(YieldTypes eIndex, int iChange);
 
 	int getImprovementYieldChange(ImprovementTypes eIndex1, YieldTypes eIndex2) const;	// Exposed to Python
 	void changeImprovementYieldChange(ImprovementTypes eIndex1, YieldTypes eIndex2, int iChange);
@@ -1905,6 +1905,7 @@ protected:
 	int* m_aiPeakYieldChangeAdjacentToTerrace; // Civ4 Reimagined
 	int* m_aiYieldRateModifier;
 	int* m_aiExtraYield; // Civ4 Reimagined
+	int* m_aiSpecialistThresholdExtraYield; // Civ4 Reimagined
 	int* m_aiPeakAdjacencyExtraYield; // Civ4 Reimagined
 	int* m_aiCityOnHillsExtraYield; // Civ4 Reimagined
 	int* m_aiTownAdjacencyBonus; // Civ4 Reimagined
@@ -2004,7 +2005,6 @@ protected:
 	int** m_ppaaiSpecialistExtraYield;
 	int** m_ppaaiSpecialistCommerceChanges; // Civ4 Reimagined
 	int** m_ppaaiBonusHealthFromBuilding; // Civ4 Reimagined
-	int** m_ppaaiSpecialistThresholdExtraYield; //Leoreth
 	int** m_ppaaiImprovementYieldChange;
 	int** m_ppaaiImprovementYieldChangeAdjacentToStrategicBonus; // Civ4 Reimagined
 	int** m_ppaaiTerrainYieldChange; // Civ4 Reimagined

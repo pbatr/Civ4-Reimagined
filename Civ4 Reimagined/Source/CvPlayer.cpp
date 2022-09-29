@@ -44,6 +44,7 @@ CvPlayer::CvPlayer()
 	m_aiSeaPlotYield = new int[NUM_YIELD_TYPES];
 	m_aiPeakYield = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
 	m_aiPeakYieldChangeAdjacentToTerrace = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
+	m_aiSpecialistThresholdExtraYield = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
 	m_aiYieldRateModifier = new int[NUM_YIELD_TYPES];
 	m_aiExtraYield = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
 	m_aiPeakAdjacencyExtraYield = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
@@ -136,7 +137,6 @@ CvPlayer::CvPlayer()
 	m_ppaaiSpecialistExtraYield = NULL;
 	m_ppaaiSpecialistCommerceChanges = NULL; // Civ4 Reimagined
 	m_ppaaiBonusHealthFromBuilding = NULL; // Civ4 Reimagined
-	m_ppaaiSpecialistThresholdExtraYield = NULL; //Leoreth
 	m_ppaaiImprovementYieldChange = NULL;
 	m_ppaaiImprovementYieldChangeAdjacentToStrategicBonus = NULL;
 	m_ppaaiTerrainYieldChange = NULL; // Civ4 Reimagined
@@ -156,6 +156,7 @@ CvPlayer::~CvPlayer()
 	SAFE_DELETE_ARRAY(m_aiSeaPlotYield);
 	SAFE_DELETE_ARRAY(m_aiPeakYield); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiPeakYieldChangeAdjacentToTerrace); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_aiSpecialistThresholdExtraYield); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiYieldRateModifier);
 	SAFE_DELETE_ARRAY(m_aiExtraYield); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiPeakAdjacencyExtraYield); // Civ4 Reimagined
@@ -764,16 +765,6 @@ void CvPlayer::uninit()
 		}
 		SAFE_DELETE_ARRAY(m_ppaaiBonusHealthFromBuilding);
 	}
-	
-	//Leoreth
-	if (m_ppaaiSpecialistThresholdExtraYield != NULL)
-	{
-		for (int iI = 0; iI < GC.getNumSpecialistInfos(); iI++)
-		{
-			SAFE_DELETE_ARRAY(m_ppaaiSpecialistThresholdExtraYield[iI]);
-		}
-		SAFE_DELETE_ARRAY(m_ppaaiSpecialistThresholdExtraYield);
-	}
 
 	if (m_ppaaiImprovementYieldChange != NULL)
 	{
@@ -1133,6 +1124,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		m_aiSeaPlotYield[iI] = 0;
 		m_aiPeakYield[iI] = 0; // Civ4 Reimagined
 		m_aiPeakYieldChangeAdjacentToTerrace[iI] = 0; // Civ4 Reimagined
+		m_aiSpecialistThresholdExtraYield[iI] = 0; // Civ4 Reimagined
 		m_aiYieldRateModifier[iI] = 0;
 		m_aiExtraYield[iI] = 0; // Civ4 Reimagined
 		m_aiPeakAdjacencyExtraYield[iI] = 0; // Civ4 Reimagined
@@ -1493,19 +1485,6 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 			for (iJ = 0; iJ < GC.getNumBonusInfos(); iJ++)
 			{
 				m_ppaaiBonusHealthFromBuilding[iI][iJ] = 0;
-			}
-		}
-		
-		//Leoreth
-		FAssertMsg(0 < GC.getNumSpecialistInfos(), "GC.getNumSpecialistInfos() is not greater than zero but it is used to allocate memory in CvPlayer::reset");
-		FAssertMsg(m_ppaaiSpecialistThresholdExtraYield==NULL, "about to leak memory, CvPlayer::m_ppaaiSpecialistExtraYield");
-		m_ppaaiSpecialistThresholdExtraYield = new int*[GC.getNumSpecialistInfos()];
-		for (iI = 0; iI < GC.getNumSpecialistInfos(); iI++)
-		{
-			m_ppaaiSpecialistThresholdExtraYield[iI] = new int[NUM_YIELD_TYPES];
-			for (iJ = 0; iJ < NUM_YIELD_TYPES; iJ++)
-			{
-				m_ppaaiSpecialistThresholdExtraYield[iI][iJ] = 0;
 			}
 		}
 
@@ -16682,28 +16661,24 @@ void CvPlayer::changeBonusHealthFromBuilding(BuildingTypes eIndex1, BonusTypes e
 	}
 }
 
-//Leoreth
-int CvPlayer::getSpecialistThresholdExtraYield(SpecialistTypes eIndex1, YieldTypes eIndex2) const
+// Civ4 Reimagined
+int CvPlayer::getSpecialistThresholdExtraYield(YieldTypes eIndex) const
 {
-	FAssertMsg(eIndex1 >= 0, "eIndex1 expected to be >= 0");
-	FAssertMsg(eIndex1 < GC.getNumSpecialistInfos(), "eIndex1 expected to be < GC.getNumSpecialistInfos()");
-	FAssertMsg(eIndex2 >= 0, "eIndex2 expected to be >= 0");
-	FAssertMsg(eIndex2 < NUM_YIELD_TYPES, "eIndex2 expected to be < NUM_YIELD_TYPES");
-	return m_ppaaiSpecialistThresholdExtraYield[eIndex1][eIndex2];
+	FAssertMsg(eIndex >= 0, "eIndex2 expected to be >= 0");
+	FAssertMsg(eIndex < NUM_YIELD_TYPES, "eIndex2 expected to be < NUM_YIELD_TYPES");
+	return m_aiSpecialistThresholdExtraYield[eIndex];
 }
 
-//Leoreth
-void CvPlayer::changeSpecialistThresholdExtraYield(SpecialistTypes eIndex1, YieldTypes eIndex2, int iChange)
+// Civ4 Reimagined
+void CvPlayer::changeSpecialistThresholdExtraYield(YieldTypes eIndex, int iChange)
 {
-	FAssertMsg(eIndex1 >= 0, "eIndex1 expected to be >= 0");
-	FAssertMsg(eIndex1 < GC.getNumSpecialistInfos(), "eIndex1 expected to be < GC.getNumSpecialistInfos()");
-	FAssertMsg(eIndex2 >= 0, "eIndex2 expected to be >= 0");
-	FAssertMsg(eIndex2 < NUM_YIELD_TYPES, "eIndex2 expected to be < NUM_YIELD_TYPES");
+	FAssertMsg(eIndex >= 0, "eIndex2 expected to be >= 0");
+	FAssertMsg(eIndex < NUM_YIELD_TYPES, "eIndex2 expected to be < NUM_YIELD_TYPES");
 
 	if (iChange != 0)
 	{
-		m_ppaaiSpecialistThresholdExtraYield[eIndex1][eIndex2] = (m_ppaaiSpecialistThresholdExtraYield[eIndex1][eIndex2] + iChange);
-		FAssert(getSpecialistThresholdExtraYield(eIndex1, eIndex2) >= 0);
+		m_aiSpecialistThresholdExtraYield[eIndex] = (m_aiSpecialistThresholdExtraYield[eIndex] + iChange);
+		FAssert(getSpecialistThresholdExtraYield(eIndex) >= 0);
 
 		updateExtraSpecialistYield();
 
@@ -21022,10 +20997,10 @@ void CvPlayer::processCivics(CivicTypes eCivic, int iChange)
 		changeCapitalExtraYieldFromCityPercent(((YieldTypes)iI), (GC.getCivicInfo(eCivic).getCapitalExtraYieldFromCityPercent(iI) * iChange)); // Civ4 Reimagined
 		changeCapitalYieldRateModifier(((YieldTypes)iI), (GC.getCivicInfo(eCivic).getCapitalYieldModifier(iI) * iChange));
 		changeTradeYieldModifier(((YieldTypes)iI), (GC.getCivicInfo(eCivic).getTradeYieldModifier(iI) * iChange));
+		changeSpecialistThresholdExtraYield(((YieldTypes)iI), (GC.getCivicInfo(eCivic).getSpecialistThresholdExtraYield(iI) * iChange)); //Civ4 Reimagined
 		for (iJ = 0; iJ < GC.getNumSpecialistInfos(); iJ++)
 		{
 			changeSpecialistExtraYield(((SpecialistTypes)iJ), ((YieldTypes)iI), (GC.getCivicInfo(eCivic).getSpecialistYieldChanges(iJ, iI) * iChange)); //Civ4 Reimagined
-			changeSpecialistThresholdExtraYield(((SpecialistTypes)iJ), ((YieldTypes)iI), (GC.getCivicInfo(eCivic).getSpecialistThresholdExtraYield(iI) * iChange)); //Leoreth
 		}
 	}
 
@@ -21442,6 +21417,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(NUM_YIELD_TYPES, m_aiSeaPlotYield);
 	pStream->Read(NUM_YIELD_TYPES, m_aiPeakYield); // Civ4 Reimagined
 	pStream->Read(NUM_YIELD_TYPES, m_aiPeakYieldChangeAdjacentToTerrace); // Civ4 Reimagined
+	pStream->Read(NUM_YIELD_TYPES, m_aiSpecialistThresholdExtraYield); // Civ4 Reimagined
 	pStream->Read(NUM_YIELD_TYPES, m_aiYieldRateModifier);
 	pStream->Read(NUM_YIELD_TYPES, m_aiExtraYield); // Civ4 Reimagined
 	pStream->Read(NUM_YIELD_TYPES, m_aiPeakAdjacencyExtraYield); // Civ4 Reimagined
@@ -21541,7 +21517,6 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	for (iI=0;iI<GC.getNumSpecialistInfos();iI++)
 	{
 		pStream->Read(NUM_YIELD_TYPES, m_ppaaiSpecialistExtraYield[iI]);
-		pStream->Read(NUM_YIELD_TYPES, m_ppaaiSpecialistThresholdExtraYield[iI]); //Leoreth
 		pStream->Read(NUM_COMMERCE_TYPES, m_ppaaiSpecialistCommerceChanges[iI]); // Civ4 Reimagined
 	}
 
@@ -22110,6 +22085,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(NUM_YIELD_TYPES, m_aiSeaPlotYield);
 	pStream->Write(NUM_YIELD_TYPES, m_aiPeakYield); // Civ4 Reimagined
 	pStream->Write(NUM_YIELD_TYPES, m_aiPeakYieldChangeAdjacentToTerrace); // Civ4 Reimagined
+	pStream->Write(NUM_YIELD_TYPES, m_aiSpecialistThresholdExtraYield); // Civ4 Reimagined
 	pStream->Write(NUM_YIELD_TYPES, m_aiYieldRateModifier);
 	pStream->Write(NUM_YIELD_TYPES, m_aiExtraYield); // Civ4 Reimagined
 	pStream->Write(NUM_YIELD_TYPES, m_aiPeakAdjacencyExtraYield); // Civ4 Reimagined
@@ -22209,7 +22185,6 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	for (iI=0;iI<GC.getNumSpecialistInfos();iI++)
 	{
 		pStream->Write(NUM_YIELD_TYPES, m_ppaaiSpecialistExtraYield[iI]);
-		pStream->Write(NUM_YIELD_TYPES, m_ppaaiSpecialistThresholdExtraYield[iI]); //Leoreth
 		pStream->Write(NUM_COMMERCE_TYPES, m_ppaaiSpecialistCommerceChanges[iI]); // Civ4 Reimagined
 	}
 

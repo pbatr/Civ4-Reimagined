@@ -10587,12 +10587,14 @@ int CvCityAI::AI_jobChangeValue(std::pair<bool, int> new_job, std::pair<bool, in
 
 	for (YieldTypes i = (YieldTypes)0; i < NUM_YIELD_TYPES; i=(YieldTypes)(i+1))
 	{
+		const int iOldSpecialistThresholdExtraYields = getExtraSpecialistThresholdYield(i);
+
 		int iYield = 0;
 		if (new_job.second >= 0)
 		{
 			// Civ4 Reimagined: Added specialistThresholdExtraYield
 			iYield += new_job.first
-				? kOwner.specialistYield((SpecialistTypes)new_job.second, i) + kOwner.getSpecialistThresholdExtraYield((SpecialistTypes)new_job.second, i)
+				? kOwner.specialistYield((SpecialistTypes)new_job.second, i)
 				: getCityIndexPlot(new_job.second)->getYield(i);
 		}
 
@@ -10600,9 +10602,16 @@ int CvCityAI::AI_jobChangeValue(std::pair<bool, int> new_job, std::pair<bool, in
 		{
 			// Civ4 Reimagined: Added specialistThresholdExtraYield
 			iYield -= old_job.first
-				? kOwner.specialistYield((SpecialistTypes)old_job.second, i) + kOwner.getSpecialistThresholdExtraYield((SpecialistTypes)old_job.second, i)
+				? kOwner.specialistYield((SpecialistTypes)old_job.second, i)
 				: getCityIndexPlot(old_job.second)->getYield(i);
 		}
+
+		// Civ4 Reimagined: City states specialist yields
+		const int iExtraSpecialist = (int)new_job.first - (int)old_job.first;
+		const int iExtraWorkedTile = -iExtraSpecialist;
+		const int iNewSpecialistThresholdExtraYields = getExtraSpecialistThresholdYield(i, iExtraWorkedTile, iExtraSpecialist);
+
+		iYield += iNewSpecialistThresholdExtraYields - iOldSpecialistThresholdExtraYields;
 
 		if (iYield >= 0)
 			aiYieldGained[i] = iYield;

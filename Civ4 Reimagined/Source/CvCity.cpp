@@ -1164,11 +1164,12 @@ void CvCity::doTurn()
 				}
 			}
 
+			// Civ4 Reimagined
+			iCount += getExtraSpecialistThresholdYield((YieldTypes)iI);
+
 			for (iJ = 0; iJ < GC.getNumSpecialistInfos(); iJ++)
 			{
 				iCount += (GET_PLAYER(getOwnerINLINE()).specialistYield(((SpecialistTypes)iJ), ((YieldTypes)iI)) * (getSpecialistCount((SpecialistTypes)iJ) + getFreeSpecialistCount((SpecialistTypes)iJ)));
-				// Civ4 Reimagined
-				iCount += getExtraSpecialistThresholdYield((YieldTypes)iI, (SpecialistTypes)iJ);
 			}
 
 			for (iJ = 0; iJ < GC.getNumBuildingInfos(); iJ++)
@@ -10619,22 +10620,29 @@ int CvCity::getExtraSpecialistYield(YieldTypes eIndex, SpecialistTypes eSpeciali
 }
 
 
-// Leoreth
-int CvCity::getExtraSpecialistThresholdYield(YieldTypes eIndex, SpecialistTypes eSpecialist) const
+// Civ4 Reimagined
+int CvCity::getExtraSpecialistThresholdYield(YieldTypes eIndex, int iExtraTiles, int iExtraSpecialists) const
 {
 	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
 	FAssertMsg(eIndex < NUM_YIELD_TYPES, "eIndex expected to be < NUM_YIELD_TYPES");
-	FAssertMsg(eSpecialist >= 0, "eSpecialist expected to be >= 0");
-	FAssertMsg(eSpecialist < GC.getNumSpecialistInfos(), "GC.getNumSpecialistInfos expected to be >= 0");
-	// Civ4 Reimagined
-	if (isSpecialistExtraYieldThreshold(GET_PLAYER(getOwner()).getSpecialistExtraYieldBaseThreshold(), GET_PLAYER(getOwner()).getSpecialistExtraYieldEraThreshold()))
-	{
-		return ((std::min(getSpecialistCount(eSpecialist), (eSpecialist != GC.getInfoTypeForString("SPECIALIST_CITIZEN")? getMaxSpecialistCount(eSpecialist) : getSpecialistCount(eSpecialist))) + getFreeSpecialistCount(eSpecialist)) * (GET_PLAYER(getOwnerINLINE()).getSpecialistThresholdExtraYield(eSpecialist, eIndex)));
-	}
-	else
+
+	if (!isSpecialistExtraYieldThreshold(GET_PLAYER(getOwner()).getSpecialistExtraYieldBaseThreshold(), GET_PLAYER(getOwner()).getSpecialistExtraYieldEraThreshold(), iExtraTiles))
 	{
 		return 0;
 	}
+
+	int iSpecialistCount = 0;
+
+	for (int iI = 0; iI < GC.getNumSpecialistInfos(); iI++)
+	{
+		const int iMaxSpecialistCount = (SpecialistTypes)iI != GC.getInfoTypeForString("SPECIALIST_CITIZEN") ? getMaxSpecialistCount((SpecialistTypes)iI) : getSpecialistCount((SpecialistTypes)iI);
+		iSpecialistCount += std::min(getSpecialistCount((SpecialistTypes)iI), iMaxSpecialistCount);
+		iSpecialistCount += getFreeSpecialistCount((SpecialistTypes)iI);
+	}
+
+	iSpecialistCount += iExtraSpecialists;
+
+	return iSpecialistCount * GET_PLAYER(getOwnerINLINE()).getSpecialistThresholdExtraYield(eIndex);
 }
 
 
@@ -10674,12 +10682,12 @@ bool CvCity::isSpecialistExtraYieldThreshold(int iBaseThreshold, int iEraThresho
 	// Civ4 Reimagined
 	iCount += iExtra;
 
-	if (iCount <= iBaseThreshold + iEraThreshold * GET_PLAYER(getOwner()).getCurrentEra())
+	if (iCount > iBaseThreshold + iEraThreshold * GET_PLAYER(getOwner()).getCurrentEra())
 	{
-		return true;
+		return false;
 	}
 
-	return false;
+	return true;
 }
 
 

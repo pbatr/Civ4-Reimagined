@@ -767,7 +767,7 @@ public:
 	int getExtraSpecialistYield(YieldTypes eIndex, SpecialistTypes eSpecialist) const;// Exposed to Python
 	
 	// Leoreth
-	int getExtraSpecialistThresholdYield(YieldTypes eIndex, SpecialistTypes eSpecialist) const;
+	int getExtraSpecialistThresholdYield(YieldTypes eIndex, int iExtraTiles = 0, int iExtraSpecialists = 0) const;
 	bool isSpecialistExtraYieldThreshold(int iBaseThreshold, int iEraThreshold, int iExtra = 0) const;
 	
 	void updateExtraSpecialistYield(YieldTypes eYield);

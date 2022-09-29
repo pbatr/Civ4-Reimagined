@@ -6801,7 +6801,7 @@ void CvGameTextMgr::parseSpecialistHelp(CvWStringBuffer &szHelpString, Specialis
 					// Civ4 Reimagined
 					if (pCity->isSpecialistExtraYieldThreshold(GET_PLAYER(pCity->getOwnerINLINE()).getSpecialistExtraYieldBaseThreshold(), GET_PLAYER(pCity->getOwnerINLINE()).getSpecialistExtraYieldEraThreshold()))
 					{
-						aiYields[iI] += GET_PLAYER(pCity->getOwnerINLINE()).getSpecialistThresholdExtraYield(eSpecialist, ((YieldTypes)iI));
+						aiYields[iI] += GET_PLAYER(pCity->getOwnerINLINE()).getSpecialistThresholdExtraYield((YieldTypes)iI);
 					}
 				}
 			}
