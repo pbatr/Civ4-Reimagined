@@ -10704,10 +10704,11 @@ void CvCity::updateExtraSpecialistYield(YieldTypes eYield)
 
 	iNewYield = 0;
 
+	iNewYield += getExtraSpecialistThresholdYield(eYield);
+
 	for (iI = 0; iI < GC.getNumSpecialistInfos(); iI++)
 	{
 		iNewYield += getExtraSpecialistYield(eYield, ((SpecialistTypes)iI));
-		iNewYield += getExtraSpecialistThresholdYield(eYield, ((SpecialistTypes)iI));
 	}
 
 	if (iOldYield != iNewYield)

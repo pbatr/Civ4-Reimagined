@@ -10608,8 +10608,8 @@ int CvCityAI::AI_jobChangeValue(std::pair<bool, int> new_job, std::pair<bool, in
 
 		// Civ4 Reimagined: City states specialist yields
 		const int iExtraSpecialist = (int)new_job.first - (int)old_job.first;
-		const int iExtraWorkedTile = -iExtraSpecialist;
-		const int iNewSpecialistThresholdExtraYields = getExtraSpecialistThresholdYield(i, iExtraWorkedTile, iExtraSpecialist);
+		const int iExtraWorkedTiles = -iExtraSpecialist;
+		const int iNewSpecialistThresholdExtraYields = getExtraSpecialistThresholdYield(i, iExtraWorkedTiles, iExtraSpecialist);
 
 		iYield += iNewSpecialistThresholdExtraYields - iOldSpecialistThresholdExtraYields;
 
