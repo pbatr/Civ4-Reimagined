@@ -2842,7 +2842,7 @@ void CvGame::updateGwPercentAnger()
 			// Civ4 Reimagined
 			if (! GET_TEAM(kPlayer.getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ECOLOGY")))
 			{
-				if (iGwSeverityRating >= 75)
+				if (iGwSeverityRating >= 30)
 				{
 					GET_TEAM(kPlayer.getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ECOLOGY"), (PlayerTypes)iI, true);
 				}
