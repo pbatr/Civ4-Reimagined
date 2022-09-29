@@ -77,12 +77,12 @@
 	<!-- warming prob is out of 1000, not pecent. -->
 	<Define>
 		<DefineName>GLOBAL_WARMING_PROB</DefineName>
-		<iDefineIntVal>20</iDefineIntVal>
+		<iDefineIntVal>25</iDefineIntVal>
 	</Define>
 	<!-- global warming threshold is # land plots * resistance. -->
 	<Define>
 		<DefineName>GLOBAL_WARMING_RESISTANCE</DefineName>
-		<iDefineIntVal>7</iDefineIntVal> <!-- Civ4 Reimagined, was 9 -->
+		<iDefineIntVal>4</iDefineIntVal> <!-- Civ4 Reimagined, was 9 -->
 	</Define>
 	<!-- global warming index above the threshold is decreased by a percentage given by the restoration rate -->
 	<Define>
