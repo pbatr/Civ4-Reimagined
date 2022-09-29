@@ -5175,6 +5175,7 @@ int CvCity::happyLevel() const
 	iHappiness += std::max(0, getBonusGoodHappiness());
 	iHappiness += std::max(0, getReligionGoodHappiness());
 	iHappiness += std::max(0, getCommerceHappiness());
+	iHappiness += std::max(0, getSpecialistHappiness()); // Civ4 Reimagined
 	iHappiness += std::max(0, area()->getBuildingHappiness(getOwnerINLINE()));
 	iHappiness += std::max(0, GET_PLAYER(getOwnerINLINE()).getBuildingHappiness());
 	iHappiness += std::max(0, GET_PLAYER(getOwnerINLINE()).getCivicHappiness()); // Civ4 Reimagined
@@ -5225,6 +5226,23 @@ int CvCity::getTerrainHappiness() const
 	}
 	
 	return iTerrainHappiness;
+}
+
+
+// Civ4 Reimagined
+int CvCity::getSpecialistHappiness() const
+{	
+	int iSpecialistHappiness = 0;
+	for (int iI = 0; iI < GC.getNumSpecialistInfos(); ++iI)
+	{
+		const int iHappy = GET_PLAYER(getOwnerINLINE()).getExtraSpecialistHappiness((SpecialistTypes)iI);
+		if (iHappy > 0)
+		{
+			iSpecialistHappiness += iHappy * (getSpecialistCount((SpecialistTypes)iI) + getFreeSpecialistCount((SpecialistTypes)iI));
+		}
+	}
+
+	return iSpecialistHappiness;
 }
 
 

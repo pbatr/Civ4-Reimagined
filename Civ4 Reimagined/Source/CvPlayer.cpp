@@ -112,6 +112,7 @@ CvPlayer::CvPlayer()
 	m_paiSpecialistValidCount = NULL;
 	m_paiExtraSpecialists = NULL; // Civ4 Reimagined
 	m_paiExtraSpecialistExperience = NULL; // Civ4 Reimagined
+	m_paiExtraSpecialistHappiness = NULL; // Civ4 Reimagined
 	m_paiFatcrossTerrainHappiness = NULL; // Civ4 Reimagined
 	m_paiFatcrossTerrainCulture = NULL; // Civ4 Reimagined
 	m_paiTerrainMovementCostModifier = NULL; // Civ4 Reimagined
@@ -714,6 +715,7 @@ void CvPlayer::uninit()
 	SAFE_DELETE_ARRAY(m_paiSpecialistValidCount);
 	SAFE_DELETE_ARRAY(m_paiExtraSpecialists); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiExtraSpecialistExperience); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_paiExtraSpecialistHappiness); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiFatcrossTerrainHappiness); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiFatcrossTerrainCulture); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_paiTerrainMovementCostModifier); // Civ4 Reimagined
@@ -1406,12 +1408,15 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		m_paiExtraSpecialists = new int[GC.getNumSpecialistInfos()];
 		FAssertMsg(m_paiExtraSpecialistExperience==NULL, "about to leak memory, CvPlayer::m_paiExtraSpecialistExperience");
 		m_paiExtraSpecialistExperience = new int[GC.getNumSpecialistInfos()];
+		FAssertMsg(m_paiExtraSpecialistHappiness==NULL, "about to leak memory, CvPlayer::m_paiExtraSpecialistHappiness");
+		m_paiExtraSpecialistHappiness = new int[GC.getNumSpecialistInfos()];
 		FAssertMsg(m_paiGreatPeopleRateChangeModifier==NULL, "about to leak memory, CvPlayer::m_paiGreatPeopleRateChangeModifier");
 		m_paiGreatPeopleRateChangeModifier = new int[GC.getNumSpecialistInfos()];
 		for (iI = 0; iI < GC.getNumSpecialistInfos(); iI++)
 		{
 			m_paiExtraSpecialists[iI] = 0;
 			m_paiExtraSpecialistExperience[iI] = 0;
+			m_paiExtraSpecialistHappiness[iI] = 0;
 			m_paiGreatPeopleRateChangeModifier[iI] = 0;
 		}
 		
@@ -16288,6 +16293,32 @@ void CvPlayer::changeExtraSpecialistExperience(SpecialistTypes eIndex, int iChan
 
 
 // Civ4 Reimagined
+int CvPlayer::getExtraSpecialistHappiness(SpecialistTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumSpecialistInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+	FAssertMsg(m_paiExtraSpecialistHappiness != NULL, "m_paiExtraSpecialistHappiness is not expected to be equal with NULL");
+	return m_paiExtraSpecialistHappiness[eIndex];
+}
+
+
+// Civ4 Reimagined
+void CvPlayer::changeExtraSpecialistHappiness(SpecialistTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumSpecialistInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	if (iChange != 0)
+	{
+		FAssertMsg(m_paiExtraSpecialistHappiness != NULL, "m_paiExtraSpecialistHappiness is not expected to be equal with NULL");
+		m_paiExtraSpecialistHappiness[eIndex] = (m_paiExtraSpecialistHappiness[eIndex] + iChange);
+
+		AI_makeAssignWorkDirty();
+	}
+}
+
+
+// Civ4 Reimagined
 int CvPlayer::getGreatPeopleRateChangeModifier(SpecialistTypes eIndex) const
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
@@ -21480,6 +21511,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(GC.getNumSpecialistInfos(), m_paiSpecialistValidCount);
 	pStream->Read(GC.getNumSpecialistInfos(), m_paiExtraSpecialists); // Civ4 Reimagined
 	pStream->Read(GC.getNumSpecialistInfos(), m_paiExtraSpecialistExperience); // Civ4 Reimagined
+	pStream->Read(GC.getNumSpecialistInfos(), m_paiExtraSpecialistHappiness); // Civ4 Reimagined
 	pStream->Read(GC.getNumSpecialistInfos(), m_paiGreatPeopleRateChangeModifier); // Civ4 Reimagined
 	pStream->Read(GC.getNumTerrainInfos(), m_paiFatcrossTerrainHappiness); // Civ4 Reimagined
 	pStream->Read(GC.getNumTerrainInfos(), m_paiFatcrossTerrainCulture); // Civ4 Reimagined
@@ -22148,6 +22180,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(GC.getNumSpecialistInfos(), m_paiSpecialistValidCount);
 	pStream->Write(GC.getNumSpecialistInfos(), m_paiExtraSpecialists); // Civ4 Reimagined
 	pStream->Write(GC.getNumSpecialistInfos(), m_paiExtraSpecialistExperience); // Civ4 Reimagined
+	pStream->Write(GC.getNumSpecialistInfos(), m_paiExtraSpecialistHappiness); // Civ4 Reimagined
 	pStream->Write(GC.getNumSpecialistInfos(), m_paiGreatPeopleRateChangeModifier); // Civ4 Reimagined
 	pStream->Write(GC.getNumTerrainInfos(), m_paiFatcrossTerrainHappiness); // Civ4 Reimagined
 	pStream->Write(GC.getNumTerrainInfos(), m_paiFatcrossTerrainCulture); // Civ4 Reimagined
@@ -30505,6 +30538,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_ANCIENT) 
 		{
 			changeAdditionalAncientEurekaBoost(GC.getDefineINT("UNIQUE_POWER_SUMERIA"));
+			changeExtraSpecialistHappiness((SpecialistTypes)GC.getInfoTypeForString("SPECIALIST_GREAT_PRIEST"), 1);
 			notifyUniquePowersChanged(true);
 		}
 	}

@@ -1123,8 +1123,13 @@ public:
 	bool isUnlimitedSpecialistsWithTemple(SpecialistTypes eIndex) const;
 	void setUnlimitedSpecialistsWithTemple(SpecialistTypes eIndex, bool bNewValue);
 
+	// Civ4 Reimagined
 	int getExtraSpecialistExperience(SpecialistTypes eIndex) const;
 	void changeExtraSpecialistExperience(SpecialistTypes eIndex, int iChange);
+
+	// Civ4 Reimagined
+	int getExtraSpecialistHappiness(SpecialistTypes eIndex) const;
+	void changeExtraSpecialistHappiness(SpecialistTypes eIndex, int iChange);
 
 	DllExport bool isResearchingTech(TechTypes eIndex) const;	// Exposed to Python	
 	void setResearchingTech(TechTypes eIndex, bool bNewValue);
@@ -1979,6 +1984,7 @@ protected:
 	int* m_paiSpecialistValidCount;
 	int* m_paiExtraSpecialists; // Civ4 Reimagined
 	int* m_paiExtraSpecialistExperience; // Civ4 Reimagined
+	int* m_paiExtraSpecialistHappiness; // Civ4 Reimagined
 	int* m_paiFatcrossTerrainHappiness; // Civ4 Reimagined
 	int* m_paiFatcrossTerrainCulture; // Civ4 Reimagined
 	int* m_paiCapitalCommercePopulationThreshold; // Civ4 Reimagined

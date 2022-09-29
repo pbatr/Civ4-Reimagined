@@ -6838,6 +6838,15 @@ void CvGameTextMgr::parseSpecialistHelp(CvWStringBuffer &szHelpString, Specialis
 			szHelpString.append(gDLL->getText("TXT_KEY_SPECIALIST_EXPERIENCE", iExperience));
 		}
 
+		// Civ4 Reimagined
+		if (GET_PLAYER((pCity != NULL) ? pCity->getOwnerINLINE() : GC.getGameINLINE().getActivePlayer()).getExtraSpecialistHappiness(eSpecialist) > 0)
+		{
+			const int iHappiness = GET_PLAYER((pCity != NULL) ? pCity->getOwnerINLINE() : GC.getGameINLINE().getActivePlayer()).getExtraSpecialistHappiness(eSpecialist);
+
+			szHelpString.append(NEWLINE);
+			szHelpString.append(gDLL->getText("TXT_KEY_SPECIALIST_HAPPINESS", iHappiness));
+		}
+
 		if (kInfo.getGreatPeopleRateChange() != 0)
 		{
 			szHelpString.append(NEWLINE);
@@ -6941,6 +6950,17 @@ void CvGameTextMgr::parseFreeSpecialistHelp(CvWStringBuffer &szHelpString, const
 					szHelpString.append(L", ");
 				}
 				szHelpString.append(gDLL->getText("TXT_KEY_SPECIALIST_EXPERIENCE_SHORT", iNumSpecialists * iExperience));
+			}
+
+			// Civ4 Reimagined
+			const int iHappiness = GET_PLAYER(kCity.getOwnerINLINE()).getExtraSpecialistHappiness(eSpecialist);
+			if (iHappiness > 0)
+			{
+				if (!szYield.isEmpty() || !szCommerceString.isEmpty())
+				{
+					szHelpString.append(L", ");
+				}
+				szHelpString.append(gDLL->getText("TXT_KEY_SPECIALIST_HAPPINESS_SHORT", iNumSpecialists * iHappiness));
 			}
 		}
 	}
@@ -13463,6 +13483,15 @@ void CvGameTextMgr::setHappyHelp(CvWStringBuffer &szBuffer, CvCity& city)
 		{
 			iTotalHappy += iHappy;
 			szBuffer.append(gDLL->getText("TXT_KEY_HAPPY_TERRAIN", iHappy));
+			szBuffer.append(NEWLINE);
+		}
+
+		// Civ4 Reimagined
+		iHappy = city.getSpecialistHappiness();
+		if (iHappy > 0)
+		{
+			iTotalHappy += iHappy;
+			szBuffer.append(gDLL->getText("TXT_KEY_HAPPY_SPECIALISTS", iHappy));
 			szBuffer.append(NEWLINE);
 		}
 

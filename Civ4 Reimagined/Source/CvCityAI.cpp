@@ -525,6 +525,19 @@ int CvCityAI::AI_permanentSpecialistValue(SpecialistTypes eSpecialist) const
 		iValue += iTempValue;
 	}
 
+	// Civ4 Reimagined
+	int iHappy = kPlayer.getExtraSpecialistHappiness(eSpecialist);
+	if (0 != iHappy && !isNoUnhappiness())
+	{
+		int iCurrentHappy = 100*(happyLevel() - unhappyLevel(1));
+		// I'm only going to subtract half of the commerce happiness, because we might not be using that commerce for only happiness.
+		iCurrentHappy -= 50*std::max(0, getCommerceHappiness());
+		int iTestHappy = iCurrentHappy + iHappy * 100;
+		iValue += std::max(0, -iCurrentHappy) - std::max(0, -iTestHappy); // change in the number of angry citizens
+		// a small bonus for happiness beyond what we need
+		iValue += 100*(std::max(0, iTestHappy) - std::max(0, iCurrentHappy))/(400 + std::max(0, iTestHappy) + std::max(0, iCurrentHappy));
+	}
+
 	return iValue;
 }
 
@@ -10804,9 +10817,9 @@ int CvCityAI::AI_jobChangeValue(std::pair<bool, int> new_job, std::pair<bool, in
 			// Evaluate military experience from specialists
 			int iExperience = 0;
 			if (new_job.second >= 0 && new_job.first)
-				iExperience += GC.getSpecialistInfo((SpecialistTypes)new_job.second).getExperience();
+				iExperience += GC.getSpecialistInfo((SpecialistTypes)new_job.second).getExperience() + GET_PLAYER(getOwnerINLINE()).getExtraSpecialistExperience((SpecialistTypes)new_job.second);
 			if (old_job.second >= 0 && old_job.first)
-				iExperience += GC.getSpecialistInfo((SpecialistTypes)old_job.second).getExperience();
+				iExperience += GC.getSpecialistInfo((SpecialistTypes)old_job.second).getExperience() + GET_PLAYER(getOwnerINLINE()).getExtraSpecialistExperience((SpecialistTypes)old_job.second);
 
 			if (iExperience != 0)
 			{

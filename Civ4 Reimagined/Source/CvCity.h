@@ -208,6 +208,7 @@ public:
 	int angryPopulation(int iExtra = 0) const;										// Exposed to Python
 	int getTerrainHappiness() const; // Civ4 Reimagined
 	int getPlotTypeHappiness() const; // Civ4 Reimagined
+	int getSpecialistHappiness() const; // Civ4 Reimagined
 	
 	int visiblePopulation() const;
 	int totalFreeSpecialists() const;															// Exposed to Python				 

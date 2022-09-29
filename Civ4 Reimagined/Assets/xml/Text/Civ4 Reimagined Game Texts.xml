@@ -657,6 +657,10 @@
 		<French>+%d1_Change[ICON_HAPPY]: "Le paysage nous rend heureux !"</French>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_HAPPY_SPECIALISTS</Tag>
+		<English>+%d1_Change[ICON_HAPPY]: "Some great personalities make us happy!"</English>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_BUILDING_ANY_STATE_RELIGION_HAPPINESS</Tag>
 		<English>[ICON_BULLET]%D1_Change%F2_HappyOrUn with any State [ICON_RELIGION]</English>
 		<French>[ICON_BULLET]%D1_Change%F2_HappyOrUn avec n'importe quelle [ICON_RELIGION] d'Etat</French>
@@ -1512,5 +1516,13 @@
 	<TEXT>
 		<Tag>TXT_KEY_MISC_CITY_REVOLT_MONGOL</Tag>
 		<English>The fear of the approaching Mongol army causes a revolt in %s1_Name leaving its defenses unguarded!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPECIALIST_HAPPINESS</Tag>
+		<English>[ICON_BULLET]%D1[ICON_HAPPY]</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_SPECIALIST_HAPPINESS_SHORT</Tag>
+		<English>%D1[ICON_HAPPY]</English>
 	</TEXT>
 </Civ4GameText>
