@@ -22599,15 +22599,6 @@ void CvPlayer::createGreatPeople(UnitTypes eGreatPersonUnit, bool bIncrementThre
 	}
 
 	// Civ4 Reimagined
-	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_LASER")))
-	{
-		if (eGreatPersonUnit == (UnitTypes)GC.getInfoTypeForString("UNIT_SCIENTIST") && getCurrentEra() >= (EraTypes)GC.getInfoTypeForString("ERA_INDUSTRIAL"))
-		{
-			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_LASER"), getID(), true);
-		}
-	}
-
-	// Civ4 Reimagined
 	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_COMPUTERS")))
 	{
 		if (getPlayerRecord()->getNumUnitsBuilt((UnitTypes)GC.getInfoTypeForString("UNIT_GREAT_SPY")) > 2)
