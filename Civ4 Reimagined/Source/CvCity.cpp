@@ -4269,7 +4269,7 @@ void CvCity::processBonus(BonusTypes eBonus, int iChange, bool bChangeValue, boo
 	// Civ4 Reimagined
 	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_COMPOSITES")))
 	{
-		if (eBonus == GC.getInfoTypeForString("BONUS_ALUMINIUM") && iNewCount > 2)
+		if (eBonus == GC.getInfoTypeForString("BONUS_ALUMINUM") && iNewCount > 2)
 		{
 			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_COMPOSITES"), getOwnerINLINE(), true);
 		}
