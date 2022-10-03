@@ -228,7 +228,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_BIOLOGY_EUREKA</Tag>
-		<English>Own an Explorer with the Woodsman III Promotion</English>
+		<English>Visit a tribal village with an Explorer</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_ELECTRICITY_EUREKA</Tag>
@@ -308,15 +308,15 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_LASER_EUREKA</Tag>
-		<English>Have Arms Industry Corporation in One of Your Cities</English>
+		<English>Use a Great Engineer's Discover Ability on a Technology from Industrial or Later Era</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_COMPUTERS_EUREKA</Tag>
-		<English>Earn 3 Great Spies</English>
+		<English>Earn 2 Great Spies</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_MASS_MEDIA_EUREKA</Tag>
-		<English>Have Broadcast Towers in All Cities</English>
+		<English>Have Broadcast Towers in Two Thirds of Your Cities</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_SUPERCONDUCTORS_EUREKA</Tag>
@@ -352,7 +352,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_COMPOSITES_EUREKA</Tag>
-		<English>Have Access to 3 Aluminum in Your Capital</English>
+		<English>Have Arms Industry Corporation in One of Your Cities</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_GENETICS_EUREKA</Tag>

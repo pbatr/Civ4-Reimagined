@@ -6663,6 +6663,15 @@ bool CvUnit::discover()
 					GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_PHYSICS"), getOwnerINLINE(), true);
 				}
 			}
+
+			// Civ4 Reimagined
+			if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_LASER")))
+			{
+				if (getUnitClassType() == (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_ENGINEER") && GC.getTechInfo(eDiscoveryTech).getEra() >= (EraTypes)GC.getInfoTypeForString("ERA_INDUSTRIAL"))
+				{
+					GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_LASER"), getOwnerINLINE(), true);
+				}
+			}
 		}
 		else
 		{
@@ -7762,15 +7771,6 @@ void CvUnit::promote(PromotionTypes ePromotion, int iLeaderUnitId)
 	setHasPromotion(ePromotion, true);
 
 	testPromotionReady();
-
-	// Civ4 Reimagined
-	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_BIOLOGY")))
-	{
-		if (ePromotion == (PromotionTypes)GC.getInfoTypeForString("PROMOTION_WOODSMAN3") && getUnitClassType() == (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_EXPLORER"))
-		{
-			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_BIOLOGY"), getOwnerINLINE(), true);
-		}
-	}
 
 	CvSelectionGroup::path_finder.Reset(); // K-Mod. (This currently isn't important, because the AI doesn't use promotions mid-turn anyway.)
 

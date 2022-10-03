@@ -14210,11 +14210,11 @@ void CvCity::setHasCorporation(CorporationTypes eIndex, bool bNewValue, bool bAn
 			GC.getGameINLINE().makeCorporationFounded(eIndex, getOwnerINLINE());
 
 			// Civ4 Reimagined
-			if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_LASER")))
+			if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_COMPOSITES")))
 			{
 				if (eIndex == (CorporationTypes)GC.getInfoTypeForString("CORPORATION_11"))
 				{
-					GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_LASER"), getOwnerINLINE(), true);
+					GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_COMPOSITES"), getOwnerINLINE(), true);
 				}
 			}
 		}
