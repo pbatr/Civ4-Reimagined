@@ -10978,7 +10978,7 @@
 				<PrereqTech>TECH_RIFLING</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 			</TechTypes>
-			<BonusType>NONE</BonusType>
+			<BonusType>BONUS_OIL</BonusType>
 			<PrereqBonuses/>
 			<ProductionTraits/>
 			<Flavors/>
@@ -10992,7 +10992,7 @@
 			<bNoRevealMap>0</bNoRevealMap>
 			<iAirRange>0</iAirRange>
 			<iAirUnitCap>0</iAirUnitCap>
-			<iDropRange>5</iDropRange>
+			<iDropRange>8</iDropRange>
 			<iNukeRange>-1</iNukeRange>
 			<iWorkRate>0</iWorkRate>
 			<iBaseDiscover>0</iBaseDiscover>
