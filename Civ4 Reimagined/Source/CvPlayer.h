@@ -1574,7 +1574,9 @@ public:
 	bool isLegacyCivic() const; // Civ4 Reimagined
 	void setIsLegacyCivic(bool bNewValue); // Civ4 Reimagined
 	void processLegacyCivicBonus(int iChange); // CIv4 Reimagined
-	EraTypes getUniqueUnitEra() const;
+	EraTypes getUniqueUnitEra() const; // Civ4 Reimagined
+	int getEspionagePointsOnConquestPerPopulation() const; // Civ4 Reimagined
+	void changeEspionagePointsOnConquestPerPopulation(int iChange); // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1871,6 +1873,7 @@ protected:
 	int m_iStateReligionShrineModifier; // Civ4 Reimagined
 	int m_iLootCityModifier; // Civ4 Reimagined
 	int m_iOverseaTradeRouteModifier; // Civ4 Reimagined
+	int m_iEspionagePointsOnConquestPerPopulation; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
 

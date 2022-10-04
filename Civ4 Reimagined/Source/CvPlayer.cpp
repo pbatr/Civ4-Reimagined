@@ -1040,6 +1040,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iHurryWithGreatPriestsRatio = 0; // Civ4 Reimagined
 	m_iCoastalTradeRouteModifier = 0; // Civ4 Reimagined
 	m_iOverseaTradeRouteModifier = 0; // Civ4 Reimagined
+	m_iEspionagePointsOnConquestPerPopulation = 0; // Civ4 Reimagined
 	m_iUniquePowerGreatPeopleModifier = 0; // Civ4 Reimagined
 	m_iUniqueUnitFreeExperience = 0; // Civ4 Reimagined
 	m_iReligionTechModifier = 0; // Civ4 Reimagined
@@ -3095,6 +3096,23 @@ void CvPlayer::acquireCity(CvCity* pOldCity, bool bConquest, bool bTrade, bool b
 					pAdjacentPlot->updateCulture(false, false);
 				}
 			}		
+		}
+
+		// Civ4 Reimagined: Mongol UP
+		if (getEspionagePointsOnConquestPerPopulation() > 0)
+		{
+			int iEspionagePointsOnConquest = getEspionagePointsOnConquestPerPopulation() * pNewCity->getPopulation();
+			iEspionagePointsOnConquest *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getResearchPercent();
+			iEspionagePointsOnConquest /= 100;
+
+			GET_TEAM(getTeam()).changeEspionagePointsEver(iEspionagePointsOnConquest);
+			GET_TEAM(getTeam()).changeEspionagePointsAgainstTeam(GET_PLAYER(eOldOwner).getTeam(), iEspionagePointsOnConquest);
+
+			if (iEspionagePointsOnConquest > 0)
+			{
+				szBuffer = gDLL->getText("TXT_KEY_MISC_PILLAGED_ESPIONAGE_CITY", iEspionagePointsOnConquest, pNewCity->getNameKey());
+				gDLL->getInterfaceIFace()->addHumanMessage(getID(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_CITYRAZE", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("WORLDBUILDER_CITY_EDIT")->getPath(), (ColorTypes)GC.getInfoTypeForString("COLOR_GREEN"), pNewCity->getX_INLINE(), pNewCity->getY_INLINE(), true, true);
+			}
 		}
 
 		GC.getMapINLINE().verifyUnitValidPlot();
@@ -21398,6 +21416,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iHurryWithGreatPriestsRatio); // Civ4 Reimagined
 	pStream->Read(&m_iCoastalTradeRouteModifier); // Civ4 Reimagined
 	pStream->Read(&m_iOverseaTradeRouteModifier); // Civ4 Reimagined
+	pStream->Read(&m_iEspionagePointsOnConquestPerPopulation); // Civ4 Reimagined
 	pStream->Read(&m_iUniquePowerGreatPeopleModifier); // Civ4 Reimagined
 	pStream->Read(&m_iUniqueUnitFreeExperience); // Civ4 Reimagined
 	pStream->Read(&m_iReligionTechModifier); // Civ4 Reimagined
@@ -22078,6 +22097,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iHurryWithGreatPriestsRatio); // Civ4 Reimagined
 	pStream->Write(m_iCoastalTradeRouteModifier); // Civ4 Reimagined
 	pStream->Write(m_iOverseaTradeRouteModifier); // Civ4 Reimagined
+	pStream->Write(m_iEspionagePointsOnConquestPerPopulation); // Civ4 Reimagined
 	pStream->Write(m_iUniquePowerGreatPeopleModifier); // Civ4 Reimagined
 	pStream->Write(m_iUniqueUnitFreeExperience); // Civ4 Reimagined	
 	pStream->Write(m_iReligionTechModifier); // Civ4 Reimagined	
@@ -29067,6 +29087,21 @@ void CvPlayer::changeOverseaTradeRouteModifier(int iChange)
 	}
 }
 
+// Civ4 Reimagined
+int CvPlayer::getEspionagePointsOnConquestPerPopulation() const
+{
+	return m_iEspionagePointsOnConquestPerPopulation;
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeEspionagePointsOnConquestPerPopulation(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iEspionagePointsOnConquestPerPopulation = m_iEspionagePointsOnConquestPerPopulation + iChange;
+	}
+}
+
 // Civ4 Reimagined - Only for interface
 int CvPlayer::getUniquePowerGreatPeopleModifier() const
 {
@@ -30512,6 +30547,8 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		else if (eEra == ERA_MEDIEVAL)
 		{
 			setCityRevoltOnKill(true);
+			changeDomesticTradeModifier(100);
+			changeEspionagePointsOnConquestPerPopulation(40);
 			notifyUniquePowersChanged(true);
 		}
 	}

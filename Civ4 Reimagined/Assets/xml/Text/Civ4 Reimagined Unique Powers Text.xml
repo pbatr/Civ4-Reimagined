@@ -253,7 +253,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_MONGOL</Tag>
-		<English>Units can heal by pillaging enemy tiles. After entering the Medieval Era: Enemy cities with 14 population or less start revolting when a defender is killed by Mongols.</English>
+		<English>Units can heal by pillaging enemy tiles. After entering the Medieval Era: +100% [ICON_COMMERCE] from domestic trade routes. Enemy cities with 14 population or less start revolting when a defender is killed by Mongols. Conquering a city gives espionage points against the former owner.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_INDIA</Tag>
@@ -346,5 +346,9 @@
 	<TEXT>
 		<Tag>TXT_KEY_CIVIC_LEGACY</Tag>
 		<English>[COLOR_HIGHLIGHT_TEXT]Legacy Civic[COLOR_REVERT]</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_PILLAGED_ESPIONAGE_CITY</Tag>
+		<English>You gained %d1_Num [ICON_ESPIONAGE] against the previous owner of %s2_CityName!</English>
 	</TEXT>
 </Civ4GameText>
