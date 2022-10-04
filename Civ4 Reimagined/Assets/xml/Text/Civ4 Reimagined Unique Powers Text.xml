@@ -229,7 +229,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_BYZANTIUM</Tag>
-		<English>Other civilizations have +2 Attitude when Byzantine capital is more cultural advanced. After entering the Medieval Era: +2[ICON_ESPIONAGE] from state religion buildings, naval units can train Greek Fire Promotion.</English>
+		<English>Other civilizations have +2 Attitude when Byzantine capital is more cultural advanced. After entering the Medieval Era: +2[ICON_ESPIONAGE] from state religion buildings. Naval units can train Greek Fire Promotion.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_ENGLAND</Tag>
@@ -289,7 +289,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_KOREA</Tag>
-		<English>After entering the Industrial Era: Towns provide +1[ICON_COMMERCE] for each three adjacent Towns. Great works give additional [ICON_GOLD] if target city has access to Hit Singles or Hit Movies (insufficient resources decrease [ICON_GOLD] bonus).</English>
+		<English>+2[ICON_CULTURE] from state religion buildings. +100% Great General Emergence inside Cultural Borders. After entering the Industrial Era: Towns provide +1[ICON_COMMERCE] for each three adjacent Towns. Great works give additional [ICON_GOLD] if target city has access to Hit Singles or Hit Movies (insufficient resources decrease [ICON_GOLD] bonus).</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_HOLY_ROMAN</Tag>

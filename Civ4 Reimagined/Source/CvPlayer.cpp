@@ -30467,7 +30467,13 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_KOREA"))
 	{
-		if (eEra == ERA_INDUSTRIAL)
+		if (eEra == ERA_ANCIENT)
+		{
+			changeDomesticGreatGeneralRateModifier(100);
+			changeStateReligionBuildingCommerce(COMMERCE_CULTURE, 2);
+			notifyUniquePowersChanged(true);
+		}
+		else if (eEra == ERA_INDUSTRIAL)
 		{
 			changeTownAdjacencyBonus(YIELD_COMMERCE, 3);
 			setGainGreatWorkGoldWithHitBonuses(true);
