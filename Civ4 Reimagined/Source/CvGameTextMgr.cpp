@@ -14219,6 +14219,24 @@ void CvGameTextMgr::setReligionHelpCity(CvWStringBuffer &szBuffer, ReligionTypes
 		}
 	}
 
+	// Civ4 Reimagined
+	for (int iI = 0; iI < NUM_YIELD_TYPES; iI++)
+	{
+		int iYield = GET_PLAYER(pCity->getOwnerINLINE()).getExtraYieldPerReligion((YieldTypes)iI);
+
+		if (iYield != 0)
+		{
+			if (bHandled)
+			{
+				szBuffer.append(L", ");
+			}
+
+			szTempBuffer.Format(L"%s%d%c", iYield > 0 ? "+" : "", iYield, GC.getYieldInfo((YieldTypes)iI).getChar());
+			szBuffer.append(szTempBuffer);
+			bHandled = true;
+		}
+	}
+
 	if (eStateReligion == eReligion || eStateReligion == NO_RELIGION || bForceState)
 	{
 		for (i = 0; i < NUM_COMMERCE_TYPES; i++)

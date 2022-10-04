@@ -51,6 +51,7 @@ CvPlayer::CvPlayer()
 	m_aiCityOnHillsExtraYield = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
 	m_aiTownAdjacencyBonus = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
 	m_aiCapitalExtraYieldFromCityPercent = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
+	m_aiExtraYieldPerReligion = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
 	m_aiCapitalYieldRateModifier = new int[NUM_YIELD_TYPES];
 	m_aiExtraYieldThreshold = new int[NUM_YIELD_TYPES];
 	m_aiTradeYieldModifier = new int[NUM_YIELD_TYPES];
@@ -164,6 +165,7 @@ CvPlayer::~CvPlayer()
 	SAFE_DELETE_ARRAY(m_aiCityOnHillsExtraYield); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiTownAdjacencyBonus); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiCapitalExtraYieldFromCityPercent); // Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_aiExtraYieldPerReligion); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiCapitalYieldRateModifier);
 	SAFE_DELETE_ARRAY(m_aiExtraYieldThreshold);
 	SAFE_DELETE_ARRAY(m_aiTradeYieldModifier);
@@ -1133,6 +1135,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 		m_aiCityOnHillsExtraYield[iI] = 0; // Civ4 Reimagined
 		m_aiTownAdjacencyBonus[iI] = 0; // Civ4 Reimagined
 		m_aiCapitalExtraYieldFromCityPercent[iI] = 0; // Civ4 Reimagined
+		m_aiExtraYieldPerReligion[iI] = 0; // Civ4 Reimagined
 		m_aiCapitalYieldRateModifier[iI] = 0;
 		m_aiExtraYieldThreshold[iI] = 0;
 		m_aiTradeYieldModifier[iI] = 0;
@@ -14773,6 +14776,42 @@ void CvPlayer::changeCapitalExtraYieldFromCityPercent(YieldTypes eIndex, int iCh
 }
 
 
+// Civ4 Reimagined
+int CvPlayer::getExtraYieldPerReligion(YieldTypes eIndex) const		 
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < NUM_YIELD_TYPES, "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_aiExtraYieldPerReligion[eIndex];
+}
+
+
+// Civ4 Reimagined
+void CvPlayer::changeExtraYieldPerReligion(YieldTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < NUM_YIELD_TYPES, "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	if (iChange != 0)
+	{
+		m_aiExtraYieldPerReligion[eIndex] = (m_aiExtraYieldPerReligion[eIndex] + iChange);
+
+		invalidateYieldRankCache(eIndex);
+
+		if (eIndex == YIELD_COMMERCE || eIndex == YIELD_PRODUCTION)
+		{
+			updateCommerce();
+		}
+
+		AI_makeAssignWorkDirty();
+
+		if (getTeam() == GC.getGameINLINE().getActiveTeam())
+		{
+			gDLL->getInterfaceIFace()->setDirty(CityInfo_DIRTY_BIT, true);
+		}
+	}
+}
+
+
 int CvPlayer::getCapitalYieldRateModifier(YieldTypes eIndex) const		 
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
@@ -21464,6 +21503,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(NUM_YIELD_TYPES, m_aiCityOnHillsExtraYield); // Civ4 Reimagined
 	pStream->Read(NUM_YIELD_TYPES, m_aiTownAdjacencyBonus); // Civ4 Reimagined
 	pStream->Read(NUM_YIELD_TYPES, m_aiCapitalExtraYieldFromCityPercent); // Civ4 Reimagined
+	pStream->Read(NUM_YIELD_TYPES, m_aiExtraYieldPerReligion); // Civ4 Reimagined
 	pStream->Read(NUM_YIELD_TYPES, m_aiCapitalYieldRateModifier);
 	pStream->Read(NUM_YIELD_TYPES, m_aiExtraYieldThreshold);
 	pStream->Read(NUM_YIELD_TYPES, m_aiTradeYieldModifier);
@@ -22133,6 +22173,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(NUM_YIELD_TYPES, m_aiCityOnHillsExtraYield); // Civ4 Reimagined
 	pStream->Write(NUM_YIELD_TYPES, m_aiTownAdjacencyBonus); // Civ4 Reimagined
 	pStream->Write(NUM_YIELD_TYPES, m_aiCapitalExtraYieldFromCityPercent); // Civ4 Reimagined
+	pStream->Write(NUM_YIELD_TYPES, m_aiExtraYieldPerReligion); // Civ4 Reimagined
 	pStream->Write(NUM_YIELD_TYPES, m_aiCapitalYieldRateModifier);
 	pStream->Write(NUM_YIELD_TYPES, m_aiExtraYieldThreshold);
 	pStream->Write(NUM_YIELD_TYPES, m_aiTradeYieldModifier);
@@ -30376,6 +30417,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_ANCIENT) 
 		{
 			changeGreatPeopleRatePerReligionModifier(50);
+			changeExtraYieldPerReligion(YIELD_FOOD, 1);
 			setNoReligionRemoval(true);
 			notifyUniquePowersChanged(true);
 		}

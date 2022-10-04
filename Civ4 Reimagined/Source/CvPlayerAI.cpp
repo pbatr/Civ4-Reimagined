@@ -6483,7 +6483,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 					if (!GET_TEAM(getTeam()).isTechBoosted(eTech))
 					{
-						iRaceModifier /= 2;
+						iRaceModifier /= 3;
 					}
 					
 					if (!(GC.getGameINLINE().isReligionSlotTaken((ReligionTypes)iJ)))

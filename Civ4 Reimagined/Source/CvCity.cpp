@@ -1186,6 +1186,9 @@ void CvCity::doTurn()
 			iCount += GET_PLAYER(getOwnerINLINE()).getExtraYield((YieldTypes)iI);
 			
 			// Civ4 Reimagined
+			iCount += GET_PLAYER(getOwnerINLINE()).getExtraYieldPerReligion((YieldTypes)iI) * getReligionCount();
+
+			// Civ4 Reimagined
 			if (isCapital() && !GET_PLAYER(getOwnerINLINE()).isNoCapital())
 			{
 				iCount += (GET_PLAYER(getOwnerINLINE()).getNumCities() - 1) * GET_PLAYER(getOwnerINLINE()).getCapitalExtraYieldFromCityPercent((YieldTypes)iI) / 100;
@@ -10036,6 +10039,9 @@ int CvCity::getBaseYieldRate(YieldTypes eIndex)	const
 	FAssertMsg(eIndex >= 0, "eIndex expected to be >= 0");
 	FAssertMsg(eIndex < NUM_YIELD_TYPES, "eIndex expected to be < NUM_YIELD_TYPES");
 	int iBaseYield = m_aiBaseYieldRate[eIndex] + GET_PLAYER(getOwnerINLINE()).getExtraYield(eIndex);
+
+	// Civ4 Reimagined
+	iBaseYield += GET_PLAYER(getOwnerINLINE()).getExtraYieldPerReligion(eIndex) * getReligionCount();
 	
 	// Civ4 Reimagined
 	if (isCapital() && !GET_PLAYER(getOwnerINLINE()).isNoCapital())

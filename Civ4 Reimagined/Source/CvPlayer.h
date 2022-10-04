@@ -958,6 +958,10 @@ public:
 	int getCapitalExtraYieldFromCityPercent(YieldTypes eIndex) const;
 	void changeCapitalExtraYieldFromCityPercent(YieldTypes eIndex, int iChange);
 
+	// Civ4 Reimagined
+	int getExtraYieldPerReligion(YieldTypes eIndex) const;
+	void changeExtraYieldPerReligion(YieldTypes eIndex, int iChange);
+
 	int getCapitalYieldRateModifier(YieldTypes eIndex) const;	// Exposed to Python
 	void changeCapitalYieldRateModifier(YieldTypes eIndex, int iChange);
 
@@ -1915,6 +1919,7 @@ protected:
 	int* m_aiCityOnHillsExtraYield; // Civ4 Reimagined
 	int* m_aiTownAdjacencyBonus; // Civ4 Reimagined
 	int* m_aiCapitalExtraYieldFromCityPercent; // Civ4 Reimagined
+	int* m_aiExtraYieldPerReligion; // Civ4 Reimagined
 	int* m_aiCapitalYieldRateModifier;
 	int* m_aiExtraYieldThreshold;
 	int* m_aiTradeYieldModifier;
