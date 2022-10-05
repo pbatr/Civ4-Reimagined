@@ -205,7 +205,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_MALI</Tag>
-		<English>After entering the Classical Era: Merchants +1[ICON_FOOD], Oasis +2[ICON_FOOD]. Building a Mine on a desert hill instantly discovers Gold if there is no adjacent Gold resource already. Double chance of discovering Gold with Mine improvements.</English>
+		<English>After entering the Classical Era: Merchants +1[ICON_FOOD], Oasis +2[ICON_FOOD]. Building a Mine on a desert hill instantly discovers Gold if there is no adjacent Gold resource already. More likely to discover Gold with Mine improvements.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_INCA</Tag>
