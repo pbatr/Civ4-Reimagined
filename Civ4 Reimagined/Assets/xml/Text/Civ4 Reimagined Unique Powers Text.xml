@@ -225,7 +225,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_NETHERLANDS</Tag>
-		<English>Can build Windmills on coastal land. After the discovery of Corporation: Gain an additional resource from plantations. Trade routes contribute to Great Merchant birth (20% of trade income).</English>
+		<English>Windmills +1[ICON_COMMERCE] and can be built on coastal land. After the discovery of Corporation: Gain an additional resource from plantations. Trade routes contribute to Great Merchant birth (20% of trade income).</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_BYZANTIUM</Tag>
@@ -293,7 +293,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_HOLY_ROMAN</Tag>
-		<English>After entering the Medieval Era: Anarchy takes twice as long and time between civic and religion changes is doubled. Additional progress to Great Spy (+10[ICON_GREATPEOPLE]) in cities with a Fort in City radius. Higher spread chance of Apostolic Palace religion to Holy Roman cities. If Pope has good relations (pleased or friendly) to Holy Romans: Double vote count in Apostolic Palace and +50% unit production in cities with Apostolic Palace religion if it is also state religion.</English>
+		<English>After entering the Medieval Era: Anarchy takes twice as long and time between civic and religion changes is doubled. Additional progress to Great Spy (+10[ICON_GREATPEOPLE]) in cities with a Fort in City radius. Higher spread chance of Apostolic Palace religion to Holy Roman cities. If Pope has good relations (pleased or friendly) to Holy Romans: Double vote count in Apostolic Palace and +75% unit production in cities with Apostolic Palace religion if it is also state religion.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_FRANCE</Tag>
@@ -301,7 +301,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_RUSSIA</Tag>
-		<English>After entering the Medieval Era: Tundra and Ice tiles +1[ICON_PRODUCTION]. On their home continent: 10% combat bonus for all units inside own borders, +100% yields for improvements on strategic resources, +1[ICON_COMMERCE] for Workshops adjacent to strategic resources.</English>
+		<English>After entering the Medieval Era: Tundra and Ice tiles +1[ICON_PRODUCTION]. On their home continent: 10% combat bonus for all units inside own borders, +100% yields for improvements on strategic resources, +2[ICON_COMMERCE] for Workshops adjacent to strategic resources.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_NATIVE_AMERICA</Tag>

@@ -30516,7 +30516,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_MEDIEVAL) 
 		{
 			changeReligiousVoteModifier(100);
-			changeVoteSourceStateReligionUnitProductionModifier(50);
+			changeVoteSourceStateReligionUnitProductionModifier(75);
 			changeGreatSpyPointsFromImprovementInRadius((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FORT"), 10);
 			changeAnarchyModifier(100);
 			notifyUniquePowersChanged(true);
@@ -30623,7 +30623,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		{
 			setCityRevoltOnKill(true);
 			changeDomesticTradeModifier(100);
-			changeEspionagePointsOnConquestPerPopulation(40);
+			changeEspionagePointsOnConquestPerPopulation(25);
 			notifyUniquePowersChanged(true);
 		}
 	}
@@ -30643,6 +30643,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_ANCIENT) 
 		{
 			setCanBuildWindmillsOnCoast(true);
+			changeImprovementYieldChange((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_WINDMILL"), YIELD_COMMERCE, 1);
 			notifyUniquePowersChanged(true);
 		}			
 	}
@@ -30698,7 +30699,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			changeTerrainYieldChange((TerrainTypes)GC.getInfoTypeForString("TERRAIN_SNOW"), YIELD_PRODUCTION, 1);
 			changeCombatBonusOnHomeArea(10);
 			changeStrategicBonusYieldModifier(100);
-			changeImprovementYieldChangeAdjacentToStrategicBonus((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_WORKSHOP"), YIELD_COMMERCE, 1);
+			changeImprovementYieldChangeAdjacentToStrategicBonus((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_WORKSHOP"), YIELD_COMMERCE, 2);
 			notifyUniquePowersChanged(true);
 		}
 	}
