@@ -1106,6 +1106,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bFreePillage = false; // Civ4 Reimagined
 	m_bPirateGold = false; // Civ4 Reimagined
 	m_bIsIgnoreEarlyWonderHurryCostModifier = false; // Civ4 Reimagined
+	m_bIsIgnoreForeignTradeBan = false; // Civ4 Reimagined
 	m_bLegacyCivic = false; // Civ4 Reimagined
 	
 	m_eID = eID;
@@ -21479,6 +21480,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bFreePillage); // Civ4 Reimagined
 	pStream->Read(&m_bPirateGold); // Civ4 Reimagined
 	pStream->Read(&m_bIsIgnoreEarlyWonderHurryCostModifier); // Civ4 Reimagined
+	pStream->Read(&m_bIsIgnoreForeignTradeBan); // Civ4 Reimagined
 	pStream->Read(&m_bLegacyCivic); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
@@ -22160,6 +22162,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_bFreePillage); // Civ4 Reimagined
 	pStream->Write(m_bPirateGold); // Civ4 Reimagined
 	pStream->Write(m_bIsIgnoreEarlyWonderHurryCostModifier); // Civ4 Reimagined
+	pStream->Write(m_bIsIgnoreForeignTradeBan); // Civ4 Reimagined
 	pStream->Write(m_bLegacyCivic); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
@@ -26485,7 +26488,8 @@ bool CvPlayer::canHaveTradeRoutesWith(PlayerTypes ePlayer) const
 			return true;
 		}
 
-		if (!isNoForeignTrade() && !kOtherPlayer.isNoForeignTrade())
+		// Ottoman UP
+		if (!isNoForeignTrade() && (!kOtherPlayer.isNoForeignTrade() || isIgnoreForeignTradeBan()))
 		{
 			return true;
 		}
@@ -29940,6 +29944,20 @@ bool CvPlayer::isIgnoreEarlyWonderHurryCostModifier() const
 }
 
 //Civ4 Reimagined
+void CvPlayer::setIsIgnoreForeignTradeBan(bool bNewValue)
+{
+	m_bIsIgnoreForeignTradeBan = bNewValue;
+
+	GC.getGameINLINE().updateTradeRoutes();
+}
+
+//Civ4 Reimagined
+bool CvPlayer::isIgnoreForeignTradeBan() const
+{
+	return m_bIsIgnoreForeignTradeBan;
+}
+
+//Civ4 Reimagined
 void CvPlayer::setIsLegacyCivic(bool bNewValue)
 {
 	m_bLegacyCivic = bNewValue;
@@ -30570,6 +30588,15 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			setCanBuildWindmillsOnCoast(true);
 			notifyUniquePowersChanged(true);
 		}			
+	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_OTTOMAN"))
+	{
+		if (eEra == ERA_ANCIENT)
+		{
+			changeUpkeepModifier(-50);
+			setIsIgnoreForeignTradeBan(true);
+			notifyUniquePowersChanged(true);
+		}
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_PERSIA"))
 	{

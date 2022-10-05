@@ -1577,6 +1577,8 @@ public:
 	EraTypes getUniqueUnitEra() const; // Civ4 Reimagined
 	int getEspionagePointsOnConquestPerPopulation() const; // Civ4 Reimagined
 	void changeEspionagePointsOnConquestPerPopulation(int iChange); // Civ4 Reimagined
+	bool isIgnoreForeignTradeBan() const; // Civ4 Reimagined
+	void setIsIgnoreForeignTradeBan(bool bNewValue); // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1897,6 +1899,7 @@ protected:
 	bool m_bPirateGold; // Civ4 Reimagined
 	bool m_bIsIgnoreEarlyWonderHurryCostModifier; // Civ4 Reimagined
 	bool m_bLegacyCivic; // Civ4 Reimagined
+	bool m_bIsIgnoreForeignTradeBan; // Civ4 Reimagined
 
 	bool m_bDisableHuman;	// Set to true to disable isHuman() check
 
