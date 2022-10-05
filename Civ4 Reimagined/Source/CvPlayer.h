@@ -1583,6 +1583,8 @@ public:
 	void setIsIgnoreForeignTradeBan(bool bNewValue); // Civ4 Reimagined
 	bool isAlwaysReceiveGreatPeopleLateTechs() const; // Civ4 Reimagined
 	void setIsAlwaysReceiveGreatPeopleLateTechs(bool bNewValue); // Civ4 Reimagined
+	bool isCanGoldenAgeWithSamePeople() const; // Civ4 Reimagined
+	void setIsCanGoldenAgeWithSamePeople(bool bNewValue); // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1906,6 +1908,7 @@ protected:
 	bool m_bLegacyCivic; // Civ4 Reimagined
 	bool m_bIsIgnoreForeignTradeBan; // Civ4 Reimagined
 	bool m_bAlwaysReceiveGreatPeopleLateTechs; // Civ4 Reimagined
+	bool m_bCanGoldenAgeWithSamePeople; // Civ4 Reimagined
 
 	bool m_bDisableHuman;	// Set to true to disable isHuman() check
 

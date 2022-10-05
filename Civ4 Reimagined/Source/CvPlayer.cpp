@@ -1109,6 +1109,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bIsIgnoreEarlyWonderHurryCostModifier = false; // Civ4 Reimagined
 	m_bIsIgnoreForeignTradeBan = false; // Civ4 Reimagined
 	m_bAlwaysReceiveGreatPeopleLateTechs = false; // Civ4 Reimagined
+	m_bCanGoldenAgeWithSamePeople = false; // Civ4 Reimagined
 	m_bLegacyCivic = false; // Civ4 Reimagined
 	
 	m_eID = eID;
@@ -10016,17 +10017,20 @@ int CvPlayer::unitsGoldenAgeReady() const
 	PROFILE_FUNC();
 
 	std::set<UnitClassTypes> golden_age_units;
+	int iGoldenAgeUnits = 0;
 
 	int iLoop;
 	for (CvUnit* pLoopUnit = firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = nextUnit(&iLoop))
 	{
-		if (pLoopUnit->isGoldenAge() && golden_age_units.count(pLoopUnit->getUnitClassType()) == 0)
+		// Civ4 Reimagined: Persia UP
+		if (pLoopUnit->isGoldenAge() && (isCanGoldenAgeWithSamePeople() || golden_age_units.count(pLoopUnit->getUnitClassType()) == 0))
 		{
 			golden_age_units.insert(pLoopUnit->getUnitClassType());
+			++iGoldenAgeUnits;
 		}
 	}
 
-	return golden_age_units.size();
+	return iGoldenAgeUnits;
 }
 
 
@@ -10065,7 +10069,8 @@ void CvPlayer::killGoldenAgeUnits(CvUnit* pUnitAlive)
 		{
 			if (pLoopUnit->isGoldenAge())
 			{
-				if (!(pabUnitUsed[pLoopUnit->getUnitType()]))
+				// Civ4 Reimagined: Persia UP
+				if (!(pabUnitUsed[pLoopUnit->getUnitType()]) || (isCanGoldenAgeWithSamePeople() && pLoopUnit != pUnitAlive))
 				{
 					iValue = 10000;
 
@@ -21485,6 +21490,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bIsIgnoreEarlyWonderHurryCostModifier); // Civ4 Reimagined
 	pStream->Read(&m_bIsIgnoreForeignTradeBan); // Civ4 Reimagined
 	pStream->Read(&m_bAlwaysReceiveGreatPeopleLateTechs); // Civ4 Reimagined
+	pStream->Read(&m_bCanGoldenAgeWithSamePeople); // Civ4 Reimagined
 	pStream->Read(&m_bLegacyCivic); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
@@ -22169,6 +22175,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_bIsIgnoreEarlyWonderHurryCostModifier); // Civ4 Reimagined
 	pStream->Write(m_bIsIgnoreForeignTradeBan); // Civ4 Reimagined
 	pStream->Write(m_bAlwaysReceiveGreatPeopleLateTechs); // Civ4 Reimagined
+	pStream->Write(m_bCanGoldenAgeWithSamePeople); // Civ4 Reimagined
 	pStream->Write(m_bLegacyCivic); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
@@ -29991,6 +29998,18 @@ bool CvPlayer::isAlwaysReceiveGreatPeopleLateTechs() const
 }
 
 //Civ4 Reimagined
+void CvPlayer::setIsCanGoldenAgeWithSamePeople(bool bNewValue)
+{
+	m_bCanGoldenAgeWithSamePeople = bNewValue;
+}
+
+//Civ4 Reimagined
+bool CvPlayer::isCanGoldenAgeWithSamePeople() const
+{
+	return m_bCanGoldenAgeWithSamePeople;
+}
+
+//Civ4 Reimagined
 void CvPlayer::setIsLegacyCivic(bool bNewValue)
 {
 	m_bLegacyCivic = bNewValue;
@@ -30642,6 +30661,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		{
 			changeExtraMovesInGoldenAge(DOMAIN_LAND, 1);
 			changeGoldenAgeModifier(40);
+			setIsCanGoldenAgeWithSamePeople(true);
 			notifyUniquePowersChanged(true);
 		}
 	}
