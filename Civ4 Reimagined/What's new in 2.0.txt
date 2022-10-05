@@ -68,6 +68,8 @@ Tweaks
 -Can build farms on Tundra tiles without fresh water after Biology
 -Paratrooper airdrop range increased from 5 to 8 but it requires oil
 -FIrst to discover Liberalism receives Great Artist instead of Great Scientist
+-First to discover Computers receives Great Engineer
+-First to discover Fusion does not receive Great Engineer anymore
 
 *********
 Interface

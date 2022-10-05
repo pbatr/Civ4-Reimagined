@@ -4187,7 +4187,7 @@
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<Era>ERA_FUTURE</Era>
-			<FirstFreeUnitClass>UNITCLASS_ENGINEER</FirstFreeUnitClass>
+			<FirstFreeUnitClass>NONE</FirstFreeUnitClass>
 			<iFeatureProductionModifier>0</iFeatureProductionModifier>
 			<iWorkerSpeedModifier>0</iWorkerSpeedModifier>
 			<iTradeRoutes>0</iTradeRoutes>
@@ -6154,7 +6154,7 @@
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
 			<Era>ERA_MODERN</Era>
-			<FirstFreeUnitClass>NONE</FirstFreeUnitClass>
+			<FirstFreeUnitClass>UNITCLASS_ENGINEER</FirstFreeUnitClass>
 			<iFeatureProductionModifier>0</iFeatureProductionModifier>
 			<iWorkerSpeedModifier>0</iWorkerSpeedModifier>
 			<iTradeRoutes>0</iTradeRoutes>
@@ -6190,7 +6190,7 @@
 			<Flavors>
 				<Flavor>
 					<FlavorType>FLAVOR_PRODUCTION</FlavorType>
-					<iFlavor>2</iFlavor>
+					<iFlavor>4</iFlavor>
 				</Flavor>
 				<Flavor>
 					<FlavorType>FLAVOR_SCIENCE</FlavorType>
