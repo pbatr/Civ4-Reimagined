@@ -1056,6 +1056,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bExploreRivalSea = false; // Civ4 Reimagined
 	m_bEnableFinancial = false; // Civ4 Reimagined
 	m_iMercenaryCostModifier = 0; // Civ4 Reimagined
+	m_iBuyBuildingCostModifier = 0; // Civ4 Reimagined
 	m_iCanFarmHillsCount = 0; // Civ4 Reimagined
 	m_bSpecialTradeRoutePerPlayer = false; // Civ4 Reimagined
 	m_bExtraAvailableBonuses = false; // Civ4 Reimagined
@@ -1107,6 +1108,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bPirateGold = false; // Civ4 Reimagined
 	m_bIsIgnoreEarlyWonderHurryCostModifier = false; // Civ4 Reimagined
 	m_bIsIgnoreForeignTradeBan = false; // Civ4 Reimagined
+	m_bAlwaysReceiveGreatPeopleLateTechs = false; // Civ4 Reimagined
 	m_bLegacyCivic = false; // Civ4 Reimagined
 	
 	m_eID = eID;
@@ -21433,6 +21435,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bExploreRivalSea); // Civ4 Reimagined
 	pStream->Read(&m_bEnableFinancial); // Civ4 Reimagined
 	pStream->Read(&m_iMercenaryCostModifier); // Civ4 Reimagined
+	pStream->Read(&m_iBuyBuildingCostModifier); // Civ4 Reimagined
 	pStream->Read(&m_iCanFarmHillsCount); // Civ4 Reimagined
 	pStream->Read(&m_bSpecialTradeRoutePerPlayer); // Civ4 Reimagined
 	pStream->Read(&m_bExtraAvailableBonuses); // Civ4 Reimagined
@@ -21481,6 +21484,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bPirateGold); // Civ4 Reimagined
 	pStream->Read(&m_bIsIgnoreEarlyWonderHurryCostModifier); // Civ4 Reimagined
 	pStream->Read(&m_bIsIgnoreForeignTradeBan); // Civ4 Reimagined
+	pStream->Read(&m_bAlwaysReceiveGreatPeopleLateTechs); // Civ4 Reimagined
 	pStream->Read(&m_bLegacyCivic); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
@@ -22115,6 +22119,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_bExploreRivalSea); // Civ4 Reimagined
 	pStream->Write(m_bEnableFinancial); // Civ4 Reimagined
 	pStream->Write(m_iMercenaryCostModifier); // Civ4 Reimagined
+	pStream->Write(m_iBuyBuildingCostModifier); // Civ4 Reimagined
 	pStream->Write(m_iCanFarmHillsCount); // Civ4 Reimagined
 	pStream->Write(m_bSpecialTradeRoutePerPlayer); // Civ4 Reimagined
 	pStream->Write(m_bExtraAvailableBonuses); // Civ4 Reimagined
@@ -22163,6 +22168,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_bPirateGold); // Civ4 Reimagined
 	pStream->Write(m_bIsIgnoreEarlyWonderHurryCostModifier); // Civ4 Reimagined
 	pStream->Write(m_bIsIgnoreForeignTradeBan); // Civ4 Reimagined
+	pStream->Write(m_bAlwaysReceiveGreatPeopleLateTechs); // Civ4 Reimagined
 	pStream->Write(m_bLegacyCivic); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
@@ -29477,6 +29483,21 @@ void CvPlayer::changeMercenaryCostModifier(int iChange)
 }
 
 // Civ4 Reimagined
+int CvPlayer::getBuyBuildingCostModifier() const
+{
+	return m_iBuyBuildingCostModifier;
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeBuyBuildingCostModifier(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iBuyBuildingCostModifier += iChange;
+	}
+}
+
+// Civ4 Reimagined
 int CvPlayer::getCanFarmHillsCount() const
 {
 	return m_iCanFarmHillsCount;
@@ -29958,6 +29979,18 @@ bool CvPlayer::isIgnoreForeignTradeBan() const
 }
 
 //Civ4 Reimagined
+void CvPlayer::setIsAlwaysReceiveGreatPeopleLateTechs(bool bNewValue)
+{
+	m_bAlwaysReceiveGreatPeopleLateTechs = bNewValue;
+}
+
+//Civ4 Reimagined
+bool CvPlayer::isAlwaysReceiveGreatPeopleLateTechs() const
+{
+	return m_bAlwaysReceiveGreatPeopleLateTechs;
+}
+
+//Civ4 Reimagined
 void CvPlayer::setIsLegacyCivic(bool bNewValue)
 {
 	m_bLegacyCivic = bNewValue;
@@ -30423,10 +30456,14 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_GERMANY"))
 	{
+		if (eEra == ERA_ANCIENT)
+		{
+			setIsAlwaysReceiveGreatPeopleLateTechs(true);
+		}
 		if (eEra == ERA_INDUSTRIAL)
 		{
 			changeGreatGeneralGoldenAgeLength(GC.getDefineINT("UNIQUE_POWER_GERMANY"));
-			changeImprovementYieldChange((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_MINE"), YIELD_PRODUCTION, 1);
+			changeBuyBuildingCostModifier(-33);
 			notifyUniquePowersChanged(true);
 		}
 	}

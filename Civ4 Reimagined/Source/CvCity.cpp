@@ -1184,7 +1184,7 @@ void CvCity::doTurn()
 			iCount += getCorporationYield((YieldTypes)iI);
 			
 			iCount += GET_PLAYER(getOwnerINLINE()).getExtraYield((YieldTypes)iI);
-			
+
 			// Civ4 Reimagined
 			iCount += GET_PLAYER(getOwnerINLINE()).getExtraYieldPerReligion((YieldTypes)iI) * getReligionCount();
 
@@ -5663,6 +5663,13 @@ int CvCity::getHurryGold(HurryTypes eHurry, int iHurryCost) const
 	if (GC.getHurryInfo(eHurry).isUnits())
 	{
 		iGold *= std::max(0, 100 + (GET_PLAYER(getOwnerINLINE())).getMercenaryCostModifier());
+		iGold /= 100;
+	}
+
+	// Civ4 Reimagined: German UP
+	if (GC.getHurryInfo(eHurry).isBuildings())
+	{
+		iGold *= std::max(0, 100 + (GET_PLAYER(getOwnerINLINE())).getBuyBuildingCostModifier());
 		iGold /= 100;
 	}
 	

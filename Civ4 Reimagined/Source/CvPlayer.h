@@ -1462,6 +1462,8 @@ public:
 	void setEnableFinancial(bool bNewValue); // Civ4 Reimagined
 	int getMercenaryCostModifier() const; // Civ4 Reimagined
 	void changeMercenaryCostModifier(int iChange); // Civ4 Reimagined
+	int getBuyBuildingCostModifier() const; // Civ4 Reimagined
+	void changeBuyBuildingCostModifier(int iChange); // Civ4 Reimagined
 	int getCanFarmHillsCount() const; // Civ4 Reimagined
 	void changeCanFarmHillsCount(int iChange); // Civ4 Reimagined
 	bool isCanFarmHills() const; // Civ4 Reimagined
@@ -1579,6 +1581,8 @@ public:
 	void changeEspionagePointsOnConquestPerPopulation(int iChange); // Civ4 Reimagined
 	bool isIgnoreForeignTradeBan() const; // Civ4 Reimagined
 	void setIsIgnoreForeignTradeBan(bool bNewValue); // Civ4 Reimagined
+	bool isAlwaysReceiveGreatPeopleLateTechs() const; // Civ4 Reimagined
+	void setIsAlwaysReceiveGreatPeopleLateTechs(bool bNewValue); // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1832,6 +1836,7 @@ protected:
 	bool m_bExploreRivalSea; // Civ4 Reimagined
 	bool m_bEnableFinancial; // Civ4 Reimagined
 	int m_iMercenaryCostModifier; // Civ4 Reimagined
+	int m_iBuyBuildingCostModifier; // Civ4 Reimagined
 	int m_iCanFarmHillsCount; // Civ4 Reimagined
 	bool m_bSpecialTradeRoutePerPlayer; // Civ4 Reimagined
 	bool m_bExtraAvailableBonuses; // Civ4 Reimagined
@@ -1900,6 +1905,7 @@ protected:
 	bool m_bIsIgnoreEarlyWonderHurryCostModifier; // Civ4 Reimagined
 	bool m_bLegacyCivic; // Civ4 Reimagined
 	bool m_bIsIgnoreForeignTradeBan; // Civ4 Reimagined
+	bool m_bAlwaysReceiveGreatPeopleLateTechs; // Civ4 Reimagined
 
 	bool m_bDisableHuman;	// Set to true to disable isHuman() check
 

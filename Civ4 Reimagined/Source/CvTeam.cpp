@@ -5865,7 +5865,10 @@ void CvTeam::setHasTech(TechTypes eIndex, bool bNewValue, PlayerTypes ePlayer, b
 
 			if (bFirst)
 			{
-				if (GC.getGameINLINE().countKnownTechNumTeams(eIndex) == 1)
+				// Civ4 Reimagined: German UP
+				const bool bAlwaysReceiveGP = GET_PLAYER(ePlayer).isAlwaysReceiveGreatPeopleLateTechs() && GC.getTechInfo(eIndex).getEra() >= 3;
+				
+				if (GC.getGameINLINE().countKnownTechNumTeams(eIndex) == 1 || bAlwaysReceiveGP)
 				{
 					eFreeUnit = GET_PLAYER(ePlayer).getTechFreeUnit(eIndex);
 					if (eFreeUnit != NO_UNIT)
@@ -5878,7 +5881,10 @@ void CvTeam::setHasTech(TechTypes eIndex, bool bNewValue, PlayerTypes ePlayer, b
 							pCapitalCity->createGreatPeople(eFreeUnit, false, false);
 						}
 					}
+				}
 
+				if (GC.getGameINLINE().countKnownTechNumTeams(eIndex) == 1)
+				{
 					bool bAnnounceTech = false;
 
 					// Civ4 Reimagined
