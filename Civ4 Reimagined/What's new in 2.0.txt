@@ -67,6 +67,7 @@ Tweaks
 -Totestra map size default player number reduced from 19 to 18
 -Can build farms on Tundra tiles without fresh water after Biology
 -Paratrooper airdrop range increased from 5 to 8 but it requires oil
+-FIrst to discover Liberalism receives Great Artist instead of Great Scientist
 
 *********
 Interface
