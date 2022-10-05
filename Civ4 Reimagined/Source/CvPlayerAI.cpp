@@ -8430,7 +8430,7 @@ void CvPlayerAI::AI_updateAttitudeCache(PlayerTypes ePlayer)
 
 	if (!(kPlayer.isHuman()))
 	{
-		iAttitude += (2 - abs(AI_getPeaceWeight() - kPlayer.AI_getPeaceWeight()));
+		iAttitude += (3 - abs(AI_getPeaceWeight() - kPlayer.AI_getPeaceWeight()));
 		iAttitude += std::min(GC.getLeaderHeadInfo(getPersonalityType()).getWarmongerRespect(), GC.getLeaderHeadInfo(kPlayer.getPersonalityType()).getWarmongerRespect());
 	}
 
