@@ -2636,7 +2636,7 @@ bool CvPlot::canBuild(BuildTypes eBuild, PlayerTypes ePlayer, bool bTestVisible)
 
 		if (!bTestVisible)
 		{
-			if (GET_PLAYER(ePlayer).getTeam() != getTeam())
+			if (ePlayer != NO_PLAYER && GET_PLAYER(ePlayer).getTeam() != getTeam())
 			{
 				//outside borders can't be built in other's culture
 				if (GC.getImprovementInfo(eImprovement).isOutsideBorders())
@@ -2706,9 +2706,17 @@ bool CvPlot::canBuild(BuildTypes eBuild, PlayerTypes ePlayer, bool bTestVisible)
 	{
 		if (GC.getBuildInfo(eBuild).isFeatureRemove(getFeatureType()))
 		{
-			if (isOwned() && (GET_PLAYER(ePlayer).getTeam() != getTeam()) && !atWar(GET_PLAYER(ePlayer).getTeam(), getTeam()))
+			if (isOwned())
 			{
-				return false;
+				if (ePlayer == NO_PLAYER)
+				{
+					return false;
+				}
+				
+				if (GET_PLAYER(ePlayer).getTeam() != getTeam() && !atWar(GET_PLAYER(ePlayer).getTeam(), getTeam()))
+				{
+					return false;
+				}
 			}
 
 			bValid = true;

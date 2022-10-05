@@ -19746,7 +19746,7 @@ bool CvUnitAI::AI_searchGoldMines()
 			continue;
 		}
 
-		if (!pLoopPlot->canBuild(eBuild))
+		if (!canBuild(pLoopPlot, eBuild))
 		{
 			continue;
 		}
