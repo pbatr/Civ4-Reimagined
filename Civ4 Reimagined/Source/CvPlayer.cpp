@@ -30372,6 +30372,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		{
 			changeStateReligionBuildingCommerce(COMMERCE_ESPIONAGE, 2);
 			setUniquePowerPromotion((PromotionTypes)GC.getInfoTypeForString("PROMOTION_GREEK_FIRE"));
+			changeGreatPeopleRateChangeModifier((SpecialistTypes)GC.getInfoTypeForString("SPECIALIST_SPY"), 100);
 			notifyUniquePowersChanged(true);
 		}
 	}
@@ -30641,7 +30642,6 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		{
 			changeExtraMovesInGoldenAge(DOMAIN_LAND, 1);
 			changeGoldenAgeModifier(40);
-			changeGreatPeopleRateChangeModifier((SpecialistTypes)GC.getInfoTypeForString("SPECIALIST_SPY"), 100);
 			notifyUniquePowersChanged(true);
 		}
 	}

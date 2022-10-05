@@ -229,7 +229,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_BYZANTIUM</Tag>
-		<English>Other civilizations have +2 Attitude when Byzantine capital is more cultural advanced. After entering the Medieval Era: +2[ICON_ESPIONAGE] from state religion buildings. Naval units can train Greek Fire Promotion.</English>
+		<English>Other civilizations have +2 Attitude when Byzantine capital is more cultural advanced. After entering the Medieval Era: +2[ICON_ESPIONAGE] from state religion buildings. +100% [ICON_GREATPEOPLE] birth rate towards Great Spy from Spy specialists. Naval units can train Greek Fire Promotion.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_ENGLAND</Tag>
@@ -249,7 +249,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_PERSIA</Tag>
-		<English>Golden Ages last 40% longer. Land units have one additional movement during a Golden Age. +100% [ICON_GREATPEOPLE] birth rate towards Great Spy from Spy specialists.</English>
+		<English>Golden Ages last 40% longer. Land units have one additional movement during a Golden Age.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_MONGOL</Tag>
