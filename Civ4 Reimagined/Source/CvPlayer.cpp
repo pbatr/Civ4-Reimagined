@@ -1034,7 +1034,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iLegacyCivic = NO_CIVIC; // Civ4 Reimagined
 	m_iEarlyScientistBonusCommerce = 0; // Civ4 Reimagined
 	m_iEarlyPriestExtraFood = 0; // Civ4 Reimagined
-	m_iUniquePowerWorldWonderCapitalModifier = 0; // Civ4 Reimagined
+	m_iWorldWonderProductionModifier = 0; // Civ4 Reimagined
 	m_iProductionNearRiver = 0; // Civ4 Reimagined
 	m_iProductionPerPopulation = 0; // Civ4 Reimagined
 	m_iHurryWithGreatPriestsRatio = 0; // Civ4 Reimagined
@@ -21418,7 +21418,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read((int*)&m_iLegacyCivic); // Civ4 Reimagined
 	pStream->Read(&m_iEarlyScientistBonusCommerce); // Civ4 Reimagined
 	pStream->Read(&m_iEarlyPriestExtraFood); // Civ4 Reimagined
-	pStream->Read(&m_iUniquePowerWorldWonderCapitalModifier); // Civ4 Reimagined
+	pStream->Read(&m_iWorldWonderProductionModifier); // Civ4 Reimagined
 	pStream->Read(&m_iProductionNearRiver); // Civ4 Reimagined
 	pStream->Read(&m_iProductionPerPopulation); // Civ4 Reimagined
 	pStream->Read(&m_iHurryWithGreatPriestsRatio); // Civ4 Reimagined
@@ -22103,7 +22103,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iLegacyCivic); // Civ4 Reimagined
 	pStream->Write(m_iEarlyScientistBonusCommerce); // Civ4 Reimagined
 	pStream->Write(m_iEarlyPriestExtraFood); // Civ4 Reimagined
-	pStream->Write(m_iUniquePowerWorldWonderCapitalModifier); // Civ4 Reimagined
+	pStream->Write(m_iWorldWonderProductionModifier); // Civ4 Reimagined
 	pStream->Write(m_iProductionNearRiver); // Civ4 Reimagined
 	pStream->Write(m_iProductionPerPopulation); // Civ4 Reimagined
 	pStream->Write(m_iHurryWithGreatPriestsRatio); // Civ4 Reimagined
@@ -28923,17 +28923,17 @@ void CvPlayer::changeUniquePowerCommerceModifier(CommerceTypes eIndex, int iChan
 }
 
 // Civ4 Reimagined
-int CvPlayer::getUniquePowerWorldWonderCapitalModifier() const
+int CvPlayer::getWorldWonderProductionModifier() const
 {
-	return m_iUniquePowerWorldWonderCapitalModifier;
+	return m_iWorldWonderProductionModifier;
 }
 
 // Civ4 Reimagined
-void CvPlayer::changeUniquePowerWorldWonderCapitalModifier(int iChange)
+void CvPlayer::changeWorldWonderProductionModifier(int iChange)
 {
 	if (iChange != 0)
 	{
-		m_iUniquePowerWorldWonderCapitalModifier = m_iUniquePowerWorldWonderCapitalModifier + iChange;
+		m_iWorldWonderProductionModifier = m_iWorldWonderProductionModifier + iChange;
 	}
 }
 
@@ -30356,7 +30356,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			changeUnitClassProductionModifier(UNITCLASS_EXECUTIVE_9, 100);
 			changeUnitClassProductionModifier(UNITCLASS_EXECUTIVE_10, 100);
 			changeUnitClassProductionModifier(UNITCLASS_EXECUTIVE_11, 100);
-			
+			changeWorldWonderProductionModifier(100);
 			notifyUniquePowersChanged(true);
 		}
 	}

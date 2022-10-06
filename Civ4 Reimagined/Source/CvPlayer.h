@@ -1411,8 +1411,8 @@ public:
 	bool isWrongCivicBuilding(BuildingTypes eBuilding) const; // Civ4 Reimagined
 	int getUniquePowerCommerceModifier(CommerceTypes eIndex) const; // Civ4 Reimagined
 	void changeUniquePowerCommerceModifier(CommerceTypes eIndex, int iChange); // Civ4 Reimagined
-	int getUniquePowerWorldWonderCapitalModifier() const; // Civ4 Reimagined
-	void changeUniquePowerWorldWonderCapitalModifier(int iChange); // Civ4 Reimagined
+	int getWorldWonderProductionModifier() const; // Civ4 Reimagined
+	void changeWorldWonderProductionModifier(int iChange); // Civ4 Reimagined
 	int getProductionNearRiver() const; // Civ4 Reimagined
 	void changeProductionNearRiver(int iChange); // Civ4 Reimagined
 	int getProductionPerPopulation() const; // Civ4 Reimagined
@@ -1821,7 +1821,7 @@ protected:
 	CivicTypes m_iLegacyCivic; // Civ4 Reimagined
 	int m_iEarlyScientistBonusCommerce; // Civ4 Reimagined
 	int m_iEarlyPriestExtraFood; // Civ4 Reimagined
-	int m_iUniquePowerWorldWonderCapitalModifier; // Civ4 Reimagined
+	int m_iWorldWonderProductionModifier; // Civ4 Reimagined
 	int m_iProductionNearRiver; // Civ4 Reimagined
 	int m_iProductionPerPopulation; // Civ4 Reimagined
 	int m_iHurryWithGreatPriestsRatio; // Civ4 Reimagined

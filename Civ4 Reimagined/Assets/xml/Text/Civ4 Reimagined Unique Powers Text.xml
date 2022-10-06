@@ -84,7 +84,7 @@
 		<English>[ICON_BULLET]%D1%%%F2 from Unique Power</English>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_MISC_HELP_PROD_UNIQUE_POWER_CAPITAL_WONDER</Tag>
+		<Tag>TXT_KEY_MISC_HELP_PROD_UNIQUE_POWER_WONDER</Tag>
 		<English>[ICON_BULLET]%D1%[ICON_PRODUCTION] from Unique Power</English>
 	</TEXT>
 	<TEXT>
@@ -237,7 +237,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_AMERICA</Tag>
-		<English>After entering the Industrial Era: Trade routes contribute to Great People birth (40% of trade income). Trade routes with other players cities who have one or more corporations owned by America are at +600%[ICON_COMMERCE]. Double production for Corporation Executives.</English>
+		<English>After entering the Industrial Era: Trade routes contribute to Great People birth (40% of trade income). Trade routes with other players cities who have one or more corporations owned by America are at +600%[ICON_COMMERCE]. +100% production towards Corporation Executives and World Wonders.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_GERMANY</Tag>

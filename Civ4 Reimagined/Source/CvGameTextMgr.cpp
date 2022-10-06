@@ -16983,15 +16983,11 @@ void CvGameTextMgr::setProductionHelp(CvWStringBuffer &szBuffer, CvCity& city)
 		// Any Wonder Civ4 Reimagined
 		if (isLimitedWonderClass((BuildingClassTypes)(GC.getBuildingInfo(eBuilding).getBuildingClassType())) && NO_PLAYER != city.getOwnerINLINE())
 		{
-			int iWonderMod = 0;
-			if (city.isCapital())
-			{
-				iWonderMod += GET_PLAYER(city.getOwnerINLINE()).getUniquePowerWorldWonderCapitalModifier();
-			}
+			int iWonderMod = GET_PLAYER(city.getOwnerINLINE()).getWorldWonderProductionModifier();
 			
 			if (iWonderMod != 0)
 			{
-				szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_PROD_UNIQUE_POWER_CAPITAL_WONDER", iWonderMod));
+				szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_PROD_UNIQUE_POWER_WONDER", iWonderMod));
 				szBuffer.append(NEWLINE);
 				iBaseModifier += iWonderMod;
 			}

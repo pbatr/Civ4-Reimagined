@@ -16675,7 +16675,6 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 			iTempValue -= getCapitalCommerceRateModifier((CommerceTypes)iI) * pCapital->getBaseCommerceRate((CommerceTypes)iI) * AI_commerceWeight((CommerceTypes)iI) / 10000;
 		}
 		
-		iTempValue -= getUniquePowerWorldWonderCapitalModifier() / 25;
 		iTempValue -= std::max(1, pCapital->getPopulation() / 5);
 		
 		if (iTempValue && gPlayerLogLevel > 2) logBBAI("	Civic Value no capital modifers: %d", iTempValue);

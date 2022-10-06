@@ -3506,13 +3506,10 @@ int CvCity::getProductionModifier(BuildingTypes eBuilding) const
 	iMultiplier += getBuildingProductionModifier();
 	
 	// Civ4 Reimagined
-	if (isCapital() && !GET_PLAYER(getOwnerINLINE()).isNoCapital())
+	const BuildingClassTypes eBuildingClass = (BuildingClassTypes)GC.getBuildingInfo(eBuilding).getBuildingClassType();
+	if (isLimitedWonderClass(eBuildingClass))
 	{
-		BuildingClassTypes eBuildingClass = (BuildingClassTypes)GC.getBuildingInfo(eBuilding).getBuildingClassType();
-		if (isLimitedWonderClass(eBuildingClass))
-		{
-			iMultiplier += GET_PLAYER(getOwnerINLINE()).getUniquePowerWorldWonderCapitalModifier();
-		}
+		iMultiplier += GET_PLAYER(getOwnerINLINE()).getWorldWonderProductionModifier();
 	}
 
 	// Civ4 Reimagined
