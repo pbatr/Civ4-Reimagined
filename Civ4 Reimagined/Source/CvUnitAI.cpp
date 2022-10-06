@@ -19762,7 +19762,7 @@ bool CvUnitAI::AI_searchGoldMines()
 		}
 
 		int iValue = 10000;
-		iValue /= plotDistance(plot()->getX_INLINE(), plot()->getY_INLINE(), pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE());
+		iValue /= 1 + plotDistance(plot()->getX_INLINE(), plot()->getY_INLINE(), pLoopPlot->getX_INLINE(), pLoopPlot->getY_INLINE());
 
 		if (iValue > iBestValue)
 		{
