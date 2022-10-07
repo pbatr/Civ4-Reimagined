@@ -314,9 +314,6 @@ void CvGame::setInitialItems()
 		if (kPlayer.isAlive())
 		{
 			kPlayer.AI_updateFoundValues();
-			
-			// Civ4 Reimagined: Quick fix to get powers working on game start.
-			kPlayer.updateUniquePowers((EraTypes)0);
 		}
 	}
 }

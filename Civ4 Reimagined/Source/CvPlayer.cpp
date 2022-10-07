@@ -383,6 +383,12 @@ void CvPlayer::init(PlayerTypes eID)
 	}
 
 	// Civ4 Reimagined
+	if (isAlive())
+	{
+		updateUniquePowers((EraTypes)0);
+	}
+
+	// Civ4 Reimagined
 	setupEurekas();
 
 	AI_init();
@@ -642,6 +648,8 @@ void CvPlayer::initInGame(PlayerTypes eID)
 // Civ4 Reimagined
 void CvPlayer::setupEurekas()
 {
+	logBBAI("Setup eurekas for %d", getID());
+
 	if (!isHuman() || isHumanDisabled())
 	{
 		for (int iI = 0; iI < GC.getNumTechInfos(); iI++)
@@ -14085,7 +14093,15 @@ void CvPlayer::setCurrentEra(EraTypes eNewValue)
 		m_eCurrentEra = eNewValue;
 
 		// Civ4 Reimagined
-		updateUniquePowers((EraTypes)getCurrentEra());
+		if (eOldEra < eNewValue)
+		{
+			int iEra = (int)eOldEra;
+
+			do {
+				iEra++;
+				updateUniquePowers((EraTypes)iEra);
+			} while (iEra < (int)eNewValue);
+		}
 		
 		if (GC.getGameINLINE().getActiveTeam() != NO_TEAM)
 		{
@@ -30332,6 +30348,8 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	{
 		return;		
 	}
+
+	logBBAI("Update Unique Powers for %d and era %d", getID(), (int)eEra);
 
 	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_AMERICA"))
 	{
