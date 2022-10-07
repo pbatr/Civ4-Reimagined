@@ -70,6 +70,7 @@ Tweaks
 -FIrst to discover Liberalism receives Great Artist instead of Great Scientist
 -First to discover Computers receives Great Engineer
 -First to discover Fusion does not receive Great Engineer anymore
+-Spy costs unit maintenance
 
 *********
 Interface
