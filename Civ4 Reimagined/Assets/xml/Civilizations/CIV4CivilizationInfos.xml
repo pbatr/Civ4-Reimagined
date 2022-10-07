@@ -2297,6 +2297,10 @@
 					<TechType>TECH_AGRICULTURE</TechType>
 					<bFreeTech>1</bFreeTech>
 				</FreeTech>
+				<FreeTech>
+					<TechType>TECH_MYSTICISM</TechType>
+					<bFreeTech>1</bFreeTech>
+				</FreeTech>
 			</FreeTechs>
 			<DisableTechs/>
 			<FeatureBiases>

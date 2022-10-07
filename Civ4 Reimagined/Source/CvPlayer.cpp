@@ -654,16 +654,11 @@ void CvPlayer::setupEurekas()
 	{
 		for (int iI = 0; iI < GC.getNumTechInfos(); iI++)
 		{
-			if (!CvWString(GC.getTechInfo((TechTypes)iI).getHelp()).empty() && (TechTypes)iI != (TechTypes)GC.getInfoTypeForString("TECH_POLYTHEISM") && (TechTypes)iI != (TechTypes)GC.getInfoTypeForString("TECH_ECOLOGY"))
+			if (!CvWString(GC.getTechInfo((TechTypes)iI).getHelp()).empty() && (TechTypes)iI != (TechTypes)GC.getInfoTypeForString("TECH_ECOLOGY"))
 			{
 				GET_TEAM(getTeam()).setTechBoosted((TechTypes)iI, getID(), true);
 			}
 		}
-	}
-
-	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_INDIA"))
-	{
-		GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_POLYTHEISM"), getID(), true);
 	}
 }
 
