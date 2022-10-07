@@ -6560,22 +6560,22 @@ int CvUnit::getGreatPersonBulbScaling() const
 	
 	if (averageEra < 1)
 	{
-		eraBonus = 300 + (int)(averageEra * 350);
+		eraBonus = 250 + (int)(averageEra * 500);
 	} else if (averageEra < 2)
 	{
-		eraBonus = 650 + (int)((averageEra-1) * 675);
+		eraBonus = 750 + (int)((averageEra-1) * 1000);
 	} else if (averageEra < 3)
 	{
-		eraBonus = 1325 + (int)((averageEra-2) * 1175); // Old: 2650 +...
+		eraBonus = 1750 + (int)((averageEra-2) * 2000);
 	} else if (averageEra < 4)
 	{
-		eraBonus = 2500 + (int)((averageEra-3) * 1500); // Old: 6k+ +...
+		eraBonus = 3750 + (int)((averageEra-3) * 3000);
 	} else if (averageEra < 5)
 	{
-		eraBonus = 4000 + (int)((averageEra-4) * 2000); // Old: 11k
+		eraBonus = 6750 + (int)((averageEra-4) * 4000);
 	} else
 	{
-		eraBonus = 6000 + (int)((averageEra-5) * 2500); // Old: 17,5k
+		eraBonus = 10750 + (int)((averageEra-5) * 5000);
 	}
 	
 	return eraBonus;
