@@ -1353,6 +1353,12 @@ void CvTeam::declareWar(TeamTypes eTeam, bool bNewDiplo, WarPlanTypes eWarPlan, 
 		logBBAI("  Team %d (%S) declares war on team %d", getID(), GET_PLAYER(getLeaderID()).getCivilizationDescription(0), eTeam);
 	}
 
+	// Civ4 Reimagined
+	if (!GET_TEAM(eTeam).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_NATIONALISM")))
+	{
+		GET_TEAM(eTeam).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_NATIONALISM"), GET_TEAM(eTeam).getLeaderID(), true);
+	}
+
 	for (CvDeal* pLoopDeal = GC.getGameINLINE().firstDeal(&iLoop); pLoopDeal != NULL; pLoopDeal = GC.getGameINLINE().nextDeal(&iLoop))
 	{
 		if (((GET_PLAYER(pLoopDeal->getFirstPlayer()).getTeam() == getID()) && (GET_PLAYER(pLoopDeal->getSecondPlayer()).getTeam() == eTeam)) ||
@@ -6849,15 +6855,6 @@ void CvTeam::processTech(TechTypes eTech, int iChange)
 	if (GC.getTechInfo(eTech).isRiverTrade())
 	{
 		changeRiverTradeCount(iChange);
-	}
-
-	// Civ4 Reimagined
-	if (!isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_NATIONALISM")))
-	{
-		if (iChange > 0 && eTech == (TechTypes)GC.getInfoTypeForString("TECH_STEAM_POWER"))
-		{
-			setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_NATIONALISM"), getLeaderID(), true);
-		}
 	}
 
 	for (iI = 0; iI < GC.getNumBuildingInfos(); iI++)
