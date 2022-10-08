@@ -5873,7 +5873,7 @@ void CvTeam::setHasTech(TechTypes eIndex, bool bNewValue, PlayerTypes ePlayer, b
 			{
 				// Civ4 Reimagined: German UP
 				const bool bAlwaysReceiveGP = GET_PLAYER(ePlayer).isAlwaysReceiveGreatPeopleLateTechs() && GC.getTechInfo(eIndex).getEra() >= 3;
-				
+
 				if (GC.getGameINLINE().countKnownTechNumTeams(eIndex) == 1 || bAlwaysReceiveGP)
 				{
 					eFreeUnit = GET_PLAYER(ePlayer).getTechFreeUnit(eIndex);

@@ -14095,6 +14095,7 @@ int CvPlayerAI::AI_missionaryValue(CvArea* pArea, ReligionTypes eReligion, Playe
 		iSpreadInternalValue *= 30 + ((100 * (iOurCitiesCount - iOurCitiesHave))/ iOurCitiesCount);
 		iSpreadInternalValue /= 100;
 		iSpreadInternalValue += iGoldValue;
+		iSpreadInternalValue += getGreatPeopleRatePerReligionModifier() * 100;
 	}
 	else
 	{
@@ -16585,6 +16586,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 					// Civ4 Reimagined
 					int iNonStateReligionHappiness = getNonStateReligionHappiness();
 					iTempValue += -iNonStateReligionHappiness * iCities;
+					iTempValue -= getGreatPeopleRatePerReligionModifier() * 2;
 					
 					if (iTempValue != 0 && gPlayerLogLevel > 2) logBBAI("	Civic Value of No Nonstatereligion Spread: %d", iTempValue);
 					
@@ -23493,7 +23495,7 @@ void CvPlayerAI::AI_updateStrategyHash()
 	    if (getStateReligion() != NO_RELIGION)
 	    {
             int iHolyCityCount = countHolyCities();
-            if ((iHolyCityCount > 0) && hasHolyCity(getStateReligion()))
+            if (((iHolyCityCount > 0) && hasHolyCity(getStateReligion())) || getGreatPeopleRatePerReligionModifier() > 0)
             {
                 int iMissionary = 0;
                 //Missionary
