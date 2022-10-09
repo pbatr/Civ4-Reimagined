@@ -10472,11 +10472,12 @@ int CvCity::totalTradeModifier(CvCity* pOtherCity) const
 			iModifier += GC.getDefineINT("OVERSEAS_TRADE_MODIFIER");
 			iModifier += getOverseaTradeRouteModifier();
 			iModifier += GET_PLAYER(getOwnerINLINE()).getOverseaTradeRouteModifier();
+
 			if (getTeam() == pOtherCity->getTeam())
 			{
 				iModifier += GET_PLAYER(getOwnerINLINE()).getColonyTradeModifier();
 			}
-			else
+			else if (GET_TEAM(pOtherCity->getTeam()).isVassal(getTeam()))
 			{
 				iModifier += GET_PLAYER(getOwnerINLINE()).getLiberatedColonyTradeRouteModifier();
 			}
