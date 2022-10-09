@@ -72,6 +72,7 @@ Tweaks
 -First to discover Fusion does not receive Great Engineer anymore
 -Spy costs unit maintenance
 -Great Merchant is invisble
+- Galleon, Frigate, Ship of the Line can explore rival territory
 
 *********
 Interface

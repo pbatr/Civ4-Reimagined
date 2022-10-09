@@ -266,7 +266,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_NETHERLANDS_OOSTINDIEVAARDER_STRATEGY</Tag>
-		<English>Compared to the [COLOR_UNIT_TEXT]Galleon[COLOR_REVERT], this unit has +3 ST, +1 cargo space and can explore rival territory. Being also great traders, they fully sustain themselves.</English>
+		<English>Compared to the [COLOR_UNIT_TEXT]Galleon[COLOR_REVERT], this unit has +3 ST, +1 cargo space and do not cost any maintenance.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_GERMAN_PANZER_STRATEGY</Tag>

@@ -19413,7 +19413,7 @@
 			<bOnlyDefensive>0</bOnlyDefensive>
 			<bNoCapture>0</bNoCapture>
 			<bQuickCombat>0</bQuickCombat>
-			<bRivalTerritory>0</bRivalTerritory>
+			<bRivalTerritory>1</bRivalTerritory>
 			<bMilitaryHappiness>0</bMilitaryHappiness>
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
@@ -19986,7 +19986,7 @@
 			<bOnlyDefensive>0</bOnlyDefensive>
 			<bNoCapture>0</bNoCapture>
 			<bQuickCombat>0</bQuickCombat>
-			<bRivalTerritory>0</bRivalTerritory>
+			<bRivalTerritory>1</bRivalTerritory>
 			<bMilitaryHappiness>0</bMilitaryHappiness>
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
@@ -20180,7 +20180,7 @@
 			<bOnlyDefensive>0</bOnlyDefensive>
 			<bNoCapture>0</bNoCapture>
 			<bQuickCombat>0</bQuickCombat>
-			<bRivalTerritory>0</bRivalTerritory>
+			<bRivalTerritory>1</bRivalTerritory>
 			<bMilitaryHappiness>0</bMilitaryHappiness>
 			<bMilitarySupport>1</bMilitarySupport>
 			<bMilitaryProduction>1</bMilitaryProduction>
