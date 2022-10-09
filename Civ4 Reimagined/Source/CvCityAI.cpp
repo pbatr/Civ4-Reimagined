@@ -459,7 +459,14 @@ int CvCityAI::AI_permanentSpecialistValue(SpecialistTypes eSpecialist) const
 		// Civ4 Reimagined
 		if (isCapital())
 		{
-			iTemp += kPlayer.getGreatPeopleExtraCommerceInCapital((CommerceTypes)iI);
+			if (kPlayer.getGreatPeopleExtraCommerceInCapital((CommerceTypes)iI) > 0)
+			{
+				iTemp += kPlayer.getGreatPeopleExtraCommerceInCapital((CommerceTypes)iI);
+			} else if (kPlayer.getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_FRANCE") && (CommerceTypes)iI == COMMERCE_GOLD)
+			{
+				// Future value
+				iTemp++;
+			}
 		}
 
 		if (iTemp != 0)

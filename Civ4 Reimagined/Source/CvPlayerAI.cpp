@@ -5525,7 +5525,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 
 	if (kTechInfo.isIgnoreIrrigation())
 	{
-		iValue += 6 * iCityCount; // K-Mod. Ignore irrigation isn't so great.
+		iValue += 12 * iCityCount;
 	}
 
 	if (kTechInfo.isWaterWork())
@@ -17397,7 +17397,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	// K-Mod end
 
 	// Civ4 Reiamagined
-	if (getForeignTradeIdeologyModifier(IDEOLOGY_LIBERALISM) > 0)
+	if (getForeignTradeIdeologyModifier(IDEOLOGY_LIBERALISM) > 0 || (isFrenchRevolution() && GC.getGameINLINE().areIdeologiesEnabled()))
 	{
 		iValue += kCivic.getLiberal() * 10;
 	}
