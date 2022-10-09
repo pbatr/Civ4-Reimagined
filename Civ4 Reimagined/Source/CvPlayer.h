@@ -1587,6 +1587,8 @@ public:
 	void setIsCanGoldenAgeWithSamePeople(bool bNewValue); // Civ4 Reimagined
 	int getTechBulbModifier() const; // Civ4 Reimagined
 	void changeTechBulbModifier(int iChange); // Civ4 Reimagined
+	bool isFrenchRevolution() const; // Civ4 Reimagined
+	void setIsFrenchRevolution(bool bNewValue); // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1912,6 +1914,7 @@ protected:
 	bool m_bIsIgnoreForeignTradeBan; // Civ4 Reimagined
 	bool m_bAlwaysReceiveGreatPeopleLateTechs; // Civ4 Reimagined
 	bool m_bCanGoldenAgeWithSamePeople; // Civ4 Reimagined
+	bool m_bFrenchRevolution; // Civ4 Reimagined
 
 	bool m_bDisableHuman;	// Set to true to disable isHuman() check
 

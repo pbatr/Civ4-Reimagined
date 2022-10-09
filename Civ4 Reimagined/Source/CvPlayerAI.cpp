@@ -18440,7 +18440,9 @@ int CvPlayerAI::AI_calculateGoldenAgeValue(bool bConsiderRevolution) const
 		}
 
 		int iAnarchyLength = getCivicAnarchyLength(&aeBestCivics[0]);
-		if (iAnarchyLength > 0)
+		const IdeologyTypes eIdeology = AI_bestIdeology(&aeBestCivics[0]);
+
+		if (iAnarchyLength > 0 && !(isFrenchRevolution() && eIdeology == IDEOLOGY_LIBERALISM))
 		{
 			// we would switch; so what is the negation of anarchy worth?
 			for (int iI = 0; iI < NUM_COMMERCE_TYPES; iI++)
@@ -19530,6 +19532,11 @@ void CvPlayerAI::AI_doCivics()
 	
 	if (iAccumulatedValue1 - iOldAccumulatedValue1 >= iAccumulatedValue2 - iOldAccumulatedValue2)
 	{
+		if (isFrenchRevolution() && AI_bestIdeology(&aeBestCivic[0]) == IDEOLOGY_LIBERALISM)
+		{
+			iThreshold = 0;
+		}
+
 		if (iAccumulatedValue1 * 10 <= iOldAccumulatedValue1 * (10 + iThreshold))
 		{
 			if (gPlayerLogLevel > 0) logBBAI("Values not big enough to switch...");
@@ -19538,6 +19545,11 @@ void CvPlayerAI::AI_doCivics()
 	}
 	else
 	{
+		if (isFrenchRevolution() && AI_bestIdeology(&aeBestCivic2[0]) == IDEOLOGY_LIBERALISM)
+		{
+			iThreshold = 0;
+		}
+
 		if (iAccumulatedValue2 * 10 <= iOldAccumulatedValue2 * (10 + iThreshold))
 		{
 			if (gPlayerLogLevel > 0) logBBAI("Values not big enough to switch...");

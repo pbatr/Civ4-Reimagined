@@ -1115,6 +1115,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bAlwaysReceiveGreatPeopleLateTechs = false; // Civ4 Reimagined
 	m_bCanGoldenAgeWithSamePeople = false; // Civ4 Reimagined
 	m_bLegacyCivic = false; // Civ4 Reimagined
+	m_bFrenchRevolution = false; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -10563,6 +10564,25 @@ void CvPlayer::changeAnarchyTurns(int iChange)
 					}
 				}
 				// K-Mod end
+
+				// Civ4 Reimagined: French UP
+				CvCity* pCapitalCity = getCapitalCity();
+				if (isFrenchRevolution() && pCapitalCity != NULL && getIdeology() == IDEOLOGY_LIBERALISM)
+				{
+					const UnitTypes eGeneral = (UnitTypes)GC.getInfoTypeForString("UNIT_GREAT_GENERAL");
+
+					if (isGoldenAge())
+					{
+						pCapitalCity->createGreatPeople(eGeneral, false, false);
+						setIsFrenchRevolution(false);
+					}
+					else
+					{
+						pCapitalCity->createGreatPeople(eGeneral, false, false);
+						changeGoldenAgeTurns(getGoldenAgeLength() + 1);
+						setIsFrenchRevolution(false);
+					}
+				}
 			}
 
 			if (getID() == GC.getGameINLINE().getActivePlayer())
@@ -21511,6 +21531,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bAlwaysReceiveGreatPeopleLateTechs); // Civ4 Reimagined
 	pStream->Read(&m_bCanGoldenAgeWithSamePeople); // Civ4 Reimagined
 	pStream->Read(&m_bLegacyCivic); // Civ4 Reimagined
+	pStream->Read(&m_bFrenchRevolution); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -22197,6 +22218,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_bAlwaysReceiveGreatPeopleLateTechs); // Civ4 Reimagined
 	pStream->Write(m_bCanGoldenAgeWithSamePeople); // Civ4 Reimagined
 	pStream->Write(m_bLegacyCivic); // Civ4 Reimagined
+	pStream->Write(m_bFrenchRevolution); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -28198,6 +28220,27 @@ void CvPlayer::updateIdeology()
 		m_eIdeology = eBestIdeology;
 		GC.getGameINLINE().updateIdeologyCount();
 		logBBAI("new ideology: %d", (int)eBestIdeology);
+
+		// Civ4 Reimagined: French UP
+		CvCity* pCapitalCity = getCapitalCity();
+		if (isFrenchRevolution() && pCapitalCity != NULL && eBestIdeology == IDEOLOGY_LIBERALISM)
+		{
+			const UnitTypes eGeneral = (UnitTypes)GC.getInfoTypeForString("UNIT_GREAT_GENERAL");
+
+			if (isGoldenAge())
+			{
+				pCapitalCity->createGreatPeople(eGeneral, false, false);
+				setIsFrenchRevolution(false);
+			}
+			else if (!isAnarchy())
+			{
+				pCapitalCity->createGreatPeople(eGeneral, false, false);
+				changeGoldenAgeTurns(getGoldenAgeLength() + 1);
+				setIsFrenchRevolution(false);
+			}
+
+			// otherwise, we wait until anarchy is over
+		}
 	}
 }
 
@@ -30056,6 +30099,18 @@ bool CvPlayer::isLegacyCivic() const
 	return m_bLegacyCivic;
 }
 
+//Civ4 Reimagined
+void CvPlayer::setIsFrenchRevolution(bool bNewValue)
+{
+	m_bFrenchRevolution = bNewValue;
+}
+
+//Civ4 Reimagined
+bool CvPlayer::isFrenchRevolution() const
+{
+	return m_bFrenchRevolution;
+}
+
 // Civ4 Reimagined
 bool CvPlayer::hasGoodRelationsWithPope() const
 {
@@ -30504,11 +30559,16 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_FRANCE"))
 	{
-		if (eEra == ERA_MEDIEVAL)
+		if (eEra == ERA_ANCIENT)
 		{
 			setCapitalAlwaysPerfectBonusValue(true);
 			changeGreatEngineerPointsFromCathedrals(6);
+			notifyUniquePowersChanged(true);
+		}
+		else if (eEra == ERA_MEDIEVAL)
+		{
 			changeGreatPeopleExtraCommerceInCapital(COMMERCE_GOLD, 3);
+			setIsFrenchRevolution(true);
 			notifyUniquePowersChanged(true);
 		}
 	}

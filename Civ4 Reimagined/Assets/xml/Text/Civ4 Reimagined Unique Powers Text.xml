@@ -297,7 +297,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_FRANCE</Tag>
-		<English>After entering the Medieval Era: No resource shortage malus in capital. State religion Cathedrals give additional progress to Great Engineers (+6[ICON_GREATPEOPLE]). Great People in Capital provide +3[ICON_GOLD].</English>
+		<English>No resource shortage malus in capital. State religion Cathedrals give additional progress to Great Engineers (+6[ICON_GREATPEOPLE]). After entering the Medieval Era: Great People in Capital provide +3[ICON_GOLD]. Receive a Great General and trigger a Golden Age (if not already in a Golden Age) when adopting the Liberal Ideology for the first time.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_RUSSIA</Tag>
