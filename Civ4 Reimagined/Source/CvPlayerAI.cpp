@@ -6605,6 +6605,12 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 					iReligionValue /= 2;
 				}
 
+				// Civ4 Reimagined: Sumer UB requires pantheon. I could of course check for unique buildings here but that is so slow..
+				if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SUMERIA") && countTotalHasReligion() == 0)
+				{
+					iReligionValue = 0;
+				}
+
 				// Civ4 Reimagined
 				if (gPlayerLogLevel > 2)
 				{
