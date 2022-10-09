@@ -6321,14 +6321,6 @@ void CvCity::setPopulation(int iNewValue)
 			gDLL->getInterfaceIFace()->setDirty(CityScreen_DIRTY_BIT, true);
 		}
 
-		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_POLYTHEISM")))
-		{
-			if (getPopulation() > 1)
-			{
-				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_POLYTHEISM"), getOwnerINLINE(), true);
-			}
-		}
-
 		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_MONARCHY")))
 		{
 			if (getPopulation() > 5)

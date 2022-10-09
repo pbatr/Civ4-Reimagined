@@ -6525,6 +6525,12 @@ void CvPlayer::receiveGoody(CvPlot* pPlot, GoodyTypes eGoody, CvUnit* pUnit)
 	szBuffer = GC.getGoodyInfo(eGoody).getDescription();
 
 	// Civ4 Reimagined
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_POLYTHEISM")) && pUnit != NULL)
+	{
+		GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_POLYTHEISM"), getID(), true);
+	}
+
+	// Civ4 Reimagined
 	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_BIOLOGY")) && pUnit != NULL)
 	{
 		if (pUnit->getUnitClassType() == (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_EXPLORER"))
