@@ -1170,6 +1170,16 @@ void CvCityAI::AI_chooseProduction()
 						}
 					}
 
+					// Civ4 Reimagined
+					if (kPlayer.canExploreSea() && kPlayer.AI_totalWaterAreaUnitAIs(pWaterArea, UNITAI_EXPLORE_SEA) < kPlayer.AI_neededExplorers(pWaterArea))
+					{
+						if (AI_chooseUnit(UNITAI_EXPLORE_SEA, iOdds))
+						{
+							if( gCityLogLevel >= 2 ) logBBAI("      City %S uses new world sea explore", getName().GetCString());
+							return;
+						}
+					}
+
 					// BBAI TODO: Really only want to do this if no good area city sites ... 13% chance on water heavy maps
 					// of slow start, little benefit
 					if (kPlayer.AI_totalWaterAreaUnitAIs(pWaterArea, UNITAI_SETTLER_SEA) == 0)

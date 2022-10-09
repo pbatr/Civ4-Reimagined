@@ -3660,13 +3660,16 @@ short CvPlayerAI::AI_foundValue_bulk(int iX, int iY, const CvFoundSettings& kSet
 
 			if (pCapital != NULL && pCapital->getArea() != pArea->getID())
 			{
-				if (bNeutralTerritory && pArea->getNumTiles() >= GC.getDefineINT("MINIMUM_NUM_TILES_FOR_CONTINENT"))
+				if (pArea->getNumTiles() >= GC.getDefineINT("MINIMUM_NUM_TILES_FOR_CONTINENT"))
 				{
-					iValue += getColonyTradeModifier() * 3;
-					iValue += getLiberatedColonyTradeRouteModifier() * 2;
-					iValue += getOverseaTradeRouteModifier() * 3;
-					iValue += isStateReligion() ? -getReligiousColonyMaintenanceModifier() * 2 : 0;
-					iValue += iResourceValue > 0 ? (kSet.bSeafaring ? 2000 : 1000) : 200;
+					int iColonyValue = 0;
+					iColonyValue += getColonyTradeModifier() * 3;
+					iColonyValue += getLiberatedColonyTradeRouteModifier() * 2;
+					iColonyValue += getOverseaTradeRouteModifier() * 3;
+					iColonyValue += isStateReligion() ? -getReligiousColonyMaintenanceModifier() * 2 : 0;
+					iColonyValue += iResourceValue > 0 ? (kSet.bSeafaring ? 4000 : 2000) : 200;
+
+					iValue += iColonyValue / (bNeutralTerritory ? 1 : 3);
 				}
 				else
 				{
@@ -13576,7 +13579,7 @@ int CvPlayerAI::AI_neededExplorers(CvArea* pArea) const
 		// Civ4 Reimagined: Submarines!
 		if (getCurrentEra() > 3)
 		{
-			iNeeded += (getCurrentEra() - 3) * (GC.getGameINLINE().countCivTeamsAlive() - 1) / 5;
+			iNeeded += (GC.getGameINLINE().countCivTeamsAlive() - 1) / 5;
 		}
 	}
 	else

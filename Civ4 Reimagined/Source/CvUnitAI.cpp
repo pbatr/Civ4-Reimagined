@@ -10544,7 +10544,7 @@ int CvUnitAI::AI_promotionValue(PromotionTypes ePromotion)
 		(AI_getUnitAIType() == UNITAI_ESCORT_SEA)   ||
 		(AI_getUnitAIType() == UNITAI_CARRIER_SEA))
 	{
-		if (GC.getGameINLINE().getCurrentEra() < 4)
+		if (GC.getGameINLINE().getCurrentEraAverage() < 3.3)
 		{
 			iValue += (iTemp * 2);
 		}
