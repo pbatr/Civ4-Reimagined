@@ -22684,6 +22684,9 @@ int CvPlayerAI::AI_calculateSpaceVictoryStage() const
 			<= GC.getLeaderHeadInfo(getPersonalityType()).getSpaceVictoryWeight() + AI_getStrategyRand(3) % 100) // note, correlated with number used lower down.
 			return 3;
 		// K-Mod end
+
+		// Civ4 Reimagined
+		return 2;
 	}
 
 	if( isHuman() && !(GC.getGameINLINE().isDebugMode()) )

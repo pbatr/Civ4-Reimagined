@@ -920,18 +920,15 @@ void CvCityAI::AI_chooseProduction()
 	// K-Mod, short-circuit production choice if we already have something really good in mind
 	if (kPlayer.getNumCities() > 1) // don't use this short circuit if this is our only city.
 	{
-		if (kPlayer.AI_isDoVictoryStrategy(AI_VICTORY_SPACE4))
+		// Civ4 Reimagined
+		if (kPlayer.AI_isDoVictoryStrategy(AI_VICTORY_SPACE3 | AI_VICTORY_SPACE4))
 		{
 			eBestProject = AI_bestProject(&iProjectValue);
 			if (eBestProject != NO_PROJECT && iProjectValue > iBestBuildingValue)
 			{
-				int iOdds = std::max(0, 100 * iProjectValue / (3 * iProjectValue + 300) - 10);
-				if (GC.getGameINLINE().getSorenRandNum(100, "Build Project short circuit 1") < iOdds)
-				{
-					pushOrder(ORDER_CREATE, eBestProject);
-					if( gCityLogLevel >= 2 ) logBBAI("      City %S uses choose project short-circuit 1. (project value: %d, building value: %d, odds: %d)", getName().GetCString(), iProjectValue, iBestBuildingValue, iOdds);
-					return;
-				}
+				pushOrder(ORDER_CREATE, eBestProject);
+				if( gCityLogLevel >= 2 ) logBBAI("      City %S uses choose project short-circuit 1. (project value: %d, building value: %d)", getName().GetCString(), iProjectValue, iBestBuildingValue);
+				return;
 			}
 		}
 		
@@ -6030,7 +6027,7 @@ ProjectTypes CvCityAI::AI_bestProject(int* piBestValue)
 		if (iRelativeTurns > 10 && kLoopProject.getMaxTeamInstances() > 0 && GET_TEAM(getTeam()).isHuman())
 			continue; // not fast enough to risk blocking our human allies from building it.
 
-		if (iRelativeTurns > 20 && iProductionRank > std::max(3, GET_PLAYER(getOwnerINLINE()).getNumCities()/2))
+		if (iRelativeTurns > 10 && iProductionRank > std::max(3, GET_PLAYER(getOwnerINLINE()).getNumCities()/2))
 			continue; // not fast enough to risk blocking our more productive cities from building it.
 
 		// otherwise, the project is something we can consider building!
@@ -6054,7 +6051,7 @@ ProjectTypes CvCityAI::AI_bestProject(int* piBestValue)
 		bool bVictory = false;
 		bool bGoodFit = false;
 
-		if (GET_PLAYER(getOwnerINLINE()).AI_isDoVictoryStrategy(AI_VICTORY_SPACE3))
+		if (GET_PLAYER(getOwnerINLINE()).AI_isDoVictoryStrategy(AI_VICTORY_SPACE3 | AI_VICTORY_SPACE4))
 		{
 			for (VictoryTypes j = (VictoryTypes)0; j < GC.getNumVictoryInfos(); j = (VictoryTypes)(j+1))
 			{
