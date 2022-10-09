@@ -1106,6 +1106,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iFreshWaterHealthModifier = 0; // Civ4 Reimagined
 	m_iStateReligionShrineModifier = 0; // Civ4 Reimagined
 	m_iLootCityModifier = 0; // Civ4 Reimagined
+	m_iTechBulbModifier = 0; // Civ4 Reimagined
 	m_bCityImprovesBonus = false; // Civ4 Reimagined
 	m_bFreePillage = false; // Civ4 Reimagined
 	m_bPirateGold = false; // Civ4 Reimagined
@@ -21501,6 +21502,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iFreshWaterHealthModifier); // Civ4 Reimagined
 	pStream->Read(&m_iStateReligionShrineModifier); // Civ4 Reimagined
 	pStream->Read(&m_iLootCityModifier); // Civ4 Reimagined
+	pStream->Read(&m_iTechBulbModifier); // Civ4 Reimagined
 	pStream->Read(&m_bCityImprovesBonus); // Civ4 Reimagined
 	pStream->Read(&m_bFreePillage); // Civ4 Reimagined
 	pStream->Read(&m_bPirateGold); // Civ4 Reimagined
@@ -22186,6 +22188,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iFreshWaterHealthModifier); // Civ4 Reimagined
 	pStream->Write(m_iStateReligionShrineModifier); // Civ4 Reimagined
 	pStream->Write(m_iLootCityModifier); // Civ4 Reimagined
+	pStream->Write(m_iTechBulbModifier); // Civ4 Reimagined
 	pStream->Write(m_bCityImprovesBonus); // Civ4 Reimagined
 	pStream->Write(m_bFreePillage); // Civ4 Reimagined
 	pStream->Write(m_bPirateGold); // Civ4 Reimagined
@@ -28834,6 +28837,21 @@ void CvPlayer::changeLootCityModifier(int iChange)
 }
 
 // Civ4 Reimagined
+int CvPlayer::getTechBulbModifier() const
+{
+	return m_iTechBulbModifier;
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeTechBulbModifier(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iTechBulbModifier = m_iTechBulbModifier + iChange;
+	}
+}
+
+// Civ4 Reimagined
 int CvPlayer::getRouteChange(RouteTypes eIndex) const
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
@@ -30442,6 +30460,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		{
 			changeUnhealthyPopulationModifier(-25);
 			changeAdditionalFarmBonusYield(2);
+			changeTechBulbModifier(50);
 			notifyUniquePowersChanged(true);
 		}
 	}

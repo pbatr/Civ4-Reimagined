@@ -6592,6 +6592,10 @@ int CvUnit::getDiscoverResearch(TechTypes eTech) const
 	iResearch /= 100;
 	
 	iResearch += m_pUnitInfo->getBaseDiscover();
+
+	// Civ4 Reimagined
+	iResearch *= 100 + GET_PLAYER(getOwnerINLINE()).getTechBulbModifier();
+	iResearch /= 100;
 	
 	iResearch *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getUnitDiscoverPercent();
 	iResearch /= 100;

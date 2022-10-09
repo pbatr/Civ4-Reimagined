@@ -1585,6 +1585,8 @@ public:
 	void setIsAlwaysReceiveGreatPeopleLateTechs(bool bNewValue); // Civ4 Reimagined
 	bool isCanGoldenAgeWithSamePeople() const; // Civ4 Reimagined
 	void setIsCanGoldenAgeWithSamePeople(bool bNewValue); // Civ4 Reimagined
+	int getTechBulbModifier() const; // Civ4 Reimagined
+	void changeTechBulbModifier(int iChange); // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1883,6 +1885,7 @@ protected:
 	int m_iLootCityModifier; // Civ4 Reimagined
 	int m_iOverseaTradeRouteModifier; // Civ4 Reimagined
 	int m_iEspionagePointsOnConquestPerPopulation; // Civ4 Reimagined
+	int m_iTechBulbModifier; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
 
