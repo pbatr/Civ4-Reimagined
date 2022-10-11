@@ -416,6 +416,10 @@
 		<French>[COLOR_WARNING_TEXT]Ne peut être construit que sur une colline[COLOR_REVERT]</French>
 	</TEXT>
 	<TEXT>
+		<Tag>TXT_KEY_BUILDING_REQUIRES_LAKE</Tag>
+		<English>[COLOR_WARNING_TEXT]Can only be Constructed next to a Fresh Water Lake[COLOR_REVERT]</English>
+	</TEXT>
+	<TEXT>
 		<Tag>TXT_KEY_BUILDING_REQUIRES_FLATLANDS</Tag>
 		<English>[COLOR_WARNING_TEXT]Cannot be Constructed on Hills[COLOR_REVERT]</English>
 		<French>[COLOR_WARNING_TEXT]Ne peut pas être construit sur une colline[COLOR_REVERT]</French>
@@ -1524,5 +1528,17 @@
 	<TEXT>
 		<Tag>TXT_KEY_SPECIALIST_HAPPINESS_SHORT</Tag>
 		<English>%D1[ICON_HAPPY]</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_WATER_PLOTS</Tag>
+		<English>Seawater Tiles</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_WATER_PLOTS_ALL_CITIES</Tag>
+		<English>All Cities Seawater Tiles</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_BUILDING_LAKE_PLOTS_ALL_CITIES</Tag>
+		<English>All Cities Lake Tiles</English>
 	</TEXT>
 </Civ4GameText>

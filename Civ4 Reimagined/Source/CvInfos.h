@@ -1838,6 +1838,7 @@ public:
 	bool isTeamShare() const;				// Exposed to Python
 	bool isWater() const;				// Exposed to Python
 	bool isRiver() const;				// Exposed to Python
+	bool isLake() const; // Civ4 Reimagined
 	bool isHill() const; // Civ4 Reimagined
 	bool isFlatlands() const; // Civ4 Reimagined
 	bool isPower() const;				// Exposed to Python
@@ -1902,6 +1903,8 @@ public:
 	int* getRiverPlotYieldChangeArray() const;
 	int getGlobalSeaPlotYieldChange(int i) const;				// Exposed to Python
 	int* getGlobalSeaPlotYieldChangeArray() const;
+	int getGlobalLakePlotYieldChange(int i) const; // Civ4 Reimagined
+	int* getGlobalLakePlotYieldChangeArray() const; // Civ4 Reimagined
 
 	int getCommerceChange(int i) const;				// Exposed to Python
 	int* getCommerceChangeArray() const;
@@ -2118,7 +2121,8 @@ protected:
 
 	bool m_bTeamShare;
 	bool m_bWater;								
-	bool m_bRiver;									
+	bool m_bRiver;		
+	bool m_bLake; // Civ4 Reimagined							
 	bool m_bHill; // Civ4 Reimagined
 	bool m_bFlatlands; // Civ4 Reimagined
 	bool m_bPower;								
@@ -2168,6 +2172,7 @@ protected:
 	int* m_piSeaPlotYieldChange;
 	int* m_piRiverPlotYieldChange;
 	int* m_piGlobalSeaPlotYieldChange;
+	int* m_piGlobalLakePlotYieldChange; // Civ4 Reimagined
 	int* m_piYieldChange;
 	int* m_piYieldModifier;
 	int* m_piPowerYieldModifier;

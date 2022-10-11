@@ -17092,6 +17092,15 @@ bool CvCity::isValidBuildingLocation(BuildingTypes eBuilding) const
 				return false;
 			}
 		}
+
+		// Civ4 Reimagined
+		if (GC.getBuildingInfo(eBuilding).isLake())
+		{
+			if (!plot()->isAdjacentToLake())
+			{
+				return false;
+			}
+		}
 	}
 
 	return true;

@@ -338,7 +338,7 @@ class MapConstants :
         #This value controls the number of mid-altitude lake depressions per
         #map square. It will become a lake if enough water flows into the
         #depression.
-        self.numberOfLakesPerPlot = 0.003
+        self.numberOfLakesPerPlot = 0.004 # Civ4 Reimagined, was 0.003
 
         #This value sets the minimum altitude of lake depressions. They
         #generally look better higher up.

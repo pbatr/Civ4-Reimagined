@@ -5141,6 +5141,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 					iTempValue += ((kBuilding.getSpecialistYieldChange(iJ, iI) * kOwner.getTotalPopulation()) / 5);
 				}
 				iTempValue += (kBuilding.getGlobalSeaPlotYieldChange(iI) * kOwner.countNumCoastalCities() * 8);
+				iTempValue += (kBuilding.getGlobalLakePlotYieldChange(iI) * std::max(4, iNumCities/4)); // Civ4 Reimagined
 				iTempValue += ((kBuilding.getAreaYieldModifier(iI) * iNumCitiesInArea) / 3);
 				iTempValue += ((kBuilding.getGlobalYieldModifier(iI) * iNumCities) / 3);
 

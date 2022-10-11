@@ -11388,6 +11388,9 @@ void CvGameTextMgr::setBuildingHelpActual(CvWStringBuffer &szBuffer, BuildingTyp
 
 	setYieldChangeHelp(szBuffer, gDLL->getText("TXT_KEY_BUILDING_WATER_PLOTS_ALL_CITIES").c_str(), L": ", L"", kBuilding.getGlobalSeaPlotYieldChangeArray());
 
+	// Civ4 Reimagined
+	setYieldChangeHelp(szBuffer, gDLL->getText("TXT_KEY_BUILDING_LAKE_PLOTS_ALL_CITIES").c_str(), L": ", L"", kBuilding.getGlobalLakePlotYieldChangeArray());
+
 	setYieldChangeHelp(szBuffer, L"", L"", gDLL->getText("TXT_KEY_BUILDING_WITH_POWER").c_str(), kBuilding.getPowerYieldModifierArray(), true);
 	
 	// Civ4 Reimagined
@@ -12267,6 +12270,15 @@ void CvGameTextMgr::buildBuildingRequiresString(CvWStringBuffer& szBuffer, Build
 			{
 				szBuffer.append(NEWLINE);
 				szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_REQUIRES_RIVER"));
+			}
+		}
+		// Civ4 Reimagined
+		if (kBuilding.isLake())
+		{
+			if (NULL == pCity || !pCity->plot()->isAdjacentToLake())
+			{
+				szBuffer.append(NEWLINE);
+				szBuffer.append(gDLL->getText("TXT_KEY_BUILDING_REQUIRES_LAKE"));
 			}
 		}
 		// Civ4 Reimagined

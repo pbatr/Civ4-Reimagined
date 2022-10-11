@@ -32584,12 +32584,12 @@
 			<GlobalCorporationCommerce>NONE</GlobalCorporationCommerce>
 			<VictoryPrereq>NONE</VictoryPrereq>
 			<FreeStartEra>NONE</FreeStartEra>
-			<MaxStartEra>ERA_RENAISSANCE</MaxStartEra>
-			<ObsoleteTech>TECH_BIOLOGY</ObsoleteTech>
+			<MaxStartEra>NONE</MaxStartEra>
+			<ObsoleteTech>NONE</ObsoleteTech>
 			<PrereqTech>TECH_CROP_ROTATION</PrereqTech>
 			<TechTypes/>
 			<Bonus>NONE</Bonus>
-			<BonusFatCross>BONUS_CORN</BonusFatCross>
+			<BonusFatCross>NONE</BonusFatCross>
 			<PrereqBonuses/>
 			<ProductionTraits/>
 			<HappinessTraits/>
@@ -32606,7 +32606,8 @@
 			<bBorderObstacle>0</bBorderObstacle>
 			<bTeamShare>1</bTeamShare>
 			<bWater>0</bWater>
-			<bRiver>1</bRiver>
+			<bRiver>0</bRiver>
+			<bLake>1</bLake>
 			<bHill>0</bHill>
 			<bFlatlands>0</bFlatlands>
 			<bPower>0</bPower>
@@ -32678,7 +32679,7 @@
 			<iGlobalTradeRoutes>0</iGlobalTradeRoutes>
 			<iTradeRouteModifier>0</iTradeRouteModifier>
 			<iForeignTradeRouteModifier>0</iForeignTradeRouteModifier>
-			<iGlobalPopulationChange>1</iGlobalPopulationChange>
+			<iGlobalPopulationChange>0</iGlobalPopulationChange>
 			<iFreeTechs>0</iFreeTechs>
 			<iDefense>0</iDefense>
 			<iBombardDefense>0</iBombardDefense>
@@ -32691,6 +32692,11 @@
 			<SeaPlotYieldChanges/>
 			<RiverPlotYieldChanges/>
 			<GlobalSeaPlotYieldChanges/>
+			<GlobalLakeYieldChanges>
+				<iYield>2</iYield>
+				<iYield>0</iYield>
+				<iYield>0</iYield>
+			</GlobalLakeYieldChanges>
 			<YieldChanges/>
 			<CommerceChanges/>
 			<ObsoleteSafeCommerceChanges>

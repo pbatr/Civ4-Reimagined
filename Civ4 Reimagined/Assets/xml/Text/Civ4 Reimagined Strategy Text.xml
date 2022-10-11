@@ -335,7 +335,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_FLOATING_GARDENS_STRATEGY</Tag>
-		<English>The [COLOR_BUILDING_TEXT]Floating Gardens[COLOR_REVERT] improves the health of your cities and adds an additional population point in them. It increases the odds of its city generating a [COLOR_UNIT_TEXT]Great Merchant[COLOR_REVERT].</English>
+		<English>The [COLOR_BUILDING_TEXT]Floating Gardens[COLOR_REVERT] adds extra food to all lake tiles in your empire. It also improves the health of your cities and increases the odds of its city generating a [COLOR_UNIT_TEXT]Great Merchant[COLOR_REVERT].</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_BUILDING_BRANDENBURG_GATE_STRATEGY</Tag>

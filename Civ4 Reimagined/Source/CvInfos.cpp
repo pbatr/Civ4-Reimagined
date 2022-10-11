@@ -7810,6 +7810,7 @@ m_fVisibilityPriority(0.0f),
 m_bTeamShare(false),
 m_bWater(false),
 m_bRiver(false),
+m_bLake(false), // Civ4 Reimagined
 m_bHill(false), // Civ4 Reimagined
 m_bFlatlands(false), // Civ4 Reimagined
 m_bPower(false),
@@ -7848,6 +7849,7 @@ m_piHappinessTraits(NULL),
 m_piSeaPlotYieldChange(NULL),
 m_piRiverPlotYieldChange(NULL),
 m_piGlobalSeaPlotYieldChange(NULL),
+m_piGlobalLakePlotYieldChange(NULL), // CIv4 Reimagined
 m_piYieldChange(NULL),
 m_piYieldModifier(NULL),
 m_piPowerYieldModifier(NULL),
@@ -7927,6 +7929,7 @@ CvBuildingInfo::~CvBuildingInfo()
 	SAFE_DELETE_ARRAY(m_piSeaPlotYieldChange);
 	SAFE_DELETE_ARRAY(m_piRiverPlotYieldChange);
 	SAFE_DELETE_ARRAY(m_piGlobalSeaPlotYieldChange);
+	SAFE_DELETE_ARRAY(m_piGlobalLakePlotYieldChange); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_piYieldChange);
 	SAFE_DELETE_ARRAY(m_piYieldModifier);
 	SAFE_DELETE_ARRAY(m_piPowerYieldModifier);
@@ -8575,6 +8578,12 @@ bool CvBuildingInfo::isRiver() const
 }
 
 // Civ4 Reimagined
+bool CvBuildingInfo::isLake() const
+{
+	return m_bLake;
+}
+
+// Civ4 Reimagined
 bool CvBuildingInfo::isHill() const
 {
 	return m_bHill;
@@ -8918,6 +8927,20 @@ int CvBuildingInfo::getGlobalSeaPlotYieldChange(int i) const
 int* CvBuildingInfo::getGlobalSeaPlotYieldChangeArray() const
 {
 	return m_piGlobalSeaPlotYieldChange;
+}
+
+// Civ4 Reimagined
+int CvBuildingInfo::getGlobalLakePlotYieldChange(int i) const
+{
+	FAssertMsg(i < NUM_YIELD_TYPES, "Index out of bounds");
+	FAssertMsg(i > -1, "Index out of bounds");
+	return m_piGlobalLakePlotYieldChange ? m_piGlobalLakePlotYieldChange[i] : -1;
+}
+
+// Civ4 Reimagined
+int* CvBuildingInfo::getGlobalLakePlotYieldChangeArray() const
+{
+	return m_piGlobalLakePlotYieldChange;
 }
 
 int CvBuildingInfo::getCommerceChange(int i) const			
@@ -9554,6 +9577,7 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bTeamShare);
 	stream->Read(&m_bWater);
 	stream->Read(&m_bRiver);
+	stream->Read(&m_bLake); // Civ4 Reimagined
 	stream->Read(&m_bHill); // Civ4 Reimagined
 	stream->Read(&m_bFlatlands); // Civ4 Reimagined
 	stream->Read(&m_bPower);
@@ -9622,6 +9646,11 @@ void CvBuildingInfo::read(FDataStreamBase* stream)
 	SAFE_DELETE_ARRAY(m_piGlobalSeaPlotYieldChange);
 	m_piGlobalSeaPlotYieldChange = new int[NUM_YIELD_TYPES];
 	stream->Read(NUM_YIELD_TYPES, m_piGlobalSeaPlotYieldChange);
+
+	// Civ4 Reimagined
+	SAFE_DELETE_ARRAY(m_piGlobalLakePlotYieldChange);
+	m_piGlobalLakePlotYieldChange = new int[NUM_YIELD_TYPES];
+	stream->Read(NUM_YIELD_TYPES, m_piGlobalLakePlotYieldChange);
 
 	SAFE_DELETE_ARRAY(m_piYieldChange);
 	m_piYieldChange = new int[NUM_YIELD_TYPES];
@@ -10083,6 +10112,7 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bTeamShare);
 	stream->Write(m_bWater);
 	stream->Write(m_bRiver);
+	stream->Write(m_bLake); // Civ4 Reimagined
 	stream->Write(m_bHill); // Civ4 Reimagined
 	stream->Write(m_bFlatlands); // Civ4 Reimagined
 	stream->Write(m_bPower);
@@ -10131,6 +10161,7 @@ void CvBuildingInfo::write(FDataStreamBase* stream)
 	stream->Write(NUM_YIELD_TYPES, m_piSeaPlotYieldChange);
 	stream->Write(NUM_YIELD_TYPES, m_piRiverPlotYieldChange);
 	stream->Write(NUM_YIELD_TYPES, m_piGlobalSeaPlotYieldChange);
+	stream->Write(NUM_YIELD_TYPES, m_piGlobalLakePlotYieldChange); // Civ4 Reimagined
 	stream->Write(NUM_YIELD_TYPES, m_piYieldChange);
 	stream->Write(NUM_YIELD_TYPES, m_piYieldModifier);
 	stream->Write(NUM_YIELD_TYPES, m_piPowerYieldModifier);
@@ -10405,6 +10436,7 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bTeamShare, "bTeamShare");
 	pXML->GetChildXmlValByName(&m_bWater, "bWater");
 	pXML->GetChildXmlValByName(&m_bRiver, "bRiver");
+	pXML->GetChildXmlValByName(&m_bLake, "bLake"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_bHill, "bHill"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_bFlatlands, "bFlatlands"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_bPower, "bPower");
@@ -10544,6 +10576,19 @@ bool CvBuildingInfo::read(CvXMLLoadUtility* pXML)
 	else
 	{
 		pXML->InitList(&m_piGlobalSeaPlotYieldChange, NUM_YIELD_TYPES);
+	}
+
+	// Civ4 Reimagined
+	// if we can set the current xml node to it's next sibling
+	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"GlobalLakeYieldChanges"))
+	{
+		// call the function that sets the yield change variable
+		pXML->SetYields(&m_piGlobalLakePlotYieldChange);
+		gDLL->getXMLIFace()->SetToParent(pXML->GetXML());
+	}
+	else
+	{
+		pXML->InitList(&m_piGlobalLakePlotYieldChange, NUM_YIELD_TYPES);
 	}
 
 	// if we can set the current xml node to it's next sibling

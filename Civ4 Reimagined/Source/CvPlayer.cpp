@@ -42,6 +42,7 @@
 CvPlayer::CvPlayer()
 {
 	m_aiSeaPlotYield = new int[NUM_YIELD_TYPES];
+	m_aiLakePlotYield = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
 	m_aiPeakYield = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
 	m_aiPeakYieldChangeAdjacentToTerrace = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
 	m_aiSpecialistThresholdExtraYield = new int[NUM_YIELD_TYPES]; // Civ4 Reimagined
@@ -156,6 +157,7 @@ CvPlayer::~CvPlayer()
 	uninit();
 
 	SAFE_DELETE_ARRAY(m_aiSeaPlotYield);
+	SAFE_DELETE_ARRAY(m_aiLakePlotYield); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiPeakYield); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiPeakYieldChangeAdjacentToTerrace); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiSpecialistThresholdExtraYield); // Civ4 Reimagined
@@ -1136,6 +1138,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	for (iI = 0; iI < NUM_YIELD_TYPES; iI++)
 	{
 		m_aiSeaPlotYield[iI] = 0;
+		m_aiLakePlotYield[iI] = 0; // Civ4 Reimagined
 		m_aiPeakYield[iI] = 0; // Civ4 Reimagined
 		m_aiPeakYieldChangeAdjacentToTerrace[iI] = 0; // Civ4 Reimagined
 		m_aiSpecialistThresholdExtraYield[iI] = 0; // Civ4 Reimagined
@@ -8166,6 +8169,7 @@ void CvPlayer::processBuilding(BuildingTypes eBuilding, int iChange, CvArea* pAr
 	for (iI = 0; iI < NUM_YIELD_TYPES; iI++)
 	{
 		changeSeaPlotYield(((YieldTypes)iI), (GC.getBuildingInfo(eBuilding).getGlobalSeaPlotYieldChange(iI) * iChange));
+		changeLakePlotYield(((YieldTypes)iI), (GC.getBuildingInfo(eBuilding).getGlobalLakePlotYieldChange(iI) * iChange)); // Civ4 Reimagined
 		pArea->changeYieldRateModifier(getID(), ((YieldTypes)iI), (GC.getBuildingInfo(eBuilding).getAreaYieldModifier(iI) * iChange));
 		pArea->changeTradeYieldModifier(getID(), ((YieldTypes)iI), (GC.getBuildingInfo(eBuilding).getAreaTradeYieldModifier(iI) * iChange)); // Civ4 Reimagined
 		changeYieldRateModifier(((YieldTypes)iI), (GC.getBuildingInfo(eBuilding).getGlobalYieldModifier(iI) * iChange));
@@ -14418,6 +14422,30 @@ void CvPlayer::changeSeaPlotYield(YieldTypes eIndex, int iChange)
 	if (iChange != 0)
 	{
 		m_aiSeaPlotYield[eIndex] = (m_aiSeaPlotYield[eIndex] + iChange);
+
+		updateYield();
+	}
+}
+
+
+// Civ4 Reimagined
+int CvPlayer::getLakePlotYield(YieldTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < NUM_YIELD_TYPES, "eIndex is expected to be within maximum bounds (invalid Index)");
+	return m_aiLakePlotYield[eIndex];
+}
+
+
+// Civ4 Reimagined
+void CvPlayer::changeLakePlotYield(YieldTypes eIndex, int iChange)
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < NUM_YIELD_TYPES, "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	if (iChange != 0)
+	{
+		m_aiLakePlotYield[eIndex] = (m_aiLakePlotYield[eIndex] + iChange);
 
 		updateYield();
 	}
@@ -21565,6 +21593,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	updateHuman();
 
 	pStream->Read(NUM_YIELD_TYPES, m_aiSeaPlotYield);
+	pStream->Read(NUM_YIELD_TYPES, m_aiLakePlotYield); // Civ4 Reimagined
 	pStream->Read(NUM_YIELD_TYPES, m_aiPeakYield); // Civ4 Reimagined
 	pStream->Read(NUM_YIELD_TYPES, m_aiPeakYieldChangeAdjacentToTerrace); // Civ4 Reimagined
 	pStream->Read(NUM_YIELD_TYPES, m_aiSpecialistThresholdExtraYield); // Civ4 Reimagined
@@ -22242,6 +22271,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	//m_eTeamType not saved
 
 	pStream->Write(NUM_YIELD_TYPES, m_aiSeaPlotYield);
+	pStream->Write(NUM_YIELD_TYPES, m_aiLakePlotYield); // Civ4 Reimagined
 	pStream->Write(NUM_YIELD_TYPES, m_aiPeakYield); // Civ4 Reimagined
 	pStream->Write(NUM_YIELD_TYPES, m_aiPeakYieldChangeAdjacentToTerrace); // Civ4 Reimagined
 	pStream->Write(NUM_YIELD_TYPES, m_aiSpecialistThresholdExtraYield); // Civ4 Reimagined

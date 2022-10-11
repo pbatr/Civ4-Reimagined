@@ -6969,15 +6969,23 @@ int CvPlot::calculateYield(YieldTypes eYield, bool bDisplay) const
 		{
 			if (!isImpassable())
 			{
-				iYield += GET_PLAYER(ePlayer).getSeaPlotYield(eYield);
-
-				pWorkingCity = getWorkingCity();
-
-				if (pWorkingCity != NULL)
+				// CIv4 Reimagined
+				if (isLake())
 				{
-					if (!bDisplay || pWorkingCity->isRevealed(GC.getGameINLINE().getActiveTeam(), false))
+					iYield += GET_PLAYER(ePlayer).getLakePlotYield(eYield);
+				}
+				else
+				{
+					iYield += GET_PLAYER(ePlayer).getSeaPlotYield(eYield);
+
+					pWorkingCity = getWorkingCity();
+
+					if (pWorkingCity != NULL)
 					{
-						iYield += pWorkingCity->getSeaPlotYield(eYield);
+						if (!bDisplay || pWorkingCity->isRevealed(GC.getGameINLINE().getActiveTeam(), false))
+						{
+							iYield += pWorkingCity->getSeaPlotYield(eYield);
+						}
 					}
 				}
 			}
@@ -10215,66 +10223,6 @@ bool CvPlot::shouldUsePlotBuilder()
 	}
 	return false;
 }
-
-/* This function has been disabled by K-Mod, because it doesn't work correctly and so using it is just a magnet for bugs.
-int CvPlot::calculateMaxYield(YieldTypes eYield) const
-{
-	if (getTerrainType() == NO_TERRAIN)
-	{
-		return 0;
-	}
-
-	int iMaxYield = calculateNatureYield(eYield, NO_TEAM);
-
-	int iImprovementYield = 0;
-	for (int iImprovement = 0; iImprovement < GC.getNumImprovementInfos(); iImprovement++)
-	{
-		iImprovementYield = std::max(calculateImprovementYieldChange((ImprovementTypes)iImprovement, eYield, NO_PLAYER, true), iImprovementYield);
-	}
-	iMaxYield += iImprovementYield;
-
-	int iRouteYield = 0;
-	for (int iRoute = 0; iRoute < GC.getNumRouteInfos(); iRoute++)
-	{
-		iRouteYield = std::max(GC.getRouteInfo((RouteTypes)iRoute).getYieldChange(eYield), iRouteYield);
-	}
-	iMaxYield += iRouteYield;
-
-	if (isWater() && !isImpassable())
-	{
-		int iBuildingYield = 0;
-		for (int iBuilding = 0; iBuilding < GC.getNumBuildingInfos(); iBuilding++)
-		{
-			CvBuildingInfo& building = GC.getBuildingInfo((BuildingTypes)iBuilding);
-			iBuildingYield = std::max(building.getSeaPlotYieldChange(eYield) + building.getGlobalSeaPlotYieldChange(eYield), iBuildingYield);
-		}
-		iMaxYield += iBuildingYield;
-	}
-
-	if (isRiver())
-	{
-		int iBuildingYield = 0;
-		for (int iBuilding = 0; iBuilding < GC.getNumBuildingInfos(); iBuilding++)
-		{
-			CvBuildingInfo& building = GC.getBuildingInfo((BuildingTypes)iBuilding);
-			iBuildingYield = std::max(building.getRiverPlotYieldChange(eYield), iBuildingYield);
-		}
-		iMaxYield += iBuildingYield;
-	}
-
-	int iExtraYieldThreshold = 0;
-	for (int iTrait = 0; iTrait < GC.getNumTraitInfos(); iTrait++)
-	{
-		CvTraitInfo& trait = GC.getTraitInfo((TraitTypes)iTrait);
-		iExtraYieldThreshold  = std::max(trait.getExtraYieldThreshold(eYield), iExtraYieldThreshold);
-	}
-	if (iExtraYieldThreshold > 0 && iMaxYield > iExtraYieldThreshold)
-	{
-		iMaxYield += GC.getDefineINT("EXTRA_YIELD");
-	}
-
-	return iMaxYield;
-} */
 
 int CvPlot::getYieldWithBuild(BuildTypes eBuild, YieldTypes eYield, bool bWithUpgrade) const
 {

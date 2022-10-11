@@ -101,6 +101,7 @@
 	<ElementType name="bTeamShare" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bWater" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bRiver" content="textOnly" dt:type="boolean"/>
+	<ElementType name="bLake" content="textOnly" dt:type="boolean"/> <!-- Civ4 Reimagined -->
 	<ElementType name="bHill" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bFlatlands" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bPower" content="textOnly" dt:type="boolean"/>
@@ -213,6 +214,9 @@
 		<element type="iYield" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
 	<ElementType name="GlobalSeaPlotYieldChanges" content="eltOnly">
+		<element type="iYield" minOccurs="0" maxOccurs="*"/>
+	</ElementType>
+	<ElementType name="GlobalLakeYieldChanges" content="eltOnly"> <!-- Civ4 Reimagined -->
 		<element type="iYield" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
 	<ElementType name="YieldChanges" content="eltOnly">
@@ -557,6 +561,7 @@
 		<element type="bTeamShare"/>
 		<element type="bWater"/>
 		<element type="bRiver"/>
+		<element type="bLake" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="bHill"/>
 		<element type="bFlatlands"/>
 		<element type="bPower"/>
@@ -657,6 +662,7 @@
 		<element type="SeaPlotYieldChanges"/>
 		<element type="RiverPlotYieldChanges"/>
 		<element type="GlobalSeaPlotYieldChanges"/>
+		<element type="GlobalLakeYieldChanges" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="YieldChanges"/>
 		<element type="YieldModifiers" minOccurs="0"/>
 		<element type="PowerYieldModifiers" minOccurs="0"/>

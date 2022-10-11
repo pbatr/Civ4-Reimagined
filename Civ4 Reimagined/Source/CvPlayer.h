@@ -929,6 +929,9 @@ public:
 	int getSeaPlotYield(YieldTypes eIndex) const;	// Exposed to Python
 	void changeSeaPlotYield(YieldTypes eIndex, int iChange);
 
+	int getLakePlotYield(YieldTypes eIndex) const; // Civ4 Reimagined
+	void changeLakePlotYield(YieldTypes eIndex, int iChange); // Civ4 Reimagined
+
 	int getPeakYield(YieldTypes eIndex) const;	// Civ4 Reimagined
 	void changePeakYield(YieldTypes eIndex, int iChange); // Civ4 Reimagined
 
@@ -1931,6 +1934,7 @@ protected:
 	PromotionTypes m_eUniquePowerPromotion; // Civ4 Reimagined
 
 	int* m_aiSeaPlotYield;
+	int* m_aiLakePlotYield; // Civ4 Reimagined
 	int* m_aiPeakYield; // Civ4 Reimagined
 	int* m_aiPeakYieldChangeAdjacentToTerrace; // Civ4 Reimagined
 	int* m_aiYieldRateModifier;
