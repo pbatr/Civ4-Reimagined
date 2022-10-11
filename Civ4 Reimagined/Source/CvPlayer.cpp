@@ -30457,6 +30457,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_ANCIENT)
 		{
 			setIsCaptureSlaves(true);
+			changePillageGainModifier(100);
 			notifyUniquePowersChanged(true);
 		}
 	}

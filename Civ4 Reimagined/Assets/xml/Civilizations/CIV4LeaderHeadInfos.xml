@@ -20888,7 +20888,7 @@
 			<iDominationVictoryWeight>30</iDominationVictoryWeight>
 			<iDiplomacyVictoryWeight>25</iDiplomacyVictoryWeight>
 			<!-- BBAI Victory Strategy -->
-			<iMaxWarRand>50</iMaxWarRand>
+			<iMaxWarRand>100</iMaxWarRand>
 			<iMaxWarNearbyPowerRatio>130</iMaxWarNearbyPowerRatio>
 			<iMaxWarDistantPowerRatio>80</iMaxWarDistantPowerRatio>
 			<iMaxWarMinAdjacentLandPercent>0</iMaxWarMinAdjacentLandPercent>
@@ -28339,7 +28339,7 @@
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_DEMAND_TRIBUTE</ContactType>
-					<iContactRand>25</iContactRand>
+					<iContactRand>100</iContactRand>
 				</ContactRand>
 				<ContactRand>
 					<ContactType>CONTACT_OPEN_BORDERS</ContactType>
