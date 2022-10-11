@@ -6883,7 +6883,7 @@ int CvPlayerAI::uniquePowerAIEraValueMult(EraTypes eEra) const
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ENGLAND") && eEra == ERA_RENAISSANCE)
 	{
-		return 150;
+		return 125;
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_FRANCE") && eEra == ERA_MEDIEVAL)
 	{
@@ -6918,10 +6918,6 @@ int CvPlayerAI::uniquePowerAIEraValueMult(EraTypes eEra) const
 		return 150;
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_PORTUGAL") && eEra == ERA_MEDIEVAL)
-	{
-		return 150;
-	}
-	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_ROME") && eEra == ERA_CLASSICAL)
 	{
 		return 150;
 	}
