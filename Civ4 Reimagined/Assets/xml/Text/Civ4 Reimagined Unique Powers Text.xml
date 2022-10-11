@@ -265,7 +265,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_VIKING</Tag>
-		<English>Ships with hidden nationality can pillage adjacent land tiles. Tundra tiles +1[ICON_COMMERCE]. Free Amphibious promotion for melee units.</English>
+		<English>Ships with hidden nationality can pillage adjacent land tiles. Tundra tiles +1[ICON_COMMERCE]. Free Amphibious promotion for melee units. +50% production towards water units.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_INTERFACEMODE_COASTAL_RAID</Tag>

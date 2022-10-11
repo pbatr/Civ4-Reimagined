@@ -30827,6 +30827,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 			setCanCoastalRaid(true);
 			changeTerrainYieldChange((TerrainTypes)GC.getInfoTypeForString("TERRAIN_TUNDRA"), YIELD_COMMERCE, 1);
 			setFreePromotion((UnitCombatTypes)GC.getInfoTypeForString("UNITCOMBAT_MELEE"), (PromotionTypes)GC.getInfoTypeForString("PROMOTION_AMPHIBIOUS"), true);
+			changeDomainProductionModifier(DOMAIN_SEA, 50);
 			notifyUniquePowersChanged(true);
 		}
 	}
