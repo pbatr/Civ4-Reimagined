@@ -77,7 +77,7 @@
 	<!-- warming prob is out of 1000, not pecent. -->
 	<Define>
 		<DefineName>GLOBAL_WARMING_PROB</DefineName>
-		<iDefineIntVal>25</iDefineIntVal>
+		<iDefineIntVal>50</iDefineIntVal>
 	</Define>
 	<!-- global warming threshold is # land plots * resistance. -->
 	<Define>
