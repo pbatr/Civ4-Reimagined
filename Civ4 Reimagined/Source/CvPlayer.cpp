@@ -4334,6 +4334,9 @@ void CvPlayer::updateYield()
 	{
 		pLoopCity->updateYield();
 	}
+
+	// Civ4 Reimagined
+	GC.getMapINLINE().updateSymbols();
 }
 
 
