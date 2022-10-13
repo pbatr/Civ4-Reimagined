@@ -74,6 +74,9 @@ Tweaks
 -Great Merchant is invisble
 -Galleon, Frigate, Ship of the Line can explore rival territory
 -Floating Gardens increases food from lake tiles by 2 instead of 1 food per city and requires an adjacent lake
+-Bridge building requires Mathematics instead of Construction
+-Forts require Construction instead of Mathematics
+-Increase chop forest production from 15 to 20 but remove production bonus with Mathematics
 
 *********
 Interface
