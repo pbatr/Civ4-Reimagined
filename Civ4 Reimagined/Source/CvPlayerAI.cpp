@@ -6553,7 +6553,7 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 					iReligionValue += 300;
 					bool bHasNeighbors = false;
 
-					iReligionValue += getGreatPeopleRatePerReligionModifier() * 10;
+					iReligionValue += getGreatPeopleRatePerReligionModifier() * 100;
 
 					bool bNeighbouringReligions = false;
 					for (PlayerTypes i = (PlayerTypes)0; !bNeighbouringReligions && i < MAX_CIV_PLAYERS; i = (PlayerTypes)(i+1))
@@ -6829,6 +6829,26 @@ int CvPlayerAI::AI_techValue( TechTypes eTech, int iPathLength, bool bIgnoreCost
 		iValue *= (iCVValue + 100);
 		iValue /= 200;
 		// K-Mod
+	}
+
+	// Civ4 Reiamgined: As Sumer we don't want to discover a religion by accident
+	if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_SUMERIA") && countTotalHasReligion() == 0)
+	{
+		for (int iJ = 0; iJ < GC.getNUM_OR_TECH_PREREQS(); iJ++)
+		{
+			const ePrereqTech = GC.getTechInfo(eTech).getPrereqOrTechs(iJ);
+
+			if (ePrereqTech != NO_TECH)
+			{
+				for (int iK = 0; iK < GC.getNumReligionInfos(); iK++)
+				{
+					if (ePrereqTech == (TechTypes)GC.getReligionInfo((ReligionTypes)iK).getTechPrereq() && !GC.getGameINLINE().isReligionSlotTaken((ReligionTypes)iK))
+					{
+						iValue /= 10;
+					}
+				}
+			}
+		}
 	}
 
 	// Civ4 Reimagined
