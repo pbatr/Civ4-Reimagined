@@ -355,7 +355,7 @@
 	</Define>
 	<Define>
 		<DefineName>LAKE_MAX_AREA_SIZE</DefineName>
-		<iDefineIntVal>12</iDefineIntVal>
+		<iDefineIntVal>14</iDefineIntVal>
 	</Define>
 	<!-- Unique Powers -->
 	<Define>
