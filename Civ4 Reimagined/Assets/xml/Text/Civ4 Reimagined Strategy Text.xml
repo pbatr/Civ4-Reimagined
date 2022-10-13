@@ -254,7 +254,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_SPANISH_CONQUISTADOR_STRATEGY</Tag>
-		<English>Compared to the [COLOR_UNIT_TEXT]Cuirassier[COLOR_REVERT], this unit is available earlier, can make use of defensive bonusses, ignores terrain movement cost, and gains two potential first strikes.</English>
+		<English>Compared to the [COLOR_UNIT_TEXT]Cuirassier[COLOR_REVERT], this unit is available earlier, can make use of defensive bonusses and ignores terrain movement cost. It also has the ability to capture Slaves from Barbarians while attacking. For that you have to run the Slavery civic and advance to the plot of the defeated unit.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_ENGLISH_REDCOAT_STRATEGY</Tag>

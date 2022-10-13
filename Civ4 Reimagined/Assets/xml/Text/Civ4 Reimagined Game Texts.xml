@@ -1541,4 +1541,8 @@
 		<Tag>TXT_KEY_BUILDING_LAKE_PLOTS_ALL_CITIES</Tag>
 		<English>All Cities Lake Tiles</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_UNIT_CAPTURE_BARB_SLAVES</Tag>
+		<English>[ICON_BULLET]Can Capture Slaves by Killing Barbarian Units if Running the Slavery Civic</English>
+	</TEXT>
 </Civ4GameText>

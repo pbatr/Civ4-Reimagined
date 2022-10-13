@@ -9348,6 +9348,13 @@ void CvGameTextMgr::setBasicUnitHelp(CvWStringBuffer &szBuffer, UnitTypes eUnit,
 		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_ALWAYS_HOSTILE"));
 	}
 
+	// Civ4 Reimagined
+	if (GC.getUnitInfo(eUnit).isCaptureBarbarianSlaves())
+	{
+		szBuffer.append(NEWLINE);
+		szBuffer.append(gDLL->getText("TXT_KEY_UNIT_CAPTURE_BARB_SLAVES"));
+	}
+
 	if (GC.getUnitInfo(eUnit).isOnlyDefensive())
 	{
 		szBuffer.append(NEWLINE);

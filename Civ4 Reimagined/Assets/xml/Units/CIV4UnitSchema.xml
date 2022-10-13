@@ -147,6 +147,7 @@
 	<ElementType name="bHiddenNationality" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bAlwaysHostile" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bIgnoreMaxInstances" content="textOnly" dt:type="boolean"/> <!-- Civ4 Reimagined -->
+	<ElementType name="bCaptureBarbarianSlaves" content="textOnly" dt:type="boolean"/> <!-- Civ4 Reimagined -->
 	<ElementType name="UnitClassUpgradeType" content="textOnly"/>
 	<ElementType name="bUnitClassUpgrade" content="textOnly" dt:type="boolean"/>
 	<ElementType name="UnitClassUpgrade" content="eltOnly">
@@ -581,6 +582,7 @@
 		<element type="bHiddenNationality"/>
 		<element type="bAlwaysHostile"/>
 		<element type="bIgnoreMaxInstances" minOccurs="0"/> <!-- Civ4 Reimagined -->
+		<element type="bCaptureBarbarianSlaves" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="UnitClassUpgrades"/>
 		<element type="UnitClassTargets"/>
 		<element type="UnitCombatTargets"/>

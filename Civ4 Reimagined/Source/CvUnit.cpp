@@ -693,6 +693,7 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer)
 
 	PlayerTypes eOwner = getOwnerINLINE();
 	PlayerTypes eCapturingPlayer = getCapturingPlayer();
+	UnitTypes eCapturingUnit = getCapturingUnit(); // Civ4 Reimagined
 	UnitTypes eCaptureUnitType = ((eCapturingPlayer != NO_PLAYER) ? getCaptureUnitType(GET_PLAYER(eCapturingPlayer).getCivilizationType()) : NO_UNIT);
 
 	setXY(INVALID_PLOT_COORD, INVALID_PLOT_COORD, true);
@@ -704,9 +705,12 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer)
 	GET_PLAYER(getOwnerINLINE()).deleteUnit(getID());
 
 	// Civ4 Reimagined
-	if (eCapturingPlayer != NO_PLAYER && GET_PLAYER(eCapturingPlayer).isCaptureSlaves() && GET_PLAYER(eCapturingPlayer).hasSlavery() && !isAnimal() && getDomainType() == DOMAIN_LAND)
+	if (eCapturingPlayer != NO_PLAYER && GET_PLAYER(eCapturingPlayer).hasSlavery() && !isAnimal() && getDomainType() == DOMAIN_LAND)
 	{
-		eCaptureUnitType = (UnitTypes)GC.getCivilizationInfo(GET_PLAYER(eCapturingPlayer).getCivilizationType()).getCivilizationUnits((UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SLAVE"));
+		if (GET_PLAYER(eCapturingPlayer).isCaptureSlaves() || (GC.getUnitInfo(eCapturingUnit).isCaptureBarbarianSlaves() && isBarbarian()))
+		{
+			eCaptureUnitType = (UnitTypes)GC.getCivilizationInfo(GET_PLAYER(eCapturingPlayer).getCivilizationType()).getCivilizationUnits((UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SLAVE"));
+		}
 	}
 
 	if ((eCapturingPlayer != NO_PLAYER) && (eCaptureUnitType != NO_UNIT) && !(GET_PLAYER(eCapturingPlayer).isBarbarian()))
@@ -1785,6 +1789,8 @@ void CvUnit::updateCombat(bool bQuick)
 					if (!isNoCapture())
 					{
 						pDefender->setCapturingPlayer(getOwnerINLINE());
+						// Civ4 Reimagined
+						pDefender->setCapturingUnit(getUnitType());
 					}
 				}
 
@@ -12474,6 +12480,20 @@ PlayerTypes CvUnit::getCapturingPlayer() const
 void CvUnit::setCapturingPlayer(PlayerTypes eNewValue)
 {
 	m_eCapturingPlayer = eNewValue;
+}
+
+
+// Civ4 Reimagined
+UnitTypes CvUnit::getCapturingUnit() const
+{
+	return m_eCapturingUnit;
+}
+
+
+// Civ4 Reimagined
+void CvUnit::setCapturingUnit(UnitTypes eNewValue)
+{
+	m_eCapturingUnit = eNewValue;
 }
 
 

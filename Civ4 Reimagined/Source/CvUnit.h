@@ -694,6 +694,10 @@ public:
 	PlayerTypes getCapturingPlayer() const;
 	void setCapturingPlayer(PlayerTypes eNewValue);
 
+	// Civ4 Reimagined
+	UnitTypes getCapturingUnit() const;
+	void setCapturingUnit(UnitTypes eNewValue);
+
 	DllExport const UnitTypes getUnitType() const;																					// Exposed to Python
 	CvUnitInfo &getUnitInfo() const;
 	UnitClassTypes getUnitClassType() const;	// Exposed to Python
@@ -909,6 +913,7 @@ protected:
 
 	PlayerTypes m_eOwner;
 	PlayerTypes m_eCapturingPlayer;
+	UnitTypes m_eCapturingUnit; // Civ4 Reimagined
 	UnitTypes m_eUnitType;
 	UnitTypes m_eLeaderUnitType;
 	CvUnitInfo *m_pUnitInfo;
