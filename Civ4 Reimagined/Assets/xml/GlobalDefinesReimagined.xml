@@ -353,6 +353,10 @@
 		<DefineName>START_SIGHT_RANGE</DefineName>
 		<iDefineIntVal>2</iDefineIntVal>
 	</Define>
+	<Define>
+		<DefineName>LAKE_MAX_AREA_SIZE</DefineName>
+		<iDefineIntVal>12</iDefineIntVal>
+	</Define>
 	<!-- Unique Powers -->
 	<Define>
 		<DefineName>UNIQUE_POWER_OTHER</DefineName>
