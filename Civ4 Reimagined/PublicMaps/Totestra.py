@@ -327,7 +327,7 @@ class MapConstants :
 
         #How many squares are added to a lake for each unit of drainage flowing
         #into it.
-        self.LakeSizePerDrainage = 4.0 # was 14.0
+        self.LakeSizePerDrainage = 14.0
 
         #This value modifies LakeSizePerRiverLength when a lake begins in desert
         self.DesertLakeModifier = .60
@@ -338,7 +338,7 @@ class MapConstants :
         #This value controls the number of mid-altitude lake depressions per
         #map square. It will become a lake if enough water flows into the
         #depression.
-        self.numberOfLakesPerPlot = 0.0035 # was 0.003
+        self.numberOfLakesPerPlot = 0.003
 
         #This value sets the minimum altitude of lake depressions. They
         #generally look better higher up.
