@@ -364,26 +364,18 @@
 			<DisableTechs/>
 			<TerrainBiases>
 				<TerrainBias>
-					<TerrainType>TERRAIN_HILL</TerrainType>
-					<iBias>1</iBias>
-				</TerrainBias>
-				<TerrainBias>
-					<TerrainType>TERRAIN_PLAINS</TerrainType>
-					<iBias>1</iBias>
+					<TerrainType>TERRAIN_TUNDRA</TerrainType>
+					<iBias>-1</iBias>
 				</TerrainBias>
 			</TerrainBiases>
-			<FeatureBiases>
-				<FeatureBias>
-					<FeatureType>FEATURE_JUNGLE</FeatureType>
-					<iBias>2</iBias>
-				</FeatureBias>
-			</FeatureBiases>
+			<FeatureBiases/>
 			<BonusBiases>
 				<BonusBias>
 					<BonusType>BONUS_CORN</BonusType>
-					<iBias>5</iBias>
+					<iBias>3</iBias>
 				</BonusBias>
 			</BonusBiases>
+			<iLakeBias>10</iLakeBias>
 			<InitialCivics>
 				<CivicType>CIVIC_TYRANNY</CivicType>
 				<CivicType>CIVIC_DIRECT_RULE</CivicType>

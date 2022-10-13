@@ -2500,6 +2500,7 @@ public:
 	int getCivilizationTerrainBias(int i) const;
 	int getCivilizationFeatureBias(int i) const;
 	int getCivilizationBonusBias(int i) const;
+	int getCivilizationLakeBias() const;
 
 	DllExport bool isLeaders(int i) const;				// Exposed to Python
 	DllExport bool isCivilizationFreeBuildingClass(int i) const;				// Exposed to Python
@@ -2531,6 +2532,7 @@ protected:
 	int m_iSelectionSoundScriptId;
 	int m_iActionSoundScriptId;
 	int m_iDerivativeCiv;
+	int m_iCivilizationLakeBias; // Civ4 Reimagined
 
 	bool m_bAIPlayable;			
 	bool m_bPlayable;

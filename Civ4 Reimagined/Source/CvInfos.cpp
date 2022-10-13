@@ -11608,6 +11608,7 @@ m_iNumCityNames(0),
 m_iNumLeaders(0),
 m_iSelectionSoundScriptId(0),
 m_iActionSoundScriptId(0),
+m_iCivilizationLakeBias(0), // Civ4 Reimagined
 m_iDerivativeCiv(NO_CIVILIZATION),
 m_bPlayable(false),
 m_bAIPlayable(false),
@@ -11700,6 +11701,12 @@ bool CvCivilizationInfo::isAIPlayable() const
 bool CvCivilizationInfo::isPlayable() const	
 {
 	return m_bPlayable;
+}
+
+// CIv4 Reimagined
+int CvCivilizationInfo::getCivilizationLakeBias() const
+{
+	return m_iCivilizationLakeBias;
 }
 
 // Civ4 Reimagined
@@ -11882,6 +11889,7 @@ void CvCivilizationInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iSelectionSoundScriptId);
 	stream->Read(&m_iActionSoundScriptId);
 	stream->Read(&m_iDerivativeCiv);
+	stream->Read(&m_iCivilizationLakeBias); // Civ4 Reimagined
 
 	stream->Read(&m_bAIPlayable);
 	stream->Read(&m_bPlayable);
@@ -11962,6 +11970,7 @@ void CvCivilizationInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iSelectionSoundScriptId);
 	stream->Write(m_iActionSoundScriptId);
 	stream->Write(m_iDerivativeCiv);
+	stream->Write(m_iCivilizationLakeBias); // Civ4 Reimagined
 
 	stream->Write(m_bAIPlayable);
 	stream->Write(m_bPlayable);
@@ -12169,6 +12178,7 @@ bool CvCivilizationInfo::read(CvXMLLoadUtility* pXML)
 	pXML->SetVariableListTagPair(&m_piCivilizationTerrainBias, "TerrainBiases", sizeof(GC.getTerrainInfo((TerrainTypes)0)), GC.getNumTerrainInfos());
 	pXML->SetVariableListTagPair(&m_piCivilizationFeatureBias, "FeatureBiases", sizeof(GC.getFeatureInfo((FeatureTypes)0)), GC.getNumFeatureInfos());
 	pXML->SetVariableListTagPair(&m_piCivilizationBonusBias, "BonusBiases", sizeof(GC.getBonusInfo((BonusTypes)0)), GC.getNumBonusInfos());
+	pXML->GetChildXmlValByName(&m_iCivilizationLakeBias, "iLakeBias");
 
 	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(),"InitialCivics"))
 	{

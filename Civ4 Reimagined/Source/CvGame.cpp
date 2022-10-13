@@ -1057,6 +1057,11 @@ int CvGame::calculateStartingPlotBiasScore(CvPlot* pStartingPlot, CivilizationTy
 				iScore += GC.getCivilizationInfo(eCiv).getCivilizationTerrainBias(TERRAIN_PEAK);
 			}
 
+			if (pLoopPlot->isLake())
+			{
+				iScore += GC.getCivilizationInfo(eCiv).getCivilizationLakeBias();
+			}
+
 			if (pLoopPlot->getFeatureType() != NO_FEATURE)
 			{
 				iScore += GC.getCivilizationInfo(eCiv).getCivilizationFeatureBias(pLoopPlot->getFeatureType());

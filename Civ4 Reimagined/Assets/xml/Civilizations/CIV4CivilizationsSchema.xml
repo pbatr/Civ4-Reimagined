@@ -467,6 +467,7 @@
 	<ElementType name="BonusBiases" content="eltOnly">
 		<element type="BonusBias" minOccurs="0" maxOccurs="*"/>
 	</ElementType>
+	<ElementType name="iLakeBias" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
 	<!-- starting bias END -->
 	<ElementType name="CivicType" content="textOnly"/>
 	<ElementType name="InitialCivics" content="eltOnly">
@@ -513,6 +514,7 @@
 		<element type="TerrainBiases" minOccurs="0"/>
 		<element type="FeatureBiases" minOccurs="0"/>
 		<element type="BonusBiases" minOccurs="0"/>
+		<element type="iLakeBias" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="InitialCivics"/>
 		<element type="AnarchyCivics" minOccurs="0"/>
 		<element type="Leaders" minOccurs="0"/>
