@@ -77,6 +77,8 @@ Tweaks
 -Bridge building requires Mathematics instead of Construction
 -Forts require Construction instead of Mathematics
 -Increase chop forest production from 15 to 20 but remove production bonus with Mathematics
+-Cities can still revolt but not flip while at war with the original owner
+-Autocracy only protects from culture flips but not from city revolts
 
 *********
 Interface

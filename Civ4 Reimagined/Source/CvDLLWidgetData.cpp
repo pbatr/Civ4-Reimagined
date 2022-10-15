@@ -5031,9 +5031,7 @@ void CvDLLWidgetData::parseNationalityHelp(CvWidgetDataStruct &widgetDataStruct,
 
 		if (eCulturalOwner != NO_PLAYER)
 		{
-			//if (GET_PLAYER(eCulturalOwner).getTeam() != pHeadSelectedCity->getTeam())
-			// Civ4 Reimagined
-			if (GET_PLAYER(eCulturalOwner).getTeam() != pHeadSelectedCity->getTeam() && !GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).isNoCultureFlip())
+			if (GET_PLAYER(eCulturalOwner).getTeam() != pHeadSelectedCity->getTeam())
 			{
 				iCityStrength = pHeadSelectedCity->cultureStrength(eCulturalOwner);
 				iGarrison = pHeadSelectedCity->cultureGarrison(pHeadSelectedCity->plot()->getOwnerINLINE());

@@ -9335,9 +9335,7 @@ void CvPlot::doCulture()
 
 		if (eCulturalOwner != NO_PLAYER)
 		{
-			//if (GET_PLAYER(eCulturalOwner).getTeam() != getTeam())
-			// Civ4 Reimagined
-			if (GET_PLAYER(eCulturalOwner).getTeam() != getTeam() && !GET_PLAYER(getOwnerINLINE()).isNoCultureFlip())
+			if (GET_PLAYER(eCulturalOwner).getTeam() != getTeam())
 			{
 				if (!(pCity->isOccupation()))
 				{

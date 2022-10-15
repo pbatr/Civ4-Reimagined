@@ -11882,7 +11882,8 @@ bool CvCity::canCultureFlip(PlayerTypes eToPlayer) const
 	return !GC.getGameINLINE().isOption(GAMEOPTION_NO_CITY_FLIPPING) &&
 		(GC.getGameINLINE().isOption(GAMEOPTION_FLIPPING_AFTER_CONQUEST) || getPreviousOwner() == NO_PLAYER || GET_PLAYER(getPreviousOwner()).getTeam() != GET_PLAYER(eToPlayer).getTeam()) &&
 		getNumRevolts(eToPlayer) >= GC.getDefineINT("NUM_WARNING_REVOLTS") &&
-		!GET_PLAYER(getOwnerINLINE()).isNoCultureFlip(); // Civ4 Reimagined
+		!GET_PLAYER(getOwnerINLINE()).isNoCultureFlip() &&
+		!GET_TEAM(getTeam()).isAtWar(GET_PLAYER(eToPlayer).getTeam()); // Civ4 Reimagined
 }
 // K-Mod end
 
