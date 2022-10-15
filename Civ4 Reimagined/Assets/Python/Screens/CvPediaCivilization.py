@@ -121,7 +121,7 @@ class CvPediaCivilization:
 		for iBuilding in range(gc.getNumBuildingClassInfos()):
 			iUniqueBuilding = gc.getCivilizationInfo(self.iCivilization).getCivilizationBuildings(iBuilding);
 			iDefaultBuilding = gc.getBuildingClassInfo(iBuilding).getDefaultBuildingIndex();
-			if (iDefaultBuilding > -1 and iUniqueBuilding > -1 and iDefaultBuilding != iUniqueBuilding):
+			if (iUniqueBuilding > -1 and iDefaultBuilding != iUniqueBuilding):
 				screen.attachImageButton( panelName, "", gc.getBuildingInfo(iUniqueBuilding).getButton(), GenericButtonSizes.BUTTON_SIZE_CUSTOM, WidgetTypes.WIDGET_PEDIA_JUMP_TO_BUILDING, iUniqueBuilding, 1, False )
 				
 	def placeUnit(self):

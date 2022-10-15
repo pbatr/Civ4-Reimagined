@@ -28212,7 +28212,7 @@
 			<Description>TXT_KEY_LEADER_SITTING_BULL</Description>
 			<Civilopedia>TXT_KEY_LEADER_SITTING_BULL_PEDIA</Civilopedia>
 			<ArtDefineTag>ART_DEF_LEADER_SITTING_BULL</ArtDefineTag>
-			<iWonderConstructRand>10</iWonderConstructRand>
+			<iWonderConstructRand>15</iWonderConstructRand>
 			<iBaseAttitude>0</iBaseAttitude>
 			<iBasePeaceWeight>6</iBasePeaceWeight>
 			<iPeaceWeightRand>3</iPeaceWeightRand>
@@ -28224,11 +28224,11 @@
 			<iMaxGoldTradePercent>5</iMaxGoldTradePercent>
 			<iMaxGoldPerTurnTradePercent>10</iMaxGoldPerTurnTradePercent>
 			<!-- BBAI Victory Strategy -->
-			<iCultureVictoryWeight>25</iCultureVictoryWeight>
-			<iSpaceVictoryWeight>25</iSpaceVictoryWeight>
+			<iCultureVictoryWeight>50</iCultureVictoryWeight>
+			<iSpaceVictoryWeight>15</iSpaceVictoryWeight>
 			<iConquestVictoryWeight>25</iConquestVictoryWeight>
 			<iDominationVictoryWeight>10</iDominationVictoryWeight>
-			<iDiplomacyVictoryWeight>65</iDiplomacyVictoryWeight>
+			<iDiplomacyVictoryWeight>50</iDiplomacyVictoryWeight>
 			<!-- BBAI Victory Strategy -->
 			<iMaxWarRand>150</iMaxWarRand>
 			<iMaxWarNearbyPowerRatio>130</iMaxWarNearbyPowerRatio>
@@ -28242,7 +28242,7 @@
 			<iDemandRebukedSneakProb>20</iDemandRebukedSneakProb>
 			<iDemandRebukedWarProb>10</iDemandRebukedWarProb>
 			<iRazeCityProb>20</iRazeCityProb>
-			<iBuildUnitProb>30</iBuildUnitProb>
+			<iBuildUnitProb>25</iBuildUnitProb>
 			<iBaseAttackOddsChange>4</iBaseAttackOddsChange>
 			<iAttackOddsChangeRand>8</iAttackOddsChangeRand>
 			<iWorseRankDifferenceAttitudeChange>0</iWorseRankDifferenceAttitudeChange>
@@ -28290,7 +28290,7 @@
 			<VassalRefuseAttitudeThreshold>ATTITUDE_PLEASED</VassalRefuseAttitudeThreshold>
 			<iVassalPowerModifier>50</iVassalPowerModifier>
 			<iFreedomAppreciation>10</iFreedomAppreciation>
-			<FavoriteCivic>CIVIC_WARRIOR_CODE</FavoriteCivic>
+			<FavoriteCivic>CIVIC_PUBLIC_WELFARE</FavoriteCivic>
 			<FavoriteReligion>NONE</FavoriteReligion>
 			<Traits>
 				<Trait>
@@ -28304,12 +28304,8 @@
 			</Traits>
 			<Flavors>
 				<Flavor>
-					<FlavorType>FLAVOR_MILITARY</FlavorType>
-					<iFlavor>2</iFlavor>
-				</Flavor>
-				<Flavor>
-					<FlavorType>FLAVOR_GROWTH</FlavorType>
-					<iFlavor>5</iFlavor>
+					<FlavorType>FLAVOR_CULTURE</FlavorType>
+					<iFlavor>10</iFlavor>
 				</Flavor>
 			</Flavors>
 			<ContactRands>

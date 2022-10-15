@@ -3168,6 +3168,10 @@
 					<BuildingClassType>BUILDINGCLASS_TANNERY</BuildingClassType>
 					<BuildingType>BUILDING_NATIVE_AMERICA_TANNERY</BuildingType>
 				</Building>
+				<Building>
+					<BuildingClassType>BUILDINGCLASS_TOTEM_POLE</BuildingClassType>
+					<BuildingType>BUILDING_NATIVE_AMERICA_TOTEM</BuildingType>
+				</Building>
 			</Buildings>
 			<Units>
 				<Unit>
