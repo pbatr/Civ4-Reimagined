@@ -22,63 +22,63 @@ Changes
 -Additional effect from Bureaucracy civic: Instantly gain 2 additional workers and temporarily increase worker limit by 2
 -Additional effect from Vassalage civic: Happiness from forts in city radius
 -Cities can not be traded unless both players are at war (peace negotiations) or a city is liberated
--With a low resource ratio in coal and oil, Railroads take longer to construct and units can traverse less Railroad squares per turn
+-Cities can still revolt but not flip while at war with the original owner
 -Friendly units from another civilization stationed in your city do no longer reduce the risk of revolts
+-With a low resource ratio in coal and oil, Railroads take longer to construct and units can traverse less Railroad squares per turn
+-Spies can only get caught when doing a mission or when opponent is using counter espionage
 -Adjusted starting bias of Civilizations to accomodate Unique Powers and also have starting bias for native resources
+-More vision at starting position
 
 *********
 Tweaks
 *********
 -Increased Vulture anti-archer bonus from 10% to 20%
--Increased Assembly Plant production with electricity from +40% to +85%, but it starts off with 15% less production compared to other factories and loses its former +3 production and +50% building with coal bonus.
--Industrialism production bonus increased from 15% to 20%
--Free Market grants 1 additional gold per merchant specialist
--Central Planning bonus ratio modifier decreased from -10% to -25%
--State Atheism reduces overcrowding unhappiness by 10%
--Senate cost decreased from 200 to 175, grants Great Spy points and no more production bonus with marble
 -Pikemen require Corporation instead of Banking
+-Cavalry require Replaceable Parts tech
+-Roman legion has 2 potential first strikes and same defensive city malus as swordsman
+-Maya Holkan is available with Masonry
+-Celtic Gallic Warrior now requires Iron but has a combat bonus against injured units
+-Holy Roman Landsknecht is available with Banking and does not have an extra combat Bonus vs mounted
+-Galleon, Frigate, Ship of the Line can explore rival territory
+-Paratrooper airdrop range increased from 5 to 8 but it requires oil
+-Spies cost unit maintenance
+-Great Merchant is invisble
+-Increased Assembly Plant production with electricity from +40% to +85%, but it starts off with 15% less production compared to other factories and loses its former +3 production and +50% building with coal bonus
+-Spanish Citadel gets obsolete with Liberalism instead of Corporation
+-Greek Odeon now increases great person rate and culture per world wonder in the city
+-Pyramids have 100 % hurry cost modifier again (was 0)
+-Terracotta Army provides a free Great General instead of 50 % military unit production
+-Senate cost decreased from 200 to 175, grants Great Spy points and no more production bonus with marble
+-Floating Gardens increases food from lake tiles in all cities by 1 instead of 1 population and requires an adjacent lake. Costs reduced from 350 to 300.
 -Colossus obsoletes with Astronomy
 -Shwedagon Paya requires Meditation instead of Philosophy
 -National Epic requires Philosophy instead of Literature
 -Statue of Liberty trade with liberal Civs bonus reduced from 300% to 200% and food from trade routes reduced from 5% to 4%
--Small adjustments to Renaissance tech tree
--Cavalry require Replaceable Parts tech
--Increase great person modifier of Cristo Redentor from 25% to 100%
+-Increased great person modifier of Cristo Redentor from 25% to 100%
 -Lubyanka only requires one National Security building in city
 -Angkor Wat gives no defense bonus anymore
--Spanish Citadel gets obsolete with Liberalism instead of Corporation
 -Great Wall costs reduced from 300 to 250
+-Autocracy only protects from culture flips but not from city revolts
+-Industrialism production bonus increased from 15% to 20%
+-Free Market grants 1 additional gold per merchant specialist
+-Central Planning bonus ratio modifier decreased from -10% to -25%
+-State Atheism reduces overcrowding unhappiness by 10%
+-Small adjustments to Renaissance tech tree
+-FIrst to discover Liberalism receives Great Artist instead of Great Scientist
+-First to discover Computers receives Great Engineer
+-First to discover Fusion does not receive Great Engineer anymore
 -Higher tech speed on lower difficulties
 -Quests which require training a number of units are easier to fullfil
 -Minimum time between revolutions reduced from 5 to 4 turns
 -Event probabilities adjusted to game speed
--Roman legion has 2 potential first strikes and same defensive city malus as swordsman
 -Switch leader traits: Charlemagne is now organized and Roosevelt progressive
 -India starts with Hunting instead of Mining
 -Rome starts with Mining instead of The Wheel
--More vision at starting position
--Maya Holkan is available with Masonry
--Celtic Gallic Warrior now requires Iron but has a combat bonus against injured units
--Holy Roman Landsknecht is available with Banking and does not have an extra combat Bonus vs mounted
--Greek Odeon now increases great person rate and culture per world wonder in the city
--Pyramids have 100 % hurry cost modifier again (was 0)
--Terracotta Army provides a free Great General instead of 50 % military unit production
--Spies can only get caught when doing a mission or when opponent is using counter espionage
 -Totestra map size default player number reduced from 19 to 18
 -Can build farms on Tundra tiles without fresh water after Biology
--Paratrooper airdrop range increased from 5 to 8 but it requires oil
--FIrst to discover Liberalism receives Great Artist instead of Great Scientist
--First to discover Computers receives Great Engineer
--First to discover Fusion does not receive Great Engineer anymore
--Spy costs unit maintenance
--Great Merchant is invisble
--Galleon, Frigate, Ship of the Line can explore rival territory
--Floating Gardens increases food from lake tiles in all cities by 1 instead of 1 population and requires an adjacent lake. Costs reduced from 350 to 300.
 -Bridge building requires Mathematics instead of Construction
 -Forts require Construction instead of Mathematics
 -Increase chop forest production from 15 to 20 but remove production bonus with Mathematics
--Cities can still revolt but not flip while at war with the original owner
--Autocracy only protects from culture flips but not from city revolts
 
 *********
 Interface
