@@ -1354,7 +1354,7 @@ void CvTeam::declareWar(TeamTypes eTeam, bool bNewDiplo, WarPlanTypes eWarPlan, 
 	}
 
 	// Civ4 Reimagined
-	if (!GET_TEAM(eTeam).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_NATIONALISM")))
+	if (!isBarbarian() && !GET_TEAM(eTeam).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_NATIONALISM")))
 	{
 		GET_TEAM(eTeam).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_NATIONALISM"), GET_TEAM(eTeam).getLeaderID(), true);
 	}
