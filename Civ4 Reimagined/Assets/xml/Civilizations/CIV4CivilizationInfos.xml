@@ -914,10 +914,6 @@
 			</InitialCivics>
 			<Leaders>
 				<Leader>
-					<LeaderName>LEADER_BRENNUS</LeaderName>
-					<bLeaderAvailability>0</bLeaderAvailability>
-				</Leader>
-				<Leader>
 					<LeaderName>LEADER_BOUDICA</LeaderName>
 					<bLeaderAvailability>1</bLeaderAvailability>
 				</Leader>
