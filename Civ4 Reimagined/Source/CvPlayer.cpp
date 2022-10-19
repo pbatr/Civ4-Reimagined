@@ -75,6 +75,7 @@ CvPlayer::CvPlayer()
 	
 	m_aiDomainProductionModifiers = new int[NUM_DOMAIN_TYPES]; // Leoreth
 	m_aiDomainExperienceModifiers = new int[NUM_DOMAIN_TYPES]; // Leoreth
+	m_aiDomainExperienceGainModifiers = new int[NUM_DOMAIN_TYPES]; // Civ4 Reimagined
 
 	m_aiMilitaryPower = new int[NUM_DOMAIN_TYPES]; // Civ4 Reimagined
 	m_aiBestUnitPower = new int[NUM_DOMAIN_TYPES]; // Civ4 Reimagined
@@ -189,6 +190,7 @@ CvPlayer::~CvPlayer()
 	SAFE_DELETE_ARRAY(m_aiEspionageSpendingWeightAgainstTeam);
 	SAFE_DELETE_ARRAY(m_aiDomainProductionModifiers); // Leoreth
 	SAFE_DELETE_ARRAY(m_aiDomainExperienceModifiers); // Leoreth
+	SAFE_DELETE_ARRAY(m_aiDomainExperienceGainModifiers); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiMilitaryPower); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiBestUnitPower); // Civ4 Reimagined
 	SAFE_DELETE_ARRAY(m_aiExtraMovesInGoldenAge); // Civ4 Reimagined
@@ -1177,6 +1179,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	{
 		m_aiDomainProductionModifiers[iI] = 0;
 		m_aiDomainExperienceModifiers[iI] = 0;
+		m_aiDomainExperienceGainModifiers[iI] = 0; // Civ4 Reimagined
 		m_aiMilitaryPower[iI] = 0; // Civ4 Reimagined
 		m_aiBestUnitPower[iI] = 0; // Civ4 Reimagined
 		m_aiExtraMovesInGoldenAge[iI] = 0; // Civ4 Reimagined
@@ -21630,7 +21633,8 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	// Leoreth
 	pStream->Read(NUM_DOMAIN_TYPES, m_aiDomainProductionModifiers);
 	pStream->Read(NUM_DOMAIN_TYPES, m_aiDomainExperienceModifiers);
-	
+
+	pStream->Read(NUM_DOMAIN_TYPES, m_aiDomainExperienceGainModifiers); // Civ4 Reimagined
 	pStream->Read(NUM_FEAT_TYPES, m_abFeatAccomplished);
 	pStream->Read(NUM_PLAYEROPTION_TYPES, m_abOptions);
 	pStream->Read(NUM_NATIVEBONUS_TYPES, m_abNativeAmericanBonus); // Civ4 Reimagined
@@ -22309,6 +22313,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(NUM_DOMAIN_TYPES, m_aiDomainProductionModifiers);
 	pStream->Write(NUM_DOMAIN_TYPES, m_aiDomainExperienceModifiers);
 
+	pStream->Write(NUM_DOMAIN_TYPES, m_aiDomainExperienceGainModifiers); // Civ4 Reimagined
 	pStream->Write(NUM_FEAT_TYPES, m_abFeatAccomplished);
 	pStream->Write(NUM_PLAYEROPTION_TYPES, m_abOptions);
 	pStream->Write(NUM_NATIVEBONUS_TYPES, m_abNativeAmericanBonus); // Civ4 Reimagined
@@ -27956,6 +27961,18 @@ void CvPlayer::changeDomainExperienceModifier(DomainTypes eDomainType, int iChan
 }
 
 // Civ4 Reimagined
+int CvPlayer::getDomainExperienceGainModifier(DomainTypes eDomainType) const
+{
+	return m_aiDomainExperienceGainModifiers[(int)eDomainType];
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeDomainExperienceGainModifier(DomainTypes eDomainType, int iChange)
+{
+	m_aiDomainExperienceGainModifiers[(int)eDomainType] += iChange;
+}
+
+// Civ4 Reimagined
 int CvPlayer::getUnitUpgradeCostModifier() const
 {
 	return m_iUnitUpgradeCostModifier;
@@ -30292,7 +30309,7 @@ void CvPlayer::applyNativeAmericanBonus(int iX, int iY)
 	{
 		if (eBonus == (BonusTypes)GC.getInfoTypeForString("BONUS_DEER") || eBonus == (BonusTypes)GC.getInfoTypeForString("BONUS_HORSE") || eBonus == (BonusTypes)GC.getInfoTypeForString("BONUS_IVORY"))
 		{
-			changeDomainExperienceModifier(DOMAIN_LAND, 50);
+			changeDomainExperienceGainModifier(DOMAIN_LAND, 50);
 			setNativeAmericanBonus(NATIVEBONUS_HUNTING, false);
 			notifyNativeAmericanBonus(NATIVEBONUS_HUNTING);
 		}

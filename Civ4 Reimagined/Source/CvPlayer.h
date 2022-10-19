@@ -1592,6 +1592,8 @@ public:
 	void changeTechBulbModifier(int iChange); // Civ4 Reimagined
 	bool isFrenchRevolution() const; // Civ4 Reimagined
 	void setIsFrenchRevolution(bool bNewValue); // Civ4 Reimagined
+	int getDomainExperienceGainModifier(DomainTypes eDomainType) const; // Civ4 Reimagined
+	void changeDomainExperienceGainModifier(DomainTypes eDomainType, int iChange); // Civ4 Reimagined
 	//
 	// Civ4 Reimagined End
 	//
@@ -1974,6 +1976,7 @@ protected:
 	int* m_aiForeignTradeIdeologyModifier; // Civ4 Reimagined
 	int* m_aiBonusRatioModifierPerIdeologyCiv; // Civ4 Reimagined
 	int* m_aiIdeologyCombatExperienceModifier; // Civ4 Reimagined
+	int* m_aiDomainExperienceGainModifiers; // Civ4 Reimagined
 	
 	//Leoreth
 	int* m_aiDomainProductionModifiers;

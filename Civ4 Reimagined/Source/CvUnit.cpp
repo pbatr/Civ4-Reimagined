@@ -1354,6 +1354,9 @@ void CvUnit::resolveCombat(CvUnit* pDefender, CvPlot* pPlot, bool bVisible)
 				int iExperience = defenseXPValue();
 				iExperience = ((iExperience * iAttackerStrength) / iDefenderStrength);
 				iExperience = range(iExperience, GC.getDefineINT("MIN_EXPERIENCE_PER_COMBAT"), GC.getDefineINT("MAX_EXPERIENCE_PER_COMBAT"));
+				// Civ4 Reimagined
+				iExperience *= 100 + GET_PLAYER(pDefender->getOwnerINLINE()).getDomainExperienceGainModifier(pDefender->getDomainType());
+				iExperience /= 100;
 				pDefender->changeExperience(iExperience, maxXPValue(pDefender->getOwnerINLINE()), true, pPlot->getOwnerINLINE() == pDefender->getOwnerINLINE(), (!isBarbarian() || GET_PLAYER(pDefender->getOwnerINLINE()).isBarbarianGreatGeneral())); // Civ4 Reimagined: Added great general experience from barbarians
 			}
 			else
@@ -1363,6 +1366,9 @@ void CvUnit::resolveCombat(CvUnit* pDefender, CvPlot* pPlot, bool bVisible)
 				int iExperience = pDefender->attackXPValue();
 				iExperience = ((iExperience * iDefenderStrength) / iAttackerStrength);
 				iExperience = range(iExperience, GC.getDefineINT("MIN_EXPERIENCE_PER_COMBAT"), GC.getDefineINT("MAX_EXPERIENCE_PER_COMBAT"));
+				// Civ4 Reimagined
+				iExperience *= 100 + GET_PLAYER(getOwnerINLINE()).getDomainExperienceGainModifier(getDomainType());
+				iExperience /= 100;
 				changeExperience(iExperience, pDefender->maxXPValue(getOwnerINLINE()), true, pPlot->getOwnerINLINE() == getOwnerINLINE(), !pDefender->isBarbarian() || GET_PLAYER(getOwnerINLINE()).isBarbarianGreatGeneral()); // Civ4 Reimagined: Added great general experience from barbarians
 			}
 
