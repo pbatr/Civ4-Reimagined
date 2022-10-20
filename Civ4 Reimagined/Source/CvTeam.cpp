@@ -1353,12 +1353,6 @@ void CvTeam::declareWar(TeamTypes eTeam, bool bNewDiplo, WarPlanTypes eWarPlan, 
 		logBBAI("  Team %d (%S) declares war on team %d", getID(), GET_PLAYER(getLeaderID()).getCivilizationDescription(0), eTeam);
 	}
 
-	// Civ4 Reimagined
-	if (!isBarbarian() && !GET_TEAM(eTeam).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_NATIONALISM")))
-	{
-		GET_TEAM(eTeam).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_NATIONALISM"), GET_TEAM(eTeam).getLeaderID(), true);
-	}
-
 	for (CvDeal* pLoopDeal = GC.getGameINLINE().firstDeal(&iLoop); pLoopDeal != NULL; pLoopDeal = GC.getGameINLINE().nextDeal(&iLoop))
 	{
 		if (((GET_PLAYER(pLoopDeal->getFirstPlayer()).getTeam() == getID()) && (GET_PLAYER(pLoopDeal->getSecondPlayer()).getTeam() == eTeam)) ||
@@ -4376,6 +4370,12 @@ void CvTeam::setVassal(TeamTypes eIndex, bool bNewValue, bool bCapitulated)
 			int iLoop;
 			CLLNode<TradeData>* pNode;
 			bool bValid;
+
+			// Civ4 Reimagined
+			if (!GET_TEAM(eIndex).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_NATIONALISM")))
+			{
+				GET_TEAM(eIndex).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_NATIONALISM"), GET_TEAM(eIndex).getLeaderID(), true);
+			}
 
 			for (pLoopDeal = GC.getGameINLINE().firstDeal(&iLoop); pLoopDeal != NULL; pLoopDeal = GC.getGameINLINE().nextDeal(&iLoop))
 			{
