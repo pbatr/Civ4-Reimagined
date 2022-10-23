@@ -409,6 +409,7 @@ void CvUnit::reset(int iID, UnitTypes eUnit, PlayerTypes eOwner, bool bConstruct
 
 	m_eOwner = eOwner;
 	m_eCapturingPlayer = NO_PLAYER;
+	m_eCapturingUnit = NO_UNIT; // Civ4 Reimagined
 	m_eUnitType = eUnit;
 	m_pUnitInfo = (NO_UNIT != m_eUnitType) ? &GC.getUnitInfo(m_eUnitType) : NULL;
 	m_iBaseCombat = (NO_UNIT != m_eUnitType) ? m_pUnitInfo->getCombat() : 0;
@@ -573,6 +574,7 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer)
 			if (pPlot->isValidDomainForLocation(*pLoopUnit))
 			{
 				pLoopUnit->setCapturingPlayer(NO_PLAYER);
+				pLoopUnit->setCapturingUnit(NO_UNIT); // Civ4 Reimagined
 			}
 
 			pLoopUnit->kill(false, ePlayer);
@@ -707,7 +709,7 @@ void CvUnit::kill(bool bDelay, PlayerTypes ePlayer)
 	// Civ4 Reimagined
 	if (eCapturingPlayer != NO_PLAYER && GET_PLAYER(eCapturingPlayer).hasSlavery() && !isAnimal() && getDomainType() == DOMAIN_LAND)
 	{
-		if (GET_PLAYER(eCapturingPlayer).isCaptureSlaves() || (GC.getUnitInfo(eCapturingUnit).isCaptureBarbarianSlaves() && isBarbarian()))
+		if (GET_PLAYER(eCapturingPlayer).isCaptureSlaves() || (eCapturingUnit != NO_UNIT && isBarbarian() && GC.getUnitInfo(eCapturingUnit).isCaptureBarbarianSlaves()))
 		{
 			eCaptureUnitType = (UnitTypes)GC.getCivilizationInfo(GET_PLAYER(eCapturingPlayer).getCivilizationType()).getCivilizationUnits((UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SLAVE"));
 		}
@@ -10839,6 +10841,7 @@ void CvUnit::setXY(int iX, int iY, bool bGroup, bool bUpdate, bool bShow, bool b
 								if (!isNoCapture())
 								{
 									pLoopUnit->setCapturingPlayer(getOwnerINLINE());
+									pLoopUnit->setCapturingUnit(getUnitType()); // Civ4 Reimagined
 								}
 
 								pLoopUnit->kill(false, getOwnerINLINE());
@@ -13303,6 +13306,7 @@ void CvUnit::read(FDataStreamBase* pStream)
 
 	pStream->Read((int*)&m_eOwner);
 	pStream->Read((int*)&m_eCapturingPlayer);
+	pStream->Read((int*)&m_eCapturingUnit); // Civ4 Reimagined
 	pStream->Read((int*)&m_eUnitType);
 	FAssert(NO_UNIT != m_eUnitType);
 	m_pUnitInfo = (NO_UNIT != m_eUnitType) ? &GC.getUnitInfo(m_eUnitType) : NULL;
@@ -13406,6 +13410,7 @@ void CvUnit::write(FDataStreamBase* pStream)
 
 	pStream->Write(m_eOwner);
 	pStream->Write(m_eCapturingPlayer);
+	pStream->Write(m_eCapturingUnit); // Civ4 Reimagined
 	pStream->Write(m_eUnitType);
 	pStream->Write(m_eLeaderUnitType);
 

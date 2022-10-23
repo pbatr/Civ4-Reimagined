@@ -1,4 +1,10 @@
 *******************************************
+Civ4 Reimagined 2.0a
+*******************************************
+-Fixed a crash that would sometimes occur when a barbarian unit was killed
+
+
+*******************************************
 Civ4 Reimagined 2.0
 *******************************************
 
