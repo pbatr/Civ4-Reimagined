@@ -4675,6 +4675,11 @@ int CvGame::getGlobalWarmingChances() const
 	int iIndexPerChance = GC.getDefineINT("GLOBAL_WARMING_INDEX_PER_CHANCE");
 	iIndexPerChance*=GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getVictoryDelayPercent();
 	iIndexPerChance/=100;
+
+	// Civ4 Reimagined
+	iIndexPerChance *= 13824; // global warming is balanced for Totestra map size
+	iIndexPerChance /= GC.getMapINLINE().numPlotsINLINE();
+
 	return ROUND_DIVIDE(getGlobalWarmingIndex(), std::max(1, iIndexPerChance));
 }
 
