@@ -1127,6 +1127,18 @@ void CvCityAI::AI_chooseProduction()
     			return;
     		}
 		}
+
+		// Civ4 Reimagined
+		if (GC.getGameINLINE().getCurrentEra() < 3)
+		{
+			BuildingTypes eBestDefensiveBuilding = AI_bestBuildingThreshold(BUILDINGFOCUS_DEFENSE, 3);
+			if (eBestDefensiveBuilding != NO_BUILDING && GC.getBuildingInfo(eBestDefensiveBuilding).getDefenseModifier() > 0)
+			{
+				if( gCityLogLevel >= 2 ) logBBAI("      City %S uses danger needs defense", getName().GetCString());
+				pushOrder(ORDER_CONSTRUCT, eBestDefensiveBuilding);
+				return;
+			}
+		}
     }
     
     if (bMaybeWaterArea)
