@@ -30584,7 +30584,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	{
 		if (eEra == ERA_ANCIENT)
 		{
-			changeDomainGreatGeneralRateModifier(DOMAIN_SEA, 100);
+			changeDomainGreatGeneralRateModifier(DOMAIN_SEA, 200);
 			notifyUniquePowersChanged(true);
 		}
 		else if (eEra == ERA_RENAISSANCE)

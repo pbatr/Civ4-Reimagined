@@ -233,7 +233,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_ENGLAND</Tag>
-		<English>Gain double Great General points from naval combat. After entering the Renaissance Era: -50% Corporation maintenance in all cities. Whenever a hidden nationality unit kills another unit, gain gold equal to the production cost of the killed unit. After entering the Industrial Era: +400%[ICON_COMMERCE] trade route income from liberated colonies.</English>
+		<English>+200% Great General points from naval combat. After entering the Renaissance Era: -50% Corporation maintenance in all cities. Whenever a hidden nationality unit kills another unit, gain gold equal to the production cost of the killed unit. After entering the Industrial Era: +400%[ICON_COMMERCE] trade route income from liberated colonies.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_AMERICA</Tag>
