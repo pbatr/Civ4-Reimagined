@@ -6810,7 +6810,7 @@ void CvPlayer::receiveGoody(CvPlot* pPlot, GoodyTypes eGoody, CvUnit* pUnit)
 			iGreatPersonPoints *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getGreatPeoplePercent();
 			iGreatPersonPoints /= 100;
 
-			iGreatPersonPoints = (iGreatPersonPoints+1)/2 + GC.getGameINLINE().getSorenRandNum(iGreatPersonPoints, "Good hut randomization");
+			iGreatPersonPoints = (iGreatPersonPoints*3)/4 + GC.getGameINLINE().getSorenRandNum((iGreatPersonPoints+1)/2, "Good hut randomization");
 			
 			CvCity* pBestCity;
 			int pBestValue = -1;
