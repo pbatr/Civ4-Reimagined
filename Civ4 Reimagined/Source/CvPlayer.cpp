@@ -12865,23 +12865,16 @@ void CvPlayer::changeVoteSourceStateReligionUnitProductionModifier(int iChange)
 {
 	if (iChange != 0)
 	{
-		int iLoop;
-		for (CvCity* pCity = firstCity(&iLoop); NULL != pCity; pCity = nextCity(&iLoop))
+		for (int iVoteSource = 0; iVoteSource < GC.getNumVoteSourceInfos(); ++iVoteSource)
 		{
-			for (int iVoteSource = 0; iVoteSource < GC.getNumVoteSourceInfos(); ++iVoteSource)
-			{
-				processVoteSourceBonus((VoteSourceTypes)iVoteSource, false);
-			}
+			processVoteSourceBonus((VoteSourceTypes)iVoteSource, false);
 		}
 
 		m_iVoteSourceStateReligionUnitProductionModifier = (m_iVoteSourceStateReligionUnitProductionModifier + iChange);
 
-		for (CvCity* pCity = firstCity(&iLoop); NULL != pCity; pCity = nextCity(&iLoop))
+		for (int iVoteSource = 0; iVoteSource < GC.getNumVoteSourceInfos(); ++iVoteSource)
 		{
-			for (int iVoteSource = 0; iVoteSource < GC.getNumVoteSourceInfos(); ++iVoteSource)
-			{
-				processVoteSourceBonus((VoteSourceTypes)iVoteSource, true);
-			}
+			processVoteSourceBonus((VoteSourceTypes)iVoteSource, true);
 		}
 
 		if (getTeam() == GC.getGameINLINE().getActiveTeam())
