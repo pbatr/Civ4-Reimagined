@@ -437,7 +437,7 @@
 			<iHealth>0</iHealth>
 			<iHappiness>0</iHappiness>
 			<iPlacementOrder>3</iPlacementOrder>
-			<iConstAppearance>90</iConstAppearance>
+			<iConstAppearance>100</iConstAppearance>
 			<iMinAreaSize>1</iMinAreaSize>
 			<iMinLatitude>0</iMinLatitude>
 			<iMaxLatitude>90</iMaxLatitude>
