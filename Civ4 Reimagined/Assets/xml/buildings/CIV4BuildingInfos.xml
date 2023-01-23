@@ -4469,7 +4469,7 @@
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
-			<iMinAreaSize>10</iMinAreaSize>
+			<iMinAreaSize>15</iMinAreaSize>
 			<iConquestProb>66</iConquestProb>
 			<iCitiesPrereq>0</iCitiesPrereq>
 			<iTeamsPrereq>0</iTeamsPrereq>
@@ -4645,7 +4645,7 @@
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
-			<iMinAreaSize>10</iMinAreaSize>
+			<iMinAreaSize>15</iMinAreaSize>
 			<iConquestProb>66</iConquestProb>
 			<iCitiesPrereq>0</iCitiesPrereq>
 			<iTeamsPrereq>0</iTeamsPrereq>
@@ -4837,7 +4837,7 @@
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
-			<iMinAreaSize>10</iMinAreaSize>
+			<iMinAreaSize>15</iMinAreaSize>
 			<iConquestProb>66</iConquestProb>
 			<iCitiesPrereq>0</iCitiesPrereq>
 			<iTeamsPrereq>0</iTeamsPrereq>
@@ -5033,7 +5033,7 @@
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
-			<iMinAreaSize>10</iMinAreaSize>
+			<iMinAreaSize>15</iMinAreaSize>
 			<iConquestProb>66</iConquestProb>
 			<iCitiesPrereq>0</iCitiesPrereq>
 			<iTeamsPrereq>0</iTeamsPrereq>
@@ -5225,7 +5225,7 @@
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
-			<iMinAreaSize>10</iMinAreaSize>
+			<iMinAreaSize>15</iMinAreaSize>
 			<iConquestProb>66</iConquestProb>
 			<iCitiesPrereq>0</iCitiesPrereq>
 			<iTeamsPrereq>0</iTeamsPrereq>
@@ -5410,7 +5410,7 @@
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
-			<iMinAreaSize>10</iMinAreaSize>
+			<iMinAreaSize>15</iMinAreaSize>
 			<iConquestProb>66</iConquestProb>
 			<iCitiesPrereq>0</iCitiesPrereq>
 			<iTeamsPrereq>0</iTeamsPrereq>
@@ -5600,7 +5600,7 @@
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
-			<iMinAreaSize>10</iMinAreaSize>
+			<iMinAreaSize>15</iMinAreaSize>
 			<iConquestProb>66</iConquestProb>
 			<iCitiesPrereq>0</iCitiesPrereq>
 			<iTeamsPrereq>0</iTeamsPrereq>
@@ -5784,7 +5784,7 @@
 			<iHurryCostModifier>0</iHurryCostModifier>
 			<iAdvancedStartCost>100</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
-			<iMinAreaSize>20</iMinAreaSize>
+			<iMinAreaSize>15</iMinAreaSize>
 			<iConquestProb>66</iConquestProb>
 			<iCitiesPrereq>0</iCitiesPrereq>
 			<iTeamsPrereq>0</iTeamsPrereq>
@@ -23352,7 +23352,7 @@
 			<iHurryCostModifier>100</iHurryCostModifier>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
-			<iMinAreaSize>10</iMinAreaSize>
+			<iMinAreaSize>15</iMinAreaSize>
 			<iConquestProb>100</iConquestProb>
 			<iCitiesPrereq>0</iCitiesPrereq>
 			<iTeamsPrereq>0</iTeamsPrereq>
@@ -23716,7 +23716,7 @@
 			<iHurryCostModifier>100</iHurryCostModifier>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
-			<iMinAreaSize>10</iMinAreaSize>
+			<iMinAreaSize>15</iMinAreaSize>
 			<iConquestProb>100</iConquestProb>
 			<iCitiesPrereq>0</iCitiesPrereq>
 			<iTeamsPrereq>0</iTeamsPrereq>
@@ -26020,7 +26020,7 @@
 			<iHurryCostModifier>200</iHurryCostModifier>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
-			<iMinAreaSize>10</iMinAreaSize>
+			<iMinAreaSize>15</iMinAreaSize>
 			<iConquestProb>100</iConquestProb>
 			<iCitiesPrereq>0</iCitiesPrereq>
 			<iTeamsPrereq>0</iTeamsPrereq>
@@ -28938,7 +28938,7 @@
 			<iHurryCostModifier>100</iHurryCostModifier>
 			<iAdvancedStartCost>-1</iAdvancedStartCost>
 			<iAdvancedStartCostIncrease>0</iAdvancedStartCostIncrease>
-			<iMinAreaSize>10</iMinAreaSize>
+			<iMinAreaSize>15</iMinAreaSize>
 			<iConquestProb>0</iConquestProb>
 			<iCitiesPrereq>0</iCitiesPrereq>
 			<iTeamsPrereq>0</iTeamsPrereq>

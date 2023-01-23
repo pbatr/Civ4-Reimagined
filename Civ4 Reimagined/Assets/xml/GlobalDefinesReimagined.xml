@@ -357,6 +357,10 @@
 		<DefineName>LAKE_MAX_AREA_SIZE</DefineName>
 		<iDefineIntVal>14</iDefineIntVal>
 	</Define>
+	<Define>
+		<DefineName>MIN_WATER_SIZE_FOR_OCEAN</DefineName>
+		<iDefineIntVal>15</iDefineIntVal>
+	</Define>
 	<!-- Unique Powers -->
 	<Define>
 		<DefineName>UNIQUE_POWER_OTHER</DefineName>
