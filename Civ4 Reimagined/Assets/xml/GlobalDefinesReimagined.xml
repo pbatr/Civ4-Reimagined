@@ -103,11 +103,11 @@
 	</Define>
 	<Define>
 		<DefineName>AT_WAR_CULTURE_ANGER_MODIFIER</DefineName>
-		<iDefineIntVal>33</iDefineIntVal> <!-- original value: 50 -->
+		<iDefineIntVal>25</iDefineIntVal> <!-- original value: 50 -->
 	</Define>
 	<Define>
 		<DefineName>CULTURE_PERCENT_ANGER</DefineName>
-		<iDefineIntVal>600</iDefineIntVal> <!-- original value: 400 -->
+		<iDefineIntVal>1200</iDefineIntVal> <!-- original value: 400 -->
 	</Define>
 	<Define>
 		<DefineName>CONSCRIPT_ANGER_DIVISOR</DefineName>
