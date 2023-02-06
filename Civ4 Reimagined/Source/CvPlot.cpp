@@ -7150,10 +7150,7 @@ int CvPlot::countTotalCulture() const
 
 	for (iI = 0; iI < MAX_PLAYERS; ++iI)
 	{
-		if (GET_PLAYER((PlayerTypes)iI).isAlive())
-		{
-			iTotalCulture += getCulture((PlayerTypes)iI);
-		}
+		iTotalCulture += getCulture((PlayerTypes)iI);
 	}
 
 	return iTotalCulture;

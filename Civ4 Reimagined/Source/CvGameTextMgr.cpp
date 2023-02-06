@@ -4789,13 +4789,10 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 
 		for (iI = 0; iI < MAX_PLAYERS; ++iI)
 		{
-			if (GET_PLAYER((PlayerTypes)iI).isAlive())
+			if (pPlot->getCulture((PlayerTypes)iI) > 0)
 			{
-				if (pPlot->getCulture((PlayerTypes)iI) > 0)
-				{
-					szTempBuffer.Format(L"\n%s Culture: %d", GET_PLAYER((PlayerTypes)iI).getName(), pPlot->getCulture((PlayerTypes)iI));
-					szString.append(szTempBuffer);
-				}
+				szTempBuffer.Format(L"\n%s Culture: %d", GET_PLAYER((PlayerTypes)iI).getName(), pPlot->getCulture((PlayerTypes)iI));
+				szString.append(szTempBuffer);
 			}
 		}
 
@@ -5567,7 +5564,7 @@ void CvGameTextMgr::setPlotHelp(CvWStringBuffer& szString, CvPlot* pPlot)
 					if (iPlayer != eRevealOwner)
 					{
 						CvPlayer& kPlayer = GET_PLAYER((PlayerTypes)iPlayer);
-						if (kPlayer.isAlive() && pPlot->getCulture((PlayerTypes)iPlayer) > 0)
+						if (pPlot->getCulture((PlayerTypes)iPlayer) > 0)
 						{
 						/**
 						*** K-Mod, 29/sep/10, Karadoc
