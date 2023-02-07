@@ -607,7 +607,7 @@
 			<VictoryPrereq>NONE</VictoryPrereq>
 			<FreeStartEra>NONE</FreeStartEra>
 			<MaxStartEra>NONE</MaxStartEra>
-			<ObsoleteTech>TECH_RIFLING</ObsoleteTech>
+			<ObsoleteTech>TECH_CHEMISTRY</ObsoleteTech>
 			<PrereqTech>TECH_MASONRY</PrereqTech>
 			<TechTypes/>
 			<Bonus>NONE</Bonus>
@@ -786,7 +786,7 @@
 			<VictoryPrereq>NONE</VictoryPrereq>
 			<FreeStartEra>NONE</FreeStartEra>
 			<MaxStartEra>NONE</MaxStartEra>
-			<ObsoleteTech>TECH_MILITARY_TRADITION</ObsoleteTech>
+			<ObsoleteTech>TECH_CHEMISTRY</ObsoleteTech>
 			<PrereqTech>TECH_MASONRY</PrereqTech>
 			<TechTypes/>
 			<Bonus>NONE</Bonus>
@@ -27972,7 +27972,7 @@
 			<VictoryPrereq>NONE</VictoryPrereq>
 			<FreeStartEra>NONE</FreeStartEra>
 			<MaxStartEra>ERA_MEDIEVAL</MaxStartEra>
-			<ObsoleteTech>TECH_ARTILLERY</ObsoleteTech>
+			<ObsoleteTech>TECH_CHEMISTRY</ObsoleteTech>
 			<PrereqTech>TECH_CONSTRUCTION</PrereqTech>
 			<TechTypes/>
 			<Bonus>BONUS_STONE</Bonus>
