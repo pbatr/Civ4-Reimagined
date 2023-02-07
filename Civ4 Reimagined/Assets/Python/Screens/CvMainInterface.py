@@ -4441,16 +4441,15 @@ class CvMainInterface:
 				iRemainder = 100
 				iWhichBar = 0
 				for h in range( gc.getMAX_PLAYERS() ):
-					if ( gc.getPlayer(h).isAlive() ):
-						iPercent = pHeadSelectedCity.plot().calculateCulturePercent(h)
-						if ( iPercent > 0 ):
-							screen.setStackedBarColorsRGB( "NationalityBar", iWhichBar, gc.getPlayer(h).getPlayerTextColorR(), gc.getPlayer(h).getPlayerTextColorG(), gc.getPlayer(h).getPlayerTextColorB(), gc.getPlayer(h).getPlayerTextColorA() )
-							if ( iRemainder <= 0):
-								screen.setBarPercentage( "NationalityBar", iWhichBar, 0.0 )
-							else:
-								screen.setBarPercentage( "NationalityBar", iWhichBar, float(iPercent) / iRemainder)
-							iRemainder -= iPercent
-							iWhichBar += 1
+					iPercent = pHeadSelectedCity.plot().calculateCulturePercent(h)
+					if ( iPercent > 0 ):
+						screen.setStackedBarColorsRGB( "NationalityBar", iWhichBar, gc.getPlayer(h).getPlayerTextColorR(), gc.getPlayer(h).getPlayerTextColorG(), gc.getPlayer(h).getPlayerTextColorB(), gc.getPlayer(h).getPlayerTextColorA() )
+						if ( iRemainder <= 0):
+							screen.setBarPercentage( "NationalityBar", iWhichBar, 0.0 )
+						else:
+							screen.setBarPercentage( "NationalityBar", iWhichBar, float(iPercent) / iRemainder)
+						iRemainder -= iPercent
+						iWhichBar += 1
 				screen.show( "NationalityBar" )
 
 				iDefenseModifier = pHeadSelectedCity.getDefenseModifier(False)
