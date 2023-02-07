@@ -11295,11 +11295,11 @@ void CvPlayer::changeNumMilitaryUnits(int iChange)
 		}
 
 		// Civ4 Reimagined
-		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_COMBUSTION")))
+		if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_STEEL")))
 		{
 			if (getUnitClassCount((UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_IRONCLAD")) > 2)
 			{
-				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_COMBUSTION"), getID(), true);
+				GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_STEEL"), getID(), true);
 			}
 		}
 
@@ -28551,11 +28551,11 @@ void CvPlayer::checkBuildingEurekas()
 		}
 	}
 
-	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_STEEL")))
+	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_COMBUSTION")))
 	{
 		if (getBuildingClassCount((BuildingClassTypes)GC.getInfoTypeForString("BUILDINGCLASS_FACTORY")) > 0)
 		{
-			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_STEEL"), getID(), true);
+			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_COMBUSTION"), getID(), true);
 		}
 	}
 
