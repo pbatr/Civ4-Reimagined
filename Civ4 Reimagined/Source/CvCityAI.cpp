@@ -1190,7 +1190,7 @@ void CvCityAI::AI_chooseProduction()
 					}
 
 					// Civ4 Reimagined
-					if (kPlayer.canExploreSea() && kPlayer.AI_totalWaterAreaUnitAIs(pWaterArea, UNITAI_EXPLORE_SEA) < kPlayer.AI_neededExplorers(pWaterArea))
+					if (kPlayer.canExploreSea() && kPlayer.AI_totalWaterAreaUnitAIs(pWaterArea, UNITAI_EXPLORE_SEA) < kPlayer.AI_neededExplorers(pWaterArea) && pWaterArea->getNumUnrevealedTiles(getTeam()) > 100)
 					{
 						if (AI_chooseUnit(UNITAI_EXPLORE_SEA, iOdds))
 						{
@@ -5063,18 +5063,18 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				{
 					iTempValue += kBuilding.getBuildingProductionModifier() * iBaseRate / 40; // Civ4 Reimagined: originally 50
 				}
-				iTempValue += kBuilding.getPowerYieldModifier(iI) * iBaseRate / (bProvidesPower || isPower() ? 27 : 50);
+				iTempValue += kBuilding.getPowerYieldModifier(iI) * iBaseRate / (bProvidesPower || isPower() ? 25 : 35);
 
 				if (bProvidesPower && !isPower())
 				{
-					iTempValue += ((getPowerYieldRateModifier((YieldTypes)iI) * iBaseRate) / 27); // originally 12
+					iTempValue += ((getPowerYieldRateModifier((YieldTypes)iI) * iBaseRate) / 25); // originally 12
 				}
 
 				for (int iJ = 0; iJ < GC.getNumBonusInfos(); iJ++)
 				{
 					if (hasBonus((BonusTypes)iJ))
 					{
-						iTempValue += ((kBuilding.getBonusYieldModifier(iJ, iI) * iBaseRate) / 27); // originally 12
+						iTempValue += ((kBuilding.getBonusYieldModifier(iJ, iI) * iBaseRate) / 25); // originally 12
 						// Civ4 Reimagined
 						if ((YieldTypes)iI == YIELD_PRODUCTION)
 						{

@@ -9057,7 +9057,8 @@ PlayerVoteTypes CvPlayerAI::AI_diploVote(const VoteSelectionSubData& kVoteData, 
 
 	if (GC.getGameINLINE().isTeamVote(eVote))
 	{
-		if (GC.getGameINLINE().isTeamVoteEligible(getTeam(), eVoteSource))
+		// Civ4 Reimagined: Holy Roman does not want to vote for themselves because of UP
+		if (GC.getGameINLINE().isTeamVoteEligible(getTeam(), eVoteSource) && getVoteSourceStateReligionUnitProductionModifier() == 0)
 		{
 			return (PlayerVoteTypes)getTeam();
 		}
@@ -9075,6 +9076,12 @@ PlayerVoteTypes CvPlayerAI::AI_diploVote(const VoteSelectionSubData& kVoteData, 
 
 		for (iI = 0; iI < MAX_TEAMS; iI++)
 		{
+			// Civ4 Reimagined: Holy Roman does not want to vote for themselves because of UP
+			if (getTeam() == (TeamTypes)iI)
+			{
+				continue;
+			}
+
 			if (GET_TEAM((TeamTypes)iI).isAlive())
 			{
 				if (GC.getGameINLINE().isTeamVoteEligible((TeamTypes)iI, eVoteSource))
@@ -12802,11 +12809,6 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 			//iValue -= iTempValue / 2;
 			iValue -= iTempValue / 3; // K-Mod
 		}
-		if (GC.getUnitInfo(eUnit).getDropRange() > 0)
-		{
-			//iValue -= iTempValue / 2;
-			// disabled by K-Mod (how is drop range a disadvantage?)
-		}
 		if (GC.getUnitInfo(eUnit).isFirstStrikeImmune())
 		{
 			iValue += (iTempValue * 8) / 100;
@@ -12872,6 +12874,7 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 		iSiegeValue += iCombatValue * GC.getUnitInfo(eUnit).getCollateralDamage() * (4+GC.getUnitInfo(eUnit).getCollateralDamageMaxUnits()) / 600;
 		// Civ4 Reimagined
 		iSiegeValue *= 2;
+
 		if (GC.getUnitInfo(eUnit).getBombardRate() > 0 && !AI_isDoStrategy(AI_STRATEGY_AIR_BLITZ))
 		{
 			int iBombardValue = (GC.getUnitInfo(eUnit).getBombardRate()+3) * 6;
@@ -12919,7 +12922,7 @@ int CvPlayerAI::AI_unitValue(UnitTypes eUnit, UnitAITypes eUnitAI, CvArea* pArea
 			// Civ4 Reimagined: With the new role of archers this assertion is no longer true
 			//FAssert(iAttackUnits >= iLimitedUnits || iLimitedUnits <= 3); // this is not strictly guarenteed, but I expect it to always be true under normal playing conditions.
 
-			iValue *= std::max(1, iAttackUnits - iLimitedUnits);
+			iValue *= std::max(1, iAttackUnits - 2*iLimitedUnits);
 			iValue /= iAttackUnits;
 
 			iSiegeValue *= std::max(1, iAttackUnits - iLimitedUnits);
