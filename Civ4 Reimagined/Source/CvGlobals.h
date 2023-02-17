@@ -5,19 +5,14 @@
 #ifndef CIV4_GLOBALS_H
 #define CIV4_GLOBALS_H
 
-// K-Mod. Created the following function for rounded integer division
-static inline int ROUND_DIVIDE(int a, int b)
+// Civ4 Reimagined
+static inline int ROUND_DIVIDE(int numer, int denom)
 {
-	// Civ4 Reimagined
-	if (a > 0 && b > 0)
-	{
-		return (a + (b / 2)) / b;
-	}
-	
-	// Civ4 Reimagined: This is bogus!
-	return (a+((a/b>0)?1:-1)*(b/2)) / b;
+    int result = ((numer) < 0) != ((denom) < 0) ?
+        ((numer) - ((denom)/2)) / (denom) :
+        ((numer) + ((denom)/2)) / (denom);
+    return result;
 }
-// K-Mod end
 
 unsigned int round_div(unsigned int dividend, unsigned int divisor)
 {
