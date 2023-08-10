@@ -361,6 +361,10 @@
 		<DefineName>MIN_WATER_SIZE_FOR_OCEAN</DefineName>
 		<iDefineIntVal>15</iDefineIntVal>
 	</Define>
+	<Define>
+		<DefineName>GREAT_SPY_POINTS_PER_MISSION</DefineName>
+		<iDefineIntVal>10</iDefineIntVal>
+	</Define>
 	<!-- Unique Powers -->
 	<Define>
 		<DefineName>UNIQUE_POWER_OTHER</DefineName>

@@ -1099,6 +1099,7 @@ public:
 	void updateStateReligionTempleCache();
 	void changeGreatPeopleRatePerWorldWonder(int iValue); // Civ4 Reimagined
 	int getGreatPeopleRatePerWorldWonder() const; // Civ4 Reimagined
+	void instantGreatPeopleProgress(UnitClassTypes eClass, int iProgress); // Civ4 Reimagined
 
 	void read(FDataStreamBase* pStream);
 	void write(FDataStreamBase* pStream);
@@ -1428,6 +1429,7 @@ protected:
 	bool canHurryUnit(HurryTypes eHurry, UnitTypes eUnit, bool bIgnoreNew) const;
 	bool canHurryBuilding(HurryTypes eHurry, BuildingTypes eBuilding, bool bIgnoreNew) const;
 	bool canHurryProject(HurryTypes eHurry, ProjectTypes eProject, bool bIgnoreNew) const; //Civ4 Reimagined
+	void checkGreatPeopleProgressThreshold(); // Civ4 Reimagined
 
 	virtual bool AI_addBestCitizen(bool bWorkers, bool bSpecialists, int* piBestPlot = NULL, SpecialistTypes* peBestSpecialist = NULL) = 0;
 	virtual bool AI_removeWorstCitizen(SpecialistTypes eIgnoreSpecialist = NO_SPECIALIST) = 0;

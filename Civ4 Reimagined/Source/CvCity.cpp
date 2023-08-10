@@ -14590,6 +14590,21 @@ bool CvCity::spreadCorporation(CorporationTypes eCorporation, CvCity* pHeadquart
 } 
 
 
+// Civ4 Reimagined
+void CvCity::instantGreatPeopleProgress(UnitClassTypes eClass, int iProgress)
+{
+	const UnitTypes eGreatPeopleUnit = ((UnitTypes)(GC.getCivilizationInfo(getCivilizationType()).getCivilizationUnits(eClass)));
+
+	if (eGreatPeopleUnit != NO_UNIT && iProgress > 0)
+	{
+		changeGreatPeopleProgress(iProgress);
+		changeGreatPeopleUnitProgress(eGreatPeopleUnit, iProgress);
+
+		checkGreatPeopleProgressThreshold();
+	}
+}
+
+
 void CvCity::clearOrderQueue()
 {
 	while (headOrderQueueNode() != NULL)
@@ -16106,47 +16121,9 @@ void CvCity::doGreatPeople()
 		changeGreatPeopleUnitProgress(((UnitTypes)iI), getGreatPeopleUnitRate((UnitTypes)iI));
 	}
 
-	if (getGreatPeopleProgress() >= GET_PLAYER(getOwnerINLINE()).greatPeopleThreshold(false))
-	{
-		int iTotalGreatPeopleUnitProgress = 0;
-		for (int iI = 0; iI < GC.getNumUnitInfos(); iI++)
-		{
-			iTotalGreatPeopleUnitProgress += getGreatPeopleUnitProgress((UnitTypes)iI);
-		}
-
-		int iGreatPeopleUnitRand = GC.getGameINLINE().getSorenRandNum(iTotalGreatPeopleUnitProgress, "Great Person");
-
-		// Civ4 Reimagined: default great person
-		const UnitClassTypes UNITCLASS_GREAT_SCIENTIST = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SCIENTIST");
-		const UnitTypes UNIT_GREAT_SCIENTIST = (UnitTypes)GC.getUnitClassInfo(UNITCLASS_GREAT_SCIENTIST).getDefaultUnitIndex();
-
-		UnitTypes eGreatPeopleUnit = UNIT_GREAT_SCIENTIST;
-		for (int iI = 0; iI < GC.getNumUnitInfos(); iI++)
-		{
-			if (iGreatPeopleUnitRand < getGreatPeopleUnitProgress((UnitTypes)iI))
-			{
-				eGreatPeopleUnit = ((UnitTypes)iI);
-				break;
-			}
-			else
-			{
-				iGreatPeopleUnitRand -= getGreatPeopleUnitProgress((UnitTypes)iI);
-			}
-		}
-
-		if (eGreatPeopleUnit != NO_UNIT)
-		{
-			changeGreatPeopleProgress(-(GET_PLAYER(getOwnerINLINE()).greatPeopleThreshold(false)));
-
-			for (int iI = 0; iI < GC.getNumUnitInfos(); iI++)
-			{
-				setGreatPeopleUnitProgress(((UnitTypes)iI), 0);
-			}
-
-			createGreatPeople(eGreatPeopleUnit, true, false);
-		}
-	}
+	checkGreatPeopleProgressThreshold();
 }
+
 
 // Civ4 Reimagined
 void CvCity::doImmigration()
@@ -16225,6 +16202,51 @@ void CvCity::doMeltdown()
 					break;
 				}
 			}
+		}
+	}
+}
+
+// Civ4 Reimagined
+void CvCity::checkGreatPeopleProgressThreshold()
+{
+	if (getGreatPeopleProgress() >= GET_PLAYER(getOwnerINLINE()).greatPeopleThreshold(false))
+	{
+		int iTotalGreatPeopleUnitProgress = 0;
+		for (int iI = 0; iI < GC.getNumUnitInfos(); iI++)
+		{
+			iTotalGreatPeopleUnitProgress += getGreatPeopleUnitProgress((UnitTypes)iI);
+		}
+
+		int iGreatPeopleUnitRand = GC.getGameINLINE().getSorenRandNum(iTotalGreatPeopleUnitProgress, "Great Person");
+
+		// Civ4 Reimagined: default great person
+		const UnitClassTypes UNITCLASS_GREAT_SCIENTIST = (UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_SCIENTIST");
+		const UnitTypes UNIT_GREAT_SCIENTIST = (UnitTypes)GC.getUnitClassInfo(UNITCLASS_GREAT_SCIENTIST).getDefaultUnitIndex();
+
+		UnitTypes eGreatPeopleUnit = UNIT_GREAT_SCIENTIST;
+		for (int iI = 0; iI < GC.getNumUnitInfos(); iI++)
+		{
+			if (iGreatPeopleUnitRand < getGreatPeopleUnitProgress((UnitTypes)iI))
+			{
+				eGreatPeopleUnit = ((UnitTypes)iI);
+				break;
+			}
+			else
+			{
+				iGreatPeopleUnitRand -= getGreatPeopleUnitProgress((UnitTypes)iI);
+			}
+		}
+
+		if (eGreatPeopleUnit != NO_UNIT)
+		{
+			changeGreatPeopleProgress(-(GET_PLAYER(getOwnerINLINE()).greatPeopleThreshold(false)));
+
+			for (int iI = 0; iI < GC.getNumUnitInfos(); iI++)
+			{
+				setGreatPeopleUnitProgress(((UnitTypes)iI), 0);
+			}
+
+			createGreatPeople(eGreatPeopleUnit, true, false);
 		}
 	}
 }

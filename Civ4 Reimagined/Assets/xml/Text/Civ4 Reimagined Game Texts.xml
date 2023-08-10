@@ -1545,4 +1545,8 @@
 		<Tag>TXT_KEY_UNIT_CAPTURE_BARB_SLAVES</Tag>
 		<English>[ICON_BULLET]Can Capture Slaves by Killing Barbarian Units if Running the Slavery Civic</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_ESPIONAGE_SPY_SUCCESS</Tag>
+		<English>Upon completing the mission the %s1_unit has returned safely to %s2_city. Gained additional progress towards Great Spy in %s3_city.</English>
+	</TEXT>
 </Civ4GameText>

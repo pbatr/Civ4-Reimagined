@@ -7381,7 +7381,10 @@ bool CvUnit::espionage(EspionageMissionTypes eMission, int iData)
 				{
 					setXY(pCity->getX_INLINE(), pCity->getY_INLINE(), false, false, false);
 
-					CvWString szBuffer = gDLL->getText("TXT_KEY_ESPIONAGE_SPY_SUCCESS", getNameKey(), pCity->getNameKey());
+					// Civ4 Reimagined
+					pCity->instantGreatPeopleProgress((UnitClassTypes)GC.getInfoTypeForString("UNITCLASS_GREAT_SPY"), GC.getDefineINT("GREAT_SPY_POINTS_PER_MISSION"));
+
+					CvWString szBuffer = gDLL->getText("TXT_KEY_ESPIONAGE_SPY_SUCCESS", getNameKey(), pCity->getNameKey(), pCity->getNameKey());
 					gDLL->getInterfaceIFace()->addHumanMessage(getOwnerINLINE(), true, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_POSITIVE_DINK", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_WHITE"), pCity->getX_INLINE(), pCity->getY_INLINE(), true, true);
 				}
 			}
