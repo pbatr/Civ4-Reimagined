@@ -21197,7 +21197,7 @@
             <PrereqCivic>NONE</PrereqCivic>
 			<PrereqTech>TECH_ARTILLERY</PrereqTech>
 			<TechTypes>
-				<PrereqTech>TECH_STEEL</PrereqTech>
+				<PrereqTech>TECH_COMBUSTION</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 				<PrereqTech>NONE</PrereqTech>
 			</TechTypes>
