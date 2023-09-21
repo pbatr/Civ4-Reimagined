@@ -21310,6 +21310,7 @@ bool CvUpkeepInfo::read(CvXMLLoadUtility* pXml)
 
 CvCultureLevelInfo::CvCultureLevelInfo() :
 m_iCityDefenseModifier(0),
+m_iCommerceModifier(0),
 m_paiSpeedThreshold(NULL)
 {
 }
@@ -21322,6 +21323,11 @@ CvCultureLevelInfo::~CvCultureLevelInfo()
 int CvCultureLevelInfo::getCityDefenseModifier() const
 {
 	return m_iCityDefenseModifier; 
+}
+
+int CvCultureLevelInfo::getCommerceModifier() const
+{
+	return m_iCommerceModifier; 
 }
 
 int CvCultureLevelInfo::getSpeedThreshold(int i) const
@@ -21339,6 +21345,7 @@ bool CvCultureLevelInfo::read(CvXMLLoadUtility* pXml)
 	}
 
 	pXml->GetChildXmlValByName(&m_iCityDefenseModifier, "iCityDefenseModifier");
+	pXml->GetChildXmlValByName(&m_iCommerceModifier, "iCommerceModifier");
 
 	pXml->SetVariableListTagPair(&m_paiSpeedThreshold, "SpeedThresholds", sizeof(GC.getGameSpeedInfo((GameSpeedTypes)0)), GC.getNumGameSpeedInfos());
 

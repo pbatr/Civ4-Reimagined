@@ -1190,6 +1190,7 @@
 		<element type="UpkeepInfo" maxOccurs="*"/>
 	</ElementType>
 	<ElementType name="iCityDefenseModifier" content="textOnly" dt:type="int"/>
+	<ElementType name="iCommerceModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="GameSpeedType" content="textOnly"/>
 	<ElementType name="SpeedThreshold" content="eltOnly">
 		<element type="GameSpeedType"/>
@@ -1202,6 +1203,7 @@
 		<element type="Type"/>
 		<element type="Description"/>
 		<element type="iCityDefenseModifier"/>
+		<element type="iCommerceModifier"/>
 	</ElementType>
 	<ElementType name="CultureLevelInfos" content="eltOnly">
 		<element type="CultureLevelInfo" maxOccurs="*"/>

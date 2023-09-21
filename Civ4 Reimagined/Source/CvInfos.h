@@ -5612,6 +5612,7 @@ public:
 	virtual ~CvCultureLevelInfo();
 
 	int getCityDefenseModifier() const;		//	Exposed to Python
+	int getCommerceModifier() const; 	// Civ4 Reimagined
 
 	int getSpeedThreshold(int i) const;		//	Exposed to Python
 
@@ -5621,6 +5622,7 @@ public:
 protected:
 
 	int m_iCityDefenseModifier;
+	int m_iCommerceModifier; // Civ4 Reimagined
 
 	int* m_paiSpeedThreshold;
 

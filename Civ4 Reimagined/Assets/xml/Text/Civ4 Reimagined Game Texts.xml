@@ -1549,4 +1549,8 @@
 		<Tag>TXT_KEY_ESPIONAGE_SPY_SUCCESS</Tag>
 		<English>Upon completing the mission the %s1_unit has returned safely to %s2_city. Gained additional progress towards Great Spy in %s3_city.</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_HELP_COMMERCE_CULTURE_LEVEL</Tag>
+		<English>[ICON_BULLET]%D1%%%F2 from City Culture</English>
+	</TEXT>
 </Civ4GameText>
