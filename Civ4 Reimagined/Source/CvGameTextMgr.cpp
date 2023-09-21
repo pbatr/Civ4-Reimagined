@@ -17640,13 +17640,16 @@ void CvGameTextMgr::setCommerceHelp(CvWStringBuffer &szBuffer, CvCity& city, Com
 	int iModifier = 100;
 
 	// Civ4 Reimagined: CultureLevel
-	const iCultureLevelMod = eCommerceType != COMMERCE_CULTURE ? GC.getCultureLevelInfo(city.getCultureLevel()).getCommerceModifier() : 0; // Civ4 Reimagined
-
-	if (iCultureLevelMod > 0)
+	if (eCommerceType != COMMERCE_CULTURE && city.getCultureLevel() != NO_CULTURELEVEL)
 	{
-		szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_COMMERCE_CULTURE_LEVEL", iCultureLevelMod, info.getChar()));
-		szBuffer.append(NEWLINE);
-		iModifier += iCultureLevelMod;
+		const iCultureLevelMod = GC.getCultureLevelInfo(city.getCultureLevel()).getCommerceModifier();
+
+		if (iCultureLevelMod > 0)
+		{
+			szBuffer.append(gDLL->getText("TXT_KEY_MISC_HELP_COMMERCE_CULTURE_LEVEL", iCultureLevelMod, info.getChar()));
+			szBuffer.append(NEWLINE);
+			iModifier += iCultureLevelMod;
+		}
 	}
 
 	// Buildings

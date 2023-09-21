@@ -10891,7 +10891,7 @@ int CvCity::getTotalCommerceRateModifier(CommerceTypes eIndex) const
 	iTotal += GET_PLAYER(getOwnerINLINE()).getCommerceAboveAveragePopulation(eIndex); // Civ4 Reimagined
 
 	// Civ4 Reimagined
-	if (eIndex != COMMERCE_CULTURE)
+	if (getCultureLevel() != NO_CULTURELEVEL && eIndex != COMMERCE_CULTURE)
 	{
 		iTotal += GC.getCultureLevelInfo(getCultureLevel()).getCommerceModifier();
 	}
