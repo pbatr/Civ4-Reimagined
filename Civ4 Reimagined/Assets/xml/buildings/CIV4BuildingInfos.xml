@@ -9985,7 +9985,7 @@
 			<bTeamShare>0</bTeamShare>
 			<bWater>0</bWater>
 			<bRiver>0</bRiver>
-			<bHill>0</bHill>
+			<bHill>1</bHill>
 			<bFlatlands>0</bFlatlands>
 			<bPower>0</bPower>
 			<bDirtyPower>0</bDirtyPower>
@@ -10247,7 +10247,7 @@
 			<CommerceChangeDoubleTimes/>
 			<CommerceModifiers>
 				<iCommerce>0</iCommerce>
-				<iCommerce>30</iCommerce>
+				<iCommerce>25</iCommerce>
 			</CommerceModifiers>
 			<GlobalCommerceModifiers/>
 			<SpecialistExtraCommerces/>
@@ -10619,12 +10619,7 @@
 			<BuildingHappinessChanges/>
 			<PrereqBuildingClasses/>
 			<PercentPrereqBuildingClasses/>
-			<BuildingClassNeededs>
-				<BuildingClassNeeded>
-					<BuildingClassType>BUILDINGCLASS_OBSERVATORY</BuildingClassType>
-					<bNeededInCity>1</bNeededInCity>
-				</BuildingClassNeeded>
-			</BuildingClassNeededs>
+			<BuildingClassNeededs/>
 			<SpecialistYieldChanges/>
 			<BonusYieldModifiers/>
 			<ImprovementFreeSpecialists/>
@@ -10806,12 +10801,7 @@
 			<BuildingHappinessChanges/>
 			<PrereqBuildingClasses/>
 			<PercentPrereqBuildingClasses/>
-			<BuildingClassNeededs>
-				<BuildingClassNeeded>
-					<BuildingClassType>BUILDINGCLASS_OBSERVATORY</BuildingClassType>
-					<bNeededInCity>1</bNeededInCity>
-				</BuildingClassNeeded>
-			</BuildingClassNeededs>
+			<BuildingClassNeededs/>
 			<SpecialistYieldChanges/>
 			<BonusYieldModifiers/>
 			<ImprovementFreeSpecialists/>
