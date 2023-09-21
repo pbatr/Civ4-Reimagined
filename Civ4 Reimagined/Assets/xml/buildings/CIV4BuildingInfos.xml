@@ -5289,7 +5289,9 @@
 			<CommerceChanges/>
 			<ObsoleteSafeCommerceChanges/>
 			<CommerceChangeDoubleTimes/>
-			<CommerceModifiers/>
+			<CommerceModifiers>
+				<iCommerce>25</iCommerce>
+			</CommerceModifiers>
 			<GlobalCommerceModifiers/>
 			<SpecialistExtraCommerces/>
 			<StateReligionCommerces/>
@@ -5474,7 +5476,9 @@
 			<CommerceChanges/>
 			<ObsoleteSafeCommerceChanges/>
 			<CommerceChangeDoubleTimes/>
-			<CommerceModifiers/>
+			<CommerceModifiers>
+				<iCommerce>25</iCommerce>
+			</CommerceModifiers>
 			<GlobalCommerceModifiers/>
 			<SpecialistExtraCommerces/>
 			<StateReligionCommerces/>
