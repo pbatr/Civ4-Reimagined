@@ -70,11 +70,7 @@
 			<bVisible>1</bVisible>
 			<GreatPeopleUnitClass>UNITCLASS_ARTIST</GreatPeopleUnitClass>
 			<iGreatPeopleRateChange>3</iGreatPeopleRateChange>
-			<Yields>
-				<iYield>0</iYield>
-				<iYield>1</iYield>
-				<iYield>0</iYield>
-			</Yields>
+			<Yields/>
 			<Commerces>
 				<iCommerce>0</iCommerce>
 				<iCommerce>1</iCommerce>
@@ -229,7 +225,11 @@
 			<bVisible>0</bVisible>
 			<GreatPeopleUnitClass>NONE</GreatPeopleUnitClass>
 			<iGreatPeopleRateChange>0</iGreatPeopleRateChange>
-			<Yields/>
+			<Yields>
+				<iYield>0</iYield>
+				<iYield>1</iYield>
+				<iYield>0</iYield>
+			</Yields>
 			<Commerces>
 				<iCommerce>3</iCommerce>
 				<iCommerce>0</iCommerce>
