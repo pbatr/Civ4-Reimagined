@@ -824,7 +824,8 @@ m_bVisible(false),
 m_piYieldChange(NULL), 
 m_piCommerceChange(NULL), 
 m_piFlavorValue(NULL),
-m_iExperience(0)
+m_iExperience(0),
+m_iHappiness(0) // Ci4 Reimagined
 {
 }
 
@@ -870,6 +871,12 @@ bool CvSpecialistInfo::isVisible() const
 int CvSpecialistInfo::getExperience() const
 {
 	return m_iExperience;
+}
+
+// Civ4 Reimagined
+int CvSpecialistInfo::getHappiness() const
+{
+	return m_iHappiness;
 }
 
 // Arrays
@@ -952,6 +959,7 @@ bool CvSpecialistInfo::read(CvXMLLoadUtility* pXML)
 	}
 
 	pXML->GetChildXmlValByName(&m_iExperience, "iExperience");
+	pXML->GetChildXmlValByName(&m_iHappiness, "iHappiness"); // Civ4 Reimagined
 
 	pXML->SetVariableListTagPair(&m_piFlavorValue, "Flavors", GC.getFlavorTypes(), GC.getNumFlavorTypes());
 

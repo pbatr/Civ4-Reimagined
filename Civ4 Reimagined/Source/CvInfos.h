@@ -252,6 +252,7 @@ public:
 	int getMissionType() const;							// Exposed to Python
 	void setMissionType(int iNewType);
 	int getExperience() const;				// Exposed to Python
+	int getHappiness() const; // Civ4 Reimagined
 
 	bool isVisible() const;				// Exposed to Python
 
@@ -275,6 +276,7 @@ protected:
 	int m_iGreatPeopleRateChange;		// Exposed to Python
 	int m_iMissionType;
 	int m_iExperience;
+	int m_iHappiness; // Civ4 Reimagined
 
 	bool m_bVisible;				// Exposed to Python
 

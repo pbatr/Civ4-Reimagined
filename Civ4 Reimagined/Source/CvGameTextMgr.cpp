@@ -6836,9 +6836,9 @@ void CvGameTextMgr::parseSpecialistHelp(CvWStringBuffer &szHelpString, Specialis
 		}
 
 		// Civ4 Reimagined
-		if (GET_PLAYER((pCity != NULL) ? pCity->getOwnerINLINE() : GC.getGameINLINE().getActivePlayer()).getExtraSpecialistHappiness(eSpecialist) > 0)
+		if (kInfo.getHappiness() + GET_PLAYER((pCity != NULL) ? pCity->getOwnerINLINE() : GC.getGameINLINE().getActivePlayer()).getExtraSpecialistHappiness(eSpecialist) > 0)
 		{
-			const int iHappiness = GET_PLAYER((pCity != NULL) ? pCity->getOwnerINLINE() : GC.getGameINLINE().getActivePlayer()).getExtraSpecialistHappiness(eSpecialist);
+			const int iHappiness = kInfo.getHappiness() + GET_PLAYER((pCity != NULL) ? pCity->getOwnerINLINE() : GC.getGameINLINE().getActivePlayer()).getExtraSpecialistHappiness(eSpecialist);
 
 			szHelpString.append(NEWLINE);
 			szHelpString.append(gDLL->getText("TXT_KEY_SPECIALIST_HAPPINESS", iHappiness));

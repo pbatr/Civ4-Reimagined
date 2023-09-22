@@ -5232,7 +5232,7 @@ int CvCity::getSpecialistHappiness() const
 	int iSpecialistHappiness = 0;
 	for (int iI = 0; iI < GC.getNumSpecialistInfos(); ++iI)
 	{
-		const int iHappy = GET_PLAYER(getOwnerINLINE()).getExtraSpecialistHappiness((SpecialistTypes)iI);
+		const int iHappy = GC.getSpecialistInfo((SpecialistTypes)iI).getHappiness() + GET_PLAYER(getOwnerINLINE()).getExtraSpecialistHappiness((SpecialistTypes)iI);
 		if (iHappy > 0)
 		{
 			iSpecialistHappiness += iHappy * (getSpecialistCount((SpecialistTypes)iI) + getFreeSpecialistCount((SpecialistTypes)iI));

@@ -23,6 +23,7 @@
 			</Yields>
 			<Commerces/>
 			<iExperience>0</iExperience>
+			<iHappiness>0</iHappiness>
 			<Flavors/>
 			<HotKey/>
 			<bAltDown>0</bAltDown>
@@ -52,6 +53,7 @@
 				<iCommerce>2</iCommerce>
 			</Commerces>
 			<iExperience>0</iExperience>
+			<iHappiness>0</iHappiness>
 			<Flavors/>
 			<HotKey/>
 			<bAltDown>0</bAltDown>
@@ -77,6 +79,7 @@
 				<iCommerce>4</iCommerce>
 			</Commerces>
 			<iExperience>0</iExperience>
+			<iHappiness>0</iHappiness>
 			<Flavors/>
 			<HotKey/>
 			<bAltDown>0</bAltDown>
@@ -102,6 +105,7 @@
 				<iCommerce>0</iCommerce>
 			</Commerces>
 			<iExperience>0</iExperience>
+			<iHappiness>0</iHappiness>
 			<Flavors/>
 			<HotKey/>
 			<bAltDown>0</bAltDown>
@@ -127,6 +131,7 @@
 				<iCommerce>0</iCommerce>
 			</Commerces>
 			<iExperience>0</iExperience>
+			<iHappiness>0</iHappiness>
 			<Flavors/>
 			<HotKey/>
 			<bAltDown>0</bAltDown>
@@ -152,6 +157,7 @@
 			</Yields>
 			<Commerces/>
 			<iExperience>0</iExperience>
+			<iHappiness>0</iHappiness>
 			<Flavors/>
 			<HotKey/>
 			<bAltDown>0</bAltDown>
@@ -178,6 +184,7 @@
 				<iCommerce>4</iCommerce>
 			</Commerces>
 			<iExperience>0</iExperience>
+			<iHappiness>0</iHappiness>
 			<Flavors/>
 			<HotKey/>
 			<bAltDown>0</bAltDown>
@@ -207,6 +214,7 @@
 				<iCommerce>6</iCommerce>
 			</Commerces>
 			<iExperience>0</iExperience>
+			<iHappiness>0</iHappiness>
 			<Flavors/>
 			<HotKey/>
 			<bAltDown>0</bAltDown>
@@ -236,6 +244,7 @@
 				<iCommerce>12</iCommerce>
 			</Commerces>
 			<iExperience>0</iExperience>
+			<iHappiness>1</iHappiness>
 			<Flavors/>
 			<HotKey/>
 			<bAltDown>0</bAltDown>
@@ -265,6 +274,7 @@
 				<iCommerce>0</iCommerce>
 			</Commerces>
 			<iExperience>0</iExperience>
+			<iHappiness>0</iHappiness>
 			<Flavors/>
 			<HotKey/>
 			<bAltDown>0</bAltDown>
@@ -294,6 +304,7 @@
 				<iCommerce>0</iCommerce>
 			</Commerces>
 			<iExperience>0</iExperience>
+			<iHappiness>0</iHappiness>
 			<Flavors/>
 			<HotKey/>
 			<bAltDown>0</bAltDown>
@@ -323,6 +334,7 @@
 				<iCommerce>0</iCommerce>
 			</Commerces>
 			<iExperience>0</iExperience>
+			<iHappiness>0</iHappiness>
 			<Flavors/>
 			<HotKey/>
 			<bAltDown>0</bAltDown>
@@ -352,6 +364,7 @@
 				<iCommerce>0</iCommerce>
 			</Commerces>
 			<iExperience>2</iExperience>
+			<iHappiness>0</iHappiness>
 			<Flavors/>
 			<HotKey/>
 			<bAltDown>0</bAltDown>
@@ -378,6 +391,7 @@
 				<iCommerce>12</iCommerce>
 			</Commerces>
 			<iExperience>0</iExperience>
+			<iHappiness>0</iHappiness>
 			<Flavors/>
 			<HotKey/>
 			<bAltDown>0</bAltDown>

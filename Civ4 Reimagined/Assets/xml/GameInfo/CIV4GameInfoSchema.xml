@@ -297,6 +297,7 @@
 	<ElementType name="iMapRange" content="textOnly" dt:type="int"/>
 	<ElementType name="iMapProb" content="textOnly" dt:type="int"/>
 	<ElementType name="iExperience" content="textOnly" dt:type="int"/>
+	<ElementType name="iHappiness" content="textOnly" dt:type="int"/>
 	<ElementType name="iHealing" content="textOnly" dt:type="int"/>
 	<ElementType name="iDamagePrereq" content="textOnly" dt:type="int"/>
 	<ElementType name="bTech" content="textOnly" dt:type="boolean"/>
@@ -1251,6 +1252,7 @@
 		<element type="Yields"/>
 		<element type="Commerces"/>
 		<element type="iExperience"/>
+		<element type="iHappiness"/> <!-- Civ4 Reimagined -->
 		<element type="Flavors"/>
 		<element type="HotKey"/>
 		<element type="bAltDown"/>
