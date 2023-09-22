@@ -477,13 +477,13 @@ class MapConstants :
         #---These values are for evaluating starting locations
         
         #Minimum number of hills in fat cross
-        self.MinHillsInFC = 2
+        self.MinHillsInFC = 0
 
                 #Max number of peaks in fat cross
-        self.MaxPeaksInFC = 2 #Civ4 Reimagined
+        self.MaxPeaksInFC = 4 #Civ4 Reimagined
 
         #Max number of bad features(jungle) in fat cross
-        self.MaxBadFeaturesInFC = 4
+        self.MaxBadFeaturesInFC = 6 #Civ4 Reimagined
 
         #The following values are used for assigning starting locations. For now,
         #they have the same ratio that is found in CvPlot::getFoundValue
@@ -497,7 +497,7 @@ class MapConstants :
 
         #River side cities are also important, how important is determined by this
         #value.
-        self.RiverCityValueBonus = 1.35 #Civ4 Reimagined
+        self.FreshWaterCityValueBonus = 1.5 #Civ4 Reimagined
         
         #Decides whether to use the Python random generator or the one that is
         #intended for use with civ maps. The Python random has much higher precision
@@ -3426,19 +3426,17 @@ class ContinentMap :
         biggestNewWorld = continentList[0]
         del continentList[0]
         
-        #sort list by ID rather than size to make things
-        #interesting and possibly bigger new worlds
-#        continentList.sort(key=operator.attrgetter('ID'),reverse=True)
-        continentList.sort(lambda x,y:cmp(x.ID,y.ID))
+        #Civ4 Reimagined: old world should be bigger continents, small island starts are awful
+        continentList.sort(lambda x,y:cmp(x.size,y.size))
         continentList.reverse()
         
         for n in range(len(continentList)):
             oldWorldSize += continentList[0].size
-	    # Don't delete "new worlds" from the list if we're going to
+            # Don't delete "new worlds" from the list if we're going to
             # put everyone on the "old world" continent
-	    if mc.ShareContinent == False:
+            if mc.ShareContinent == False:
                 del continentList[0]
-            if float(oldWorldSize)/float(totalLand) > 0.60:
+            if float(oldWorldSize)/float(totalLand) > 0.6:
                 break
 
         #add back the biggestNewWorld continent
@@ -4752,8 +4750,8 @@ class StartingPlotFinder :
         sPlot = StartPlot(x,y,0)
         if sPlot.isCoast() == True:
             totalValue = int(float(totalValue) * mc.CoastalCityValueBonus)
-        if sPlot.isRiverSide() == True:
-            totalValue = int(float(totalValue) * mc.RiverCityValueBonus)
+        if sPlot.isFreshWater() == True:
+            totalValue = int(float(totalValue) * mc.FreshWaterCityValueBonus)
                 
         return totalFood,totalValue
     def getPlotPotentialValue(self,x,y,coastalCity):
@@ -5416,10 +5414,10 @@ class StartPlot :
             return False
         return True
     
-    def isRiverSide(self):
+    def isFreshWater(self):
         gameMap = CyMap()
         plot = gameMap.plot(self.x,self.y)
-        return plot.isRiverSide()        
+        return plot.isFreshWater()        
 
     def plot(self):
         gameMap = CyMap()
