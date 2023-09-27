@@ -5063,7 +5063,7 @@ int CvCityAI::AI_buildingValue(BuildingTypes eBuilding, int iFocusFlags, int iTh
 				{
 					iTempValue += kBuilding.getBuildingProductionModifier() * iBaseRate / 40; // Civ4 Reimagined: originally 50
 				}
-				iTempValue += kBuilding.getPowerYieldModifier(iI) * iBaseRate / (bProvidesPower || isPower() ? 25 : 35);
+				iTempValue += kBuilding.getPowerYieldModifier(iI) * iBaseRate / (bProvidesPower || isPower() ? 25 : 30);
 
 				if (bProvidesPower && !isPower())
 				{

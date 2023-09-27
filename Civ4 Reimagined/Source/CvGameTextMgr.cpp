@@ -14621,6 +14621,12 @@ void CvGameTextMgr::setCorporationHelpCity(CvWStringBuffer &szBuffer, Corporatio
 		iNumResources += GET_PLAYER(pCity->getOwnerINLINE()).getNumSlaveUnits();
 	}
 
+	// Civ4 Reimagined
+	if (GET_PLAYER(pCity->getOwnerINLINE()).hasHeadquarters(eCorporation) || (bForceCorporation && iNumResources > 0))
+	{
+		iNumResources += GC.getDefineINT("FREE_CORP_BONUS_FOR_HEADQUARTERS");
+	}
+
 	bool bActive = (pCity->isActiveCorporation(eCorporation) || (bForceCorporation && iNumResources > 0));
 	
 	bool bHandled = false;
@@ -14654,7 +14660,8 @@ void CvGameTextMgr::setCorporationHelpCity(CvWStringBuffer &szBuffer, Corporatio
 		
 		if (bActive)
 		{
-			iCommerce += (kCorporation.getCommerceProduced(i) * iNumResources * GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getCorporationMaintenancePercent()) / 100;
+			const int iNormalizedCountTimes100 = GET_PLAYER(pCity->getOwnerINLINE()).getBonusValueTimes100(1) * iNumResources;
+			iCommerce += (kCorporation.getCommerceProduced(i) * iNormalizedCountTimes100 * GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getCorporationMaintenancePercent()) / 10000;
 		}
 
 		if (iCommerce != 0)

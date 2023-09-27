@@ -7107,14 +7107,6 @@ int CvCity::calculateCorporationMaintenanceTimes100(CorporationTypes eCorporatio
 	int iMaintenance = 0;
 	int iPopulation = GET_PLAYER(getOwnerINLINE()).getTotalPopulation();
 	int iTechValue = GET_PLAYER(getOwnerINLINE()).getTechValue();
-
-	if (!GET_PLAYER(getOwnerINLINE()).hasHeadquarters(eCorporation))
-	{
-		for (int iCommerce = 0; iCommerce < NUM_COMMERCE_TYPES; ++iCommerce)
-		{
-			iMaintenance += 300 * GC.getCorporationInfo(eCorporation).getHeadquarterCommerce(iCommerce);
-		}
-	}
 	
 	iMaintenance += 100 * 8; // flat maintenance 
 	
@@ -11533,8 +11525,16 @@ int CvCity::getCorporationYieldByCorporation(YieldTypes eIndex, CorporationTypes
 		{
 			iBonusCount += GET_PLAYER(getOwnerINLINE()).getNumSlaveUnits();
 		}
+
+		// Civ4 Reimagined
+		if (GET_PLAYER(getOwnerINLINE()).hasHeadquarters(eCorporation))
+		{
+			iBonusCount += GC.getDefineINT("FREE_CORP_BONUS_FOR_HEADQUARTERS");
+		}
+
+		const int iNormalizedCountTimes100 = getBonusValueTimes100(1) * iBonusCount;
 		
-		iYield += (GC.getCorporationInfo(eCorporation).getYieldProduced(eIndex) * iBonusCount * GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getCorporationMaintenancePercent()) / 100;
+		iYield += (GC.getCorporationInfo(eCorporation).getYieldProduced(eIndex) * iNormalizedCountTimes100 * GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getCorporationMaintenancePercent()) / 10000;
 	}
 
 	return (iYield + 99) / 100;
@@ -11566,8 +11566,16 @@ int CvCity::getCorporationCommerceByCorporation(CommerceTypes eIndex, Corporatio
 		{
 			iBonusCount += GET_PLAYER(getOwnerINLINE()).getNumSlaveUnits();
 		}
+
+		// Civ4 Reimagined
+		if (GET_PLAYER(getOwnerINLINE()).hasHeadquarters(eCorporation))
+		{
+			iBonusCount += GC.getDefineINT("FREE_CORP_BONUS_FOR_HEADQUARTERS");
+		}
+
+		const int iNormalizedCountTimes100 = getBonusValueTimes100(iBonusCount) * iBonusCount;
 		
-		iCommerce += (GC.getCorporationInfo(eCorporation).getCommerceProduced(eIndex) * iBonusCount * GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getCorporationMaintenancePercent()) / 100;
+		iCommerce += (GC.getCorporationInfo(eCorporation).getCommerceProduced(eIndex) * iNormalizedCountTimes100 * GC.getWorldInfo(GC.getMapINLINE().getWorldSize()).getCorporationMaintenancePercent()) / 10000;
 	}
 
 	return (iCommerce + 99) / 100;

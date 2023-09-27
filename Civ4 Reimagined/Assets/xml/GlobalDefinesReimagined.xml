@@ -365,6 +365,10 @@
 		<DefineName>GREAT_SPY_POINTS_PER_MISSION</DefineName>
 		<iDefineIntVal>10</iDefineIntVal>
 	</Define>
+	<Define>
+		<DefineName>FREE_CORP_BONUS_FOR_HEADQUARTERS</DefineName>
+		<iDefineIntVal>1</iDefineIntVal>
+	</Define>
 	<!-- Unique Powers -->
 	<Define>
 		<DefineName>UNIQUE_POWER_OTHER</DefineName>
