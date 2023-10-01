@@ -6239,8 +6239,9 @@ bool CvPlayer::canRaze(CvCity* pCity) const
 		{
 			return false;
 		}
+		
 		// Civ4 Reimagined
-		if (pCity->countTotalCultureTimes100() > 10000)
+		if (pCity->getPopulation() > 4)
 		{
 			return false;
 		}
