@@ -30410,6 +30410,12 @@ void CvPlayer::updateUniquePowers(TechTypes eTech)
 		changeHasCivicOptionCount((CivicOptionTypes)GC.getInfoTypeForString("CIVICOPTION_GOVERNMENT"), 1);
 		notifyUniquePowersChanged(true);
 	}
+	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_PERSIA")
+		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_LITERATURE"))
+	{
+		changeGreatPeopleRateChangeModifier((SpecialistTypes)GC.getInfoTypeForString("SPECIALIST_ARTIST"), 200);
+		notifyUniquePowersChanged(true);
+	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_OTTOMAN")
 		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_GUNPOWDER"))
 	{
@@ -30803,7 +30809,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 		if (eEra == ERA_ANCIENT)
 		{
 			changeExtraMovesInGoldenAge(DOMAIN_LAND, 1);
-			changeGoldenAgeModifier(40);
+			changeGoldenAgeModifier(100);
 			setIsCanGoldenAgeWithSamePeople(true);
 			notifyUniquePowersChanged(true);
 		}

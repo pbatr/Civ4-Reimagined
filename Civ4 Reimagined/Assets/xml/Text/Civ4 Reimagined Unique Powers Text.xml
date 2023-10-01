@@ -249,7 +249,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_PERSIA</Tag>
-		<English>Can use the same types of Great People to start a Golden Age. Golden Ages last 40% longer. Land units have one additional movement during a Golden Age.</English>
+		<English>Can use the same types of Great People to start a Golden Age. Golden Ages last 100% longer. Land units have one additional movement during a Golden Age. After the discovery of Literature: +200% [ICON_GREATPEOPLE] birth rate towards Great Artist from Artist specialists.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_MONGOL</Tag>
