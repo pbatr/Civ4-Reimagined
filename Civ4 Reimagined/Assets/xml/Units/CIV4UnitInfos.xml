@@ -24191,6 +24191,14 @@
 					<BuildingType>BUILDING_CORPORATION_4</BuildingType>
 					<bBuilding>1</bBuilding>
 				</Building>
+				<Building>
+					<BuildingType>BUILDING_NATIONAL_EPIC</BuildingType>
+					<bBuilding>1</bBuilding>
+				</Building>
+				<Building>
+					<BuildingType>BUILDING_HEROIC_EPIC</BuildingType>
+					<bBuilding>1</bBuilding>
+				</Building>
 			</Buildings>
 			<ForceBuildings/>
 			<HolyCity>NONE</HolyCity>
