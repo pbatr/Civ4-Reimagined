@@ -30675,7 +30675,7 @@ void CvPlayer::updateUniquePowers(EraTypes eEra)
 	{
 		if (eEra == ERA_ANCIENT) 
 		{
-			changeGreatPeopleRatePerReligionModifier(50);
+			changeGreatPeopleRatePerReligionModifier(35);
 			changeExtraYieldPerReligion(YIELD_FOOD, 1);
 			setNoReligionRemoval(true);
 			notifyUniquePowersChanged(true);
