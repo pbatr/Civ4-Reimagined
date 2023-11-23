@@ -30414,7 +30414,7 @@ void CvPlayer::updateUniquePowers(TechTypes eTech)
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_PERSIA")
 		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_LITERATURE"))
 	{
-		changeGreatPeopleRateChangeModifier((SpecialistTypes)GC.getInfoTypeForString("SPECIALIST_ARTIST"), 200);
+		changeGreatPeopleRateChangeModifier((SpecialistTypes)GC.getInfoTypeForString("SPECIALIST_ARTIST"), 100);
 		notifyUniquePowersChanged(true);
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_OTTOMAN")
