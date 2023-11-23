@@ -5033,7 +5033,7 @@ void CvDLLWidgetData::parseNationalityHelp(CvWidgetDataStruct &widgetDataStruct,
 				iCityStrength = pHeadSelectedCity->cultureStrength(eCulturalOwner);
 				iGarrison = pHeadSelectedCity->cultureGarrison(pHeadSelectedCity->plot()->getOwnerINLINE());
 
-				if (iCityStrength > iGarrison)
+				if (iCityStrength > iGarrison && pHeadSelectedCity->getRevoltTestProbability() > 0)
 				{
 /*
 ** K-Mod, 6/jan/11, karadoc
