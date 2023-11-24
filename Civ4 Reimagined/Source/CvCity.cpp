@@ -4132,11 +4132,7 @@ void CvCity::conscript()
 	// Civ4 Reimagined
 	if (!GET_TEAM(getTeam()).isNoConscriptUnhappiness())
 	{
-		// Civ4 Reimagined: Unique power
-		if (!GET_PLAYER(getOwnerINLINE()).isConscriptInfidels() || plot()->calculateTeamCulturePercent(getTeam()) >= GC.getDefineINT("CONSCRIPT_MIN_CULTURE_PERCENT"))
-		{
-			changeConscriptAngerTimer(iAngerLength);
-		}
+		changeConscriptAngerTimer(iAngerLength);
 	}
 
 	setDrafted(true);

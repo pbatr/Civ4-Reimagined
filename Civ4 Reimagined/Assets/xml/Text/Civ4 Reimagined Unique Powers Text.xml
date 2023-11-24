@@ -221,7 +221,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_OTTOMAN</Tag>
-		<English>-50% upkeep for Civics. Can trade with civilizations that are running Mercantilism if not adopting the civic itself. After the discovery of Gunpowder: Cities do not revolt when captured. Can conscript units without Conscription Civic in cities with less than 10% own culture. No unhappiness from conscripting units and conscripted units start with experience.</English>
+		<English>-50% upkeep for Civics. Can trade with civilizations that are running Mercantilism if not adopting the civic itself. After the discovery of Gunpowder: Cities do not revolt when captured. No unhappiness from conscripting units and conscripted units start with experience. Can conscript units without Conscription Civic in cities with less than 10% own culture and without population requirements.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_NETHERLANDS</Tag>

@@ -30421,6 +30421,7 @@ void CvPlayer::updateUniquePowers(TechTypes eTech)
 		&& eTech == (TechTypes)GC.getInfoTypeForString("TECH_GUNPOWDER"))
 	{
 		setConscriptInfidels(true);
+		GET_TEAM(getTeam()).changeNoConscriptUnhappinessCount(1);
 		notifyUniquePowersChanged(true);
 	}
 	else if (getCivilizationType() == (CivilizationTypes)GC.getInfoTypeForString("CIVILIZATION_NETHERLANDS")

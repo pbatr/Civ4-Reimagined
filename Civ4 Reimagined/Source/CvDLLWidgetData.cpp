@@ -1994,14 +1994,6 @@ void CvDLLWidgetData::parseConscriptHelp(CvWidgetDataStruct &widgetDataStruct, C
 				szBuffer.append(gDLL->getText("TXT_KEY_MISC_ANGER_TURNS", GC.getDefineINT("CONSCRIPT_POP_ANGER"), (iConscriptAngerLength + pHeadSelectedCity->getConscriptAngerTimer())));
 			}
 
-			int iMinCityPopulation = pHeadSelectedCity->conscriptMinCityPopulation();
-
-			if (pHeadSelectedCity->getPopulation() < iMinCityPopulation)
-			{
-				szBuffer.append(NEWLINE);
-				szBuffer.append(gDLL->getText("TXT_KEY_MISC_MIN_CITY_POP", iMinCityPopulation));
-			}
-			
 			int iMinCulturePercent = GC.getDefineINT("CONSCRIPT_MIN_CULTURE_PERCENT");
 
 			// Civ4 Reimagined: Unique power
@@ -2011,6 +2003,14 @@ void CvDLLWidgetData::parseConscriptHelp(CvWidgetDataStruct &widgetDataStruct, C
 				{
 					return;
 				}		
+			}
+
+			int iMinCityPopulation = pHeadSelectedCity->conscriptMinCityPopulation();
+
+			if (pHeadSelectedCity->getPopulation() < iMinCityPopulation)
+			{
+				szBuffer.append(NEWLINE);
+				szBuffer.append(gDLL->getText("TXT_KEY_MISC_MIN_CITY_POP", iMinCityPopulation));
 			}
 
 			if (pHeadSelectedCity->plot()->calculateTeamCulturePercent(pHeadSelectedCity->getTeam()) < iMinCulturePercent)
