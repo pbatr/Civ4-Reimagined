@@ -241,7 +241,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_GERMANY</Tag>
-		<English>For Renaissance and later technologies that grant Great people: Gain the Great Person regardless of being the first one to discover the technology. After entering the Industrial Era: -33% costs for buying buildings with [ICON_GOLD]. Can sacrifice a Great General to start a golden age. Does not require sacrificing other great persons and does not advance golden age requirements.</English>
+		<English>For Renaissance and later technologies that grant Great people: Gain the Great Person regardless of being the first one to discover the technology. After entering the Industrial Era: -33% costs for buying buildings with [ICON_GOLD]. Can sacrifice a Great General to start a golden age (75% length). Does not require sacrificing other great persons and does not advance golden age requirements.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIQUE_POWER_JAPAN</Tag>
