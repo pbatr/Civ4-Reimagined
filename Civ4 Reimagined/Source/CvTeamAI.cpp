@@ -4155,6 +4155,11 @@ int CvTeamAI::AI_defensivePactTradeVal(TeamTypes eTeam) const
 		iValue *= 2;
 	}
 
+	if (GET_PLAYER(getLeaderID()).getIdeology() == IDEOLOGY_LIBERALISM)
+	{
+		iValue *= 2;
+	}
+
 	for (int iI = 0; iI < MAX_PLAYERS; iI++)
 	{
 		if (GET_PLAYER((PlayerTypes)iI).isAlive())
