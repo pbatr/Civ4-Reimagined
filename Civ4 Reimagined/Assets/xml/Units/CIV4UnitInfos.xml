@@ -15883,7 +15883,20 @@
 			<UnitCombatTargets/>
 			<UnitClassDefenders/>
 			<UnitCombatDefenders/>
-			<FlankingStrikes/>
+			<FlankingStrikes>
+				<FlankingStrike>
+					<FlankingStrikeUnitClass>UNITCLASS_CANNON</FlankingStrikeUnitClass>
+					<iFlankingStrength>100</iFlankingStrength>
+				</FlankingStrike>
+				<FlankingStrike>
+					<FlankingStrikeUnitClass>UNITCLASS_ARTILLERY</FlankingStrikeUnitClass>
+					<iFlankingStrength>100</iFlankingStrength>
+				</FlankingStrike>
+				<FlankingStrike>
+					<FlankingStrikeUnitClass>UNITCLASS_MOBILE_ARTILLERY</FlankingStrikeUnitClass>
+					<iFlankingStrength>100</iFlankingStrength>
+				</FlankingStrike>
+			</FlankingStrikes>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ATTACK</UnitAIType>
@@ -16087,7 +16100,20 @@
 			<UnitCombatTargets/>
 			<UnitClassDefenders/>
 			<UnitCombatDefenders/>
-			<FlankingStrikes/>
+			<FlankingStrikes>
+				<FlankingStrike>
+					<FlankingStrikeUnitClass>UNITCLASS_CANNON</FlankingStrikeUnitClass>
+					<iFlankingStrength>100</iFlankingStrength>
+				</FlankingStrike>
+				<FlankingStrike>
+					<FlankingStrikeUnitClass>UNITCLASS_ARTILLERY</FlankingStrikeUnitClass>
+					<iFlankingStrength>100</iFlankingStrength>
+				</FlankingStrike>
+				<FlankingStrike>
+					<FlankingStrikeUnitClass>UNITCLASS_MOBILE_ARTILLERY</FlankingStrikeUnitClass>
+					<iFlankingStrength>100</iFlankingStrength>
+				</FlankingStrike>
+			</FlankingStrikes>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ATTACK</UnitAIType>
@@ -16291,7 +16317,20 @@
 			<UnitCombatTargets/>
 			<UnitClassDefenders/>
 			<UnitCombatDefenders/>
-			<FlankingStrikes/>
+			<FlankingStrikes>
+				<FlankingStrike>
+					<FlankingStrikeUnitClass>UNITCLASS_CANNON</FlankingStrikeUnitClass>
+					<iFlankingStrength>100</iFlankingStrength>
+				</FlankingStrike>
+				<FlankingStrike>
+					<FlankingStrikeUnitClass>UNITCLASS_ARTILLERY</FlankingStrikeUnitClass>
+					<iFlankingStrength>100</iFlankingStrength>
+				</FlankingStrike>
+				<FlankingStrike>
+					<FlankingStrikeUnitClass>UNITCLASS_MOBILE_ARTILLERY</FlankingStrikeUnitClass>
+					<iFlankingStrength>100</iFlankingStrength>
+				</FlankingStrike>
+			</FlankingStrikes>
 			<UnitAIs>
 				<UnitAI>
 					<UnitAIType>UNITAI_ATTACK</UnitAIType>
