@@ -395,6 +395,15 @@ void CvStatistics::setLeader( PlayerTypes ePlayer, LeaderHeadTypes eLeader )
 void CvStatistics::unitBuilt( CvUnit *pUnit )
 {
 	getPlayerRecord( pUnit->getOwner() )->unitBuilt( pUnit );
+
+	// Civ4 Reimagined
+	if (! GET_TEAM(pUnit->getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_SATELLITES")))
+	{
+		if (GET_PLAYER(pUnit->getOwner()).getPlayerRecord()->getNumUnitsBuilt((UnitTypes)GC.getInfoTypeForString("UNIT_GUIDED_MISSILE")) > 4)
+		{
+			GET_TEAM(pUnit->getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_SATELLITES"), pUnit->getOwner(), true);
+		}
+	}
 }
 void CvStatistics::unitKilled( CvUnit *pUnit, PlayerTypes eAttacker )
 {
