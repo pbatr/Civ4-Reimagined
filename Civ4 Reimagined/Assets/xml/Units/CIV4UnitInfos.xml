@@ -22756,7 +22756,7 @@
 			<FeaturePassableTechs/>
 			<iCombat>0</iCombat>
 			<iCombatLimit>0</iCombatLimit>
-			<iAirCombat>12</iAirCombat>
+			<iAirCombat>24</iAirCombat>
 			<iAirCombatLimit>100</iAirCombatLimit>
 			<iXPValueAttack>4</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
@@ -22938,7 +22938,7 @@
 			<FeaturePassableTechs/>
 			<iCombat>0</iCombat>
 			<iCombatLimit>0</iCombatLimit>
-			<iAirCombat>24</iAirCombat>
+			<iAirCombat>48</iAirCombat>
 			<iAirCombatLimit>100</iAirCombatLimit>
 			<iXPValueAttack>4</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
@@ -23120,7 +23120,7 @@
 			<FeaturePassableTechs/>
 			<iCombat>0</iCombat>
 			<iCombatLimit>0</iCombatLimit>
-			<iAirCombat>16</iAirCombat>
+			<iAirCombat>32</iAirCombat>
 			<iAirCombatLimit>15</iAirCombatLimit>
 			<iXPValueAttack>4</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
@@ -23301,7 +23301,7 @@
 			<FeaturePassableTechs/>
 			<iCombat>0</iCombat>
 			<iCombatLimit>0</iCombatLimit>
-			<iAirCombat>20</iAirCombat>
+			<iAirCombat>40</iAirCombat>
 			<iAirCombatLimit>15</iAirCombatLimit>
 			<iXPValueAttack>4</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
@@ -23478,7 +23478,7 @@
 			<FeaturePassableTechs/>
 			<iCombat>0</iCombat>
 			<iCombatLimit>0</iCombatLimit>
-			<iAirCombat>60</iAirCombat>
+			<iAirCombat>120</iAirCombat>
 			<iAirCombatLimit>100</iAirCombatLimit>
 			<iXPValueAttack>0</iXPValueAttack>
 			<iXPValueDefense>4</iXPValueDefense>
