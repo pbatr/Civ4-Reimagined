@@ -20894,7 +20894,7 @@
 			<iXPValueDefense>2</iXPValueDefense>
 			<iFirstStrikes>0</iFirstStrikes>
 			<iChanceFirstStrikes>0</iChanceFirstStrikes>
-			<iInterceptionProbability>0</iInterceptionProbability>
+			<iInterceptionProbability>35</iInterceptionProbability>
 			<iEvasionProbability>0</iEvasionProbability>
 			<iWithdrawalProb>0</iWithdrawalProb>
 			<iCollateralDamage>0</iCollateralDamage>
@@ -21095,7 +21095,7 @@
 			<iXPValueDefense>2</iXPValueDefense>
 			<iFirstStrikes>0</iFirstStrikes>
 			<iChanceFirstStrikes>0</iChanceFirstStrikes>
-			<iInterceptionProbability>20</iInterceptionProbability>
+			<iInterceptionProbability>0</iInterceptionProbability>
 			<iEvasionProbability>0</iEvasionProbability>
 			<iWithdrawalProb>0</iWithdrawalProb>
 			<iCollateralDamage>0</iCollateralDamage>
@@ -21654,7 +21654,7 @@
 			<iXPValueDefense>2</iXPValueDefense>
 			<iFirstStrikes>2</iFirstStrikes>
 			<iChanceFirstStrikes>0</iChanceFirstStrikes>
-			<iInterceptionProbability>30</iInterceptionProbability>
+			<iInterceptionProbability>35</iInterceptionProbability>
 			<iEvasionProbability>0</iEvasionProbability>
 			<iWithdrawalProb>0</iWithdrawalProb>
 			<iCollateralDamage>0</iCollateralDamage>

@@ -130,7 +130,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_DESTROYER_STRATEGY</Tag>
-		<English>[COLOR_UNIT_TEXT]Destroyers[COLOR_REVERT] are very good at spotting enemy stealth ships. They are especially useful to detect and destroy enemy [COLOR_UNIT_TEXT]Submarines[COLOR_REVERT] (which are invisible to most other units). Use them to protect your [COLOR_UNIT_TEXT]Carriers[COLOR_REVERT] and [COLOR_UNIT_TEXT]Transport[COLOR_REVERT] units.</English>
+		<English>[COLOR_UNIT_TEXT]Destroyers[COLOR_REVERT] are very good at spotting enemy stealth ships. They are especially useful to detect and destroy enemy [COLOR_UNIT_TEXT]Submarines[COLOR_REVERT] (which are invisible to most other units). They also have a chance of intercepting enemy aircraft. Use them to protect your [COLOR_UNIT_TEXT]Carriers[COLOR_REVERT] and [COLOR_UNIT_TEXT]Transport[COLOR_REVERT] units.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_STEALTH_DESTROYER_STRATEGY</Tag>
@@ -138,7 +138,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_CRUISER_STRATEGY</Tag>
-		<English>[COLOR_UNIT_TEXT]Cruisers[COLOR_REVERT] are the bread and butter unit of your Navy. They also have a small chance of intercepting enemy aircraft.</English>
+		<English>[COLOR_UNIT_TEXT]Cruisers[COLOR_REVERT] are the bread and butter unit of your Navy.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_UNIT_EGYPT_WARCHARIOT_STRATEGY</Tag>
