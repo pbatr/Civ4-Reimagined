@@ -1439,6 +1439,15 @@ void CvTeam::declareWar(TeamTypes eTeam, bool bNewDiplo, WarPlanTypes eWarPlan, 
 
 	GC.getMapINLINE().verifyUnitValidPlot();
 
+	// Civ4 Reimagined
+	for (iI = 0; iI < GC.getMapINLINE().numPlotsINLINE(); iI++)
+	{
+		if (GC.getMapINLINE().plotByIndexINLINE(iI)->getTeam() == getID() || GC.getMapINLINE().plotByIndexINLINE(iI)->getTeam() == eTeam)
+		{
+			GC.getMapINLINE().plotByIndexINLINE(iI)->forceBumpEnemyNavalUnits();
+		}
+	}
+
 	for (iI = 0; iI < MAX_PLAYERS; iI++)
 	{
 		if (GET_PLAYER((PlayerTypes)iI).getTeam() == getID())

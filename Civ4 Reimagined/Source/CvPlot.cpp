@@ -923,6 +923,82 @@ void CvPlot::verifyUnitValidPlot()
 	// K-Mod end
 }
 
+
+// Civ4 Reimagined
+void CvPlot::forceBumpEnemyNavalUnits()
+{
+	PROFILE_FUNC();
+
+	std::vector<std::pair<PlayerTypes, int> > bumped_groups; // K-Mod
+	
+	std::vector<CvUnit*> aUnits;
+	CLLNode<IDInfo>* pUnitNode = headUnitNode();
+	while (pUnitNode != NULL)
+	{
+		CvUnit* pLoopUnit = ::getUnit(pUnitNode->m_data);
+		pUnitNode = nextUnitNode(pUnitNode);
+		if (NULL != pLoopUnit && pLoopUnit->getDomainType() == DOMAIN_SEA)
+		{
+			aUnits.push_back(pLoopUnit);
+		}
+	}
+
+	std::vector<CvUnit*>::iterator it = aUnits.begin();
+	while (it != aUnits.end())
+	{
+		CvUnit* pLoopUnit = *it;
+		bool bErased = false;
+
+		if (pLoopUnit != NULL)
+		{
+			if (pLoopUnit->atPlot(this))
+			{
+				if (!(pLoopUnit->isCargo()))
+				{
+					if (!(pLoopUnit->isCombat()))
+					{
+						if (isOwned() && pLoopUnit->isEnemy(getTeam()) && pLoopUnit->getInvisibleType() == NO_INVISIBLE && !pLoopUnit->getUnitInfo().isHiddenNationality())
+						{
+							if (!pLoopUnit->jumpToNearestValidPlot(true))
+							{
+								bErased = true;
+							}
+							// K-Mod
+							else
+								bumped_groups.push_back(std::make_pair(pLoopUnit->getOwnerINLINE(), pLoopUnit->getGroupID()));
+							// K-Mod end
+						}
+					}
+				}
+			}
+		}
+
+		if (bErased)
+		{
+			it = aUnits.erase(it);
+		}
+		else
+		{
+			++it;
+		}
+	}
+
+	// K-Mod
+	// first remove duplicate group numbers
+	std::sort(bumped_groups.begin(), bumped_groups.end());
+	bumped_groups.erase(std::unique(bumped_groups.begin(), bumped_groups.end()), bumped_groups.end());
+	// now divide the broken groups
+	for (size_t i = 0; i < bumped_groups.size(); i++)
+	{
+		CvSelectionGroup* pLoopGroup = GET_PLAYER(bumped_groups[i].first).getSelectionGroup(bumped_groups[i].second);
+		if (pLoopGroup)
+		{
+			pLoopGroup->regroupSeparatedUnits();
+		}
+	}
+	// K-Mod end
+}
+
 /*
 ** K-Mod, 2/jan/11, karadoc
 ** forceBumpUnits() forces all units off the plot, onto a nearby plot

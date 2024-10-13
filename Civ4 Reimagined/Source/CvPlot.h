@@ -70,6 +70,7 @@ public:
 	void updateCenterUnit();
 
 	void verifyUnitValidPlot();
+	void forceBumpEnemyNavalUnits(); // Civ4 Reimagined
 	void forceBumpUnits(); // K-Mod
 
 	void nukeExplosion(int iRange, CvUnit* pNukeUnit = NULL, bool bBomb = true); //  K-Mod added bBomb, Exposed to Python
