@@ -925,9 +925,14 @@ void CvPlot::verifyUnitValidPlot()
 
 
 // Civ4 Reimagined
-void CvPlot::forceBumpEnemyNavalUnits()
+void CvPlot::forceBumpEnemyNavalUnits(TeamTypes eTeam)
 {
 	PROFILE_FUNC();
+
+	if (!isOwned())
+	{
+		return;
+	}
 
 	std::vector<std::pair<PlayerTypes, int> > bumped_groups; // K-Mod
 	
@@ -957,7 +962,7 @@ void CvPlot::forceBumpEnemyNavalUnits()
 				{
 					if (!(pLoopUnit->isCombat()))
 					{
-						if (isOwned() && pLoopUnit->isEnemy(getTeam()) && pLoopUnit->getInvisibleType() == NO_INVISIBLE && !pLoopUnit->getUnitInfo().isHiddenNationality())
+						if (pLoopUnit->getTeam() == eTeam && pLoopUnit->isEnemy(getTeam()) && pLoopUnit->getInvisibleType() == NO_INVISIBLE && !pLoopUnit->getUnitInfo().isHiddenNationality())
 						{
 							if (!pLoopUnit->jumpToNearestValidPlot(true))
 							{
