@@ -4840,6 +4840,13 @@ int CvCity::getOvercrowdingPercentAnger(int iExtra) const
 	// Civ4 Reimagined
 	iAnger *= (100 + GET_PLAYER(getOwnerINLINE()).getPopulationUnhappinessModifier());
 	iAnger /= 100;
+
+	// Civ4 Reimagined
+	if (GET_PLAYER(getOwnerINLINE()).isCivilWarCrisis())
+	{
+		iAnger *= 3;
+		iAnger /= 2;
+	}
 	
 	return iAnger;
 }
@@ -4893,6 +4900,12 @@ int CvCity::getCulturePercentAnger() const
 				iAngryCulture += iCulture;
 			}
 		}
+	}
+
+	// Civ4 Reimagined
+	if (GET_PLAYER(getOwnerINLINE()).isCivilWarCrisis())
+	{
+		iAngryCulture *= 2;
 	}
 
 	return ((GC.getDefineINT("CULTURE_PERCENT_ANGER") * iAngryCulture) / iTotalCulture);
@@ -5028,6 +5041,12 @@ int CvCity::getColonyPercentAnger() const
 	iAnger /= GC.getMapINLINE().maxPlotDistance();
 	
 	iAnger -= getCulturePercentAnger();
+
+	// Civ4 Reimagined
+	if (GET_PLAYER(getOwnerINLINE()).isCivilWarCrisis())
+	{
+		iAnger *= 2;
+	}
 	
 	return std::max(0, iAnger);
 }
@@ -5834,6 +5853,12 @@ int CvCity::cultureStrength(PlayerTypes ePlayer) const
 	{
 		iStrength *= 100 + std::max(0, GC.getDefineINT("REVOLT_CHANCE_NO_ANGRY_CITIZEN_PERCENT"));
 		iStrength /= 100;
+	}
+
+	// Civ4 Reimagined
+	if (GET_PLAYER(getOwnerINLINE()).isCivilWarCrisis())
+	{
+		iStrength /= 4;
 	}
 		
 	return iStrength;

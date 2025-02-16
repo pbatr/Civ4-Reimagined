@@ -2581,7 +2581,7 @@ bool CvUnit::canEnterArea(TeamTypes eTeam, const CvArea* pArea, bool bIgnoreRigh
 	{
 		if (eTeam != NO_TEAM && eTeam != getTeam())
 		{
-			if (pArea && pArea->isBorderObstacle(eTeam))
+			if (pArea && pArea->isBorderObstacle(eTeam) && !GET_PLAYER(GET_TEAM(eTeam).getLeaderID()).isCivilWarCrisis())
 			{
 				return false;
 			}

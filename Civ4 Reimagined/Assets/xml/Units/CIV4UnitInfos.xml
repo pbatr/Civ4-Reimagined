@@ -6527,7 +6527,7 @@
 			<SpecialCargo>NONE</SpecialCargo>
 			<DomainCargo>NONE</DomainCargo>
 			<iCargo>0</iCargo>
-			<iConscription>0</iConscription>
+			<iConscription>2</iConscription>
 			<iCultureGarrison>4</iCultureGarrison>
 			<iExtraCost>0</iExtraCost>
 			<iAsset>2</iAsset>
@@ -6726,7 +6726,7 @@
 			<SpecialCargo>NONE</SpecialCargo>
 			<DomainCargo>NONE</DomainCargo>
 			<iCargo>0</iCargo>
-			<iConscription>0</iConscription>
+			<iConscription>2</iConscription>
 			<iCultureGarrison>5</iCultureGarrison>
 			<iExtraCost>0</iExtraCost>
 			<iAsset>2</iAsset>
@@ -6934,7 +6934,7 @@
 			<SpecialCargo>NONE</SpecialCargo>
 			<DomainCargo>NONE</DomainCargo>
 			<iCargo>0</iCargo>
-			<iConscription>0</iConscription>
+			<iConscription>2</iConscription>
 			<iCultureGarrison>4</iCultureGarrison>
 			<iExtraCost>0</iExtraCost>
 			<iAsset>2</iAsset>
@@ -11645,7 +11645,7 @@
 			<SpecialCargo>NONE</SpecialCargo>
 			<DomainCargo>NONE</DomainCargo>
 			<iCargo>0</iCargo>
-			<iConscription>2</iConscription>
+			<iConscription>0</iConscription>
 			<iCultureGarrison>4</iCultureGarrison>
 			<iExtraCost>0</iExtraCost>
 			<iAsset>1</iAsset>
@@ -11836,7 +11836,7 @@
 			<SpecialCargo>NONE</SpecialCargo>
 			<DomainCargo>NONE</DomainCargo>
 			<iCargo>0</iCargo>
-			<iConscription>2</iConscription>
+			<iConscription>0</iConscription>
 			<iCultureGarrison>4</iCultureGarrison>
 			<iExtraCost>0</iExtraCost>
 			<iAsset>1</iAsset>
@@ -12032,7 +12032,7 @@
 			<SpecialCargo>NONE</SpecialCargo>
 			<DomainCargo>NONE</DomainCargo>
 			<iCargo>0</iCargo>
-			<iConscription>2</iConscription>
+			<iConscription>0</iConscription>
 			<iCultureGarrison>4</iCultureGarrison>
 			<iExtraCost>0</iExtraCost>
 			<iAsset>1</iAsset>
@@ -12210,7 +12210,7 @@
 			<SpecialCargo>NONE</SpecialCargo>
 			<DomainCargo>NONE</DomainCargo>
 			<iCargo>0</iCargo>
-			<iConscription>4</iConscription>
+			<iConscription>0</iConscription>
 			<iCultureGarrison>6</iCultureGarrison>
 			<iExtraCost>0</iExtraCost>
 			<iAsset>2</iAsset>

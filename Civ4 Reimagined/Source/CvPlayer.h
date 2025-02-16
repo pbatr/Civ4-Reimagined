@@ -1608,6 +1608,13 @@ public:
 	IdeologyTypes getIdeology() const;
 	void updateIdeology();
 
+	// Civ4 Reimagined Crisis
+	int getCrisisTurns() const;
+	void changeCrisisTurns(int iChange);
+	void resetCrisisTurns();
+	bool isCivilWarCrisis() const;
+	void setIsCivilWarCrisis(bool bNewValue);
+
 	int getForeignTradeIdeologyModifier(IdeologyTypes Index) const;
 	void changeForeignTradeIdeologyModifier(IdeologyTypes Index, int iChange);
 	int getBonusRatioModifierPerIdeologyCiv(IdeologyTypes Index) const;
@@ -1893,6 +1900,7 @@ protected:
 	int m_iOverseaTradeRouteModifier; // Civ4 Reimagined
 	int m_iEspionagePointsOnConquestPerPopulation; // Civ4 Reimagined
 	int m_iTechBulbModifier; // Civ4 Reimagined
+	int m_iCrisisTurns; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
 
@@ -1920,6 +1928,7 @@ protected:
 	bool m_bAlwaysReceiveGreatPeopleLateTechs; // Civ4 Reimagined
 	bool m_bCanGoldenAgeWithSamePeople; // Civ4 Reimagined
 	bool m_bFrenchRevolution; // Civ4 Reimagined
+	bool m_bCivilWarCrisis;
 
 	bool m_bDisableHuman;	// Set to true to disable isHuman() check
 
@@ -2092,6 +2101,10 @@ protected:
 	void doEspionagePoints();
 	void doWarnings();
 	void doEvents();
+	void doCivilWarCrisis(); // Civ4 Reimagined
+	
+	bool spawnInitialCivilWarUnits(CvCity* pCity, int iNumberOfUnits, UnitAITypes eUnitAI); // Civ4 Reimagined
+	bool spawnCivilWarUnits(CvCity* pCity, int iNumberOfUnits, UnitAITypes eUnitAI); // Civ4 Reimagined
 	
 	bool checkExpireEvent(EventTypes eEvent, const EventTriggeredData& kTriggeredData) const;
 	void expireEvent(EventTypes eEvent, const EventTriggeredData& kTriggeredData, bool bFail);
