@@ -1120,6 +1120,8 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bCanGoldenAgeWithSamePeople = false; // Civ4 Reimagined
 	m_bLegacyCivic = false; // Civ4 Reimagined
 	m_bFrenchRevolution = false; // Civ4 Reimagined
+	m_iCrisisTurns = 0; // Civ4 Reimagined
+	m_bCivilWarCrisis = false;
 	
 	m_eID = eID;
 	updateTeamType();
@@ -4116,6 +4118,12 @@ void CvPlayer::doTurn()
 
 	AI_doTurnPre();
 
+	if (GC.getGameINLINE().getGameTurn() > 0 && GC.getGameINLINE().getGameTurn() % 49 == 0 && !isCivilWarCrisis() && !isBarbarian())
+	{
+		setIsCivilWarCrisis(true);
+		resetCrisisTurns();
+	}
+
 	if (getRevolutionTimer() > 0)
 	{
 		changeRevolutionTimer(-1);
@@ -4124,6 +4132,19 @@ void CvPlayer::doTurn()
 	if (getConversionTimer() > 0)
 	{
 		changeConversionTimer(-1);
+	}
+
+	if (isCivilWarCrisis())
+	{
+		if (getCrisisTurns() > 7)
+		{
+			setIsCivilWarCrisis(false);
+			resetCrisisTurns();
+			changeGoldenAgeTurns(getGoldenAgeLength() + 1);
+		} else {
+			changeCrisisTurns(1);
+			doCivilWarCrisis();
+		}
 	}
 
 	setConscriptCount(0);
@@ -21569,6 +21590,8 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bCanGoldenAgeWithSamePeople); // Civ4 Reimagined
 	pStream->Read(&m_bLegacyCivic); // Civ4 Reimagined
 	pStream->Read(&m_bFrenchRevolution); // Civ4 Reimagined
+	pStream->Read(&m_iCrisisTurns); // Civ4 Reimagined
+	pStream->Read(&m_bCivilWarCrisis); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -22258,6 +22281,8 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_bCanGoldenAgeWithSamePeople); // Civ4 Reimagined
 	pStream->Write(m_bLegacyCivic); // Civ4 Reimagined
 	pStream->Write(m_bFrenchRevolution); // Civ4 Reimagined
+	pStream->Write(m_iCrisisTurns); // Civ4 Reimagined
+	pStream->Write(m_bCivilWarCrisis); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -24852,6 +24877,225 @@ void CvPlayer::doEvents()
 			deleteEventTriggered(*it);
 		}
 	}
+}
+
+
+// TODO: Maybe replace async rands with SorenRands in the end for all civil war functions
+void CvPlayer::doCivilWarCrisis()
+{
+	int iLoop;
+
+	if (getCrisisTurns() == 1)
+	{
+		const int iMaxRebelArmySize = 33 * getNumMilitaryUnits() / 100;
+		const int iMaxNumRebellingCities = std::max(1, 2 * (getNumCities() - 1) / 5);
+		const int iRebelArmySizePerCity = iMaxRebelArmySize / iMaxNumRebellingCities;
+
+		int iNumRebellingCities = 0;
+
+		std::vector<std::pair<int, CvCity*> > cities;
+		for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+		{
+			if (pLoopCity->isCapital() && getNumCities() > 1)
+			{
+				continue;
+			}
+
+			const int iCityValue = pLoopCity->angryPopulation() + GC.getASyncRand().get(pLoopCity->isColony() ? 15 : 10, "pick civil war cities for army spawn");
+			logBBAI(" civil war cities: %S has value %d", pLoopCity->getName(0).GetCString(), iCityValue );
+			cities.push_back(std::pair<int, CvCity*>(iCityValue, pLoopCity));
+		}
+		std::sort(cities.begin(), cities.end(), std::greater<std::pair<int, CvCity*> >());
+
+		for (std::vector<std::pair<int, CvCity*> >::iterator it = cities.begin(); it != cities.end(); ++it)
+		{
+			if (iNumRebellingCities >= iMaxNumRebellingCities)
+			{
+				break;
+			}
+
+			if (spawnInitialCivilWarUnits(it->second, iRebelArmySizePerCity, UNITAI_ATTACK_CITY))
+			{
+				iNumRebellingCities++;
+			}
+			
+		}
+
+		const CvWString szMessage = "CIVIL WAR CRISIS STARTED";
+		gDLL->getInterfaceIFace()->addHumanMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath());
+
+		return;
+	}
+
+	std::vector<std::pair<int, CvCity*> > cities;
+	for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+	{
+		if (pLoopCity->isCapital() && getNumCities() > 1)
+		{
+			continue;
+		}
+
+		const int iCityValue = pLoopCity->angryPopulation() * 2 + GC.getASyncRand().get(pLoopCity->isColony() ? 15 : 10, "pick civil war cities");
+		logBBAI(" civil war cities: %S has value %d", pLoopCity->getName(0).GetCString(), iCityValue );
+		cities.push_back(std::pair<int, CvCity*>(iCityValue, pLoopCity));
+	}
+	std::sort(cities.begin(), cities.end(), std::greater<std::pair<int, CvCity*> >());
+
+	for (std::vector<std::pair<int, CvCity*> >::iterator it = cities.begin(); it != cities.end(); ++it)
+	{
+		if (it->first > 7)
+		{
+			spawnCivilWarUnits(it->second, std::max(1, it->second->angryPopulation() / 3), UNITAI_ATTACK);
+		}
+	}
+}
+
+bool CvPlayer::spawnInitialCivilWarUnits(CvCity* pCity, int iNumberOfUnits, UnitAITypes eUnitAI)
+{
+	int iRebelArmySize = 0;
+	int iLoop;
+
+	CvPlot* pLandPlot = NULL;
+	CvPlot* pSeaPlot = NULL;
+
+	int iRandOffset = GC.getASyncRand().get(NUM_CITY_PLOTS, "Pick rebel spawn city plot");
+	for (int iI = 0; iI < NUM_CITY_PLOTS; iI++)
+	{
+		int iPlot = (iI + iRandOffset) % NUM_CITY_PLOTS;
+
+		if (CITY_HOME_PLOT != iPlot)
+		{
+			CvPlot* pPlot = pCity->getCityIndexPlot(iPlot);
+
+			if (NULL != pPlot && pPlot->getOwnerINLINE() == getID() && !pPlot->isImpassable() && pPlot->getNumUnits() == 0)
+			{
+				if (pLandPlot == NULL && !pPlot->isWater())
+				{
+					pLandPlot = pPlot;
+				}
+
+				if (pSeaPlot == NULL && pPlot->isWater() && !pPlot->isLake())
+				{
+					pSeaPlot = pPlot;
+				}
+			}
+		}
+
+		if (pLandPlot != NULL && pSeaPlot != NULL)
+		{
+			break;
+		}
+	}
+
+	if (pLandPlot == NULL)
+	{
+		return false;
+	}
+
+	std::vector<std::pair<int, CvUnit*> > units;
+	for(CvUnit* pLoopUnit = firstUnit(&iLoop); pLoopUnit != NULL; pLoopUnit = nextUnit(&iLoop))
+	{
+		if (pLoopUnit->hasCargo() || !pLoopUnit->canAttack() || pLoopUnit->getDomainType() == DOMAIN_AIR) {
+			continue;
+		}
+
+		int iUnitValue = GC.getASyncRand().get(40, "pick civil war units") - pLoopUnit->getExperience();
+
+		if (pLoopUnit->getDomainType() == DOMAIN_SEA)
+		{
+			iUnitValue *= 4;
+			iUnitValue /= 5;
+		}
+
+		if (pLoopUnit->collateralDamage() > 0)
+		{
+			iUnitValue *= 3;
+			iUnitValue /= 5;
+		}
+
+		units.push_back(std::pair<int, CvUnit*>(iUnitValue, pLoopUnit));
+	}
+
+	std::sort(units.begin(), units.end(), std::greater<std::pair<int, CvUnit*> >());
+
+	for (std::vector<std::pair<int, CvUnit*> >::iterator it = units.begin(); it != units.end(); ++it)
+	{
+		if (iRebelArmySize >= iNumberOfUnits) {
+			break;
+		}
+
+		int iX = pLandPlot->getX_INLINE();
+		int iY = pLandPlot->getY_INLINE();
+		UnitAITypes eBarbUnitAI = eUnitAI;
+
+		if (it->second->getDomainType() == DOMAIN_SEA)
+		{
+			if (pSeaPlot == NULL)
+			{
+				continue;
+			}
+
+			iX = pSeaPlot->getX_INLINE();
+			iY = pSeaPlot->getY_INLINE();
+			eBarbUnitAI = UNITAI_PIRATE_SEA;
+		}
+
+		CvUnit* pNewUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit(it->second->getUnitType(), iX, iY, eBarbUnitAI);
+
+		for (int iI = 0; iI < GC.getNumPromotionInfos(); iI++) {
+			pNewUnit->setHasPromotion(((PromotionTypes)iI), (it->second->isHasPromotion((PromotionTypes)iI)));
+		}
+
+		pNewUnit->setExperience(it->second->getExperience());
+		pNewUnit->setLevel(it->second->getLevel());
+		pNewUnit->setImmobileTimer(2);
+		pNewUnit->setName(it->second->getNameNoDesc());
+		pNewUnit->setLeaderUnitType(it->second->getLeaderUnitType());
+
+		it->second->kill(false);
+		iRebelArmySize++;
+	}
+
+	return iRebelArmySize > 0;
+}
+
+
+bool CvPlayer::spawnCivilWarUnits(CvCity* pCity, int iNumberOfUnits, UnitAITypes eUnitAI)
+{
+	CvPlot* pLandPlot = NULL;
+
+	int iRandOffset = GC.getASyncRand().get(NUM_CITY_PLOTS, "Pick rebel spawn city plot");
+	for (int iI = 0; iI < NUM_CITY_PLOTS; iI++)
+	{
+		int iPlot = (iI + iRandOffset) % NUM_CITY_PLOTS;
+
+		if (CITY_HOME_PLOT != iPlot)
+		{
+			CvPlot* pPlot = pCity->getCityIndexPlot(iPlot);
+
+			if (NULL != pPlot && pPlot->getOwnerINLINE() == getID() && !pPlot->isImpassable() && pPlot->getNumUnits() == 0)
+			{
+				if (pLandPlot == NULL && !pPlot->isWater())
+				{
+					pLandPlot = pPlot;
+					break;
+				}
+			}
+		}
+	}
+
+	if (pLandPlot == NULL)
+	{
+		return false;
+	}
+
+	for (int i = 0; i < iNumberOfUnits; ++i)
+	{
+		CvUnit* pNewUnit = GET_PLAYER(BARBARIAN_PLAYER).initUnit(getCapitalCity()->getConscriptUnit(), pLandPlot->getX_INLINE(), pLandPlot->getY_INLINE(), eUnitAI);
+		pNewUnit->setImmobileTimer(2);
+	}
+
+	return true;
 }
 
 
@@ -29932,6 +30176,24 @@ int CvPlayer::getCatchUpTechModifier() const
 }
 
 //Civ4 Reimagined
+void CvPlayer::changeCrisisTurns(int iChange)
+{
+	m_iCrisisTurns += iChange;
+}
+
+//Civ4 Reimagined
+void CvPlayer::resetCrisisTurns()
+{
+	m_iCrisisTurns = 0;
+}
+
+// Civ4 Reimagined
+int CvPlayer::getCrisisTurns() const
+{
+	return m_iCrisisTurns;
+}
+
+//Civ4 Reimagined
 void CvPlayer::changeReligiousColonyMaintenanceModifier(int iChange)
 {
 	m_iReligiousColonyMaintenanceModifier += iChange;
@@ -30170,6 +30432,27 @@ void CvPlayer::setIsFrenchRevolution(bool bNewValue)
 bool CvPlayer::isFrenchRevolution() const
 {
 	return m_bFrenchRevolution;
+}
+
+//Civ4 Reimagined
+void CvPlayer::setIsCivilWarCrisis(bool bNewValue)
+{
+	m_bCivilWarCrisis = bNewValue;
+
+	if (bNewValue)
+	{
+		logBBAI("Civil War Crisis started for player %d", getID());
+	} 
+	else
+	{
+		logBBAI("Civil War Crisis ended for player %d", getID());
+	}
+}
+
+//Civ4 Reimagined
+bool CvPlayer::isCivilWarCrisis() const
+{
+	return m_bCivilWarCrisis;
 }
 
 // Civ4 Reimagined
