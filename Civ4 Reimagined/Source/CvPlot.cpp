@@ -6697,6 +6697,12 @@ int CvPlot::calculateNatureYield(YieldTypes eYield, PlayerTypes ePlayer, bool bI
 	BonusTypes eBonus;
 	int iYield = 0;
 
+	// Civ4 Reimagined
+	if (ePlayer != NO_PLAYER && eYield == YIELD_FOOD && GET_PLAYER(ePlayer).isFamineCrisis())
+	{
+		return 0;
+	}
+
 	if (isImpassable())
 	{
 		// Civ4 Reimagined: Inca UP
