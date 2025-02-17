@@ -1121,7 +1121,8 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bLegacyCivic = false; // Civ4 Reimagined
 	m_bFrenchRevolution = false; // Civ4 Reimagined
 	m_iCrisisTurns = 0; // Civ4 Reimagined
-	m_bCivilWarCrisis = false;
+	m_bCivilWarCrisis = false; // Civ4 Reimagined
+	m_bFamineCrisis = false; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -4118,9 +4119,19 @@ void CvPlayer::doTurn()
 
 	AI_doTurnPre();
 
-	if (GC.getGameINLINE().getGameTurn() > 0 && GC.getGameINLINE().getGameTurn() % 49 == 0 && !isCivilWarCrisis() && !isBarbarian())
+	if (GC.getGameINLINE().getGameTurn() > 0 && GC.getGameINLINE().getGameTurn() % 49 == 0 && 
+		!isCivilWarCrisis() && !isFamineCrisis() && !isBarbarian())
 	{
-		setIsCivilWarCrisis(true);
+		const int crisisRand = GC.getASyncRand().get(2, "crisis randomization");
+
+		if (crisisRand == 0)
+		{
+			setIsCivilWarCrisis(true);
+		}
+		else
+		{
+			setIsFamineCrisis(true);
+		}
 		resetCrisisTurns();
 	}
 
@@ -4134,9 +4145,10 @@ void CvPlayer::doTurn()
 		changeConversionTimer(-1);
 	}
 
+	// Civ4 Reimagined
 	if (isCivilWarCrisis())
 	{
-		if (getCrisisTurns() > 7)
+		if (getCrisisTurns() > 5)
 		{
 			setIsCivilWarCrisis(false);
 			resetCrisisTurns();
@@ -4144,6 +4156,20 @@ void CvPlayer::doTurn()
 		} else {
 			changeCrisisTurns(1);
 			doCivilWarCrisis();
+		}
+	}
+
+	// Civ4 Reimagined
+	if (isFamineCrisis())
+	{
+		if (getCrisisTurns() > 5)
+		{
+			setIsFamineCrisis(false);
+			resetCrisisTurns();
+			changeGoldenAgeTurns(getGoldenAgeLength() + 1);
+		} else {
+			changeCrisisTurns(1);
+			doFamineCrisis();
 		}
 	}
 
@@ -21592,6 +21618,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bFrenchRevolution); // Civ4 Reimagined
 	pStream->Read(&m_iCrisisTurns); // Civ4 Reimagined
 	pStream->Read(&m_bCivilWarCrisis); // Civ4 Reimagined
+	pStream->Read(&m_bFamineCrisis); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -22283,6 +22310,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_bFrenchRevolution); // Civ4 Reimagined
 	pStream->Write(m_iCrisisTurns); // Civ4 Reimagined
 	pStream->Write(m_bCivilWarCrisis); // Civ4 Reimagined
+	pStream->Write(m_bFamineCrisis); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -24945,8 +24973,27 @@ void CvPlayer::doCivilWarCrisis()
 	{
 		if (it->first > 7)
 		{
-			spawnCivilWarUnits(it->second, std::max(1, it->second->angryPopulation() / 3), UNITAI_ATTACK);
+			spawnCivilWarUnits(it->second, 1 + it->second->angryPopulation() / 2, UNITAI_ATTACK);
 		}
+	}
+}
+
+void CvPlayer::doFamineCrisis()
+{
+	if (getCrisisTurns() == 1)
+	{
+		const CvWString szMessage = "FAMINE CRISIS STARTED";
+		gDLL->getInterfaceIFace()->addHumanMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath());
+	}
+
+	if (getCrisisTurns() <= 3)
+	{
+		changeUnhealthyPopulationModifier(15);
+	}
+
+	if (getCrisisTurns() >= 4 && getCrisisTurns() <= 6)
+	{
+		changeUnhealthyPopulationModifier(-15);
 	}
 }
 
@@ -30453,6 +30500,29 @@ void CvPlayer::setIsCivilWarCrisis(bool bNewValue)
 bool CvPlayer::isCivilWarCrisis() const
 {
 	return m_bCivilWarCrisis;
+}
+
+//Civ4 Reimagined
+void CvPlayer::setIsFamineCrisis(bool bNewValue)
+{
+	m_bFamineCrisis = bNewValue;
+
+	updateYield();
+
+	if (bNewValue)
+	{
+		logBBAI("Famine Crisis started for player %d", getID());
+	} 
+	else
+	{
+		logBBAI("Famine Crisis ended for player %d", getID());
+	}
+}
+
+//Civ4 Reimagined
+bool CvPlayer::isFamineCrisis() const
+{
+	return m_bFamineCrisis;
 }
 
 // Civ4 Reimagined

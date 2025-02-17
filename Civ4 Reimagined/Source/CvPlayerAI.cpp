@@ -27426,27 +27426,6 @@ int CvPlayerAI::AI_getHappinessWeight(int iHappy, int iExtraPop, int iSubtractHa
 	int iValue = 0;
 	for (pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 	{
-		/* original bts code
-		int iCityHappy = pLoopCity->happyLevel() - pLoopCity->unhappyLevel(iExtraPop);
-		
-		iCityHappy -= std::max(0, pLoopCity->getCommerceHappiness());
-		int iHappyNow = iCityHappy;
-		int iHappyThen = iCityHappy +
-			(bPercent ? ROUND_DIVIDE(pLoopCity->getPopulation()*iHappy, 100) : iHappy);
-		
-		//Integration
-		int iTempValue = (((100 * iHappyThen - 10 * iHappyThen * iHappyThen)) - (100 * iHappyNow - 10 * iHappyNow * iHappyNow));
-		if (iHappy > 0)
-		{
-			iValue += std::max(0, iTempValue);
-		}
-		else
-		{
-			iValue += std::min(0, iTempValue);
-		} */
-
-		// K-Mod. I have no idea what they were trying to 'integrate', and it was giving some strange answers.
-		// So lets try it my way.
 		if (pLoopCity->isNoUnhappiness())
 			continue;
 		int iCurrentHappy = 100*(pLoopCity->happyLevel() - iSubtractHappiness - pLoopCity->unhappyLevel(iExtraPop));
@@ -27454,17 +27433,12 @@ int CvPlayerAI::AI_getHappinessWeight(int iHappy, int iExtraPop, int iSubtractHa
 		iCurrentHappy -= 50*std::max(0, pLoopCity->getCommerceHappiness());
 		int iTestHappy = iCurrentHappy +
 			(bPercent ? ((pLoopCity->getPopulation()+iExtraPop)*iHappy) : 100 * iHappy);
-		iValue += std::max(0, -iCurrentHappy) - std::max(0, -iTestHappy); // change in the number of angry citizens
+		iValue += (isCivilWarCrisis() ? 2 : 1) * std::max(0, -iCurrentHappy) - std::max(0, -iTestHappy); // change in the number of angry citizens
 		// a small bonus for happiness beyond what we need
 		iValue += 100*(std::max(0, iTestHappy) - std::max(0, iCurrentHappy))/(400 + std::max(0, iTestHappy) + std::max(0, iCurrentHappy));
 		// K-Mod end
 		
 		iCount++;
-		/* original bts code - (huh?)
-		if (iCount > 6)
-		{
-			break;
-		}*/
 	}
 	
 	iResult = (0 == iCount) ? 50 * iHappy : iValue / iCount;

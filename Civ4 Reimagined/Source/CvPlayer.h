@@ -1614,6 +1614,8 @@ public:
 	void resetCrisisTurns();
 	bool isCivilWarCrisis() const;
 	void setIsCivilWarCrisis(bool bNewValue);
+	bool isFamineCrisis() const;
+	void setIsFamineCrisis(bool bNewValue);
 
 	int getForeignTradeIdeologyModifier(IdeologyTypes Index) const;
 	void changeForeignTradeIdeologyModifier(IdeologyTypes Index, int iChange);
@@ -1928,7 +1930,8 @@ protected:
 	bool m_bAlwaysReceiveGreatPeopleLateTechs; // Civ4 Reimagined
 	bool m_bCanGoldenAgeWithSamePeople; // Civ4 Reimagined
 	bool m_bFrenchRevolution; // Civ4 Reimagined
-	bool m_bCivilWarCrisis;
+	bool m_bCivilWarCrisis; // Civ4 Reimagined
+	bool m_bFamineCrisis; // Civ4 Reimagined
 
 	bool m_bDisableHuman;	// Set to true to disable isHuman() check
 
@@ -2102,6 +2105,7 @@ protected:
 	void doWarnings();
 	void doEvents();
 	void doCivilWarCrisis(); // Civ4 Reimagined
+	void doFamineCrisis(); // Civ4 Reimagined
 	
 	bool spawnInitialCivilWarUnits(CvCity* pCity, int iNumberOfUnits, UnitAITypes eUnitAI); // Civ4 Reimagined
 	bool spawnCivilWarUnits(CvCity* pCity, int iNumberOfUnits, UnitAITypes eUnitAI); // Civ4 Reimagined
