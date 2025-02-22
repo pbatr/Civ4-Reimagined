@@ -4847,6 +4847,13 @@ int CvCity::getOvercrowdingPercentAnger(int iExtra) const
 		iAnger *= 3;
 		iAnger /= 2;
 	}
+
+	// Civ4 Reimagined: TODO create new InflationAnger
+	if (GET_PLAYER(getOwnerINLINE()).isInflationCrisis())
+	{
+		iAnger *= 3;
+		iAnger /= 2;
+	}
 	
 	return iAnger;
 }
@@ -5671,6 +5678,12 @@ int CvCity::getHurryGold(HurryTypes eHurry, int iHurryCost) const
 	{
 		iGold *= std::max(0, 100 + (GET_PLAYER(getOwnerINLINE())).getBuyBuildingCostModifier());
 		iGold /= 100;
+	}
+
+	// Civ4 Reimagined
+	if (GET_PLAYER(getOwnerINLINE()).isInflationCrisis())
+	{
+		iGold *= 4;
 	}
 	
 	return std::max(1, iGold);
@@ -10565,6 +10578,12 @@ int CvCity::getBaseTradeProfit(CvCity* pCity) const
 		{
 			iProfit = std::max(125, iProfit);
 		}
+	}
+
+	// Civ4 Reimagined
+	if (GET_PLAYER(getOwnerINLINE()).isInflationCrisis())
+	{
+		iProfit /= 4;
 	}
 
 	return iProfit;
