@@ -1123,6 +1123,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_iCrisisTurns = 0; // Civ4 Reimagined
 	m_bCivilWarCrisis = false; // Civ4 Reimagined
 	m_bFamineCrisis = false; // Civ4 Reimagined
+	m_bInflationCrisis = false; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -4120,17 +4121,20 @@ void CvPlayer::doTurn()
 	AI_doTurnPre();
 
 	if (GC.getGameINLINE().getGameTurn() > 0 && GC.getGameINLINE().getGameTurn() % 49 == 0 && 
-		!isCivilWarCrisis() && !isFamineCrisis() && !isBarbarian())
+		!isCivilWarCrisis() && !isFamineCrisis() && !isInflationCrisis() && !isBarbarian())
 	{
-		const int crisisRand = GC.getASyncRand().get(2, "crisis randomization");
-
+		const int crisisRand = GC.getASyncRand().get(3, "crisis randomization");
 		if (crisisRand == 0)
 		{
 			setIsCivilWarCrisis(true);
 		}
-		else
+		else if (crisisRand == 1)
 		{
 			setIsFamineCrisis(true);
+		}
+		else
+		{
+			setIsInflationCrisis(true);
 		}
 		resetCrisisTurns();
 	}
@@ -4170,6 +4174,20 @@ void CvPlayer::doTurn()
 		} else {
 			changeCrisisTurns(1);
 			doFamineCrisis();
+		}
+	}
+
+	// Civ4 Reimagined
+	if (isInflationCrisis())
+	{
+		if (getCrisisTurns() > 5)
+		{
+			setIsInflationCrisis(false);
+			resetCrisisTurns();
+			changeGoldenAgeTurns(getGoldenAgeLength() + 1);
+		} else {
+			changeCrisisTurns(1);
+			doInflationCrisis();
 		}
 	}
 
@@ -8795,6 +8813,12 @@ void CvPlayer::updateInflationRate()
 	// Keep up to second order terms in binomial series
 	int iRatePercent = (iTurns * iInflationPerTurnTimes10000) / 100;
 	iRatePercent += (iTurns * (iTurns - 1) * iInflationPerTurnTimes10000 * iInflationPerTurnTimes10000) / 2000000;
+
+	// Civ4 Reimagined
+	if (isInflationCrisis())
+	{
+		iRatePercent *= 4;
+	}
 
 	FAssert(iRatePercent >= 0);
 
@@ -21619,6 +21643,7 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_iCrisisTurns); // Civ4 Reimagined
 	pStream->Read(&m_bCivilWarCrisis); // Civ4 Reimagined
 	pStream->Read(&m_bFamineCrisis); // Civ4 Reimagined
+	pStream->Read(&m_bInflationCrisis); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -22311,6 +22336,7 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_iCrisisTurns); // Civ4 Reimagined
 	pStream->Write(m_bCivilWarCrisis); // Civ4 Reimagined
 	pStream->Write(m_bFamineCrisis); // Civ4 Reimagined
+	pStream->Write(m_bInflationCrisis); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -24997,6 +25023,18 @@ void CvPlayer::doFamineCrisis()
 	}
 }
 
+void CvPlayer::doInflationCrisis()
+{
+	if (getCrisisTurns() == 1)
+	{
+		const CvWString szMessage = "INFLATION CRISIS STARTED";
+		gDLL->getInterfaceIFace()->addHumanMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath());
+
+		setGold(getGold()/2);
+		updateTradeRoutes();
+	}
+}
+
 bool CvPlayer::spawnInitialCivilWarUnits(CvCity* pCity, int iNumberOfUnits, UnitAITypes eUnitAI)
 {
 	int iRebelArmySize = 0;
@@ -25016,7 +25054,7 @@ bool CvPlayer::spawnInitialCivilWarUnits(CvCity* pCity, int iNumberOfUnits, Unit
 
 			if (NULL != pPlot && pPlot->getOwnerINLINE() == getID() && !pPlot->isImpassable() && pPlot->getNumUnits() == 0)
 			{
-				if (pLandPlot == NULL && !pPlot->isWater())
+				if (pLandPlot == NULL && pPlot->getArea() == pCity->getArea())
 				{
 					pLandPlot = pPlot;
 				}
@@ -28405,6 +28443,11 @@ int CvPlayer::calculateBonusRatioModifier() const
 		iModifier += GC.getGameINLINE().getIdeologyCount(getIdeology()) * getBonusRatioModifierPerIdeologyCiv(getIdeology());
 	}
 
+	if (isInflationCrisis())
+	{
+		iModifier -= 50;
+	}
+
 	return iModifier;
 }
 
@@ -30523,6 +30566,29 @@ void CvPlayer::setIsFamineCrisis(bool bNewValue)
 bool CvPlayer::isFamineCrisis() const
 {
 	return m_bFamineCrisis;
+}
+
+//Civ4 Reimagined
+void CvPlayer::setIsInflationCrisis(bool bNewValue)
+{
+	m_bInflationCrisis = bNewValue;
+
+	updateYield();
+
+	if (bNewValue)
+	{
+		logBBAI("Inflation Crisis started for player %d", getID());
+	} 
+	else
+	{
+		logBBAI("Inflation Crisis ended for player %d", getID());
+	}
+}
+
+//Civ4 Reimagined
+bool CvPlayer::isInflationCrisis() const
+{
+	return m_bInflationCrisis;
 }
 
 // Civ4 Reimagined

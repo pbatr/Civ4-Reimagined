@@ -1616,6 +1616,8 @@ public:
 	void setIsCivilWarCrisis(bool bNewValue);
 	bool isFamineCrisis() const;
 	void setIsFamineCrisis(bool bNewValue);
+	bool isInflationCrisis() const;
+	void setIsInflationCrisis(bool bNewValue);
 
 	int getForeignTradeIdeologyModifier(IdeologyTypes Index) const;
 	void changeForeignTradeIdeologyModifier(IdeologyTypes Index, int iChange);
@@ -1932,6 +1934,7 @@ protected:
 	bool m_bFrenchRevolution; // Civ4 Reimagined
 	bool m_bCivilWarCrisis; // Civ4 Reimagined
 	bool m_bFamineCrisis; // Civ4 Reimagined
+	bool m_bInflationCrisis; // Civ4 Reimagined
 
 	bool m_bDisableHuman;	// Set to true to disable isHuman() check
 
@@ -2106,6 +2109,7 @@ protected:
 	void doEvents();
 	void doCivilWarCrisis(); // Civ4 Reimagined
 	void doFamineCrisis(); // Civ4 Reimagined
+	void doInflationCrisis(); // Civ4 Reimagined
 	
 	bool spawnInitialCivilWarUnits(CvCity* pCity, int iNumberOfUnits, UnitAITypes eUnitAI); // Civ4 Reimagined
 	bool spawnCivilWarUnits(CvCity* pCity, int iNumberOfUnits, UnitAITypes eUnitAI); // Civ4 Reimagined
