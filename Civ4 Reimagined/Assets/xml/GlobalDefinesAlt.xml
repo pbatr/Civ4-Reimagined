@@ -95,7 +95,7 @@
 	</Define>
 	<Define>
 		<DefineName>GLOBAL_WARMING_BASE_ANGER_PERCENT</DefineName>
-		<iDefineIntVal>30</iDefineIntVal>
+		<iDefineIntVal>20</iDefineIntVal>
 	</Define>
 	<!-- unused
 	<Define>
