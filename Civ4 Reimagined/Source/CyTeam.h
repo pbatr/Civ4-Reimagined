@@ -232,6 +232,10 @@ public:
 	int AI_getAtPeaceCounter(int /*TeamTypes*/ eTeam) const;
 	int AI_getWarSuccess(int /*TeamTypes*/ eIndex) const;
 
+	// Civ4 Reimagined
+	bool isTechBoosted(int /*TechTypes*/ eIndex) const;
+	bool isTechBoostable(int /*TechTypes*/ eIndex) const;
+
 protected:
 
 	CvTeam* m_pTeam;

@@ -381,7 +381,7 @@ class CvMainInterface:
 		self.pBarResearchBar_n.addBarItem("ResearchBar")
 		self.pBarResearchBar_n.addBarItem("ResearchText")
         
-		self.pBarEurekaBar_n = ProgressBarUtil.ProgressBar("ResearchBar-Eureka-Canvas", xCoord, 2, 487, iStackBarHeight, gc.getInfoTypeForString("COLOR_YELLOW"), ProgressBarUtil.SOLID_MARKS, True)
+		self.pBarEurekaBar_n = ProgressBarUtil.ProgressBar("ResearchBar-Eureka-Canvas", xCoord, 2, 487, iStackBarHeight, gc.getInfoTypeForString("COLOR_TECH_BOOST"), ProgressBarUtil.SOLID_MARKS, True)
 		self.pBarEurekaBar_n.addBarItem("ResearchBar")
 		self.pBarEurekaBar_n.addBarItem("ResearchText")
 # BUG - Progress Bar - Tick Marks - end
@@ -393,7 +393,7 @@ class CvMainInterface:
 		self.pBarResearchBar_w.addBarItem("ResearchBar-w")
 		self.pBarResearchBar_w.addBarItem("ResearchText")
         
-		self.pBarEurekaBar_w = ProgressBarUtil.ProgressBar("ResearchBar-w-Eureka-Canvas", xCoord, 2, 487, iStackBarHeight, gc.getInfoTypeForString("COLOR_YELLOW"), ProgressBarUtil.SOLID_MARKS, True)
+		self.pBarEurekaBar_w = ProgressBarUtil.ProgressBar("ResearchBar-w-Eureka-Canvas", xCoord, 2, 487, iStackBarHeight, gc.getInfoTypeForString("COLOR_TECH_BOOST"), ProgressBarUtil.SOLID_MARKS, True)
 		self.pBarEurekaBar_w.addBarItem("ResearchBar-w")
 		self.pBarEurekaBar_w.addBarItem("ResearchText")
 # BUG - Progress Bar - Tick Marks - end
@@ -828,7 +828,7 @@ class CvMainInterface:
 		screen.setStackedBarColors( "ResearchBar-w", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_RESEARCH_STORED") )
 		screen.setStackedBarColors( "ResearchBar-w", InfoBarTypes.INFOBAR_RATE, gc.getInfoTypeForString("COLOR_RESEARCH_RATE") )
 		screen.setStackedBarColors( "ResearchBar-w", InfoBarTypes.INFOBAR_EMPTY, gc.getInfoTypeForString("COLOR_EMPTY") )
-		screen.setStackedBarColors( "ResearchBar-w", InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_GREAT_PEOPLE_RATE") )
+		screen.setStackedBarColors( "ResearchBar-w", InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_TECH_BOOST") )
 		screen.hide( "ResearchBar-w" )
 
 		xCoord += 6 + 487
@@ -3178,7 +3178,14 @@ class CvMainInterface:
 					researchRate = gc.getPlayer(ePlayer).calculateResearchRate(-1)
 					
 					screen.setBarPercentage( szResearchBar, InfoBarTypes.INFOBAR_STORED, float(researchProgress + overflowResearch) / researchCost )
-					screen.setBarPercentage( szResearchBar, InfoBarTypes.INFOBAR_RATE_EXTRA, float(researchCost*0.4) / (researchCost - researchProgress - overflowResearch))
+
+					# Civ4 Reimagined
+					if ( gc.getTeam(gc.getPlayer(ePlayer).getTeam()).isTechBoostable(gc.getPlayer(ePlayer).getCurrentResearch())):
+						# TODO: Adapt to Sumer UP
+						screen.setBarPercentage( szResearchBar, InfoBarTypes.INFOBAR_RATE_EXTRA, float(researchCost*0.4) / (researchCost - researchProgress - overflowResearch))
+					else:
+						screen.setBarPercentage( szResearchBar, InfoBarTypes.INFOBAR_RATE_EXTRA, 0.0)
+					
 					if ( researchCost >  researchProgress + overflowResearch):
 						screen.setBarPercentage( szResearchBar, InfoBarTypes.INFOBAR_RATE, float(researchRate) / (researchCost - researchProgress - overflowResearch))
 					else:

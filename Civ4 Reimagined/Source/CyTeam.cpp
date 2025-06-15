@@ -992,3 +992,15 @@ int CyTeam::AI_getWarSuccess(int /*TeamTypes*/ eIndex) const
 {
 	return m_pTeam ? m_pTeam->AI_getWarSuccess((TeamTypes)eIndex) : -1;
 }
+
+// Civ4 Reimagined
+bool CyTeam::isTechBoosted(int /*TechTypes*/ eIndex) const
+{
+	return m_pTeam ? m_pTeam->isTechBoosted((TechTypes)eIndex) : false;
+}
+
+// Civ4 Reimagined
+bool CyTeam::isTechBoostable(int /*TechTypes*/ eIndex) const
+{
+	return m_pTeam ? m_pTeam->isTechBoostable((TechTypes)eIndex) : false;
+}

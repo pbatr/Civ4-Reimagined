@@ -223,5 +223,7 @@ void CyTeamPythonInterface()
 		.def("AI_getAtWarCounter", &CyTeam::AI_getAtWarCounter, "int (TeamTypes)")
 		.def("AI_getAtPeaceCounter", &CyTeam::AI_getAtPeaceCounter, "int (TeamTypes)")
 		.def("AI_getWarSuccess", &CyTeam::AI_getWarSuccess, "int (TeamTypes)")
+		.def("isTechBoosted", &CyTeam::isTechBoosted, "int (TechTypes)") // Civ4 Reimagined
+		.def("isTechBoostable", &CyTeam::isTechBoostable, "int (TechTypes)") // Civ4 Reimagined
 		;
 }

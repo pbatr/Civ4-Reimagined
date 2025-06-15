@@ -367,6 +367,7 @@ public:
 
 	// Civ4 Reimagined
 	bool isTechBoosted(TechTypes eIndex) const;
+	bool isTechBoostable(TechTypes eIndex) const;
 	void setTechBoosted(TechTypes eIndex, PlayerTypes ePlayer, bool iNewValue);
 
 	int getImprovementYieldChange(ImprovementTypes eIndex1, YieldTypes eIndex2) const;										// Exposed to Python 

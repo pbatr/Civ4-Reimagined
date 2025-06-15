@@ -6117,6 +6117,16 @@ bool CvTeam::isTechBoosted(TechTypes eIndex) const
 
 
 // Civ4 Reimagined
+bool CvTeam::isTechBoostable(TechTypes eIndex) const
+{
+	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
+	FAssertMsg(eIndex < GC.getNumTechInfos(), "eIndex is expected to be within maximum bounds (invalid Index)");
+
+	return !CvWString(GC.getTechInfo(eIndex).getHelp()).empty() && !isTechBoosted(eIndex);
+}
+
+
+// Civ4 Reimagined
 void CvTeam::setTechBoosted(TechTypes eIndex, PlayerTypes ePlayer, bool bNewValue)
 {
 	FAssertMsg(eIndex >= 0, "eIndex is expected to be non-negative (invalid Index)");
