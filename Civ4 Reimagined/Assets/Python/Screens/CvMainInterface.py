@@ -380,6 +380,10 @@ class CvMainInterface:
 		self.pBarResearchBar_n = ProgressBarUtil.ProgressBar("ResearchBar-Canvas", xCoord, 2, 487, iStackBarHeight, gc.getInfoTypeForString("COLOR_RESEARCH_RATE"), ProgressBarUtil.TICK_MARKS, True)
 		self.pBarResearchBar_n.addBarItem("ResearchBar")
 		self.pBarResearchBar_n.addBarItem("ResearchText")
+        
+		self.pBarEurekaBar_n = ProgressBarUtil.ProgressBar("ResearchBar-Eureka-Canvas", xCoord, 2, 487, iStackBarHeight, gc.getInfoTypeForString("COLOR_YELLOW"), ProgressBarUtil.SOLID_MARKS, True)
+		self.pBarEurekaBar_n.addBarItem("ResearchBar")
+		self.pBarEurekaBar_n.addBarItem("ResearchText")
 # BUG - Progress Bar - Tick Marks - end
 		
 # BUG - Progress Bar - Tick Marks - start
@@ -388,6 +392,10 @@ class CvMainInterface:
 		self.pBarResearchBar_w = ProgressBarUtil.ProgressBar("ResearchBar-w-Canvas", xCoord, 2, 487, iStackBarHeight, gc.getInfoTypeForString("COLOR_RESEARCH_RATE"), ProgressBarUtil.TICK_MARKS, True)
 		self.pBarResearchBar_w.addBarItem("ResearchBar-w")
 		self.pBarResearchBar_w.addBarItem("ResearchText")
+        
+		self.pBarEurekaBar_w = ProgressBarUtil.ProgressBar("ResearchBar-w-Eureka-Canvas", xCoord, 2, 487, iStackBarHeight, gc.getInfoTypeForString("COLOR_YELLOW"), ProgressBarUtil.SOLID_MARKS, True)
+		self.pBarEurekaBar_w.addBarItem("ResearchBar-w")
+		self.pBarEurekaBar_w.addBarItem("ResearchText")
 # BUG - Progress Bar - Tick Marks - end
 
 # BUG - Progress Bar - Tick Marks - start
@@ -819,8 +827,8 @@ class CvMainInterface:
 		screen.addStackedBarGFC( "ResearchBar-w", xCoord, 2, 487, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_RESEARCH, -1, -1 )
 		screen.setStackedBarColors( "ResearchBar-w", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_RESEARCH_STORED") )
 		screen.setStackedBarColors( "ResearchBar-w", InfoBarTypes.INFOBAR_RATE, gc.getInfoTypeForString("COLOR_RESEARCH_RATE") )
-		screen.setStackedBarColors( "ResearchBar-w", InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_EMPTY") )
 		screen.setStackedBarColors( "ResearchBar-w", InfoBarTypes.INFOBAR_EMPTY, gc.getInfoTypeForString("COLOR_EMPTY") )
+		screen.setStackedBarColors( "ResearchBar-w", InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_GREAT_PEOPLE_RATE") )
 		screen.hide( "ResearchBar-w" )
 
 		xCoord += 6 + 487
@@ -3023,6 +3031,8 @@ class CvMainInterface:
 
 		self.pBarResearchBar_n.hide(screen)
 		self.pBarResearchBar_w.hide(screen)
+		self.pBarEurekaBar_n.hide(screen)
+		self.pBarEurekaBar_w.hide(screen)
 
 		bShift = CyInterface().shiftKey()
 		
@@ -3168,6 +3178,7 @@ class CvMainInterface:
 					researchRate = gc.getPlayer(ePlayer).calculateResearchRate(-1)
 					
 					screen.setBarPercentage( szResearchBar, InfoBarTypes.INFOBAR_STORED, float(researchProgress + overflowResearch) / researchCost )
+					screen.setBarPercentage( szResearchBar, InfoBarTypes.INFOBAR_RATE_EXTRA, float(researchCost*0.4) / (researchCost - researchProgress - overflowResearch))
 					if ( researchCost >  researchProgress + overflowResearch):
 						screen.setBarPercentage( szResearchBar, InfoBarTypes.INFOBAR_RATE, float(researchRate) / (researchCost - researchProgress - overflowResearch))
 					else:
@@ -3179,8 +3190,10 @@ class CvMainInterface:
 					if MainOpt.isShowpBarTickMarks():
 						if szResearchBar == "ResearchBar":
 							self.pBarResearchBar_n.drawTickMarks(screen, researchProgress + overflowResearch, researchCost, researchRate, researchRate, False)
+							self.pBarEurekaBar_n.drawTickMarks(screen, 0, 100, 60, 1, True)
 						else:
 							self.pBarResearchBar_w.drawTickMarks(screen, researchProgress + overflowResearch, researchCost, researchRate, researchRate, False)
+							self.pBarEurekaBar_w.drawTickMarks(screen, 0, 100, 60, 1, True)
 # BUG - Progress Bar - Tick Marks - end
 
 				self.updateGreatPersonBar(screen)
