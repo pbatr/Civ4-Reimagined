@@ -3182,7 +3182,7 @@ class CvMainInterface:
 					# Civ4 Reimagined
 					if ( gc.getTeam(gc.getPlayer(ePlayer).getTeam()).isTechBoostable(gc.getPlayer(ePlayer).getCurrentResearch())):
 						# TODO: Adapt to Sumer UP
-						screen.setBarPercentage( szResearchBar, InfoBarTypes.INFOBAR_RATE_EXTRA, float(researchCost*0.4) / (researchCost - researchProgress - overflowResearch))
+						screen.setBarPercentage( szResearchBar, InfoBarTypes.INFOBAR_RATE_EXTRA, float(researchCost * 0.4) / (researchCost - researchProgress - researchRate - overflowResearch ) )
 					else:
 						screen.setBarPercentage( szResearchBar, InfoBarTypes.INFOBAR_RATE_EXTRA, 0.0)
 					
