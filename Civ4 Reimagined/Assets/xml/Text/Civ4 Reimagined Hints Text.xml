@@ -7,15 +7,15 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_2</Tag>
-		<English>Technology advancement will improve the efficiency ratios for all your resources. Don't neglect cheaper, older technologies.</English>
+		<English>Technology advancement improves the efficiency ratios for all your resources. Don't neglect cheaper, older technologies.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_3</Tag>
-		<English>The production penalty for resource shortage is halved compared to health and happiness penalties.</English>
+		<English>Production penalties for resource shortages are halved compared to health and happiness penalties.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_4</Tag>
-		<English>The bullseye symbol next to the movement points denotes a unit's range. All units capable of dealing collateral damage use their superior range to attack the enemy safely from afar.</English>
+		<English>The bullseye symbol next to the movement points denotes a unit's range. Collateral damage units can attack with relative impunity if they have higher range.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_5</Tag>
@@ -23,23 +23,23 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_6</Tag>
-		<English>Walls and Castles are powerful defensive tools until cannons are invented.</English>
+		<English>Walls and Castles are powerful defensive tools - until Cannons are invented.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_7</Tag>
-		<English>Artillery, bombers and modern ships can destroy buildings.</English>
+		<English>Artillery, Bombers and modern ships can destroy buildings.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_8</Tag>
-		<English>The AI carefully evaluates if using nuclear weapons is necessary or if it might result in a nuclear counter-attack.</English>
+		<English>Your opponents might be deterred from using nuclear weapons. The AI carefully evaluates if using nuclear weapons is necessary or if it might result in a nuclear counter-attack.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_9</Tag>
-		<English>When at war, sea units can only move two tiles into enemy territory per turn.</English>
+		<English>Sea units can only move two tiles per turn within enemy territory.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_10</Tag>
-		<English>Only when your rivals are pleased with you will they sign an open border agreement.</English>
+		<English>Only when your rivals are pleased with you will they sign open border agreements.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_11</Tag>
@@ -55,7 +55,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_14</Tag>
-		<English>Civ4 Reimagined is best played with 18 players, "new world" continent, and no technology trading.</English>
+		<English>There are four ideologies in the game: Conservatism, Liberalism, Fashism and Communism. State ideology is determined by your civics.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_15</Tag>
@@ -79,7 +79,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_20</Tag>
-		<English>There are two ways to gain Slaves with Slavery. First is to conquer enemy cities. Second is to settle on large oversea continents after discovery of Astronomy.</English>
+		<English>With Slavery, Slaves can be acquired by conquering enemy cities or by setting on large oversea continents.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_21</Tag>
@@ -95,11 +95,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_24</Tag>
-		<English>All deals and treaties last double as long as before.</English>
+		<English>All deals and treaties last twice as long as before.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_25</Tag>
-		<English>Scouts are better at fighting wildlife than Warriors, especially Bears.</English>
+		<English>Scouts are better at fighting wildlife than Warriors.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_26</Tag>
@@ -107,15 +107,15 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_27</Tag>
-		<English>Oversea colonies will demand independence the further the game has progressed and the further they are away from your capital. There are several ways to deal with it. One is to release them and keep them as a vassal instead.</English>
+		<English>Oversea colonies will demand independence later on, especially if they are far away from your capital. There are several ways to deal with it. One is to release them and keep them as a vassal instead.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_28</Tag>
-		<English>Chopping forests is a lot less efficient without Replacable Parts. Consider keeping some of your forests until then.</English>
+		<English>Eurekas provide a one-time boost towards a specific technology. Try to get as many as you can!</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_29</Tag>
-		<English>Early ships can move into rival territory without open border agreements. Be sure to make use of them to establish trade routes and to keep an eye on your opponents.</English>
+		<English>Early ships can move into rival territory without open border agreements. Be sure to make use of this to establish trade routes and to keep an eye on your opponents.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_30</Tag>
@@ -131,7 +131,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_33</Tag>
-		<English>Constructing wooden ships benefits more from chopping nearby forests.</English>
+		<English>Constructing wooden ships hugely benefits from chopping nearby forests.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_34</Tag>
@@ -151,7 +151,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_38</Tag>
-		<English>You gain a small fraction of your vassals' research, gold, and espionage.</English>
+		<English>You automatically extract a small fraction of a vassals' research, gold, and espionage.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_39</Tag>
@@ -159,11 +159,11 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_40</Tag>
-		<English>Unhappy cities are more likely to start a revolt.</English>
+		<English>Unhappy cities are more likely to revolt.</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_41</Tag>
-		<English>With the Mercenaries civic, you can hire units even if you are lacking the required resources. For a price, of course...</English>
+		<English>With the Mercenaries civic, you can hire units even when lacking the required resources. For a price, of course...</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CIV4_REIMAGINED_HINT_42</Tag>
