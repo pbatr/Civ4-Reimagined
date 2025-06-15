@@ -3501,8 +3501,8 @@
 				<iRangedWaveSize>1</iRangedWaveSize>
 				<UnitMeshGroup>
 					<iRequired>1</iRequired>
-					<EarlyArtDefineTag>ART_DEF_UNIT_CEO_7</EarlyArtDefineTag>
-					<LateArtDefineTag>ART_DEF_UNIT_CEO_7</LateArtDefineTag>
+					<EarlyArtDefineTag>ART_DEF_UNIT_CEO_8</EarlyArtDefineTag>
+					<LateArtDefineTag>ART_DEF_UNIT_CEO_8</LateArtDefineTag>
 				</UnitMeshGroup>
 			</UnitMeshGroups>
 			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
@@ -3671,8 +3671,8 @@
 				<iRangedWaveSize>1</iRangedWaveSize>
 				<UnitMeshGroup>
 					<iRequired>1</iRequired>
-					<EarlyArtDefineTag>ART_DEF_UNIT_CEO_7</EarlyArtDefineTag>
-					<LateArtDefineTag>ART_DEF_UNIT_CEO_7</LateArtDefineTag>
+					<EarlyArtDefineTag>ART_DEF_UNIT_CEO_9</EarlyArtDefineTag>
+					<LateArtDefineTag>ART_DEF_UNIT_CEO_9</LateArtDefineTag>
 				</UnitMeshGroup>
 			</UnitMeshGroups>
 			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
@@ -3841,8 +3841,8 @@
 				<iRangedWaveSize>1</iRangedWaveSize>
 				<UnitMeshGroup>
 					<iRequired>1</iRequired>
-					<EarlyArtDefineTag>ART_DEF_UNIT_CEO_7</EarlyArtDefineTag>
-					<LateArtDefineTag>ART_DEF_UNIT_CEO_7</LateArtDefineTag>
+					<EarlyArtDefineTag>ART_DEF_UNIT_CEO_10</EarlyArtDefineTag>
+					<LateArtDefineTag>ART_DEF_UNIT_CEO_10</LateArtDefineTag>
 				</UnitMeshGroup>
 			</UnitMeshGroups>
 			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
@@ -4011,8 +4011,8 @@
 				<iRangedWaveSize>1</iRangedWaveSize>
 				<UnitMeshGroup>
 					<iRequired>1</iRequired>
-					<EarlyArtDefineTag>ART_DEF_UNIT_CEO_7</EarlyArtDefineTag>
-					<LateArtDefineTag>ART_DEF_UNIT_CEO_7</LateArtDefineTag>
+					<EarlyArtDefineTag>ART_DEF_UNIT_CEO_11</EarlyArtDefineTag>
+					<LateArtDefineTag>ART_DEF_UNIT_CEO_11</LateArtDefineTag>
 				</UnitMeshGroup>
 			</UnitMeshGroups>
 			<FormationType>FORMATION_TYPE_DEFAULT</FormationType>
