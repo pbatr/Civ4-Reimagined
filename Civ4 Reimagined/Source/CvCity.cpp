@@ -15464,11 +15464,21 @@ void CvCity::doGrowth()
 	}
 	else if (getFood() < 0)
 	{
-		changeFood(-(getFood()));
+		const int iFood = getFood();
+		changeFood(-(iFood));
 
 		if (getPopulation() > 1)
 		{
 			changePopulation(-1);
+		}
+
+		// Civ4 Reimagined
+		if (GET_PLAYER(getOwnerINLINE()).isFamineCrisis())
+		{			
+			if (iFood < -GC.getFOOD_CONSUMPTION_PER_POPULATION() && getPopulation() > 1)
+			{
+				changePopulation(-1);
+			}
 		}
 	}
 }

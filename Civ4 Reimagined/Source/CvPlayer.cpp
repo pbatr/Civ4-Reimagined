@@ -8817,7 +8817,7 @@ void CvPlayer::updateInflationRate()
 	// Civ4 Reimagined
 	if (isInflationCrisis())
 	{
-		iRatePercent *= 4;
+		iRatePercent *= 8;
 	}
 
 	FAssert(iRatePercent >= 0);
@@ -25010,16 +25010,19 @@ void CvPlayer::doFamineCrisis()
 	{
 		const CvWString szMessage = "FAMINE CRISIS STARTED";
 		gDLL->getInterfaceIFace()->addHumanMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath());
+		changeUnhealthyPopulationModifier(150);
 	}
 
-	if (getCrisisTurns() <= 3)
+	const iDisbandingUnits = std::max(1, getNumUnits() / 10);
+
+	for (int i = 0; i < iDisbandingUnits; ++i)
 	{
-		changeUnhealthyPopulationModifier(15);
+		disbandUnit(true);
 	}
 
-	if (getCrisisTurns() >= 4 && getCrisisTurns() <= 6)
+	if (getCrisisTurns() == 6)
 	{
-		changeUnhealthyPopulationModifier(-15);
+		changeUnhealthyPopulationModifier(-150);
 	}
 }
 
@@ -25030,7 +25033,7 @@ void CvPlayer::doInflationCrisis()
 		const CvWString szMessage = "INFLATION CRISIS STARTED";
 		gDLL->getInterfaceIFace()->addHumanMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath());
 
-		setGold(getGold()/2);
+		setGold(getGold()/4);
 		updateTradeRoutes();
 	}
 }
@@ -28443,7 +28446,7 @@ int CvPlayer::calculateBonusRatioModifier() const
 		iModifier += GC.getGameINLINE().getIdeologyCount(getIdeology()) * getBonusRatioModifierPerIdeologyCiv(getIdeology());
 	}
 
-	if (isInflationCrisis())
+	if (isInflationCrisis() || isFamineCrisis())
 	{
 		iModifier -= 50;
 	}

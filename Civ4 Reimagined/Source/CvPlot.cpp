@@ -6697,12 +6697,6 @@ int CvPlot::calculateNatureYield(YieldTypes eYield, PlayerTypes ePlayer, bool bI
 	BonusTypes eBonus;
 	int iYield = 0;
 
-	// Civ4 Reimagined
-	if (ePlayer != NO_PLAYER && eYield == YIELD_FOOD && GET_PLAYER(ePlayer).isFamineCrisis())
-	{
-		return 0;
-	}
-
 	if (isImpassable())
 	{
 		// Civ4 Reimagined: Inca UP
@@ -6716,12 +6710,24 @@ int CvPlot::calculateNatureYield(YieldTypes eYield, PlayerTypes ePlayer, bool bI
 			}
 		}
 
-		return iYield;
+		// Civ4 Reimagined
+		if (ePlayer != NO_PLAYER && eYield == YIELD_FOOD && GET_PLAYER(ePlayer).isFamineCrisis())
+		{
+			iYield--;
+		}
+
+		return std::max(0, iYield);
 	}
 
 	FAssertMsg(getTerrainType() != NO_TERRAIN, "TerrainType is not assigned a valid value");
 
 	iYield = GC.getTerrainInfo(getTerrainType()).getYield(eYield);
+
+	// Civ4 Reimagined
+	if (ePlayer != NO_PLAYER && eYield == YIELD_FOOD && GET_PLAYER(ePlayer).isFamineCrisis())
+	{
+		iYield--;
+	}
 
 	if (isHills())
 	{
