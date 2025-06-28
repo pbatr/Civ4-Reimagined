@@ -551,6 +551,8 @@ public:
 	void setIdeologyCombatExperienceOwner(IdeologyTypes eIdeology, PlayerTypes ePlayer);
 	PlayerTypes getIdeologyCombatExperienceOwner(IdeologyTypes eIdeology) const;
 
+	void checkWarPeaceEurekas();
+
 	DllExport void getGlobeLayers(std::vector<CvGlobeLayerData>& aLayers) const;
 	DllExport void startFlyoutMenu(const CvPlot* pPlot, std::vector<CvFlyoutMenuData>& aFlyoutItems) const;
 	DllExport void applyFlyoutMenu(const CvFlyoutMenuData& kItem);

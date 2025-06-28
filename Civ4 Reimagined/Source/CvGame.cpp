@@ -10622,3 +10622,16 @@ PlayerTypes CvGame::getIdeologyCombatExperienceOwner(IdeologyTypes eIdeology) co
 
 	return m_paiIdeologyCombatExperienceOwner[(int)eIdeology];
 }
+
+void CvGame::checkWarPeaceEurekas()
+{
+	for (int iPlayer = 0; iPlayer < MAX_PLAYERS; ++iPlayer)
+	{
+		CvPlayer& kLoopPlayer = GET_PLAYER((PlayerTypes)iPlayer);
+
+		if (kLoopPlayer.isAlive() && !kLoopPlayer.isBarbarian())
+		{
+			kLoopPlayer.checkWarPeaceEurekas();
+		}
+	}
+}

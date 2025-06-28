@@ -14256,7 +14256,7 @@ void CvPlayer::setLastStateReligion(ReligionTypes eNewValue)
 						if (GET_PLAYER((PlayerTypes)iI).isAlive())
 						{
 							// Civ4 Reimagined
-							GET_PLAYER((PlayerTypes)iI).checkWarPeaceEurekas();
+							GC.getGameINLINE().checkWarPeaceEurekas();
 
 							if (GET_TEAM(getTeam()).isHasMet(GET_PLAYER((PlayerTypes)iI).getTeam()))
 							{
@@ -28265,6 +28265,8 @@ void CvPlayer::updateIdeology()
 		GC.getGameINLINE().updateIdeologyCount();
 		logBBAI("new ideology: %d", (int)eBestIdeology);
 
+		GC.getGameINLINE().checkWarPeaceEurekas();
+
 		// Civ4 Reimagined: French UP
 		CvCity* pCapitalCity = getCapitalCity();
 		if (isFrenchRevolution() && pCapitalCity != NULL && eBestIdeology == IDEOLOGY_LIBERALISM)
@@ -28626,14 +28628,17 @@ void CvPlayer::checkWarPeaceEurekas()
 		const ReligionTypes ourStateReligion = getStateReligion();
 		for (int iI = 0; iI < MAX_PLAYERS; iI++)
 		{
-			if (GET_TEAM(getTeam()).isAtWar(GET_PLAYER((PlayerTypes)iI).getTeam()))
+			if (!GET_PLAYER((PlayerTypes)iI).isBarbarian())
 			{
-				ReligionTypes theirStateReligion = GET_PLAYER((PlayerTypes)iI).getStateReligion();
-
-				if (ourStateReligion != NO_RELIGION && theirStateReligion != NO_RELIGION && ourStateReligion != theirStateReligion)
+				if (GET_TEAM(getTeam()).isAtWar(GET_PLAYER((PlayerTypes)iI).getTeam()))
 				{
-					GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_DIVINE_RIGHT"), getID(), true);
-					break;
+					ReligionTypes theirStateReligion = GET_PLAYER((PlayerTypes)iI).getStateReligion();
+
+					if (ourStateReligion != NO_RELIGION && theirStateReligion != NO_RELIGION && ourStateReligion != theirStateReligion)
+					{
+						GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_DIVINE_RIGHT"), getID(), true);
+						break;
+					}
 				}
 			}
 		}
@@ -28644,14 +28649,17 @@ void CvPlayer::checkWarPeaceEurekas()
 		const IdeologyTypes ourIdeology = getIdeology();
 		for (int iI = 0; iI < MAX_PLAYERS; iI++)
 		{
-			if (GET_TEAM(getTeam()).isAtWar(GET_PLAYER((PlayerTypes)iI).getTeam()))
+			if (!GET_PLAYER((PlayerTypes)iI).isBarbarian())
 			{
-				IdeologyTypes theirIdeology = GET_PLAYER((PlayerTypes)iI).getIdeology();
-
-				if (ourIdeology != theirIdeology)
+				if (GET_TEAM(getTeam()).isAtWar(GET_PLAYER((PlayerTypes)iI).getTeam()))
 				{
-					GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_FASCISM"), getID(), true);
-					break;
+					IdeologyTypes theirIdeology = GET_PLAYER((PlayerTypes)iI).getIdeology();
+
+					if (ourIdeology != theirIdeology)
+					{
+						GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_FASCISM"), getID(), true);
+						break;
+					}
 				}
 			}
 		}
