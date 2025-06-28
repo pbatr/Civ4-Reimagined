@@ -28420,7 +28420,7 @@ void CvPlayer::checkImprovementEurekas()
 
 	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_POTTERY")))
 	{
-		if (getImprovementCount((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FARM")) > 0)
+		if (getImprovementCount((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FARM")) > 0 || getImprovementCount((ImprovementTypes)GC.getInfoTypeForString("IMPROVEMENT_FISHING_BOATS")) > 0)
 		{
 			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_POTTERY"), getID(), true);
 		}

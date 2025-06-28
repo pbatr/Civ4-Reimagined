@@ -20,7 +20,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_POTTERY_EUREKA</Tag>
-		<English>Own a Farm</English>
+		<English>Own Fishing Boats or a Farm</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_ANIMAL_HUSBANDRY_EUREKA</Tag>
@@ -301,10 +301,6 @@
 	<TEXT>
 		<Tag>TXT_KEY_TECH_ROCKETRY_EUREKA</Tag>
 		<English>Succesfully Bombard a City by Air</English>
-	</TEXT>
-	<TEXT>
-		<Tag>TXT_KEY_TECH_ROCKETRY_EUREKA</Tag>
-		<English>Bombard a City by Air</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_TECH_LASER_EUREKA</Tag>
