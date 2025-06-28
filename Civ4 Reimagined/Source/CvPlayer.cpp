@@ -10453,6 +10453,15 @@ void CvPlayer::changeGoldenAgeTurns(int iChange)
 				GC.getGameINLINE().addReplayMessage(REPLAY_MESSAGE_MAJOR_EVENT, getID(), szBuffer, -1, -1, (ColorTypes)GC.getInfoTypeForString("COLOR_HIGHLIGHT_TEXT"));
 
 				CvEventReporter::getInstance().goldenAge(getID());
+
+				// Civ4 Reimagined
+				if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_DEMOCRACY")))
+				{
+					if (getPlayerRecord()->getNumGoldenAges() > 1)
+					{
+						GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_DEMOCRACY"), getID(), true);
+					}
+				}
 			}
 			else
 			{

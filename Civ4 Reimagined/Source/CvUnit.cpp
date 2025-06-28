@@ -7611,15 +7611,6 @@ bool CvUnit::goldenAge()
 		NotifyEntity(MISSION_GOLDEN_AGE);
 	}
 
-	// Civ4 Reimagined
-	if (! GET_TEAM(getTeam()).isTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_DEMOCRACY")))
-	{
-		if (GET_PLAYER(getOwnerINLINE()).getPlayerRecord()->getNumGoldenAges() > 1)
-		{
-			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_DEMOCRACY"), getOwnerINLINE(), true);
-		}
-	}
-
 	kill(true);
 
 	return true;
