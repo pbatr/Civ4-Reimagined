@@ -73,6 +73,11 @@ import GPUtil
 GP_BAR_WIDTH = 320
 # BUG - Great Person Bar - end
 
+# BUG - Instability Bar - start
+import InstabilityUtil
+INSTABILITY_BAR_WIDTH = 320
+# BUG - Instability Bar - end
+
 # BUG - Progress Bar - Tick Marks - start
 import ProgressBarUtil
 # BUG - Progress Bar - Tick Marks - end
@@ -1438,6 +1443,11 @@ class CvMainInterface:
 		if ( CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_HIDE_ALL and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_MINIMAP_ONLY  and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_ADVANCED_START):
 			self.updateGreatPersonBar(screen)
 # BUG - Great Person Bar - end
+
+# BUG - Instability Bar - start
+		if ( CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_HIDE_ALL and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_MINIMAP_ONLY  and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_ADVANCED_START):
+			self.updateInstabilityBar(screen)
+# BUG - Instability Bar - end
 
 		if ( CyInterface().shouldDisplayFlag() and CyInterface().getShowInterface() == InterfaceVisibility.INTERFACE_SHOW ):
 			screen.show( "CivilizationFlag" )
@@ -3250,6 +3260,38 @@ class CvMainInterface:
 				screen.setBarPercentage( szGreatPersonBar, InfoBarTypes.INFOBAR_RATE, 0 )
 
 			screen.show( szGreatPersonBar )
+			
+
+	def updateInstabilityBar(self, screen):
+		if (not CyInterface().isCityScreenUp() and MainOpt.isShowInstabilityProgressBar()):
+			szText = InstabilityUtil.getInstabilityText(INSTABILITY_BAR_WIDTH, True)
+			
+# BUG - Bars on single line for higher resolution screens - start
+			xResolution = screen.getXResolution()
+			if (xResolution >= 1440):
+				szInstabilityBar = "InstabilityBar-w"
+				xCoord = 268 + (xResolution - 1440) / 2 + 84 + 6 + 487 + 6 + 320 + 6 + 320 / 2
+				yCoord = 5
+			else:
+				szInstabilityBar = "InstabilityBar"
+				xCoord = 268 + (xResolution - 1024) / 2 + 100 + 7 + 380 + 7 + 320 / 2
+				yCoord = 30
+
+			screen.setText( "InstabilityBarText", "Background", szText, CvUtil.FONT_CENTER_JUSTIFY, xCoord, yCoord, -0.4, FontTypes.GAME_FONT, WidgetTypes.WIDGET_INSTABILITY_PROGRESS_BAR, -1, -1 )
+			screen.show( "InstabilityBarText" )
+# BUG - Bars on single line for higher resolution screens - end
+			
+			player = gc.getActivePlayer()
+			iTotalInstability = player.getInstabilityProgress()
+			iThreshold = player.getInstabilityThreshold()
+			
+			if (iThreshold > 0):
+				fProgress = float(iTotalInstability) / float(iThreshold)
+				screen.setBarPercentage( szInstabilityBar, InfoBarTypes.INFOBAR_STORED, fProgress )
+			else:
+				screen.setBarPercentage( szInstabilityBar, InfoBarTypes.INFOBAR_STORED, 0 )
+
+			screen.show( szInstabilityBar )
 			
 
 	def updateGreatGeneralBar(self, screen):
