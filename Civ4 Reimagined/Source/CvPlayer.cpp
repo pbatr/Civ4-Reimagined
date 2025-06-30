@@ -4124,25 +4124,6 @@ void CvPlayer::doTurn()
 
 	AI_doTurnPre();
 
-	if (GC.getGameINLINE().getGameTurn() > 0 && GC.getGameINLINE().getGameTurn() % 49 == 0 && 
-		!isCivilWarCrisis() && !isFamineCrisis() && !isInflationCrisis() && !isBarbarian())
-	{
-		const int crisisRand = GC.getASyncRand().get(3, "crisis randomization");
-		if (crisisRand == 0)
-		{
-			setIsCivilWarCrisis(true);
-		}
-		else if (crisisRand == 1)
-		{
-			setIsFamineCrisis(true);
-		}
-		else
-		{
-			setIsInflationCrisis(true);
-		}
-		resetCrisisTurns();
-	}
-
 	if (getRevolutionTimer() > 0)
 	{
 		changeRevolutionTimer(-1);
@@ -25112,9 +25093,6 @@ void CvPlayer::doCivilWarCrisis()
 			
 		}
 
-		const CvWString szMessage = "CIVIL WAR CRISIS STARTED";
-		gDLL->getInterfaceIFace()->addHumanMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath());
-
 		return;
 	}
 
@@ -25145,8 +25123,6 @@ void CvPlayer::doFamineCrisis()
 {
 	if (getCrisisTurns() == 1)
 	{
-		const CvWString szMessage = "FAMINE CRISIS STARTED";
-		gDLL->getInterfaceIFace()->addHumanMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath());
 		changeUnhealthyPopulationModifier(150);
 	}
 
@@ -25167,9 +25143,6 @@ void CvPlayer::doInflationCrisis()
 {
 	if (getCrisisTurns() == 1)
 	{
-		const CvWString szMessage = "INFLATION CRISIS STARTED";
-		gDLL->getInterfaceIFace()->addHumanMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath());
-
 		setGold(getGold()/4);
 		updateTradeRoutes();
 	}
@@ -30672,6 +30645,8 @@ void CvPlayer::setIsCivilWarCrisis(bool bNewValue)
 	if (bNewValue)
 	{
 		logBBAI("Civil War Crisis started for player %d", getID());
+		const CvWString szMessage = "CIVIL WAR CRISIS STARTED";
+		gDLL->getInterfaceIFace()->addHumanMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath());
 	} 
 	else
 	{
@@ -30695,6 +30670,8 @@ void CvPlayer::setIsFamineCrisis(bool bNewValue)
 	if (bNewValue)
 	{
 		logBBAI("Famine Crisis started for player %d", getID());
+		const CvWString szMessage = "FAMINE CRISIS STARTED";
+		gDLL->getInterfaceIFace()->addHumanMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath());
 	} 
 	else
 	{
@@ -30718,6 +30695,8 @@ void CvPlayer::setIsInflationCrisis(bool bNewValue)
 	if (bNewValue)
 	{
 		logBBAI("Inflation Crisis started for player %d", getID());
+		const CvWString szMessage = "INFLATION CRISIS STARTED";
+		gDLL->getInterfaceIFace()->addHumanMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath());
 	} 
 	else
 	{
