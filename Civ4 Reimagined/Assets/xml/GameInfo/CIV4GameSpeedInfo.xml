@@ -19,6 +19,7 @@
 			<iBuildPercent>300</iBuildPercent>
 			<iImprovementPercent>300</iImprovementPercent>
 			<iGreatPeoplePercent>300</iGreatPeoplePercent>
+			<iCrisisPercent>300</iCrisisPercent>
 			<iCulturePercent>300</iCulturePercent>
 			<iAnarchyPercent>200</iAnarchyPercent>
 			<iBarbPercent>400</iBarbPercent>
@@ -86,6 +87,7 @@
 			<iBuildPercent>150</iBuildPercent>
 			<iImprovementPercent>150</iImprovementPercent>
 			<iGreatPeoplePercent>150</iGreatPeoplePercent>
+			<iCrisisPercent>150</iCrisisPercent>
 			<iCulturePercent>150</iCulturePercent>
 			<iAnarchyPercent>150</iAnarchyPercent>
 			<iBarbPercent>150</iBarbPercent>
@@ -149,6 +151,7 @@
 			<iBuildPercent>100</iBuildPercent>
 			<iImprovementPercent>100</iImprovementPercent>
 			<iGreatPeoplePercent>100</iGreatPeoplePercent>
+			<iCrisisPercent>100</iCrisisPercent>
 			<iCulturePercent>100</iCulturePercent>
 			<iAnarchyPercent>100</iAnarchyPercent>
 			<iBarbPercent>100</iBarbPercent>
@@ -216,6 +219,7 @@
 			<iBuildPercent>66</iBuildPercent>
 			<iImprovementPercent>66</iImprovementPercent>
 			<iGreatPeoplePercent>66</iGreatPeoplePercent>
+			<iCrisisPercent>66</iCrisisPercent>
 			<iCulturePercent>66</iCulturePercent>
 			<iAnarchyPercent>75</iAnarchyPercent>
 			<iBarbPercent>66</iBarbPercent>
@@ -283,6 +287,7 @@
 			<iBuildPercent>50</iBuildPercent>
 			<iImprovementPercent>50</iImprovementPercent>
 			<iGreatPeoplePercent>50</iGreatPeoplePercent>
+			<iCrisisPercent>50</iCrisisPercent>
 			<iCulturePercent>50</iCulturePercent>
 			<iAnarchyPercent>50</iAnarchyPercent>
 			<iBarbPercent>50</iBarbPercent>

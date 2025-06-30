@@ -13168,6 +13168,7 @@ m_iResearchPercent(0),
 m_iBuildPercent(0),
 m_iImprovementPercent(0),
 m_iGreatPeoplePercent(0),
+m_iCrisisPercent(0), // Civ4 Reimagined
 m_iAnarchyPercent(0),
 m_iBarbPercent(0),
 m_iFeatureProductionPercent(0),
@@ -13242,6 +13243,12 @@ int CvGameSpeedInfo::getImprovementPercent() const
 int CvGameSpeedInfo::getGreatPeoplePercent() const
 {
 	return m_iGreatPeoplePercent;
+}
+
+// Civ4 Reimagined
+int CvGameSpeedInfo::getCrisisPercent() const
+{
+	return m_iCrisisPercent;
 }
 
 int CvGameSpeedInfo::getAnarchyPercent() const		
@@ -13377,6 +13384,7 @@ bool CvGameSpeedInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iBuildPercent, "iBuildPercent");
 	pXML->GetChildXmlValByName(&m_iImprovementPercent, "iImprovementPercent");
 	pXML->GetChildXmlValByName(&m_iGreatPeoplePercent, "iGreatPeoplePercent");
+	pXML->GetChildXmlValByName(&m_iCrisisPercent, "iCrisisPercent");
 	pXML->GetChildXmlValByName(&m_iAnarchyPercent, "iAnarchyPercent");
 	pXML->GetChildXmlValByName(&m_iBarbPercent, "iBarbPercent");
 	pXML->GetChildXmlValByName(&m_iFeatureProductionPercent, "iFeatureProductionPercent");
@@ -21391,6 +21399,7 @@ m_iTechCostModifier(0),
 m_iBuildPercent(0),
 m_iImprovementPercent(0),
 m_iGreatPeoplePercent(0),
+m_iCrisisPercent(0), // Civ4 Reimagined
 m_iAnarchyPercent(0),
 m_iEventChancePerTurn(0),
 m_iSoundtrackSpace(0),
@@ -21504,6 +21513,12 @@ int CvEraInfo::getGreatPeoplePercent() const
 	return m_iGreatPeoplePercent; 
 }
 
+// Civ4 Reimagined
+int CvEraInfo::getCrisisPercent() const
+{
+	return m_iCrisisPercent; 
+}
+
 int CvEraInfo::getAnarchyPercent() const
 {
 	return m_iAnarchyPercent; 
@@ -21611,6 +21626,7 @@ bool CvEraInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iBuildPercent, "iBuildPercent");
 	pXML->GetChildXmlValByName(&m_iImprovementPercent, "iImprovementPercent");
 	pXML->GetChildXmlValByName(&m_iGreatPeoplePercent, "iGreatPeoplePercent");
+	pXML->GetChildXmlValByName(&m_iCrisisPercent, "iCrisisPercent");
 	pXML->GetChildXmlValByName(&m_iAnarchyPercent, "iAnarchyPercent");
 	pXML->GetChildXmlValByName(&m_iEventChancePerTurn, "iEventChancePerTurn");
 	pXML->GetChildXmlValByName(&m_iSoundtrackSpace, "iSoundtrackSpace");
