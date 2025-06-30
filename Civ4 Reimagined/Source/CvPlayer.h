@@ -1619,6 +1619,19 @@ public:
 	bool isInflationCrisis() const;
 	void setIsInflationCrisis(bool bNewValue);
 
+	// Instability System - Civ4 Reimagined
+	int getInstabilityProgress() const;
+	void changeInstabilityProgress(int iChange);
+	int getPoliticalInstabilityProgress() const;
+	void changePoliticalInstabilityProgress(int iChange);
+	int getEconomicInstabilityProgress() const;
+	void changeEconomicInstabilityProgress(int iChange);
+	int getHealthInstabilityProgress() const;
+	void changeHealthInstabilityProgress(int iChange);
+	int getInstabilityThreshold() const;
+	void checkInstabilityProgressThreshold();
+	void resetInstabilityProgress();
+
 	int getForeignTradeIdeologyModifier(IdeologyTypes Index) const;
 	void changeForeignTradeIdeologyModifier(IdeologyTypes Index, int iChange);
 	int getBonusRatioModifierPerIdeologyCiv(IdeologyTypes Index) const;
@@ -1905,6 +1918,10 @@ protected:
 	int m_iEspionagePointsOnConquestPerPopulation; // Civ4 Reimagined
 	int m_iTechBulbModifier; // Civ4 Reimagined
 	int m_iCrisisTurns; // Civ4 Reimagined
+	int m_iInstabilityProgress; // Civ4 Reimagined
+	int m_iPoliticalInstabilityProgress; // Civ4 Reimagined
+	int m_iEconomicInstabilityProgress; // Civ4 Reimagined
+	int m_iHealthInstabilityProgress; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
 

@@ -1124,6 +1124,10 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bCivilWarCrisis = false; // Civ4 Reimagined
 	m_bFamineCrisis = false; // Civ4 Reimagined
 	m_bInflationCrisis = false; // Civ4 Reimagined
+	m_iInstabilityProgress = 0; // Civ4 Reimagined
+	m_iPoliticalInstabilityProgress = 0; // Civ4 Reimagined
+	m_iEconomicInstabilityProgress = 0; // Civ4 Reimagined
+	m_iHealthInstabilityProgress = 0; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -21644,6 +21648,10 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bCivilWarCrisis); // Civ4 Reimagined
 	pStream->Read(&m_bFamineCrisis); // Civ4 Reimagined
 	pStream->Read(&m_bInflationCrisis); // Civ4 Reimagined
+	pStream->Read(&m_iInstabilityProgress); // Civ4 Reimagined
+	pStream->Read(&m_iPoliticalInstabilityProgress); // Civ4 Reimagined
+	pStream->Read(&m_iEconomicInstabilityProgress); // Civ4 Reimagined
+	pStream->Read(&m_iHealthInstabilityProgress); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -22337,6 +22345,10 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_bCivilWarCrisis); // Civ4 Reimagined
 	pStream->Write(m_bFamineCrisis); // Civ4 Reimagined
 	pStream->Write(m_bInflationCrisis); // Civ4 Reimagined
+	pStream->Write(m_iInstabilityProgress); // Civ4 Reimagined
+	pStream->Write(m_iPoliticalInstabilityProgress); // Civ4 Reimagined
+	pStream->Write(m_iEconomicInstabilityProgress); // Civ4 Reimagined
+	pStream->Write(m_iHealthInstabilityProgress); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -24930,6 +24942,131 @@ void CvPlayer::doEvents()
 		{
 			deleteEventTriggered(*it);
 		}
+	}
+}
+
+
+// Civ4 Reimagined
+int CvPlayer::getInstabilityProgress() const
+{
+	return m_iInstabilityProgress;
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeInstabilityProgress(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iInstabilityProgress += iChange;
+		FAssert(getInstabilityProgress() >= 0);
+	}
+}
+
+// Civ4 Reimagined
+int CvPlayer::getPoliticalInstabilityProgress() const
+{
+	return m_iPoliticalInstabilityProgress;
+}
+
+// Civ4 Reimagined
+void CvPlayer::changePoliticalInstabilityProgress(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iPoliticalInstabilityProgress += iChange;
+		FAssert(getPoliticalInstabilityProgress() >= 0);
+		changeInstabilityProgress(iChange);
+	}
+}
+
+// Civ4 Reimagined
+int CvPlayer::getEconomicInstabilityProgress() const
+{
+	return m_iEconomicInstabilityProgress;
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeEconomicInstabilityProgress(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iEconomicInstabilityProgress += iChange;
+		FAssert(getEconomicInstabilityProgress() >= 0);
+		changeInstabilityProgress(iChange);
+	}
+}
+
+// Civ4 Reimagined
+int CvPlayer::getHealthInstabilityProgress() const
+{
+	return m_iHealthInstabilityProgress;
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeHealthInstabilityProgress(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iHealthInstabilityProgress += iChange;
+		FAssert(getHealthInstabilityProgress() >= 0);
+		changeInstabilityProgress(iChange);
+	}
+}
+
+// Civ4 Reimagined
+int CvPlayer::getInstabilityThreshold() const
+{
+	int iThreshold = GC.getDefineINT("CRISIS_THRESHOLD");
+
+	iThreshold *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getCrisisPercent();
+	iThreshold /= 100;
+
+	iThreshold *= GC.getEraInfo(GC.getGameINLINE().getStartEra()).getCrisisPercent();
+	iThreshold /= 100;
+
+	// TODO: Should scale with number of crisis?
+
+	return std::max(1, iThreshold);
+}
+
+// Civ4 Reimagined
+void CvPlayer::resetInstabilityProgress()
+{
+	m_iInstabilityProgress = 0;
+	m_iPoliticalInstabilityProgress = 0;
+	m_iEconomicInstabilityProgress = 0;
+	m_iHealthInstabilityProgress = 0;
+}
+
+// Civ4 Reimagined
+void CvPlayer::checkInstabilityProgressThreshold()
+{
+	if (getInstabilityProgress() >= getInstabilityThreshold())
+	{
+		int iTotalInstabilityProgress = getPoliticalInstabilityProgress() + getEconomicInstabilityProgress() + getHealthInstabilityProgress();
+
+		if (iTotalInstabilityProgress <= 0)
+		{
+			return;
+		}
+		
+		int iInstabilityRand = GC.getGameINLINE().getSorenRandNum(iTotalInstabilityProgress, "Instability Crisis Type");
+		
+		if (iInstabilityRand < getPoliticalInstabilityProgress())
+		{
+			setIsCivilWarCrisis(true);
+		}
+		else if (iInstabilityRand < getPoliticalInstabilityProgress() + getEconomicInstabilityProgress())
+		{
+			setIsInflationCrisis(true);
+		}
+		else
+		{
+			setIsFamineCrisis(true);
+		}
+
+		resetInstabilityProgress();
+		resetCrisisTurns();
 	}
 }
 
