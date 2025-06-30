@@ -256,6 +256,20 @@ public:
 	int getDomesticGreatGeneralRateModifier();
 	int getStateReligionGreatPeopleRateModifier();
 
+	// Instability System - Civ4 Reimagined
+	int getInstabilityProgress();
+	void changeInstabilityProgress(int iChange);
+	int getPoliticalInstabilityProgress();
+	void changePoliticalInstabilityProgress(int iChange);
+	int getEconomicInstabilityProgress();
+	void changeEconomicInstabilityProgress(int iChange);
+	int getHealthInstabilityProgress();
+	void changeHealthInstabilityProgress(int iChange);
+	int getInstabilityThreshold();
+	void setInstabilityThreshold(int iNewValue);
+	void changeInstabilityThreshold(int iChange);
+	void resetInstabilityProgress();
+
 	int getMaxGlobalBuildingProductionModifier();
 	int getMaxTeamBuildingProductionModifier();
 	int getMaxPlayerBuildingProductionModifier();
