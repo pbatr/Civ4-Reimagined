@@ -1098,6 +1098,7 @@
 	<ElementType name="iBuildPercent" content="textOnly" dt:type="int"/>
 	<ElementType name="iImprovementPercent" content="textOnly" dt:type="int"/>
 	<ElementType name="iGreatPeoplePercent" content="textOnly" dt:type="int"/>
+	<ElementType name="iCrisisPercent" content="textOnly" dt:type="int"/>
 	<ElementType name="iCulturePercent" content="textOnly" dt:type="int"/>
 	<ElementType name="iAnarchyPercent" content="textOnly" dt:type="int"/>
 	<ElementType name="iEventChancePerTurn" content="textOnly" dt:type="int"/>
@@ -1115,6 +1116,7 @@
 		<element type="iBuildPercent"/>
 		<element type="iImprovementPercent"/>
 		<element type="iGreatPeoplePercent"/>
+		<element type="iCrisisPercent"/>
 		<element type="iCulturePercent"/>
 		<element type="iAnarchyPercent"/>
 		<element type="iBarbPercent"/>
@@ -1375,6 +1377,7 @@
 		<element type="iBuildPercent"/>
 		<element type="iImprovementPercent"/>
 		<element type="iGreatPeoplePercent"/>
+		<element type="iCrisisPercent"/>
 		<element type="iCulturePercent"/>
 		<element type="iAnarchyPercent"/>
 		<element type="iEventChancePerTurn"/>

@@ -39,6 +39,7 @@
 			<iBuildPercent>100</iBuildPercent>
 			<iImprovementPercent>100</iImprovementPercent>
 			<iGreatPeoplePercent>100</iGreatPeoplePercent>
+			<iCrisisPercent>100</iCrisisPercent>
 			<iCulturePercent>100</iCulturePercent>
 			<iAnarchyPercent>67</iAnarchyPercent>
 			<iEventChancePerTurn>3</iEventChancePerTurn>
@@ -101,6 +102,7 @@
 			<iBuildPercent>100</iBuildPercent>
 			<iImprovementPercent>100</iImprovementPercent>
 			<iGreatPeoplePercent>100</iGreatPeoplePercent>
+			<iCrisisPercent>100</iCrisisPercent>
 			<iCulturePercent>100</iCulturePercent>
 			<iAnarchyPercent>67</iAnarchyPercent>
 			<iEventChancePerTurn>5</iEventChancePerTurn>
@@ -176,6 +178,7 @@
 			<iBuildPercent>100</iBuildPercent>
 			<iImprovementPercent>100</iImprovementPercent>
 			<iGreatPeoplePercent>100</iGreatPeoplePercent>
+			<iCrisisPercent>100</iCrisisPercent>
 			<iCulturePercent>100</iCulturePercent>
 			<iAnarchyPercent>50</iAnarchyPercent>
 			<iEventChancePerTurn>7</iEventChancePerTurn>
@@ -256,6 +259,7 @@
 			<iBuildPercent>90</iBuildPercent>
 			<iImprovementPercent>90</iImprovementPercent>
 			<iGreatPeoplePercent>90</iGreatPeoplePercent>
+			<iCrisisPercent>90</iCrisisPercent>
 			<iCulturePercent>90</iCulturePercent>
 			<iAnarchyPercent>50</iAnarchyPercent>
 			<iEventChancePerTurn>9</iEventChancePerTurn>
@@ -328,6 +332,7 @@
 			<iBuildPercent>80</iBuildPercent>
 			<iImprovementPercent>80</iImprovementPercent>
 			<iGreatPeoplePercent>80</iGreatPeoplePercent>
+			<iCrisisPercent>80</iCrisisPercent>
 			<iCulturePercent>80</iCulturePercent>
 			<iAnarchyPercent>40</iAnarchyPercent>
 			<iEventChancePerTurn>11</iEventChancePerTurn>
@@ -397,6 +402,7 @@
 			<iBuildPercent>70</iBuildPercent>
 			<iImprovementPercent>70</iImprovementPercent>
 			<iGreatPeoplePercent>70</iGreatPeoplePercent>
+			<iCrisisPercent>70</iCrisisPercent>
 			<iCulturePercent>70</iCulturePercent>
 			<iAnarchyPercent>40</iAnarchyPercent>
 			<iEventChancePerTurn>13</iEventChancePerTurn>
@@ -465,6 +471,7 @@
 			<iBuildPercent>60</iBuildPercent>
 			<iImprovementPercent>60</iImprovementPercent>
 			<iGreatPeoplePercent>60</iGreatPeoplePercent>
+			<iCrisisPercent>60</iCrisisPercent>
 			<iCulturePercent>60</iCulturePercent>
 			<iAnarchyPercent>34</iAnarchyPercent>
 			<iEventChancePerTurn>15</iEventChancePerTurn>

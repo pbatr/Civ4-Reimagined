@@ -1040,6 +1040,74 @@ int CyPlayer::getStateReligionGreatPeopleRateModifier()
 	return m_pPlayer ? m_pPlayer->getStateReligionGreatPeopleRateModifier() : -1;
 }
 
+// Instability System - Civ4 Reimagined
+int CyPlayer::getInstabilityProgress()
+{
+	return m_pPlayer ? m_pPlayer->getInstabilityProgress() : -1;
+}
+
+void CyPlayer::changeInstabilityProgress(int iChange)
+{
+	if (m_pPlayer)
+		m_pPlayer->changeInstabilityProgress(iChange);
+}
+
+int CyPlayer::getPoliticalInstabilityProgress()
+{
+	return m_pPlayer ? m_pPlayer->getPoliticalInstabilityProgress() : -1;
+}
+
+void CyPlayer::changePoliticalInstabilityProgress(int iChange)
+{
+	if (m_pPlayer)
+		m_pPlayer->changePoliticalInstabilityProgress(iChange);
+}
+
+int CyPlayer::getEconomicInstabilityProgress()
+{
+	return m_pPlayer ? m_pPlayer->getEconomicInstabilityProgress() : -1;
+}
+
+void CyPlayer::changeEconomicInstabilityProgress(int iChange)
+{
+	if (m_pPlayer)
+		m_pPlayer->changeEconomicInstabilityProgress(iChange);
+}
+
+int CyPlayer::getHealthInstabilityProgress()
+{
+	return m_pPlayer ? m_pPlayer->getHealthInstabilityProgress() : -1;
+}
+
+void CyPlayer::changeHealthInstabilityProgress(int iChange)
+{
+	if (m_pPlayer)
+		m_pPlayer->changeHealthInstabilityProgress(iChange);
+}
+
+int CyPlayer::getInstabilityThreshold()
+{
+	return m_pPlayer ? m_pPlayer->getInstabilityThreshold() : -1;
+}
+
+void CyPlayer::setInstabilityThreshold(int iNewValue)
+{
+	if (m_pPlayer)
+		m_pPlayer->setInstabilityThreshold(iNewValue);
+}
+
+void CyPlayer::changeInstabilityThreshold(int iChange)
+{
+	if (m_pPlayer)
+		m_pPlayer->changeInstabilityThreshold(iChange);
+}
+
+void CyPlayer::resetInstabilityProgress()
+{
+	if (m_pPlayer)
+		m_pPlayer->resetInstabilityProgress();
+}
+
 int CyPlayer::getMaxGlobalBuildingProductionModifier()
 {
 	return m_pPlayer ? m_pPlayer->getMaxGlobalBuildingProductionModifier() : -1;
