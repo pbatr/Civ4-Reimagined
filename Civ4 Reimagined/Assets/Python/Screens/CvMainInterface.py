@@ -3263,7 +3263,7 @@ class CvMainInterface:
 			
 
 	def updateInstabilityBar(self, screen):
-		if (not CyInterface().isCityScreenUp() and MainOpt.isShowInstabilityProgressBar()):
+		if (not CyInterface().isCityScreenUp()):
 			szText = InstabilityUtil.getInstabilityText(INSTABILITY_BAR_WIDTH, True)
 			
 # BUG - Bars on single line for higher resolution screens - start
