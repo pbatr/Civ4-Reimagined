@@ -75,7 +75,7 @@ GP_BAR_WIDTH = 320
 
 # BUG - Instability Bar - start
 import InstabilityUtil
-INSTABILITY_BAR_WIDTH = 192
+INSTABILITY_BAR_WIDTH = 240
 # BUG - Instability Bar - end
 
 # BUG - Progress Bar - Tick Marks - start
@@ -821,7 +821,7 @@ class CvMainInterface:
 
 # BUG - Instability Bar - start
 		xCoord += 7 + 380
-		screen.addStackedBarGFC( "InstabilityBar", xCoord, 27, 228, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_INSTABILITY_PROGRESS_BAR, -1, -1 )
+		screen.addStackedBarGFC( "InstabilityBar", xCoord, 27, 285, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_INSTABILITY_PROGRESS_BAR, -1, -1 )
 		screen.setStackedBarColors( "InstabilityBar", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_NEGATIVE_RATE") )
 		screen.setStackedBarColors( "InstabilityBar", InfoBarTypes.INFOBAR_RATE, gc.getInfoTypeForString("COLOR_EMPTY") )
 		screen.setStackedBarColors( "InstabilityBar", InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_EMPTY") )
@@ -855,7 +855,7 @@ class CvMainInterface:
 		screen.hide( "GreatPersonBar-w" )
 
 		xCoord += 6 + 320
-		screen.addStackedBarGFC( "InstabilityBar-w", xCoord, 2, 192, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_INSTABILITY_PROGRESS_BAR, -1, -1 )
+		screen.addStackedBarGFC( "InstabilityBar-w", xCoord, 2, 240, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_INSTABILITY_PROGRESS_BAR, -1, -1 )
 		screen.setStackedBarColors( "InstabilityBar-w", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_NEGATIVE_RATE") )
 		screen.setStackedBarColors( "InstabilityBar-w", InfoBarTypes.INFOBAR_RATE, gc.getInfoTypeForString("COLOR_EMPTY") )
 		screen.setStackedBarColors( "InstabilityBar-w", InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_EMPTY") )
@@ -3288,11 +3288,11 @@ class CvMainInterface:
 			xResolution = screen.getXResolution()
 			if (xResolution >= 1440):
 				szInstabilityBar = "InstabilityBar-w"
-				xCoord = 268 + (xResolution - 1440) / 2 + 84 + 6 + 487 + 6 + 320 + 6 + 320 / 2
+				xCoord = 268 + (xResolution - 1440) / 2 + 84 + 6 + 487 + 6 + 320 + 6 + 240 / 2
 				yCoord = 5
 			else:
 				szInstabilityBar = "InstabilityBar"
-				xCoord = 268 + (xResolution - 1024) / 2 + 100 + 7 + 380 + 7 + 320 / 2
+				xCoord = 268 + (xResolution - 1024) / 2 + 100 + 7 + 380 + 7 + 285 / 2
 				yCoord = 30
 
 			screen.setText( "InstabilityBarText", "Background", szText, CvUtil.FONT_CENTER_JUSTIFY, xCoord, yCoord, -0.4, FontTypes.GAME_FONT, WidgetTypes.WIDGET_INSTABILITY_PROGRESS_BAR, -1, -1 )
