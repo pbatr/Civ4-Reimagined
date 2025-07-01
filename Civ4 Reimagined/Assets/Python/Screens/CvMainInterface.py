@@ -3052,10 +3052,13 @@ class CvMainInterface:
 		screen.hide( "GreatPersonBarText" )
 		screen.hide( "GreatGeneralBar" )
 		screen.hide( "GreatGeneralBarText" )
+		screen.hide( "InstabilityBar" )
+		screen.hide( "InstabilityBarText" )
 
 		screen.hide( "GreatGeneralBar-w" )
 		screen.hide( "ResearchBar-w" )
 		screen.hide( "GreatPersonBar-w" )
+		screen.hide( "InstabilityBar-w" )
 
 		self.pBarResearchBar_n.hide(screen)
 		self.pBarResearchBar_w.hide(screen)
