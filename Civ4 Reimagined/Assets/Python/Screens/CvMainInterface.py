@@ -3277,7 +3277,7 @@ class CvMainInterface:
 				xCoord = 268 + (xResolution - 1024) / 2 + 100 + 7 + 380 + 7 + 320 / 2
 				yCoord = 30
 
-			screen.setText( "InstabilityBarText", "Background", szText, CvUtil.FONT_CENTER_JUSTIFY, xCoord, yCoord, -0.4, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1 )
+			screen.setText( "InstabilityBarText", "Background", szText, CvUtil.FONT_CENTER_JUSTIFY, xCoord, yCoord, -0.4, FontTypes.GAME_FONT, WidgetTypes.WIDGET_INSTABILITY_PROGRESS_BAR, -1, -1 )
 			screen.show( "InstabilityBarText" )
 # BUG - Bars on single line for higher resolution screens - end
 			

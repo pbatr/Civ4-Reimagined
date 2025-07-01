@@ -148,23 +148,4 @@ def getInstabilityText(iInstabilityBarWidth, bIncludePlayerName):
 	
 	return u"<font=2>%s</font>" % (szText)
 
-def getHoverText(eWidgetType, iData1, iData2, bOption):
-	"""
-	Generate hover text for the instability progress bar.
-	"""
-	player = gc.getPlayer(gc.getGame().getActivePlayer())
-	
-	iTotalInstability, iPolitical, iEconomic, iHealth, iThreshold = getPlayerInstabilityData()
-	
-	szText = u"<font=3b>%s</font>\n" % (localText.getText("TXT_KEY_INSTABILITY_TITLE", ()))
-	
-	szText += u"%s: %d/%d\n" % (localText.getText("TXT_KEY_INSTABILITY_TOTAL", ()), iTotalInstability, iThreshold)
-	szText += u"%s: %d\n" % (localText.getText("TXT_KEY_INSTABILITY_POLITICAL", ()), iPolitical)
-	szText += u"%s: %d\n" % (localText.getText("TXT_KEY_INSTABILITY_ECONOMIC", ()), iEconomic)
-	szText += u"%s: %d\n" % (localText.getText("TXT_KEY_INSTABILITY_HEALTH", ()), iHealth)
-	
-	if (iThreshold > 0):
-		fPercent = float(iTotalInstability) / float(iThreshold) * 100.0
-		szText += u"%s: %.1f%%" % (localText.getText("TXT_KEY_INSTABILITY_PERCENT", ()), fPercent)
-	
-	return szText 
+ 

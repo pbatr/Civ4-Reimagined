@@ -560,6 +560,7 @@ enum WidgetTypes					// Exposed to Python
 	WIDGET_HELP_BONUS_RATIO, // Civ4 Reimagined
 	WIDGET_HELP_BONUS_SUM, // Civ4 Reimagined
 	WIDGET_HELP_SLAVERY_BAR,
+	WIDGET_INSTABILITY_PROGRESS_BAR, // Civ4 Reimagined
 
 #ifdef _USRDLL
 	NUM_WIDGET_TYPES
