@@ -4124,6 +4124,8 @@ void CvPlayer::doTurn()
 
 	AI_doTurnPre();
 
+	checkInstabilityProgressThreshold();
+
 	if (getRevolutionTimer() > 0)
 	{
 		changeRevolutionTimer(-1);
@@ -25049,7 +25051,7 @@ void CvPlayer::checkInstabilityProgressThreshold()
 			setIsFamineCrisis(true);
 		}
 
-		resetInstabilityProgress();
+		resetInstabilityProgress(); // TODO: Consider adding overflow
 		resetCrisisTurns();
 	}
 }
