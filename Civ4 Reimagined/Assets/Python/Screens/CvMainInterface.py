@@ -819,6 +819,16 @@ class CvMainInterface:
 		screen.hide( "GreatPersonBar" )
 # BUG - Great Person Bar - end
 
+# BUG - Instability Bar - start
+		xCoord += 7 + 380
+		screen.addStackedBarGFC( "InstabilityBar", xCoord, 27, 320, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_INSTABILITY_PROGRESS_BAR, -1, -1 )
+		screen.setStackedBarColors( "InstabilityBar", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_NEGATIVE_RATE") )
+		screen.setStackedBarColors( "InstabilityBar", InfoBarTypes.INFOBAR_RATE, gc.getInfoTypeForString("COLOR_EMPTY") )
+		screen.setStackedBarColors( "InstabilityBar", InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_EMPTY") )
+		screen.setStackedBarColors( "InstabilityBar", InfoBarTypes.INFOBAR_EMPTY, gc.getInfoTypeForString("COLOR_EMPTY") )
+		screen.hide( "InstabilityBar" )
+# BUG - Instability Bar - end
+
 # BUG - Bars on single line for higher resolution screens - start
 		xCoord = 268 + (xResolution - 1440) / 2
 		screen.addStackedBarGFC( "GreatGeneralBar-w", xCoord, 2, 84, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_HELP_GREAT_GENERAL, -1, -1 )
@@ -843,6 +853,14 @@ class CvMainInterface:
 		screen.setStackedBarColors( "GreatPersonBar-w", InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_EMPTY") )
 		screen.setStackedBarColors( "GreatPersonBar-w", InfoBarTypes.INFOBAR_EMPTY, gc.getInfoTypeForString("COLOR_EMPTY") )
 		screen.hide( "GreatPersonBar-w" )
+
+		xCoord += 6 + 320
+		screen.addStackedBarGFC( "InstabilityBar-w", xCoord, 2, 320, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_INSTABILITY_PROGRESS_BAR, -1, -1 )
+		screen.setStackedBarColors( "InstabilityBar-w", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_NEGATIVE_RATE") )
+		screen.setStackedBarColors( "InstabilityBar-w", InfoBarTypes.INFOBAR_RATE, gc.getInfoTypeForString("COLOR_EMPTY") )
+		screen.setStackedBarColors( "InstabilityBar-w", InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_EMPTY") )
+		screen.setStackedBarColors( "InstabilityBar-w", InfoBarTypes.INFOBAR_EMPTY, gc.getInfoTypeForString("COLOR_EMPTY") )
+		screen.hide( "InstabilityBar-w" )
 # BUG - Bars on single line for higher resolution screens - end
 
 		
