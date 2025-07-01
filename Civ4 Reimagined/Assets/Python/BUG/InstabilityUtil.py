@@ -116,7 +116,7 @@ def calcInstabilityPercentages():
 
 # Displaying Progress
 
-def getInstabilityText(iInstabilityBarWidth, bIncludePlayerName):
+def getInstabilityText(iInstabilityBarWidth):
 	"""
 	Generate the text to display in the instability progress bar.
 	"""
@@ -127,25 +127,24 @@ def getInstabilityText(iInstabilityBarWidth, bIncludePlayerName):
 	if (iThreshold <= 0):
 		return u"<font=2>%s</font>" % (localText.getText("TXT_KEY_INSTABILITY_NO_THRESHOLD", ()))
 	
-	# Build the text
-	szText = u""
+	# Find the most likely crisis type (highest instability)
+	crisisValues = [iPolitical, iEconomic, iHealth]
+	crisisTypes = [CRISIS_POLITICAL, CRISIS_ECONOMIC, CRISIS_HEALTH]
 	
-	if (bIncludePlayerName):
-		szText += u"%s: " % (player.getName())
+	# Find the crisis type with the highest value
+	maxValue = max(crisisValues)
+	maxIndex = crisisValues.index(maxValue)
+	mostLikelyCrisis = crisisTypes[maxIndex]
 	
-	szText += u"%s" % (localText.getText("TXT_KEY_INSTABILITY_PROGRESS", (iTotalInstability, iThreshold)))
-	
-	# Add crisis type breakdown if there's instability
+	# Calculate percentage for the most likely crisis
 	if (iTotalInstability > 0):
-		percents = calcInstabilityPercentages()
-		if (percents):
-			szText += u" ["
-			for i, (iPercent, crisisType) in enumerate(percents):
-				if (i > 0):
-					szText += u", "
-				szText += u"%s: %d%%" % (localText.getText(getCrisisName(crisisType), ()), iPercent)
-			szText += u"]"
+		crisisPercent = (maxValue * 100) / iTotalInstability
+	else:
+		crisisPercent = 0
+	
+	# Build the text
+	szText = u"Next Crisis: %s %d%%" % (localText.getText(getCrisisName(mostLikelyCrisis), ()), crisisPercent)
 	
 	return u"<font=2>%s</font>" % (szText)
 
- 
+	
