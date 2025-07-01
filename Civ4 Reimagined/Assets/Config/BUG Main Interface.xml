@@ -49,11 +49,6 @@
 					type="boolean" default="False" 
 					get="isShowGGProgressBar" dirtyBit="GameData"/>
 			
-			<!-- Instability Progress Bar by Civ4 Reimagined -->
-			<option id="InstabilityBar" key="Instability Progress Bar" 
-					type="boolean" default="False" 
-					get="isShowInstabilityProgressBar" dirtyBit="GameData"/>
-			
 			<!-- Min/Max Commerce Buttons by codewarrior -->
 			<option id="MinMax_Commerce" key="MinMax Commerce" 
 					type="boolean" default="False" 
@@ -125,6 +120,5 @@
 	</options>
 	
 	<widget name="WIDGET_GP_PROGRESS_BAR" module="GPUtil" function="getHoverText"/>
-	<widget name="WIDGET_INSTABILITY_PROGRESS_BAR" module="InstabilityUtil" function="getHoverText"/>
 	<widget name="WIDGET_BUG_OPTION_SCREEN" xml="TXT_KEY_BUG_OPTIONS_SCREEN_HOVER"/>
 </mod>

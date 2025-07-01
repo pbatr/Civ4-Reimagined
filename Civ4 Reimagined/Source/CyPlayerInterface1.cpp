@@ -253,8 +253,6 @@ void CyPlayerPythonInterface1(python::class_<CyPlayer>& x)
 		.def("getHealthInstabilityProgress", &CyPlayer::getHealthInstabilityProgress, "int ()")
 		.def("changeHealthInstabilityProgress", &CyPlayer::changeHealthInstabilityProgress, "void (int iChange)")
 		.def("getInstabilityThreshold", &CyPlayer::getInstabilityThreshold, "int ()")
-		.def("setInstabilityThreshold", &CyPlayer::setInstabilityThreshold, "void (int iNewValue)")
-		.def("changeInstabilityThreshold", &CyPlayer::changeInstabilityThreshold, "void (int iChange)")
 		.def("resetInstabilityProgress", &CyPlayer::resetInstabilityProgress, "void ()")
 
 		.def("getMaxGlobalBuildingProductionModifier", &CyPlayer::getMaxGlobalBuildingProductionModifier, "int ()")

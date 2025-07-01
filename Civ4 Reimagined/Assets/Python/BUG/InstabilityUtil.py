@@ -17,6 +17,8 @@ import BugUtil
 import FontUtil
 import PlayerUtil
 
+localText = CyTranslator()
+
 gc = CyGlobalContext()
 
 # Crisis types

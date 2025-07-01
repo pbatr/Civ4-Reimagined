@@ -266,8 +266,6 @@ public:
 	int getHealthInstabilityProgress();
 	void changeHealthInstabilityProgress(int iChange);
 	int getInstabilityThreshold();
-	void setInstabilityThreshold(int iNewValue);
-	void changeInstabilityThreshold(int iChange);
 	void resetInstabilityProgress();
 
 	int getMaxGlobalBuildingProductionModifier();

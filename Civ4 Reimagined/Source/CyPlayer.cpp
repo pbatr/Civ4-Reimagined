@@ -1090,18 +1090,6 @@ int CyPlayer::getInstabilityThreshold()
 	return m_pPlayer ? m_pPlayer->getInstabilityThreshold() : -1;
 }
 
-void CyPlayer::setInstabilityThreshold(int iNewValue)
-{
-	if (m_pPlayer)
-		m_pPlayer->setInstabilityThreshold(iNewValue);
-}
-
-void CyPlayer::changeInstabilityThreshold(int iChange)
-{
-	if (m_pPlayer)
-		m_pPlayer->changeInstabilityThreshold(iChange);
-}
-
 void CyPlayer::resetInstabilityProgress()
 {
 	if (m_pPlayer)
