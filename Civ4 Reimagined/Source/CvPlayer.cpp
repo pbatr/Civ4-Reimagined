@@ -24940,6 +24940,9 @@ void CvPlayer::changeInstabilityProgress(int iChange)
 	{
 		m_iInstabilityProgress += iChange;
 		FAssert(getInstabilityProgress() >= 0);
+
+		// Force interface update when instability changes
+		gDLL->getInterfaceIFace()->setDirty(GameData_DIRTY_BIT, true);
 	}
 }
 
@@ -24957,9 +24960,6 @@ void CvPlayer::changePoliticalInstabilityProgress(int iChange)
 		m_iPoliticalInstabilityProgress += iChange;
 		FAssert(getPoliticalInstabilityProgress() >= 0);
 		changeInstabilityProgress(iChange);
-		
-		// Force interface update when instability changes
-		gDLL->getInterfaceIFace()->setDirty(GameData_DIRTY_BIT, true);
 	}
 }
 
@@ -24977,9 +24977,6 @@ void CvPlayer::changeEconomicInstabilityProgress(int iChange)
 		m_iEconomicInstabilityProgress += iChange;
 		FAssert(getEconomicInstabilityProgress() >= 0);
 		changeInstabilityProgress(iChange);
-		
-		// Force interface update when instability changes
-		gDLL->getInterfaceIFace()->setDirty(GameData_DIRTY_BIT, true);
 	}
 }
 
@@ -24997,9 +24994,6 @@ void CvPlayer::changeHealthInstabilityProgress(int iChange)
 		m_iHealthInstabilityProgress += iChange;
 		FAssert(getHealthInstabilityProgress() >= 0);
 		changeInstabilityProgress(iChange);
-		
-		// Force interface update when instability changes
-		gDLL->getInterfaceIFace()->setDirty(GameData_DIRTY_BIT, true);
 	}
 }
 

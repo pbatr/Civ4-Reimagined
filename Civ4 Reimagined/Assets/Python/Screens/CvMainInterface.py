@@ -3233,6 +3233,7 @@ class CvMainInterface:
 
 				self.updateGreatPersonBar(screen)
 				self.updateGreatGeneralBar(screen)
+				self.updateInstabilityBar(screen)
 					
 		return 0
 	
