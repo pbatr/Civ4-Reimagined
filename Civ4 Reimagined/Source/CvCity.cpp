@@ -15458,6 +15458,9 @@ void CvCity::doGrowth()
 			changeFood(-(std::max(0, (growthThreshold() - getFoodKept()))));
 			changePopulation(1);
 
+			// Civ4 Reimagined: Increase health crisis instability when city grows
+			GET_PLAYER(getOwnerINLINE()).changeHealthInstabilityProgress(1);
+
 			// ONEVENT - City growth
 			CvEventReporter::getInstance().cityGrowth(this, getOwnerINLINE());
 		}
