@@ -2648,6 +2648,9 @@ CvCity* CvPlayer::initCity(int iX, int iY, bool bBumpUnits, bool bUpdatePlotGrou
 			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ASTRONOMY"), getID(), true);
 		}
 	}
+	
+	changeHealthInstabilityProgress(1, "new City");
+	
 
 	return pCity;
 }
@@ -4226,6 +4229,8 @@ void CvPlayer::doTurn()
 	updateInflationRate();
 
 	doEvents();
+
+	doInstability();
 
 	updateEconomyHistory(GC.getGameINLINE().getGameTurn(), calculateTotalCommerce());
 	updateIndustryHistory(GC.getGameINLINE().getGameTurn(), calculateTotalYield(YIELD_PRODUCTION));
@@ -9554,10 +9559,23 @@ void CvPlayer::revolution(CivicTypes* paeNewCivics, bool bForce, bool bAnarchy)
 	{
 		changeAnarchyTurns(iAnarchyLength);
 	}
+
+	// Civ4 Reimagined
+	const IdeologyTypes eIdeology = getIdeology();
+	const int iOldIdeologicalInfluence = getIdeologyInfluence(eIdeology);
 	
 	for (iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
 	{
 		setCivics(((CivicOptionTypes)iI), paeNewCivics[iI]);
+	}
+
+	const int iNewIdeologicalInfluence = getIdeologyInfluence(eIdeology);
+	
+	const int iIdeologicalInfluenceLoss = iOldIdeologicalInfluence - iNewIdeologicalInfluence;
+	if (iIdeologicalInfluenceLoss > 0)
+	{
+		const int iInstability = iIdeologicalInfluenceLoss;
+		changePoliticalInstabilityProgress(iInstability, "Ideological Influence loss");
 	}
 
 	setRevolutionTimer(std::max(1, ((100 + getAnarchyModifier()) * GC.getDefineINT("MIN_REVOLUTION_TURNS")) / 100) + iAnarchyLength);
@@ -18111,6 +18129,11 @@ void CvPlayer::doGold()
 
 	if (getGold() < 0)
 	{
+		// Civ4 Reimagined
+		int iInstability = std::abs(std::max(1, getGold()/20));
+		iInstability = std::min(iInstability, 5);
+		changeEconomicInstabilityProgress(iInstability, "Negative Treasury");
+
 		setGold(0);
 
 		if (!isBarbarian() && (getNumCities() > 0))
@@ -24928,6 +24951,23 @@ void CvPlayer::doEvents()
 	}
 }
 
+// Civ4 Reimagined
+void CvPlayer::doInstability()
+{
+	if (isBarbarian() || isMinorCiv())
+	{
+		return;
+	}
+
+	if (isCrisis())
+	{
+		return;
+	}
+
+	updateEconomicInstabilityFromCurrencyDevaluation();
+	updateEconomicInstabilityFromEconomicGrowth();
+	updateEconomicInstabilityFromNegativeIncome();
+}
 
 // Civ4 Reimagined
 int CvPlayer::getInstabilityProgress() const
@@ -24955,10 +24995,21 @@ int CvPlayer::getPoliticalInstabilityProgress() const
 }
 
 // Civ4 Reimagined
-void CvPlayer::changePoliticalInstabilityProgress(int iChange)
+void CvPlayer::changePoliticalInstabilityProgress(int iChange, std::string sLogMessage)
 {
+	if (isBarbarian() || isMinorCiv())
+	{
+		return;
+	}
+
+	if (isCrisis())
+	{
+		return;
+	}
+
 	if (iChange != 0)
 	{
+		logBBAI("[Player %d] Political Instability from %S: %d", getID(), sLogMessage.c_str(), iChange);
 		m_iPoliticalInstabilityProgress += iChange;
 		FAssert(getPoliticalInstabilityProgress() >= 0);
 		changeInstabilityProgress(iChange);
@@ -24972,10 +25023,21 @@ int CvPlayer::getEconomicInstabilityProgress() const
 }
 
 // Civ4 Reimagined
-void CvPlayer::changeEconomicInstabilityProgress(int iChange)
+void CvPlayer::changeEconomicInstabilityProgress(int iChange, std::string sLogMessage)
 {
+	if (isBarbarian() || isMinorCiv())
+	{
+		return;
+	}
+
+	if (isCrisis())
+	{
+		return;
+	}
+
 	if (iChange != 0)
 	{
+		logBBAI("[Player %d] Economic Instability from %S: %d", getID(), sLogMessage.c_str(), iChange);
 		m_iEconomicInstabilityProgress += iChange;
 		FAssert(getEconomicInstabilityProgress() >= 0);
 		changeInstabilityProgress(iChange);
@@ -24989,10 +25051,21 @@ int CvPlayer::getHealthInstabilityProgress() const
 }
 
 // Civ4 Reimagined
-void CvPlayer::changeHealthInstabilityProgress(int iChange)
+void CvPlayer::changeHealthInstabilityProgress(int iChange, std::string sLogMessage)
 {
+	if (isBarbarian() || isMinorCiv())
+	{
+		return;
+	}
+
+	if (isCrisis())
+	{
+		return;
+	}
+
 	if (iChange != 0)
 	{
+		logBBAI("[Player %d] Health Instability from %S: %d", getID(), sLogMessage.c_str(), iChange);
 		m_iHealthInstabilityProgress += iChange;
 		FAssert(getHealthInstabilityProgress() >= 0);
 		changeInstabilityProgress(iChange);
@@ -28665,6 +28738,65 @@ bool CvPlayer::isWrongCivicBuilding(BuildingTypes eBuilding) const
 	return false;
 }
 
+void CvPlayer::updateEconomicInstabilityFromCurrencyDevaluation()
+{
+    int iTreasury = getGold();
+    int iTotalCommerce = calculateTotalCommerce();
+    
+    // Currency devaluation: When gold reserves are low relative to economic activity
+    if (iTotalCommerce > 0)
+    {
+        float fGoldReserveRatio = (float)iTreasury / (float)iTotalCommerce;
+        int iEconomicInstability = 0;
+
+        // High inflation: Low gold reserves relative to economic activity
+        if (fGoldReserveRatio < 0.2f) // Less than 20% reserve ratio
+        {
+            iEconomicInstability = 3;
+        }
+        else if (fGoldReserveRatio < 0.5f) // Less than 50% reserve ratio
+        {
+			iEconomicInstability = 2;
+        }
+        else if (fGoldReserveRatio < 0.8f) // Less than 80% reserve ratio
+        {
+			iEconomicInstability = 1;
+        }
+
+		if (iEconomicInstability > 0)
+		{
+			changeEconomicInstabilityProgress(iEconomicInstability, "Currency Devaluation");
+		}
+    }
+}
+
+void CvPlayer::updateEconomicInstabilityFromEconomicGrowth()
+{
+	const int iGameTurn = GC.getGameINLINE().getGameTurn();
+	if (iGameTurn > 10) {
+		int iCurrentEconomy = calculateTotalCommerce();
+		int iPreviousEconomy = getEconomyHistory(iGameTurn - 10);
+
+		if (iPreviousEconomy > 0) {
+			float fEconomicGrowthRate = (float)iCurrentEconomy / (float)iPreviousEconomy;
+
+			if (fEconomicGrowthRate > 1.05f) {
+				changeEconomicInstabilityProgress(1, "rapid Economic Growth");
+			}
+		}
+	}
+}
+
+void CvPlayer::updateEconomicInstabilityFromNegativeIncome()
+{
+	const int iIncome = getCommerceRate(COMMERCE_GOLD);
+
+	if (iIncome < 0)
+	{
+		changeEconomicInstabilityProgress(1, "negative Income");
+	}
+}
+
 /************************************************************************************************/
 /* Civ4 Reimagined Ideologies                   START                                           */
 /************************************************************************************************/
@@ -30713,6 +30845,12 @@ void CvPlayer::setIsInflationCrisis(bool bNewValue)
 bool CvPlayer::isInflationCrisis() const
 {
 	return m_bInflationCrisis;
+}
+
+// Civ4 Reimagined
+bool CvPlayer::isCrisis() const
+{
+	return isCivilWarCrisis() || isFamineCrisis() || isInflationCrisis();
 }
 
 // Civ4 Reimagined

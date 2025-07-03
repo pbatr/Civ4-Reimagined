@@ -1057,10 +1057,10 @@ int CyPlayer::getPoliticalInstabilityProgress()
 	return m_pPlayer ? m_pPlayer->getPoliticalInstabilityProgress() : -1;
 }
 
-void CyPlayer::changePoliticalInstabilityProgress(int iChange)
+void CyPlayer::changePoliticalInstabilityProgress(int iChange, std::string sLogMessage)
 {
 	if (m_pPlayer)
-		m_pPlayer->changePoliticalInstabilityProgress(iChange);
+		m_pPlayer->changePoliticalInstabilityProgress(iChange, sLogMessage);
 }
 
 int CyPlayer::getEconomicInstabilityProgress()
@@ -1068,10 +1068,10 @@ int CyPlayer::getEconomicInstabilityProgress()
 	return m_pPlayer ? m_pPlayer->getEconomicInstabilityProgress() : -1;
 }
 
-void CyPlayer::changeEconomicInstabilityProgress(int iChange)
+void CyPlayer::changeEconomicInstabilityProgress(int iChange, std::string sLogMessage)
 {
 	if (m_pPlayer)
-		m_pPlayer->changeEconomicInstabilityProgress(iChange);
+		m_pPlayer->changeEconomicInstabilityProgress(iChange, sLogMessage);
 }
 
 int CyPlayer::getHealthInstabilityProgress()
@@ -1079,10 +1079,10 @@ int CyPlayer::getHealthInstabilityProgress()
 	return m_pPlayer ? m_pPlayer->getHealthInstabilityProgress() : -1;
 }
 
-void CyPlayer::changeHealthInstabilityProgress(int iChange)
+void CyPlayer::changeHealthInstabilityProgress(int iChange, std::string sLogMessage)
 {
 	if (m_pPlayer)
-		m_pPlayer->changeHealthInstabilityProgress(iChange);
+		m_pPlayer->changeHealthInstabilityProgress(iChange, sLogMessage);
 }
 
 int CyPlayer::getInstabilityThreshold()

@@ -1618,19 +1618,24 @@ public:
 	void setIsFamineCrisis(bool bNewValue);
 	bool isInflationCrisis() const;
 	void setIsInflationCrisis(bool bNewValue);
+	bool isCrisis() const;
 
 	// Instability System - Civ4 Reimagined
 	int getInstabilityProgress() const;
 	void changeInstabilityProgress(int iChange);
 	int getPoliticalInstabilityProgress() const;
-	void changePoliticalInstabilityProgress(int iChange);
+	void changePoliticalInstabilityProgress(int iChange, std::string sLogMessage);
 	int getEconomicInstabilityProgress() const;
-	void changeEconomicInstabilityProgress(int iChange);
+	void changeEconomicInstabilityProgress(int iChange, std::string sLogMessage);
 	int getHealthInstabilityProgress() const;
-	void changeHealthInstabilityProgress(int iChange);
+	void changeHealthInstabilityProgress(int iChange, std::string sLogMessage);
 	int getInstabilityThreshold() const;
 	void checkInstabilityProgressThreshold();
 	void resetInstabilityProgress();
+	void doInstability();
+	void updateEconomicInstabilityFromCurrencyDevaluation();
+	void updateEconomicInstabilityFromEconomicGrowth();
+	void updateEconomicInstabilityFromNegativeIncome();
 
 	int getForeignTradeIdeologyModifier(IdeologyTypes Index) const;
 	void changeForeignTradeIdeologyModifier(IdeologyTypes Index, int iChange);

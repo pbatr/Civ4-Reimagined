@@ -260,11 +260,11 @@ public:
 	int getInstabilityProgress();
 	void changeInstabilityProgress(int iChange);
 	int getPoliticalInstabilityProgress();
-	void changePoliticalInstabilityProgress(int iChange);
+	void changePoliticalInstabilityProgress(int iChange, std::string sLogMessage);
 	int getEconomicInstabilityProgress();
-	void changeEconomicInstabilityProgress(int iChange);
+	void changeEconomicInstabilityProgress(int iChange, std::string sLogMessage);
 	int getHealthInstabilityProgress();
-	void changeHealthInstabilityProgress(int iChange);
+	void changeHealthInstabilityProgress(int iChange, std::string sLogMessage);
 	int getInstabilityThreshold();
 	void resetInstabilityProgress();
 
