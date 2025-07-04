@@ -30813,8 +30813,19 @@ void CvPlayer::setIsCivilWarCrisis(bool bNewValue)
 	if (bNewValue)
 	{
 		logBBAI("Civil War Crisis started for player %d on turn %d (%d %s)", getID(), GC.getGameINLINE().getGameTurn(), std::abs(GC.getGameINLINE().getGameTurnYear()), GC.getGameINLINE().getGameTurnYear()>0 ? "AD" : "BC");
-		const CvWString szMessage = "CIVIL WAR CRISIS STARTED";
-		gDLL->getInterfaceIFace()->addHumanMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath());
+		
+		// Send notification to all players who have met this player's team
+		for (int iI = 0; iI < MAX_PLAYERS; iI++)
+		{
+			if (GET_PLAYER((PlayerTypes)iI).isAlive())
+			{
+				if (GET_TEAM(getTeam()).isHasMet(GET_PLAYER((PlayerTypes)iI).getTeam()))
+				{
+					const CvWString szMessage = gDLL->getText("TXT_KEY_MISC_PLAYER_CIVIL_WAR_CRISIS", getNameKey());
+					gDLL->getInterfaceIFace()->addHumanMessage(((PlayerTypes)iI), (((PlayerTypes)iI) == getID()), GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath(), (ColorTypes)GC.getInfoTypeForString("COLOR_WARNING_TEXT"));
+				}
+			}
+		}
 	} 
 	else
 	{
@@ -30838,8 +30849,19 @@ void CvPlayer::setIsFamineCrisis(bool bNewValue)
 	if (bNewValue)
 	{
 		logBBAI("Famine Crisis started for player %d on turn %d (%d %s)", getID(), GC.getGameINLINE().getGameTurn(), std::abs(GC.getGameINLINE().getGameTurnYear()), GC.getGameINLINE().getGameTurnYear()>0 ? "AD" : "BC");
-		const CvWString szMessage = "FAMINE CRISIS STARTED";
-		gDLL->getInterfaceIFace()->addHumanMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath());
+		
+		// Send notification to all players who have met this player's team
+		for (int iI = 0; iI < MAX_PLAYERS; iI++)
+		{
+			if (GET_PLAYER((PlayerTypes)iI).isAlive())
+			{
+				if (GET_TEAM(getTeam()).isHasMet(GET_PLAYER((PlayerTypes)iI).getTeam()))
+				{
+					const CvWString szMessage = gDLL->getText("TXT_KEY_MISC_PLAYER_FAMINE_CRISIS", getNameKey());
+					gDLL->getInterfaceIFace()->addHumanMessage(((PlayerTypes)iI), (((PlayerTypes)iI) == getID()), GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath(), (ColorTypes)GC.getInfoTypeForString("COLOR_WARNING_TEXT"));
+				}
+			}
+		}
 	} 
 	else
 	{
@@ -30863,8 +30885,19 @@ void CvPlayer::setIsInflationCrisis(bool bNewValue)
 	if (bNewValue)
 	{
 		logBBAI("Inflation Crisis started for player %d on turn %d (%d %s)", getID(), GC.getGameINLINE().getGameTurn(), std::abs(GC.getGameINLINE().getGameTurnYear()), GC.getGameINLINE().getGameTurnYear()>0 ? "AD" : "BC");
-		const CvWString szMessage = "INFLATION CRISIS STARTED";
-		gDLL->getInterfaceIFace()->addHumanMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath());
+		
+		// Send notification to all players who have met this player's team
+		for (int iI = 0; iI < MAX_PLAYERS; iI++)
+		{
+			if (GET_PLAYER((PlayerTypes)iI).isAlive())
+			{
+				if (GET_TEAM(getTeam()).isHasMet(GET_PLAYER((PlayerTypes)iI).getTeam()))
+				{
+					const CvWString szMessage = gDLL->getText("TXT_KEY_MISC_PLAYER_INFLATION_CRISIS", getNameKey());
+					gDLL->getInterfaceIFace()->addHumanMessage(((PlayerTypes)iI), (((PlayerTypes)iI) == getID()), GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath(), (ColorTypes)GC.getInfoTypeForString("COLOR_WARNING_TEXT"));
+				}
+			}
+		}
 	} 
 	else
 	{
