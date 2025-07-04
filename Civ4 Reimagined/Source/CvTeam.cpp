@@ -5733,10 +5733,9 @@ void CvTeam::setHasTech(TechTypes eIndex, bool bNewValue, PlayerTypes ePlayer, b
 			
 			// Civ4 Reimagined: Add political instability when gaining new technology (excluding starting technologies)
 			// TODO: only for authoritarian ideologies
+			bool bIsCivStartingTech = false;
 			if (bNewValue && !GC.getTechInfo(eIndex).isRepeat() && GC.getTechInfo(eIndex).getEra() >= GC.getGameINLINE().getStartEra())
 			{
-				// Check if this is a civilization-specific starting technology
-				bool bIsCivStartingTech = false;
 				for (int iI = 0; iI < MAX_PLAYERS; iI++)
 				{
 					if (GET_PLAYER((PlayerTypes)iI).getTeam() == getID())
