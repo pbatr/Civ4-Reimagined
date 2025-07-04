@@ -5753,7 +5753,7 @@ void CvTeam::setHasTech(TechTypes eIndex, bool bNewValue, PlayerTypes ePlayer, b
 			if (!bIsCivStartingTech)
 			{
 				// Era-based instability: more advanced technologies cause more disruption
-				int iInstability = 3 * (GC.getTechInfo(eIndex).getEra() + 1); // Era 0 = 3, Era 1 = 6, etc.
+				int iInstability = 3 * (GC.getTechInfo(eIndex).getEra() + 1);
 				
 				for (iI = 0; iI < MAX_PLAYERS; iI++)
 				{

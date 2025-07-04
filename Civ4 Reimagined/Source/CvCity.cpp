@@ -16282,7 +16282,7 @@ void CvCity::doInstability()
 	int iAnger = getCulturePercentAnger();
 	if (iAnger > 0)
 	{
-		const int iInstability = std::max(1, iAnger / 100);
+		const int iInstability = std::max(1, iAnger / 300);
 		GET_PLAYER(getOwnerINLINE()).changePoliticalInstabilityProgress(iInstability, "Culture Anger");
 	
 	}
@@ -16290,7 +16290,7 @@ void CvCity::doInstability()
 	iAnger = getColonyPercentAnger();
 	if (iAnger > 0)
 	{
-		const int iInstability = std::max(1, iAnger / 100);
+		const int iInstability = std::max(1, iAnger / 300);
 		GET_PLAYER(getOwnerINLINE()).changePoliticalInstabilityProgress(iInstability, "Colony Anger");
 	}
 }

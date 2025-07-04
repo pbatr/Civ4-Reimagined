@@ -760,6 +760,16 @@ void CvUnit::doTurn()
 	FAssertMsg(!isDead(), "isDead did not return false as expected");
 	FAssertMsg(getGroup() != NULL, "getGroup() is not expected to be equal with NULL");
 
+	if (isBarbarian())
+	{
+		PlayerTypes eOwner = plot()->getOwnerINLINE();
+
+		if (NO_PLAYER != eOwner && eOwner != getOwnerINLINE())
+		{
+			GET_PLAYER(eOwner).changePoliticalInstabilityProgress(1, "Barbarian in Empire");
+		}
+	}
+
 	testPromotionReady();
 
 	if (isBlockading())
