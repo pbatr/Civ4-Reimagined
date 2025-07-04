@@ -473,6 +473,6 @@
 	<!-- Unique Powers end -->
 	<Define>
 		<DefineName>CRISIS_THRESHOLD</DefineName>
-		<iDefineIntVal>100</iDefineIntVal> <!-- Civ4 Reimagined: Base threshold for instability crisis system -->
+		<iDefineIntVal>150</iDefineIntVal> <!-- Civ4 Reimagined: Base threshold for instability crisis system -->
 	</Define>
 </Civ4Defines>
