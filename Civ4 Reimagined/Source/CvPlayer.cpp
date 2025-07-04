@@ -28809,7 +28809,7 @@ void CvPlayer::updateEconomicInstabilityFromEconomicGrowth()
 
 void CvPlayer::updateEconomicInstabilityFromNegativeIncome()
 {
-	const int iIncome = getCommerceRate(COMMERCE_GOLD);
+	const int iIncome = calculateGoldRate();
 
 	if (iIncome < 0)
 	{
