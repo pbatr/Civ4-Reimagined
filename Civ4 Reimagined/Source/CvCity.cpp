@@ -16275,7 +16275,7 @@ void CvCity::doInstability()
 
 	if (healthRate() < 0)
 	{
-		const int iInstability = std::min(healthRate() * 2, 6);
+		const int iInstability = std::min(-healthRate() * 2, 6);
 		GET_PLAYER(getOwnerINLINE()).changeHealthInstabilityProgress(iInstability, "Unhealthy Population");
 	}
 
