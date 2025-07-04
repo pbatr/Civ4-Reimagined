@@ -1121,6 +1121,7 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bLegacyCivic = false; // Civ4 Reimagined
 	m_bFrenchRevolution = false; // Civ4 Reimagined
 	m_iCrisisTurns = 0; // Civ4 Reimagined
+	m_iCrisisCount = 0; // Civ4 Reimagined
 	m_bCivilWarCrisis = false; // Civ4 Reimagined
 	m_bFamineCrisis = false; // Civ4 Reimagined
 	m_bInflationCrisis = false; // Civ4 Reimagined
@@ -25087,7 +25088,12 @@ int CvPlayer::getInstabilityThreshold() const
 	iThreshold *= GC.getEraInfo(GC.getGameINLINE().getStartEra()).getCrisisPercent();
 	iThreshold /= 100;
 
-	// TODO: Should scale with number of crisis?
+	// Scale with number of crises (similar to Great Person threshold scaling)
+	int iCrisisCount = getCrisisCount();
+	if (iCrisisCount > 0)
+	{
+		iThreshold += (iCrisisCount * GC.getDefineINT("CRISIS_THRESHOLD_INCREASE"));
+	}
 
 	return std::max(1, iThreshold);
 }
@@ -25128,6 +25134,7 @@ void CvPlayer::checkInstabilityProgressThreshold()
 			setIsFamineCrisis(true);
 		}
 
+		changeCrisisCount(1); // Increment crisis count
 		resetInstabilityProgress(); // TODO: Consider adding overflow
 		resetCrisisTurns();
 	}
@@ -30529,6 +30536,18 @@ void CvPlayer::changeCrisisTurns(int iChange)
 void CvPlayer::resetCrisisTurns()
 {
 	m_iCrisisTurns = 0;
+}
+
+//Civ4 Reimagined
+void CvPlayer::changeCrisisCount(int iChange)
+{
+	m_iCrisisCount += iChange;
+}
+
+//Civ4 Reimagined
+int CvPlayer::getCrisisCount() const
+{
+	return m_iCrisisCount;
 }
 
 // Civ4 Reimagined

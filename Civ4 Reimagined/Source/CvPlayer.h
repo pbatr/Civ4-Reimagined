@@ -1612,6 +1612,8 @@ public:
 	int getCrisisTurns() const;
 	void changeCrisisTurns(int iChange);
 	void resetCrisisTurns();
+	int getCrisisCount() const;
+	void changeCrisisCount(int iChange);
 	bool isCivilWarCrisis() const;
 	void setIsCivilWarCrisis(bool bNewValue);
 	bool isFamineCrisis() const;
@@ -1923,6 +1925,7 @@ protected:
 	int m_iEspionagePointsOnConquestPerPopulation; // Civ4 Reimagined
 	int m_iTechBulbModifier; // Civ4 Reimagined
 	int m_iCrisisTurns; // Civ4 Reimagined
+	int m_iCrisisCount; // Civ4 Reimagined
 	int m_iInstabilityProgress; // Civ4 Reimagined
 	int m_iPoliticalInstabilityProgress; // Civ4 Reimagined
 	int m_iEconomicInstabilityProgress; // Civ4 Reimagined

@@ -1090,6 +1090,11 @@ int CyPlayer::getInstabilityThreshold()
 	return m_pPlayer ? m_pPlayer->getInstabilityThreshold() : -1;
 }
 
+int CyPlayer::getCrisisCount()
+{
+	return m_pPlayer ? m_pPlayer->getCrisisCount() : -1;
+}
+
 void CyPlayer::resetInstabilityProgress()
 {
 	if (m_pPlayer)
