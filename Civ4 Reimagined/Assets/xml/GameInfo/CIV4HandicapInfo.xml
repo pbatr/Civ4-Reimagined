@@ -70,7 +70,7 @@
 			<iAIPerEraModifier>0</iAIPerEraModifier>
 			<iAIAdvancedStartPercent>100</iAIAdvancedStartPercent>
 			<iAIUniquePowerCostPercent>100</iAIUniquePowerCostPercent>
-			<iAIInstabilityThresholdModifier>80</iAIInstabilityThresholdModifier>
+			<iAIInstabilityThresholdModifier>85</iAIInstabilityThresholdModifier>
 			<Goodies>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
@@ -571,7 +571,7 @@
 			<iAIPerEraModifier>-2</iAIPerEraModifier>
 			<iAIAdvancedStartPercent>120</iAIAdvancedStartPercent>
 			<iAIUniquePowerCostPercent>65</iAIUniquePowerCostPercent>
-			<iAIInstabilityThresholdModifier>125</iAIInstabilityThresholdModifier>
+			<iAIInstabilityThresholdModifier>120</iAIInstabilityThresholdModifier>
 			<Goodies>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
 				<GoodyType>GOODY_LOW_GOLD</GoodyType>
@@ -670,7 +670,7 @@
 			<iAIPerEraModifier>-3</iAIPerEraModifier>
 			<iAIAdvancedStartPercent>135</iAIAdvancedStartPercent>
 			<iAIUniquePowerCostPercent>60</iAIUniquePowerCostPercent>
-			<iAIInstabilityThresholdModifier>140</iAIInstabilityThresholdModifier>
+			<iAIInstabilityThresholdModifier>135</iAIInstabilityThresholdModifier>
 			<Goodies>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
 				<GoodyType>GOODY_LOW_GOLD</GoodyType>
@@ -773,7 +773,7 @@
 			<iAIPerEraModifier>-4</iAIPerEraModifier>
 			<iAIAdvancedStartPercent>150</iAIAdvancedStartPercent>
 			<iAIUniquePowerCostPercent>55</iAIUniquePowerCostPercent>
-			<iAIInstabilityThresholdModifier>160</iAIInstabilityThresholdModifier>
+			<iAIInstabilityThresholdModifier>150</iAIInstabilityThresholdModifier>
 			<Goodies>
 				<GoodyType>GOODY_LOW_GOLD</GoodyType>
 				<GoodyType>GOODY_LOW_GOLD</GoodyType>
@@ -880,7 +880,7 @@
 			<iAIPerEraModifier>-5</iAIPerEraModifier>
 			<iAIAdvancedStartPercent>170</iAIAdvancedStartPercent>
 			<iAIUniquePowerCostPercent>50</iAIUniquePowerCostPercent>
-			<iAIInstabilityThresholdModifier>180</iAIInstabilityThresholdModifier>
+			<iAIInstabilityThresholdModifier>170</iAIInstabilityThresholdModifier>
 			<Goodies>
 				<GoodyType>GOODY_LOW_GOLD</GoodyType>
 				<GoodyType>GOODY_LOW_GOLD</GoodyType>

@@ -12508,6 +12508,7 @@ m_iStartingWorkerUnits(0),
 m_iStartingExploreUnits(0),
 m_iUniquePowerCostPercent(100), // Civ4 Reimagined
 m_iAIUniquePowerCostPercent(100), // Civ4 Reimagined
+m_iAIInstabilityThresholdModifier(100), // Civ4 Reimagined
 m_iAIStartingUnitMultiplier(0),					
 m_iAIStartingDefenseUnits(0),				
 m_iAIStartingWorkerUnits(0),					
@@ -13022,6 +13023,7 @@ void CvHandicapInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iStartingExploreUnits);
 	stream->Write(m_iUniquePowerCostPercent); // Civ4 Reimagined
 	stream->Write(m_iAIUniquePowerCostPercent); // Civ4 Reimagined
+	stream->Write(m_iAIInstabilityThresholdModifier); // Civ4 Reimagined
 	stream->Write(m_iAIStartingUnitMultiplier);
 	stream->Write(m_iAIStartingDefenseUnits);
 	stream->Write(m_iAIStartingWorkerUnits);
@@ -13102,6 +13104,7 @@ bool CvHandicapInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iStartingExploreUnits, "iStartingExploreUnits");
 	pXML->GetChildXmlValByName(&m_iUniquePowerCostPercent, "iUniquePowerCostPercent"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iAIUniquePowerCostPercent, "iAIUniquePowerCostPercent"); // Civ4 Reimagined
+	pXML->GetChildXmlValByName(&m_iAIInstabilityThresholdModifier, "iAIInstabilityThresholdModifier"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iAIStartingUnitMultiplier, "iAIStartingUnitMultiplier");
 	pXML->GetChildXmlValByName(&m_iAIStartingDefenseUnits, "iAIStartingDefenseUnits");
 	pXML->GetChildXmlValByName(&m_iAIStartingWorkerUnits, "iAIStartingWorkerUnits");
