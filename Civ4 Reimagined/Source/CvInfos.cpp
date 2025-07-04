@@ -12744,6 +12744,12 @@ int CvHandicapInfo::getAIUniquePowerCostPercent() const
 	return m_iAIUniquePowerCostPercent; 
 }
 
+// Civ4 Reimagined
+int CvHandicapInfo::getAIInstabilityThresholdModifier() const
+{
+	return m_iAIInstabilityThresholdModifier; 
+}
+
 int CvHandicapInfo::getAIStartingUnitMultiplier() const
 {
 	return m_iAIStartingUnitMultiplier;
@@ -12928,6 +12934,7 @@ void CvHandicapInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iStartingExploreUnits);
 	stream->Read(&m_iUniquePowerCostPercent); // Civ4 Reimagined
 	stream->Read(&m_iAIUniquePowerCostPercent); // Civ4 Reimagined
+	stream->Read(&m_iAIInstabilityThresholdModifier); // Civ4 Reimagined
 	stream->Read(&m_iAIStartingUnitMultiplier);
 	stream->Read(&m_iAIStartingDefenseUnits);
 	stream->Read(&m_iAIStartingWorkerUnits);

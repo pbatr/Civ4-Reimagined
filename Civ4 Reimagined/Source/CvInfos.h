@@ -2717,6 +2717,7 @@ public:
 	int getStartingExploreUnits() const;						// Exposed to Python
 	int getUniquePowerCostPercent() const; // Civ4 Reimagined
 	int getAIUniquePowerCostPercent() const; // Civ4 Reimagined
+	int getAIInstabilityThresholdModifier() const; // Civ4 Reimagined
 	int getAIStartingUnitMultiplier() const;				// Exposed to Python
 	int getAIStartingDefenseUnits() const;				// Exposed to Python
 	int getAIStartingWorkerUnits() const;				// Exposed to Python
@@ -2794,6 +2795,7 @@ protected:
 	int m_iStartingExploreUnits;
 	int m_iUniquePowerCostPercent; // Civ4 Reimagined
 	int m_iAIUniquePowerCostPercent; // Civ4 Reimagined
+	int m_iAIInstabilityThresholdModifier; // Civ4 Reimagined
 	int m_iAIStartingUnitMultiplier;					
 	int m_iAIStartingDefenseUnits;				
 	int m_iAIStartingWorkerUnits;					

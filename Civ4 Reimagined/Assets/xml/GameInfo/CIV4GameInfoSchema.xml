@@ -405,6 +405,7 @@
 	<ElementType name="iAIPerEraModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="iAIAdvancedStartPercent" content="textOnly" dt:type="int"/>
 	<ElementType name="iAIUniquePowerCostPercent" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
+	<ElementType name="iAIInstabilityThresholdModifier" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
 	<ElementType name="GoodyType" content="textOnly"/>
 	<ElementType name="Goodies" content="eltOnly">
 		<element type="GoodyType" maxOccurs="*"/>
@@ -485,6 +486,7 @@
 		<element type="iAIPerEraModifier"/>
 		<element type="iAIAdvancedStartPercent"/>
 		<element type="iAIUniquePowerCostPercent"/> <!-- Civ4 Reimagined -->
+		<element type="iAIInstabilityThresholdModifier"/> <!-- Civ4 Reimagined -->
 		<element type="Goodies" maxOccurs="*"/>
 		<element type="FreeTechs" maxOccurs="*"/>
 		<element type="AIFreeTechs" maxOccurs="*"/>

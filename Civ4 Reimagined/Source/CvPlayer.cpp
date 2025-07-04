@@ -25096,6 +25096,13 @@ int CvPlayer::getInstabilityThreshold() const
 		iThreshold += (iCrisisCount * GC.getDefineINT("CRISIS_THRESHOLD_INCREASE"));
 	}
 
+	// Apply AI difficulty modifier (AI players get higher thresholds on higher difficulties)
+	if (!isHuman())
+	{
+		iThreshold *= GC.getHandicapInfo(GC.getGameINLINE().getHandicapType()).getAIInstabilityThresholdModifier();
+		iThreshold /= 100;
+	}
+
 	return std::max(1, iThreshold);
 }
 

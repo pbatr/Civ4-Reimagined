@@ -70,6 +70,7 @@
 			<iAIPerEraModifier>0</iAIPerEraModifier>
 			<iAIAdvancedStartPercent>100</iAIAdvancedStartPercent>
 			<iAIUniquePowerCostPercent>100</iAIUniquePowerCostPercent>
+			<iAIInstabilityThresholdModifier>80</iAIInstabilityThresholdModifier>
 			<Goodies>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
@@ -177,6 +178,7 @@
 			<iAIPerEraModifier>0</iAIPerEraModifier>
 			<iAIAdvancedStartPercent>100</iAIAdvancedStartPercent>
 			<iAIUniquePowerCostPercent>90</iAIUniquePowerCostPercent>
+			<iAIInstabilityThresholdModifier>90</iAIInstabilityThresholdModifier>
 			<Goodies>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
@@ -280,6 +282,7 @@
 			<iAIPerEraModifier>0</iAIPerEraModifier>
 			<iAIAdvancedStartPercent>100</iAIAdvancedStartPercent>
 			<iAIUniquePowerCostPercent>80</iAIUniquePowerCostPercent>
+			<iAIInstabilityThresholdModifier>95</iAIInstabilityThresholdModifier>
 			<Goodies>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
@@ -378,6 +381,7 @@
 			<iAIPerEraModifier>0</iAIPerEraModifier>
 			<iAIAdvancedStartPercent>100</iAIAdvancedStartPercent>
 			<iAIUniquePowerCostPercent>75</iAIUniquePowerCostPercent>
+			<iAIInstabilityThresholdModifier>100</iAIInstabilityThresholdModifier>
 			<Goodies>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
@@ -472,6 +476,7 @@
 			<iAIPerEraModifier>-1</iAIPerEraModifier>
 			<iAIAdvancedStartPercent>110</iAIAdvancedStartPercent>
 			<iAIUniquePowerCostPercent>70</iAIUniquePowerCostPercent>
+			<iAIInstabilityThresholdModifier>110</iAIInstabilityThresholdModifier>
 			<Goodies>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
@@ -566,6 +571,7 @@
 			<iAIPerEraModifier>-2</iAIPerEraModifier>
 			<iAIAdvancedStartPercent>120</iAIAdvancedStartPercent>
 			<iAIUniquePowerCostPercent>65</iAIUniquePowerCostPercent>
+			<iAIInstabilityThresholdModifier>125</iAIInstabilityThresholdModifier>
 			<Goodies>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
 				<GoodyType>GOODY_LOW_GOLD</GoodyType>
@@ -664,6 +670,7 @@
 			<iAIPerEraModifier>-3</iAIPerEraModifier>
 			<iAIAdvancedStartPercent>135</iAIAdvancedStartPercent>
 			<iAIUniquePowerCostPercent>60</iAIUniquePowerCostPercent>
+			<iAIInstabilityThresholdModifier>140</iAIInstabilityThresholdModifier>
 			<Goodies>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
 				<GoodyType>GOODY_LOW_GOLD</GoodyType>
@@ -766,6 +773,7 @@
 			<iAIPerEraModifier>-4</iAIPerEraModifier>
 			<iAIAdvancedStartPercent>150</iAIAdvancedStartPercent>
 			<iAIUniquePowerCostPercent>55</iAIUniquePowerCostPercent>
+			<iAIInstabilityThresholdModifier>160</iAIInstabilityThresholdModifier>
 			<Goodies>
 				<GoodyType>GOODY_LOW_GOLD</GoodyType>
 				<GoodyType>GOODY_LOW_GOLD</GoodyType>
@@ -872,6 +880,7 @@
 			<iAIPerEraModifier>-5</iAIPerEraModifier>
 			<iAIAdvancedStartPercent>170</iAIAdvancedStartPercent>
 			<iAIUniquePowerCostPercent>50</iAIUniquePowerCostPercent>
+			<iAIInstabilityThresholdModifier>180</iAIInstabilityThresholdModifier>
 			<Goodies>
 				<GoodyType>GOODY_LOW_GOLD</GoodyType>
 				<GoodyType>GOODY_LOW_GOLD</GoodyType>
