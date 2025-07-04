@@ -92,4 +92,28 @@
 		<Italian>Progresso</Italian>
 		<Spanish>Progreso</Spanish>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_PLAYER_CIVIL_WAR_CRISIS</Tag>
+		<English>%s1 has entered a Civil War Crisis!</English>
+		<French>%s1 est entré dans une crise de guerre civile !</French>
+		<German>%s1 ist in eine Bürgerkriegskrise geraten!</German>
+		<Italian>%s1 è entrato in una crisi di guerra civile!</Italian>
+		<Spanish>¡%s1 ha entrado en una crisis de guerra civil!</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_PLAYER_FAMINE_CRISIS</Tag>
+		<English>%s1 has entered a Famine Crisis!</English>
+		<French>%s1 est entré dans une crise de famine !</French>
+		<German>%s1 ist in eine Hungerkrise geraten!</German>
+		<Italian>%s1 è entrato in una crisi di carestia!</Italian>
+		<Spanish>¡%s1 ha entrado en una crisis de hambruna!</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_PLAYER_INFLATION_CRISIS</Tag>
+		<English>%s1 has entered an Inflation Crisis!</English>
+		<French>%s1 est entré dans une crise d'inflation !</French>
+		<German>%s1 ist in eine Inflationskrise geraten!</German>
+		<Italian>%s1 è entrato in una crisi di inflazione!</Italian>
+		<Spanish>¡%s1 ha entrado en una crisis de inflación!</Spanish>
+	</TEXT>
 </Civ4GameText> 
