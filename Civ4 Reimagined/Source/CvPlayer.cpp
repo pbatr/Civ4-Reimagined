@@ -25119,6 +25119,14 @@ void CvPlayer::checkInstabilityProgressThreshold()
 			return;
 		}
 		
+		// Log crisis probabilities
+		int iPoliticalProb = (getPoliticalInstabilityProgress() * 100) / iTotalInstabilityProgress;
+		int iEconomicProb = (getEconomicInstabilityProgress() * 100) / iTotalInstabilityProgress;
+		int iHealthProb = (getHealthInstabilityProgress() * 100) / iTotalInstabilityProgress;
+		
+		logBBAI("Crisis probabilities for player %d: Political %d%% (%d), Economic %d%% (%d), Health %d%% (%d) - Total: %d", 
+			getID(), iPoliticalProb, getPoliticalInstabilityProgress(), iEconomicProb, getEconomicInstabilityProgress(), iHealthProb, getHealthInstabilityProgress(), iTotalInstabilityProgress);
+		
 		int iInstabilityRand = GC.getGameINLINE().getSorenRandNum(iTotalInstabilityProgress, "Instability Crisis Type");
 		
 		if (iInstabilityRand < getPoliticalInstabilityProgress())
@@ -30804,7 +30812,7 @@ void CvPlayer::setIsCivilWarCrisis(bool bNewValue)
 
 	if (bNewValue)
 	{
-		logBBAI("Civil War Crisis started for player %d", getID());
+		logBBAI("Civil War Crisis started for player %d on turn %d (%d %s)", getID(), GC.getGameINLINE().getGameTurn(), std::abs(GC.getGameINLINE().getGameTurnYear()), GC.getGameINLINE().getGameTurnYear()>0 ? "AD" : "BC");
 		const CvWString szMessage = "CIVIL WAR CRISIS STARTED";
 		gDLL->getInterfaceIFace()->addHumanMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath());
 	} 
@@ -30829,7 +30837,7 @@ void CvPlayer::setIsFamineCrisis(bool bNewValue)
 
 	if (bNewValue)
 	{
-		logBBAI("Famine Crisis started for player %d", getID());
+		logBBAI("Famine Crisis started for player %d on turn %d (%d %s)", getID(), GC.getGameINLINE().getGameTurn(), std::abs(GC.getGameINLINE().getGameTurnYear()), GC.getGameINLINE().getGameTurnYear()>0 ? "AD" : "BC");
 		const CvWString szMessage = "FAMINE CRISIS STARTED";
 		gDLL->getInterfaceIFace()->addHumanMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath());
 	} 
@@ -30854,7 +30862,7 @@ void CvPlayer::setIsInflationCrisis(bool bNewValue)
 
 	if (bNewValue)
 	{
-		logBBAI("Inflation Crisis started for player %d", getID());
+		logBBAI("Inflation Crisis started for player %d on turn %d (%d %s)", getID(), GC.getGameINLINE().getGameTurn(), std::abs(GC.getGameINLINE().getGameTurnYear()), GC.getGameINLINE().getGameTurnYear()>0 ? "AD" : "BC");
 		const CvWString szMessage = "INFLATION CRISIS STARTED";
 		gDLL->getInterfaceIFace()->addHumanMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath());
 	} 
