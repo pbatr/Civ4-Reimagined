@@ -25009,7 +25009,7 @@ void CvPlayer::changePoliticalInstabilityProgress(int iChange, std::string sLogM
 
 	if (iChange != 0)
 	{
-		logBBAI("[Player %d] Political Instability from %S: %d", getID(), sLogMessage.c_str(), iChange);
+		logBBAI("[Player %d] Political Instability from %s: %d", getID(), sLogMessage.c_str(), iChange);
 		m_iPoliticalInstabilityProgress += iChange;
 		FAssert(getPoliticalInstabilityProgress() >= 0);
 		changeInstabilityProgress(iChange);
@@ -25037,7 +25037,7 @@ void CvPlayer::changeEconomicInstabilityProgress(int iChange, std::string sLogMe
 
 	if (iChange != 0)
 	{
-		logBBAI("[Player %d] Economic Instability from %S: %d", getID(), sLogMessage.c_str(), iChange);
+		logBBAI("[Player %d] Economic Instability from %s: %d", getID(), sLogMessage.c_str(), iChange);
 		m_iEconomicInstabilityProgress += iChange;
 		FAssert(getEconomicInstabilityProgress() >= 0);
 		changeInstabilityProgress(iChange);
@@ -25065,7 +25065,7 @@ void CvPlayer::changeHealthInstabilityProgress(int iChange, std::string sLogMess
 
 	if (iChange != 0)
 	{
-		logBBAI("[Player %d] Health Instability from %S: %d", getID(), sLogMessage.c_str(), iChange);
+		logBBAI("[Player %d] Health Instability from %s: %d", getID(), sLogMessage.c_str(), iChange);
 		m_iHealthInstabilityProgress += iChange;
 		FAssert(getHealthInstabilityProgress() >= 0);
 		changeInstabilityProgress(iChange);
