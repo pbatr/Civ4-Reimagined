@@ -24964,9 +24964,13 @@ void CvPlayer::doInstability()
 		return;
 	}
 
-	updateEconomicInstabilityFromCurrencyDevaluation();
-	updateEconomicInstabilityFromEconomicGrowth();
-	updateEconomicInstabilityFromNegativeIncome();
+	// Only apply more sophisticated economic instability if the player has researched Currency technology
+    if (GET_TEAM(getTeam()).isHasTech((TechTypes)GC.getInfoTypeForString("TECH_CURRENCY")))
+    {
+        updateEconomicInstabilityFromCurrencyDevaluation();
+		updateEconomicInstabilityFromEconomicGrowth();
+		updateEconomicInstabilityFromNegativeIncome();
+    }
 }
 
 // Civ4 Reimagined
