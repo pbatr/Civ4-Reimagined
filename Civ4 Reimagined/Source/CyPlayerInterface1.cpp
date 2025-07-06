@@ -481,5 +481,9 @@ void CyPlayerPythonInterface1(python::class_<CyPlayer>& x)
 		.def("getEventTriggerWeight", &CyPlayer::getEventTriggerWeight, "int getEventTriggerWeight(int eEventTrigger)")
 		// Civ4 Reimagined
 		.def("getIdeology", &CyPlayer::getIdeology, "int ()")
+		.def("isCivilWarCrisis", &CyPlayer::isCivilWarCrisis, "bool ()")
+		.def("isFamineCrisis", &CyPlayer::isFamineCrisis, "bool ()")
+		.def("isInflationCrisis", &CyPlayer::isInflationCrisis, "bool ()")
+		.def("isCrisis", &CyPlayer::isCrisis, "bool ()")
 		;
 }

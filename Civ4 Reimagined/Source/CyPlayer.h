@@ -550,6 +550,12 @@ public:
 	// Civ4 Reimagined
 	int /*IdeologyTypes*/ getIdeology() const;
 
+	// Crisis state methods
+	bool isCivilWarCrisis();
+	bool isFamineCrisis();
+	bool isInflationCrisis();
+	bool isCrisis();
+
 private:
 	CvPlayer* m_pPlayer;
 };

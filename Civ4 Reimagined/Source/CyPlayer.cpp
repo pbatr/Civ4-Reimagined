@@ -2417,3 +2417,16 @@ int /*IdeologyTypes*/ CyPlayer::getIdeology() const
 {
 	return m_pPlayer ? (int) m_pPlayer->getIdeology() : IDEOLOGY_CONSERVATISM;
 }
+
+bool CyPlayer::isCivilWarCrisis() {
+    return m_pPlayer ? m_pPlayer->isCivilWarCrisis() : false;
+}
+bool CyPlayer::isFamineCrisis() {
+    return m_pPlayer ? m_pPlayer->isFamineCrisis() : false;
+}
+bool CyPlayer::isInflationCrisis() {
+    return m_pPlayer ? m_pPlayer->isInflationCrisis() : false;
+}
+bool CyPlayer::isCrisis() {
+    return m_pPlayer ? m_pPlayer->isCrisis() : false;
+}
