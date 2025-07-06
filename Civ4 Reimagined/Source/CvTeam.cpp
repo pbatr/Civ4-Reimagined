@@ -5759,7 +5759,10 @@ void CvTeam::setHasTech(TechTypes eIndex, bool bNewValue, PlayerTypes ePlayer, b
 				{
 					if (GET_PLAYER((PlayerTypes)iI).getTeam() == getID())
 					{
-						GET_PLAYER((PlayerTypes)iI).changePoliticalInstabilityProgress(iInstability, "Technology Advance");
+						if (GET_PLAYER((PlayerTypes)iI).getIdeology() == IDEOLOGY_CONSERVATISM || GET_PLAYER((PlayerTypes)iI).getIdeology() == IDEOLOGY_FASCISM)
+						{
+							GET_PLAYER((PlayerTypes)iI).changePoliticalInstabilityProgress(iInstability, "Technology Advance");
+						}
 					}
 				}
 			}
