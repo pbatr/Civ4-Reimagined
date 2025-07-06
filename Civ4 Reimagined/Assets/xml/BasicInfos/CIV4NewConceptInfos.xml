@@ -116,5 +116,10 @@
 			<Description>TXT_KEY_CONCEPT_IDEOLOGIES</Description>
 			<Civilopedia>TXT_KEY_CONCEPT_IDEOLOGIES_PEDIA</Civilopedia>
 		</NewConceptInfo>
+		<NewConceptInfo>
+			<Type>CONCEPT_INSTABILITY</Type>
+			<Description>TXT_KEY_CONCEPT_INSTABILITY</Description>
+			<Civilopedia>TXT_KEY_CONCEPT_INSTABILITY_PEDIA</Civilopedia>
+		</NewConceptInfo>
 	</NewConceptInfos>
 </Civ4NewConceptInfos>

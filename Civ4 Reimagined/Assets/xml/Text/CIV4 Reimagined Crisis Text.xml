@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+	Civ4 Reimagined Crisis System
+	Text Strings
+-->
+<Civ4GameText xmlns="http://www.firaxis.com">
+	<TEXT>
+		<Tag>TXT_KEY_CRISIS_POLITICAL</Tag>
+		<English>Political</English>
+		<French>Politique</French>
+		<German>Politisch</German>
+		<Italian>Politico</Italian>
+		<Spanish>Político</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CRISIS_ECONOMIC</Tag>
+		<English>Economic</English>
+		<French>Économique</French>
+		<German>Wirtschaftlich</German>
+		<Italian>Economico</Italian>
+		<Spanish>Económico</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CRISIS_HEALTH</Tag>
+		<English>Health</English>
+		<French>Santé</French>
+		<German>Gesundheit</German>
+		<Italian>Salute</Italian>
+		<Spanish>Salud</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_INSTABILITY_NO_THRESHOLD</Tag>
+		<English>No Crisis Threshold Set</English>
+		<French>Aucun seuil de crise défini</French>
+		<German>Kein Krisenschwellenwert festgelegt</German>
+		<Italian>Nessuna soglia di crisi impostata</Italian>
+		<Spanish>Sin umbral de crisis establecido</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_INSTABILITY_PROGRESS</Tag>
+		<English>Instability: %d1/%d2</English>
+		<French>Instabilité : %d1/%d2</French>
+		<German>Instabilität: %d1/%d2</German>
+		<Italian>Instabilità: %d1/%d2</Italian>
+		<Spanish>Inestabilidad: %d1/%d2</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_INSTABILITY_TITLE</Tag>
+		<English>Instability Progress</English>
+		<French>Progrès de l'instabilité</French>
+		<German>Instabilitätsfortschritt</German>
+		<Italian>Progresso instabilità</Italian>
+		<Spanish>Progreso de inestabilidad</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_INSTABILITY_TOTAL</Tag>
+		<English>Total Instability</English>
+		<French>Instabilité totale</French>
+		<German>Gesamtinstabilität</German>
+		<Italian>Instabilità totale</Italian>
+		<Spanish>Inestabilidad total</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_INSTABILITY_POLITICAL</Tag>
+		<English>Political Instability</English>
+		<French>Instabilité politique</French>
+		<German>Politische Instabilität</German>
+		<Italian>Instabilità politica</Italian>
+		<Spanish>Inestabilidad política</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_INSTABILITY_ECONOMIC</Tag>
+		<English>Economic Instability</English>
+		<French>Instabilité économique</French>
+		<German>Wirtschaftliche Instabilität</German>
+		<Italian>Instabilità economica</Italian>
+		<Spanish>Inestabilidad económica</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_INSTABILITY_HEALTH</Tag>
+		<English>Health Instability</English>
+		<French>Instabilité sanitaire</French>
+		<German>Gesundheitsinstabilität</German>
+		<Italian>Instabilità sanitaria</Italian>
+		<Spanish>Inestabilidad sanitaria</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_INSTABILITY_PERCENT</Tag>
+		<English>Progress</English>
+		<French>Progrès</French>
+		<German>Fortschritt</German>
+		<Italian>Progresso</Italian>
+		<Spanish>Progreso</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_PLAYER_CIVIL_WAR_CRISIS</Tag>
+		<English>%s1 has entered a Civil War Crisis!</English>
+		<French>%s1 est entré dans une crise de guerre civile !</French>
+		<German>%s1 ist in eine Bürgerkriegskrise geraten!</German>
+		<Italian>%s1 è entrato in una crisi di guerra civile!</Italian>
+		<Spanish>¡%s1 ha entrado en una crisis de guerra civil!</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_PLAYER_FAMINE_CRISIS</Tag>
+		<English>%s1 has entered a Famine Crisis!</English>
+		<French>%s1 est entré dans une crise de famine !</French>
+		<German>%s1 ist in eine Hungerkrise geraten!</German>
+		<Italian>%s1 è entrato in una crisi di carestia!</Italian>
+		<Spanish>¡%s1 ha entrado en una crisis de hambruna!</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_PLAYER_INFLATION_CRISIS</Tag>
+		<English>%s1 has entered an Inflation Crisis!</English>
+		<French>%s1 est entré dans une crise d'inflation !</French>
+		<German>%s1 ist in eine Inflationskrise geraten!</German>
+		<Italian>%s1 è entrato in una crisi di inflazione!</Italian>
+		<Spanish>¡%s1 ha entrado en una crisis de inflación!</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CONCEPT_INSTABILITY</Tag>
+		<English>Instability</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CONCEPT_INSTABILITY_PEDIA</Tag>+
+		<English>[H1]Instability System[\H1][PARAGRAPH:2][BOLD]Overview[\BOLD][PARAGRAPH:1]The Instability System in Civ4 Reimagined represents the internal challenges that civilizations face as they grow and develop. Inspired by historical patterns and the book "Why Nations Fail," instability can lead to three types of crises: Political, Economic, and Health. Each type of instability accumulates independently and can trigger devastating consequences if left unchecked.[PARAGRAPH:2][BOLD]Types of Instability[\BOLD][PARAGRAPH:1][COLOR_HIGHLIGHT_TEXT]Political Instability[COLOR_REVERT]: Represents civil unrest, government corruption, and institutional failures. High political instability can lead to civil wars, revolutions, or wars of independence.[NEWLINE][COLOR_HIGHLIGHT_TEXT]Economic Instability[COLOR_REVERT]: Represents financial crises, market failures, and economic mismanagement. High economic instability can lead to economic collapse, hyperinflation, or depression.[NEWLINE][COLOR_HIGHLIGHT_TEXT]Health Instability[COLOR_REVERT]: Represents public health crises, famines, and disease outbreaks. High health instability can lead to epidemics, mass starvation, or public health emergencies.[PARAGRAPH:2][BOLD]Instability Sources by Ideology[\BOLD][PARAGRAPH:1]Different ideologies face unique instability challenges based on their institutional characteristics:[PARAGRAPH:1][COLOR_HIGHLIGHT_TEXT]Conservatism and Fascism[COLOR_REVERT]: Authoritarian regimes suffer increased political instability from technological progress. This reflects the core thesis of "Why Nations Fail" - extractive institutions become unstable as technology advances because they cannot adapt to changing economic and social demands.[PARAGRAPH:1][COLOR_HIGHLIGHT_TEXT]Liberalism[COLOR_REVERT]: Liberal democracies are vulnerable to economic stagnation. When the economy doesn't grow from one turn to the next, liberalism suffers economic instability, reflecting how liberal democracies are particularly sensitive to economic downturns.[PARAGRAPH:1][COLOR_HIGHLIGHT_TEXT]Communism[COLOR_REVERT]: Communist regimes are vulnerable to food shortages. When cities have insufficient food production, communism suffers health instability, reflecting historical famines under communist regimes like Stalin's Soviet Union and Mao's China.[PARAGRAPH:2][BOLD]General Instability Sources[\BOLD][PARAGRAPH:1]All civilizations face these common instability triggers:[PARAGRAPH:1][COLOR_HIGHLIGHT_TEXT]War Weariness[COLOR_REVERT]: Prolonged wars increase political instability as populations grow tired of conflict.[NEWLINE][COLOR_HIGHLIGHT_TEXT]Economic Deficits[COLOR_REVERT]: Running negative gold income increases economic instability.[NEWLINE][COLOR_HIGHLIGHT_TEXT]Rapid City Growth[COLOR_REVERT]: Cities growing too quickly can strain resources and increase instability.[NEWLINE][COLOR_HIGHLIGHT_TEXT]High Maintenance Costs[COLOR_REVERT]: Excessive city and unit maintenance can represent extractive taxation and increase instability.[PARAGRAPH:2][BOLD]Managing Instability[\BOLD][PARAGRAPH:1]To reduce instability, players should:[PARAGRAPH:1]• Maintain stable economic growth and avoid deficits[NEWLINE]• Manage city growth carefully to avoid resource strain[NEWLINE]• Consider the stability implications of different ideologies[NEWLINE]• Balance military expansion with domestic stability[NEWLINE]• Invest in infrastructure to support population growth[PARAGRAPH:2][BOLD]Historical Context[\BOLD][PARAGRAPH:1]This system is inspired by real historical patterns where different types of governments faced distinct challenges. Authoritarian regimes often struggled with technological change, liberal democracies were vulnerable to economic crises, and communist regimes frequently experienced food distribution problems. The instability system encourages players to consider the long-term consequences of their governance choices and economic policies.</English>
+	</TEXT>
+</Civ4GameText> 
