@@ -9575,7 +9575,7 @@ void CvPlayer::revolution(CivicTypes* paeNewCivics, bool bForce, bool bAnarchy)
 	const int iIdeologicalInfluenceLoss = iOldIdeologicalInfluence - iNewIdeologicalInfluence;
 	if (iIdeologicalInfluenceLoss > 0)
 	{
-		const int iInstability = iIdeologicalInfluenceLoss;
+		const int iInstability = 2 * iIdeologicalInfluenceLoss;
 		changePoliticalInstabilityProgress(iInstability, "Ideological Influence loss");
 	}
 
@@ -28808,7 +28808,7 @@ void CvPlayer::updateEconomicInstabilityFromEconomicGrowth()
 			float fEconomicGrowthRate = (float)iCurrentEconomy / (float)iPreviousEconomy;
 
 			if (fEconomicGrowthRate > 1.05f) {
-				changeEconomicInstabilityProgress(1, "rapid Economic Growth");
+				changeEconomicInstabilityProgress(2, "rapid Economic Growth");
 			}
 		}
 	}
