@@ -2745,9 +2745,6 @@ bool CvDLLButtonPopup::launchCrisisPopup(CvPopup* pPopup, CvPopupInfo &info)
 	gDLL->getInterfaceIFace()->popupSetHeaderString(pPopup, szHeader);
 	gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, szBody);
 	
-	// Add an "OK" button to dismiss the popup
-	gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, gDLL->getText("TXT_KEY_POPUP_OK"), szArtPath, 0, WIDGET_GENERAL);
-	
 	gDLL->getInterfaceIFace()->popupLaunch(pPopup, true, POPUPSTATE_IMMEDIATE);
 	
 	return true;
