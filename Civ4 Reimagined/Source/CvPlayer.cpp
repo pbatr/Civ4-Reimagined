@@ -24966,6 +24966,7 @@ void CvPlayer::doInstability()
 	}
 
 	updateEconomicInstabilityFromNegativeIncome();
+	updateEconomicInstabilityFromLiberalEconomicStagnation();
 
 	// Only apply more sophisticated economic instability if the player has researched Currency technology
     if (GET_TEAM(getTeam()).isHasTech((TechTypes)GC.getInfoTypeForString("TECH_CURRENCY")))
@@ -28821,6 +28822,29 @@ void CvPlayer::updateEconomicInstabilityFromNegativeIncome()
 	if (iIncome < 0)
 	{
 		changeEconomicInstabilityProgress(1, "negative Income");
+	}
+}
+
+void CvPlayer::updateEconomicInstabilityFromLiberalEconomicStagnation()
+{
+	if (getIdeology() != IDEOLOGY_LIBERALISM	)
+	{
+		return;
+	}
+	
+	const int iGameTurn = GC.getGameINLINE().getGameTurn();
+	if (iGameTurn > 1)
+	{
+		int iCurrentEconomy = calculateTotalCommerce();
+		int iPreviousEconomy = getEconomyHistory(iGameTurn - 1);
+		
+		if (iPreviousEconomy > 0)
+		{
+			if (iCurrentEconomy <= iPreviousEconomy)
+			{
+				changeEconomicInstabilityProgress(12, "Economic Stagnation");
+			}
+		}
 	}
 }
 

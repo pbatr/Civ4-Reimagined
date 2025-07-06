@@ -1638,6 +1638,7 @@ public:
 	void updateEconomicInstabilityFromCurrencyDevaluation();
 	void updateEconomicInstabilityFromEconomicGrowth();
 	void updateEconomicInstabilityFromNegativeIncome();
+	void updateEconomicInstabilityFromLiberalEconomicStagnation();
 
 	int getForeignTradeIdeologyModifier(IdeologyTypes Index) const;
 	void changeForeignTradeIdeologyModifier(IdeologyTypes Index, int iChange);
