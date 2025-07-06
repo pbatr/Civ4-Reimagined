@@ -999,6 +999,9 @@ bool CvDLLButtonPopup::launchButtonPopup(CvPopup* pPopup, CvPopupInfo &info)
 	case BUTTONPOPUP_FOUND_RELIGION:
 		bLaunched = launchFoundReligionPopup(pPopup, info);
 		break;
+	case BUTTONPOPUP_CRISIS:
+		bLaunched = launchCrisisPopup(pPopup, info);
+		break;
 	default:
 		FAssert(false);
 		break;
@@ -2699,5 +2702,53 @@ bool CvDLLButtonPopup::launchFoundReligionPopup(CvPopup* pPopup, CvPopupInfo &in
 
 	gDLL->getInterfaceIFace()->popupLaunch(pPopup, false, POPUPSTATE_IMMEDIATE);
 
+	return true;
+}
+
+bool CvDLLButtonPopup::launchCrisisPopup(CvPopup* pPopup, CvPopupInfo &info)
+{
+	PlayerTypes ePlayer = GC.getGameINLINE().getActivePlayer();
+	if (ePlayer == NO_PLAYER)
+	{
+		return false;
+	}
+
+	CvPlayer& kPlayer = GET_PLAYER(ePlayer);
+	
+	// Determine crisis type from data1
+	int iCrisisType = info.getData1();
+	CvWString szHeader;
+	CvWString szBody;
+	CvString szArtPath;
+	
+	switch (iCrisisType)
+	{
+	case 0: // Political Crisis (Civil War)
+		szHeader = gDLL->getText("TXT_KEY_CRISIS_POLITICAL_HEADER");
+		szBody = gDLL->getText("TXT_KEY_CRISIS_POLITICAL_BODY", kPlayer.getNameKey());
+		szArtPath = ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath();
+		break;
+	case 1: // Economic Crisis (Inflation)
+		szHeader = gDLL->getText("TXT_KEY_CRISIS_ECONOMIC_HEADER");
+		szBody = gDLL->getText("TXT_KEY_CRISIS_ECONOMIC_BODY", kPlayer.getNameKey());
+		szArtPath = ARTFILEMGR.getInterfaceArtInfo("INTERFACE_BUTTONS_GOLD")->getPath();
+		break;
+	case 2: // Health Crisis (Famine)
+		szHeader = gDLL->getText("TXT_KEY_CRISIS_HEALTH_HEADER");
+		szBody = gDLL->getText("TXT_KEY_CRISIS_HEALTH_BODY", kPlayer.getNameKey());
+		szArtPath = ARTFILEMGR.getInterfaceArtInfo("INTERFACE_BUTTONS_HEALTH")->getPath();
+		break;
+	default:
+		return false;
+	}
+	
+	gDLL->getInterfaceIFace()->popupSetHeaderString(pPopup, szHeader);
+	gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, szBody);
+	
+	// Add an "OK" button to dismiss the popup
+	gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, gDLL->getText("TXT_KEY_POPUP_OK"), szArtPath, 0, WIDGET_GENERAL);
+	
+	gDLL->getInterfaceIFace()->popupLaunch(pPopup, true, POPUPSTATE_IMMEDIATE);
+	
 	return true;
 }

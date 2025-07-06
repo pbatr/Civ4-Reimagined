@@ -124,4 +124,28 @@
 		<Tag>TXT_KEY_CONCEPT_INSTABILITY_PEDIA</Tag>
 		<English>[H1]Instability System[\H1][PARAGRAPH:2][BOLD]Overview[\BOLD][PARAGRAPH:2]The Instability System in Civ4 Reimagined represents the internal challenges that civilizations face as they grow and develop. High instability can lead to three types of crises: Political, Economic, and Health. Each type accumulates independently and can trigger devastating consequences if left unchecked.[PARAGRAPH:1]Political instability represents civil unrest, government corruption, and institutional failures. Economic instability represents financial crises, market failures, and economic mismanagement. Health instability represents public health crises, famines, and disease outbreaks.[PARAGRAPH:1]Different ideologies face unique instability challenges. Authoritarian regimes (Conservatism and Fascism) suffer political instability from technological progress. Liberal democracies are vulnerable to economic stagnation. Communist regimes are vulnerable to food shortages.[PARAGRAPH:1][H2]Political instability sources:[\H2][NEWLINE]. Technology advances (authoritarian regimes only)[NEWLINE]. Angry population[NEWLINE]. Using Slavery[NEWLINE]. Foreign religion spread[NEWLINE]. Barbarian units in empire[NEWLINE]. Cultural conflicts[NEWLINE]. Colonial unrest[NEWLINE]. Losing capital[NEWLINE]. Losing ideological influence by changing Civics[PARAGRAPH:1][H2]Economic instability sources:[\H2][NEWLINE]. Economic stagnation (liberalism only)[NEWLINE]. Negative income[NEWLINE]. Rapid economic growth[NEWLINE]. Currency devaluation: When gold reserves are low relative to economic activity[NEWLINE]. City blockades[NEWLINE]. Foreign corporation spread[NEWLINE]. Negative treasury[PARAGRAPH:1][H2]Health instability sources:[\H2][NEWLINE]. Food shortages (communism only)[NEWLINE]. Founding or conquering a city[NEWLINE]. Population growth[NEWLINE]. Unhealthy population[NEWLINE]. Pillaged improvements</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CRISIS_POLITICAL_HEADER</Tag>
+		<English>Political Crisis!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CRISIS_POLITICAL_BODY</Tag>
+		<English>%s1 is experiencing a severe political crisis! Civil unrest, government corruption, and institutional failures have plunged the nation into chaos. The people are demanding change, and the very foundations of society are being tested.[NEWLINE][NEWLINE]Effects:[NEWLINE]• Military units may desert[NEWLINE]• Cities may revolt[NEWLINE]• Production and commerce reduced[NEWLINE]• Diplomatic relations strained</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CRISIS_ECONOMIC_HEADER</Tag>
+		<English>Economic Crisis!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CRISIS_ECONOMIC_BODY</Tag>
+		<English>%s1 is facing a devastating economic crisis! Financial instability, market failures, and economic mismanagement have created a perfect storm of economic disaster. The treasury is bleeding gold, and the economy is in freefall.[NEWLINE][NEWLINE]Effects:[NEWLINE]• Gold income severely reduced[NEWLINE]• Maintenance costs increased[NEWLINE]• Trade routes disrupted[NEWLINE]• Economic growth halted</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CRISIS_HEALTH_HEADER</Tag>
+		<English>Health Crisis!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CRISIS_HEALTH_BODY</Tag>
+		<English>%s1 is suffering from a catastrophic health crisis! Disease outbreaks, famines, and public health failures have created widespread suffering. The population is dying, and the nation's health infrastructure has collapsed.[NEWLINE][NEWLINE]Effects:[NEWLINE]• Population growth halted[NEWLINE]• Cities may lose population[NEWLINE]• Health buildings less effective[NEWLINE]• Worker productivity reduced</English>
+	</TEXT>
 </Civ4GameText> 
