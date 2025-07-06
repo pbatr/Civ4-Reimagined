@@ -15473,6 +15473,12 @@ void CvCity::doGrowth()
 
 	iDiff = foodDifference();
 
+	// Civ4 Reimagined: Communist regimes suffer instability from food shortages
+	if (iDiff <= 0 && GET_PLAYER(getOwnerINLINE()).getIdeology() == IDEOLOGY_COMMUNISM)
+	{
+		GET_PLAYER(getOwnerINLINE()).changeHealthInstabilityProgress(3, "Food Shortage");
+	}
+
 	changeFood(iDiff);
 	changeFoodKept(iDiff);
 
