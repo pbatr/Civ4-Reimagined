@@ -126,26 +126,26 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CRISIS_POLITICAL_HEADER</Tag>
-		<English>Political Crisis!</English>
+		<English>Civil War Crisis!</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CRISIS_POLITICAL_BODY</Tag>
-		<English>%s1 is experiencing a severe political crisis! Civil unrest, government corruption, and institutional failures have plunged the nation into chaos. The people are demanding change, and the very foundations of society are being tested.[NEWLINE][NEWLINE]Effects:[NEWLINE]• Military units may desert[NEWLINE]• Cities may revolt[NEWLINE]• Production and commerce reduced[NEWLINE]• Diplomatic relations strained</English>
+		<English>Your empire has plunged into a devastating Civil War! Rebel armies have risen up across your lands, turning your own military units against you. The people's faith in your government has completely collapsed, and the very fabric of society is tearing apart.[NEWLINE][NEWLINE]Yet in the chaos lies opportunity. History shows that the greatest reforms often emerge from the ashes of crisis. The very institutions that failed can be rebuilt stronger, more inclusive, and more responsive to the people's needs. This moment of breakdown can become the foundation for a more just and stable society.[NEWLINE][NEWLINE]Effects:[NEWLINE]• Rebel armies spawn from your cities[NEWLINE]• Your own military units defect to the rebels[NEWLINE]• Cities suffer 50% more unhappiness[NEWLINE]• Cultural conflicts intensify dramatically[NEWLINE]• Rebel units actively fight against your forces</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CRISIS_ECONOMIC_HEADER</Tag>
-		<English>Economic Crisis!</English>
+		<English>Inflation Crisis!</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CRISIS_ECONOMIC_BODY</Tag>
-		<English>%s1 is facing a devastating economic crisis! Financial instability, market failures, and economic mismanagement have created a perfect storm of economic disaster. The treasury is bleeding gold, and the economy is in freefall.[NEWLINE][NEWLINE]Effects:[NEWLINE]• Gold income severely reduced[NEWLINE]• Maintenance costs increased[NEWLINE]• Trade routes disrupted[NEWLINE]• Economic growth halted</English>
+		<English>Your empire is experiencing catastrophic hyperinflation! The economy has completely collapsed as the value of money plummets to nothing. Your treasury has been devastated, and the economic system is in total disarray. Citizens are losing faith in the currency as prices spiral out of control.[NEWLINE][NEWLINE]But economic crises have often been the catalyst for the most profound economic reforms. When old systems fail, new ones can be built from the ground up. This moment of economic destruction can become the birthplace of more resilient, inclusive, and sustainable economic institutions that serve all citizens, not just the privileged few.[NEWLINE][NEWLINE]Effects:[NEWLINE]• Gold reserves reduced to 25%[NEWLINE]• Inflation rate multiplied by 8x[NEWLINE]• Costs for buying units or building increased by 400%[NEWLINE]• Trade profits reduced to 25%[NEWLINE]• Cities suffer more unhappiness[NEWLINE]• Resource distribution is much less efficient</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CRISIS_HEALTH_HEADER</Tag>
-		<English>Health Crisis!</English>
+		<English>Famine Crisis!</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_CRISIS_HEALTH_BODY</Tag>
-		<English>%s1 is suffering from a catastrophic health crisis! Disease outbreaks, famines, and public health failures have created widespread suffering. The population is dying, and the nation's health infrastructure has collapsed.[NEWLINE][NEWLINE]Effects:[NEWLINE]• Population growth halted[NEWLINE]• Cities may lose population[NEWLINE]• Health buildings less effective[NEWLINE]• Worker productivity reduced</English>
+		<English>Your empire is suffering from a catastrophic famine! Food production has completely collapsed, and the population is starving to death. The health infrastructure has failed, and disease is spreading rapidly through the malnourished population. The very survival of your nation is at stake.[NEWLINE][NEWLINE]Yet throughout history, the most devastating health crises have often triggered the most profound societal transformations. When death becomes commonplace, old social hierarchies crumble, labor becomes scarce and valuable, and people demand fundamental changes in how society is organized. This crisis can become the catalyst for building a more just, inclusive, and resilient society.[NEWLINE][NEWLINE]Effects:[NEWLINE]• Food production reduced by 1 from all tiles[NEWLINE]• 150% increase in unhealthy population[NEWLINE]• 10% of military units disband each turn[NEWLINE]• Cities may lose multiple population from starvation[NEWLINE]• Resource distribution is much less efficient</English>
 	</TEXT>
 </Civ4GameText> 
