@@ -46,11 +46,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_INSTABILITY_TITLE</Tag>
-		<English>Instability Progress</English>
-		<French>Progrès de l'instabilité</French>
-		<German>Instabilitätsfortschritt</German>
-		<Italian>Progresso instabilità</Italian>
-		<Spanish>Progreso de inestabilidad</Spanish>
+		<English>Instability in our Empire</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_INSTABILITY_TOTAL</Tag>
@@ -86,11 +82,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_INSTABILITY_PERCENT</Tag>
-		<English>Progress</English>
-		<French>Progrès</French>
-		<German>Fortschritt</German>
-		<Italian>Progresso</Italian>
-		<Spanish>Progreso</Spanish>
+		<English>Progress towards next crisis</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_PLAYER_CIVIL_WAR_CRISIS</Tag>
