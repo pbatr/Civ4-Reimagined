@@ -127,6 +127,19 @@ def getInstabilityText(iInstabilityBarWidth):
 	if (iThreshold <= 0):
 		return u"<font=2>%s</font>" % (localText.getText("TXT_KEY_INSTABILITY_NO_THRESHOLD", ()))
 	
+	# Check if a crisis is currently active
+	if (player.isCrisis()):
+		if (player.isCivilWarCrisis()):
+			szText = localText.getText("TXT_KEY_CRISIS_POLITICAL_HEADER", ())
+		elif (player.isInflationCrisis()):
+			szText = localText.getText("TXT_KEY_CRISIS_ECONOMIC_HEADER", ())
+		elif (player.isFamineCrisis()):
+			szText = localText.getText("TXT_KEY_CRISIS_HEALTH_HEADER", ())
+		else:
+			szText = u"Active Crisis"
+		
+		return u"<font=2>%s</font>" % (szText)
+	
 	# Find the most likely crisis type (highest instability)
 	crisisValues = [iPolitical, iEconomic, iHealth]
 	crisisTypes = [CRISIS_POLITICAL, CRISIS_ECONOMIC, CRISIS_HEALTH]
