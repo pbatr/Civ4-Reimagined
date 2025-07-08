@@ -25119,6 +25119,11 @@ void CvPlayer::resetInstabilityProgress()
 // Civ4 Reimagined
 void CvPlayer::checkInstabilityProgressThreshold()
 {
+	if (isGoldenAge())
+	{
+		return;
+	}
+
 	if (getInstabilityProgress() >= getInstabilityThreshold())
 	{
 		int iTotalInstabilityProgress = getPoliticalInstabilityProgress() + getEconomicInstabilityProgress() + getHealthInstabilityProgress();
