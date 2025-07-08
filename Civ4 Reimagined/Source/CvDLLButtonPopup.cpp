@@ -95,6 +95,7 @@ void CvDLLButtonPopup::OnOkClicked(CvPopup* pPopup, PopupReturn *pPopupReturn, C
 	switch (info.getButtonPopupType())
 	{
 	case BUTTONPOPUP_TEXT:
+	case BUTTONPOPUP_CRISIS:
 		break;
 
 	case BUTTONPOPUP_CONFIRM_MENU:
@@ -2719,24 +2720,20 @@ bool CvDLLButtonPopup::launchCrisisPopup(CvPopup* pPopup, CvPopupInfo &info)
 	int iCrisisType = info.getData1();
 	CvWString szHeader;
 	CvWString szBody;
-	CvString szArtPath;
 	
 	switch (iCrisisType)
 	{
 	case 0: // Political Crisis (Civil War)
 		szHeader = gDLL->getText("TXT_KEY_CRISIS_POLITICAL_HEADER");
 		szBody = gDLL->getText("TXT_KEY_CRISIS_POLITICAL_BODY", kPlayer.getNameKey());
-		szArtPath = ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath();
 		break;
 	case 1: // Economic Crisis (Inflation)
 		szHeader = gDLL->getText("TXT_KEY_CRISIS_ECONOMIC_HEADER");
 		szBody = gDLL->getText("TXT_KEY_CRISIS_ECONOMIC_BODY", kPlayer.getNameKey());
-		szArtPath = ARTFILEMGR.getInterfaceArtInfo("INTERFACE_BUTTONS_GOLD")->getPath();
 		break;
 	case 2: // Health Crisis (Famine)
 		szHeader = gDLL->getText("TXT_KEY_CRISIS_HEALTH_HEADER");
 		szBody = gDLL->getText("TXT_KEY_CRISIS_HEALTH_BODY", kPlayer.getNameKey());
-		szArtPath = ARTFILEMGR.getInterfaceArtInfo("INTERFACE_BUTTONS_HEALTH")->getPath();
 		break;
 	default:
 		return false;
