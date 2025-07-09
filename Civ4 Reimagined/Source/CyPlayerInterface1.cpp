@@ -243,6 +243,19 @@ void CyPlayerPythonInterface1(python::class_<CyPlayer>& x)
 		.def("getDomesticGreatGeneralRateModifier", &CyPlayer::getDomesticGreatGeneralRateModifier, "int ()")
 		.def("getStateReligionGreatPeopleRateModifier", &CyPlayer::getStateReligionGreatPeopleRateModifier, "int ()")
 
+		// Instability System - Civ4 Reimagined
+		.def("getInstabilityProgress", &CyPlayer::getInstabilityProgress, "int ()")
+		.def("changeInstabilityProgress", &CyPlayer::changeInstabilityProgress, "void (int iChange)")
+		.def("getPoliticalInstabilityProgress", &CyPlayer::getPoliticalInstabilityProgress, "int ()")
+		.def("changePoliticalInstabilityProgress", &CyPlayer::changePoliticalInstabilityProgress, "void (int iChange, std::string sLogMessage)")
+		.def("getEconomicInstabilityProgress", &CyPlayer::getEconomicInstabilityProgress, "int ()")
+		.def("changeEconomicInstabilityProgress", &CyPlayer::changeEconomicInstabilityProgress, "void (int iChange, std::string sLogMessage)")
+		.def("getHealthInstabilityProgress", &CyPlayer::getHealthInstabilityProgress, "int ()")
+		.def("changeHealthInstabilityProgress", &CyPlayer::changeHealthInstabilityProgress, "void (int iChange, std::string sLogMessage)")
+		.def("getInstabilityThreshold", &CyPlayer::getInstabilityThreshold, "int ()")
+		.def("getCrisisCount", &CyPlayer::getCrisisCount, "int ()")
+		.def("resetInstabilityProgress", &CyPlayer::resetInstabilityProgress, "void ()")
+
 		.def("getMaxGlobalBuildingProductionModifier", &CyPlayer::getMaxGlobalBuildingProductionModifier, "int ()")
 		.def("getMaxTeamBuildingProductionModifier", &CyPlayer::getMaxTeamBuildingProductionModifier, "int ()")
 		.def("getMaxPlayerBuildingProductionModifier", &CyPlayer::getMaxPlayerBuildingProductionModifier, "int ()")
@@ -468,5 +481,9 @@ void CyPlayerPythonInterface1(python::class_<CyPlayer>& x)
 		.def("getEventTriggerWeight", &CyPlayer::getEventTriggerWeight, "int getEventTriggerWeight(int eEventTrigger)")
 		// Civ4 Reimagined
 		.def("getIdeology", &CyPlayer::getIdeology, "int ()")
+		.def("isCivilWarCrisis", &CyPlayer::isCivilWarCrisis, "bool ()")
+		.def("isFamineCrisis", &CyPlayer::isFamineCrisis, "bool ()")
+		.def("isInflationCrisis", &CyPlayer::isInflationCrisis, "bool ()")
+		.def("isCrisis", &CyPlayer::isCrisis, "bool ()")
 		;
 }

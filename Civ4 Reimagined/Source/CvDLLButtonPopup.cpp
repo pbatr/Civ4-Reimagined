@@ -95,6 +95,7 @@ void CvDLLButtonPopup::OnOkClicked(CvPopup* pPopup, PopupReturn *pPopupReturn, C
 	switch (info.getButtonPopupType())
 	{
 	case BUTTONPOPUP_TEXT:
+	case BUTTONPOPUP_CRISIS:
 		break;
 
 	case BUTTONPOPUP_CONFIRM_MENU:
@@ -998,6 +999,9 @@ bool CvDLLButtonPopup::launchButtonPopup(CvPopup* pPopup, CvPopupInfo &info)
 		break;
 	case BUTTONPOPUP_FOUND_RELIGION:
 		bLaunched = launchFoundReligionPopup(pPopup, info);
+		break;
+	case BUTTONPOPUP_CRISIS:
+		bLaunched = launchCrisisPopup(pPopup, info);
 		break;
 	default:
 		FAssert(false);
@@ -2699,5 +2703,46 @@ bool CvDLLButtonPopup::launchFoundReligionPopup(CvPopup* pPopup, CvPopupInfo &in
 
 	gDLL->getInterfaceIFace()->popupLaunch(pPopup, false, POPUPSTATE_IMMEDIATE);
 
+	return true;
+}
+
+bool CvDLLButtonPopup::launchCrisisPopup(CvPopup* pPopup, CvPopupInfo &info)
+{
+	PlayerTypes ePlayer = GC.getGameINLINE().getActivePlayer();
+	if (ePlayer == NO_PLAYER)
+	{
+		return false;
+	}
+
+	CvPlayer& kPlayer = GET_PLAYER(ePlayer);
+	
+	// Determine crisis type from data1
+	int iCrisisType = info.getData1();
+	CvWString szHeader;
+	CvWString szBody;
+	
+	switch (iCrisisType)
+	{
+	case 0: // Political Crisis (Civil War)
+		szHeader = gDLL->getText("TXT_KEY_CRISIS_POLITICAL_HEADER");
+		szBody = gDLL->getText("TXT_KEY_CRISIS_POLITICAL_BODY", kPlayer.getNameKey());
+		break;
+	case 1: // Economic Crisis (Inflation)
+		szHeader = gDLL->getText("TXT_KEY_CRISIS_ECONOMIC_HEADER");
+		szBody = gDLL->getText("TXT_KEY_CRISIS_ECONOMIC_BODY", kPlayer.getNameKey());
+		break;
+	case 2: // Health Crisis (Famine)
+		szHeader = gDLL->getText("TXT_KEY_CRISIS_HEALTH_HEADER");
+		szBody = gDLL->getText("TXT_KEY_CRISIS_HEALTH_BODY", kPlayer.getNameKey());
+		break;
+	default:
+		return false;
+	}
+	
+	gDLL->getInterfaceIFace()->popupSetHeaderString(pPopup, szHeader);
+	gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, szBody);
+	
+	gDLL->getInterfaceIFace()->popupLaunch(pPopup, true, POPUPSTATE_IMMEDIATE);
+	
 	return true;
 }

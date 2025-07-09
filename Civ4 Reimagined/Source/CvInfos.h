@@ -2717,6 +2717,7 @@ public:
 	int getStartingExploreUnits() const;						// Exposed to Python
 	int getUniquePowerCostPercent() const; // Civ4 Reimagined
 	int getAIUniquePowerCostPercent() const; // Civ4 Reimagined
+	int getAIInstabilityThresholdModifier() const; // Civ4 Reimagined
 	int getAIStartingUnitMultiplier() const;				// Exposed to Python
 	int getAIStartingDefenseUnits() const;				// Exposed to Python
 	int getAIStartingWorkerUnits() const;				// Exposed to Python
@@ -2794,6 +2795,7 @@ protected:
 	int m_iStartingExploreUnits;
 	int m_iUniquePowerCostPercent; // Civ4 Reimagined
 	int m_iAIUniquePowerCostPercent; // Civ4 Reimagined
+	int m_iAIInstabilityThresholdModifier; // Civ4 Reimagined
 	int m_iAIStartingUnitMultiplier;					
 	int m_iAIStartingDefenseUnits;				
 	int m_iAIStartingWorkerUnits;					
@@ -2853,6 +2855,7 @@ public:
 	int getBuildPercent() const;							// Exposed to Python
 	int getImprovementPercent() const;						// Exposed to Python
 	int getGreatPeoplePercent() const;						// Exposed to Python
+	int getCrisisPercent() const; // Civ4 Reimagined
 	int getAnarchyPercent() const;							// Exposed to Python
 	int getBarbPercent() const;								// Exposed to Python
 	int getFeatureProductionPercent() const;				// Exposed to Python
@@ -2890,6 +2893,7 @@ protected:
 	int m_iBuildPercent;
 	int m_iImprovementPercent;
 	int m_iGreatPeoplePercent;
+	int m_iCrisisPercent; // Civ4 Reimagined
 	int m_iAnarchyPercent;
 	int m_iBarbPercent;
 	int m_iFeatureProductionPercent;
@@ -5670,6 +5674,7 @@ public:
 	int getBuildPercent() const;					//	Exposed to Python
 	int getImprovementPercent() const;		//	Exposed to Python
 	int getGreatPeoplePercent() const;		//	Exposed to Python
+	int getCrisisPercent() const; // Civ4 Reimagined
 	int getAnarchyPercent() const;				//	Exposed to Python
 	int getEventChancePerTurn() const;				//	Exposed to Python
 	int getSoundtrackSpace() const;				//	Exposed to Python
@@ -5717,6 +5722,7 @@ protected:
 	int m_iBuildPercent;
 	int m_iImprovementPercent;
 	int m_iGreatPeoplePercent;
+	int m_iCrisisPercent; // Civ4 Reimagined
 	int m_iAnarchyPercent;
 	int m_iEventChancePerTurn;
 	int m_iSoundtrackSpace;

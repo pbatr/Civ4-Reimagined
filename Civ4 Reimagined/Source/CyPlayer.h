@@ -256,6 +256,19 @@ public:
 	int getDomesticGreatGeneralRateModifier();
 	int getStateReligionGreatPeopleRateModifier();
 
+	// Instability System - Civ4 Reimagined
+	int getInstabilityProgress();
+	void changeInstabilityProgress(int iChange);
+	int getPoliticalInstabilityProgress();
+	void changePoliticalInstabilityProgress(int iChange, std::string sLogMessage);
+	int getEconomicInstabilityProgress();
+	void changeEconomicInstabilityProgress(int iChange, std::string sLogMessage);
+	int getHealthInstabilityProgress();
+	void changeHealthInstabilityProgress(int iChange, std::string sLogMessage);
+	int getInstabilityThreshold();
+	int getCrisisCount();
+	void resetInstabilityProgress();
+
 	int getMaxGlobalBuildingProductionModifier();
 	int getMaxTeamBuildingProductionModifier();
 	int getMaxPlayerBuildingProductionModifier();
@@ -536,6 +549,12 @@ public:
 
 	// Civ4 Reimagined
 	int /*IdeologyTypes*/ getIdeology() const;
+
+	// Crisis state methods
+	bool isCivilWarCrisis();
+	bool isFamineCrisis();
+	bool isInflationCrisis();
+	bool isCrisis();
 
 private:
 	CvPlayer* m_pPlayer;

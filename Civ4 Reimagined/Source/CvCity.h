@@ -1100,6 +1100,7 @@ public:
 	void changeGreatPeopleRatePerWorldWonder(int iValue); // Civ4 Reimagined
 	int getGreatPeopleRatePerWorldWonder() const; // Civ4 Reimagined
 	void instantGreatPeopleProgress(UnitClassTypes eClass, int iProgress); // Civ4 Reimagined
+	void doInstability(); // Civ4 Reimagined
 
 	void read(FDataStreamBase* pStream);
 	void write(FDataStreamBase* pStream);

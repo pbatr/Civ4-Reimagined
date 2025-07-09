@@ -1121,9 +1121,14 @@ void CvPlayer::reset(PlayerTypes eID, bool bConstructorCall)
 	m_bLegacyCivic = false; // Civ4 Reimagined
 	m_bFrenchRevolution = false; // Civ4 Reimagined
 	m_iCrisisTurns = 0; // Civ4 Reimagined
+	m_iCrisisCount = 0; // Civ4 Reimagined
 	m_bCivilWarCrisis = false; // Civ4 Reimagined
 	m_bFamineCrisis = false; // Civ4 Reimagined
 	m_bInflationCrisis = false; // Civ4 Reimagined
+	m_iInstabilityProgress = 0; // Civ4 Reimagined
+	m_iPoliticalInstabilityProgress = 0; // Civ4 Reimagined
+	m_iEconomicInstabilityProgress = 0; // Civ4 Reimagined
+	m_iHealthInstabilityProgress = 0; // Civ4 Reimagined
 	
 	m_eID = eID;
 	updateTeamType();
@@ -2644,6 +2649,9 @@ CvCity* CvPlayer::initCity(int iX, int iY, bool bBumpUnits, bool bUpdatePlotGrou
 			GET_TEAM(getTeam()).setTechBoosted((TechTypes)GC.getInfoTypeForString("TECH_ASTRONOMY"), getID(), true);
 		}
 	}
+	
+	changeHealthInstabilityProgress(1, "new City");
+	
 
 	return pCity;
 }
@@ -4120,24 +4128,7 @@ void CvPlayer::doTurn()
 
 	AI_doTurnPre();
 
-	if (GC.getGameINLINE().getGameTurn() > 0 && GC.getGameINLINE().getGameTurn() % 49 == 0 && 
-		!isCivilWarCrisis() && !isFamineCrisis() && !isInflationCrisis() && !isBarbarian())
-	{
-		const int crisisRand = GC.getASyncRand().get(3, "crisis randomization");
-		if (crisisRand == 0)
-		{
-			setIsCivilWarCrisis(true);
-		}
-		else if (crisisRand == 1)
-		{
-			setIsFamineCrisis(true);
-		}
-		else
-		{
-			setIsInflationCrisis(true);
-		}
-		resetCrisisTurns();
-	}
+	checkInstabilityProgressThreshold();
 
 	if (getRevolutionTimer() > 0)
 	{
@@ -4239,6 +4230,8 @@ void CvPlayer::doTurn()
 	updateInflationRate();
 
 	doEvents();
+
+	doInstability();
 
 	updateEconomyHistory(GC.getGameINLINE().getGameTurn(), calculateTotalCommerce());
 	updateIndustryHistory(GC.getGameINLINE().getGameTurn(), calculateTotalYield(YIELD_PRODUCTION));
@@ -9567,10 +9560,23 @@ void CvPlayer::revolution(CivicTypes* paeNewCivics, bool bForce, bool bAnarchy)
 	{
 		changeAnarchyTurns(iAnarchyLength);
 	}
+
+	// Civ4 Reimagined
+	const IdeologyTypes eIdeology = getIdeology();
+	const int iOldIdeologicalInfluence = getIdeologyInfluence(eIdeology);
 	
 	for (iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
 	{
 		setCivics(((CivicOptionTypes)iI), paeNewCivics[iI]);
+	}
+
+	const int iNewIdeologicalInfluence = getIdeologyInfluence(eIdeology);
+	
+	const int iIdeologicalInfluenceLoss = iOldIdeologicalInfluence - iNewIdeologicalInfluence;
+	if (iIdeologicalInfluenceLoss > 0)
+	{
+		const int iInstability = 2 * iIdeologicalInfluenceLoss;
+		changePoliticalInstabilityProgress(iInstability, "Ideological Influence loss");
 	}
 
 	setRevolutionTimer(std::max(1, ((100 + getAnarchyModifier()) * GC.getDefineINT("MIN_REVOLUTION_TURNS")) / 100) + iAnarchyLength);
@@ -18124,6 +18130,11 @@ void CvPlayer::doGold()
 
 	if (getGold() < 0)
 	{
+		// Civ4 Reimagined
+		int iInstability = std::abs(std::max(1, getGold()/20));
+		iInstability = std::min(iInstability, 5);
+		changeEconomicInstabilityProgress(iInstability, "Negative Treasury");
+
 		setGold(0);
 
 		if (!isBarbarian() && (getNumCities() > 0))
@@ -21644,6 +21655,10 @@ void CvPlayer::read(FDataStreamBase* pStream)
 	pStream->Read(&m_bCivilWarCrisis); // Civ4 Reimagined
 	pStream->Read(&m_bFamineCrisis); // Civ4 Reimagined
 	pStream->Read(&m_bInflationCrisis); // Civ4 Reimagined
+	pStream->Read(&m_iInstabilityProgress); // Civ4 Reimagined
+	pStream->Read(&m_iPoliticalInstabilityProgress); // Civ4 Reimagined
+	pStream->Read(&m_iEconomicInstabilityProgress); // Civ4 Reimagined
+	pStream->Read(&m_iHealthInstabilityProgress); // Civ4 Reimagined
 	
 	pStream->Read(&m_bAlive);
 	pStream->Read(&m_bEverAlive);
@@ -22337,6 +22352,10 @@ void CvPlayer::write(FDataStreamBase* pStream)
 	pStream->Write(m_bCivilWarCrisis); // Civ4 Reimagined
 	pStream->Write(m_bFamineCrisis); // Civ4 Reimagined
 	pStream->Write(m_bInflationCrisis); // Civ4 Reimagined
+	pStream->Write(m_iInstabilityProgress); // Civ4 Reimagined
+	pStream->Write(m_iPoliticalInstabilityProgress); // Civ4 Reimagined
+	pStream->Write(m_iEconomicInstabilityProgress); // Civ4 Reimagined
+	pStream->Write(m_iHealthInstabilityProgress); // Civ4 Reimagined
 
 	pStream->Write(m_bAlive);
 	pStream->Write(m_bEverAlive);
@@ -24933,6 +24952,216 @@ void CvPlayer::doEvents()
 	}
 }
 
+// Civ4 Reimagined
+void CvPlayer::doInstability()
+{
+	if (isBarbarian() || isMinorCiv())
+	{
+		return;
+	}
+
+	if (isCrisis())
+	{
+		return;
+	}
+
+	updateEconomicInstabilityFromNegativeIncome();
+	updateEconomicInstabilityFromLiberalEconomicStagnation();
+
+	// Only apply more sophisticated economic instability if the player has researched Currency technology
+    if (GET_TEAM(getTeam()).isHasTech((TechTypes)GC.getInfoTypeForString("TECH_CURRENCY")))
+    {
+        updateEconomicInstabilityFromCurrencyDevaluation();
+		updateEconomicInstabilityFromEconomicGrowth();
+    }
+}
+
+// Civ4 Reimagined
+int CvPlayer::getInstabilityProgress() const
+{
+	return m_iInstabilityProgress;
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeInstabilityProgress(int iChange)
+{
+	if (iChange != 0)
+	{
+		m_iInstabilityProgress += iChange;
+		FAssert(getInstabilityProgress() >= 0);
+
+		// Force interface update when instability changes
+		gDLL->getInterfaceIFace()->setDirty(GameData_DIRTY_BIT, true);
+	}
+}
+
+// Civ4 Reimagined
+int CvPlayer::getPoliticalInstabilityProgress() const
+{
+	return m_iPoliticalInstabilityProgress;
+}
+
+// Civ4 Reimagined
+void CvPlayer::changePoliticalInstabilityProgress(int iChange, std::string sLogMessage)
+{
+	if (isBarbarian() || isMinorCiv())
+	{
+		return;
+	}
+
+	if (isCrisis())
+	{
+		return;
+	}
+
+	if (iChange != 0)
+	{
+		logBBAI("[Player %d] Political Instability from %s: %d", getID(), sLogMessage.c_str(), iChange);
+		m_iPoliticalInstabilityProgress += iChange;
+		FAssert(getPoliticalInstabilityProgress() >= 0);
+		changeInstabilityProgress(iChange);
+	}
+}
+
+// Civ4 Reimagined
+int CvPlayer::getEconomicInstabilityProgress() const
+{
+	return m_iEconomicInstabilityProgress;
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeEconomicInstabilityProgress(int iChange, std::string sLogMessage)
+{
+	if (isBarbarian() || isMinorCiv())
+	{
+		return;
+	}
+
+	if (isCrisis())
+	{
+		return;
+	}
+
+	if (iChange != 0)
+	{
+		logBBAI("[Player %d] Economic Instability from %s: %d", getID(), sLogMessage.c_str(), iChange);
+		m_iEconomicInstabilityProgress += iChange;
+		FAssert(getEconomicInstabilityProgress() >= 0);
+		changeInstabilityProgress(iChange);
+	}
+}
+
+// Civ4 Reimagined
+int CvPlayer::getHealthInstabilityProgress() const
+{
+	return m_iHealthInstabilityProgress;
+}
+
+// Civ4 Reimagined
+void CvPlayer::changeHealthInstabilityProgress(int iChange, std::string sLogMessage)
+{
+	if (isBarbarian() || isMinorCiv())
+	{
+		return;
+	}
+
+	if (isCrisis())
+	{
+		return;
+	}
+
+	if (iChange != 0)
+	{
+		logBBAI("[Player %d] Health Instability from %s: %d", getID(), sLogMessage.c_str(), iChange);
+		m_iHealthInstabilityProgress += iChange;
+		FAssert(getHealthInstabilityProgress() >= 0);
+		changeInstabilityProgress(iChange);
+	}
+}
+
+// Civ4 Reimagined
+int CvPlayer::getInstabilityThreshold() const
+{
+	int iThreshold = GC.getDefineINT("CRISIS_THRESHOLD");
+
+	iThreshold *= GC.getGameSpeedInfo(GC.getGameINLINE().getGameSpeedType()).getCrisisPercent();
+	iThreshold /= 100;
+
+	iThreshold *= GC.getEraInfo(GC.getGameINLINE().getStartEra()).getCrisisPercent();
+	iThreshold /= 100;
+
+	// Scale with number of crises (similar to Great Person threshold scaling)
+	int iCrisisCount = getCrisisCount();
+	if (iCrisisCount > 0)
+	{
+		iThreshold += (iCrisisCount * GC.getDefineINT("CRISIS_THRESHOLD_INCREASE"));
+	}
+
+	// Apply AI difficulty modifier (AI players get higher thresholds on higher difficulties)
+	if (!isHuman())
+	{
+		iThreshold *= GC.getHandicapInfo(GC.getGameINLINE().getHandicapType()).getAIInstabilityThresholdModifier();
+		iThreshold /= 100;
+	}
+
+	return std::max(1, iThreshold);
+}
+
+// Civ4 Reimagined
+void CvPlayer::resetInstabilityProgress()
+{
+	m_iInstabilityProgress = 0;
+	m_iPoliticalInstabilityProgress = 0;
+	m_iEconomicInstabilityProgress = 0;
+	m_iHealthInstabilityProgress = 0;
+}
+
+// Civ4 Reimagined
+void CvPlayer::checkInstabilityProgressThreshold()
+{
+	if (isGoldenAge())
+	{
+		return;
+	}
+
+	if (getInstabilityProgress() >= getInstabilityThreshold())
+	{
+		int iTotalInstabilityProgress = getPoliticalInstabilityProgress() + getEconomicInstabilityProgress() + getHealthInstabilityProgress();
+
+		if (iTotalInstabilityProgress <= 0)
+		{
+			return;
+		}
+		
+		// Log crisis probabilities
+		int iPoliticalProb = (getPoliticalInstabilityProgress() * 100) / iTotalInstabilityProgress;
+		int iEconomicProb = (getEconomicInstabilityProgress() * 100) / iTotalInstabilityProgress;
+		int iHealthProb = (getHealthInstabilityProgress() * 100) / iTotalInstabilityProgress;
+		
+		logBBAI("Crisis probabilities for player %d: Political %d%% (%d), Economic %d%% (%d), Health %d%% (%d) - Total: %d", 
+			getID(), iPoliticalProb, getPoliticalInstabilityProgress(), iEconomicProb, getEconomicInstabilityProgress(), iHealthProb, getHealthInstabilityProgress(), iTotalInstabilityProgress);
+		
+		int iInstabilityRand = GC.getGameINLINE().getSorenRandNum(iTotalInstabilityProgress, "Instability Crisis Type");
+		
+		if (iInstabilityRand < getPoliticalInstabilityProgress())
+		{
+			setIsCivilWarCrisis(true);
+		}
+		else if (iInstabilityRand < getPoliticalInstabilityProgress() + getEconomicInstabilityProgress())
+		{
+			setIsInflationCrisis(true);
+		}
+		else
+		{
+			setIsFamineCrisis(true);
+		}
+
+		changeCrisisCount(1); // Increment crisis count
+		resetInstabilityProgress(); // TODO: Consider adding overflow
+		resetCrisisTurns();
+	}
+}
+
 
 // TODO: Maybe replace async rands with SorenRands in the end for all civil war functions
 void CvPlayer::doCivilWarCrisis()
@@ -24975,9 +25204,6 @@ void CvPlayer::doCivilWarCrisis()
 			
 		}
 
-		const CvWString szMessage = "CIVIL WAR CRISIS STARTED";
-		gDLL->getInterfaceIFace()->addHumanMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath());
-
 		return;
 	}
 
@@ -25008,8 +25234,6 @@ void CvPlayer::doFamineCrisis()
 {
 	if (getCrisisTurns() == 1)
 	{
-		const CvWString szMessage = "FAMINE CRISIS STARTED";
-		gDLL->getInterfaceIFace()->addHumanMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath());
 		changeUnhealthyPopulationModifier(150);
 	}
 
@@ -25030,9 +25254,6 @@ void CvPlayer::doInflationCrisis()
 {
 	if (getCrisisTurns() == 1)
 	{
-		const CvWString szMessage = "INFLATION CRISIS STARTED";
-		gDLL->getInterfaceIFace()->addHumanMessage(getID(), false, GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath());
-
 		setGold(getGold()/4);
 		updateTradeRoutes();
 	}
@@ -28550,6 +28771,88 @@ bool CvPlayer::isWrongCivicBuilding(BuildingTypes eBuilding) const
 	return false;
 }
 
+void CvPlayer::updateEconomicInstabilityFromCurrencyDevaluation()
+{
+    int iTreasury = getGold();
+    int iTotalCommerce = calculateTotalCommerce();
+    
+    // Currency devaluation: When gold reserves are low relative to economic activity
+    if (iTotalCommerce > 0)
+    {
+        float fGoldReserveRatio = (float)iTreasury / (float)iTotalCommerce;
+        int iEconomicInstability = 0;
+
+        // High inflation: Low gold reserves relative to economic activity
+        if (fGoldReserveRatio < 0.2f) // Less than 20% reserve ratio
+        {
+            iEconomicInstability = 3;
+        }
+        else if (fGoldReserveRatio < 0.5f) // Less than 50% reserve ratio
+        {
+			iEconomicInstability = 2;
+        }
+        else if (fGoldReserveRatio < 0.8f) // Less than 80% reserve ratio
+        {
+			iEconomicInstability = 1;
+        }
+
+		if (iEconomicInstability > 0)
+		{
+			changeEconomicInstabilityProgress(iEconomicInstability, "Currency Devaluation");
+		}
+    }
+}
+
+void CvPlayer::updateEconomicInstabilityFromEconomicGrowth()
+{
+	const int iGameTurn = GC.getGameINLINE().getGameTurn();
+	if (iGameTurn > 10) {
+		int iCurrentEconomy = calculateTotalCommerce();
+		int iPreviousEconomy = getEconomyHistory(iGameTurn - 10);
+
+		if (iPreviousEconomy > 0) {
+			float fEconomicGrowthRate = (float)iCurrentEconomy / (float)iPreviousEconomy;
+
+			if (fEconomicGrowthRate > 1.05f) {
+				changeEconomicInstabilityProgress(2, "rapid Economic Growth");
+			}
+		}
+	}
+}
+
+void CvPlayer::updateEconomicInstabilityFromNegativeIncome()
+{
+	const int iIncome = calculateGoldRate();
+
+	if (iIncome < 0)
+	{
+		changeEconomicInstabilityProgress(1, "negative Income");
+	}
+}
+
+void CvPlayer::updateEconomicInstabilityFromLiberalEconomicStagnation()
+{
+	if (getIdeology() != IDEOLOGY_LIBERALISM	)
+	{
+		return;
+	}
+	
+	const int iGameTurn = GC.getGameINLINE().getGameTurn();
+	if (iGameTurn > 1)
+	{
+		int iCurrentEconomy = calculateTotalCommerce();
+		int iPreviousEconomy = getEconomyHistory(iGameTurn - 1);
+		
+		if (iPreviousEconomy > 0)
+		{
+			if (iCurrentEconomy <= iPreviousEconomy)
+			{
+				changeEconomicInstabilityProgress(12, "Economic Stagnation");
+			}
+		}
+	}
+}
+
 /************************************************************************************************/
 /* Civ4 Reimagined Ideologies                   START                                           */
 /************************************************************************************************/
@@ -30280,6 +30583,18 @@ void CvPlayer::resetCrisisTurns()
 	m_iCrisisTurns = 0;
 }
 
+//Civ4 Reimagined
+void CvPlayer::changeCrisisCount(int iChange)
+{
+	m_iCrisisCount += iChange;
+}
+
+//Civ4 Reimagined
+int CvPlayer::getCrisisCount() const
+{
+	return m_iCrisisCount;
+}
+
 // Civ4 Reimagined
 int CvPlayer::getCrisisTurns() const
 {
@@ -30532,10 +30847,34 @@ void CvPlayer::setIsCivilWarCrisis(bool bNewValue)
 {
 	m_bCivilWarCrisis = bNewValue;
 
-	if (bNewValue)
-	{
-		logBBAI("Civil War Crisis started for player %d", getID());
-	} 
+			if (bNewValue)
+		{
+			logBBAI("Civil War Crisis started for player %d on turn %d (%d %s)", getID(), GC.getGameINLINE().getGameTurn(), std::abs(GC.getGameINLINE().getGameTurnYear()), GC.getGameINLINE().getGameTurnYear()>0 ? "AD" : "BC");
+			
+			// Send notification to all players who have met this player's team
+			for (int iI = 0; iI < MAX_PLAYERS; iI++)
+			{
+				if (GET_PLAYER((PlayerTypes)iI).isAlive())
+				{
+					if (GET_TEAM(getTeam()).isHasMet(GET_PLAYER((PlayerTypes)iI).getTeam()))
+					{
+						const CvWString szMessage = gDLL->getText("TXT_KEY_MISC_PLAYER_CIVIL_WAR_CRISIS", getNameKey());
+						gDLL->getInterfaceIFace()->addHumanMessage(((PlayerTypes)iI), (((PlayerTypes)iI) == getID()), GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath(), (ColorTypes)GC.getInfoTypeForString("COLOR_WARNING_TEXT"));
+					}
+				}
+			}
+			
+			// Show crisis popup to the affected player
+			if (isHuman())
+			{
+				CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_CRISIS);
+				if (pInfo)
+				{
+					pInfo->setData1(0); // Political crisis
+					gDLL->getInterfaceIFace()->addPopup(pInfo, getID(), true);
+				}
+			}
+		} 
 	else
 	{
 		logBBAI("Civil War Crisis ended for player %d", getID());
@@ -30555,10 +30894,34 @@ void CvPlayer::setIsFamineCrisis(bool bNewValue)
 
 	updateYield();
 
-	if (bNewValue)
-	{
-		logBBAI("Famine Crisis started for player %d", getID());
-	} 
+			if (bNewValue)
+		{
+			logBBAI("Famine Crisis started for player %d on turn %d (%d %s)", getID(), GC.getGameINLINE().getGameTurn(), std::abs(GC.getGameINLINE().getGameTurnYear()), GC.getGameINLINE().getGameTurnYear()>0 ? "AD" : "BC");
+			
+			// Send notification to all players who have met this player's team
+			for (int iI = 0; iI < MAX_PLAYERS; iI++)
+			{
+				if (GET_PLAYER((PlayerTypes)iI).isAlive())
+				{
+					if (GET_TEAM(getTeam()).isHasMet(GET_PLAYER((PlayerTypes)iI).getTeam()))
+					{
+						const CvWString szMessage = gDLL->getText("TXT_KEY_MISC_PLAYER_FAMINE_CRISIS", getNameKey());
+						gDLL->getInterfaceIFace()->addHumanMessage(((PlayerTypes)iI), (((PlayerTypes)iI) == getID()), GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath(), (ColorTypes)GC.getInfoTypeForString("COLOR_WARNING_TEXT"));
+					}
+				}
+			}
+			
+			// Show crisis popup to the affected player
+			if (isHuman())
+			{
+				CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_CRISIS);
+				if (pInfo)
+				{
+					pInfo->setData1(2); // Health crisis
+					gDLL->getInterfaceIFace()->addPopup(pInfo, getID(), true);
+				}
+			}
+		} 
 	else
 	{
 		logBBAI("Famine Crisis ended for player %d", getID());
@@ -30578,10 +30941,34 @@ void CvPlayer::setIsInflationCrisis(bool bNewValue)
 
 	updateYield();
 
-	if (bNewValue)
-	{
-		logBBAI("Inflation Crisis started for player %d", getID());
-	} 
+			if (bNewValue)
+		{
+			logBBAI("Inflation Crisis started for player %d on turn %d (%d %s)", getID(), GC.getGameINLINE().getGameTurn(), std::abs(GC.getGameINLINE().getGameTurnYear()), GC.getGameINLINE().getGameTurnYear()>0 ? "AD" : "BC");
+			
+			// Send notification to all players who have met this player's team
+			for (int iI = 0; iI < MAX_PLAYERS; iI++)
+			{
+				if (GET_PLAYER((PlayerTypes)iI).isAlive())
+				{
+					if (GET_TEAM(getTeam()).isHasMet(GET_PLAYER((PlayerTypes)iI).getTeam()))
+					{
+						const CvWString szMessage = gDLL->getText("TXT_KEY_MISC_PLAYER_INFLATION_CRISIS", getNameKey());
+						gDLL->getInterfaceIFace()->addHumanMessage(((PlayerTypes)iI), (((PlayerTypes)iI) == getID()), GC.getEVENT_MESSAGE_TIME(), szMessage, "AS2D_REVOLTEND", MESSAGE_TYPE_MAJOR_EVENT, ARTFILEMGR.getInterfaceArtInfo("INTERFACE_CITY_BAR_CAPITAL_TEXTURE")->getPath(), (ColorTypes)GC.getInfoTypeForString("COLOR_WARNING_TEXT"));
+					}
+				}
+			}
+			
+			// Show crisis popup to the affected player
+			if (isHuman())
+			{
+				CvPopupInfo* pInfo = new CvPopupInfo(BUTTONPOPUP_CRISIS);
+				if (pInfo)
+				{
+					pInfo->setData1(1); // Economic crisis
+					gDLL->getInterfaceIFace()->addPopup(pInfo, getID(), true);
+				}
+			}
+		} 
 	else
 	{
 		logBBAI("Inflation Crisis ended for player %d", getID());
@@ -30592,6 +30979,12 @@ void CvPlayer::setIsInflationCrisis(bool bNewValue)
 bool CvPlayer::isInflationCrisis() const
 {
 	return m_bInflationCrisis;
+}
+
+// Civ4 Reimagined
+bool CvPlayer::isCrisis() const
+{
+	return isCivilWarCrisis() || isFamineCrisis() || isInflationCrisis();
 }
 
 // Civ4 Reimagined

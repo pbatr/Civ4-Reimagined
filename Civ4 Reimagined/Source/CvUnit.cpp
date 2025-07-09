@@ -760,6 +760,16 @@ void CvUnit::doTurn()
 	FAssertMsg(!isDead(), "isDead did not return false as expected");
 	FAssertMsg(getGroup() != NULL, "getGroup() is not expected to be equal with NULL");
 
+	if (isBarbarian())
+	{
+		PlayerTypes eOwner = plot()->getOwnerINLINE();
+
+		if (NO_PLAYER != eOwner && eOwner != getOwnerINLINE())
+		{
+			GET_PLAYER(eOwner).changePoliticalInstabilityProgress(1, "Barbarian in Empire");
+		}
+	}
+
 	testPromotionReady();
 
 	if (isBlockading())
@@ -5246,6 +5256,12 @@ bool CvUnit::pillage()
 
 			if (pPlot->isOwned())
 			{
+				// Civ4 Reimagined
+				if (pPlot->getOwnerINLINE() != getOwnerINLINE())
+				{
+					GET_PLAYER(pPlot->getOwnerINLINE()).changeHealthInstabilityProgress(1, "Pillage");
+				}
+
 				szBuffer = gDLL->getText("TXT_KEY_MISC_IMP_DESTROYED", GC.getImprovementInfo(pPlot->getImprovementType()).getTextKeyWide(), getNameKey(), getVisualCivAdjective(pPlot->getTeam()));
 				gDLL->getInterfaceIFace()->addHumanMessage(pPlot->getOwnerINLINE(), false, GC.getEVENT_MESSAGE_TIME(), szBuffer, "AS2D_PILLAGED", MESSAGE_TYPE_INFO, getButton(), (ColorTypes)GC.getInfoTypeForString("COLOR_RED"), pPlot->getX_INLINE(), pPlot->getY_INLINE(), true, true);
 			}

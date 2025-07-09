@@ -5730,6 +5730,42 @@ void CvTeam::setHasTech(TechTypes eIndex, bool bNewValue, PlayerTypes ePlayer, b
 
 			// report event to Python, along with some other key state
 			CvEventReporter::getInstance().techAcquired(eIndex, getID(), ePlayer, bAnnounce);
+			
+			// Civ4 Reimagined: Add political instability when gaining new technology (excluding starting technologies)
+			// TODO: only for authoritarian ideologies
+			bool bIsCivStartingTech = false;
+			if (bNewValue && !GC.getTechInfo(eIndex).isRepeat() && GC.getTechInfo(eIndex).getEra() >= GC.getGameINLINE().getStartEra())
+			{
+				for (int iI = 0; iI < MAX_PLAYERS; iI++)
+				{
+					if (GET_PLAYER((PlayerTypes)iI).getTeam() == getID())
+					{
+						if (GC.getCivilizationInfo(GET_PLAYER((PlayerTypes)iI).getCivilizationType()).isCivilizationFreeTechs(eIndex))
+						{
+							bIsCivStartingTech = true;
+							break;
+						}
+					}
+				}
+			}
+			
+			// Only add instability if it's not a civilization starting technology
+			if (!bIsCivStartingTech)
+			{
+				// Era-based instability: more advanced technologies cause more disruption
+				int iInstability = 3 + 2 * (GC.getTechInfo(eIndex).getEra());
+				
+				for (iI = 0; iI < MAX_PLAYERS; iI++)
+				{
+					if (GET_PLAYER((PlayerTypes)iI).getTeam() == getID())
+					{
+						if (GET_PLAYER((PlayerTypes)iI).getIdeology() == IDEOLOGY_CONSERVATISM || GET_PLAYER((PlayerTypes)iI).getIdeology() == IDEOLOGY_FASCISM)
+						{
+							GET_PLAYER((PlayerTypes)iI).changePoliticalInstabilityProgress(iInstability, "Technology Advance");
+						}
+					}
+				}
+			}
 
 			bReligionFounded = false;
 			bFirstBonus = false;

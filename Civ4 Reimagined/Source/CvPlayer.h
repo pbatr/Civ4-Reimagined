@@ -1612,12 +1612,33 @@ public:
 	int getCrisisTurns() const;
 	void changeCrisisTurns(int iChange);
 	void resetCrisisTurns();
+	int getCrisisCount() const;
+	void changeCrisisCount(int iChange);
 	bool isCivilWarCrisis() const;
 	void setIsCivilWarCrisis(bool bNewValue);
 	bool isFamineCrisis() const;
 	void setIsFamineCrisis(bool bNewValue);
 	bool isInflationCrisis() const;
 	void setIsInflationCrisis(bool bNewValue);
+	bool isCrisis() const;
+
+	// Instability System - Civ4 Reimagined
+	int getInstabilityProgress() const;
+	void changeInstabilityProgress(int iChange);
+	int getPoliticalInstabilityProgress() const;
+	void changePoliticalInstabilityProgress(int iChange, std::string sLogMessage);
+	int getEconomicInstabilityProgress() const;
+	void changeEconomicInstabilityProgress(int iChange, std::string sLogMessage);
+	int getHealthInstabilityProgress() const;
+	void changeHealthInstabilityProgress(int iChange, std::string sLogMessage);
+	int getInstabilityThreshold() const;
+	void checkInstabilityProgressThreshold();
+	void resetInstabilityProgress();
+	void doInstability();
+	void updateEconomicInstabilityFromCurrencyDevaluation();
+	void updateEconomicInstabilityFromEconomicGrowth();
+	void updateEconomicInstabilityFromNegativeIncome();
+	void updateEconomicInstabilityFromLiberalEconomicStagnation();
 
 	int getForeignTradeIdeologyModifier(IdeologyTypes Index) const;
 	void changeForeignTradeIdeologyModifier(IdeologyTypes Index, int iChange);
@@ -1905,6 +1926,11 @@ protected:
 	int m_iEspionagePointsOnConquestPerPopulation; // Civ4 Reimagined
 	int m_iTechBulbModifier; // Civ4 Reimagined
 	int m_iCrisisTurns; // Civ4 Reimagined
+	int m_iCrisisCount; // Civ4 Reimagined
+	int m_iInstabilityProgress; // Civ4 Reimagined
+	int m_iPoliticalInstabilityProgress; // Civ4 Reimagined
+	int m_iEconomicInstabilityProgress; // Civ4 Reimagined
+	int m_iHealthInstabilityProgress; // Civ4 Reimagined
 	
 	uint m_uiStartTime;  // XXX save these?
 

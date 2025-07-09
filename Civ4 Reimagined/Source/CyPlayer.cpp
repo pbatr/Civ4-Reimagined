@@ -1040,6 +1040,67 @@ int CyPlayer::getStateReligionGreatPeopleRateModifier()
 	return m_pPlayer ? m_pPlayer->getStateReligionGreatPeopleRateModifier() : -1;
 }
 
+// Instability System - Civ4 Reimagined
+int CyPlayer::getInstabilityProgress()
+{
+	return m_pPlayer ? m_pPlayer->getInstabilityProgress() : -1;
+}
+
+void CyPlayer::changeInstabilityProgress(int iChange)
+{
+	if (m_pPlayer)
+		m_pPlayer->changeInstabilityProgress(iChange);
+}
+
+int CyPlayer::getPoliticalInstabilityProgress()
+{
+	return m_pPlayer ? m_pPlayer->getPoliticalInstabilityProgress() : -1;
+}
+
+void CyPlayer::changePoliticalInstabilityProgress(int iChange, std::string sLogMessage)
+{
+	if (m_pPlayer)
+		m_pPlayer->changePoliticalInstabilityProgress(iChange, sLogMessage);
+}
+
+int CyPlayer::getEconomicInstabilityProgress()
+{
+	return m_pPlayer ? m_pPlayer->getEconomicInstabilityProgress() : -1;
+}
+
+void CyPlayer::changeEconomicInstabilityProgress(int iChange, std::string sLogMessage)
+{
+	if (m_pPlayer)
+		m_pPlayer->changeEconomicInstabilityProgress(iChange, sLogMessage);
+}
+
+int CyPlayer::getHealthInstabilityProgress()
+{
+	return m_pPlayer ? m_pPlayer->getHealthInstabilityProgress() : -1;
+}
+
+void CyPlayer::changeHealthInstabilityProgress(int iChange, std::string sLogMessage)
+{
+	if (m_pPlayer)
+		m_pPlayer->changeHealthInstabilityProgress(iChange, sLogMessage);
+}
+
+int CyPlayer::getInstabilityThreshold()
+{
+	return m_pPlayer ? m_pPlayer->getInstabilityThreshold() : -1;
+}
+
+int CyPlayer::getCrisisCount()
+{
+	return m_pPlayer ? m_pPlayer->getCrisisCount() : -1;
+}
+
+void CyPlayer::resetInstabilityProgress()
+{
+	if (m_pPlayer)
+		m_pPlayer->resetInstabilityProgress();
+}
+
 int CyPlayer::getMaxGlobalBuildingProductionModifier()
 {
 	return m_pPlayer ? m_pPlayer->getMaxGlobalBuildingProductionModifier() : -1;
@@ -2355,4 +2416,17 @@ int CyPlayer::getBuildingYieldChange(int /*BuildingClassTypes*/ eIndex1, int /*Y
 int /*IdeologyTypes*/ CyPlayer::getIdeology() const
 {
 	return m_pPlayer ? (int) m_pPlayer->getIdeology() : IDEOLOGY_CONSERVATISM;
+}
+
+bool CyPlayer::isCivilWarCrisis() {
+    return m_pPlayer ? m_pPlayer->isCivilWarCrisis() : false;
+}
+bool CyPlayer::isFamineCrisis() {
+    return m_pPlayer ? m_pPlayer->isFamineCrisis() : false;
+}
+bool CyPlayer::isInflationCrisis() {
+    return m_pPlayer ? m_pPlayer->isInflationCrisis() : false;
+}
+bool CyPlayer::isCrisis() {
+    return m_pPlayer ? m_pPlayer->isCrisis() : false;
 }

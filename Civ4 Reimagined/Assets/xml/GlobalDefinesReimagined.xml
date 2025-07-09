@@ -471,4 +471,12 @@
 		<iDefineIntVal>50</iDefineIntVal> <!-- Trade gold modifier per foreign happiness bonus in city fatcross -->
 	</Define>
 	<!-- Unique Powers end -->
+	<Define>
+		<DefineName>CRISIS_THRESHOLD</DefineName>
+		<iDefineIntVal>150</iDefineIntVal> <!-- Civ4 Reimagined: Base threshold for instability crisis system -->
+	</Define>
+	<Define>
+		<DefineName>CRISIS_THRESHOLD_INCREASE</DefineName>
+		<iDefineIntVal>150</iDefineIntVal> <!-- Civ4 Reimagined: Percentage threshold increase for each past crisis -->
+	</Define>
 </Civ4Defines>

@@ -405,6 +405,7 @@
 	<ElementType name="iAIPerEraModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="iAIAdvancedStartPercent" content="textOnly" dt:type="int"/>
 	<ElementType name="iAIUniquePowerCostPercent" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
+	<ElementType name="iAIInstabilityThresholdModifier" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
 	<ElementType name="GoodyType" content="textOnly"/>
 	<ElementType name="Goodies" content="eltOnly">
 		<element type="GoodyType" maxOccurs="*"/>
@@ -485,6 +486,7 @@
 		<element type="iAIPerEraModifier"/>
 		<element type="iAIAdvancedStartPercent"/>
 		<element type="iAIUniquePowerCostPercent"/> <!-- Civ4 Reimagined -->
+		<element type="iAIInstabilityThresholdModifier"/> <!-- Civ4 Reimagined -->
 		<element type="Goodies" maxOccurs="*"/>
 		<element type="FreeTechs" maxOccurs="*"/>
 		<element type="AIFreeTechs" maxOccurs="*"/>
@@ -1098,6 +1100,7 @@
 	<ElementType name="iBuildPercent" content="textOnly" dt:type="int"/>
 	<ElementType name="iImprovementPercent" content="textOnly" dt:type="int"/>
 	<ElementType name="iGreatPeoplePercent" content="textOnly" dt:type="int"/>
+	<ElementType name="iCrisisPercent" content="textOnly" dt:type="int"/>
 	<ElementType name="iCulturePercent" content="textOnly" dt:type="int"/>
 	<ElementType name="iAnarchyPercent" content="textOnly" dt:type="int"/>
 	<ElementType name="iEventChancePerTurn" content="textOnly" dt:type="int"/>
@@ -1115,6 +1118,7 @@
 		<element type="iBuildPercent"/>
 		<element type="iImprovementPercent"/>
 		<element type="iGreatPeoplePercent"/>
+		<element type="iCrisisPercent"/>
 		<element type="iCulturePercent"/>
 		<element type="iAnarchyPercent"/>
 		<element type="iBarbPercent"/>
@@ -1375,6 +1379,7 @@
 		<element type="iBuildPercent"/>
 		<element type="iImprovementPercent"/>
 		<element type="iGreatPeoplePercent"/>
+		<element type="iCrisisPercent"/>
 		<element type="iCulturePercent"/>
 		<element type="iAnarchyPercent"/>
 		<element type="iEventChancePerTurn"/>

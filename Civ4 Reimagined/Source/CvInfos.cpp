@@ -12508,6 +12508,7 @@ m_iStartingWorkerUnits(0),
 m_iStartingExploreUnits(0),
 m_iUniquePowerCostPercent(100), // Civ4 Reimagined
 m_iAIUniquePowerCostPercent(100), // Civ4 Reimagined
+m_iAIInstabilityThresholdModifier(100), // Civ4 Reimagined
 m_iAIStartingUnitMultiplier(0),					
 m_iAIStartingDefenseUnits(0),				
 m_iAIStartingWorkerUnits(0),					
@@ -12744,6 +12745,12 @@ int CvHandicapInfo::getAIUniquePowerCostPercent() const
 	return m_iAIUniquePowerCostPercent; 
 }
 
+// Civ4 Reimagined
+int CvHandicapInfo::getAIInstabilityThresholdModifier() const
+{
+	return m_iAIInstabilityThresholdModifier; 
+}
+
 int CvHandicapInfo::getAIStartingUnitMultiplier() const
 {
 	return m_iAIStartingUnitMultiplier;
@@ -12928,6 +12935,7 @@ void CvHandicapInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iStartingExploreUnits);
 	stream->Read(&m_iUniquePowerCostPercent); // Civ4 Reimagined
 	stream->Read(&m_iAIUniquePowerCostPercent); // Civ4 Reimagined
+	stream->Read(&m_iAIInstabilityThresholdModifier); // Civ4 Reimagined
 	stream->Read(&m_iAIStartingUnitMultiplier);
 	stream->Read(&m_iAIStartingDefenseUnits);
 	stream->Read(&m_iAIStartingWorkerUnits);
@@ -13015,6 +13023,7 @@ void CvHandicapInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iStartingExploreUnits);
 	stream->Write(m_iUniquePowerCostPercent); // Civ4 Reimagined
 	stream->Write(m_iAIUniquePowerCostPercent); // Civ4 Reimagined
+	stream->Write(m_iAIInstabilityThresholdModifier); // Civ4 Reimagined
 	stream->Write(m_iAIStartingUnitMultiplier);
 	stream->Write(m_iAIStartingDefenseUnits);
 	stream->Write(m_iAIStartingWorkerUnits);
@@ -13095,6 +13104,7 @@ bool CvHandicapInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iStartingExploreUnits, "iStartingExploreUnits");
 	pXML->GetChildXmlValByName(&m_iUniquePowerCostPercent, "iUniquePowerCostPercent"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iAIUniquePowerCostPercent, "iAIUniquePowerCostPercent"); // Civ4 Reimagined
+	pXML->GetChildXmlValByName(&m_iAIInstabilityThresholdModifier, "iAIInstabilityThresholdModifier"); // Civ4 Reimagined
 	pXML->GetChildXmlValByName(&m_iAIStartingUnitMultiplier, "iAIStartingUnitMultiplier");
 	pXML->GetChildXmlValByName(&m_iAIStartingDefenseUnits, "iAIStartingDefenseUnits");
 	pXML->GetChildXmlValByName(&m_iAIStartingWorkerUnits, "iAIStartingWorkerUnits");
@@ -13168,6 +13178,7 @@ m_iResearchPercent(0),
 m_iBuildPercent(0),
 m_iImprovementPercent(0),
 m_iGreatPeoplePercent(0),
+m_iCrisisPercent(0), // Civ4 Reimagined
 m_iAnarchyPercent(0),
 m_iBarbPercent(0),
 m_iFeatureProductionPercent(0),
@@ -13242,6 +13253,12 @@ int CvGameSpeedInfo::getImprovementPercent() const
 int CvGameSpeedInfo::getGreatPeoplePercent() const
 {
 	return m_iGreatPeoplePercent;
+}
+
+// Civ4 Reimagined
+int CvGameSpeedInfo::getCrisisPercent() const
+{
+	return m_iCrisisPercent;
 }
 
 int CvGameSpeedInfo::getAnarchyPercent() const		
@@ -13377,6 +13394,7 @@ bool CvGameSpeedInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iBuildPercent, "iBuildPercent");
 	pXML->GetChildXmlValByName(&m_iImprovementPercent, "iImprovementPercent");
 	pXML->GetChildXmlValByName(&m_iGreatPeoplePercent, "iGreatPeoplePercent");
+	pXML->GetChildXmlValByName(&m_iCrisisPercent, "iCrisisPercent");
 	pXML->GetChildXmlValByName(&m_iAnarchyPercent, "iAnarchyPercent");
 	pXML->GetChildXmlValByName(&m_iBarbPercent, "iBarbPercent");
 	pXML->GetChildXmlValByName(&m_iFeatureProductionPercent, "iFeatureProductionPercent");
@@ -21391,6 +21409,7 @@ m_iTechCostModifier(0),
 m_iBuildPercent(0),
 m_iImprovementPercent(0),
 m_iGreatPeoplePercent(0),
+m_iCrisisPercent(0), // Civ4 Reimagined
 m_iAnarchyPercent(0),
 m_iEventChancePerTurn(0),
 m_iSoundtrackSpace(0),
@@ -21504,6 +21523,12 @@ int CvEraInfo::getGreatPeoplePercent() const
 	return m_iGreatPeoplePercent; 
 }
 
+// Civ4 Reimagined
+int CvEraInfo::getCrisisPercent() const
+{
+	return m_iCrisisPercent; 
+}
+
 int CvEraInfo::getAnarchyPercent() const
 {
 	return m_iAnarchyPercent; 
@@ -21611,6 +21636,7 @@ bool CvEraInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iBuildPercent, "iBuildPercent");
 	pXML->GetChildXmlValByName(&m_iImprovementPercent, "iImprovementPercent");
 	pXML->GetChildXmlValByName(&m_iGreatPeoplePercent, "iGreatPeoplePercent");
+	pXML->GetChildXmlValByName(&m_iCrisisPercent, "iCrisisPercent");
 	pXML->GetChildXmlValByName(&m_iAnarchyPercent, "iAnarchyPercent");
 	pXML->GetChildXmlValByName(&m_iEventChancePerTurn, "iEventChancePerTurn");
 	pXML->GetChildXmlValByName(&m_iSoundtrackSpace, "iSoundtrackSpace");

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!--
+	Civ4 Reimagined Crisis System
+	Text Strings
+-->
+<Civ4GameText xmlns="http://www.firaxis.com">
+	<TEXT>
+		<Tag>TXT_KEY_CRISIS_POLITICAL</Tag>
+		<English>Political</English>
+		<French>Politique</French>
+		<German>Politisch</German>
+		<Italian>Politico</Italian>
+		<Spanish>Político</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CRISIS_ECONOMIC</Tag>
+		<English>Economic</English>
+		<French>Économique</French>
+		<German>Wirtschaftlich</German>
+		<Italian>Economico</Italian>
+		<Spanish>Económico</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CRISIS_HEALTH</Tag>
+		<English>Health</English>
+		<French>Santé</French>
+		<German>Gesundheit</German>
+		<Italian>Salute</Italian>
+		<Spanish>Salud</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_INSTABILITY_NO_THRESHOLD</Tag>
+		<English>No Crisis Threshold Set</English>
+		<French>Aucun seuil de crise défini</French>
+		<German>Kein Krisenschwellenwert festgelegt</German>
+		<Italian>Nessuna soglia di crisi impostata</Italian>
+		<Spanish>Sin umbral de crisis establecido</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_INSTABILITY_PROGRESS</Tag>
+		<English>Instability: %d1/%d2</English>
+		<French>Instabilité : %d1/%d2</French>
+		<German>Instabilität: %d1/%d2</German>
+		<Italian>Instabilità: %d1/%d2</Italian>
+		<Spanish>Inestabilidad: %d1/%d2</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_INSTABILITY_TITLE</Tag>
+		<English>Instability in our Empire</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_INSTABILITY_TOTAL</Tag>
+		<English>Total Instability</English>
+		<French>Instabilité totale</French>
+		<German>Gesamtinstabilität</German>
+		<Italian>Instabilità totale</Italian>
+		<Spanish>Inestabilidad total</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_INSTABILITY_POLITICAL</Tag>
+		<English>Political Instability</English>
+		<French>Instabilité politique</French>
+		<German>Politische Instabilität</German>
+		<Italian>Instabilità politica</Italian>
+		<Spanish>Inestabilidad política</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_INSTABILITY_ECONOMIC</Tag>
+		<English>Economic Instability</English>
+		<French>Instabilité économique</French>
+		<German>Wirtschaftliche Instabilität</German>
+		<Italian>Instabilità economica</Italian>
+		<Spanish>Inestabilidad económica</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_INSTABILITY_HEALTH</Tag>
+		<English>Health Instability</English>
+		<French>Instabilité sanitaire</French>
+		<German>Gesundheitsinstabilität</German>
+		<Italian>Instabilità sanitaria</Italian>
+		<Spanish>Inestabilidad sanitaria</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_INSTABILITY_PERCENT</Tag>
+		<English>Progress towards next crisis</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_PLAYER_CIVIL_WAR_CRISIS</Tag>
+		<English>%s1 has entered a Civil War Crisis!</English>
+		<French>%s1 est entré dans une crise de guerre civile !</French>
+		<German>%s1 ist in eine Bürgerkriegskrise geraten!</German>
+		<Italian>%s1 è entrato in una crisi di guerra civile!</Italian>
+		<Spanish>¡%s1 ha entrado en una crisis de guerra civil!</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_PLAYER_FAMINE_CRISIS</Tag>
+		<English>%s1 has entered a Famine Crisis!</English>
+		<French>%s1 est entré dans une crise de famine !</French>
+		<German>%s1 ist in eine Hungerkrise geraten!</German>
+		<Italian>%s1 è entrato in una crisi di carestia!</Italian>
+		<Spanish>¡%s1 ha entrado en una crisis de hambruna!</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_PLAYER_INFLATION_CRISIS</Tag>
+		<English>%s1 has entered an Inflation Crisis!</English>
+		<French>%s1 est entré dans une crise d'inflation !</French>
+		<German>%s1 ist in eine Inflationskrise geraten!</German>
+		<Italian>%s1 è entrato in una crisi di inflazione!</Italian>
+		<Spanish>¡%s1 ha entrado en una crisis de inflación!</Spanish>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CONCEPT_INSTABILITY</Tag>
+		<English>Instability</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CONCEPT_INSTABILITY_PEDIA</Tag>
+		<English>[H1]Instability System[\H1][PARAGRAPH:2][BOLD]Overview[\BOLD][PARAGRAPH:2]The Instability System in Civ4 Reimagined represents the internal challenges that civilizations face as they grow and develop. High instability can lead to three types of crises: Political, Economic, and Health. Each type accumulates independently and can trigger devastating consequences if left unchecked.[PARAGRAPH:1]Political instability represents civil unrest, government corruption, and institutional failures. Economic instability represents financial crises, market failures, and economic mismanagement. Health instability represents public health crises, famines, and disease outbreaks.[PARAGRAPH:1]Different ideologies face unique instability challenges. Authoritarian regimes (Conservatism and Fascism) suffer political instability from technological progress. Liberal democracies are vulnerable to economic stagnation. Communist regimes are vulnerable to food shortages.[PARAGRAPH:1][H2]Political instability sources:[\H2][NEWLINE]. Technology advances (authoritarian regimes only)[NEWLINE]. Angry population[NEWLINE]. Using Slavery[NEWLINE]. Foreign religion spread[NEWLINE]. Barbarian units in empire[NEWLINE]. Cultural conflicts[NEWLINE]. Colonial unrest[NEWLINE]. Losing capital[NEWLINE]. Losing ideological influence by changing Civics[PARAGRAPH:1][H2]Economic instability sources:[\H2][NEWLINE]. Economic stagnation (liberalism only)[NEWLINE]. Negative income[NEWLINE]. Rapid economic growth[NEWLINE]. Currency devaluation: When gold reserves are low relative to economic activity[NEWLINE]. City blockades[NEWLINE]. Foreign corporation spread[NEWLINE]. Negative treasury[PARAGRAPH:1][H2]Health instability sources:[\H2][NEWLINE]. Food shortages (communism only)[NEWLINE]. Founding or conquering a city[NEWLINE]. Population growth[NEWLINE]. Unhealthy population[NEWLINE]. Pillaged improvements</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CRISIS_POLITICAL_HEADER</Tag>
+		<English>Civil War Crisis!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CRISIS_POLITICAL_BODY</Tag>
+		<English>Your empire has plunged into a devastating Civil War! Rebel armies have risen up across your lands, turning your own military units against you. The people's faith in your government has completely collapsed, and the very fabric of society is tearing apart.[NEWLINE][NEWLINE]Yet in the chaos lies opportunity. History shows that the greatest reforms often emerge from the ashes of crisis. The very institutions that failed can be rebuilt stronger, more inclusive, and more responsive to the people's needs. This moment of breakdown can become the foundation for a more just and stable society.[NEWLINE][NEWLINE]Effects:[NEWLINE]• Rebel armies spawn from your cities[NEWLINE]• Your own military units defect to the rebels[NEWLINE]• Cities suffer 50% more unhappiness[NEWLINE]• Cultural conflicts intensify dramatically[NEWLINE]• Rebel units actively fight against your forces</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CRISIS_ECONOMIC_HEADER</Tag>
+		<English>Inflation Crisis!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CRISIS_ECONOMIC_BODY</Tag>
+		<English>Your empire is experiencing catastrophic hyperinflation! The economy has completely collapsed as the value of money plummets to nothing. Your treasury has been devastated, and the economic system is in total disarray. Citizens are losing faith in the currency as prices spiral out of control.[NEWLINE][NEWLINE]But economic crises have often been the catalyst for the most profound economic reforms. When old systems fail, new ones can be built from the ground up. This moment of economic destruction can become the birthplace of more resilient, inclusive, and sustainable economic institutions that serve all citizens, not just the privileged few.[NEWLINE][NEWLINE]Effects:[NEWLINE]• Gold reserves reduced to 25%[NEWLINE]• Inflation rate multiplied by 8x[NEWLINE]• Costs for buying units or building increased by 400%[NEWLINE]• Trade profits reduced to 25%[NEWLINE]• Cities suffer more unhappiness[NEWLINE]• Resource distribution is much less efficient</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CRISIS_HEALTH_HEADER</Tag>
+		<English>Famine Crisis!</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_CRISIS_HEALTH_BODY</Tag>
+		<English>Your empire is suffering from a catastrophic famine! Food production has completely collapsed, and the population is starving to death. The health infrastructure has failed, and disease is spreading rapidly through the malnourished population. The very survival of your nation is at stake.[NEWLINE][NEWLINE]Yet throughout history, the most devastating health crises have often triggered the most profound societal transformations. When death becomes commonplace, old social hierarchies crumble, labor becomes scarce and valuable, and people demand fundamental changes in how society is organized. This crisis can become the catalyst for building a more just, inclusive, and resilient society.[NEWLINE][NEWLINE]Effects:[NEWLINE]• Food production reduced by 1 from all tiles[NEWLINE]• 150% increase in unhealthy population[NEWLINE]• 10% of military units disband each turn[NEWLINE]• Cities may lose multiple population from starvation[NEWLINE]• Resource distribution is much less efficient</English>
+	</TEXT>
+</Civ4GameText> 

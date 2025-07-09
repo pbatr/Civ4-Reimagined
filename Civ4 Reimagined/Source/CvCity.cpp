@@ -994,6 +994,10 @@ void CvCity::kill(bool bUpdatePlotGroups)
 
 	if (bCapital)
 	{
+		// Civ4 Reimagined
+		const int iInstability = 25;
+		GET_PLAYER(eOwner).changePoliticalInstabilityProgress(iInstability, "losing Capital");
+
 		GET_PLAYER(eOwner).findNewCapital();
 
 		GET_TEAM(GET_PLAYER(eOwner).getTeam()).resetVictoryProgress();
@@ -1133,6 +1137,9 @@ void CvCity::doTurn()
 	{
 		setWeLoveTheKingDay(false);
 	}
+
+	// Civ4 Reimagined
+	doInstability();
 
 	// ONEVENT - Do turn
 	CvEventReporter::getInstance().cityDoTurn(this, getOwnerINLINE());
@@ -3872,6 +3879,8 @@ void CvCity::hurry(HurryTypes eHurry)
 	{
 		GET_PLAYER(getOwnerINLINE()).gainSlavePoints(iHurryPopulation * GET_PLAYER(getOwnerINLINE()).getSlavePointsPerPopulationSacrificed(), this); // Civ4 Reimagined
 	}
+	
+	GET_PLAYER(getOwnerINLINE()).changePoliticalInstabilityProgress(1, "Slavery");
 	
 	changeHurryAngerTimer(iHurryAngerLength);
 
@@ -9415,6 +9424,12 @@ void CvCity::setPlundered(bool bNewValue)
 	{
 		m_bPlundered = bNewValue;
 
+		// Civ4 Reimagined
+		if (bNewValue)
+		{
+			GET_PLAYER(getOwnerINLINE()).changeEconomicInstabilityProgress(3, "Blockaded City");
+		}
+
 		updateTradeRoutes();
 	}
 }
@@ -14003,6 +14018,12 @@ void CvCity::setHasReligion(ReligionTypes eIndex, bool bNewValue, bool bAnnounce
 		{
 			GC.getGameINLINE().makeReligionFounded(eIndex, getOwnerINLINE());
 
+			// Civ4 Reimagined
+			if (GET_PLAYER(getOwnerINLINE()).getStateReligion() != eIndex)
+			{
+				GET_PLAYER(getOwnerINLINE()).changePoliticalInstabilityProgress(1, "spreading foreign religion");
+			}
+
 			if (bAnnounce)
 			{
 				if (GC.getGameINLINE().getHolyCity(eIndex) != this)
@@ -14253,6 +14274,17 @@ void CvCity::setHasCorporation(CorporationTypes eIndex, bool bNewValue, bool bAn
 		if (NULL != pHeadquarters)
 		{
 			pHeadquarters->updateCorporation();
+
+			// Civ4 Reimagined
+			if (bNewValue)
+			{
+				const eCorporationOwner = pHeadquarters->getOwnerINLINE();
+
+				if (eCorporationOwner != getOwnerINLINE())
+				{
+					GET_PLAYER(getOwnerINLINE()).changeEconomicInstabilityProgress(1, "spreading foreign corporation");
+				}
+			}
 		}
 
 		updateCorporation();
@@ -15441,6 +15473,12 @@ void CvCity::doGrowth()
 
 	iDiff = foodDifference();
 
+	// Civ4 Reimagined: Communist regimes suffer instability from food shortages
+	if (iDiff <= 0 && GET_PLAYER(getOwnerINLINE()).getIdeology() == IDEOLOGY_COMMUNISM)
+	{
+		GET_PLAYER(getOwnerINLINE()).changeHealthInstabilityProgress(3, "Food Shortage");
+	}
+
 	changeFood(iDiff);
 	changeFoodKept(iDiff);
 
@@ -15458,6 +15496,9 @@ void CvCity::doGrowth()
 			changeFood(-(std::max(0, (growthThreshold() - getFoodKept()))));
 			changePopulation(1);
 
+			// Civ4 Reimagined: Increase health crisis instability when city grows
+			GET_PLAYER(getOwnerINLINE()).changeHealthInstabilityProgress(1, "new Population");
+			
 			// ONEVENT - City growth
 			CvEventReporter::getInstance().cityGrowth(this, getOwnerINLINE());
 		}
@@ -16216,6 +16257,48 @@ void CvCity::doImmigration()
 int CvCity::getImmigrants()
 {
 	return m_iImmigrants;
+}
+
+
+// Civ4 Reimagined
+void CvCity::doInstability()
+{
+	if (GET_PLAYER(getOwnerINLINE()).isBarbarian() || GET_PLAYER(getOwnerINLINE()).isMinorCiv())
+	{
+		return;
+	}
+
+	if (GET_PLAYER(getOwnerINLINE()).isCrisis())
+	{
+		return;
+	}
+
+	if (angryPopulation() > 0)
+	{
+		const int iInstability = std::min(angryPopulation() * 3, 9);
+		GET_PLAYER(getOwnerINLINE()).changePoliticalInstabilityProgress(iInstability, "Angry Population");
+	}
+
+	if (healthRate() < 0)
+	{
+		const int iInstability = std::min(-healthRate(), 3);
+		GET_PLAYER(getOwnerINLINE()).changeHealthInstabilityProgress(iInstability, "Unhealthy Population");
+	}
+
+	int iAnger = getCulturePercentAnger();
+	if (iAnger > 0)
+	{
+		const int iInstability = std::max(1, iAnger / 300);
+		GET_PLAYER(getOwnerINLINE()).changePoliticalInstabilityProgress(iInstability, "Culture Anger");
+	
+	}
+
+	iAnger = getColonyPercentAnger();
+	if (iAnger > 0)
+	{
+		const int iInstability = std::max(1, iAnger / 300);
+		GET_PLAYER(getOwnerINLINE()).changePoliticalInstabilityProgress(iInstability, "Colony Anger");
+	}
 }
 
 

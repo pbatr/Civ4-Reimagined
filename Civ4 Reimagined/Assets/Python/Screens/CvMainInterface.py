@@ -73,6 +73,11 @@ import GPUtil
 GP_BAR_WIDTH = 320
 # BUG - Great Person Bar - end
 
+# BUG - Instability Bar - start
+import InstabilityUtil
+INSTABILITY_BAR_WIDTH = 240
+# BUG - Instability Bar - end
+
 # BUG - Progress Bar - Tick Marks - start
 import ProgressBarUtil
 # BUG - Progress Bar - Tick Marks - end
@@ -814,6 +819,16 @@ class CvMainInterface:
 		screen.hide( "GreatPersonBar" )
 # BUG - Great Person Bar - end
 
+# BUG - Instability Bar - start
+		xCoord += 7 + 380
+		screen.addStackedBarGFC( "InstabilityBar", xCoord, 27, 285, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_INSTABILITY_PROGRESS_BAR, -1, -1 )
+		screen.setStackedBarColors( "InstabilityBar", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_NEGATIVE_RATE") )
+		screen.setStackedBarColors( "InstabilityBar", InfoBarTypes.INFOBAR_RATE, gc.getInfoTypeForString("COLOR_EMPTY") )
+		screen.setStackedBarColors( "InstabilityBar", InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_EMPTY") )
+		screen.setStackedBarColors( "InstabilityBar", InfoBarTypes.INFOBAR_EMPTY, gc.getInfoTypeForString("COLOR_EMPTY") )
+		screen.hide( "InstabilityBar" )
+# BUG - Instability Bar - end
+
 # BUG - Bars on single line for higher resolution screens - start
 		xCoord = 268 + (xResolution - 1440) / 2
 		screen.addStackedBarGFC( "GreatGeneralBar-w", xCoord, 2, 84, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_HELP_GREAT_GENERAL, -1, -1 )
@@ -838,6 +853,14 @@ class CvMainInterface:
 		screen.setStackedBarColors( "GreatPersonBar-w", InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_EMPTY") )
 		screen.setStackedBarColors( "GreatPersonBar-w", InfoBarTypes.INFOBAR_EMPTY, gc.getInfoTypeForString("COLOR_EMPTY") )
 		screen.hide( "GreatPersonBar-w" )
+
+		xCoord += 6 + 320
+		screen.addStackedBarGFC( "InstabilityBar-w", xCoord, 2, 240, iStackBarHeight, InfoBarTypes.NUM_INFOBAR_TYPES, WidgetTypes.WIDGET_INSTABILITY_PROGRESS_BAR, -1, -1 )
+		screen.setStackedBarColors( "InstabilityBar-w", InfoBarTypes.INFOBAR_STORED, gc.getInfoTypeForString("COLOR_NEGATIVE_RATE") )
+		screen.setStackedBarColors( "InstabilityBar-w", InfoBarTypes.INFOBAR_RATE, gc.getInfoTypeForString("COLOR_EMPTY") )
+		screen.setStackedBarColors( "InstabilityBar-w", InfoBarTypes.INFOBAR_RATE_EXTRA, gc.getInfoTypeForString("COLOR_EMPTY") )
+		screen.setStackedBarColors( "InstabilityBar-w", InfoBarTypes.INFOBAR_EMPTY, gc.getInfoTypeForString("COLOR_EMPTY") )
+		screen.hide( "InstabilityBar-w" )
 # BUG - Bars on single line for higher resolution screens - end
 
 		
@@ -1438,6 +1461,11 @@ class CvMainInterface:
 		if ( CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_HIDE_ALL and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_MINIMAP_ONLY  and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_ADVANCED_START):
 			self.updateGreatPersonBar(screen)
 # BUG - Great Person Bar - end
+
+# BUG - Instability Bar - start
+		if ( CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_HIDE_ALL and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_MINIMAP_ONLY  and CyInterface().getShowInterface() != InterfaceVisibility.INTERFACE_ADVANCED_START):
+			self.updateInstabilityBar(screen)
+# BUG - Instability Bar - end
 
 		if ( CyInterface().shouldDisplayFlag() and CyInterface().getShowInterface() == InterfaceVisibility.INTERFACE_SHOW ):
 			screen.show( "CivilizationFlag" )
@@ -3024,10 +3052,13 @@ class CvMainInterface:
 		screen.hide( "GreatPersonBarText" )
 		screen.hide( "GreatGeneralBar" )
 		screen.hide( "GreatGeneralBarText" )
+		screen.hide( "InstabilityBar" )
+		screen.hide( "InstabilityBarText" )
 
 		screen.hide( "GreatGeneralBar-w" )
 		screen.hide( "ResearchBar-w" )
 		screen.hide( "GreatPersonBar-w" )
+		screen.hide( "InstabilityBar-w" )
 
 		self.pBarResearchBar_n.hide(screen)
 		self.pBarResearchBar_w.hide(screen)
@@ -3205,6 +3236,7 @@ class CvMainInterface:
 
 				self.updateGreatPersonBar(screen)
 				self.updateGreatGeneralBar(screen)
+				self.updateInstabilityBar(screen)
 					
 		return 0
 	
@@ -3250,6 +3282,38 @@ class CvMainInterface:
 				screen.setBarPercentage( szGreatPersonBar, InfoBarTypes.INFOBAR_RATE, 0 )
 
 			screen.show( szGreatPersonBar )
+			
+
+	def updateInstabilityBar(self, screen):
+		if (not CyInterface().isCityScreenUp()):
+			szText = InstabilityUtil.getInstabilityText(INSTABILITY_BAR_WIDTH)
+			
+# BUG - Bars on single line for higher resolution screens - start
+			xResolution = screen.getXResolution()
+			if (xResolution >= 1440):
+				szInstabilityBar = "InstabilityBar-w"
+				xCoord = 268 + (xResolution - 1440) / 2 + 84 + 6 + 487 + 6 + 320 + 6 + 240 / 2
+				yCoord = 5
+			else:
+				szInstabilityBar = "InstabilityBar"
+				xCoord = 268 + (xResolution - 1024) / 2 + 100 + 7 + 380 + 7 + 285 / 2
+				yCoord = 30
+
+			screen.setText( "InstabilityBarText", "Background", szText, CvUtil.FONT_CENTER_JUSTIFY, xCoord, yCoord, -0.4, FontTypes.GAME_FONT, WidgetTypes.WIDGET_INSTABILITY_PROGRESS_BAR, -1, -1 )
+			screen.show( "InstabilityBarText" )
+# BUG - Bars on single line for higher resolution screens - end
+			
+			player = gc.getActivePlayer()
+			iTotalInstability = player.getInstabilityProgress()
+			iThreshold = player.getInstabilityThreshold()
+			
+			if (iThreshold > 0):
+				fProgress = float(iTotalInstability) / float(iThreshold)
+				screen.setBarPercentage( szInstabilityBar, InfoBarTypes.INFOBAR_STORED, fProgress )
+			else:
+				screen.setBarPercentage( szInstabilityBar, InfoBarTypes.INFOBAR_STORED, 0 )
+
+			screen.show( szInstabilityBar )
 			
 
 	def updateGreatGeneralBar(self, screen):

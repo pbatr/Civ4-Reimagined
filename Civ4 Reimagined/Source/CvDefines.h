@@ -148,6 +148,7 @@
 #define PYGameModule					"CvGameInterface"
 #define PYEventModule					"CvEventInterface"
 #define PYRandomEventModule					"CvRandomEventInterface"
+#define PYInstabilityUtilModule		"InstabilityUtil"
 
 #define DANGER_RANGE						(4)
 #define BORDER_DANGER_RANGE					(2) // K-Mod

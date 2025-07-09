@@ -253,6 +253,10 @@ void CvDLLWidgetData::parseHelp(CvWStringBuffer &szBuffer, CvWidgetDataStruct &w
 		parseSlaveryBarHelp(widgetDataStruct, szBuffer);
 		break;
 
+	case WIDGET_INSTABILITY_PROGRESS_BAR:
+		parseInstabilityProgressBarHelp(widgetDataStruct, szBuffer);
+		break;
+
 	case WIDGET_HELP_SELECTED:
 		parseSelectedHelp(widgetDataStruct, szBuffer);
 		break;
@@ -5178,6 +5182,54 @@ void CvDLLWidgetData::parseSlaveryBarHelp(CvWidgetDataStruct &widgetDataStruct, 
 	if (NO_PLAYER != GC.getGame().getActivePlayer())
 	{
 		GAMETEXT.parseSlaveryBarHelp(szBuffer, GET_PLAYER(GC.getGame().getActivePlayer()));
+	}
+}
+
+
+void CvDLLWidgetData::parseInstabilityProgressBarHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)
+{
+	if (NO_PLAYER != GC.getGame().getActivePlayer())
+	{
+		CvPlayer& kPlayer = GET_PLAYER(GC.getGame().getActivePlayer());
+		
+		// Get instability data
+		int iTotalInstability = kPlayer.getInstabilityProgress();
+		int iPoliticalInstability = kPlayer.getPoliticalInstabilityProgress();
+		int iEconomicInstability = kPlayer.getEconomicInstabilityProgress();
+		int iHealthInstability = kPlayer.getHealthInstabilityProgress();
+		int iThreshold = kPlayer.getInstabilityThreshold();
+		
+		// Build hover text
+		szBuffer.append(gDLL->getText("TXT_KEY_INSTABILITY_TITLE"));
+		szBuffer.append(L"\n");
+		
+		szBuffer.append(gDLL->getText("TXT_KEY_INSTABILITY_TOTAL"));
+		szBuffer.append(L": ");
+		szBuffer.append(CvWString::format(L"%d/%d", iTotalInstability, iThreshold));
+		szBuffer.append(L"\n");
+		
+		szBuffer.append(gDLL->getText("TXT_KEY_INSTABILITY_POLITICAL"));
+		szBuffer.append(L": ");
+		szBuffer.append(CvWString::format(L"%d", iPoliticalInstability));
+		szBuffer.append(L"\n");
+		
+		szBuffer.append(gDLL->getText("TXT_KEY_INSTABILITY_ECONOMIC"));
+		szBuffer.append(L": ");
+		szBuffer.append(CvWString::format(L"%d", iEconomicInstability));
+		szBuffer.append(L"\n");
+		
+		szBuffer.append(gDLL->getText("TXT_KEY_INSTABILITY_HEALTH"));
+		szBuffer.append(L": ");
+		szBuffer.append(CvWString::format(L"%d", iHealthInstability));
+		
+		if (iThreshold > 0)
+		{
+			float fPercent = (float)iTotalInstability / (float)iThreshold * 100.0f;
+			szBuffer.append(L"\n");
+			szBuffer.append(gDLL->getText("TXT_KEY_INSTABILITY_PERCENT"));
+			szBuffer.append(L": ");
+			szBuffer.append(CvWString::format(L"%.1f%%", fPercent));
+		}
 	}
 }
 
