@@ -25237,11 +25237,30 @@ void CvPlayer::doFamineCrisis()
 		changeUnhealthyPopulationModifier(150);
 	}
 
-	const iDisbandingUnits = std::max(1, getNumUnits() / 10);
+	const iDisbandingUnits = getNumUnits() / 14;
 
-	for (int i = 0; i < iDisbandingUnits; ++i)
+	if (iDisbandingUnits > 0)
 	{
-		disbandUnit(true);
+		for (int i = 0; i < iDisbandingUnits; ++i)
+		{
+			disbandUnit(true);
+		}
+	} 
+	else 
+	{
+		// Disband max one unit with 1/14 chance per unit when player has fewer than 14 units
+		if (getNumUnits() > 0)
+		{
+			// Check each unit with 1/14 chance, but only disband the first one that passes the check
+			for (int i = 0; i < getNumUnits(); ++i)
+			{
+				if (GC.getGameINLINE().getSorenRandNum(14, "Famine Crisis Unit Disband") == 0)
+				{
+					disbandUnit(true);
+					break; // Only disband one unit maximum
+				}
+			}
+		}
 	}
 
 	if (getCrisisTurns() == 6)
