@@ -9360,7 +9360,7 @@ bool CvCityAI::AI_addBestCitizen(bool bWorkers, bool bSpecialists, int* piBestPl
 	int iGrowthValue = AI_growthValuePerFood(); // K-Mod
 	
 	// Civ4 Reimagined
-	if ( happyLevel() - unhappyLevel(0) <= 0 )
+	if ( happyLevel() - unhappyLevel(1) < 0 )
 	{
 		iGrowthValue = 0;
 	}

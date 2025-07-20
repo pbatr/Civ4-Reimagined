@@ -27432,7 +27432,7 @@ int CvPlayerAI::AI_getHappinessWeight(int iHappy, int iExtraPop, int iSubtractHa
 		// I'm only going to subtract half of the commerce happiness, because we might not be using that commerce for only happiness.
 		iCurrentHappy -= 50*std::max(0, pLoopCity->getCommerceHappiness());
 		int iTestHappy = iCurrentHappy +
-			(bPercent ? ((pLoopCity->getPopulation()+iExtraPop)*iHappy) : 100 * iHappy);
+			(bPercent ? ((pLoopCity->getPopulation()+iExtraPop)*iHappy) : 100 * iHappy) * (isCivilWarCrisis() ? 2 : 1);
 		iValue += (isCivilWarCrisis() ? 2 : 1) * std::max(0, -iCurrentHappy) - std::max(0, -iTestHappy); // change in the number of angry citizens
 		// a small bonus for happiness beyond what we need
 		iValue += 100*(std::max(0, iTestHappy) - std::max(0, iCurrentHappy))/(400 + std::max(0, iTestHappy) + std::max(0, iCurrentHappy));
