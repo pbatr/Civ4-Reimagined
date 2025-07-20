@@ -25327,6 +25327,12 @@ bool CvPlayer::spawnInitialCivilWarUnits(CvCity* pCity, int iNumberOfUnits, Unit
 			continue;
 		}
 
+		// last city defender cannot join rebels
+		if (pLoopUnit->plot()->isCity() && pLoopUnit->plot()->getNumUnits() == 1)
+		{
+			continue;
+		}
+
 		int iUnitValue = GC.getASyncRand().get(40, "pick civil war units") - pLoopUnit->getExperience();
 
 		if (pLoopUnit->getDomainType() == DOMAIN_SEA)

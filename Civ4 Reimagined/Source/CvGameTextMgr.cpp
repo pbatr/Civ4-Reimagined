@@ -549,10 +549,12 @@ void CvGameTextMgr::setUnitHelp(CvWStringBuffer &szString, const CvUnit* pUnit, 
 		szString.append(szTempBuffer);
 	}
 
-	if (pUnit->getImmobileTimer() > 0)
+	const int iImmobileTimer = pUnit->getOwnerINLINE() == GC.getGameINLINE().getActivePlayer() ? pUnit->getImmobileTimer() : (pUnit->getImmobileTimer() - 1);
+
+	if (iImmobileTimer > 0)
 	{
 		szString.append(L", ");
-		szString.append(gDLL->getText("TXT_KEY_UNIT_HELP_IMMOBILE", pUnit->getImmobileTimer()));
+		szString.append(gDLL->getText("TXT_KEY_UNIT_HELP_IMMOBILE", iImmobileTimer));
 	}
 
 	/*if (!bOneLine)
