@@ -25223,9 +25223,10 @@ void CvPlayer::doCivilWarCrisis()
 
 	for (std::vector<std::pair<int, CvCity*> >::iterator it = cities.begin(); it != cities.end(); ++it)
 	{
-		if (it->first > 7)
+		if (it->first > 6)
 		{
-			spawnCivilWarUnits(it->second, 1 + it->second->angryPopulation() / 2, UNITAI_ATTACK);
+			const int iNumUnits = std::max(1, (it->second->getPopulation() + 4*it->second->angryPopulation())/6);
+			spawnCivilWarUnits(it->second, iNumUnits, UNITAI_ATTACK);
 		}
 	}
 }
