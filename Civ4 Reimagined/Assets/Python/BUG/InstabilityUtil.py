@@ -141,12 +141,12 @@ def getInstabilityText(iInstabilityBarWidth):
 		# Add remaining turns information
 		iCrisisTurns = player.getCrisisTurns()
 		iCrisisLength = gc.getGame().getCrisisLength()
-		iTurnsRemaining = iCrisisLength - iCrisisTurns
+		iTurnsRemaining = iCrisisLength - iCrisisTurns + 1
 		
-		if (iTurnsRemaining > 0):
+		if (iTurnsRemaining > 1):
 			szText += u" (%d turns left)" % (iTurnsRemaining)
-		else:
-			szText += u" (ending)"
+		elif (iTurnsRemaining == 1):
+			szText += u" (1 turn left)"
 		
 		return u"<font=2>%s</font>" % (szText)
 	
