@@ -25171,41 +25171,48 @@ void CvPlayer::doCivilWarCrisis()
 
 	if (getCrisisTurns() == 1)
 	{
-		const int iMaxRebelArmySize = 33 * getNumMilitaryUnits() / 100;
+		const int iMaxRebelArmySize = 34 * getNumMilitaryUnits() / 100;
 		const int iMaxNumRebellingCities = std::max(1, 2 * (getNumCities() - 1) / 5);
 		const int iRebelArmySizePerCity = iMaxRebelArmySize / iMaxNumRebellingCities;
 
-		int iNumRebellingCities = 0;
-
-		std::vector<std::pair<int, CvCity*> > cities;
-		for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
+		if (iRebelArmySizePerCity > 0)
 		{
-			if (pLoopCity->isCapital() && getNumCities() > 1)
+			int iNumRebellingCities = 0;
+
+			std::vector<std::pair<int, CvCity*> > cities;
+			for (CvCity* pLoopCity = firstCity(&iLoop); pLoopCity != NULL; pLoopCity = nextCity(&iLoop))
 			{
-				continue;
+				if (pLoopCity->isCapital() && getNumCities() > 1)
+				{
+					continue;
+				}
+
+				const int iCityValue = pLoopCity->angryPopulation() + GC.getASyncRand().get(pLoopCity->isColony() ? 15 : 10, "pick civil war cities for army spawn");
+				logBBAI(" civil war cities: %S has value %d", pLoopCity->getName(0).GetCString(), iCityValue );
+				cities.push_back(std::pair<int, CvCity*>(iCityValue, pLoopCity));
+			}
+			std::sort(cities.begin(), cities.end(), std::greater<std::pair<int, CvCity*> >());
+
+			for (std::vector<std::pair<int, CvCity*> >::iterator it = cities.begin(); it != cities.end(); ++it)
+			{
+				if (iNumRebellingCities >= iMaxNumRebellingCities)
+				{
+					break;
+				}
+
+				if (spawnInitialCivilWarUnits(it->second, iRebelArmySizePerCity, UNITAI_ATTACK_CITY))
+				{
+					iNumRebellingCities++;
+				}
+				
 			}
 
-			const int iCityValue = pLoopCity->angryPopulation() + GC.getASyncRand().get(pLoopCity->isColony() ? 15 : 10, "pick civil war cities for army spawn");
-			logBBAI(" civil war cities: %S has value %d", pLoopCity->getName(0).GetCString(), iCityValue );
-			cities.push_back(std::pair<int, CvCity*>(iCityValue, pLoopCity));
+			// If the initial army is already quite big then skip additional rebel spawn on first turn
+			if (iRebelArmySizePerCity * iNumRebellingCities >= getNumCities())
+			{
+				return;
+			}	
 		}
-		std::sort(cities.begin(), cities.end(), std::greater<std::pair<int, CvCity*> >());
-
-		for (std::vector<std::pair<int, CvCity*> >::iterator it = cities.begin(); it != cities.end(); ++it)
-		{
-			if (iNumRebellingCities >= iMaxNumRebellingCities)
-			{
-				break;
-			}
-
-			if (spawnInitialCivilWarUnits(it->second, iRebelArmySizePerCity, UNITAI_ATTACK_CITY))
-			{
-				iNumRebellingCities++;
-			}
-			
-		}
-
-		return;
 	}
 
 	std::vector<std::pair<int, CvCity*> > cities;
