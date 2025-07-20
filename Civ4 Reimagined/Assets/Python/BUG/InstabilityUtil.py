@@ -138,6 +138,16 @@ def getInstabilityText(iInstabilityBarWidth):
 		else:
 			szText = u"Active Crisis"
 		
+		# Add remaining turns information
+		iCrisisTurns = player.getCrisisTurns()
+		iCrisisLength = gc.getGame().getCrisisLength()
+		iTurnsRemaining = iCrisisLength - iCrisisTurns
+		
+		if (iTurnsRemaining > 0):
+			szText += u" (%d turns left)" % (iTurnsRemaining)
+		else:
+			szText += u" (ending)"
+		
 		return u"<font=2>%s</font>" % (szText)
 	
 	# Find the most likely crisis type (highest instability)

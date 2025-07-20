@@ -1095,6 +1095,11 @@ int CyPlayer::getCrisisCount()
 	return m_pPlayer ? m_pPlayer->getCrisisCount() : -1;
 }
 
+int CyPlayer::getCrisisTurns()
+{
+	return m_pPlayer ? m_pPlayer->getCrisisTurns() : -1;
+}
+
 void CyPlayer::resetInstabilityProgress()
 {
 	if (m_pPlayer)

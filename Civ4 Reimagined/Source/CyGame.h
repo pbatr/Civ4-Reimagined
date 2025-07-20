@@ -187,6 +187,7 @@ public:
 	CalendarTypes getCalendar() const;
 	int /*EraTypes*/ getStartEra();
 	int /*GameSpeedTypes*/ getGameSpeedType();	
+	int getCrisisLength(); // Civ4 Reimagined
 	/*PlayerTypes*/ int getRankPlayer(int iRank);
 	int getPlayerRank(int /*PlayerTypes*/ iIndex);
 	int getPlayerScore(int /*PlayerTypes*/ iIndex);

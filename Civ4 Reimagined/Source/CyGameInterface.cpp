@@ -177,6 +177,7 @@ void CyGamePythonInterface()
 		.def("getCalendar", &CyGame::getCalendar, "CalendarType ()")
 		.def("getStartEra", &CyGame::getStartEra)
 		.def("getGameSpeedType", &CyGame::getGameSpeedType)
+		.def("getCrisisLength", &CyGame::getCrisisLength, "int () - Returns the crisis length scaled by game speed") // Civ4 Reimagined
 		.def("getRankPlayer", &CyGame::getRankPlayer)
 		.def("getPlayerRank", &CyGame::getPlayerRank)
 		.def("getPlayerScore", &CyGame::getPlayerScore)

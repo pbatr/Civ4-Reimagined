@@ -254,6 +254,7 @@ void CyPlayerPythonInterface1(python::class_<CyPlayer>& x)
 		.def("changeHealthInstabilityProgress", &CyPlayer::changeHealthInstabilityProgress, "void (int iChange, std::string sLogMessage)")
 		.def("getInstabilityThreshold", &CyPlayer::getInstabilityThreshold, "int ()")
 		.def("getCrisisCount", &CyPlayer::getCrisisCount, "int ()")
+		.def("getCrisisTurns", &CyPlayer::getCrisisTurns, "int ()")
 		.def("resetInstabilityProgress", &CyPlayer::resetInstabilityProgress, "void ()")
 
 		.def("getMaxGlobalBuildingProductionModifier", &CyPlayer::getMaxGlobalBuildingProductionModifier, "int ()")

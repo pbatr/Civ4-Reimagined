@@ -752,6 +752,11 @@ int /*GameSpeedTypes*/ CyGame::getGameSpeedType()
 	return m_pGame ? m_pGame->getGameSpeedType() : -1;
 }
 
+int CyGame::getCrisisLength()
+{
+	return m_pGame ? m_pGame->getCrisisLength() : -1;
+}
+
 int /*PlayerTypes*/ CyGame::getRankPlayer(int iRank)
 {
 	return m_pGame ? m_pGame->getRankPlayer(iRank) : -1;

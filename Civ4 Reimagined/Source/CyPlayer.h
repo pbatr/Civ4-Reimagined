@@ -267,6 +267,7 @@ public:
 	void changeHealthInstabilityProgress(int iChange, std::string sLogMessage);
 	int getInstabilityThreshold();
 	int getCrisisCount();
+	int getCrisisTurns();
 	void resetInstabilityProgress();
 
 	int getMaxGlobalBuildingProductionModifier();
