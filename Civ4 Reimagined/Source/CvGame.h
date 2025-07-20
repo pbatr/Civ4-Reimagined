@@ -336,7 +336,8 @@ public:
 
 	DllExport CalendarTypes getCalendar() const;																// Exposed to Python
 
-	DllExport GameSpeedTypes getGameSpeedType() const;													// Exposed to Python 
+	DllExport GameSpeedTypes getGameSpeedType() const;													// Exposed to Python
+	int getCrisisLength() const; // Civ4 Reimagined 
 
 	PlayerTypes getRankPlayer(int iRank) const;															// Exposed to Python
 	void setRankPlayer(int iRank, PlayerTypes ePlayer);

@@ -4143,7 +4143,7 @@ void CvPlayer::doTurn()
 	// Civ4 Reimagined
 	if (isCivilWarCrisis())
 	{
-		if (getCrisisTurns() > 5)
+		if (getCrisisTurns() >= GC.getGameINLINE().getCrisisLength())
 		{
 			setIsCivilWarCrisis(false);
 			resetCrisisTurns();
@@ -4157,8 +4157,9 @@ void CvPlayer::doTurn()
 	// Civ4 Reimagined
 	if (isFamineCrisis())
 	{
-		if (getCrisisTurns() > 5)
+		if (getCrisisTurns() >= GC.getGameINLINE().getCrisisLength())
 		{
+			changeUnhealthyPopulationModifier(-150);
 			setIsFamineCrisis(false);
 			resetCrisisTurns();
 			changeGoldenAgeTurns(getGoldenAgeLength() + 1);
@@ -4171,7 +4172,7 @@ void CvPlayer::doTurn()
 	// Civ4 Reimagined
 	if (isInflationCrisis())
 	{
-		if (getCrisisTurns() > 5)
+		if (getCrisisTurns() >= GC.getGameINLINE().getCrisisLength())
 		{
 			setIsInflationCrisis(false);
 			resetCrisisTurns();
@@ -25262,11 +25263,6 @@ void CvPlayer::doFamineCrisis()
 				}
 			}
 		}
-	}
-
-	if (getCrisisTurns() == 6)
-	{
-		changeUnhealthyPopulationModifier(-150);
 	}
 }
 

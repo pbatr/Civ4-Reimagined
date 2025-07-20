@@ -5625,6 +5625,13 @@ GameSpeedTypes CvGame::getGameSpeedType() const
 	return GC.getInitCore().getGameSpeed();
 }
 
+// Civ4 Reimagined
+int CvGame::getCrisisLength() const
+{
+	const int iBaseCrisisLength = GC.getDefineINT("BASE_CRISIS_LENGTH");
+	return (iBaseCrisisLength * GC.getGameSpeedInfo(getGameSpeedType()).getCrisisPercent()) / 100;
+}
+
 
 EraTypes CvGame::getStartEra() const
 {
