@@ -12531,6 +12531,8 @@ m_iAIInflationPercent(0),
 m_iAIWarWearinessPercent(0),
 m_iAIPerEraModifier(0),
 m_iAIAdvancedStartPercent(0),
+m_iCivicChangeGoldModifier(100),
+m_iAICivicChangeGoldModifier(100),
 m_iNumGoodies(0),
 m_piGoodies(NULL),
 m_pbFreeTechs(NULL),
@@ -12861,6 +12863,16 @@ int CvHandicapInfo::getAIAdvancedStartPercent() const
 	return m_iAIAdvancedStartPercent;
 }
 
+int CvHandicapInfo::getCivicChangeGoldModifier() const		
+{
+	return m_iCivicChangeGoldModifier;
+}
+
+int CvHandicapInfo::getAICivicChangeGoldModifier() const		
+{
+	return m_iAICivicChangeGoldModifier;
+}
+
 int CvHandicapInfo::getNumGoodies() const					
 {
 	return m_iNumGoodies;
@@ -12958,6 +12970,8 @@ void CvHandicapInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iAIWarWearinessPercent);
 	stream->Read(&m_iAIPerEraModifier);
 	stream->Read(&m_iAIAdvancedStartPercent);
+	stream->Read(&m_iCivicChangeGoldModifier);
+	stream->Read(&m_iAICivicChangeGoldModifier);
 	stream->Read(&m_iNumGoodies);
 
 	stream->ReadString(m_szHandicapName);
@@ -13046,6 +13060,8 @@ void CvHandicapInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iAIWarWearinessPercent);
 	stream->Write(m_iAIPerEraModifier);
 	stream->Write(m_iAIAdvancedStartPercent);
+	stream->Write(m_iCivicChangeGoldModifier);
+	stream->Write(m_iAICivicChangeGoldModifier);
 	stream->Write(m_iNumGoodies);
 
 	stream->WriteString(m_szHandicapName);
@@ -13127,6 +13143,8 @@ bool CvHandicapInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iAIWarWearinessPercent, "iAIWarWearinessPercent");
 	pXML->GetChildXmlValByName(&m_iAIPerEraModifier, "iAIPerEraModifier");
 	pXML->GetChildXmlValByName(&m_iAIAdvancedStartPercent, "iAIAdvancedStartPercent");
+	pXML->GetChildXmlValByName(&m_iCivicChangeGoldModifier, "iCivicChangeGoldModifier");
+	pXML->GetChildXmlValByName(&m_iAICivicChangeGoldModifier, "iAICivicChangeGoldModifier");
 
 	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(), "Goodies"))
 	{

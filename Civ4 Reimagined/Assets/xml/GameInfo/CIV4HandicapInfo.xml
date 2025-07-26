@@ -71,6 +71,8 @@
 			<iAIAdvancedStartPercent>100</iAIAdvancedStartPercent>
 			<iAIUniquePowerCostPercent>100</iAIUniquePowerCostPercent>
 			<iAIInstabilityThresholdModifier>85</iAIInstabilityThresholdModifier>
+			<iCivicChangeGoldModifier>50</iCivicChangeGoldModifier>
+			<iAICivicChangeGoldModifier>100</iAICivicChangeGoldModifier>
 			<Goodies>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
@@ -179,6 +181,8 @@
 			<iAIAdvancedStartPercent>100</iAIAdvancedStartPercent>
 			<iAIUniquePowerCostPercent>90</iAIUniquePowerCostPercent>
 			<iAIInstabilityThresholdModifier>90</iAIInstabilityThresholdModifier>
+			<iCivicChangeGoldModifier>60</iCivicChangeGoldModifier>
+			<iAICivicChangeGoldModifier>100</iAICivicChangeGoldModifier>
 			<Goodies>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
@@ -283,6 +287,8 @@
 			<iAIAdvancedStartPercent>100</iAIAdvancedStartPercent>
 			<iAIUniquePowerCostPercent>80</iAIUniquePowerCostPercent>
 			<iAIInstabilityThresholdModifier>95</iAIInstabilityThresholdModifier>
+			<iCivicChangeGoldModifier>70</iCivicChangeGoldModifier>
+			<iAICivicChangeGoldModifier>100</iAICivicChangeGoldModifier>
 			<Goodies>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
@@ -382,6 +388,8 @@
 			<iAIAdvancedStartPercent>100</iAIAdvancedStartPercent>
 			<iAIUniquePowerCostPercent>75</iAIUniquePowerCostPercent>
 			<iAIInstabilityThresholdModifier>100</iAIInstabilityThresholdModifier>
+			<iCivicChangeGoldModifier>80</iCivicChangeGoldModifier>
+			<iAICivicChangeGoldModifier>100</iAICivicChangeGoldModifier>
 			<Goodies>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
@@ -477,6 +485,8 @@
 			<iAIAdvancedStartPercent>110</iAIAdvancedStartPercent>
 			<iAIUniquePowerCostPercent>70</iAIUniquePowerCostPercent>
 			<iAIInstabilityThresholdModifier>110</iAIInstabilityThresholdModifier>
+			<iCivicChangeGoldModifier>90</iCivicChangeGoldModifier>
+			<iAICivicChangeGoldModifier>95</iAICivicChangeGoldModifier>
 			<Goodies>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
@@ -572,6 +582,8 @@
 			<iAIAdvancedStartPercent>120</iAIAdvancedStartPercent>
 			<iAIUniquePowerCostPercent>65</iAIUniquePowerCostPercent>
 			<iAIInstabilityThresholdModifier>120</iAIInstabilityThresholdModifier>
+			<iCivicChangeGoldModifier>95</iCivicChangeGoldModifier>
+			<iAICivicChangeGoldModifier>90</iAICivicChangeGoldModifier>
 			<Goodies>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
 				<GoodyType>GOODY_LOW_GOLD</GoodyType>
@@ -671,6 +683,8 @@
 			<iAIAdvancedStartPercent>135</iAIAdvancedStartPercent>
 			<iAIUniquePowerCostPercent>60</iAIUniquePowerCostPercent>
 			<iAIInstabilityThresholdModifier>135</iAIInstabilityThresholdModifier>
+			<iCivicChangeGoldModifier>100</iCivicChangeGoldModifier>
+			<iAICivicChangeGoldModifier>85</iAICivicChangeGoldModifier>
 			<Goodies>
 				<GoodyType>GOODY_HIGH_GOLD</GoodyType>
 				<GoodyType>GOODY_LOW_GOLD</GoodyType>
@@ -774,6 +788,8 @@
 			<iAIAdvancedStartPercent>150</iAIAdvancedStartPercent>
 			<iAIUniquePowerCostPercent>55</iAIUniquePowerCostPercent>
 			<iAIInstabilityThresholdModifier>150</iAIInstabilityThresholdModifier>
+			<iCivicChangeGoldModifier>100</iCivicChangeGoldModifier>
+			<iAICivicChangeGoldModifier>80</iAICivicChangeGoldModifier>
 			<Goodies>
 				<GoodyType>GOODY_LOW_GOLD</GoodyType>
 				<GoodyType>GOODY_LOW_GOLD</GoodyType>
@@ -881,6 +897,8 @@
 			<iAIAdvancedStartPercent>170</iAIAdvancedStartPercent>
 			<iAIUniquePowerCostPercent>50</iAIUniquePowerCostPercent>
 			<iAIInstabilityThresholdModifier>170</iAIInstabilityThresholdModifier>
+			<iCivicChangeGoldModifier>100</iCivicChangeGoldModifier>
+			<iAICivicChangeGoldModifier>60</iAICivicChangeGoldModifier>
 			<Goodies>
 				<GoodyType>GOODY_LOW_GOLD</GoodyType>
 				<GoodyType>GOODY_LOW_GOLD</GoodyType>

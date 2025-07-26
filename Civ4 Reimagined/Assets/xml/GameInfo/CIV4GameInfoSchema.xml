@@ -404,6 +404,8 @@
 	<ElementType name="iAIWarWearinessPercent" content="textOnly" dt:type="int"/>
 	<ElementType name="iAIPerEraModifier" content="textOnly" dt:type="int"/>
 	<ElementType name="iAIAdvancedStartPercent" content="textOnly" dt:type="int"/>
+	<ElementType name="iCivicChangeGoldModifier" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
+	<ElementType name="iAICivicChangeGoldModifier" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iAIUniquePowerCostPercent" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
 	<ElementType name="iAIInstabilityThresholdModifier" content="textOnly" dt:type="int"/> <!-- Civ4 Reimagined -->
 	<ElementType name="GoodyType" content="textOnly"/>
@@ -485,6 +487,8 @@
 		<element type="iAIWarWearinessPercent"/>
 		<element type="iAIPerEraModifier"/>
 		<element type="iAIAdvancedStartPercent"/>
+		<element type="iCivicChangeGoldModifier"/> <!-- Civ4 Reimagined -->
+		<element type="iAICivicChangeGoldModifier"/> <!-- Civ4 Reimagined -->
 		<element type="iAIUniquePowerCostPercent"/> <!-- Civ4 Reimagined -->
 		<element type="iAIInstabilityThresholdModifier"/> <!-- Civ4 Reimagined -->
 		<element type="Goodies" maxOccurs="*"/>

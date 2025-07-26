@@ -182,6 +182,7 @@ public:
 
 	void foundReligion(int /*ReligionTypes*/ eReligion, int /*ReligionTypes*/ iSlotReligion, bool bAward);
 	int getCivicAnarchyLength(boost::python::list& /*CivicTypes**/ paeNewCivics);
+	int getCivicChangeGoldCost(boost::python::list& /*CivicTypes**/ paeNewCivics);
 	int getReligionAnarchyLength();
 
 	bool hasHeadquarters(int /*CorporationTypes*/ eCorporation);

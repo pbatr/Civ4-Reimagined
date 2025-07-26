@@ -2740,6 +2740,8 @@ public:
 	int getAIWarWearinessPercent() const;				// Exposed to Python
 	int getAIPerEraModifier() const;						// Exposed to Python
 	int getAIAdvancedStartPercent() const;						// Exposed to Python
+	int getCivicChangeGoldModifier() const;				// Exposed to Python
+	int getAICivicChangeGoldModifier() const;				// Exposed to Python
 	int getNumGoodies() const;				// Exposed to Python
 
 	// Arrays
@@ -2818,6 +2820,8 @@ protected:
 	int m_iAIWarWearinessPercent;
 	int m_iAIPerEraModifier;
 	int m_iAIAdvancedStartPercent;
+	int m_iCivicChangeGoldModifier;
+	int m_iAICivicChangeGoldModifier;
 	int m_iNumGoodies;
 
 	CvString m_szHandicapName;

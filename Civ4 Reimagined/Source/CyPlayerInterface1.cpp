@@ -176,6 +176,7 @@ void CyPlayerPythonInterface1(python::class_<CyPlayer>& x)
 		.def("foundCorporation", &CyPlayer::foundCorporation, "void (int /*CorporationTypes*/ eCorporation)")
 
 		.def("getCivicAnarchyLength", &CyPlayer::getCivicAnarchyLength, "int (int (CivicTypes*) paeNewCivics)")
+		.def("getCivicChangeGoldCost", &CyPlayer::getCivicChangeGoldCost, "int (int (CivicTypes*) paeNewCivics)")
 		.def("getReligionAnarchyLength", &CyPlayer::getReligionAnarchyLength, "int ()")
 
 		.def("unitsRequiredForGoldenAge", &CyPlayer::unitsRequiredForGoldenAge, "int ()")

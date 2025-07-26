@@ -9522,6 +9522,12 @@ bool CvPlayer::canRevolution(CivicTypes* paeNewCivics) const
 	}
 	else
 	{
+		const int iGoldCost = getCivicChangeGoldCost(paeNewCivics);
+		if (getGold() < iGoldCost)
+		{
+			return false;
+		}
+		
 		for (iI = 0; iI < GC.getNumCivicOptionInfos(); ++iI)
 		{
 			if (GC.getGameINLINE().isForceCivicOption((CivicOptionTypes)iI))
@@ -9554,7 +9560,17 @@ void CvPlayer::revolution(CivicTypes* paeNewCivics, bool bForce, bool bAnarchy)
 		return;
 	}
 
-	// Civ4 Reimagined
+	// Civ4 Reimagined: Gold-based civic changes instead of anarchy
+	if (paeNewCivics != NULL)
+	{
+		const int iGoldCost = getCivicChangeGoldCost(paeNewCivics);
+		if (iGoldCost > 0)
+		{
+			changeGold(-iGoldCost);
+		}
+	}
+
+	// Keep anarchy for backward compatibility (when bAnarchy is true)
 	iAnarchyLength = !bAnarchy ? 0 : getCivicAnarchyLength(paeNewCivics);
 
 	if (iAnarchyLength > 0)
@@ -10084,6 +10100,60 @@ int CvPlayer::getReligionAnarchyLength() const
 	return range(iAnarchyLength, 1, getMaxAnarchyTurns());
 }
 
+
+/*
+ *	Calculate the gold cost for changing civics
+ *	Base cost per civic changed, with potential for additional modifiers
+ */
+int CvPlayer::getCivicChangeGoldCost(CivicTypes* paeNewCivics) const
+{
+	int iGoldCost = 0;
+	int iCivicsChanged = 0;
+	int iI;
+
+	if (paeNewCivics == NULL)
+	{
+		return 0;
+	}
+
+	if (isGoldenAge())
+	{
+		return 0;
+	}
+
+	for (iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
+	{
+		if (paeNewCivics[iI] != getCivics((CivicOptionTypes)iI))
+		{
+			if (!isHasNoAnarchyCivicOption((CivicOptionTypes)iI))
+			{
+				iGoldCost += GC.getDefineINT("BASE_CIVIC_CHANGE_GOLD_COST");
+			}
+		}
+	}
+
+	// Apply handicap modifier (different difficulties have different costs)
+	const HandicapTypes eHandicap = GC.getGameINLINE().getHandicapType();
+	if (eHandicap != NO_HANDICAP)
+	{
+		int iHandicapModifier;
+		if (isHuman())
+		{
+			iHandicapModifier = GC.getHandicapInfo(eHandicap).getCivicChangeGoldModifier();
+		}
+		else
+		{
+			iHandicapModifier = GC.getHandicapInfo(eHandicap).getAICivicChangeGoldModifier();
+		}
+		
+		if (iHandicapModifier > 0)
+		{
+			iGoldCost = (iGoldCost * iHandicapModifier) / 100;
+		}
+	}
+
+	return std::max(0, iGoldCost);
+}
 
 
 int CvPlayer::unitsRequiredForGoldenAge() const

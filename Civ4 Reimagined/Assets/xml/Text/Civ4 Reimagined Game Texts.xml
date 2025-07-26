@@ -1553,4 +1553,9 @@
 		<Tag>TXT_KEY_MISC_HELP_COMMERCE_CULTURE_LEVEL</Tag>
 		<English>[ICON_BULLET]%D1%%%F2 from City Culture</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_POPUP_GOLD_COST_FOR_CIVIC_CHANGE</Tag>
+		<English> (Cost: %d1[ICON_GOLD])</English>
+		<French> (Coût: %d1[ICON_GOLD])</French>
+	</TEXT>
 </Civ4GameText>

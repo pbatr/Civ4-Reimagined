@@ -1664,10 +1664,10 @@ bool CvDLLButtonPopup::launchChangeCivicsPopup(CvPopup* pPopup, CvPopupInfo &inf
 			gDLL->getInterfaceIFace()->popupSetBodyString(pPopup, szBuffer);
 
 			szBuffer = gDLL->getText("TXT_KEY_POPUP_YES_START_REVOLUTION");
-			int iAnarchyLength = GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getCivicAnarchyLength(paeNewCivics);
-			if (iAnarchyLength > 0)
+			int iGoldCost = GET_PLAYER(GC.getGameINLINE().getActivePlayer()).getCivicChangeGoldCost(paeNewCivics);
+			if (iGoldCost > 0)
 			{
-				szBuffer += gDLL->getText("TXT_KEY_POPUP_TURNS_OF_ANARCHY", iAnarchyLength);
+				szBuffer += gDLL->getText("TXT_KEY_POPUP_GOLD_COST_FOR_CIVIC_CHANGE", iGoldCost);
 			}
 			gDLL->getInterfaceIFace()->popupAddGenericButton(pPopup, szBuffer, NULL, 0, WIDGET_GENERAL);
 		}

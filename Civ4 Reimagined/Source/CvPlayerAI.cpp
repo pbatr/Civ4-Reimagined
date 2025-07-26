@@ -19580,7 +19580,7 @@ void CvPlayerAI::AI_doCivics()
 		aeBestCivic = aeBestCivic2;
 	}
 	
-	revolution(&aeBestCivic[0]);
+	revolution(&aeBestCivic[0], false, false);
 	
 	if (gPlayerLogLevel > 0) logBBAI("*** %S final Civics: ***", getCivilizationDescription(0));
 	for (int iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)

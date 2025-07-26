@@ -714,6 +714,16 @@ int CyPlayer::getCivicAnarchyLength(boost::python::list& /*CivicTypes**/ paeNewC
 	return iRet;
 }
 
+int CyPlayer::getCivicChangeGoldCost(boost::python::list& /*CivicTypes**/ paeNewCivics)
+{
+	int* pCivics = NULL;
+	gDLL->getPythonIFace()->putSeqInArray(paeNewCivics.ptr() /*src*/, &pCivics /*dst*/);
+
+	int iRet = m_pPlayer ? m_pPlayer->getCivicChangeGoldCost((CivicTypes*)pCivics) : -1;
+	delete [] pCivics;
+	return iRet;
+}
+
 int CyPlayer::getReligionAnarchyLength()
 {
 	return m_pPlayer ? m_pPlayer->getReligionAnarchyLength() : -1;
