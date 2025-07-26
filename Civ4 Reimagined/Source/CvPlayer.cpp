@@ -9528,6 +9528,19 @@ bool CvPlayer::canRevolution(CivicTypes* paeNewCivics) const
 			return false;
 		}
 		
+		// Check if the civic change would result in a complete ideology change
+		if (!isGoldenAge())
+		{
+			const IdeologyTypes eCurrentIdeology = getIdeology();
+			const IdeologyTypes eNewIdeology = computeIdeologyFromCivics(paeNewCivics);
+			
+			// If ideology would change completely, prevent the civic change
+			if (eNewIdeology != eCurrentIdeology)
+			{
+				return false;
+			}
+		}
+		
 		for (iI = 0; iI < GC.getNumCivicOptionInfos(); ++iI)
 		{
 			if (GC.getGameINLINE().isForceCivicOption((CivicOptionTypes)iI))
@@ -10153,6 +10166,78 @@ int CvPlayer::getCivicChangeGoldCost(CivicTypes* paeNewCivics) const
 	}
 
 	return std::max(0, iGoldCost);
+}
+
+
+/*
+ *	Compute the ideology that would result from a given set of civics
+ *	This function directly computes ideological influences from the civics array
+ *	without modifying the player's actual state
+ */
+IdeologyTypes CvPlayer::computeIdeologyFromCivics(CivicTypes* paeCivics) const
+{
+	if (paeCivics == NULL)
+	{
+		return getIdeology();
+	}
+
+	if (isBarbarian() || !GC.getGameINLINE().areIdeologiesEnabled())
+	{
+		return getIdeology();
+	}
+
+	// Start with current ideology influences
+	int aiIdeologyInfluences[NUM_IDEOLOGY_TYPES];
+	for (int iI = 0; iI < NUM_IDEOLOGY_TYPES; ++iI)
+	{
+		aiIdeologyInfluences[iI] = getIdeologyInfluence((IdeologyTypes)iI);
+	}
+	
+	// Remove influence from current civics
+	for (int iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
+	{
+		const CivicTypes eCurrentCivic = getCivics((CivicOptionTypes)iI);
+		if (eCurrentCivic != NO_CIVIC)
+		{
+			aiIdeologyInfluences[IDEOLOGY_CONSERVATISM] -= GC.getCivicInfo(eCurrentCivic).getConservative();
+			aiIdeologyInfluences[IDEOLOGY_LIBERALISM] -= GC.getCivicInfo(eCurrentCivic).getLiberal();
+			aiIdeologyInfluences[IDEOLOGY_COMMUNISM] -= GC.getCivicInfo(eCurrentCivic).getCommunist();
+			aiIdeologyInfluences[IDEOLOGY_FASCISM] -= GC.getCivicInfo(eCurrentCivic).getFascist();
+		}
+	}
+	
+	// Add influence from new civics
+	for (int iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
+	{
+		const CivicTypes eNewCivic = paeCivics[iI];
+		if (eNewCivic != NO_CIVIC)
+		{
+			aiIdeologyInfluences[IDEOLOGY_CONSERVATISM] += GC.getCivicInfo(eNewCivic).getConservative();
+			aiIdeologyInfluences[IDEOLOGY_LIBERALISM] += GC.getCivicInfo(eNewCivic).getLiberal();
+			aiIdeologyInfluences[IDEOLOGY_COMMUNISM] += GC.getCivicInfo(eNewCivic).getCommunist();
+			aiIdeologyInfluences[IDEOLOGY_FASCISM] += GC.getCivicInfo(eNewCivic).getFascist();
+		}
+	}
+
+	// Find the ideology with the highest influence (same logic as updateIdeology)
+	IdeologyTypes eBestIdeology = IDEOLOGY_CONSERVATISM;
+	int iBestValue = INT_MIN;
+
+	for (int iI = 0; iI < NUM_IDEOLOGY_TYPES; ++iI)
+	{
+		if (!GET_TEAM(getTeam()).isHasTech((TechTypes)(GC.getIdeologyInfo((IdeologyTypes)iI).getTechPrereq())))
+		{
+			continue;
+		}
+
+		if (aiIdeologyInfluences[iI] > iBestValue)
+		{
+			eBestIdeology = (IdeologyTypes)iI;
+			iBestValue = aiIdeologyInfluences[iI];
+		}
+	}
+
+	return eBestIdeology;
 }
 
 
