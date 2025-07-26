@@ -232,10 +232,35 @@ std::wstring CyGameTextMgr::setConvertHelp(int iPlayer, int iReligion)
 	return szBuffer.getCString();
 }
 
-std::wstring CyGameTextMgr::setRevolutionHelp(int iPlayer)
+std::wstring CyGameTextMgr::setRevolutionHelp(int iPlayer, boost::python::list& /*CivicTypes**/ paeNewCivics)
 {
 	CvWStringBuffer szBuffer;
-	GAMETEXT.setRevolutionHelp(szBuffer, (PlayerTypes)iPlayer);
+	
+	// Convert Python list to C++ array
+	CivicTypes* paeCivics = NULL;
+	if (boost::python::len(paeNewCivics) > 0)
+	{
+		paeCivics = new CivicTypes[GC.getNumCivicOptionInfos()];
+		for (int i = 0; i < GC.getNumCivicOptionInfos(); i++)
+		{
+			if (i < boost::python::len(paeNewCivics))
+			{
+				paeCivics[i] = (CivicTypes)boost::python::extract<int>(paeNewCivics[i]);
+			}
+			else
+			{
+				paeCivics[i] = NO_CIVIC;
+			}
+		}
+	}
+	
+	GAMETEXT.setRevolutionHelp(szBuffer, (PlayerTypes)iPlayer, paeCivics);
+	
+	if (paeCivics != NULL)
+	{
+		delete[] paeCivics;
+	}
+	
 	return szBuffer.getCString();
 }
 

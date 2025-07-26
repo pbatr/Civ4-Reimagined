@@ -309,13 +309,13 @@ class CvCivicsScreen:
 			screen.setText(self.EXIT_NAME, "Background", u"<font=4>" + localText.getText("TXT_KEY_PEDIA_SCREEN_EXIT", ( )).upper() + u"</font>", CvUtil.FONT_RIGHT_JUSTIFY, self.X_EXIT, self.Y_EXIT, self.Z_TEXT, FontTypes.TITLE_FONT, WidgetTypes.WIDGET_GENERAL, 1, -1)
 			screen.hide(self.CANCEL_NAME)
 
-		# Anarchy
-		iTurns = activePlayer.getCivicAnarchyLength(self.m_paeDisplayCivics);
+		# Gold Cost
+		iGoldCost = activePlayer.getCivicChangeGoldCost(self.m_paeDisplayCivics);
 		
 		if (activePlayer.canRevolution(0)):
-			szText = localText.getText("TXT_KEY_ANARCHY_TURNS", (iTurns, ))
+			szText = localText.getText("TXT_KEY_POPUP_GOLD_COST_FOR_CIVIC_CHANGE", (iGoldCost, ))
 		else:
-			szText = CyGameTextMgr().setRevolutionHelp(self.iActivePlayer)
+			szText = CyGameTextMgr().setRevolutionHelp(self.iActivePlayer, self.m_paeDisplayCivics)
 
 		self.calculateIdeologyInfluence()
 			
