@@ -10122,7 +10122,6 @@ int CvPlayer::getCivicChangeGoldCost(CivicTypes* paeNewCivics) const
 {
 	int iGoldCost = 0;
 	int iCivicsChanged = 0;
-	int iI;
 
 	if (paeNewCivics == NULL)
 	{
@@ -10134,13 +10133,43 @@ int CvPlayer::getCivicChangeGoldCost(CivicTypes* paeNewCivics) const
 		return 0;
 	}
 
-	for (iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
+	const IdeologyTypes eCurrentIdeology = getIdeology();
+
+	for (int iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
 	{
-		if (paeNewCivics[iI] != getCivics((CivicOptionTypes)iI))
+		const CivicTypes eCurrentCivic = getCivics((CivicOptionTypes)iI);
+		const CivicTypes eNewCivic = paeNewCivics[iI];
+		if (eNewCivic != eCurrentCivic)
 		{
 			if (!isHasNoAnarchyCivicOption((CivicOptionTypes)iI))
 			{
 				iGoldCost += GC.getDefineINT("BASE_CIVIC_CHANGE_GOLD_COST");
+
+				if (!isBarbarian() && GC.getGameINLINE().areIdeologiesEnabled() && eCurrentCivic != NO_CIVIC && eNewCivic != NO_CIVIC)
+				{
+					int iCurrentInfluenceChange = 0;
+					
+					switch (eCurrentIdeology)
+					{
+					case IDEOLOGY_CONSERVATISM:
+						iCurrentInfluenceChange = GC.getCivicInfo(eCurrentCivic).getConservative() - GC.getCivicInfo(eNewCivic).getConservative();
+						break;
+					case IDEOLOGY_LIBERALISM:
+						iCurrentInfluenceChange = GC.getCivicInfo(eCurrentCivic).getLiberal() - GC.getCivicInfo(eNewCivic).getLiberal();
+						break;
+					case IDEOLOGY_COMMUNISM:
+						iCurrentInfluenceChange = GC.getCivicInfo(eCurrentCivic).getCommunist() - GC.getCivicInfo(eNewCivic).getCommunist();
+						break;
+					case IDEOLOGY_FASCISM:
+						iCurrentInfluenceChange = GC.getCivicInfo(eCurrentCivic).getFascist() - GC.getCivicInfo(eNewCivic).getFascist();
+						break;
+					}
+
+					if (iCurrentInfluenceChange < 0)
+					{
+						iGoldCost += -iCurrentInfluenceChange * GC.getDefineINT("IDEOLOGICAL_INFLUENCE_LOSS_GOLD_COST");
+					}
+				}
 			}
 		}
 	}
