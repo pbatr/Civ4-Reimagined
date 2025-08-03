@@ -10152,16 +10152,16 @@ int CvPlayer::getCivicChangeGoldCost(CivicTypes* paeNewCivics) const
 					switch (eCurrentIdeology)
 					{
 					case IDEOLOGY_CONSERVATISM:
-						iCurrentInfluenceChange = GC.getCivicInfo(eCurrentCivic).getConservative() - GC.getCivicInfo(eNewCivic).getConservative();
+						iCurrentInfluenceChange = GC.getCivicInfo(eNewCivic).getConservative() - GC.getCivicInfo(eCurrentCivic).getConservative();
 						break;
 					case IDEOLOGY_LIBERALISM:
-						iCurrentInfluenceChange = GC.getCivicInfo(eCurrentCivic).getLiberal() - GC.getCivicInfo(eNewCivic).getLiberal();
+						iCurrentInfluenceChange = GC.getCivicInfo(eNewCivic).getLiberal() - GC.getCivicInfo(eCurrentCivic).getLiberal();
 						break;
 					case IDEOLOGY_COMMUNISM:
-						iCurrentInfluenceChange = GC.getCivicInfo(eCurrentCivic).getCommunist() - GC.getCivicInfo(eNewCivic).getCommunist();
+						iCurrentInfluenceChange = GC.getCivicInfo(eNewCivic).getCommunist() - GC.getCivicInfo(eCurrentCivic).getCommunist();
 						break;
 					case IDEOLOGY_FASCISM:
-						iCurrentInfluenceChange = GC.getCivicInfo(eCurrentCivic).getFascist() - GC.getCivicInfo(eNewCivic).getFascist();
+						iCurrentInfluenceChange = GC.getCivicInfo(eNewCivic).getFascist() - GC.getCivicInfo(eCurrentCivic).getFascist();
 						break;
 					}
 
