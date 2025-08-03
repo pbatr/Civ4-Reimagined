@@ -9625,11 +9625,7 @@ int CvPlayer::getCivicPercentAnger(CivicTypes eCivic, bool bIgnore) const
 	int iI;
 	int iAnger;
 
-	// Civ4 Reimagined: Additionally to enabling ideologies, civic anger (currently from Republic) is only active once the ideologies are enabled.
-	if (!GC.getGameINLINE().areIdeologiesEnabled())
-	{
-		return 0;
-	}
+
 	
 	if (GC.getCivicInfo(eCivic).getCivicPercentAnger() == 0)
 	{
@@ -10145,7 +10141,7 @@ int CvPlayer::getCivicChangeGoldCost(CivicTypes* paeNewCivics) const
 			{
 				iGoldCost += GC.getDefineINT("BASE_CIVIC_CHANGE_GOLD_COST");
 
-				if (!isBarbarian() && GC.getGameINLINE().areIdeologiesEnabled() && eCurrentCivic != NO_CIVIC && eNewCivic != NO_CIVIC)
+				if (!isBarbarian() && eCurrentCivic != NO_CIVIC && eNewCivic != NO_CIVIC)
 				{
 					int iCurrentInfluenceChange = 0;
 					
@@ -10210,7 +10206,7 @@ IdeologyTypes CvPlayer::computeIdeologyFromCivics(CivicTypes* paeCivics) const
 		return getIdeology();
 	}
 
-	if (isBarbarian() || !GC.getGameINLINE().areIdeologiesEnabled())
+	if (isBarbarian())
 	{
 		return getIdeology();
 	}
@@ -19181,7 +19177,7 @@ int CvPlayer::getEspionageMissionCostModifier(EspionageMissionTypes eMission, Pl
 	}
 
 	// Civ4 Reimagined
-	if (GC.getGameINLINE().areIdeologiesEnabled() && getIdeology() != GET_PLAYER(eTargetPlayer).getIdeology())
+	if (getIdeology() != GET_PLAYER(eTargetPlayer).getIdeology())
 	{
 		const int iIdeologyInfluence = GET_PLAYER(eTargetPlayer).getIdeologyInfluence(getIdeology());
 		if (iIdeologyInfluence > 0)
@@ -28869,7 +28865,7 @@ int CvPlayer::calculateBonusRatioModifier() const
 {
 	int iModifier = getBonusValueModifier();
 
-	if (GC.getGameINLINE().areIdeologiesEnabled())
+	if (getBonusRatioModifierPerIdeologyCiv(getIdeology()) != 0)
 	{
 		iModifier += GC.getGameINLINE().getIdeologyCount(getIdeology()) * getBonusRatioModifierPerIdeologyCiv(getIdeology());
 	}
@@ -29093,10 +29089,7 @@ void CvPlayer::updateIdeology()
 		return;
 	}
 
-	if (!GC.getGameINLINE().areIdeologiesEnabled())
-	{
-		return;
-	}
+
 
 	IdeologyTypes eBestIdeology = IDEOLOGY_CONSERVATISM;
 	int iBestValue = INT_MIN;

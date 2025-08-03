@@ -64,7 +64,7 @@ void CyInfoPythonInterface1()
 		.def("getAssetValue", &CvTechInfo::getAssetValue, "int ()")
 		.def("getPowerValue", &CvTechInfo::getPowerValue, "int ()")
 		.def("getCoastBonusCommerce", &CvTechInfo::getCoastBonusCommerce, "int ()") //Civ4 Reimagined
-		.def("isEnableIdeologies", &CvTechInfo::isEnableIdeologies, "bool ()") //Civ4 Reimagined
+
 
 		.def("getGridX", &CvTechInfo::getGridX, "int ()")
 		.def("getGridY", &CvTechInfo::getGridY, "int ()")

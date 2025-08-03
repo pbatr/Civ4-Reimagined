@@ -15112,15 +15112,12 @@ void CvGameTextMgr::buildSeaPlotYieldString(CvWStringBuffer &szBuffer, TechTypes
 // Civ4 Reimagined
 void CvGameTextMgr::buildIdeologiesString(CvWStringBuffer &szBuffer, TechTypes eTech, bool bList, bool bPlayerContext)
 {
-	if (GC.getTechInfo(eTech).isEnableIdeologies())
+	if (bList)
 	{
-		if (bList)
-		{
-			szBuffer.append(NEWLINE);
-		}
-
-		szBuffer.append(gDLL->getText("TXT_KEY_MISC_ENABLES_IDEOLOGIES"));
+		szBuffer.append(NEWLINE);
 	}
+
+	szBuffer.append(gDLL->getText("TXT_KEY_MISC_ENABLES_IDEOLOGIES"));
 }
 
 
@@ -20156,7 +20153,7 @@ void CvGameTextMgr::setEspionageCostHelp(CvWStringBuffer &szBuffer, EspionageMis
 		}
 
 		// Civ4 Reimagined
-		if (GC.getGameINLINE().areIdeologiesEnabled() && kPlayer.getIdeology() != GET_PLAYER(eTargetPlayer).getIdeology())
+		if (kPlayer.getIdeology() != GET_PLAYER(eTargetPlayer).getIdeology())
 		{
 			const int iIdeologyInfluence = GET_PLAYER(eTargetPlayer).getIdeologyInfluence(kPlayer.getIdeology());
 			if (iIdeologyInfluence > 0)

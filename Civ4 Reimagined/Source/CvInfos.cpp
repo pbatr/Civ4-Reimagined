@@ -1006,7 +1006,7 @@ m_bMapCentering(false),
 m_bMapVisible(false),
 m_bMapTrading(false),
 m_bTechTrading(false),
-m_bEnableIdeologies(false), // Civ4 Reimagined
+
 m_bGoldTrading(false),
 m_bOpenBordersTrading(false),
 m_bDefensivePactTrading(false),
@@ -1185,10 +1185,7 @@ bool CvTechInfo::isTechTrading() const
 }
 
 // Civ4 Reimagined
-bool CvTechInfo::isEnableIdeologies() const
-{
-	return m_bEnableIdeologies;
-}
+
 
 bool CvTechInfo::isGoldTrading() const
 {
@@ -1338,7 +1335,7 @@ void CvTechInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bMapVisible);
 	stream->Read(&m_bMapTrading);
 	stream->Read(&m_bTechTrading);
-	stream->Read(&m_bEnableIdeologies); // Civ4 Reimagined
+
 	stream->Read(&m_bGoldTrading);
 	stream->Read(&m_bOpenBordersTrading);
 	stream->Read(&m_bDefensivePactTrading);
@@ -1414,7 +1411,7 @@ void CvTechInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bMapVisible);
 	stream->Write(m_bMapTrading);
 	stream->Write(m_bTechTrading);
-	stream->Write(m_bEnableIdeologies); // Civ4 Reimagined
+
 	stream->Write(m_bGoldTrading);
 	stream->Write(m_bOpenBordersTrading);
 	stream->Write(m_bDefensivePactTrading);
@@ -1481,7 +1478,7 @@ bool CvTechInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bMapVisible, "bMapVisible");
 	pXML->GetChildXmlValByName(&m_bMapTrading, "bMapTrading");
 	pXML->GetChildXmlValByName(&m_bTechTrading, "bTechTrading");
-	pXML->GetChildXmlValByName(&m_bEnableIdeologies, "bEnableIdeologies"); // Civ4 Reimagined
+
 	pXML->GetChildXmlValByName(&m_bGoldTrading, "bGoldTrading");
 	pXML->GetChildXmlValByName(&m_bOpenBordersTrading, "bOpenBordersTrading");
 	pXML->GetChildXmlValByName(&m_bDefensivePactTrading, "bDefensivePactTrading");

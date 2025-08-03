@@ -34,7 +34,6 @@
 	<ElementType name="bMapVisible" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bMapTrading" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bTechTrading" content="textOnly" dt:type="boolean"/>
-	<ElementType name="bEnableIdeologies" content="textOnly" dt:type="boolean"/> <!-- Civ4 Reimagined -->
 	<ElementType name="bGoldTrading" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bOpenBordersTrading" content="textOnly" dt:type="boolean"/>
 	<ElementType name="bDefensivePactTrading" content="textOnly" dt:type="boolean"/>
@@ -127,7 +126,6 @@
 		<element type="bMapVisible"/>
 		<element type="bMapTrading"/>
 		<element type="bTechTrading"/>
-		<element type="bEnableIdeologies" minOccurs="0"/> <!-- Civ4 Reimagined -->
 		<element type="bGoldTrading"/>
 		<element type="bOpenBordersTrading"/>
 		<element type="bDefensivePactTrading"/>
