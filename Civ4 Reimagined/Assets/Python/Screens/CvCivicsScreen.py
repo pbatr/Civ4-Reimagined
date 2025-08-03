@@ -302,7 +302,7 @@ class CvCivicsScreen:
 		
 		# Make the revolution button
 		screen.deleteWidget(self.EXIT_NAME)
-		if (activePlayer.canRevolution(0) and bChange):			
+		if (activePlayer.canRevolution(self.m_paeDisplayCivics) and bChange):			
 			screen.setText(self.EXIT_NAME, "Background", u"<font=4>" + localText.getText("TXT_KEY_CONCEPT_REVOLUTION", ( )).upper() + u"</font>", CvUtil.FONT_RIGHT_JUSTIFY, self.X_EXIT, self.Y_EXIT, self.Z_TEXT, FontTypes.TITLE_FONT, WidgetTypes.WIDGET_REVOLUTION, 1, 0)
 			screen.show(self.CANCEL_NAME)
 		else:
@@ -312,7 +312,7 @@ class CvCivicsScreen:
 		# Gold Cost
 		iGoldCost = activePlayer.getCivicChangeGoldCost(self.m_paeDisplayCivics);
 		
-		if (activePlayer.canRevolution(0)):
+		if (activePlayer.canRevolution(self.m_paeDisplayCivics)):
 			szText = localText.getText("TXT_KEY_POPUP_GOLD_COST_FOR_CIVIC_CHANGE", (iGoldCost, ))
 		else:
 			szText = CyGameTextMgr().setRevolutionHelp(self.iActivePlayer, self.m_paeDisplayCivics)
@@ -343,7 +343,7 @@ class CvCivicsScreen:
 		activePlayer = gc.getPlayer(self.iActivePlayer)
 
 		if (inputClass.getNotifyCode() == NotifyCode.NOTIFY_CLICKED) :
-			if (activePlayer.canRevolution(0)):
+			if (activePlayer.canRevolution(self.m_paeDisplayCivics)):
 				messageControl = CyMessageControl()
 				messageControl.sendUpdateCivics(self.m_paeDisplayCivics)			
 			screen = self.getScreen()

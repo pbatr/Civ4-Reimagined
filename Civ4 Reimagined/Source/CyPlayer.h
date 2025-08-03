@@ -6,6 +6,8 @@
 // Python wrapper class for CvPlayer 
 // 
 
+#include <boost/python/list.hpp>
+
 //#include "CvEnums.h"
 //#include "CvStructs.h"
 
@@ -169,7 +171,7 @@ public:
 
 	bool isCivic(int /*CivicTypes*/ eCivic);
 	bool canDoCivics(int /*CivicTypes*/ eCivic);
-	bool canRevolution(int /*CivicTypes**/ paeNewCivics);
+	bool canRevolution(boost::python::list& /*CivicTypes**/ paeNewCivics);
 	void revolution(int /*CivicTypes**/ paeNewCivics, bool bForce);
 	int getCivicPercentAnger(int /*CivicTypes*/ eCivic);
 

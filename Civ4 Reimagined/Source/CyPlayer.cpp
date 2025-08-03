@@ -630,9 +630,14 @@ bool CyPlayer::canDoCivics(int /*CivicTypes*/ eCivic)
 	return m_pPlayer ? m_pPlayer->canDoCivics((CivicTypes)eCivic) : false;
 }
 
-bool CyPlayer::canRevolution(int /*CivicTypes**/ paeNewCivics)
+bool CyPlayer::canRevolution(boost::python::list& /*CivicTypes**/ paeNewCivics)
 {
-	return m_pPlayer ? m_pPlayer->canRevolution((CivicTypes*)paeNewCivics) : false;
+	int* pCivics = NULL;
+	gDLL->getPythonIFace()->putSeqInArray(paeNewCivics.ptr() /*src*/, &pCivics /*dst*/);
+
+	bool bRet = m_pPlayer ? m_pPlayer->canRevolution((CivicTypes*)pCivics) : false;
+	delete [] pCivics;
+	return bRet;
 }
 
 void CyPlayer::revolution(int /*CivicTypes**/ paeNewCivics, bool bForce)
