@@ -157,7 +157,8 @@ void CyPlayerPythonInterface1(python::class_<CyPlayer>& x)
 
 		.def("isCivic", &CyPlayer::isCivic, "bool (int (CivicTypes) eCivic)")
 		.def("canDoCivics", &CyPlayer::canDoCivics, "bool (int (CivicTypes) eCivic)")
-		.def("canRevolution", &CyPlayer::canRevolution, "bool (int (CivicTypes*) paeNewCivics)")
+		.def("canRevolution", (bool(CyPlayer::*)(boost::python::list&))&CyPlayer::canRevolution, "bool (list paeNewCivics)")
+		.def("canRevolution", (bool(CyPlayer::*)(void))&CyPlayer::canRevolution, "bool ()")
 		.def("revolution", &CyPlayer::revolution, "void (int (CivicTypes*) paeNewCivics, bool bForce)")
 		.def("getCivicPercentAnger", &CyPlayer::getCivicPercentAnger, "int (int /*CivicTypes*/ eCivic)")
 

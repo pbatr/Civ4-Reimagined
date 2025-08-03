@@ -172,6 +172,7 @@ public:
 	bool isCivic(int /*CivicTypes*/ eCivic);
 	bool canDoCivics(int /*CivicTypes*/ eCivic);
 	bool canRevolution(boost::python::list& /*CivicTypes**/ paeNewCivics);
+	bool canRevolution();
 	void revolution(int /*CivicTypes**/ paeNewCivics, bool bForce);
 	int getCivicPercentAnger(int /*CivicTypes*/ eCivic);
 

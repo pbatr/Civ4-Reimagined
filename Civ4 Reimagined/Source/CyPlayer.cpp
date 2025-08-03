@@ -640,6 +640,11 @@ bool CyPlayer::canRevolution(boost::python::list& /*CivicTypes**/ paeNewCivics)
 	return bRet;
 }
 
+bool CyPlayer::canRevolution()
+{
+	return m_pPlayer ? m_pPlayer->canRevolution(NULL) : false;
+}
+
 void CyPlayer::revolution(int /*CivicTypes**/ paeNewCivics, bool bForce)
 {
 	if (m_pPlayer)
