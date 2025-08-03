@@ -236,29 +236,15 @@ std::wstring CyGameTextMgr::setRevolutionHelp(int iPlayer, boost::python::list& 
 {
 	CvWStringBuffer szBuffer;
 	
-	// Convert Python list to C++ array
-	CivicTypes* paeCivics = NULL;
-	if (boost::python::len(paeNewCivics) > 0)
-	{
-		paeCivics = new CivicTypes[GC.getNumCivicOptionInfos()];
-		for (int i = 0; i < GC.getNumCivicOptionInfos(); i++)
-		{
-			if (i < boost::python::len(paeNewCivics))
-			{
-				paeCivics[i] = (CivicTypes)boost::python::extract<int>(paeNewCivics[i]);
-			}
-			else
-			{
-				paeCivics[i] = NO_CIVIC;
-			}
-		}
-	}
+	// Convert Python list to C++ array using the same pattern as other functions
+	int* pCivics = NULL;
+	gDLL->getPythonIFace()->putSeqInArray(paeNewCivics.ptr() /*src*/, &pCivics /*dst*/);
 	
-	GAMETEXT.setRevolutionHelp(szBuffer, (PlayerTypes)iPlayer, paeCivics);
+	GAMETEXT.setRevolutionHelp(szBuffer, (PlayerTypes)iPlayer, (CivicTypes*)pCivics);
 	
-	if (paeCivics != NULL)
+	if (pCivics != NULL)
 	{
-		delete[] paeCivics;
+		delete[] pCivics;
 	}
 	
 	return szBuffer.getCString();
