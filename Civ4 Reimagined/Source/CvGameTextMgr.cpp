@@ -18025,6 +18025,7 @@ void CvGameTextMgr::setRevolutionHelp(CvWStringBuffer& szBuffer, PlayerTypes ePl
 				
 				if (eNewIdeology != eCurrentIdeology)
 				{
+					szBuffer.append(L" : ");
 					szBuffer.append(gDLL->getText("TXT_KEY_MISC_CIVIC_CHANGE_WOULD_CHANGE_IDEOLOGY"));
 				}
 				else
@@ -18034,7 +18035,6 @@ void CvGameTextMgr::setRevolutionHelp(CvWStringBuffer& szBuffer, PlayerTypes ePl
 					
 					if (kPlayer.getGold() < iGoldCost)
 					{
-						szBuffer.append(gDLL->getText("TXT_KEY_MISC_INSUFFICIENT_GOLD_FOR_CIVIC_CHANGE"));
 						szBuffer.append(L" (");
 						szBuffer.append(gDLL->getText("TXT_KEY_MISC_REQUIRED_GOLD", iGoldCost));
 						szBuffer.append(L")");
@@ -18048,7 +18048,6 @@ void CvGameTextMgr::setRevolutionHelp(CvWStringBuffer& szBuffer, PlayerTypes ePl
 				
 				if (kPlayer.getGold() < iGoldCost)
 				{
-					szBuffer.append(gDLL->getText("TXT_KEY_MISC_INSUFFICIENT_GOLD_FOR_CIVIC_CHANGE"));
 					szBuffer.append(L" (");
 					szBuffer.append(gDLL->getText("TXT_KEY_MISC_REQUIRED_GOLD", iGoldCost));
 					szBuffer.append(L")");
@@ -18060,10 +18059,12 @@ void CvGameTextMgr::setRevolutionHelp(CvWStringBuffer& szBuffer, PlayerTypes ePl
 			// No specific civics provided, give general guidance
 			if (kPlayer.getGold() <= 0)
 			{
+				szBuffer.append(L" : ");
 				szBuffer.append(gDLL->getText("TXT_KEY_MISC_INSUFFICIENT_GOLD_FOR_CIVIC_CHANGE"));
 			}
 			else
 			{
+				szBuffer.append(L" : ");
 				szBuffer.append(gDLL->getText("TXT_KEY_MISC_CIVIC_CHANGE_REQUIREMENTS"));
 			}
 		}

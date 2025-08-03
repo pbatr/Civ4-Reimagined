@@ -1555,8 +1555,7 @@
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_POPUP_GOLD_COST_FOR_CIVIC_CHANGE</Tag>
-		<English> (Cost: %d1[ICON_GOLD])</English>
-		<French> (Coût: %d1[ICON_GOLD])</French>
+		<English>One time Cost: %d1[ICON_GOLD)</English>
 	</TEXT>
 	<TEXT>
 		<Tag>TXT_KEY_MISC_INSUFFICIENT_GOLD_FOR_CIVIC_CHANGE</Tag>

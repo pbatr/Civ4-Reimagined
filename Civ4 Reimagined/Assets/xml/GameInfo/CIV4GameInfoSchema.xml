@@ -487,10 +487,10 @@
 		<element type="iAIWarWearinessPercent"/>
 		<element type="iAIPerEraModifier"/>
 		<element type="iAIAdvancedStartPercent"/>
-		<element type="iCivicChangeGoldModifier"/> <!-- Civ4 Reimagined -->
-		<element type="iAICivicChangeGoldModifier"/> <!-- Civ4 Reimagined -->
 		<element type="iAIUniquePowerCostPercent"/> <!-- Civ4 Reimagined -->
 		<element type="iAIInstabilityThresholdModifier"/> <!-- Civ4 Reimagined -->
+		<element type="iCivicChangeGoldModifier"/> <!-- Civ4 Reimagined -->
+		<element type="iAICivicChangeGoldModifier"/> <!-- Civ4 Reimagined -->
 		<element type="Goodies" maxOccurs="*"/>
 		<element type="FreeTechs" maxOccurs="*"/>
 		<element type="AIFreeTechs" maxOccurs="*"/>
