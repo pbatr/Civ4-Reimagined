@@ -7,6 +7,8 @@
 // Python wrapper class for CyGameTextMgr
 //
 
+#include <boost/python/list.hpp>
+
 class CvGameTextMgr;
 class CyCity;
 class CyUnit;
@@ -50,7 +52,7 @@ public:
 	std::wstring buildHintsList();
 	std::wstring getAttitudeString(int iPlayer, int iTargetPlayer);
 	std::wstring setConvertHelp(int iPlayer, int iReligion);
-	std::wstring setRevolutionHelp(int iPlayer);
+	std::wstring setRevolutionHelp(int iPlayer, boost::python::list& paeNewCivics);
 	std::wstring setVassalRevoltHelp(int iMaster, int iVassal);
 	std::wstring getActiveDealsString(int iThisPlayer, int iOtherPlayer);
 	std::wstring getDealString(CyDeal* pDeal, int iPlayerPerspective);

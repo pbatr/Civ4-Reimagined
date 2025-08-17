@@ -1553,4 +1553,28 @@
 		<Tag>TXT_KEY_MISC_HELP_COMMERCE_CULTURE_LEVEL</Tag>
 		<English>[ICON_BULLET]%D1%%%F2 from City Culture</English>
 	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_POPUP_GOLD_COST_FOR_CIVIC_CHANGE</Tag>
+		<English>One time Cost: %d1[ICON_GOLD]</English>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_INSUFFICIENT_GOLD_FOR_CIVIC_CHANGE</Tag>
+		<English> (Insufficient gold)</English>
+		<French> (Or insuffisant)</French>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_REQUIRED_GOLD</Tag>
+		<English>Required: %d1[ICON_GOLD]</English>
+		<French>Nécessaire: %d1[ICON_GOLD]</French>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_CIVIC_CHANGE_WOULD_CHANGE_IDEOLOGY</Tag>
+		<English> (Would change ideology)</English>
+		<French> (Changerait l'idéologie)</French>
+	</TEXT>
+	<TEXT>
+		<Tag>TXT_KEY_MISC_CIVIC_CHANGE_REQUIREMENTS</Tag>
+		<English> (Check gold cost and ideology restrictions)</English>
+		<French> (Vérifiez le coût en or et les restrictions d'idéologie)</French>
+	</TEXT>
 </Civ4GameText>

@@ -302,20 +302,20 @@ class CvCivicsScreen:
 		
 		# Make the revolution button
 		screen.deleteWidget(self.EXIT_NAME)
-		if (activePlayer.canRevolution(0) and bChange):			
+		if (activePlayer.canRevolution(self.m_paeDisplayCivics) and bChange):			
 			screen.setText(self.EXIT_NAME, "Background", u"<font=4>" + localText.getText("TXT_KEY_CONCEPT_REVOLUTION", ( )).upper() + u"</font>", CvUtil.FONT_RIGHT_JUSTIFY, self.X_EXIT, self.Y_EXIT, self.Z_TEXT, FontTypes.TITLE_FONT, WidgetTypes.WIDGET_REVOLUTION, 1, 0)
 			screen.show(self.CANCEL_NAME)
 		else:
 			screen.setText(self.EXIT_NAME, "Background", u"<font=4>" + localText.getText("TXT_KEY_PEDIA_SCREEN_EXIT", ( )).upper() + u"</font>", CvUtil.FONT_RIGHT_JUSTIFY, self.X_EXIT, self.Y_EXIT, self.Z_TEXT, FontTypes.TITLE_FONT, WidgetTypes.WIDGET_GENERAL, 1, -1)
 			screen.hide(self.CANCEL_NAME)
 
-		# Anarchy
-		iTurns = activePlayer.getCivicAnarchyLength(self.m_paeDisplayCivics);
+		# Gold Cost
+		iGoldCost = activePlayer.getCivicChangeGoldCost(self.m_paeDisplayCivics);
 		
-		if (activePlayer.canRevolution(0)):
-			szText = localText.getText("TXT_KEY_ANARCHY_TURNS", (iTurns, ))
+		if (activePlayer.canRevolution(self.m_paeDisplayCivics)):
+			szText = localText.getText("TXT_KEY_POPUP_GOLD_COST_FOR_CIVIC_CHANGE", (iGoldCost, ))
 		else:
-			szText = CyGameTextMgr().setRevolutionHelp(self.iActivePlayer)
+			szText = CyGameTextMgr().setRevolutionHelp(self.iActivePlayer, self.m_paeDisplayCivics)
 
 		self.calculateIdeologyInfluence()
 			
@@ -324,12 +324,11 @@ class CvCivicsScreen:
 		szText += ", " + localText.getText("TXT_KEY_CIVIC_SCREEN_UPKEEP", (activePlayer.getCivicUpkeep(self.m_paeDisplayCivics, True)*(100+activePlayer.getInflationRate())/100, )) # K-Mod
 
 		# Ideologies (Civ4 Reimagined)
-		if (gc.getGame().areIdeologiesEnabled()):
-			szText += ", Ideology Influence: "
-			szText += u"%c" %(gc.getIdeologyInfo(0).getChar()) + str(self.m_iConservative) + ", ";
-			szText += u"%c" %(gc.getIdeologyInfo(1).getChar()) + str(self.m_iLiberal) + ", ";
-			szText += u"%c" %(gc.getIdeologyInfo(2).getChar()) + str(self.m_iCommunist) + ", ";
-			szText += u"%c" %(gc.getIdeologyInfo(3).getChar()) + str(self.m_iFascist);
+		szText += ", Ideology Influence: "
+		szText += u"%c" %(gc.getIdeologyInfo(0).getChar()) + str(self.m_iConservative) + ", ";
+		szText += u"%c" %(gc.getIdeologyInfo(1).getChar()) + str(self.m_iLiberal) + ", ";
+		szText += u"%c" %(gc.getIdeologyInfo(2).getChar()) + str(self.m_iCommunist) + ", ";
+		szText += u"%c" %(gc.getIdeologyInfo(3).getChar()) + str(self.m_iFascist);
 		
 		screen.setLabel("CivicsRevText", "Background", u"<font=3>" + szText + u"</font>", CvUtil.FONT_CENTER_JUSTIFY, self.X_SCREEN, self.BOTTOM_LINE_TOP + self.BOTTOM_LINE_HEIGHT/4 + 0 * self.TEXT_MARGIN//2, 0, FontTypes.GAME_FONT, WidgetTypes.WIDGET_GENERAL, -1, -1)
 
@@ -343,7 +342,7 @@ class CvCivicsScreen:
 		activePlayer = gc.getPlayer(self.iActivePlayer)
 
 		if (inputClass.getNotifyCode() == NotifyCode.NOTIFY_CLICKED) :
-			if (activePlayer.canRevolution(0)):
+			if (activePlayer.canRevolution(self.m_paeDisplayCivics)):
 				messageControl = CyMessageControl()
 				messageControl.sendUpdateCivics(self.m_paeDisplayCivics)			
 			screen = self.getScreen()

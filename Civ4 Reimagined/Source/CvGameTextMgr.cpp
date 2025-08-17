@@ -15112,15 +15112,12 @@ void CvGameTextMgr::buildSeaPlotYieldString(CvWStringBuffer &szBuffer, TechTypes
 // Civ4 Reimagined
 void CvGameTextMgr::buildIdeologiesString(CvWStringBuffer &szBuffer, TechTypes eTech, bool bList, bool bPlayerContext)
 {
-	if (GC.getTechInfo(eTech).isEnableIdeologies())
+	if (bList)
 	{
-		if (bList)
-		{
-			szBuffer.append(NEWLINE);
-		}
-
-		szBuffer.append(gDLL->getText("TXT_KEY_MISC_ENABLES_IDEOLOGIES"));
+		szBuffer.append(NEWLINE);
 	}
+
+	szBuffer.append(gDLL->getText("TXT_KEY_MISC_ENABLES_IDEOLOGIES"));
 }
 
 
@@ -17996,7 +17993,7 @@ void CvGameTextMgr::setConvertHelp(CvWStringBuffer& szBuffer, PlayerTypes ePlaye
 	}
 }
 
-void CvGameTextMgr::setRevolutionHelp(CvWStringBuffer& szBuffer, PlayerTypes ePlayer)
+void CvGameTextMgr::setRevolutionHelp(CvWStringBuffer& szBuffer, PlayerTypes ePlayer, CivicTypes* paeNewCivics)
 {
 	szBuffer.assign(gDLL->getText("TXT_KEY_MISC_CANNOT_CHANGE_CIVICS"));
 
@@ -18009,6 +18006,65 @@ void CvGameTextMgr::setRevolutionHelp(CvWStringBuffer& szBuffer, PlayerTypes ePl
 		szBuffer.append(gDLL->getText("TXT_KEY_MISC_ANOTHER_REVOLUTION_RECENTLY"));
 		szBuffer.append(L" : ");
 		szBuffer.append(gDLL->getText("TXT_KEY_MISC_WAIT_MORE_TURNS", GET_PLAYER(ePlayer).getRevolutionTimer()));
+	}
+	else
+	{
+		// Civ4 Reimagined: Check for specific conditions that prevent civic changes
+		CvPlayer& kPlayer = GET_PLAYER(ePlayer);
+		
+		if (paeNewCivics != NULL)
+		{
+			// Check ideology change first (more fundamental restriction)
+			if (!kPlayer.isGoldenAge())
+			{
+				const IdeologyTypes eCurrentIdeology = kPlayer.getIdeology();
+				const IdeologyTypes eNewIdeology = kPlayer.computeIdeologyFromCivics(paeNewCivics);
+				
+				if (eNewIdeology != eCurrentIdeology)
+				{
+					szBuffer.append(L" ");
+					szBuffer.append(gDLL->getText("TXT_KEY_MISC_CIVIC_CHANGE_WOULD_CHANGE_IDEOLOGY"));
+				}
+				else
+				{
+					// Only check gold cost if ideology wouldn't change
+					const int iGoldCost = kPlayer.getCivicChangeGoldCost(paeNewCivics);
+					
+					if (kPlayer.getGold() < iGoldCost)
+					{
+						szBuffer.append(L" (");
+						szBuffer.append(gDLL->getText("TXT_KEY_MISC_REQUIRED_GOLD", iGoldCost));
+						szBuffer.append(L")");
+					}
+				}
+			}
+			else
+			{
+				// In golden age, only check gold cost
+				const int iGoldCost = kPlayer.getCivicChangeGoldCost(paeNewCivics);
+				
+				if (kPlayer.getGold() < iGoldCost)
+				{
+					szBuffer.append(L" (");
+					szBuffer.append(gDLL->getText("TXT_KEY_MISC_REQUIRED_GOLD", iGoldCost));
+					szBuffer.append(L")");
+				}
+			}
+		}
+		else
+		{
+			// No specific civics provided, give general guidance
+			if (kPlayer.getGold() <= 0)
+			{
+				szBuffer.append(L" ");
+				szBuffer.append(gDLL->getText("TXT_KEY_MISC_INSUFFICIENT_GOLD_FOR_CIVIC_CHANGE"));
+			}
+			else
+			{
+				szBuffer.append(L" ");
+				szBuffer.append(gDLL->getText("TXT_KEY_MISC_CIVIC_CHANGE_REQUIREMENTS"));
+			}
+		}
 	}
 }
 
@@ -20097,7 +20153,7 @@ void CvGameTextMgr::setEspionageCostHelp(CvWStringBuffer &szBuffer, EspionageMis
 		}
 
 		// Civ4 Reimagined
-		if (GC.getGameINLINE().areIdeologiesEnabled() && kPlayer.getIdeology() != GET_PLAYER(eTargetPlayer).getIdeology())
+		if (kPlayer.getIdeology() != GET_PLAYER(eTargetPlayer).getIdeology())
 		{
 			const int iIdeologyInfluence = GET_PLAYER(eTargetPlayer).getIdeologyInfluence(kPlayer.getIdeology());
 			if (iIdeologyInfluence > 0)

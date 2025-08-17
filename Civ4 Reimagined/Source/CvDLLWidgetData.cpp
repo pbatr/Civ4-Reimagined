@@ -4947,17 +4947,15 @@ void CvDLLWidgetData::parseBonusRatioHelp(CvWidgetDataStruct &widgetDataStruct, 
 			{
 				szBuffer.append(gDLL->getText("TXT_KEY_MISC_BONUS_RATIO_MULTIPLIER_NEGATIVE", iBonusValueModifier));
 			}
-			if (GC.getGameINLINE().areIdeologiesEnabled())
-			{
-				const IdeologyTypes eIdeology = GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).getIdeology();
-				const int iIdeologyBonusModifier = GC.getGameINLINE().getIdeologyCount(eIdeology) * GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).getBonusRatioModifierPerIdeologyCiv(eIdeology);
+			
+			const IdeologyTypes eIdeology = GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).getIdeology();
+			const int iIdeologyBonusModifier = GC.getGameINLINE().getIdeologyCount(eIdeology) * GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).getBonusRatioModifierPerIdeologyCiv(eIdeology);
 
-				if (iIdeologyBonusModifier != 0)
-				{
-					szBuffer.append(NEWLINE);
-					szBuffer.append(gDLL->getText("TXT_KEY_MISC_BONUS_RATIO_IDEOLOGY_MODIFIER", iIdeologyBonusModifier));
-				}
-			}			
+			if (iIdeologyBonusModifier != 0)
+			{
+				szBuffer.append(NEWLINE);
+				szBuffer.append(gDLL->getText("TXT_KEY_MISC_BONUS_RATIO_IDEOLOGY_MODIFIER", iIdeologyBonusModifier));
+			}
 		}
 		
 		szBuffer.append(L"\n-----------------------\n");

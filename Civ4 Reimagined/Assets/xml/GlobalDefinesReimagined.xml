@@ -26,6 +26,14 @@
 		<iDefineIntVal>0</iDefineIntVal> <!-- original value: 1 -->
 	</Define>
 	<Define>
+		<DefineName>BASE_CIVIC_CHANGE_GOLD_COST</DefineName>
+		<iDefineIntVal>20</iDefineIntVal> <!-- Base gold cost per civic changed -->
+	</Define>
+	<Define>
+		<DefineName>IDEOLOGICAL_INFLUENCE_LOSS_GOLD_COST</DefineName>
+		<iDefineIntVal>5</iDefineIntVal> <!-- Gold cost per ideological influence point lost -->
+	</Define>
+	<Define>
 		<DefineName>BASE_RELIGION_ANARCHY_LENGTH</DefineName>
 		<iDefineIntVal>0</iDefineIntVal> <!-- original value: 1 -->
 	</Define>

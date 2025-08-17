@@ -630,6 +630,16 @@ bool CyPlayer::canDoCivics(int /*CivicTypes*/ eCivic)
 	return m_pPlayer ? m_pPlayer->canDoCivics((CivicTypes)eCivic) : false;
 }
 
+bool CyPlayer::canRevolution(boost::python::list& /*CivicTypes**/ paeNewCivics)
+{
+	int* pCivics = NULL;
+	gDLL->getPythonIFace()->putSeqInArray(paeNewCivics.ptr() /*src*/, &pCivics /*dst*/);
+
+	bool bRet = m_pPlayer ? m_pPlayer->canRevolution((CivicTypes*)pCivics) : false;
+	delete [] pCivics;
+	return bRet;
+}
+
 bool CyPlayer::canRevolution(int /*CivicTypes**/ paeNewCivics)
 {
 	return m_pPlayer ? m_pPlayer->canRevolution((CivicTypes*)paeNewCivics) : false;
@@ -710,6 +720,16 @@ int CyPlayer::getCivicAnarchyLength(boost::python::list& /*CivicTypes**/ paeNewC
 	gDLL->getPythonIFace()->putSeqInArray(paeNewCivics.ptr() /*src*/, &pCivics /*dst*/);
 
 	int iRet = m_pPlayer ? m_pPlayer->getCivicAnarchyLength((CivicTypes*)pCivics) : -1;
+	delete [] pCivics;
+	return iRet;
+}
+
+int CyPlayer::getCivicChangeGoldCost(boost::python::list& /*CivicTypes**/ paeNewCivics)
+{
+	int* pCivics = NULL;
+	gDLL->getPythonIFace()->putSeqInArray(paeNewCivics.ptr() /*src*/, &pCivics /*dst*/);
+
+	int iRet = m_pPlayer ? m_pPlayer->getCivicChangeGoldCost((CivicTypes*)pCivics) : -1;
 	delete [] pCivics;
 	return iRet;
 }

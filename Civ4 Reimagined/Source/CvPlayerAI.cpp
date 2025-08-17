@@ -8986,11 +8986,6 @@ int CvPlayerAI::AI_getNeedOpenBordersAttitude(PlayerTypes ePlayer) const
 // Civ4 Reimagined
 int CvPlayerAI::AI_getSameIdeologyAttitude(PlayerTypes ePlayer) const
 {
-	if (!GC.getGameINLINE().areIdeologiesEnabled())
-	{
-		return 0;
-	}
-
 	if (getIdeology() != GET_PLAYER(ePlayer).getIdeology())
 	{
 		return 0;
@@ -9009,11 +9004,6 @@ int CvPlayerAI::AI_getSameIdeologyAttitude(PlayerTypes ePlayer) const
 // Civ4 Reimagined
 int CvPlayerAI::AI_getDifferentIdeologyAttitude(PlayerTypes ePlayer) const
 {
-	if (!GC.getGameINLINE().areIdeologiesEnabled())
-	{
-		return 0;
-	}
-
 	if (getIdeology() == GET_PLAYER(ePlayer).getIdeology())
 	{
 		return 0;
@@ -16220,7 +16210,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	}
 
 	// Civ4 Reimagined: Unhappiness for rivals
-	if (kCivic.getCivicPercentAnger() != 0 && GC.getGameINLINE().areIdeologiesEnabled())
+	if (kCivic.getCivicPercentAnger() != 0)
 	{
 		const int iTempValue = kCivic.getCivicPercentAnger() / 10;
 
@@ -17416,7 +17406,7 @@ int CvPlayerAI::AI_civicValue(CivicTypes eCivic, bool bNoWarWeariness, bool bSta
 	// K-Mod end
 
 	// Civ4 Reiamagined
-	if (getForeignTradeIdeologyModifier(IDEOLOGY_LIBERALISM) > 0 || (isFrenchRevolution() && GC.getGameINLINE().areIdeologiesEnabled()))
+	if (getForeignTradeIdeologyModifier(IDEOLOGY_LIBERALISM) > 0 || isFrenchRevolution())
 	{
 		iValue += kCivic.getLiberal() * 10;
 	}
@@ -19580,7 +19570,7 @@ void CvPlayerAI::AI_doCivics()
 		aeBestCivic = aeBestCivic2;
 	}
 	
-	revolution(&aeBestCivic[0]);
+	revolution(&aeBestCivic[0], false, false);
 	
 	if (gPlayerLogLevel > 0) logBBAI("*** %S final Civics: ***", getCivilizationDescription(0));
 	for (int iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
@@ -27738,7 +27728,7 @@ int CvPlayerAI::AI_getBonusRatioModfierValue(const int iModifier) const
 // Civ4 Reimagined
 IdeologyTypes CvPlayerAI::AI_bestIdeology(CivicTypes* paeCivics) const
 {
-	if (paeCivics == NULL || !GC.getGameINLINE().areIdeologiesEnabled())
+	if (paeCivics == NULL)
 	{
 		return NO_IDEOLOGY;
 	}

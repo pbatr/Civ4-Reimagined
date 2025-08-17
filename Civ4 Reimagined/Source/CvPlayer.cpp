@@ -9522,6 +9522,25 @@ bool CvPlayer::canRevolution(CivicTypes* paeNewCivics) const
 	}
 	else
 	{
+		const int iGoldCost = getCivicChangeGoldCost(paeNewCivics);
+		if (getGold() < iGoldCost)
+		{
+			return false;
+		}
+		
+		// Check if the civic change would result in a complete ideology change
+		if (!isGoldenAge())
+		{
+			const IdeologyTypes eCurrentIdeology = getIdeology();
+			const IdeologyTypes eNewIdeology = computeIdeologyFromCivics(paeNewCivics);
+			
+			// If ideology would change completely, prevent the civic change
+			if (eNewIdeology != eCurrentIdeology)
+			{
+				return false;
+			}
+		}
+		
 		for (iI = 0; iI < GC.getNumCivicOptionInfos(); ++iI)
 		{
 			if (GC.getGameINLINE().isForceCivicOption((CivicOptionTypes)iI))
@@ -9554,7 +9573,17 @@ void CvPlayer::revolution(CivicTypes* paeNewCivics, bool bForce, bool bAnarchy)
 		return;
 	}
 
-	// Civ4 Reimagined
+	// Civ4 Reimagined: Gold-based civic changes instead of anarchy
+	if (paeNewCivics != NULL)
+	{
+		const int iGoldCost = getCivicChangeGoldCost(paeNewCivics);
+		if (iGoldCost > 0)
+		{
+			changeGold(-iGoldCost);
+		}
+	}
+
+	// Keep anarchy for backward compatibility (when bAnarchy is true)
 	iAnarchyLength = !bAnarchy ? 0 : getCivicAnarchyLength(paeNewCivics);
 
 	if (iAnarchyLength > 0)
@@ -9596,11 +9625,7 @@ int CvPlayer::getCivicPercentAnger(CivicTypes eCivic, bool bIgnore) const
 	int iI;
 	int iAnger;
 
-	// Civ4 Reimagined: Additionally to enabling ideologies, civic anger (currently from Republic) is only active once the ideologies are enabled.
-	if (!GC.getGameINLINE().areIdeologiesEnabled())
-	{
-		return 0;
-	}
+
 	
 	if (GC.getCivicInfo(eCivic).getCivicPercentAnger() == 0)
 	{
@@ -10084,6 +10109,161 @@ int CvPlayer::getReligionAnarchyLength() const
 	return range(iAnarchyLength, 1, getMaxAnarchyTurns());
 }
 
+
+/*
+ *	Calculate the gold cost for changing civics
+ *	Base cost per civic changed, with potential for additional modifiers
+ */
+int CvPlayer::getCivicChangeGoldCost(CivicTypes* paeNewCivics) const
+{
+	int iGoldCost = 0;
+	int iCivicsChanged = 0;
+
+	if (paeNewCivics == NULL)
+	{
+		return 0;
+	}
+
+	if (isGoldenAge())
+	{
+		return 0;
+	}
+
+	const IdeologyTypes eCurrentIdeology = getIdeology();
+
+	for (int iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
+	{
+		const CivicTypes eCurrentCivic = getCivics((CivicOptionTypes)iI);
+		const CivicTypes eNewCivic = paeNewCivics[iI];
+		if (eNewCivic != eCurrentCivic)
+		{
+			if (!isHasNoAnarchyCivicOption((CivicOptionTypes)iI))
+			{
+				iGoldCost += GC.getDefineINT("BASE_CIVIC_CHANGE_GOLD_COST");
+
+				if (!isBarbarian() && eCurrentCivic != NO_CIVIC && eNewCivic != NO_CIVIC)
+				{
+					int iCurrentInfluenceChange = 0;
+					
+					switch (eCurrentIdeology)
+					{
+					case IDEOLOGY_CONSERVATISM:
+						iCurrentInfluenceChange = GC.getCivicInfo(eNewCivic).getConservative() - GC.getCivicInfo(eCurrentCivic).getConservative();
+						break;
+					case IDEOLOGY_LIBERALISM:
+						iCurrentInfluenceChange = GC.getCivicInfo(eNewCivic).getLiberal() - GC.getCivicInfo(eCurrentCivic).getLiberal();
+						break;
+					case IDEOLOGY_COMMUNISM:
+						iCurrentInfluenceChange = GC.getCivicInfo(eNewCivic).getCommunist() - GC.getCivicInfo(eCurrentCivic).getCommunist();
+						break;
+					case IDEOLOGY_FASCISM:
+						iCurrentInfluenceChange = GC.getCivicInfo(eNewCivic).getFascist() - GC.getCivicInfo(eCurrentCivic).getFascist();
+						break;
+					}
+
+					if (iCurrentInfluenceChange < 0)
+					{
+						iGoldCost += -iCurrentInfluenceChange * GC.getDefineINT("IDEOLOGICAL_INFLUENCE_LOSS_GOLD_COST");
+					}
+				}
+			}
+		}
+	}
+
+	// Apply handicap modifier (different difficulties have different costs)
+	const HandicapTypes eHandicap = GC.getGameINLINE().getHandicapType();
+	if (eHandicap != NO_HANDICAP)
+	{
+		int iHandicapModifier;
+		if (isHuman())
+		{
+			iHandicapModifier = GC.getHandicapInfo(eHandicap).getCivicChangeGoldModifier();
+		}
+		else
+		{
+			iHandicapModifier = GC.getHandicapInfo(eHandicap).getAICivicChangeGoldModifier();
+		}
+		
+		if (iHandicapModifier > 0)
+		{
+			iGoldCost = (iGoldCost * iHandicapModifier) / 100;
+		}
+	}
+
+	return std::max(0, iGoldCost);
+}
+
+
+/*
+ *	Compute the ideology that would result from a given set of civics
+ *	This function directly computes ideological influences from the civics array
+ *	without modifying the player's actual state
+ */
+IdeologyTypes CvPlayer::computeIdeologyFromCivics(CivicTypes* paeCivics) const
+{
+	if (paeCivics == NULL)
+	{
+		return getIdeology();
+	}
+
+	if (isBarbarian())
+	{
+		return getIdeology();
+	}
+
+	// Start with current ideology influences
+	int aiIdeologyInfluences[NUM_IDEOLOGY_TYPES];
+	for (int iI = 0; iI < NUM_IDEOLOGY_TYPES; ++iI)
+	{
+		aiIdeologyInfluences[iI] = getIdeologyInfluence((IdeologyTypes)iI);
+	}
+	
+	// Remove influence from current civics
+	for (int iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
+	{
+		const CivicTypes eCurrentCivic = getCivics((CivicOptionTypes)iI);
+		if (eCurrentCivic != NO_CIVIC)
+		{
+			aiIdeologyInfluences[IDEOLOGY_CONSERVATISM] -= GC.getCivicInfo(eCurrentCivic).getConservative();
+			aiIdeologyInfluences[IDEOLOGY_LIBERALISM] -= GC.getCivicInfo(eCurrentCivic).getLiberal();
+			aiIdeologyInfluences[IDEOLOGY_COMMUNISM] -= GC.getCivicInfo(eCurrentCivic).getCommunist();
+			aiIdeologyInfluences[IDEOLOGY_FASCISM] -= GC.getCivicInfo(eCurrentCivic).getFascist();
+		}
+	}
+	
+	// Add influence from new civics
+	for (int iI = 0; iI < GC.getNumCivicOptionInfos(); iI++)
+	{
+		const CivicTypes eNewCivic = paeCivics[iI];
+		if (eNewCivic != NO_CIVIC)
+		{
+			aiIdeologyInfluences[IDEOLOGY_CONSERVATISM] += GC.getCivicInfo(eNewCivic).getConservative();
+			aiIdeologyInfluences[IDEOLOGY_LIBERALISM] += GC.getCivicInfo(eNewCivic).getLiberal();
+			aiIdeologyInfluences[IDEOLOGY_COMMUNISM] += GC.getCivicInfo(eNewCivic).getCommunist();
+			aiIdeologyInfluences[IDEOLOGY_FASCISM] += GC.getCivicInfo(eNewCivic).getFascist();
+		}
+	}
+
+	// Find the ideology with the highest influence (same logic as updateIdeology)
+	IdeologyTypes eBestIdeology = IDEOLOGY_CONSERVATISM;
+	int iBestValue = INT_MIN;
+
+	for (int iI = 0; iI < NUM_IDEOLOGY_TYPES; ++iI)
+	{
+		if (!GET_TEAM(getTeam()).isHasTech((TechTypes)(GC.getIdeologyInfo((IdeologyTypes)iI).getTechPrereq())))
+		{
+			continue;
+		}
+
+		if (aiIdeologyInfluences[iI] > iBestValue)
+		{
+			eBestIdeology = (IdeologyTypes)iI;
+			iBestValue = aiIdeologyInfluences[iI];
+		}
+	}
+
+	return eBestIdeology;
+}
 
 
 int CvPlayer::unitsRequiredForGoldenAge() const
@@ -18997,7 +19177,7 @@ int CvPlayer::getEspionageMissionCostModifier(EspionageMissionTypes eMission, Pl
 	}
 
 	// Civ4 Reimagined
-	if (GC.getGameINLINE().areIdeologiesEnabled() && getIdeology() != GET_PLAYER(eTargetPlayer).getIdeology())
+	if (getIdeology() != GET_PLAYER(eTargetPlayer).getIdeology())
 	{
 		const int iIdeologyInfluence = GET_PLAYER(eTargetPlayer).getIdeologyInfluence(getIdeology());
 		if (iIdeologyInfluence > 0)
@@ -28685,7 +28865,7 @@ int CvPlayer::calculateBonusRatioModifier() const
 {
 	int iModifier = getBonusValueModifier();
 
-	if (GC.getGameINLINE().areIdeologiesEnabled())
+	if (getBonusRatioModifierPerIdeologyCiv(getIdeology()) != 0)
 	{
 		iModifier += GC.getGameINLINE().getIdeologyCount(getIdeology()) * getBonusRatioModifierPerIdeologyCiv(getIdeology());
 	}
@@ -28909,10 +29089,7 @@ void CvPlayer::updateIdeology()
 		return;
 	}
 
-	if (!GC.getGameINLINE().areIdeologiesEnabled())
-	{
-		return;
-	}
+
 
 	IdeologyTypes eBestIdeology = IDEOLOGY_CONSERVATISM;
 	int iBestValue = INT_MIN;

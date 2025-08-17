@@ -339,7 +339,6 @@ public:
 	bool isMapVisible() const;						// Exposed to Python
 	bool isMapTrading() const;						// Exposed to Python
 	bool isTechTrading() const;						// Exposed to Python
-	bool isEnableIdeologies() const; // Civ4 Reimagined, Exposed to Python
 	bool isGoldTrading() const;						// Exposed to Python
 	bool isOpenBordersTrading() const;		// Exposed to Python
 	bool isDefensivePactTrading() const;	// Exposed to Python
@@ -409,7 +408,6 @@ protected:
 	bool m_bMapVisible;
 	bool m_bMapTrading;
 	bool m_bTechTrading;
-	bool m_bEnableIdeologies; // Civ4 Reimagined
 	bool m_bGoldTrading;
 	bool m_bOpenBordersTrading;
 	bool m_bDefensivePactTrading;
@@ -2740,6 +2738,8 @@ public:
 	int getAIWarWearinessPercent() const;				// Exposed to Python
 	int getAIPerEraModifier() const;						// Exposed to Python
 	int getAIAdvancedStartPercent() const;						// Exposed to Python
+	int getCivicChangeGoldModifier() const;				// Exposed to Python
+	int getAICivicChangeGoldModifier() const;				// Exposed to Python
 	int getNumGoodies() const;				// Exposed to Python
 
 	// Arrays
@@ -2818,6 +2818,8 @@ protected:
 	int m_iAIWarWearinessPercent;
 	int m_iAIPerEraModifier;
 	int m_iAIAdvancedStartPercent;
+	int m_iCivicChangeGoldModifier;
+	int m_iAICivicChangeGoldModifier;
 	int m_iNumGoodies;
 
 	CvString m_szHandicapName;

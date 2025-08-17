@@ -5949,13 +5949,7 @@ void CvTeam::setHasTech(TechTypes eIndex, bool bNewValue, PlayerTypes ePlayer, b
 						bAnnounceTech = true;
 					}
 					
-					// Civ4 Reimagined
-					if (GC.getTechInfo(eIndex).isEnableIdeologies())
-					{						
-						GC.getGameINLINE().enableIdeologies(true);
 
-						bAnnounceTech = true;
-					}
 
 					if (GC.getTechInfo(eIndex).getFirstFreeTechs() > 0)
 					{

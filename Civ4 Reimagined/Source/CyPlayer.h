@@ -6,6 +6,8 @@
 // Python wrapper class for CvPlayer 
 // 
 
+#include <boost/python/list.hpp>
+
 //#include "CvEnums.h"
 //#include "CvStructs.h"
 
@@ -169,6 +171,7 @@ public:
 
 	bool isCivic(int /*CivicTypes*/ eCivic);
 	bool canDoCivics(int /*CivicTypes*/ eCivic);
+	bool canRevolution(boost::python::list& /*CivicTypes**/ paeNewCivics);
 	bool canRevolution(int /*CivicTypes**/ paeNewCivics);
 	void revolution(int /*CivicTypes**/ paeNewCivics, bool bForce);
 	int getCivicPercentAnger(int /*CivicTypes*/ eCivic);
@@ -182,6 +185,7 @@ public:
 
 	void foundReligion(int /*ReligionTypes*/ eReligion, int /*ReligionTypes*/ iSlotReligion, bool bAward);
 	int getCivicAnarchyLength(boost::python::list& /*CivicTypes**/ paeNewCivics);
+	int getCivicChangeGoldCost(boost::python::list& /*CivicTypes**/ paeNewCivics);
 	int getReligionAnarchyLength();
 
 	bool hasHeadquarters(int /*CorporationTypes*/ eCorporation);
