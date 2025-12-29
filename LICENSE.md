@@ -672,3 +672,28 @@ may consider it more useful to permit linking proprietary applications with
 the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 <https://www.gnu.org/licenses/why-not-lgpl.html>.
+
+----------------------------------------------------------------------
+SCOPE AND THIRD-PARTY CODE NOTICE (REPOSITORY ADDENDUM)
+----------------------------------------------------------------------
+
+This repository contains a mixture of:
+  (A) Original contributions authored by the maintainers of this repository; and
+  (B) Third-party code originating from Sid Meier’s Civilization IV / the
+      Civilization IV CvGameCoreDLL SDK (the “Civ4 SDK”).
+
+License scope:
+  1) The GNU General Public License v3.0 applies ONLY to the original
+     contributions in (A) to the extent that the maintainers have the
+     right to license those contributions.
+
+  2) The GPL v3.0 does NOT apply to the Civ4 SDK code in (B). The Civ4 SDK
+     code remains © Firaxis Games and 2K Games (and/or their licensors)
+     and is provided here under the applicable Civilization IV EULA/SDK
+     terms, not under the GPL.
+
+No additional rights:
+  Nothing in this repository grants any rights in the Civ4 SDK code beyond
+  those granted by Firaxis/2K under the Civilization IV EULA/SDK terms.
+
+See THIRD_PARTY_NOTICES.md for details.

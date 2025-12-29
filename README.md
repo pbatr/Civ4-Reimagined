@@ -15,3 +15,11 @@ Civ4 Reimagined is an extensive overhaul for Civilization IV: Beyond the Sword b
 ### About this repository ###
 
 The ["Varietas Delectat v9.2 Cheetah edition.FPK"](https://forums.civfanatics.com/threads/graphic-mod-varietas-delectat-v9-2-civ-specific-unit-sets.237192/) has been omitted from this repository due to file size limitations and needs to be placed into Civ4 Reimagined\Assets. You can download it here: https://sourceforge.net/projects/civ4bat/files/Varietas%20Delectat
+
+### CvGameCoreDLL (Civ4 SDK) ###
+
+This directory contains code originating from the Civilization IV
+CvGameCoreDLL SDK (© Firaxis Games / 2K Games) plus modifications.
+
+This directory is NOT licensed under GPL-3.0 as a whole.
+See /THIRD_PARTY_NOTICES.md.
