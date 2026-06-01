@@ -232,10 +232,21 @@ std::wstring CyGameTextMgr::setConvertHelp(int iPlayer, int iReligion)
 	return szBuffer.getCString();
 }
 
-std::wstring CyGameTextMgr::setRevolutionHelp(int iPlayer)
+std::wstring CyGameTextMgr::setRevolutionHelp(int iPlayer, boost::python::list& /*CivicTypes**/ paeNewCivics)
 {
 	CvWStringBuffer szBuffer;
-	GAMETEXT.setRevolutionHelp(szBuffer, (PlayerTypes)iPlayer);
+	
+	// Convert Python list to C++ array using the same pattern as other functions
+	int* pCivics = NULL;
+	gDLL->getPythonIFace()->putSeqInArray(paeNewCivics.ptr() /*src*/, &pCivics /*dst*/);
+	
+	GAMETEXT.setRevolutionHelp(szBuffer, (PlayerTypes)iPlayer, (CivicTypes*)pCivics);
+	
+	if (pCivics != NULL)
+	{
+		delete[] pCivics;
+	}
+	
 	return szBuffer.getCString();
 }
 

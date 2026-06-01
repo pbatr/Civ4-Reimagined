@@ -5200,12 +5200,11 @@ class CvMainInterface:
 														szBuffer = szBuffer + szTempBuffer
 														if (bAlignIcons):
 															scores.setReligion(szTempBuffer)
-
-													if (gc.getGame().areIdeologiesEnabled()):
-														szTempBuffer = u"%c" %(gc.getIdeologyInfo(gc.getPlayer(ePlayer).getIdeology()).getChar())
-														szBuffer = szBuffer + szTempBuffer
-														if (bAlignIcons):
-															scores.setIdeology(szTempBuffer)
+														
+													szTempBuffer = u"%c" %(gc.getIdeologyInfo(gc.getPlayer(ePlayer).getIdeology()).getChar())
+													szBuffer = szBuffer + szTempBuffer
+													if (bAlignIcons):
+														scores.setIdeology(szTempBuffer)
 													
 													if (bEspionage and gc.getTeam(eTeam).getEspionagePointsAgainstTeam(gc.getGame().getActiveTeam()) < gc.getTeam(gc.getGame().getActiveTeam()).getEspionagePointsAgainstTeam(eTeam)):
 														szTempBuffer = u"%c" %(gc.getCommerceInfo(CommerceTypes.COMMERCE_ESPIONAGE).getChar())

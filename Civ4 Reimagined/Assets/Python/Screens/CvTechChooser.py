@@ -811,15 +811,6 @@ class CvTechChooser:
 		j = 0
 		k = 0
 
-		# Civ4 Reimagined Civic Anger... 		
-		if ( gc.getTechInfo(i).isEnableIdeologies()):
-			szEnableIdeologiesButton = self.getNextWidgetName("EnableIdeologies")
-			screen.addDDSGFCAt( szEnableIdeologiesButton, szTechRecord, ArtFileMgr.getInterfaceArtInfo("INTERFACE_TECH_ENABLE_IDEOLOGIES").getPath(), iX + fX, iY + Y_ROW, TEXTURE_SIZE, TEXTURE_SIZE, WidgetTypes.WIDGET_HELP_ENABLE_IDEOLOGIES, i, -1, False )
-			fX += X_INCREMENT
-
-		j = 0
-		k = 0
-
 		# Religions unlocked
 		for j in range( gc.getNumReligionInfos() ):
 			if ( gc.getReligionInfo(j).getTechPrereq() == i ):

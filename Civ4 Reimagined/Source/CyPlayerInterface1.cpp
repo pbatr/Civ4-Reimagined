@@ -157,7 +157,8 @@ void CyPlayerPythonInterface1(python::class_<CyPlayer>& x)
 
 		.def("isCivic", &CyPlayer::isCivic, "bool (int (CivicTypes) eCivic)")
 		.def("canDoCivics", &CyPlayer::canDoCivics, "bool (int (CivicTypes) eCivic)")
-		.def("canRevolution", &CyPlayer::canRevolution, "bool (int (CivicTypes*) paeNewCivics)")
+		.def("canRevolution", (bool(CyPlayer::*)(boost::python::list&))&CyPlayer::canRevolution, "bool (list paeNewCivics)")
+		.def("canRevolution", (bool(CyPlayer::*)(int))&CyPlayer::canRevolution, "bool (int paeNewCivics)")
 		.def("revolution", &CyPlayer::revolution, "void (int (CivicTypes*) paeNewCivics, bool bForce)")
 		.def("getCivicPercentAnger", &CyPlayer::getCivicPercentAnger, "int (int /*CivicTypes*/ eCivic)")
 
@@ -176,6 +177,7 @@ void CyPlayerPythonInterface1(python::class_<CyPlayer>& x)
 		.def("foundCorporation", &CyPlayer::foundCorporation, "void (int /*CorporationTypes*/ eCorporation)")
 
 		.def("getCivicAnarchyLength", &CyPlayer::getCivicAnarchyLength, "int (int (CivicTypes*) paeNewCivics)")
+		.def("getCivicChangeGoldCost", &CyPlayer::getCivicChangeGoldCost, "int (int (CivicTypes*) paeNewCivics)")
 		.def("getReligionAnarchyLength", &CyPlayer::getReligionAnarchyLength, "int ()")
 
 		.def("unitsRequiredForGoldenAge", &CyPlayer::unitsRequiredForGoldenAge, "int ()")

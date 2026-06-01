@@ -385,11 +385,6 @@ void CvDLLWidgetData::parseHelp(CvWStringBuffer &szBuffer, CvWidgetDataStruct &w
 	case WIDGET_HELP_SEA_PLOT_YIELD:
 		parseSeaPlotYieldHelp(widgetDataStruct, szBuffer);
 		break;
-	
-	// Civ4 Reimagined
-	case WIDGET_HELP_ENABLE_IDEOLOGIES:
-		parseIdeologiesHelp(widgetDataStruct, szBuffer);
-		break;
 
 	case WIDGET_HELP_IMPROVEMENT:
 		parseBuildHelp(widgetDataStruct, szBuffer);
@@ -4947,17 +4942,15 @@ void CvDLLWidgetData::parseBonusRatioHelp(CvWidgetDataStruct &widgetDataStruct, 
 			{
 				szBuffer.append(gDLL->getText("TXT_KEY_MISC_BONUS_RATIO_MULTIPLIER_NEGATIVE", iBonusValueModifier));
 			}
-			if (GC.getGameINLINE().areIdeologiesEnabled())
-			{
-				const IdeologyTypes eIdeology = GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).getIdeology();
-				const int iIdeologyBonusModifier = GC.getGameINLINE().getIdeologyCount(eIdeology) * GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).getBonusRatioModifierPerIdeologyCiv(eIdeology);
+			
+			const IdeologyTypes eIdeology = GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).getIdeology();
+			const int iIdeologyBonusModifier = GC.getGameINLINE().getIdeologyCount(eIdeology) * GET_PLAYER(pHeadSelectedCity->getOwnerINLINE()).getBonusRatioModifierPerIdeologyCiv(eIdeology);
 
-				if (iIdeologyBonusModifier != 0)
-				{
-					szBuffer.append(NEWLINE);
-					szBuffer.append(gDLL->getText("TXT_KEY_MISC_BONUS_RATIO_IDEOLOGY_MODIFIER", iIdeologyBonusModifier));
-				}
-			}			
+			if (iIdeologyBonusModifier != 0)
+			{
+				szBuffer.append(NEWLINE);
+				szBuffer.append(gDLL->getText("TXT_KEY_MISC_BONUS_RATIO_IDEOLOGY_MODIFIER", iIdeologyBonusModifier));
+			}
 		}
 		
 		szBuffer.append(L"\n-----------------------\n");
@@ -5486,12 +5479,6 @@ void CvDLLWidgetData::parseWaterWorkHelp(CvWidgetDataStruct &widgetDataStruct, C
 void CvDLLWidgetData::parseSeaPlotYieldHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)
 {
 	GAMETEXT.buildSeaPlotYieldString(szBuffer, ((TechTypes)(widgetDataStruct.m_iData1)));
-}
-
-// Civ4 Reimagined
-void CvDLLWidgetData::parseIdeologiesHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)
-{
-	GAMETEXT.buildIdeologiesString(szBuffer, ((TechTypes)(widgetDataStruct.m_iData1)));
 }
 
 void CvDLLWidgetData::parseBuildHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)

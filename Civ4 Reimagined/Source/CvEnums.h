@@ -556,7 +556,6 @@ enum WidgetTypes					// Exposed to Python
 ** K-Mod end
 */
 	WIDGET_HELP_SEA_PLOT_YIELD, // Civ4 Reimagined. Wow, karadoc wasn't kidding when he wrote that out of order declarations can break WIDGET_CLOSE_SCREEN.
-	WIDGET_HELP_ENABLE_IDEOLOGIES, // Civ4 Reimagined
 	WIDGET_HELP_BONUS_RATIO, // Civ4 Reimagined
 	WIDGET_HELP_BONUS_SUM, // Civ4 Reimagined
 	WIDGET_HELP_SLAVERY_BAR,

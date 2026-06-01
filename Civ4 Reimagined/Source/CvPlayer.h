@@ -314,6 +314,8 @@ public:
 	void foundCorporation(CorporationTypes eCorporation);	// Exposed to Python
 
 	DllExport int getCivicAnarchyLength(CivicTypes* paeNewCivics) const;	// Exposed to Python
+	int getCivicChangeGoldCost(CivicTypes* paeNewCivics) const;	// Exposed to Python
+	IdeologyTypes computeIdeologyFromCivics(CivicTypes* paeCivics) const;
 	DllExport int getReligionAnarchyLength() const;	// Exposed to Python
 
 	DllExport int unitsRequiredForGoldenAge() const;	// Exposed to Python

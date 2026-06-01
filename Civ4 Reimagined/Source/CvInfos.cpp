@@ -1006,7 +1006,7 @@ m_bMapCentering(false),
 m_bMapVisible(false),
 m_bMapTrading(false),
 m_bTechTrading(false),
-m_bEnableIdeologies(false), // Civ4 Reimagined
+
 m_bGoldTrading(false),
 m_bOpenBordersTrading(false),
 m_bDefensivePactTrading(false),
@@ -1185,10 +1185,7 @@ bool CvTechInfo::isTechTrading() const
 }
 
 // Civ4 Reimagined
-bool CvTechInfo::isEnableIdeologies() const
-{
-	return m_bEnableIdeologies;
-}
+
 
 bool CvTechInfo::isGoldTrading() const
 {
@@ -1338,7 +1335,7 @@ void CvTechInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_bMapVisible);
 	stream->Read(&m_bMapTrading);
 	stream->Read(&m_bTechTrading);
-	stream->Read(&m_bEnableIdeologies); // Civ4 Reimagined
+
 	stream->Read(&m_bGoldTrading);
 	stream->Read(&m_bOpenBordersTrading);
 	stream->Read(&m_bDefensivePactTrading);
@@ -1414,7 +1411,7 @@ void CvTechInfo::write(FDataStreamBase* stream)
 	stream->Write(m_bMapVisible);
 	stream->Write(m_bMapTrading);
 	stream->Write(m_bTechTrading);
-	stream->Write(m_bEnableIdeologies); // Civ4 Reimagined
+
 	stream->Write(m_bGoldTrading);
 	stream->Write(m_bOpenBordersTrading);
 	stream->Write(m_bDefensivePactTrading);
@@ -1481,7 +1478,7 @@ bool CvTechInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_bMapVisible, "bMapVisible");
 	pXML->GetChildXmlValByName(&m_bMapTrading, "bMapTrading");
 	pXML->GetChildXmlValByName(&m_bTechTrading, "bTechTrading");
-	pXML->GetChildXmlValByName(&m_bEnableIdeologies, "bEnableIdeologies"); // Civ4 Reimagined
+
 	pXML->GetChildXmlValByName(&m_bGoldTrading, "bGoldTrading");
 	pXML->GetChildXmlValByName(&m_bOpenBordersTrading, "bOpenBordersTrading");
 	pXML->GetChildXmlValByName(&m_bDefensivePactTrading, "bDefensivePactTrading");
@@ -12531,6 +12528,8 @@ m_iAIInflationPercent(0),
 m_iAIWarWearinessPercent(0),
 m_iAIPerEraModifier(0),
 m_iAIAdvancedStartPercent(0),
+m_iCivicChangeGoldModifier(100),
+m_iAICivicChangeGoldModifier(100),
 m_iNumGoodies(0),
 m_piGoodies(NULL),
 m_pbFreeTechs(NULL),
@@ -12861,6 +12860,16 @@ int CvHandicapInfo::getAIAdvancedStartPercent() const
 	return m_iAIAdvancedStartPercent;
 }
 
+int CvHandicapInfo::getCivicChangeGoldModifier() const		
+{
+	return m_iCivicChangeGoldModifier;
+}
+
+int CvHandicapInfo::getAICivicChangeGoldModifier() const		
+{
+	return m_iAICivicChangeGoldModifier;
+}
+
 int CvHandicapInfo::getNumGoodies() const					
 {
 	return m_iNumGoodies;
@@ -12958,6 +12967,8 @@ void CvHandicapInfo::read(FDataStreamBase* stream)
 	stream->Read(&m_iAIWarWearinessPercent);
 	stream->Read(&m_iAIPerEraModifier);
 	stream->Read(&m_iAIAdvancedStartPercent);
+	stream->Read(&m_iCivicChangeGoldModifier);
+	stream->Read(&m_iAICivicChangeGoldModifier);
 	stream->Read(&m_iNumGoodies);
 
 	stream->ReadString(m_szHandicapName);
@@ -13046,6 +13057,8 @@ void CvHandicapInfo::write(FDataStreamBase* stream)
 	stream->Write(m_iAIWarWearinessPercent);
 	stream->Write(m_iAIPerEraModifier);
 	stream->Write(m_iAIAdvancedStartPercent);
+	stream->Write(m_iCivicChangeGoldModifier);
+	stream->Write(m_iAICivicChangeGoldModifier);
 	stream->Write(m_iNumGoodies);
 
 	stream->WriteString(m_szHandicapName);
@@ -13127,6 +13140,8 @@ bool CvHandicapInfo::read(CvXMLLoadUtility* pXML)
 	pXML->GetChildXmlValByName(&m_iAIWarWearinessPercent, "iAIWarWearinessPercent");
 	pXML->GetChildXmlValByName(&m_iAIPerEraModifier, "iAIPerEraModifier");
 	pXML->GetChildXmlValByName(&m_iAIAdvancedStartPercent, "iAIAdvancedStartPercent");
+	pXML->GetChildXmlValByName(&m_iCivicChangeGoldModifier, "iCivicChangeGoldModifier");
+	pXML->GetChildXmlValByName(&m_iAICivicChangeGoldModifier, "iAICivicChangeGoldModifier");
 
 	if (gDLL->getXMLIFace()->SetToChildByTagName(pXML->GetXML(), "Goodies"))
 	{

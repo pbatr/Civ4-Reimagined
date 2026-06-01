@@ -342,7 +342,7 @@ void CvNetUpdateCivics::Execute()
 {
 	if (m_ePlayer != NO_PLAYER && !m_aeCivics.empty())
 	{
-		GET_PLAYER(m_ePlayer).revolution(&m_aeCivics[0]);
+		GET_PLAYER(m_ePlayer).revolution(&m_aeCivics[0], false, false);
 	}
 }
 

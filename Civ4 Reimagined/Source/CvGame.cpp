@@ -263,12 +263,7 @@ void CvGame::init(HandicapTypes eHandicap)
 		}
 	}
 
-	// Civ4 Reimagined
-	if ((int)getStartEra() >= 4)
-	{
-		enableIdeologies(true);
-	}
-
+	
 	AI_init();
 
 	doUpdateCacheOnTurn();
@@ -3716,18 +3711,7 @@ int CvGame::getNumFreeBonuses(BuildingTypes eBuilding)
 }
 
 
-// Civ4 Reimagined
-bool CvGame::areIdeologiesEnabled() const
-{
-	return m_bIdeologiesEnabled;
-}
 
-
-// Civ4 Reimagined
-void CvGame::enableIdeologies(bool bEnable)
-{
-	m_bIdeologiesEnabled = bEnable;
-}
 
 
 int CvGame::countReligionLevels(ReligionTypes eReligion)
@@ -10556,10 +10540,7 @@ bool CvGame::pythonIsBonusIgnoreLatitudes() const
 // Civ4 Reimagined
 void CvGame::updateIdeologyCount()
 {
-	if (!areIdeologiesEnabled())
-	{
-		return;
-	}
+
 
 	for (int iI = 0; iI < GC.getNumIdeologyInfos(); ++iI)
 	{

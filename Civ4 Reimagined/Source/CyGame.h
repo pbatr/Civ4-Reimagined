@@ -64,9 +64,6 @@ public:
 	int countKnownTechNumTeams(int /*TechTypes*/ eTech);
 	int getNumFreeBonuses(int /*BuildingTypes*/ eBuilding);
 
-	// Civ4 Reimagined
-	bool areIdeologiesEnabled() const;
-
 	int countReligionLevels(int /*ReligionTypes*/ eReligion);	
 	int calculateReligionPercent(int /* ReligionTypes*/ eReligion);
 	int countCorporationLevels(int /*CorporationTypes*/ eCorporation);	
