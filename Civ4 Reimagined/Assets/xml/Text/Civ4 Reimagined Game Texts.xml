@@ -1094,10 +1094,6 @@
 		<English>[COLOR_HIGHLIGHT_TEXT]%s1_CorpName[COLOR_REVERT] has been driven out of %s2_CityName by [COLOR_HIGHLIGHT_TEXT]%s3_CorpName[COLOR_REVERT].</English>
 	</TEXT>
 	<TEXT>
-		<Tag>TXT_KEY_MISC_ENABLES_IDEOLOGIES</Tag>
-		<English>[ICON_BULLET]Enables [ICON_UNHAPPY] from Foreign Civics for All Players</English>
-	</TEXT>	
-	<TEXT>
 		<Tag>TXT_KEY_UNIT_COMBAT_XP_MODIFIER_POSITIVE</Tag>
 		<English>[ICON_BULLET]Enables [ICON_UNHAPPY] from Foreign Civics</English>
 	</TEXT>	

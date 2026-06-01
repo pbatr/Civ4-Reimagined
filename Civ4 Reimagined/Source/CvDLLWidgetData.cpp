@@ -385,11 +385,6 @@ void CvDLLWidgetData::parseHelp(CvWStringBuffer &szBuffer, CvWidgetDataStruct &w
 	case WIDGET_HELP_SEA_PLOT_YIELD:
 		parseSeaPlotYieldHelp(widgetDataStruct, szBuffer);
 		break;
-	
-	// Civ4 Reimagined
-	case WIDGET_HELP_ENABLE_IDEOLOGIES:
-		parseIdeologiesHelp(widgetDataStruct, szBuffer);
-		break;
 
 	case WIDGET_HELP_IMPROVEMENT:
 		parseBuildHelp(widgetDataStruct, szBuffer);
@@ -5484,12 +5479,6 @@ void CvDLLWidgetData::parseWaterWorkHelp(CvWidgetDataStruct &widgetDataStruct, C
 void CvDLLWidgetData::parseSeaPlotYieldHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)
 {
 	GAMETEXT.buildSeaPlotYieldString(szBuffer, ((TechTypes)(widgetDataStruct.m_iData1)));
-}
-
-// Civ4 Reimagined
-void CvDLLWidgetData::parseIdeologiesHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)
-{
-	GAMETEXT.buildIdeologiesString(szBuffer, ((TechTypes)(widgetDataStruct.m_iData1)));
 }
 
 void CvDLLWidgetData::parseBuildHelp(CvWidgetDataStruct &widgetDataStruct, CvWStringBuffer &szBuffer)

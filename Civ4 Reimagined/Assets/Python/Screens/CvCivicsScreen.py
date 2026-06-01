@@ -309,19 +309,17 @@ class CvCivicsScreen:
 			screen.setText(self.EXIT_NAME, "Background", u"<font=4>" + localText.getText("TXT_KEY_PEDIA_SCREEN_EXIT", ( )).upper() + u"</font>", CvUtil.FONT_RIGHT_JUSTIFY, self.X_EXIT, self.Y_EXIT, self.Z_TEXT, FontTypes.TITLE_FONT, WidgetTypes.WIDGET_GENERAL, 1, -1)
 			screen.hide(self.CANCEL_NAME)
 
+		szText = localText.getText("TXT_KEY_CIVIC_SCREEN_UPKEEP", (activePlayer.getCivicUpkeep(self.m_paeDisplayCivics, True)*(100+activePlayer.getInflationRate())/100, )) # K-Mod
+
 		# Gold Cost
 		iGoldCost = activePlayer.getCivicChangeGoldCost(self.m_paeDisplayCivics);
 		
 		if (activePlayer.canRevolution(self.m_paeDisplayCivics)):
-			szText = localText.getText("TXT_KEY_POPUP_GOLD_COST_FOR_CIVIC_CHANGE", (iGoldCost, ))
+			szText += ", " + localText.getText("TXT_KEY_POPUP_GOLD_COST_FOR_CIVIC_CHANGE", (iGoldCost, ))
 		else:
-			szText = CyGameTextMgr().setRevolutionHelp(self.iActivePlayer, self.m_paeDisplayCivics)
+			szText += ", " + CyGameTextMgr().setRevolutionHelp(self.iActivePlayer, self.m_paeDisplayCivics)
 
 		self.calculateIdeologyInfluence()
-			
-		# Maintenance		
-		#szText += ", " + localText.getText("TXT_KEY_CIVIC_SCREEN_UPKEEP", (activePlayer.getCivicUpkeep(self.m_paeDisplayCivics, True), ))
-		szText += ", " + localText.getText("TXT_KEY_CIVIC_SCREEN_UPKEEP", (activePlayer.getCivicUpkeep(self.m_paeDisplayCivics, True)*(100+activePlayer.getInflationRate())/100, )) # K-Mod
 
 		# Ideologies (Civ4 Reimagined)
 		szText += ", Ideology Influence: "
